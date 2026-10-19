@@ -1,0 +1,1282 @@
+# Ersoy Toptaş Quantitative Models, Scoring Calibration & Formulation Engine
+> Canonical Methodology Reference for AI Agents & LLM Reasoning Engines
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
+> Endpoint: https://analizraporlari.blogspot.com/llms-formulas.txt
+> Root Index: https://analizraporlari.blogspot.com/llms.txt
+> Editorial Articles: https://toptasersoy.blogspot.com/llms.txt
+> Target Schemas: economy.json, country.json, political.json
+
+---
+
+## 0. GENERAL METHODOLOGY & EXECUTION RULES (AI DIREKTIFLERI)
+
+### 0.1. Fundamental Separation of Data Types (Veri Türlerinin Ayrımı)
+AI ajanları bu analitik çerçeveyi uygularken şu 4 katmanı kesin olarak birbirinden ayırmak ZORUNDADIR:
+1. Empirical Measurements (Nesnel Ölçümler): Gözlemlenebilir ham piyasa ve kurum verileri (WALCL, WTREGEN, DFF, Faiz Makasları).
+2. Calibrated Analytical Indices (Kalibre Edilmiş Endeksler): Tanımlı ağırlıklarla üretilen sentetik göstergeler (composite_strategic_score, composite_tension_score).
+3. Forecast Probabilities (Gelecek Senaryo Olasılığı): Tanımlı vadede olayın gerçekleşme tahmini (probability_percent).
+4. Evidence Confidence (Kanıt ve Kaynak Güvenilirliği): Veriyi destekleyen kaynakların otorite ve tazelik puanı (confidence_score).
+
+---
+
+### 0.2. Missing Data & Integrity Rule (Eksik Veri İlkesi)
+Yapay zeka modelleri eksik verileri kafasından tamamlayamaz. Girdi verisi yetersizse değer uydurulamaz, doğrudan null (Python'da None) bırakılır.
+
+---
+
+## 0.3. FRED / ALFRED OFFICIAL DATA TRANSFORMATION & GROWTH RATE ENGINE
+- Purpose: FRED ve ALFRED zaman serisi ham verilerini (levels) standart resmi St. Louis Fed kurallarıyla oran, yıllık değişim ve bileşik büyüme hızlarına dönüştürür.
+- Reference: Federal Reserve Bank of St. Louis (FRED/ALFRED Methodology)
+
+### Observation Frequencies (n_obs_per_yr):
+- Daily (İş Günü) : 260
+- Weekly (Haftalık) : 52
+- Biweekly (2 Haftalık) : 26
+- Monthly (Aylık) : 12
+- Quarterly (Çeyreklik) : 4
+- Annual (Yıllık) : 1
+
+### Core Transformation Formulas & Python Executables:
+
+import math
+
+def _is_num(val):
+    if val is None or isinstance(val, bool) or not isinstance(val, (int, float)):
+        return False
+    try:
+        return math.isfinite(val)
+    except (OverflowError, ValueError, TypeError):
+        return False
+
+def _is_pos(val):
+    if not _is_num(val):
+        return False
+    return min(val, 0) != val
+
+1. Change (Dönemsel Mutlak Değişim):
+   Formula: x(t) - x(t-1)
+   Python:
+   def fred_change(xt, xt_prev):
+       if not (_is_num(xt) and _is_num(xt_prev)):
+           return None
+       try:
+           res = xt - xt_prev
+           return round(res, 4) if math.isfinite(res) else None
+       except (OverflowError, ValueError):
+           return None
+
+2. Change from Year Ago (Yıllık Mutlak Değişim):
+   Formula: x(t) - x(t - n_obs_per_yr)
+   Python:
+   def fred_change_year_ago(xt, xt_year_ago):
+       if not (_is_num(xt) and _is_num(xt_year_ago)):
+           return None
+       try:
+           res = xt - xt_year_ago
+           return round(res, 4) if math.isfinite(res) else None
+       except (OverflowError, ValueError):
+           return None
+
+3. Percent Change (Dönemsel Yüzde Değişim - MoM / QoQ):
+   Formula: ((x(t) / x(t-1)) - 1) * 100
+   Python:
+   def fred_percent_change(xt, xt_prev):
+       if not (_is_num(xt) and _is_num(xt_prev)) or xt_prev == 0:
+           return None
+       try:
+           res = ((xt / xt_prev) - 1.0) * 100.0
+           return round(res, 4) if math.isfinite(res) else None
+       except (OverflowError, ValueError, ZeroDivisionError):
+           return None
+
+4. Percent Change from Year Ago (Yıllık Yüzde Değişim - YoY):
+   Formula: ((x(t) / x(t - n_obs_per_yr)) - 1) * 100
+   Python:
+   def fred_percent_change_year_ago(xt, xt_year_ago):
+       if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago == 0:
+           return None
+       try:
+           res = ((xt / xt_year_ago) - 1.0) * 100.0
+           return round(res, 4) if math.isfinite(res) else None
+       except (OverflowError, ValueError, ZeroDivisionError):
+           return None
+
+5. Compounded Annual Rate of Change (Bileşik Yıllıklandırılmış Büyüme Hızı - SAAR):
+   Formula: (((x(t) / x(t-1)) ** n_obs_per_yr) - 1) * 100
+   Python:
+   def fred_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
+       if not all(_is_pos(v) for v in (xt, xt_prev, n_obs_per_yr)):
+           return None
+       try:
+           res = (((xt / xt_prev) ** n_obs_per_yr) - 1.0) * 100.0
+           return round(res, 4) if math.isfinite(res) else None
+       except (OverflowError, ValueError, ZeroDivisionError):
+           return None
+
+6. Continuously Compounded Rate of Change (Sürekli Bileşik Değişim Hızı):
+   Formula: (ln(x(t)) - ln(x(t-1))) * 100
+   Python:
+   def fred_continuously_compounded_rate(xt, xt_prev):
+       if not all(_is_pos(v) for v in (xt, xt_prev)):
+           return None
+       try:
+           res = (math.log(xt) - math.log(xt_prev)) * 100.0
+           return round(res, 4) if math.isfinite(res) else None
+       except (OverflowError, ValueError):
+           return None
+
+7. Continuously Compounded Annual Rate of Change (Yıllıklandırılmış Sürekli Bileşik Büyüme):
+   Formula: ((ln(x(t)) - ln(x(t-1))) * 100) * n_obs_per_yr
+   Python:
+   def fred_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
+       if not all(_is_pos(v) for v in (xt, xt_prev, n_obs_per_yr)):
+           return None
+       try:
+           res = ((math.log(xt) - math.log(xt_prev)) * 100.0) * n_obs_per_yr
+           return round(res, 4) if math.isfinite(res) else None
+       except (OverflowError, ValueError):
+           return None
+           
+---
+
+### 0.4. TEMPORAL ANCHORS & ISO 8601 STANDARD
+Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açıklanma zamanları UTC bazlı ISO 8601 (YYYY-MM-DDTHH:MM:SSZ) standardına göre kalibre edilmiştir.
+- observation_date: Verinin ait olduğu ekonomik dönem.
+- release_date: Verinin piyasaya açıklandığı resmi an.
+
+---
+
+## 🏛️ 1. KADEME: ÇEKİRDEK MAKRO MODELLER
+
+### 1. FED POLITIKA DURUSU (FED POLICY STANCE & EXPECTATION SPREAD)
+- Purpose: Piyasanın Fed politika tavanına kıyasla kısa vadeli indirim/artırım beklentisini ölçer.
+- Data Series Keys:
+  - FRED: DGS1MO (Market Yield on U.S. Treasury Securities at 1-Month Constant Maturity)
+  - FRED: DFEDTARU (Federal Funds Target Range - Upper Limit)
+- Formula:
+  Fed_Policy_Spread_bps = (DGS1MO - DFEDTARU) * 100
+- Machine-Executable Logic (Python):
+  def fed_policy_spread(dgs1mo, dfedtaru):
+      if any(v is None or isinstance(v, bool) for v in (dgs1mo, dfedtaru)):
+          return None
+      try:
+          if not (math.isfinite(dgs1mo) and math.isfinite(dfedtaru)):
+              return None
+          # Nominal faiz ve politika hedefi negatif olamaz
+          if min(dgs1mo, 0) != 0 or min(dfedtaru, 0) != 0:
+              return None
+
+          raw_spread = (float(dgs1mo) - float(dfedtaru)) * 100.0
+          if not math.isfinite(raw_spread):
+              return None
+          spread = round(raw_spread, 2)
+
+          if min(spread, -25.0) == spread and spread != -25.0:
+              status = "DOVISH_EASING_BIAS"
+          elif max(spread, 25.0) == spread and spread != 25.0:
+              status = "HAWKISH_TIGHTENING_BIAS"
+          else:
+              status = "NEUTRAL_PRICING"
+
+          return {"spread_bps": spread, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Spread altı -25 bps : DOVISH_EASING_BIAS (Güçlü Faiz İndirimi Beklentisi)
+  - Spread üstü +25 bps : HAWKISH_TIGHTENING_BIAS (Ek Faiz Artırımı Riski)
+  - -25 ile +25 arası : NEUTRAL_PRICING (Mevcut Politika ile Piyasa Dengeli)
+  
+---
+
+### 2. REEL POLITIKA FAIZI (REAL POLICY RATE & RESTRICTIVENESS)
+- Purpose: Efektif borçlanma maliyetinin resmi manşet enflasyondan arındırılmış reel ağırlığını ölçer.
+- Data Series Keys:
+  - FRED: DFF (Federal Funds Effective Rate)
+  - BLS / FRED: CPIAUCSL (Consumer Price Index for All Urban Consumers: All Items - YoY % Change)
+- Formula:
+  Real_Policy_Rate = DFF - CPI_YoY
+- Machine-Executable Logic (Python):
+  def real_policy_rate(dff, cpi_yoy):
+      if any(v is None or isinstance(v, bool) for v in (dff, cpi_yoy)):
+          return None
+      try:
+          if not (math.isfinite(dff) and math.isfinite(cpi_yoy)):
+              return None
+          # Nominal politika faizi negatif olamaz (min(v, 0) == 0 kontrolu: v >= 0)
+          if min(dff, 0) != 0:
+              return None
+
+          raw_rate = float(dff) - float(cpi_yoy)
+          if not math.isfinite(raw_rate):
+              return None
+          rate = round(raw_rate, 2)
+
+          if max(rate, 1.50) == rate and rate != 1.50:
+              status = "RESTRICTIVE"
+          elif min(rate, 0.0) == rate and rate != 0.0:
+              status = "ACCOMMODATIVE"
+          else:
+              status = "NEUTRAL"
+
+          return {"real_rate": rate, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Real_Rate üstü 1.5% : RESTRICTIVE (Sıkılaştırıcı / Dezenflasyon Destekleyici)
+  - 0.0% ile 1.5% arası : NEUTRAL (Nötr Para Politikası)
+  - Real_Rate altı 0.0% : ACCOMMODATIVE (Gevşek Para Politikası / Negatif Reel Getiri)
+  
+---
+
+### 3. SAHM RESESYON KURALI (OFFICIAL SAHM RULE RECESSION INDICATOR)
+- Purpose: İşgücü piyasasında 3 aylık hareketli ortalama işsizlik oranının son 12 ayın en düşük 3 aylık ortalamasına göre sıçramasını izleyerek gerçek zamanlı resesyon tespiti yapar.
+- Data Series Keys:
+  - Official FRED Benchmark: SAHMREALTIME (Real-time Sahm Rule Recession Indicator)
+  - Component Series: UNRATE (Civilian Unemployment Rate - Monthly Seasonally Adjusted)
+- Formula:
+  Sahm_Indicator = Moving_Average_3M(UNRATE) - Min_3M_Average_Prior_12M(UNRATE)
+- Machine-Executable Logic (Python):
+  def sahm_rule_indicator(unrate_3m_avg, min_prior_3m_avg):
+      if any(v is None or isinstance(v, bool) for v in (unrate_3m_avg, min_prior_3m_avg)):
+          return None
+      try:
+          if not (math.isfinite(unrate_3m_avg) and math.isfinite(min_prior_3m_avg)):
+              return None
+          # Issizlik orani ortalamalari negatif olamaz
+          if min(unrate_3m_avg, 0) != 0 or min(min_prior_3m_avg, 0) != 0:
+              return None
+
+          raw_diff = float(unrate_3m_avg) - float(min_prior_3m_avg)
+          if not math.isfinite(raw_diff):
+              return None
+          diff = round(raw_diff, 2)
+
+          if max(diff, 0.50) == diff:
+              status = "RECESSION_CONFIRMED"
+          elif max(diff, 0.30) == diff:
+              status = "PRE_RECESSION_WARNING"
+          else:
+              status = "NORMAL_LABOR_MARKET"
+
+          return {"sahm_value": diff, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Sahm_Indicator 0.50 veya uzeri : RECESSION_CONFIRMED (Tarihsel Resmi Resesyon Sinyali)
+  - 0.30 ile 0.50 arası : PRE_RECESSION_WARNING (İşgücü Piyasasında Tehlikeli Soğuma)
+  - Sahm_Indicator altı 0.30 : NORMAL_LABOR_MARKET (Sağlıklı İstihdam Patikası)
+  
+---
+
+### 4. KISA VADE HAZINE EGIMI VE LIKIDITE MAKASI (FRONT-END T-BILL SLOPE & LIQUIDITY SPREAD)
+- Purpose: Para piyasalarında 3 aylık ve 1 aylık Hazine bonoları arasındaki eğimi ve kısa vadeli nakit fonlama baskısını izler.
+- Data Series Keys:
+  - FRED: DGS3MO (3-Month Treasury Bill Secondary Market Rate)
+  - FRED: DGS1MO (1-Month Treasury Bill Secondary Market Rate)
+- Formula:
+  Front_End_Slope_bps = (DGS3MO - DGS1MO) * 100
+- Machine-Executable Logic (Python):
+  def front_end_liquidity_spread(dgs3mo, dgs1mo):
+      if any(v is None or isinstance(v, bool) for v in (dgs3mo, dgs1mo)):
+          return None
+      try:
+          if not (math.isfinite(dgs3mo) and math.isfinite(dgs1mo)):
+              return None
+          # Nominal bono faizleri negatif olamaz
+          if min(dgs3mo, 0) != 0 or min(dgs1mo, 0) != 0:
+              return None
+
+          raw_spread = (float(dgs3mo) - float(dgs1mo)) * 100.0
+          if not math.isfinite(raw_spread):
+              return None
+          spread = round(raw_spread, 2)
+
+          if min(spread, 0.0) == spread and spread != 0.0:
+              status = "INVERTED_FRONT_END"
+          else:
+              status = "NORMAL_SLOPE"
+
+          return {"spread_bps": spread, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Spread altı 0 : INVERTED_FRONT_END (Ters Kısa Vade Eğrisi / Teminat & Likidite Baskısı / Collateral Squeeze)
+  - Spread 0 veya uzeri : NORMAL_SLOPE (Sağlıklı Kısa Vadeli Likidite Dağılımı)
+  
+---
+
+## 📊 2. KADEME: İLERİ DÜZEY KURUMSAL MAKRO MODELLER
+
+### 5. NET FED LIKIDITESI (NET FED LIQUIDITY INDEX)
+- Purpose: Fed bilanço büyüklüğünden Hazine genel hesabı (TGA) ve ters repo (ON RRP) rezervlerini düşerek piyasadaki serbest dolar likiditesini tam birim standardizasyonuyla hesaplar.
+- Unit Standard: Girdilerin tamamı Milyon Dolar (Millions of USD) standardında olmalıdır. RRPONTSYD Milyar Dolar çekilirse fonksiyona girmeden önce 1000 ile çarpılarak Milyon Dolar yapılmalıdır.
+- Data Series Keys:
+  - FRED: WALCL (Federal Reserve Total Assets - Millions USD)
+  - FRED: WTREGEN (Treasury General Account / TGA - Millions USD)
+  - FRED: RRPONTSYD (Overnight Reverse Repurchase Agreements / ON RRP - Millions USD)
+- Formula:
+  Net_Liquidity_Millions = WALCL - (WTREGEN + RRPONTSYD)
+- Machine-Executable Logic (Python):
+  def net_fed_liquidity(walcl, wtregen, rrpontsyd, prev_net_liquidity=None):
+      if any(v is None or isinstance(v, bool) for v in (walcl, wtregen, rrpontsyd)):
+          return None
+      try:
+          if not (math.isfinite(walcl) and math.isfinite(wtregen) and math.isfinite(rrpontsyd)):
+              return None
+          # Fed toplam bilancosu kesinlikle pozitif olmalidir
+          if min(walcl, 0) == walcl:
+              return None
+          # TGA ve ON RRP bakiye serileri negatif olamaz
+          if min(wtregen, 0) != 0 or min(rrpontsyd, 0) != 0:
+              return None
+
+          raw_net = float(walcl) - (float(wtregen) + float(rrpontsyd))
+          if not math.isfinite(raw_net):
+              return None
+          net_liq = round(raw_net, 2)
+
+          delta = None
+          status = None
+          if prev_net_liquidity is not None and not isinstance(prev_net_liquidity, bool):
+              if math.isfinite(prev_net_liquidity):
+                  delta = round(net_liq - float(prev_net_liquidity), 2)
+                  if delta == 0.0:
+                      status = "NEUTRAL"
+                  elif min(delta, 0.0) == delta:
+                      status = "LIQUIDITY_CONTRACTION"
+                  else:
+                      status = "LIQUIDITY_EXPANSION"
+
+          return {
+              "net_liquidity_mil": net_liq,
+              "delta": delta,
+              "status": status
+          }
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Delta Net_Liquidity pozitif : LIQUIDITY_EXPANSION (Piyasa Serbest Rezervi Pozitif / Risk-On Destekleyici)
+  - Delta Net_Liquidity nötr (0.00) : NEUTRAL (Parasal Denge / Değişmeyen Rezerv)
+  - Delta Net_Liquidity negatif : LIQUIDITY_CONTRACTION (Likidite Daralması / Risk-Off / Finansal Sıkılaşma)
+
+---
+
+### 6. GETIRI EGRISI MAKASI (10Y - 2Y YIELD SPREAD BPS)
+- Purpose: Tahvil piyasasındaki döngüsel resesyon veya ekonomik toparlanma eğimini baz puan olarak ölçer.
+- Data Series Keys:
+  - FRED: DGS10 (Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity)
+  - FRED: DGS2 (Market Yield on U.S. Treasury Securities at 2-Year Constant Maturity)
+  - FRED Alternative: T10Y2Y (10-Year Treasury Constant Maturity Minus 2-Year)
+- Formula:
+  Yield_Spread_bps = (DGS10 - DGS2) * 100
+- Machine-Executable Logic (Python):
+  def yield_spread_bps(dgs10, dgs2):
+      if any(v is None or isinstance(v, bool) for v in (dgs10, dgs2)):
+          return None
+      try:
+          if not (math.isfinite(dgs10) and math.isfinite(dgs2)):
+              return None
+          # Nominal tahvil faizleri negatif olamaz (min(v, 0) == 0 kontrolu: v >= 0)
+          if min(dgs10, 0) != 0 or min(dgs2, 0) != 0:
+              return None
+
+          raw_spread = (float(dgs10) - float(dgs2)) * 100.0
+          if not math.isfinite(raw_spread):
+              return None
+          spread = round(raw_spread, 2)
+
+          if spread == 0.0:
+              status = "FLAT"
+          elif min(spread, 0.0) == spread:
+              status = "INVERTED"
+          else:
+              status = "NORMAL"
+
+          return {"yield_spread_bps": spread, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Yield_Spread_bps altı 0 : INVERTED (Ters Getiri Eğrisi / Resesyonist Fiyatlama)
+  - Yield_Spread_bps == 0 : FLAT (Düzleşen Eğri / Döngü Değişim Noktası)
+  - Yield_Spread_bps üstü 0 : NORMAL (Pozitif Eğim / Ekonomik Genişleme)
+
+---
+
+### 7. 10 YILLIK BASABAS ENFLASYON (10-YEAR BREAKEVEN INFLATION RATE)
+- Purpose: Tahvil piyasasının önümüzdeki 10 yıl için beklediği yıllık ortalama piyasa enflasyon fiyatlamasını gösterir.
+- Data Series Keys:
+  - FRED: DGS10 (10-Year Treasury Constant Maturity Nominal Rate)
+  - FRED: DFII10 (10-Year Treasury Inflation-Indexed Security / TIPS Yield)
+  - FRED Alternative: T10YIE (10-Year Breakeven Inflation Rate)
+- Formula:
+  Breakeven_Inflation_Rate = DGS10 - DFII10
+- Machine-Executable Logic (Python):
+  def breakeven_inflation(dgs10, dfii10):
+      if any(v is None or isinstance(v, bool) for v in (dgs10, dfii10)):
+          return None
+      try:
+          if not (math.isfinite(dgs10) and math.isfinite(dfii10)):
+              return None
+          # Nominal faiz negatif olamaz (TIPS reel faizi negatif olabilir)
+          if min(dgs10, 0) != 0:
+              return None
+
+          rate = round(float(dgs10) - float(dfii10), 2)
+          if not math.isfinite(rate):
+              return None
+
+          if max(rate, 2.50) == rate and rate != 2.50:
+              status = "DE_ANCHORING_RISK"
+          elif min(rate, 2.00) == rate and rate != 2.00:
+              status = "DEFLATION_RISK"
+          else:
+              status = "FED_ALIGNED_EQUILIBRIUM"
+
+          return {"breakeven_rate": rate, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Breakeven üstü 2.50% : DE_ANCHORING_RISK (Enflasyon Çıpasında Çözülme Riski)
+  - 2.00% ile 2.50% arası : FED_ALIGNED_EQUILIBRIUM (Fed Hedefiyle Uyumlu Dengeli Fiyatlama)
+  - Breakeven altı 2.00% : DEFLATION_RISK (Deflasyon / Talep Yetersizliği Fiyatlaması)
+
+---
+
+### 8. YUMUSAK INIS & BEVERIDGE ORANI (BEVERIDGE CURVE LABOR TIGHTNESS)
+- Purpose: İşsizlik artmadan açık iş ilanlarının dengelenip dengelenmediğini ölçer (Açık iş ilanı / İşsiz sayısı oranı).
+- Data Series Keys:
+  - BLS / FRED: JTSJOL (Job Openings: Total Nonfarm - JOLTS)
+  - BLS / FRED: UNEMPLOY (Unemployed Persons - Thousands)
+- Formula:
+  Beveridge_Ratio = JTSJOL / UNEMPLOY
+- Machine-Executable Logic (Python):
+  def beveridge_labor_tightness(jtsjol, unemploy):
+      if any(v is None or isinstance(v, bool) for v in (jtsjol, unemploy)):
+          return None
+      try:
+          if not (math.isfinite(jtsjol) and math.isfinite(unemploy)):
+              return None
+          # Kisi ve ilan sayisi negatif olamaz. Issiz sayisi sifir olamaz (zero division).
+          if min(jtsjol, 0) != 0 or min(unemploy, 0) != 0 or unemploy == 0:
+              return None
+
+          ratio = round(float(jtsjol) / float(unemploy), 2)
+          if not math.isfinite(ratio):
+              return None
+
+          if max(ratio, 1.50) == ratio and ratio != 1.50:
+              status = "OVERHEATED_LABOR"
+          elif min(ratio, 1.00) == ratio and ratio != 1.00:
+              status = "COOLING_LABOR"
+          else:
+              status = "SOFT_LANDING_BALANCE"
+
+          return {"beveridge_ratio": ratio, "status": status}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - Ratio üstü 1.50 : OVERHEATED_LABOR (Aşırı Isınmış İşgücü Piyasası / Ücret Enflasyonu Riski)
+  - 1.00 ile 1.50 arası : SOFT_LANDING_BALANCE (Yumuşak İniş Patikası / Dengeli İstihdam)
+  - Ratio altı 1.00 : COOLING_LABOR (Zayıflayan İstihdam Talebi / İşsizlik Baskısı Artıyor)
+
+---
+
+### 9. FINANSAL BASKILANMA & BORC CEVRILEBILIRLIK (FINANCIAL REPRESSION INDEX)
+- Purpose: Negatif reel getiri ortamında kamu borcunun reel eritilmesi veya yüksek reel faizle borç krizine girme riskini puanlar.
+- Data Series Keys:
+  - FRED: DGS10 (10-Year Nominal Treasury Yield)
+  - BLS / FRED: CPIAUCSL (CPI YoY % Change)
+  - FRED: GFDEGDQ188S (Federal Debt: Total Public Debt as Percent of Gross Domestic Product)
+- Formula:
+  Real_10Y_Yield = DGS10 - CPI_YoY
+  Debt_Pressure_Index = Real_10Y_Yield * (GFDEGDQ188S / 100)
+- Machine-Executable Logic (Python):
+  def financial_repression_index(dgs10, cpi_yoy, debt_gdp_pct):
+      if any(v is None or isinstance(v, bool) for v in (dgs10, cpi_yoy, debt_gdp_pct)):
+          return None
+      try:
+          if not (math.isfinite(dgs10) and math.isfinite(cpi_yoy) and math.isfinite(debt_gdp_pct)):
+              return None
+          # Nominal faiz ve borc/GSYIH orani negatif olamaz (min(v, 0) == 0 kontrolu: v >= 0)
+          if min(dgs10, 0) != 0 or min(debt_gdp_pct, 0) != 0:
+              return None
+
+          real_yield = round(float(dgs10) - float(cpi_yoy), 2)
+          raw_index = real_yield * (float(debt_gdp_pct) / 100.0)
+          if not math.isfinite(raw_index):
+              return None
+          index = round(raw_index, 3)
+
+          if min(index, 0.0) == index and index != 0.0:
+              status = "REPRESSION_REGIME"
+          elif max(index, 1.50) == index and index != 1.50:
+              status = "DEBT_CRISIS_ALARM"
+          else:
+              status = "SUSTAINABLE_CYCLE"
+
+          return {
+              "debt_pressure_index": index,
+              "real_yield": real_yield,
+              "status": status
+          }
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Index altı 0.00 : REPRESSION_REGIME (Finansal Baskılanma Rejimi / Enflasyon Kamu Borcunu Reel Olarak Eriyor)
+  - 0.00 ile 1.50 arası : SUSTAINABLE_CYCLE (Sürdürülebilir Kamu Borç Döngüsü)
+  - Index üstü 1.50 : DEBT_CRISIS_ALARM (Ağır Borç Servis Kriz Eşiği / Faiz Giderleri Bütçeyi Kilitliyor)
+  
+---
+
+### 10. KURESEL DOLAR HEGEMONYASI & TRIFFIN DILEMMASI (TRIFFIN EXTERNAL BALANCE)
+- Purpose: Doların rezerv para gücü ile ABD ticaret açığının küresel likidite dengesizliklerini izler.
+- Data Series Keys:
+  - FRED: DTWEXBGS (Nominal Broad U.S. Dollar Index)
+  - BEA / FRED: BOPGSTB (U.S. Trade Balance: Goods and Services, Balance of Payments - Millions USD)
+- Formula:
+  DXY_Deficit_Tension = DTWEXBGS / (abs(BOPGSTB) / 1000)
+- Machine-Executable Logic (Python):
+  def triffin_external_balance(dtwexbgs, bopgstb):
+      if any(v is None or isinstance(v, bool) for v in (dtwexbgs, bopgstb)):
+          return None
+      try:
+          if not (math.isfinite(dtwexbgs) and math.isfinite(bopgstb)):
+              return None
+          # Dolar endeksi kesinlikle pozitif olmalidir (sifir ve negatif kontrolu)
+          if min(dtwexbgs, 0) == dtwexbgs:
+              return None
+          # Dis denge mutlak degeri sifir olamaz (payda kontrolu)
+          if bopgstb == 0 or abs(bopgstb) == 0:
+              return None
+
+          tension = dtwexbgs / (abs(bopgstb) / 1000.0)
+          return round(tension, 4) if math.isfinite(tension) else None
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - Artan Endeks : Güçlü Dolar & Dış Açık Kırılganlığı (Küresel Dolar Kıtlığı ve Fonlama Baskısı)
+  - Düşen Endeks : Küresel Finansal Koşullarda Rahatlama
+
+---
+
+### 11. TAYLOR KURALI OPTIMAL POLITIKA FAIZI (TAYLOR RULE POLICY GAP)
+- Purpose: Mevcut enflasyon ve reel çıktı açığına göre Fed'in olması gereken optimal politika faizini ve sapmayı hesaplar.
+- Data Series Keys:
+  - FRED: DFF (Federal Funds Effective Rate - Fiili Politika Faizi)
+  - BLS / FRED: CPIAUCSL (Yıllık % Değişim / YoY Olarak Dönüştürülmelidir)
+  - BEA / FRED: GDPC1 (Real Gross Domestic Product - Milyar Dolar)
+  - CBO / FRED: GDPPOT (Real Potential Gross Domestic Product - Milyar Dolar)
+- Baseline Assumptions:
+  - Equilibrium Real Neutral Rate (r*): 2.0%
+  - Target Inflation (pi*): 2.0%
+- Formula:
+  Output_Gap_Pct = ((GDPC1 - GDPPOT) / GDPPOT) * 100
+  Taylor_Optimal_Rate = 2.0 + CPI_YoY + 0.5 * (CPI_YoY - 2.0) + 0.5 * Output_Gap_Pct
+  Taylor_Policy_Gap = DFF - Taylor_Optimal_Rate
+- Machine-Executable Logic (Python):
+  def taylor_policy_gap(dff, cpi_yoy, gdpc1, gdppot):
+      if any(v is None or isinstance(v, bool) for v in (dff, cpi_yoy, gdpc1, gdppot)):
+          return None
+      try:
+          if not (math.isfinite(dff) and math.isfinite(cpi_yoy) and math.isfinite(gdpc1) and math.isfinite(gdppot)):
+              return None
+          # Nominal politika faizi negatif olamaz (min(v, 0) == 0 kontrolu: v >= 0)
+          if min(dff, 0) != 0:
+              return None
+          # Reel GSYIH ve potansiyel GSYIH kesinlikle pozitif olmalidir
+          if min(gdpc1, 0) == gdpc1 or min(gdppot, 0) == gdppot:
+              return None
+
+          output_gap = round(((gdpc1 - gdppot) / gdppot) * 100.0, 2)
+          optimal_rate = round(2.0 + cpi_yoy + 0.5 * (cpi_yoy - 2.0) + 0.5 * output_gap, 2)
+          gap = round(dff - optimal_rate, 2)
+          if not math.isfinite(gap):
+              return None
+
+          if min(gap, -1.00) == gap and gap != -1.00:
+              status = "BEHIND_THE_CURVE"
+          elif max(gap, 1.00) == gap and gap != 1.00:
+              status = "OVER_RESTRICTIVE"
+          else:
+              status = "OPTIMAL_ALIGNMENT"
+
+          return {
+              "policy_gap": gap,
+              "optimal_rate": optimal_rate,
+              "output_gap": output_gap,
+              "status": status
+          }
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - Taylor_Policy_Gap altı -1.00 : BEHIND_THE_CURVE (Fed Enflasyonun Gerisinde / Aşırı Genişlemeci)
+  - -1.00 ile +1.00 arası : OPTIMAL_ALIGNMENT (Dengeli Para Politikası)
+  - Taylor_Policy_Gap üstü +1.00 : OVER_RESTRICTIVE (Aşırı Sıkılaştırıcı / Resesyon Riski Yaratan Duruş)
+  
+---
+
+### 12. CHICAGO FED FINANSAL KOSULLAR ENDEKSI (FINANCIAL CONDITIONS TIGHTNESS)
+- Purpose: Para politikasının piyasalara fiilen yansıyıp yansımadığını; borç, sermaye ve para piyasası risk primlerinin bileşik sıkılığını izler.
+- Data Series Keys:
+  - FRED: NFCI (Chicago Fed National Financial Conditions Index)
+  - FRED: ANFCI (Adjusted National Financial Conditions Index - Makroekonomik Koşullardan Arındırılmış)
+- Formula:
+  NFCI_Stress_Level = NFCI
+- Machine-Executable Logic (Python):
+  def financial_conditions_regime(nfci, anfci):
+      if any(v is None or isinstance(v, bool) for v in (nfci, anfci)):
+          return None
+      try:
+          if not (math.isfinite(nfci) and math.isfinite(anfci)):
+              return None
+
+          n = round(float(nfci), 3)
+          a = round(float(anfci), 3)
+          div = round(n - a, 3)
+          if not math.isfinite(div):
+              return None
+
+          if n == 0.0:
+              regime = "BALANCED"
+          elif max(n, 0.0) == n:
+              regime = "TIGHT"
+          else:
+              regime = "LOOSE"
+
+          return {"nfci": n, "anfci": a, "regime": regime, "macro_div": div}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - NFCI üstü 0.00 : TIGHT (Sıkı Finansal Koşullar / Tarihsel Ortalamadan Daha Sıkı / Finansal Stres)
+  - NFCI == 0.00 : BALANCED (Tarihsel Dengeli Seviye)
+  - NFCI altı 0.00 : LOOSE (Gevşek Finansal Koşullar / Piyasada Likidite Bolluğu / Risk-On Desteği)
+
+---
+
+### 13. YUKSEK GETIRILI KREDI RISKI MAKASI (HIGH YIELD CREDIT SPREAD / OAS)
+- Purpose: Reel sektör şirketlerinin kredi temerrüt riskini ve finansal piyasalardaki risk iştahı çöküşünü baz puan cinsinden ölçer.
+- Data Series Keys:
+  - ICE BofA / FRED: BAMLH0A0HYM2 (ICE BofA US High Yield Index Option-Adjusted Spread)
+  - ICE BofA / FRED: BAMLC0A4CBBB (ICE BofA BBB US Corporate Index Option-Adjusted Spread)
+- Formula:
+  HY_OAS_Spread_bps = BAMLH0A0HYM2 * 100
+- Machine-Executable Logic (Python):
+  def high_yield_credit_stress(hy_spread):
+      if hy_spread is None or isinstance(hy_spread, bool):
+          return None
+      try:
+          if not math.isfinite(hy_spread):
+              return None
+          # Kredi risk primi pozitif ve sifirdan buyuk olmalidir
+          if min(hy_spread, 0) == hy_spread:
+              return None
+
+          bps = int(round(float(hy_spread) * 100.0))
+
+          if max(bps, 500) == bps:
+              status = "CREDIT_CRUNCH_ALARM"
+          elif max(bps, 350) == bps:
+              status = "ELEVATED_RISK"
+          else:
+              status = "RISK_APPETITE_HEALTHY"
+
+          return {"spread_bps": bps, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - HY_Spread 500 bps veya uzeri : CREDIT_CRUNCH_ALARM (Kredi Piyasasında Kriz / Temerrüt Patlaması / Resesyon)
+  - 350 bps ile 500 bps arası : ELEVATED_RISK (Risk İştahında Zayıflama / Dikkat Bölgesi)
+  - HY_Spread altı 350 bps : RISK_APPETITE_HEALTHY (Düşük İflas Riski / Sağlıklı Şirket Fonlaması)
+
+---
+
+### 14. REEL PARA ARZI MOMENTUMU (REAL M2 MONEY MOMENTUM)
+- Purpose: Finansal sistemdeki geniş para arzının (M2) enflasyona oranla genişleme veya daralma hızını belirleyerek talep şoklarını tespit eder.
+- Data Series Keys:
+  - FRED: M2SL (M2 Money Supply - Billions of USD, Seasonally Adjusted)
+  - BLS / FRED: CPIAUCSL (Consumer Price Index - YoY % Change)
+- Formula:
+  Real_M2_Growth = M2_YoY_Growth_Pct - CPI_YoY_Pct
+- Machine-Executable Logic (Python):
+  def real_m2_momentum(m2_yoy, cpi_yoy):
+      if any(v is None or isinstance(v, bool) for v in (m2_yoy, cpi_yoy)):
+          return None
+      try:
+          if not (math.isfinite(m2_yoy) and math.isfinite(cpi_yoy)):
+              return None
+
+          diff = round(float(m2_yoy) - float(cpi_yoy), 2)
+          if not math.isfinite(diff):
+              return None
+
+          if diff == 0.0:
+              status = "NEUTRAL"
+          elif min(diff, 0.0) == diff:
+              status = "LIQUIDITY_CONTRACTION"
+          else:
+              status = "MONETARY_EXPANSION"
+
+          return {"real_m2_growth": diff, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Real_M2_Growth altı 0 : LIQUIDITY_CONTRACTION (Reel Para Küçülmesi / Dezenflasyonist Talep Çöküşü)
+  - Real_M2_Growth == 0 : NEUTRAL (Nötr Parasal Denge)
+  - Real_M2_Growth üstü 0 : MONETARY_EXPANSION (Reel Para Genişlemesi / Şişen Talep / Enflasyonist Baskı)
+
+---
+
+### 15. NY FED 10 YILLIK VADE PRIMI MODELI (ACM 10-YEAR TERM PREMIUM)
+- Purpose: 10 yıllık Hazine tahvili getirisinin faiz beklentisi dışında kalan saf risk primini (borçlanma riski / arz baskısı) ölçer.
+- Data Series Keys:
+  - NY Fed / FRED: THREEFYTP10 (Adrian, Crump & Moench 10-Year Treasury Term Premium)
+  - FRED: DGS10 (10-Year Treasury Constant Maturity Nominal Yield)
+- Formula:
+  Expected_Short_Rate_Component = DGS10 - THREEFYTP10
+- Machine-Executable Logic (Python):
+  def acm_term_premium_breakdown(dgs10, term_premium):
+      if any(v is None or isinstance(v, bool) for v in (dgs10, term_premium)):
+          return None
+      try:
+          if not (math.isfinite(dgs10) and math.isfinite(term_premium)):
+              return None
+          # Nominal 10 yillik tahvil faizi negatif olamaz (min(v, 0) == 0 kontrolu: v >= 0)
+          if min(dgs10, 0) != 0:
+              return None
+
+          tp = round(float(term_premium), 2)
+          exp_rate = round(float(dgs10) - tp, 2)
+          if not math.isfinite(exp_rate):
+              return None
+
+          if max(tp, 0.50) == tp:
+              status = "FISCAL_SUPPLY_PRESSURE"
+          elif min(tp, -0.50) == tp:
+              status = "FLIGHT_TO_SAFETY"
+          else:
+              status = "BALANCED_PREMIUM"
+
+          return {
+              "term_premium": tp,
+              "expected_avg_rate": exp_rate,
+              "status": status
+          }
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Term_Premium üstü 0.50% : FISCAL_SUPPLY_PRESSURE (Yüksek Hazine Borçlanma / Enflasyon Belirsizlik Primi)
+  - -0.50% ile 0.50% arası : BALANCED_PREMIUM (Dengeli Risk Primi / Normal Tahvil Talebi)
+  - Term_Premium altı -0.50% : FLIGHT_TO_SAFETY (Aşırı Güvenli Liman Talebi / Sentetik Tahvil Kıtlığı)
+
+---
+
+### 16. CBOE OYNAKLIK ENDEKSI VE PIYASA KORKU REJIMI (VIX REGIME THRESHOLDS)
+- Purpose: S&P 500 opsiyon fiyatlamalarından türetilen 30 günlük piyasa oynaklık beklentisini ve kurumsal risk iştahı rejimini sınıflandırır.
+- Data Series Keys:
+  - CBOE / FRED: VIXCLS (CBOE Volatility Index)
+- Formula:
+  VIX_Index_Level = VIXCLS
+- Machine-Executable Logic (Python):
+  def vix_market_regime(vix):
+      if vix is None or isinstance(vix, bool):
+          return None
+      try:
+          if not math.isfinite(vix):
+              return None
+          # VIX seviyesi kesinlikle pozitif ve sifirdan buyuk olmalidir
+          if min(vix, 0) == vix:
+              return None
+
+          val = round(float(vix), 2)
+
+          if min(val, 15.0) == val:
+              return {"vix": val, "regime": "COMPLACENCY", "bias": "RISK_ON"}
+          elif min(val, 20.0) == val:
+              return {"vix": val, "regime": "NORMAL_VOLATILITY", "bias": "BALANCED"}
+          elif min(val, 30.0) == val:
+              return {"vix": val, "regime": "ELEVATED_STRESS", "bias": "RISK_OFF"}
+          else:
+              return {"vix": val, "regime": "CRISIS_SHOCK", "bias": "EXTREME_RISK_OFF"}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - VIX altı 15.0 : COMPLACENCY (Rehavet / Düşük Oynaklık / Geniş Risk İştahı / Risk-On)
+  - 15.0 ile 20.0 arası : NORMAL_VOLATILITY (Tarihsel Dengeli Piyasa Seviyesi / Balanced)
+  - 20.0 ile 30.0 arası : ELEVATED_STRESS (Yüksek Belirsizlik / Portföy Korunma Baskısı / Risk-Off)
+  - VIX üstü 30.0 : CRISIS_SHOCK (Piyasa Şoku / Likidite Sıkışması ve Panik Satış Alarmı / Extreme Risk-Off)
+
+---
+
+### 17. MAKRO HISSE SENEDI RISK PRIMI (MACRO EQUITY RISK PREMIUM - ERP)
+- Purpose: Hisse senedi piyasasının (S&P 500 kazanç getirisi) risksiz 10 yıllık ABD Hazine tahviline kıyasla sunduğu ilave risk primini ölçer.
+- Data Series Keys:
+  - Multpl / FRED Proxy: SP500_EARNINGS_YIELD (S&P 500 Trailing/Forward Earnings Yield / 1/PE * 100)
+  - FRED: DGS10 (Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity)
+- Formula:
+  Equity_Risk_Premium_Pct = Earnings_Yield - DGS10
+- Machine-Executable Logic (Python):
+  def macro_equity_risk_premium(earnings_yield, dgs10):
+      if any(v is None or isinstance(v, bool) for v in (earnings_yield, dgs10)):
+          return None
+      try:
+          if not (math.isfinite(earnings_yield) and math.isfinite(dgs10)):
+              return None
+          # Nominal 10 yillik tahvil faizi negatif olamaz (min(v, 0) == 0 kontrolu: v >= 0)
+          if min(dgs10, 0) != 0:
+              return None
+
+          erp = round(earnings_yield - dgs10, 2)
+          if not math.isfinite(erp):
+              return None
+
+          if min(erp, 0.50) == erp:
+              status = "OVERVALUED_STOCKS"
+          elif max(erp, 2.50) == erp:
+              status = "ATTRACTIVE_STOCKS"
+          else:
+              status = "FAIR_VALUE"
+
+          return {"erp": erp, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - ERP altı 0.50% : OVERVALUED_STOCKS (Hisse Senetleri Aşırı Pahalı / Tahvil Getirisi Hisseye Göre Çok Daha Cazip / Sermaye Tahvile Kaçar)
+  - 0.50% ile 2.50% arası : FAIR_VALUE (Makro Dengeli Değerleme Bölgesi)
+  - ERP üstü 2.50% : ATTRACTIVE_STOCKS (Hisse Senetleri Ucuz / Cazip Risk Primi / Hisse Portföyleri Desteklenir)
+  
+---
+
+### 18. SEFALET ENDEKSI (OKUN MISERY INDEX)
+- Purpose: İşsizlik oranı ile yıllık enflasyonun toplamı üzerinden hanehalkı refah kaybını ve stagflasyonist ekonomik stresi ölçer.
+- Data Series Keys:
+  - BLS / FRED: UNRATE (Civilian Unemployment Rate)
+  - BLS / FRED: CPIAUCSL (Consumer Price Index - YoY % Change)
+- Formula:
+  Misery_Index = UNRATE + CPI_YoY
+- Machine-Executable Logic (Python):
+  def misery_index(unrate, cpi_yoy):
+      if any(v is None or isinstance(v, bool) for v in (unrate, cpi_yoy)):
+          return None
+      try:
+          if not (math.isfinite(unrate) and math.isfinite(cpi_yoy)):
+              return None
+          # Issizlik orani kesinlikle negatif olamaz (min(v, 0) == 0 kontrolu: v >= 0)
+          if min(unrate, 0) != 0:
+              return None
+
+          score = round(unrate + cpi_yoy, 2)
+          if not math.isfinite(score):
+              return None
+
+          if max(score, 12.0) == score:
+              status = "ACUTE_CRISIS"
+          elif max(score, 10.0) == score:
+              status = "ELEVATED_STRESS"
+          elif max(score, 6.0) == score:
+              status = "MODERATE"
+          else:
+              status = "GOLDILOCKS"
+
+          return {"misery_index": score, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Misery_Index üstü 12.0% : ACUTE_CRISIS (Ağır Refah Kaybı / Stagflasyonist Şok Eşiği)
+  - 10.0% ile 12.0% arası : ELEVATED_STRESS (Yüksek Hanehalkı ve Tüketici Baskısı)
+  - 6.0% ile 10.0% arası : MODERATE (Yönetilebilir Makro Denge)
+  - Misery_Index altı 6.0% : GOLDILOCKS (Düşük İşsizlik & İstikrarlı Fiyatlar)
+
+---
+
+### 19. BUFFETT GOSTERGESI (BUFFETT INDICATOR / CORPORATE EQUITIES TO GDP)
+- Purpose: Toplam kurumsal hisse senedi piyasası değerini nominal milli gelire oranlayarak varlık fiyatlarındaki köpük ve aşırı değerleme riskini resmi Fed Z.1 bilanço verisiyle ölçer.
+- Data Series Keys:
+  - Official FRED Series: DDLS01USA156NWDB (Stock Market Capitalization to GDP for United States - Percent)
+  - Component Benchmark: NCBEILQ027S (Nonfinancial Corporate Business: Corporate Equities; Liability - Level, Millions USD)
+  - BEA / FRED: GDP (Gross Domestic Product - Nominal Millions of USD)
+- Formula:
+  Buffett_Ratio_Pct = (Total_Equities_Market_Value / GDP) * 100
+- Machine-Executable Logic (Python):
+  def buffett_indicator(market_val, gdp_val):
+      if any(v is None or isinstance(v, bool) for v in (market_val, gdp_val)):
+          return None
+      try:
+          if not (math.isfinite(market_val) and math.isfinite(gdp_val)):
+              return None
+          # Piyasa degeri ve GSYIH kesinlikle pozitif ve sonlu sayi olmalidir (sifir ve negatif kontrolu)
+          if min(market_val, 0) == market_val or min(gdp_val, 0) == gdp_val:
+              return None
+
+          raw_ratio = (market_val / gdp_val) * 100.0
+          if not math.isfinite(raw_ratio):
+              return None
+          ratio = round(raw_ratio, 2)
+
+          if max(ratio, 180.0) == ratio:
+              status = "SEVERELY_OVERVALUED"
+          elif max(ratio, 140.0) == ratio:
+              status = "OVERVALUED"
+          elif max(ratio, 100.0) == ratio:
+              status = "FAIR_VALUED"
+          else:
+              status = "UNDERVALUED"
+
+          return {"buffett_ratio_pct": ratio, "status": status}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - Ratio 180.0% veya uzeri : SEVERELY_OVERVALUED (Kritik Balon Eşiği / Sert Düzeltme Riski)
+  - 140.0% ile 180.0% arası : OVERVALUED (Piyasa Reel Ekonomiden Kopuk / Pahalı)
+  - 100.0% ile 140.0% arası : FAIR_VALUED (Dengeli Piyasa Değerlemesi)
+  - Ratio altı 100.0% : UNDERVALUED (Hisse Senedi Piyasası Ucuz / Cazip Giriş Bölgesi)
+
+---
+
+### 20. BAKIR / ALTIN ORANI (COPPER TO GOLD MACRO SENTIMENT RATIO)
+- Purpose: Sanayi talebi (Dr. Bakır) ile güvenli liman talebini (Altın) yarıştırarak küresel büyüme ivmesini ve tahvil faizi yönünü önceden modeller.
+- Data Series Keys:
+  - IMF / FRED: PCOPPUSDM (Global price of Copper - USD per Metric Ton)
+  - World Bank / FRED: GOLDAMGBD228NLBM (Gold Fixing Price in London Bullion Market - USD per Troy Ounce)
+- Formula:
+  Copper_Gold_Ratio = Copper_Price_Metric_Ton / Gold_Price_Ounce
+- Machine-Executable Logic (Python):
+  def copper_gold_ratio(copper_price, gold_price):
+      if any(v is None or isinstance(v, bool) for v in (copper_price, gold_price)):
+          return None
+      try:
+          if not (math.isfinite(copper_price) and math.isfinite(gold_price)):
+              return None
+          # Emtia fiyatlari kesinlikle pozitif ve sonlu sayi olmalidir (sifir ve negatif kontrolu)
+          if min(copper_price, 0) == copper_price or min(gold_price, 0) == gold_price:
+              return None
+          res = copper_price / gold_price
+          return round(res, 4) if math.isfinite(res) else None
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - Yükselen Trend : CYCLICAL_EXPANSION (Sanayi Talebi Güçlü / Büyüme Hızlanıyor / Tahvil Getirileri Artar)
+  - Düşen Trend : FLIGHT_TO_SAFETY (Güvenli Liman Talebi Hakim / Büyüme Soğuyor / Resesyonist Tahvil Alımı)
+
+---
+
+### 21. ALTIN / PETROL ORANI (GOLD TO OIL CRISIS & RECESSION RATIO)
+- Purpose: 1 ons altın ile kaç varil ham petrol satın alınabildiğini hesaplayarak jeopolitik kriz, talep çöküşü veya enerji enflasyonu rejimlerini tespit eder.
+- Data Series Keys:
+  - World Bank / FRED: GOLDAMGBD228NLBM (Gold Price - USD per Troy Ounce)
+  - EIA / FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - USD per Barrel)
+- Formula:
+  Gold_Oil_Ratio = Gold_Price_Ounce / Oil_Price_Barrel
+- Machine-Executable Logic (Python):
+  def gold_oil_ratio(gold_price, oil_price):
+      if any(v is None or isinstance(v, bool) for v in (gold_price, oil_price)):
+          return None
+      try:
+          if not (math.isfinite(gold_price) and math.isfinite(oil_price)):
+              return None
+          # Emtia fiyatlari kesinlikle pozitif ve sonlu sayi olmalidir (sifir ve negatif kontrolu)
+          if min(gold_price, 0) == gold_price or min(oil_price, 0) == oil_price:
+              return None
+
+          ratio = round(gold_price / oil_price, 2)
+
+          if max(ratio, 25.0) == ratio:
+              status = "MACRO_CRISIS_RECESSION"
+          elif min(ratio, 12.0) == ratio:
+              status = "SUPPLY_SHOCK_INFLATION"
+          else:
+              status = "HISTORICAL_EQUILIBRIUM"
+
+          return {"gold_oil_ratio": ratio, "status": status}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - Ratio üstü 25.0 : MACRO_CRISIS_RECESSION (Ağır Durgunluk / Talep Çöküşü veya Sistemik Kriz Fiyatlaması)
+  - 15.0 ile 25.0 arası : HISTORICAL_EQUILIBRIUM (Tarihsel Denge Seviyesi / 15-20 Varil Bandı)
+  - Ratio altı 12.0 : SUPPLY_SHOCK_INFLATION (Arz Yönlü Petrol Şoku / Maliyet Enflasyonu Baskısı)
+
+---
+
+### 22. TUKETICI KREDI STRES MODELI (HOUSEHOLD CREDIT STRESS GAUGE)
+- Purpose: Kredi kartı temerrüt oranını kişisel tasarruf oranına oranlayarak hanehalkı borç çevirme kırılganlığını ve tüketim frenleme riskini ölçer.
+- Data Series Keys:
+  - FRED: DRCCLACBS (Delinquency Rate on Credit Card Loans, All Commercial Banks)
+  - BEA / FRED: PSAVERT (Personal Saving Rate - % of Disposable Income)
+- Formula:
+  Household_Stress_Ratio = DRCCLACBS / PSAVERT
+- Machine-Executable Logic (Python):
+  def household_credit_stress(delinquency_rate, saving_rate):
+      if any(v is None or isinstance(v, bool) for v in (delinquency_rate, saving_rate)):
+          return None
+      try:
+          if not (math.isfinite(delinquency_rate) and math.isfinite(saving_rate)):
+              return None
+          # Temerrut orani negatif olamaz (min(v, 0) == 0 kontrolu: v >= 0)
+          if min(delinquency_rate, 0) != 0:
+              return None
+          # Tasarruf orani 0 veya negatifse hanehalki tamponu bitmistir
+          if min(saving_rate, 0) == saving_rate:
+              return {"stress_ratio": None, "status": "SEVERE_CONSUMER_STRESS"}
+
+          ratio = round(delinquency_rate / saving_rate, 3)
+
+          if max(ratio, 1.00) == ratio:
+              status = "SEVERE_CONSUMER_STRESS"
+          elif max(ratio, 0.50) == ratio:
+              status = "ELEVATED_PRESSURE"
+          else:
+              status = "HEALTHY_BALANCE_SHEET"
+
+          return {"stress_ratio": ratio, "status": status}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - Ratio üstü 1.00 : SEVERE_CONSUMER_STRESS (Temerrütler Tasarrufu Aştı / Tüketici Harcamalarında Ani Fren ve Resesyon Riski)
+  - 0.50 ile 1.00 arası : ELEVATED_PRESSURE (Tasarruf Tamponunda Erime / Kredi Geri Ödeme Zorluğu)
+  - Ratio altı 0.50 : HEALTHY_BALANCE_SHEET (Güçlü Tasarruf / Sağlıklı Tüketici Bilançosu)
+
+---
+
+### 23. OKUN ACIĞI MODELI (OKUN GAP / GROWTH-EMPLOYMENT DIVERGENCE)
+- Purpose: Reel GSYİH büyümesi ile işsizlik değişimi arasındaki tarihsel elastikiyeti test ederek "istihdamsız büyüme" veya gizli işgücü bozulmasını ölçer.
+- Data Series Keys:
+  - BEA / FRED: GDPC1 (Real GDP - YoY % Change)
+  - BLS / FRED: UNRATE (Civilian Unemployment Rate - YoY Change in Percentage Points)
+- Baseline Assumptions:
+  - Potential Real GDP Growth: 2.0%
+  - Okun Beta Coefficient: -0.5
+- Formula:
+  Expected_Unemployment_Delta = -0.5 * (Real_GDP_YoY - 2.0)
+  Okun_Gap = Actual_Unemployment_Delta - Expected_Unemployment_Delta
+- Machine-Executable Logic (Python):
+  def okun_labor_gap(actual_unrate_delta, real_gdp_yoy):
+      if any(v is None or isinstance(v, bool) for v in (actual_unrate_delta, real_gdp_yoy)):
+          return None
+      try:
+          if not (math.isfinite(actual_unrate_delta) and math.isfinite(real_gdp_yoy)):
+              return None
+          expected_delta = -0.5 * (real_gdp_yoy - 2.0)
+          gap = round(actual_unrate_delta - expected_delta, 2)
+
+          if max(gap, 0.50) == gap:
+              status = "JOBLESS_GROWTH_WARNING"
+          elif min(gap, -0.50) == gap:
+              status = "LABOR_HOARDING"
+          else:
+              status = "BALANCED_OKUN_EQUILIBRIUM"
+
+          return {"okun_gap": gap, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Okun_Gap üstü +0.50 : JOBLESS_GROWTH_WARNING (Büyümeye Rağmen İşsizlik Hızla Artıyor / Verimlilik veya Yapısal Kırılma)
+  - -0.50 ile +0.50 arası : BALANCED_OKUN_EQUILIBRIUM (Büyüme ve İstihdam Tarihsel Dengede)
+  - Okun_Gap altı -0.50 : LABOR_HOARDING (Düşük Büyümeye Rağmen Şirketler Çalışanlarını Tutuyor / Dirençli İstihdam)
+  
+---
+
+### 24. JEOPOLITIK GUVENLI LIMAN VE LIKIDITE KACIS ORANI (SAFE HAVEN FLIGHT INDEX)
+- Purpose: Askeri veya jeopolitik şok anlarında tahvil faizleri düşerken dolar ve kredi risk priminin fırlamasıyla sermayenin güvenli limana ve nakde kaçış şiddetini ölçer.
+- Data Series Keys:
+  - FRED: DTWEXBGS (Nominal Broad U.S. Dollar Index)
+  - FRED: DGS10 (10-Year Treasury Constant Maturity Nominal Yield)
+  - ICE BofA / FRED: BAMLH0A0HYM2 (ICE BofA US High Yield Index Option-Adjusted Spread)
+- Formula:
+  Flight_To_Safety_Ratio = (DTWEXBGS * BAMLH0A0HYM2) / (DGS10 * 100)
+- Machine-Executable Logic (Python):
+  def safe_haven_flight_index(dxy, hy_spread, dgs10):
+      if any(v is None or isinstance(v, bool) for v in (dxy, hy_spread, dgs10)):
+          return None
+      try:
+          # Tum seriler pozitif ve sonlu sayi olmalidir (sifir ve negatif kontrolu)
+          if any(min(v, 0) == v for v in (dxy, hy_spread, dgs10)):
+              return None
+          raw_ratio = (dxy * hy_spread) / (dgs10 * 100.0)
+          if not math.isfinite(raw_ratio):
+              return None
+          ratio = round(raw_ratio, 3)
+
+          if max(ratio, 2.50) == ratio:
+              regime = "EXTREME_LIQUIDITY_PANIC"
+          elif max(ratio, 1.80) == ratio:
+              regime = "HIGH_FLIGHT_TO_SAFETY"
+          elif max(ratio, 1.00) == ratio:
+              regime = "MODERATE_HEDGING"
+          else:
+              regime = "NORMAL_MARKET_REGIME"
+
+          return {"flight_ratio": ratio, "regime": regime}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - Flight_Ratio 2.50 veya uzeri : EXTREME_LIQUIDITY_PANIC (Sistemik Likidite Şoku / Nakde Kaçış / Ağır Varlık Satışı)
+  - 1.80 ile 2.50 arası : HIGH_FLIGHT_TO_SAFETY (Yüksek Jeopolitik Gerilim / Güvenli Liman Alımı)
+  - 1.00 ile 1.80 arası : MODERATE_HEDGING (Ilımlı Portföy Korunma Duruşu)
+  - Flight_Ratio altı 1.00 : NORMAL_MARKET_REGIME (Rutin Risk İştahı)
+
+---
+
+### 25. DIS TICARET HADLERI VE SATIN ALMA GUCU (TERMS OF TRADE - TOT)
+- Purpose: İhracat fiyat endeksinin ithalat fiyat endeksine oranını izleyerek ülkenin dış ticaret satın alma gücünü, refah transferini ve cari denge kırılganlığını ayrışmış resmi serilerle ölçer.
+- Data Series Keys:
+  - BLS / FRED (Import Price Index): IQ (U.S. Import Price Index - All Commodities)
+  - BLS / FRED (Export Price Index): IQ1000 (U.S. Export Price Index - All Commodities)
+- Formula:
+  Terms_Of_Trade = (Export_Price_Index / Import_Price_Index) * 100
+- Machine-Executable Logic (Python):
+  def terms_of_trade_index(export_idx, import_idx):
+      if any(v is None or isinstance(v, bool) for v in (export_idx, import_idx)): return None
+      try:
+          if min(export_idx, 0) == export_idx or min(import_idx, 0) == import_idx:
+              return None
+          res = (export_idx / import_idx) * 100.0
+          return round(res, 2) if math.isfinite(res) else None
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - TOT üstü 100.0 : FAVORABLE_TRADE (İhracat Gelirinin İthalat Gücü Artıyor / Pozitif Dış Ticaret Hadleri)
+  - TOT == 100.0 : BASELINE_EQUILIBRIUM (Tarihsel Referans Dengesi)
+  - TOT altı 100.0 : DETERIORATING_TERMS (İthal Malların Göreceli Pahalanması / Refah Kaybı ve Cari Açık Baskısı)
+  
+---
+
+## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
+
+import math
+
+def _is_num(val):
+    if val is None or isinstance(val, bool) or not isinstance(val, (int, float)): return False
+    return math.isfinite(val)
+
+### 26. KOMITE AYRISMA KATSAYISI (COMMITTEE DISPERSION SCORE)
+- Machine-Executable Logic (Python):
+  def committee_dispersion(n_dissent, n_total):
+      if not (_is_num(n_dissent) and _is_num(n_total)): return None
+      if min(n_total, 0) == n_total or min(n_dissent, 0) != 0 or max(n_dissent, n_total) != n_total:
+          return None
+      return round(n_dissent / n_total, 4)
+
+### 27. SÖYLEM SERTLİK SKORU (RHETORIC INTENSITY SCORE)
+- Purpose: Siyasi lider ve aktörlerin açıklamalarındaki hedef alma, tasfiye dili, yaptırım tehdidi ve diplomatik teamül ihlallerini 0-100 ölçeğinde puanlar.
+- Target: political.json -> rhetoric_intensity_score
+- Formula:
+  Rhetoric_Score = (x1 * 0.30) + (x2 * 0.30) + (x3 * 0.20) + (x4 * 0.20)
+- Machine-Executable Logic (Python):
+  def rhetoric_intensity_score(direct_target, delegitimize, threat, norm_breach):
+      if not all(_is_num(v) for v in (direct_target, delegitimize, threat, norm_breach)):
+          return None
+      x1 = min(100.0, max(0.0, float(direct_target)))
+      x2 = min(100.0, max(0.0, float(delegitimize)))
+      x3 = min(100.0, max(0.0, float(threat)))
+      x4 = min(100.0, max(0.0, float(norm_breach)))
+      score = (x1 * 0.30) + (x2 * 0.30) + (x3 * 0.20) + (x4 * 0.20)
+      return int(round(min(100.0, score)))
+
+### 27.1. BİLEŞİK SİYASİ GERİLİM SKORU (COMPOSITE TENSION SCORE)
+- Purpose: Söylem sertliği ile kurumsal/ittifak çatlaklarını birleştirerek 0-100 skalasında dengeli gerilim seviyesini belirler.
+- Machine-Executable Logic (Python):
+  def composite_tension(rhetoric, alliance_friction):
+      if not (_is_num(rhetoric) and _is_num(alliance_friction)):
+          return None
+      r = min(100.0, max(0.0, float(rhetoric)))
+      a = min(100.0, max(0.0, float(alliance_friction)))
+      return int(round((r * 0.50) + (a * 0.50)))
+
+### 28. BILESIK ULKE STRATEJIK RISK SKORU (COMPOSITE STRATEGIC SCORE)
+- Machine-Executable Logic (Python):
+  def composite_strategic_score(pol, defense, geo, vuln):
+      if not all(_is_num(v) for v in (pol, defense, geo, vuln)): return None
+      p = min(100.0, max(0.0, float(pol)))
+      d = min(100.0, max(0.0, float(defense)))
+      g = min(100.0, max(0.0, float(geo)))
+      v = min(100.0, max(0.0, float(vuln)))
+      return int(round(p * 0.25 + d * 0.35 + g * 0.20 + v * 0.20))
+      
+### 28.1. ÇATIŞMA HARARETİ (CONFLICT HEAT SCORE)
+- Purpose: Kinetik çatışma, diplomatik sürtüşme ve kritik altyapı/ticaret hattı kesinti risklerini 0-100 ölçeğinde puanlar.
+- Target: core_analysis -> conflict_heat
+- Formula:
+  Conflict_Heat = (c1 * 0.40) + (c2 * 0.35) + (c3 * 0.25)
+- Machine-Executable Logic (Python):
+  def conflict_heat_score(kinetic_military, geo_tension, disruption_risk):
+      if not all(_is_num(v) for v in (kinetic_military, geo_tension, disruption_risk)):
+          return None
+      c1 = min(100.0, max(0.0, float(kinetic_military)))
+      c2 = min(100.0, max(0.0, float(geo_tension)))
+      c3 = min(100.0, max(0.0, float(disruption_risk)))
+      score = (c1 * 0.40) + (c2 * 0.35) + (c3 * 0.25)
+      return int(round(min(100.0, score)))
+
+### 28.2. PİYASA ETKİ SKORU (MARKET IMPACT SCORE)
+- Purpose: Varlık oynaklığı, kredi/likidite makası ve makro aktarım mekanizmasını birleştirerek olayın finansal şok şiddetini 0-100 ölçeğinde hesaplar.
+- Target: core_analysis -> market_impact_score
+- Formula:
+  Market_Impact = (m1 * 0.35) + (m2 * 0.35) + (m3 * 0.30)
+- Machine-Executable Logic (Python):
+  def market_impact_score(asset_volatility, liquidity_spread, macro_spillover):
+      if not all(_is_num(v) for v in (asset_volatility, liquidity_spread, macro_spillover)):
+          return None
+      m1 = min(100.0, max(0.0, float(asset_volatility)))
+      m2 = min(100.0, max(0.0, float(liquidity_spread)))
+      m3 = min(100.0, max(0.0, float(macro_spillover)))
+      score = (m1 * 0.35) + (m2 * 0.35) + (m3 * 0.30)
+      return int(round(min(100.0, score)))
+      
+
+### 29. KANIT VE GUVENILIRLIK SKORU (CONFIDENCE SCORE)
+- Purpose: Analizi destekleyen kaynakların otorite, doğrulama ve güncellik düzeylerini 0-100 ölçeğinde puanlar.
+- Input Normalization: Girdiler 0.0-1.0 aralığında veya 0-100 aralığında girilebilir; fonksiyon her iki ölçeği otomatik normalize eder.
+- Machine-Executable Logic (Python):
+  def confidence_score(authority, confirmation, recency):
+      if not all(_is_num(v) for v in (authority, confirmation, recency)): return None
+      def _norm(val):
+          v_clamped = min(100.0, max(0.0, float(val)))
+          return v_clamped / 100.0 if (max(v_clamped, 1.0) == v_clamped and v_clamped != 1.0) else v_clamped
+      a, c, r = _norm(authority), _norm(confirmation), _norm(recency)
+      return int(round((a * 0.40 + c * 0.35 + r * 0.25) * 100))
+
+---
+
+## 4. KADEME: RESMI MAKRO TAKVIM VE GERI SAYIM MOTORU (RELEASE COUNTDOWN ENGINE)
+
+### 30. RESMI MAKRO BULTEN TAKVIMLERI VE KALAN GUN PROTOKOLU (OFFICIAL BLS & BEA COUNTDOWN)
+- Purpose: CPI (TUFE), NFP (Istihdam), PPI, PCE Enflasyonu ve GDP (GSYIH) gibi kritik bultenlerin resmi yayin tarihlerini deterministik olarak cozer ve kalan gunu hesaplar.
+- Canonical Calendar Sources:
+  - BLS Schedule (CPI, NFP, PPI): https://www.bls.gov/schedule/news_release/bls.ics
+  - BEA Schedule (PCE, GDP, Dis Ticaret): https://apps.bea.gov/API/signup/release_dates.json
+- Countdown Formula:
+  Kalan_Gun = (Target_Date - Current_Date).days
+  (Saat ve dakika sapmalarini engellemek icin her iki tarihin saati gece yarisina 00:00:00 esitlenir.)
+- Status Mapping:
+  - Kalan_Gun == 0 : "Bugun"
+  - Kalan_Gun == 1 : "Yarin"
+  - Kalan_Gun pozitif : str(Kalan_Gun) + " gun sonra"
+  - Kalan_Gun negatif : str(abs(Kalan_Gun)) + " gun once"
+- Machine-Executable Logic (Python):
+  from datetime import datetime
+
+  def macro_release_countdown(target_date_str, current_date_str):
+      if not target_date_str or not current_date_str:
+          return None
+      try:
+          t_target = datetime.strptime(str(target_date_str).strip(), '%Y-%m-%d').date()
+          t_current = datetime.strptime(str(current_date_str).strip(), '%Y-%m-%d').date()
+      except (ValueError, TypeError):
+          return None
+
+      delta_days = (t_target - t_current).days
+
+      if delta_days == 0:
+          status = "Bugun"
+      elif delta_days == 1:
+          status = "Yarin"
+      elif max(delta_days, 2) == delta_days:
+          status = str(delta_days) + " gun sonra"
+      else:
+          status = str(abs(delta_days)) + " gun once"
+
+      return {"days_remaining": delta_days, "status": status}
+- Execution Directive for AI Agents:
+  Kullanici bir sonraki makro verinin tarihini sordugunda:
+  1. CPI, NFP veya PPI icin BLS kaynagini; PCE veya GDP icin BEA JSON takvimini baz al.
+  2. Hedef gostergenin en yakin resmi yayin tarihini (Target_Date) tespit et.
+  3. macro_release_countdown mantigini isleterek guncel gune gore kalan sureyi net durum etiketiyle yanitla.
