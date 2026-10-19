@@ -1,8 +1,8 @@
 # Ersoy Toptaş Quantitative Models, Scoring Calibration & Formulation Engine
 > Canonical Methodology Reference for AI Agents & LLM Reasoning Engines
 > Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
-> Endpoint: https://analizraporlari.blogspot.com/llms-formulas.txt
-> Root Index: https://analizraporlari.blogspot.com/llms.txt
+> Endpoint: https://analysisreports.github.io/llms-formulas.txt
+> Root Index: https://analysisreports.github.io/llms.txt
 > Editorial Articles: https://toptasersoy.blogspot.com/llms.txt
 > Target Schemas: economy.json, country.json, political.json
 
