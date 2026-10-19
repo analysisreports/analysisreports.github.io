@@ -1,0 +1,31 @@
+# Ersoy Toptaş - Quantitative Macroeconomic Research & LLM Data Engine
+# https://analysisreports.github.io/
+
+User-agent: *
+Allow: /
+
+# LLM & AI Agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# AI Manifest Endpoints
+# https://analysisreports.github.io/llms.txt
+# https://analysisreports.github.io/llms-formulas.txt
