@@ -1107,6 +1107,49 @@ Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açık
   - status == RECESSION_EARLY_WARNING : Istihdam artisi nufus esiginin altinda ve issizlik yukseliyor (Resesyon Oncusu)
   - status == BALANCED_LABOR_MARKET : Dengeli Istihdam Piyasasi
 
+### 23.2. TOPLAM FON AKIMI VE LIKIDITE HIZLANMASI (TOTAL FUNDS FLOW AND VELOCITY MOMENTUM)
+- Purpose: Genis para arzinin (M2) para dolasim hizi (Velocity) ile carpilarak reel ve finansal ekonomideki gercek likidite hizini, efektif fon akimini ve varlik enflasyon basincini modeller. (Not: M2V ceyreklik oldugu icin, M2SL verisi de ceyreklik periyoda hizalanmalidir).
+- Data Series Keys:
+  - FRED: M2SL (M2 Money Supply - Billions of USD, Seasonally Adjusted)
+  - FRED: M2V (Velocity of M2 Money Stock - Quarterly)
+- Formula:
+  Total_Funds_Flow = M2SL * M2V
+- Machine-Executable Logic (Python):
+  def total_funds_flow_model(m2_level, m2_velocity, prev_tff=None):
+      if any(v is None or isinstance(v, bool) for v in (m2_level, m2_velocity)):
+          return None
+      try:
+          if not (math.isfinite(m2_level) and math.isfinite(m2_velocity)):
+              return None
+          if min(m2_level, 0) == m2_level or min(m2_velocity, 0) == m2_velocity:
+              return None
+
+          raw_tff = float(m2_level) * float(m2_velocity)
+          if not math.isfinite(raw_tff):
+              return None
+          tff_val = round(raw_tff, 2)
+
+          mom_change = None
+          status = "BALANCED_LIQUIDITY_FLOW"
+          if prev_tff is not None and not isinstance(prev_tff, bool) and math.isfinite(prev_tff) and prev_tff > 0:
+              mom_change = round(((tff_val / float(prev_tff)) - 1.0) * 100.0, 2)
+              if max(mom_change, 2.0) == mom_change and mom_change != 2.0:
+                  status = "EXCESS_VELOCITY_INFLATION"
+              elif min(mom_change, 0.0) == mom_change and mom_change != 0.0:
+                  status = "LIQUIDITY_STAGNATION"
+
+          return {
+              "total_funds_flow": tff_val,
+              "tff_qoq_pct": mom_change,
+              "status": status
+          }
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - status == EXCESS_VELOCITY_INFLATION : Asiri Likidite Hizlanmasi ve Varlik Fiyati Balon Riski (TFF QoQ ustu yuzde 2.0)
+  - status == BALANCED_LIQUIDITY_FLOW : Dengeli Fon Akimi
+  - status == LIQUIDITY_STAGNATION : Parasal Hizin Dusmesi, Fon Akiminin Donmasi ve Deflasyonist Baski (TFF QoQ alti yuzde 0.0)
+
 ---
 
 ### 24. JEOPOLITIK GUVENLI LIMAN VE LIKIDITE KACIS ORANI (SAFE HAVEN FLIGHT INDEX)
