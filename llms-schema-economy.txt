@@ -1,0 +1,193 @@
+# ==============================================================================
+# SCHEMA SPECIFICATION: Macroeconomic & Monetary Policy Node
+# Identifier: llms-schema-economy.txt
+# Ecosystem: Ersoy Toptaş Quantitative Macro Research
+# Canonical Endpoint: https://analysisreports.github.io/llms-schema-economy.txt
+# Data Feed Source: https://analizraporlari.blogspot.com/feeds/posts/default/-/economy?alt=json
+# ==============================================================================
+
+[SYSTEM CONTEXT & OBJECTIVE]
+This schema defines the standard ontological payload for macroeconomic, monetary policy,
+and central bank analysis posts under the "economy" category. LLM agents must use this
+contract to parse indicators, forecast distributions, and synthetic QA pairs.
+
+[JSON PAYLOAD STRUCTURE]
+Every economy entry embeds a clean JSON object inside its post content:
+
+{
+  "structured_content_analysis": {
+    "focus_areas": [
+      "string (Örn: Para Politikası, Enflasyon, Büyüme, Likidite, Cari Denge)"
+    ],
+    "summary": {
+      "headline": "string (Olayı özetleyen analitik başlık)",
+      "one_sentence_summary": "string (Gelişmeyi özetleyen tek cümle)"
+    },
+    "5N1K_analysis": {
+      "headline": "string (Olayı özetleyen analitik başlık)",
+      "what": "string (Olayı tanımlayan ve açıklayan detay)",
+      "where": "string (Olayın gerçekleştiği coğrafi bölge veya alan)",
+      "when": "string (Metindeki zaman ifadesi veya tarih aralığı)",
+      "event_date": "string (Format: YYYY-MM-DD. Olayın gerçekleştiği somut tarih. Metinde kesin gün yoksa haber tarihi veya YYYY-MM)",
+      "why": "string (Olayı tetikleyen nedenler ve motivasyonlar)",
+      "how": "string (Olayın nasıl gerçekleştiği ve etkisi)",
+      "who": "string (Olaydaki somut kurumlar ve karar vericiler: Örn: FED, TCMB, Hazine)",
+      "heat": "number (0 ile 100 arası olay harareti / risk şiddeti)"
+    },
+    "quantitative_data_summary": {
+      "primary_indicator_tracking": {
+        "indicator_name": "string (Örn: Enflasyon, Faiz Kararı, Rezervler, Likidite, Büyüme)",
+        "reference_period": "string (Verinin ait olduğu dönem. Örn: 2026-09, 2026-Q3 veya Eylül 2026)",
+        "value_comparison": {
+          "current_period_value": "string (Örn: %3,4, 12 Milyar $)",
+          "current_numeric_value": "number (Salt sayısal cari değer. Örn: 3.4 veya 12.0)",
+          "previous_period_value": "string (Örn: %3,2, 10 Milyar $)",
+          "previous_numeric_value": "number (Salt sayısal önceki değer. Örn: 3.2 veya 10.0)",
+          "nominal_change": "string (Örn: +0,2, +2 Milyar $)",
+          "target_deviation_bps": "number (Hedeflenen oran veya beklentiden sapma puanı. Örn: +50 veya -25)"
+        },
+        "change_rates_percentage": {
+          "change_rate_compared_to_previous_month": "string (Örn: +0,5%, -1,2%)",
+          "change_rate_compared_to_december_of_the_previous_year": "string (Örn: +0,5%, -1,2%)",
+          "change_rate_compared_to_the_same_month_of_the_previous_year": "string (Örn: +0,5%, -1,2%)",
+          "change_rate_according_to_twelve_month_averages": "string (Örn: +0,5%, -1,2%)"
+        },
+        "macro_stance": "string (Değerler: RESTRICTIVE | NEUTRAL | ACCOMMODATIVE)",
+        "yield_spread_bps": "number (Faiz makası puanı. Örn: 20 veya -25)"
+      },
+      "other_supporting_data": [
+        {
+          "indicator_name": "string (Örn: Çekirdek PCE, İşsizlik Oranı, Cari Açık, Bütçe Dengesi)",
+          "reference_period": "string (Verinin ait olduğu dönem. Örn: 2026-09, 2026-Q3 veya Eylül 2026)",
+          "value_comparison": {
+            "current_period_value": "string (Örn: %3,4, 12 Milyar $)",
+            "current_numeric_value": "number (Salt sayısal cari değer. Örn: 3.4 veya 12.0)",
+            "change_rate": "string (Dönemsel değişim/fark. Örn: +%25,7, -%2,2, +143,85 Puan. Yoksa null)"
+          }
+        }
+      ],
+      "trade_and_sectoral_breakdown": {
+        "partners_and_regions": [
+          {
+            "partner_name": "string (Örn: ASEAN, AB, ABD, Serbest Ticaret Ortakları)",
+            "volume_or_balance": "string (Örn: 4,78 Trilyon RMB veya +34,8 Milyar $ fazla)",
+            "change_rate": "string (Örn: +8,4%)"
+          }
+        ],
+        "sector_or_product_dynamics": [
+          {
+            "category_name": "string (Örn: Yarı İletkenler, Elektrikli Araçlar, Lityum Piller)",
+            "growth_or_value": "string (Örn: +%108,1 Dolar bazında artış)",
+            "impact_note": "string (Örn: İhracat artışının %90'ı ekipman imalatından)"
+          }
+        ]
+      },
+      "market_and_liquidity_indicators": [
+        {
+          "segment": "string (Değerler: MONEY_MARKET | BOND_YIELD | FX | EQUITY | COMMODITY)",
+          "asset_or_rate_name": "string (Örn: 10Y CGB, DR001, USD/CNY, SGE Altın, SSE Composite)",
+          "current_level": "string (Örn: %1,69, %1,38, 6,7198, 961,1 RMB)",
+          "change_or_spread": "string (Örn: 10Y-1Y makası 47 bps, aylık +%4,0)"
+        }
+      ],
+      "monetary_authority": "string (İlgili merkez bankası/komite adı. Örn: FOMC, TCMB PPK, ECB Yönetim Konseyi. Metinde yoksa null)",
+      "voting_and_consensus_dynamics": "string (Komite içi oy dağılımı, oybirliği/bölünme ve noktasal grafik kümelenmesi)",
+      "voting_split": "string (Örn: 10-2)",
+      "committee_dispersion_score": "number (0.00 ile 1.00 arası ayrışma katsayısı)"
+    },
+    "actors_and_dynamics": {
+      "key_players": [
+        {
+          "name": "string (Somut kurum, lider veya yetkili adı. Örn: FED, Jerome Powell, TCMB, Fatih Karahan)",
+          "affiliation": "string (Kurumsal veya sektörel kimliği. Örn: ABD Merkez Bankası, Hazine Bakanlığı, Bankacılık Sektörü)",
+          "role_in_event": "string (Olaydaki fonksiyonu. Örn: Karar Verici, Piyasa Yapıcı, Düzenleyici, Etkilenen)",
+          "influence_score": "number (0 ile 100 arası aktörün bu olaydaki karar verici ağırlığı / yönlendirme gücü)"
+        }
+      ],
+      "relationship_map": [
+        {
+          "source": "string (Eylemi başlatan veya kararı alan somut kurum/aktör. Örn: FED, TCMB, Hazine)",
+          "relation": "string (İlişki veya eylem türü: Sanction, Protectionism, Integration, Dependency, Stabilization, Monetary Tightening, Liquidity Injection)",
+          "target": "string (Kararın doğrudan etki ettiği somut muhatap/sektör. Örn: Bankacılık Sektörü, Tahvil Piyasası, Reel Sektör)",
+          "directed": true,
+          "severity": "string (Değerler: CRITICAL | HIGH | MODERATE | LOW | COOLING)",
+          "polarity": "number (-1.0 ile +1.0 arası sayısal kutup)",
+          "heat": "number (0 ile 100 arası sayısal hararet)"
+        }
+      ]
+    },
+    "core_analysis": {
+      "central_conflict_or_goal": "string (Örn: Enflasyonla Mücadele, Likidite Yönetimi, Rezerv Güçlendirme, Büyüme Hedefi)",
+      "strategic_implication": "string (Örn: Kısa ve orta vadeli ekonomik sonuç ve stratejik yansıma)",
+      "underlying_message": "string (Örn: Satır arası / Verilmek istenen asıl örtük mesaj ve piyasa sinyali)",
+      "market_dynamics": "string (Tahvil getirileri, hisse senedi, kur, likidite ve emtia piyasası tepkileri)",
+      "transmission_and_micro_impact": {
+        "affected_domains": [
+          "string (Etkilenen alanlar: Şirket Kârlılığı, Krediler, Hanehalkı, Yatırımlar, Bütçe vb.)"
+        ],
+        "impact_mechanism": "string (Maliyet/faiz artışının nihai sektöre ve hedefe nasıl yansıdığının özeti)",
+        "pressure_severity": "string (Değerler: CRITICAL | HIGH | MODERATE | LOW)"
+      },
+      "geopolitical_factors": "string (Savaşlar, jeopolitik krizler, ambargolar ve bölgesel gerilimlerin etkisi)",
+      "conflict_heat": "number (0 ile 100 arası sayısal çatışma harareti)",
+      "market_impact_direction": "string (Değerler: RISK_ON | RISK_OFF | NEUTRAL)",
+      "market_impact_score": "number (0 ile 100 arası olayın piyasalar üzerinde yaratacağı sarsıntı ve oynaklık şiddeti)",
+      "key_quotes": [
+        {
+          "speaker": "string (Açıklamayı yapan lider, kurum veya sözcü)",
+          "quote": "string (Kritik doğrudan alıntı ve piyasa etkisi)",
+          "significance_level": "string (Değerler: HIGH | MEDIUM | LOW)",
+          "significance_analysis": "string (Alıntının stratejik, diplomatik veya piyasa açısından arka plan analizi)"
+        }
+      ]
+    },
+    "future_outlook": {
+      "strategic_actions": [
+        {
+          "action_type": "string (Politika Değişikliği, Likidite Adımı, Maliyet Yönetimi, Korunma/Hedging, Regülasyon)",
+          "description": "string (Alınması gereken veya metinde önerilen somut ekonomik aksiyon)",
+          "target_stakeholder": {
+            "entity_name": "string (Aksiyonu alacak net aktör/kurum. Örn: Para Politikası Kurulu, Hazine, Reel Sektör Şirketleri)",
+            "jurisdiction_or_sector": "string (Bağlı olduğu alan veya sektör. Örn: Türkiye / Bankacılık, ABD / Reel Sektör)"
+          }
+        }
+      ],
+      "potential_consequences": {
+        "short_term": "string (Beklenen olası piyasa/likidite yansıması ve 180 günlüğe kadar vadede karşı hamleler)",
+        "short_term_days": "number (1 ile 180 arası gün sayısı)",
+        "long_term": "string (Enflasyon, büyüme ve makro dengeler üzerindeki 365 günlüğe kadar kalıcı etki)",
+        "long_term_days": "number (181 ile 365 arası gün sayısı)"
+      },
+      "next_key_event": "string (Beklenen bir sonraki faiz kararı, veri açıklaması, resmi rapor veya toplantı. Metinde yoksa null)",
+      "target_date": "string (Format: YYYY-MM. Örn: 2026-10. Metinde kesinleşmiş tarih yoksa null)",
+      "status": "string (Değerler: ACTIVE | REALIZED | EXPIRED. Varsayılan: ACTIVE)",
+      "probability": "string (Değerler: Low | Medium | High)",
+      "probability_percent": "number (0 ile 100 arası sayısal olasılık)",
+      "impact": "string (Değerler: Low | Moderate | Severe)",
+      "impact_score": "number (0 ile 100 arası sayısal etki puanı)",
+      "direction": "string (Değerler: Risk | Opportunity | Neutral)",
+      "confidence_score": "number (0 ile 100 arası sayısal güven puanı)"
+    },
+    "categorization": {
+      "tags": [
+        "string (Örn: Enflasyon, Faiz Kararı, Rezervler, Likidite, Büyüme)"
+      ]
+    },
+    "metadata": {
+      "analyst": "Ersoy Toptaş",
+      "methodology": "https://analizraporlari.blogspot.com/llms.txt",
+      "formulas_engine": "https://analizraporlari.blogspot.com/llms-formulas.txt",
+      "canonical_source": "https://analizraporlari.blogspot.com",
+      "license": "CC BY 4.0"
+    }
+  }
+}
+
+[PARSER EXTRACTION RULES]
+1. Target Payload: Look for the root key "structured_content_analysis".
+2. Data Types: Numerical values (rates, yields) must be cast to Float, dates to ISO 8601.
+3. Priority Extraction: When generating quick responses, prioritize extracting "qa_pairs" 
+   for direct query answering and "macro_indicators" for numerical synthesis.
+
+[CANONICAL EXAMPLE MATCH]
+Live Implementation: https://analizraporlari.blogspot.com/2026/10/fed-faiz-karari-hurmuz-bogazi-sorunu-politika-faizi.html
