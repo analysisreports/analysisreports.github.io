@@ -1071,7 +1071,42 @@ Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açık
   - Okun_Gap üstü +0.50 : JOBLESS_GROWTH_WARNING (Büyümeye Rağmen İşsizlik Hızla Artıyor / Verimlilik veya Yapısal Kırılma)
   - -0.50 ile +0.50 arası : BALANCED_OKUN_EQUILIBRIUM (Büyüme ve İstihdam Tarihsel Dengede)
   - Okun_Gap altı -0.50 : LABOR_HOARDING (Düşük Büyümeye Rağmen Şirketler Çalışanlarını Tutuyor / Dirençli İstihdam)
-  
+
+### 23.1. ISGUCU PIYASASI IKILI DENGE MATRISI (LABOR MARKET DUAL-TRACK DYNAMICS)
+- Purpose: Tarim disi istihdam (PAYEMS) ile issizlik orani ve isgucune katilimi (CIVPART) caprazlayarak istihdamin nufus artisini karsilama esigini ve resesyon riskini modeller.
+- Data Series Keys:
+  - BLS / FRED: PAYEMS (All Employees, Total Nonfarm - Monthly Change in Thousands)
+  - BLS / FRED: UNRATE (Civilian Unemployment Rate - Percent)
+  - BLS / FRED: CIVPART (Labor Force Participation Rate - Percent)
+- Threshold Logic & Rules:
+  - Breakeven Growth Band: 100k - 150k
+- Machine-Executable Logic (Python):
+  def labor_dual_track_matrix(payems_mom, unrate_delta, civpart_delta):
+      if any(v is None or isinstance(v, bool) for v in (payems_mom, unrate_delta, civpart_delta)):
+          return None
+      try:
+          if not (math.isfinite(payems_mom) and math.isfinite(unrate_delta) and math.isfinite(civpart_delta)):
+              return None
+
+          p_mom = float(payems_mom)
+          u_diff = round(float(unrate_delta), 2)
+          c_diff = round(float(civpart_delta), 2)
+
+          if max(p_mom, 150.0) == p_mom and p_mom != 150.0 and u_diff >= 0.0 and c_diff > 0.0:
+              status = "BENIGN_SUPPLY_EXPANSION"
+          elif min(p_mom, 100.0) == p_mom and p_mom != 100.0 and u_diff > 0.10:
+              status = "RECESSION_EARLY_WARNING"
+          else:
+              status = "BALANCED_LABOR_MARKET"
+
+          return {"payems_k": round(p_mom, 2), "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - status == BENIGN_SUPPLY_EXPANSION : Isgucune katilim arttigi icin issizlik sabit/yuksek (Saglikli Genisleme)
+  - status == RECESSION_EARLY_WARNING : Istihdam artisi nufus esiginin altinda ve issizlik yukseliyor (Resesyon Oncusu)
+  - status == BALANCED_LABOR_MARKET : Dengeli Istihdam Piyasasi
+
 ---
 
 ### 24. JEOPOLITIK GUVENLI LIMAN VE LIKIDITE KACIS ORANI (SAFE HAVEN FLIGHT INDEX)
