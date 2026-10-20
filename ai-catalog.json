@@ -1,0 +1,76 @@
+{
+  "$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
+  "name": "Ersoy Toptaş Strategic Macro Memory & Multi-Layered Analysis Library",
+  "version": "1.0.0",
+  "description": "Yapay zeka sistemleri, LLM ajanları ve araştırmacılar için optimize edilmiş; makroekonomi, para politikaları, jeopolitik krizler ve siyasi dinamikleri katı ontolojik JSON şemalarıyla modelleyen stratejik veri kataloğu.",
+  "publisher": {
+    "name": "Ersoy Toptaş",
+    "url": "https://analizraporlari.blogspot.com",
+    "documentation": "https://analysisreports.github.io/llms.txt"
+  },
+  "license": "CC-BY-4.0",
+  "resources": [
+    {
+      "id": "dataset-economy",
+      "name": "Makroekonomi ve Para Politikası Zaman Serisi",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analizraporlari.blogspot.com/feeds/posts/default/-/economy?alt=json&max-results=150",
+      "schema_url": "https://analysisreports.github.io/llms-schema-economy.txt",
+      "authentication": { "type": "none" },
+      "description": "FOMC faiz kararları, Net Fed Likidite modelleri, verim eğrileri ve nicel gösterge karşılaştırmalarını içeren veri seti."
+    },
+    {
+      "id": "dataset-country-geopolitics",
+      "name": "Ülke Stratejik ve Jeopolitik Risk Değerlendirmeleri",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analizraporlari.blogspot.com/feeds/posts/default/-/country?alt=json&max-results=150",
+      "authentication": { "type": "none" },
+      "description": "İç siyasi istikrar, askeri savunma doktrini, harbe hazırlık kapasitesi, kutupsal blok dizilimleri ve bileşik risk skorlarını modelleyen veri seti."
+    },
+    {
+      "id": "dataset-political-dynamics",
+      "name": "Siyasi Dinamikler ve Söylem Analitiği",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analizraporlari.blogspot.com/feeds/posts/default/-/political?alt=json&max-results=150",
+      "authentication": { "type": "none" },
+      "description": "Siyasi liderlik anlatıları, karşı argüman hedefleri, söylem sertlik puanları ve ittifak içi uyum dengeleri veri seti."
+    },
+    {
+      "id": "dataset-editorial-stance",
+      "name": "Editoryal Duruş ve Makro Beklenti Analizi",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analizraporlari.blogspot.com/feeds/posts/default/-/editorial?alt=json&max-results=150",
+      "authentication": { "type": "none" },
+      "description": "Yazarın piyasa konsensüsüne karşı duruşunu, temel çıkarımlarını ve piyasa dinamiklerinin iktisadi hedeflere yansımasını modelleyen veri seti."
+    },
+    {
+      "id": "full-archive-paginated",
+      "name": "Tüm Veritabanı (Sayfalanmış)",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analizraporlari.blogspot.com/feeds/posts/default?alt=json&max-results=150",
+      "authentication": { "type": "none" },
+      "pagination": {
+        "pattern": "https://analizraporlari.blogspot.com/feeds/posts/default?alt=json&start-index={START}&max-results=150",
+        "step": 150
+      }
+    },
+    {
+      "id": "quantitative-formulas",
+      "name": "LLM Quantitative Formula Engine",
+      "type": "specification",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-formulas.txt",
+      "description": "Makro formül hesaplama motoru."
+    }
+  ],
+  "capabilities": {
+    "deterministic_qa": true,
+    "real_time_macro_tracking": true,
+    "structured_data_payload": "structured_content_analysis"
+  }
+}
