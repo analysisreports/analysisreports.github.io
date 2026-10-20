@@ -1385,6 +1385,43 @@ Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açık
   - status == BALANCED_SUPPLY_CHAIN : Uretim ve perakende satis dengeli (Saglikli Stok Devir Hizi / 1.28 ile 1.45 arasi)
   - status == SUPPLY_SHOCK_SHORTAGE : Urun kitligi ve tedarik zinciri tikanmasi. Raf bosalmasi ve maliyet enflasyonu baskisi (Oran 1.28 alti)
 
+### 23.8. INSAAT SEKTORU DONMA NOKTASI (MORTGAGE AND PERMIT DIVERGENCE)
+- Purpose: Kredi maliyetlerindeki artis ile muteahhitlerin yeni konut uretme istahi (ruhsatlar) arasindaki kopmayi olcer. Konut arzi daralmasini, emlak piyasasindaki kilitlenmeyi (lock-in effect) ve yapiskan kira enflasyonu riskini modeller. (Not: MORTGAGE30US haftalik oldugu icin aylik ortalamasi alinip PERMIT ile eslestirilmelidir).
+- Data Series Keys:
+  - FRED: MORTGAGE30US (30-Year Fixed Rate Mortgage Average in the United States - Percent)
+  - FRED: PERMIT (New Privately-Owned Housing Units Authorized - YoY Percent Change)
+- Formula:
+  Housing_Freeze_Index = MORTGAGE30US - (PERMIT_YoY / 10.0)
+- Machine-Executable Logic (Python):
+  def housing_freeze_index(mortgage_rate, permit_yoy):
+      if any(v is None or isinstance(v, bool) for v in (mortgage_rate, permit_yoy)):
+          return None
+      try:
+          if not (math.isfinite(mortgage_rate) and math.isfinite(permit_yoy)):
+              return None
+
+          if min(mortgage_rate, 0.0) == mortgage_rate or mortgage_rate == 0.0:
+              return None
+
+          raw_index = float(mortgage_rate) - (float(permit_yoy) / 10.0)
+          if not math.isfinite(raw_index):
+              return None
+          index = round(raw_index, 2)
+
+          if max(index, 8.0) == index and index != 8.0:
+              status = "SEVERE_HOUSING_FREEZE"
+          elif max(index, 5.0) == index and index != 5.0:
+              status = "SUPPLY_CONTRACTION"
+          else:
+              status = "HEALTHY_EXPANSION"
+
+          return {"freeze_index": index, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - status == SEVERE_HOUSING_FREEZE : Kredi maliyetleri cok yuksek, ruhsatlar cokuyor. Konut uretimi durdu, arz krizi (Endeks 8.0 ustu)
+  - status == SUPPLY_CONTRACTION : Borclanma maliyeti uretimi baskiliyor, yeni konut arzi daraliyor (Endeks 5.0 ile 8.0 arasi)
+  - status == HEALTHY_EXPANSION : Finansman kosullari insaati destekliyor, konut arzinda saglikli artis (Endeks 5.0 ve alti)
 ---
 
 ### 24. JEOPOLITIK GUVENLI LIMAN VE LIKIDITE KACIS ORANI (SAFE HAVEN FLIGHT INDEX)
