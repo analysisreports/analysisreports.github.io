@@ -98,7 +98,7 @@ Every economy entry embeds a clean JSON object inside its post content:
     "actors_and_dynamics": {
       "key_players": [
         {
-          "name": "string (Somut kurum, lider veya yetkili adı. Örn: FED, Jerome Powell, TCMB, Fatih Karahan)",
+          "name": "string (Somut kurum, lider veya yetkili adı. Örn: FED, Kevin Warsh, BOJ, Kazuo Ueda vb.)",
           "affiliation": "string (Kurumsal veya sektörel kimliği. Örn: ABD Merkez Bankası, Hazine Bakanlığı, Bankacılık Sektörü)",
           "role_in_event": "string (Olaydaki fonksiyonu. Örn: Karar Verici, Piyasa Yapıcı, Düzenleyici, Etkilenen)",
           "influence_score": "number (0 ile 100 arası aktörün bu olaydaki karar verici ağırlığı / yönlendirme gücü)"
@@ -106,7 +106,7 @@ Every economy entry embeds a clean JSON object inside its post content:
       ],
       "relationship_map": [
         {
-          "source": "string (Eylemi başlatan veya kararı alan somut kurum/aktör. Örn: FED, TCMB, Hazine)",
+          "source": "string (Eylemi başlatan veya kararı alan somut kurum/aktör. Örn: FED, BOJ,  U.S. Department of the Treasury)",
           "relation": "string (İlişki veya eylem türü: Sanction, Protectionism, Integration, Dependency, Stabilization, Monetary Tightening, Liquidity Injection)",
           "target": "string (Kararın doğrudan etki ettiği somut muhatap/sektör. Örn: Bankacılık Sektörü, Tahvil Piyasası, Reel Sektör)",
           "directed": true,
