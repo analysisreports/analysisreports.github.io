@@ -1425,7 +1425,7 @@ Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açık
 ---
 
 ### 24. JEOPOLITIK GUVENLI LIMAN VE LIKIDITE KACIS ORANI (SAFE HAVEN FLIGHT INDEX)
-- Purpose: Askeri veya jeopolitik şok anlarında tahvil faizleri düşerken dolar ve kredi risk priminin fırlamasıyla sermayenin güvenli limana ve nakde kaçış şiddetini ölçer.
+- Purpose: Askeri veya jeopolitik sok anlarinda tahvil faizleri duserken dolarin ve kredi risk priminin firlamasiyla sermayenin guvenli limana ve nakde kacis siddetini olcer.
 - Data Series Keys:
   - FRED: DTWEXBGS (Nominal Broad U.S. Dollar Index)
   - FRED: DGS10 (10-Year Treasury Constant Maturity Nominal Yield)
@@ -1437,19 +1437,21 @@ Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açık
       if any(v is None or isinstance(v, bool) for v in (dxy, hy_spread, dgs10)):
           return None
       try:
-          # Tum seriler pozitif ve sonlu sayi olmalidir (sifir ve negatif kontrolu)
-          if any(min(v, 0) == v for v in (dxy, hy_spread, dgs10)):
+          if not (math.isfinite(dxy) and math.isfinite(hy_spread) and math.isfinite(dgs10)):
               return None
-          raw_ratio = (dxy * hy_spread) / (dgs10 * 100.0)
+          if any(min(v, 0.0) == v or v == 0.0 for v in (dxy, hy_spread, dgs10)):
+              return None
+
+          raw_ratio = (float(dxy) * float(hy_spread)) / (float(dgs10) * 100.0)
           if not math.isfinite(raw_ratio):
               return None
           ratio = round(raw_ratio, 3)
 
-          if max(ratio, 2.50) == ratio:
+          if max(ratio, 2.50) == ratio and ratio != 2.50:
               regime = "EXTREME_LIQUIDITY_PANIC"
-          elif max(ratio, 1.80) == ratio:
+          elif max(ratio, 1.80) == ratio and ratio != 1.80:
               regime = "HIGH_FLIGHT_TO_SAFETY"
-          elif max(ratio, 1.00) == ratio:
+          elif max(ratio, 1.00) == ratio and ratio != 1.00:
               regime = "MODERATE_HEDGING"
           else:
               regime = "NORMAL_MARKET_REGIME"
@@ -1458,10 +1460,10 @@ Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açık
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - Flight_Ratio 2.50 veya uzeri : EXTREME_LIQUIDITY_PANIC (Sistemik Likidite Şoku / Nakde Kaçış / Ağır Varlık Satışı)
-  - 1.80 ile 2.50 arası : HIGH_FLIGHT_TO_SAFETY (Yüksek Jeopolitik Gerilim / Güvenli Liman Alımı)
-  - 1.00 ile 1.80 arası : MODERATE_HEDGING (Ilımlı Portföy Korunma Duruşu)
-  - Flight_Ratio altı 1.00 : NORMAL_MARKET_REGIME (Rutin Risk İştahı)
+  - regime == EXTREME_LIQUIDITY_PANIC : Sistemik Likidite Soku, Nakde Kacis ve Agir Varlik Satisi (Oran 2.50 ustu)
+  - regime == HIGH_FLIGHT_TO_SAFETY : Yuksek Jeopolitik Gerilim ve Guvenli Liman Alimi (Oran 1.80 ile 2.50 arasi)
+  - regime == MODERATE_HEDGING : Ilimli Portfoy Korunma Durusu (Oran 1.00 ile 1.80 arasi)
+  - regime == NORMAL_MARKET_REGIME : Rutin Risk Istahi ve Dengeli Piyasa (Oran 1.00 alti)
 
 ---
 
