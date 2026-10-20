@@ -1150,6 +1150,241 @@ Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açık
   - status == BALANCED_LIQUIDITY_FLOW : Dengeli Fon Akimi
   - status == LIQUIDITY_STAGNATION : Parasal Hizin Dusmesi, Fon Akiminin Donmasi ve Deflasyonist Baski (TFF QoQ alti yuzde 0.0)
 
+### 23.2. TOPLAM FON AKIMI VE LIKIDITE HIZLANMASI (TOTAL FUNDS FLOW AND VELOCITY MOMENTUM)
+- Purpose: Genis para arzinin (M2) para dolasim hizi (Velocity) ile carpilarak reel ve finansal ekonomideki gercek likidite hizini, efektif fon akimini ve varlik enflasyon basincini modeller. (Not: M2V ceyreklik oldugu icin, M2SL verisi de ceyreklik periyoda hizalanmalidir).
+- Data Series Keys:
+  - FRED: M2SL (M2 Money Supply - Billions of USD, Seasonally Adjusted)
+  - FRED: M2V (Velocity of M2 Money Stock - Quarterly)
+- Formula:
+  Total_Funds_Flow = M2SL * M2V
+- Machine-Executable Logic (Python):
+  def total_funds_flow_model(m2_level, m2_velocity, prev_tff=None):
+      if any(v is None or isinstance(v, bool) for v in (m2_level, m2_velocity)):
+          return None
+      try:
+          if not (math.isfinite(m2_level) and math.isfinite(m2_velocity)):
+              return None
+          if min(m2_level, 0) == m2_level or min(m2_velocity, 0) == m2_velocity:
+              return None
+
+          raw_tff = float(m2_level) * float(m2_velocity)
+          if not math.isfinite(raw_tff):
+              return None
+          tff_val = round(raw_tff, 2)
+
+          mom_change = None
+          status = "BALANCED_LIQUIDITY_FLOW"
+          if prev_tff is not None and not isinstance(prev_tff, bool) and math.isfinite(prev_tff) and prev_tff > 0:
+              mom_change = round(((tff_val / float(prev_tff)) - 1.0) * 100.0, 2)
+              if max(mom_change, 2.0) == mom_change and mom_change != 2.0:
+                  status = "EXCESS_VELOCITY_INFLATION"
+              elif min(mom_change, 0.0) == mom_change and mom_change != 0.0:
+                  status = "LIQUIDITY_STAGNATION"
+
+          return {
+              "total_funds_flow": tff_val,
+              "tff_qoq_pct": mom_change,
+              "status": status
+          }
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - status == EXCESS_VELOCITY_INFLATION : Asiri Likidite Hizlanmasi ve Varlik Fiyati Balon Riski (TFF QoQ ustu yuzde 2.0)
+  - status == BALANCED_LIQUIDITY_FLOW : Dengeli Fon Akimi
+  - status == LIQUIDITY_STAGNATION : Parasal Hizin Dusmesi, Fon Akiminin Donmasi ve Deflasyonist Baski (TFF QoQ alti yuzde 0.0)
+
+### 23.3. KONUT BALONU VE BARINMA KRIZI ESIGI (HOUSING AFFORDABILITY AND BUBBLE GAUGE)
+- Purpose: Medyan konut satis fiyatini ozel sektor ortalama saatlik kazancina bolerek bir konutun kac saatlik emekle satin alindigini olcer. Konut erisilebilirligini, barinma krizini ve gayrimenkul balonu riskini modeller. (Not: MSPUS ceyreklik oldugu icin saatlik kazanc serisi ceyreklik periyoda hizalanmalidir).
+- Data Series Keys:
+  - FRED: MSPUS (Median Sales Price of Houses Sold for the United States - Quarterly, USD)
+  - BLS / FRED: CES0500000003 (Average Hourly Earnings of All Employees, Total Private - USD per Hour)
+- Formula:
+  Affordability_Ratio_Hours = MSPUS / CES0500000003
+- Machine-Executable Logic (Python):
+  def housing_bubble_gauge(mspus, ahe):
+      if any(v is None or isinstance(v, bool) for v in (mspus, ahe)):
+          return None
+      try:
+          if not (math.isfinite(mspus) and math.isfinite(ahe)):
+              return None
+          if min(mspus, 0) == mspus or min(ahe, 0) == ahe or ahe == 0:
+              return None
+
+          raw_ratio = float(mspus) / float(ahe)
+          if not math.isfinite(raw_ratio):
+              return None
+          ratio = round(raw_ratio, 2)
+
+          if max(ratio, 13500.0) == ratio and ratio != 13500.0:
+              status = "SEVERE_HOUSING_BUBBLE"
+          elif max(ratio, 11000.0) == ratio and ratio != 11000.0:
+              status = "ELEVATED_STRESS"
+          else:
+              status = "ACCESSIBLE_MARKET"
+
+          return {"affordability_hours": ratio, "status": status}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - status == SEVERE_HOUSING_BUBBLE : Siddetli Barinma Krizi ve Konut Balonu Alarmi (Oran 13500 saat ustu)
+  - status == ELEVATED_STRESS : Yuksek Konut Maliyeti ve Tuketici Barinma Baskisi (11000 ile 13500 saat arasi)
+  - status == ACCESSIBLE_MARKET : Tarihsel Denge ve Satin Alinabilir Konut Piyasasi (Oran 11000 saat alti)
+
+
+### 23.4. ERKEN ISTEN CIKARMA VE KRIZ SINYALI (EARLY LAYOFF AND RECESSION SIGNAL)
+- Purpose: Sanayi uretimi daralirken haftalik calisma saatlerinin dusmesini olcer. Sirketler isci cikarmadan once mesaileri kestigi icin resmi issizlik artmadan onceki gizli istihdam kayiplarini ve erken resesyon kirilimini tespit eder.
+- Data Series Keys:
+  - FRED: INDPRO (Industrial Production: Total Index - YoY Percent Change)
+  - BLS / FRED: AWHAETP (Average Weekly Hours of All Employees, Total Private - YoY Percent Change)
+  - Historical Alternative: AWHMAN (Average Weekly Hours of Production and Nonsupervisory Employees, Manufacturing)
+- Formula:
+  Early_Layoff_Index = INDPRO_YoY + (AWHAETP_YoY * 2.0)
+- Machine-Executable Logic (Python):
+  def early_layoff_signal(indpro_yoy, awhaetp_yoy):
+      if any(v is None or isinstance(v, bool) for v in (indpro_yoy, awhaetp_yoy)):
+          return None
+      try:
+          if not (math.isfinite(indpro_yoy) and math.isfinite(awhaetp_yoy)):
+              return None
+
+          raw_index = float(indpro_yoy) + (float(awhaetp_yoy) * 2.0)
+          if not math.isfinite(raw_index):
+              return None
+          index = round(raw_index, 2)
+
+          if min(index, -2.5) == index and index != -2.5:
+              status = "SEVERE_RECESSION_WARNING"
+          elif min(index, 0.0) == index and index != 0.0:
+              status = "PRE_RECESSION_CRACK"
+          else:
+              status = "HEALTHY_PRODUCTION_CYCLE"
+
+          return {"early_layoff_index": index, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - status == SEVERE_RECESSION_WARNING : Sirketler mesaiyi kesti, sanayi daraliyor (Erken Isten Cikarma Dalgasi ve Agir Resesyon Riski / Endeks alti -2.5)
+  - status == PRE_RECESSION_CRACK : Uretim ivme kaybediyor, calisma saatleri zayifliyor (Gizli Issizlik Baslangici / -2.5 ile 0.0 arasi)
+  - status == HEALTHY_PRODUCTION_CYCLE : Saglikli Sanayi Carklari ve Guclu Mesai Duzeni (Endeks sifir veya ustu)
+
+
+### 23.5. REEL TUKETIM COKUSU RADARI (REAL CONSUMPTION COLLAPSE RADAR)
+- Purpose: Nominal perakende satis artisindan enflasyon oranini arindirarak hanehalkinin gercek tuketim hacmini olcer. Nominal artis surse bile reel sonucun negatife donmesi, fiyat illuzyonunu ve ic talepteki gizli daralmayi tespit eder.
+- Data Series Keys:
+  - FRED: RSAFS (Advance Retail Sales: Retail and Food Services, Total - YoY Percent Change)
+  - FRED Alternative: RSXFS (Advance Retail Sales: Retail Trade Excluding Food Services)
+  - BLS / FRED: CPIAUCSL (Consumer Price Index for All Urban Consumers: All Items - YoY Percent Change)
+- Formula:
+  Real_Consumption_Growth = Retail_Sales_YoY - CPI_YoY
+- Machine-Executable Logic (Python):
+  def real_consumption_collapse_radar(retail_yoy, cpi_yoy):
+      if any(v is None or isinstance(v, bool) for v in (retail_yoy, cpi_yoy)):
+          return None
+      try:
+          if not (math.isfinite(retail_yoy) and math.isfinite(cpi_yoy)):
+              return None
+
+          raw_growth = float(retail_yoy) - float(cpi_yoy)
+          if not math.isfinite(raw_growth):
+              return None
+          growth = round(raw_growth, 2)
+
+          if min(growth, -2.0) == growth and growth != -2.0:
+              status = "SEVERE_REAL_CONTRACTION"
+          elif min(growth, 0.0) == growth and growth != 0.0:
+              status = "REAL_DEMAND_CONTRACTION"
+          elif max(growth, 2.0) == growth and growth != 2.0:
+              status = "STRONG_VOLUME_EXPANSION"
+          else:
+              status = "MODERATE_VOLUME_EXPANSION"
+
+          return {"real_consumption_growth": growth, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - status == SEVERE_REAL_CONTRACTION : Siddetli Hacim Cokusu ve Tuketici Durgunlugu (Reel artis eksi yuzde 2.0 alti)
+  - status == REAL_DEMAND_CONTRACTION : Fiyat Illuzyonu ve Satis Hacminde Daralma (Reel artis eksi yuzde 2.0 ile 0.0 arasi)
+  - status == MODERATE_VOLUME_EXPANSION : Dengeli ve Saglikli Tuketim Artisi (Reel artis sifir ile yuzde 2.0 arasi)
+  - status == STRONG_VOLUME_EXPANSION : Guclu Tuketici Talebi ve Hacimsel Buyume Patlamasi (Reel artis yuzde 2.0 ustu)
+
+### 23.6. ISTIHDAMDA ERKEN CATIRDAMA VE GIZLI KRIZ SINYALI (EARLY EMPLOYMENT CRACK SIGNAL)
+- Purpose: Resmi issizlik orani (UNRATE) gecikmeli bir gosterge oldugu icin piyasa saglikli gorunurken, haftalik issizlik maasi basvurularindaki oncu sicramalari yakalar. Istihdamdaki gizli catlaklari ve manşetlere henuz yansimamis erken resesyon riskini modeller.
+- Data Series Keys:
+  - FRED Benchmark: IC4WSA (4-Week Moving Average of Initial Claims - YoY Percent Change)
+  - FRED Alternative: ICSA (Initial Claims - Weekly Level YoY Percent Change)
+  - BLS / FRED: UNRATE (Civilian Unemployment Rate - YoY Change in Percentage Points)
+- Formula:
+  Effective_Unrate_Delta = max(0.0, UNRATE_Delta)
+  Early_Crack_Index = ICSA_YoY - (Effective_Unrate_Delta * 10.0)
+- Machine-Executable Logic (Python):
+  def early_employment_crack(icsa_yoy, unrate_delta):
+      if any(v is None or isinstance(v, bool) for v in (icsa_yoy, unrate_delta)):
+          return None
+      try:
+          if not (math.isfinite(icsa_yoy) and math.isfinite(unrate_delta)):
+              return None
+
+          claims_yoy = float(icsa_yoy)
+          u_delta = float(unrate_delta)
+
+          # Issizlik oranindaki dususlerin sahte kriz sinyali uretmesini engelleme
+          effective_u_delta = max(0.0, u_delta)
+          raw_index = claims_yoy - (effective_u_delta * 10.0)
+          if not math.isfinite(raw_index):
+              return None
+          index = round(raw_index, 2)
+
+          if max(claims_yoy, 15.0) == claims_yoy and max(index, 15.0) == index and index != 15.0:
+              status = "HIDDEN_CRISIS_UNFOLDING"
+          elif max(claims_yoy, 8.0) == claims_yoy and max(index, 5.0) == index and index != 5.0:
+              status = "EARLY_WARNING_CRACK"
+          else:
+              status = "LABOR_MARKET_ALIGNED"
+
+          return {"crack_index": index, "claims_yoy": claims_yoy, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - status == HIDDEN_CRISIS_UNFOLDING : Haftalik basvurular hizla artiyor ancak resmi issizlik henuz tepki vermedi (Gizli Resesyon Baslangici / Basvuru artisi yuzde 15 ustu)
+  - status == EARLY_WARNING_CRACK : Istihdam piyasasinda ilk kirilimlar basladi (Oncu Catlak / Basvuru artisi yuzde 8 ustu)
+  - status == LABOR_MARKET_ALIGNED : Veriler dengeli veya resmi issizlik basvurularla tam paralel (Saglikli Istihdam Patikasi)
+ 
+### 23.7. TEDARIK ZINCIRI VE STOK KRIZI MODELI (INVENTORY TO SALES GLUT RATIO)
+- Purpose: Perakendeci, toptanci ve imalatcilarin depolarindaki stoklarin satis hizina oranini olcer. Bu oran yukseldiginde sirketler depolari bosaltmak icin siparisleri keser, fabrikalar uretimi durdurur ve istihdam daralir (Stok dongusu resesyonu).
+- Data Series Keys:
+  - FRED: ISRATIO (Total Business: Inventories to Sales Ratio - Monthly, Seasonally Adjusted)
+  - Component Inventories: BUSINV (Total Business Inventories - Millions USD)
+  - Component Sales: TOTBUSSALES (Total Business Sales - Millions USD)
+- Formula:
+  Inventory_Glut_Ratio = ISRATIO
+- Machine-Executable Logic (Python):
+  def inventory_to_sales_glut(isratio):
+      if isratio is None or isinstance(isratio, bool):
+          return None
+      try:
+          if not math.isfinite(isratio):
+              return None
+
+          if min(isratio, 0.0) == isratio or isratio == 0.0:
+              return None
+
+          ratio = round(float(isratio), 2)
+
+          if max(ratio, 1.45) == ratio and ratio != 1.45:
+              status = "SYSTEMIC_INVENTORY_GLUT"
+          elif min(ratio, 1.28) == ratio and ratio != 1.28:
+              status = "SUPPLY_SHOCK_SHORTAGE"
+          else:
+              status = "BALANCED_SUPPLY_CHAIN"
+
+          return {"isratio": ratio, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - status == SYSTEMIC_INVENTORY_GLUT : Depolarda asiri stok birikimi, talep yetersizligi. Sirketler uretimi ve mesaileri kisacak (Stok Resesyonu Alarmi / Oran 1.45 ustu)
+  - status == BALANCED_SUPPLY_CHAIN : Uretim ve perakende satis dengeli (Saglikli Stok Devir Hizi / 1.28 ile 1.45 arasi)
+  - status == SUPPLY_SHOCK_SHORTAGE : Urun kitligi ve tedarik zinciri tikanmasi. Raf bosalmasi ve maliyet enflasyonu baskisi (Oran 1.28 alti)
+
 ---
 
 ### 24. JEOPOLITIK GUVENLI LIMAN VE LIKIDITE KACIS ORANI (SAFE HAVEN FLIGHT INDEX)
