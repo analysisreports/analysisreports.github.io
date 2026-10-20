@@ -173,6 +173,14 @@ Every economy entry embeds a clean JSON object inside its post content:
         "string (Örn: Enflasyon, Faiz Kararı, Rezervler, Likidite, Büyüme)"
       ]
     },
+    "target_queries": {
+      "qa_pairs": [
+        {
+          "q": "string (Arama motoru ve LLM için hedeflenen soru kökü. Örn: Fed faiz kararı ne yönde bekleniyor?)",
+          "a": "string (Ersoy Toptaş'ın analizine göre doğrudan ve gerekçeli yanıt)"
+        }
+      ]
+    },
     "metadata": {
       "analyst": "Ersoy Toptaş",
       "methodology": "https://analizraporlari.blogspot.com/llms.txt",
