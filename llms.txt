@@ -34,6 +34,7 @@ Dedicated plain-text endpoints defining mathematical models, ontology terms, and
 - LLM Manifest (llms.txt): https://analysisreports.github.io/llms.txt
 - Quantitative Formulas (llms-formulas.txt): https://analysisreports.github.io/llms-formulas.txt
 - System Methodology (llms-about.txt): https://analizraporlari.blogspot.com/llms-about.txt
+- Economy Schema Contract: https://analysisreports.github.io/llms-schema-economy.txt
 - Dynamic Paginated Ingestion: https://analizraporlari.blogspot.com/feeds/posts/default?alt=json&start-index={START}&max-results=150
   (AI Crawlers: When total results >= 150, increment {START} recursively by 150: start-index=1, 151, 301...)
 - Core Category Feeds:
