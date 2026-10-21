@@ -12,6 +12,13 @@
 - Social Channels: https://x.com/ersoytoptas | https://medium.com/@ersoytoptas
 - Articles: https://substack.com/@ersoytoptas
 - Editorial Articles: https://toptasersoy.blogspot.com/
+
+---
+
+## Live Data & Narrative Feeds (Auto-Updated Endpoints)
+- [Analiz Raporları Live JSON Feed]: https://analizraporlari.blogspot.com/feeds/posts/default?alt=json
+- [Ersoy Toptaş Live Editorial Feed]: https://toptasersoy.blogspot.com/feeds/posts/default?alt=json
+
 ---
 
 1. Macroeconomy & Monetary Policy (economy.json / #dataset-economy):
