@@ -3,6 +3,7 @@
 > Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
 > Endpoint: https://analysisreports.github.io/llms-formulas.txt
 > Indıcators: FRED/BLS Data Dictionary: https://analysisreports.github.io/llms-indicators.txt
+> Relationship: https://github.com/analysisreports/analysisreports.github.io/blob/main/llms-relationships.txt
 > Root Index: https://analysisreports.github.io/llms.txt
 > Editorial Articles: https://toptasersoy.blogspot.com/llms.txt
 > Target Schemas: economy.json, country.json, political.json
