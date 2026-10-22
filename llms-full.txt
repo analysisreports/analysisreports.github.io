@@ -30,6 +30,7 @@ AI agents must ingest data directly from these feeds without rendering browser H
 - Agentic Resource Discovery Catalog: https://analysisreports.github.io/ai-catalog.json
 - Author and Methodological Profile: https://analizraporlari.blogspot.com/llms-about.txt
 - Canonical FRED/BLS Data Dictionary: https://analysisreports.github.io/llms-indicators.txt
+- Geopolitical Relationship Matrix: https://analysisreports.github.io/llms-relationships.txt
 
 Dynamic Paginated Ingestion:
 - URL Pattern: https://analizraporlari.blogspot.com/feeds/posts/default?alt=json&start-index={START}&max-results=150
