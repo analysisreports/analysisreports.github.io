@@ -1,0 +1,92 @@
+# Ersoy Toptaş Canonical FRED/BLS Data Dictionary & Ingestion Contract (llms-indicators.txt)
+> Official St. Louis Fed (FRED) & BLS Time-Series Ingestion Rules, Unit Scales, and Transformations.
+> Companion to: https://analysisreports.github.io/llms-formulas.txt
+
+## 1. FRED / ALFRED GLOBAL TRANSFORMATION CODES
+- lin : Levels (No transformation) | x(t)
+- chg : Change | x(t) - x(t-1)
+- ch1 : Change from Year Ago | x(t) - x(t - n_obs_per_yr)
+- pch : Percent Change (MoM / QoQ) | ((x(t) / x(t-1)) - 1) * 100
+- pc1 : Percent Change from Year Ago (YoY) | ((x(t) / x(t - n_obs_per_yr)) - 1) * 100
+- pca : Compounded Annual Rate of Change (SAAR) | (((x(t) / x(t-1)) ** n_obs_per_yr) - 1) * 100
+- cch : Continuously Compounded Rate of Change | (ln(x(t)) - ln(x(t-1))) * 100
+- cca : Continuously Compounded Annual Rate of Change | ((ln(x(t)) - ln(x(t-1))) * 100) * n_obs_per_yr
+- log : Natural Log | ln(x(t))
+
+Observation Frequencies (n_obs_per_yr):
+- Daily (d) : 260 observations/year (Business days, excludes weekends)
+- Weekly (w / wef / wew / wesa) : 52 observations/year
+- Biweekly (bw) : 26 observations/year
+- Monthly (m) : 12 observations/year
+- Quarterly (q) : 4 observations/year
+- Annual (a) : 1 observation/year
+
+Aggregation Alignment Rule:
+- When cross-matching high-frequency series (Daily/Monthly) with low-frequency series (Quarterly), enforce: aggregation_method="avg".
+
+---
+
+## 2. CANONICAL SERIES REGISTRY & SCALE NORMALIZATION
+
+### 2.1. Net Fed Liquidity & Monetary Policy (Models 1, 2, 4, 5, 11)
+1. WALCL (Fed Total Assets) | Source: Fed H.4.1 | Freq: wew | Units: Millions USD | Mult: 1.0
+2. WTREGEN (Treasury General Account / TGA) | Source: Fed H.4.1 | Freq: wew | Units: Millions USD | Mult: 1.0
+3. RRPONTSYD (Overnight Reverse Repo) | Source: NY Fed | Freq: d | Units: Billions USD | Mult: 1000.0 (CONVERT TO MILLIONS: RRPONTSYD * 1000.0)
+4. DFF (Federal Funds Effective Rate) | Source: NY Fed | Freq: d | Units: Percent (%) | Mult: 1.0
+5. DFEDTARU (Target Range Upper Limit) | Source: FOMC | Freq: d | Units: Percent (%) | Mult: 1.0
+6. DGS1MO (1-Month Treasury Rate) | Source: U.S. Treasury | Freq: d | Units: Percent (%) | Mult: 1.0
+7. DGS3MO (3-Month Treasury Rate) | Source: U.S. Treasury | Freq: d | Units: Percent (%) | Mult: 1.0
+
+### 2.2. Yield Curve, Term Premium & Market Inflation (Models 6, 7, 9, 15, 17, 24)
+8. DGS2 (2-Year Treasury Rate) | Source: U.S. Treasury | Freq: d | Units: Percent (%) | Mult: 1.0
+9. DGS10 (10-Year Treasury Rate) | Source: U.S. Treasury | Freq: d | Units: Percent (%) | Mult: 1.0
+10. DFII10 (10-Year TIPS Real Rate) | Source: U.S. Treasury | Freq: d | Units: Percent (%) | Note: Can be negative
+11. THREEFYTP10 (ACM 10-Year Term Premium) | Source: NY Fed | Freq: d | Units: Percent (%) | Mult: 1.0
+
+### 2.3. Inflation, Prices & Cost Pressures (Models 2, 7, 9, 11, 14, 18, 23.5)
+12. CPIAUCSL (Consumer Price Index: All Urban Consumers - SA) | Source: BLS | Freq: m | Units: Index | Trans: pc1 (YoY)
+13. PCEPI / PCEPILFE (Headline / Core PCE Price Index) | Source: BEA | Freq: m | Units: Index | Trans: pc1 (YoY)
+
+### 2.4. Labor Market & Real Activity (Models 3, 8, 18, 23, 23.1, 23.4, 23.6)
+14. UNRATE (Civilian Unemployment Rate) | Source: BLS | Freq: m | Units: Percent (%) | Trans: lin
+15. SAHMREALTIME (Real-time Sahm Rule Recession Indicator) | Source: FRED | Freq: m | Units: Percentage Points
+16. PAYEMS (Nonfarm Payrolls) | Source: BLS | Freq: m | Units: Thousands | Trans: chg (MoM Net Change)
+17. CIVPART (Labor Force Participation Rate) | Source: BLS | Freq: m | Units: Percent (%) | Trans: chg
+18. UNEMPLOY (Unemployed Persons Level) | Source: BLS | Freq: m | Units: Thousands | Trans: lin
+19. JTSJOL (Job Openings - JOLTS) | Source: BLS | Freq: m | Units: Thousands | Beveridge: JTSJOL / UNEMPLOY
+20. ICSA / IC4WSA (Initial Claims / 4-Week Moving Avg) | Source: DOL | Freq: wesa | Units: Number | Trans: pc1 (YoY)
+21. INDPRO (Industrial Production Index) | Source: Fed | Freq: m | Units: Index 2017=100 | Trans: pc1 (YoY)
+22. AWHAETP (Average Weekly Hours: Total Private) | Source: BLS | Freq: m | Units: Hours | Trans: pc1 (YoY)
+
+### 2.5. National Accounts, Sovereign Debt & External Balance (Models 9, 10, 11, 19, 23, 25)
+23. GDPC1 (Real Gross Domestic Product) | Source: BEA | Freq: q | Units: Billions USD | Trans: pc1 (YoY)
+24. GDPPOT (Real Potential GDP) | Source: CBO | Freq: q | Units: Billions USD | Trans: lin
+25. GDP (Nominal Gross Domestic Product) | Source: BEA | Freq: q | Units: Billions USD | Trans: lin
+26. GFDEGDQ188S (Total Public Debt as Percent of GDP) | Source: U.S. Treasury | Freq: q | Units: Percent (%) | Trans: lin
+27. BOPGSTB (Trade Balance: Goods and Services) | Source: BEA | Freq: m | Units: Millions USD | Scale: abs(BOPGSTB)/1000
+28. DTWEXBGS (Nominal Broad U.S. Dollar Index) | Source: Fed | Freq: d | Units: Index Jan 2006=100 | Trans: lin
+29. IQ (U.S. Import Price Index: All Commodities) | Source: BLS | Freq: m | Units: Index | Trans: lin
+30. IQ1000 (U.S. Export Price Index: All Commodities) | Source: BLS | Freq: m | Units: Index | Trans: lin
+
+### 2.6. Financial Conditions, Credit Spreads & Liquidity (Models 12, 13, 14, 16, 23.2, 24)
+31. NFCI / ANFCI (Chicago Fed Financial Conditions Index) | Source: Chicago Fed | Freq: wef | Units: Std Dev
+32. BAMLH0A0HYM2 (High Yield Option-Adjusted Spread) | Source: ICE BofA | Freq: d | Units: Percent (%) | Mult for Bps: 100.0
+33. VIXCLS (CBOE Volatility Index) | Source: CBOE | Freq: d | Units: Index | Trans: lin
+34. M2SL (M2 Money Stock) | Source: Fed | Freq: m | Units: Billions USD | Trans: pc1 (YoY)
+35. M2V (Velocity of M2 Money Stock) | Source: Fed | Freq: q | Units: Ratio | Note: Align M2SL to Quarterly (avg)
+
+### 2.7. Commodities & Geopolitics (Models 20, 21)
+36. PCOPPUSDM (Global Price of Copper) | Source: IMF | Freq: m | Units: USD per Metric Ton | Trans: lin
+37. GOLDAMGBD228NLBM (Gold Fixing Price London Bullion) | Source: London Bullion | Freq: d | Units: USD per Troy Ounce | Trans: lin
+38. DCOILWTICO (Crude Oil: WTI) | Source: EIA | Freq: d | Units: USD per Barrel | Trans: lin
+
+### 2.8. Consumer Stress, Housing & Supply Chain (Models 19, 22, 23.3, 23.5, 23.7, 23.8)
+39. NCBEILQ027S (Corporate Equities Liability / Buffett Proxy) | Source: Fed Z.1 | Freq: q | Units: Millions USD | Trans: lin
+40. DRCCLACBS (Delinquency Rate on Credit Card Loans) | Source: Fed | Freq: q | Units: Percent (%) | Trans: lin
+41. PSAVERT (Personal Saving Rate) | Source: BEA | Freq: m | Units: Percent (%) | Trans: lin
+42. RSAFS (Retail and Food Services Sales) | Source: Census | Freq: m | Units: Millions USD | Trans: pc1 (YoY)
+43. ISRATIO (Total Business: Inventories to Sales Ratio) | Source: Census | Freq: m | Units: Ratio | Trans: lin
+44. MSPUS (Median Sales Price of Houses Sold) | Source: Census/HUD | Freq: q | Units: USD ($) | Trans: lin
+45. CES0500000003 (Average Hourly Earnings: Total Private) | Source: BLS | Freq: m | Units: Dollars per Hour ($/Hr) | Align: Quarterly (avg)
+46. MORTGAGE30US (30-Year Fixed Mortgage Average) | Source: Freddie Mac | Freq: w | Units: Percent (%) | Align: Monthly (avg)
+47. PERMIT (New Housing Units Authorized) | Source: Census | Freq: m | Units: Thousands | Trans: pc1 (YoY)
