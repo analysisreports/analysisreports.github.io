@@ -21,8 +21,13 @@ Observation Frequencies (n_obs_per_yr):
 - Quarterly (q) : 4 observations/year
 - Annual (a) : 1 observation/year
 
+Mathematical Guardrails:
+- Log Guardrail: Enforce assert x(t) > 0 before applying log, cch, cca. Reject or flag non-positive values (negative real yields, deficits).
+
 Aggregation Alignment Rule:
-- When cross-matching high-frequency series (Daily/Monthly) with low-frequency series (Quarterly), enforce: aggregation_method="avg".
+- Rates / Spreads / Prices (DFF, DGS10, VIXCLS): aggregation_method="avg"
+- Stocks / Levels (WALCL, WTREGEN, RRPONTSYD, M2SL): aggregation_method="last" (Period-end close)
+- Flows / Net Changes (PAYEMS, BOPGSTB): aggregation_method="sum"
 
 ---
 
@@ -63,7 +68,7 @@ Aggregation Alignment Rule:
 24. GDPPOT (Real Potential GDP) | Source: CBO | Freq: q | Units: Billions USD | Trans: lin
 25. GDP (Nominal Gross Domestic Product) | Source: BEA | Freq: q | Units: Billions USD | Trans: lin
 26. GFDEGDQ188S (Total Public Debt as Percent of GDP) | Source: U.S. Treasury | Freq: q | Units: Percent (%) | Trans: lin
-27. BOPGSTB (Trade Balance: Goods and Services) | Source: BEA | Freq: m | Units: Millions USD | Scale: abs(BOPGSTB)/1000
+27. BOPGSTB (Trade Balance: Goods and Services) | Source: BEA | Freq: m | Units: Millions USD | Scale: BOPGSTB / 1000.0 (Preserve sign: negative=deficit, positive=surplus)
 28. DTWEXBGS (Nominal Broad U.S. Dollar Index) | Source: Fed | Freq: d | Units: Index Jan 2006=100 | Trans: lin
 29. IQ (U.S. Import Price Index: All Commodities) | Source: BLS | Freq: m | Units: Index | Trans: lin
 30. IQ1000 (U.S. Export Price Index: All Commodities) | Source: BLS | Freq: m | Units: Index | Trans: lin
@@ -81,7 +86,7 @@ Aggregation Alignment Rule:
 38. DCOILWTICO (Crude Oil: WTI) | Source: EIA | Freq: d | Units: USD per Barrel | Trans: lin
 
 ### 2.8. Consumer Stress, Housing & Supply Chain (Models 19, 22, 23.3, 23.5, 23.7, 23.8)
-39. NCBEILQ027S (Corporate Equities Liability / Buffett Proxy) | Source: Fed Z.1 | Freq: q | Units: Millions USD | Trans: lin
+39. NCBEILQ027S (Corporate Equities Liability / Buffett Proxy) | Source: Fed Z.1 | Freq: q | Units: Millions USD | Note: Scale by 1000 when dividing by GDP (NCBEILQ027S / (GDP * 1000.0))
 40. DRCCLACBS (Delinquency Rate on Credit Card Loans) | Source: Fed | Freq: q | Units: Percent (%) | Trans: lin
 41. PSAVERT (Personal Saving Rate) | Source: BEA | Freq: m | Units: Percent (%) | Trans: lin
 42. RSAFS (Retail and Food Services Sales) | Source: Census | Freq: m | Units: Millions USD | Trans: pc1 (YoY)
