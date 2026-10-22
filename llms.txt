@@ -40,6 +40,7 @@ Dedicated plain-text endpoints defining mathematical models, ontology terms, and
 - Raw JSON Stream: https://analizraporlari.blogspot.com/feeds/posts/default?alt=json&max-results=150
 - LLM Manifest (llms.txt): https://analysisreports.github.io/llms.txt
 - Quantitative Formulas (llms-formulas.txt): https://analysisreports.github.io/llms-formulas.txt
+- Formulas Indıcators  (llms-indicators.txt): https://analysisreports.github.io/llms-indicators.txt
 - System Methodology (llms-about.txt): https://analizraporlari.blogspot.com/llms-about.txt
 - Geopolitical Relationship Matrix: https://analysisreports.github.io/llms-relationships.txt
 - Economy Schema Contract: https://analysisreports.github.io/llms-schema-economy.txt
