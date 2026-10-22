@@ -28,70 +28,69 @@ Regime States (Discrete Mapping):
 ## 2. STRUCTURAL ACTOR MATRIX (SOVEREIGN BASELINES)
 
 ### 2.1. Systemic Great Power Rifts
-1. US - RU (United States vs. Russian Federation)
+2.1.1. US - RU (United States vs. Russian Federation)
    - Baseline Polarity (P_baseline): -0.85
    - Structural Regime: PROXY_WAR
    - Primary Friction Nodes: EASTERN_EUROPE, BLACK_SEA, ARCTIC, BALTIC
    - Economic Coupling: 0.10 (Decoupled, Western Sanctions / SWIFT ban)
    - Transmission Series: DCOILWTICO, CPIAUCSL, BAMLH0A0HYM2
 
-2. US - CN (United States vs. People's Republic of China)
+2.1.2. US - CN (United States vs. People's Republic of China)
    - Baseline Polarity (P_baseline): -0.65
    - Structural Regime: STRATEGIC_COMPETITION
    - Primary Friction Nodes: TAIWAN_STRAIT, SOUTH_CHINA_SEA, TECH_EXPORT_CONTROLS
    - Economic Coupling: 0.65 (High interdependence with selective decoupling)
    - Transmission Series: DTWEXBGS, IQ, IQ1000, JTSJOL
 
-3. RU - CN (Russian Federation - People's Republic of China)
+2.1.3. RU - CN (Russian Federation - People's Republic of China)
    - Baseline Polarity (P_baseline): +0.75
    - Structural Regime: STRATEGIC_ALIGNMENT
    - Axis: Energy-for-Manufactured-Goods, Dedollarization, Northern Sea Route
    - Currency Clearing: CNY / RUB bilateral settlement
 
 ### 2.2. Middle East & Levant Fault Lines
-4. IL - IR (Israel vs. Islamic Republic of Iran)
+2.2.1. IL - IR (Israel vs. Islamic Republic of Iran)
    - Baseline Polarity (P_baseline): -0.95
    - Structural Regime: PROXY_WAR / KINETIC_STANDOFF
    - Primary Friction Nodes: LEVANT, PERSIAN_GULF, RED_SEA, NUCLEAR_FACILITIES
    - Transmission Series: DCOILWTICO, GOLDAMGBD228NLBM, VIXCLS
 
-5. SA - IR (Kingdom of Saudi Arabia vs. Islamic Republic of Iran)
+2.2.2. SA - IR (Kingdom of Saudi Arabia vs. Islamic Republic of Iran)
    - Baseline Polarity (P_baseline): -0.20
    - Structural Regime: DIPLOMATIC_CONTACT (Post-2023 Beijing Accord)
    - Volatility Vulnerability: YEMEN_BORDER, PERSIAN_GULF_SHIPPING
 
-6. US - IL (United States - Israel)
+2.2.3. US - IL (United States - Israel)
    - Baseline Polarity (P_baseline): +0.90
    - Structural Regime: ALLIANCE
    - Tactical Divergence Window: Regional escalation scale vs. US election/inflation cycles
 
 ### 2.3. Transatlantic & European Architecture
-7. US - EU / NATO Core (DE, FR, GB)
+2.3.1. US - EU / NATO Core (DE, FR, GB)
    - Baseline Polarity (P_baseline): +0.85
    - Structural Regime: ALLIANCE
    - Internal Friction Points: Burden-sharing, Inflation Reduction Act (IRA), Energy costs
 
-8. RU - EU Core
+2.3.2. RU - EU Core
    - Baseline Polarity (P_baseline): -0.80
    - Structural Regime: ECONOMIC_WARFARE / COLD_STANDOFF
    - Decoupling Axis: Nord Stream cessation, LNG substitution, Russian asset seizure
 
 ### 2.4. Swing States & Arbitrage Bridges (Non-Aligned Arbitrageurs)
-9. TR (Republic of Türkiye)
+2.4.1. TR (Republic of Türkiye)
    - Baseline with US/NATO: +0.45 (Institutional ally, localized friction in Syria/Air Defense)
    - Baseline with RU: +0.20 (Pragmatic transactional partnership, opposing proxy theaters)
    - Arbitrage Assets: Montreux Convention (Straits), Grain Corridor, Gas Hub, Drone Tech
 
-10. IN (Republic of India)
-    - Baseline with US: +0.60 (QUAD member, technological and defense integration)
-    - Baseline with RU: +0.50 (Primary buyer of discounted Urals crude, historical defense ties)
-    - Baseline with CN: -0.40 (Border friction in Himalayas, manufacturing competition)
+2.4.2. IN (Republic of India)
+   - Baseline with US: +0.60 (QUAD member, technological and defense integration)
+   - Baseline with RU: +0.50 (Primary buyer of discounted Urals crude, historical defense ties)
+   - Baseline with CN: -0.40 (Border friction in Himalayas, manufacturing competition)
 
-11. SA & AE (Gulf Monarchies)
-    - Baseline with US: +0.55 (Security guarantor, petrodollar recalibration)
-    - Baseline with CN: +0.50 (Primary hydrocarbon buyer, infrastructure integration)
-    - Coordination Axis: OPEC+ quota alliance with Russia
-
+2.4.3. SA & AE (Gulf Monarchies)
+   - Baseline with US: +0.55 (Security guarantor, petrodollar recalibration)
+   - Baseline with CN: +0.50 (Primary hydrocarbon buyer, infrastructure integration)
+   - Coordination Axis: OPEC+ quota alliance with Russia
 ---
 
 ## 3. PROXY & ASYMMETRIC NON-STATE ACTOR REGISTRY
@@ -124,11 +123,11 @@ Regime States (Discrete Mapping):
 ## 4. CRITICAL CHOKEPOINTS & MARITIME TRANSMISSION NODES
 
 1. HORMUZ_STRAIT
-   - Location: 26°34'N 56°15'E (Persian Gulf exit)
-   - Primary Control / Threat: IR / IRGC Navy
-   - Volume: ~20-21 Million bpd (20% of global petroleum liquids)
-   - Direct Macro Indicators Triggered: DCOILWTICO, CPIAUCSL, BAMLH0A0HYM2
-   - Disruption Severity: CATASTROPHIC (>30% oil supply shock)
+  - Location: 26°34'N 56°15'E (Persian Gulf exit)
+  - Primary Control / Threat: IR / IRGC Navy
+  - Volume: ~20-21 Million bpd (20% of global petroleum liquids)
+  - Direct Macro Indicators Triggered: DCOILWTICO, CPIAUCSL, BAMLH0A0HYM2
+  - Disruption Severity: CATASTROPHIC
 
 2. BAB_EL_MANDEB & RED_SEA
    - Location: 12°35'N 43°20'E (Southern entrance to Red Sea / Suez route)
@@ -266,61 +265,61 @@ Regime States (Discrete Mapping):
 ## 7. STRATEGIC RESOURCE, INFRASTRUCTURE & GEOECONOMIC CORRIDORS
 
 ### 7.1. Critical Raw Material & Energy Basins
-1. LITHIUM_TRIANGLE
+7.1.1. LITHIUM_TRIANGLE
    - Location: 22°00'S 67°00'W (Salar de Uyuni / Atacama / Hombre Muerto - BO, CL, AR)
    - Dominance: >55% of global identified lithium brine reserves
    - Friction Vector: Nationalization drives, sovereign extraction concessions (CN vs. US/EU consortia)
    - Direct Macro Indicators Triggered: BATTERY_CELL_COST, PCHMSUSDM
-   - Disruption Severity: HIGH (Energy transition supply elasticity shock)
+   - Disruption Severity: HIGH
    - Transmission Target: Automotive sector CAPEX, energy transition industrial pipelines
 
-2. COPPER_COBALT_BELT
+7.1.2. COPPER_COBALT_BELT
    - Location: 11°40'S 27°28'E (DR Congo - Katanga Province & Zambia)
    - Dominance: ~70% of global cobalt extraction, top-tier global copper reserves
    - Asymmetric Control: Primary concession holdings by Chinese mining consortiums
    - Direct Macro Indicators Triggered: PCOPPUSDM, LME_COBALT_CASH
-   - Disruption Severity: HIGH (Industrial electrification bottleneck)
+   - Disruption Severity: HIGH
    - Transmission Target: Grid-scale electrification, defense electronic component costs
 
-3. ORINOCO_PETROLEUM_BELT
+7.1.3. ORINOCO_PETROLEUM_BELT
    - Location: 08°30'N 64°00'W (Eastern Venezuela)
    - Strategic Weight: World's largest heavy/extra-heavy crude reserves
    - Friction Vector: US sanctions enforcement vs. illicit refining and Asian shadow exports
    - Direct Macro Indicators Triggered: DCOILWTICO, WCS_MAYA_SPREAD
-   - Disruption Severity: MODERATE (US Gulf Coast heavy-crude slate disruption)
+   - Disruption Severity: MODERATE
    - Transmission Target: US Gulf Coast complex refinery utilization rates
 
 ### 7.2. Contested Terrestrial & Maritime Gateways
-4. ZANGEZUR_CORRIDOR
+7.2.1. ZANGEZUR_CORRIDOR
    - Location: 39°10'N 46°25'E (Azerbaijan - Armenia border node to Nakhchivan / TR)
    - Structural Standoff: AZ / TR (Middle Corridor integration) vs. AM / IR (Border sovereignty preservation)
    - Vulnerability: Severing Iran's direct land access to Armenia/Eurasia; bypass of Iranian routes
    - Direct Macro Indicators Triggered: EURASIAN_RAIL_INDEX, TTF_GAS_HUB_SPREAD
-   - Disruption Severity: HIGH (Trans-Caspian throughput choke)
+   - Disruption Severity: HIGH
    - Transmission Target: Trans-Caspian trade throughput, regional logistics insurance surcharges
 
-5. FIRST_ISLAND_CHAIN_CORE
+7.2.2. FIRST_ISLAND_CHAIN_CORE
    - Location: 24°45'N 125°20'E & 21°00'N 121°00'E (Okinawa to Northern Philippines)
    - Graph Edge: PARENT_THEATER_OF(4.6_TAIWAN_STRAIT)
    - Structural Standoff: US / JP / TW vs. CN (PLAN Naval breakout corridor)
    - Vulnerability: Taiwan encirclement scenarios, East China Sea anti-access/area-denial (A2/AD)
    - Direct Macro Indicators Triggered: NDX, VIXCLS, DEXJPUS
-   - Disruption Severity: CATASTROPHIC (Semiconductor fabrication halt and naval blockade)
+   - Disruption Severity: CATASTROPHIC
    - Transmission Target: Global semiconductor fabrication capacity, consumer electronics supply
 
-6. BLACK_SEA_GRAIN_AND_MINERAL_CORRIDOR
+7.2.3. BLACK_SEA_GRAIN_AND_MINERAL_CORRIDOR
    - Location: 45°10'N 31°00'E (Odesa - Chornomorsk - Yuzhny offshore corridor to Bosphorus)
    - Primary Friction: RU Naval denial vs. UA asymmetric maritime countermeasures
    - Volume: Agricultural exports, fertilizer inputs
    - Direct Macro Indicators Triggered: PWHEAMTUSDM, PFERTUSDM
-   - Disruption Severity: HIGH (Emerging market food CPI surges)
+   - Disruption Severity: HIGH
    - Transmission Target: Emerging market food CPI, MENA bread price subsidies
 
 ### 7.3. Land-Bridge Infrastructure Chokepoints
-7. CASPIAN_SEA_TRANSIT_BASIN
+7.3.1. CASPIAN_SEA_TRANSIT_BASIN
    - Location: 43°39'N 51°09'E to 40°22'N 49°50'E (Aktau / Baku Nodes)
    - Structural Weight: Hazar transit hub connecting Central Asian hydrocarbon/minerals to Europe (Middle Corridor)
    - Vulnerability: Russian/Iranian naval dominance of the Caspian basin, dual-use cargo monitoring
    - Direct Macro Indicators Triggered: DCOILBRENTEU, CASPIAN_RAIL_RATES
-   - Disruption Severity: MODERATE-HIGH (Eurasian supply chain rerouting)
+   - Disruption Severity: MODERATE-HIGH
    - Transmission Target: European energy diversification rates, non-Russian Eurasian supply lines
