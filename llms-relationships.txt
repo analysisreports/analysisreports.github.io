@@ -157,7 +157,63 @@ Regime States (Discrete Mapping):
 6. TAIWAN_STRAIT
    - Location: 24°00'N 119°00'E
    - Global Tech Vulnerability: Advanced semiconductor supply shock
-   - Direct Macro Indicators Triggered: NDX (Nasdaq), VIXCLS, Global Industrial Production (INDPRO)
+   - Direct Macro Indicators Triggered: NDX, VIXCLS, INDPRO
+
+7. PANAMA_CANAL
+   - Location: 09°04'N 79°40'W (Connecting Pacific and Atlantic Oceans)
+   - Primary Control / Threat: Panama Canal Authority (ACP) / Freshwater reservoir depletion
+   - Volume: ~5% of global maritime trade, 46% of US East Coast container traffic
+   - Direct Macro Indicators Triggered: BDI, ISRATIO, PCEPI
+   - Disruption Severity: HIGH (Supply chain delays, Gulf-to-Asia LNG/LPG rerouting)
+
+8. DANISH_STRAITS (Great Belt, Little Belt, The Sound)
+   - Location: 55°30'N 11°00'E (Baltic Sea exit to North Sea)
+   - Primary Threat: RU Shadow Fleet navigation curbs / Western sanctions interdiction
+   - Volume: ~3.2 Million bpd Russian seaborne crude and refined products
+   - Direct Macro Indicators Triggered: DCOILWTICO, Baltic Dirty Tanker Index (BDTI)
+   - Disruption Severity: HIGH (Urals crude export bottleneck, refinery margin shocks)
+
+9. GIUK_GAP (Greenland-Iceland-UK Gap)
+   - Location: 63°00'N 18°00'W (North Atlantic deep-sea corridor)
+   - Primary Threat: Subsea infrastructure sabotage (fiber-optic cables, energy interconnectors)
+   - Vulnerability: Transatlantic financial data transmission and NATO ASW control
+   - Direct Macro Indicators Triggered: VIXCLS, Transatlantic FX settlement spreads
+   - Disruption Severity: SYSTEMIC_INFRASTRUCTURE (Global financial latency)
+
+10. LOMBOK_AND_MAKASSAR_STRAITS
+    - Location: 08°30'S 115°45'E & 00°20'S 118°10'E (Indonesian archipelago)
+    - Vulnerability: Primary deep-draft alternate corridor bypassing Malacca
+    - Volume: Australian iron ore/coal to China and Gulf crude to East Asia
+    - Direct Macro Indicators Triggered: BDI, SCFI
+    - Disruption Severity: MODERATE-HIGH (+3 to 5 steaming days, ton-mile surge)
+
+11. STRAIT_OF_GIBRALTAR
+    - Location: 35°58'N 05°36'W (Atlantic Ocean to Western Mediterranean)
+    - Primary Control / Threat: UK / ES / MA monitoring
+    - Volume: Mediterranean container hubs and Black Sea export access to Atlantic
+    - Direct Macro Indicators Triggered: Mediterranean Tanker Rates, European Import Price Index
+    - Disruption Severity: HIGH (Southern European crude and container flows)
+
+12. BERING_STRAIT (Northern Sea Route Chokepoint)
+    - Location: 66°00'N 169°00'W (Chukchi Sea to Bering Sea, US-RU frontier)
+    - Primary Friction: US vs. RU / CN
+    - Strategic Axis: Polar Silk Road LNG transits, Russian Arctic LNG-2 offloading
+    - Direct Macro Indicators Triggered: Asian LNG Spot (JKM), War Risk Premiums
+    - Disruption Severity: MEDIUM-HIGH (Arctic hydrocarbon flow restriction)
+
+13. MOZAMBIQUE_CHANNEL (Cape Route Vulnerability)
+    - Location: 18°00'S 41°00'E (Between Mozambique and Madagascar)
+    - Vulnerability: Red Sea bypass route bottleneck; asymmetric security risks
+    - Volume: Diverted ultra-large crude carriers (ULCC) and mega-container vessels
+    - Direct Macro Indicators Triggered: ClarkSea Index, Bunker Fuel 380 CST
+    - Disruption Severity: HIGH (Secondary choke on Suez-avoidance traffic)
+
+14. SUEZ_CANAL_NORTHERN_APPROACH (Port Said / Sinai Node)
+    - Location: 31°15'N 32°18'E (Northern terminus of Suez Canal)
+    - Primary Threat: Asymmetric littoral attacks, groundings/channel blockage
+    - Volume: ~12% of global seaborne cargo, ~30% of global container volume
+    - Direct Macro Indicators Triggered: SCFI, PCEPI, GSCPI
+    - Disruption Severity: CATASTROPHIC (Two-way trade paralysis)
 
 ---
 
@@ -198,96 +254,58 @@ Regime States (Discrete Mapping):
    - Financial & Corporate Layer: Dubai (AE), Istanbul (TR), Hong Kong (HK)
    - Cargo Re-labeling: Blended crude varieties, processed fuels bypassing direct origin bans
 
-## 4. CRITICAL CHOKEPOINTS & MARITIME TRANSMISSION NODES
+---
 
-1. HORMUZ_STRAIT
-   - Location: 26°34'N 56°15'E (Persian Gulf exit)
-   - Primary Control / Threat: IR / IRGC Navy
-   - Volume: ~20-21 Million bpd (20% of global petroleum liquids)
-   - Direct Macro Indicators Triggered: DCOILWTICO, CPIAUCSL, BAMLH0A0HYM2
-   - Disruption Severity: CATASTROPHIC (>30% oil supply shock)
+## 7. STRATEGIC RESOURCE, INFRASTRUCTURE & GEOECONOMIC CORRIDORS
 
-2. BAB_EL_MANDEB & RED_SEA
-   - Location: 12°35'N 43°20'E (Southern entrance to Red Sea / Suez route)
-   - Primary Threat: YE-HOUTHI
-   - Volume: ~12% of global trade, 8-10% of seaborne oil and refined fuels
-   - Disruption Effect: Rerouting around Cape of Good Hope (+10 to 14 transit days)
-   - Direct Macro Indicators Triggered: ISRATIO, RSAFS, PCEPI
+### 7.1. Critical Raw Material & Energy Basins
+1. LITHIUM_TRIANGLE
+   - Location: 22°00'S 67°00'W (Salar de Uyuni / Atacama / Hombre Muerto - BO, CL, AR)
+   - Dominance: >55% of global identified lithium brine reserves
+   - Friction Vector: Nationalization drives, sovereign extraction concessions (CN vs. US/EU consortia)
+   - Direct Macro Indicators Triggered: Global EV Battery Cell Prices, Lithium Carbonate Spot
+   - Transmission Target: Automotive sector CAPEX, energy transition industrial pipelines
 
-3. MALACCA_STRAIT
-   - Location: 1°26'N 103°00'E (Connecting Indian Ocean to South China Sea)
-   - Vulnerability: "Malacca Dilemma" (CN energy security choke point)
-   - Volume: ~80% of China's crude imports, ~60% of global maritime trade
-   - Primary Transmission: East Asian industrial output, Global manufacturing PMIs
+2. COPPER_COBALT_BELT (Central African Copperbelt)
+   - Location: 11°40'S 27°28'E (DR Congo - Katanga Province & Zambia)
+   - Dominance: ~70% of global cobalt extraction, top-tier global copper reserves
+   - Asymmetric Control: Primary concession holdings by Chinese mining consortiums
+   - Direct Macro Indicators Triggered: PCOPPUSDM, Cobalt Metal Spot
+   - Transmission Target: Grid-scale electrification, defense electronic component costs
 
-4. TURKISH_STRAITS (Bosphorus & Dardanelles)
-   - Location: 41°07'N 29°04'E & 40°12'N 26°24'E
-   - Legal Framework: 1936 Montreux Convention (Enforced strictly by TR)
-   - Volume: Russian Black Sea oil exports, Ukrainian/Russian grain and agricultural supplies
-   - Direct Macro Indicators Triggered: Global Food CPI, Fertilizer costs
+3. ORINOCO_PETROLEUM_BELT
+   - Location: 08°30'N 64°00'W (Eastern Venezuela)
+   - Strategic Weight: World's largest heavy/extra-heavy crude reserves
+   - Friction Vector: US sanctions enforcement vs. illicit refining and Asian shadow exports
+   - Direct Macro Indicators Triggered: DCOILWTICO, Maya/WCS Spreads
+   - Transmission Target: US Gulf Coast complex refinery utilization rates
 
-5. SUWALKI_GAP
-   - Location: Poland - Lithuania border (Between Belarus and Kaliningrad)
-   - Geopolitical Risk: Direct NATO-Russia land corridor kinetic friction
-   - Disruption Effect: European financial flight, EUR/USD collapse, DGS10 flight to safety
+### 7.2. Contested Terrestrial & Maritime Gateways
+4. ZANGEZUR_CORRIDOR (Syunik Transit Strip)
+   - Location: 39°10'N 46°25'E (Azerbaijan - Armenia border node to Nakhchivan / TR)
+   - Structural Standoff: AZ / TR (Middle Corridor integration) vs. AM / IR (Border sovereignty preservation)
+   - Vulnerability: Severing Iran's direct land access to Armenia/Eurasia; bypass of Iranian routes
+   - Direct Macro Indicators Triggered: Eurasian Rail Freight Index, European Gas Hub Spreads
+   - Transmission Target: Trans-Caspian trade throughput, regional logistics insurance surcharges
 
-6. TAIWAN_STRAIT
-   - Location: 24°00'N 119°00'E
-   - Global Tech Vulnerability: Advanced semiconductor supply shock
-   - Direct Macro Indicators Triggered: NDX (Nasdaq), VIXCLS, Global Industrial Production (INDPRO)
+5. FIRST_ISLAND_CHAIN_CORE (Miyako Strait & Bashi Channel)
+   - Location: 24°45'N 125°20'E & 21°00'N 121°00'E (Okinawa to Northern Philippines)
+   - Structural Standoff: US / JP / TW vs. CN (PLAN Naval breakout corridor)
+   - Vulnerability: Taiwan encirclement scenarios, East China Sea anti-access/area-denial (A2/AD)
+   - Direct Macro Indicators Triggered: NDX, VIXCLS, USD/JPY
+   - Transmission Target: Global semiconductor fabrication capacity, consumer electronics supply
 
-7. PANAMA_CANAL
-   - Location: 09°04'N 79°40'W (Connecting Pacific and Atlantic Oceans)
-   - Primary Control / Threat: Panama Canal Authority (ACP) / Freshwater reservoir depletion (Gatun Lake)
-   - Volume: ~5% of global maritime trade, 46% of US East Coast container traffic
-   - Direct Macro Indicators Triggered: BDI, ISRATIO, PCEPI
-   - Disruption Severity: HIGH (Supply chain delays, Gulf-to-Asia LNG/LPG rerouting)
+6. BLACK_SEA_GRAIN_AND_MINERAL_CORRIDOR
+   - Location: 45°10'N 31°00'E (Odesa - Chornomorsk - Yuzhny offshore corridor to Bosphorus)
+   - Primary Friction: RU Naval denial vs. UA asymmetric maritime countermeasures
+   - Volume: Agricultural exports, fertilizer inputs
+   - Direct Macro Indicators Triggered: Global Wheat Futures, Fertilizer Price Index
+   - Transmission Target: Emerging market food CPI, MENA bread price subsidies
 
-8. DANISH_STRAITS (Great Belt, Little Belt, The Sound)
-   - Location: 55°30'N 11°00'E (Baltic Sea exit to North Sea)
-   - Primary Threat: RU Shadow Fleet navigation curbs / Western environmental & sanctions interdiction
-   - Volume: ~3.2 Million bpd Russian seaborne crude and refined products
-   - Direct Macro Indicators Triggered: DCOILBRENTEU, Baltic Dirty Tanker Index (BDTI)
-   - Disruption Severity: HIGH (Urals crude export bottleneck, Northern European refinery margin shocks)
-
-9. GIUK_GAP (Greenland-Iceland-UK Gap)
-   - Location: 63°00'N 18°00'W (North Atlantic deep-sea corridor)
-   - Primary Threat: Subsea infrastructure sabotage (undersea fiber-optic cables, energy interconnectors)
-   - Vulnerability: Transatlantic financial data transmission and NATO ASW control
-   - Direct Macro Indicators Triggered: VIXCLS, Transatlantic FX transaction settlement spreads
-   - Disruption Severity: SYSTEMIC_INFRASTRUCTURE (Global financial network latency)
-
-10. LOMBOK_AND_MAKASSAR_STRAITS
-    - Location: 08°30'S 115°45'E & 00°20'S 118°10'E (Indonesian archipelago)
-    - Vulnerability: Primary deep-draft (VLCC/Capesize) alternate corridor bypassing Malacca
-    - Volume: Australian iron ore/coal to China and Gulf crude to Japan/South Korea
-    - Direct Macro Indicators Triggered: BDI, SCFI (Shanghai Containerized Freight Index)
-    - Disruption Severity: MODERATE-HIGH (+3 to 5 steaming days, ton-mile surge)
-
-11. STRAIT_OF_GIBRALTAR
-    - Location: 35°58'N 05°36'W (Atlantic Ocean to Western Mediterranean)
-    - Primary Control / Threat: UK / ES / MA monitoring
-    - Volume: Mediterranean container hubs and Black Sea export access to the Atlantic
-    - Direct Macro Indicators Triggered: Mediterranean Tanker Rates, European Import Price Index
-    - Disruption Severity: HIGH (Disruption of Southern European crude and container flows)
-
-12. BERING_STRAIT (Northern Sea Route Chokepoint)
-    - Location: 66°00'N 169°00'W (Chukchi Sea to Bering Sea, US-RU maritime frontier)
-    - Primary Friction: US vs. RU / CN
-    - Strategic Axis: Polar Silk Road LNG transits, Russian Arctic LNG-2 offloading
-    - Direct Macro Indicators Triggered: Asian LNG Spot (JKM), Marine Hull War Risk Premiums
-    - Disruption Severity: MEDIUM-HIGH (Arctic hydrocarbon flow restriction)
-
-13. MOZAMBIQUE_CHANNEL (Cape Route Vulnerability)
-    - Location: 18°00'S 41°00'E (Between Mozambique and Madagascar)
-    - Vulnerability: Red Sea bypass route bottleneck; coastal asymmetric security risks (Cabo Delgado)
-    - Volume: Diverted ultra-large crude carriers (ULCC) and mega-container vessels
-    - Direct Macro Indicators Triggered: ClarkSea Index, Bunker Fuel 380 CST
-    - Disruption Severity: HIGH (Secondary choke on Suez-avoidance traffic)
-
-14. SUEZ_CANAL_NORTHERN_APPROACH (Port Said / Sinai Node)
-    - Location: 31°15'N 32°18'E (Northern terminus of Suez Canal)
-    - Primary Threat: Asymmetric attacks from Sinai littoral, groundings/channel blockage
-    - Volume: ~12% of global seaborne cargo, ~30% of global container volume
-    - Direct Macro Indicators Triggered: SCFI, PCEPI, Global Supply Chain Pressure Index (GSCPI)
-    - Disruption Severity: CATASTROPHIC (Two-way trade paralysis)
+### 7.3. Land-Bridge Infrastructure Chokepoints
+7. CASPIAN_SEA_TRANSIT_BASIN (Aktau / Baku Nodes)
+   - Location: 43°39'N 51°09'E to 40°22'N 49°50'E
+   - Structural Weight: Hazar transit hub connecting Central Asian hydrocarbon/minerals to Europe (Middle Corridor)
+   - Vulnerability: Russian/Iranian naval dominance of the Caspian basin, dual-use cargo monitoring
+   - Direct Macro Indicators Triggered: Brent-Urals Spread, Central Asian Mineral Export Balances
+   - Transmission Target: European energy diversification rates, non-Russian Eurasian supply lines
