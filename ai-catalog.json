@@ -48,6 +48,15 @@
       "description": "Yazarın piyasa konsensüsüne karşı duruşunu, temel çıkarımlarını ve piyasa dinamiklerinin iktisadi hedeflere yansımasını modelleyen veri seti."
     },
     {
+      "id": "dataset-glossary",
+      "name": "Kavramsal Sözlük ve Stratejik Mekanizmalar",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analizraporlari.blogspot.com/feeds/posts/default/-/glossary?alt=json&max-results=150",
+      "authentication": { "type": "none" },
+      "description": "Kurumsal işleyişler, seçim mekanizmaları, doktrinler, kavramsal modeller ve yapısal kuralları içeren ontolojik sözlük veri seti."
+    },
+    {
       "id": "full-archive-paginated",
       "name": "Tüm Veritabanı (Sayfalanmış)",
       "type": "dataset",
