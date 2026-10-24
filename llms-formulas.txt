@@ -1152,49 +1152,6 @@ Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açık
   - status == BALANCED_LIQUIDITY_FLOW : Dengeli Fon Akimi
   - status == LIQUIDITY_STAGNATION : Parasal Hizin Dusmesi, Fon Akiminin Donmasi ve Deflasyonist Baski (TFF QoQ alti yuzde 0.0)
 
-### 23.2. TOPLAM FON AKIMI VE LIKIDITE HIZLANMASI (TOTAL FUNDS FLOW AND VELOCITY MOMENTUM)
-- Purpose: Genis para arzinin (M2) para dolasim hizi (Velocity) ile carpilarak reel ve finansal ekonomideki gercek likidite hizini, efektif fon akimini ve varlik enflasyon basincini modeller. (Not: M2V ceyreklik oldugu icin, M2SL verisi de ceyreklik periyoda hizalanmalidir).
-- Data Series Keys:
-  - FRED: M2SL (M2 Money Supply - Billions of USD, Seasonally Adjusted)
-  - FRED: M2V (Velocity of M2 Money Stock - Quarterly)
-- Formula:
-  Total_Funds_Flow = M2SL * M2V
-- Machine-Executable Logic (Python):
-  def total_funds_flow_model(m2_level, m2_velocity, prev_tff=None):
-      if any(v is None or isinstance(v, bool) for v in (m2_level, m2_velocity)):
-          return None
-      try:
-          if not (math.isfinite(m2_level) and math.isfinite(m2_velocity)):
-              return None
-          if min(m2_level, 0) == m2_level or min(m2_velocity, 0) == m2_velocity:
-              return None
-
-          raw_tff = float(m2_level) * float(m2_velocity)
-          if not math.isfinite(raw_tff):
-              return None
-          tff_val = round(raw_tff, 2)
-
-          mom_change = None
-          status = "BALANCED_LIQUIDITY_FLOW"
-          if prev_tff is not None and not isinstance(prev_tff, bool) and math.isfinite(prev_tff) and prev_tff > 0:
-              mom_change = round(((tff_val / float(prev_tff)) - 1.0) * 100.0, 2)
-              if max(mom_change, 2.0) == mom_change and mom_change != 2.0:
-                  status = "EXCESS_VELOCITY_INFLATION"
-              elif min(mom_change, 0.0) == mom_change and mom_change != 0.0:
-                  status = "LIQUIDITY_STAGNATION"
-
-          return {
-              "total_funds_flow": tff_val,
-              "tff_qoq_pct": mom_change,
-              "status": status
-          }
-      except (TypeError, ValueError, ZeroDivisionError):
-          return None
-- Interpretation:
-  - status == EXCESS_VELOCITY_INFLATION : Asiri Likidite Hizlanmasi ve Varlik Fiyati Balon Riski (TFF QoQ ustu yuzde 2.0)
-  - status == BALANCED_LIQUIDITY_FLOW : Dengeli Fon Akimi
-  - status == LIQUIDITY_STAGNATION : Parasal Hizin Dusmesi, Fon Akiminin Donmasi ve Deflasyonist Baski (TFF QoQ alti yuzde 0.0)
-
 ### 23.3. KONUT BALONU VE BARINMA KRIZI ESIGI (HOUSING AFFORDABILITY AND BUBBLE GAUGE)
 - Purpose: Medyan konut satis fiyatini ozel sektor ortalama saatlik kazancina bolerek bir konutun kac saatlik emekle satin alindigini olcer. Konut erisilebilirligini, barinma krizini ve gayrimenkul balonu riskini modeller. (Not: MSPUS ceyreklik oldugu icin saatlik kazanc serisi ceyreklik periyoda hizalanmalidir).
 - Data Series Keys:
@@ -1493,6 +1450,54 @@ Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açık
   
 ---
 
+### 25.1. DINAMIK JEOPOLITIK KUTUPLASMA VE REJIM MOTORU (DYNAMIC POLARITY & REGIME ENGINE)
+- Purpose: llms-relationships.txt ontolojisindeki P_baseline degerini dinamik gerilim sapmasiyla (dynamic_delta) toplayip [-1.0, 1.0] araligina kenetler (clamp). Belirlenen net polariteye gore ikili iliski rejim durumunu (Regime State) deterministik olarak dondurur.
+- Data Link: llms-relationships.txt -> Section 1 (DYNAMIC POLARITY & TRANSMISSION ENGINE)
+- Formula:
+  P_net = min(1.0, max(-1.0, P_baseline + dynamic_delta))
+- Machine-Executable Logic (Python):
+  def dynamic_polarity_engine(p_baseline, dynamic_delta):
+      if any(v is None or isinstance(v, bool) for v in (p_baseline, dynamic_delta)):
+          return None
+      try:
+          if not (math.isfinite(p_baseline) and math.isfinite(dynamic_delta)):
+              return None
+
+          raw_p = float(p_baseline) + float(dynamic_delta)
+          # [-1.0, 1.0] araligina kenetleme (clamping)
+          p_net = round(min(1.0, max(-1.0, raw_p)), 2)
+          if not math.isfinite(p_net):
+              return None
+
+          if p_net >= 0.85:
+              regime = "ALLIANCE"
+          elif p_net >= 0.50:
+              regime = "STRATEGIC_ALIGNMENT"
+          elif p_net >= 0.10:
+              regime = "TACTICAL_COOPERATION"
+          elif p_net >= -0.10:
+              regime = "NEUTRAL"
+          elif p_net >= -0.40:
+              regime = "STRATEGIC_FRICTION"
+          elif p_net >= -0.80:
+              regime = "PROXY_WAR"
+          else:
+              regime = "KINETIC_WAR"
+
+          return {"p_net": p_net, "regime": regime}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - p_net ustu 0.85 : ALLIANCE (Ortak Savunma / Entegre Askeri Komuta)
+  - 0.50 ile 0.85 arasi : STRATEGIC_ALIGNMENT (Stratejik Ortaklik / Kurumsal Uyum)
+  - 0.10 ile 0.50 arasi : TACTICAL_COOPERATION (Taktiksel Isbirligi / Ekonomik Karsilikli Bagimlilik)
+  - -0.10 ile 0.10 arasi : NEUTRAL (Katiksiz Baglantisizlik / Stratejik Tarafsizlik)
+  - -0.40 ile -0.10 arasi : STRATEGIC_FRICTION (Stratejik Surtusme / Yonetilen Ayrisma)
+  - -0.80 ile -0.40 arasi : PROXY_WAR (Vekalet Savasi / Yaptirim Rejimi / Asimetrik Catisma)
+  - p_net alti -0.80 : KINETIC_WAR (Aktif Kinetik Savas / Topyekun Diplomatik Cokus)
+
+---
+
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
 import math
@@ -1574,7 +1579,112 @@ def _is_num(val):
       m3 = min(100.0, max(0.0, float(macro_spillover)))
       score = (m1 * 0.35) + (m2 * 0.35) + (m3 * 0.30)
       return int(round(min(100.0, score)))
-      
+
+### 28.3. DARBOĞAZ VE KORİDOR KESİNTİ AĞIRLIK MOTORU (CHOKEPOINT DISRUPTION SEVERITY ENGINE)
+- Purpose: llms-relationships.txt ontolojisinde Bolum 4 (Darbogazlar) ve Bolum 7'de (Stratejik Koridorlar) tanimlanan ayrik Disruption Severity enum degerlerini sayisal agirlik katsayilarina donusturur. Uretilen katsayi, 28.1 Catısma Harareti (disruption_risk) ve 28.2 Piyasa Etki Skoru (macro_spillover) modellerine dogrudan girdi teskil eder.
+- Data Link: llms-relationships.txt -> Section 4 & Section 7 (Disruption Severity Registries)
+- Input Schema:
+  - severity_enum: "CATASTROPHIC" | "HIGH" | "MODERATE-HIGH" | "MODERATE"
+- Weights Dictionary:
+  - CATASTROPHIC  : 1.00 (Tam blokaj, kuresel tedarik soku)
+  - HIGH          : 0.70 (Agir aksama, zorunlu rota sapmasi)
+  - MODERATE-HIGH : 0.45 (Bolgesel kapasite kisiti, ilave ton-mil maliyeti)
+  - MODERATE      : 0.20 (Lokal surtusme, yonetilebilir lojistik gecikme)
+- Formula:
+  Disruption_Weight = SEVERITY_WEIGHT_MAP[severity_enum]
+  Disruption_Score_100 = Disruption_Weight * 100
+- Machine-Executable Logic (Python):
+  SEVERITY_WEIGHT_MAP = {
+      "CATASTROPHIC": 1.00,
+      "HIGH": 0.70,
+      "MODERATE-HIGH": 0.45,
+      "MODERATE": 0.20
+  }
+
+  def chokepoint_severity_multiplier(severity_enum):
+      if severity_enum is None or isinstance(severity_enum, bool):
+          return None
+      try:
+          clean_key = str(severity_enum).strip().upper().replace("_", "-")
+          if clean_key not in SEVERITY_WEIGHT_MAP:
+              return None
+
+          weight = SEVERITY_WEIGHT_MAP[clean_key]
+          score_100 = int(round(weight * 100.0))
+
+          return {
+              "severity": clean_key,
+              "weight": weight,
+              "score_100": score_100
+          }
+      except (TypeError, ValueError, AttributeError):
+          return None
+- Interpretation:
+  - severity == CATASTROPHIC : weight 1.00 / score 100 (Sistemik Kuresel Sok / Kritik Bogazin Cift Yonlu Kapanmasi)
+  - severity == HIGH : weight 0.70 / score 70 (Agir Tedarik Kesintisi / Navlun ve Transit Gun Sicramasi)
+  - severity == MODERATE-HIGH : weight 0.45 / score 45 (Bolgesel Lojistik Darbogaz / Kismi Kapasite Kaybi)
+  - severity == MODERATE : weight 0.20 / score 20 (Dusuk Olcekli Operasyonel Baski / Yerel Dagitim Aksamasi)
+
+
+### 28.4. BOĞAZ KESİNTİSİ MAKRO AKTARIM KÖPRÜSÜ (CHOKEPOINT MACRO SPILLOVER BRIDGE)
+- Purpose: llms-relationships.txt ontolojisindeki darbogazin Disruption Severity agirligi ile ilgili aktorlerin P_net kutuplasma gerilimini dinamik olarak birlestirir. Elde edilen deger, 28.1 Catısma Harareti modelindeki disruption_risk parametresine ve 28.2 Piyasa Etki Skoru modelindeki macro_spillover parametresine 0-100 olceginde dogrudan deterministik girdi saglar.
+- Data Links:
+  - llms-relationships.txt -> Section 1 (P_net) & Section 4/7 (Disruption Severity)
+  - llms-formulas.txt -> Model 25.1 (dynamic_polarity_engine), 28.1 (conflict_heat_score), 28.2 (market_impact_score), 28.3 (chokepoint_severity_multiplier)
+- Formula:
+  Friction_Factor = max(0.0, -P_net)
+  Spillover_Score = min(100.0, (Disruption_Weight * 70.0) + (Friction_Factor * 30.0))
+- Machine-Executable Logic (Python):
+  def chokepoint_transmission_bridge(severity_enum, p_net=0.0):
+      if severity_enum is None or isinstance(severity_enum, bool):
+          return None
+      if isinstance(p_net, bool):
+          return None
+      try:
+          # Severity agirligini Model 28.3 uzerinden cozumleme
+          sev_data = chokepoint_severity_multiplier(severity_enum)
+          if not sev_data:
+              return None
+          w_sev = float(sev_data["weight"])
+
+          # Polarite kontrolu (None ise notr 0.0 kabul edilir)
+          p_val = 0.0 if p_net is None else float(p_net)
+          if not math.isfinite(p_val):
+              return None
+
+          pol_clamped = min(1.0, max(-1.0, p_val))
+          friction = max(0.0, -pol_clamped)
+
+          # %70 fiziksel tikanma agirligi + %30 jeopolitik kutuplasma surtusmesi
+          raw_score = (w_sev * 70.0) + (friction * 30.0)
+          score = int(round(min(100.0, max(0.0, raw_score))))
+
+          if score >= 85:
+              transmission_regime = "CRITICAL_SYSTEMIC_SHOCK"
+          elif score >= 60:
+              transmission_regime = "HIGH_SPILLOVER"
+          elif score >= 30:
+              transmission_regime = "MODERATE_FRICTION"
+          else:
+              transmission_regime = "LOCALIZED_IMPACT"
+
+          return {
+              "bridge_score": score,
+              "transmission_regime": transmission_regime,
+              "inputs": {
+                  "severity_weight": w_sev,
+                  "friction_factor": round(friction, 2)
+              }
+          }
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - bridge_score >= 85 : CRITICAL_SYSTEMIC_SHOCK (28.1 disruption_risk ve 28.2 macro_spillover icin tam kapasite sistemik sok girdisi)
+  - 60 <= bridge_score < 85 : HIGH_SPILLOVER (Kuresel emtia/navlun fiyatlarina yuksek aktarim baskisi)
+  - 30 <= bridge_score < 60 : MODERATE_FRICTION (Bolgesel tedarik zinciri tikanmasi ve lokal maliyet artisi)
+  - bridge_score < 30 : LOCALIZED_IMPACT (Piyasa tarafindan absorbe edilebilir sinirli operasyonel gecikme)
+
+---
 
 ### 29. KANIT VE GUVENILIRLIK SKORU (CONFIDENCE SCORE)
 - Purpose: Analizi destekleyen kaynakların otorite, doğrulama ve güncellik düzeylerini 0-100 ölçeğinde puanlar.
