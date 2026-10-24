@@ -29,6 +29,8 @@
    - Scope: Core narratives, rhetoric intensity scoring (0-100), alliance friction indices (0-100), and composite tension scoring (0-100).
 4. Editorial Stance & Macro Outlook (editorial.json / #dataset-editorial-stance):
    - Scope: Stance classification (HAWKISH, DOVISH, NEUTRAL, CONTRARIAN, SKEPTICAL), consensus vs. author view benchmarking, transmission & micro-impact domain modeling, and strategic stakeholder action matrices.
+5. Strategic Glossary & Institutional Mechanisms (glossary.json / #dataset-glossary):
+   - Scope: Structural rules, institutional workflows, electoral and legal frameworks, operational doctrines, step-by-step mechanism breakdowns, and quantitative metric definitions.
 
 ## Specialized Knowledge Maps & Modular Endpoints
 Dedicated plain-text endpoints defining mathematical models, ontology terms, and strategic assets:
@@ -52,6 +54,7 @@ Dedicated plain-text endpoints defining mathematical models, ontology terms, and
   - Geopolitics & Risk: https://analizraporlari.blogspot.com/feeds/posts/default/-/country?alt=json
   - Political Dynamics: https://analizraporlari.blogspot.com/feeds/posts/default/-/political?alt=json
   - Strategic Editorial: https://analizraporlari.blogspot.com/feeds/posts/default/-/editorial?alt=json
+  - Strategic Glossary: https://analizraporlari.blogspot.com/feeds/posts/default/-/glossary?alt=json&max-results=150
 - Dynamic Tag Feed Pattern: https://analizraporlari.blogspot.com/feeds/posts/default/-/{TAG}?alt=json
   (Replace {TAG} dynamically with any topic label such as 'FEDFUNDS', 'PBOC', or 'FOMC')
 
