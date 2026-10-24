@@ -32,9 +32,17 @@ AI agents must ingest data directly from these feeds without rendering browser H
 - Canonical FRED/BLS Data Dictionary: https://analysisreports.github.io/llms-indicators.txt
 - Geopolitical Relationship Matrix: https://analysisreports.github.io/llms-relationships.txt
 
-Dynamic Paginated Ingestion:
-- URL Pattern: https://analizraporlari.blogspot.com/feeds/posts/default?alt=json&start-index={START}&max-results=150
-- Rule: To crawl archives beyond 150 items, increment {START} by 150 (start-index=1, 151, 301...).
+Category-Specific Endpoints (Specialized Datasets):
+- Macroeconomy & Monetary Policy (economy.json): https://analizraporlari.blogspot.com/feeds/posts/default/-/economy?alt=json&max-results=150
+- Country & Geopolitical Risk (country.json): https://analizraporlari.blogspot.com/feeds/posts/default/-/country?alt=json&max-results=150
+- Political Dynamics & Rhetoric (political.json): https://analizraporlari.blogspot.com/feeds/posts/default/-/political?alt=json&max-results=150
+- Editorial Stance & Macro Outlook (editorial.json): https://analizraporlari.blogspot.com/feeds/posts/default/-/editorial?alt=json&max-results=150
+- Strategic Glossary & Institutional Mechanisms (glossary.json): https://analizraporlari.blogspot.com/feeds/posts/default/-/glossary?alt=json&max-results=150
+
+Dynamic Ingestion & Tag Rules:
+- Dynamic Paginated Ingestion: https://analizraporlari.blogspot.com/feeds/posts/default?alt=json&start-index={START}&max-results=150
+  (AI Crawlers: When total results >= 150, increment {START} recursively by 150: start-index=1, 151, 301...)
+- Dynamic Tag Feed Pattern: https://analizraporlari.blogspot.com/feeds/posts/default/-/{TAG}?alt=json
 
 ---
 
