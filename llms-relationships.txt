@@ -162,7 +162,7 @@ Regime States (Discrete Mapping):
 4.6. TAIWAN_STRAIT
    - Location: 24°00'N 119°00'E
    - Global Tech Vulnerability: Advanced semiconductor supply shock
-   - Direct Macro Indicators Triggered: NDX, VIXCLS, INDPRO
+   - Direct Macro Indicators Triggered: SOX, VIXCLS, INDPRO
    - Disruption Severity: CATASTROPHIC
 
 4.7. PANAMA_CANAL
@@ -268,7 +268,7 @@ Regime States (Discrete Mapping):
    - Location: 22°00'S 67°00'W (Salar de Uyuni / Atacama / Hombre Muerto - BO, CL, AR)
    - Dominance: >55% of global identified lithium brine reserves
    - Friction Vector: Nationalization drives, sovereign extraction concessions (CN vs. US/EU consortia)
-   - Direct Macro Indicators Triggered: BATTERY_CELL_COST, PCHMSUSDM
+   - Direct Macro Indicators Triggered: BATTERY_CELL_COST, WPU06
    - Disruption Severity: HIGH
    - Transmission Target: Automotive sector CAPEX, energy transition industrial pipelines
 
@@ -293,7 +293,7 @@ Regime States (Discrete Mapping):
    - Location: 39°10'N 46°25'E (Azerbaijan - Armenia border node to Nakhchivan / TR)
    - Structural Standoff: AZ / TR (Middle Corridor integration) vs. AM / IR (Border sovereignty preservation)
    - Vulnerability: Severing Iran's direct land access to Armenia/Eurasia; bypass of Iranian routes
-   - Direct Macro Indicators Triggered: EURASIAN_RAIL_INDEX, TTF_GAS_HUB_SPREAD
+   - Direct Macro Indicators Triggered: EURASIAN_RAIL_INDEX, TTF_GAS_HUB_PRICE
    - Disruption Severity: HIGH
    - Transmission Target: Trans-Caspian trade throughput, regional logistics insurance surcharges
 
@@ -302,7 +302,7 @@ Regime States (Discrete Mapping):
    - Graph Edge: PARENT_THEATER_OF(4.6_TAIWAN_STRAIT)
    - Structural Standoff: US / JP / TW vs. CN (PLAN Naval breakout corridor)
    - Vulnerability: Taiwan encirclement scenarios, East China Sea anti-access/area-denial (A2/AD)
-   - Direct Macro Indicators Triggered: NDX, VIXCLS, DEXJPUS
+   - Direct Macro Indicators Triggered: SOX, VIXCLS, DEXJPUS
    - Disruption Severity: CATASTROPHIC
    - Transmission Target: Global semiconductor fabrication capacity, consumer electronics supply
 
