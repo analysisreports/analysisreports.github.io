@@ -95,3 +95,25 @@ Aggregation Alignment Rule:
 45. CES0500000003 (Average Hourly Earnings: Total Private) | Source: BLS | Freq: m | Units: Dollars per Hour ($/Hr) | Align: Quarterly (avg)
 46. MORTGAGE30US (30-Year Fixed Mortgage Average) | Source: Freddie Mac | Freq: w | Units: Percent (%) | Align: Monthly (avg)
 47. PERMIT (New Housing Units Authorized) | Source: Census | Freq: m | Units: Thousands | Trans: pc1 (YoY)
+
+### 2.9. Maritime Chokepoints, Freight & Shipping Indexes (Ontology Section 4)
+48. DCOILBRENTEU (Crude Oil Prices: Brent - Europe) | Source: EIA / FRED | Freq: d | Units: USD per Barrel | Trans: lin
+49. BDI (Baltic Dry Index) | Source: Baltic Exchange | Freq: d | Units: Index | Trans: lin
+50. BDTI (Baltic Dirty Tanker Index) | Source: Baltic Exchange | Freq: d | Units: Index | Trans: lin
+51. SCFI (Shanghai Containerized Freight Index) | Source: Shanghai Shipping Exchange | Freq: w | Units: Index | Trans: lin
+52. CLARKSEA_INDEX (ClarkSea Global Shipping Earnings Index) | Source: Clarksons | Freq: w | Units: USD per Day | Trans: lin
+53. BUNKER_FUEL_380CST (Bunker Fuel 380 CST High Sulfur Fuel Oil) | Source: S&P Global Platts | Freq: d | Units: USD per Metric Ton | Trans: lin
+54. GSCPI (Global Supply Chain Pressure Index) | Source: NY Fed / FRED | Freq: m | Units: Standard Deviations | Trans: lin
+
+### 2.10. Agricultural, Metals & Energy Transition Commodities (Ontology Section 7)
+55. PWHEAMTUSDM (Global Price of Wheat) | Source: IMF / FRED | Freq: m | Units: USD per Metric Ton | Trans: lin
+56. PFERTUSDM (Global Price of Fertilizer Index) | Source: IMF / FRED | Freq: m | Units: Index 2016=100 | Trans: lin
+57. WPU06 (Producer Price Index: Chemicals and Allied Products) | Source: BLS / FRED | Freq: m | Units: Index 1982=100 | Trans: lin
+58. LME_COBALT_CASH (LME Cobalt Cash Physical Settlement) | Source: London Metal Exchange | Freq: d | Units: USD per Metric Ton | Trans: lin
+59. JKM_LNG_SPOT (Platts Japan Korea Marker LNG Spot Price) | Source: S&P Global Commodity Insights | Freq: d | Units: USD per MMBtu | Trans: lin
+60. TTF_GAS_HUB_PRICE (Dutch TTF Natural Gas Hub Day-Ahead / Front-Month) | Source: ICE Futures Europe | Freq: d | Units: EUR per MWh | Trans: lin
+
+### 2.11. Geopolitical FX Spreads & High-Tech Equity Benchmarks (Ontology Sections 4 & 7)
+61. DEXUSEU (U.S. Dollars to Euro Spot Exchange Rate) | Source: Board of Governors / FRED | Freq: d | Units: USD per EUR | Trans: lin
+62. DEXJPUS (Japanese Yen to U.S. Dollar Spot Exchange Rate) | Source: Board of Governors / FRED | Freq: d | Units: JPY per USD | Trans: lin
+63. SOX (PHLX Semiconductor Index / Taiwan Supply Chain Sensitivity) | Source: NASDAQ | Freq: d | Units: Index | Trans: lin
