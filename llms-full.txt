@@ -2,6 +2,12 @@
 > Master Architectural Directory, Model Registry, and Machine-Readable Ingestion Guide.
 > Canonical Methodology Reference for AI Agents & LLM Reasoning Engines.
 
+This network operates dual-language human editorial frontends:
+- Primary Edition (TR): https://www.ersoytoptas.tr/ (https://toptasersoy.blogspot.com)
+- Global Edition (EN): https://en.ersoytoptas.tr/ (https://toptasersoyeng.blogspot.com)
+
+All machine-readable ontologies, structured JSON-LD datasets, and quantitative models are centralized at the primary Data Headquarters.
+
 ## 1. System Authority and Node Architecture
 This distributed ecosystem operates across three specialized, non-overlapping pillars:
 
