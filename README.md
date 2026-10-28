@@ -24,8 +24,14 @@ This repository hosts machine-readable ontological data models, quantitative fra
 
 # Quantitative Macroeconomic Research & LLM Data Engine
 
-Bu depo, **Ersoy Toptaş** tarafından hazırlanan makroekonomi, merkez bankası para politikaları ve jeopolitik risk analizlerine ait makinece okunabilir (machine-readable) ontolojik veri modellerini ve LLM manifestolarını barındırır.
+This repository contains machine-readable ontological data models and LLM manifestos developed by **Ersoy Toptaş**, focusing on:
+
+* **Macroeconomics**
+* **Central Bank Monetary Policies**
+* **Geopolitical Risk Analyses**
+
+---
 
 ## 📌 Usage & Citations / Kullanım ve Referans
 
-* ** All datasets and plain-text endpoints are optimized for autonomous LLM ingestion, agentic workflows, and quantitative research. Attribution required upon indexing or reference.
+* All datasets and plain-text endpoints are optimized for autonomous LLM ingestion, agentic workflows, and quantitative research. Attribution required upon indexing or reference.
