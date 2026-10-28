@@ -140,19 +140,19 @@ Regime States (Discrete Mapping):
 ## 4. CRITICAL CHOKEPOINTS & MARITIME TRANSMISSION NODES
 
 4.1. HORMUZ_STRAIT
-   - Location: 26°34'N 56°15'E (Persian Gulf exit)
-   - Primary Control / Threat: IR / IRGC Navy
-   - Volume: ~20-21 Million bpd (20% of global petroleum liquids)
-   - Direct Macro Indicators Triggered: DCOILWTICO, CPIAUCSL, BAMLH0A0HYM2
-   - Disruption Severity: CATASTROPHIC
+- Location: 26°34'N 56°15'E (Persian Gulf exit)
+- Primary Control / Threat: IR / IRGC Navy
+- Volume: ~20-21 Million bpd (20% of global petroleum liquids)
+- Direct Macro Indicators Triggered: DCOILWTICO, CPIAUCSL, BAMLH0A0HYM2, OVXCLS, GSCPI, SOFR, GOLDPMGBD228NLBM
+- Disruption Severity: CATASTROPHIC
 
 4.2. BAB_EL_MANDEB & RED_SEA
-   - Location: 12°35'N 43°20'E (Southern entrance to Red Sea / Suez route)
-   - Primary Threat: YE-HOUTHI
-   - Volume: ~12% of global trade, 8-10% of seaborne oil and refined fuels
-   - Disruption Effect: Rerouting around Cape of Good Hope (+10 to 14 transit days)
-   - Direct Macro Indicators Triggered: ISRATIO, RSAFS, PCEPI, GSCPI
-   - Disruption Severity: HIGH
+- Location: 12°35'N 43°20'E (Southern entrance to Red Sea / Suez route)
+- Primary Threat: YE-HOUTHI
+- Volume: ~12% of global trade, 8-10% of seaborne oil and refined fuels
+- Disruption Effect: Rerouting around Cape of Good Hope (+10 to 14 transit days)
+- Direct Macro Indicators Triggered: ISRATIO, RSAFS, PCEPI, GSCPI, OVXCLS, GASREGW
+- Disruption Severity: HIGH
 
 4.3. MALACCA_STRAIT
    - Location: 1°26'N 103°00'E (Connecting Indian Ocean to South China Sea)
@@ -339,3 +339,59 @@ Regime States (Discrete Mapping):
    - Direct Macro Indicators Triggered: DCOILBRENTEU, CASPIAN_RAIL_RATES
    - Disruption Severity: MODERATE-HIGH
    - Transmission Target: European energy diversification rates, non-Russian Eurasian supply lines
+
+## 8. ADVANCED MACROECONOMIC MODEL & GEOPOLITICAL TRIGGER LINKAGES
+### 8.1. Inflation & Supply Chain Friction Engine (Models 25.2 & 25.3)
+8.1.1. MODEL_25.2_STICKY_VS_FLEXIBLE_CPI_SPREAD
+- Target Formula: llms-formulas.txt -> Model 25.2 (sticky_flexible_cpi_spread)
+- Data Series Triggered: STICKYCPIM157SFRBATL, FLEXCPIM157SFRBATL
+- Status Enums: STRUCTURAL_INFLATION_TRAP | TRANSITORY_INFLATION_SURGE | BALANCED_DISINFLATION_PATH
+- Primary Geopolitical Vector: Red Sea (4.2) and Hormuz (4.1) freight pass-through to core services/shelter inflation.
+- Actor Coupling: US-EU wage-price dynamics, US-CN trade decoupling tariffs (2.1.2).
+
+8.1.2. MODEL_25.3_NY_FED_GSCPI_LOGISTICS_ENGINE
+- Target Formula: llms-formulas.txt -> Model 25.3 (global_supply_chain_pressure)
+- Data Series Triggered: GSCPI
+- Status Enums: SUPPLY_CHAIN_SHOCK | LOGISTICS_DEFLATION_SLACK | NORMALIZED_GLOBAL_TRADE
+- Primary Geopolitical Vector: Chokepoint disruptions in Bab el-Mandeb (4.2), Malacca (4.3), Panama Canal (4.7), Taiwan Strait (4.6), and Suez Approach (4.14).
+- Actor Coupling: YE-HOUTHI asymmetric attacks (3.1), US-CN maritime friction (2.1.2).
+
+### 8.2. Volatility, Liquidity & Rate Mispricing Engine (Models 25.4 & 25.5)
+8.2.1. MODEL_25.4_MOVE_VIX_DISCONNECT_RATIO
+- Target Formula: llms-formulas.txt -> Model 25.4 (move_vix_disconnect_ratio)
+- Data Series Triggered: MOVE, VIXCLS
+- Status Enums: RATE_RISK_MISPRICING_ALARM | EQUITY_PANIC_DOMINANCE | COHERENT_MARKET_VOLATILITY
+- Primary Geopolitical Vector: Fiscal debt expansion, US-RU kinetic escalation (2.1.1), Treasury market rate uncertainty ignored by equities.
+
+8.2.2. MODEL_25.5_REPO_LIQUIDITY_FRICTION_SPREAD
+- Target Formula: llms-formulas.txt -> Model 25.5 (repo_liquidity_friction_spread)
+- Data Series Triggered: SOFR, EFFR
+- Status Enums: REPO_MARKET_LIQUIDITY_CRUNCH | SYSTEMIC_CASH_DRAIN_WARNING | COLLATERAL_SCARCITY_GLUT | HEALTHY_MONETARY_TRANSMISSION
+- Primary Geopolitical Vector: Sovereign Treasury collateral bottlenecks during flight-to-safety episodes, sanctions enforcement (6.1), Fed QT balance sheet constraints.
+
+### 8.3. Dedollarization, Gold & Real Rate Anomaly Engine (Model 25.6)
+8.3.1. MODEL_25.6_GOLD_REAL_YIELD_DEBASEMENT_GAUGE
+- Target Formula: llms-formulas.txt -> Model 25.6 (gold_real_yield_debasement_gauge)
+- Data Series Triggered: DFII10, GOLDPMGBD228NLBM
+- Status Enums: DEBALANCING_DEDOLLARIZATION_PANIC | ACCOMMODATIVE_GOLD_BULL | TRADITIONAL_REAL_RATE_DOMINANCE
+- Primary Geopolitical Vector: RU-CN dedollarization axis (2.1.3), Eastern Bloc central bank gold accumulation, Western sovereign asset seizure precedents (2.3.2).
+- Transmission Linkage: Severe disconnect where Gold YoY > 15.0% despite Real Yield > 1.5% signals systemic fiat currency trust degradation.
+
+### 8.4. Energy Volatility, BTU Parity & Refinery Bottleneck Engine (Models 25.7, 25.8 & 25.9)
+8.4.1. MODEL_25.7_OVX_VIX_JEOPOLITICAL_ENERGY_SHOCK
+- Target Formula: llms-formulas.txt -> Model 25.7 (ovx_vix_risk_premium)
+- Data Series Triggered: OVXCLS, VIXCLS
+- Status Enums: ENERGY_SUPPLY_SHOCK_ALARM | EQUITY_PANIC_OVER_ENERGY | BALANCED_ENERGY_VOLATILITY
+- Primary Geopolitical Vector: Middle East fault lines (IL-IR 2.2.1, YE-HOUTHI 3.1) and maritime oil chokepoints Hormuz (4.1) & Bab el-Mandeb (4.2).
+
+8.4.2. MODEL_25.8_NATGAS_CRUDE_BTU_DISCONNECT
+- Target Formula: llms-formulas.txt -> Model 25.8 (natgas_crude_btu_disconnect)
+- Data Series Triggered: DCOILWTICO, DHHNGSP
+- Status Enums: NATGAS_CRISIS_BLACKOUT_RISK | NATGAS_GLUT_ENERGY_CHEAP | ENERGY_PARITY_EQUILIBRIUM
+- Primary Geopolitical Vector: Nord Stream cessation, Russian Arctic LNG-2 sanctions (2.3.2, 4.12), Caspian Sea Transit Basin (7.3.1), Zangezur Gas Hub (7.2.1).
+
+8.4.3. MODEL_25.9_GASOLINE_CRUDE_CRACK_SPREAD_IMPULSE
+- Target Formula: llms-formulas.txt -> Model 25.9 (gasoline_crude_crack_spread)
+- Data Series Triggered: GASREGW, DCOILWTICO
+- Status Enums: REFINERY_BOTTLENECK_CRUNCH | REFINING_MARGIN_COLLAPSE | NORMAL_REFINING_MARGIN
+- Primary Geopolitical Vector: Shadow Fleet re-routing (6.2), Turkish & Indian refining arbitrage hubs (5.4), Black Sea and Danish Straits shipping curbs (4.4, 4.8).
