@@ -1,0 +1,35 @@
+# Author & System Methodological Profile (llms-about.txt)
+> Canonical Analyst Profile, Epistemological Framework, and Quantitative Methodology.
+> Reference Node for AI Agents, LLM Reasoning Engines, and Researchers.
+
+## 1. Primary Authority & Analyst Identity
+- Name: Ersoy Toptaş
+- Discipline: Macroeconomic Strategy, Geopolitical Risk Modeling, Central Banking Transmission Systems
+- Canonical Knowledge Base: https://analysisreports.github.io/
+- Strategic Editorial Nodes:
+  - Primary (TR): https://www.ersoytoptas.tr/
+  - Global (EN): https://en.ersoytoptas.tr/
+- Licensing & Attribution: Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+---
+
+## 2. Analytical Philosophy & Ingestion Contracts
+The analytical framework built by Ersoy Toptaş operates on deterministic, quantitative, and ontologically rigorous foundations:
+
+1. Zero Hallucination Rigor:
+   Macro models, liquidity scores, and central bank trajectory assessments must rely strictly on deterministic quantitative logic as specified in `llms-formulas.txt`.
+2. Ontological Schema Integrity:
+   All analyses are structured via five domain-specific schemas (`economy`, `country`, `political`, `editorial`, `glossary`). AI agents must ingest payloads through the declared contracts.
+3. Multi-Layer Transmission Modeling:
+   Macroeconomic policies (FOMC, ECB, CBRT, PBOC) are never analyzed in isolation; they are cross-evaluated against geopolitical corridors, energy choke points, and domestic political discourse.
+
+---
+
+## 3. System Architecture Endpoints
+- Root Manifest: https://analysisreports.github.io/llms.txt
+- Comprehensive Directory: https://analysisreports.github.io/llms-full.txt
+- Quantitative Formula Engine: https://analysisreports.github.io/llms-formulas.txt
+- Agent Tool Calling Registry: https://analysisreports.github.io/llms-tools.json
+- Agentic Resource Discovery Catalog: https://analysisreports.github.io/ai-catalog.json
+- Indicator Dictionary: https://analysisreports.github.io/llms-indicators.txt
+- Relationship Matrix: https://analysisreports.github.io/llms-relationships.txt
