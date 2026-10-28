@@ -1604,6 +1604,46 @@ def move_vix_disconnect_ratio(move_val, vix_val):
 
 ---
 
+### 25.5. GECELİK TEMİNATLI LİKİDİTE SIKIŞIKLIĞI VE REPO SÜRTÜNMESİ MOTORU (SOFR - EFFR SPREAD)
+- Purpose: Teminatlı repo faizi (SOFR) ile teminatsız efektif Fed faizi (EFFR) arasındaki baz puan makasını ölçerek gecelik fonlama piyasasındaki likidite sıkışıklığını, bilanço kısıtlarını veya aşırı teminat kıtlığını tespit eder.
+- Data Series Keys:
+  - FRED: SOFR (Secured Overnight Financing Rate - Percent)
+  - FRED: EFFR (Effective Federal Funds Rate - Percent)
+- Formula: Repo_Friction_bps = (SOFR - EFFR) * 100
+- Machine-Executable Logic (Python):
+def repo_liquidity_friction_spread(sofr_val, effr_val):
+    if any(v is None or isinstance(v, bool) for v in (sofr_val, effr_val)):
+        return None
+    try:
+        f_sofr = float(sofr_val)
+        f_effr = float(effr_val)
+        if not (math.isfinite(f_sofr) and math.isfinite(f_effr)):
+            return None
+        if f_sofr < 0.0 or f_effr < 0.0:
+            return None
+        raw_spread = (f_sofr - f_effr) * 100.0
+        if not math.isfinite(raw_spread):
+            return None
+        spread = round(raw_spread, 2)
+        if spread > 10.0:
+            status = "REPO_MARKET_LIQUIDITY_CRUNCH"
+        elif spread >= 5.0:
+            status = "SYSTEMIC_CASH_DRAIN_WARNING"
+        elif spread < -5.0:
+            status = "COLLATERAL_SCARCITY_GLUT"
+        else:
+            status = "HEALTHY_MONETARY_TRANSMISSION"
+        return {"repo_friction_bps": spread, "status": status}
+    except (TypeError, ValueError):
+        return None
+- Interpretation:
+  - Repo_Friction_bps üstü 10.0 bps : REPO_MARKET_LIQUIDITY_CRUNCH (Gecelik Fonlama Piyasasında Ağır Likidite Sıkışıklığı / Nakit Darlığı / Fed Müdahalesi Riski)
+  - 5.0 bps ile 10.0 bps arası : SYSTEMIC_CASH_DRAIN_WARNING (Sistemik Nakit Çekilmesi Uyarısı / Bilanço Kapasitesi Sıkılaşma Sınırı)
+  - -5.0 bps ile 5.0 bps arası : HEALTHY_MONETARY_TRANSMISSION (Sağlıklı, Dengeli ve Pürüzsüz Parasal Aktarım Mekanizması)
+  - Repo_Friction_bps altı -5.0 bps : COLLATERAL_SCARCITY_GLUT (Aşırı Nakit Fazlası / Hazine Kağıdı Açlığı / Teminat Kıtlığı Anomalisi)
+
+---
+
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
 import math
