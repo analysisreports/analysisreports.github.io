@@ -1,0 +1,672 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Ersoy Toptas Macro Quantitative Tool Engine",
+  "version": "2026-Q4",
+  "description": "Deterministic macro, geopolitical, and econometric model schemas enabling autonomous LLM research agents to execute quantitative formulas without hallucination.",
+  "author": "Ersoy Toptas",
+  "license": "CC-BY-4.0",
+  "repository": "https://analysisreports.github.io/",
+  "documentation": "https://analysisreports.github.io/llms-formulas.txt",
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_fed_policy_spread",
+        "description": "Measures market expectations for Fed rate cuts or hikes relative to the policy ceiling (DGS1MO - DFEDTARU).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "dgs1mo": { "type": "number", "description": "1-Month Treasury Bill Yield (FRED: DGS1MO)." },
+            "dfedtaru": { "type": "number", "description": "Federal Funds Target Range Upper Limit (FRED: DFEDTARU)." }
+          },
+          "required": ["dgs1mo", "dfedtaru"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_real_policy_rate",
+        "description": "Measures real policy restrictiveness adjusted for headline inflation (DFF - CPI_YoY).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "dff": { "type": "number", "description": "Effective Federal Funds Rate (FRED: DFF)." },
+            "cpi_yoy": { "type": "number", "description": "Consumer Price Index YoY % change (BLS: CPIAUCSL)." }
+          },
+          "required": ["dff", "cpi_yoy"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_sahm_rule",
+        "description": "Evaluates the Sahm Rule recession indicator (Current 3M Moving Avg - 12M Minimum 3M Avg).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "unrate_3m_avg": { "type": "number", "description": "Current 3-month moving average of U3 unemployment rate (FRED: UNRATE)." },
+            "min_prior_3m_avg": { "type": "number", "description": "Minimum 3-month moving average of unemployment rate recorded over the preceding 12 months." }
+          },
+          "required": ["unrate_3m_avg", "min_prior_3m_avg"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_front_end_liquidity_spread",
+        "description": "Tracks front-end money market slope and collateral tightness (DGS3MO - DGS1MO).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "dgs3mo": { "type": "number", "description": "3-Month Treasury Bill Secondary Market Rate (FRED: DGS3MO)." },
+            "dgs1mo": { "type": "number", "description": "1-Month Treasury Bill Secondary Market Rate (FRED: DGS1MO)." }
+          },
+          "required": ["dgs3mo", "dgs1mo"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_net_fed_liquidity",
+        "description": "Computes free dollar liquidity: WALCL - (WTREGEN + RRPONTSYD). Inputs must be normalized to Millions of USD.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "walcl": { "type": "number", "description": "Fed Total Assets in Millions of USD (FRED: WALCL)." },
+            "wtregen": { "type": "number", "description": "Treasury General Account in Millions of USD (FRED: WTREGEN)." },
+            "rrpontsyd": { "type": "number", "description": "Overnight Reverse Repo in Millions of USD (FRED: RRPONTSYD)." },
+            "prev_net_liquidity": { "type": "number", "description": "Optional prior period Net Fed Liquidity for delta/momentum calculation." }
+          },
+          "required": ["walcl", "wtregen", "rrpontsyd"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_yield_spread_bps",
+        "description": "Calculates 10Y-2Y yield curve spread in basis points ((DGS10 - DGS2) * 100) to identify cycle transitions.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "dgs10": { "type": "number", "description": "10-Year Treasury Yield (FRED: DGS10)." },
+            "dgs2": { "type": "number", "description": "2-Year Treasury Yield (FRED: DGS2)." }
+          },
+          "required": ["dgs10", "dgs2"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_breakeven_inflation",
+        "description": "Calculates 10-Year Breakeven Inflation Rate (DGS10 - DFII10) to assess inflation anchor stability.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "dgs10": { "type": "number", "description": "10-Year Nominal Treasury Yield (FRED: DGS10)." },
+            "dfii10": { "type": "number", "description": "10-Year TIPS Real Yield (FRED: DFII10)." }
+          },
+          "required": ["dgs10", "dfii10"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_beveridge_labor_tightness",
+        "description": "Calculates Beveridge Curve labor market tightness ratio (JTSJOL / UNEMPLOY).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "jtsjol": { "type": "number", "description": "Total Nonfarm Job Openings in thousands (BLS: JTSJOL)." },
+            "unemploy": { "type": "number", "description": "Total Unemployed Persons in thousands (BLS: UNEMPLOY)." }
+          },
+          "required": ["jtsjol", "unemploy"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_financial_repression_index",
+        "description": "Evaluates public debt sustainability and fiscal repression pressure ((DGS10 - CPI_YoY) * (Debt_to_GDP / 100)).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "dgs10": { "type": "number", "description": "10-Year Nominal Treasury Yield (FRED: DGS10)." },
+            "cpi_yoy": { "type": "number", "description": "CPI YoY % change (BLS: CPIAUCSL)." },
+            "debt_gdp_pct": { "type": "number", "description": "Total Public Debt as % of GDP (FRED: GFDEGDQ188S)." }
+          },
+          "required": ["dgs10", "cpi_yoy", "debt_gdp_pct"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_triffin_external_balance",
+        "description": "Evaluates global dollar hegemony tension against US trade deficits (DTWEXBGS / (abs(BOPGSTB) / 1000)).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "dtwexbgs": { "type": "number", "description": "Nominal Broad U.S. Dollar Index (FRED: DTWEXBGS)." },
+            "bopgstb": { "type": "number", "description": "US Goods & Services Trade Balance in Millions USD (BEA: BOPGSTB)." }
+          },
+          "required": ["dtwexbgs", "bopgstb"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_taylor_policy_gap",
+        "description": "Calculates optimal policy rate via Taylor Rule and gauges Fed alignment against inflation and output gaps.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "dff": { "type": "number", "description": "Effective Federal Funds Rate (FRED: DFF)." },
+            "cpi_yoy": { "type": "number", "description": "CPI YoY % change (BLS: CPIAUCSL)." },
+            "gdpc1": { "type": "number", "description": "Real GDP in Billions USD (BEA: GDPC1)." },
+            "gdppot": { "type": "number", "description": "Real Potential GDP in Billions USD (CBO: GDPPOT)." }
+          },
+          "required": ["dff", "cpi_yoy", "gdpc1", "gdppot"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_financial_conditions_regime",
+        "description": "Classifies market tightness regime and macroeconomic divergence via Chicago Fed NFCI and ANFCI.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "nfci": { "type": "number", "description": "National Financial Conditions Index (FRED: NFCI)." },
+            "anfci": { "type": "number", "description": "Adjusted National Financial Conditions Index (FRED: ANFCI)." }
+          },
+          "required": ["nfci", "anfci"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_high_yield_credit_stress",
+        "description": "Measures corporate credit default risk and credit crunch alarm via High Yield OAS (BAMLH0A0HYM2 * 100).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "hy_spread": { "type": "number", "description": "ICE BofA US High Yield Index OAS (FRED: BAMLH0A0HYM2)." }
+          },
+          "required": ["hy_spread"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_real_m2_momentum",
+        "description": "Calculates real broad money supply momentum to detect liquidity contraction or demand shocks (M2_YoY - CPI_YoY).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "m2_yoy": { "type": "number", "description": "M2 Money Supply YoY % growth (FRED: M2SL)." },
+            "cpi_yoy": { "type": "number", "description": "CPI YoY % change (BLS: CPIAUCSL)." }
+          },
+          "required": ["m2_yoy", "cpi_yoy"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_acm_term_premium_breakdown",
+        "description": "Decomposes 10Y Treasury yield into Adrian, Crump & Moench Term Premium and expected average short rate.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "dgs10": { "type": "number", "description": "10-Year Treasury Yield (FRED: DGS10)." },
+            "term_premium": { "type": "number", "description": "ACM 10-Year Treasury Term Premium (FRED: THREEFYTP10)." }
+          },
+          "required": ["dgs10", "term_premium"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_vix_market_regime",
+        "description": "Categorizes 30-day equity volatility and institutional risk bias into Complacency, Normal, Stress, or Crisis.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "vix": { "type": "number", "description": "CBOE Volatility Index (FRED: VIXCLS)." }
+          },
+          "required": ["vix"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_macro_equity_risk_premium",
+        "description": "Measures valuation gap between S&P 500 earnings yield and 10Y risk-free Treasury yield.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "earnings_yield": { "type": "number", "description": "S&P 500 Earnings Yield % (1 / PE * 100)." },
+            "dgs10": { "type": "number", "description": "10-Year Treasury Yield (FRED: DGS10)." }
+          },
+          "required": ["earnings_yield", "dgs10"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_misery_index",
+        "description": "Computes Okun's Misery Index (UNRATE + CPI_YoY) to evaluate household welfare loss and stagflation stress.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "unrate": { "type": "number", "description": "Civilian Unemployment Rate % (BLS: UNRATE)." },
+            "cpi_yoy": { "type": "number", "description": "CPI YoY % change (BLS: CPIAUCSL)." }
+          },
+          "required": ["unrate", "cpi_yoy"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_buffett_indicator",
+        "description": "Calculates corporate equities to GDP ratio to detect market bubble and extreme overvaluation risks.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "market_val": { "type": "number", "description": "Total Corporate Equities Liability / Market Value (FRED: NCBEILQ027S)." },
+            "gdp_val": { "type": "number", "description": "Nominal GDP in same unit scale (BEA: GDP)." }
+          },
+          "required": ["market_val", "gdp_val"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_copper_gold_ratio",
+        "description": "Evaluates macro growth momentum and cyclical bond yield direction via copper price per ton / gold price per ounce.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "copper_price": { "type": "number", "description": "Global Copper Price per Metric Ton (IMF/FRED: PCOPPUSDM)." },
+            "gold_price": { "type": "number", "description": "Gold Fixing Price per Troy Ounce (World Bank/FRED: GOLDAMGBD228NLBM)." }
+          },
+          "required": ["copper_price", "gold_price"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_gold_oil_ratio",
+        "description": "Computes ounces of gold per barrel of crude oil to classify recessionary demand shock or supply-side energy shocks.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "gold_price": { "type": "number", "description": "Gold Price per Troy Ounce (FRED: GOLDAMGBD228NLBM)." },
+            "oil_price": { "type": "number", "description": "WTI Crude Oil Price per Barrel (EIA/FRED: DCOILWTICO)." }
+          },
+          "required": ["gold_price", "oil_price"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_household_credit_stress",
+        "description": "Gauges consumer debt solvency pressure by comparing credit card delinquencies to personal savings rate.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "delinquency_rate": { "type": "number", "description": "Credit Card Delinquency Rate % (FRED: DRCCLACBS)." },
+            "saving_rate": { "type": "number", "description": "Personal Saving Rate % of Disposable Income (BEA: PSAVERT)." }
+          },
+          "required": ["delinquency_rate", "saving_rate"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_okun_labor_gap",
+        "description": "Measures divergence between observed unemployment change and GDP growth expectations to identify jobless growth.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "actual_unrate_delta": { "type": "number", "description": "YoY change in unemployment rate in percentage points (FRED: UNRATE)." },
+            "real_gdp_yoy": { "type": "number", "description": "Real GDP YoY % change (BEA: GDPC1)." }
+          },
+          "required": ["actual_unrate_delta", "real_gdp_yoy"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_labor_dual_track_matrix",
+        "description": "Analyzes nonfarm payroll growth against participation shifts and unemployment delta to spot pre-recession cracks.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "payems_mom": { "type": "number", "description": "Monthly change in Total Nonfarm Payrolls in thousands (BLS: PAYEMS)." },
+            "unrate_delta": { "type": "number", "description": "Monthly change in Unemployment Rate (BLS: UNRATE)." },
+            "civpart_delta": { "type": "number", "description": "Monthly change in Labor Force Participation Rate (BLS: CIVPART)." }
+          },
+          "required": ["payems_mom", "unrate_delta", "civpart_delta"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_total_funds_flow",
+        "description": "Calculates total liquidity flow and velocity momentum by multiplying M2 supply by M2 velocity (M2SL * M2V).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "m2_level": { "type": "number", "description": "M2 Money Supply in Billions USD (FRED: M2SL)." },
+            "m2_velocity": { "type": "number", "description": "Velocity of M2 Money Stock (FRED: M2V)." },
+            "prev_tff": { "type": "number", "description": "Optional prior quarter Total Funds Flow for QoQ % change calculation." }
+          },
+          "required": ["m2_level", "m2_velocity"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_housing_bubble_gauge",
+        "description": "Evaluates housing affordability by calculating required work hours to buy median home (MSPUS / Hourly_Earnings).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "mspus": { "type": "number", "description": "Median Sales Price of Houses Sold (FRED: MSPUS)." },
+            "ahe": { "type": "number", "description": "Average Hourly Earnings of Total Private Employees (BLS: CES0500000003)." }
+          },
+          "required": ["mspus", "ahe"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_early_layoff_signal",
+        "description": "Measures hidden labor cuts prior to headline unemployment spikes via industrial production and weekly work hours.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "indpro_yoy": { "type": "number", "description": "Industrial Production Total Index YoY % change (FRED: INDPRO)." },
+            "awhaetp_yoy": { "type": "number", "description": "Average Weekly Hours Total Private YoY % change (BLS: AWHAETP)." }
+          },
+          "required": ["indpro_yoy", "awhaetp_yoy"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_real_consumption_collapse",
+        "description": "Filters retail sales by inflation to reveal genuine volume expansion vs real demand contraction (RSAFS - CPI_YoY).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "retail_yoy": { "type": "number", "description": "Advance Retail Sales YoY % change (FRED: RSAFS)." },
+            "cpi_yoy": { "type": "number", "description": "CPI YoY % change (BLS: CPIAUCSL)." }
+          },
+          "required": ["retail_yoy", "cpi_yoy"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_early_employment_crack",
+        "description": "Identifies early labor cracks by comparing weekly jobless claims spikes against delayed headline unemployment shifts.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "icsa_yoy": { "type": "number", "description": "Initial Jobless Claims YoY % change (FRED: IC4WSA or ICSA)." },
+            "unrate_delta": { "type": "number", "description": "YoY change in Unemployment Rate in percentage points (BLS: UNRATE)." }
+          },
+          "required": ["icsa_yoy", "unrate_delta"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_inventory_to_sales_glut",
+        "description": "Detects supply chain bottlenecks or systemic inventory gluts signaling incoming production cutbacks.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "isratio": { "type": "number", "description": "Total Business Inventories to Sales Ratio (FRED: ISRATIO)." }
+          },
+          "required": ["isratio"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_housing_freeze_index",
+        "description": "Measures mortgage rate lock-in pressures and construction stalls (MORTGAGE30US - (PERMIT_YoY / 10)).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "mortgage_rate": { "type": "number", "description": "30-Year Fixed Mortgage Average % (FRED: MORTGAGE30US)." },
+            "permit_yoy": { "type": "number", "description": "New Authorized Housing Units YoY % change (FRED: PERMIT)." }
+          },
+          "required": ["mortgage_rate", "permit_yoy"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_safe_haven_flight_index",
+        "description": "Quantifies capital flight to cash and dollar safe haven during geopolitical or sovereign stress shocks.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "dxy": { "type": "number", "description": "Nominal Broad Dollar Index (FRED: DTWEXBGS)." },
+            "hy_spread": { "type": "number", "description": "High Yield Option-Adjusted Spread (FRED: BAMLH0A0HYM2)." },
+            "dgs10": { "type": "number", "description": "10-Year Treasury Yield (FRED: DGS10)." }
+          },
+          "required": ["dxy", "hy_spread", "dgs10"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_terms_of_trade",
+        "description": "Calculates Terms of Trade index ((Export_Index / Import_Index) * 100) to gauge external purchasing power.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "export_idx": { "type": "number", "description": "U.S. Export Price Index (BLS: IQ1000)." },
+            "import_idx": { "type": "number", "description": "U.S. Import Price Index (BLS: IQ)." }
+          },
+          "required": ["export_idx", "import_idx"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_dynamic_polarity_engine",
+        "description": "Clamps baseline polarity and tension delta to [-1.0, 1.0] and resolves the diplomatic/military bilateral regime.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "p_baseline": { "type": "number", "description": "Baseline relationship polarity (-1.0 to 1.0) from llms-relationships.txt." },
+            "dynamic_delta": { "type": "number", "description": "Event-driven tension or alignment shock (-2.0 to 2.0)." }
+          },
+          "required": ["p_baseline", "dynamic_delta"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_rhetoric_intensity_score",
+        "description": "Evaluates political rhetoric severity on a 0-100 calibrated scale based on targeting, delegitimization, and threats.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "direct_target": { "type": "number", "description": "Direct targeting severity (0-100)." },
+            "delegitimize": { "type": "number", "description": "Institutional delegitimization intensity (0-100)." },
+            "threat": { "type": "number", "description": "Sanction or retaliatory threat level (0-100)." },
+            "norm_breach": { "type": "number", "description": "Diplomatic/legal norm breach score (0-100)." }
+          },
+          "required": ["direct_target", "delegitimize", "threat", "norm_breach"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_composite_tension",
+        "description": "Combines rhetoric intensity with alliance or institutional friction (0-100 scale).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "rhetoric": { "type": "number", "description": "Rhetoric intensity score (0-100)." },
+            "alliance_friction": { "type": "number", "description": "Institutional/alliance friction score (0-100)." }
+          },
+          "required": ["rhetoric", "alliance_friction"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_composite_strategic_score",
+        "description": "Calculates composite national strategic risk score based on politics, defense, geopolitics, and vulnerability.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "pol": { "type": "number", "description": "Domestic political instability score (0-100)." },
+            "defense": { "type": "number", "description": "Defense doctrine and military posture score (0-100)." },
+            "geo": { "type": "number", "description": "Geopolitical alignment pressure score (0-100)." },
+            "vuln": { "type": "number", "description": "Socioeconomic and fiscal vulnerability score (0-100)." }
+          },
+          "required": ["pol", "defense", "geo", "vuln"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_conflict_heat_score",
+        "description": "Evaluates conflict heat on a 0-100 scale combining military kinetic action, geopolitical friction, and disruption risk.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "kinetic_military": { "type": "number", "description": "Kinetic military clash level (0-100)." },
+            "geo_tension": { "type": "number", "description": "Diplomatic and alliance tension (0-100)." },
+            "disruption_risk": { "type": "number", "description": "Supply corridor or chokepoint disruption risk (0-100)." }
+          },
+          "required": ["kinetic_military", "geo_tension", "disruption_risk"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_market_impact_score",
+        "description": "Quantifies financial market shock intensity (0-100) via asset volatility, liquidity spread, and macro spillover.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "asset_volatility": { "type": "number", "description": "Asset class implied/realized volatility shock (0-100)." },
+            "liquidity_spread": { "type": "number", "description": "Funding and credit spread widening (0-100)." },
+            "macro_spillover": { "type": "number", "description": "Macroeconomic pass-through spillover (0-100)." }
+          },
+          "required": ["asset_volatility", "liquidity_spread", "macro_spillover"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_chokepoint_severity_multiplier",
+        "description": "Converts chokepoint disruption severity enum (CATASTROPHIC, HIGH, MODERATE-HIGH, MODERATE) into deterministic weight.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "severity_enum": {
+              "type": "string",
+              "enum": ["CATASTROPHIC", "HIGH", "MODERATE-HIGH", "MODERATE"],
+              "description": "Disruption severity classification from llms-relationships.txt."
+            }
+          },
+          "required": ["severity_enum"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_chokepoint_transmission_bridge",
+        "description": "Bridges maritime chokepoint disruption severity with bilateral polarity (P_net) to output macro spillover score.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "severity_enum": { "type": "string", "enum": ["CATASTROPHIC", "HIGH", "MODERATE-HIGH", "MODERATE"] },
+            "p_net": { "type": "number", "description": "Net polarity score (-1.0 to 1.0) between primary regional actors." }
+          },
+          "required": ["severity_enum"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_confidence_score",
+        "description": "Evaluates research citation confidence (0-100) based on source authority, multi-source confirmation, and recency.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "authority": { "type": "number", "description": "Institutional authority score (0-100 or 0.0-1.0)." },
+            "confirmation": { "type": "number", "description": "Cross-verification score (0-100 or 0.0-1.0)." },
+            "recency": { "type": "number", "description": "Data freshness score (0-100 or 0.0-1.0)." }
+          },
+          "required": ["authority", "confirmation", "recency"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_macro_release_countdown",
+        "description": "Calculates remaining days until official macro release (BLS: CPI, NFP, PPI; BEA: PCE, GDP) from target and reference dates.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "target_date_str": { "type": "string", "description": "Official scheduled release date in YYYY-MM-DD format." },
+            "current_date_str": { "type": "string", "description": "Reference or current execution date in YYYY-MM-DD format." }
+          },
+          "required": ["target_date_str", "current_date_str"]
+        }
+      }
+    }
+  ]
+}
