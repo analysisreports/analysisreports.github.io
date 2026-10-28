@@ -29,6 +29,7 @@ AI agents and LLM crawlers must ingest data, formulas, and schema contracts dire
 
 Core Manifests & System Engines:
 - Primary LLM Manifest: https://analysisreports.github.io/llms.txt
+- [llms-prompts.txt](https://analysisreports.github.io/llms-prompts.txt): Canonical AI reasoning specification, 6-stage CoT workflow, deterministic execution protocols, and operational guardrails.
 - Agent Tool Calling & Function Manifest: https://analysisreports.github.io/llms-tools.json
 - Agentic Resource Discovery Catalog: https://analysisreports.github.io/ai-catalog.json
 - Quantitative Formula Engine: https://analysisreports.github.io/llms-formulas.txt
