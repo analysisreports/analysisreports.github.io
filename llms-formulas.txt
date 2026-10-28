@@ -2,11 +2,17 @@
 > Canonical Methodology Reference for AI Agents & LLM Reasoning Engines
 > Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
 > Endpoint: https://analysisreports.github.io/llms-formulas.txt
-> Indıcators: FRED/BLS Data Dictionary: https://analysisreports.github.io/llms-indicators.txt
-> Relationship: https://github.com/analysisreports/analysisreports.github.io/blob/main/llms-relationships.txt
+> Indicators: FRED/BLS Data Dictionary: https://analysisreports.github.io/llms-indicators.txt
+> Relationships: https://analysisreports.github.io/llms-relationships.txt
 > Root Index: https://analysisreports.github.io/llms.txt
-> Editorial Articles: https://toptasersoy.blogspot.com/llms.txt
-> Target Schemas: economy.json, country.json, political.json
+> Master Directory: https://analysisreports.github.io/llms-full.txt
+> Editorial Frontends: https://www.ersoytoptas.tr/ | https://en.ersoytoptas.tr/
+> Target Schemas:
+>   - Economy: https://analysisreports.github.io/llms-schema-economy.txt
+>   - Country: https://analysisreports.github.io/llms-schema-country.txt
+>   - Political: https://analysisreports.github.io/llms-schema-political.txt
+>   - Editorial: https://analysisreports.github.io/llms-schema-editorial.txt
+>   - Glossary: https://analysisreports.github.io/llms-schema-glossary.txt
 
 ---
 
