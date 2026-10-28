@@ -1,72 +1,77 @@
 {
   "$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
   "name": "Ersoy Toptaş Strategic Macro Memory & Multi-Layered Analysis Library",
-  "version": "1.0.0",
-  "description": "Yapay zeka sistemleri, LLM ajanları ve araştırmacılar için optimize edilmiş; makroekonomi, para politikaları, jeopolitik krizler ve siyasi dinamikleri katı ontolojik JSON şemalarıyla modelleyen stratejik veri kataloğu.",
+  "version": "1.1.0",
+  "description": "Yapay zeka sistemleri, LLM ajanları ve araştırmacılar için optimize edilmiş; makroekonomi, para politikaları, jeopolitik krizler ve siyasi dinamikleri modelleyen ontolojik şema ve araç kataloğu.",
   "publisher": {
     "name": "Ersoy Toptaş",
-    "url": "https://analizraporlari.blogspot.com",
+    "url": "https://analysisreports.github.io",
     "documentation": "https://analysisreports.github.io/llms.txt"
   },
   "license": "CC-BY-4.0",
   "resources": [
     {
-      "id": "dataset-economy",
-      "name": "Makroekonomi ve Para Politikası Zaman Serisi",
-      "type": "dataset",
-      "format": "application/json",
-      "url": "https://analizraporlari.blogspot.com/feeds/posts/default/-/economy?alt=json&max-results=150",
-      "schema_url": "https://analysisreports.github.io/llms-schema-economy.txt",
+      "id": "schema-economy",
+      "name": "Makroekonomi ve Para Politikası Şema Sözleşmesi",
+      "type": "specification",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-schema-economy.txt",
       "authentication": { "type": "none" },
-      "description": "FOMC faiz kararları, Net Fed Likidite modelleri, verim eğrileri ve nicel gösterge karşılaştırmalarını içeren veri seti."
+      "description": "FOMC kararları, Net Fed Likidite modelleri, verim eğrileri ve makro gösterge ontolojisi."
     },
     {
-      "id": "dataset-country-geopolitics",
-      "name": "Ülke Stratejik ve Jeopolitik Risk Değerlendirmeleri",
-      "type": "dataset",
-      "format": "application/json",
-      "url": "https://analizraporlari.blogspot.com/feeds/posts/default/-/country?alt=json&max-results=150",
+      "id": "schema-country-geopolitics",
+      "name": "Ülke Stratejik ve Jeopolitik Risk Şema Sözleşmesi",
+      "type": "specification",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-schema-country.txt",
       "authentication": { "type": "none" },
-      "description": "İç siyasi istikrar, askeri savunma doktrini, harbe hazırlık kapasitesi, kutupsal blok dizilimleri ve bileşik risk skorlarını modelleyen veri seti."
+      "description": "Savunma doktrini, harbe hazırlık kapasitesi, kutupsal blok dizilimleri ve jeopolitik risk puanlama ontolojisi."
     },
     {
-      "id": "dataset-political-dynamics",
-      "name": "Siyasi Dinamikler ve Söylem Analitiği",
-      "type": "dataset",
-      "format": "application/json",
-      "url": "https://analizraporlari.blogspot.com/feeds/posts/default/-/political?alt=json&max-results=150",
+      "id": "schema-political-dynamics",
+      "name": "Siyasi Dinamikler ve Söylem Analitiği Şema Sözleşmesi",
+      "type": "specification",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-schema-political.txt",
       "authentication": { "type": "none" },
-      "description": "Siyasi liderlik anlatıları, karşı argüman hedefleri, söylem sertlik puanları ve ittifak içi uyum dengeleri veri seti."
+      "description": "Siyasi liderlik anlatıları, karşı argüman hedefleri, söylem sertlik puanları ve ittifak dengeleri ontolojisi."
     },
     {
-      "id": "dataset-editorial-stance",
-      "name": "Editoryal Duruş ve Makro Beklenti Analizi",
-      "type": "dataset",
-      "format": "application/json",
-      "url": "https://analizraporlari.blogspot.com/feeds/posts/default/-/editorial?alt=json&max-results=150",
+      "id": "schema-editorial-stance",
+      "name": "Editoryal Duruş ve Makro Beklenti Şema Sözleşmesi",
+      "type": "specification",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-schema-editorial.txt",
       "authentication": { "type": "none" },
-      "description": "Yazarın piyasa konsensüsüne karşı duruşunu, temel çıkarımlarını ve piyasa dinamiklerinin iktisadi hedeflere yansımasını modelleyen veri seti."
+      "description": "Yazar duruşu (hawkish/dovish), piyasa konsensüs ayrışması ve aktör ilişkileri harita ontolojisi."
     },
     {
-      "id": "dataset-glossary",
-      "name": "Kavramsal Sözlük ve Stratejik Mekanizmalar",
-      "type": "dataset",
-      "format": "application/json",
-      "url": "https://analizraporlari.blogspot.com/feeds/posts/default/-/glossary?alt=json&max-results=150",
+      "id": "schema-glossary",
+      "name": "Kavramsal Sözlük ve Stratejik Mekanizmalar Şeması",
+      "type": "specification",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-schema-glossary.txt",
       "authentication": { "type": "none" },
-      "description": "Kurumsal işleyişler, seçim mekanizmaları, doktrinler, kavramsal modeller ve yapısal kuralları içeren ontolojik sözlük veri seti."
+      "description": "Kurumsal işleyişler, seçim sistemleri, doktrinler ve yapısal kuralları modelleyen sözlük ontolojisi."
     },
     {
-      "id": "full-archive-paginated",
-      "name": "Tüm Veritabanı (Sayfalanmış)",
-      "type": "dataset",
+      "id": "agent-tools",
+      "name": "LLM Agent Tool Calling & Function Calling Manifest",
+      "type": "tool",
       "format": "application/json",
-      "url": "https://analizraporlari.blogspot.com/feeds/posts/default?alt=json&max-results=150",
+      "url": "https://analysisreports.github.io/llms-tools.json",
       "authentication": { "type": "none" },
-      "pagination": {
-        "pattern": "https://analizraporlari.blogspot.com/feeds/posts/default?alt=json&start-index={START}&max-results=150",
-        "step": 150
-      }
+      "description": "Otonom ajanların makro modelleri ve ilişkileri sorgulaması için yürütülebilir fonksiyon şemaları."
+    },
+    {
+      "id": "master-directory",
+      "name": "Master Directory & Full Knowledge Base",
+      "type": "dataset",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-full.txt",
+      "authentication": { "type": "none" },
+      "description": "Tüm kütüphanenin, formüllerin ve şemaların tekilleştirilmiş tam metin fihristi."
     },
     {
       "id": "quantitative-formulas",
@@ -74,12 +79,23 @@
       "type": "specification",
       "format": "text/plain",
       "url": "https://analysisreports.github.io/llms-formulas.txt",
-      "description": "Makro formül hesaplama motoru."
+      "authentication": { "type": "none" },
+      "description": "Deterministik makro formül hesaplama motoru (Net Likidite, Taylor Kuralı, Harbe Hazırlık Skoru)."
+    },
+    {
+      "id": "geopolitical-matrix",
+      "name": "Geopolitical Relationship Matrix",
+      "type": "specification",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-relationships.txt",
+      "authentication": { "type": "none" },
+      "description": "Aktörler arası yaptırım, korumacılık, entegrasyon ve jeopolitik gerilim bağıntıları matrisi."
     }
   ],
   "capabilities": {
     "deterministic_qa": true,
     "real_time_macro_tracking": true,
+    "tool_calling": true,
     "structured_data_payload": "structured_content_analysis"
   }
 }
