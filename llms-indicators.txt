@@ -124,3 +124,14 @@ Aggregation Alignment Rule:
 61. DEXUSEU (U.S. Dollars to Euro Spot Exchange Rate) | Source: Board of Governors / FRED | Freq: d | Units: USD per EUR | Trans: lin
 62. DEXJPUS (Japanese Yen to U.S. Dollar Spot Exchange Rate) | Source: Board of Governors / FRED | Freq: d | Units: JPY per USD | Trans: lin
 63. SOX (PHLX Semiconductor Index / Taiwan Supply Chain Sensitivity) | Source: NASDAQ | Freq: d | Units: Index | Trans: lin
+
+### 2.12. Advanced Macro, Rate Friction & Energy Indicators (Models 25.2 - 25.9)
+64. STICKYCPIM157SFRBATL (Sticky CPI Less Food & Energy) | Source: Atlanta Fed / FRED | Freq: m | Units: Percent (%) | Trans: pc1 (YoY)
+65. FLEXCPIM157SFRBATL (Flexible CPI Less Food & Energy) | Source: Atlanta Fed / FRED | Freq: m | Units: Percent (%) | Trans: pc1 (YoY)
+66. MOVE (ICE BofA US Treasury Option Volatility Estimate) | Source: ICE / Merrill Lynch | Freq: d | Units: Index | Trans: lin
+67. SOFR (Secured Overnight Financing Rate) | Source: NY Fed / FRED | Freq: d | Units: Percent (%) | Mult for Bps: 100.0
+68. EFFR (Effective Federal Funds Rate) | Source: NY Fed / FRED | Freq: d | Units: Percent (%) | Mult for Bps: 100.0
+69. GOLDPMGBD228NLBM (Gold Fixing Price 3:00 P.M. London time) | Source: LBMA / FRED | Freq: d | Units: USD per Troy Ounce | Trans: pc1 (YoY)
+70. OVXCLS (CBOE Crude Oil Volatility Index) | Source: CBOE / FRED | Freq: d | Units: Index | Trans: lin
+71. DHHNGSP (Henry Hub Natural Gas Spot Price) | Source: EIA / FRED | Freq: d | Units: USD per Million BTU | Trans: lin
+72. GASREGW (US Regular All Formulations Retail Gasoline Prices) | Source: EIA / FRED | Freq: w | Units: USD per Gallon | Trans: lin
