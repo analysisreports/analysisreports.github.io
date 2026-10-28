@@ -812,4 +812,25 @@
       "required": ["wti_price", "natgas_price"]
     }
   }
+},
+{
+  "type": "function",
+  "function": {
+    "name": "calculate_gasoline_crude_crack_spread",
+    "description": "Calculates the retail gasoline crack spread per barrel equivalent ((Gasoline * 42) - WTI) to detect refinery bottlenecks or margin collapses.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "gas_gal_price": {
+          "type": "number",
+          "description": "US Regular All Formulations Retail Gasoline Price in dollars per gallon (FRED: GASREGW)."
+        },
+        "wti_barrel_price": {
+          "type": "number",
+          "description": "Crude Oil Prices: West Texas Intermediate in dollars per barrel (FRED: DCOILWTICO)."
+        }
+      },
+      "required": ["gas_gal_price", "wti_barrel_price"]
+    }
+  }
 }
