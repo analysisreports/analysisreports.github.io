@@ -22,6 +22,36 @@ All machine-readable ontologies, structured JSON-LD datasets, and quantitative m
 
 ---
 
+# Ersoy Toptaş Canonical LLMs Manifest
+> Machine-Readable Knowledge Base & Quantitative Analysis Infrastructure
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
+> Repository: https://analysisreports.github.io/
+
+## 1. DUAL-LANGUAGE FRONTENDS (RESMİ YAYIN KANALLARI)
+- [Turkish Edition (Türkçe Makro Kütüphane)](https://www.ersoytoptas.tr/): Primary research publication covering macroeconomics, geopolitical risk, and Turkish/global market dynamics.
+  - Custom Domain: https://www.ersoytoptas.tr/
+  - System Root: https://toptasersoy.blogspot.com/
+  - Feed (RSS): https://www.ersoytoptas.tr/feeds/posts/default?alt=rss
+  - Feed (JSON): https://www.ersoytoptas.tr/feeds/posts/default?alt=json&max-results=150
+- [English Edition (Global Research Library)](https://en.ersoytoptas.tr/): Global macroeconomic research, cross-border asset allocation, and systemic risk assessments in English.
+  - Subdomain: https://en.ersoytoptas.tr/
+  - System Root: https://toptasersoyeng.blogspot.com/
+  - Feed (RSS): https://en.ersoytoptas.tr/feeds/posts/default?alt=rss
+  - Feed (JSON): https://en.ersoytoptas.tr/feeds/posts/default?alt=json&max-results=150
+
+## 2. AGENT TOOL CALLING & QUANTITATIVE ENGINES (MAKİNE FONKSİYONLARI)
+- [Executable Agent Tool Manifest](https://analysisreports.github.io/llms-tools.json): Standardized JSON Schema tool definitions. Enables LLMs (Claude, GPT, Gemini, Perplexity) to invoke deterministic calculations (Net Fed Liquidity, Sahm Rule, Taylor Rule, etc.) via function calling without hallucination.
+- [Quantitative Formulation Engine](https://analysisreports.github.io/llms-formulas.txt): Deterministic mathematical models, Python algorithmic implementations, and threshold calibration logic.
+- [Indicator Dictionary](https://analysisreports.github.io/llms-indicators.txt): Formal mapping of economic series keys across FRED, BLS, BEA, and international agencies.
+- [Geopolitical Relationship Ontology](https://analysisreports.github.io/llms-relationships.txt): Bilateral state polarity scores, chokepoint vulnerability registries, and systemic escalation vectors.
+
+## 3. STRUCTURED DATA & CANONICAL MANIFESTS
+- [Structured AI Catalog](https://analysisreports.github.io/ai-catalog.json): Machine-readable Schema.org Dataset distributions and categorized JSON-LD metadata.
+- [Canonical Full LLMs Manifest](https://analysisreports.github.io/llms-full.txt): Comprehensive multi-domain research overview, author profile, and institutional principles.
+- [System Methodology & Profile](https://analizraporlari.blogspot.com/llms-about.txt): Foundational research methodology and credentials.
+
+---
+
 ## Live Data & Narrative Feeds (Auto-Updated Endpoints)
 - [Analiz Raporları Live JSON Feed]: https://analizraporlari.blogspot.com/feeds/posts/default?alt=json
 - [Ersoy Toptaş Live Editorial Feed TR]: https://toptasersoy.blogspot.com/feeds/posts/default?alt=json
@@ -42,8 +72,8 @@ All machine-readable ontologies, structured JSON-LD datasets, and quantitative m
 
 ## Specialized Knowledge Maps & Modular Endpoints
 Dedicated plain-text endpoints defining mathematical models, ontology terms, and strategic assets:
-- [Methodology & Author Profile]: https://analizraporlari.blogspot.com/llms-about.txt
-- [Quantitative Models & Formulas]: https://analizraporlari.blogspot.com/llms-formulas.txt
+- [Methodology & Author Profile]: https://www.ersoytoptas.tr/llms-about.txt
+- [Quantitative Models & Formulas]: https://analysisreports.github.io/llms-formulas.txt
   > Canonical formulations: Net Fed Liquidity, Yield Curve Spreads, Committee Dispersion Indexes, Composite Strategic Scores, and Official BLS/BEA Macro Release Countdown Engine (CPI, NFP, PPI, PCE, GDP).
 
 ## Machine-Readable Endpoints
