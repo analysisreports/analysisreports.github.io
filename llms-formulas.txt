@@ -1644,6 +1644,39 @@ def repo_liquidity_friction_spread(sofr_val, effr_val):
 
 ---
 
+### 25.6. ALTIN - REEL GETİRİ AYRIŞMASI VE DE-DOLARİZASYON ANOMALİ MOTORU (GOLD / REAL YIELD DEBASEMENT GAUGE)
+- Purpose: Reel faizler ile altın fiyatları arasındaki geleneksel ters korelasyonun kopmasını ölçerek küresel de-dolarizasyon baskısını ve itibarî para birimlerine yönelik sistemik güven kaybını tespit eder.
+- Data Series Keys:
+  - FRED: DFII10 (10-Year Treasury Inflation-Indexed Security, Constant Maturity - Real Rate Percent)
+  - FRED / LBMA: GOLDPMGBD228NLBM (Gold Fixing Price 3:00 P.M. London time - YoY % Change)
+- Formula: Anomaly_Signal = f(Real_Yield_10Y, Gold_YoY_Pct)
+- Machine-Executable Logic (Python):
+def gold_real_yield_debasement_gauge(real_yield_10y, gold_yoy_pct):
+    if any(v is None or isinstance(v, bool) for v in (real_yield_10y, gold_yoy_pct)):
+        return None
+    try:
+        f_ry = float(real_yield_10y)
+        f_gy = float(gold_yoy_pct)
+        if not (math.isfinite(f_ry) and math.isfinite(f_gy)):
+            return None
+        ry_val = round(f_ry, 2)
+        gy_val = round(f_gy, 2)
+        if ry_val > 1.5 and gy_val > 15.0:
+            status = "DEBALANCING_DEDOLLARIZATION_PANIC"
+        elif ry_val <= 0.0 and gy_val > 0.0:
+            status = "ACCOMMODATIVE_GOLD_BULL"
+        else:
+            status = "TRADITIONAL_REAL_RATE_DOMINANCE"
+        return {"real_yield_10y": ry_val, "gold_yoy_pct": gy_val, "status": status}
+    except (TypeError, ValueError):
+        return None
+- Interpretation:
+  - Real_Yield > 1.5% VE Gold_YoY > 15.0% : DEBALANCING_DEDOLLARIZATION_PANIC (Sistemik Güven Kaybı / Jeopolitik De-Dolarizasyon / İtibari Para İtimat Çöküşü / Doğu Blok Rezerv Kayması)
+  - Real_Yield <= 0.0% VE Gold_YoY > 0.0% : ACCOMMODATIVE_GOLD_BULL (Klasik Negatif Reel Faiz Kaynaklı Altın Boğası / Parasal Genişleme Desteği)
+  - Aksi halde : TRADITIONAL_REAL_RATE_DOMINANCE (Geleneksel Piyasa Dengesi / Reel Faiz Oranının Altın Üzerindeki Baskı Dominansı)
+
+---
+
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
 import math
