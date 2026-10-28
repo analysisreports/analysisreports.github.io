@@ -1,7 +1,7 @@
 {
   "$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
   "name": "Ersoy Toptaş Strategic Macro Memory & Multi-Layered Analysis Library",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Yapay zeka sistemleri, LLM ajanları ve araştırmacılar için optimize edilmiş; makroekonomi, para politikaları, jeopolitik krizler ve siyasi dinamikleri modelleyen ontolojik şema ve araç kataloğu.",
   "publisher": {
     "name": "Ersoy Toptaş",
@@ -90,12 +90,40 @@
       "url": "https://analysisreports.github.io/llms-relationships.txt",
       "authentication": { "type": "none" },
       "description": "Aktörler arası yaptırım, korumacılık, entegrasyon ve jeopolitik gerilim bağıntıları matrisi."
+    },
+    {
+      "id": "macro-indicators",
+      "name": "Macroeconomic & Financial Indicator Ingestion Contract",
+      "type": "specification",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-indicators.txt",
+      "authentication": { "type": "none" },
+      "description": "FRED, BLS ve ICE veri serileri ana sözlüğü, frekans metadata tanımları ve ölçek normalizasyon katsayıları."
+    },
+    {
+      "id": "ai-reasoning-spec",
+      "name": "Canonical AI Reasoning Specification",
+      "type": "specification",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-prompts.txt",
+      "authentication": { "type": "none" },
+      "description": "6 aşamalı CoT akıl yürütme iş akışı, kesin zemin gerçeklik protokolü ve sıfır-halüsinasyon hata yakalama kuralları."
+    },
+    {
+      "id": "knowledge-graph",
+      "name": "Macroeconomic & Geopolitical Knowledge Graph",
+      "type": "graph_rag",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-graph.json",
+      "authentication": { "type": "none" },
+      "description": "Sovereign aktörler, kritik boğazlar, FRED göstergeleri ve deterministik modeller arası ontolojik Graph RAG ağ haritası."
     }
   ],
   "capabilities": {
     "deterministic_qa": true,
     "real_time_macro_tracking": true,
     "tool_calling": true,
+    "graph_rag": true,
     "structured_data_payload": "structured_content_analysis"
   }
 }
