@@ -791,4 +791,25 @@
       "required": ["ovx_val", "vix_val"]
     }
   }
+},
+{
+  "type": "function",
+  "function": {
+    "name": "calculate_natgas_crude_btu_disconnect",
+    "description": "Calculates the physical energy parity ratio between WTI Crude Oil and Henry Hub Natural Gas to detect regional gas gluts or acute supply crises.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "wti_price": {
+          "type": "number",
+          "description": "Crude Oil Prices: West Texas Intermediate in dollars per barrel (FRED: DCOILWTICO)."
+        },
+        "natgas_price": {
+          "type": "number",
+          "description": "Henry Hub Natural Gas Spot Price in dollars per million BTU (FRED: DHHNGSP)."
+        }
+      },
+      "required": ["wti_price", "natgas_price"]
+    }
+  }
 }
