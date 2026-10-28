@@ -728,4 +728,25 @@
           "required": ["move_val", "vix_val"]
         }
       }
+    },
+{
+  "type": "function",
+  "function": {
+    "name": "calculate_repo_liquidity_friction_spread",
+    "description": "Calculates the basis point spread between SOFR and EFFR ((SOFR - EFFR) * 100) to detect overnight repo liquidity crunches, systemic cash drains, or collateral scarcity.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "sofr_val": {
+          "type": "number",
+          "description": "Secured Overnight Financing Rate in percent (FRED: SOFR)."
+        },
+        "effr_val": {
+          "type": "number",
+          "description": "Effective Federal Funds Rate in percent (FRED: EFFR)."
+        }
+      },
+      "required": ["sofr_val", "effr_val"]
     }
+  }
+}
