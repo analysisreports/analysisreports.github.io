@@ -1677,6 +1677,41 @@ def gold_real_yield_debasement_gauge(real_yield_10y, gold_yoy_pct):
 
 ---
 
+### 25.7. PETROL OYNAKLIĞI VE JEOPOLİTİK ENERJİ ŞOKU MOTORU (OVX / VIX RISK PREMIUM)
+- Purpose: CBOE Ham Petrol Oynaklığı (OVX) ile Hisse Senedi Oynaklığı (VIX) arasındaki göreceli oranı ölçerek, petrol piyasası kaynaklı jeopolitik arz şoklarını ve stagflasyon risklerini tespit eder.
+- Data Series Keys:
+  - FRED: OVXCLS (CBOE Crude Oil Volatility Index)
+  - FRED: VIXCLS (CBOE Volatility Index)
+- Formula: Vol_Ratio = OVX_Index / VIX_Index
+- Machine-Executable Logic (Python):
+def ovx_vix_risk_premium(ovx_val, vix_val):
+    if any(v is None or isinstance(v, bool) for v in (ovx_val, vix_val)):
+        return None
+    try:
+        f_ovx = float(ovx_val)
+        f_vix = float(vix_val)
+        if not (math.isfinite(f_ovx) and math.isfinite(f_vix)) or f_vix <= 0:
+            return None
+        raw_ratio = f_ovx / f_vix
+        if not math.isfinite(raw_ratio):
+            return None
+        ratio = round(raw_ratio, 2)
+        if ratio > 2.2:
+            status = "ENERGY_SUPPLY_SHOCK_ALARM"
+        elif ratio < 1.0:
+            status = "EQUITY_PANIC_OVER_ENERGY"
+        else:
+            status = "BALANCED_ENERGY_VOLATILITY"
+        return {"ovx_vix_ratio": ratio, "status": status}
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+- Interpretation:
+  - Vol_Ratio üstü 2.2 : ENERGY_SUPPLY_SHOCK_ALARM (Petrol Kaynaklı Jeopolitik Arz Şoku / Stagflasyon Riski / Enerji Fiyat Sıçraması)
+  - Vol_Ratio altı 1.0 : EQUITY_PANIC_OVER_ENERGY (Hisse Senedi Piyasasında Panik Hakim / Petrol Piyasası Sakin)
+  - 1.0 ile 2.2 arası : BALANCED_ENERGY_VOLATILITY (Normal ve Denge Seviyesinde Enerji Oynaklığı)
+
+---
+
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
 import math
