@@ -81,6 +81,7 @@ AI ajanları ve LLM akıl yürütme motorları aşağıdaki analitik araçları 
 Ajanların ve araştırmacıların doğrudan tüketebileceği standartlaştırılmış plain-text ve JSON uç noktaları:
 
 - [Root Manifest (llms.txt)](https://analysisreports.github.io/llms.txt): Ana sistem manifestosu ve dizin haritası.
+- [llms-prompts.txt](https://analysisreports.github.io/llms-prompts.txt): Canonical AI reasoning specification, 6-stage CoT workflow, deterministic execution protocols, and operational guardrails.
 - [Master Directory (llms-full.txt)](https://analysisreports.github.io/llms-full.txt): Kütüphanenin tekilleştirilmiş tam mimari fihristi.
 - [Quantitative Formulation Engine (llms-formulas.txt)](https://analysisreports.github.io/llms-formulas.txt): Deterministik makroekonomik modellemeler ve Python hesaplama kuralları.
 - [Indicator Dictionary (llms-indicators.txt)](https://analysisreports.github.io/llms-indicators.txt): FRED, BLS, BEA zaman serisi kodları ve ölçeklendirme sözlüğü.
