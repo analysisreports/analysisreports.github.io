@@ -183,9 +183,10 @@ Every economy entry embeds a clean JSON object inside its post content:
     },
     "metadata": {
       "analyst": "Ersoy Toptaş",
-      "methodology": "https://analizraporlari.blogspot.com/llms.txt",
-      "formulas_engine": "https://analizraporlari.blogspot.com/llms-formulas.txt",
-      "canonical_source": "https://analizraporlari.blogspot.com",
+      "methodology": "https://analysisreports.github.io/llms.txt",
+      "ai-prompts :"https://analysisreports.github.io/llms-prompts.txt",
+      "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
+      "canonical_source": "https://analysisreports.github.io",
       "license": "CC BY 4.0"
     }
   }
