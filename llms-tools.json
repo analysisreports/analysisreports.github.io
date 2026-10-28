@@ -749,4 +749,25 @@
       "required": ["sofr_val", "effr_val"]
     }
   }
+},
+{
+  "type": "function",
+  "function": {
+    "name": "calculate_gold_real_yield_debasement_gauge",
+    "description": "Evaluates disconnect between 10Y real yields and gold YoY growth to detect structural de-dollarization panic, debasement anomalies, or traditional rate dominance.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "real_yield_10y": {
+          "type": "number",
+          "description": "10-Year TIPS Real Rate in percent (FRED: DFII10)."
+        },
+        "gold_yoy_pct": {
+          "type": "number",
+          "description": "Gold Fixing Price London time YoY % change (FRED/LBMA: GOLDPMGBD228NLBM)."
+        }
+      },
+      "required": ["real_yield_10y", "gold_yoy_pct"]
+    }
+  }
 }
