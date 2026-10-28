@@ -1,0 +1,785 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Ersoy Toptaş Macroeconomic & Geopolitical Knowledge Graph",
+  "version": "2026-Q4",
+  "description": "Graph RAG ontolojik ağ yapısı: Aktörler, Jeopolitik Boğazlar, FRED/BLS Göstergeleri, Deterministik Modeller ve Manifestolar arası Node & Edge Haritası.",
+  "author": "Ersoy Toptaş",
+  "license": "CC-BY-4.0",
+  "repository": "https://analysisreports.github.io/",
+  "graph_metadata": {
+    "node_categories": [
+      "ACTOR",
+      "CHOKEPOINT",
+      "INDICATOR",
+      "MODEL",
+      "ENDPOINT_SCHEMA"
+    ],
+    "edge_types": [
+      "POLARITY_COUPLING",
+      "PATRON_COUPLING",
+      "TRIGGERS_INDICATOR",
+      "EXECUTES_MODEL",
+      "BRIDGES_TO_MODEL",
+      "INGESTS_SERIES",
+      "INDEXES"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "ACTOR_US",
+      "label": "United States",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "USD",
+        "economic_coupling_cn": 0.65,
+        "economic_coupling_ru": 0.1
+      }
+    },
+    {
+      "id": "ACTOR_RU",
+      "label": "Russian Federation",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "RUB",
+        "primary_friction": "EASTERN_EUROPE_BLACK_SEA"
+      }
+    },
+    {
+      "id": "ACTOR_CN",
+      "label": "People's Republic of China",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "CNY",
+        "primary_friction": "TAIWAN_STRAIT_TECH_EXPORTS"
+      }
+    },
+    {
+      "id": "ACTOR_IL",
+      "label": "State of Israel",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "primary_friction": "LEVANT_PERSIAN_GULF_NUCLEAR"
+      }
+    },
+    {
+      "id": "ACTOR_IR",
+      "label": "Islamic Republic of Iran",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "chokepoint_control": "HORMUZ_STRAIT",
+        "proxy_network": [
+          "YE-HOUTHI",
+          "LB-HEZB"
+        ]
+      }
+    },
+    {
+      "id": "ACTOR_TR",
+      "label": "Republic of Türkiye",
+      "category": "ACTOR",
+      "type": "Sovereign Arbitrageur",
+      "attributes": {
+        "chokepoint_control": "TURKISH_STRAITS",
+        "montreux_enforcer": true
+      }
+    },
+    {
+      "id": "ACTOR_YE_HOUTHI",
+      "label": "Ansarullah / Yemen Houthis",
+      "category": "ACTOR",
+      "type": "Non-State Proxy",
+      "attributes": {
+        "patron": "ACTOR_IR",
+        "patron_coupling": 0.85,
+        "theater": "BAB_EL_MANDEB_RED_SEA"
+      }
+    },
+    {
+      "id": "CHOKE_HORMUZ",
+      "label": "Hormuz Strait",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "26°34'N 56°15'E",
+        "volume": "~20-21 Million bpd (20% of global petroleum)",
+        "disruption_severity": "CATASTROPHIC",
+        "severity_weight": 1.0
+      }
+    },
+    {
+      "id": "CHOKE_BAB_EL_MANDEB",
+      "label": "Bab el-Mandeb & Red Sea",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "12°35'N 43°20'E",
+        "volume": "~12% of global trade",
+        "disruption_severity": "HIGH",
+        "severity_weight": 0.7
+      }
+    },
+    {
+      "id": "CHOKE_MALACCA",
+      "label": "Malacca Strait",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "1°26'N 103°00'E",
+        "volume": "~80% of China's crude imports",
+        "disruption_severity": "CATASTROPHIC",
+        "severity_weight": 1.0
+      }
+    },
+    {
+      "id": "CHOKE_TAIWAN",
+      "label": "Taiwan Strait",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "24°00'N 119°00'E",
+        "vulnerability": "Advanced Semiconductor Supply Shock",
+        "disruption_severity": "CATASTROPHIC",
+        "severity_weight": 1.0
+      }
+    },
+    {
+      "id": "CORRIDOR_ZANGEZUR",
+      "label": "Zangezur Corridor Node",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "39°10'N 46°25'E",
+        "type": "Terrestrial Resource Gateway",
+        "disruption_severity": "HIGH",
+        "severity_weight": 0.7
+      }
+    },
+    {
+      "id": "IND_WALCL",
+      "label": "Fed Total Assets (WALCL)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "Millions USD",
+        "trans": "lin",
+        "mult": 1.0
+      }
+    },
+    {
+      "id": "IND_WTREGEN",
+      "label": "Treasury General Account (WTREGEN)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "Millions USD",
+        "trans": "lin",
+        "mult": 1.0
+      }
+    },
+    {
+      "id": "IND_RRPONTSYD",
+      "label": "Overnight Reverse Repo (RRPONTSYD)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "NY Fed / FRED",
+        "units": "Billions USD",
+        "trans": "lin",
+        "mult": 1000.0
+      }
+    },
+    {
+      "id": "IND_SOFR",
+      "label": "Secured Overnight Financing Rate (SOFR)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "NY Fed / FRED",
+        "units": "Percent (%)",
+        "mult_for_bps": 100.0
+      }
+    },
+    {
+      "id": "IND_EFFR",
+      "label": "Effective Federal Funds Rate (EFFR)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "NY Fed / FRED",
+        "units": "Percent (%)",
+        "mult_for_bps": 100.0
+      }
+    },
+    {
+      "id": "IND_MOVE",
+      "label": "ICE BofA US Treasury Volatility (MOVE)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "ICE / FRED",
+        "units": "Index",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_VIXCLS",
+      "label": "CBOE Volatility Index (VIXCLS)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "CBOE / FRED",
+        "units": "Index",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_GSCPI",
+      "label": "NY Fed Global Supply Chain Pressure Index (GSCPI)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "NY Fed / FRED",
+        "units": "Standard Deviations",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_STICKY_CPI",
+      "label": "Sticky CPI Less Food & Energy (STICKYCPIM157SFRBATL)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Atlanta Fed / FRED",
+        "units": "Percent (%)",
+        "trans": "pc1"
+      }
+    },
+    {
+      "id": "IND_FLEX_CPI",
+      "label": "Flexible CPI Less Food & Energy (FLEXCPIM157SFRBATL)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Atlanta Fed / FRED",
+        "units": "Percent (%)",
+        "trans": "pc1"
+      }
+    },
+    {
+      "id": "IND_OVXCLS",
+      "label": "CBOE Crude Oil Volatility Index (OVXCLS)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "CBOE / FRED",
+        "units": "Index",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_DCOILWTICO",
+      "label": "Crude Oil WTI (DCOILWTICO)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA / FRED",
+        "units": "USD per Barrel",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_DHHNGSP",
+      "label": "Henry Hub Natural Gas Spot Price (DHHNGSP)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA / FRED",
+        "units": "USD per MMBtu",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_GASREGW",
+      "label": "US Regular Retail Gasoline Price (GASREGW)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA / FRED",
+        "units": "USD per Gallon",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_GOLD",
+      "label": "Gold Fixing Price London (GOLDPMGBD228NLBM)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "LBMA / FRED",
+        "units": "USD per Troy Ounce",
+        "trans": "pc1"
+      }
+    },
+    {
+      "id": "IND_DFII10",
+      "label": "10-Year TIPS Real Rate (DFII10)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "U.S. Treasury / FRED",
+        "units": "Percent (%)"
+      }
+    },
+    {
+      "id": "MODEL_25.1",
+      "label": "Dynamic Polarity & Regime Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "dynamic_polarity_engine",
+        "formula": "P_net = min(1.0, max(-1.0, P_baseline + dynamic_delta))",
+        "regimes": [
+          "ALLIANCE",
+          "STRATEGIC_ALIGNMENT",
+          "TACTICAL_COOPERATION",
+          "NEUTRAL",
+          "STRATEGIC_FRICTION",
+          "PROXY_WAR",
+          "KINETIC_WAR"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.2",
+      "label": "Sticky vs. Flexible CPI Spread Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "sticky_flexible_cpi_spread",
+        "formula": "Sticky_Impulse = Sticky_CPI_YoY - Flexible_CPI_YoY",
+        "status_enums": [
+          "STRUCTURAL_INFLATION_TRAP",
+          "TRANSITORY_INFLATION_SURGE",
+          "BALANCED_DISINFLATION_PATH"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.3",
+      "label": "NY Fed GSCPI Logistics Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "global_supply_chain_pressure",
+        "formula": "GSCPI_ZScore = GSCPI_Value",
+        "status_enums": [
+          "SUPPLY_CHAIN_SHOCK",
+          "LOGISTICS_DEFLATION_SLACK",
+          "NORMALIZED_GLOBAL_TRADE"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.4",
+      "label": "MOVE / VIX Disconnect Ratio Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "move_vix_disconnect_ratio",
+        "formula": "Vol_Disconnect_Ratio = MOVE_Index / VIX_Index",
+        "status_enums": [
+          "RATE_RISK_MISPRICING_ALARM",
+          "EQUITY_PANIC_DOMINANCE",
+          "COHERENT_MARKET_VOLATILITY"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.5",
+      "label": "Repo Liquidity Friction Spread Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "repo_liquidity_friction_spread",
+        "formula": "Repo_Friction_bps = (SOFR - EFFR) * 100",
+        "status_enums": [
+          "REPO_MARKET_LIQUIDITY_CRUNCH",
+          "SYSTEMIC_CASH_DRAIN_WARNING",
+          "COLLATERAL_SCARCITY_GLUT",
+          "HEALTHY_MONETARY_TRANSMISSION"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.6",
+      "label": "Gold / Real Yield Debasement Gauge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "gold_real_yield_debasement_gauge",
+        "formula": "f(Real_Yield_10Y, Gold_YoY_Pct)",
+        "status_enums": [
+          "DEBALANCING_DEDOLLARIZATION_PANIC",
+          "ACCOMMODATIVE_GOLD_BULL",
+          "TRADITIONAL_REAL_RATE_DOMINANCE"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.7",
+      "label": "OVX / VIX Geopolitical Energy Shock Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "ovx_vix_risk_premium",
+        "formula": "Vol_Ratio = OVX_Index / VIX_Index",
+        "status_enums": [
+          "ENERGY_SUPPLY_SHOCK_ALARM",
+          "EQUITY_PANIC_OVER_ENERGY",
+          "BALANCED_ENERGY_VOLATILITY"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.8",
+      "label": "NatGas / Crude Oil BTU Disconnect Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "natgas_crude_btu_disconnect",
+        "formula": "BTU_Disconnect_Ratio = WTI_Price / NatGas_Price",
+        "status_enums": [
+          "NATGAS_CRISIS_BLACKOUT_RISK",
+          "NATGAS_GLUT_ENERGY_CHEAP",
+          "ENERGY_PARITY_EQUILIBRIUM"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.9",
+      "label": "Gasoline / Crude Crack Spread Impulse Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "gasoline_crude_crack_spread",
+        "formula": "Crack_Spread_USD = (Gasoline_Gallon_Price * 42) - WTI_Barrel_Price",
+        "status_enums": [
+          "REFINERY_BOTTLENECK_CRUNCH",
+          "REFINING_MARGIN_COLLAPSE",
+          "NORMAL_REFINING_MARGIN"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_28.3",
+      "label": "Chokepoint Severity Multiplier Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "chokepoint_severity_multiplier",
+        "formula": "Disruption_Weight = SEVERITY_WEIGHT_MAP[severity_enum]",
+        "weight_map": {
+          "CATASTROPHIC": 1.0,
+          "HIGH": 0.7,
+          "MODERATE-HIGH": 0.45,
+          "MODERATE": 0.2
+        }
+      }
+    },
+    {
+      "id": "MODEL_28.4",
+      "label": "Chokepoint Macro Transmission Bridge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "chokepoint_transmission_bridge",
+        "formula": "Spillover_Score = min(100.0, (Disruption_Weight * 70.0) + (Friction_Factor * 30.0))",
+        "status_enums": [
+          "CRITICAL_SYSTEMIC_SHOCK",
+          "HIGH_SPILLOVER",
+          "MODERATE_FRICTION",
+          "LOCALIZED_IMPACT"
+        ]
+      }
+    },
+    {
+      "id": "EP_LLMS_TXT",
+      "label": "Root Manifest (llms.txt)",
+      "category": "ENDPOINT_SCHEMA",
+      "attributes": {
+        "url": "https://analysisreports.github.io/llms.txt",
+        "role": "Master Directory & Knowledge Architecture"
+      }
+    },
+    {
+      "id": "EP_FORMULAS",
+      "label": "Quantitative Formulas Engine (llms-formulas.txt)",
+      "category": "ENDPOINT_SCHEMA",
+      "attributes": {
+        "url": "https://analysisreports.github.io/llms-formulas.txt",
+        "role": "Deterministic Python Model Rules"
+      }
+    },
+    {
+      "id": "EP_INDICATORS",
+      "label": "Data Dictionary & Ingestion Contract (llms-indicators.txt)",
+      "category": "ENDPOINT_SCHEMA",
+      "attributes": {
+        "url": "https://analysisreports.github.io/llms-indicators.txt",
+        "role": "Series Scale Normalization Dictionary"
+      }
+    },
+    {
+      "id": "EP_RELATIONSHIPS",
+      "label": "Geopolitical Relationship Matrix (llms-relationships.txt)",
+      "category": "ENDPOINT_SCHEMA",
+      "attributes": {
+        "url": "https://analysisreports.github.io/llms-relationships.txt",
+        "role": "Sovereign Baselines & Transmission Vectors"
+      }
+    },
+    {
+      "id": "EP_TOOLS_JSON",
+      "label": "Executable Agent Tool Manifest (llms-tools.json)",
+      "category": "ENDPOINT_SCHEMA",
+      "attributes": {
+        "url": "https://analysisreports.github.io/llms-tools.json",
+        "role": "JSON Schema Function Calling Definitions"
+      }
+    },
+    {
+      "id": "EP_PROMPTS_TXT",
+      "label": "Canonical AI Reasoning Specification (llms-prompts.txt)",
+      "category": "ENDPOINT_SCHEMA",
+      "attributes": {
+        "url": "https://analysisreports.github.io/llms-prompts.txt",
+        "role": "6-Stage CoT & Guardrail Instructions"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_RU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.85,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_CN",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.65,
+      "regime": "STRATEGIC_COMPETITION"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ACTOR_CN",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.75,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "ACTOR_IL",
+      "target": "ACTOR_IR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.95,
+      "regime": "PROXY_WAR / KINETIC_STANDOFF"
+    },
+    {
+      "source": "ACTOR_IR",
+      "target": "ACTOR_YE_HOUTHI",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 0.85,
+      "role": "Proxy Supply & Targeting"
+    },
+    {
+      "source": "ACTOR_TR",
+      "target": "ACTOR_RU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.15,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "ACTOR_TR",
+      "target": "ACTOR_US",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.25,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "CHOKE_HORMUZ",
+      "target": "IND_DCOILWTICO",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "CRUDE_PRICE_SHOCK"
+    },
+    {
+      "source": "CHOKE_HORMUZ",
+      "target": "IND_OVXCLS",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "OIL_VOLATILITY_SPIKE"
+    },
+    {
+      "source": "CHOKE_HORMUZ",
+      "target": "IND_GSCPI",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "GLOBAL_LOGISTICS_STRESS"
+    },
+    {
+      "source": "CHOKE_HORMUZ",
+      "target": "IND_SOFR",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "FUNDING_FLIGHT_TO_SAFETY"
+    },
+    {
+      "source": "CHOKE_HORMUZ",
+      "target": "IND_GOLD",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "SAFE_HAVEN_DEMAND"
+    },
+    {
+      "source": "CHOKE_BAB_EL_MANDEB",
+      "target": "IND_GSCPI",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "CAPE_REROUTING_DELAY"
+    },
+    {
+      "source": "CHOKE_BAB_EL_MANDEB",
+      "target": "IND_OVXCLS",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "ENERGY_FREIGHT_RISK_PREMIUM"
+    },
+    {
+      "source": "CHOKE_BAB_EL_MANDEB",
+      "target": "IND_GASREGW",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "REFINED_FUEL_RETAIL_PASS_THROUGH"
+    },
+    {
+      "source": "CHOKE_MALACCA",
+      "target": "IND_DCOILWTICO",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "ASIAN_CRUDE_IMPORT_DISRUPTION"
+    },
+    {
+      "source": "CHOKE_TAIWAN",
+      "target": "IND_GSCPI",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "TECH_LOGISTICS_BOTTLENECK"
+    },
+    {
+      "source": "CORRIDOR_ZANGEZUR",
+      "target": "IND_DHHNGSP",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "CASPIAN_GAS_FLOW_FRICTION"
+    },
+    {
+      "source": "IND_STICKY_CPI",
+      "target": "MODEL_25.2",
+      "type": "INGESTS_SERIES",
+      "role": "sticky_val"
+    },
+    {
+      "source": "IND_FLEX_CPI",
+      "target": "MODEL_25.2",
+      "type": "INGESTS_SERIES",
+      "role": "flex_val"
+    },
+    {
+      "source": "IND_SOFR",
+      "target": "MODEL_25.5",
+      "type": "INGESTS_SERIES",
+      "role": "sofr_val"
+    },
+    {
+      "source": "IND_EFFR",
+      "target": "MODEL_25.5",
+      "type": "INGESTS_SERIES",
+      "role": "effr_val"
+    },
+    {
+      "source": "IND_MOVE",
+      "target": "MODEL_25.4",
+      "type": "INGESTS_SERIES",
+      "role": "move_val"
+    },
+    {
+      "source": "IND_VIXCLS",
+      "target": "MODEL_25.4",
+      "type": "INGESTS_SERIES",
+      "role": "vix_val"
+    },
+    {
+      "source": "IND_GSCPI",
+      "target": "MODEL_25.3",
+      "type": "INGESTS_SERIES",
+      "role": "gscpi_val"
+    },
+    {
+      "source": "IND_DFII10",
+      "target": "MODEL_25.6",
+      "type": "INGESTS_SERIES",
+      "role": "real_yield_10y"
+    },
+    {
+      "source": "IND_GOLD",
+      "target": "MODEL_25.6",
+      "type": "INGESTS_SERIES",
+      "role": "gold_yoy_pct"
+    },
+    {
+      "source": "IND_OVXCLS",
+      "target": "MODEL_25.7",
+      "type": "INGESTS_SERIES",
+      "role": "ovx_val"
+    },
+    {
+      "source": "IND_VIXCLS",
+      "target": "MODEL_25.7",
+      "type": "INGESTS_SERIES",
+      "role": "vix_val"
+    },
+    {
+      "source": "IND_DCOILWTICO",
+      "target": "MODEL_25.8",
+      "type": "INGESTS_SERIES",
+      "role": "wti_price"
+    },
+    {
+      "source": "IND_DHHNGSP",
+      "target": "MODEL_25.8",
+      "type": "INGESTS_SERIES",
+      "role": "natgas_price"
+    },
+    {
+      "source": "IND_GASREGW",
+      "target": "MODEL_25.9",
+      "type": "INGESTS_SERIES",
+      "role": "gas_gal_price"
+    },
+    {
+      "source": "IND_DCOILWTICO",
+      "target": "MODEL_25.9",
+      "type": "INGESTS_SERIES",
+      "role": "wti_barrel_price"
+    },
+    {
+      "source": "CHOKE_HORMUZ",
+      "target": "MODEL_28.3",
+      "type": "EXECUTES_MODEL",
+      "severity_enum": "CATASTROPHIC"
+    },
+    {
+      "source": "MODEL_28.3",
+      "target": "MODEL_28.4",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "severity_weight"
+    },
+    {
+      "source": "MODEL_25.1",
+      "target": "MODEL_28.4",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "p_net"
+    },
+    {
+      "source": "EP_LLMS_TXT",
+      "target": "EP_FORMULAS",
+      "type": "INDEXES"
+    },
+    {
+      "source": "EP_LLMS_TXT",
+      "target": "EP_INDICATORS",
+      "type": "INDEXES"
+    },
+    {
+      "source": "EP_LLMS_TXT",
+      "target": "EP_RELATIONSHIPS",
+      "type": "INDEXES"
+    },
+    {
+      "source": "EP_LLMS_TXT",
+      "target": "EP_TOOLS_JSON",
+      "type": "INDEXES"
+    },
+    {
+      "source": "EP_LLMS_TXT",
+      "target": "EP_PROMPTS_TXT",
+      "type": "INDEXES"
+    }
+  ]
+}
