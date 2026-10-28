@@ -770,4 +770,25 @@
       "required": ["real_yield_10y", "gold_yoy_pct"]
     }
   }
+},
+{
+  "type": "function",
+  "function": {
+    "name": "calculate_ovx_vix_risk_premium",
+    "description": "Calculates the ratio between Crude Oil Volatility (OVX) and Equity Volatility (VIX) to detect geopolitical energy supply shocks or equity-driven panic.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "ovx_val": {
+          "type": "number",
+          "description": "CBOE Crude Oil Volatility Index value (FRED: OVXCLS)."
+        },
+        "vix_val": {
+          "type": "number",
+          "description": "CBOE Volatility Index value (FRED: VIXCLS)."
+        }
+      },
+      "required": ["ovx_val", "vix_val"]
+    }
+  }
 }
