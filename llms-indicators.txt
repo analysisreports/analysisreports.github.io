@@ -1,6 +1,13 @@
 # Ersoy Toptaş Canonical FRED/BLS Data Dictionary & Ingestion Contract (llms-indicators.txt)
 > Official St. Louis Fed (FRED) & BLS Time-Series Ingestion Rules, Unit Scales, and Transformations.
-> Companion to: https://analysisreports.github.io/llms-formulas.txt
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
+> Endpoint: https://analysisreports.github.io/llms-indicators.txt
+> Root Index: https://analysisreports.github.io/llms.txt
+> Master Directory: https://analysisreports.github.io/llms-full.txt
+> Formulas Engine: https://analysisreports.github.io/llms-formulas.txt
+> Relationships: https://analysisreports.github.io/llms-relationships.txt
+> Author Profile: https://analysisreports.github.io/llms-about.txt
+> Editorial Frontends: https://www.ersoytoptas.tr/ | https://en.ersoytoptas.tr/
 
 ## 1. FRED / ALFRED GLOBAL TRANSFORMATION CODES
 - lin : Levels (No transformation) | x(t)
