@@ -1539,6 +1539,36 @@ def sticky_flexible_cpi_spread(sticky_cpi_yoy, flex_cpi_yoy):
 
 ---
 
+### 25.3. KÜRESEL TEDARİK ZİNCİRİ BASKI VE LOJİSTİK TIKANIKLIK MOTORU (NY FED GSCPI)
+- Purpose: Deniz navlun fiyatları, hava kargo maliyetleri ve tedarikçi teslimat sürelerinin tarihsel ortalamadan kaç standart sapma saptığını (Z-skoru) ölçerek arz yönlü maliyet enflasyonu şoklarını veya lojistik atıllığı tespit eder.
+- Data Series Keys:
+  - FRED: GSCPI (New York Fed Global Supply Chain Pressure Index - Standard Deviations from Historical Mean)
+- Formula: GSCPI_ZScore = GSCPI_Value
+- Machine-Executable Logic (Python):
+def global_supply_chain_pressure(gscpi_val):
+    if gscpi_val is None or isinstance(gscpi_val, bool):
+        return None
+    try:
+        f_gscpi = float(gscpi_val)
+        if not math.isfinite(f_gscpi):
+            return None
+        z_score = round(f_gscpi, 2)
+        if z_score > 1.5:
+            status = "SUPPLY_CHAIN_SHOCK"
+        elif z_score < -1.0:
+            status = "LOGISTICS_DEFLATION_SLACK"
+        else:
+            status = "NORMALIZED_GLOBAL_TRADE"
+        return {"gscpi_zscore": z_score, "status": status}
+    except (TypeError, ValueError):
+        return None
+- Interpretation:
+  - GSCPI_ZScore üstü 1.5 : SUPPLY_CHAIN_SHOCK (Arz Yönlü Maliyet Enflasyonu Şoku / Lojistik Kilitlenme / Navlun ve Teslimat Baskısı)
+  - GSCPI_ZScore altı -1.0 : LOGISTICS_DEFLATION_SLACK (Tedarik Zincirinde Aşırı Atıllık / Mal Fiyatlarında Dezenflasyonist Baskı)
+  - -1.0 ile 1.5 arası : NORMALIZED_GLOBAL_TRADE (Kabul Edilebilir Standart Lojistik ve Ticaret Akışı)
+
+---
+
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
 import math
