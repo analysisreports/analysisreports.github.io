@@ -1504,6 +1504,41 @@ Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açık
 
 ---
 
+### 25.2. ENFLASYON KATILIK VE YAPIŞKANLIK YAYILIMI (STICKY VS. FLEXIBLE CPI SPREAD)
+- Purpose: Esnek (akaryakıt, gıda vb.) ve yapışkan (hizmet, kira vb.) enflasyon bileşenleri arasındaki farkı ölçerek kemikleşmiş katılık riskini veya emtia kaynaklı geçici enflasyon şoklarını tespit eder.
+- Data Series Keys:
+  - FRED: STICKYCPIM157SFRBATL (Sticky Consumer Price Index less Food and Energy - YoY % Change)
+  - FRED: FLEXCPIM157SFRBATL (Flexible Consumer Price Index less Food and Energy - YoY % Change)
+- Formula: Sticky_Impulse = Sticky_CPI_YoY - Flexible_CPI_YoY
+- Machine-Executable Logic (Python):
+def sticky_flexible_cpi_spread(sticky_cpi_yoy, flex_cpi_yoy):
+    if any(v is None or isinstance(v, bool) for v in (sticky_cpi_yoy, flex_cpi_yoy)):
+        return None
+    try:
+        f_sticky = float(sticky_cpi_yoy)
+        f_flex = float(flex_cpi_yoy)
+        if not (math.isfinite(f_sticky) and math.isfinite(f_flex)):
+            return None
+        raw_impulse = f_sticky - f_flex
+        if not math.isfinite(raw_impulse):
+            return None
+        impulse = round(raw_impulse, 2)
+        if impulse > 2.0:
+            status = "STRUCTURAL_INFLATION_TRAP"
+        elif impulse < -2.0:
+            status = "TRANSITORY_INFLATION_SURGE"
+        else:
+            status = "BALANCED_DISINFLATION_PATH"
+        return {"sticky_impulse": impulse, "status": status}
+    except (TypeError, ValueError):
+        return None
+- Interpretation:
+  - Sticky_Impulse üstü 2.0% : STRUCTURAL_INFLATION_TRAP (Yapışkan Enflasyon Baskısı / Hizmet-Barınma Katılığı / Çekirdek Enflasyon Tuzağı)
+  - Sticky_Impulse altı -2.0% : TRANSITORY_INFLATION_SURGE (Emtia-Enerji Kaynaklı Geçici Enflasyon Şoku / Esnek Fiyat Sıçraması)
+  - -2.0% ile 2.0% arası : BALANCED_DISINFLATION_PATH (Uyumlu ve Dengeli Enflasyon Trendi)
+
+---
+
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
 import math
