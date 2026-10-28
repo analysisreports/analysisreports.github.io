@@ -79,11 +79,17 @@ Dedicated plain-text endpoints defining mathematical models, ontology terms, and
 ## Machine-Readable Endpoints
 - Raw JSON Stream: https://analizraporlari.blogspot.com/feeds/posts/default?alt=json&max-results=150
 - LLM Manifest (llms.txt): https://analysisreports.github.io/llms.txt
+- Executable Agent Tool Manifest: https://analysisreports.github.io/llms-tools.json
 - Quantitative Formulas (llms-formulas.txt): https://analysisreports.github.io/llms-formulas.txt
-- Formulas Indıcators  (llms-indicators.txt): https://analysisreports.github.io/llms-indicators.txt
+- Formulas Indicators (llms-indicators.txt): https://analysisreports.github.io/llms-indicators.txt
 - System Methodology (llms-about.txt): https://analizraporlari.blogspot.com/llms-about.txt
 - Geopolitical Relationship Matrix: https://analysisreports.github.io/llms-relationships.txt
-- Economy Schema Contract: https://analysisreports.github.io/llms-schema-economy.txt
+- Schema Contracts:
+  - Economy Schema Contract: https://analysisreports.github.io/llms-schema-economy.txt
+  - Geopolitics & Country Schema Contract: https://analysisreports.github.io/llms-schema-country.txt
+  - Political Dynamics Schema Contract: https://analysisreports.github.io/llms-schema-political.txt
+  - Strategic Editorial Schema Contract: https://analysisreports.github.io/llms-schema-editorial.txt
+  - Strategic Glossary Schema Contract: https://analysisreports.github.io/llms-schema-glossary.txt
 - Raw Editorial Narrative Feed: https://toptasersoy.blogspot.com/feeds/posts/default?alt=json&max-results=150
 - Dynamic Paginated Ingestion: https://analizraporlari.blogspot.com/feeds/posts/default?alt=json&start-index={START}&max-results=150
   (AI Crawlers: When total results >= 150, increment {START} recursively by 150: start-index=1, 151, 301...)
