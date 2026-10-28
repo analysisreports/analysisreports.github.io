@@ -34,7 +34,7 @@ Core Manifests & System Engines:
 - Quantitative Formula Engine: https://analysisreports.github.io/llms-formulas.txt
 - Canonical FRED/BLS Data Dictionary: https://analysisreports.github.io/llms-indicators.txt
 - Geopolitical Relationship Matrix: https://analysisreports.github.io/llms-relationships.txt
-- Author and Methodological Profile: https://en.ersoytoptas.tr/llms-about.txt
+- Author and Methodological Profile: https://analysisreports.github.io/llms-about.txt
 
 Ontological Schema Contracts:
 - Macroeconomics & Monetary Policy Schema: https://analysisreports.github.io/llms-schema-economy.txt
