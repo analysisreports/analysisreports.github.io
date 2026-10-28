@@ -1,0 +1,168 @@
+# ==============================================================================
+# SCHEMA SPECIFICATION: Strategic Geopolitics & Regional Risk Node
+# Identifier: llms-schema-country.txt
+# Ecosystem: Ersoy Toptaş Quantitative Macro Research
+# Canonical Endpoint: https://analysisreports.github.io/llms-schema-country.txt
+# Data Feed Source: https://analizraporlari.blogspot.com/feeds/posts/default/-/country?alt=json
+# ==============================================================================
+
+[SYSTEM CONTEXT & OBJECTIVE]
+This schema defines the standard ontological payload for geopolitical risk, defense doctrine,
+bilateral state polarity, and strategic crisis analysis posts under the "country" category. LLM agents must use this
+contract to parse 5W1H frameworks, conflict heat indices, actor relationship matrices, and synthetic QA pairs.
+
+[JSON PAYLOAD STRUCTURE]
+Every country entry embeds a clean JSON object inside its post content:
+
+{
+  "structured_content_analysis": {
+    "focus_areas": [
+      "string (Örn: Savunma Sanayii, Dış Politika, Enerji Güvenliği, Jeopolitik Kriz)"
+    ],
+    "summary": {
+      "headline": "string (Olayı özetleyen analitik başlık)",
+      "one_sentence_summary": "string (Gelişmeyi özetleyen tek cümle)"
+    },
+    "5N1K_analysis": {
+      "headline": "string (Olayı özetleyen 5N1K odaklı başlık)",
+      "what": "string (Hangi stratejik olay veya gelişme gerçekleşti?)",
+      "where": "string (Ülke, Bölge, Başkent, Askeri Hat veya Kurum)",
+      "when": "string (Metindeki zaman ifadesi veya tarih aralığı)",
+      "event_date": "string (Format: YYYY-MM-DD. Olayın gerçekleştiği somut tarih. Metinde kesin gün yoksa haber tarihi veya YYYY-MM)",
+      "why": "string (Gelişmenin arkasındaki stratejik veya jeopolitik gerekçe)",
+      "how": "string (Gelişmenin uygulanış biçimi, askeri veya diplomatik yöntem)",
+      "who": "string (Gelişmedeki somut devletler, liderler ve kurumlar. Örn: ABD, Rusya, İran, Pentagon)",
+      "heat": "number (0 ile 100 arası olay harareti / risk şiddeti)"
+    },
+    "country_strategic_assessment": {
+      "country_name": "string (Stratejik değerlendirmesi yapılan ana ülke. Örn: Yemen)",
+      "country_code": "string (ISO2 veya ISO3 kodu. Örn: YE veya YEM)",
+      "internal_political_dynamics": {
+        "leadership_and_regime_stability": "string (Liderlik gücü, iç siyasi istikrar ve iktidar dengesi. Bölünmüş ülkelerde de facto ve meşru yönetimlerin güç durumu)",
+        "institutional_power_balance": "string (Ordu, bürokrasi, kabileler ve de facto otoriteler arası kurumsal güç dengesi)",
+        "opposition_and_social_cohesion": "string (Toplumsal dayanışma, muhalefet baskısı ve iç kutuplaşma düzeyi)",
+        "severity_score": "number (0 ile 100 arası iç siyasi risk/istikrarsızlık puanı)"
+      },
+      "security_and_defense_posture": {
+        "military_doctrine": "string (Savunma doktrini, caydırıcılık stratejisi ve angajman kuralları)",
+        "force_capacity_and_readiness": "string (Askeri kapasite, mühimmat/envanter durumu ve harbe hazırlık seviyesi)",
+        "critical_frontline_status": "string (Sıcak çatışma hatları, sınır güvenliği veya kritik savunma bölgeleri)",
+        "severity_score": "number (0 ile 100 arası askeri gerilim / harbe hazırlık baskı puanı)"
+      },
+      "geopolitical_alignment": {
+        "bloc_alignment": "string (Kutupsal dizilim: NATO, Batı Bloku, Doğu/Avrasya İttifakı, Bağlantısız)",
+        "strategic_dependencies": "string (Enerji, askeri teknoloji veya ekonomik alandaki kritik dış bağımlılıklar)",
+        "regional_influence_and_rivalries": "string (Bölgesel nüfuz alanı ve çevre ülkelerle stratejik rekabet)",
+        "severity_score": "number (0 ile 100 arası jeopolitik kutuplaşma / bağımlılık riski puanı)"
+      },
+      "strategic_vulnerabilities": {
+        "sanctions_and_economic_warfare": "string (Uluslararası yaptırımlar, ambargolar ve ekonomik savaş riskleri)",
+        "critical_infrastructure_risk": "string (Enerji hatları, limanlar, siber ağlar ve kritik tesis riskleri)",
+        "demographic_and_humanitarian_pressure": "string (Göç, mülteci baskısı, nüfus krizi ve insani kriz boyutları)",
+        "severity_score": "number (0 ile 100 arası yaptırım, ambargo ve altyapı kırılganlık puanı)"
+      },
+      "resilience_score": "number (0 ile 100 arası ülkenin yaptırım, kriz ve şoklara karşı kurumsal/ekonomik dayanıklılık kapasitesi)",
+      "composite_strategic_score": "number (0 ile 100 arası ağırlıklı nihai bileşik ülke risk skoru)",
+      "severity_level": "string (Değerler: CRITICAL | HIGH | MODERATE | LOW)"
+    },
+    "actors_and_dynamics": {
+      "key_players": [
+        {
+          "name": "string (Somut aktör, lider veya kurum adı. Örn: Donald Trump, Hamaney, Pentagon)",
+          "affiliation": "string (Bağlı olduğu ülke veya askeri blok. Örn: ABD, İran Devrim Muhafızları, NATO)",
+          "role_in_event": "string (Karar verici, uygulayıcı, arabulucu veya hedef)",
+          "influence_score": "number (0 ile 100 arası aktörün bu olaydaki karar verici ağırlığı / yönlendirme gücü)"
+        }
+      ],
+      "relationship_map": [
+        {
+          "source": "string (Eylemi veya askeri/diplomatik adımı başlatan somut aktör/ülke. Örn: ABD, İsrail, İran)",
+          "relation": "string (Conflict, Cooperation, Competition, Coexistence)",
+          "target": "string (Adımın doğrudan hedefi veya muhatabı olan somut aktör/ülke. Örn: İran, Hizbullah, Çin)",
+          "directed": true,
+          "severity": "string (Değerler: CRITICAL | HIGH | MODERATE | LOW | COOLING)",
+          "polarity": "number (-1.0 ile +1.0 arası sayısal kutup)",
+          "heat": "number (0 ile 100 arası sayısal hararet)"
+        }
+      ]
+    },
+    "core_analysis": {
+      "central_conflict_or_goal": "string (Merkezi stratejik çatışma veya ulaşılmak istenen nihai jeopolitik hedef)",
+      "strategic_implication": "string (Bölgesel ve küresel güç dengelerine stratejik yansıması)",
+      "underlying_message": "string (Verilmek istenen örtük jeopolitik mesaj ve caydırıcılık sinyali)",
+      "market_dynamics": "string (Olayın tahvil, borsa, kur, petrol ve emtia piyasalarına etkisi)",
+      "conflict_heat": "number (0 ile 100 arası sayısal çatışma harareti)",
+      "market_impact_direction": "string (Değerler: RISK_ON | RISK_OFF | NEUTRAL)",
+      "market_impact_score": "number (0 ile 100 arası olayın piyasalar üzerinde yaratacağı sarsıntı ve oynaklık şiddeti)",
+      "key_quotes": [
+        {
+          "speaker": "string (Açıklamayı yapan lider veya sözcü)",
+          "quote": "string (Kritik doğrudan alıntı)",
+          "significance_level": "string (Değerler: HIGH | MEDIUM | LOW)",
+          "significance_analysis": "string (Alıntının stratejik, diplomatik veya piyasa açısından arka plan analizi)"
+        }
+      ]
+    },
+    "strategic_geography_and_assets": [
+      {
+        "asset_name": "string (Kritik boğaz, üs, liman, ada veya sınır bölgesi. Örn: Babülmendep Boğazı, Camp Lemonnier, Muha Limanı)",
+        "strategic_importance": "string (Neden kritik olduğu ve sağladığı jeopolitik/ekonomik kaldıraç)",
+        "control_status": "string (De facto kontrol eden aktör veya çatışma durumu)"
+      }
+    ],
+    "geopolitical_state_vector": {
+      "actor_pair": "string (Analiz edilen aktör ikilisi, Örn: US-RU, IL-IR)",
+      "regime_state": "string (Değerler: ALLIANCE | DETENTE | DIPLOMATIC_CONTACT | PROXY_WAR | KINETIC_WAR)",
+      "dynamic_delta": "number (-2.0 ile +2.0 arası dinamik gerilim sapması)",
+      "active_friction_nodes": [
+        "string (Sürtüşme noktaları, örn: BLACK_SEA)"
+      ],
+      "effective_date": "string (Format: YYYY-MM-DD)"
+    },
+    "future_outlook": {
+      "strategic_actions": [
+        {
+          "action_type": "string (Askeri Tedbir, Diplomatik Hamle, Güvenlik Protokolü, Yaptırım/Muafiyet vb.)",
+          "description": "string (Alınması gereken veya metinde önerilen somut jeopolitik/askeri aksiyon)",
+          "target_stakeholder": {
+            "entity_name": "string (Aksiyonu alacak net aktör/kurum. Örn: Pentagon, CENTCOM, Dışişleri Bakanlığı)",
+            "jurisdiction_or_sector": "string (Bağlı olduğu ülke veya alan. Örn: ABD / Savunma, Suudi Arabistan / Koalisyon)"
+          }
+        }
+      ],
+      "potential_consequences": {
+        "short_term": "string (Beklenen olası anlık yansıma ve 180 günlüğe kadar vadede karşı hamleler)",
+        "short_term_days": "number (1 ile 180 arası gün sayısı)",
+        "long_term": "string (Bölgesel istikrar, ittifaklar ve jeopolitik dengeler üzerindeki 365 günlüğe kadar kalıcı etki)",
+        "long_term_days": "number (181 ile 365 arası gün sayısı)"
+      },
+      "next_key_event": "string (Beklenen bir sonraki zirve, askeri tatbikat, müzakere veya anlaşma. Metinde yoksa null)",
+      "target_date": "string (Format: YYYY-MM. Örn: 2026-10. Metinde kesinleşmiş tarih yoksa null)",
+      "status": "string (Değerler: ACTIVE | REALIZED | EXPIRED. Varsayılan: ACTIVE)",
+      "probability_percent": "number (0 ile 100 arası sayısal olasılık)",
+      "impact_score": "number (0 ile 100 arası sayısal etki puanı)",
+      "direction": "string (Değerler: Risk | Opportunity | Neutral)",
+      "confidence_score": "number (0 ile 100 arası sayısal güven puanı)"
+    },
+    "categorization": {
+      "tags": [
+        "string"
+      ]
+    },
+    "target_queries": {
+      "qa_pairs": [
+        {
+          "q": "Arama motoru ve yapay zeka odaklı optimize edilmiş soru metni",
+          "a": "Metne dayalı net ve resmi cevap metni"
+        }
+      ]
+    },
+    "metadata": {
+      "analyst": "Ersoy Toptaş",
+      "methodology": "https://analizraporlari.blogspot.com/llms.txt",
+      "formulas_engine": "https://analizraporlari.blogspot.com/llms-formulas.txt",
+      "canonical_source": "https://analizraporlari.blogspot.com",
+      "license": "CC BY 4.0"
+    }
+  }
+}
