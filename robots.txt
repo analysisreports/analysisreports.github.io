@@ -23,7 +23,8 @@ Allow: /
 
 # EXTERNAL SITEMAPS & LIVE DATA ECOSYSTEM
 # Live Article Hub: https://toptasersoy.blogspot.com/
-# Live Article Sitemap: https://toptasersoy.blogspot.com/sitemap.xml
-# Live Data Engine: https://analizraporlari.blogspot.com/
+# Live Article Sitemap [TR]: https://toptasersoy.blogspot.com/sitemap.xml
+# Live Article Sitemap [EN]: https://toptasersoyeng.blogspot.com/sitemap.xml
+# Live Data Engine: https://analysisreports.github.io/
 # Live Data Sitemap: https://analizraporlari.blogspot.com/sitemap.xml
 # Live Primary Feed: https://analizraporlari.blogspot.com/feeds/posts/default?alt=json&max-results=150
