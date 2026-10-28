@@ -669,4 +669,25 @@
       }
     }
   ]
-}
+},
+{
+      "type": "function",
+      "function": {
+        "name": "calculate_sticky_flexible_cpi_spread",
+        "description": "Calculates the spread between Sticky CPI and Flexible CPI (YoY % Change) to detect structural inflation traps or transitory supply shocks.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "sticky_cpi_yoy": {
+              "type": "number",
+              "description": "Sticky Consumer Price Index less Food and Energy - YoY % Change (FRED: STICKYCPIM157SFRBATL)."
+            },
+            "flex_cpi_yoy": {
+              "type": "number",
+              "description": "Flexible Consumer Price Index less Food and Energy - YoY % Change (FRED: FLEXCPIM157SFRBATL)."
+            }
+          },
+          "required": ["sticky_cpi_yoy", "flex_cpi_yoy"]
+        }
+      }
+    }
