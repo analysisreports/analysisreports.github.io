@@ -707,4 +707,25 @@
           "required": ["gscpi_val"]
         }
       }
+    },
+{
+      "type": "function",
+      "function": {
+        "name": "calculate_move_vix_disconnect_ratio",
+        "description": "Calculates the MOVE/VIX volatility disconnect ratio to detect interest rate risk mispricing in equities or idiosyncratic equity panics.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "move_val": {
+              "type": "number",
+              "description": "ICE BofA US Treasury Option Volatility Estimate Index (MOVE Index)."
+            },
+            "vix_val": {
+              "type": "number",
+              "description": "CBOE Volatility Index value (FRED: VIXCLS)."
+            }
+          },
+          "required": ["move_val", "vix_val"]
+        }
+      }
     }
