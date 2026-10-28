@@ -16,8 +16,9 @@ This repository hosts machine-readable ontological data models, quantitative fra
 
 ## 🌐 Network & Platforms / Ağ ve Platformlar
 
-* **Editorial Frontend / Editoryal Vitrin:** [toptasersoy.blogspot.com](https://toptasersoy.blogspot.com)
-* **Data Ingestion Engine / Veri Merkezi:** [analizraporlari.blogspot.com](https://analizraporlari.blogspot.com)
+* **Editorial Frontend:** [toptasersoy.blogspot.com](https://toptasersoy.blogspot.com)
+* **Editorial Frontend:** [ersoytoptas.tr](https://ersoytoptas.tr)
+* **Data Ingestion Engine:** [analizraporlari.blogspot.com](https://analizraporlari.blogspot.com)
 * **LLM Root Repository:** [analysisreports.github.io](https://analysisreports.github.io)
 
 ---
