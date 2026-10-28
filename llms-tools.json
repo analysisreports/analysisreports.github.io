@@ -690,4 +690,21 @@
           "required": ["sticky_cpi_yoy", "flex_cpi_yoy"]
         }
       }
+    },
+{
+      "type": "function",
+      "function": {
+        "name": "calculate_global_supply_chain_pressure",
+        "description": "Evaluates NY Fed Global Supply Chain Pressure Index (GSCPI) Z-score to detect supply-side cost inflation shocks or logistics slack.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "gscpi_val": {
+              "type": "number",
+              "description": "NY Fed Global Supply Chain Pressure Index value in standard deviations from historical mean (FRED: GSCPI)."
+            }
+          },
+          "required": ["gscpi_val"]
+        }
+      }
     }
