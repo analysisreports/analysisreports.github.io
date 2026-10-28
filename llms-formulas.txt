@@ -1569,6 +1569,41 @@ def global_supply_chain_pressure(gscpi_val):
 
 ---
 
+### 25.4. TAHVİL-HİSSE OYNAKLIK AYRIŞMASI VE FAİZ RİSKİ YANLIŞ FİYATLAMA MOTORU (MOVE / VIX DISCONNECT)
+- Purpose: Tahvil piyasası oynaklığı (MOVE) ile hisse senedi oynaklığı (VIX) arasındaki oransal ayrışmayı hesaplayarak hisse senedi piyasasının faiz ve likidite risklerini yanlış fiyatlayıp fiyatlamadığını tespit eder.
+- Data Series Keys:
+  - CBOE / FRED: VIXCLS (CBOE Volatility Index)
+  - ICE / Merrill Lynch: MOVE (ICE BofA US Treasury Option Volatility Estimate Index)
+- Formula: Vol_Disconnect_Ratio = MOVE_Index / VIX_Index
+- Machine-Executable Logic (Python):
+def move_vix_disconnect_ratio(move_val, vix_val):
+    if any(v is None or isinstance(v, bool) for v in (move_val, vix_val)):
+        return None
+    try:
+        f_move = float(move_val)
+        f_vix = float(vix_val)
+        if not (math.isfinite(f_move) and math.isfinite(f_vix)) or f_vix <= 0:
+            return None
+        raw_ratio = f_move / f_vix
+        if not math.isfinite(raw_ratio):
+            return None
+        ratio = round(raw_ratio, 2)
+        if ratio > 6.5:
+            status = "RATE_RISK_MISPRICING_ALARM"
+        elif ratio < 3.5:
+            status = "EQUITY_PANIC_DOMINANCE"
+        else:
+            status = "COHERENT_MARKET_VOLATILITY"
+        return {"vol_disconnect_ratio": ratio, "status": status}
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+- Interpretation:
+  - Vol_Disconnect_Ratio üstü 6.5 : RATE_RISK_MISPRICING_ALARM (Faiz ve Tahvil Oynaklığı Yüksek / Hisse Senetleri Faiz Riskini Görmezden Geliyor / Şok Düzeltme Riski)
+  - Vol_Disconnect_Ratio altı 3.5 : EQUITY_PANIC_DOMINANCE (Hisse Senedi Piyasasında Aşırı Panik / Tahvil Piyasası Göreceli Stabil)
+  - 3.5 ile 6.5 arası : COHERENT_MARKET_VOLATILITY (Tahvil ve Hisse Piyasaları Arasında Uyumlu ve Dengeli Oynaklık Fiyatlaması)
+
+---
+
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
 import math
