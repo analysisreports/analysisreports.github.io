@@ -1712,6 +1712,41 @@ def ovx_vix_risk_premium(ovx_val, vix_val):
 
 ---
 
+### 25.8. DOĞALGAZ - PETROL ENERJİ EŞDEĞERLİĞİ VE BTU PARİTE AYRIŞMASI MOTORU (NATGAS / CRUDE OIL BTU DISCONNECT)
+- Purpose: WTI Ham Petrol ile Henry Hub Doğalgaz fiyatları arasındaki fiziksel enerji eşdeğerliği rasyosunu (BTU Paritesi) ölçerek, doğalgaz tedarik krizlerini veya bölgesel gaz arzı fazlalığını tespit eder.
+- Data Series Keys:
+  - FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - Dollars per Barrel)
+  - FRED: DHHNGSP (Henry Hub Natural Gas Spot Price - Dollars per Million BTU)
+- Formula: BTU_Disconnect_Ratio = WTI_Price / NatGas_Price
+- Machine-Executable Logic (Python):
+def natgas_crude_btu_disconnect(wti_price, natgas_price):
+    if any(v is None or isinstance(v, bool) for v in (wti_price, natgas_price)):
+        return None
+    try:
+        f_wti = float(wti_price)
+        f_gas = float(natgas_price)
+        if not (math.isfinite(f_wti) and math.isfinite(f_gas)) or f_gas <= 0 or f_wti < 0:
+            return None
+        raw_ratio = f_wti / f_gas
+        if not math.isfinite(raw_ratio):
+            return None
+        ratio = round(raw_ratio, 2)
+        if ratio < 6.0:
+            status = "NATGAS_CRISIS_BLACKOUT_RISK"
+        elif ratio > 35.0:
+            status = "NATGAS_GLUT_ENERGY_CHEAP"
+        else:
+            status = "ENERGY_PARITY_EQUILIBRIUM"
+        return {"btu_disconnect_ratio": ratio, "status": status}
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+- Interpretation:
+  - BTU_Disconnect_Ratio altı 6.0 : NATGAS_CRISIS_BLACKOUT_RISK (Ağır Doğalgaz Kıtlığı / Doğalgaz Petrole Göre Aşırı Pahalı / Isınma ve Elektrik Maliyeti Şoku)
+  - BTU_Disconnect_Ratio üstü 35.0 : NATGAS_GLUT_ENERGY_CHEAP (Doğalgaz Arz Fazlası / Sanayi ve Konut İçin Ucuz Enerji Desteği)
+  - 6.0 ile 35.0 arası : ENERGY_PARITY_EQUILIBRIUM (Sağlıklı ve Dengeli Enerji İkame Oranı)
+
+---
+
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
 import math
