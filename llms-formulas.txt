@@ -1747,6 +1747,42 @@ def natgas_crude_btu_disconnect(wti_price, natgas_price):
 
 ---
 
+### 25.9. BENZİN / HAM PETROL RAFİNERİ SIKIŞMASI VE TÜKETİCİ ENERJİ BASKISI MOTORU (GASOLINE / CRUDE CRACK SPREAD IMPULSE)
+- Purpose: Perakende benzin fiyatları ile ham petrol varil fiyatı arasındaki rafineri marjını (Crack Spread) ölçerek, rafineri kapasite darboğazlarını ve tüketici bütçesi üzerindeki dolaysız enerji şoklarını tespit eder.
+- Data Series Keys:
+  - FRED: GASREGW (US Regular All Formulations Retail Gasoline Prices - Dollars per Gallon)
+  - FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - Dollars per Barrel)
+- Formula: Crack_Spread_USD = (Gasoline_Gallon_Price * 42) - WTI_Barrel_Price
+- Machine-Executable Logic (Python):
+def gasoline_crude_crack_spread(gas_gal_price, wti_barrel_price):
+    if any(v is None or isinstance(v, bool) for v in (gas_gal_price, wti_barrel_price)):
+        return None
+    try:
+        f_gas = float(gas_gal_price)
+        f_wti = float(wti_barrel_price)
+        if not (math.isfinite(f_gas) and math.isfinite(f_wti)) or f_wti <= 0 or f_gas <= 0:
+            return None
+        gas_barrel_equiv = f_gas * 42.0
+        raw_spread = gas_barrel_equiv - f_wti
+        if not math.isfinite(raw_spread):
+            return None
+        spread = round(raw_spread, 2)
+        if spread > 40.0:
+            status = "REFINERY_BOTTLENECK_CRUNCH"
+        elif spread < 5.0:
+            status = "REFINING_MARGIN_COLLAPSE"
+        else:
+            status = "NORMAL_REFINING_MARGIN"
+        return {"crack_spread_usd": spread, "status": status}
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+- Interpretation:
+  - Crack_Spread_USD üstü $40.0 : REFINERY_BOTTLENECK_CRUNCH (Rafineri Kapasite Darboğazı / Tüketici Bütçesinde Benzin Şoku / Yüksek İşleme Marjı)
+  - Crack_Spread_USD altı $5.0 : REFINING_MARGIN_COLLAPSE (Rafineri Marj Çöküşü / Akaryakıt Talebinde Daralma / Zayıf Tüketim)
+  - $5.0 ile $40.0 arası : NORMAL_REFINING_MARGIN (Sağlıklı ve Standart Rafineri İşleme Marjı)
+
+---
+
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
 import math
