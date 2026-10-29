@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "Ersoy Toptaş Macroeconomic & Geopolitical Knowledge Graph",
-  "version": "2026-Q4",
-  "description": "Graph RAG ontolojik ağ yapısı: Aktörler, Jeopolitik Boğazlar, FRED/BLS Göstergeleri, Deterministik Modeller ve Manifestolar arası Node & Edge Haritası.",
+  "version": "3.0.0",
+  "description": "Ontological knowledge graph linking sovereign actors, maritime chokepoints, FRED/BLS indicators, deterministic macro models, and manifest endpoints (v3 complete).",
   "author": "Ersoy Toptaş",
   "license": "CC-BY-4.0",
   "repository": "https://analysisreports.github.io/",
@@ -530,6 +530,28 @@
         "url": "https://analysisreports.github.io/llms-prompts.txt",
         "role": "6-Stage CoT & Guardrail Instructions"
       }
+    },
+    {
+      "id": "EP_GRAPH_JSON",
+      "label": "llms-graph.json",
+      "category": "ENDPOINT_SCHEMA",
+      "type": "graph_rag_manifest",
+      "attributes": {
+        "url": "https://analysisreports.github.io/llms-graph.json",
+        "format": "application/json",
+        "description": "Ontological knowledge graph linking actors, chokepoints, indicators, models and schemas."
+      }
+    },
+    {
+      "id": "EP_AI_CATALOG",
+      "label": "ai-catalog.json",
+      "category": "ENDPOINT_SCHEMA",
+      "type": "ai_catalog_manifest",
+      "attributes": {
+        "url": "https://analysisreports.github.io/ai-catalog.json",
+        "format": "application/json",
+        "description": "Master AI Resource Discovery Directory."
+      }
     }
   ],
   "edges": [
@@ -779,6 +801,16 @@
     {
       "source": "EP_LLMS_TXT",
       "target": "EP_PROMPTS_TXT",
+      "type": "INDEXES"
+    },
+    {
+      "source": "EP_LLMS_TXT",
+      "target": "EP_GRAPH_JSON",
+      "type": "INDEXES"
+    },
+    {
+      "source": "EP_LLMS_TXT",
+      "target": "EP_AI_CATALOG",
       "type": "INDEXES"
     }
   ]
