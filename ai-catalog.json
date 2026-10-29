@@ -16,7 +16,9 @@
       "type": "specification",
       "format": "text/plain",
       "url": "https://analysisreports.github.io/llms-schema-economy.txt",
-      "authentication": { "type": "none" },
+      "authentication": {
+        "type": "none"
+      },
       "description": "FOMC kararları, Net Fed Likidite modelleri, verim eğrileri ve makro gösterge ontolojisi."
     },
     {
@@ -25,7 +27,9 @@
       "type": "specification",
       "format": "text/plain",
       "url": "https://analysisreports.github.io/llms-schema-country.txt",
-      "authentication": { "type": "none" },
+      "authentication": {
+        "type": "none"
+      },
       "description": "Savunma doktrini, harbe hazırlık kapasitesi, kutupsal blok dizilimleri ve jeopolitik risk puanlama ontolojisi."
     },
     {
@@ -34,7 +38,9 @@
       "type": "specification",
       "format": "text/plain",
       "url": "https://analysisreports.github.io/llms-schema-political.txt",
-      "authentication": { "type": "none" },
+      "authentication": {
+        "type": "none"
+      },
       "description": "Siyasi liderlik anlatıları, karşı argüman hedefleri, söylem sertlik puanları ve ittifak dengeleri ontolojisi."
     },
     {
@@ -43,7 +49,9 @@
       "type": "specification",
       "format": "text/plain",
       "url": "https://analysisreports.github.io/llms-schema-editorial.txt",
-      "authentication": { "type": "none" },
+      "authentication": {
+        "type": "none"
+      },
       "description": "Yazar duruşu (hawkish/dovish), piyasa konsensüs ayrışması ve aktör ilişkileri harita ontolojisi."
     },
     {
@@ -52,7 +60,9 @@
       "type": "specification",
       "format": "text/plain",
       "url": "https://analysisreports.github.io/llms-schema-glossary.txt",
-      "authentication": { "type": "none" },
+      "authentication": {
+        "type": "none"
+      },
       "description": "Kurumsal işleyişler, seçim sistemleri, doktrinler ve yapısal kuralları modelleyen sözlük ontolojisi."
     },
     {
@@ -61,7 +71,9 @@
       "type": "tool",
       "format": "application/json",
       "url": "https://analysisreports.github.io/llms-tools.json",
-      "authentication": { "type": "none" },
+      "authentication": {
+        "type": "none"
+      },
       "description": "Otonom ajanların makro modelleri ve ilişkileri sorgulaması için yürütülebilir fonksiyon şemaları."
     },
     {
@@ -70,7 +82,9 @@
       "type": "dataset",
       "format": "text/plain",
       "url": "https://analysisreports.github.io/llms-full.txt",
-      "authentication": { "type": "none" },
+      "authentication": {
+        "type": "none"
+      },
       "description": "Tüm kütüphanenin, formüllerin ve şemaların tekilleştirilmiş tam metin fihristi."
     },
     {
@@ -79,7 +93,9 @@
       "type": "specification",
       "format": "text/plain",
       "url": "https://analysisreports.github.io/llms-formulas.txt",
-      "authentication": { "type": "none" },
+      "authentication": {
+        "type": "none"
+      },
       "description": "Deterministik makro formül hesaplama motoru (Net Likidite, Taylor Kuralı, Harbe Hazırlık Skoru)."
     },
     {
@@ -88,7 +104,9 @@
       "type": "specification",
       "format": "text/plain",
       "url": "https://analysisreports.github.io/llms-relationships.txt",
-      "authentication": { "type": "none" },
+      "authentication": {
+        "type": "none"
+      },
       "description": "Aktörler arası yaptırım, korumacılık, entegrasyon ve jeopolitik gerilim bağıntıları matrisi."
     },
     {
@@ -97,7 +115,9 @@
       "type": "specification",
       "format": "text/plain",
       "url": "https://analysisreports.github.io/llms-indicators.txt",
-      "authentication": { "type": "none" },
+      "authentication": {
+        "type": "none"
+      },
       "description": "FRED, BLS ve ICE veri serileri ana sözlüğü, frekans metadata tanımları ve ölçek normalizasyon katsayıları."
     },
     {
@@ -106,7 +126,9 @@
       "type": "specification",
       "format": "text/plain",
       "url": "https://analysisreports.github.io/llms-prompts.txt",
-      "authentication": { "type": "none" },
+      "authentication": {
+        "type": "none"
+      },
       "description": "6 aşamalı CoT akıl yürütme iş akışı, kesin zemin gerçeklik protokolü ve sıfır-halüsinasyon hata yakalama kuralları."
     },
     {
@@ -115,7 +137,9 @@
       "type": "graph_rag",
       "format": "application/json",
       "url": "https://analysisreports.github.io/llms-graph.json",
-      "authentication": { "type": "none" },
+      "authentication": {
+        "type": "none"
+      },
       "description": "Sovereign aktörler, kritik boğazlar, FRED göstergeleri ve deterministik modeller arası ontolojik Graph RAG ağ haritası."
     }
   ],
@@ -125,5 +149,6 @@
     "tool_calling": true,
     "graph_rag": true,
     "structured_data_payload": "structured_content_analysis"
-  }
+  },
+  "last_updated": "2026-10-29"
 }
