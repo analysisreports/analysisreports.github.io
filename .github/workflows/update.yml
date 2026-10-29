@@ -1,0 +1,49 @@
+name: Daily AI Status Update
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Her gece yarısı (UTC) otomatik çalışır
+  workflow_dispatch:     # Manuel başlatma butonu
+
+permissions:
+  contents: write
+
+jobs:
+  update-status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install genai-processors requests
+
+      - name: Run Update Script
+        run: |
+          python -c "
+          import json, datetime
+          try:
+              with open('ai-catalog.json', 'r', encoding='utf-8') as f:
+                  data = json.load(f)
+              data['last_updated'] = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d')
+              with open('ai-catalog.json', 'w', encoding='utf-8') as f:
+                  json.dump(data, f, indent=2, ensure_ascii=False)
+              print('ai-catalog.json güncellendi.')
+          except Exception as e:
+              print('Hata:', e)
+          "
+
+      - name: Commit and Push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add ai-catalog.json
+          git diff-index --quiet HEAD || git commit -m "Auto update AI status [skip ci]"
+          git push
