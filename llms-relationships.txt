@@ -108,6 +108,27 @@ Regime States (Discrete Mapping):
    - Baseline with US: +0.55 (Security guarantor, petrodollar recalibration)
    - Baseline with CN: +0.50 (Primary hydrocarbon buyer, infrastructure integration)
    - Coordination Axis: OPEC+ quota alliance with Russia
+
+### 2.5. East Asian & Indo-Pacific Standoff (Kore Yarımadası ve Pasifik Hattı)
+2.5.1. US / JP / KR - KP (Trilateral Alliance vs. Democratic People's Republic of Korea)
+   - Baseline Polarity (P_baseline): -0.90
+   - Structural Regime: KINETIC_STANDOFF / NUCLEAR_PROLIFERATION
+   - Primary Friction Nodes: KOREAN_PENINSULA, SEA_OF_JAPAN, DMZ_SURFACE_CORRIDOR, YELLOW_SEA
+   - Economic Coupling: 0.01 (Tam yaptırım ambargosu, sıfır ekonomik entegrasyon)
+   - Asymmetric Threat Vector: Taktik nükleer kapasite, balistik füze denemeleri, Rusya ile mühimmat/askeri teknoloji takası
+   - Primary Market Transmission: Bellek çipi/yarı iletken lojistiği (Samsung, SK Hynix tesisleri), Pasifik deniz ticareti rotaları
+   - Transmission Series: DEXKOUS, DEXJPUS, SOX, VIXCLS
+
+### 2.6. Geoeconomic Dedollarization Blocs (mBridge ve Çok Kutuplu Takas Ekseni)
+2.6.1. BRICS_MBRIDGE - G7 / USD CLEARING (Sovereign Alternative Settlement Axis)
+   - Baseline Polarity (P_baseline): -0.70
+   - Structural Regime: MONETARY_DECOUPLING / SYSTEMIC_ARBITRAGE
+   - Core Architectural Nodes: BIS Innovation Hub mBridge, CIPS (Çin), SPFS (Rusya), İkili Yerel Para/CBDC Takası
+   - Member Exposure: CN, RU, AE, SA, IR, IN (Çift yönlü arbitraj aktörü)
+   - Primary Friction Nodes: SWIFT_ALTERNATIVE, PETRODOLLAR_EROSION, OFAC_SDN_BYPASS
+   - Economic Coupling to USD: 0.40 (Yüksek fiziki ticaret entegrasyonu, azalan dolar takas payı)
+   - Macro Spillover Bridge: Rezerv para talebinde aşınma, küresel merkez bankası altın talebinde yapısal artış, ABD Hazine tahvillerinde vade primi (ACM) sıçraması
+   - Transmission Series: DFII10, GOLDPMGBD228NLBM, DTWEXBGS, DCOILWTICO, THREEFYTP10
 ---
 
 ## 3. PROXY & ASYMMETRIC NON-STATE ACTOR REGISTRY
