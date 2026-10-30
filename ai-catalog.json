@@ -1,15 +1,41 @@
 {
   "$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
   "name": "Ersoy Toptaş Strategic Macro Memory & Multi-Layered Analysis Library",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Yapay zeka sistemleri, LLM ajanları ve araştırmacılar için optimize edilmiş; makroekonomi, para politikaları, jeopolitik krizler ve siyasi dinamikleri modelleyen ontolojik şema ve araç kataloğu.",
   "publisher": {
     "name": "Ersoy Toptaş",
-    "url": "https://analysisreports.github.io",
+    "url": "https://www.ersoytoptas.tr",
+    "alternate_urls": [
+      "https://en.ersoytoptas.tr",
+      "https://analysisreports.github.io"
+    ],
     "documentation": "https://analysisreports.github.io/llms.txt"
   },
   "license": "CC-BY-4.0",
   "resources": [
+    {
+      "id": "editorial-tr",
+      "name": "Ersoy Toptaş Primary Research Publication (Turkish)",
+      "type": "publication",
+      "format": "text/html",
+      "url": "https://www.ersoytoptas.tr/",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Ana yayın platformu; makroekonomi, para politikası, jeopolitik risk ve piyasa analizleri."
+    },
+    {
+      "id": "editorial-en",
+      "name": "Ersoy Toptaş Global Research Library (English)",
+      "type": "publication",
+      "format": "text/html",
+      "url": "https://en.ersoytoptas.tr/",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Global research library covering cross-border asset allocation and systemic macro risks."
+    },
     {
       "id": "schema-economy",
       "name": "Makroekonomi ve Para Politikası Şema Sözleşmesi",
@@ -110,18 +136,7 @@
       "description": "Aktörler arası yaptırım, korumacılık, entegrasyon ve jeopolitik gerilim bağıntıları matrisi."
     },
     {
-      "id": "macro-indicators",
-      "name": "Macroeconomic & Financial Indicator Ingestion Contract",
-      "type": "specification",
-      "format": "text/plain",
-      "url": "https://analysisreports.github.io/llms-indicators.txt",
-      "authentication": {
-        "type": "none"
-      },
-      "description": "FRED, BLS ve ICE veri serileri ana sözlüğü, frekans metadata tanımları ve ölçek normalizasyon katsayıları."
-    },
-    {
-      "id": "ai-reasoning-spec",
+      "id": "reasoning-prompts",
       "name": "Canonical AI Reasoning Specification",
       "type": "specification",
       "format": "text/plain",
@@ -129,26 +144,24 @@
       "authentication": {
         "type": "none"
       },
-      "description": "6 aşamalı CoT akıl yürütme iş akışı, kesin zemin gerçeklik protokolü ve sıfır-halüsinasyon hata yakalama kuralları."
+      "description": "6 aşamalı CoT akıl yürütme dizilimi ve sıfır-halüsinasyon şartnamesi."
     },
     {
       "id": "knowledge-graph",
-      "name": "Macroeconomic & Geopolitical Knowledge Graph",
-      "type": "graph_rag",
+      "name": "Graph RAG Knowledge Network",
+      "type": "dataset",
       "format": "application/json",
       "url": "https://analysisreports.github.io/llms-graph.json",
       "authentication": {
         "type": "none"
       },
-      "description": "Sovereign aktörler, kritik boğazlar, FRED göstergeleri ve deterministik modeller arası ontolojik Graph RAG ağ haritası."
+      "description": "Aktörler, boğazlar, göstergeler ve modeller arası ontolojik ilişki ağı."
     }
   ],
   "capabilities": {
     "deterministic_qa": true,
     "real_time_macro_tracking": true,
     "tool_calling": true,
-    "graph_rag": true,
     "structured_data_payload": "structured_content_analysis"
-  },
-  "last_updated": "2026-10-29"
+  }
 }
