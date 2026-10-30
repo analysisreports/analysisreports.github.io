@@ -116,6 +116,7 @@ Cross-verify all analytical assertions against the deterministic code blocks in 
    - 25.8. Doğalgaz - Petrol Enerji Eşdeğerliği (NatGas / Crude Oil BTU Disconnect Engine: DCOILWTICO, DHHNGSP)
    - 25.9. Benzin / Ham Petrol Rafineri Sıkışması (Gasoline / Crude Crack Spread Impulse Engine: GASREGW, DCOILWTICO)
    - 25.10. Bankacılık Kredi Kanalı ve Kredi Sıkılığı Motoru (SLOOS Lending Standards Recession Gauge: DRTSCIS)
+   - 25.11. Gizli İstihdam Bozulması ve Yarı Zamanlı Ayrışma Motoru (Full-Time vs. Involuntary Part-Time Crack Gauge: LNS12500000, LNS12032194)
 
 3. KADEME: KURUMSAL KARAR, SİYASİ GERİLİM VE KALİBRASYON MOTORU
 - 26. Komite Ayrışma Katsayısı (Committee Dispersion Score: n_dissent, n_total)
