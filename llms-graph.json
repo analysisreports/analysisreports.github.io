@@ -552,6 +552,88 @@
         "format": "application/json",
         "description": "Master AI Resource Discovery Directory."
       }
+    },
+    {
+      "id": "ACTOR_KP",
+      "label": "Democratic People's Republic of Korea",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "structural_regime": "KINETIC_STANDOFF",
+        "asymmetric_threat": "NUCLEAR_BALLISTIC_PROLIFERATION",
+        "economic_coupling": 0.01
+      }
+    },
+    {
+      "id": "ACTOR_BRICS_MBRIDGE",
+      "label": "BRICS & mBridge Settlement Axis",
+      "category": "ACTOR",
+      "type": "Multilateral Clearing Bloc",
+      "attributes": {
+        "structural_regime": "MONETARY_DECOUPLING",
+        "core_nodes": ["mBridge", "CIPS", "SPFS"],
+        "economic_coupling_to_usd": 0.40
+      }
+    },
+    {
+      "id": "IND_DRTSCIS",
+      "label": "Net % Tightening C&I Loan Standards (DRTSCIS)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Board of Governors / FRED",
+        "units": "Percent (%)",
+        "freq": "Quarterly"
+      }
+    },
+    {
+      "id": "IND_LNS12500000",
+      "label": "Employed, Usually Work Full Time (LNS12500000)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED",
+        "units": "Thousands",
+        "freq": "Monthly"
+      }
+    },
+    {
+      "id": "IND_LNS12032194",
+      "label": "Employed, Part-Time for Economic Reasons (LNS12032194)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED",
+        "units": "Thousands",
+        "freq": "Monthly"
+      }
+    },
+    {
+      "id": "MODEL_25.10",
+      "label": "SLOOS Lending Standards Recession Gauge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "sloos_lending_tightness_gauge",
+        "formula": "Credit_Tightening_Net_Pct = DRTSCIS",
+        "status_enums": [
+          "ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL",
+          "RESTRICTIVE_CREDIT_CONTRACTION",
+          "NEUTRAL_CREDIT_CONDITIONS",
+          "AGGRESSIVE_CREDIT_EXPANSION"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.11",
+      "label": "Full-Time vs. Involuntary Part-Time Crack Gauge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "hidden_employment_crack_gauge",
+        "formula": "Crack_Spread = Part_Time_Econ_YoY_Pct - Full_Time_YoY_Pct",
+        "status_enums": [
+          "ACUTE_LABOR_MARKET_FRACTURE_RECESSION",
+          "STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL",
+          "STABLE_EMPLOYMENT_COMPOSITION",
+          "ROBUST_FULL_TIME_EXPANSION"
+        ]
+      }
     }
   ],
   "edges": [
@@ -814,4 +896,55 @@
       "type": "INDEXES"
     }
   ]
-}
+},
+,
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_KP",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.90,
+      "regime": "KINETIC_STANDOFF"
+    },
+    {
+      "source": "ACTOR_BRICS_MBRIDGE",
+      "target": "ACTOR_US",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.70,
+      "regime": "MONETARY_DECOUPLING"
+    },
+    {
+      "source": "IND_DRTSCIS",
+      "target": "MODEL_25.10",
+      "type": "INGESTS_SERIES",
+      "role": "drtscis_val"
+    },
+    {
+      "source": "IND_LNS12500000",
+      "target": "MODEL_25.11",
+      "type": "INGESTS_SERIES",
+      "role": "full_time_level"
+    },
+    {
+      "source": "IND_LNS12032194",
+      "target": "MODEL_25.11",
+      "type": "INGESTS_SERIES",
+      "role": "part_time_econ_level"
+    },
+    {
+      "source": "ACTOR_BRICS_MBRIDGE",
+      "target": "MODEL_25.10",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "capital_fragmentation_drain"
+    },
+    {
+      "source": "CHOKE_TAIWAN",
+      "target": "MODEL_25.11",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "hardware_labor_shock"
+    },
+    {
+      "source": "ACTOR_BRICS_MBRIDGE",
+      "target": "MODEL_25.6",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "sovereign_gold_accumulation"
+    }
