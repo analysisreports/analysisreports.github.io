@@ -1783,6 +1783,39 @@ def gasoline_crude_crack_spread(gas_gal_price, wti_barrel_price):
 
 ---
 
+### 25.10. BANKACILIK KREDİ KANALI VE KREDİ SIKILIĞI MOTORU (SLOOS LENDING STANDARDS RECESSION GAUGE)
+- Purpose: ABD bankalarının ticari ve sınai kredilerde uyguladığı net sıkılaştırma oranını izleyerek bankacılık kredi kanalının donmasını ve reel sektör kredi daralmasını resesyondan 6-9 ay önce tespit eder.
+- Data Series Keys:
+  - FRED: DRTSCIS (Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Large and Middle-Market Firms - Quarterly Percent)
+- Formula: Credit_Tightening_Net_Pct = DRTSCIS
+- Machine-Executable Logic (Python):
+def sloos_lending_tightness_gauge(drtscis_val):
+    if drtscis_val is None or isinstance(drtscis_val, bool):
+        return None
+    try:
+        val = float(drtscis_val)
+        if not math.isfinite(val):
+            return None
+        tightness = round(val, 2)
+        if tightness > 40.0:
+            status = "ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL"
+        elif tightness >= 20.0:
+            status = "RESTRICTIVE_CREDIT_CONTRACTION"
+        elif tightness <= -10.0:
+            status = "AGGRESSIVE_CREDIT_EXPANSION"
+        else:
+            status = "NEUTRAL_CREDIT_CONDITIONS"
+        return {"credit_tightening_net_pct": tightness, "status": status}
+    except (TypeError, ValueError):
+        return None
+- Interpretation:
+  - Credit_Tightening_Net_Pct üstü %40.0 : ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL (Şiddetli Kredi Kanalı Tıkanması / Tarihsel Kesin Resesyon Eşiği / Likidite Krizi Alarmı)
+  - %20.0 ile %40.0 arası : RESTRICTIVE_CREDIT_CONTRACTION (Kredi Standartlarında Belirgin Sıkılaşma / Yatırım ve İstihdam Baskısı)
+  - -%10.0 ile %20.0 arası : NEUTRAL_CREDIT_CONDITIONS (Dengeli Kredi Akışı ve Normal Bankacılık İştahı)
+  - Credit_Tightening_Net_Pct altı -%10.0 : AGGRESSIVE_CREDIT_EXPANSION (Gevşek Kredi Standartları / Kredi Genişlemesi / Varlık Balonu Eğilimi)
+
+---
+
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
 import math
