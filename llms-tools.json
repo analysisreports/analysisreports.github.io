@@ -834,7 +834,6 @@
     }
   }
 },
-,
 {
   "type": "function",
   "function": {
@@ -849,6 +848,40 @@
         }
       },
       "required": ["drtscis_val"]
+    }
+  }
+},
+{
+  "type": "function",
+  "function": {
+    "name": "calculate_hidden_employment_crack_gauge",
+    "description": "Calculates the YoY spread between involuntary part-time workers and full-time employment to detect structural labor cracks and recession risks ahead of headline NFP (FRED: LNS12032194, LNS12500000).",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "part_time_econ_level_current": {
+          "type": "number",
+          "description": "Current month Part-Time for Economic Reasons in thousands (FRED: LNS12032194)."
+        },
+        "part_time_econ_level_yr_ago": {
+          "type": "number",
+          "description": "Same month prior year Part-Time for Economic Reasons in thousands (FRED: LNS12032194)."
+        },
+        "full_time_level_current": {
+          "type": "number",
+          "description": "Current month Usually Work Full Time in thousands (FRED: LNS12500000)."
+        },
+        "full_time_level_yr_ago": {
+          "type": "number",
+          "description": "Same month prior year Usually Work Full Time in thousands (FRED: LNS12500000)."
+        }
+      },
+      "required": [
+        "part_time_econ_level_current",
+        "part_time_econ_level_yr_ago",
+        "full_time_level_current",
+        "full_time_level_yr_ago"
+      ]
     }
   }
 }
