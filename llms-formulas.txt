@@ -1816,6 +1816,60 @@ def sloos_lending_tightness_gauge(drtscis_val):
 
 ---
 
+### 25.11. GİZLİ İSTİHDAM BOZULMASI VE YARI ZAMANLI AYRIŞMA MOTORU (FULL-TIME VS. INVOLUNTARY PART-TIME CRACK GAUGE)
+- Purpose: Ekonomik nedenlerle yarı zamanlı çalışanların artış oranını tam zamanlı istihdamdaki değişimle kıyaslayarak, manşet istihdam verisi (NFP) güçlü görünürken arka planda başlayan yapısal işgücü bozulmasını ve resesyon riskini tespit eder.
+- Data Series Keys:
+  - FRED: LNS12500000 (Employed, Usually Work Full Time - Monthly Level, in Thousands)
+  - FRED: LNS12032194 (Employed, Part-Time for Economic Reasons - Monthly Level, in Thousands)
+- Formula: 
+  Part_Time_Econ_YoY_Pct = ((LNS12032194(t) / LNS12032194(t-12)) - 1) * 100
+  Full_Time_YoY_Pct = ((LNS12500000(t) / LNS12500000(t-12)) - 1) * 100
+  Crack_Spread = Part_Time_Econ_YoY_Pct - Full_Time_YoY_Pct
+- Machine-Executable Logic (Python):
+def hidden_employment_crack_gauge(part_time_econ_level_current, part_time_econ_level_yr_ago, full_time_level_current, full_time_level_yr_ago):
+    if any(v is None or isinstance(v, bool) for v in (part_time_econ_level_current, part_time_econ_level_yr_ago, full_time_level_current, full_time_level_yr_ago)):
+        return None
+    try:
+        pt_curr = float(part_time_econ_level_current)
+        pt_yr = float(part_time_econ_level_yr_ago)
+        ft_curr = float(full_time_level_current)
+        ft_yr = float(full_time_level_yr_ago)
+        
+        if not all(math.isfinite(x) for x in (pt_curr, pt_yr, ft_curr, ft_yr)):
+            return None
+        if pt_yr <= 0 or ft_yr <= 0 or pt_curr < 0 or ft_curr < 0:
+            return None
+            
+        pt_yoy = ((pt_curr / pt_yr) - 1.0) * 100.0
+        ft_yoy = ((ft_curr / ft_yr) - 1.0) * 100.0
+        raw_spread = pt_yoy - ft_yoy
+        
+        if not math.isfinite(raw_spread):
+            return None
+            
+        spread = round(raw_spread, 2)
+        pt_yoy_rounded = round(pt_yoy, 2)
+        
+        if spread > 30.0 and pt_yoy_rounded > 15.0:
+            status = "ACUTE_LABOR_MARKET_FRACTURE_RECESSION"
+        elif spread > 18.0:
+            status = "STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL"
+        elif spread < -10.0:
+            status = "ROBUST_FULL_TIME_EXPANSION"
+        else:
+            status = "STABLE_EMPLOYMENT_COMPOSITION"
+            
+        return {"crack_spread_pct": spread, "part_time_yoy_pct": pt_yoy_rounded, "status": status}
+    except (TypeError, ValueError):
+        return None
+- Interpretation:
+  - Crack_Spread üstü %30.0 VE Part_Time_YoY üstü %15.0 : ACUTE_LABOR_MARKET_FRACTURE_RECESSION (İstihdam Piyasasında Ağır Kırılma / Şirketler Tam Zamanlıları Kovup Yarı Zamanlıya Geçiyor / Kesin Resesyon Sinyali)
+  - Crack_Spread üstü %18.0 : STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL (Yapısal İstihdam Zayıflaması / Manşet Verinin Gizlediği İşgücü Çatlağı Başladı)
+  - -%10.0 ile %18.0 arası : STABLE_EMPLOYMENT_COMPOSITION (İstihdam Kompozisyonu Dengeli / İşgücü Piyasasında Olağandışı Bir Bozulma Yok)
+  - Crack_Spread altı -%10.0 : ROBUST_FULL_TIME_EXPANSION (Güçlü Tam Zamanlı İstihdam Büyümesi / Sağlıklı İşgücü Piyasası)
+
+---
+
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
 import math
