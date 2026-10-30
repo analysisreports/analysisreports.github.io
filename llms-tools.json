@@ -833,4 +833,22 @@
       "required": ["gas_gal_price", "wti_barrel_price"]
     }
   }
+},
+,
+{
+  "type": "function",
+  "function": {
+    "name": "calculate_sloos_lending_tightness_gauge",
+    "description": "Calculates the net percentage of domestic banks tightening C&I loan standards to detect credit channel freezing and recession signals 6-9 months in advance (FRED: DRTSCIS).",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "drtscis_val": {
+          "type": "number",
+          "description": "Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Large and Middle-Market Firms (FRED: DRTSCIS)."
+        }
+      },
+      "required": ["drtscis_val"]
+    }
+  }
 }
