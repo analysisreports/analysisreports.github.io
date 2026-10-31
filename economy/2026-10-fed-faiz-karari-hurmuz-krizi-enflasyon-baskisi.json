@@ -1,0 +1,283 @@
+{
+  "structured_content_analysis": {
+    "focus_areas": [
+      "Para Politikası",
+      "Enflasyon",
+      "İş Gücü Piyasası",
+      "Tahvil Piyasası",
+      "Makroekonomik Projeksiyonlar",
+      "Faiz Artırımı",
+      "Fomc"
+    ],
+    "summary": {
+      "headline": "FOMC Faiz Artırımı ve İstihdam Piyasasında Kademeli Dengelenme",
+      "one_sentence_summary": "Federal Açık Piyasa Komitesi (FOMC), yapışkan enflasyonla mücadele amacıyla politika faizini 25 baz puan artırarak %3,75 - %4,00 aralığına yükseltirken, istihdam piyasasında ılımlı bir soğuma kaydedilmiştir.",
+      "main_topic_keywords": [
+        "Faiz Kararı",
+        "Enflasyon",
+        "İstihdam",
+        "Para Politikası",
+        "Tahvil Verimleri"
+      ]
+    },
+    "5N1K_analysis": {
+      "headline": "FOMC'nin 25 Baz Puanlık Faiz Artırımı ve Kısıtlayıcı Duruşu",
+      "what": "Federal Fonlama faiz oranı hedef aralığının 25 baz puan artırılarak %3,75 - %4,00 seviyesine yükseltilmesi ve kısıtlayıcı para politikası duruşunun sürdürülmesi.",
+      "where": "Amerika Birleşik Devletleri",
+      "when": "16 Eylül 2026",
+      "event_date": "2026-09-16",
+      "why": "Enflasyonun %2,0 hedefinin üzerinde seyretmesi, PCE ve alt kalemlerdeki yapışkanlık ile orta vadeli enflasyonist trendlerin dizginlenmesi hedefi.",
+      "how": "Komite üyelerinin 12-0 oybirliği ile faiz artırımı kararı alması ve kısıtlayıcı iletişimin benimsenmesi yoluyla.",
+      "who": "Federal Açık Piyasa Komitesi (FOMC), FOMC Başkanı Warsh, ABD Çalışma İstatistikleri Bürosu (BLS)",
+      "heat": 70
+    },
+    "quantitative_data_summary": {
+      "primary_indicator_tracking": {
+        "indicator_name": "Sentezlenmiş Portföy Endeksi",
+        "reference_period": "Eylül 2026",
+        "value_comparison": {
+          "current_period_value": "38.5",
+          "current_numeric_value": 38.5,
+          "previous_period_value": "41.2",
+          "previous_numeric_value": 41.2,
+          "nominal_change": "-2.7",
+          "target_deviation_bps": -50
+        },
+        "change_rates_percentage": {
+          "change_rate_compared_to_previous_month": "+%1,2",
+          "change_rate_compared_to_december_of_the_previous_year": "+%28,5",
+          "change_rate_compared_to_the_same_month_of_the_previous_year": "+%38,5",
+          "change_rate_according_to_twelve_month_averages": "+%45,0"
+        },
+        "macro_stance": "RESTRICTIVE",
+        "yield_spread_bps": -25
+      },
+      "other_supporting_data": [
+        {
+          "indicator_name": "Federal Fonlama Faiz Oranı Hedef Aralığı",
+          "indicator_value": "%3,75 - %4,00"
+        },
+        {
+          "indicator_name": "Manşet PCE Enflasyonu (Ağustos)",
+          "indicator_value": "%3,4"
+        },
+        {
+          "indicator_name": "Çekirdek PCE Enflasyonu (Ağustos)",
+          "indicator_value": "%3,0"
+        },
+        {
+          "indicator_name": "Tüketici Fiyat Endeksi (CPI - Ağustos)",
+          "indicator_value": "%2,4"
+        },
+        {
+          "indicator_name": "Tarım Dışı İstihdam Değişimi (Eylül)",
+          "indicator_value": "+29.000"
+        },
+        {
+          "indicator_name": "İşsizlik Oranı (Eylül)",
+          "indicator_value": "%4,2"
+        },
+        {
+          "indicator_name": "İstihdam Verisi Net Aşağı Yönlü Revizyonu (Temmuz-Ağustos)",
+          "indicator_value": "-60.000"
+        },
+        {
+          "indicator_name": "Ortalama Saatlik Kazançlar Yıllık Değişim",
+          "indicator_value": "%3,0"
+        },
+        {
+          "indicator_name": "İş Gücüne Katılım Oranı",
+          "indicator_value": "%61,8"
+        },
+        {
+          "indicator_name": "Çekirdek Enflasyon",
+          "indicator_value": "%0,29"
+        }
+      ],
+      "monetary_authority": "Federal Reserve | FED",
+      "voting_and_consensus_dynamics": "Karar 12-0 oybirliği ile alınmış olup komite içinde tam konsensüs bulunmaktadır.",
+      "voting_split": "12-0",
+      "committee_dispersion_score": 0.15
+    },
+    "actors_and_dynamics": {
+      "key_players": [
+        {
+          "name": "FOMC / Federal Rezerv",
+          "affiliation": "ABD Merkez Bankası",
+          "role_in_event": "Karar Verici",
+          "influence_score": 95
+        },
+        {
+          "name": "Warsh",
+          "affiliation": "FOMC Başkanı",
+          "role_in_event": "Karar Verici / İletişim Yürütücüsü",
+          "influence_score": 90
+        },
+        {
+          "name": "ABD Çalışma İstatistikleri Bürosu (BLS)",
+          "affiliation": "ABD Çalışma Bakanlığı",
+          "role_in_event": "Veri Sağlayıcı / Düzenleyici",
+          "influence_score": 75
+        },
+        {
+          "name": "Hyperscaler Teknoloji Şirketleri",
+          "affiliation": "Reel Sektör / Teknoloji",
+          "role_in_event": "Piyasa Yapıcı / Borçlanıcı",
+          "influence_score": 65
+        }
+      ],
+      "relationship_map": [
+        {
+          "source": "FOMC",
+          "relation": "Monetary Tightening",
+          "target": "Tahvil Piyasası",
+          "directed": true,
+          "severity": "HIGH",
+          "polarity": -0.6,
+          "heat": 70
+        },
+        {
+          "source": "FOMC",
+          "relation": "Monetary Tightening",
+          "target": "Bankacılık Sektörü",
+          "directed": true,
+          "severity": "HIGH",
+          "polarity": -0.5,
+          "heat": 65
+        },
+        {
+          "source": "Hyperscaler Teknoloji Şirketleri",
+          "relation": "Dependency",
+          "target": "Tahvil Piyasası",
+          "directed": true,
+          "severity": "MODERATE",
+          "polarity": -0.3,
+          "heat": 60
+        }
+      ]
+    },
+    "core_analysis": {
+      "central_conflict_or_goal": "Enflasyonla Mücadele ve Fiyat İstikrarını Yeniden Tesis Etme",
+      "strategic_implication": "Yüksek faiz politikasının uzun süre korunması, borçlanma maliyetlerini artıracak, yatırımlarda hurdle rate oranlarını yükseltecek ve sermaye disiplinini zorunlu kılacaktır.",
+      "underlying_message": "Tekil aylık verilere aşırı tepki verilmeyecek; orta vadeli enflasyonist katılık tamamen kırılana kadar finansal koşullardaki parasal gevşeme adımları geri alınacaktır.",
+      "market_dynamics": "10 yıllık tahvil verimleri üzerinde yukarı yönlü baskı sürmekte, getiri eğrisi dikleşmekte ve kurumsal borçlanma marjları baskılanmaktadır.",
+      "geopolitical_factors": "Hürmüz Boğazı'ndaki seyrüsefer riskleri ve küresel çatışmaların petrol, enerji ve tarımsal emtia fiyatları üzerinden enflasyonist ikinci tur etki riski yaratması.",
+      "conflict_heat": 65,
+      "market_impact_direction": "RISK_OFF",
+      "market_impact_score": 68,
+      "key_quotes": [
+        {
+          "speaker": "Warsh",
+          "quote": "Faiz artışı finansal sistemdeki akomodasyonun bir dozunun kaldırılmasıdır.",
+          "significance_level": "HIGH",
+          "significance_analysis": "Parasal sıkılaşmanın ekonomiyi resesyona sokmak için değil, piyasadaki aşırı likidite ve gevşek finansal koşulları kademeli olarak dengelemek amacıyla devreye sokulduğunu belirten şahin duruş teyidi."
+        }
+      ]
+    },
+    "future_outlook": {
+      "potential_consequences": {
+        "short_term": "Kurumsal borçlanma maliyetlerinin artması, hurdle rate oranlarının yukarı revize edilmesi ve likidite tamponlarının güçlendirilmesi.",
+        "short_term_days": 90,
+        "long_term": "PCE enflasyonunun 2026 sonunda %3,7 seviyesinde kalması, Fed Funds oranının %4,1 seviyesinde yataylaşması ve kısıtlayıcı para politikasının sürmesi.",
+        "long_term_days": 365
+      },
+      "next_key_event": "Fed Yapay Zeka Görev Gücü İlk Kapsamlı Raporu",
+      "status": "ACTIVE",
+      "probability": "High",
+      "probability_percent": 85,
+      "impact": "Moderate",
+      "impact_score": 65,
+      "direction": "Risk",
+      "confidence_score": 85,
+      "target_date": "2026-12"
+    },
+    "categorization": {
+      "tags": [
+        "Para Politikası",
+        "Enflasyon",
+        "Faiz Kararı",
+        "İstihdam",
+        "FOMC",
+        "FRED"
+      ]
+    },
+    "target_queries": {
+      "qa_pairs": [
+        {
+          "q": "Federal Açık Piyasa Komitesi (FOMC) 16 Eylül 2026 tarihinde politika faiz oranını hangi aralığa yükseltmiştir?",
+          "a": "FOMC, 16 Eylül 2026 tarihinde federal fonlama faiz oranı hedef aralığını 25 baz puan artırarak yüzde 3,75 - yüzde 4,00 seviyesine yükseltmiştir."
+        },
+        {
+          "q": "Federal Rezerv'in (Fed) 16 Eylül 2026 tarihindeki faiz artırımı kararı komite içerisinde nasıl bir oylama dağılımıyla alınmıştır?",
+          "a": "Karar, FOMC üyelerinin 12-0 oybirliği ile alınmış olup komite içinde tam konsensüs sağlanmıştır."
+        },
+        {
+          "q": "Ağustos 2026 dönemine ait manşet ve çekirdek PCE enflasyonu verileri yüzde kaç olarak gerçekleşmiştir?",
+          "a": "Ağustos 2026 döneminde manşet PCE enflasyonu yüzde 3,4, çekirdek PCE enflasyonu ise yüzde 3,0 oranında kaydedilmiştir."
+        },
+        {
+          "q": "Eylül 2026'da ABD Çalışma İstatistikleri Bürosu (BLS) tarafından açıklanan tarım dışı istihdam değişimi ve işsizlik oranı nedir?",
+          "a": "Eylül 2026'da tarım dışı istihdam değişimi artı 29.000 olarak gerçekleşirken, işsizlik oranı yüzde 4,2 seviyesinde duyurulmuştur."
+        },
+        {
+          "q": "Temmuz ve Ağustos aylarını kapsayan istihdam verilerinde yapılan net aşağı yönlü revizyon miktarı ne kadardır?",
+          "a": "Temmuz ve Ağustos dönemindeki istihdam verilerinde toplam 60.000 kişilik net aşağı yönlü revizyon yapılmıştır."
+        },
+        {
+          "q": "FOMC Başkanı Warsh, Eylül 2026 toplantısındaki faiz artırımı kararını ve para politikası duruşunu nasıl nitelendirmiştir?",
+          "a": "FOMC Başkanı Warsh, yapılan faiz artışının finansal sistemdeki akomodasyonun bir dozunun kaldırılması anlamına geldiğini belirtmiştir."
+        },
+        {
+          "q": "Eylül 2026 döneminde Sentezlenmiş Portföy Endeksi bir önceki aya göre nasıl bir değişim göstermiştir?",
+          "a": "Sentezlenmiş Portföy Endeksi, cari dönemde 38,5 seviyesine gerileyerek bir önceki dönemin 41,2 olan değerine kıyasla düşüş kaydetmiştir."
+        },
+        {
+          "q": "FOMC'nin kısıtlayıcı para politikası duruşunun arkasındaki temel stratejik hedef ve gerekçe nedir?",
+          "a": "Enflasyonun yüzde 2,0 hedefinin üzerinde seyretmesi, PCE ve alt kalemlerdeki yapışkanlık ile orta vadeli enflasyonist trendlerin dizginlenmesi hedeflenmektedir."
+        },
+        {
+          "q": "Yüksek faiz politikasının uzun süre korunmasının kurumsal borçlanma ve şirketler üzerindeki stratejik etkisi ne olacaktır?",
+          "a": "Yüksek faiz politikasının uzun süre korunması borçlanma maliyetlerini artıracak, yatırımlarda hurdle rate oranlarını yükseltecek ve sermaye disiplinini zorunlu kılacaktır."
+        },
+        {
+          "q": "Hürmüz Boğazı'ndaki seyrüsefer risklerinin küresel ekonomiye ve enflasyona olası ikincil tur etkisi nedir?",
+          "a": "Hürmüz Boğazı'ndaki seyrüsefer riskleri ve küresel çatışmalar petrol, enerji ve tarımsal emtia fiyatları üzerinden enflasyonist ikinci tur etki riski yaratmaktadır."
+        }
+      ]
+    },
+    "metadata": {
+      "analyst": "Ersoy Toptaş",
+      "methodology": "https://analysisreports.github.io/llms.txt",
+      "ai-prompts": "https://analysisreports.github.io/llms-prompts.txt",
+      "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
+      "canonical_source": "https://analysisreports.github.io",
+      "license": "CC BY 4.0"
+    },
+    "editorial_frontend": {
+      "url": "https://www.ersoytoptas.tr/2026/10/fed-faiz-karari-hurmuz-krizi-enflasyon-baskisi.html",
+      "format": "Human-Readable Narrative",
+      "author": "Ersoy Toptaş",
+      "published_date": "2026-10-18",
+      "language": "tr",
+      "description": "Bu makroekonomik ve jeopolitik veri setinin, okuyucular için anlatı (narrative) formatında hazırlanmış, okunabilir editoryal makale versiyonu."
+    },
+"cross_references": {
+      "relations": [
+        {
+          "target_url": "https://www.ersoytoptas.tr/2026/10/fed-faizi-hurmuz-reel-sektor-finansman.html",
+          "target_published_date": "2026-10-30",
+          "predicate": "MONETARY_TIGHTENING_TRANSMISSION",
+          "impact_window": "2026-10/2026-12",
+          "description": "Yapışkan PCE enflasyonu ve Hürmüz Boğazı petrol sıçraması nedeniyle alınan faiz sabitleme kararı, 10 yıllık Hazine tahvil faizlerinin yüzde 5,05 seviyesine tırmanmasına ve şirketlerin borçlanma maliyetlerinin artmasına zemin hazırlamıştır."
+        },
+        {
+          "target_url": "https://www.ersoytoptas.tr/2026/10/abd-rusya-baris-trafigi-starshield-krizi-cephede-neler-oluyor.html",
+          "target_published_date": "2026-10-22",
+          "predicate": "GEOPOLITICAL_STAGFLATION_RISK",
+          "impact_window": "2026-10/2026-11",
+          "description": "Ukrayna ve Doğu Avrupa hattındaki çatışma ortamı ile jeopolitik seyrüsefer kısıtları küresel enerji fiyatları üzerinden dezenflasyon sürecini zorlaştırarak merkez bankalarının kısıtlayıcı kalmasını zorunlu kılmaktadır."
+        }
+      ]
+    }
+  }
+}
