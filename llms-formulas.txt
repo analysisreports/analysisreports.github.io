@@ -1511,27 +1511,27 @@ Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açık
   - FRED: FLEXCPIM157SFRBATL (Flexible Consumer Price Index less Food and Energy - YoY % Change)
 - Formula: Sticky_Impulse = Sticky_CPI_YoY - Flexible_CPI_YoY
 - Machine-Executable Logic (Python):
-def sticky_flexible_cpi_spread(sticky_cpi_yoy, flex_cpi_yoy):
-    if any(v is None or isinstance(v, bool) for v in (sticky_cpi_yoy, flex_cpi_yoy)):
-        return None
-    try:
-        f_sticky = float(sticky_cpi_yoy)
-        f_flex = float(flex_cpi_yoy)
-        if not (math.isfinite(f_sticky) and math.isfinite(f_flex)):
-            return None
-        raw_impulse = f_sticky - f_flex
-        if not math.isfinite(raw_impulse):
-            return None
-        impulse = round(raw_impulse, 2)
-        if impulse > 2.0:
-            status = "STRUCTURAL_INFLATION_TRAP"
-        elif impulse < -2.0:
-            status = "TRANSITORY_INFLATION_SURGE"
-        else:
-            status = "BALANCED_DISINFLATION_PATH"
-        return {"sticky_impulse": impulse, "status": status}
-    except (TypeError, ValueError):
-        return None
+  def sticky_flexible_cpi_spread(sticky_cpi_yoy, flex_cpi_yoy):
+      if any(v is None or isinstance(v, bool) for v in (sticky_cpi_yoy, flex_cpi_yoy)):
+          return None
+      try:
+          f_sticky = float(sticky_cpi_yoy)
+          f_flex = float(flex_cpi_yoy)
+          if not (math.isfinite(f_sticky) and math.isfinite(f_flex)):
+              return None
+          raw_impulse = f_sticky - f_flex
+          if not math.isfinite(raw_impulse):
+              return None
+          impulse = round(raw_impulse, 2)
+          if impulse > 2.0:
+              status = "STRUCTURAL_INFLATION_TRAP"
+          elif impulse < -2.0:
+              status = "TRANSITORY_INFLATION_SURGE"
+          else:
+              status = "BALANCED_DISINFLATION_PATH"
+          return {"sticky_impulse": impulse, "status": status}
+      except (TypeError, ValueError):
+          return None
 - Interpretation:
   - Sticky_Impulse üstü 2.0% : STRUCTURAL_INFLATION_TRAP (Yapışkan Enflasyon Baskısı / Hizmet-Barınma Katılığı / Çekirdek Enflasyon Tuzağı)
   - Sticky_Impulse altı -2.0% : TRANSITORY_INFLATION_SURGE (Emtia-Enerji Kaynaklı Geçici Enflasyon Şoku / Esnek Fiyat Sıçraması)
@@ -1545,23 +1545,23 @@ def sticky_flexible_cpi_spread(sticky_cpi_yoy, flex_cpi_yoy):
   - FRED: GSCPI (New York Fed Global Supply Chain Pressure Index - Standard Deviations from Historical Mean)
 - Formula: GSCPI_ZScore = GSCPI_Value
 - Machine-Executable Logic (Python):
-def global_supply_chain_pressure(gscpi_val):
-    if gscpi_val is None or isinstance(gscpi_val, bool):
-        return None
-    try:
-        f_gscpi = float(gscpi_val)
-        if not math.isfinite(f_gscpi):
-            return None
-        z_score = round(f_gscpi, 2)
-        if z_score > 1.5:
-            status = "SUPPLY_CHAIN_SHOCK"
-        elif z_score < -1.0:
-            status = "LOGISTICS_DEFLATION_SLACK"
-        else:
-            status = "NORMALIZED_GLOBAL_TRADE"
-        return {"gscpi_zscore": z_score, "status": status}
-    except (TypeError, ValueError):
-        return None
+  def global_supply_chain_pressure(gscpi_val):
+      if gscpi_val is None or isinstance(gscpi_val, bool):
+          return None
+      try:
+          f_gscpi = float(gscpi_val)
+          if not math.isfinite(f_gscpi):
+              return None
+          z_score = round(f_gscpi, 2)
+          if z_score > 1.5:
+              status = "SUPPLY_CHAIN_SHOCK"
+          elif z_score < -1.0:
+              status = "LOGISTICS_DEFLATION_SLACK"
+          else:
+              status = "NORMALIZED_GLOBAL_TRADE"
+          return {"gscpi_zscore": z_score, "status": status}
+      except (TypeError, ValueError):
+          return None
 - Interpretation:
   - GSCPI_ZScore üstü 1.5 : SUPPLY_CHAIN_SHOCK (Arz Yönlü Maliyet Enflasyonu Şoku / Lojistik Kilitlenme / Navlun ve Teslimat Baskısı)
   - GSCPI_ZScore altı -1.0 : LOGISTICS_DEFLATION_SLACK (Tedarik Zincirinde Aşırı Atıllık / Mal Fiyatlarında Dezenflasyonist Baskı)
@@ -1576,27 +1576,27 @@ def global_supply_chain_pressure(gscpi_val):
   - ICE / Merrill Lynch: MOVE (ICE BofA US Treasury Option Volatility Estimate Index)
 - Formula: Vol_Disconnect_Ratio = MOVE_Index / VIX_Index
 - Machine-Executable Logic (Python):
-def move_vix_disconnect_ratio(move_val, vix_val):
-    if any(v is None or isinstance(v, bool) for v in (move_val, vix_val)):
-        return None
-    try:
-        f_move = float(move_val)
-        f_vix = float(vix_val)
-        if not (math.isfinite(f_move) and math.isfinite(f_vix)) or f_vix <= 0:
-            return None
-        raw_ratio = f_move / f_vix
-        if not math.isfinite(raw_ratio):
-            return None
-        ratio = round(raw_ratio, 2)
-        if ratio > 6.5:
-            status = "RATE_RISK_MISPRICING_ALARM"
-        elif ratio < 3.5:
-            status = "EQUITY_PANIC_DOMINANCE"
-        else:
-            status = "COHERENT_MARKET_VOLATILITY"
-        return {"vol_disconnect_ratio": ratio, "status": status}
-    except (TypeError, ValueError, ZeroDivisionError):
-        return None
+  def move_vix_disconnect_ratio(move_val, vix_val):
+      if any(v is None or isinstance(v, bool) for v in (move_val, vix_val)):
+          return None
+      try:
+          f_move = float(move_val)
+          f_vix = float(vix_val)
+          if not (math.isfinite(f_move) and math.isfinite(f_vix)) or f_vix <= 0:
+              return None
+          raw_ratio = f_move / f_vix
+          if not math.isfinite(raw_ratio):
+              return None
+          ratio = round(raw_ratio, 2)
+          if ratio > 6.5:
+              status = "RATE_RISK_MISPRICING_ALARM"
+          elif ratio < 3.5:
+              status = "EQUITY_PANIC_DOMINANCE"
+          else:
+              status = "COHERENT_MARKET_VOLATILITY"
+          return {"vol_disconnect_ratio": ratio, "status": status}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
 - Interpretation:
   - Vol_Disconnect_Ratio üstü 6.5 : RATE_RISK_MISPRICING_ALARM (Faiz ve Tahvil Oynaklığı Yüksek / Hisse Senetleri Faiz Riskini Görmezden Geliyor / Şok Düzeltme Riski)
   - Vol_Disconnect_Ratio altı 3.5 : EQUITY_PANIC_DOMINANCE (Hisse Senedi Piyasasında Aşırı Panik / Tahvil Piyasası Göreceli Stabil)
@@ -1611,31 +1611,31 @@ def move_vix_disconnect_ratio(move_val, vix_val):
   - FRED: EFFR (Effective Federal Funds Rate - Percent)
 - Formula: Repo_Friction_bps = (SOFR - EFFR) * 100
 - Machine-Executable Logic (Python):
-def repo_liquidity_friction_spread(sofr_val, effr_val):
-    if any(v is None or isinstance(v, bool) for v in (sofr_val, effr_val)):
-        return None
-    try:
-        f_sofr = float(sofr_val)
-        f_effr = float(effr_val)
-        if not (math.isfinite(f_sofr) and math.isfinite(f_effr)):
-            return None
-        if f_sofr < 0.0 or f_effr < 0.0:
-            return None
-        raw_spread = (f_sofr - f_effr) * 100.0
-        if not math.isfinite(raw_spread):
-            return None
-        spread = round(raw_spread, 2)
-        if spread > 10.0:
-            status = "REPO_MARKET_LIQUIDITY_CRUNCH"
-        elif spread >= 5.0:
-            status = "SYSTEMIC_CASH_DRAIN_WARNING"
-        elif spread < -5.0:
-            status = "COLLATERAL_SCARCITY_GLUT"
-        else:
-            status = "HEALTHY_MONETARY_TRANSMISSION"
-        return {"repo_friction_bps": spread, "status": status}
-    except (TypeError, ValueError):
-        return None
+  def repo_liquidity_friction_spread(sofr_val, effr_val):
+      if any(v is None or isinstance(v, bool) for v in (sofr_val, effr_val)):
+          return None
+      try:
+          f_sofr = float(sofr_val)
+          f_effr = float(effr_val)
+          if not (math.isfinite(f_sofr) and math.isfinite(f_effr)):
+              return None
+          if f_sofr < 0.0 or f_effr < 0.0:
+              return None
+          raw_spread = (f_sofr - f_effr) * 100.0
+          if not math.isfinite(raw_spread):
+              return None
+          spread = round(raw_spread, 2)
+          if spread > 10.0:
+              status = "REPO_MARKET_LIQUIDITY_CRUNCH"
+          elif spread >= 5.0:
+              status = "SYSTEMIC_CASH_DRAIN_WARNING"
+          elif spread < -5.0:
+              status = "COLLATERAL_SCARCITY_GLUT"
+          else:
+              status = "HEALTHY_MONETARY_TRANSMISSION"
+          return {"repo_friction_bps": spread, "status": status}
+      except (TypeError, ValueError):
+          return None
 - Interpretation:
   - Repo_Friction_bps üstü 10.0 bps : REPO_MARKET_LIQUIDITY_CRUNCH (Gecelik Fonlama Piyasasında Ağır Likidite Sıkışıklığı / Nakit Darlığı / Fed Müdahalesi Riski)
   - 5.0 bps ile 10.0 bps arası : SYSTEMIC_CASH_DRAIN_WARNING (Sistemik Nakit Çekilmesi Uyarısı / Bilanço Kapasitesi Sıkılaşma Sınırı)
@@ -1651,25 +1651,25 @@ def repo_liquidity_friction_spread(sofr_val, effr_val):
   - FRED / LBMA: GOLDPMGBD228NLBM (Gold Fixing Price 3:00 P.M. London time - YoY % Change)
 - Formula: Anomaly_Signal = f(Real_Yield_10Y, Gold_YoY_Pct)
 - Machine-Executable Logic (Python):
-def gold_real_yield_debasement_gauge(real_yield_10y, gold_yoy_pct):
-    if any(v is None or isinstance(v, bool) for v in (real_yield_10y, gold_yoy_pct)):
-        return None
-    try:
-        f_ry = float(real_yield_10y)
-        f_gy = float(gold_yoy_pct)
-        if not (math.isfinite(f_ry) and math.isfinite(f_gy)):
-            return None
-        ry_val = round(f_ry, 2)
-        gy_val = round(f_gy, 2)
-        if ry_val > 1.5 and gy_val > 15.0:
-            status = "DEBALANCING_DEDOLLARIZATION_PANIC"
-        elif ry_val <= 0.0 and gy_val > 0.0:
-            status = "ACCOMMODATIVE_GOLD_BULL"
-        else:
-            status = "TRADITIONAL_REAL_RATE_DOMINANCE"
-        return {"real_yield_10y": ry_val, "gold_yoy_pct": gy_val, "status": status}
-    except (TypeError, ValueError):
-        return None
+  def gold_real_yield_debasement_gauge(real_yield_10y, gold_yoy_pct):
+      if any(v is None or isinstance(v, bool) for v in (real_yield_10y, gold_yoy_pct)):
+          return None
+      try:
+          f_ry = float(real_yield_10y)
+          f_gy = float(gold_yoy_pct)
+          if not (math.isfinite(f_ry) and math.isfinite(f_gy)):
+              return None
+          ry_val = round(f_ry, 2)
+          gy_val = round(f_gy, 2)
+          if ry_val > 1.5 and gy_val > 15.0:
+              status = "DEBALANCING_DEDOLLARIZATION_PANIC"
+          elif ry_val <= 0.0 and gy_val > 0.0:
+              status = "ACCOMMODATIVE_GOLD_BULL"
+          else:
+              status = "TRADITIONAL_REAL_RATE_DOMINANCE"
+          return {"real_yield_10y": ry_val, "gold_yoy_pct": gy_val, "status": status}
+      except (TypeError, ValueError):
+          return None
 - Interpretation:
   - Real_Yield > 1.5% VE Gold_YoY > 15.0% : DEBALANCING_DEDOLLARIZATION_PANIC (Sistemik Güven Kaybı / Jeopolitik De-Dolarizasyon / İtibari Para İtimat Çöküşü / Doğu Blok Rezerv Kayması)
   - Real_Yield <= 0.0% VE Gold_YoY > 0.0% : ACCOMMODATIVE_GOLD_BULL (Klasik Negatif Reel Faiz Kaynaklı Altın Boğası / Parasal Genişleme Desteği)
@@ -1684,27 +1684,27 @@ def gold_real_yield_debasement_gauge(real_yield_10y, gold_yoy_pct):
   - FRED: VIXCLS (CBOE Volatility Index)
 - Formula: Vol_Ratio = OVX_Index / VIX_Index
 - Machine-Executable Logic (Python):
-def ovx_vix_risk_premium(ovx_val, vix_val):
-    if any(v is None or isinstance(v, bool) for v in (ovx_val, vix_val)):
-        return None
-    try:
-        f_ovx = float(ovx_val)
-        f_vix = float(vix_val)
-        if not (math.isfinite(f_ovx) and math.isfinite(f_vix)) or f_vix <= 0:
-            return None
-        raw_ratio = f_ovx / f_vix
-        if not math.isfinite(raw_ratio):
-            return None
-        ratio = round(raw_ratio, 2)
-        if ratio > 2.2:
-            status = "ENERGY_SUPPLY_SHOCK_ALARM"
-        elif ratio < 1.0:
-            status = "EQUITY_PANIC_OVER_ENERGY"
-        else:
-            status = "BALANCED_ENERGY_VOLATILITY"
-        return {"ovx_vix_ratio": ratio, "status": status}
-    except (TypeError, ValueError, ZeroDivisionError):
-        return None
+  def ovx_vix_risk_premium(ovx_val, vix_val):
+      if any(v is None or isinstance(v, bool) for v in (ovx_val, vix_val)):
+          return None
+      try:
+          f_ovx = float(ovx_val)
+          f_vix = float(vix_val)
+          if not (math.isfinite(f_ovx) and math.isfinite(f_vix)) or f_vix <= 0:
+              return None
+          raw_ratio = f_ovx / f_vix
+          if not math.isfinite(raw_ratio):
+              return None
+          ratio = round(raw_ratio, 2)
+          if ratio > 2.2:
+              status = "ENERGY_SUPPLY_SHOCK_ALARM"
+          elif ratio < 1.0:
+              status = "EQUITY_PANIC_OVER_ENERGY"
+          else:
+              status = "BALANCED_ENERGY_VOLATILITY"
+          return {"ovx_vix_ratio": ratio, "status": status}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
 - Interpretation:
   - Vol_Ratio üstü 2.2 : ENERGY_SUPPLY_SHOCK_ALARM (Petrol Kaynaklı Jeopolitik Arz Şoku / Stagflasyon Riski / Enerji Fiyat Sıçraması)
   - Vol_Ratio altı 1.0 : EQUITY_PANIC_OVER_ENERGY (Hisse Senedi Piyasasında Panik Hakim / Petrol Piyasası Sakin)
@@ -1719,27 +1719,27 @@ def ovx_vix_risk_premium(ovx_val, vix_val):
   - FRED: DHHNGSP (Henry Hub Natural Gas Spot Price - Dollars per Million BTU)
 - Formula: BTU_Disconnect_Ratio = WTI_Price / NatGas_Price
 - Machine-Executable Logic (Python):
-def natgas_crude_btu_disconnect(wti_price, natgas_price):
-    if any(v is None or isinstance(v, bool) for v in (wti_price, natgas_price)):
-        return None
-    try:
-        f_wti = float(wti_price)
-        f_gas = float(natgas_price)
-        if not (math.isfinite(f_wti) and math.isfinite(f_gas)) or f_gas <= 0 or f_wti < 0:
-            return None
-        raw_ratio = f_wti / f_gas
-        if not math.isfinite(raw_ratio):
-            return None
-        ratio = round(raw_ratio, 2)
-        if ratio < 6.0:
-            status = "NATGAS_CRISIS_BLACKOUT_RISK"
-        elif ratio > 35.0:
-            status = "NATGAS_GLUT_ENERGY_CHEAP"
-        else:
-            status = "ENERGY_PARITY_EQUILIBRIUM"
-        return {"btu_disconnect_ratio": ratio, "status": status}
-    except (TypeError, ValueError, ZeroDivisionError):
-        return None
+  def natgas_crude_btu_disconnect(wti_price, natgas_price):
+      if any(v is None or isinstance(v, bool) for v in (wti_price, natgas_price)):
+          return None
+      try:
+          f_wti = float(wti_price)
+          f_gas = float(natgas_price)
+          if not (math.isfinite(f_wti) and math.isfinite(f_gas)) or f_gas <= 0 or f_wti < 0:
+              return None
+          raw_ratio = f_wti / f_gas
+          if not math.isfinite(raw_ratio):
+              return None
+          ratio = round(raw_ratio, 2)
+          if ratio < 6.0:
+              status = "NATGAS_CRISIS_BLACKOUT_RISK"
+          elif ratio > 35.0:
+              status = "NATGAS_GLUT_ENERGY_CHEAP"
+          else:
+              status = "ENERGY_PARITY_EQUILIBRIUM"
+          return {"btu_disconnect_ratio": ratio, "status": status}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
 - Interpretation:
   - BTU_Disconnect_Ratio altı 6.0 : NATGAS_CRISIS_BLACKOUT_RISK (Ağır Doğalgaz Kıtlığı / Doğalgaz Petrole Göre Aşırı Pahalı / Isınma ve Elektrik Maliyeti Şoku)
   - BTU_Disconnect_Ratio üstü 35.0 : NATGAS_GLUT_ENERGY_CHEAP (Doğalgaz Arz Fazlası / Sanayi ve Konut İçin Ucuz Enerji Desteği)
@@ -1754,28 +1754,28 @@ def natgas_crude_btu_disconnect(wti_price, natgas_price):
   - FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - Dollars per Barrel)
 - Formula: Crack_Spread_USD = (Gasoline_Gallon_Price * 42) - WTI_Barrel_Price
 - Machine-Executable Logic (Python):
-def gasoline_crude_crack_spread(gas_gal_price, wti_barrel_price):
-    if any(v is None or isinstance(v, bool) for v in (gas_gal_price, wti_barrel_price)):
-        return None
-    try:
-        f_gas = float(gas_gal_price)
-        f_wti = float(wti_barrel_price)
-        if not (math.isfinite(f_gas) and math.isfinite(f_wti)) or f_wti <= 0 or f_gas <= 0:
-            return None
-        gas_barrel_equiv = f_gas * 42.0
-        raw_spread = gas_barrel_equiv - f_wti
-        if not math.isfinite(raw_spread):
-            return None
-        spread = round(raw_spread, 2)
-        if spread > 40.0:
-            status = "REFINERY_BOTTLENECK_CRUNCH"
-        elif spread < 5.0:
-            status = "REFINING_MARGIN_COLLAPSE"
-        else:
-            status = "NORMAL_REFINING_MARGIN"
-        return {"crack_spread_usd": spread, "status": status}
-    except (TypeError, ValueError, ZeroDivisionError):
-        return None
+  def gasoline_crude_crack_spread(gas_gal_price, wti_barrel_price):
+      if any(v is None or isinstance(v, bool) for v in (gas_gal_price, wti_barrel_price)):
+          return None
+      try:
+          f_gas = float(gas_gal_price)
+          f_wti = float(wti_barrel_price)
+          if not (math.isfinite(f_gas) and math.isfinite(f_wti)) or f_wti <= 0 or f_gas <= 0:
+              return None
+          gas_barrel_equiv = f_gas * 42.0
+          raw_spread = gas_barrel_equiv - f_wti
+          if not math.isfinite(raw_spread):
+              return None
+          spread = round(raw_spread, 2)
+          if spread > 40.0:
+              status = "REFINERY_BOTTLENECK_CRUNCH"
+          elif spread < 5.0:
+              status = "REFINING_MARGIN_COLLAPSE"
+          else:
+              status = "NORMAL_REFINING_MARGIN"
+          return {"crack_spread_usd": spread, "status": status}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
 - Interpretation:
   - Crack_Spread_USD üstü $40.0 : REFINERY_BOTTLENECK_CRUNCH (Rafineri Kapasite Darboğazı / Tüketici Bütçesinde Benzin Şoku / Yüksek İşleme Marjı)
   - Crack_Spread_USD altı $5.0 : REFINING_MARGIN_COLLAPSE (Rafineri Marj Çöküşü / Akaryakıt Talebinde Daralma / Zayıf Tüketim)
@@ -1789,25 +1789,25 @@ def gasoline_crude_crack_spread(gas_gal_price, wti_barrel_price):
   - FRED: DRTSCIS (Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Large and Middle-Market Firms - Quarterly Percent)
 - Formula: Credit_Tightening_Net_Pct = DRTSCIS
 - Machine-Executable Logic (Python):
-def sloos_lending_tightness_gauge(drtscis_val):
-    if drtscis_val is None or isinstance(drtscis_val, bool):
-        return None
-    try:
-        val = float(drtscis_val)
-        if not math.isfinite(val):
-            return None
-        tightness = round(val, 2)
-        if tightness > 40.0:
-            status = "ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL"
-        elif tightness >= 20.0:
-            status = "RESTRICTIVE_CREDIT_CONTRACTION"
-        elif tightness <= -10.0:
-            status = "AGGRESSIVE_CREDIT_EXPANSION"
-        else:
-            status = "NEUTRAL_CREDIT_CONDITIONS"
-        return {"credit_tightening_net_pct": tightness, "status": status}
-    except (TypeError, ValueError):
-        return None
+  def sloos_lending_tightness_gauge(drtscis_val):
+      if drtscis_val is None or isinstance(drtscis_val, bool):
+          return None
+      try:
+          val = float(drtscis_val)
+          if not math.isfinite(val):
+              return None
+          tightness = round(val, 2)
+          if tightness > 40.0:
+              status = "ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL"
+          elif tightness >= 20.0:
+              status = "RESTRICTIVE_CREDIT_CONTRACTION"
+          elif tightness <= -10.0:
+              status = "AGGRESSIVE_CREDIT_EXPANSION"
+          else:
+              status = "NEUTRAL_CREDIT_CONDITIONS"
+          return {"credit_tightening_net_pct": tightness, "status": status}
+      except (TypeError, ValueError):
+          return None
 - Interpretation:
   - Credit_Tightening_Net_Pct üstü %40.0 : ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL (Şiddetli Kredi Kanalı Tıkanması / Tarihsel Kesin Resesyon Eşiği / Likidite Krizi Alarmı)
   - %20.0 ile %40.0 arası : RESTRICTIVE_CREDIT_CONTRACTION (Kredi Standartlarında Belirgin Sıkılaşma / Yatırım ve İstihdam Baskısı)
@@ -1826,42 +1826,42 @@ def sloos_lending_tightness_gauge(drtscis_val):
   Full_Time_YoY_Pct = ((LNS12500000(t) / LNS12500000(t-12)) - 1) * 100
   Crack_Spread = Part_Time_Econ_YoY_Pct - Full_Time_YoY_Pct
 - Machine-Executable Logic (Python):
-def hidden_employment_crack_gauge(part_time_econ_level_current, part_time_econ_level_yr_ago, full_time_level_current, full_time_level_yr_ago):
-    if any(v is None or isinstance(v, bool) for v in (part_time_econ_level_current, part_time_econ_level_yr_ago, full_time_level_current, full_time_level_yr_ago)):
-        return None
-    try:
-        pt_curr = float(part_time_econ_level_current)
-        pt_yr = float(part_time_econ_level_yr_ago)
-        ft_curr = float(full_time_level_current)
-        ft_yr = float(full_time_level_yr_ago)
-        
-        if not all(math.isfinite(x) for x in (pt_curr, pt_yr, ft_curr, ft_yr)):
-            return None
-        if pt_yr <= 0 or ft_yr <= 0 or pt_curr < 0 or ft_curr < 0:
-            return None
-            
-        pt_yoy = ((pt_curr / pt_yr) - 1.0) * 100.0
-        ft_yoy = ((ft_curr / ft_yr) - 1.0) * 100.0
-        raw_spread = pt_yoy - ft_yoy
-        
-        if not math.isfinite(raw_spread):
-            return None
-            
-        spread = round(raw_spread, 2)
-        pt_yoy_rounded = round(pt_yoy, 2)
-        
-        if spread > 30.0 and pt_yoy_rounded > 15.0:
-            status = "ACUTE_LABOR_MARKET_FRACTURE_RECESSION"
-        elif spread > 18.0:
-            status = "STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL"
-        elif spread < -10.0:
-            status = "ROBUST_FULL_TIME_EXPANSION"
-        else:
-            status = "STABLE_EMPLOYMENT_COMPOSITION"
-            
-        return {"crack_spread_pct": spread, "part_time_yoy_pct": pt_yoy_rounded, "status": status}
-    except (TypeError, ValueError):
-        return None
+  def hidden_employment_crack_gauge(part_time_econ_level_current, part_time_econ_level_yr_ago, full_time_level_current, full_time_level_yr_ago):
+      if any(v is None or isinstance(v, bool) for v in (part_time_econ_level_current, part_time_econ_level_yr_ago, full_time_level_current, full_time_level_yr_ago)):
+          return None
+      try:
+          pt_curr = float(part_time_econ_level_current)
+          pt_yr = float(part_time_econ_level_yr_ago)
+          ft_curr = float(full_time_level_current)
+          ft_yr = float(full_time_level_yr_ago)
+          
+          if not all(math.isfinite(x) for x in (pt_curr, pt_yr, ft_curr, ft_yr)):
+              return None
+          if pt_yr <= 0 or ft_yr <= 0 or pt_curr < 0 or ft_curr < 0:
+              return None
+              
+          pt_yoy = ((pt_curr / pt_yr) - 1.0) * 100.0
+          ft_yoy = ((ft_curr / ft_yr) - 1.0) * 100.0
+          raw_spread = pt_yoy - ft_yoy
+          
+          if not math.isfinite(raw_spread):
+              return None
+              
+          spread = round(raw_spread, 2)
+          pt_yoy_rounded = round(pt_yoy, 2)
+          
+          if spread > 30.0 and pt_yoy_rounded > 15.0:
+              status = "ACUTE_LABOR_MARKET_FRACTURE_RECESSION"
+          elif spread > 18.0:
+              status = "STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL"
+          elif spread < -10.0:
+              status = "ROBUST_FULL_TIME_EXPANSION"
+          else:
+              status = "STABLE_EMPLOYMENT_COMPOSITION"
+              
+          return {"crack_spread_pct": spread, "part_time_yoy_pct": pt_yoy_rounded, "status": status}
+      except (TypeError, ValueError):
+          return None
 - Interpretation:
   - Crack_Spread üstü %30.0 VE Part_Time_YoY üstü %15.0 : ACUTE_LABOR_MARKET_FRACTURE_RECESSION (İstihdam Piyasasında Ağır Kırılma / Şirketler Tam Zamanlıları Kovup Yarı Zamanlıya Geçiyor / Kesin Resesyon Sinyali)
   - Crack_Spread üstü %18.0 : STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL (Yapısal İstihdam Zayıflaması / Manşet Verinin Gizlediği İşgücü Çatlağı Başladı)
@@ -1872,19 +1872,29 @@ def hidden_employment_crack_gauge(part_time_econ_level_current, part_time_econ_l
 
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
-import math
-
-def _is_num(val):
-    if val is None or isinstance(val, bool) or not isinstance(val, (int, float)): return False
-    return math.isfinite(val)
-
 ### 26. KOMITE AYRISMA KATSAYISI (COMMITTEE DISPERSION SCORE)
+- Purpose: Merkez bankası para politikası kurullarındaki kararlara (faiz artırımı/indirimi) itiraz eden üye sayısının toplam üye sayısına oranını hesaplayarak, komite içindeki bölünme ve şahin/güvercin ayrışma seviyesini ölçer.
+- Target: economy.json -> committee_dispersion_score
+- Formula:
+  Dispersion_Score = n_dissent / n_total
 - Machine-Executable Logic (Python):
   def committee_dispersion(n_dissent, n_total):
       if not (_is_num(n_dissent) and _is_num(n_total)): return None
       if min(n_total, 0) == n_total or min(n_dissent, 0) != 0 or max(n_dissent, n_total) != n_total:
           return None
-      return round(n_dissent / n_total, 4)
+      
+      score = round(float(n_dissent) / float(n_total), 4)
+      if score >= 0.25:
+          status = "HIGH_DISPERSION"
+      elif score >= 0.10:
+          status = "MODERATE_DISSENT"
+      else:
+          status = "STRONG_CONSENSUS"
+      return {"dispersion_score": score, "status": status}
+- Interpretation:
+  - Dispersion_Score >= 0.25 : HIGH_DISPERSION (Komitede Ağır Bölünme / Gelecek Toplantılar İçin Yüksek Belirsizlik)
+  - 0.10 <= Dispersion_Score < 0.25 : MODERATE_DISSENT (Ilımlı Çatlak / Karşıt Görüş Sinyali)
+  - Dispersion_Score < 0.10 : STRONG_CONSENSUS (Güçlü Fikir Birliği / Net Para Politikası Duruşu)
 
 ### 27. SÖYLEM SERTLİK SKORU (RHETORIC INTENSITY SCORE)
 - Purpose: Siyasi lider ve aktörlerin açıklamalarındaki hedef alma, tasfiye dili, yaptırım tehdidi ve diplomatik teamül ihlallerini 0-100 ölçeğinde puanlar.
@@ -1901,9 +1911,16 @@ def _is_num(val):
       x4 = min(100.0, max(0.0, float(norm_breach)))
       score = (x1 * 0.30) + (x2 * 0.30) + (x3 * 0.20) + (x4 * 0.20)
       return int(round(min(100.0, score)))
+- Interpretation:
+  - Rhetoric_Score >= 80 : HOSTILE_TARGETING (Şiddetli Düşmanlık / Tasfiye Hedefi)
+  - 50 <= Rhetoric_Score < 80 : AGGRESSIVE_POLEMIC (Kutuplaştırıcı ve Sert Siyasi Çatışma)
+  - 25 <= Rhetoric_Score < 50 : MODERATE_CRITICISM (Sert Ama Sınırları Belli Siyasi Eleştiri)
+  - Rhetoric_Score < 25 : DIPLOMATIC_DISCOURSE (Sakin / Rutin Siyasi Dil)
 
 ### 27.1. BİLEŞİK SİYASİ GERİLİM SKORU (COMPOSITE TENSION SCORE)
 - Purpose: Söylem sertliği ile kurumsal/ittifak çatlaklarını birleştirerek 0-100 skalasında dengeli gerilim seviyesini belirler.
+- Formula:
+  Composite_Tension = (Rhetoric_Score * 0.50) + (Alliance_Friction * 0.50)
 - Machine-Executable Logic (Python):
   def composite_tension(rhetoric, alliance_friction):
       if not (_is_num(rhetoric) and _is_num(alliance_friction)):
@@ -1911,8 +1928,17 @@ def _is_num(val):
       r = min(100.0, max(0.0, float(rhetoric)))
       a = min(100.0, max(0.0, float(alliance_friction)))
       return int(round((r * 0.50) + (a * 0.50)))
+- Interpretation:
+  - Tension >= 75 : CRITICAL_POLITICAL_CRISIS (Hükümet/İttifak Çatlağı, Sistemik Kilitlenme)
+  - 50 <= Tension < 75 : HIGH_TENSION (Yönetilmesi Zor Siyasi Kutuplaşma)
+  - 25 <= Tension < 50 : MODERATE_FRICTION (Olağan Siyasi Sürtüşme)
+  - Tension < 25 : STABLE_POLITICAL_CLIMATE (Güçlü İttifak/Siyasi İstikrar)
 
 ### 28. BILESIK ULKE STRATEJIK RISK SKORU (COMPOSITE STRATEGIC SCORE)
+- Purpose: Ülkelerin iç siyasi istikrar, savunma doktrini, jeopolitik kutuplaşma ve ekonomik/altyapı kırılganlıklarını birleştirerek 0-100 ölçeğinde genel makro-stratejik risk haritasını çıkarır.
+- Target: country.json -> composite_strategic_score
+- Formula:
+  Composite_Strategic_Score = (pol * 0.25) + (defense * 0.35) + (geo * 0.20) + (vuln * 0.20)
 - Machine-Executable Logic (Python):
   def composite_strategic_score(pol, defense, geo, vuln):
       if not all(_is_num(v) for v in (pol, defense, geo, vuln)): return None
@@ -1920,8 +1946,23 @@ def _is_num(val):
       d = min(100.0, max(0.0, float(defense)))
       g = min(100.0, max(0.0, float(geo)))
       v = min(100.0, max(0.0, float(vuln)))
-      return int(round(p * 0.25 + d * 0.35 + g * 0.20 + v * 0.20))
       
+      score = int(round(p * 0.25 + d * 0.35 + g * 0.20 + v * 0.20))
+      if score >= 80:
+          status = "CRITICAL_STRATEGIC_RISK"
+      elif score >= 60:
+          status = "HIGH_STRATEGIC_RISK"
+      elif score >= 40:
+          status = "MODERATE_STRATEGIC_RISK"
+      else:
+          status = "STABLE_SOVEREIGN"
+      return {"composite_strategic_score": score, "status": status}
+- Interpretation:
+  - Score >= 80 : CRITICAL_STRATEGIC_RISK (Ağır Jeopolitik/İç Kriz, Yaptırım veya Savaş Riski Yüksek)
+  - 60 <= Score < 80 : HIGH_STRATEGIC_RISK (Yüksek Kırılganlık ve Potansiyel Çatışma Sınırı)
+  - 40 <= Score < 60 : MODERATE_STRATEGIC_RISK (Yönetilebilir Bölgesel/İç Dinamik Baskısı)
+  - Score < 40 : STABLE_SOVEREIGN (İstikrarlı ve Dirençli Devlet Yapısı)
+
 ### 28.1. ÇATIŞMA HARARETİ (CONFLICT HEAT SCORE)
 - Purpose: Kinetik çatışma, diplomatik sürtüşme ve kritik altyapı/ticaret hattı kesinti risklerini 0-100 ölçeğinde puanlar.
 - Target: core_analysis -> conflict_heat
@@ -1936,6 +1977,11 @@ def _is_num(val):
       c3 = min(100.0, max(0.0, float(disruption_risk)))
       score = (c1 * 0.40) + (c2 * 0.35) + (c3 * 0.25)
       return int(round(min(100.0, score)))
+- Interpretation:
+  - Conflict_Heat >= 80 : CRITICAL_KINETIC_ESCALATION (Ağır Savaş / Darboğaz Kapanması / Yüksek Çatışma)
+  - 55 <= Conflict_Heat < 80 : HIGH_FRICTION (Sıcak Çatışma Riski / Ağır Diplomatik Kriz)
+  - 30 <= Conflict_Heat < 55 : MODERATE_TENSION (Vekalet Savaşı / Kontrollü Bölgesel Gerilim)
+  - Conflict_Heat < 30 : LOW_RISK_ENVIRONMENT (Rutin Jeopolitik Akış)
 
 ### 28.2. PİYASA ETKİ SKORU (MARKET IMPACT SCORE)
 - Purpose: Varlık oynaklığı, kredi/likidite makası ve makro aktarım mekanizmasını birleştirerek olayın finansal şok şiddetini 0-100 ölçeğinde hesaplar.
@@ -1951,6 +1997,11 @@ def _is_num(val):
       m3 = min(100.0, max(0.0, float(macro_spillover)))
       score = (m1 * 0.35) + (m2 * 0.35) + (m3 * 0.30)
       return int(round(min(100.0, score)))
+- Interpretation:
+  - Market_Impact >= 75 : SEVERE_MARKET_SHOCK (Küresel Satış Dalgası / Likidite Krizi / Panik)
+  - 50 <= Market_Impact < 75 : ELEVATED_VOLATILITY (Yüksek Oynaklık / Risk Primi Artışı)
+  - 25 <= Market_Impact < 50 : MODERATE_REPRICING (Sınırlı Fiyatlama Değişikliği / Lokal Etki)
+  - Market_Impact < 25 : MUTED_RESPONSE (Piyasalar Olayı İhmal Ediyor / Fiyatlanmış)
 
 ### 28.3. DARBOĞAZ VE KORİDOR KESİNTİ AĞIRLIK MOTORU (CHOKEPOINT DISRUPTION SEVERITY ENGINE)
 - Purpose: llms-relationships.txt ontolojisinde Bolum 4 (Darbogazlar) ve Bolum 7'de (Stratejik Koridorlar) tanimlanan ayrik Disruption Severity enum degerlerini sayisal agirlik katsayilarina donusturur. Uretilen katsayi, 28.1 Catısma Harareti (disruption_risk) ve 28.2 Piyasa Etki Skoru (macro_spillover) modellerine dogrudan girdi teskil eder.
