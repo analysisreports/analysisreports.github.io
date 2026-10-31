@@ -135,6 +135,6 @@ Aggregation Alignment Rule:
 70. OVXCLS (CBOE Crude Oil Volatility Index) | Source: CBOE / FRED | Freq: d | Units: Index | Trans: lin
 71. DHHNGSP (Henry Hub Natural Gas Spot Price) | Source: EIA / FRED | Freq: d | Units: USD per Million BTU | Trans: lin
 72. GASREGW (US Regular All Formulations Retail Gasoline Prices) | Source: EIA / FRED | Freq: w | Units: USD per Gallon | Trans: lin
-73. DRTSCIS: Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Large and Middle-Market Firms (Quarterly, Percent, Source: Board of Governors / FRED)
+73. DRTSCIS (Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Large and Middle-Market Firms) | Source: Board of Governors / FRED | Freq: q | Units: Percent (%) | Trans: lin
 74. LNS12500000 (Employed, Usually Work Full Time) | Source: BLS / FRED | Freq: m | Units: Thousands | Trans: pc1 (YoY)
 75. LNS12032194 (Employed, Part-Time for Economic Reasons) | Source: BLS / FRED | Freq: m | Units: Thousands | Trans: pc1 (YoY)
