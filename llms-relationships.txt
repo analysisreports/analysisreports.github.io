@@ -444,3 +444,12 @@ Regime States (Discrete Mapping):
 - Actor Coupling: BRICS_MBRIDGE - G7 clearing (2.6.1), RU-CN energy clearing (2.1.3), Gulf oil diversification (2.4.3).
 - Transmission Linkage: Real yields (DFII10) > 1.5% alongside Gold YoY > 15.0% and positive 10Y term premium (THREEFYTP10) models structural dedollarization risk premium loaded onto US curve.
 
+### 8.8. Seaborne Energy Freight & Strait Disruption Engine (Model 25.12)
+8.8.1. MODEL_25.12_BRENT_WTI_SEABORNE_SPREAD
+- Target Formula: llms-formulas.txt -> Model 25.12 (brent_wti_spread)
+- Data Series Triggered: DCOILBRENTEU, DCOILWTICO
+- Status Enums: SEABORNE_GEOPOLITICAL_PREMIUM | US_DOMESTIC_TIGHTNESS | NORMAL_TRANSATLANTIC_ARBITRAGE
+- Primary Geopolitical Vector: Bab el-Mandeb (4.2), Hormuz (4.1), and Suez maritime disruptions forcing Cape rerouting, driving tanker insurance rates and Brent premiums above domestic US benchmark.
+- Actor Coupling: IL-IR escalation (2.2.1), YE-HOUTHI anti-ship targeting (3.1), OPEC+ supply quotas.
+- Transmission Linkage: Brent-WTI spread expanding beyond $8.00 confirms kinetic risks are actively choking seaborne logistics while US inland production remains relatively isolated.
+
