@@ -667,10 +667,8 @@
           "required": ["target_date_str", "current_date_str"]
         }
       }
-    }
-  ]
-},
-{
+    },
+  {
       "type": "function",
       "function": {
         "name": "calculate_sticky_flexible_cpi_spread",
@@ -881,7 +879,9 @@
         "part_time_econ_level_yr_ago",
         "full_time_level_current",
         "full_time_level_yr_ago"
-      ]
+]
     }
   }
+}
+  ]
 }
