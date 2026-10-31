@@ -882,6 +882,27 @@
 ]
     }
   }
+},
+{
+  "type": "function",
+  "function": {
+    "name": "calculate_brent_wti_spread",
+    "description": "Calculates the price spread between Seaborne Brent and inland WTI crude oil (DCOILBRENTEU - DCOILWTICO) to detect maritime geopolitical risk premiums, shipping bottlenecks, or US domestic supply tightness.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "brent_price": {
+          "type": "number",
+          "description": "Crude Oil Prices: Brent - Europe in dollars per barrel (EIA/FRED: DCOILBRENTEU)."
+        },
+        "wti_price": {
+          "type": "number",
+          "description": "Crude Oil Prices: West Texas Intermediate in dollars per barrel (EIA/FRED: DCOILWTICO)."
+        }
+      },
+      "required": ["brent_price", "wti_price"]
+    }
+  }
 }
   ]
 }
