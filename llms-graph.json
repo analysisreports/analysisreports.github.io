@@ -890,14 +890,11 @@
       "target": "EP_GRAPH_JSON",
       "type": "INDEXES"
     },
-    {
+ {
       "source": "EP_LLMS_TXT",
       "target": "EP_AI_CATALOG",
       "type": "INDEXES"
-    }
-  ]
-},
-,
+    },
     {
       "source": "ACTOR_US",
       "target": "ACTOR_KP",
@@ -948,3 +945,5 @@
       "type": "BRIDGES_TO_MODEL",
       "passes": "sovereign_gold_accumulation"
     }
+  ]
+}
