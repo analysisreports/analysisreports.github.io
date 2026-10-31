@@ -107,7 +107,7 @@
         "location": "26°34'N 56°15'E",
         "volume": "~20-21 Million bpd (20% of global petroleum)",
         "disruption_severity": "CATASTROPHIC",
-        "severity_weight": 1.0
+        "severity_weight": 1
       }
     },
     {
@@ -129,7 +129,7 @@
         "location": "1°26'N 103°00'E",
         "volume": "~80% of China's crude imports",
         "disruption_severity": "CATASTROPHIC",
-        "severity_weight": 1.0
+        "severity_weight": 1
       }
     },
     {
@@ -140,7 +140,7 @@
         "location": "24°00'N 119°00'E",
         "vulnerability": "Advanced Semiconductor Supply Shock",
         "disruption_severity": "CATASTROPHIC",
-        "severity_weight": 1.0
+        "severity_weight": 1
       }
     },
     {
@@ -162,7 +162,7 @@
         "source": "FRED",
         "units": "Millions USD",
         "trans": "lin",
-        "mult": 1.0
+        "mult": 1
       }
     },
     {
@@ -173,7 +173,7 @@
         "source": "FRED",
         "units": "Millions USD",
         "trans": "lin",
-        "mult": 1.0
+        "mult": 1
       }
     },
     {
@@ -184,7 +184,7 @@
         "source": "NY Fed / FRED",
         "units": "Billions USD",
         "trans": "lin",
-        "mult": 1000.0
+        "mult": 1000
       }
     },
     {
@@ -194,7 +194,7 @@
       "attributes": {
         "source": "NY Fed / FRED",
         "units": "Percent (%)",
-        "mult_for_bps": 100.0
+        "mult_for_bps": 100
       }
     },
     {
@@ -204,7 +204,7 @@
       "attributes": {
         "source": "NY Fed / FRED",
         "units": "Percent (%)",
-        "mult_for_bps": 100.0
+        "mult_for_bps": 100
       }
     },
     {
@@ -455,7 +455,7 @@
         "function": "chokepoint_severity_multiplier",
         "formula": "Disruption_Weight = SEVERITY_WEIGHT_MAP[severity_enum]",
         "weight_map": {
-          "CATASTROPHIC": 1.0,
+          "CATASTROPHIC": 1,
           "HIGH": 0.7,
           "MODERATE-HIGH": 0.45,
           "MODERATE": 0.2
@@ -571,8 +571,12 @@
       "type": "Multilateral Clearing Bloc",
       "attributes": {
         "structural_regime": "MONETARY_DECOUPLING",
-        "core_nodes": ["mBridge", "CIPS", "SPFS"],
-        "economic_coupling_to_usd": 0.40
+        "core_nodes": [
+          "mBridge",
+          "CIPS",
+          "SPFS"
+        ],
+        "economic_coupling_to_usd": 0.4
       }
     },
     {
@@ -632,6 +636,30 @@
           "STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL",
           "STABLE_EMPLOYMENT_COMPOSITION",
           "ROBUST_FULL_TIME_EXPANSION"
+        ]
+      }
+    },
+    {
+      "id": "IND_DCOILBRENTEU",
+      "label": "Crude Oil Prices: Brent - Europe (DCOILBRENTEU)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA / FRED",
+        "units": "USD per Barrel",
+        "freq": "Daily"
+      }
+    },
+    {
+      "id": "MODEL_25.12",
+      "label": "Brent-WTI Seaborne Spread Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "brent_wti_spread",
+        "formula": "Brent_WTI_Spread = DCOILBRENTEU - DCOILWTICO",
+        "status_enums": [
+          "SEABORNE_GEOPOLITICAL_PREMIUM",
+          "US_DOMESTIC_TIGHTNESS",
+          "NORMAL_TRANSATLANTIC_ARBITRAGE"
         ]
       }
     }
@@ -890,7 +918,7 @@
       "target": "EP_GRAPH_JSON",
       "type": "INDEXES"
     },
- {
+    {
       "source": "EP_LLMS_TXT",
       "target": "EP_AI_CATALOG",
       "type": "INDEXES"
@@ -899,14 +927,14 @@
       "source": "ACTOR_US",
       "target": "ACTOR_KP",
       "type": "POLARITY_COUPLING",
-      "p_baseline": -0.90,
+      "p_baseline": -0.9,
       "regime": "KINETIC_STANDOFF"
     },
     {
       "source": "ACTOR_BRICS_MBRIDGE",
       "target": "ACTOR_US",
       "type": "POLARITY_COUPLING",
-      "p_baseline": -0.70,
+      "p_baseline": -0.7,
       "regime": "MONETARY_DECOUPLING"
     },
     {
@@ -944,6 +972,24 @@
       "target": "MODEL_25.6",
       "type": "BRIDGES_TO_MODEL",
       "passes": "sovereign_gold_accumulation"
+    },
+    {
+      "source": "IND_DCOILBRENTEU",
+      "target": "MODEL_25.12",
+      "type": "INGESTS_SERIES",
+      "role": "brent_price"
+    },
+    {
+      "source": "IND_DCOILWTICO",
+      "target": "MODEL_25.12",
+      "type": "INGESTS_SERIES",
+      "role": "wti_price"
+    },
+    {
+      "source": "CHOKE_BAB_EL_MANDEB",
+      "target": "MODEL_25.12",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "seaborne_risk_premium"
     }
   ]
 }
