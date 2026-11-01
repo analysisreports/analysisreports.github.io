@@ -27,18 +27,56 @@ jobs:
 
       - name: Run Update Script
         run: |
-          python -c "
-          import json, datetime
+          python - << 'EOF'
+          import json, datetime, os, glob
+
           try:
-              with open('ai-catalog.json', 'r', encoding='utf-8') as f:
-                  data = json.load(f)
+              catalog_file = 'ai-catalog.json'
+              if os.path.exists(catalog_file):
+                  with open(catalog_file, 'r', encoding='utf-8') as f:
+                      data = json.load(f)
+              else:
+                  data = {}
+
+              categories = ['economy', 'country', 'political', 'glossary']
+              monitored = {}
+
+              for cat in categories:
+                  if os.path.exists(cat):
+                      files = glob.glob(f"{cat}/*.json")
+                      latest_date = None
+                      for fpath in files:
+                          try:
+                              with open(fpath, 'r', encoding='utf-8') as jf:
+                                  jdata = json.load(jf)
+                              # Dosya içindeki tarih veya dosya adının başındaki YYYY-MM
+                              pdate = (
+                                  jdata.get('editorial_frontend', {}).get('published_date')
+                                  or jdata.get('metadata', {}).get('published_date')
+                              )
+                              if not pdate and len(os.path.basename(fpath)) >= 10:
+                                  pdate = os.path.basename(fpath)[:10]
+                              if pdate and (latest_date is None or pdate > latest_date):
+                                  latest_date = pdate
+                          except Exception:
+                              pass
+
+                      monitored[cat] = {
+                          "total_payloads": len(files),
+                          "last_updated": latest_date,
+                          "endpoint": f"https://analysisreports.github.io/{cat}/"
+                      }
+
               data['last_updated'] = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d')
-              with open('ai-catalog.json', 'w', encoding='utf-8') as f:
+              data['monitored_directories'] = monitored
+
+              with open(catalog_file, 'w', encoding='utf-8') as f:
                   json.dump(data, f, indent=2, ensure_ascii=False)
-              print('ai-catalog.json güncellendi.')
+              print('ai-catalog.json ve klasörler başarıyla güncellendi.')
           except Exception as e:
               print('Hata:', e)
-          "
+              raise e
+          EOF
 
       - name: Commit and Push changes
         run: |
