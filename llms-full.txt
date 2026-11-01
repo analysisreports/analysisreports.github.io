@@ -176,3 +176,4 @@ Canonical index of machine-readable category analysis payloads:
 - [2026-10-18] FOMC Faiz Artırımı ve İstihdam Piyasasında Kademeli Dengelenme: https://analysisreports.github.io/economy/2026-10-fed-faiz-karari-hurmuz-krizi-enflasyon-baskisi.json
 - [2026-10-22] Rusya-ABD Heyetleri St. Petersburg Temasları ve Jeopolitik Riskler: https://analysisreports.github.io/country/2026-10-rusya-abd-heyetleri-StPetersburg-temas.json
 - [2026-10-22] ABD-Rusya Barış Trafiği ve Starshield Krizi: https://analysisreports.github.io/political/2026-10-abd-rusya-baris-trafigi-starshield-krizi-cephede-neler-oluyor.json
+- [2026-10-25] ABD 2026 Ara Seçimleri: Anketler ve Seçim Haritası Çıkmazı: https://analysisreports.github.io/glossary/2026-10-abd-kongre-secimleri-2026-anketler-secim-haritasi-cikmazi.json
