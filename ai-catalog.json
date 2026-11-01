@@ -164,5 +164,27 @@
     "tool_calling": true,
     "structured_data_payload": "structured_content_analysis"
   },
-  "last_updated": "2026-11-01"
+  "last_updated": "2026-11-01",
+  "monitored_directories": {
+    "economy": {
+      "total_payloads": 2,
+      "last_updated": "2026-10-fe",
+      "endpoint": "https://analysisreports.github.io/economy/"
+    },
+    "country": {
+      "total_payloads": 1,
+      "last_updated": "2026-10-ru",
+      "endpoint": "https://analysisreports.github.io/country/"
+    },
+    "political": {
+      "total_payloads": 1,
+      "last_updated": "2026-10-ab",
+      "endpoint": "https://analysisreports.github.io/political/"
+    },
+    "glossary": {
+      "total_payloads": 2,
+      "last_updated": "2026-10-ab",
+      "endpoint": "https://analysisreports.github.io/glossary/"
+    }
+  }
 }
