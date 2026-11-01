@@ -1,0 +1,248 @@
+{
+  "structured_content_analysis": {
+    "briefing_title": "27 Ekim 2026 İsrail Genel Seçimleri Stratejik Analiz ve İttifak Dinamikleri Raporu",
+    "domain": "Political Science and Electoral Analytics",
+    "sub_domain": "Parliamentary Majority Dynamics, Electoral Threshold Impacts, and Coalition Formation in Fragmented Systems",
+    "executive_summary": [
+      "27 Ekim 2026 genel seçimleri %74,3'lük rekor katılıma rağmen hiçbir siyasi bloğun tek başına 61 sandalyelik çoğunluk eşiğine ulaşamadığı tam bir siyasi kilitlenme (pat) tablosu ortaya çıkarmıştır.",
+      "Önceki dönemde 68 sandalyeye sahip olan Binyamin Netanyahu liderliğindeki iktidar bloğu 50 sandalyeye gerileyerek parlamento çoğunluğunu ve stratejik manevra kabiliyetini kaybetmiştir.",
+      "Eski Genelkurmay Başkanı Gadi Eisenkot liderliğindeki muhalefet bloğu birinci blok konumuna yükselmesine rağmen, tek başına 61 eşiğini aşamaması sebebiyle doğrudan hükümet kurma kapasitesine erişememiştir.",
+      "Rekor katılımla mecliste temsil kazanan Arap partileri (Ortak Liste ve Ra'am), hükümet kurma ve güvenoyu süreçlerinde doğrudan 'kral yapıcı' (kingmaker) konumuna yükselmiştir."
+    ],
+    "core_mechanisms_and_concepts": [
+      {
+        "concept_name": "Ülke Geneli Tek Seçim Çevresi ve Kapalı Liste Sistemi",
+        "explanation": "Tüm ülkenin tek bir seçim çevresi kabul edildiği, seçmenlerin doğrudan adaylara değil partilerin sunduğu kapalı listelere oy verdiği ve parti disiplini ile lider vesayetini pekiştiren temsil modelidir."
+      },
+      {
+        "concept_name": "%3,25 Seçim Barajı",
+        "explanation": "Bir partinin Knesset'e girebilmesi için aşması gereken asgari geçerli oy oranıdır; yaklaşık 4 sandalyeye denk gelmekte olup baraj altında kalan oyların elenmesi küçük partileri taktiksel birleşmelere zorlamaktadır."
+      },
+      {
+        "concept_name": "Bader-Ofer Yöntemi ve Artık Oy Anlaşmaları (Agremant)",
+        "explanation": "Barajı aşan partiler arasında sandalye dağıtımı yapıldıktan sonra arta kalan artık sandalyelerin tahsisinde uygulanan matematiksel formüldür; büyük listeleri ve seçim öncesi artık oy anlaşması yapan ittifakları ödüllendirir."
+      },
+      {
+        "concept_name": "61 Sandalye Çoğunluk Kuralı",
+        "explanation": "120 sandalyeli Knesset'te hükümet kurmak ve güvenoyu alabilmek için gereken asgari üye tamsayısı salt çoğunluğudur; hiçbir partinin tek başına ulaşamadığı bu eşik koalisyonları ve dışarıdan destek modellerini zorunlu kılmaktadır."
+      },
+      {
+        "concept_name": "Halkın Ordusu (Tzva HaAm) Doktrini",
+        "explanation": "İsrail toplumunun tüm kesimlerinin askerlik yükünü eşit şekilde paylaşması ilkesine dayanan savunma modelidir; Haredi muafiyetinin yargı kararıyla kaldırılması sonrası siyasi krizin merkezine yerleşmiştir."
+      }
+    ],
+    "quantitative_metrics_and_data": [
+      {
+        "metric_category": "Seçim Katılımı ve Parlamento Eşikleri",
+        "parameters": [
+          {
+            "name": "Seçim Katılım Oranı",
+            "value": "%74,3"
+          },
+          {
+            "name": "Knesset Toplam Sandalye Sayısı",
+            "value": "120 Sandalye"
+          },
+          {
+            "name": "Hükümet Kurma Çoğunluk Eşiği",
+            "value": "61 Sandalye"
+          },
+          {
+            "name": "Yasal Seçim Barajı",
+            "value": "%3,25"
+          },
+          {
+            "name": "Önceki Dönem İktidar Bloğu Sandalye Sayısı",
+            "value": "68 Sandalye"
+          }
+        ],
+        "analytical_note": "Yüksek seçmen katılımına rağmen 61 sandalye çoğunluğunun elde edilememesi, sistemik bölünmüşlüğün kurumsal bir siyasi tıkanıklık ürettiğini kanıtlamaktadır."
+      },
+      {
+        "metric_category": "Anayasal Hükümet Kurma Takvimi",
+        "parameters": [
+          {
+            "name": "1. Aşama Görev Süresi (Aday A)",
+            "value": "28 Gün (+14 Gün Uzatma Hakkı)"
+          },
+          {
+            "name": "2. Aşama Görev Süresi (Aday B)",
+            "value": "28 Gün (Uzatmasız)"
+          },
+          {
+            "name": "Knesset İçi Ortak Aday Belirleme Süreci",
+            "value": "21 Gün"
+          },
+          {
+            "name": "Fesih Durumunda Erken Seçime Gitme Süresi",
+            "value": "90 Gün"
+          }
+        ],
+        "analytical_note": "Anayasal takvim katı sürelere bağlanmış olup, 61 imzaya ulaşılamaması halinde Meclis otomatik olarak feshedilmektedir."
+      }
+    ],
+    "breakdown_and_case_dynamics": [
+      {
+        "unit_or_subject": "Netanyahu'nun Yargı Süreci ve Yürütme Gücü",
+        "status_or_change": "11 Ekim 2026'da Kudüs Bölge Mahkemesi'nde yeniden hakim karşısına çıkan Netanyahu'nun yolsuzluk ve rüşvet davaları devam etmektedir.",
+        "impact_or_outcome": "Başbakanlık koltuğunu kaybetmesi durumunda hukuki koruma zırhı kalkacak ve hapis riski doğacaktır; bu durum kendisini iktidarda kalmak adına aşırı sağ unsurlara taviz vermeye zorlamaktadır."
+      },
+      {
+        "unit_or_subject": "Haredi Askerlik Muafiyeti Krizi",
+        "status_or_change": "Yüksek Mahkeme'nin Haziran 2024'te Haredi muafiyetini yasa dışı ilan etmesi ve savaş koşullarının ordu ihtiyacını artırması sonucu seküler kesimin eşit yük talebi zirveye çıkmıştır.",
+        "impact_or_outcome": "Şas ve UTJ partilerinin 'muafiyet yoksa hükümet yok' resti ile seküler-milliyetçi blokların eşit askerlik ısrarı, sağ-dindar blok ittifakını çatlatmıştır."
+      },
+      {
+        "unit_or_subject": "Arap Seçmen Katılımı ve Blok Pozisyonu",
+        "status_or_change": "Dışlayıcı söylemlere tepki olarak sandığa giden İsrail vatandaşı Araplar yüksek katılımla mecliste kilit sandalye gücüne ulaşmıştır.",
+        "impact_or_outcome": "Siyonist partilerin resmi koalisyona dahil etmeye mesafeli durduğu Ra'am ve Ortak Liste, dışarıdan güvenoyu desteği mekanizmasıyla hükümetin kurulmasında belirleyici konuma gelmiştir."
+      },
+      {
+        "unit_or_subject": "Beyachad İttifakı Birleşmesi",
+        "status_or_change": "Yair Lapid (Yesh Atid) ve Naftali Bennett (Yamina), Nisan 2026'da Bader-Ofer artık oy yönteminden azami fayda sağlamak amacıyla güçlerini birleştirmiştir.",
+        "impact_or_outcome": "Muhalefet bloğunun meclis aritmetiğindeki omurgası güçlendirilmiş ve merkez-sağ oyların konsolidasyonu hedeflenmiştir."
+      }
+    ],
+    "key_actors_and_roles": [
+      {
+        "name": "Binyamin Netanyahu",
+        "role_or_action": "Likud Lideri ve Geçici Başbakan; blok gücü 50 sandalyede kaldığı için muhalefetten vekil transfer etmeye çalışan ve hukuki zırhını korumayı amaçlayan aktör."
+      },
+      {
+        "name": "Gadi Eisenkot",
+        "role_or_action": "Yashar Lideri ve Muhalefet Adayı; eski Genelkurmay Başkanı sıfatıyla eşit askerlik ve liyakat temelli söylemle muhalefet bloğunun liderliğini üstlenen isim."
+      },
+      {
+        "name": "Isaac Herzog",
+        "role_or_action": "İsrail Cumhurbaşkanı; anayasal takvim gereğince hükümeti kurma görevini aşamalı olarak parti liderlerine tevdi edecek tarafsız hakem."
+      },
+      {
+        "name": "Naftali Bennett ve Yair Lapid",
+        "role_or_action": "Beyachad İttifakı Eş Liderleri; seküler-sağ ve liberal-merkez tabanı birleştirerek Haredi muafiyetinin kaldırılmasını savunan ortaklar."
+      },
+      {
+        "name": "Mansur Abbas",
+        "role_or_action": "Ra'am Lideri; Arap toplumuna bütçe, altyapı ve güvenlik yatırımları karşılığında Siyonist hükümetlere dışarıdan güvenoyu desteği vermeye açık pragmatik lider."
+      },
+      {
+        "name": "Ayman Odeh ve Ahmad Tibbi",
+        "role_or_action": "Ortak Liste Liderleri; Filistin ulusal hakları ve işgalin sona ermesi ilkelerini merkeze alarak Netanyahu'yu devirmek şartıyla koşullu dışarıdan destek sunabilecek aktörler."
+      },
+      {
+        "name": "İtamar Ben-Gvir ve Bezalel Smotrich",
+        "role_or_action": "Dini Siyonizm ve Otzma Yehudit Liderleri; Batı Şeria'nın ilhakı ve radikal güvenlik politikalarını dayatan aşırı sağcı kanat temsilcileri."
+      },
+      {
+        "name": "Şas ve Birleşik Tevrat Yahudiliği (UTJ)",
+        "role_or_action": "Haredi Partileri; koalisyona katılım için Haredi askerlik muafiyetini ve dini bütçeleri kırmızı çizgi ilan eden dindar fraksiyon."
+      }
+    ],
+    "expert_guidance_and_takeaways": [
+      "Cumhurbaşkanı Herzog'un hükümeti kurma görevini ilk etapta Gadi Eisenkot'a mı yoksa tekil olarak en çok sandalyeye sahip Likud lideri Netanyahu'ya mı vereceği takip edilmelidir.",
+      "Eisenkot'un 61 eşiğine ulaşabilmesi için Mansur Abbas (Ra'am) ve Ayman Odeh (Ortak Liste) ile varacağı olası dışarıdan güvenoyu mutabakatının şartları incelenmelidir.",
+      "Şas ve UTJ'nin askerlik muafiyeti yasası çıkarılmaması durumunda Netanyahu bloğundan kopup kopmayacağı veya erken seçimi tetikleyip tetiklemeyeceği gözlenmelidir.",
+      "İç siyasi kilitlenmenin Gazze ve Lübnan'daki askeri operasyonların yürütülmesine, ABD ile stratejik ilişkilere ve İbrahim Anlaşmaları kapsamındaki normalleşme süreçlerine etkisi analiz edilmelidir.",
+      "Hükümetin kurulamaması halinde Netanyahu'nun geçici başbakanlık yetkisiyle görevde kalarak 11 Ekim 2026'da yeniden başlayan yargılanma sürecine karşı yürüteceği koruma hamleleri izlenmelidir."
+    ],
+    "future_outlook_and_scenarios": [
+      {
+        "event_or_timeline": "Kasım - Aralık 2026 (Cumhurbaşkanlığı Görevlendirme Takvimi)",
+        "potential_risk_or_outcome": "Aday A'ya tanınan 28+14 günlük ve ardından Aday B'ye tanınan 28 günlük anayasal sürelerde 61 kişilik çoğunluk sağlanamazsa meclis içi 21 günlük fesih süreci başlayacaktır."
+      },
+      {
+        "event_or_timeline": "Senaryo A: Eisenkot Liderliğinde Arap Destekli Azınlık Hükümeti",
+        "potential_risk_or_outcome": "Eisenkot'un Arap partilerinin dışarıdan güvenoyu desteğiyle hükümet kurması durumunda, kabinenin her bütçe ve güvenlik oylamasında istifa ve meşruiyet krizleriyle karşılaşma riski bulunmaktadır."
+      },
+      {
+        "event_or_timeline": "Senaryo B: Netanyahu'nun Muhalefetten Vekil Transferi Arayışı",
+        "potential_risk_or_outcome": "Netanyahu'nun 50 sandalyelik bloğunu 61'e tamamlamak için muhalefet saflarından bireysel milletvekili transfer etme girişimi, yüksek kutuplaşma ve askerlik krizi nedeniyle kısıtlı başarı şansına sahiptir."
+      },
+      {
+        "event_or_timeline": "Senaryo C: Meclis Feshi ve 90 Gün İçinde Erken Seçim",
+        "potential_risk_or_outcome": "Hiçbir liderin 61 desteğini toplayamaması halinde Knesset'in otomatik feshiyle ülke yeniden sandığa gidecek, bu süreçte Netanyahu geçici başbakan olarak hukuki zırhını sürdürecektir."
+      }
+    ],
+    "core_analysis": "27 Ekim 2026 İsrail Genel Seçimleri, yürütme meşruiyetini ve devlet kurumlarının işleyişini felç eden kronik bir yapısal kilitlenmeyi tescillemiştir. 7 Ekim sonrası yürütülen savaşların doğurduğu insan kaynağı ihtiyacı ve Yüksek Mahkeme'nin Haredi muafiyetini iptali, geleneksel sağ-muhafazakar ittifakın altını oymuştur. Netanyahu'nun yargıdan korunma güdüsüyle aşırı sağ unsurlara bağımlı hale gelmesi meclis çoğunluğunu 50 sandalyeye geriletirken, muhalefet bloğunun 61 eşiğini aşamaması iktidar denklemini Arap partilerinin dışsal desteğine mahkum etmiştir. İsrail siyasal sistemi; ya Arap partilerinin örtülü onayına dayanan kırılgan ve sürdürülebilirliği düşük bir azınlık koalisyonu denemesine ya da Netanyahu'nun geçici başbakanlık altında yargı süreçlerini yönettiği tekrarlayan bir erken seçim sarmalına sürüklenmektedir.",
+    "tags": [
+      "İsrail Seçimleri 2026",
+      "Knesset",
+      "Gadi Eisenkot",
+      "Binyamin Netanyahu",
+      "Haredi Askerlik Krizi",
+      "Arap Partileri",
+      "Seçim Barajı",
+      "Bader-Ofer Yöntemi",
+      "Koalisyon Senaryoları",
+      "Siyasi Kilitlenme"
+    ]
+  },
+  "target_queries": {
+    "qa_pairs": [
+      {
+        "q": "27 Ekim 2026 İsrail Genel Seçimlerinde seçmen katılım oranı ne olmuştur?",
+        "a": "27 Ekim 2026 genel seçimlerinde seçmen katılım oranı yüzde 74,3 olarak gerçekleşmiştir."
+      },
+      {
+        "q": "İsrail'de hükümet kurabilmek için Knesset'te kaç sandalyelik salt çoğunluk eşiğine ulaşılması gerekmektedir?",
+        "a": "120 sandalyeli Knesset'te hükümet kurabilmek ve güvenoyu alabilmek için asgari 61 sandalyelik çoğunluk eşiğine ulaşılması gerekmektedir."
+      },
+      {
+        "q": "Binyamin Netanyahu liderliğindeki önceki dönem iktidar bloğu seçimlerde kaç sandalyeye gerilemiştir?",
+        "a": "Önceki dönemde 68 sandalyeye sahip olan Netanyahu liderliğindeki iktidar bloğu, seçimler sonucunda 50 sandalyeye gerilemiştir."
+      },
+      {
+        "q": "Eski Genelkurmay Başkanı Gadi Eisenkot hangi siyasi oluşumun liderliğinde seçimlere katılmıştır?",
+        "a": "Gadi Eisenkot, muhalefet kanadında yer alan Yashar lideri olarak seçimlere katılmıştır."
+      },
+      {
+        "q": "Knesset'e girebilmek için uygulanan yasal seçim barajı yüzde kaç oranındadır?",
+        "a": "Knesset'e girebilmek için aşılması gereken yasal seçim barajı yüzde 3,25 oranındadır."
+      },
+      {
+        "q": "Binyamin Netanyahu'nun Kudüs Bölge Mahkemesi'nde yeniden hakim karşısına çıktığı tarih nedir?",
+        "a": "Binyamin Netanyahu, 11 Ekim 2026 tarihinde Kudüs Bölge Mahkemesi'nde yolsuzluk ve rüşvet davaları kapsamında yeniden hakim karşısına çıkmıştır."
+      },
+      {
+        "q": "Bader-Ofer yöntemi ve artık oy anlaşmaları (agremant) İsrail seçim sisteminde ne amaçla uygulanmaktadır?",
+        "a": "Bader-Ofer yöntemi, barajı aşan partiler arasında sandalye dağıtımı yapıldıktan sonra arta kalan artık sandalyelerin tahsisinde ve seçim öncesi artık oy anlaşması yapan ittifakları ödüllendirmek amacıyla uygulanmaktadır."
+      },
+      {
+        "q": "Yair Lapid ve Naftali Bennett'in Bader-Ofer yönteminden faydalanmak amacıyla Nisan 2026'da kurduğu ittifakın adı nedir?",
+        "a": "Yair Lapid ve Naftali Bennett, Nisan 2026'da Bader-Ofer artık oy yönteminden azami fayda sağlamak amacıyla Beyachad İttifakı çatısı altında güçlerini birleştirmiştir."
+      }
+    ]
+  },
+  "metadata": {
+    "analyst": "Ersoy Toptaş",
+    "canonical_url": "https://www.ersoytoptas.tr/2026/10/israil-secimleri-knesset-cogunluk-krizi-dugm.html",
+    "canonical_source": "https://analysisreports.github.io/glossary/2026-10-israil-secimleri-knesset-cogunluk-krizi-dugm.json",
+    "methodology": "https://analysisreports.github.io/llms.txt",
+    "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
+    "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
+    "license": "CC BY 4.0"
+  },
+  "editorial_frontend": {
+    "url": "https://www.ersoytoptas.tr/2026/10/israil-secimleri-knesset-cogunluk-krizi-dugm.html",
+    "format": "Human-Readable Narrative",
+    "author": "Ersoy Toptaş",
+    "published_date": "2026-10-28",
+    "language": "tr",
+    "description": "Bu makroekonomik ve jeopolitik veri setinin, okuyucular için anlatı (narrative) formatında hazırlanmış, okunabilir editoryal makale versiyonu."
+  },
+  "cross_references": {
+    "relations": [
+      {
+        "target_url": "https://www.ersoytoptas.tr/2026/10/fed-faizi-hurmuz-reel-sektor-finansman.html",
+        "predicate": "REGIONAL_INSTABILITY_SPILLOVER",
+        "impact_window": "2026-10/2026-12",
+        "description": "İsrail genel seçimlerinde beliren meclis kilitlenmesi ve yönetim boşluğu, Gazze, Lübnan ve İran hattındaki jeopolitik risk primini besleyerek Hürmüz Boğazı ve enerji nakil hatlarındaki maliyet baskısını canlı tutmaktadır."
+      },
+      {
+        "target_url": "https://www.ersoytoptas.tr/2026/10/abd-kongre-secimleri-2026-anketler-secim-haritasi-cikmazi.html",
+        "predicate": "ALLIANCE_POLITICAL_ALIGNMENT",
+        "impact_window": "2026-10/2026-11",
+        "description": "İsrail'deki koalisyon krizleri ve askeri operasyonların belirsizliği, ABD 2026 ara seçimleri öncesinde Temsilciler Meclisi'ndeki dış yardım oylamalarını ve parti içi ayrışmaları etkilemektedir."
+      }
+    ]
+  }
+}
