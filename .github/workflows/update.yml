@@ -28,7 +28,7 @@ jobs:
       - name: Run Update Script
         run: |
           python - << 'EOF'
-          import json, datetime, os, glob
+          import json, datetime, os, glob, re
 
           try:
               catalog_file = 'ai-catalog.json'
@@ -48,14 +48,22 @@ jobs:
                       for fpath in files:
                           try:
                               with open(fpath, 'r', encoding='utf-8') as jf:
-                                  jdata = json.load(jf)
-                              # Dosya içindeki tarih veya dosya adının başındaki YYYY-MM
+                                  raw = jf.read()
+                                  jdata = json.loads(raw)
+
+                              root = jdata.get('structured_content_analysis', jdata)
                               pdate = (
-                                  jdata.get('editorial_frontend', {}).get('published_date')
+                                  root.get('editorial_frontend', {}).get('published_date')
+                                  or root.get('metadata', {}).get('published_date')
+                                  or jdata.get('editorial_frontend', {}).get('published_date')
                                   or jdata.get('metadata', {}).get('published_date')
                               )
-                              if not pdate and len(os.path.basename(fpath)) >= 10:
-                                  pdate = os.path.basename(fpath)[:10]
+
+                              if not pdate:
+                                  found_dates = re.findall(r'202\d-\d{2}-\d{2}', raw)
+                                  if found_dates:
+                                      pdate = max(found_dates)
+
                               if pdate and (latest_date is None or pdate > latest_date):
                                   latest_date = pdate
                           except Exception:
