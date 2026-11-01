@@ -178,3 +178,4 @@ Canonical index of machine-readable category analysis payloads:
 - [2026-10-22] ABD-Rusya Barış Trafiği ve Starshield Krizi: https://analysisreports.github.io/political/2026-10-abd-rusya-baris-trafigi-starshield-krizi-cephede-neler-oluyor.json
 - [2026-10-25] ABD 2026 Ara Seçimleri: Anketler ve Seçim Haritası Çıkmazı: https://analysisreports.github.io/glossary/2026-10-abd-kongre-secimleri-2026-anketler-secim-haritasi-cikmazi.json
 - [2026-10-28] İsrail Seçimleri: Knesset Çoğunluk Krizi ve Siyasi Düğüm: https://analysisreports.github.io/glossary/2026-10-israil-secimleri-knesset-cogunluk-krizi-dugm.json
+- [2026-10-28] Fed Faizi, Hürmüz Krizi ve Reel Sektör Finansmanı: https://analysisreports.github.io/economy/2026-10-fed-faizi-hurmuz-reel-sektor-finansman.json
