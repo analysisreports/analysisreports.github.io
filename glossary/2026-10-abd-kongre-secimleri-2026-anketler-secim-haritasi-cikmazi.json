@@ -1,0 +1,347 @@
+{
+  "structured_content_analysis": {
+    "briefing_title": "2026 ABD Temsilciler Meclisi Seçimleri Stratejik Analiz Raporu: Emeklilikler, Harita Değişiklikleri ve Çoğunluk Mücadelesi",
+    "domain": "Political Science and Electoral Analytics",
+    "sub_domain": "Congressional Redistricting and Majority Dynamics",
+    "executive_summary": [
+      "119. Kongre'deki 218 Cumhuriyetçi, 214 Demokrat, 1 Bağımsız ve 2 Boş sandalye dağılımı, Meclis çoğunluğunu partiler içi tek bir fireye dahi tahammülü olmayan son derece hassas bir dengeye oturtmuştur; Demokratların çoğunluğu sağlaması için net 4 sandalye kazanması yeterlidir.",
+      "Ulusal genel Kongre anketlerinde (Generic Ballot) Demokratlar ortalama +%8,7 ile önde seyretmekte ve iktidar partisine yönelik ara seçim tepkisini (midterm penalty) arkasına almaktadır.",
+      "Toplam 60 temsilci ve 2 delegenin emekliye ayrılmasıyla 1992'den bu yana en yüksek ikinci vekil emekliliği dalgası yaşanmakta; 29 vekilin üst makamlara aday olması ve 11 vekilin ön seçimleri kaybetmesi yerleşik vekil avantajını (incumbency advantage) zayıflatmaktadır.",
+      "Dönem ortası yeniden bölgeleme (mid-decade redistricting) savaşlarında Teksas, Florida ve Kuzey Karolina'da Cumhuriyetçiler kazanım sağlarken; Kaliforniya'daki Proposition 50 ve Utah'taki yargı kararı Demokratlara dengeleyici sandalye avantajı sağlamıştır.",
+      "2024 başkanlık tercihleriyle meclis vekil tercihlerinin ayrıştığı çapraz koltuklar (crossover seats), harita değişiklikleriyle birlikte Trump'ın kazandığı 22 bölge ve Harris'in kazandığı 8 bölge olmak üzere çoğunluğun belirleneceği ana ekseni oluşturmaktadır."
+    ],
+    "core_mechanisms_and_concepts": [
+      {
+        "concept_name": "218 Sandalye Çoğunluk Eşiği",
+        "explanation": "435 üyeli ABD Temsilciler Meclisi'nde yasama çoğunluğunu sağlamak ve Meclis Başkanlığı makamını elde tutmak için gereken salt çoğunluk sınırıdır."
+      },
+      {
+        "concept_name": "Ara Seçim Cezası (Midterm Penalty)",
+        "explanation": "Amerikan siyasetinde görevdeki başkanın partisinin, başkanlık döneminin ikinci yılındaki ara seçimlerde seçmen tepkisi ve sandık motivasyonu düşüklüğü nedeniyle Kongre'de sandalye kaybetmesi eğilimidir."
+      },
+      {
+        "concept_name": "Yerleşik Vekil Avantajı (Incumbency Advantage) ve Açık Sandalye (Open Seat)",
+        "explanation": "Görevdeki temsilcinin tanınırlık, bağış toplama ve yerel seçmen bağı avantajının, emeklilik veya istifa yoluyla boşalan sandalyelerde (open seat) sıfırlanarak bölgeyi partiler arası rekabete ve el değiştirmeye açık hale getirmesidir."
+      },
+      {
+        "concept_name": "Dönem Ortası Yeniden Bölgeleme (Mid-Decade Redistricting)",
+        "explanation": "On yıllık olağan nüfus sayımı takvimi beklenmeksizin eyalet yasama organları, referandumlar veya mahkeme kararları ile seçim çevre sınırlarının siyasi dengeyi değiştirecek biçimde yeniden düzenlenmesidir."
+      },
+      {
+        "concept_name": "Çapraz Bölgeler (Crossover Seats)",
+        "explanation": "Başkanlık seçiminde bir partinin adayına (Trump veya Harris) oy verirken, Temsilciler Meclisi seçiminde diğer partinin temsilcisini seçen veya redistricting sonucu bu demografik/siyasal yapıya bürünen seçim bölgeleridir."
+      }
+    ],
+    "quantitative_metrics_and_data": [
+      {
+        "metric_category": "Mevcut Meclis Sandalye Dağılımı",
+        "parameters": [
+          {
+            "name": "Cumhuriyetçi Parti Sandalye Sayısı",
+            "value": "218"
+          },
+          {
+            "name": "Demokrat Parti Sandalye Sayısı",
+            "value": "214"
+          },
+          {
+            "name": "Bağımsız Sandalye Sayısı",
+            "value": "1"
+          },
+          {
+            "name": "Boş Sandalye Sayısı",
+            "value": "2"
+          },
+          {
+            "name": "Demokratların Çoğunluk İçin Gereksinim Duyduğu Net Sandalye",
+            "value": "4"
+          }
+        ],
+        "analytical_note": "Cumhuriyetçi çoğunluğun tam 218 sınırında bulunması, oylamalarda tek bir fireye dahi izin vermeyen kırılgan bir yasama ortamı yaratmaktadır."
+      },
+      {
+        "metric_category": "Ulusal Seçmen Eğilimi (Generic Ballot) Anket Verileri (22 Ekim 2026)",
+        "parameters": [
+          {
+            "name": "Decision Desk HQ (9 Oca 2025 - 20 Eki 2026)",
+            "value": "Demokrat +%7,9 (Dem %50,4 / Cum %42,5 / Diğer %7,1)"
+          },
+          {
+            "name": "FiftyPlusOne (9 Oca 2025 - 20 Eki 2026)",
+            "value": "Demokrat +%9,1 (Dem %52,0 / Cum %42,9 / Diğer %5,1)"
+          },
+          {
+            "name": "NBC News (9 Oca 2025 - 20 Eki 2026)",
+            "value": "Demokrat +%9,0 (Dem %52,0 / Cum %43,0 / Diğer %5,0)"
+          },
+          {
+            "name": "RealClearPolitics (28 Eyl - 20 Eki 2026)",
+            "value": "Demokrat +%8,1 (Dem %50,5 / Cum %42,4 / Diğer %7,1)"
+          },
+          {
+            "name": "Silver Bulletin (9 Oca 2025 - 20 Eki 2026)",
+            "value": "Demokrat +%9,1 (Dem %50,5 / Cum %41,4 / Diğer %8,1)"
+          },
+          {
+            "name": "Genel Ortalama",
+            "value": "Demokrat +%8,7 (Dem %51,1 / Cum %42,4 / Diğer %6,5)"
+          }
+        ],
+        "analytical_note": "Ulusal düzeydeki +%8,7'lik Demokrat üstünlüğü, iktidardaki partiye yönelik geleneksel ara seçim tepkisinin işlediğini göstermektedir."
+      },
+      {
+        "metric_category": "Sandalye Hareketliliği ve Aday Kayıpları",
+        "parameters": [
+          {
+            "name": "Yeniden Aday Olmayan Temsilci ve Delege",
+            "value": "60 temsilci, 2 delege (26 Demokrat, 36 Cumhuriyetçi)"
+          },
+          {
+            "name": "Üst Makamlara (Senato/Valilik) Aday Olan Emekliler",
+            "value": "29 vekil (9 Demokrat, 20 Cumhuriyetçi)"
+          },
+          {
+            "name": "Ön Seçimlerde Yenilen Görevdeki Vekiller",
+            "value": "11 vekil (7 Demokrat, 4 Cumhuriyetçi)"
+          },
+          {
+            "name": "Skandal/Hukuki Süreç Nedeniyle İstifa Edenler",
+            "value": "2 vekil (1 Demokrat - FL-20, 1 Cumhuriyetçi - TX-23)"
+          }
+        ],
+        "analytical_note": "Cumhuriyetçilerde 20 vekilin Senato ve Valiliklere yönelmesi eyalet hedeflerini güçlendirirken, Meclis çoğunluğunu savunma hattında 36 açık sandalye ile yüksek risk yaratmıştır."
+      },
+      {
+        "metric_category": "Redistricting Kaynaklı Sandalye Eğilimi Değişimleri",
+        "parameters": [
+          {
+            "name": "Kaliforniya (Prop 50)",
+            "value": "4 Demokrat Kazancı, 1 Tarafsız, 5 Cumhuriyetçi Kaybı"
+          },
+          {
+            "name": "Teksas (Özel Oturum / SCOTUS)",
+            "value": "3 Demokrat Kaybı, 2 Tarafsız, 5 Cumhuriyetçi Kazancı"
+          },
+          {
+            "name": "Florida (Özel Oturum / Eyalet Mahkemesi)",
+            "value": "1 Demokrat Kaybı, 4 Tarafsız, 3 Cumhuriyetçi Kaybı"
+          },
+          {
+            "name": "Utah (Proposition 4 Kararı)",
+            "value": "1 Demokrat Kazancı, 1 Cumhuriyetçi Kaybı"
+          },
+          {
+            "name": "Kuzey Karolina (Yeni Harita)",
+            "value": "1 Demokrat Kaybı, 1 Cumhuriyetçi Kaybı"
+          },
+          {
+            "name": "Ohio (Komisyon Haritası)",
+            "value": "2 Demokrat Kaybı, 2 Cumhuriyetçi Kazancı"
+          },
+          {
+            "name": "Missouri ve Virginia",
+            "value": "0 (Yargı kararlarıyla 2022 haritaları yürürlükte kaldı)"
+          }
+        ],
+        "analytical_note": "Teksas ve Florida'da elde edilen Cumhuriyetçi harita avantajı, Kaliforniya referandumu ve Utah mahkeme kararıyla Demokratlar tarafından dengelenmiştir."
+      },
+      {
+        "metric_category": "Çapraz Bölgeler (Crossover Seats) Dağılımı",
+        "parameters": [
+          {
+            "name": "Demokratların Elindeki Orijinal Trump Bölgeleri",
+            "value": "11 Bölge (ME-2, MI-8, NV-3, NJ-9, NM-2, NY-3, NC-1, OH-9, TX-28, TX-34, WA-3)"
+          },
+          {
+            "name": "Redistricting ile Eklenen Trump Eğilimli Demokrat Bölgeler",
+            "value": "11 Bölge (AL-2, FL-9, FL-14, FL-22, FL-25, LA-6, OH-1, TN-9, TX-9, TX-32, TX-35)"
+          },
+          {
+            "name": "Cumhuriyetçilerin Elindeki Orijinal Harris Bölgeleri",
+            "value": "3 Bölge (NE-2, NY-17, PA-1)"
+          },
+          {
+            "name": "Redistricting ile Eklenen Harris Eğilimli GOP/Bağımsız Bölgeler",
+            "value": "5 Bölge (CA-1, CA-3, CA-41, CA-48, UT-1)"
+          }
+        ],
+        "analytical_note": "Demokratlar 22 Trump ağırlıklı bölgeyi savunmak zorunda kalarak ciddi bir coğrafi baskı altına girerken; Cumhuriyetçiler 8 Harris bölgesinde savunma yapmaktadır."
+      }
+    ],
+    "breakdown_and_case_dynamics": [
+      {
+        "unit_or_subject": "Teksas",
+        "status_or_change": "Vali Greg Abbott'ın özel oturum çağrısıyla geçirilen haritaya ilişkin Federal Mahkeme durdurma kararı, ABD Yüksek Mahkemesi (SCOTUS) tarafından 6-3 oyla kaldırıldı.",
+        "impact_or_outcome": "Harita 2026 seçimleri için geçerli kılındı; 3 Demokrat sandalye kaybı ve 5 Cumhuriyetçi sandalye kazancı yönünde eğilim oluştu."
+      },
+      {
+        "unit_or_subject": "Kaliforniya",
+        "status_or_change": "Teksas haritasına misilleme olarak sunulan Proposition 50 anayasa referandumu %64'ü aşan seçmen desteğiyle kabul edildi.",
+        "impact_or_outcome": "Demokratlar yasama organı kısıtlamalarını aşarak 5 Cumhuriyetçi sandalyeyi hedef alan ve 4 Demokrat sandalye kazancı öngören haritayı yürürlüğe koydu."
+      },
+      {
+        "unit_or_subject": "Florida",
+        "status_or_change": "Vali Ron DeSantis'in özel oturum tasarısı Florida Yüksek Mahkemesi tarafından 5-1'lik kararla onandı.",
+        "impact_or_outcome": "Cumhuriyetçilere avantaj sağlayan yeni sınırlar resmileşti."
+      },
+      {
+        "unit_or_subject": "Utah",
+        "status_or_change": "League of Women Voters v. Utah davasında 3. Bölge Yargıcı Dianna Gibson, eyalet meclisi haritasını Proposition 4 ihlali gerekçesiyle iptal etti.",
+        "impact_or_outcome": "Salt Lake County merkezli güvenli 1 Demokrat bölge (UT-01) tescillendi."
+      },
+      {
+        "unit_or_subject": "Missouri ve Virginia",
+        "status_or_change": "Missouri'de eyalet yüksek mahkemesi ve Brett Kavanaugh müdahaleyi reddetti; Virginia'da eyalet yüksek mahkemesi (4-3) usul kuralı ihlali gerekçesiyle anayasa hamlesini durdurdu.",
+        "impact_or_outcome": "Her iki eyalette de girişimler iptal edildi ve 2022 seçim haritaları aynen korundu."
+      },
+      {
+        "unit_or_subject": "Louisiana ve Alabama",
+        "status_or_change": "SCOTUS'un Louisiana v. Callais kararı ve yürütmeyi durdurma kararlarını kaldırması sonucu haritalar yeniden çizildi.",
+        "impact_or_outcome": "Louisiana'da 2. Siyah ağırlıklı bölge kaldırıldı; her iki eyalette de Demokrat temsil zayıfladı."
+      },
+      {
+        "unit_or_subject": "Parti İçi Ön Seçimler (Primaries)",
+        "status_or_change": "Demokrat Parti'de sol kanat (Lander, Chevalier, Kiros) merkez isimleri (Goldman, Espaillat, DeGette) eledi; Cumhuriyetçi Parti'de muhafazakar sağ kanat (Toth, Gallrein) Crenshaw ve Massie gibi isimleri saf dışı bıraktı.",
+        "impact_or_outcome": "Toplam 11 görevdeki üye pusula dışı kalarak her iki partide de ideolojik ayrışmayı ve kadro değişimini derinleştirdi."
+      },
+      {
+        "unit_or_subject": "Kuzey Karolina 11. Bölge",
+        "status_or_change": "Cumhuriyetçi Temsilci Chuck Edwards, 3 Mart 2026 ön seçimini kazanmasına rağmen parti içi kınama (censure) sonrası 5 Ağustos 2026'da adaylıktan çekildi.",
+        "impact_or_outcome": "Bölgede parti organizasyonu kriz yaşamış ve aday değişikliği zorunluluğu doğmuştur."
+      }
+    ],
+    "key_actors_and_roles": [
+      {
+        "name": "Mike Johnson",
+        "role_or_action": "Temsilciler Meclisi Başkanı (Cumhuriyetçi); tam 218 sandalye eşiğinde duran çoğunluğu yöneten ve fire riskine karşı taktik geliştiren lider."
+      },
+      {
+        "name": "Hakeem Jeffries",
+        "role_or_action": "Temsilciler Meclisi Azınlık Lideri (Demokrat); meclis kontrolünü geri almak için net 4 sandalye kazanmayı hedefleyen hücum stratejisinin yürütücüsü."
+      },
+      {
+        "name": "Kevin Kiley",
+        "role_or_action": "Kaliforniya Temsilcisi; Proposition 50 sonrası Bağımsız statüye geçen ve CA-6 bölgesine kayan kilit parlamenter."
+      },
+      {
+        "name": "Greg Abbott",
+        "role_or_action": "Teksas Valisi; dönem ortası redistricting hamlesini özel oturumla başlatan ve federal yargıda onaylatan aktör."
+      },
+      {
+        "name": "Ron DeSantis",
+        "role_or_action": "Florida Valisi; eyalet meclisini toplayarak Cumhuriyetçi lehine sınır çizimini yasalaştıran lider."
+      },
+      {
+        "name": "Dianna Gibson",
+        "role_or_action": "Utah 3. Bölge Yargıcı; eyalet meclisi haritasını halk iradesi düzenlemesini ihlal ettiği gerekçesiyle iptal edip Demokrat lehine bölge oluşturan yargıç."
+      },
+      {
+        "name": "Brett Kavanaugh",
+        "role_or_action": "ABD Yüksek Mahkemesi Yargıcı; Missouri harita değişikliğine yönelik acil müdahale talebini reddederek 2022 sınırlarını koruyan karar alıcı."
+      },
+      {
+        "name": "Nancy Pelosi ve Steny Hoyer",
+        "role_or_action": "Eski Meclis Başkanı ve Çoğunluk Lideri; emeklilik kararlarıyla Demokrat Parti'de ciddi kurumsal hafıza ve fonlama boşluğu yaratan kıdemli figürler."
+      },
+      {
+        "name": "Sheila Cherfilus-McCormick ve Tony Gonzales",
+        "role_or_action": "Sırasıyla kara para aklama iddiaları ve evlilik dışı ilişki skandalı nedeniyle Nisan 2026'da istifa ederek sandalyelerini seçime kadar boş bırakan vekiller."
+      }
+    ],
+    "expert_guidance_and_takeaways": [
+      "Demokratların ulusal anketlerdeki +%8,7'lik üstünlüğü doğrudan meclis çoğunluğuna tahvil edilemez; Güneydoğu ve Teksas'taki Cumhuriyetçi harita mühendisliği dengelenmelidir.",
+      "Cumhuriyetçilerin çoğunluğu koruma stratejisi Teksas, Florida ve Ohio harita kazanımlarına dayanırken, 36 vekilin emekliliğiyle oluşan açık sandalyeler kırılganlık yaratmaktadır.",
+      "Demokrat Parti, Nancy Pelosi ve Steny Hoyer gibi kıdemli liderlerin ayrılışı sebebiyle kurumsal hafıza ve bağış organizasyonunda yeni mekanizmalar kurmak zorundadır.",
+      "Harita değişimleri sonrası Trump'ın kazandığı 22 bölgeye karşı Harris'in kazandığı 8 bölge dengesi, Demokratların savunma hattının sayıca daha geniş alana yayıldığını göstermektedir.",
+      "Seçim gecesi çoğunluğun kaderi 1 ila 3 sandalye gibi son derece dar marjlarla tayin edilecektir."
+    ],
+    "future_outlook_and_scenarios": [
+      {
+        "event_or_timeline": "3 Kasım 2026 Genel Seçimleri",
+        "potential_risk_or_outcome": "Ulusal anketlerdeki Demokrat dalganın, Cumhuriyetçilerin Teksas ve Florida harita tahkimatını aşıp aşamayacağı test edilecek; Meclis kontrolü 1 ila 3 sandalye farkıyla el değiştirebilecek veya korunabilecektir."
+      }
+    ],
+    "core_analysis": "2026 ABD Temsilciler Meclisi seçimleri, ulusal düzeydeki seçmen eğilimi ile eyaletler düzeyindeki harita mühendisliklerinin doğrudan çatıştığı yapısal bir ikileme sahne olmaktadır. Ulusal kamuoyunda Demokratlar lehine beliren +%8,7'lik konjonktürel rüzgar (ara seçim cezası), Meclis çoğunluğu için gereken net 4 sandalyelik eşiği aşılabilir kılsa da; Teksas, Florida, Ohio ve Kuzey Karolina'daki agresif dönem ortası harita revizyonları Cumhuriyetçilere sağlam bir kurumsal savunma kalkanı sağlamıştır. Demokratlar bu hamleyi Kaliforniya Prop 50 referandumu ve Utah mahkeme kararıyla dengelemeye çalışsa da, savunmak zorunda oldukları Trump eğilimli çapraz bölge sayısının 22'ye yükselmiş olması savunma kaynaklarını dağıtmaktadır. Öte yandan, 1992'den bu yana görülen en büyük ikinci vekil emeklilik dalgasında Cumhuriyetçilerin 36 sandalye boşaltması (özellikle NE-2 ve AZ-1 gibi riskli alanlarda) yerleşik vekil kalkanını düşürmüştür. Sonuç olarak seçim, partilerin ulusal oy oranlarından ziyade, boşalan sandalyelerdeki aday performansları ve mikro marjlı çapraz bölgelerdeki seçmen mobilizasyonu üzerinden şekillenecektir.",
+    "tags": [
+      "2026 ABD Seçimleri",
+      "Temsilciler Meclisi",
+      "Redistricting",
+      "Gerrymandering",
+      "Çapraz Koltuklar",
+      "Generic Ballot",
+      "Vekil Emeklilikleri",
+      "Mike Johnson",
+      "Hakeem Jeffries",
+      "Proposition 50"
+    ],
+    "target_queries": {
+      "qa_pairs": [
+        {
+          "q": "119. Kongre'de Temsilciler Meclisi çoğunluğunu elinde tutan Cumhuriyetçi Parti'nin sandalye dağılımı ve hassas denge eşiği nedir?",
+          "a": "119. Kongre'de Cumhuriyetçilerin 218, Demokratların 214, 1 Bağımsız ve 2 Boş sandalyesi bulunmakta; tam 218 sınırındaki bu dağılım, partiler içi tek bir fireye dahi tahammülü olmayan kırılgan bir yasama ortamı yaratmaktadır."
+        },
+        {
+          "q": "Ulusal genel Kongre anketlerinde (Generic Ballot) Demokrat Parti'nin oy üstünlüğü ve ortalama oranı ne düzeydedir?",
+          "a": "Generic Ballot anketlerinde Demokratlar ortalama +%8,7 (Dem %51,1 / Cum %42,4 / Diğer %6,5) üstünlükle önde seyretmekte ve ara seçim tepkisini arkasına almaktadır."
+        },
+        {
+          "q": "1992'den bu yana görülen en büyük ikinci vekil emeklilik dalgasında toplam kaç temsilci ve delege yeniden aday olmamıştır?",
+          "a": "Toplam 60 temsilci ve 2 delege (26 Demokrat, 36 Cumhuriyetçi) yeniden aday olmayarak emekliye ayrılmış; ayrıca 29 vekil üst makamlara aday olmuş, 11 vekil ise ön seçimleri kaybetmiştir."
+        },
+        {
+          "q": "Dönem ortası yeniden bölgeleme (mid-decade redistricting) savaşlarında Teksas ve Florida haritaları hukuki süreçlerden nasıl geçmiştir?",
+          "a": "Teksas'ta Vali Greg Abbott'ın haritasına yönelik federal mahkeme durdurma kararı ABD Yüksek Mahkemesi (SCOTUS) tarafından 6-3 oyla kaldırılmış; Florida'da ise Vali Ron DeSantis'in tasarısı Florida Yüksek Mahkemesi tarafından 5-1 onanmıştır."
+        },
+        {
+          "q": "Kaliforniya'da Teksas haritasına misilleme olarak çıkarılan Proposition 50 anayasa referandumu hangi sonuçla kabul edilmiştir?",
+          "a": "Proposition 50 referandumu yüzde 64'ü aşan seçmen desteğiyle kabul edilmiş, yasama organı kısıtlamaları aşılarak 4 Demokrat sandalye kazancı öngören harita yürürlüğe konulmuştur."
+        },
+        {
+          "q": "Utah eyalet meclisi haritası hangi gerekçeyle ve kim tarafından iptal edilmiştir?",
+          "a": "League of Women Voters v. Utah davasında 3. Bölge Yargıcı Dianna Gibson, eyalet meclisi haritasını Proposition 4 halk iradesi düzenlemesini ihlal ettiği gerekçesiyle iptal etmiştir."
+        },
+        {
+          "q": "Meclis çoğunluğunun belirleneceği çapraz bölgelerde (crossover seats) Trump ve Harris eğilimli alanların dağılımı nasıldır?",
+          "a": "Seçimlerin kaderini belirleyecek çapraz bölgeler arasında Demokratların savunmak zorunda olduğu 22 Trump bölgesi (11 orijinal + 11 redistricting) ve Cumhuriyetçilerin savunacağı 8 Harris bölgesi (3 orijinal + 5 redistricting) bulunmaktadır."
+        },
+        {
+          "q": "Nisan 2026'da istifa eden Sheila Cherfilus-McCormick (FL-20) ve Tony Gonzales (TX-23) hangi gerekçelerle görevden ayrılmıştır?",
+          "a": "Sheila Cherfilus-McCormick kara para aklama iddiaları, Tony Gonzales ise evlilik dışı ilişki skandalı nedeniyle Nisan 2026'da istifa etmiştir."
+        }
+      ]
+    },
+        "metadata": {
+      "analyst": "Ersoy Toptaş",
+      "canonical_url": "https://www.ersoytoptas.tr/2026/10/abd-kongre-secimleri-2026-anketler-secim-haritasi-cikmazi.html",
+      "canonical_source": "https://analysisreports.github.io/glossary/2026-10-abd-kongre-secimleri-2026-anketler-secim-haritasi-cikmazi.json",
+      "methodology": "https://analysisreports.github.io/llms.txt",
+      "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
+      "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
+      "license": "CC BY 4.0"
+    },
+    "editorial_frontend": {
+      "url": "https://www.ersoytoptas.tr/2026/10/abd-kongre-secimleri-2026-anketler-secim-haritasi-cikmazi.html",
+      "format": "Human-Readable Narrative",
+      "author": "Ersoy Toptaş",
+      "published_date": "2026-10-25",
+      "language": "tr",
+      "description": "Bu makroekonomik ve jeopolitik veri setinin, okuyucular için anlatı (narrative) formatında hazırlanmış, okunabilir editoryal makale versiyonu."
+    },
+    "cross_references": {
+      "relations": [
+        {
+          "target_url": "https://www.ersoytoptas.tr/2026/10/rusya-abd-heyetleri-StPetersburg-temas.html",
+          "predicate": "ELECTORAL_DOMESTIC_PRESSURE",
+          "impact_window": "2026-10/2026-11",
+          "description": "Temsilciler Meclisi ara seçimlerinde anketlerde geride kalan Cumhuriyetçi yönetim, enflasyonist seçmen tepkisini yumuşatmak için Rus dizelinin ABD pazarına girişine ve gübre tedarikine izin veren diplomatik adımlar atmıştır."
+        },
+        {
+          "target_url": "https://www.ersoytoptas.tr/2026/10/israil-secimleri-knesset-cogunluk-krizi-dugm.html",
+          "predicate": "PARLIAMENTARY_DEADLOCK_PARALLEL",
+          "impact_window": "2026-10/2026-11",
+          "description": "119. Kongre'deki 218-214 sandalye hassas dengesi ile Knesset'teki 61 sandalye çoğunluk kilitlenmesi, her iki müttefik sistemde karar alma ve yasama süreçlerini kısıtlayan paralel sistemsel tıkanıklıklar üretmektedir."
+        }
+      ]
+    }
+  }
+}
