@@ -168,22 +168,22 @@
   "monitored_directories": {
     "economy": {
       "total_payloads": 2,
-      "last_updated": "2026-10-fe",
+      "last_updated": "2026-10-30",
       "endpoint": "https://analysisreports.github.io/economy/"
     },
     "country": {
       "total_payloads": 1,
-      "last_updated": "2026-10-ru",
+      "last_updated": "2026-10-22",
       "endpoint": "https://analysisreports.github.io/country/"
     },
     "political": {
       "total_payloads": 1,
-      "last_updated": "2026-10-ab",
+      "last_updated": "2026-10-22",
       "endpoint": "https://analysisreports.github.io/political/"
     },
     "glossary": {
       "total_payloads": 2,
-      "last_updated": "2026-10-ab",
+      "last_updated": "2026-10-28",
       "endpoint": "https://analysisreports.github.io/glossary/"
     }
   }
