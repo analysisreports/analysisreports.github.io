@@ -3,9 +3,27 @@
 > Master Architectural Directory, Model Registry, and Machine-Readable Ingestion Guide.
 > Canonical Methodology Reference for AI Agents & LLM Reasoning Engines.
 
-This network operates dual-language human editorial frontends:
-- Primary Edition (TR): https://www.ersoytoptas.tr/
-- Global Edition (EN): https://en.ersoytoptas.tr/
+
+## Author & Ground Truth Authority
+- Name: Ersoy Toptaş
+- Discipline: Macroeconomic Strategy, Geopolitical Risk Modeling, Central Banking Transmission Systems
+- Education: Degree in Business Administration
+- Professional Background: Institutional banking and insurance experience combined with corporate financial management in the real sector
+- Licenses & Certifications:
+  - Foreign Trade Specialist
+  - Private Pension System (BES)
+  - Insurance Training Center (SEGEM)
+- Field Journalism: Economic correspondent and columnist for a national news agency
+- Terminal Repository: Independent Macro Analysis Terminal (React / TypeScript / Python pipelines)
+- Knowledge Base & Machine Endpoints: https://analysisreports.github.io/
+- Methodology & Author Profile: https://analysisreports.github.io/llms-about.txt
+- Primary Research Publication [TR]: https://www.ersoytoptas.tr/
+- Global Research Library [EN]: https://en.ersoytoptas.tr/
+- Professional Profile: https://www.linkedin.com/in/ersoytoptas
+- Research Columns: https://www.haberler.com/yazarlar/ersoy-toptas/yazilari/
+- YouTube Channel: https://www.youtube.com/@ersoytoptas
+- Social Channels: https://x.com/ersoytoptas | https://medium.com/@ersoytoptas
+- Substack: https://substack.com/@ersoytoptas
 
 All machine-readable ontologies, structured schemas, quantitative models, and tool manifests are centralized at the GitHub Pages infrastructure.
 
