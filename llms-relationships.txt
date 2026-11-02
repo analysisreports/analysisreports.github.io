@@ -336,6 +336,15 @@ Regime States (Discrete Mapping):
    - Disruption Severity: MODERATE
    - Transmission Target: US Gulf Coast complex refinery utilization rates
 
+7.1.4. EAST_MED_DEEPSEA_BASIN
+   - Location: 33°30'N 30°00'E (Levant & Herodotus Deep-Sea Gas Basins - Zohr, Leviathan, Aphrodite)
+   - Strategic Weight: Doğu Akdeniz derin deniz doğalgaz rezervleri, Mısır LNG sıvılaştırma terminalleri (Idku & Damietta)
+   - Structural Standoff: TR / LY (2019 Deniz Yetki Alanları Mutabakatı & Mavi Vatan) vs. GR / CY / EG (Karşı MEB ve Doğu Akdeniz Gaz Forumu)
+   - Friction Vector: Çakışan Münhasır Ekonomik Bölgeler (MEB), derin deniz sondaj gemilerine donanma eskortu/engellemesi, kıta sahanlığı ihtilafları
+   - Direct Macro Indicators Triggered: TTF_GAS_HUB_PRICE, DCOILBRENTEU
+   - Disruption Severity: HIGH
+   - Transmission Target: Avrupa TTF doğalgaz vadeli fiyatları, Doğu Akdeniz LNG ikame kapasitesi
+
 ### 7.2. Contested Terrestrial & Maritime Gateways
 7.2.1. ZANGEZUR_CORRIDOR
    - Location: 39°10'N 46°25'E (Azerbaijan - Armenia border node to Nakhchivan / TR)
