@@ -706,11 +706,16 @@
     },
     {
       "id": "MODEL_9",
-      "label": "Financial Repression & Baseload Energy Sustainability Index",
+      "label": "Financial Repression & Debt Sustainability Index",
       "category": "MODEL",
       "attributes": {
-        "function": "baseload_financial_repression_index",
-        "formula": "Repression_Index = f(Real_Yield, Energy_Baseload_Shock)"
+        "function": "financial_repression_index",
+        "formula": "Debt_Pressure_Index = (DGS10 - CPI_YoY) * (GFDEGDQ188S / 100)",
+        "status_enums": [
+          "REPRESSION_REGIME",
+          "SUSTAINABLE_CYCLE",
+          "DEBT_CRISIS_ALARM"
+        ]
       }
     }
   ],
