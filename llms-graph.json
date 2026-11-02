@@ -12,7 +12,10 @@
       "CHOKEPOINT",
       "INDICATOR",
       "MODEL",
-      "ENDPOINT_SCHEMA"
+      "ENDPOINT_SCHEMA",
+      "COMMODITY_STRATEGIC",
+      "CRITICAL_MINERAL",
+      "ENERGY_BENCHMARK"
     ],
     "edge_types": [
       "POLARITY_COUPLING",
@@ -21,7 +24,11 @@
       "EXECUTES_MODEL",
       "BRIDGES_TO_MODEL",
       "INGESTS_SERIES",
-      "INDEXES"
+      "INDEXES",
+      "CONTROLS_LEVERAGE",
+      "TRANSMITS_RISK",
+      "INFLATION_IMPACT",
+      "SUPPLY_DISRUPTION"
     ]
   },
   "nodes": [
@@ -662,6 +669,49 @@
           "NORMAL_TRANSATLANTIC_ARBITRAGE"
         ]
       }
+    },
+    {
+      "id": "ENERGY_URANIUM",
+      "label": "Zenginleştirilmiş Uranyum ve Nükleer Yakıt",
+      "category": "COMMODITY_STRATEGIC",
+      "attributes": {
+        "dominant_supplier": "ACTOR_RU"
+      }
+    },
+    {
+      "id": "ENERGY_LITHIUM",
+      "label": "Lityum ve Batarya Hammaddeleri",
+      "category": "CRITICAL_MINERAL",
+      "attributes": {
+        "geographic_basin": "LATAM_TRIANGLE"
+      }
+    },
+    {
+      "id": "COMMODITY_CRUDE_OIL",
+      "label": "Brent & WTI Ham Petrol Arzı",
+      "category": "ENERGY_BENCHMARK",
+      "attributes": {
+        "chokepoint_sensitivity": "CHOKE_HORMUZ"
+      }
+    },
+    {
+      "id": "IND_WPU06",
+      "label": "PPI Chemicals and Allied Products (WPU06)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED",
+        "units": "Index",
+        "trans": "pc1"
+      }
+    },
+    {
+      "id": "MODEL_9",
+      "label": "Financial Repression & Baseload Energy Sustainability Index",
+      "category": "MODEL",
+      "attributes": {
+        "function": "baseload_financial_repression_index",
+        "formula": "Repression_Index = f(Real_Yield, Energy_Baseload_Shock)"
+      }
     }
   ],
   "edges": [
@@ -990,6 +1040,30 @@
       "target": "MODEL_25.12",
       "type": "BRIDGES_TO_MODEL",
       "passes": "seaborne_risk_premium"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ENERGY_URANIUM",
+      "type": "CONTROLS_LEVERAGE",
+      "description": "Nükleer yakıt tedarik zinciri üzerinden asimetrik jeopolitik baskı."
+    },
+    {
+      "source": "ENERGY_URANIUM",
+      "target": "MODEL_9",
+      "type": "TRANSMITS_RISK",
+      "vector": "BASELOAD_ENERGY_COST"
+    },
+    {
+      "source": "ENERGY_LITHIUM",
+      "target": "IND_WPU06",
+      "type": "INFLATION_IMPACT",
+      "description": "Batarya ve kimyasal sanayi maliyetleri üzerinden üretici fiyat baskısı."
+    },
+    {
+      "source": "CHOKE_HORMUZ",
+      "target": "COMMODITY_CRUDE_OIL",
+      "type": "SUPPLY_DISRUPTION",
+      "description": "Hürmüz Boğazı risk priminin ham petrol fiyatlarına doğrudan aktarımı."
     }
   ]
 }
