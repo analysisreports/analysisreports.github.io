@@ -811,6 +811,20 @@
         "units": "Index",
         "trans": "lin"
       }
+    },
+    {
+      "id": "MODEL_5",
+      "label": "Net Fed Liquidity Index",
+      "category": "MODEL",
+      "attributes": {
+        "function": "net_fed_liquidity",
+        "formula": "Net_Liquidity_Millions = WALCL - (WTREGEN + RRPONTSYD)",
+        "status_enums": [
+          "LIQUIDITY_EXPANSION",
+          "NEUTRAL",
+          "LIQUIDITY_CONTRACTION"
+        ]
+      }
     }
   ],
   "edges": [
@@ -1271,6 +1285,24 @@
       "target": "IND_PWHEAMTUSDM",
       "type": "TRIGGERS_INDICATOR",
       "impact": "BLACK_SEA_AGRO_EXPORT_BOTTLENECK"
+    },
+    {
+      "source": "IND_WALCL",
+      "target": "MODEL_5",
+      "type": "INGESTS_SERIES",
+      "role": "walcl_val"
+    },
+    {
+      "source": "IND_WTREGEN",
+      "target": "MODEL_5",
+      "type": "INGESTS_SERIES",
+      "role": "wtregen_val"
+    },
+    {
+      "source": "IND_RRPONTSYD",
+      "target": "MODEL_5",
+      "type": "INGESTS_SERIES",
+      "role": "rrpontsyd_val"
     }
   ]
 }
