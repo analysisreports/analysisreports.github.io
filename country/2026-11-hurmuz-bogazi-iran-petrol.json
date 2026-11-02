@@ -1,0 +1,247 @@
+{
+  "structured_content_analysis": {
+    "focus_areas": [
+      "Jeopolitik Kriz",
+      "Enerji Güvenliği",
+      "Deniz Ticaret Yolları",
+      "Askeri Strateji ve Diplomasi",
+      "HORMUZ_STRAIT"
+    ],
+    "summary": {
+      "headline": "İran'ın Çok Yönlü Savunma ve Diplomasi Stratejisi: Hürmüz Boğazı ve Maksimum Caydırıcılık",
+      "one_sentence_summary": "İran, artan askeri eskalasyon riskine karşı Maksimum Caydırıcılık ve Eşzamanlı Diplomasi doktrinini devreye sokarak Hürmüz Boğazı'ndaki seyrüsefer güvenliği için 2 günlük güvenlik planını öne sürmektedir."
+    },
+    "5N1K_analysis": {
+      "headline": "İran'ın Çok Yönlü Stratejisi ve Hürmüz Boğazı Kriz Denklemi",
+      "what": "İran'ın askeri komuta yetkilerini genişleterek ve eşzamanlı diplomasi yürüterek Hürmüz Boğazı güvenliği ile yaptırım ablukasını kaldırma şartlarını sunması.",
+      "where": "İran, Basra Körfezi, Hürmüz Boğazı, Levant ve Doha/Beijing müzakere hatları",
+      "when": "2026-Q4",
+      "event_date": "2026-11-02",
+      "why": "ABD ara seçimleri sonrası artan eskalasyon riskine karşı bölgesel güç dengesini korumak ve ekonomik ablukayı kırmak.",
+      "how": "Maksimum caydırıcılık, Askeri angajman kurallarının esnetilmesi, 2 günlük güvenlik planı ve mekik diplomasisi yoluyla.",
+      "who": "Mücteba Hamaney, Mesud Pezeşkiyan, Abbas Arakçi, Mohsen Rızai, Donald Trump, Benjamin Netanyahu",
+      "heat": 90
+    },
+    "country_strategic_assessment": {
+      "country_name": "IRAN",
+      "country_code": "IR",
+      "internal_political_dynamics": {
+        "leadership_and_regime_stability": "Yeni Dini Lider Mücteba Hamaney'in arka plandaki komuta kontrolü ve Pezeşkiyan hükümetine verdiği diplomatik yetkiyle rejim içi konsolidasyon sağlanmaktadır.",
+        "institutional_power_balance": "Devrim Muhafızları Ordusu ve Milli Güvenlik Yüksek Konseyi (SNSC) güvenlik mimarisinde tam kontrole sahiptir.",
+        "opposition_and_social_cohesion": "Yaptırımlar ve ekonomik daralmaya rağmen iç denge korunmaktadır.",
+        "severity_score": 75
+      },
+      "security_and_defense_posture": {
+        "military_doctrine": "Maksimum Caydırıcılık ve Asimetrik Misilleme Kapasitesi.",
+        "force_capacity_and_readiness": "Silahlı kuvvetler tam teyakkuz durumunda olup Hürmüz Boğazı'nı kontrol etme kapasitesine sahiptir.",
+        "critical_frontline_status": "Hürmüz Boğazı, Basra Körfezi ve Levant hattı.",
+        "severity_score": 90
+      },
+      "geopolitical_alignment": {
+        "bloc_alignment": "Doğu / Avrasya İttifakı (Rusya ve Çin ile stratejik yakınlaşma)",
+        "strategic_dependencies": "Bilateral ticaret, enerji ihracatı ve yaptırım baypas mekanizmaları",
+        "regional_influence_and_rivalries": "Körfez ülkeleri ve İsrail ile derinleşen jeopolitik rekabet",
+        "severity_score": 85
+      },
+      "strategic_vulnerabilities": {
+        "sanctions_and_economic_warfare": "ABD ve Batı kaynaklı geniş kapsamlı ekonomik yaptırımlar ve liman ablukaları",
+        "critical_infrastructure_risk": "Enerji tesisleri, nükleer altyapılar ve deniz ticaret koridorları",
+        "demographic_and_humanitarian_pressure": "Yüksek enflasyon ve ekonomik baskılar",
+        "severity_score": 85
+      },
+      "resilience_score": 60,
+      "composite_strategic_score": 80,
+      "severity_level": "HIGH"
+    },
+    "actors_and_dynamics": {
+      "key_players": [
+        {
+          "name": "Mücteba Hamaney",
+          "affiliation": "İran",
+          "role_in_event": "İran Dini Lideri; komuta yapısını geriden yöneten en yüksek otorite",
+          "influence_score": 95
+        },
+        {
+          "name": "Mesud Pezeşkiyan",
+          "affiliation": "İran",
+          "role_in_event": "İran Cumhurbaşkanı; ABD ile barış görüşmelerini yürüten icra başkanı",
+          "influence_score": 85
+        },
+        {
+          "name": "Abbas Arakçi",
+          "affiliation": "İran",
+          "role_in_event": "İran Dışişleri Bakanı; Hürmüz Boğazı güvenlik planı ve mekik diplomasisi yürütücüsü",
+          "influence_score": 80
+        },
+        {
+          "name": "Mohsen Rızai",
+          "affiliation": "İran",
+          "role_in_event": "SNSC Sekreteri / Tümgeneral; Rusya ile güvenlik hattını yöneten yetkili",
+          "influence_score": 85
+        },
+        {
+          "name": "Donald Trump",
+          "affiliation": "ABD",
+          "role_in_event": "ABD Başkanı; $47,1 milyarlık savaş maliyeti gölgesindeki karar alıcı",
+          "influence_score": 90
+        },
+        {
+          "name": "Benjamin Netanyahu",
+          "affiliation": "İsrail",
+          "role_in_event": "İsrail Başbakanı; siyasal varlığını sürdürmek için askeri tırmanmayı kışkırtan aktör",
+          "influence_score": 85
+        }
+      ],
+      "relationship_map": [
+        {
+          "source": "US",
+          "relation": "Conflict",
+          "target": "IR",
+          "directed": true,
+          "severity": "CRITICAL",
+          "polarity": -0.9,
+          "heat": 90
+        }
+      ]
+    },
+    "core_analysis": {
+      "central_conflict_or_goal": "Hürmüz Boğazı'nın kontrolü, küresel enerji arz güvenliği ve ABD yaptırımlarının kaldırılması.",
+      "strategic_implication": "Küresel enerji piyasalarında ani fiyat sıçramaları ve tedarik zincirlerinde zincirleme kırılmalar.",
+      "underlying_message": "İran'ın askeri kapasitesiyle masada güçlü bir konum elde etme ve 2 Günlük Güvenlik Planı ile şartları kabul ettirme iradesi.",
+      "market_dynamics": "Petrol fiyatlarında risk priminin tırmanması, seyrüsefer ve navlun maliyetlerinin artması.",
+      "conflict_heat": 90,
+      "market_impact_direction": "RISK_OFF",
+      "market_impact_score": 85,
+      "key_quotes": [
+        {
+          "speaker": "Donald Trump",
+          "quote": "çekiç inebilir / savaş çok yakında bitecek",
+          "significance_level": "HIGH",
+          "significance_analysis": "ABD'nin askeri müdahale tehdidi ile diplomatik çözüm arayışı arasındaki ikircikli duruşunu yansıtmaktadır."
+        }
+      ]
+    },
+    "strategic_geography_and_assets": [
+      {
+        "asset_name": "HORMUZ_STRAIT",
+        "strategic_importance": "Küresel hidrokarbon sevkiyatının ve deniz ticaretinin ana koridoru.",
+        "control_status": "İran'ın asimetrik kontrol ve kapatma tehdidi altında"
+      }
+    ],
+    "geopolitical_state_vector": {
+      "actor_pair": "US-IR",
+      "regime_state": "PROXY_WAR",
+      "dynamic_delta": -0.25,
+      "active_friction_nodes": [
+        "PERSIAN_GULF",
+        "HORMUZ_STRAIT",
+        "LEVANT"
+      ],
+      "effective_date": "2026-11-02"
+    },
+    "future_outlook": {
+      "strategic_actions": [
+        {
+          "action_type": "Diplomatik ve Askeri Hamle",
+          "description": "ABD liman ablukasını kaldırdığı takdirde Hürmüz Boğazı'nın 48 saat içinde uluslararası gemi trafiğine açılması (2 Günlük Güvenlik Planı).",
+          "target_stakeholder": {
+            "entity_name": "ABD ve İran Dışişleri Bakanlıkları",
+            "jurisdiction_or_sector": "Küresel Enerji / Diplomasi"
+          }
+        }
+      ],
+      "potential_consequences": {
+        "short_term": "Hürmüz Boğazı'nın statüsüne bağlı olarak petrol fiyatlarında dalgalanma ve acil müzakere süreçlerinin işletilmesi.",
+        "short_term_days": 90,
+        "long_term": "Orta Doğu enerji koridorlarında kalıcı güvenlik mimarisi veya derinleşen yaptırım rejimleri.",
+        "long_term_days": 365
+      },
+      "next_key_event": "Doha dolaylı müzakereleri ve Beijing güvenlik istişareleri",
+      "target_date": "2026-11",
+      "status": "ACTIVE",
+      "probability_percent": 80,
+      "impact_score": 85,
+      "direction": "Risk",
+      "confidence_score": 95
+    },
+    "target_queries": {
+      "qa_pairs": [
+        {
+          "q": "İran'ın kriz döneminde devreye soktuğu stratejik doktrin nedir?",
+          "a": "İran, artan askeri eskalasyon riskine karşı 'Maksimum Caydırıcılık' ve 'Eşzamanlı Diplomasi' doktrinini devreye sokmuştur."
+        },
+        {
+          "q": "Hürmüz Boğazı'nın güvenliği için İran'ın sunduğu 2 günlük güvenlik planı neleri kapsamaktadır?",
+          "a": "ABD liman ablukasını kaldırdığı takdirde Hürmüz Boğazı'nın 48 saat içinde uluslararası gemi trafiğine açılmasını öngörmektedir."
+        },
+        {
+          "q": "İran Dışişleri Bakanı Abbas Arakçi hangi diplomatik faaliyetleri yürütmektedir?",
+          "a": "Abbas Arakçi, Hürmüz Boğazı güvenlik planı ve mekik diplomasisinin yürütücülüğünü üstlenmektedir."
+        },
+        {
+          "q": "Mücteba Hamaney'in kriz sürecindeki rolü ve unvanı nedir?",
+          "a": "Mücteba Hamaney, İran Dini Lideri olarak komuta yapısını geriden yöneten en yüksek otoritedir."
+        },
+        {
+          "q": "Mesud Pezeşkiyan'ın krizdeki görevi nedir?",
+          "a": "Mesud Pezeşkiyan, ABD ile barış görüşmelerini yürüten İran Cumhurbaşkanı ve icra başkanıdır."
+        },
+        {
+          "q": "Mohsen Rızai hangi kurumsal pozisyonda görev yapmaktadır?",
+          "a": "Mohsen Rızai, Milli Güvenlik Yüksek Konseyi (SNSC) Sekreteri ve Tümgeneral olarak görev yapmaktadır."
+        },
+        {
+          "q": "Donald Trump'ın kriz hakkındaki açıklaması nedir?",
+          "a": "Donald Trump, 'çekiç inebilir / savaş çok yakında bitecek' şeklinde açıklama yapmıştır."
+        },
+        {
+          "q": "İran'ın diplomatik temaslar yürüttüğü ana merkezler neresidir?",
+          "a": "İran diplomatik temaslarını Doha ve Beijing hatlarında yürütmektedir."
+        }
+      ]
+    },
+    "categorization": {
+      "tags": [
+        "İran",
+        "Hürmüz Boğazı",
+        "Jeopolitik Kriz",
+        "Enerji Güvenliği",
+        "Maksimum Caydırıcılık",
+        "HORMUZ_STRAIT"
+      ]
+    },
+    "metadata": {
+      "analyst": "Ersoy Toptaş",
+      "canonical_url": "https://www.ersoytoptas.tr/2026/11/hurmuz-bogazi-iran-petrol.html",
+      "canonical_source": "https://analysisreports.github.io/country/2026-11-hurmuz-bogazi-iran-petrol.json",
+      "methodology": "https://analysisreports.github.io/llms.txt",
+      "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
+      "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
+      "license": "CC BY 4.0"
+    },
+    "editorial_frontend": {
+      "url": "https://www.ersoytoptas.tr/2026/11/hurmuz-bogazi-iran-petrol.html",
+      "format": "Human-Readable Narrative",
+      "author": "Ersoy Toptaş",
+      "published_date": "2026-11-02",
+      "language": "tr",
+      "description": "Bu makroekonomik ve jeopolitik veri setinin, okuyucular için anlatı (narrative) formatında hazırlanmış, okunabilir editoryal makale versiyonu."
+    },
+    "cross_references": {
+      "relations": [
+        {
+          "target_url": "https://www.ersoytoptas.tr/2026/10/fed-faizi-hurmuz-reel-sektor-finansman.html",
+          "predicate": "ENERGY_SUPPLY_SHOCK_TRANSMISSION",
+          "impact_window": "2026-11/2026-12",
+          "description": "Tahran yönetiminin Hürmüz Boğazı'ndaki geçiş emniyetini yaptırımların kaldırılması şartına bağlaması ve navlun/petrol maliyetlerini tırmandırması, Fed'in kısıtlayıcı faiz duruşunu destekleyerek reel sektörün refinansman ve işletme sermayesi krizini derinleştirmektedir."
+        },
+        {
+          "target_url": "https://www.ersoytoptas.tr/2026/10/fed-faiz-karari-hurmuz-krizi-enflasyon-baskisi.html",
+          "predicate": "GEOPOLITICAL_INFLATION_SPILLOVER",
+          "impact_window": "2026-11/2026-12",
+          "description": "İran'ın 2 günlük güvenlik planı ile Hürmüz Boğazı üzerindeki asimetrik kontrolünü diplomatik koz olarak kullanması, ham petrol ve pompa fiyatlarında jeopolitik risk primini yukarı çekerek manşet enflasyonist baskıları beslemektedir."
+        }
+      ]
+    }
+  }
+}
