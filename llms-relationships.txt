@@ -139,6 +139,34 @@ Regime States (Discrete Mapping):
    - Economic Integration Formula: "SIX_ECONOMIES_ONE_PRODUCT"
    - Critical Transit Infrastructure: Trans-Caspian Pipeline, Baku-Tbilisi-Kars, Zangezur Corridor Node (7.2.1)
    - Macro Indicators Triggered: EURASIAN_RAIL_INDEX, CASPIAN_RAIL_RATES, TTF_GAS_HUB_PRICE
+
+### 2.8. Russian Federation Sub-National & Autonomous Entities (RF_INTERNAL_REPUBLICS)
+- Description: Internal ethnic-republic and administrative transit grid of the Russian Federation across the Caucasus, Volga-Ural, and Siberian theaters.
+- Federation Authority: ACTOR_RU (Baseline Control: 1.00)
+
+2.8.1. CAUCASUS_AUTONOMOUS_ARC (North Caucasus Autonomous Line)
+   - Entities: Karachay-Cherkessia, Kabardino-Balkaria, Dagestan
+   - Strategic Transit & Chokepoint: North Caucasus corridor, Caspian littoral access
+   - Baseline Polarity (P_baseline): +0.70
+   - Structural Regime: STRATEGIC_ALIGNMENT
+   - Vulnerability Vector: Inter-ethnic friction, Southern energy corridor security, Caspian flank stability
+   - Transmission Series: DCOILBRENTEU, PWHEAMTUSDM
+
+2.8.2. VOLGA_URAL_SIBERIAN_ARC (Volga-Ural & Siberian Turkic/Uralic Arc)
+   - Entities: Tatarstan, Bashkortostan, Chuvashia, Sakha (Yakutia), Tuva, Khakassia, Altai
+   - Economic/Resource Grid: Oil refining, petrochemicals, mining, heavy manufacturing, Siberian raw materials
+   - Baseline Polarity (P_baseline): +0.80
+   - Structural Regime: STRATEGIC_ALIGNMENT
+   - Vulnerability Vector: Fiscal federalism balance, resource revenue allocation, sovereign identity shifts
+   - Transmission Series: DCOILWTICO, PCOPPUSDM
+
+2.8.3. SOUTHERN_KRAIS_TRANSIT (Southern Administrative Krais)
+   - Entities: Stavropol Krai, Krasnodar Krai
+   - Infrastructure Nodes: Black Sea ports (Novorossiysk), agro-logistics hubs, Caspian-Black Sea rail/pipeline bottleneck
+   - Baseline Polarity (P_baseline): +0.95
+   - Structural Regime: ALLIANCE
+   - Strategic Role: Critical logistics spine for Black Sea and Caspian military/economic projection
+   - Transmission Series: BDTI, PWHEAMTUSDM
 ---
 
 ## 3. PROXY & ASYMMETRIC NON-STATE ACTOR REGISTRY
