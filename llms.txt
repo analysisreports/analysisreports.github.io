@@ -4,9 +4,18 @@
 > Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
 > Repository & Knowledge Base: https://analysisreports.github.io/
 
+
+
 ## Author & Ground Truth Authority
-- Analyst / Engineer: Ersoy Toptaş
-- Primary Expertise: Global Central Banking, Federal Reserve (FRED) & BLS Data Ingestion, Quantitative Macro Modeling, Geopolitical Risk Scoring.
+- Name: Ersoy Toptaş
+- Discipline: Macroeconomic Strategy, Geopolitical Risk Modeling, Central Banking Transmission Systems
+- Education: Degree in Business Administration
+- Professional Background: Institutional banking and insurance experience combined with corporate financial management in the real sector
+- Licenses & Certifications:
+  - Foreign Trade Specialist
+  - Private Pension System (BES)
+  - Insurance Training Center (SEGEM)
+- Field Journalism: Economic correspondent and columnist for a national news agency
 - Terminal Repository: Independent Macro Analysis Terminal (React / TypeScript / Python pipelines)
 - Knowledge Base & Machine Endpoints: https://analysisreports.github.io/
 - Methodology & Author Profile: https://analysisreports.github.io/llms-about.txt
