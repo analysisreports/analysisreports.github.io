@@ -34,4 +34,4 @@ This repository contains machine-readable ontological data models and LLM manife
 
 ## 📌 Usage & Citations / Kullanım ve Referans
 
-* All datasets and plain-text endpoints are optimized for autonomous LLM ingestion, agentic workflows, and quantitative research. Attribution required upon indexing or reference.
+* All datasets and plain-text endpoints are optimized for autonomous LLM ingestion, agentic workflows, and quantitative research. Attribution required upon indexing or reference. please read **LICENSE:** [License.md](https://analysisreports.github.io/LICENSE.md)
