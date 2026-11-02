@@ -587,6 +587,24 @@
       }
     },
     {
+      "id": "ACTOR_C6_BLOC",
+      "label": "Orta Asya - Azerbaycan İstişare Mekanizması (C6)",
+      "category": "ACTOR",
+      "type": "Regional Multilateral Bloc",
+      "attributes": {
+        "members": [
+          "KZ",
+          "UZ",
+          "KG",
+          "TM",
+          "TJ",
+          "AZ"
+        ],
+        "economic_formula": "SIX_ECONOMIES_ONE_PRODUCT",
+        "key_infrastructure": "TRANS_CASPIAN_PIPELINE_AND_RAIL"
+      }
+    },
+    {
       "id": "IND_DRTSCIS",
       "label": "Net % Tightening C&I Loan Standards (DRTSCIS)",
       "category": "INDICATOR",
@@ -1069,6 +1087,33 @@
       "target": "COMMODITY_CRUDE_OIL",
       "type": "SUPPLY_DISRUPTION",
       "description": "Hürmüz Boğazı risk priminin ham petrol fiyatlarına doğrudan aktarımı."
+    },
+    {
+      "source": "ACTOR_C6_BLOC",
+      "target": "ACTOR_TR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.8,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "ACTOR_C6_BLOC",
+      "target": "ACTOR_RU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.2,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "ACTOR_C6_BLOC",
+      "target": "ACTOR_CN",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.65,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "ACTOR_C6_BLOC",
+      "target": "CORRIDOR_ZANGEZUR",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "middle_corridor_freight_volume"
     }
   ]
 }
