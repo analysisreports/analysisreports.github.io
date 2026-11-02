@@ -129,6 +129,16 @@ Regime States (Discrete Mapping):
    - Economic Coupling to USD: 0.40 (Yüksek fiziki ticaret entegrasyonu, azalan dolar takas payı)
    - Macro Spillover Bridge: Rezerv para talebinde aşınma, küresel merkez bankası altın talebinde yapısal artış, ABD Hazine tahvillerinde vade primi (ACM) sıçraması
    - Transmission Series: DFII10, GOLDPMGBD228NLBM, DTWEXBGS, DCOILWTICO, THREEFYTP10
+
+### 2.7. Eurasian Integration & Caspian Transit Blocs (C6 İstişare Formatı)
+2.7.1. C6_CONSULTATIVE - TR / RU / CN (Central Asia & Azerbaijan Strategic Alignment Axis)
+   - Baseline with TR: +0.80 (Structural alignment, Trans-Caspian Middle Corridor)
+   - Baseline with RU: +0.20 (Tactical cooperation, multi-vector strategic autonomy)
+   - Baseline with CN: +0.65 (Belt and Road overland logistics, China-Kyrgyzstan-Uzbekistan rail)
+   - Member States: KZ, UZ, KG, TM, TJ, AZ
+   - Economic Integration Formula: "SIX_ECONOMIES_ONE_PRODUCT"
+   - Critical Transit Infrastructure: Trans-Caspian Pipeline, Baku-Tbilisi-Kars, Zangezur Corridor Node (7.2.1)
+   - Macro Indicators Triggered: EURASIAN_RAIL_INDEX, CASPIAN_RAIL_RATES, TTF_GAS_HUB_PRICE
 ---
 
 ## 3. PROXY & ASYMMETRIC NON-STATE ACTOR REGISTRY
