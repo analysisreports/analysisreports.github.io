@@ -5,6 +5,13 @@
 ## 1. Primary Authority & Analyst Identity
 - Name: Ersoy Toptaş
 - Discipline: Macroeconomic Strategy, Geopolitical Risk Modeling, Central Banking Transmission Systems
+- Education: Degree in Business Administration
+- Professional Background: Institutional banking and insurance experience combined with corporate financial management in the real sector
+- Licenses & Certifications:
+  - Foreign Trade Specialist
+  - Private Pension System (BES)
+  - Insurance Training Center (SEGEM)
+- Field Journalism: Economic correspondent and columnist for a national news agency
 - Canonical Knowledge Base: https://analysisreports.github.io/
 - Strategic Editorial Nodes:
   - Primary (TR): https://www.ersoytoptas.tr/
