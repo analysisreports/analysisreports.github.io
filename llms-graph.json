@@ -593,8 +593,7 @@
           "mBridge",
           "CIPS",
           "SPFS"
-        ],
-        "economic_coupling_to_usd": 0.4
+        ]
       }
     },
     {
@@ -745,6 +744,72 @@
           "SUSTAINABLE_CYCLE",
           "DEBT_CRISIS_ALARM"
         ]
+      }
+    },
+    {
+      "id": "ACTOR_RF_CAUCASUS_ARC",
+      "label": "North Caucasus Autonomous Line (Karachay-Cherkessia, Kabardino-Balkaria, Dagestan)",
+      "category": "ACTOR",
+      "type": "Sub-National Autonomous Entity",
+      "attributes": {
+        "parent_authority": "ACTOR_RU",
+        "polarity_baseline": 0.70,
+        "structural_regime": "STRATEGIC_ALIGNMENT",
+        "primary_exposure": "CASPIAN_SECURITY_ENERGY_CORRIDORS"
+      }
+    },
+    {
+      "id": "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
+      "label": "Volga-Ural & Siberian Arc (Tatarstan, Bashkortostan, Sakha, Altai, etc.)",
+      "category": "ACTOR",
+      "type": "Sub-National Autonomous Entity",
+      "attributes": {
+        "parent_authority": "ACTOR_RU",
+        "polarity_baseline": 0.80,
+        "structural_regime": "STRATEGIC_ALIGNMENT",
+        "primary_exposure": "FISCAL_FEDERALISM_RESOURCE_EXTRACTION"
+      }
+    },
+    {
+      "id": "ACTOR_RF_SOUTHERN_KRAIS",
+      "label": "Southern Administrative Krais (Stavropol, Krasnodar)",
+      "category": "ACTOR",
+      "type": "Sub-National Administrative Region",
+      "attributes": {
+        "parent_authority": "ACTOR_RU",
+        "polarity_baseline": 0.95,
+        "structural_regime": "ALLIANCE",
+        "primary_exposure": "BLACK_SEA_AGRO_PORT_LOGISTICS"
+      }
+    },
+    {
+      "id": "IND_PWHEAMTUSDM",
+      "label": "Global Price of Wheat (PWHEAMTUSDM)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "IMF / FRED",
+        "units": "USD per Metric Ton",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_PCOPPUSDM",
+      "label": "Global Price of Copper (PCOPPUSDM)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "IMF / FRED",
+        "units": "USD per Metric Ton",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_BDTI",
+      "label": "Baltic Dirty Tanker Index (BDTI)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Baltic Exchange",
+        "units": "Index",
+        "trans": "lin"
       }
     }
   ],
@@ -1149,6 +1214,63 @@
       "target": "MODEL_28.3",
       "type": "EXECUTES_MODEL",
       "severity_enum": "HIGH"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ACTOR_RF_CAUCASUS_ARC",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 0.70,
+      "role": "Federal Administrative & Security Control"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 0.80,
+      "role": "Fiscal Revenue & Extraction Oversight"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ACTOR_RF_SOUTHERN_KRAIS",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 0.95,
+      "role": "Logistics & Maritime Terminal Command"
+    },
+    {
+      "source": "ACTOR_RF_CAUCASUS_ARC",
+      "target": "IND_DCOILBRENTEU",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "CASPIAN_BYPASS_FLOW_SECURITY"
+    },
+    {
+      "source": "ACTOR_RF_CAUCASUS_ARC",
+      "target": "IND_PWHEAMTUSDM",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "NORTH_CAUCASUS_TRANSIT_FRICTION"
+    },
+    {
+      "source": "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
+      "target": "IND_DCOILWTICO",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "GLOBAL_REFINERY_CRUDE_COMPENSATION"
+    },
+    {
+      "source": "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
+      "target": "IND_PCOPPUSDM",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "SIBERIAN_MINERAL_EXTRACTION_PRESSURE"
+    },
+    {
+      "source": "ACTOR_RF_SOUTHERN_KRAIS",
+      "target": "IND_BDTI",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "NOVOROSSIYSK_TANKER_FREIGHT_SURCHARGE"
+    },
+    {
+      "source": "ACTOR_RF_SOUTHERN_KRAIS",
+      "target": "IND_PWHEAMTUSDM",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "BLACK_SEA_AGRO_EXPORT_BOTTLENECK"
     }
   ]
 }
