@@ -162,6 +162,17 @@
       }
     },
     {
+      "id": "BASIN_EAST_MED_DEEPSEA",
+      "label": "Eastern Mediterranean Deep-Sea Basin",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "33°30'N 30°00'E",
+        "type": "Offshore Hydrocarbon & Maritime Gateway",
+        "disruption_severity": "HIGH",
+        "severity_weight": 0.7
+      }
+    },
+    {
       "id": "IND_WALCL",
       "label": "Fed Total Assets (WALCL)",
       "category": "INDICATOR",
@@ -1114,6 +1125,30 @@
       "target": "CORRIDOR_ZANGEZUR",
       "type": "BRIDGES_TO_MODEL",
       "passes": "middle_corridor_freight_volume"
+    },
+    {
+      "source": "ACTOR_TR",
+      "target": "BASIN_EAST_MED_DEEPSEA",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "maritime_eez_projection"
+    },
+    {
+      "source": "BASIN_EAST_MED_DEEPSEA",
+      "target": "IND_DCOILBRENTEU",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "MEDITERRANEAN_RISK_PREMIUM"
+    },
+    {
+      "source": "BASIN_EAST_MED_DEEPSEA",
+      "target": "IND_DHHNGSP",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "LNG_FEEDSTOCK_DISRUPTION"
+    },
+    {
+      "source": "BASIN_EAST_MED_DEEPSEA",
+      "target": "MODEL_28.3",
+      "type": "EXECUTES_MODEL",
+      "severity_enum": "HIGH"
     }
   ]
 }
