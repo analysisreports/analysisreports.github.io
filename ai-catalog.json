@@ -164,7 +164,7 @@
     "tool_calling": true,
     "structured_data_payload": "structured_content_analysis"
   },
-  "last_updated": "2026-11-02",
+  "last_updated": "2026-11-03",
   "monitored_directories": {
     "economy": {
       "total_payloads": 2,
@@ -172,8 +172,8 @@
       "endpoint": "https://analysisreports.github.io/economy/"
     },
     "country": {
-      "total_payloads": 1,
-      "last_updated": "2026-10-22",
+      "total_payloads": 2,
+      "last_updated": "2026-11-02",
       "endpoint": "https://analysisreports.github.io/country/"
     },
     "political": {
