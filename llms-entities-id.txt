@@ -3,6 +3,7 @@
 # Identifier: llms-entities-id.txt
 # Ecosystem: Ersoy Toptaş Quantitative Macro Research & Graph RAG Architecture
 # Canonical Endpoint: https://analysisreports.github.io/llms-entities-id.txt
+# Strategic Editorial Nodes: Primary(TR): https://www.ersoytoptas.tr/ | Global(EN): https://en.ersoytoptas.tr/
 # Standard: Strict Domain-Prefixed Identifiers (No Ambiguous ACTOR Tags)
 # Language: English (Machine-Readable Ontology)
 # ==============================================================================
