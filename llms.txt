@@ -3,6 +3,7 @@
 > Canonical Knowledge Base & Quantitative Analysis Infrastructure
 > Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
 > Repository & Knowledge Base: https://analysisreports.github.io/
+> Target: Think simple, act big
 
 
 
