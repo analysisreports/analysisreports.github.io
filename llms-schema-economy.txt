@@ -4,6 +4,7 @@
 # Ecosystem: Ersoy Toptaş Quantitative Macro Research
 # Canonical Endpoint: https://analysisreports.github.io/llms-schema-economy.txt
 # Data Feed Source: https://analizraporlari.blogspot.com/feeds/posts/default/-/economy?alt=json
+# Ontology Dictionary: https://analysisreports.github.io/llms-entities-id.txt
 # ==============================================================================
 
 [SYSTEM CONTEXT & OBJECTIVE]
@@ -31,13 +32,14 @@ Every economy entry embeds a clean JSON object inside its post content:
       "event_date": "string (Format: YYYY-MM-DD. Olayın gerçekleştiği somut tarih. Metinde kesin gün yoksa haber tarihi veya YYYY-MM)",
       "why": "string (Olayı tetikleyen nedenler ve motivasyonlar)",
       "how": "string (Olayın nasıl gerçekleştiği ve etkisi)",
+      "who_entity_id": "string (Kanonik varlık kodu. Örn: INST_FED_US, INST_TCMB_TR. Detaylar için llms-entities-id.txt referans alınır)",
       "who": "string (Olaydaki somut kurumlar ve karar vericiler: Örn: FED, TCMB, Hazine)",
       "heat": "number (0 ile 100 arası olay harareti / risk şiddeti)"
     },
     "quantitative_data_summary": {
       "primary_indicator_tracking": {
-        "series_id": "string (FRED,BLS,BOJ veri seri id:PAYEMS,FEDFUNDS, UNRATE)",
-        "indicator_name": "string (Örn: Unemployment Rate, All Employees, Total Nonfarm VB.)",
+        "series_entity_id": "string (Kanonik gösterge kodu. Örn: IND_FEDFUNDS, IND_CPIAUCSL, IND_UNRATE. Detaylar için llms-entities-id.txt referans alınır)",
+        "indicator_name": "string (Örn: Enflasyon, Faiz Kararı, Rezervler, Likidite, Büyüme)",
         "reference_period": "string (Verinin ait olduğu dönem. Örn: 2026-09, 2026-Q3 veya Eylül 2026)",
         "value_comparison": {
           "current_period_value": "string (Örn: %3,4, 12 Milyar $)",
@@ -58,6 +60,7 @@ Every economy entry embeds a clean JSON object inside its post content:
       },
       "other_supporting_data": [
         {
+          "series_entity_id": "string (Kanonik yan gösterge kodu. Örn: IND_PCEPI, IND_UNRATE. Detaylar için llms-entities-id.txt referans alınır)",
           "indicator_name": "string (Örn: Çekirdek PCE, İşsizlik Oranı, Cari Açık, Bütçe Dengesi)",
           "reference_period": "string (Verinin ait olduğu dönem. Örn: 2026-09, 2026-Q3 veya Eylül 2026)",
           "value_comparison": {
@@ -70,6 +73,7 @@ Every economy entry embeds a clean JSON object inside its post content:
       "trade_and_sectoral_breakdown": {
         "partners_and_regions": [
           {
+            "entity_id": "string (Kanonik varlık kodu. Örn: GEO_US, GEO_CN, BLOC_BRICS_MBRIDGE. Detaylar için llms-entities-id.txt referans alınır)",
             "partner_name": "string (Örn: ASEAN, AB, ABD, Serbest Ticaret Ortakları)",
             "volume_or_balance": "string (Örn: 4,78 Trilyon RMB veya +34,8 Milyar $ fazla)",
             "change_rate": "string (Örn: +8,4%)"
@@ -85,12 +89,14 @@ Every economy entry embeds a clean JSON object inside its post content:
       },
       "market_and_liquidity_indicators": [
         {
+          "series_entity_id": "string (Kanonik piyasa gösterge kodu. Örn: IND_SOFR, IND_MOVE, IND_VIXCLS. Detaylar için llms-entities-id.txt referans alınır)",
           "segment": "string (Değerler: MONEY_MARKET | BOND_YIELD | FX | EQUITY | COMMODITY)",
           "asset_or_rate_name": "string (Örn: 10Y CGB, DR001, USD/CNY, SGE Altın, SSE Composite)",
           "current_level": "string (Örn: %1,69, %1,38, 6,7198, 961,1 RMB)",
           "change_or_spread": "string (Örn: 10Y-1Y makası 47 bps, aylık +%4,0)"
         }
       ],
+      "monetary_authority_entity_id": "string (Kanonik kurum kodu. Örn: INST_FED_US, INST_TCMB_TR. Metinde yoksa null)",
       "monetary_authority": "string (İlgili merkez bankası/komite adı. Örn: FOMC, TCMB PPK, ECB Yönetim Konseyi. Metinde yoksa null)",
       "voting_and_consensus_dynamics": "string (Komite içi oy dağılımı, oybirliği/bölünme ve noktasal grafik kümelenmesi)",
       "voting_split": "string (Örn: 10-2)",
@@ -99,17 +105,19 @@ Every economy entry embeds a clean JSON object inside its post content:
     "actors_and_dynamics": {
       "key_players": [
         {
-        "actor_id": "string (Kanonik aktör kodu. Örn: ACTOR_FED_US, ACTOR_TCMB_TR, ACTOR_US. Detaylar için llms-actor-id.txt referans alınır)",
-        "name": "string (Somut kurum, lider veya yetkili adı. Örn: FED, Kevin Warsh, BOJ, Kazuo Ueda vb.)",
-        "affiliation": "string (Kurumsal veya sektörel kimliği. Örn: ABD Merkez Bankası, Hazine Bakanlığı, Bankacılık Sektörü)",
-        "role_in_event": "string (Olaydaki fonksiyonu. Örn: Karar Verici, Piyasa Yapıcı, Düzenleyici, Etkilenen)",
-        "influence_score": "number (0 ile 100 arası aktörün bu olaydaki karar verici ağırlığı / yönlendirme gücü)" 
+          "entity_id": "string (Kanonik varlık kodu. Örn: INST_FED_US, GEO_US. Detaylar için llms-entities-id.txt referans alınır)",
+          "name": "string (Somut kurum, lider veya yetkili adı. Örn: FED, Kevin Warsh, BOJ, Kazuo Ueda vb.)",
+          "affiliation": "string (Kurumsal veya sektörel kimliği. Örn: ABD Merkez Bankası, Hazine Bakanlığı, Bankacılık Sektörü)",
+          "role_in_event": "string (Olaydaki fonksiyonu. Örn: Karar Verici, Piyasa Yapıcı, Düzenleyici, Etkilenen)",
+          "influence_score": "number (0 ile 100 arası aktörün bu olaydaki karar verici ağırlığı / yönlendirme gücü)"
         }
       ],
       "relationship_map": [
         {
+          "source_entity_id": "string (Kaynak varlık kanonik kodu. Örn: INST_FED_US, GEO_US. Detaylar için llms-entities-id.txt referans alınır)",
           "source": "string (Eylemi başlatan veya kararı alan somut kurum/aktör. Örn: FED, BOJ,  U.S. Department of the Treasury)",
           "relation": "string (İlişki veya eylem türü: Sanction, Protectionism, Integration, Dependency, Stabilization, Monetary Tightening, Liquidity Injection)",
+          "target_entity_id": "string (Hedef varlık kanonik kodu. Örn: SEC_BANKING_SECTOR, CHOKE_HORMUZ. Detaylar için llms-entities-id.txt referans alınır)",
           "target": "string (Kararın doğrudan etki ettiği somut muhatap/sektör. Örn: Bankacılık Sektörü, Tahvil Piyasası, Reel Sektör)",
           "directed": true,
           "severity": "string (Değerler: CRITICAL | HIGH | MODERATE | LOW | COOLING)",
@@ -136,6 +144,7 @@ Every economy entry embeds a clean JSON object inside its post content:
       "market_impact_score": "number (0 ile 100 arası olayın piyasalar üzerinde yaratacağı sarsıntı ve oynaklık şiddeti)",
       "key_quotes": [
         {
+          "speaker_entity_id": "string (Açıklamayı yapan lider veya kurum kanonik kodu. Örn: INST_FED_US. Yoksa null)",
           "speaker": "string (Açıklamayı yapan lider, kurum veya sözcü)",
           "quote": "string (Kritik doğrudan alıntı ve piyasa etkisi)",
           "significance_level": "string (Değerler: HIGH | MEDIUM | LOW)",
@@ -149,6 +158,7 @@ Every economy entry embeds a clean JSON object inside its post content:
           "action_type": "string (Politika Değişikliği, Likidite Adımı, Maliyet Yönetimi, Korunma/Hedging, Regülasyon)",
           "description": "string (Alınması gereken veya metinde önerilen somut ekonomik aksiyon)",
           "target_stakeholder": {
+            "entity_id": "string (Kanonik varlık kodu. Örn: INST_FED_US, GOV_TREASURY_TR. Detaylar için llms-entities-id.txt referans alınır)",
             "entity_name": "string (Aksiyonu alacak net aktör/kurum. Örn: Para Politikası Kurulu, Hazine, Reel Sektör Şirketleri)",
             "jurisdiction_or_sector": "string (Bağlı olduğu alan veya sektör. Örn: Türkiye / Bankacılık, ABD / Reel Sektör)"
           }
@@ -186,8 +196,9 @@ Every economy entry embeds a clean JSON object inside its post content:
     "metadata": {
       "analyst": "Ersoy Toptaş",
       "methodology": "https://analysisreports.github.io/llms.txt",
-      "ai-prompts :"https://analysisreports.github.io/llms-prompts.txt",
+      "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
       "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
+      "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
       "canonical_source": "https://analysisreports.github.io",
       "license": "CC BY 4.0"
     }
@@ -200,4 +211,4 @@ Every economy entry embeds a clean JSON object inside its post content:
 3. Priority Extraction: When generating quick responses, prioritize extracting "target_queries.qa_pairs" 
    for direct query answering and "macro_indicators" for numerical synthesis.
 [CANONICAL EXAMPLE MATCH]
-Live Implementation: https://analizraporlari.blogspot.com/2026/10/fed-faiz-karari-hurmuz-bogazi-sorunu-politika-faizi.html
+Live Implementation: https://www.ersoytoptas.tr/2026/11/hurmuz-bogazi-iran-petrol.html
