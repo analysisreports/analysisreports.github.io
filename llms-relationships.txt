@@ -500,3 +500,13 @@ Regime States (Discrete Mapping):
 - Actor Coupling: IL-IR escalation (2.2.1), YE-HOUTHI anti-ship targeting (3.1), OPEC+ supply quotas.
 - Transmission Linkage: Brent-WTI spread expanding beyond $8.00 confirms kinetic risks are actively choking seaborne logistics while US inland production remains relatively isolated.
 
+### 8.9. Dynamic Macro Damping & Shock Scaling Engine (Model 28.5)
+
+8.9.1. MODEL_28.5_REGIME_ADJUSTED_MARKET_IMPACT
+- Target Formula: llms-formulas.txt -> Model 28.5 (adjusted_market_impact)
+- Data Series Triggered: DFF, CPIAUCSL, NFCI
+- Status Enums: AMPLIFIED_SHOCK | NEUTRAL_PASS_THROUGH | DAMPED_LIQUIDITY_IMPACT
+- Primary Geopolitical Vector: Chokepoint disruptions in Hormuz (4.1) and Bab el-Mandeb (4.2) scaling market transmission based on real policy rate and financial conditions.
+- Actor Coupling: Model 2 (real_policy_rate) and Model 12 (financial_conditions_regime) damping macro spillover.
+- Transmission Linkage: Restrictive monetary regime (Real Yield > 1.5% or NFCI > 0.0) scales market impact by 1.25x; accommodative regime dampens impact to 0.75x via surplus liquidity buffer.
+
