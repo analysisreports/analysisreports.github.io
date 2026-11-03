@@ -2148,6 +2148,52 @@ Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açık
   - 30 <= bridge_score < 60 : MODERATE_FRICTION (Bolgesel tedarik zinciri tikanmasi ve lokal maliyet artisi)
   - bridge_score < 30 : LOCALIZED_IMPACT (Piyasa tarafindan absorbe edilebilir sinirli operasyonel gecikme)
 
+### 28.5. MAKRO REJİM VE LİKİDİTE ŞOK ÇARPANI (REGIME-ADJUSTED MARKET IMPACT)
+- Purpose: Model 28.2'de üretilen ham Piyasa Etki Skorunu, para politikası sıkılığı (Model 2) ve finansal koşullara (Model 12) göre deterministik çarpanla ölçekler.
+- Data Links:
+  - llms-formulas.txt -> Model 2 (real_policy_rate), Model 12 (financial_conditions_regime), Model 28.2 (market_impact_score)
+- Formula:
+  Macro_Multiplier = 1.25 if (Real_Rate > 1.5 or NFCI > 0.0) else (0.75 if (Real_Rate < 0.0 and NFCI < 0.0) else 1.00)
+  Adjusted_Market_Impact = min(100, round(Market_Impact * Macro_Multiplier))
+- Machine-Executable Logic (Python):
+  def macro_regime_impact_multiplier(real_rate, nfci_val):
+      if any(v is None or isinstance(v, bool) for v in (real_rate, nfci_val)):
+          return 1.0
+      try:
+          rr = float(real_rate)
+          nf = float(nfci_val)
+          if not (math.isfinite(rr) and math.isfinite(nf)):
+              return 1.0
+          if rr > 1.50 or nf > 0.0:
+              return 1.25
+          elif rr < 0.0 and nf < 0.0:
+              return 0.75
+          else:
+              return 1.00
+      except (TypeError, ValueError):
+          return 1.0
+
+  def adjusted_market_impact(market_impact_score_val, real_rate, nfci_val):
+      if market_impact_score_val is None or isinstance(market_impact_score_val, bool):
+          return None
+      try:
+          base_score = float(market_impact_score_val)
+          if not math.isfinite(base_score):
+              return None
+          multiplier = macro_regime_impact_multiplier(real_rate, nfci_val)
+          final_score = int(round(min(100.0, max(0.0, base_score * multiplier))))
+          return {
+              "base_market_impact": int(round(base_score)),
+              "macro_multiplier": multiplier,
+              "adjusted_market_impact": final_score
+          }
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Multiplier == 1.25 : AMPLIFIED_SHOCK (Sıkı Para / Finansal Stres / Likidite Kısıtı Kriz Şokunu Büyütür)
+  - Multiplier == 1.00 : NEUTRAL_PASS_THROUGH (Dengeli Makro Rejim / Standart Aktarım)
+  - Multiplier == 0.75 : DAMPED_LIQUIDITY_IMPACT (Gevşek Likidite / Fazla Rezerv Şoku Sönümler)
+
 ---
 
 ### 29. KANIT VE GUVENILIRLIK SKORU (CONFIDENCE SCORE)
