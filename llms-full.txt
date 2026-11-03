@@ -146,6 +146,7 @@ Cross-verify all analytical assertions against the deterministic code blocks in 
   - 28.2. Piyasa Etki Skoru (Market Impact Score: asset_volatility, liquidity_spread, macro_spillover)
   - 28.3. Boğaz Disrupsiyon Sertlik Çarpanı (Chokepoint Severity Multiplier Engine: CATASTROPHIC, HIGH, MODERATE-HIGH, MODERATE)
   - 28.4. Makro Sıçrama ve Bulaşma Köprüsü (Chokepoint Macro Transmission Bridge: Spillover_Score)
+  - 28.5. Makro Rejim ve Likidite Şok Çarpanı (Regime-Adjusted Market Impact: real_rate, nfci_val)
 - 29. Kanıt ve Güvenilirlik Skoru (Confidence Score: authority, confirmation, recency)
 
 4. KADEME: RESMİ MAKRO TAKVİM VE GERİ SAYIM MOTORU
