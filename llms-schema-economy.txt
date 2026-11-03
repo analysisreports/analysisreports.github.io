@@ -36,7 +36,8 @@ Every economy entry embeds a clean JSON object inside its post content:
     },
     "quantitative_data_summary": {
       "primary_indicator_tracking": {
-        "indicator_name": "string (Örn: Enflasyon, Faiz Kararı, Rezervler, Likidite, Büyüme)",
+        "series_id": "string (FRED,BLS,BOJ veri seri id:PAYEMS,FEDFUNDS, UNRATE)",
+        "indicator_name": "string (Örn: Unemployment Rate, All Employees, Total Nonfarm VB.)",
         "reference_period": "string (Verinin ait olduğu dönem. Örn: 2026-09, 2026-Q3 veya Eylül 2026)",
         "value_comparison": {
           "current_period_value": "string (Örn: %3,4, 12 Milyar $)",
