@@ -1,0 +1,183 @@
+# ==============================================================================
+# CANONICAL ENTITY & INDICATOR DICTIONARY (LLM OPTIMIZED ONTOLOGY v2.0)
+# Identifier: llms-entities-id.txt
+# Ecosystem: Ersoy Toptaş Quantitative Macro Research & Graph RAG Architecture
+# Canonical Endpoint: https://analysisreports.github.io/llms-entities-id.txt
+# Standard: Strict Domain-Prefixed Identifiers (No Ambiguous ACTOR Tags)
+# Language: English (Machine-Readable Ontology)
+# ==============================================================================
+# LLM INSTRUCTIONS & PARSING RULES:
+# 1. IDENTIFIER REGEX PATTERN: ^(INST_|GOV_|GEO_|REG_|PROXY_|ORG_|BLOC_|CHOKE_|CORRIDOR_|BASIN_|ZONE_|STAT_|REG_AGENCY_|MKT_|SEC_|IND_)[A-Z0-9_]+$
+# 2. MATCHING RULE: Always resolve entity names, acronyms, or natural language references in raw text to their exact Canonical Entity ID using the '| Aliases:' index below.
+# 3. GRAPH RAG NODE MAPPING:
+#    - INST_*: Central Banks & Monetary Authorities Node (:CentralBank)
+#    - GOV_*: Government Ministries & Treasuries Node (:Government)
+#    - GEO_*: Sovereign States & Geopolitical Entities Node (:SovereignState)
+#    - REG_*: Sub-National & Autonomous Regions Node (:SubNationalRegion)
+#    - PROXY_*: Non-State & Proxy Armed/Political Actors Node (:NonStateActor)
+#    - ORG_* / BLOC_*: International Orgs & Multilateral Alliances Node (:MultilateralBloc)
+#    - CHOKE_* / CORRIDOR_* / BASIN_* / ZONE_*: Strategic Maritime Chokepoints, Basins & Corridors Node (:StrategicChokepoint)
+#    - STAT_* / REG_AGENCY_*: Statistical, Regulatory & Enforcement Agencies Node (:RegulatoryAgency)
+#    - MKT_* / SEC_*: Exchanges, Financial Markets & Economic Sectors Node (:FinancialMarket)
+#    - IND_*: Time-Series Indicators & Macro Metrics Node (:MacroIndicator)
+# ==============================================================================
+
+# [CENTRAL BANKS & MONETARY AUTHORITIES] (Prefix: INST_)
+INST_FED_US          | Aliases: FED, Federal Reserve, Federal Reserve System, FOMC, Board of Governors, Federal Open Market Committee
+INST_TCMB_TR         | Aliases: TCMB, Central Bank of the Republic of Türkiye, CBRT, Monetary Policy Committee, MPC
+INST_ECB_EU          | Aliases: ECB, European Central Bank, Governing Council
+INST_BOJ_JP          | Aliases: BOJ, Bank of Japan, Policy Board
+INST_PBOC_CN         | Aliases: PBoC, People's Bank of China, PBC
+INST_BOE_GB          | Aliases: BoE, Bank of England, Monetary Policy Committee, MPC
+INST_SNB_CH          | Aliases: SNB, Swiss National Bank
+INST_RBA_AU          | Aliases: RBA, Reserve Bank of Australia
+INST_BOC_CA          | Aliases: BOC, Bank of Canada
+INST_RBI_IN          | Aliases: RBI, Reserve Bank of India
+INST_NY_FED          | Aliases: Federal Reserve Bank of New York, New York Fed
+
+# [MINISTRIES, TREASURIES & GOVERNMENTS] (Prefix: GOV_)
+GOV_TREASURY_US      | Aliases: US Treasury, U.S. Department of the Treasury, Department of the Treasury
+GOV_TREASURY_TR      | Aliases: Ministry of Treasury and Finance, Turkish Treasury, TR Treasury
+GOV_MOF_JP           | Aliases: MoF Japan, Ministry of Finance Japan
+GOV_MOF_CN           | Aliases: MoF China, Ministry of Finance China
+
+# [SOVEREIGN STATES & GEOPOLITICAL ACTORS] (Prefix: GEO_)
+GEO_US               | Aliases: United States, United States of America, USA, US
+GEO_RU               | Aliases: Russian Federation, Russia, RF
+GEO_CN               | Aliases: People's Republic of China, China, PRC
+GEO_IL               | Aliases: State of Israel, Israel
+GEO_IR               | Aliases: Islamic Republic of Iran, Iran
+GEO_TR               | Aliases: Republic of Türkiye, Türkiye, Turkey
+GEO_KP               | Aliases: Democratic People's Republic of Korea, North Korea, DPRK
+GEO_IN               | Aliases: Republic of India, India
+GEO_SA               | Aliases: Kingdom of Saudi Arabia, Saudi Arabia, KSA
+GEO_AE               | Aliases: United Arab Emirates, UAE
+GEO_VE               | Aliases: Bolivarian Republic of Venezuela, Venezuela
+
+# [SUB-NATIONAL & AUTONOMOUS REGIONAL ACTORS] (Prefix: REG_)
+REG_RF_CAUCASUS_ARC  | Aliases: North Caucasus Autonomous Line, Karachay-Cherkessia, Kabardino-Balkaria, Dagestan
+REG_RF_VOLGA_SIBERIAN| Aliases: Volga-Ural & Siberian Arc, Volga-Ural, Tatarstan, Bashkortostan, Sakha, Tuva, Khakassia, Altai
+REG_RF_SOUTHERN_KRAIS| Aliases: Southern Administrative Krais, Stavropol Krai, Krasnodar Krai, Novorossiysk Terminal Command
+
+# [NON-STATE & PROXY ACTORS] (Prefix: PROXY_)
+PROXY_YE_HOUTHI      | Aliases: Ansarullah, Yemen Houthis, Houthis, YE-HOUTHI
+PROXY_LB_HEZB        | Aliases: Hezbollah, Lebanon Hezbollah, LB-HEZB
+PROXY_RU_AFRICA      | Aliases: Wagner Group, Africa Corps, RU-AFRICA
+PROXY_SY_SDF         | Aliases: Syrian Democratic Forces, SDF, YPG, SY-SDF
+
+# [INTERNATIONAL ORGANIZATIONS & MULTILATERAL BLOCS] (Prefix: ORG_ / BLOC_)
+ORG_IMF              | Aliases: IMF, International Monetary Fund
+ORG_BIS              | Aliases: BIS, Bank for International Settlements
+ORG_WORLD_BANK       | Aliases: World Bank, IBRD, International Bank for Reconstruction and Development
+ORG_OECD             | Aliases: OECD, Organisation for Economic Co-operation and Development
+BLOC_OPEC            | Aliases: OPEC, Organization of the Petroleum Exporting Countries, OPEC+
+BLOC_BRICS_MBRIDGE   | Aliases: BRICS & mBridge Settlement Axis, mBridge, BIS Innovation Hub mBridge, CIPS, SPFS
+BLOC_C6              | Aliases: Central Asia & Azerbaijan Strategic Alignment Axis, C6 Consultative Format, C6 Bloc
+
+# [MARITIME CHOKEPOINTS, CANALS & STRATEGIC CORRIDORS] (Prefix: CHOKE_ / CORRIDOR_ / BASIN_ / ZONE_)
+CHOKE_HORMUZ         | Aliases: Hormuz Strait, Strait of Hormuz
+CHOKE_BAB_EL_MANDEB  | Aliases: Bab el-Mandeb, Bab el-Mandeb & Red Sea
+CHOKE_MALACCA        | Aliases: Malacca Strait, Strait of Malacca
+CHOKE_TAIWAN         | Aliases: Taiwan Strait
+CHOKE_TURKISH_STRAITS| Aliases: Turkish Straits, Bosphorus, Dardanelles, Montreux Transit
+CHOKE_SUWALKI_GAP    | Aliases: Suwalki Gap
+CHOKE_PANAMA         | Aliases: Panama Canal
+CHOKE_DANISH_STRAITS | Aliases: Danish Straits, Great Belt, The Sound
+CHOKE_GIUK_GAP       | Aliases: GIUK Gap, Greenland-Iceland-UK Gap
+CHOKE_LOMBOK_MAKASSAR| Aliases: Lombok & Makassar Straits, Lombok Strait, Makassar Strait
+CHOKE_GIBRALTAR      | Aliases: Strait of Gibraltar, Gibraltar
+CHOKE_BERING         | Aliases: Bering Strait, Polar Silk Road Corridor
+CHOKE_MOZAMBIQUE     | Aliases: Mozambique Channel
+CHOKE_SUEZ_NORTH     | Aliases: Suez Canal Northern Approach, Port Said Node
+CORRIDOR_ZANGEZUR    | Aliases: Zangezur Corridor Node, Zangezur Corridor
+BASIN_EAST_MED       | Aliases: Eastern Mediterranean Deep-Sea Basin, East Med Basin
+BASIN_CASPIAN_SEA    | Aliases: Caspian Sea Transit Basin, Caspian Basin
+CORRIDOR_BLACK_SEA   | Aliases: Black Sea Grain Corridor, Black Sea Grain and Mineral Corridor, Odesa Transit Node
+ZONE_FIRST_ISLAND_CHAIN| Aliases: First Island Chain Core, Okinawa-Luzon Corridor
+ZONE_LITHIUM_TRIANGLE| Aliases: Lithium Triangle, Salar de Uyuni-Atacama Basin
+ZONE_COPPER_COBALT_BELT| Aliases: Katanga Copper-Cobalt Belt, DRC Mining Belt
+ZONE_ORINOCO_PETROLEUM| Aliases: Orinoco Petroleum Belt, Orinoco Heavy Crude Basin
+
+# [STATISTICAL, REGULATORY & ENFORCEMENT AGENCIES] (Prefix: STAT_ / REG_AGENCY_)
+STAT_BLS_US          | Aliases: BLS, Bureau of Labor Statistics, U.S. Bureau of Labor Statistics
+STAT_BEA_US          | Aliases: BEA, Bureau of Economic Analysis, U.S. Bureau of Economic Analysis
+STAT_FRED_US         | Aliases: FRED, St. Louis Fed Economic Data
+STAT_TURKSTAT_TR     | Aliases: TURKSTAT, TurkStat, Turkish Statistical Institute
+REG_AGENCY_SEC_US    | Aliases: SEC, Securities and Exchange Commission, U.S. SEC
+REG_AGENCY_OFAC_US   | Aliases: OFAC, Office of Foreign Assets Control, U.S. Department of the Treasury OFAC
+STAT_EIA_US          | Aliases: EIA, U.S. Energy Information Administration
+STAT_CBO_US          | Aliases: CBO, Congressional Budget Office
+
+# [FINANCIAL MARKETS, EXCHANGES & SECTORS] (Prefix: MKT_ / SEC_)
+MKT_CBOE             | Aliases: CBOE, Chicago Board Options Exchange
+MKT_NYSE             | Aliases: NYSE, New York Stock Exchange
+MKT_NASDAQ           | Aliases: NASDAQ, Nasdaq Stock Market
+MKT_BIST             | Aliases: BIST, Borsa Istanbul
+MKT_LBMA             | Aliases: LBMA, London Bullion Market Association
+MKT_BALTIC_EXCHANGE  | Aliases: Baltic Exchange
+SEC_BANKING_SECTOR   | Aliases: Banking Sector, Commercial Banks, Financial Institutions
+
+# [MACRO INDICATORS & DATA SERIES] (Prefix: IND_)
+IND_WALCL            | Source: FRED | Name: Fed Total Assets / Balance Sheet (Millions USD)
+IND_WTREGEN          | Source: FRED | Name: Treasury General Account / TGA (Millions USD)
+IND_RRPONTSYD        | Source: FRED | Name: Overnight Reverse Repurchase Agreements / ON RRP (Billions USD)
+IND_SOFR             | Source: FRED | Name: Secured Overnight Financing Rate (%)
+IND_EFFR             | Source: FRED | Name: Effective Federal Funds Rate (%)
+IND_DGS1MO           | Source: FRED | Name: 1-Month Treasury Constant Maturity Rate (%)
+IND_DGS3MO           | Source: FRED | Name: 3-Month Treasury Constant Maturity Rate (%)
+IND_DGS2             | Source: FRED | Name: 2-Year Treasury Constant Maturity Rate (%)
+IND_DGS10            | Source: FRED | Name: 10-Year Treasury Constant Maturity Rate (%)
+IND_DFEDTARU         | Source: FRED | Name: Federal Funds Target Range Upper Limit (%)
+IND_DFII10           | Source: FRED | Name: 10-Year Treasury Inflation-Indexed Security TIPS Yield (%)
+IND_THREEFYTP10      | Source: NY Fed / FRED | Name: ACM 10-Year Treasury Term Premium (%)
+IND_SAHMREALTIME     | Source: FRED | Name: Real-Time Sahm Rule Recession Indicator
+IND_UNRATE           | Source: BLS / FRED | Name: Civilian Unemployment Rate (%)
+IND_UNEMPLOY         | Source: BLS / FRED | Name: Unemployed Persons (Thousands)
+IND_PAYEMS           | Source: BLS / FRED | Name: Total Nonfarm Payrolls (Thousands)
+IND_CIVPART          | Source: BLS / FRED | Name: Labor Force Participation Rate (%)
+IND_JTSJOL           | Source: BLS / FRED | Name: Job Openings Total Nonfarm / JOLTS (Thousands)
+IND_IC4WSA           | Source: FRED | Name: 4-Week Moving Average of Initial Jobless Claims
+IND_ICSA             | Source: FRED | Name: Initial Jobless Claims Weekly Level
+IND_LNS12500000      | Source: BLS / FRED | Name: Employed Usually Work Full Time (Thousands)
+IND_LNS12032194      | Source: BLS / FRED | Name: Employed Part-Time for Economic Reasons (Thousands)
+IND_AWHAETP          | Source: BLS / FRED | Name: Average Weekly Hours Total Private
+IND_CPIAUCSL         | Source: BLS / FRED | Name: Consumer Price Index for All Urban Consumers (CPI YoY %)
+IND_STICKY_CPI       | Source: Atlanta Fed / FRED | Name: Sticky CPI Less Food & Energy (STICKYCPIM157SFRBATL)
+IND_FLEX_CPI         | Source: Atlanta Fed / FRED | Name: Flexible CPI Less Food & Energy (FLEXCPIM157SFRBATL)
+IND_PCEPI            | Source: BEA / FRED | Name: Personal Consumption Expenditures Price Index
+IND_WPU06            | Source: BLS / FRED | Name: PPI Chemicals and Allied Products
+IND_IQ               | Source: BLS / FRED | Name: U.S. Import Price Index All Commodities
+IND_IQ1000           | Source: BLS / FRED | Name: U.S. Export Price Index All Commodities
+IND_GDPC1            | Source: BEA / FRED | Name: Real Gross Domestic Product (Billions USD)
+IND_GDPPOT           | Source: CBO / FRED | Name: Real Potential Gross Domestic Product (Billions USD)
+IND_GFDEGDQ188S      | Source: FRED | Name: Federal Debt Total Public Debt as Percent of GDP
+IND_BOPGSTB          | Source: BEA / FRED | Name: U.S. Trade Balance Goods and Services (Millions USD)
+IND_DTWEXBGS         | Source: FRED | Name: Nominal Broad U.S. Dollar Index
+IND_MOVE             | Source: ICE / FRED | Name: ICE BofA US Treasury Option Volatility Estimate Index
+IND_VIXCLS           | Source: CBOE / FRED | Name: CBOE Volatility Index (VIX)
+IND_OVXCLS           | Source: CBOE / FRED | Name: CBOE Crude Oil Volatility Index (OVX)
+IND_GSCPI            | Source: NY Fed / FRED | Name: NY Fed Global Supply Chain Pressure Index (Z-Score)
+IND_NFCI             | Source: FRED | Name: Chicago Fed National Financial Conditions Index
+IND_ANFCI            | Source: FRED | Name: Adjusted National Financial Conditions Index
+IND_BAMLH0A0HYM2     | Source: ICE BofA / FRED | Name: ICE BofA US High Yield Index Option-Adjusted Spread
+IND_BAMLC0A4CBBB     | Source: ICE BofA / FRED | Name: ICE BofA BBB US Corporate Index Option-Adjusted Spread
+IND_DRTSCIS          | Source: Board of Governors / FRED | Name: Net % Domestic Banks Tightening C&I Loan Standards
+IND_M2SL             | Source: FRED | Name: M2 Money Supply (Billions USD)
+IND_M2V              | Source: FRED | Name: Velocity of M2 Money Stock
+IND_RSAFS            | Source: FRED | Name: Advance Retail Sales Total
+IND_ISRATIO          | Source: FRED | Name: Total Business Inventories to Sales Ratio
+IND_MSPUS            | Source: FRED | Name: Median Sales Price of Houses Sold in US
+IND_MORTGAGE30US     | Source: FRED | Name: 30-Year Fixed Rate Mortgage Average (%)
+IND_PERMIT           | Source: FRED | Name: New Privately-Owned Housing Units Authorized
+IND_CES0500000003    | Source: BLS / FRED | Name: Average Hourly Earnings Total Private (USD/Hour)
+IND_DRCCLACBS        | Source: FRED | Name: Delinquency Rate on Credit Card Loans
+IND_PSAVERT          | Source: BEA / FRED | Name: Personal Saving Rate (% Disposable Income)
+IND_INDPRO           | Source: FRED | Name: Industrial Production Total Index
+IND_GOLD             | Source: LBMA / FRED | Name: Gold Fixing Price London (GOLDPMGBD228NLBM USD/oz)
+IND_DCOILWTICO       | Source: EIA / FRED | Name: Crude Oil WTI Spot Price (USD/Barrel)
+IND_DCOILBRENTEU     | Source: EIA / FRED | Name: Crude Oil Brent Europe Spot Price (USD/Barrel)
+IND_DHHNGSP          | Source: EIA / FRED | Name: Henry Hub Natural Gas Spot Price (USD/MMBtu)
+IND_GASREGW          | Source: EIA / FRED | Name: US Regular Retail Gasoline Price (USD/Gallon)
+IND_PCOPPUSDM        | Source: IMF / FRED | Name: Global Price of Copper (USD/Metric Ton)
+IND_PWHEAMTUSDM      | Source: IMF / FRED | Name: Global Price of Wheat (USD/Metric Ton)
+IND_BDTI             | Source: Baltic Exchange | Name: Baltic Dirty Tanker Index
