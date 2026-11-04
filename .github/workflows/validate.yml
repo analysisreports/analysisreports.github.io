@@ -1,0 +1,35 @@
+name: CI Payload & Schema Validation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate JSON Payloads Syntax
+        run: |
+          python -c "
+          import json, glob, sys
+          errors = 0
+          for f in glob.glob('**/*.json', recursive=True):
+              try:
+                  with open(f, 'r', encoding='utf-8') as fp:
+                      json.load(fp)
+              except Exception as e:
+                  print(f'HATA: {f} -> {e}', file=sys.stderr)
+                  errors += 1
+          if errors > 0:
+              sys.exit(1)
+          print('Tüm JSON dosyaları geçerli.')
+          "
