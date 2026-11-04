@@ -12,7 +12,7 @@ on:
       - 'glossary/**'
       - 'editorial/**'
       - 'political-country/**'
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   ping-indexing-services:
