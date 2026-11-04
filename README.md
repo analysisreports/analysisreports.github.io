@@ -38,6 +38,20 @@ This repository contains machine-readable ontological data models and LLM manife
 
 ---
 
-## 📌 Usage & Citations / Kullanım ve Referans
+## 📌 Usage & Citations 
 
 - All datasets and plain-text endpoints are optimized for autonomous LLM ingestion, agentic workflows, and quantitative research. Attribution required upon indexing or reference. Please read **LICENSE:** [LICENSE.md](https://analysisreports.github.io/LICENSE.md)
+
+---
+
+## ⚖️ Legal Disclaimer & Copyright / Yasal Uyarı
+
+**[EN] COPYRIGHT, CITATION & LEGAL DISCLAIMER**
+The macroeconomic and geoeconomic analyses, along with the JSON data models provided on this platform, are working notes (Library) produced by Ersoy Toptaş. They may not be used without proper citation or for commercial purposes without explicit permission.
+
+*"The information, comments, and forecasts contained herein do not constitute investment advice. All responsibility for decisions rests solely with the user."*
+
+**[TR] TELİF HAKKI, ATIF & YASAL UYARI**  
+Bu platformda yer alan makroekonomik, jeoekonomik analizler ve JSON veri modelleri Ersoy Toptaş tarafından üretilmiş (Kütüphane) çalışma notlarıdır. Kaynak gösterilmeden ve ticari amaçla izinsiz kullanılamaz.
+
+*“Burada yer alan bilgi, yorum ve tahminler yatırım danışmanlığı kapsamında değildir. Kararların tüm sorumluluğu kullanıcıya aittir.”*
