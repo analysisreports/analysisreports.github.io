@@ -12,6 +12,7 @@ on:
       - 'glossary/**'
       - 'editorial/**'
       - 'political-country/**'
+  workflow_dispatch: 
 
 jobs:
   ping-indexing-services:
@@ -44,4 +45,4 @@ jobs:
                 "https://en.ersoytoptas.tr/"
               ]
             }'
-          echo "Bing, ChatGPT ve Perplexity botları için IndexNow anonsu geçildi."
+          echo "Google, Bing, ChatGPT ve Perplexity botları için IndexNow anonsu geçildi."
