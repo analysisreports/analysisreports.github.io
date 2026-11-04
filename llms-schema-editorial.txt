@@ -3,7 +3,8 @@
 # Identifier: llms-schema-editorial.txt
 # Ecosystem: Ersoy Toptaş Quantitative Macro Research
 # Canonical Endpoint: https://analysisreports.github.io/llms-schema-editorial.txt
-# Data Feed Source: https://analizraporlari.blogspot.com/feeds/posts/default/-/editorial?alt=json
+# Data Feed Source: https://ersoytoptas.tr/feeds/posts/default/-/editorial?alt=json
+# Ontology Dictionary: https://analysisreports.github.io/llms-entities-id.txt
 # ==============================================================================
 
 [SYSTEM CONTEXT & OBJECTIVE]
@@ -26,6 +27,7 @@ Every editorial entry embeds a clean JSON object inside its post content:
     },
     "editorial_stance": {
       "article_title": "string (Yazarın yazıya verdiği orijinal başlık)",
+      "author_entity_id": "string (Kanonik yazar/analist varlık kodu. Örn: INST_ERSOYTOPTAS, INST_FED_US vb. Yoksa null)",
       "author": "string (Yazarın adı soyadı. Örn: Ersoy Toptaş)",
       "publication_date": "string (Format: YYYY-MM-DD. Yazının kaleme alındığı / yayınlandığı tarih)",
       "stance_type": "string (Değerler: HAWKISH | DOVISH | NEUTRAL | CONTRARIAN | SKEPTICAL)",
@@ -41,11 +43,13 @@ Every editorial entry embeds a clean JSON object inside its post content:
       "event_date": "string (Format: YYYY-MM-DD. Olayın/Kararın gerçekleşeceği somut tarih)",
       "why": "string (Olayı tetikleyen nedenler ve motivasyonlar)",
       "how": "string (Olayın nasıl gerçekleştiği ve etkisi)",
+      "who_entity_id": "string (Kanonik varlık kodu. Örn: INST_FED_US, GEO_US vb. Detaylar için llms-entities-id.txt referans alınır)",
       "who": "string (Olaydaki somut kurumlar ve karar vericiler: Örn: FED, FOMC, Jerome Powell)",
       "heat": "number (0 ile 100 arası olay harareti / risk şiddeti)"
     },
     "quantitative_data_summary": {
       "primary_indicator_tracking": {
+        "series_entity_id": "string (Kanonik gösterge kodu. Örn: IND_FEDFUNDS, IND_CPIAUCSL, IND_UNRATE. Detaylar için llms-entities-id.txt referans alınır)",
         "indicator_name": "string (Örn: Enflasyon, Faiz Kararı, Rezervler, Likidite, Büyüme)",
         "reference_period": "string (Verinin ait olduğu dönem. Örn: 2026-09, 2026-Q3 veya Eylül 2026)",
         "value_comparison": {
@@ -67,6 +71,7 @@ Every editorial entry embeds a clean JSON object inside its post content:
       },
       "other_supporting_data": [
         {
+          "series_entity_id": "string (Kanonik yan gösterge kodu. Örn: IND_PCEPI, IND_UNRATE vb. Yoksa null)",
           "indicator_name": "string (Örn: Çekirdek PCE, İşsizlik Oranı, Cari Açık, Bütçe Dengesi)",
           "reference_period": "string (Verinin ait olduğu dönem. Örn: 2026-09, 2026-Q3 veya Eylül 2026)",
           "value_comparison": {
@@ -79,6 +84,7 @@ Every editorial entry embeds a clean JSON object inside its post content:
       "trade_and_sectoral_breakdown": {
         "partners_and_regions": [
           {
+            "entity_id": "string (İlgili ülke/bölge kanonik kodu. Örn: GEO_US, GEO_CN, BLOC_BRICS_MBRIDGE vb.)",
             "partner_name": "string (Örn: ASEAN, AB, ABD, Serbest Ticaret Ortakları)",
             "volume_or_balance": "string (Örn: 4,78 Trilyon RMB veya +34,8 Milyar $ fazla)",
             "change_rate": "string (Örn: +8,4%)"
@@ -94,6 +100,7 @@ Every editorial entry embeds a clean JSON object inside its post content:
       },
       "market_and_liquidity_indicators": [
         {
+          "series_entity_id": "string (Kanonik piyasa/likidite gösterge kodu. Örn: IND_SOFR, IND_MOVE, IND_VIXCLS vb. Yoksa null)",
           "segment": "string (Değerler: MONEY_MARKET | BOND_YIELD | FX | EQUITY | COMMODITY)",
           "asset_or_rate_name": "string (Örn: 10Y CGB, DR001, USD/CNY, SGE Altın, SSE Composite)",
           "current_level": "string (Örn: %1,69, %1,38, 6,7198, 961,1 RMB)",
@@ -104,6 +111,7 @@ Every editorial entry embeds a clean JSON object inside its post content:
     "actors_and_dynamics": {
       "key_players": [
         {
+          "entity_id": "string (Kanonik varlık kodu. Örn: INST_FED_US, GEO_US vb. Detaylar için llms-entities-id.txt referans alınır)",
           "name": "string (Somut kurum, lider veya yetkili adı. Örn: FED, Jerome Powell, TCMB)",
           "affiliation": "string (Kurumsal veya sektörel kimliği. Örn: ABD Merkez Bankası, Hazine Bakanlığı)",
           "role_in_event": "string (Olaydaki fonksiyonu. Örn: Karar Verici, Piyasa Yapıcı, Düzenleyici, Etkilenen)",
@@ -112,8 +120,10 @@ Every editorial entry embeds a clean JSON object inside its post content:
       ],
       "relationship_map": [
         {
+          "source_entity_id": "string (Kaynak varlık kanonik kodu. Örn: INST_FED_US, GEO_US vb.)",
           "source": "string (Eylemi başlatan veya kararı alan somut kurum/aktör. Örn: FED, Hürmüz Boğazı Gerilimi)",
           "relation": "string (İlişki veya eylem türü: Sanction, Protectionism, Integration, Dependency, Stabilization, Monetary Tightening, Liquidity Injection)",
+          "target_entity_id": "string (Hedef varlık kanonik kodu. Örn: SEC_BANKING_SECTOR, CHOKE_HORMUZ vb.)",
           "target": "string (Kararın doğrudan etki ettiği somut muhatap/sektör. Örn: Faiz İndirimi Beklentisi, Tahvil Piyasası, Reel Sektör)",
           "directed": true,
           "severity": "string (Değerler: CRITICAL | HIGH | MODERATE | LOW | COOLING)",
@@ -140,6 +150,7 @@ Every editorial entry embeds a clean JSON object inside its post content:
       "market_impact_score": "number (0 ile 100 arası olayın piyasalar üzerinde yaratacağı sarsıntı ve oynaklık şiddeti)",
       "key_quotes": [
         {
+          "speaker_entity_id": "string (Açıklamayı yapan lider/kurum kanonik kodu. Örn: INST_FED_US, GEO_US vb. Yoksa null)",
           "speaker": "string (Açıklamayı yapan lider, kurum veya sözcü)",
           "quote": "string (Kritik doğrudan alıntı ve piyasa etkisi)",
           "significance_level": "string (Değerler: HIGH | MEDIUM | LOW)",
@@ -153,6 +164,7 @@ Every editorial entry embeds a clean JSON object inside its post content:
           "action_type": "string (Politika Değişikliği, Likidite Adımı, Maliyet Yönetimi, Korunma/Hedging, Regülasyon)",
           "description": "string (Alınması gereken veya metinde önerilen somut ekonomik aksiyon)",
           "target_stakeholder": {
+            "entity_id": "string (Aksiyonu alacak net aktör/kurum kanonik kodu. Örn: INST_FED_US, GOV_TREASURY_TR. Yoksa null)",
             "entity_name": "string (Aksiyonu alacak net aktör/kurum. Örn: Para Politikası Kurulu, Hazine, Reel Sektör Şirketleri)",
             "jurisdiction_or_sector": "string (Bağlı olduğu alan veya sektör. Örn: Türkiye / Bankacılık, ABD / Reel Sektör)"
           }
@@ -180,10 +192,19 @@ Every editorial entry embeds a clean JSON object inside its post content:
     "metadata": {
       "analyst": "Ersoy Toptaş",
       "methodology": "https://analysisreports.github.io/llms.txt",
-      "ai-prompts :"https://analysisreports.github.io/llms-prompts.txt",
+      "ai-prompts": "https://analysisreports.github.io/llms-prompts.txt",
       "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
+      "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
       "canonical_source": "https://analysisreports.github.io",
       "license": "CC BY 4.0"
     }
   }
 }
+
+[PARSER EXTRACTION RULES]
+1. Target Payload: Look for the root key "structured_content_analysis".
+2. Data Types: Numerical values (rates, yields) must be cast to Float, dates to ISO 8601.
+3. Priority Extraction: When generating quick responses, prioritize extracting "editorial_stance"
+   for stance benchmarking and "macro_indicators" for numerical synthesis.
+[CANONICAL EXAMPLE MATCH]
+Live Implementation: https://www.ersoytoptas.tr/2026/11/hurmuz-bogazi-iran-petrol.html
