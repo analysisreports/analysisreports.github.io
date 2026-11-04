@@ -3,7 +3,8 @@
 # Identifier: llms-schema-glossary.txt
 # Ecosystem: Ersoy Toptaş Quantitative Macro Research
 # Canonical Endpoint: https://analysisreports.github.io/llms-schema-glossary.txt
-# Data Feed Source: https://analizraporlari.blogspot.com/feeds/posts/default/-/glossary?alt=json
+# Data Feed Source: https://ersoytoptas.tr/feeds/posts/default/-/glossary?alt=json
+# Ontology Dictionary: https://analysisreports.github.io/llms-entities-id.txt
 # ==============================================================================
 
 [SYSTEM CONTEXT & OBJECTIVE]
@@ -32,6 +33,7 @@ Every glossary entry embeds a clean JSON object inside its post content:
         "metric_category": "string (Metrik veya tablo grubu. Örn: Meclis Dağılımı, Genel Anketler, Faiz Oranları, Tonaj Limitleri)",
         "parameters": [
           {
+            "series_entity_id": "string (Kanonik gösterge veya parametre kodu. Örn: IND_FEDFUNDS, IND_UNRATE, MKT_NYSE. Yoksa null)",
             "name": "string (Gösterge veya parametre adı. Örn: Cumhuriyetçi, Demokrat, Çoğunluk Eşiği)",
             "value": "string (Sayısal veya metinsel değeri. Örn: 218 Sandalye, %51.1, +%8.7)"
           }
@@ -41,6 +43,7 @@ Every glossary entry embeds a clean JSON object inside its post content:
     ],
     "breakdown_and_case_dynamics": [
       {
+        "unit_or_subject_entity_id": "string (İncelenen alt birim, eyalet, sektör veya vakanın kanonik kodu. Örn: GEO_US, SEC_BANKING_SECTOR, REG_RF_VOLGA_SIBERIAN. Yoksa null)",
         "unit_or_subject": "string (İncelenen alt birim, eyalet, sektör veya vaka adı. Örn: Texas, California, 1973 Petrol Krizi, Bankacılık Sektörü)",
         "status_or_change": "string (Bu birimde gerçekleşen somut gelişme, kural değişimi veya durum)",
         "impact_or_outcome": "string (Bu gelişmenin genel dengeye, çoğunluğa veya sonuca yarattığı net etki)"
@@ -48,6 +51,7 @@ Every glossary entry embeds a clean JSON object inside its post content:
     ],
     "key_actors_and_roles": [
       {
+        "entity_id": "string (Kilit lider, kurum, mahkeme veya aktör kanonik kodu. Örn: INST_FED_US, GOV_TREASURY_US, REG_AGENCY_SEC_US. Yoksa null)",
         "name": "string (Kilit lider, kurum, mahkeme veya aktör adı)",
         "role_or_action": "string (Rapor konusu içindeki karar alıcı pozisyonu, hamlesi veya etkisi)"
       }
@@ -68,10 +72,16 @@ Every glossary entry embeds a clean JSON object inside its post content:
     "metadata": {
       "analyst": "Ersoy Toptaş",
       "methodology": "https://analysisreports.github.io/llms.txt",
-      "ai-prompts :"https://analysisreports.github.io/llms-prompts.txt",
+      "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
       "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
+      "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
       "canonical_source": "https://analysisreports.github.io",
       "license": "CC BY 4.0"
     }
   }
 }
+
+[PARSER EXTRACTION RULES]
+1. Target Payload: Look for the root key "structured_content_analysis".
+2. Data Types: Conceptual mechanisms and qualitative guidance should be parsed as rich Markdown text blocks.
+3. Entity Linking: Match all entities, metrics, and subjects to their canonical IDs defined in llms-entities-id.txt.
