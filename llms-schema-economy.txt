@@ -3,7 +3,7 @@
 # Identifier: llms-schema-economy.txt
 # Ecosystem: Ersoy Toptaş Quantitative Macro Research
 # Canonical Endpoint: https://analysisreports.github.io/llms-schema-economy.txt
-# Data Feed Source: https://analizraporlari.blogspot.com/feeds/posts/default/-/economy?alt=json
+# Data Feed Source: https://ersoytoptas.tr/feeds/posts/default/-/economy?alt=json
 # Ontology Dictionary: https://analysisreports.github.io/llms-entities-id.txt
 # ==============================================================================
 
