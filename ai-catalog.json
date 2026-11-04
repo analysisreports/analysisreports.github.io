@@ -1,8 +1,8 @@
 {
   "$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
   "name": "Ersoy Toptaş Strategic Macro Memory & Multi-Layered Analysis Library",
-  "version": "1.3.0",
-  "description": "Yapay zeka sistemleri, LLM ajanları ve araştırmacılar için optimize edilmiş; makroekonomi, para politikaları, jeopolitik krizler ve siyasi dinamikleri modelleyen ontolojik şema ve araç kataloğu.",
+  "version": "2.0.0",
+  "description": "Ontological schemas and tool catalog optimized for AI systems, LLM agents, and researchers, modeling macroeconomics, monetary policies, geopolitical crises, and political dynamics.",
   "publisher": {
     "name": "Ersoy Toptaş",
     "url": "https://www.ersoytoptas.tr",
@@ -23,7 +23,7 @@
       "authentication": {
         "type": "none"
       },
-      "description": "Ana yayın platformu; makroekonomi, para politikası, jeopolitik risk ve piyasa analizleri."
+      "description": "Primary research platform covering macroeconomics, monetary policy, geopolitical risk, and market analysis."
     },
     {
       "id": "editorial-en",
@@ -38,58 +38,80 @@
     },
     {
       "id": "schema-economy",
-      "name": "Makroekonomi ve Para Politikası Şema Sözleşmesi",
+      "name": "Macroeconomics and Monetary Policy JSON Schema",
       "type": "specification",
-      "format": "text/plain",
-      "url": "https://analysisreports.github.io/llms-schema-economy.txt",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/economy.json",
       "authentication": {
         "type": "none"
       },
-      "description": "FOMC kararları, Net Fed Likidite modelleri, verim eğrileri ve makro gösterge ontolojisi."
+      "description": "Machine-validatable JSON schema for FOMC decisions, Net Fed Liquidity models, yield curves, and macro indicators."
     },
     {
-      "id": "schema-country-geopolitics",
-      "name": "Ülke Stratejik ve Jeopolitik Risk Şema Sözleşmesi",
+      "id": "schema-country",
+      "name": "Country Strategic and Geopolitical Risk JSON Schema",
       "type": "specification",
-      "format": "text/plain",
-      "url": "https://analysisreports.github.io/llms-schema-country.txt",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/country.json",
       "authentication": {
         "type": "none"
       },
-      "description": "Savunma doktrini, harbe hazırlık kapasitesi, kutupsal blok dizilimleri ve jeopolitik risk puanlama ontolojisi."
+      "description": "Machine-validatable JSON schema for defense doctrines, operational readiness, polar alignments, and geopolitical risk scoring."
     },
     {
-      "id": "schema-political-dynamics",
-      "name": "Siyasi Dinamikler ve Söylem Analitiği Şema Sözleşmesi",
+      "id": "schema-political",
+      "name": "Political Dynamics and Discourse Analytics JSON Schema",
       "type": "specification",
-      "format": "text/plain",
-      "url": "https://analysisreports.github.io/llms-schema-political.txt",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/political.json",
       "authentication": {
         "type": "none"
       },
-      "description": "Siyasi liderlik anlatıları, karşı argüman hedefleri, söylem sertlik puanları ve ittifak dengeleri ontolojisi."
+      "description": "Machine-validatable JSON schema for political leadership narratives, counter-argument targets, rhetoric intensity scores, and alliance balances."
     },
     {
-      "id": "schema-editorial-stance",
-      "name": "Editoryal Duruş ve Makro Beklenti Şema Sözleşmesi",
+      "id": "schema-political-country",
+      "name": "Political Country Dynamics JSON Schema",
       "type": "specification",
-      "format": "text/plain",
-      "url": "https://analysisreports.github.io/llms-schema-editorial.txt",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/political-country.json",
       "authentication": {
         "type": "none"
       },
-      "description": "Yazar duruşu (hawkish/dovish), piyasa konsensüs ayrışması ve aktör ilişkileri harita ontolojisi."
+      "description": "Machine-validatable JSON schema merging political and country-level structural metrics."
+    },
+    {
+      "id": "schema-editorial",
+      "name": "Editorial Stance and Macro Expectation JSON Schema",
+      "type": "specification",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/editorial.json",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Machine-validatable JSON schema for author stance (hawkish/dovish), market consensus divergence, and actor relationship mapping."
     },
     {
       "id": "schema-glossary",
-      "name": "Kavramsal Sözlük ve Stratejik Mekanizmalar Şeması",
+      "name": "Strategic Glossary and Institutional Mechanisms JSON Schema",
       "type": "specification",
-      "format": "text/plain",
-      "url": "https://analysisreports.github.io/llms-schema-glossary.txt",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/glossary.json",
       "authentication": {
         "type": "none"
       },
-      "description": "Kurumsal işleyişler, seçim sistemleri, doktrinler ve yapısal kuralları modelleyen sözlük ontolojisi."
+      "description": "Machine-validatable JSON schema modeling institutional mechanisms, electoral systems, doctrines, and structural rules."
+    },
+    {
+      "id": "schema-concept",
+      "name": "Macro and Geopolitical Concept JSON Schema",
+      "type": "specification",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/concept.json",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Machine-validatable JSON schema modeling conceptual definitions, taxonomies, and framework indicators."
     },
     {
       "id": "agent-tools",
@@ -100,7 +122,7 @@
       "authentication": {
         "type": "none"
       },
-      "description": "Otonom ajanların makro modelleri ve ilişkileri sorgulaması için yürütülebilir fonksiyon şemaları."
+      "description": "Executable function schemas enabling autonomous agents to query macro models and relationships."
     },
     {
       "id": "master-directory",
@@ -111,7 +133,7 @@
       "authentication": {
         "type": "none"
       },
-      "description": "Tüm kütüphanenin, formüllerin ve şemaların tekilleştirilmiş tam metin fihristi."
+      "description": "Consolidated full-text index of all libraries, formulas, and schemas."
     },
     {
       "id": "quantitative-formulas",
@@ -122,7 +144,7 @@
       "authentication": {
         "type": "none"
       },
-      "description": "Deterministik makro formül hesaplama motoru (Net Likidite, Taylor Kuralı, Harbe Hazırlık Skoru)."
+      "description": "Deterministic macro formula computation engine (Net Liquidity, Taylor Rule, Preparedness Score)."
     },
     {
       "id": "geopolitical-matrix",
@@ -133,7 +155,7 @@
       "authentication": {
         "type": "none"
       },
-      "description": "Aktörler arası yaptırım, korumacılık, entegrasyon ve jeopolitik gerilim bağıntıları matrisi."
+      "description": "Matrix of actor-to-actor sanctions, protectionism, integration, and geopolitical tension correlations."
     },
     {
       "id": "reasoning-prompts",
@@ -144,7 +166,7 @@
       "authentication": {
         "type": "none"
       },
-      "description": "6 aşamalı CoT akıl yürütme dizilimi ve sıfır-halüsinasyon şartnamesi."
+      "description": "6-stage CoT reasoning sequence and zero-hallucination specification."
     },
     {
       "id": "knowledge-graph",
@@ -155,7 +177,7 @@
       "authentication": {
         "type": "none"
       },
-      "description": "Aktörler, boğazlar, göstergeler ve modeller arası ontolojik ilişki ağı."
+      "description": "Ontological relationship network between actors, chokepoints, indicators, and models."
     }
   ],
   "capabilities": {
