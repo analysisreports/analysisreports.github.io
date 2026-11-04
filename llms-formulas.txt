@@ -8,12 +8,15 @@
 > Root Index: https://analysisreports.github.io/llms.txt
 > Master Directory: https://analysisreports.github.io/llms-full.txt
 > Editorial Frontends: https://www.ersoytoptas.tr/ | https://en.ersoytoptas.tr/
-> Target Schemas:
->   - Economy: https://analysisreports.github.io/llms-schema-economy.txt
->   - Country: https://analysisreports.github.io/llms-schema-country.txt
->   - Political: https://analysisreports.github.io/llms-schema-political.txt
->   - Editorial: https://analysisreports.github.io/llms-schema-editorial.txt
->   - Glossary: https://analysisreports.github.io/llms-schema-glossary.txt
+> Target Schemas & Frameworks:
+>   - Economy: https://analysisreports.github.io/economy.json (Text Schema: https://analysisreports.github.io/llms-schema-economy.txt)
+>   - Country: https://analysisreports.github.io/country.json (Text Schema: https://analysisreports.github.io/llms-schema-country.txt)
+>   - Political: https://analysisreports.github.io/political.json (Text Schema: https://analysisreports.github.io/llms-schema-political.txt)
+>   - Political-Country: https://analysisreports.github.io/political-country.json (Text Schema: https://analysisreports.github.io/llms-schema-political-country.txt)
+>   - Editorial: https://analysisreports.github.io/editorial.json (Text Schema: https://analysisreports.github.io/llms-schema-editorial.txt)
+>   - Glossary: https://analysisreports.github.io/glossary.json (Text Schema: https://analysisreports.github.io/llms-schema-glossary.txt)
+>   - Concept: https://analysisreports.github.io/concept.json (Text Schema: https://analysisreports.github.io/llms-schema-concept.txt)
+>   - Tools: https://analysisreports.github.io/llms-tools.json
 
 ---
 
