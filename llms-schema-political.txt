@@ -3,7 +3,8 @@
 # Identifier: llms-schema-political.txt
 # Ecosystem: Ersoy Toptaş Quantitative Macro Research
 # Canonical Endpoint: https://analysisreports.github.io/llms-schema-political.txt
-# Data Feed Source: https://analizraporlari.blogspot.com/feeds/posts/default/-/political?alt=json
+# Data Feed Source: https://ersoytoptas.tr/feeds/posts/default/-/political?alt=json
+# Ontology Dictionary: https://analysisreports.github.io/llms-entities-id.txt
 # ==============================================================================
 
 [SYSTEM CONTEXT & OBJECTIVE]
@@ -13,6 +14,7 @@ contract to parse narrative frames, rhetoric intensity scores, alliance cohesion
 
 [JSON PAYLOAD STRUCTURE]
 Every political entry embeds a clean JSON object inside its post content:
+
 {
   "structured_content_analysis": {
     "focus_areas": [
@@ -30,13 +32,18 @@ Every political entry embeds a clean JSON object inside its post content:
       "event_date": "string (Format: YYYY-MM-DD. Olayın gerçekleştiği somut tarih. Metinde kesin gün yoksa haber tarihi veya YYYY-MM)",
       "why": "string (Bu çıkış hangi siyasi amaç ve gerekçeyle yapıldı?)",
       "how": "string (Hangi üslup ve tonla sunuldu?)",
+      "who_entity_id": "string (Somut kurum, parti veya lider kanonik kodu. Örn: GEO_TR, GOV_TREASURY_TR, INST_FED_US. Detaylar için llms-entities-id.txt referans alınır)",
       "who": "string (Siyasi olaya dahil olan somut partiler, liderler ve kurumlar. Örn: Recep Tayyip Erdoğan, Özgür Özel, TBMM)",
       "heat": "number (0 ile 100 arası olay harareti / risk şiddeti)"
     },
     "geopolitical_state_vector": {
+      "actor_pair_entity_id": "string (Analiz edilen aktör ikilisi kanonik kodları. Örn: GEO_TR-GEO_US, GOV_TREASURY_TR-GOV_TREASURY_US. Yoksa null)",
       "actor_pair": "string (Analiz edilen siyasi/stratejik aktör ikilisi, Örn: AKP-CHP, IKTIDAR-MUHALEFET, US-TR)",
       "regime_state": "string (Değerler: ALLIANCE | DETENTE | DIPLOMATIC_CONTACT | PROXY_WAR | KINETIC_WAR)",
       "dynamic_delta": "number (-2.0 ile +2.0 arası dinamik gerilim sapması)",
+      "active_friction_nodes_entity_id": [
+        "string (Sürtüşme alanları kanonik kodları, örn: REG_RF_CAUCASUS_ARC, CHOKE_HORMUZ. Yoksa null)"
+      ],
       "active_friction_nodes": [
         "string (Sürtüşme alanları, örn: YARGI_PAKETI, SECIM_KANUNU, BUTCE)"
       ],
@@ -61,6 +68,7 @@ Every political entry embeds a clean JSON object inside its post content:
     "actors_and_dynamics": {
       "key_players": [
         {
+          "entity_id": "string (Kanonik varlık kodu. Örn: GEO_TR, GOV_TREASURY_TR. Detaylar için llms-entities-id.txt referans alınır)",
           "name": "string (Somut siyasi lider veya yetkili adı. Örn: Özgür Özel, Devlet Bahçeli, Recep Tayyip Erdoğan)",
           "affiliation": "string (Bağlı olduğu parti veya ittifak. Örn: CHP, AK Parti, MHP, DEM Parti)",
           "role_in_event": "string (Lider, Sözcü, Eleştiren, Hedef Alınan)",
@@ -69,8 +77,10 @@ Every political entry embeds a clean JSON object inside its post content:
       ],
       "relationship_map": [
         {
+          "source_entity_id": "string (Kaynak varlık kanonik kodu. Örn: GEO_TR, GOV_TREASURY_TR. Detaylar için llms-entities-id.txt referans alınır)",
           "source": "string (Eylemi, çıkışı veya siyasi hamleyi yapan somut aktör/parti. Örn: CHP, AK Parti, MHP)",
           "relation": "string (Hostility, Alignment, Negotiation, Recognition, Polemic)",
+          "target_entity_id": "string (Hedef varlık kanonik kodu. Örn: GEO_US, INST_FED_US. Detaylar için llms-entities-id.txt referans alınır)",
           "target": "string (Hedef alınan veya muhatap olan somut aktör/parti. Örn: Hükümet, İYİ Parti, Adalet Bakanlığı)",
           "directed": true,
           "severity": "string (Değerler: CRITICAL | HIGH | MODERATE | LOW | COOLING)",
@@ -89,6 +99,7 @@ Every political entry embeds a clean JSON object inside its post content:
       "market_impact_score": "number (0 ile 100 arası olayın piyasalar üzerinde yaratacağı sarsıntı ve oynaklık şiddeti)",
       "key_quotes": [
         {
+          "speaker_entity_id": "string (Konuşmacı/lider/kurum kanonik kodu. Detaylar için llms-entities-id.txt referans alınır)",
           "speaker": "string (Açıklamayı yapan lider veya sözcü)",
           "quote": "string (Kritik doğrudan alıntı)",
           "significance_level": "string (Değerler: HIGH | MEDIUM | LOW)",
@@ -102,6 +113,7 @@ Every political entry embeds a clean JSON object inside its post content:
           "action_type": "string (Politika Değişikliği, Yasal Düzenleme, Siyasi Hamle, Lobi Faaliyeti vb.)",
           "description": "string (Alınması gereken veya metinde önerilen somut aksiyon)",
           "target_stakeholder": {
+            "entity_id": "string (Aksiyonu alacak net aktör/kurum kanonik kodu. Detaylar için llms-entities-id.txt referans alınır)",
             "entity_name": "string (Aksiyonu alacak net aktör/kurum. Örn: Parti Yönetimi, Meclis Grubu, Bakanlık)",
             "jurisdiction_or_sector": "string (Bağlı olduğu alan veya meclis/ülke. Örn: Türkiye / TBMM, ABD / Senato)"
           }
@@ -129,10 +141,16 @@ Every political entry embeds a clean JSON object inside its post content:
     "metadata": {
       "analyst": "Ersoy Toptaş",
       "methodology": "https://analysisreports.github.io/llms.txt",
-      "ai-prompts :"https://analysisreports.github.io/llms-prompts.txt",
+      "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
       "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
+      "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
       "canonical_source": "https://analysisreports.github.io",
       "license": "CC BY 4.0"
     }
   }
 }
+
+[PARSER EXTRACTION RULES]
+1. Target Payload: Look for the root key "structured_content_analysis".
+2. Data Types: Numerical values must be cast to Float, dates to ISO 8601.
+3. Priority Extraction: Prioritize extracting "political_dynamics_assessment" and "key_players" for narrative synthesis.
