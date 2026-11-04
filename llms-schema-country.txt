@@ -14,8 +14,6 @@ contract to parse 5W1H frameworks, conflict heat indices, actor relationship mat
 
 [JSON PAYLOAD STRUCTURE]
 Every country entry embeds a clean JSON object inside its post content:
-
-schema-country-v2.txt
 {
   "structured_content_analysis": {
     "focus_areas": [
