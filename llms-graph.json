@@ -89,7 +89,7 @@
       "id": "ACTOR_TR",
       "label": "Republic of Türkiye",
       "category": "ACTOR",
-      "type": "Sovereign Arbitrageur",
+      "type": "Strategic Transit Hub",
       "attributes": {
         "chokepoint_control": "TURKISH_STRAITS",
         "montreux_enforcer": true
