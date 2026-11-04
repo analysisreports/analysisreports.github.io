@@ -35,6 +35,29 @@ INST_RBA_AU          | Aliases: RBA, Reserve Bank of Australia
 INST_BOC_CA          | Aliases: BOC, Bank of Canada
 INST_RBI_IN          | Aliases: RBI, Reserve Bank of India
 INST_NY_FED          | Aliases: Federal Reserve Bank of New York, New York Fed
+INST_RIKS_SE         | Aliases: Riksbank, Sveriges Riksbank, Swedish Central Bank
+INST_NORGES_NO       | Aliases: Norges Bank, Central Bank of Norway
+INST_NBP_PL          | Aliases: NBP, National Bank of Poland
+INST_CNB_CZ          | Aliases: CNB, Czech National Bank
+INST_MNB_HU          | Aliases: MNB, Central Bank of Hungary
+INST_CBR_RU          | Aliases: CBR, Bank of Russia, Central Bank of the Russian Federation
+INST_BOK_KR          | Aliases: BOK, Bank of Korea, Monetary Policy Board
+INST_CBC_TW          | Aliases: CBC, Central Bank of Taiwan
+INST_MAS_SG          | Aliases: MAS, Monetary Authority of Singapore
+INST_BNM_MY          | Aliases: BNM, Central Bank of Malaysia
+INST_BI_ID           | Aliases: BI, Bank Indonesia
+INST_BOT_TH          | Aliases: BOT, Bank of Thailand
+INST_BSP_PH          | Aliases: BSP, Central Bank of the Philippines
+INST_SAMA_SA         | Aliases: SAMA, Saudi Central Bank, Saudi Arabian Monetary Authority
+INST_CBUAE_AE        | Aliases: CBUAE, Central Bank of the United Arab Emirates
+INST_BOI_IL          | Aliases: BOI, Bank of Israel, Monetary Committee
+INST_SARB_ZA         | Aliases: SARB, South African Reserve Bank
+INST_BCB_BR          | Aliases: BCB, Central Bank of Brazil
+INST_BANXICO_MX      | Aliases: Banxico, Bank of Mexico
+INST_BCRA_AR         | Aliases: BCRA, Central Bank of Argentina
+INST_BCCH_CL         | Aliases: BCCH, Central Bank of Chile
+INST_BANREP_CO       | Aliases: BanRep, Bank of the Republic of Colombia
+
 
 # [MINISTRIES, TREASURIES & GOVERNMENTS] (Prefix: GOV_)
 GOV_TREASURY_US      | Aliases: US Treasury, U.S. Department of the Treasury, Department of the Treasury
@@ -54,6 +77,55 @@ GEO_IN               | Aliases: Republic of India, India
 GEO_SA               | Aliases: Kingdom of Saudi Arabia, Saudi Arabia, KSA
 GEO_AE               | Aliases: United Arab Emirates, UAE
 GEO_VE               | Aliases: Bolivarian Republic of Venezuela, Venezuela
+
+# [EUROPE & EURASIA]
+GEO_DE               | Aliases: Germany, Federal Republic of Germany, FRG, Berlin
+GEO_FR               | Aliases: France, French Republic, Paris
+GEO_GB               | Aliases: United Kingdom, UK, Great Britain, Britain, London
+GEO_UA               | Aliases: Ukraine, Kyiv
+GEO_PL               | Aliases: Poland, Republic of Poland, Warsaw
+GEO_SE               | Aliases: Sweden, Kingdom of Sweden, Stockholm
+GEO_NO               | Aliases: Norway, Kingdom of Norway, Oslo
+GEO_CZ               | Aliases: Czech Republic, Czechia, Prague
+GEO_HU               | Aliases: Hungary, Budapest
+GEO_GR               | Aliases: Greece, Hellenic Republic, Athens
+GEO_CY               | Aliases: Cyprus, Republic of Cyprus, Nicosia
+
+# [EAST ASIA & INDO-PACIFIC]
+GEO_JP               | Aliases: Japan, Tokyo
+GEO_KR               | Aliases: South Korea, Republic of Korea, ROK, Seoul
+GEO_TW               | Aliases: Taiwan, Republic of China, ROC, Taipei
+GEO_SG               | Aliases: Singapore, Republic of Singapore
+GEO_AU               | Aliases: Australia, Commonwealth of Australia, Canberra
+GEO_ID               | Aliases: Indonesia, Republic of Indonesia, Jakarta
+GEO_MY               | Aliases: Malaysia, Kuala Lumpur
+GEO_TH               | Aliases: Thailand, Kingdom of Thailand, Bangkok
+GEO_PH               | Aliases: Philippines, Republic of the Philippines, Manila
+
+# [CENTRAL ASIA & CAUCASUS]
+GEO_KZ               | Aliases: Kazakhstan, Republic of Kazakhstan, Astana
+GEO_AZ               | Aliases: Azerbaijan, Republic of Azerbaijan, Baku
+GEO_AM               | Aliases: Armenia, Republic of Armenia, Yerevan
+GEO_UZ               | Aliases: Uzbekistan, Republic of Uzbekistan, Tashkent
+GEO_TM               | Aliases: Turkmenistan, Ashgabat
+GEO_KG               | Aliases: Kyrgyzstan, Kyrgyz Republic, Bishkek
+GEO_TJ               | Aliases: Tajikistan, Republic of Tajikistan, Dushanbe
+
+# [MIDDLE EAST & AFRICA]
+GEO_EG               | Aliases: Egypt, Arab Republic of Egypt, Cairo
+GEO_ZA               | Aliases: South Africa, Republic of South Africa, RSA, Pretoria
+GEO_IQ               | Aliases: Iraq, Republic of Iraq, Baghdad
+GEO_SY               | Aliases: Syria, Syrian Arab Republic, Damascus
+GEO_LY               | Aliases: Libya, State of Libya, Tripoli
+GEO_MA               | Aliases: Morocco, Kingdom of Morocco, Rabat
+
+# [AMERICAS]
+GEO_CA               | Aliases: Canada, Ottawa
+GEO_MX               | Aliases: Mexico, United Mexican States, Mexico City
+GEO_BR               | Aliases: Brazil, Federative Republic of Brazil, Brasilia
+GEO_AR               | Aliases: Argentina, Argentine Republic, Buenos Aires
+GEO_CL               | Aliases: Chile, Republic of Chile, Santiago
+GEO_BO               | Aliases: Bolivia, Plurinational State of Bolivia, La Paz
 
 # [SUB-NATIONAL & AUTONOMOUS REGIONAL ACTORS] (Prefix: REG_)
 REG_RF_CAUCASUS_ARC  | Aliases: North Caucasus Autonomous Line, Karachay-Cherkessia, Kabardino-Balkaria, Dagestan
