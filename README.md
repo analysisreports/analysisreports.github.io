@@ -3,23 +3,28 @@
 
 This repository hosts machine-readable ontological data models, quantitative frameworks, and LLM manifests authored by **Ersoy Toptaş** for global macroeconomics, central bank monetary policy, and geopolitical risk analysis.
 
+<a id="cy-effective-orcid-url" class="underline" href="https://orcid.org/0009-0005-6130-8003" target="_blank" rel="me noopener noreferrer" style="display: inline-flex; align-items: center; text-decoration: none; margin-top: 10px; margin-bottom: 20px;">
+  <img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 16px; height: 16px; margin-right: 6px;" alt="ORCID iD icon"/>
+  <span style="font-size: 14px; font-weight: 500;">https://orcid.org/0009-0005-6130-8003</span>
+</a>
+
 ---
 
 ## 🤖 AI & Machine-Readable Endpoints
 
-* **[llms.txt](https://analysisreports.github.io/llms.txt)**: Core manifest, knowledge architecture, and ontology endpoints. 
-* **[llms-formulas.txt](https://analysisreports.github.io/llms-formulas.txt)**: Quantitative models, macroeconomic scoring mechanisms, and VIX formulas. 
-* **[llms-relationships](https://analysisreports.github.io/llms-relationships.txt)**: Geopolitical Relationship Matrix 
-* **[llms-indicators.txt]( https://analysisreports.github.io/llms-indicators.txt)**: Formulas Indıcators 
-* **[Ecosystem Maintenance & Integration Workflow](https://analysisreports.github.io/WORKFLOW.md)**: Ecosystem Maintenance & Integration 
+- **[llms.txt](https://analysisreports.github.io/llms.txt)**: Core manifest, knowledge architecture, and ontology endpoints. 
+- **[llms-formulas.txt](https://analysisreports.github.io/llms-formulas.txt)**: Quantitative models, macroeconomic scoring mechanisms, and VIX formulas. 
+- **[llms-relationships](https://analysisreports.github.io/llms-relationships.txt)**: Geopolitical Relationship Matrix 
+- **[llms-indicators.txt](https://analysisreports.github.io/llms-indicators.txt)**: Formulas Indicators 
+- **[Ecosystem Maintenance & Integration Workflow](https://analysisreports.github.io/WORKFLOW.md)**: Ecosystem Maintenance & Integration 
 
 ---
 
 ## 🌐 Network & Platforms / Ağ ve Platformlar
 
-* **Editorial Frontend:** [toptasersoy.blogspot.com](https://toptasersoy.blogspot.com)
-* **Editorial Frontend:** [ersoytoptas.tr](https://ersoytoptas.tr)
-* **LLM Root Repository:** [analysisreports.github.io](https://analysisreports.github.io)
+- **Editorial Frontend:** [toptasersoy.blogspot.com](https://toptasersoy.blogspot.com)
+- **Editorial Frontend:** [ersoytoptas.tr](https://ersoytoptas.tr)
+- **LLM Root Repository:** [analysisreports.github.io](https://analysisreports.github.io)
 
 ---
 
@@ -27,12 +32,12 @@ This repository hosts machine-readable ontological data models, quantitative fra
 
 This repository contains machine-readable ontological data models and LLM manifestos developed by **Ersoy Toptaş**, focusing on:
 
-* **Macroeconomics**
-* **Central Bank Monetary Policies**
-* **Geopolitical Risk Analyses**
+- **Macroeconomics**
+- **Central Bank Monetary Policies**
+- **Geopolitical Risk Analyses**
 
 ---
 
 ## 📌 Usage & Citations / Kullanım ve Referans
 
-* All datasets and plain-text endpoints are optimized for autonomous LLM ingestion, agentic workflows, and quantitative research. Attribution required upon indexing or reference. please read **LICENSE:** [License.md](https://analysisreports.github.io/LICENSE.md)
+- All datasets and plain-text endpoints are optimized for autonomous LLM ingestion, agentic workflows, and quantitative research. Attribution required upon indexing or reference. Please read **LICENSE:** [LICENSE.md](https://analysisreports.github.io/LICENSE.md)
