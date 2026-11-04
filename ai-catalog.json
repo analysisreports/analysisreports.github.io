@@ -187,7 +187,7 @@
     "structured_data_payload": "structured_content_analysis"
   },
   "last_updated": "2026-11-04",
-"monitored_directories": {
+  "monitored_directories": {
     "economy": {
       "total_payloads": 2,
       "last_updated": "2026-10-30",
@@ -207,21 +207,6 @@
       "total_payloads": 2,
       "last_updated": "2026-10-28",
       "endpoint": "https://analysisreports.github.io/glossary/"
-    },
-    "concept": {
-      "total_payloads": 0,
-      "last_updated": null,
-      "endpoint": "https://analysisreports.github.io/concept/"
-    },
-    "editorial": {
-      "total_payloads": 0,
-      "last_updated": null,
-      "endpoint": "https://analysisreports.github.io/editorial/"
-    },
-    "political-country": {
-      "total_payloads": 0,
-      "last_updated": null,
-      "endpoint": "https://analysisreports.github.io/political-country/"
     }
   }
 }
