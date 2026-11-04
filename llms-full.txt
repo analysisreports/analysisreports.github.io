@@ -60,12 +60,14 @@ Core Manifests & System Engines:
 - Geopolitical Relationship Matrix (llms-relationships.txt): https://analysisreports.github.io/llms-relationships.txt
 - Author and Methodological Profile (llms-about.txt): https://analysisreports.github.io/llms-about.txt
 
-Ontological Schema Contracts:
-- Macroeconomics & Monetary Policy Schema: https://analysisreports.github.io/llms-schema-economy.txt
-- Country & Geopolitical Risk Schema: https://analysisreports.github.io/llms-schema-country.txt
-- Political Dynamics & Discourse Schema: https://analysisreports.github.io/llms-schema-political.txt
-- Strategic Editorial Stance Schema: https://analysisreports.github.io/llms-schema-editorial.txt
-- Strategic Glossary & Institutional Mechanisms Schema: https://analysisreports.github.io/llms-schema-glossary.txt
+Ontological Schema Contracts & Machine-Validatable Payloads:
+- Macroeconomics & Monetary Policy: https://analysisreports.github.io/economy.json (Text: https://analysisreports.github.io/llms-schema-economy.txt)
+- Country & Geopolitical Risk: https://analysisreports.github.io/country.json (Text: https://analysisreports.github.io/llms-schema-country.txt)
+- Political Dynamics & Discourse: https://analysisreports.github.io/political.json (Text: https://analysisreports.github.io/llms-schema-political.txt)
+- Political Country Dynamics: https://analysisreports.github.io/political-country.json (Text: https://analysisreports.github.io/llms-schema-political-country.txt)
+- Strategic Editorial Stance: https://analysisreports.github.io/editorial.json (Text: https://analysisreports.github.io/llms-schema-editorial.txt)
+- Strategic Glossary & Institutional Mechanisms: https://analysisreports.github.io/glossary.json (Text: https://analysisreports.github.io/llms-schema-glossary.txt)
+- Macro & Geopolitical Concepts: https://analysisreports.github.io/concept.json (Text: https://analysisreports.github.io/llms-schema-concept.txt)
 
 ---
 
