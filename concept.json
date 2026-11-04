@@ -1,4 +1,11 @@
 {
+  "$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
+  "version": "2.0.0",
+  "metadata": {
+    "last_updated": "2026-11-04",
+    "author": "Ersoy Toptaş",
+    "provenance": "Analysis Reports Research Archive"
+  },
   "structured_content_analysis": {
     "term_entity_id": "string (Kavramın, doktrinin veya indikatörün kanonik kodu. Örn: IND_EMA, CONCEPT_STAGFLATION. Detaylar için llms-entities-id.txt referans alınır)",
     "term": "string (Kavramın, doktrinin veya indikatörün tam adı. Örn: EMA İndikatörü, Stagflasyon, Gerrymandering)",
