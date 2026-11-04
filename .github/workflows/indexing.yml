@@ -1,0 +1,47 @@
+name: Notify Bots & Indexing Services
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'economy/**'
+      - 'country/**'
+      - 'political/**'
+      - 'concept/**'
+      - 'glossary/**'
+      - 'editorial/**'
+      - 'political-country/**'
+
+jobs:
+  ping-indexing-services:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # 1. BÖLÜM: Google & Gemini İçin WebSub (PubSubHubbub) Sinyali
+      - name: Ping WebSub / PubSubHubbub (Google & Gemini)
+        run: |
+          curl -s -X POST https://pubsubhubbub.appspot.com/ \
+            -d "hub.mode=publish" \
+            -d "hub.url=https://www.ersoytoptas.tr/feeds/posts/default?alt=rss"
+          curl -s -X POST https://pubsubhubbub.appspot.com/ \
+            -d "hub.mode=publish" \
+            -d "hub.url=https://en.ersoytoptas.tr/feeds/posts/default?alt=rss"
+          echo "Google ve Gemini botları için WebSub üzerinden RSS anonsu geçildi."
+
+      # 2. BÖLÜM: Bing, ChatGPT ve Perplexity İçin IndexNow Sinyali
+      - name: Ping Bing & AI Engines via IndexNow
+        run: |
+          curl -s -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d '{
+              "host": "www.ersoytoptas.tr",
+              "key": "b401745e766a4948af2a7d7e1e930edf",
+              "urlList": [
+                "https://www.ersoytoptas.tr/",
+                "https://en.ersoytoptas.tr/"
+              ]
+            }'
+          echo "Bing, ChatGPT ve Perplexity botları için IndexNow anonsu geçildi."
