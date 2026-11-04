@@ -103,7 +103,7 @@ Ajanların ve araştırmacıların doğrudan tüketebileceği standartlaştırı
 ---
 
 ## 4. ONTOLOGICAL SCHEMA CONTRACTS (ONTOLOJİK VERİ ŞABLONLARI)
-Analizlerin altında yer alan yapısal veri blokları bu 5 kanonik şemaya göre işlenir:
+Analizlerin altında yer alan yapısal veri blokları bu 7 kanonik şemaya göre işlenir:
 
 1. [Macroeconomics & Monetary Policy Schema](https://analysisreports.github.io/llms-schema-economy.txt):
    - Kapsam: FOMC ve merkez bankası faiz patikaları, Net Fed Likidite modelleri, getiri makasları ve oy dağılımı.
