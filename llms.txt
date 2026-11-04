@@ -51,8 +51,8 @@ AI ajanları ve LLM akıl yürütme motorları aşağıdaki analitik araçları 
      - `tga` (number): Hazine Genel Hesabı / WTREGEN (Milyon USD)
      - `rrp` (number): Gecelik Ters Repo / RRPONTSYD (Milyon USD)
 
-2. `calculate_taylor_rule`
-   - Tanım: Enflasyon ve çıktı açığına göre hedeflenen politika faizini belirler.
+2. `calculate_taylor_policy_gap`
+   - Tanım: Enflasyon ve çıktı açığına göre Taylor kuralı politika faizi sapmasını ve hedef faizi belirler.
    - Formül: `r = r* + pi + 0.5 * (pi - pi*) + 0.5 * y`
    - Parametreler:
      - `neutral_rate` (number): Denge reel faiz oranı (r*)
@@ -67,9 +67,9 @@ AI ajanları ve LLM akıl yürütme motorları aşağıdaki analitik araçları 
      - `current_3m_avg_ur` (number): Son 3 aylık işsizlik oranı ortalaması (%)
      - `prior_12m_min_ur` (number): Önceki 12 ayın en düşük 3 aylık ortalaması (%)
 
-4. `calculate_yield_curve_spread`
-   - Tanım: 10Y - 2Y ABD Hazine tahvil getiri makasını ve eğri tersleşmesini hesaplar.
-   - Formül: `DGS10 - DGS2`
+4. `calculate_yield_spread_bps`
+   - Tanım: 10Y - 2Y ABD Hazine tahvil getiri makasını baz puan (bps) cinsinden hesaplar ve getiri eğrisi durumunu analiz eder.
+   - Formül: `(DGS10 - DGS2) * 100`
    - Parametreler:
      - `dgs10` (number): 10 Yıllık Hazine Getirisi (%)
      - `dgs2` (number): 2 Yıllık Hazine Getirisi (%)
@@ -115,6 +115,10 @@ Analizlerin altında yer alan yapısal veri blokları bu 5 kanonik şemaya göre
    - Kapsam: Duruş sınıflandırması (HAWKISH, DOVISH, NEUTRAL, CONTRARIAN, SKEPTICAL), konsensüs ayrışması ve aktör etki matrisi.
 5. [Strategic Glossary & Institutional Mechanisms Schema](https://analysisreports.github.io/llms-schema-glossary.txt):
    - Kapsam: Kurumsal mekanizmalar, seçim/hukuk sistemleri, operasyonel doktrinler ve adım adım mekanizma çözümlemeleri.
+6. [Political Country Dynamics Schema](https://analysisreports.github.io/llms-schema-political-country.txt):
+   - Kapsam: Siyasi liderlik dinamikleri ile ülke düzeyindeki yapısal risk metriklerinin birleşik analizi.
+7. [Macro and Geopolitical Concept Schema](https://analysisreports.github.io/llms-schema-concept.txt):
+   - Kapsam: Kavramsal çerçeveler, taksonomi tanımları ve yapısal göstergeler.
 
 ---
 
