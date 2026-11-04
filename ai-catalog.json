@@ -217,6 +217,11 @@
       "total_payloads": 0,
       "last_updated": null,
       "endpoint": "https://analysisreports.github.io/editorial/"
+    },
+    "political-country": {
+      "total_payloads": 0,
+      "last_updated": null,
+      "endpoint": "https://analysisreports.github.io/political-country/"
     }
   }
 }
