@@ -1,4 +1,11 @@
 {
+  "$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
+  "version": "2.0.0",
+  "metadata": {
+    "last_updated": "2026-11-04",
+    "author": "Ersoy Toptaş",
+    "provenance": "Analysis Reports Research Archive"
+  },
   "structured_content_analysis": {
     "briefing_title": "string (Raporun, brifingin veya rehberin tam başlığı. Örn: 2026 ABD Temsilciler Meclisi Seçimleri Gazeteci Rehberi)",
     "domain": "string (Değerler: Macroeconomics and Monetary Policy | Geopolitics and International Security | Political Science and Electoral Analytics | Geoeconomics and Global Trade | Defense Doctrine and Military Technology | Pension Systems and Wealth Management)",
