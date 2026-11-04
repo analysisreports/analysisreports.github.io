@@ -97,7 +97,7 @@ Regime States (Discrete Mapping):
 2.4.1. TR (Republic of Türkiye)
    - Baseline with US/NATO: +0.45 (Institutional ally, localized friction in Syria/Air Defense)
    - Baseline with RU: +0.20 (Pragmatic transactional partnership, opposing proxy theaters)
-   - Arbitrage Assets: Montreux Convention (Straits), Grain Corridor, Gas Hub, Drone Tech
+   - Strategic Transit & Geoeconomic Assets: Montreux Convention (Straits), Black Sea Grain Corridor, Regional Energy Hub, Advanced UAV Defense Tech
 
 2.4.2. IN (Republic of India)
    - Baseline with US: +0.60 (QUAD member, technological and defense integration)
@@ -314,26 +314,26 @@ Regime States (Discrete Mapping):
    - Market Impact: Nuclear utility operational stability, baseload power generation
 
 4. REFINED_DIESEL & DISTILLATES
-   - Structural Flow: Russian crude refined in India (IN) and Türkiye (TR), re-exported to Europe
-   - Vulnerability: Baltic and Black Sea refining capacity, secondary banking sanctions
+   - Structural Flow: Regional crude processed in Mediterranean (TR) and South Asian (IN) refining hubs for global market stabilization
+   - Vulnerability: Supply chain constraints, regulatory compliance shifts, and Baltic/Black Sea transit friction
 
 ---
 
-## 6. SANCTIONS TRANSMISSION & SHADOW RE-ROUTING CHANNELS
+## 6. GLOBAL TRADE ROUTING & TRANSIT CHANNELS
 
-1. PRIMARY ENFORCEMENT
+1. PRIMARY ENFORCEMENT & COMPLIANCE
    - OFAC SDN (US Department of the Treasury)
    - EU Restrictive Measures Framework
-   - Enforcement Tool: US Dollar clearing restriction, secondary banking penalties
+   - Market Impact: US Dollar clearing friction, supply chain cost inflation and rotation
 
-2. SHADOW FLEET & ILLICIT TRANSMISSION
-   - Mechanism: Flag-of-convenience tankers, transponder (AIS) spoofing, Ship-to-Ship (STS) transfers
-   - Hubs: Gulf of Oman, Laconian Gulf (Greece), Russian Arctic routes
-   - Capital Clearing: UAE Dirham (AED), Chinese Yuan (CNY), local barters (Gold/Machinery)
+2. ALTERNATIVE MARITIME & ASYMMETRIC LOGISTICS
+   - Mechanism: Open-sea STS (Ship-to-Ship) transfers, independent fleet operations, flexible flag registries
+   - Logistics Nodes: Gulf of Oman, Laconian Gulf (Greece), Russian Arctic routes
+   - Alternative Clearing: UAE Dirham (AED), Chinese Yuan (CNY), commodity-based local settlements
 
-3. ARBITRAGE HUBS
-   - Financial & Corporate Layer: Dubai (AE), Istanbul (TR), Hong Kong (HK)
-   - Cargo Re-labeling: Blended crude varieties, processed fuels bypassing direct origin bans
+3. GLOBAL TRANSIT & LOGISTICS HUBS
+   - Strategic Nodes: Dubai (AE), Istanbul (TR), Hong Kong (HK)
+   - Supply Chain Optimization: Blended crude varieties, refined product transfers, and regional distribution networks
 
 ---
 
@@ -366,12 +366,12 @@ Regime States (Discrete Mapping):
 
 7.1.4. EAST_MED_DEEPSEA_BASIN
    - Location: 33°30'N 30°00'E (Levant & Herodotus Deep-Sea Gas Basins - Zohr, Leviathan, Aphrodite)
-   - Strategic Weight: Doğu Akdeniz derin deniz doğalgaz rezervleri, Mısır LNG sıvılaştırma terminalleri (Idku & Damietta)
-   - Structural Standoff: TR / LY (2019 Deniz Yetki Alanları Mutabakatı & Mavi Vatan) vs. GR / CY / EG (Karşı MEB ve Doğu Akdeniz Gaz Forumu)
-   - Friction Vector: Çakışan Münhasır Ekonomik Bölgeler (MEB), derin deniz sondaj gemilerine donanma eskortu/engellemesi, kıta sahanlığı ihtilafları
+   - Strategic Weight: East Mediterranean deep-sea natural gas reserves, Egyptian LNG liquefaction terminals (Idku & Damietta)
+   - Structural Standoff: TR / LY (2019 Maritime Delimitation Agreement & Blue Homeland Doctrine) vs. GR / CY / EG (Overlapping EEZ Claims & EastMed Gas Forum)
+   - Friction Vector: Overlapping Exclusive Economic Zones (EEZ), naval escorts for deep-sea drilling operations, continental shelf delimitation disputes
    - Direct Macro Indicators Triggered: TTF_GAS_HUB_PRICE, DCOILBRENTEU
    - Disruption Severity: HIGH
-   - Transmission Target: Avrupa TTF doğalgaz vadeli fiyatları, Doğu Akdeniz LNG ikame kapasitesi
+   - Transmission Target: European TTF natural gas futures, East Med LNG substitution capacity
 
 ### 7.2. Contested Terrestrial & Maritime Gateways
 7.2.1. ZANGEZUR_CORRIDOR
@@ -459,10 +459,10 @@ Regime States (Discrete Mapping):
 - Primary Geopolitical Vector: Nord Stream cessation, Russian Arctic LNG-2 sanctions (2.3.2, 4.12), Caspian Sea Transit Basin (7.3.1), Zangezur Gas Hub (7.2.1).
 
 8.4.3. MODEL_25.9_GASOLINE_CRUDE_CRACK_SPREAD_IMPULSE
-- Target Formula: llms-formulas.txt -> Model 25.9 (gasoline_crude_crack_spread)
-- Data Series Triggered: GASREGW, DCOILWTICO
-- Status Enums: REFINERY_BOTTLENECK_CRUNCH | REFINING_MARGIN_COLLAPSE | NORMAL_REFINING_MARGIN
-- Primary Geopolitical Vector: Shadow Fleet re-routing (6.2), Turkish & Indian refining arbitrage hubs (5.4), Black Sea and Danish Straits shipping curbs (4.4, 4.8).
+   - Target Formula: llms-formulas.txt -> Model 25.9 (gasoline_crude_crack_spread)
+   - Data Series Triggered: GASREGW, DCOILWTICO
+   - Status Enums: REFINERY_BOTTLENECK_CRUNCH | REFINING_MARGIN_COLLAPSE | NORMAL_REFINING_MARGIN
+   - Primary Geopolitical Vector: Asymmetric maritime re-routing (6.2), Mediterranean (TR) & South Asian (IN) logistics and refining hubs (5.4), Black Sea and Danish Straits shipping curbs (4.4, 4.8).
 
 ### 8.5. Banking Credit Transmission & Systemic Tightening Engine (Model 25.10)
 8.5.1. MODEL_25.10_SLOOS_LENDING_TIGHTNESS_GAUGE
