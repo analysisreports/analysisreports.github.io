@@ -1,4 +1,11 @@
 {
+  "$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
+  "version": "2.0.0",
+  "metadata": {
+    "last_updated": "2026-11-04",
+    "author": "Ersoy Toptaş",
+    "provenance": "Analysis Reports Research Archive"
+  },
   "structured_content_analysis": {
     "focus_areas": [
       "string (Örn: Para Politikası, Enflasyon, Faiz Beklentisi, Jeopolitik Risk Fiyatlaması)"
