@@ -47,9 +47,9 @@ AI ajanları ve LLM akıl yürütme motorları aşağıdaki analitik araçları 
    - Tanım: Net Fed Likiditesini hesaplar.
    - Formül: `WALCL - (WTREGEN + RRPONTSYD)`
    - Parametreler:
-     - `walcl` (number): Fed Bilanço Büyüklüğü (Milyar USD)
-     - `tga` (number): Hazine Genel Hesabı / WTREGEN (Milyar USD)
-     - `rrp` (number): Gecelik Ters Repo / RRPONTSYD (Milyar USD)
+     - `walcl` (number): Fed Bilanço Büyüklüğü (Milyon USD)
+     - `tga` (number): Hazine Genel Hesabı / WTREGEN (Milyon USD)
+     - `rrp` (number): Gecelik Ters Repo / RRPONTSYD (Milyon USD)
 
 2. `calculate_taylor_rule`
    - Tanım: Enflasyon ve çıktı açığına göre hedeflenen politika faizini belirler.
