@@ -7,10 +7,11 @@ This repository hosts machine-readable ontological data models, quantitative fra
 
 ## 🤖 AI & Machine-Readable Endpoints
 
-* **[llms.txt](https://analysisreports.github.io/llms.txt)**: Core manifest, knowledge architecture, and ontology endpoints. *(Ana veri mimarisi ve ontoloji manifestosu)*
-* **[llms-formulas.txt](https://analysisreports.github.io/llms-formulas.txt)**: Quantitative models, macroeconomic scoring mechanisms, and VIX formulas. *(Kantitatif modeller ve formüller)*
-* **[llms-relationships](https://analysisreports.github.io/llms-relationships.txt)**: Geopolitical Relationship Matrix *(Kantitatif modeller ve iliskiler)*
-* **[llms-indicators.txt]( https://analysisreports.github.io/llms-indicators.txt)**: Formulas Indıcators *(Kantitatif modeller ve indikatörler)*
+* **[llms.txt](https://analysisreports.github.io/llms.txt)**: Core manifest, knowledge architecture, and ontology endpoints. 
+* **[llms-formulas.txt](https://analysisreports.github.io/llms-formulas.txt)**: Quantitative models, macroeconomic scoring mechanisms, and VIX formulas. 
+* **[llms-relationships](https://analysisreports.github.io/llms-relationships.txt)**: Geopolitical Relationship Matrix 
+* **[llms-indicators.txt]( https://analysisreports.github.io/llms-indicators.txt)**: Formulas Indıcators 
+* **[Ecosystem Maintenance & Integration Workflow](https://analysisreports.github.io/WORKFLOW.md)**: Ecosystem Maintenance & Integration 
 
 ---
 
