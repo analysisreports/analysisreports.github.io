@@ -864,7 +864,24 @@
 {"id": "ACTOR_BR", "label": "Federative Republic of Brazil", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "BRL"}},
 {"id": "ACTOR_AR", "label": "Argentine Republic", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "ARS"}},
 {"id": "ACTOR_CL", "label": "Republic of Chile", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "CLP"}},
-{"id": "ACTOR_BO", "label": "Plurinational State of Bolivia", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "BOB"}}
+{"id": "ACTOR_BO", "label": "Plurinational State of Bolivia", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "BOB"}},
+{"id": "INST_FED_US", "label": "Federal Reserve System", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_US", "currency": "USD"}},
+{"id": "INST_TCMB_TR", "label": "Central Bank of the Republic of Türkiye", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_TR", "currency": "TRY"}},
+{"id": "INST_ECB_EU", "label": "European Central Bank", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_DE", "currency": "EUR"}},
+{"id": "INST_BOJ_JP", "label": "Bank of Japan", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_JP", "currency": "JPY"}},
+{"id": "INST_PBOC_CN", "label": "People's Bank of China", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_CN", "currency": "CNY"}},
+{"id": "INST_BOE_GB", "label": "Bank of England", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_GB", "currency": "GBP"}},
+{"id": "INST_SNB_CH", "label": "Swiss National Bank", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_CH", "currency": "CHF"}},
+{"id": "INST_RBA_AU", "label": "Reserve Bank of Australia", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_AU", "currency": "AUD"}},
+{"id": "INST_BOC_CA", "label": "Bank of Canada", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_CA", "currency": "CAD"}},
+{"id": "INST_RBI_IN", "label": "Reserve Bank of India", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_IN", "currency": "INR"}},
+{"id": "INST_CBR_RU", "label": "Bank of Russia", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_RU", "currency": "RUB"}},
+{"id": "INST_BOK_KR", "label": "Bank of Korea", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_KR", "currency": "KRW"}},
+{"id": "INST_CBC_TW", "label": "Central Bank of Taiwan", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_TW", "currency": "TWD"}},
+{"id": "INST_MAS_SG", "label": "Monetary Authority of Singapore", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_SG", "currency": "SGD"}},
+{"id": "INST_SAMA_SA", "label": "Saudi Central Bank", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_SA", "currency": "SAR"}},
+{"id": "INST_BCB_BR", "label": "Central Bank of Brazil", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_BR", "currency": "BRL"}},
+{"id": "INST_BANXICO_MX", "label": "Bank of Mexico", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_MX", "currency": "MXN"}}
   ],
   "edges": [
     {
@@ -1372,6 +1389,18 @@
 {"source": "ACTOR_US", "target": "ACTOR_BR", "type": "POLARITY_COUPLING", "p_baseline": 0.50, "regime": "NEUTRAL"},
 {"source": "ACTOR_SG", "target": "CHOKE_MALACCA", "type": "BRIDGES_TO_MODEL", "passes": "strait_security_monitoring"},
 {"source": "ACTOR_TW", "target": "CHOKE_TAIWAN", "type": "BRIDGES_TO_MODEL", "passes": "semiconductor_supply_chain"},
-{"source": "ACTOR_EG", "target": "CHOKE_BAB_EL_MANDEB", "type": "BRIDGES_TO_MODEL", "passes": "suez_canal_transit_flow"}
+{"source": "ACTOR_EG", "target": "CHOKE_BAB_EL_MANDEB", "type": "BRIDGES_TO_MODEL", "passes": "suez_canal_transit_flow"},
+{"source": "INST_FED_US", "target": "ACTOR_US", "type": "PATRON_COUPLING", "coupling_factor": 1.0, "role": "Monetary Authority"},
+{"source": "INST_TCMB_TR", "target": "ACTOR_TR", "type": "PATRON_COUPLING", "coupling_factor": 1.0, "role": "Monetary Authority"},
+{"source": "INST_ECB_EU", "target": "ACTOR_DE", "type": "PATRON_COUPLING", "coupling_factor": 0.9, "role": "Supranational Monetary Authority"},
+{"source": "INST_BOJ_JP", "target": "ACTOR_JP", "type": "PATRON_COUPLING", "coupling_factor": 1.0, "role": "Monetary Authority"},
+{"source": "INST_PBOC_CN", "target": "ACTOR_CN", "type": "PATRON_COUPLING", "coupling_factor": 1.0, "role": "Monetary Authority"},
+{"source": "INST_BOE_GB", "target": "ACTOR_GB", "type": "PATRON_COUPLING", "coupling_factor": 1.0, "role": "Monetary Authority"},
+{"source": "INST_CBR_RU", "target": "ACTOR_RU", "type": "PATRON_COUPLING", "coupling_factor": 1.0, "role": "Monetary Authority"},
+{"source": "INST_FED_US", "target": "IND_WALCL", "type": "TRIGGERS_INDICATOR", "impact": "BALANCE_SHEET_EXPANSION_OR_CONTRACTION"},
+{"source": "INST_FED_US", "target": "IND_EFFR", "type": "TRIGGERS_INDICATOR", "impact": "POLICY_RATE_SETTING"},
+{"source": "INST_FED_US", "target": "MODEL_5", "type": "BRIDGES_TO_MODEL", "passes": "liquidity_steering_policy"},
+{"source": "INST_TCMB_TR", "target": "MODEL_25.2", "type": "BRIDGES_TO_MODEL", "passes": "inflation_target_transmission"},
+{"source": "INST_ECB_EU", "target": "MODEL_25.5", "type": "BRIDGES_TO_MODEL", "passes": "eurodollar_repo_liquidity_impact"}
   ]
 }
