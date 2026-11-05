@@ -93,7 +93,7 @@ Regime States (Discrete Mapping):
    - Structural Regime: ECONOMIC_WARFARE / COLD_STANDOFF
    - Decoupling Axis: Nord Stream cessation, LNG substitution, Russian asset seizure
 
-### 2.4. Swing States & Arbitrage Bridges (Non-Aligned Arbitrageurs)
+### 2.4. Strategic Pivot States & Geoeconomic Bridges (Independent Balancers)
 2.4.1. TR (Republic of Türkiye)
    - Baseline with US/NATO: +0.45 (Institutional ally, localized friction in Syria/Air Defense)
    - Baseline with RU: +0.20 (Pragmatic transactional partnership, opposing proxy theaters)
@@ -122,12 +122,12 @@ Regime States (Discrete Mapping):
 ### 2.6. Geoeconomic Dedollarization Blocs (mBridge ve Çok Kutuplu Takas Ekseni)
 2.6.1. BRICS_MBRIDGE - G7 / USD CLEARING (Sovereign Alternative Settlement Axis)
    - Baseline Polarity (P_baseline): -0.70
-   - Structural Regime: MONETARY_DECOUPLING / SYSTEMIC_ARBITRAGE
-   - Core Architectural Nodes: BIS Innovation Hub mBridge, CIPS (Çin), SPFS (Rusya), İkili Yerel Para/CBDC Takası
-   - Member Exposure: CN, RU, AE, SA, IR, IN (Çift yönlü arbitraj aktörü)
+   - Structural Regime: MONETARY_DECOUPLING / MULTI-CURRENCY_SETTLEMENT
+   - Core Architectural Nodes: BIS Innovation Hub mBridge, CIPS (China), SPFS (Russia), Bilateral Local Currency/CBDC Settlement
+   - Member Exposure: CN, RU, AE, SA, IR, IN (Multi-vector balancing actor)
    - Primary Friction Nodes: SWIFT_ALTERNATIVE, PETRODOLLAR_EROSION, OFAC_SDN_BYPASS
-   - Economic Coupling to USD: 0.40 (Yüksek fiziki ticaret entegrasyonu, azalan dolar takas payı)
-   - Macro Spillover Bridge: Rezerv para talebinde aşınma, küresel merkez bankası altın talebinde yapısal artış, ABD Hazine tahvillerinde vade primi (ACM) sıçraması
+   - Economic Coupling to USD: 0.40 (High physical trade integration, declining USD clearing share)
+   - Macro Spillover Bridge: Erosion in reserve currency demand, structural surge in central bank gold accumulation, spike in US Treasury term premium (ACM)
    - Transmission Series: DFII10, GOLDPMGBD228NLBM, DTWEXBGS, DCOILWTICO, THREEFYTP10
 
 ### 2.7. Eurasian Integration & Caspian Transit Blocs (C6 İstişare Formatı)
@@ -495,7 +495,7 @@ Regime States (Discrete Mapping):
 8.8.1. MODEL_25.12_BRENT_WTI_SEABORNE_SPREAD
 - Target Formula: llms-formulas.txt -> Model 25.12 (brent_wti_spread)
 - Data Series Triggered: DCOILBRENTEU, DCOILWTICO
-- Status Enums: SEABORNE_GEOPOLITICAL_PREMIUM | US_DOMESTIC_TIGHTNESS | NORMAL_TRANSATLANTIC_ARBITRAGE
+- Status Enums: SEABORNE_GEOPOLITICAL_PREMIUM | US_DOMESTIC_TIGHTNESS | NORMAL_TRANSATLANTIC_PRICE_PARITY
 - Primary Geopolitical Vector: Bab el-Mandeb (4.2), Hormuz (4.1), and Suez maritime disruptions forcing Cape rerouting, driving tanker insurance rates and Brent premiums above domestic US benchmark.
 - Actor Coupling: IL-IR escalation (2.2.1), YE-HOUTHI anti-ship targeting (3.1), OPEC+ supply quotas.
 - Transmission Linkage: Brent-WTI spread expanding beyond $8.00 confirms kinetic risks are actively choking seaborne logistics while US inland production remains relatively isolated.
