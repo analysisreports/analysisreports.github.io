@@ -8,154 +8,153 @@
   },
   "structured_content_analysis": {
     "focus_areas": [
-      "string (Örn: Para Politikası, Enflasyon, Büyüme, Likidite, Cari Denge)"
+      ""
     ],
     "summary": {
-      "headline": "string (Olayı özetleyen analitik başlık)",
-      "one_sentence_summary": "string (Gelişmeyi özetleyen tek cümle)"
+      "headline": "",
+      "one_sentence_summary": ""
     },
     "5N1K_analysis": {
-      "headline": "string (Olayı özetleyen analitik başlık)",
-      "what": "string (Olayı tanımlayan ve açıklayan detay)",
-      "where": "string (Olayın gerçekleştiği coğrafi bölge veya alan)",
-      "when": "string (Metindeki zaman ifadesi veya tarih aralığı)",
-      "event_date": "string (Format: YYYY-MM-DD. Olayın gerçekleştiği somut tarih. Metinde kesin gün yoksa haber tarihi veya YYYY-MM)",
-      "why": "string (Olayı tetikleyen nedenler ve motivasyonlar)",
-      "how": "string (Olayın nasıl gerçekleştiği ve etkisi)",
-      "who_entity_id": "string (Aktör kanonik kodu. Örn: INST_FED_US, GEO_TR, GOV_TREASURY_TR)",
-      "who": "string (Olaydaki somut kurumlar ve karar vericiler: Örn: FED, TCMB, Hazine)",
-      "heat": "number (0 ile 100 arası olay harareti / risk şiddeti)"
+      "headline": "",
+      "what": "",
+      "where": "",
+      "when": "",
+      "event_date": "",
+      "why": "",
+      "how": "",
+      "who_entity_id": null,
+      "who": "",
+      "heat": 0
     },
     "political_dynamics_assessment": {
       "discourse_and_narrative": {
-        "main_narrative": "string (Öne çıkarılan ana siyasi çerçeve: Beka, Geçim Sıkıntısı, Erken Seçim, Adalet)",
-        "tone_and_rhetoric": "string (Sert/Kutuplaştırıcı, Kucaklayıcı/Ilımlı, Savunmacı, İronik)",
-        "counter_argument_target": "string (Karşı tarafın hangi iddiasına/eleştirisine cevap üretildi?)",
-        "rhetoric_intensity_score": "number (0 ile 100 arası söylem sertlik puanı)"
+        "main_narrative": "",
+        "tone_and_rhetoric": "",
+        "counter_argument_target": "",
+        "rhetoric_intensity_score": 0
       },
       "power_and_alliance_balance": {
-        "alliance_cohesion": "string (İttifak içi uyum veya partiler arası dengelere etkisi)",
-        "electoral_base_dynamics": "string (Seçmen tabanındaki kenetlenme, çözülme veya kararsızlara etkisi)",
-        "institutional_friction": "string (Meclis dengeleri, bürokrasi veya yargı boyutundaki yankısı)",
-        "alliance_friction_score": "number (0 ile 100 arası ittifak/kurumsal sürtüşme puanı)"
+        "alliance_cohesion": "",
+        "electoral_base_dynamics": "",
+        "institutional_friction": "",
+        "alliance_friction_score": 0
       },
-      "composite_tension_score": "number (0 ile 100 arası genel siyasi gerilim/kutuplaşma skoru)",
-      "severity_level": "string (Değerler: CRITICAL | HIGH | MODERATE | LOW)"
+      "composite_tension_score": 0,
+      "severity_level": "MODERATE"
     },
     "country_strategic_assessment": {
-      "country_entity_id": "string (Stratejik değerlendirmesi yapılan ana ülkenin kanonik kodu. Örn: GEO_YE, GEO_TR)",
-      "country_name": "string (Stratejik değerlendirmesi yapılan ana ülke. Örn: Yemen)",
-      "country_code": "string (ISO2 veya ISO3 kodu. Örn: YE veya YEM)",
+      "country_entity_id": null,
+      "country_name": "",
+      "country_code": "",
       "internal_political_dynamics": {
-        "leadership_and_regime_stability": "string (Liderlik gücü, iç siyasi istikrar ve iktidar dengesi. Bölünmüş ülkelerde de facto ve meşru yönetimlerin güç durumu)",
-        "institutional_power_balance": "string (Ordu, bürokrasi, kabileler ve de facto otoriteler arası kurumsal güç dengesi)",
-        "opposition_and_social_cohesion": "string (Toplumsal dayanışma, muhalefet baskısı ve iç kutuplaşma düzeyi)",
-        "severity_score": "number (0 ile 100 arası iç siyasi risk/istikrarsızlık puanı)"
+        "leadership_and_regime_stability": "",
+        "institutional_power_balance": "",
+        "opposition_and_social_cohesion": "",
+        "severity_score": 0
       },
       "security_and_defense_posture": {
-        "military_doctrine": "string (Savunma doktrini, caydırıcılık stratejisi ve angajman kuralları)",
-        "force_capacity_and_readiness": "string (Askeri kapasite, mühimmat/envanter durumu ve harbe hazırlık seviyesi)",
-        "critical_frontline_status": "string (Sıcak çatışma hatları, sınır güvenliği veya kritik savunma bölgeleri)",
-        "severity_score": "number (0 ile 100 arası askeri gerilim / harbe hazırlık baskı puanı)"
+        "military_doctrine": "",
+        "force_capacity_and_readiness": "",
+        "critical_frontline_status": "",
+        "severity_score": 0
       },
       "geopolitical_alignment": {
-        "bloc_alignment": "string (Kutupsal dizilim: NATO, Batı Bloku, Doğu/Avrasya İttifakı, Bağlantısız)",
-        "strategic_dependencies": "string (Enerji, askeri teknoloji veya ekonomik alandaki kritik dış bağımlılıklar)",
-        "regional_influence_and_rivalries": "string (Bölgesel nüfuz alanı ve çevre ülkelerle stratejik rekabet)",
-        "severity_score": "number (0 ile 100 arası jeopolitik kutuplaşma / bağımlılık riski puanı)"
+        "bloc_alignment": "",
+        "strategic_dependencies": "",
+        "regional_influence_and_rivalries": "",
+        "severity_score": 0
       },
       "strategic_vulnerabilities": {
-        "sanctions_and_economic_warfare": "string (Uluslararası yaptırımlar, ambargolar ve ekonomik savaş riskleri)",
-        "critical_infrastructure_risk": "string (Enerji hatları, limanlar, siber ağlar ve kritik tesis riskleri)",
-        "demographic_and_humanitarian_pressure": "string (Göç, mülteci baskısı, nüfus krizi ve insani kriz boyutları)",
-        "severity_score": "number (0 ile 100 arası yaptırım, ambargo ve altyapı kırılganlık puanı)"
+        "sanctions_and_economic_warfare": "",
+        "critical_infrastructure_risk": "",
+        "demographic_and_humanitarian_pressure": "",
+        "severity_score": 0
       },
-      "resilience_score": "number (0 ile 100 arası ülkenin yaptırım, kriz ve şoklara karşı kurumsal/ekonomik dayanıklılık kapasitesi)",
-      "composite_strategic_score": "number (0 ile 100 arası ağırlıklı nihai bileşik ülke risk skoru)",
-      "severity_level": "string (Değerler: CRITICAL | HIGH | MODERATE | LOW)"
+      "resilience_score": 50,
+      "composite_strategic_score": 50,
+      "severity_level": "MODERATE"
     },
-
     "actors_and_dynamics": {
       "key_players": [
         {
-          "entity_id": "string (Kanonik varlık kodu. Örn: INST_FED_US, GEO_US)",
-          "name": "string (Somut kurum, lider veya yetkili adı. Örn: FED, Jerome Powell, TCMB, Fatih Karahan)",
-          "affiliation": "string (Kurumsal veya sektörel kimliği. Örn: ABD Merkez Bankası, Hazine Bakanlığı, Bankacılık Sektörü)",
-          "role_in_event": "string (Olaydaki fonksiyonu. Örn: Karar Verici, Piyasa Yapıcı, Düzenleyici, Etkilenen)",
-          "influence_score": "number (0 ile 100 arası aktörün bu olaydaki karar verici ağırlığı / yönlendirme gücü)"
+          "entity_id": null,
+          "name": "",
+          "affiliation": "",
+          "role_in_event": "",
+          "influence_score": 0
         }
       ],
       "relationship_map": [
         {
-          "source_entity_id": "string (Kaynak varlık kanonik kodu. Örn: INST_FED_US, GEO_US)",
-          "source": "string (Eylemi başlatan veya kararı alan somut kurum/aktör. Örn: FED, TCMB, Hazine)",
-          "relation": "string (İlişki veya eylem türü: Sanction, Protectionism, Integration, Dependency, Stabilization, Monetary Tightening, Liquidity Injection)",
-          "target_entity_id": "string (Hedef varlık kanonik kodu. Örn: SEC_BANKING_SECTOR)",
-          "target": "string (Kararın doğrudan etki ettiği somut muhatap/sektör. Örn: Bankacılık Sektörü, Tahvil Piyasası, Reel Sektör)",
+          "source_entity_id": null,
+          "source": "",
+          "relation": "",
+          "target_entity_id": null,
+          "target": "",
           "directed": true,
-          "severity": "string (Değerler: CRITICAL | HIGH | MODERATE | LOW | COOLING)",
-          "polarity": "number (-1.0 ile +1.0 arası sayısal kutup)",
-          "heat": "number (0 ile 100 arası sayısal hararet)"
+          "severity": "MODERATE",
+          "polarity": 0.0,
+          "heat": 0
         }
       ]
     },
     "core_analysis": {
-      "central_conflict_or_goal": "string (Örn: Enflasyonla Mücadele, Likidite Yönetimi, Rezerv Güçlendirme, Büyüme Hedefi)",
-      "strategic_implication": "string (Örn: Kısa ve orta vadeli ekonomik sonuç ve stratejik yansıma)",
-      "underlying_message": "string (Örn: Satır arası / Verilmek istenen asıl örtük mesaj ve piyasa sinyali)",
-      "market_dynamics": "string (Tahvil getirileri, hisse senedi, kur, likidite ve emtia piyasası tepkileri)",
+      "central_conflict_or_goal": "",
+      "strategic_implication": "",
+      "underlying_message": "",
+      "market_dynamics": "",
       "transmission_and_micro_impact": {
         "affected_domains": [
-          "string (Etkilenen alanlar: Şirket Kârlılığı, Krediler, Hanehalkı, Yatırımlar, Bütçe vb.)"
+          ""
         ],
-        "impact_mechanism": "string (Maliyet/faiz artışının nihai sektöre ve hedefe nasıl yansıdığının özeti)",
-        "pressure_severity": "string (Değerler: CRITICAL | HIGH | MODERATE | LOW)"
+        "impact_mechanism": "",
+        "pressure_severity": "MODERATE"
       },
-      "geopolitical_factors": "string (Savaşlar, jeopolitik krizler, ambargolar ve bölgesel gerilimlerin etkisi)",
-      "conflict_heat": "number (0 ile 100 arası sayısal çatışma harareti)",
-      "market_impact_direction": "string (Değerler: RISK_ON | RISK_OFF | NEUTRAL)",
-      "market_impact_score": "number (0 ile 100 arası olayın piyasalar üzerinde yaratacağı sarsıntı ve oynaklık şiddeti)",
+      "geopolitical_factors": "",
+      "conflict_heat": 0,
+      "market_impact_direction": "NEUTRAL",
+      "market_impact_score": 0,
       "key_quotes": [
         {
-          "speaker_entity_id": "string (Konuşmacı kanonik kodu. Örn: INST_FED_US, GEO_US)",
-          "speaker": "string (Açıklamayı yapan lider, kurum veya sözcü)",
-          "quote": "string (Kritik doğrudan alıntı ve piyasa etkisi)",
-          "significance_level": "string (Değerler: HIGH | MEDIUM | LOW)",
-          "significance_analysis": "string (Alıntının stratejik, diplomatik veya piyasa açısından arka plan analizi)"
+          "speaker_entity_id": null,
+          "speaker": "",
+          "quote": "",
+          "significance_level": "MEDIUM",
+          "significance_analysis": ""
         }
       ]
     },
     "future_outlook": {
       "strategic_actions": [
         {
-          "action_type": "string (Politika Değişikliği, Likidite Adımı, Maliyet Yönetimi, Korunma/Hedging, Regülasyon)",
-          "description": "string (Alınması gereken veya metinde önerilen somut ekonomik aksiyon)",
+          "action_type": "",
+          "description": "",
           "target_stakeholder": {
-            "entity_id": "string (Stakeholder kanonik kodu. Örn: INST_FED_US, GOV_TREASURY_TR)",
-            "entity_name": "string (Aksiyonu alacak net aktör/kurum. Örn: Para Politikası Kurulu, Hazine, Reel Sektör Şirketleri)",
-            "jurisdiction_or_sector": "string (Bağlı olduğu alan veya sektör. Örn: Türkiye / Bankacılık, ABD / Reel Sektör)"
+            "entity_id": null,
+            "entity_name": "",
+            "jurisdiction_or_sector": ""
           }
         }
       ],
       "potential_consequences": {
-        "short_term": "string (Beklenen olası piyasa/likidite yansıması ve 180 günlüğe kadar vadede karşı hamleler)",
-        "short_term_days": "number (1 ile 180 arası gün sayısı)",
-        "long_term": "string (Enflasyon, büyüme ve makro dengeler üzerindeki 365 günlüğe kadar kalıcı etki)",
-        "long_term_days": "number (181 ile 365 arası gün sayısı)"
+        "short_term": "",
+        "short_term_days": 30,
+        "long_term": "",
+        "long_term_days": 365
       },
-      "next_key_event": "string (Beklenen bir sonraki faiz kararı, veri açıklaması, resmi rapor veya toplantı. Metinde yoksa null)",
-      "target_date": "string (Format: YYYY-MM. Örn: 2026-10. Metinde kesinleşmiş tarih yoksa null)",
-      "status": "string (Değerler: ACTIVE | REALIZED | EXPIRED. Varsayılan: ACTIVE)",
-      "probability": "string (Değerler: Low | Medium | High)",
-      "probability_percent": "number (0 ile 100 arası sayısal olasılık)",
-      "impact": "string (Değerler: Low | Moderate | Severe)",
-      "impact_score": "number (0 ile 100 arası sayısal etki puanı)",
-      "direction": "string (Değerler: Risk | Opportunity | Neutral)",
-      "confidence_score": "number (0 ile 100 arası sayısal güven puanı)"
+      "next_key_event": null,
+      "target_date": null,
+      "status": "ACTIVE",
+      "probability": "Medium",
+      "probability_percent": 50,
+      "impact": "Moderate",
+      "impact_score": 50,
+      "direction": "Neutral",
+      "confidence_score": 80
     },
     "categorization": {
       "tags": [
-        "string (Örn: Enflasyon, Faiz Kararı, Rezervler, Likidite, Büyüme)"
+        ""
       ]
     },
     "metadata": {
