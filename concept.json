@@ -7,35 +7,35 @@
     "provenance": "Analysis Reports Research Archive"
   },
   "structured_content_analysis": {
-    "term_entity_id": "string (Kavramın, doktrinin veya indikatörün kanonik kodu. Örn: IND_EMA, CONCEPT_STAGFLATION. Detaylar için llms-entities-id.txt referans alınır)",
-    "term": "string (Kavramın, doktrinin veya indikatörün tam adı. Örn: EMA İndikatörü, Stagflasyon, Gerrymandering)",
-    "domain": "string (Uzmanlık alanı. Örn: Finans/Teknik Analiz, Makroekonomi, Siyaset Bilimi, Hukuk)",
-    "short_definition": "string (Herkesin anlayacağı dilde 1-2 cümlelik net ve vurucu özet tanım)",
-    "detailed_explanation": "string (Kavramın mantığı, arka planı, teknik detayları ve ne amaçla kullanıldığı)",
+    "term_entity_id": null,
+    "term": "",
+    "domain": "",
+    "short_definition": "",
+    "detailed_explanation": "",
     "step_by_step_process": [
-      "string (Nasıl işler / aşamaları veya hesaplama sırası nelerdir? Madde madde: 1. Adım..., 2. Adım...)"
+      ""
     ],
     "key_rules_and_metrics": [
-      "string (Kritik kurallar, formüller, eşik değerler ve parametreler. Örn: 270 delege, 50/200 kesişimi, %50+1)"
+      ""
     ],
     "causes_and_triggers": [
-      "string (Bu durumu veya ihtiyacı ne ortaya çıkarır / tetikler? Madde madde)"
+      ""
     ],
-    "origin_and_key_figures": "string (Kavramın tarihsel kökeni, ilk ne zaman çıktığı ve geliştiren kişi, düşünür veya kurumlar)",
+    "origin_and_key_figures": "",
     "real_world_examples": [
-      "string (Tarihten veya günümüzden somut vaka, piyasa veya olay örnekleri)"
+      ""
     ],
-    "common_mistakes": "string (Bu kavram hakkında toplumda veya kullanıcılarda en çok yanlış bilinen, karıştırılan kritik nokta)",
+    "common_mistakes": "",
     "related_term_entity_ids": [
-      "string (İlişkili kavramların kanonik kodları. Örn: IND_SMA, IND_RSI, CONCEPT_RECESSION. Yoksa null)"
+      null
     ],
     "related_terms": [
-      "string (İlişkili, tamamlayıcı veya zıt diğer kavram ve terimler. Örn: SMA, RSI, Golden Cross)"
+      ""
     ],
-    "core_analysis": "string (Kavramın stratejik önemi, avantaj/dezavantajları, püf noktası ve analitik değerlendirmesi)",
+    "core_analysis": "",
     "categorization": {
       "tags": [
-        "string (Arama ve filtreleme etiketleri)"
+        ""
       ]
     },
     "metadata": {
