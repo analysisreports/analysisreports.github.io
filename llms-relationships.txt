@@ -73,9 +73,11 @@ Regime States (Discrete Mapping):
    - Transmission Series: DCOILWTICO, GOLDAMGBD228NLBM, VIXCLS
 
 2.2.2. SA - IR (Kingdom of Saudi Arabia vs. Islamic Republic of Iran)
-   - Baseline Polarity (P_baseline): -0.35
-   - Structural Regime: MANAGED_FRICTION / STRATEGIC_DIVERGENCE
-   - Volatility Vulnerability: YEMEN_BUFFER_ZONE, PERSIAN_GULF_SHIPPING, REGIONAL_PROXY_RECALIBRATION
+   - Baseline Polarity (P_baseline): -0.50 [Downgraded - Polarity negatively pressured due to Houthi ballistic escalation and reciprocal military retaliations]
+   - Structural Regime: MANAGED_FRICTION / COLD_DETENTE [Hybrid State - Diplomatic channels remain open but asymmetric conflict persists]
+   - Primary Friction Nodes: BAB_EL_MANDEB_SHIPPING, RIYADH_AERO_LOGISTICS, RED_SEA_CHOKEPOINT
+   - Asymmetric Threat Vector: Houthi ballistic escalation vs. Saudi airspace neutrality guarantees
+   - Transmission Series: DCOILWTICO, GSCPI, RSAFS, VIXCLS
 
 2.2.3. US - IL (United States - Israel)
    - Baseline Polarity (P_baseline): +0.90
@@ -91,7 +93,8 @@ Regime States (Discrete Mapping):
 2.3.2. RU - EU Core
    - Baseline Polarity (P_baseline): -0.80
    - Structural Regime: ECONOMIC_WARFARE / COLD_STANDOFF
-   - Decoupling Axis: Nord Stream cessation, LNG substitution, Russian asset seizure
+   - Decoupling Axis: Permanent Nord Stream legacy baseline, ongoing LNG substitution, frozen Russian asset liquidation friction, and the 2027 complete Russian pipeline gas phase-out execution.
+   - Dynamic Risk Delta: Shifting from past infrastructure shocks to active regulatory/sanction enforcement friction, specifically tracking the definitive termination of remaining transit routes and the prevention of U.S./Russia-led backdoor pipeline revival attempts.
 
 ### 2.4. Strategic Pivot States & Geoeconomic Bridges (Independent Balancers)
 2.4.1. TR (Republic of Türkiye)
@@ -105,9 +108,9 @@ Regime States (Discrete Mapping):
    - Baseline with CN: -0.40 (Border friction in Himalayas, manufacturing competition)
 
 2.4.3. SA & AE (Gulf Monarchies)
-   - Baseline with US: +0.55 (Security guarantor, petrodollar recalibration)
-   - Baseline with CN: +0.50 (Primary hydrocarbon buyer, infrastructure integration)
-   - Coordination Axis: OPEC+ quota alliance with Russia
+   - Baseline with US: +0.40 (Security guarantor role intact, but structurally damaged by the official expiration of the 50-year Petrodollar exclusivity agreement)
+   - Baseline with CN: +0.55 (Primary hydrocarbon buyer, expanded via local currency swaps, but legacy systemic ties maintained after SA's official exit from the mBridge CBDC platform)
+   - Coordination Axis: Independent "Petro-Multi-Currency" oil pricing architecture, OPEC+ compliance with Russia, and non-aligned bilateral trade settlement balancing
 
 ### 2.5. East Asian & Indo-Pacific Standoff (Kore Yarımadası ve Pasifik Hattı)
 2.5.1. US / JP / KR - KP (Trilateral Alliance vs. Democratic People's Republic of Korea)
@@ -191,7 +194,7 @@ Regime States (Discrete Mapping):
    - Asymmetric Tools: Precision guided munitions, rocket artillery
    - Primary Market Transmission: Crude risk premiums, Safe-haven flight (Gold/Treasuries)
 
-3. RU-AFRICA (Wagner / Africa Corps)
+3. RU-AFRICA (Africa Corps)
    - Primary Patron: RU (Coupling Factor: 0.95)
    - Operative Theater: Sahel (Mali, Burkina Faso, Niger), Central African Republic, Sudan
    - Asymmetric Tools: Regime security, Critical mineral extraction (Gold, Uranium)
@@ -238,10 +241,12 @@ Regime States (Discrete Mapping):
 
 4.5. SUWALKI_GAP
    - Location: Poland - Lithuania border (Between Belarus and Kaliningrad)
-   - Geopolitical Risk: Direct NATO-Russia land corridor kinetic friction
-   - Disruption Effect: European financial flight, EUR/USD collapse, DGS10 flight to safety
-   - Direct Macro Indicators Triggered: DEXUSEU, DGS10, VIXCLS
-   - Disruption Severity: CATASTROPHIC
+   - Geopolitical Risk: Direct NATO-Russia land corridor kinetic friction (Triggering NATO Article 5)
+   - Tactical Shift: Post-2024 NATO enlargement (Finland & Sweden) turned Baltic Sea into a "NATO Lake," reducing absolute logistical isolation.
+   - Disruption Severity: CATASTROPHIC (Symptom over Logistics)
+     - Rationale: While tactical tactical weights have eased, any kinetic spark remains a direct detonator for WW3, maintaining absolute systemic fallout.
+   - Disruption Effect: European financial flight, EUR/USD collapse (below parity), DGS10 flight to safety, global liquidity freeze
+   - Direct Macro Indicators Triggered: DEXUSEU (Crash), DGS10 (Vertical Drop), VIXCLS (Historical Peak 50-80+)
 
 4.6. TAIWAN_STRAIT
    - Location: 24°00'N 119°00'E
