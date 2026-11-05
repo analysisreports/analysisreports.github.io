@@ -73,9 +73,9 @@ Regime States (Discrete Mapping):
    - Transmission Series: DCOILWTICO, GOLDAMGBD228NLBM, VIXCLS
 
 2.2.2. SA - IR (Kingdom of Saudi Arabia vs. Islamic Republic of Iran)
-   - Baseline Polarity (P_baseline): -0.20
-   - Structural Regime: DIPLOMATIC_CONTACT (Post-2023 Beijing Accord)
-   - Volatility Vulnerability: YEMEN_BORDER, PERSIAN_GULF_SHIPPING
+   - Baseline Polarity (P_baseline): -0.35
+   - Structural Regime: MANAGED_FRICTION / STRATEGIC_DIVERGENCE
+   - Volatility Vulnerability: YEMEN_BUFFER_ZONE, PERSIAN_GULF_SHIPPING, REGIONAL_PROXY_RECALIBRATION
 
 2.2.3. US - IL (United States - Israel)
    - Baseline Polarity (P_baseline): +0.90
@@ -120,15 +120,23 @@ Regime States (Discrete Mapping):
    - Transmission Series: DEXKOUS, DEXJPUS, SOX, VIXCLS
 
 ### 2.6. Geoeconomic Dedollarization Blocs (mBridge ve Çok Kutuplu Takas Ekseni)
-2.6.1. BRICS_MBRIDGE - G7 / USD CLEARING (Sovereign Alternative Settlement Axis)
+2.6.1. BRICS_MBRIDGE_CONSORTIUM - SOVEREIGN CBDC SETTLEMENT AXIS
    - Baseline Polarity (P_baseline): -0.70
    - Structural Regime: MONETARY_DECOUPLING / MULTI-CURRENCY_SETTLEMENT
-   - Core Architectural Nodes: BIS Innovation Hub mBridge (Transitioned to Central Bank Consortium), CIPS (China - 1,865 members across 180+ countries, ~$25.5T annual clearing volume as of 2026), SPFS (Russia), Bilateral Local Currency/CBDC Settlement
-   - Member Exposure: CN, HK, TH, AE, MN, MO (Full Steering Committee Members); Observer Engagement: TR, US (NY Fed), ID, KR, FR, IT (Multi-vector balancing actor)
+   - Core Architectural Nodes: BIS Innovation Hub mBridge (Transitioned to Sovereign Central Bank Consortium), Bilateral Local Currency and CBDC Settlement Protocols
+   - Member Exposure: CN, HK, TH, AE, MN, MO (Full Steering Committee Members); Observer/Balancing: TR, ID, KR, FR, IT, US (NY Fed)
    - Primary Friction Nodes: SWIFT_ALTERNATIVE, PETRODOLLAR_EROSION, OFAC_SDN_BYPASS
    - Economic Coupling to USD: 0.40 (High physical trade integration, declining USD clearing share)
    - Macro Spillover Bridge: Erosion in reserve currency demand, structural surge in central bank gold accumulation, spike in US Treasury term premium (ACM)
-   - Transmission Series: DFII10, GOLDPMGBD228NLBM, DTWEXBGS, DCOILWTICO, THREEFYTP10
+   - Transmission Series: DFII10, GOLDPMGBD228NLBM, DTWEXBGS, THREEFYTP10
+
+2.6.2. CIPS_CROSS_BORDER_CLEARING - INTERNATIONAL PAYMENT NETWORK
+   - Baseline Polarity (P_baseline): -0.65
+   - Structural Regime: PARALLEL_FINANCIAL_INFRASTRUCTURE
+   - Core Architectural Nodes: CIPS (Cross-Border Interbank Payment System - China, 1,900+ global financial institution members across 180+ countries, ~$25.5T annual clearing volume as of 2026)
+   - Primary Friction Nodes: WESTERN_CORRESPONDENT_BANKING_BYPASS, SANCTIONS_RESILIENT_MESSAGING
+   - Economic Coupling to USD: 0.50 (Direct interface with emerging market trade finance)
+   - Transmission Series: DTWEXBGS, SOFR, EFFR
 
 ### 2.7. Eurasian Integration & Caspian Transit Blocs (C6 İstişare Formatı)
 2.7.1. C6_CONSULTATIVE - TR / RU / CN (Central Asia & Azerbaijan Strategic Alignment Axis)
