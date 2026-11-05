@@ -123,8 +123,8 @@ Regime States (Discrete Mapping):
 2.6.1. BRICS_MBRIDGE - G7 / USD CLEARING (Sovereign Alternative Settlement Axis)
    - Baseline Polarity (P_baseline): -0.70
    - Structural Regime: MONETARY_DECOUPLING / MULTI-CURRENCY_SETTLEMENT
-   - Core Architectural Nodes: BIS Innovation Hub mBridge, CIPS (China), SPFS (Russia), Bilateral Local Currency/CBDC Settlement
-   - Member Exposure: CN, RU, AE, IR, IN (Multi-vector balancing actor; SA transitioned to discreet/observer engagement post-2026)
+   - Core Architectural Nodes: BIS Innovation Hub mBridge (Transitioned to Central Bank Consortium), CIPS (China), SPFS (Russia), Bilateral Local Currency/CBDC Settlement
+   - Member Exposure: CN, HK, TH, AE, MN, MO (Full Steering Committee Members); Observer Engagement: TR, US (NY Fed), ID, KR, FR, IT (Multi-vector balancing actor)
    - Primary Friction Nodes: SWIFT_ALTERNATIVE, PETRODOLLAR_EROSION, OFAC_SDN_BYPASS
    - Economic Coupling to USD: 0.40 (High physical trade integration, declining USD clearing share)
    - Macro Spillover Bridge: Erosion in reserve currency demand, structural surge in central bank gold accumulation, spike in US Treasury term premium (ACM)
