@@ -194,11 +194,15 @@ Regime States (Discrete Mapping):
    - Asymmetric Tools: Precision guided munitions, rocket artillery
    - Primary Market Transmission: Crude risk premiums, Safe-haven flight (Gold/Treasuries)
 
-3. RU-AFRICA (Africa Corps)
-   - Primary Patron: RU (Coupling Factor: 0.95)
-   - Operative Theater: Sahel (Mali, Burkina Faso, Niger), Central African Republic, Sudan
-   - Asymmetric Tools: Regime security, Critical mineral extraction (Gold, Uranium)
-   - Geopolitical Target: Displacing Western/French influence
+3. RU_AFRICA - AFRICA CORPS EXPEDITIONARY FRAMEWORK
+   - Parent Command Architecture: Russian Federation Ministry of Defense (MoD) / Main Directorate of the General Staff (GRU)
+   - Coupling Factor (Patron Subordination): 1.00 [State-integrated command, replacing Wagner's legacy private autonomy]
+   - Primary Operational Hubs: Libya (Brak al-Shati & Al-Jufra Airbases - Strategic Logistical Spine), Central African Republic (CAR)
+   - Operative Theater: Alliance of Sahel States (Mali, Burkina Faso, Niger), Sudan (Red Sea Naval Access Axis)
+   - Asymmetric Tools: Airborne regime security stabilization, tactical mineral extraction concessions tracking, anti-Western information operations, and cross-border logistics escort
+   - Geopolitical Target: Absolute displacement of G7/French geopolitical dominance, secure parallel commodity clearing flows, and strategic denial of Western mining concessions
+   - Primary Market Transmission: Central bank gold accumulation velocity, uranium spot market structural volatility, and trans-continental maritime logistics risk premium
+   - Transmission Series: GOLDPMGBD228NLBM, GSCPI, VIXCLS
 
 4. SY-SDF (Syrian Democratic Forces / YPG)
    - Primary Patron: US (Coupling Factor: 0.70)
