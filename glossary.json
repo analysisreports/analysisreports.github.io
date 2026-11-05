@@ -7,61 +7,61 @@
     "provenance": "Analysis Reports Research Archive"
   },
   "structured_content_analysis": {
-    "briefing_title": "string (Raporun, brifingin veya rehberin tam başlığı. Örn: 2026 ABD Temsilciler Meclisi Seçimleri Gazeteci Rehberi)",
-    "domain": "string (Değerler: Macroeconomics and Monetary Policy | Geopolitics and International Security | Political Science and Electoral Analytics | Geoeconomics and Global Trade | Defense Doctrine and Military Technology | Pension Systems and Wealth Management)",
-    "sub_domain": "string (Spesifik Alt Disiplin / Odak Alanı. Örn: Congressional Redistricting and Majority Dynamics)",
+    "briefing_title": "",
+    "domain": "",
+    "sub_domain": "",
     "executive_summary": [
-      "string (Yönetici özeti / Metindeki en kritik stratejik tespitler ve ana bulgular. Madde madde)"
+      ""
     ],
     "core_mechanisms_and_concepts": [
       {
-        "concept_name": "string (Raporun temelini oluşturan kilit kavram, kural veya mekanizma adı. Örn: Çapraz Koltuklar, 218 Eşiği, Gerrymandering, Faiz Koridoru)",
-        "explanation": "string (Bu kavramın veya mekanizmanın bu brifing bağlamındaki rolü, işleyişi ve önemi)"
+        "concept_name": "",
+        "explanation": ""
       }
     ],
     "quantitative_metrics_and_data": [
       {
-        "metric_category": "string (Metrik veya tablo grubu. Örn: Meclis Dağılımı, Genel Anketler, Faiz Oranları, Tonaj Limitleri)",
+        "metric_category": "",
         "parameters": [
           {
-            "series_entity_id": "string (Kanonik gösterge veya parametre kodu. Örn: IND_FEDFUNDS, IND_UNRATE, MKT_NYSE. Yoksa null)",
-            "name": "string (Gösterge veya parametre adı. Örn: Cumhuriyetçi, Demokrat, Çoğunluk Eşiği)",
-            "value": "string (Sayısal veya metinsel değeri. Örn: 218 Sandalye, %51.1, +%8.7)"
+            "series_entity_id": null,
+            "name": "",
+            "value": ""
           }
         ],
-        "analytical_note": "string (Bu sayısal tablonun veya metriğin ortaya koyduğu stratejik anlam)"
+        "analytical_note": ""
       }
     ],
     "breakdown_and_case_dynamics": [
       {
-        "unit_or_subject_entity_id": "string (İncelenen alt birim, eyalet, sektör veya vakanın kanonik kodu. Örn: GEO_US, SEC_BANKING_SECTOR, REG_RF_VOLGA_SIBERIAN. Yoksa null)",
-        "unit_or_subject": "string (İncelenen alt birim, eyalet, sektör veya vaka adı. Örn: Texas, California, 1973 Petrol Krizi, Bankacılık Sektörü)",
-        "status_or_change": "string (Bu birimde gerçekleşen somut gelişme, kural değişimi veya durum)",
-        "impact_or_outcome": "string (Bu gelişmenin genel dengeye, çoğunluğa veya sonuca yarattığı net etki)"
+        "unit_or_subject_entity_id": null,
+        "unit_or_subject": "",
+        "status_or_change": "",
+        "impact_or_outcome": ""
       }
     ],
     "key_actors_and_roles": [
       {
-        "entity_id": "string (Kilit lider, kurum, mahkeme veya aktör kanonik kodu. Örn: INST_FED_US, GOV_TREASURY_US, REG_AGENCY_SEC_US. Yoksa null)",
-        "name": "string (Kilit lider, kurum, mahkeme veya aktör adı)",
-        "role_or_action": "string (Rapor konusu içindeki karar alıcı pozisyonu, hamlesi veya etkisi)"
+        "entity_id": null,
+        "name": "",
+        "role_or_action": ""
       }
     ],
     "expert_guidance_and_takeaways": [
-      "string (Gazeteciler, analistler veya karar alıcılar için kritik takip noktaları, dikkat edilmesi gereken tuzaklar ve stratejik çıkarımlar. Madde madde)"
+      ""
     ],
     "future_outlook_and_scenarios": [
       {
-        "event_or_timeline": "string (Takip edilecek sonraki kritik tarih, seçim, karar veya dönüm noktası. Örn: 3 Kasım 2026, PPK Toplantısı)",
-        "potential_risk_or_outcome": "string (Beklenen olası sonuç, senaryo veya risk faktörü)"
+        "event_or_timeline": "",
+        "potential_risk_or_outcome": ""
       }
     ],
-    "core_analysis": "string (Brifingin bütününe dair derin stratejik sentez; güç dengeleri, yapısal avantaj/dezavantajlar ve nihai analitik değerlendirme)",
+    "core_analysis": "",
     "tags": [
-      "string (Kütüphanede hızlı arama, dosyalama ve etiketleme için anahtar kelimeler)"
+      ""
     ],
     "metadata": {
-      "analyst": "Ersoy Toptaş",
+      "analyst": "Ersoy Toptas",
       "methodology": "https://analysisreports.github.io/llms.txt",
       "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
       "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
