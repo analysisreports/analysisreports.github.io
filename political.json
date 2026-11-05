@@ -8,124 +8,124 @@
   },
   "structured_content_analysis": {
     "focus_areas": [
-      "string (Örn: İttifak Dengeleri, TBMM Gündemi, Seçim Stratejisi, Lider Polemiği)"
+      ""
     ],
     "summary": {
-      "headline": "string (Olayı özetleyen analitik başlık)",
-      "one_sentence_summary": "string (Gelişmeyi özetleyen tek cümle)"
+      "headline": "",
+      "one_sentence_summary": ""
     },
     "5N1K_analysis": {
-      "headline": "string (Olayı özetleyen 5N1K odaklı çarpıcı başlık)",
-      "what": "string (Hangi siyasi olay veya açıklama gerçekleşti?)",
-      "where": "string (TBMM, Miting, TV Yayını, Parti Genel Merkezi, Sosyal Medya)",
-      "when": "string (Metindeki zaman ifadesi veya tarih aralığı)",
-      "event_date": "string (Format: YYYY-MM-DD. Olayın gerçekleştiği somut tarih. Metinde kesin gün yoksa haber tarihi veya YYYY-MM)",
-      "why": "string (Bu çıkış hangi siyasi amaç ve gerekçeyle yapıldı?)",
-      "how": "string (Hangi üslup ve tonla sunuldu?)",
-      "who_entity_id": "string (Somut kurum, parti veya lider kanonik kodu. Örn: GEO_TR, GOV_TREASURY_TR, INST_FED_US. Detaylar için llms-entities-id.txt referans alınır)",
-      "who": "string (Siyasi olaya dahil olan somut partiler, liderler ve kurumlar. Örn: Recep Tayyip Erdoğan, Özgür Özel, TBMM)",
-      "heat": "number (0 ile 100 arası olay harareti / risk şiddeti)"
+      "headline": "",
+      "what": "",
+      "where": "",
+      "when": "",
+      "event_date": "",
+      "why": "",
+      "how": "",
+      "who_entity_id": null,
+      "who": "",
+      "heat": 0
     },
     "geopolitical_state_vector": {
-      "actor_pair_entity_id": "string (Analiz edilen aktör ikilisi kanonik kodları. Örn: GEO_TR-GEO_US, GOV_TREASURY_TR-GOV_TREASURY_US. Yoksa null)",
-      "actor_pair": "string (Analiz edilen siyasi/stratejik aktör ikilisi, Örn: AKP-CHP, IKTIDAR-MUHALEFET, US-TR)",
-      "regime_state": "string (Değerler: ALLIANCE | DETENTE | DIPLOMATIC_CONTACT | PROXY_WAR | KINETIC_WAR)",
-      "dynamic_delta": "number (-2.0 ile +2.0 arası dinamik gerilim sapması)",
+      "actor_pair_entity_id": null,
+      "actor_pair": "",
+      "regime_state": "DIPLOMATIC_CONTACT",
+      "dynamic_delta": 0.0,
       "active_friction_nodes_entity_id": [
-        "string (Sürtüşme alanları kanonik kodları, örn: REG_RF_CAUCASUS_ARC, CHOKE_HORMUZ. Yoksa null)"
+        null
       ],
       "active_friction_nodes": [
-        "string (Sürtüşme alanları, örn: YARGI_PAKETI, SECIM_KANUNU, BUTCE)"
+        ""
       ],
-      "effective_date": "string (Format: YYYY-MM-DD)"
+      "effective_date": ""
     },
     "political_dynamics_assessment": {
       "discourse_and_narrative": {
-        "main_narrative": "string (Öne çıkarılan ana siyasi çerçeve: Beka, Geçim Sıkıntısı, Erken Seçim, Adalet)",
-        "tone_and_rhetoric": "string (Sert/Kutuplaştırıcı, Kucaklayıcı/Ilımlı, Savunmacı, İronik)",
-        "counter_argument_target": "string (Karşı tarafın hangi iddiasına/eleştirisine cevap üretildi?)",
-        "rhetoric_intensity_score": "number (0 ile 100 arası söylem sertlik puanı)"
+        "main_narrative": "",
+        "tone_and_rhetoric": "",
+        "counter_argument_target": "",
+        "rhetoric_intensity_score": 0
       },
       "power_and_alliance_balance": {
-        "alliance_cohesion": "string (İttifak içi uyum veya partiler arası dengelere etkisi)",
-        "electoral_base_dynamics": "string (Seçmen tabanındaki kenetlenme, çözülme veya kararsızlara etkisi)",
-        "institutional_friction": "string (Meclis dengeleri, bürokrasi veya yargı boyutundaki yankısı)",
-        "alliance_friction_score": "number (0 ile 100 arası ittifak/kurumsal sürtüşme puanı)"
+        "alliance_cohesion": "",
+        "electoral_base_dynamics": "",
+        "institutional_friction": "",
+        "alliance_friction_score": 0
       },
-      "composite_tension_score": "number (0 ile 100 arası genel siyasi gerilim/kutuplaşma skoru)",
-      "severity_level": "string (Değerler: CRITICAL | HIGH | MODERATE | LOW)"
+      "composite_tension_score": 0,
+      "severity_level": "MODERATE"
     },
     "actors_and_dynamics": {
       "key_players": [
         {
-          "entity_id": "string (Kanonik varlık kodu. Örn: GEO_TR, GOV_TREASURY_TR. Detaylar için llms-entities-id.txt referans alınır)",
-          "name": "string (Somut siyasi lider veya yetkili adı. Örn: Özgür Özel, Devlet Bahçeli, Recep Tayyip Erdoğan)",
-          "affiliation": "string (Bağlı olduğu parti veya ittifak. Örn: CHP, AK Parti, MHP, DEM Parti)",
-          "role_in_event": "string (Lider, Sözcü, Eleştiren, Hedef Alınan)",
-          "influence_score": "number (0 ile 100 arası aktörün bu olaydaki karar verici ağırlığı / yönlendirme gücü)"
+          "entity_id": null,
+          "name": "",
+          "affiliation": "",
+          "role_in_event": "",
+          "influence_score": 0
         }
       ],
       "relationship_map": [
         {
-          "source_entity_id": "string (Kaynak varlık kanonik kodu. Örn: GEO_TR, GOV_TREASURY_TR. Detaylar için llms-entities-id.txt referans alınır)",
-          "source": "string (Eylemi, çıkışı veya siyasi hamleyi yapan somut aktör/parti. Örn: CHP, AK Parti, MHP)",
-          "relation": "string (Hostility, Alignment, Negotiation, Recognition, Polemic)",
-          "target_entity_id": "string (Hedef varlık kanonik kodu. Örn: GEO_US, INST_FED_US. Detaylar için llms-entities-id.txt referans alınır)",
-          "target": "string (Hedef alınan veya muhatap olan somut aktör/parti. Örn: Hükümet, İYİ Parti, Adalet Bakanlığı)",
+          "source_entity_id": null,
+          "source": "",
+          "relation": "",
+          "target_entity_id": null,
+          "target": "",
           "directed": true,
-          "severity": "string (Değerler: CRITICAL | HIGH | MODERATE | LOW | COOLING)",
-          "polarity": "number (-1.0 ile +1.0 arası sayısal kutup)",
-          "heat": "number (0 ile 100 arası sayısal hararet)"
+          "severity": "MODERATE",
+          "polarity": 0.0,
+          "heat": 0
         }
       ]
     },
     "core_analysis": {
-      "central_conflict_or_goal": "string (Siyasi mücadelenin veya çıkışın temel hedefi)",
-      "strategic_implication": "string (Kısa ve orta vadeli siyasi sonuç ve stratejik yansıma)",
-      "underlying_message": "string (Satır arası / Verilmek istenen asıl örtük mesaj)",
-      "market_dynamics": "string (Siyasi gerilimin borsa, kur ve CDS primleri üzerindeki piyasa etkisi)",
-      "conflict_heat": "number (0 ile 100 arası sayısal çatışma harareti)",
-      "market_impact_direction": "string (Değerler: RISK_ON | RISK_OFF | NEUTRAL)",
-      "market_impact_score": "number (0 ile 100 arası olayın piyasalar üzerinde yaratacağı sarsıntı ve oynaklık şiddeti)",
+      "central_conflict_or_goal": "",
+      "strategic_implication": "",
+      "underlying_message": "",
+      "market_dynamics": "",
+      "conflict_heat": 0,
+      "market_impact_direction": "NEUTRAL",
+      "market_impact_score": 0,
       "key_quotes": [
         {
-          "speaker_entity_id": "string (Konuşmacı/lider/kurum kanonik kodu. Detaylar için llms-entities-id.txt referans alınır)",
-          "speaker": "string (Açıklamayı yapan lider veya sözcü)",
-          "quote": "string (Kritik doğrudan alıntı)",
-          "significance_level": "string (Değerler: HIGH | MEDIUM | LOW)",
-          "significance_analysis": "string (Alıntının stratejik, diplomatik veya piyasa açısından arka plan analizi)"
+          "speaker_entity_id": null,
+          "speaker": "",
+          "quote": "",
+          "significance_level": "MEDIUM",
+          "significance_analysis": ""
         }
       ]
     },
     "future_outlook": {
       "strategic_actions": [
         {
-          "action_type": "string (Politika Değişikliği, Yasal Düzenleme, Siyasi Hamle, Lobi Faaliyeti vb.)",
-          "description": "string (Alınması gereken veya metinde önerilen somut aksiyon)",
+          "action_type": "",
+          "description": "",
           "target_stakeholder": {
-            "entity_id": "string (Aksiyonu alacak net aktör/kurum kanonik kodu. Detaylar için llms-entities-id.txt referans alınır)",
-            "entity_name": "string (Aksiyonu alacak net aktör/kurum. Örn: Parti Yönetimi, Meclis Grubu, Bakanlık)",
-            "jurisdiction_or_sector": "string (Bağlı olduğu alan veya meclis/ülke. Örn: Türkiye / TBMM, ABD / Senato)"
+            "entity_id": null,
+            "entity_name": "",
+            "jurisdiction_or_sector": ""
           }
         }
       ],
       "potential_consequences": {
-        "short_term": "string (Beklenen olası anlık yansıma ve 180 günlüğe kadar vadede karşı hamleler)",
-        "short_term_days": "number (1 ile 180 arası gün sayısı)",
-        "long_term": "string (Seçim, ittifaklar ve dengeler üzerindeki 365 günlüğe kadar kalıcı etki)",
-        "long_term_days": "number (181 ile 365 arası gün sayısı)"
+        "short_term": "",
+        "short_term_days": 30,
+        "long_term": "",
+        "long_term_days": 365
       },
-      "next_key_event": "string (Beklenen bir sonraki siyasi adım, grup toplantısı, oylama vb. Metinde yoksa null)",
-      "target_date": "string (Format: YYYY-MM. Örn: 2026-10. Metinde kesinleşmiş tarih yoksa null)",
-      "status": "string (Değerler: ACTIVE | REALIZED | EXPIRED. Varsayılan: ACTIVE)",
-      "probability_percent": "number (0 ile 100 arası sayısal olasılık)",
-      "impact_score": "number (0 ile 100 arası sayısal etki puanı)",
-      "direction": "string (Değerler: Risk | Opportunity | Neutral)",
-      "confidence_score": "number (0 ile 100 arası sayısal güven puanı)"
+      "next_key_event": null,
+      "target_date": null,
+      "status": "ACTIVE",
+      "probability_percent": 50,
+      "impact_score": 50,
+      "direction": "Neutral",
+      "confidence_score": 80
     },
     "categorization": {
       "tags": [
-        "string"
+        ""
       ]
     },
     "metadata": {
