@@ -903,6 +903,44 @@
       "required": ["brent_price", "wti_price"]
     }
   }
+},
+    {
+  "type": "function",
+  "function": {
+    "name": "calculate_labor_market_momentum_index",
+    "description": "Calculates the Labor Market Momentum Index (LMMI) by combining annual Nonfarm Payrolls percentage growth with the annual percentage point change in Unemployment Rate (FRED: PAYEMS, UNRATE).",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "payems_current": {
+          "type": "number",
+          "description": "Current month Nonfarm Payrolls level in thousands (FRED: PAYEMS)."
+        },
+        "payems_yr_ago": {
+          "type": "number",
+          "description": "Same month prior year Nonfarm Payrolls level in thousands (FRED: PAYEMS)."
+        },
+        "unrate_current": {
+          "type": "number",
+          "description": "Current month Civilian Unemployment Rate in percent (FRED: UNRATE)."
+        },
+        "unrate_yr_ago": {
+          "type": "number",
+          "description": "Same month prior year Civilian Unemployment Rate in percent (FRED: UNRATE)."
+        },
+        "prev_lmmi": {
+          "type": "number",
+          "description": "Optional: Prior period LMMI score to detect acceleration vs deceleration trend."
+        }
+      },
+      "required": [
+        "payems_current",
+        "payems_yr_ago",
+        "unrate_current",
+        "unrate_yr_ago"
+      ]
+    }
+  }
 }
   ]
 }
