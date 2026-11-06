@@ -1,0 +1,41 @@
+name: FRED Series Daily & On-Push Sync
+
+on:
+  schedule:
+    # Her gün piyasalar kapandıktan sonra gece 00:00 UTC'de otomatik çalışır
+    - cron: '0 0 * * *'
+  push:
+    # llms-fred-series.txt içine yeni seri eklediğiniz an otomatik tetiklenir
+    paths:
+      - 'llms-fred-series.txt'
+  workflow_dispatch:
+    # GitHub arayüzünden "Run workflow" butonuyla istediğiniz an elle de çalıştırabilirsiniz
+
+permissions:
+  contents: write
+
+jobs:
+  sync-fred:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run FRED Sync Engine
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: |
+          python scripts/update_fred_series.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add llms-fred-series.txt llms-fred-series.json
+          git diff-index --quiet HEAD || git commit -m "Auto update FRED series & transformations [skip ci]"
+          git push
