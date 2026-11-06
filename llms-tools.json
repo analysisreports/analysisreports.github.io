@@ -16,10 +16,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "dgs1mo": { "type": "number", "description": "1-Month Treasury Bill Yield (FRED: DGS1MO)." },
-            "dfedtaru": { "type": "number", "description": "Federal Funds Target Range Upper Limit (FRED: DFEDTARU)." }
+            "dgs1mo": {
+              "type": "number",
+              "description": "1-Month Treasury Bill Yield (FRED: DGS1MO)."
+            },
+            "dfedtaru": {
+              "type": "number",
+              "description": "Federal Funds Target Range Upper Limit (FRED: DFEDTARU)."
+            }
           },
-          "required": ["dgs1mo", "dfedtaru"]
+          "required": [
+            "dgs1mo",
+            "dfedtaru"
+          ]
         }
       }
     },
@@ -31,10 +40,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "dff": { "type": "number", "description": "Effective Federal Funds Rate (FRED: DFF)." },
-            "cpi_yoy": { "type": "number", "description": "Consumer Price Index YoY % change (BLS: CPIAUCSL)." }
+            "dff": {
+              "type": "number",
+              "description": "Effective Federal Funds Rate (FRED: DFF)."
+            },
+            "cpi_yoy": {
+              "type": "number",
+              "description": "Consumer Price Index YoY % change (BLS: CPIAUCSL)."
+            }
           },
-          "required": ["dff", "cpi_yoy"]
+          "required": [
+            "dff",
+            "cpi_yoy"
+          ]
         }
       }
     },
@@ -46,10 +64,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "unrate_3m_avg": { "type": "number", "description": "Current 3-month moving average of U3 unemployment rate (FRED: UNRATE)." },
-            "min_prior_3m_avg": { "type": "number", "description": "Minimum 3-month moving average of unemployment rate recorded over the preceding 12 months." }
+            "unrate_3m_avg": {
+              "type": "number",
+              "description": "Current 3-month moving average of U3 unemployment rate (FRED: UNRATE)."
+            },
+            "min_prior_3m_avg": {
+              "type": "number",
+              "description": "Minimum 3-month moving average of unemployment rate recorded over the preceding 12 months."
+            }
           },
-          "required": ["unrate_3m_avg", "min_prior_3m_avg"]
+          "required": [
+            "unrate_3m_avg",
+            "min_prior_3m_avg"
+          ]
         }
       }
     },
@@ -61,10 +88,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "dgs3mo": { "type": "number", "description": "3-Month Treasury Bill Secondary Market Rate (FRED: DGS3MO)." },
-            "dgs1mo": { "type": "number", "description": "1-Month Treasury Bill Secondary Market Rate (FRED: DGS1MO)." }
+            "dgs3mo": {
+              "type": "number",
+              "description": "3-Month Treasury Bill Secondary Market Rate (FRED: DGS3MO)."
+            },
+            "dgs1mo": {
+              "type": "number",
+              "description": "1-Month Treasury Bill Secondary Market Rate (FRED: DGS1MO)."
+            }
           },
-          "required": ["dgs3mo", "dgs1mo"]
+          "required": [
+            "dgs3mo",
+            "dgs1mo"
+          ]
         }
       }
     },
@@ -76,12 +112,28 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "walcl": { "type": "number", "description": "Fed Total Assets in Millions of USD (FRED: WALCL)." },
-            "wtregen": { "type": "number", "description": "Treasury General Account in Millions of USD (FRED: WTREGEN)." },
-            "rrpontsyd": { "type": "number", "description": "Overnight Reverse Repo in Millions of USD (FRED: RRPONTSYD)." },
-            "prev_net_liquidity": { "type": "number", "description": "Optional prior period Net Fed Liquidity for delta/momentum calculation." }
+            "walcl": {
+              "type": "number",
+              "description": "Fed Total Assets in Millions of USD (FRED: WALCL)."
+            },
+            "wtregen": {
+              "type": "number",
+              "description": "Treasury General Account in Millions of USD (FRED: WTREGEN)."
+            },
+            "rrpontsyd": {
+              "type": "number",
+              "description": "Overnight Reverse Repo in Millions of USD (FRED: RRPONTSYD)."
+            },
+            "prev_net_liquidity": {
+              "type": "number",
+              "description": "Optional prior period Net Fed Liquidity for delta/momentum calculation."
+            }
           },
-          "required": ["walcl", "wtregen", "rrpontsyd"]
+          "required": [
+            "walcl",
+            "wtregen",
+            "rrpontsyd"
+          ]
         }
       }
     },
@@ -93,10 +145,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "dgs10": { "type": "number", "description": "10-Year Treasury Yield (FRED: DGS10)." },
-            "dgs2": { "type": "number", "description": "2-Year Treasury Yield (FRED: DGS2)." }
+            "dgs10": {
+              "type": "number",
+              "description": "10-Year Treasury Yield (FRED: DGS10)."
+            },
+            "dgs2": {
+              "type": "number",
+              "description": "2-Year Treasury Yield (FRED: DGS2)."
+            }
           },
-          "required": ["dgs10", "dgs2"]
+          "required": [
+            "dgs10",
+            "dgs2"
+          ]
         }
       }
     },
@@ -108,10 +169,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "dgs10": { "type": "number", "description": "10-Year Nominal Treasury Yield (FRED: DGS10)." },
-            "dfii10": { "type": "number", "description": "10-Year TIPS Real Yield (FRED: DFII10)." }
+            "dgs10": {
+              "type": "number",
+              "description": "10-Year Nominal Treasury Yield (FRED: DGS10)."
+            },
+            "dfii10": {
+              "type": "number",
+              "description": "10-Year TIPS Real Yield (FRED: DFII10)."
+            }
           },
-          "required": ["dgs10", "dfii10"]
+          "required": [
+            "dgs10",
+            "dfii10"
+          ]
         }
       }
     },
@@ -123,10 +193,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "jtsjol": { "type": "number", "description": "Total Nonfarm Job Openings in thousands (BLS: JTSJOL)." },
-            "unemploy": { "type": "number", "description": "Total Unemployed Persons in thousands (BLS: UNEMPLOY)." }
+            "jtsjol": {
+              "type": "number",
+              "description": "Total Nonfarm Job Openings in thousands (BLS: JTSJOL)."
+            },
+            "unemploy": {
+              "type": "number",
+              "description": "Total Unemployed Persons in thousands (BLS: UNEMPLOY)."
+            }
           },
-          "required": ["jtsjol", "unemploy"]
+          "required": [
+            "jtsjol",
+            "unemploy"
+          ]
         }
       }
     },
@@ -138,11 +217,24 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "dgs10": { "type": "number", "description": "10-Year Nominal Treasury Yield (FRED: DGS10)." },
-            "cpi_yoy": { "type": "number", "description": "CPI YoY % change (BLS: CPIAUCSL)." },
-            "debt_gdp_pct": { "type": "number", "description": "Total Public Debt as % of GDP (FRED: GFDEGDQ188S)." }
+            "dgs10": {
+              "type": "number",
+              "description": "10-Year Nominal Treasury Yield (FRED: DGS10)."
+            },
+            "cpi_yoy": {
+              "type": "number",
+              "description": "CPI YoY % change (BLS: CPIAUCSL)."
+            },
+            "debt_gdp_pct": {
+              "type": "number",
+              "description": "Total Public Debt as % of GDP (FRED: GFDEGDQ188S)."
+            }
           },
-          "required": ["dgs10", "cpi_yoy", "debt_gdp_pct"]
+          "required": [
+            "dgs10",
+            "cpi_yoy",
+            "debt_gdp_pct"
+          ]
         }
       }
     },
@@ -154,10 +246,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "dtwexbgs": { "type": "number", "description": "Nominal Broad U.S. Dollar Index (FRED: DTWEXBGS)." },
-            "bopgstb": { "type": "number", "description": "US Goods & Services Trade Balance in Millions USD (BEA: BOPGSTB)." }
+            "dtwexbgs": {
+              "type": "number",
+              "description": "Nominal Broad U.S. Dollar Index (FRED: DTWEXBGS)."
+            },
+            "bopgstb": {
+              "type": "number",
+              "description": "US Goods & Services Trade Balance in Millions USD (BEA: BOPGSTB)."
+            }
           },
-          "required": ["dtwexbgs", "bopgstb"]
+          "required": [
+            "dtwexbgs",
+            "bopgstb"
+          ]
         }
       }
     },
@@ -169,12 +270,29 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "dff": { "type": "number", "description": "Effective Federal Funds Rate (FRED: DFF)." },
-            "cpi_yoy": { "type": "number", "description": "CPI YoY % change (BLS: CPIAUCSL)." },
-            "gdpc1": { "type": "number", "description": "Real GDP in Billions USD (BEA: GDPC1)." },
-            "gdppot": { "type": "number", "description": "Real Potential GDP in Billions USD (CBO: GDPPOT)." }
+            "dff": {
+              "type": "number",
+              "description": "Effective Federal Funds Rate (FRED: DFF)."
+            },
+            "cpi_yoy": {
+              "type": "number",
+              "description": "CPI YoY % change (BLS: CPIAUCSL)."
+            },
+            "gdpc1": {
+              "type": "number",
+              "description": "Real GDP in Billions USD (BEA: GDPC1)."
+            },
+            "gdppot": {
+              "type": "number",
+              "description": "Real Potential GDP in Billions USD (CBO: GDPPOT)."
+            }
           },
-          "required": ["dff", "cpi_yoy", "gdpc1", "gdppot"]
+          "required": [
+            "dff",
+            "cpi_yoy",
+            "gdpc1",
+            "gdppot"
+          ]
         }
       }
     },
@@ -186,10 +304,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "nfci": { "type": "number", "description": "National Financial Conditions Index (FRED: NFCI)." },
-            "anfci": { "type": "number", "description": "Adjusted National Financial Conditions Index (FRED: ANFCI)." }
+            "nfci": {
+              "type": "number",
+              "description": "National Financial Conditions Index (FRED: NFCI)."
+            },
+            "anfci": {
+              "type": "number",
+              "description": "Adjusted National Financial Conditions Index (FRED: ANFCI)."
+            }
           },
-          "required": ["nfci", "anfci"]
+          "required": [
+            "nfci",
+            "anfci"
+          ]
         }
       }
     },
@@ -201,9 +328,14 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "hy_spread": { "type": "number", "description": "ICE BofA US High Yield Index OAS (FRED: BAMLH0A0HYM2)." }
+            "hy_spread": {
+              "type": "number",
+              "description": "ICE BofA US High Yield Index OAS (FRED: BAMLH0A0HYM2)."
+            }
           },
-          "required": ["hy_spread"]
+          "required": [
+            "hy_spread"
+          ]
         }
       }
     },
@@ -215,10 +347,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "m2_yoy": { "type": "number", "description": "M2 Money Supply YoY % growth (FRED: M2SL)." },
-            "cpi_yoy": { "type": "number", "description": "CPI YoY % change (BLS: CPIAUCSL)." }
+            "m2_yoy": {
+              "type": "number",
+              "description": "M2 Money Supply YoY % growth (FRED: M2SL)."
+            },
+            "cpi_yoy": {
+              "type": "number",
+              "description": "CPI YoY % change (BLS: CPIAUCSL)."
+            }
           },
-          "required": ["m2_yoy", "cpi_yoy"]
+          "required": [
+            "m2_yoy",
+            "cpi_yoy"
+          ]
         }
       }
     },
@@ -230,10 +371,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "dgs10": { "type": "number", "description": "10-Year Treasury Yield (FRED: DGS10)." },
-            "term_premium": { "type": "number", "description": "ACM 10-Year Treasury Term Premium (FRED: THREEFYTP10)." }
+            "dgs10": {
+              "type": "number",
+              "description": "10-Year Treasury Yield (FRED: DGS10)."
+            },
+            "term_premium": {
+              "type": "number",
+              "description": "ACM 10-Year Treasury Term Premium (FRED: THREEFYTP10)."
+            }
           },
-          "required": ["dgs10", "term_premium"]
+          "required": [
+            "dgs10",
+            "term_premium"
+          ]
         }
       }
     },
@@ -245,9 +395,14 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "vix": { "type": "number", "description": "CBOE Volatility Index (FRED: VIXCLS)." }
+            "vix": {
+              "type": "number",
+              "description": "CBOE Volatility Index (FRED: VIXCLS)."
+            }
           },
-          "required": ["vix"]
+          "required": [
+            "vix"
+          ]
         }
       }
     },
@@ -259,10 +414,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "earnings_yield": { "type": "number", "description": "S&P 500 Earnings Yield % (1 / PE * 100)." },
-            "dgs10": { "type": "number", "description": "10-Year Treasury Yield (FRED: DGS10)." }
+            "earnings_yield": {
+              "type": "number",
+              "description": "S&P 500 Earnings Yield % (1 / PE * 100)."
+            },
+            "dgs10": {
+              "type": "number",
+              "description": "10-Year Treasury Yield (FRED: DGS10)."
+            }
           },
-          "required": ["earnings_yield", "dgs10"]
+          "required": [
+            "earnings_yield",
+            "dgs10"
+          ]
         }
       }
     },
@@ -274,10 +438,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "unrate": { "type": "number", "description": "Civilian Unemployment Rate % (BLS: UNRATE)." },
-            "cpi_yoy": { "type": "number", "description": "CPI YoY % change (BLS: CPIAUCSL)." }
+            "unrate": {
+              "type": "number",
+              "description": "Civilian Unemployment Rate % (BLS: UNRATE)."
+            },
+            "cpi_yoy": {
+              "type": "number",
+              "description": "CPI YoY % change (BLS: CPIAUCSL)."
+            }
           },
-          "required": ["unrate", "cpi_yoy"]
+          "required": [
+            "unrate",
+            "cpi_yoy"
+          ]
         }
       }
     },
@@ -289,10 +462,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "market_val": { "type": "number", "description": "Total Corporate Equities Liability / Market Value (FRED: NCBEILQ027S)." },
-            "gdp_val": { "type": "number", "description": "Nominal GDP in same unit scale (BEA: GDP)." }
+            "market_val": {
+              "type": "number",
+              "description": "Total Corporate Equities Liability / Market Value (FRED: NCBEILQ027S)."
+            },
+            "gdp_val": {
+              "type": "number",
+              "description": "Nominal GDP in same unit scale (BEA: GDP)."
+            }
           },
-          "required": ["market_val", "gdp_val"]
+          "required": [
+            "market_val",
+            "gdp_val"
+          ]
         }
       }
     },
@@ -304,10 +486,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "copper_price": { "type": "number", "description": "Global Copper Price per Metric Ton (IMF/FRED: PCOPPUSDM)." },
-            "gold_price": { "type": "number", "description": "Gold Fixing Price per Troy Ounce (World Bank/FRED: GOLDAMGBD228NLBM)." }
+            "copper_price": {
+              "type": "number",
+              "description": "Global Copper Price per Metric Ton (IMF/FRED: PCOPPUSDM)."
+            },
+            "gold_price": {
+              "type": "number",
+              "description": "Gold Fixing Price per Troy Ounce (World Bank/FRED: GOLDAMGBD228NLBM)."
+            }
           },
-          "required": ["copper_price", "gold_price"]
+          "required": [
+            "copper_price",
+            "gold_price"
+          ]
         }
       }
     },
@@ -319,10 +510,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "gold_price": { "type": "number", "description": "Gold Price per Troy Ounce (FRED: GOLDAMGBD228NLBM)." },
-            "oil_price": { "type": "number", "description": "WTI Crude Oil Price per Barrel (EIA/FRED: DCOILWTICO)." }
+            "gold_price": {
+              "type": "number",
+              "description": "Gold Price per Troy Ounce (FRED: GOLDAMGBD228NLBM)."
+            },
+            "oil_price": {
+              "type": "number",
+              "description": "WTI Crude Oil Price per Barrel (EIA/FRED: DCOILWTICO)."
+            }
           },
-          "required": ["gold_price", "oil_price"]
+          "required": [
+            "gold_price",
+            "oil_price"
+          ]
         }
       }
     },
@@ -334,10 +534,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "delinquency_rate": { "type": "number", "description": "Credit Card Delinquency Rate % (FRED: DRCCLACBS)." },
-            "saving_rate": { "type": "number", "description": "Personal Saving Rate % of Disposable Income (BEA: PSAVERT)." }
+            "delinquency_rate": {
+              "type": "number",
+              "description": "Credit Card Delinquency Rate % (FRED: DRCCLACBS)."
+            },
+            "saving_rate": {
+              "type": "number",
+              "description": "Personal Saving Rate % of Disposable Income (BEA: PSAVERT)."
+            }
           },
-          "required": ["delinquency_rate", "saving_rate"]
+          "required": [
+            "delinquency_rate",
+            "saving_rate"
+          ]
         }
       }
     },
@@ -349,10 +558,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "actual_unrate_delta": { "type": "number", "description": "YoY change in unemployment rate in percentage points (FRED: UNRATE)." },
-            "real_gdp_yoy": { "type": "number", "description": "Real GDP YoY % change (BEA: GDPC1)." }
+            "actual_unrate_delta": {
+              "type": "number",
+              "description": "YoY change in unemployment rate in percentage points (FRED: UNRATE)."
+            },
+            "real_gdp_yoy": {
+              "type": "number",
+              "description": "Real GDP YoY % change (BEA: GDPC1)."
+            }
           },
-          "required": ["actual_unrate_delta", "real_gdp_yoy"]
+          "required": [
+            "actual_unrate_delta",
+            "real_gdp_yoy"
+          ]
         }
       }
     },
@@ -364,11 +582,24 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "payems_mom": { "type": "number", "description": "Monthly change in Total Nonfarm Payrolls in thousands (BLS: PAYEMS)." },
-            "unrate_delta": { "type": "number", "description": "Monthly change in Unemployment Rate (BLS: UNRATE)." },
-            "civpart_delta": { "type": "number", "description": "Monthly change in Labor Force Participation Rate (BLS: CIVPART)." }
+            "payems_mom": {
+              "type": "number",
+              "description": "Monthly change in Total Nonfarm Payrolls in thousands (BLS: PAYEMS)."
+            },
+            "unrate_delta": {
+              "type": "number",
+              "description": "Monthly change in Unemployment Rate (BLS: UNRATE)."
+            },
+            "civpart_delta": {
+              "type": "number",
+              "description": "Monthly change in Labor Force Participation Rate (BLS: CIVPART)."
+            }
           },
-          "required": ["payems_mom", "unrate_delta", "civpart_delta"]
+          "required": [
+            "payems_mom",
+            "unrate_delta",
+            "civpart_delta"
+          ]
         }
       }
     },
@@ -380,11 +611,23 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "m2_level": { "type": "number", "description": "M2 Money Supply in Billions USD (FRED: M2SL)." },
-            "m2_velocity": { "type": "number", "description": "Velocity of M2 Money Stock (FRED: M2V)." },
-            "prev_tff": { "type": "number", "description": "Optional prior quarter Total Funds Flow for QoQ % change calculation." }
+            "m2_level": {
+              "type": "number",
+              "description": "M2 Money Supply in Billions USD (FRED: M2SL)."
+            },
+            "m2_velocity": {
+              "type": "number",
+              "description": "Velocity of M2 Money Stock (FRED: M2V)."
+            },
+            "prev_tff": {
+              "type": "number",
+              "description": "Optional prior quarter Total Funds Flow for QoQ % change calculation."
+            }
           },
-          "required": ["m2_level", "m2_velocity"]
+          "required": [
+            "m2_level",
+            "m2_velocity"
+          ]
         }
       }
     },
@@ -396,10 +639,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "mspus": { "type": "number", "description": "Median Sales Price of Houses Sold (FRED: MSPUS)." },
-            "ahe": { "type": "number", "description": "Average Hourly Earnings of Total Private Employees (BLS: CES0500000003)." }
+            "mspus": {
+              "type": "number",
+              "description": "Median Sales Price of Houses Sold (FRED: MSPUS)."
+            },
+            "ahe": {
+              "type": "number",
+              "description": "Average Hourly Earnings of Total Private Employees (BLS: CES0500000003)."
+            }
           },
-          "required": ["mspus", "ahe"]
+          "required": [
+            "mspus",
+            "ahe"
+          ]
         }
       }
     },
@@ -411,10 +663,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "indpro_yoy": { "type": "number", "description": "Industrial Production Total Index YoY % change (FRED: INDPRO)." },
-            "awhaetp_yoy": { "type": "number", "description": "Average Weekly Hours Total Private YoY % change (BLS: AWHAETP)." }
+            "indpro_yoy": {
+              "type": "number",
+              "description": "Industrial Production Total Index YoY % change (FRED: INDPRO)."
+            },
+            "awhaetp_yoy": {
+              "type": "number",
+              "description": "Average Weekly Hours Total Private YoY % change (BLS: AWHAETP)."
+            }
           },
-          "required": ["indpro_yoy", "awhaetp_yoy"]
+          "required": [
+            "indpro_yoy",
+            "awhaetp_yoy"
+          ]
         }
       }
     },
@@ -426,10 +687,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "retail_yoy": { "type": "number", "description": "Advance Retail Sales YoY % change (FRED: RSAFS)." },
-            "cpi_yoy": { "type": "number", "description": "CPI YoY % change (BLS: CPIAUCSL)." }
+            "retail_yoy": {
+              "type": "number",
+              "description": "Advance Retail Sales YoY % change (FRED: RSAFS)."
+            },
+            "cpi_yoy": {
+              "type": "number",
+              "description": "CPI YoY % change (BLS: CPIAUCSL)."
+            }
           },
-          "required": ["retail_yoy", "cpi_yoy"]
+          "required": [
+            "retail_yoy",
+            "cpi_yoy"
+          ]
         }
       }
     },
@@ -441,10 +711,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "icsa_yoy": { "type": "number", "description": "Initial Jobless Claims YoY % change (FRED: IC4WSA or ICSA)." },
-            "unrate_delta": { "type": "number", "description": "YoY change in Unemployment Rate in percentage points (BLS: UNRATE)." }
+            "icsa_yoy": {
+              "type": "number",
+              "description": "Initial Jobless Claims YoY % change (FRED: IC4WSA or ICSA)."
+            },
+            "unrate_delta": {
+              "type": "number",
+              "description": "YoY change in Unemployment Rate in percentage points (BLS: UNRATE)."
+            }
           },
-          "required": ["icsa_yoy", "unrate_delta"]
+          "required": [
+            "icsa_yoy",
+            "unrate_delta"
+          ]
         }
       }
     },
@@ -456,9 +735,14 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "isratio": { "type": "number", "description": "Total Business Inventories to Sales Ratio (FRED: ISRATIO)." }
+            "isratio": {
+              "type": "number",
+              "description": "Total Business Inventories to Sales Ratio (FRED: ISRATIO)."
+            }
           },
-          "required": ["isratio"]
+          "required": [
+            "isratio"
+          ]
         }
       }
     },
@@ -470,10 +754,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "mortgage_rate": { "type": "number", "description": "30-Year Fixed Mortgage Average % (FRED: MORTGAGE30US)." },
-            "permit_yoy": { "type": "number", "description": "New Authorized Housing Units YoY % change (FRED: PERMIT)." }
+            "mortgage_rate": {
+              "type": "number",
+              "description": "30-Year Fixed Mortgage Average % (FRED: MORTGAGE30US)."
+            },
+            "permit_yoy": {
+              "type": "number",
+              "description": "New Authorized Housing Units YoY % change (FRED: PERMIT)."
+            }
           },
-          "required": ["mortgage_rate", "permit_yoy"]
+          "required": [
+            "mortgage_rate",
+            "permit_yoy"
+          ]
         }
       }
     },
@@ -485,11 +778,24 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "dxy": { "type": "number", "description": "Nominal Broad Dollar Index (FRED: DTWEXBGS)." },
-            "hy_spread": { "type": "number", "description": "High Yield Option-Adjusted Spread (FRED: BAMLH0A0HYM2)." },
-            "dgs10": { "type": "number", "description": "10-Year Treasury Yield (FRED: DGS10)." }
+            "dxy": {
+              "type": "number",
+              "description": "Nominal Broad Dollar Index (FRED: DTWEXBGS)."
+            },
+            "hy_spread": {
+              "type": "number",
+              "description": "High Yield Option-Adjusted Spread (FRED: BAMLH0A0HYM2)."
+            },
+            "dgs10": {
+              "type": "number",
+              "description": "10-Year Treasury Yield (FRED: DGS10)."
+            }
           },
-          "required": ["dxy", "hy_spread", "dgs10"]
+          "required": [
+            "dxy",
+            "hy_spread",
+            "dgs10"
+          ]
         }
       }
     },
@@ -501,10 +807,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "export_idx": { "type": "number", "description": "U.S. Export Price Index (BLS: IQ1000)." },
-            "import_idx": { "type": "number", "description": "U.S. Import Price Index (BLS: IQ)." }
+            "export_idx": {
+              "type": "number",
+              "description": "U.S. Export Price Index (BLS: IQ1000)."
+            },
+            "import_idx": {
+              "type": "number",
+              "description": "U.S. Import Price Index (BLS: IQ)."
+            }
           },
-          "required": ["export_idx", "import_idx"]
+          "required": [
+            "export_idx",
+            "import_idx"
+          ]
         }
       }
     },
@@ -516,10 +831,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "p_baseline": { "type": "number", "description": "Baseline relationship polarity (-1.0 to 1.0) from llms-relationships.txt." },
-            "dynamic_delta": { "type": "number", "description": "Event-driven tension or alignment shock (-2.0 to 2.0)." }
+            "p_baseline": {
+              "type": "number",
+              "description": "Baseline relationship polarity (-1.0 to 1.0) from llms-relationships.txt."
+            },
+            "dynamic_delta": {
+              "type": "number",
+              "description": "Event-driven tension or alignment shock (-2.0 to 2.0)."
+            }
           },
-          "required": ["p_baseline", "dynamic_delta"]
+          "required": [
+            "p_baseline",
+            "dynamic_delta"
+          ]
         }
       }
     },
@@ -531,12 +855,29 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "direct_target": { "type": "number", "description": "Direct targeting severity (0-100)." },
-            "delegitimize": { "type": "number", "description": "Institutional delegitimization intensity (0-100)." },
-            "threat": { "type": "number", "description": "Sanction or retaliatory threat level (0-100)." },
-            "norm_breach": { "type": "number", "description": "Diplomatic/legal norm breach score (0-100)." }
+            "direct_target": {
+              "type": "number",
+              "description": "Direct targeting severity (0-100)."
+            },
+            "delegitimize": {
+              "type": "number",
+              "description": "Institutional delegitimization intensity (0-100)."
+            },
+            "threat": {
+              "type": "number",
+              "description": "Sanction or retaliatory threat level (0-100)."
+            },
+            "norm_breach": {
+              "type": "number",
+              "description": "Diplomatic/legal norm breach score (0-100)."
+            }
           },
-          "required": ["direct_target", "delegitimize", "threat", "norm_breach"]
+          "required": [
+            "direct_target",
+            "delegitimize",
+            "threat",
+            "norm_breach"
+          ]
         }
       }
     },
@@ -548,10 +889,19 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "rhetoric": { "type": "number", "description": "Rhetoric intensity score (0-100)." },
-            "alliance_friction": { "type": "number", "description": "Institutional/alliance friction score (0-100)." }
+            "rhetoric": {
+              "type": "number",
+              "description": "Rhetoric intensity score (0-100)."
+            },
+            "alliance_friction": {
+              "type": "number",
+              "description": "Institutional/alliance friction score (0-100)."
+            }
           },
-          "required": ["rhetoric", "alliance_friction"]
+          "required": [
+            "rhetoric",
+            "alliance_friction"
+          ]
         }
       }
     },
@@ -563,12 +913,29 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "pol": { "type": "number", "description": "Domestic political instability score (0-100)." },
-            "defense": { "type": "number", "description": "Defense doctrine and military posture score (0-100)." },
-            "geo": { "type": "number", "description": "Geopolitical alignment pressure score (0-100)." },
-            "vuln": { "type": "number", "description": "Socioeconomic and fiscal vulnerability score (0-100)." }
+            "pol": {
+              "type": "number",
+              "description": "Domestic political instability score (0-100)."
+            },
+            "defense": {
+              "type": "number",
+              "description": "Defense doctrine and military posture score (0-100)."
+            },
+            "geo": {
+              "type": "number",
+              "description": "Geopolitical alignment pressure score (0-100)."
+            },
+            "vuln": {
+              "type": "number",
+              "description": "Socioeconomic and fiscal vulnerability score (0-100)."
+            }
           },
-          "required": ["pol", "defense", "geo", "vuln"]
+          "required": [
+            "pol",
+            "defense",
+            "geo",
+            "vuln"
+          ]
         }
       }
     },
@@ -580,11 +947,24 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "kinetic_military": { "type": "number", "description": "Kinetic military clash level (0-100)." },
-            "geo_tension": { "type": "number", "description": "Diplomatic and alliance tension (0-100)." },
-            "disruption_risk": { "type": "number", "description": "Supply corridor or chokepoint disruption risk (0-100)." }
+            "kinetic_military": {
+              "type": "number",
+              "description": "Kinetic military clash level (0-100)."
+            },
+            "geo_tension": {
+              "type": "number",
+              "description": "Diplomatic and alliance tension (0-100)."
+            },
+            "disruption_risk": {
+              "type": "number",
+              "description": "Supply corridor or chokepoint disruption risk (0-100)."
+            }
           },
-          "required": ["kinetic_military", "geo_tension", "disruption_risk"]
+          "required": [
+            "kinetic_military",
+            "geo_tension",
+            "disruption_risk"
+          ]
         }
       }
     },
@@ -596,11 +976,24 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "asset_volatility": { "type": "number", "description": "Asset class implied/realized volatility shock (0-100)." },
-            "liquidity_spread": { "type": "number", "description": "Funding and credit spread widening (0-100)." },
-            "macro_spillover": { "type": "number", "description": "Macroeconomic pass-through spillover (0-100)." }
+            "asset_volatility": {
+              "type": "number",
+              "description": "Asset class implied/realized volatility shock (0-100)."
+            },
+            "liquidity_spread": {
+              "type": "number",
+              "description": "Funding and credit spread widening (0-100)."
+            },
+            "macro_spillover": {
+              "type": "number",
+              "description": "Macroeconomic pass-through spillover (0-100)."
+            }
           },
-          "required": ["asset_volatility", "liquidity_spread", "macro_spillover"]
+          "required": [
+            "asset_volatility",
+            "liquidity_spread",
+            "macro_spillover"
+          ]
         }
       }
     },
@@ -614,11 +1007,18 @@
           "properties": {
             "severity_enum": {
               "type": "string",
-              "enum": ["CATASTROPHIC", "HIGH", "MODERATE-HIGH", "MODERATE"],
+              "enum": [
+                "CATASTROPHIC",
+                "HIGH",
+                "MODERATE-HIGH",
+                "MODERATE"
+              ],
               "description": "Disruption severity classification from llms-relationships.txt."
             }
           },
-          "required": ["severity_enum"]
+          "required": [
+            "severity_enum"
+          ]
         }
       }
     },
@@ -630,10 +1030,23 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "severity_enum": { "type": "string", "enum": ["CATASTROPHIC", "HIGH", "MODERATE-HIGH", "MODERATE"] },
-            "p_net": { "type": "number", "description": "Net polarity score (-1.0 to 1.0) between primary regional actors." }
+            "severity_enum": {
+              "type": "string",
+              "enum": [
+                "CATASTROPHIC",
+                "HIGH",
+                "MODERATE-HIGH",
+                "MODERATE"
+              ]
+            },
+            "p_net": {
+              "type": "number",
+              "description": "Net polarity score (-1.0 to 1.0) between primary regional actors."
+            }
           },
-          "required": ["severity_enum"]
+          "required": [
+            "severity_enum"
+          ]
         }
       }
     },
@@ -645,11 +1058,24 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "authority": { "type": "number", "description": "Institutional authority score (0-100 or 0.0-1.0)." },
-            "confirmation": { "type": "number", "description": "Cross-verification score (0-100 or 0.0-1.0)." },
-            "recency": { "type": "number", "description": "Data freshness score (0-100 or 0.0-1.0)." }
+            "authority": {
+              "type": "number",
+              "description": "Institutional authority score (0-100 or 0.0-1.0)."
+            },
+            "confirmation": {
+              "type": "number",
+              "description": "Cross-verification score (0-100 or 0.0-1.0)."
+            },
+            "recency": {
+              "type": "number",
+              "description": "Data freshness score (0-100 or 0.0-1.0)."
+            }
           },
-          "required": ["authority", "confirmation", "recency"]
+          "required": [
+            "authority",
+            "confirmation",
+            "recency"
+          ]
         }
       }
     },
@@ -661,14 +1087,23 @@
         "parameters": {
           "type": "object",
           "properties": {
-            "target_date_str": { "type": "string", "description": "Official scheduled release date in YYYY-MM-DD format." },
-            "current_date_str": { "type": "string", "description": "Reference or current execution date in YYYY-MM-DD format." }
+            "target_date_str": {
+              "type": "string",
+              "description": "Official scheduled release date in YYYY-MM-DD format."
+            },
+            "current_date_str": {
+              "type": "string",
+              "description": "Reference or current execution date in YYYY-MM-DD format."
+            }
           },
-          "required": ["target_date_str", "current_date_str"]
+          "required": [
+            "target_date_str",
+            "current_date_str"
+          ]
         }
       }
     },
-  {
+    {
       "type": "function",
       "function": {
         "name": "calculate_sticky_flexible_cpi_spread",
@@ -685,11 +1120,14 @@
               "description": "Flexible Consumer Price Index less Food and Energy - YoY % Change (FRED: FLEXCPIM157SFRBATL)."
             }
           },
-          "required": ["sticky_cpi_yoy", "flex_cpi_yoy"]
+          "required": [
+            "sticky_cpi_yoy",
+            "flex_cpi_yoy"
+          ]
         }
       }
     },
-{
+    {
       "type": "function",
       "function": {
         "name": "calculate_global_supply_chain_pressure",
@@ -702,11 +1140,13 @@
               "description": "NY Fed Global Supply Chain Pressure Index value in standard deviations from historical mean (FRED: GSCPI)."
             }
           },
-          "required": ["gscpi_val"]
+          "required": [
+            "gscpi_val"
+          ]
         }
       }
     },
-{
+    {
       "type": "function",
       "function": {
         "name": "calculate_move_vix_disconnect_ratio",
@@ -723,224 +1163,276 @@
               "description": "CBOE Volatility Index value (FRED: VIXCLS)."
             }
           },
-          "required": ["move_val", "vix_val"]
+          "required": [
+            "move_val",
+            "vix_val"
+          ]
         }
       }
     },
-{
-  "type": "function",
-  "function": {
-    "name": "calculate_repo_liquidity_friction_spread",
-    "description": "Calculates the basis point spread between SOFR and EFFR ((SOFR - EFFR) * 100) to detect overnight repo liquidity crunches, systemic cash drains, or collateral scarcity.",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "sofr_val": {
-          "type": "number",
-          "description": "Secured Overnight Financing Rate in percent (FRED: SOFR)."
-        },
-        "effr_val": {
-          "type": "number",
-          "description": "Effective Federal Funds Rate in percent (FRED: EFFR)."
-        }
-      },
-      "required": ["sofr_val", "effr_val"]
-    }
-  }
-},
-{
-  "type": "function",
-  "function": {
-    "name": "calculate_gold_real_yield_debasement_gauge",
-    "description": "Evaluates disconnect between 10Y real yields and gold YoY growth to detect structural de-dollarization panic, debasement anomalies, or traditional rate dominance.",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "real_yield_10y": {
-          "type": "number",
-          "description": "10-Year TIPS Real Rate in percent (FRED: DFII10)."
-        },
-        "gold_yoy_pct": {
-          "type": "number",
-          "description": "Gold Fixing Price London time YoY % change (FRED/LBMA: GOLDPMGBD228NLBM)."
-        }
-      },
-      "required": ["real_yield_10y", "gold_yoy_pct"]
-    }
-  }
-},
-{
-  "type": "function",
-  "function": {
-    "name": "calculate_ovx_vix_risk_premium",
-    "description": "Calculates the ratio between Crude Oil Volatility (OVX) and Equity Volatility (VIX) to detect geopolitical energy supply shocks or equity-driven panic.",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "ovx_val": {
-          "type": "number",
-          "description": "CBOE Crude Oil Volatility Index value (FRED: OVXCLS)."
-        },
-        "vix_val": {
-          "type": "number",
-          "description": "CBOE Volatility Index value (FRED: VIXCLS)."
-        }
-      },
-      "required": ["ovx_val", "vix_val"]
-    }
-  }
-},
-{
-  "type": "function",
-  "function": {
-    "name": "calculate_natgas_crude_btu_disconnect",
-    "description": "Calculates the physical energy parity ratio between WTI Crude Oil and Henry Hub Natural Gas to detect regional gas gluts or acute supply crises.",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "wti_price": {
-          "type": "number",
-          "description": "Crude Oil Prices: West Texas Intermediate in dollars per barrel (FRED: DCOILWTICO)."
-        },
-        "natgas_price": {
-          "type": "number",
-          "description": "Henry Hub Natural Gas Spot Price in dollars per million BTU (FRED: DHHNGSP)."
-        }
-      },
-      "required": ["wti_price", "natgas_price"]
-    }
-  }
-},
-{
-  "type": "function",
-  "function": {
-    "name": "calculate_gasoline_crude_crack_spread",
-    "description": "Calculates the retail gasoline crack spread per barrel equivalent ((Gasoline * 42) - WTI) to detect refinery bottlenecks or margin collapses.",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "gas_gal_price": {
-          "type": "number",
-          "description": "US Regular All Formulations Retail Gasoline Price in dollars per gallon (FRED: GASREGW)."
-        },
-        "wti_barrel_price": {
-          "type": "number",
-          "description": "Crude Oil Prices: West Texas Intermediate in dollars per barrel (FRED: DCOILWTICO)."
-        }
-      },
-      "required": ["gas_gal_price", "wti_barrel_price"]
-    }
-  }
-},
-{
-  "type": "function",
-  "function": {
-    "name": "calculate_sloos_lending_tightness_gauge",
-    "description": "Calculates the net percentage of domestic banks tightening C&I loan standards to detect credit channel freezing and recession signals 6-9 months in advance (FRED: DRTSCIS).",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "drtscis_val": {
-          "type": "number",
-          "description": "Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Large and Middle-Market Firms (FRED: DRTSCIS)."
-        }
-      },
-      "required": ["drtscis_val"]
-    }
-  }
-},
-{
-  "type": "function",
-  "function": {
-    "name": "calculate_hidden_employment_crack_gauge",
-    "description": "Calculates the YoY spread between involuntary part-time workers and full-time employment to detect structural labor cracks and recession risks ahead of headline NFP (FRED: LNS12032194, LNS12500000).",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "part_time_econ_level_current": {
-          "type": "number",
-          "description": "Current month Part-Time for Economic Reasons in thousands (FRED: LNS12032194)."
-        },
-        "part_time_econ_level_yr_ago": {
-          "type": "number",
-          "description": "Same month prior year Part-Time for Economic Reasons in thousands (FRED: LNS12032194)."
-        },
-        "full_time_level_current": {
-          "type": "number",
-          "description": "Current month Usually Work Full Time in thousands (FRED: LNS12500000)."
-        },
-        "full_time_level_yr_ago": {
-          "type": "number",
-          "description": "Same month prior year Usually Work Full Time in thousands (FRED: LNS12500000)."
-        }
-      },
-      "required": [
-        "part_time_econ_level_current",
-        "part_time_econ_level_yr_ago",
-        "full_time_level_current",
-        "full_time_level_yr_ago"
-]
-    }
-  }
-},
-{
-  "type": "function",
-  "function": {
-    "name": "calculate_brent_wti_spread",
-    "description": "Calculates the price spread between Seaborne Brent and inland WTI crude oil (DCOILBRENTEU - DCOILWTICO) to detect maritime geopolitical risk premiums, shipping bottlenecks, or US domestic supply tightness.",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "brent_price": {
-          "type": "number",
-          "description": "Crude Oil Prices: Brent - Europe in dollars per barrel (EIA/FRED: DCOILBRENTEU)."
-        },
-        "wti_price": {
-          "type": "number",
-          "description": "Crude Oil Prices: West Texas Intermediate in dollars per barrel (EIA/FRED: DCOILWTICO)."
-        }
-      },
-      "required": ["brent_price", "wti_price"]
-    }
-  }
-},
     {
-  "type": "function",
-  "function": {
-    "name": "calculate_labor_market_momentum_index",
-    "description": "Calculates the Labor Market Momentum Index (LMMI) by combining annual Nonfarm Payrolls percentage growth with the annual percentage point change in Unemployment Rate (FRED: PAYEMS, UNRATE).",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "payems_current": {
-          "type": "number",
-          "description": "Current month Nonfarm Payrolls level in thousands (FRED: PAYEMS)."
-        },
-        "payems_yr_ago": {
-          "type": "number",
-          "description": "Same month prior year Nonfarm Payrolls level in thousands (FRED: PAYEMS)."
-        },
-        "unrate_current": {
-          "type": "number",
-          "description": "Current month Civilian Unemployment Rate in percent (FRED: UNRATE)."
-        },
-        "unrate_yr_ago": {
-          "type": "number",
-          "description": "Same month prior year Civilian Unemployment Rate in percent (FRED: UNRATE)."
-        },
-        "prev_lmmi": {
-          "type": "number",
-          "description": "Optional: Prior period LMMI score to detect acceleration vs deceleration trend."
+      "type": "function",
+      "function": {
+        "name": "calculate_repo_liquidity_friction_spread",
+        "description": "Calculates the basis point spread between SOFR and EFFR ((SOFR - EFFR) * 100) to detect overnight repo liquidity crunches, systemic cash drains, or collateral scarcity.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "sofr_val": {
+              "type": "number",
+              "description": "Secured Overnight Financing Rate in percent (FRED: SOFR)."
+            },
+            "effr_val": {
+              "type": "number",
+              "description": "Effective Federal Funds Rate in percent (FRED: EFFR)."
+            }
+          },
+          "required": [
+            "sofr_val",
+            "effr_val"
+          ]
         }
-      },
-      "required": [
-        "payems_current",
-        "payems_yr_ago",
-        "unrate_current",
-        "unrate_yr_ago"
-      ]
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_gold_real_yield_debasement_gauge",
+        "description": "Evaluates disconnect between 10Y real yields and gold YoY growth to detect structural de-dollarization panic, debasement anomalies, or traditional rate dominance.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "real_yield_10y": {
+              "type": "number",
+              "description": "10-Year TIPS Real Rate in percent (FRED: DFII10)."
+            },
+            "gold_yoy_pct": {
+              "type": "number",
+              "description": "Gold Fixing Price London time YoY % change (FRED/LBMA: GOLDPMGBD228NLBM)."
+            }
+          },
+          "required": [
+            "real_yield_10y",
+            "gold_yoy_pct"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_ovx_vix_risk_premium",
+        "description": "Calculates the ratio between Crude Oil Volatility (OVX) and Equity Volatility (VIX) to detect geopolitical energy supply shocks or equity-driven panic.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "ovx_val": {
+              "type": "number",
+              "description": "CBOE Crude Oil Volatility Index value (FRED: OVXCLS)."
+            },
+            "vix_val": {
+              "type": "number",
+              "description": "CBOE Volatility Index value (FRED: VIXCLS)."
+            }
+          },
+          "required": [
+            "ovx_val",
+            "vix_val"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_natgas_crude_btu_disconnect",
+        "description": "Calculates the physical energy parity ratio between WTI Crude Oil and Henry Hub Natural Gas to detect regional gas gluts or acute supply crises.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "wti_price": {
+              "type": "number",
+              "description": "Crude Oil Prices: West Texas Intermediate in dollars per barrel (FRED: DCOILWTICO)."
+            },
+            "natgas_price": {
+              "type": "number",
+              "description": "Henry Hub Natural Gas Spot Price in dollars per million BTU (FRED: DHHNGSP)."
+            }
+          },
+          "required": [
+            "wti_price",
+            "natgas_price"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_gasoline_crude_crack_spread",
+        "description": "Calculates the retail gasoline crack spread per barrel equivalent ((Gasoline * 42) - WTI) to detect refinery bottlenecks or margin collapses.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "gas_gal_price": {
+              "type": "number",
+              "description": "US Regular All Formulations Retail Gasoline Price in dollars per gallon (FRED: GASREGW)."
+            },
+            "wti_barrel_price": {
+              "type": "number",
+              "description": "Crude Oil Prices: West Texas Intermediate in dollars per barrel (FRED: DCOILWTICO)."
+            }
+          },
+          "required": [
+            "gas_gal_price",
+            "wti_barrel_price"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_sloos_lending_tightness_gauge",
+        "description": "Calculates the net percentage of domestic banks tightening C&I loan standards to detect credit channel freezing and recession signals 6-9 months in advance (FRED: DRTSCIS).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "drtscis_val": {
+              "type": "number",
+              "description": "Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Large and Middle-Market Firms (FRED: DRTSCIS)."
+            }
+          },
+          "required": [
+            "drtscis_val"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_hidden_employment_crack_gauge",
+        "description": "Calculates the YoY spread between involuntary part-time workers and full-time employment to detect structural labor cracks and recession risks ahead of headline NFP (FRED: LNS12032194, LNS12500000).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "part_time_econ_level_current": {
+              "type": "number",
+              "description": "Current month Part-Time for Economic Reasons in thousands (FRED: LNS12032194)."
+            },
+            "part_time_econ_level_yr_ago": {
+              "type": "number",
+              "description": "Same month prior year Part-Time for Economic Reasons in thousands (FRED: LNS12032194)."
+            },
+            "full_time_level_current": {
+              "type": "number",
+              "description": "Current month Usually Work Full Time in thousands (FRED: LNS12500000)."
+            },
+            "full_time_level_yr_ago": {
+              "type": "number",
+              "description": "Same month prior year Usually Work Full Time in thousands (FRED: LNS12500000)."
+            }
+          },
+          "required": [
+            "part_time_econ_level_current",
+            "part_time_econ_level_yr_ago",
+            "full_time_level_current",
+            "full_time_level_yr_ago"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_brent_wti_spread",
+        "description": "Calculates the price spread between Seaborne Brent and inland WTI crude oil (DCOILBRENTEU - DCOILWTICO) to detect maritime geopolitical risk premiums, shipping bottlenecks, or US domestic supply tightness.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "brent_price": {
+              "type": "number",
+              "description": "Crude Oil Prices: Brent - Europe in dollars per barrel (EIA/FRED: DCOILBRENTEU)."
+            },
+            "wti_price": {
+              "type": "number",
+              "description": "Crude Oil Prices: West Texas Intermediate in dollars per barrel (EIA/FRED: DCOILWTICO)."
+            }
+          },
+          "required": [
+            "brent_price",
+            "wti_price"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_labor_market_momentum_index",
+        "description": "Calculates the Labor Market Momentum Index (LMMI) by combining annual Nonfarm Payrolls percentage growth with the annual percentage point change in Unemployment Rate (FRED: PAYEMS, UNRATE).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "payems_current": {
+              "type": "number",
+              "description": "Current month Nonfarm Payrolls level in thousands (FRED: PAYEMS)."
+            },
+            "payems_yr_ago": {
+              "type": "number",
+              "description": "Same month prior year Nonfarm Payrolls level in thousands (FRED: PAYEMS)."
+            },
+            "unrate_current": {
+              "type": "number",
+              "description": "Current month Civilian Unemployment Rate in percent (FRED: UNRATE)."
+            },
+            "unrate_yr_ago": {
+              "type": "number",
+              "description": "Same month prior year Civilian Unemployment Rate in percent (FRED: UNRATE)."
+            },
+            "prev_lmmi": {
+              "type": "number",
+              "description": "Optional: Prior period LMMI score to detect acceleration vs deceleration trend."
+            }
+          },
+          "required": [
+            "payems_current",
+            "payems_yr_ago",
+            "unrate_current",
+            "unrate_yr_ago"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_ai_chip_stress_gauge",
+        "description": "Calculates the AI Hardware & Semiconductor Supply Chain Stress Gauge (AI_CHIP_STRESS) by weighting GSCPI, SOX YoY momentum, and VIX volatility.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "gscpi_val": {
+              "type": "number",
+              "description": "Global Supply Chain Pressure Index in standard deviations (NY Fed: GSCPI)."
+            },
+            "sox_yoy_pct": {
+              "type": "number",
+              "description": "PHLX Semiconductor Sector Index annual YoY percentage change (FRED: NASDAQSOX)."
+            },
+            "vix_val": {
+              "type": "number",
+              "description": "CBOE Volatility Index monthly average level (FRED: VIXCLS)."
+            }
+          },
+          "required": [
+            "gscpi_val",
+            "sox_yoy_pct",
+            "vix_val"
+          ]
+        }
+      }
     }
-  }
-}
   ]
 }
