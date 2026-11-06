@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "metadata": {
+    "engine": "Canonical FRED Time-Series Registry & Transformation Engine",
+    "author": "Ersoy Toptaş",
+    "license": "CC BY 4.0",
+    "endpoint_txt": "https://analysisreports.github.io/llms-fred-series.txt",
+    "endpoint_json": "https://analysisreports.github.io/llms-fred-series.json",
+    "formulas_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
+    "last_updated": "2026-11-06T21:36:08Z",
+    "monitored_series_count": 3
+  },
+  "frequencies": {
+    "DAILY": [],
+    "WEEKLY": [],
+    "MONTHLY": [
+      "PAYEMS",
+      "UNRATE",
+      "JTSJOL"
+    ],
+    "QUARTERLY": [],
+    "SEMIANNUAL": [],
+    "ANNUAL": []
+  },
+  "series": {
+    "PAYEMS": {
+      "series_id": "PAYEMS",
+      "title": "All Employees, Total Nonfarm",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Thousands of Persons",
+      "source": "Thousands of Persons",
+      "last_date": "2026-10-01",
+      "current_value": 159293.0,
+      "previous_value": 159128.0,
+      "year_ago_value": 158408.0,
+      "transformations": {
+        "change": 165.0,
+        "change_from_year_ago": 885.0,
+        "percent_change": 0.1037,
+        "percent_change_from_year_ago": 0.5587,
+        "compounded_annual_rate_of_change": 1.2514,
+        "continuously_compounded_rate_of_change": 0.1036,
+        "continuously_compounded_annual_rate_of_change": 1.2436
+      },
+      "recent_observations": [
+        {
+          "date": "2026-06-01",
+          "value": 158892.0
+        },
+        {
+          "date": "2026-07-01",
+          "value": 158882.0
+        },
+        {
+          "date": "2026-08-01",
+          "value": 159068.0
+        },
+        {
+          "date": "2026-09-01",
+          "value": 159128.0
+        },
+        {
+          "date": "2026-10-01",
+          "value": 159293.0
+        }
+      ]
+    },
+    "UNRATE": {
+      "series_id": "UNRATE",
+      "title": "Unemployment Rate",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Percent",
+      "source": "Percent",
+      "last_date": "2026-10-01",
+      "current_value": 4.1,
+      "previous_value": 4.2,
+      "year_ago_value": 4.4,
+      "transformations": {
+        "change": -0.1,
+        "change_from_year_ago": -0.3,
+        "percent_change": -2.381,
+        "percent_change_from_year_ago": -6.8182,
+        "compounded_annual_rate_of_change": -25.1116,
+        "continuously_compounded_rate_of_change": -2.4098,
+        "continuously_compounded_annual_rate_of_change": -28.9171
+      },
+      "recent_observations": [
+        {
+          "date": "2026-06-01",
+          "value": 4.2
+        },
+        {
+          "date": "2026-07-01",
+          "value": 4.1
+        },
+        {
+          "date": "2026-08-01",
+          "value": 4.1
+        },
+        {
+          "date": "2026-09-01",
+          "value": 4.2
+        },
+        {
+          "date": "2026-10-01",
+          "value": 4.1
+        }
+      ]
+    },
+    "JTSJOL": {
+      "series_id": "JTSJOL",
+      "title": "Job Openings: Total Nonfarm",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Level in Thousands",
+      "source": "Level in Thousands",
+      "last_date": "2026-09-01",
+      "current_value": 7523.0,
+      "previous_value": 7190.0,
+      "year_ago_value": 7169.0,
+      "transformations": {
+        "change": 333.0,
+        "change_from_year_ago": 354.0,
+        "percent_change": 4.6314,
+        "percent_change_from_year_ago": 4.9379,
+        "compounded_annual_rate_of_change": 72.1655,
+        "continuously_compounded_rate_of_change": 4.5274,
+        "continuously_compounded_annual_rate_of_change": 54.3286
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 7537.0
+        },
+        {
+          "date": "2026-06-01",
+          "value": 7182.0
+        },
+        {
+          "date": "2026-07-01",
+          "value": 7335.0
+        },
+        {
+          "date": "2026-08-01",
+          "value": 7190.0
+        },
+        {
+          "date": "2026-09-01",
+          "value": 7523.0
+        }
+      ]
+    }
+  }
+}
