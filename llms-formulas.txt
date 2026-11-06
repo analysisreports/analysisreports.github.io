@@ -1989,6 +1989,70 @@ Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açık
   - -0.20 <= LMMI <= +0.20: BALANCED_LABOR_MARKET (Neutral labor signals; payroll creation roughly in line with labor force demographics)
   - LMMI < -0.20: LABOR_MARKET_DETERIORATION_RISK (Weakening payroll growth and rising unemployment; recessionary cracks widening)
 
+---
+
+### 25.14. AI HARDWARE & SEMICONDUCTOR SUPPLY CHAIN STRESS GAUGE (AI_CHIP_STRESS)
+- Purpose: Quantifies global hardware bottlenecks and geopolitical semiconductor supply chain frictions (e.g., Taiwan Strait risk, export controls) by synthesizing physical supply chain stress (GSCPI), semiconductor equity momentum (NASDAQSOX), and financial risk aversion (VIXCLS) into a normalized composite index.
+- Data Series Keys:
+  - NY Fed / FRED: GSCPI (Global Supply Chain Pressure Index - Standard Deviations)
+  - NASDAQ / FRED: NASDAQSOX (PHLX Semiconductor Sector Index - YoY % Change, pc1)
+  - CBOE / FRED: VIXCLS (CBOE Volatility Index - Daily Close Index, Monthly Avg)
+- Scale Ingestion Contract:
+  - GSCPI: Native standard deviations (Centered at 0.0, shock threshold >= +1.5).
+  - NASDAQSOX: Scaled by historical ±50.0% cyclical volatility band: (NASDAQSOX_YoY / 50.0). Inverse coefficient (-0.35) applied as higher equity growth signals supply relief.
+  - VIXCLS: Scaled by historical median baseline of 20.0: (VIXCLS / 20.0). Higher volatility compounds financial risk premium (+0.25).
+- Formula:
+  AI_CHIP_STRESS = (GSCPI * 0.40) + ((NASDAQSOX_YoY / 50.0) * -0.35) + ((VIXCLS / 20.0) * 0.25)
+- Machine-Executable Logic (Python):
+  def ai_chip_stress_gauge(gscpi_val, sox_yoy_pct, vix_val):
+      if any(v is None or isinstance(v, bool) for v in (gscpi_val, sox_yoy_pct, vix_val)):
+          return None
+      try:
+          g = float(gscpi_val)
+          s = float(sox_yoy_pct)
+          v = float(vix_val)
+
+          if not all(math.isfinite(x) for x in (g, s, v)):
+              return None
+          if v <= 0.0:
+              return None
+
+          gscpi_comp = g * 0.40
+          sox_comp = (s / 50.0) * -0.35
+          vix_comp = (v / 20.0) * 0.25
+
+          raw_stress = gscpi_comp + sox_comp + vix_comp
+          if not math.isfinite(raw_stress):
+              return None
+
+          stress_score = round(raw_stress, 3)
+
+          if stress_score >= 1.20:
+              status = "ACUTE_CHIP_SUPPLY_CRUNCH"
+          elif stress_score >= 0.50:
+              status = "ELEVATED_SEMICONDUCTOR_BOTTLENECK"
+          elif stress_score <= -0.40:
+              status = "CHIP_SUPPLY_ABUNDANCE_EXPANSION"
+          else:
+              status = "BALANCED_HARDWARE_FLOW"
+
+          return {
+              "ai_chip_stress_index": stress_score,
+              "gscpi_component": round(gscpi_comp, 3),
+              "sox_component": round(sox_comp, 3),
+              "vix_component": round(vix_comp, 3),
+              "status": status
+          }
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Stress >= +1.20 : ACUTE_CHIP_SUPPLY_CRUNCH (Severe physical supply chain disruption, foundry shutdown or Taiwan maritime embargo risk; tech Capex delays)
+  - +0.50 <= Stress < +1.20 : ELEVATED_SEMICONDUCTOR_BOTTLENECK (Supply constraints outpacing delivery capacity; hardware inflation and extended lead times)
+  - -0.40 < Stress < +0.50 : BALANCED_HARDWARE_FLOW (Normal semiconductor cycle and functioning global logistics channels)
+  - Stress <= -0.40 : CHIP_SUPPLY_ABUNDANCE_EXPANSION (High fabrication throughput, robust capacity expansion, and subdued market volatility)
+
+---
+
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
 ### 26. KOMITE AYRISMA KATSAYISI (COMMITTEE DISPERSION SCORE)
