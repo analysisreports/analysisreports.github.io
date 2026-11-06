@@ -194,8 +194,10 @@ def parse_registry(txt_path: str) -> Tuple[Dict[str, List[str]], str]:
     return frequencies, config_part.rstrip()
 
 def build_outputs(frequencies: Dict[str, List[str]], api_key: str) -> Tuple[str, Dict[str, Any]]:
-    now_utc = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-    now_iso = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    now_dt = datetime.datetime.now(datetime.timezone.utc)
+    now_utc = now_dt.strftime("%Y-%m-%d %H:%M:%S UTC")
+    now_iso = now_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+    today_date = now_dt.strftime("%Y-%m-%d")
 
     txt_blocks = []
     json_series_dict = {}
@@ -223,7 +225,6 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str) -> Tuple[str,
             xt_prev = t_prev["value"]
             xt_year_ago = t_year_ago["value"] if t_year_ago else None
 
-            # 7 Official transformations from llms-formulas.txt Section 0.3
             c_chg = fred_change(xt, xt_prev)
             c_chg_yr = fred_change_year_ago(xt, xt_year_ago) if xt_year_ago is not None else None
             c_pct = fred_percent_change(xt, xt_prev)
@@ -281,28 +282,36 @@ Recent Observations (Last 5):
 {recent_lines}"""
             txt_blocks.append(block)
 
+    # Master JSON with professional metadata audit fields
     master_json = {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "metadata": {
             "engine": "Canonical FRED Time-Series Registry & Transformation Engine",
             "author": "Ersoy Toptaş",
             "license": "CC BY 4.0",
+            "sync_status": "SUCCESS",
+            "last_successful_sync": now_iso,
+            "data_as_of": today_date,
+            "source_vintage": today_date,
             "endpoint_txt": "https://analysisreports.github.io/llms-fred-series.txt",
             "endpoint_json": "https://analysisreports.github.io/llms-fred-series.json",
             "formulas_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
-            "last_updated": now_iso,
             "monitored_series_count": total_series
         },
         "frequencies": frequencies,
         "series": json_series_dict
     }
 
+    # Master TXT with matching sync status header
     sec2_header = f"""# ==============================================================================
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Transformations strictly follow Section 0.3 of llms-formulas.txt.
 # Mathematical Guardrail: Enforce x(t) > 0 for log and compounded rate calculations.
-# Last Synchronized: {now_utc}
+#
+# Sync Status: SUCCESS
+# Last Successful Sync: {now_utc}
+# Data As Of / Source Vintage: {today_date}
 """
     master_txt_report = sec2_header + "\n" + "\n\n".join(txt_blocks) + "\n--------------------------------------------------------------------------------\n"
     return master_txt_report, master_json
