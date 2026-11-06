@@ -308,6 +308,7 @@ Recent Observations (Last 5):
 # ==============================================================================
 # Transformations strictly follow Section 0.3 of llms-formulas.txt.
 # Mathematical Guardrail: Enforce x(t) > 0 for log and compounded rate calculations.
+# Methodological Note: Compounded Annual Rate reflects theoretical annualized pace if single-period momentum persisted for a full year; it is an official FRED transformation (SAAR), not an economic baseline forecast.
 #
 # Sync Status: SUCCESS
 # Last Successful Sync: {now_utc}
