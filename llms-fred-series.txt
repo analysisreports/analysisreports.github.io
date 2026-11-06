@@ -1,0 +1,42 @@
+# Ersoy Toptaş Canonical FRED Time-Series Registry & Transformation Engine (llms-fred-series.txt)
+> Official St. Louis Fed (FRED) Monitored Series, Observation Snapshots, and Canonical Transformations.
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
+> Endpoint: https://analysisreports.github.io/llms-fred-series.txt
+> JSON Twin Endpoint: https://analysisreports.github.io/llms-fred-series.json
+> Root Index: https://analysisreports.github.io/llms.txt
+> Master Directory: https://analysisreports.github.io/llms-full.txt
+> Formulas Engine: https://analysisreports.github.io/llms-formulas.txt
+> Relationships: https://analysisreports.github.io/llms-relationships.txt
+> Author Profile: https://analysisreports.github.io/llms-about.txt
+> Editorial Frontends: https://www.ersoytoptas.tr/ | https://en.ersoytoptas.tr/
+
+# ==============================================================================
+# 1. MONITORED TIME-SERIES CONFIGURATION (USER REGISTRY)
+# ==============================================================================
+# Instructions:
+# - Add or remove canonical FRED Series IDs directly under the respective frequency block.
+# - Frequencies govern synchronization cadence and the annualization factor (n_obs_per_yr).
+# - Daily: 260 obs/yr | Weekly: 52 obs/yr | Monthly: 12 obs/yr | Quarterly: 4 obs/yr | Semiannual: 2 obs/yr | Annual: 1 obs/yr
+
+[DAILY]
+
+[WEEKLY]
+
+[MONTHLY]
+PAYEMS
+UNRATE
+JTSJOL
+
+[QUARTERLY]
+
+[SEMIANNUAL]
+
+[ANNUAL]
+
+# ==============================================================================
+# 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
+# ==============================================================================
+# Transformations strictly follow Section 0.3 of llms-formulas.txt.
+# Mathematical Guardrail: Enforce x(t) > 0 for log and compounded rate calculations.
+#
+# Status: Initialized registry. Awaiting first automated synchronization cycle.
