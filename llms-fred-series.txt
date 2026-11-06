@@ -38,7 +38,10 @@ JTSJOL
 # ==============================================================================
 # Transformations strictly follow Section 0.3 of llms-formulas.txt.
 # Mathematical Guardrail: Enforce x(t) > 0 for log and compounded rate calculations.
-# Last Synchronized: 2026-11-06 21:36:08 UTC
+#
+# Sync Status: SUCCESS
+# Last Successful Sync: 2026-11-06 21:51:56 UTC
+# Data As Of / Source Vintage: 2026-11-06
 
 --------------------------------------------------------------------------------
 Series ID: PAYEMS

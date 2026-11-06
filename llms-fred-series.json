@@ -4,10 +4,13 @@
     "engine": "Canonical FRED Time-Series Registry & Transformation Engine",
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
+    "sync_status": "SUCCESS",
+    "last_successful_sync": "2026-11-06T21:51:56Z",
+    "data_as_of": "2026-11-06",
+    "source_vintage": "2026-11-06",
     "endpoint_txt": "https://analysisreports.github.io/llms-fred-series.txt",
     "endpoint_json": "https://analysisreports.github.io/llms-fred-series.json",
     "formulas_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
-    "last_updated": "2026-11-06T21:36:08Z",
     "monitored_series_count": 3
   },
   "frequencies": {
