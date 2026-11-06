@@ -490,7 +490,7 @@ Regime States (Discrete Mapping):
 - Actor Coupling: US-CN tech/export controls (2.1.2) driving friend-shoring costs, BRICS_MBRIDGE (2.6.1) contracting dollar clearing velocity.
 - Transmission Linkage: DRTSCIS net percentage exceeding 40.0% confirms geopolitical friction is severing commercial investment credit and freezing bank lending channels.
 
-### 8.6. Structural Labor Fracture & Trade War Friction Engine (Model 25.11)
+### 8.6. Structural Labor Fracture & Macro Momentum Engine (Models 25.11 & 25.13)
 8.6.1. MODEL_25.11_HIDDEN_EMPLOYMENT_CRACK_GAUGE
 - Target Formula: llms-formulas.txt -> Model 25.11 (hidden_employment_crack_gauge)
 - Data Series Triggered: LNS12500000, LNS12032194
@@ -498,6 +498,14 @@ Regime States (Discrete Mapping):
 - Primary Geopolitical Vector: East Asian supply chain friction (2.5.1, 4.6) and tariff escalation forcing export manufacturers into involuntary part-time shifts.
 - Actor Coupling: US/JP/KR-KP standoff (2.5.1), Taiwan Strait blockade risk (4.6, 7.2.2), US-EU trade frictions (2.3.1).
 - Transmission Linkage: Crack_Spread exceeding 18.0% confirms tariff/supply bottlenecks are eroding full-time labor before headline NFP registers weakness.
+
+8.6.2. MODEL_25.13_LABOR_MARKET_MOMENTUM_INDEX
+- Target Formula: llms-formulas.txt -> Model 25.13 (labor_market_momentum_index)
+- Data Series Triggered: PAYEMS, UNRATE
+- Status Enums: STRONG_LABOR_EXPANSION | MODERATE_LABOR_EXPANSION | DECELERATING_LABOR_MOMENTUM | BALANCED_LABOR_MARKET | LABOR_MARKET_DETERIORATION_RISK
+- Primary Geopolitical Vector: Geoeconomic fragmentation, tariff shocks, and supply chain reshoring pressures impacting corporate hiring velocity and aggregate labor absorption.
+- Actor Coupling: Federal Reserve monetary reaction function (Model 1 & Model 5), US Treasury fiscal transmission.
+- Transmission Linkage: LMMI declining below -0.20 verifies that job creation has fallen below demographic breakeven while unemployment rises, forcing the FOMC into rapid rate cuts and signaling broader macro cycle rollover.
 
 ### 8.7. Multipolar Settlement & Term Premium Spillover Engine (Actor 2.6.1 & Model 15 / Model 25.6 Linkage)
 8.7.1. MBRIDGE_SOVEREIGN_RESERVE_DIVERSIFICATION
@@ -526,4 +534,14 @@ Regime States (Discrete Mapping):
 - Primary Geopolitical Vector: Chokepoint disruptions in Hormuz (4.1) and Bab el-Mandeb (4.2) scaling market transmission based on real policy rate and financial conditions.
 - Actor Coupling: Model 2 (real_policy_rate) and Model 12 (financial_conditions_regime) damping macro spillover.
 - Transmission Linkage: Restrictive monetary regime (Real Yield > 1.5% or NFCI > 0.0) scales market impact by 1.25x; accommodative regime dampens impact to 0.75x via surplus liquidity buffer.
+
+### 8.10. AI Hardware & Semiconductor Geopolitical Bottleneck Engine (Model 25.14)
+
+8.10.1. MODEL_25.14_AI_CHIP_STRESS_GAUGE
+- Target Formula: llms-formulas.txt -> Model 25.14 (ai_chip_stress_gauge)
+- Data Series Triggered: GSCPI, NASDAQSOX, VIXCLS
+- Status Enums: ACUTE_CHIP_SUPPLY_CRUNCH | ELEVATED_SEMICONDUCTOR_BOTTLENECK | BALANCED_HARDWARE_FLOW | CHIP_SUPPLY_ABUNDANCE_EXPANSION
+- Primary Geopolitical Vector: Taiwan Strait (4.6) maritime blockade, East Asian advanced node export controls (2.5.1), and Malacca (4.3) specialized cargo choke.
+- Actor Coupling: US-CN technological containment axis (2.1.2), TW advanced fab concentration (TSMC), and JP/KR lithography-chemical supply friction.
+- Transmission Linkage: AI_CHIP_STRESS crossing above +1.20 confirms physical or geopolitical disruption in advanced packaging/wafers, instantly compressing tech margins, triggering hardware Capex delays, and amplifying global tech equity volatility.
 
