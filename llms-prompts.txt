@@ -2,7 +2,7 @@
 # Ecosystem: Ersoy Toptas Dual Architecture: ersoytoptas.tr (Publication Layer) x analysisreports.github.io (Data/Machine Layer)
 # Canonical Source: https://analysisreports.github.io/llms-prompts.txt
 # License: CC-BY-4.0 | Author: Ersoy Toptas
-# Target: Think simple, act big
+# Target: Think simple, act big 
 
 ================================================================================
 1. CORE OPERATIONAL & EXECUTION PRINCIPLES
