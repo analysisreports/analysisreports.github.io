@@ -881,7 +881,8 @@
 {"id": "INST_MAS_SG", "label": "Monetary Authority of Singapore", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_SG", "currency": "SGD"}},
 {"id": "INST_SAMA_SA", "label": "Saudi Central Bank", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_SA", "currency": "SAR"}},
 {"id": "INST_BCB_BR", "label": "Central Bank of Brazil", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_BR", "currency": "BRL"}},
-{"id": "INST_BANXICO_MX", "label": "Bank of Mexico", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_MX", "currency": "MXN"}}
+{"id": "INST_BANXICO_MX", "label": "Bank of Mexico", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_MX", "currency": "MXN"}},
+{"id": "MODEL_25_14", "label": "AI Chip Stress Gauge", "category": "QUANT_MODEL", "source": "analysisreports"}
   ],
   "edges": [
     {
@@ -1401,6 +1402,9 @@
 {"source": "INST_FED_US", "target": "IND_EFFR", "type": "TRIGGERS_INDICATOR", "impact": "POLICY_RATE_SETTING"},
 {"source": "INST_FED_US", "target": "MODEL_5", "type": "BRIDGES_TO_MODEL", "passes": "liquidity_steering_policy"},
 {"source": "INST_TCMB_TR", "target": "MODEL_25.2", "type": "BRIDGES_TO_MODEL", "passes": "inflation_target_transmission"},
-{"source": "INST_ECB_EU", "target": "MODEL_25.5", "type": "BRIDGES_TO_MODEL", "passes": "eurodollar_repo_liquidity_impact"}
+{"source": "INST_ECB_EU", "target": "MODEL_25.5", "type": "BRIDGES_TO_MODEL", "passes": "eurodollar_repo_liquidity_impact"},
+{"source": "IND_GSCPI", "target": "MODEL_25_14", "type": "INGESTS_SERIES", "weight": 0.40},
+{"source": "IND_SOX", "target": "MODEL_25_14", "type": "INGESTS_SERIES", "weight": 0.35},
+{"source": "IND_VIXCLS", "target": "MODEL_25_14", "type": "INGESTS_SERIES", "weight": 0.25}
   ]
 }
