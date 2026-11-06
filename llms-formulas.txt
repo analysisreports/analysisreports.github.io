@@ -1915,6 +1915,80 @@ Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açık
 
 ---
 
+### 25.13. LABOR MARKET MOMENTUM INDEX (LMMI / EMME)
+- Purpose: Couples the annual percentage growth of Nonfarm Payrolls (PAYEMS) with the annual percentage point change in the Civilian Unemployment Rate (UNRATE) to measure net momentum, structural deceleration, and employment slack pressure on the Federal Reserve monetary policy reaction function.
+- Data Series Keys:
+  - BLS / FRED: PAYEMS (All Employees, Total Nonfarm - Monthly Level, in Thousands)
+  - BLS / FRED: UNRATE (Civilian Unemployment Rate - Monthly Percent, %)
+- Formula:
+  PAYEMS_YoY_Pct = ((PAYEMS(t) / PAYEMS(t-12)) - 1.0) * 100.0
+  UNRATE_YoY_Diff = UNRATE(t) - UNRATE(t-12)
+  LMMI = PAYEMS_YoY_Pct - UNRATE_YoY_Diff
+  Employment_Strength_Ratio = PAYEMS_YoY_Pct * (1.0 / UNRATE(t))
+- Machine-Executable Logic (Python):
+  def labor_market_momentum_index(payems_current, payems_yr_ago, unrate_current, unrate_yr_ago, prev_lmmi=None):
+      if any(v is None or isinstance(v, bool) for v in (payems_current, payems_yr_ago, unrate_current, unrate_yr_ago)):
+          return None
+      try:
+          p_curr = float(payems_current)
+          p_yr = float(payems_yr_ago)
+          u_curr = float(unrate_current)
+          u_yr = float(unrate_yr_ago)
+
+          if not all(math.isfinite(x) for x in (p_curr, p_yr, u_curr, u_yr)):
+              return None
+          if p_curr <= 0.0 or p_yr <= 0.0 or u_curr <= 0.0 or u_yr < 0.0:
+              return None
+
+          p_growth = ((p_curr / p_yr) - 1.0) * 100.0
+          u_diff = u_curr - u_yr
+          raw_lmmi = p_growth - u_diff
+
+          if not math.isfinite(raw_lmmi):
+              return None
+
+          lmmi = round(raw_lmmi, 2)
+          p_growth_r = round(p_growth, 2)
+          u_diff_r = round(u_diff, 2)
+          strength_ratio = round(p_growth * (1.0 / u_curr), 2) if u_curr > 0 else None
+
+          # Dynamic momentum direction check if historical LMMI benchmark is provided
+          if prev_lmmi is not None and not isinstance(prev_lmmi, bool):
+              p_lmmi = float(prev_lmmi)
+              if math.isfinite(p_lmmi):
+                  if lmmi > 0.20:
+                      status = "DECELERATING_LABOR_MOMENTUM" if lmmi < p_lmmi else "STRONG_LABOR_EXPANSION"
+                  elif lmmi < -0.20:
+                      status = "LABOR_MARKET_DETERIORATION_RISK"
+                  else:
+                      status = "BALANCED_LABOR_MARKET"
+              else:
+                  return None
+          else:
+              if lmmi > 1.0:
+                  status = "STRONG_LABOR_EXPANSION"
+              elif lmmi > 0.20:
+                  status = "MODERATE_LABOR_EXPANSION"
+              elif lmmi < -0.20:
+                  status = "LABOR_MARKET_DETERIORATION_RISK"
+              else:
+                  status = "BALANCED_LABOR_MARKET"
+
+          return {
+              "lmmi_score": lmmi,
+              "payems_yoy_pct": p_growth_r,
+              "unrate_yoy_diff": u_diff_r,
+              "employment_strength_ratio": strength_ratio,
+              "status": status
+          }
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - LMMI > +1.00 (or rising): STRONG_LABOR_EXPANSION (Robust payroll expansion and declining/stable unemployment; accelerating labor market strength; lowers dovish Fed cut urgency)
+  - +0.20 < LMMI <= +1.00 (or declining vs previous month): DECELERATING_LABOR_MOMENTUM / MODERATE_LABOR_EXPANSION (Employment expanding but losing velocity or unemployment ticking higher; late-cycle cooling)
+  - -0.20 <= LMMI <= +0.20: BALANCED_LABOR_MARKET (Neutral labor signals; payroll creation roughly in line with labor force demographics)
+  - LMMI < -0.20: LABOR_MARKET_DETERIORATION_RISK (Weakening payroll growth and rising unemployment; recessionary cracks widening)
+
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
 ### 26. KOMITE AYRISMA KATSAYISI (COMMITTEE DISPERSION SCORE)
