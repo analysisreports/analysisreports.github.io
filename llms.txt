@@ -40,6 +40,8 @@ Core repository endpoints, manifests, and their operational roles:
 - [Live FRED Series Registry (llms-fred-series.txt)](https://analysisreports.github.io/llms-fred-series.txt): Monitored FRED time-series, latest observation snapshots, and official growth rates.
 - [Live FRED Series JSON Twin (llms-fred-series.json)](https://analysisreports.github.io/llms-fred-series.json): Structured JSON endpoint for automated FRED time-series and St. Louis Fed transformations.
 - [Dynamic Relationships JSON Twin (llms-relationships.json)](https://analysisreports.github.io/llms-relationships.json): Live machine-readable geopolitical polarity snapshot, dynamic deltas, and active regime states.
+- [Live Quantitative Models Engine (llms-models.txt)](https://analysisreports.github.io/llms-models.txt): Real-time evaluated macroeconomic models, fear indices, and transmission metrics.
+- [Live Quantitative Models JSON Twin (llms-models.json)](https://analysisreports.github.io/llms-models.json): Structured JSON twin for real-time quantitative model evaluation and regime states.
 
 ---
 
