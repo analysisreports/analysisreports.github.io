@@ -125,7 +125,7 @@ Aggregation Alignment Rule:
 62. DEXJPUS (Japanese Yen to U.S. Dollar Spot Exchange Rate) | Source: Board of Governors / FRED | Freq: d | Units: JPY per USD | Trans: lin
 63. SOX (PHLX Semiconductor Index / Taiwan Supply Chain Sensitivity) | Source: NASDAQ | Freq: d | Units: Index | Trans: lin
 
-### 2.12. Advanced Macro, Rate Friction & Energy Indicators (Models 25.2 - 25.14)
+### 2.12. Advanced Macro, Rate Friction & Energy Indicators (Models 25.2 - 25.15)
 64. STICKYCPIM157SFRBATL (Sticky CPI Less Food & Energy) | Source: Atlanta Fed / FRED | Freq: m | Units: Percent (%) | Trans: pc1 (YoY)
 65. FLEXCPIM157SFRBATL (Flexible CPI Less Food & Energy) | Source: Atlanta Fed / FRED | Freq: m | Units: Percent (%) | Trans: pc1 (YoY)
 66. MOVE (ICE BofA US Treasury Option Volatility Estimate) | Source: ICE / Merrill Lynch | Freq: d | Units: Index | Trans: lin
