@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-07T00:51:16Z",
+    "last_successful_sync": "2026-11-07T13:03:00Z",
     "data_as_of": "2026-11-07",
     "source_vintage": "2026-11-07",
     "endpoint_txt": "https://analysisreports.github.io/llms-fred-series.txt",
@@ -168,24 +168,20 @@
       "n_obs_per_yr": 260,
       "units": "Index",
       "source": "Index",
-      "last_date": "2026-11-05",
-      "current_value": 9011.14,
-      "previous_value": 10268.65,
-      "year_ago_value": 6847.39,
+      "last_date": "2026-11-06",
+      "current_value": 9390.25,
+      "previous_value": 9011.14,
+      "year_ago_value": 6976.94,
       "transformations": {
-        "change": -1257.51,
-        "change_from_year_ago": 2163.75,
-        "percent_change": -12.2461,
-        "percent_change_from_year_ago": 31.5996,
-        "compounded_annual_rate_of_change": -100.0,
-        "continuously_compounded_rate_of_change": -13.0634,
-        "continuously_compounded_annual_rate_of_change": -3396.4833
+        "change": 379.11,
+        "change_from_year_ago": 2413.31,
+        "percent_change": 4.2071,
+        "percent_change_from_year_ago": 34.5898,
+        "compounded_annual_rate_of_change": 4501103.0667,
+        "continuously_compounded_rate_of_change": 4.121,
+        "continuously_compounded_annual_rate_of_change": 1071.4685
       },
       "recent_observations": [
-        {
-          "date": "2026-10-30",
-          "value": 10688.8
-        },
         {
           "date": "2026-11-02",
           "value": 10328.33
@@ -201,6 +197,10 @@
         {
           "date": "2026-11-05",
           "value": 9011.14
+        },
+        {
+          "date": "2026-11-06",
+          "value": 9390.25
         }
       ]
     },

@@ -46,7 +46,7 @@ GSCPI
 # Methodological Note: Compounded Annual Rate reflects theoretical annualized pace if single-period momentum persisted for a full year; it is an official FRED transformation (SAAR), not an economic baseline forecast.
 #
 # Sync Status: SUCCESS
-# Last Successful Sync: 2026-11-07 00:51:16 UTC
+# Last Successful Sync: 2026-11-07 13:03:00 UTC
 # Data As Of / Source Vintage: 2026-11-07
 
 --------------------------------------------------------------------------------
@@ -119,23 +119,23 @@ Recent Observations (Last 5):
 Series ID: NASDAQSOX
 Title: PHLX Semiconductor
 Frequency: Daily (n_obs_per_yr: 260) | Units: Index
-Last Date: 2026-11-05 | Current Value: 9011.1400 | Previous Value: 10268.6500 | Year Ago Value: 6847.3900
+Last Date: 2026-11-06 | Current Value: 9390.2500 | Previous Value: 9011.1400 | Year Ago Value: 6976.9400
 
 Official Transformations (Section 0.3):
-- Change: -1257.5100
-- Change from Year Ago: +2163.7500
-- Percent Change: -12.2461%
-- Percent Change from Year Ago: +31.5996%
-- Compounded Annual Rate of Change: -100.0000%
-- Continuously Compounded Rate of Change: -13.0634%
-- Continuously Compounded Annual Rate of Change: -3396.4833%
+- Change: +379.1100
+- Change from Year Ago: +2413.3100
+- Percent Change: +4.2071%
+- Percent Change from Year Ago: +34.5898%
+- Compounded Annual Rate of Change: +4501103.0667%
+- Continuously Compounded Rate of Change: +4.1210%
+- Continuously Compounded Annual Rate of Change: +1071.4685%
 
 Recent Observations (Last 5):
-  2026-10-30: 10688.8000
   2026-11-02: 10328.3300
   2026-11-03: 10600.4000
   2026-11-04: 10268.6500
   2026-11-05: 9011.1400
+  2026-11-06: 9390.2500
 
 --------------------------------------------------------------------------------
 Series ID: PAYEMS

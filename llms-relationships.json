@@ -5,14 +5,14 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-07T00:51:21.862604+00:00",
+    "last_successful_sync": "2026-11-07T13:03:05.920855+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "macro_inputs": {
       "brent_wti_spread_usd": 7.39,
       "vix_index": 28.18,
-      "sox_yoy_pct": 31.5996,
+      "sox_yoy_pct": 34.5898,
       "gscpi_std_dev": 0.0,
-      "ai_chip_stress_score": 0.131
+      "ai_chip_stress_score": 0.11
     }
   },
   "relationships": [
