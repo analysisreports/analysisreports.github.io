@@ -62,6 +62,8 @@ Core Manifests & System Engines:
 - Live FRED Time-Series Registry: https://analysisreports.github.io/llms-fred-series.txt
 - Live FRED JSON Twin: https://analysisreports.github.io/llms-fred-series.json
 - Dynamic Relationships JSON Twin: https://analysisreports.github.io/llms-relationships.json
+- Live Quantitative Models Engine: https://analysisreports.github.io/llms-models.txt
+- Live Quantitative Models JSON Twin: https://analysisreports.github.io/llms-models.json
 
 Ontological Schema Contracts & Machine-Validatable Payloads:
 - Macroeconomics & Monetary Policy: https://analysisreports.github.io/economy.json (Text: https://analysisreports.github.io/llms-schema-economy.txt)
