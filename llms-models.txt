@@ -4,16 +4,17 @@
 > Endpoint: https://analysisreports.github.io/llms-models.txt
 > JSON Twin Endpoint: https://analysisreports.github.io/llms-models.json
 > Master Formulas Engine: https://analysisreports.github.io/llms-formulas.txt
-> Ingested Live Time-Series: https://analysisreports.github.io/llms-fred-series.json
+> Ingested Live Time-Series: FRED & BIS APIs
 > Root Index: https://analysisreports.github.io/llms.txt
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-07 16:25 UTC
-> **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed observations. Zero hallucination guarantee.
+> **Last Calibrated Sync:** 2026-11-07 17:00 UTC
+> **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
 | :--- | :--- | :---: | :---: | :--- | :--- |
+| **MODEL_1** | Global Central Bank Policy Benchmark & Rate Disparity | **3.875** | Percent (%) | `CALIBRATED_POLICY_EASING` | Canonical policy rates across G5 central banks sourced ... |
 | **MODEL_3** | Official Sahm Rule Recession Indicator | **0.0** | Percentage Points | `NORMAL_LABOR_MARKET` | Real-time recession detection triggered when 3-month un... |
 | **MODEL_5** | Net Fed Liquidity Index | **5.791** | Trillion USD | `NEUTRAL_LIQUIDITY_EQUILIBRIUM` | Unencumbered commercial bank liquidity: WALCL - (TGA + ... |
 | **MODEL_6** | Treasury Yield Curve Slope (10Y - 2Y) | **35.0** | Basis Points (bps) | `NORMAL_CURVE_EXPANSION` | Leading cyclical economic barometer. Inversions (bps < ... |
@@ -24,6 +25,13 @@
 
 ---
 ### Detailed Model Breakdowns
+
+#### [MODEL_1] Global Central Bank Policy Benchmark & Rate Disparity
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#1
+- **Evaluated Status:** `CALIBRATED_POLICY_EASING` (Primary Value: 3.875 Percent (%))
+- **Inputs Evaluated:** `{"fed_funds_midpoint": 3.875, "ecb_deposit_facility": 2.5, "boj_overnight_call": 1.25, "boe_bank_rate": 3.75, "pboc_loan_prime_rate": 3.0}`
+- **Policy Disparities:** `{"us_minus_ecb_spread_pts": 1.375, "us_minus_boj_carry_spread_pts": 2.625}`
+- **Economic Synthesis:** Canonical policy rates across G5 central banks sourced from Bank for International Settlements (BIS). Guides cross-border carry trades and sovereign yields.
 
 #### [MODEL_3] Official Sahm Rule Recession Indicator
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#3
