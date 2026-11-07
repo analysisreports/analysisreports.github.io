@@ -33,3 +33,7 @@ jobs:
               sys.exit(1)
           print('Tüm JSON dosyaları geçerli.')
           "
+
+      - name: Verify Canonical Entity IDs Integrity
+        run: |
+          python scripts/verify_entities.py
