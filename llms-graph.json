@@ -1382,6 +1382,12 @@
       "label": "AI Hardware & Chip Stress Engine",
       "category": "MODEL",
       "description": "Quantifies semiconductor supply bottlenecks combining GSCPI, SOX, and VIX."
+    },
+    {
+      "id": "MODEL_25.15",
+      "label": "Domestic Governance Gridlock & Tariff Friction Engine",
+      "category": "MODEL",
+      "description": "Quantifies domestic legislative gridlock driving unilateral trade tariffs and external economic friction."
     }
   ],
   "edges": [
@@ -2194,6 +2200,24 @@
       "target": "MODEL_25.14",
       "type": "INGESTS_SERIES",
       "role": "vix_val"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "MODEL_25.15",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "legislative_gridlock_tariff_impulse"
+    },
+    {
+      "source": "ACTOR_CN",
+      "target": "MODEL_25.15",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "centralized_strategic_retaliation"
+    },
+    {
+      "source": "ACTOR_DE",
+      "target": "MODEL_25.15",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "parliamentary_coalition_fiscal_brake"
     }
   ]
 }
