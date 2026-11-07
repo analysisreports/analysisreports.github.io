@@ -52,7 +52,7 @@ SAHMREALTIME
 # Methodological Note: Compounded Annual Rate reflects theoretical annualized pace if single-period momentum persisted for a full year; it is an official FRED transformation (SAAR), not an economic baseline forecast.
 #
 # Sync Status: SUCCESS
-# Last Successful Sync: 2026-11-07 15:13:55 UTC
+# Last Successful Sync: 2026-11-07 16:00:08 UTC
 # Data As Of / Source Vintage: 2026-11-07
 
 --------------------------------------------------------------------------------
@@ -144,6 +144,94 @@ Recent Observations (Last 5):
   2026-11-06: 9390.2500
 
 --------------------------------------------------------------------------------
+Series ID: T10Y2Y
+Title: 10-Year Treasury Constant Maturity Minus 2-Year Treasury Constant Maturity
+Frequency: Daily (n_obs_per_yr: 260) | Units: Percent
+Last Date: 2026-11-06 | Current Value: 0.3500 | Previous Value: 0.3800 | Year Ago Value: 0.5300
+
+Official Transformations (Section 0.3):
+- Change: -0.0300
+- Change from Year Ago: -0.1800
+- Percent Change: -7.8947%
+- Percent Change from Year Ago: -33.9623%
+- Compounded Annual Rate of Change: -100.0000%
+- Continuously Compounded Rate of Change: -8.2238%
+- Continuously Compounded Annual Rate of Change: -2138.1906%
+
+Recent Observations (Last 5):
+  2026-11-02: 0.3200
+  2026-11-03: 0.3400
+  2026-11-04: 0.3200
+  2026-11-05: 0.3800
+  2026-11-06: 0.3500
+
+--------------------------------------------------------------------------------
+Series ID: RRPONTSYD
+Title: Overnight Reverse Repurchase Agreements: Treasury Securities Sold by the Federal Reserve in the Temporary Open Market Operations
+Frequency: Daily (n_obs_per_yr: 260) | Units: Billions of US Dollars
+Last Date: 2026-11-06 | Current Value: 0.1500 | Previous Value: 0.1250 | Year Ago Value: 4.0050
+
+Official Transformations (Section 0.3):
+- Change: +0.0250
+- Change from Year Ago: -3.8550
+- Percent Change: +20.0000%
+- Percent Change from Year Ago: -96.2547%
+- Compounded Annual Rate of Change: +38647728393988146724864.0000%
+- Continuously Compounded Rate of Change: +18.2322%
+- Continuously Compounded Annual Rate of Change: +4740.3605%
+
+Recent Observations (Last 5):
+  2026-11-02: 5.0870
+  2026-11-03: 0.4270
+  2026-11-04: 0.2250
+  2026-11-05: 0.1250
+  2026-11-06: 0.1500
+
+--------------------------------------------------------------------------------
+Series ID: WALCL
+Title: Assets: Total Assets: Total Assets (Less Eliminations from Consolidation): Wednesday Level
+Frequency: Weekly (n_obs_per_yr: 52) | Units: Millions of U.S. Dollars
+Last Date: 2026-11-04 | Current Value: 6748145.0000 | Previous Value: 6745635.0000 | Year Ago Value: 6572732.0000
+
+Official Transformations (Section 0.3):
+- Change: +2510.0000
+- Change from Year Ago: +175413.0000
+- Percent Change: +0.0372%
+- Percent Change from Year Ago: +2.6688%
+- Compounded Annual Rate of Change: +1.9534%
+- Continuously Compounded Rate of Change: +0.0372%
+- Continuously Compounded Annual Rate of Change: +1.9345%
+
+Recent Observations (Last 5):
+  2026-10-07: 6747560.0000
+  2026-10-14: 6755639.0000
+  2026-10-21: 6753604.0000
+  2026-10-28: 6745635.0000
+  2026-11-04: 6748145.0000
+
+--------------------------------------------------------------------------------
+Series ID: WTREGEN
+Title: Liabilities and Capital: Liabilities: Deposits with F.R. Banks, Other Than Reserve Balances: U.S. Treasury, General Account: Week Average
+Frequency: Weekly (n_obs_per_yr: 52) | Units: Millions of U.S. Dollars
+Last Date: 2026-11-04 | Current Value: 957175.0000 | Previous Value: 999727.0000 | Year Ago Value: 940979.0000
+
+Official Transformations (Section 0.3):
+- Change: -42552.0000
+- Change from Year Ago: +16196.0000
+- Percent Change: -4.2564%
+- Percent Change from Year Ago: +1.7212%
+- Compounded Annual Rate of Change: -89.5836%
+- Continuously Compounded Rate of Change: -4.3496%
+- Continuously Compounded Annual Rate of Change: -226.1792%
+
+Recent Observations (Last 5):
+  2026-10-07: 880253.0000
+  2026-10-14: 883373.0000
+  2026-10-21: 952002.0000
+  2026-10-28: 999727.0000
+  2026-11-04: 957175.0000
+
+--------------------------------------------------------------------------------
 Series ID: PAYEMS
 Title: All Employees, Total Nonfarm
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Thousands of Persons
@@ -208,4 +296,48 @@ Recent Observations (Last 5):
   2026-07-01: 7335.0000
   2026-08-01: 7190.0000
   2026-09-01: 7523.0000
+
+--------------------------------------------------------------------------------
+Series ID: FEDFUNDS
+Title: Federal Funds Effective Rate
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent
+Last Date: 2026-10-01 | Current Value: 3.8800 | Previous Value: 3.7500 | Year Ago Value: 4.0900
+
+Official Transformations (Section 0.3):
+- Change: +0.1300
+- Change from Year Ago: -0.2100
+- Percent Change: +3.4667%
+- Percent Change from Year Ago: -5.1345%
+- Compounded Annual Rate of Change: +50.5239%
+- Continuously Compounded Rate of Change: +3.4079%
+- Continuously Compounded Annual Rate of Change: +40.8952%
+
+Recent Observations (Last 5):
+  2026-06-01: 3.6300
+  2026-07-01: 3.6300
+  2026-08-01: 3.6300
+  2026-09-01: 3.7500
+  2026-10-01: 3.8800
+
+--------------------------------------------------------------------------------
+Series ID: SAHMREALTIME
+Title: Real-time Sahm Rule Recession Indicator
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Percentage Points
+Last Date: 2026-10-01 | Current Value: 0.0000 | Previous Value: 0.0000 | Year Ago Value: 0.2300
+
+Official Transformations (Section 0.3):
+- Change: +0.0000
+- Change from Year Ago: -0.2300
+- Percent Change: N/A%
+- Percent Change from Year Ago: -100.0000%
+- Compounded Annual Rate of Change: N/A%
+- Continuously Compounded Rate of Change: N/A%
+- Continuously Compounded Annual Rate of Change: N/A%
+
+Recent Observations (Last 5):
+  2026-06-01: 0.0700
+  2026-07-01: -0.0300
+  2026-08-01: -0.0700
+  2026-09-01: 0.0000
+  2026-10-01: 0.0000
 --------------------------------------------------------------------------------
