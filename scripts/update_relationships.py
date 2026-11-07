@@ -127,7 +127,7 @@ def main():
     chip_stress = round((gscpi * 0.40) + ((sox_yoy / 50.0) * -0.35) + ((vix / 20.0) * 0.25), 3)
 
     # 3. Dynamic Deltas for Bilateral Corridors
-    # Oil Shock (Middle East: IL - IR, SA - IR)
+    # Oil Shock (Middle East, Red Sea & Latin America)
     if brent_wti_spread > 12.0:
         oil_delta = -0.15
     elif brent_wti_spread > 8.0:
@@ -221,6 +221,38 @@ def main():
             'dynamic_delta': 0.0,
             'friction_nodes': ['KOREAN_PENINSULA', 'SEA_OF_JAPAN'],
             'primary_driver': 'NUCLEAR_PROLIFERATION'
+        },
+        {
+            'id': 'AZ_AM',
+            'label': 'AZ - AM (Republic of Azerbaijan vs. Republic of Armenia)',
+            'p_baseline': -0.70,
+            'dynamic_delta': vix_delta,
+            'friction_nodes': ['ZANGEZUR_CORRIDOR', 'NAGORNO_KARABAKH', 'CASPIAN_TRANSIT'],
+            'primary_driver': 'ZANGEZUR_CORRIDOR_AND_BORDER_DELIMITATION'
+        },
+        {
+            'id': 'LT_RU',
+            'label': 'LT - RU (Republic of Lithuania vs. Russian Federation)',
+            'p_baseline': -0.85,
+            'dynamic_delta': vix_delta,
+            'friction_nodes': ['SUWALKI_GAP', 'BALTIC_SEA', 'KALININGRAD_EXCLAVE'],
+            'primary_driver': 'SUWALKI_GAP_NATO_BORDER_FRICTION'
+        },
+        {
+            'id': 'YE_IL',
+            'label': 'YE - IL (Yemen Houthis / Ansarullah vs. State of Israel)',
+            'p_baseline': -0.95,
+            'dynamic_delta': oil_delta,
+            'friction_nodes': ['BAB_EL_MANDEB', 'RED_SEA', 'GULF_OF_ADEN', 'PORT_OF_EILAT'],
+            'primary_driver': 'MODEL_25_12_SEABORNE_SHIPPING_CHOKEPOINT'
+        },
+        {
+            'id': 'US_VE',
+            'label': 'US - VE (United States vs. Bolivarian Republic of Venezuela)',
+            'p_baseline': -0.75,
+            'dynamic_delta': round(oil_delta * 0.5, 2),
+            'friction_nodes': ['ORINOCO_BELT', 'CARIBBEAN_SEA', 'OFAC_SANCTIONS'],
+            'primary_driver': 'HEAVY_CRUDE_OIL_SANCTIONS_AND_LICENSING'
         }
     ]
 
