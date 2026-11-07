@@ -5,25 +5,54 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-07T16:10:56.684922+00:00",
+    "last_successful_sync": "2026-11-07T16:24:09.248903+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_source": "https://analysisreports.github.io/llms-fred-series.json",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 4
+    "total_models_active": 7
   },
   "models": [
     {
-      "model_id": "MODEL_25.12",
-      "model_name": "Brent - WTI Seaborne Risk Spread",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.12",
-      "primary_value": 7.39,
-      "unit": "USD",
-      "status": "NORMAL_TRANSATLANTIC_ARBITRAGE",
+      "model_id": "MODEL_3",
+      "model_name": "Official Sahm Rule Recession Indicator",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#3",
+      "primary_value": 0.0,
+      "unit": "Percentage Points",
+      "status": "NORMAL_LABOR_MARKET",
       "inputs": {
-        "brent_usd": 107.03,
-        "wti_usd": 99.64
+        "sahm_realtime_val": 0.0
       },
-      "interpretation": "Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI."
+      "interpretation": "Real-time recession detection triggered when 3-month unemployment average rises >= 0.50 ppt above prior 12-month low."
+    },
+    {
+      "model_id": "MODEL_5",
+      "model_name": "Net Fed Liquidity Index",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#5",
+      "primary_value": 5.791,
+      "unit": "Trillion USD",
+      "status": "NEUTRAL_LIQUIDITY_EQUILIBRIUM",
+      "inputs": {
+        "fed_total_assets_walcl_mil": 6748145.0,
+        "treasury_general_account_tga_mil": 957175.0,
+        "overnight_reverse_repo_rrp_bil": 0.15
+      },
+      "metrics": {
+        "net_liquidity_millions_usd": 5790820.0,
+        "net_liquidity_trillions_usd": 5.791
+      },
+      "interpretation": "Unencumbered commercial bank liquidity: WALCL - (TGA + ON_RRP). Direct fuel for equity asset valuations."
+    },
+    {
+      "model_id": "MODEL_6",
+      "model_name": "Treasury Yield Curve Slope (10Y - 2Y)",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#6",
+      "primary_value": 35.0,
+      "unit": "Basis Points (bps)",
+      "status": "NORMAL_CURVE_EXPANSION",
+      "inputs": {
+        "t10y2y_spread_pct": 0.35
+      },
+      "interpretation": "Leading cyclical economic barometer. Inversions (bps < 0) historically precede sovereign US business cycle recessions."
     },
     {
       "model_id": "MODEL_16",
@@ -39,23 +68,17 @@
       "interpretation": "30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime."
     },
     {
-      "model_id": "MODEL_25.14",
-      "model_name": "AI Hardware & Semiconductor Supply Chain Stress Gauge",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.14",
-      "primary_value": 0.11,
-      "unit": "Score (Normalized)",
-      "status": "BALANCED_HARDWARE_FLOW",
+      "model_id": "MODEL_25.12",
+      "model_name": "Brent - WTI Seaborne Risk Spread",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.12",
+      "primary_value": 7.39,
+      "unit": "USD",
+      "status": "NORMAL_TRANSATLANTIC_ARBITRAGE",
       "inputs": {
-        "gscpi_std_dev": 0.0,
-        "sox_yoy_pct": 34.59,
-        "vix_level": 28.18
+        "brent_usd": 107.03,
+        "wti_usd": 99.64
       },
-      "components": {
-        "gscpi_weight": 0.0,
-        "sox_weight": -0.242,
-        "vix_weight": 0.352
-      },
-      "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation."
+      "interpretation": "Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI."
     },
     {
       "model_id": "MODEL_25.13",
@@ -76,6 +99,25 @@
         "employment_strength_ratio": 0.14
       },
       "interpretation": "Couples nonfarm payroll expansion with unemployment change to gauge labor slack and wage inflation momentum."
+    },
+    {
+      "model_id": "MODEL_25.14",
+      "model_name": "AI Hardware & Semiconductor Supply Chain Stress Gauge",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.14",
+      "primary_value": 0.11,
+      "unit": "Score (Normalized)",
+      "status": "BALANCED_HARDWARE_FLOW",
+      "inputs": {
+        "gscpi_std_dev": 0.0,
+        "sox_yoy_pct": 34.59,
+        "vix_level": 28.18
+      },
+      "components": {
+        "gscpi_weight": 0.0,
+        "sox_weight": -0.242,
+        "vix_weight": 0.352
+      },
+      "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation."
     }
   ]
 }

@@ -9,24 +9,40 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-07 16:10 UTC
+> **Last Calibrated Sync:** 2026-11-07 16:24 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
 | :--- | :--- | :---: | :---: | :--- | :--- |
-| **MODEL_25.12** | Brent - WTI Seaborne Risk Spread | **7.39** | USD | `NORMAL_TRANSATLANTIC_ARBITRAGE` | Seaborne geopolitical friction and maritime risk spread... |
+| **MODEL_3** | Official Sahm Rule Recession Indicator | **0.0** | Percentage Points | `NORMAL_LABOR_MARKET` | Real-time recession detection triggered when 3-month un... |
+| **MODEL_5** | Net Fed Liquidity Index | **5.791** | Trillion USD | `NEUTRAL_LIQUIDITY_EQUILIBRIUM` | Unencumbered commercial bank liquidity: WALCL - (TGA + ... |
+| **MODEL_6** | Treasury Yield Curve Slope (10Y - 2Y) | **35.0** | Basis Points (bps) | `NORMAL_CURVE_EXPANSION` | Leading cyclical economic barometer. Inversions (bps < ... |
 | **MODEL_16** | CBOE Volatility & Market Fear Regime | **28.18** | Points | `ELEVATED_STRESS` | 30-day forward S&P 500 implied volatility fear gauge an... |
-| **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.11** | Score (Normalized) | `BALANCED_HARDWARE_FLOW` | Normalized composite metric monitoring semiconductor ph... |
+| **MODEL_25.12** | Brent - WTI Seaborne Risk Spread | **7.39** | USD | `NORMAL_TRANSATLANTIC_ARBITRAGE` | Seaborne geopolitical friction and maritime risk spread... |
 | **MODEL_25.13** | Labor Market Momentum Index (LMMI) | **0.86** | Net Momentum Pts | `MODERATE_LABOR_EXPANSION` | Couples nonfarm payroll expansion with unemployment cha... |
+| **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.11** | Score (Normalized) | `BALANCED_HARDWARE_FLOW` | Normalized composite metric monitoring semiconductor ph... |
 
 ---
 ### Detailed Model Breakdowns
 
-#### [MODEL_25.12] Brent - WTI Seaborne Risk Spread
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.12
-- **Evaluated Status:** `NORMAL_TRANSATLANTIC_ARBITRAGE` (Primary Value: 7.39 USD)
-- **Inputs Evaluated:** `{"brent_usd": 107.03, "wti_usd": 99.64}`
-- **Economic Synthesis:** Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI.
+#### [MODEL_3] Official Sahm Rule Recession Indicator
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#3
+- **Evaluated Status:** `NORMAL_LABOR_MARKET` (Primary Value: 0.0 Percentage Points)
+- **Inputs Evaluated:** `{"sahm_realtime_val": 0.0}`
+- **Economic Synthesis:** Real-time recession detection triggered when 3-month unemployment average rises >= 0.50 ppt above prior 12-month low.
+
+#### [MODEL_5] Net Fed Liquidity Index
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#5
+- **Evaluated Status:** `NEUTRAL_LIQUIDITY_EQUILIBRIUM` (Primary Value: 5.791 Trillion USD)
+- **Inputs Evaluated:** `{"fed_total_assets_walcl_mil": 6748145.0, "treasury_general_account_tga_mil": 957175.0, "overnight_reverse_repo_rrp_bil": 0.15}`
+- **Secondary Metrics:** `{"net_liquidity_millions_usd": 5790820.0, "net_liquidity_trillions_usd": 5.791}`
+- **Economic Synthesis:** Unencumbered commercial bank liquidity: WALCL - (TGA + ON_RRP). Direct fuel for equity asset valuations.
+
+#### [MODEL_6] Treasury Yield Curve Slope (10Y - 2Y)
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#6
+- **Evaluated Status:** `NORMAL_CURVE_EXPANSION` (Primary Value: 35.0 Basis Points (bps))
+- **Inputs Evaluated:** `{"t10y2y_spread_pct": 0.35}`
+- **Economic Synthesis:** Leading cyclical economic barometer. Inversions (bps < 0) historically precede sovereign US business cycle recessions.
 
 #### [MODEL_16] CBOE Volatility & Market Fear Regime
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#16
@@ -34,12 +50,11 @@
 - **Inputs Evaluated:** `{"vix_close": 28.18}`
 - **Economic Synthesis:** 30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime.
 
-#### [MODEL_25.14] AI Hardware & Semiconductor Supply Chain Stress Gauge
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.14
-- **Evaluated Status:** `BALANCED_HARDWARE_FLOW` (Primary Value: 0.11 Score (Normalized))
-- **Inputs Evaluated:** `{"gscpi_std_dev": 0.0, "sox_yoy_pct": 34.59, "vix_level": 28.18}`
-- **Component Weights:** `{"gscpi_weight": 0.0, "sox_weight": -0.242, "vix_weight": 0.352}`
-- **Economic Synthesis:** Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation.
+#### [MODEL_25.12] Brent - WTI Seaborne Risk Spread
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.12
+- **Evaluated Status:** `NORMAL_TRANSATLANTIC_ARBITRAGE` (Primary Value: 7.39 USD)
+- **Inputs Evaluated:** `{"brent_usd": 107.03, "wti_usd": 99.64}`
+- **Economic Synthesis:** Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI.
 
 #### [MODEL_25.13] Labor Market Momentum Index (LMMI)
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.13
@@ -47,3 +62,10 @@
 - **Inputs Evaluated:** `{"payems_current": 159293.0, "payems_year_ago": 158408.0, "unrate_current": 4.1, "unrate_year_ago": 4.4}`
 - **Secondary Metrics:** `{"payroll_growth_yoy_pct": 0.56, "unemployment_rate_diff_yoy": -0.3, "employment_strength_ratio": 0.14}`
 - **Economic Synthesis:** Couples nonfarm payroll expansion with unemployment change to gauge labor slack and wage inflation momentum.
+
+#### [MODEL_25.14] AI Hardware & Semiconductor Supply Chain Stress Gauge
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.14
+- **Evaluated Status:** `BALANCED_HARDWARE_FLOW` (Primary Value: 0.11 Score (Normalized))
+- **Inputs Evaluated:** `{"gscpi_std_dev": 0.0, "sox_yoy_pct": 34.59, "vix_level": 28.18}`
+- **Component Weights:** `{"gscpi_weight": 0.0, "sox_weight": -0.242, "vix_weight": 0.352}`
+- **Economic Synthesis:** Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation.
