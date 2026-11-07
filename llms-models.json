@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-07T16:24:09.248903+00:00",
+    "last_successful_sync": "2026-11-07T16:25:47.473777+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_source": "https://analysisreports.github.io/llms-fred-series.json",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
