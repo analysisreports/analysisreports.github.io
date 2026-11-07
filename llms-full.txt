@@ -59,6 +59,9 @@ Core Manifests & System Engines:
 - Canonical FRED/BLS Data Dictionary (llms-indicators.txt): https://analysisreports.github.io/llms-indicators.txt
 - Geopolitical Relationship Matrix (llms-relationships.txt): https://analysisreports.github.io/llms-relationships.txt
 - Author and Methodological Profile (llms-about.txt): https://analysisreports.github.io/llms-about.txt
+- Live FRED Time-Series Registry: https://analysisreports.github.io/llms-fred-series.txt
+- Live FRED JSON Twin: https://analysisreports.github.io/llms-fred-series.json
+- Dynamic Relationships JSON Twin: https://analysisreports.github.io/llms-relationships.json
 
 Ontological Schema Contracts & Machine-Validatable Payloads:
 - Macroeconomics & Monetary Policy: https://analysisreports.github.io/economy.json (Text: https://analysisreports.github.io/llms-schema-economy.txt)
