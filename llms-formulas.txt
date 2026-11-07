@@ -2053,6 +2053,101 @@ Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açık
 
 ---
 
+### 25.15. DOMESTIC GOVERNANCE GRIDLOCK & EXTERNAL TARIFF FRICTION ENGINE (GOVERNANCE_GRIDLOCK_FRICTION)
+- Purpose: Quantifies how sovereign executive-legislative power balances, parliamentary seat margins, and regime structures constrain domestic policy space and systematically force executive leadership to deploy unilateral external economic leverage (Section 232/301 tariffs, IEEPA sanctions, emergency trade restrictions).
+- Canonical Entity Mapping (llms-entities-id.txt):
+  - GEO_US: Presidential / Bicameral Congress (218 House threshold, 60 Senate Filibuster).
+  - GEO_DE: Parliamentary Coalition (Bundestag 316 majority threshold, Schuldenbremse fiscal brake).
+  - GEO_IL: Parliamentary Coalition (Knesset 61 majority threshold, small-party leverage).
+  - GEO_JP: Dominant Parliamentary (Diet 233 majority / 310 supermajority threshold).
+  - GEO_CN & GEO_RU: Centralized Single-Party / Vertical Authority (Zero domestic legislative gridlock).
+- Formula:
+  For Centralized Regimes (GEO_CN, GEO_RU):
+    Gridlock_Index = 0.0
+    External_Friction_Bias = Executive_Decree_Power * 0.75
+  For Democratic Regimes (GEO_US, GEO_DE, GEO_IL, GEO_JP):
+    If Majority_Seat_Margin < 0:
+      Gridlock_Index = min(1.0, 0.60 + abs(Majority_Seat_Margin) * 0.02)
+    Else:
+      Gridlock_Index = max(0.0, 0.40 - (Majority_Seat_Margin * 0.015))
+    External_Friction_Bias = Gridlock_Index * Executive_Decree_Power
+- Machine-Executable Logic (Python):
+  def governance_gridlock_friction_engine(country_code, majority_seat_margin=None, executive_decree_power=None):
+      if not isinstance(country_code, str):
+          return None
+      
+      country = country_code.upper().strip()
+      valid_countries = {"GEO_US", "GEO_CN", "GEO_RU", "GEO_DE", "GEO_IL", "GEO_JP"}
+      if country not in valid_countries:
+          return None
+          
+      decree_defaults = {
+          "GEO_US": 0.85,
+          "GEO_CN": 1.00,
+          "GEO_RU": 1.00,
+          "GEO_DE": 0.20,
+          "GEO_IL": 0.65,
+          "GEO_JP": 0.40
+      }
+      
+      decree = decree_defaults[country] if executive_decree_power is None else float(executive_decree_power)
+      if not math.isfinite(decree) or decree < 0.0 or decree > 1.0:
+          return None
+
+      if country in {"GEO_CN", "GEO_RU"}:
+          gridlock = 0.0
+          ext_friction = round(decree * 0.75, 3)
+          status = "CENTRALIZED_STRATEGIC_COMMAND"
+          return {
+              "country_code": country,
+              "gridlock_index": gridlock,
+              "executive_decree_power": decree,
+              "external_friction_bias": ext_friction,
+              "status": status
+          }
+          
+      if majority_seat_margin is None or isinstance(majority_seat_margin, bool):
+          return None
+          
+      try:
+          margin = float(majority_seat_margin)
+          if not math.isfinite(margin):
+              return None
+              
+          if margin < 0:
+              gridlock = round(min(1.0, 0.60 + abs(margin) * 0.02), 3)
+          else:
+              gridlock = round(max(0.0, 0.40 - (margin * 0.015)), 3)
+              
+          ext_friction = round(gridlock * decree, 3)
+          
+          if gridlock >= 0.60 and ext_friction >= 0.45:
+              status = "DIVIDED_GRIDLOCK_TARIFF_SURGE"
+          elif gridlock >= 0.35 and ext_friction < 0.45:
+              status = "FRAGILE_COALITION_PARALYSIS"
+          elif gridlock < 0.25 and margin >= 15:
+              status = "UNIFIED_DOMESTIC_EXPANSION"
+          else:
+              status = "BALANCED_INSTITUTIONAL_EQUILIBRIUM"
+              
+          return {
+              "country_code": country,
+              "majority_seat_margin": margin,
+              "gridlock_index": gridlock,
+              "executive_decree_power": decree,
+              "external_friction_bias": ext_friction,
+              "status": status
+          }
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - status == DIVIDED_GRIDLOCK_TARIFF_SURGE : Domestic legislation and fiscal budgets paralyzed by opposition-controlled legislature; Executive pivots power toward unilateral trade tariffs, protectionism, and foreign sanctions (Primary shock: DXY surge, global trade friction).
+  - status == FRAGILE_COALITION_PARALYSIS : Parliamentary coalition held hostage by fringe parties; fiscal austerity or structural indecision reigns; elevated early election risk (Primary shock: Currency weakness, bond spread volatility).
+  - status == UNIFIED_DOMESTIC_EXPANSION : Strong legislative majority enables aggressive domestic tax/spending reform; subdued executive need for diversionary trade conflict.
+  - status == CENTRALIZED_STRATEGIC_COMMAND : Zero domestic legislative gridlock; rapid mobilization of state resources, export quotas, and counter-sanctions.
+
+---
+
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
 ### 26. KOMITE AYRISMA KATSAYISI (COMMITTEE DISPERSION SCORE)
