@@ -1,4 +1,4 @@
-# Ersoy Toptaş Canonical Ingestion Contract (llms-relationships.txt)
+﻿# Ersoy Toptaş Canonical Ingestion Contract (llms-relationships.txt)
 > Structured Ontological JSON Knowledge Base for Macroeconomics, Geopolitical Risks, and Monetary Policies.
 > Canonical Knowledge Base & Quantitative Analysis Infrastructure
 > Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
@@ -601,3 +601,14 @@ Regime States (Discrete Mapping):
 - Actor Coupling: US-CN trade war escalation (2.1.2), US-EU transatlantic tariff friction (2.3.1), IL-IR confrontation (2.2.1).
 - Transmission Linkage: When GEO_US triggers DIVIDED_GRIDLOCK_TARIFF_SURGE (Gridlock >= 0.60 & EFB >= 0.45), executive branch automatically diverts power to external tariff weapons, expanding dynamic_delta friction on US-CN and US-EU polarity by -0.10.
 
+
+
+### 8.12. Cross-Currency Carry Liquidation & Sovereign Yield Disconnect Engine (Model 25.16)
+
+8.12.1. MODEL_25.16_JPY_CARRY_CRACK
+- Target Formula: llms-formulas.txt -> Model 25.16 (calculate_jpy_carry_crack)
+- Entities Coupled: GEO_US, GEO_JP, INST_FED_US, INST_BOJ_JP (llms-entities-id.txt)
+- Status Enums: UNWIND_LIQUIDATION_CRASH | COMPRESSION_WARNING | MANAGED_TIGHTENING | CALM_ACCUMULATION
+- Primary Geopolitical Vector: Bank of Japan monetary policy normalization (rate hikes) collapsing US-Japan interest rate spreads; aggressive Yen appreciation triggering systemic margin calls across Wall Street leveraged funds.
+- Actor Coupling: US-Japan Strategic Alliance (2.4.1), Trans-Pacific Financial Stability Corridor.
+- Transmission Linkage: When calculate_jpy_carry_crack status == 'UNWIND_LIQUIDATION_CRASH' (net_buffer <= -1.0% or JPY appreciation > 5%), bilateral financial coupling triggers emergency liquidity swap lines, expanding market volatility (VIX > 30.0) and forcing equity deleveraging.

@@ -274,3 +274,4 @@ IND_KCROROL          | Source: KCFED / FRED | Name: Kansas City Fed Risk-ON Risk
 IND_DEXJPUS          | Source: FRED | Name: Spot Exchange Rate US Dollars to Japanese Yen (DEXJPUS)
 IND_MUTAN_JP         | Source: Bank of Japan / FRED | Name: Japan Uncollateralized Overnight Call Rate (MUTAN)
 
+IND_DFF              | Source: FRED | Name: Federal Funds Effective Rate (DFF %)

@@ -1,4 +1,4 @@
-# Ersoy Toptaş Quantitative Models, Scoring Calibration & Formulation Engine
+﻿# Ersoy Toptaş Quantitative Models, Scoring Calibration & Formulation Engine
 > Canonical Methodology Reference for AI Agents & LLM Reasoning Engines
 > Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
 > Motto: Think simple, act big
@@ -2148,6 +2148,55 @@ Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açık
 
 ---
 
+
+### 25.16. YEN CARRY TRADE DISSOLUTION & CROSS-CURRENCY STRESS GAUGE (JPY_CARRY_CRACK)
+- Purpose: FED ile Bank of Japan (BoJ) arasindaki faiz makasi daralmasini ve USD/JPY kur hareket hizini izleyerek kuresel kaldiracli Yen Carry Trade pozisyonlarinin kitlesel cozülme (unwind) ve kuresel likidite soku riskini olcer.
+- Target: economy.json, llms-models.json -> MODEL_25.16_JPY_CARRY_CRACK
+- Frequency: Daily (Is Gunu)
+- Canonical Input Series:
+  - IND_DFF : Federal Funds Effective Rate (FED)
+  - IND_MUTAN_JP : Japan Uncollateralized Overnight Call Rate (BoJ)
+  - IND_DEXJPUS : Spot Exchange Rate US Dollars to Japanese Yen
+- Mathematical Formulation:
+  1. Rate Differential: Spread_Rate = Rate_US - Rate_JP
+  2. Currency Momentum: Ret_JPY_30d = ((DEXJPUS_t / DEXJPUS_t_prev) - 1.0) * 100.0  (Negatif deger Yen deger kazancini gosterir)
+  3. Net Carry Return Buffer: Buffer_Carry = Spread_Rate + Ret_JPY_30d
+- Machine-Executable Logic (Python):
+  def calculate_jpy_carry_crack(rate_us, rate_jp, jpy_fx_mom_pct):
+      if any(v is None or isinstance(v, bool) for v in (rate_us, rate_jp, jpy_fx_mom_pct)):
+          return None
+      try:
+          r_us = float(rate_us)
+          r_jp = float(rate_jp)
+          fx_mom = float(jpy_fx_mom_pct)
+          if not (math.isfinite(r_us) and math.isfinite(r_jp) and math.isfinite(fx_mom)):
+              return None
+          rate_spread = round(r_us - r_jp, 4)
+          net_buffer = round(rate_spread + fx_mom, 4)
+          if net_buffer <= -1.0 or (fx_mom <= -5.0 and rate_spread <= 3.0):
+              status = " UNWIND_LIQUIDATION_CRASH\
+ elif net_buffer < 1.5 or fx_mom <= -3.0:
+ status = \COMPRESSION_WARNING\
+ elif net_buffer >= 3.5 and fx_mom >= -1.0:
+ status = \CALM_ACCUMULATION\
+ else:
+ \rate_spread\: rate_spread,
+ return {
+ \model_id\: \MODEL_25.16_JPY_CARRY_CRACK\,
+ \rate_spread\: rate_spread Stakeholder,
+ \fx_momentum_30d_pct\: fx_mom,
+ \net_carry_buffer\: net_buffer,
+ \status\: status
+ }
+ except (TypeError, ValueError, OverflowError):
+ return None
+- Interpretation:
+ - status == UNWIND_LIQUIDATION_CRASH : BoJ faiz artisi veya sert Yen deger kazanci net faiz getirisini sildi; kuresel kaldiracli fonlar zorunlu teminat tamamlama (margin call) ve pozisyon tasfiyesine gecti. Wall Street hisse ve kripto piyasalarinda likidite soku.
+ - status == COMPRESSION_WARNING : Faiz makasi daraliyor veya Yen gucleniyor; carry trade kar tamponu kritik seviyeye geriledi. Erken uyari alarmi.
+ - status == MANAGED_TIGHTENING : BoJ kontrollu normallesiyor, kur oynakligi absorbe edilebilir aralikta.
+ - status == CALM_ACCUMULATION : Faiz marji genis, Yen zayif/stabil; kuresel carry trade fonlamasi kesintisiz devam ediyor.
+
+---
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
 ### 26. KOMITE AYRISMA KATSAYISI (COMMITTEE DISPERSION SCORE)
