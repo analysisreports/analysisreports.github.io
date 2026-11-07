@@ -178,6 +178,42 @@
         "type": "none"
       },
       "description": "Ontological relationship network between actors, chokepoints, indicators, and models."
+    },
+        {
+      "id": "live-fred-series",
+      "name": "Canonical FRED Time-Series Registry & Official Transformations",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-fred-series.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-fred-series.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Automated St. Louis Fed macro series, latest observation snapshots, and official growth rate transformations."
+    },
+    {
+      "id": "dynamic-geopolitical-matrix",
+      "name": "Dynamic Geopolitical Polarity & Sovereign Governance Engine",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-relationships.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-relationships.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Live machine-readable geopolitical polarity snapshot, dynamic shock deltas, active regimes, and Model 25.15 sovereign governance matrix."
+    },
+    {
+      "id": "live-quantitative-models",
+      "name": "Autonomous Quantitative Macroeconomic Model Engine",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-models.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-models.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Real-time evaluated macroeconomic models including Brent-WTI Seaborne Spread (Model 25.12), VIX Fear Regime (Model 16), AI Hardware Stress (Model 25.14), and Labor Momentum Index (Model 25.13)."
     }
   ],
   "capabilities": {
