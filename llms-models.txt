@@ -1,0 +1,49 @@
+# Ersoy Toptaş Canonical Quantitative Macroeconomic Models Engine (llms-models.txt)
+> Real-Time Evaluated Macroeconomic & Quantitative Transmission Models.
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
+> Endpoint: https://analysisreports.github.io/llms-models.txt
+> JSON Twin Endpoint: https://analysisreports.github.io/llms-models.json
+> Master Formulas Engine: https://analysisreports.github.io/llms-formulas.txt
+> Ingested Live Time-Series: https://analysisreports.github.io/llms-fred-series.json
+> Root Index: https://analysisreports.github.io/llms.txt
+
+# ==============================================================================
+### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
+> **Last Calibrated Sync:** 2026-11-07 15:14 UTC
+> **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed observations. Zero hallucination guarantee.
+
+| Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
+| :--- | :--- | :---: | :---: | :--- | :--- |
+| **MODEL_25.12** | Brent - WTI Seaborne Risk Spread | **7.39** | USD | `NORMAL_TRANSATLANTIC_ARBITRAGE` | Seaborne geopolitical friction and maritime risk spread... |
+| **MODEL_16** | CBOE Volatility & Market Fear Regime | **28.18** | Points | `ELEVATED_STRESS` | 30-day forward S&P 500 implied volatility fear gauge an... |
+| **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.11** | Score (Normalized) | `BALANCED_HARDWARE_FLOW` | Normalized composite metric monitoring semiconductor ph... |
+| **MODEL_25.13** | Labor Market Momentum Index (LMMI) | **0.86** | Net Momentum Pts | `MODERATE_LABOR_EXPANSION` | Couples nonfarm payroll expansion with unemployment cha... |
+
+---
+### Detailed Model Breakdowns
+
+#### [MODEL_25.12] Brent - WTI Seaborne Risk Spread
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.12
+- **Evaluated Status:** `NORMAL_TRANSATLANTIC_ARBITRAGE` (Primary Value: 7.39 USD)
+- **Inputs Evaluated:** `{"brent_usd": 107.03, "wti_usd": 99.64}`
+- **Economic Synthesis:** Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI.
+
+#### [MODEL_16] CBOE Volatility & Market Fear Regime
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#16
+- **Evaluated Status:** `ELEVATED_STRESS` (Primary Value: 28.18 Points)
+- **Inputs Evaluated:** `{"vix_close": 28.18}`
+- **Economic Synthesis:** 30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime.
+
+#### [MODEL_25.14] AI Hardware & Semiconductor Supply Chain Stress Gauge
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.14
+- **Evaluated Status:** `BALANCED_HARDWARE_FLOW` (Primary Value: 0.11 Score (Normalized))
+- **Inputs Evaluated:** `{"gscpi_std_dev": 0.0, "sox_yoy_pct": 34.59, "vix_level": 28.18}`
+- **Component Weights:** `{"gscpi_weight": 0.0, "sox_weight": -0.242, "vix_weight": 0.352}`
+- **Economic Synthesis:** Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation.
+
+#### [MODEL_25.13] Labor Market Momentum Index (LMMI)
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.13
+- **Evaluated Status:** `MODERATE_LABOR_EXPANSION` (Primary Value: 0.86 Net Momentum Pts)
+- **Inputs Evaluated:** `{"payems_current": 159293.0, "payems_year_ago": 158408.0, "unrate_current": 4.1, "unrate_year_ago": 4.4}`
+- **Secondary Metrics:** `{"payroll_growth_yoy_pct": 0.56, "unemployment_rate_diff_yoy": -0.3, "employment_strength_ratio": 0.14}`
+- **Economic Synthesis:** Couples nonfarm payroll expansion with unemployment change to gauge labor slack and wage inflation momentum.

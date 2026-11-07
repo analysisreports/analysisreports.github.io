@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "metadata": {
+    "engine": "Autonomous Quantitative Macroeconomic Model Engine",
+    "author": "Ersoy Toptaş",
+    "license": "CC BY 4.0",
+    "sync_status": "SUCCESS",
+    "last_successful_sync": "2026-11-07T15:14:01.322451+00:00",
+    "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
+    "monitored_data_source": "https://analysisreports.github.io/llms-fred-series.json",
+    "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
+    "total_models_active": 4
+  },
+  "models": [
+    {
+      "model_id": "MODEL_25.12",
+      "model_name": "Brent - WTI Seaborne Risk Spread",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.12",
+      "primary_value": 7.39,
+      "unit": "USD",
+      "status": "NORMAL_TRANSATLANTIC_ARBITRAGE",
+      "inputs": {
+        "brent_usd": 107.03,
+        "wti_usd": 99.64
+      },
+      "interpretation": "Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI."
+    },
+    {
+      "model_id": "MODEL_16",
+      "model_name": "CBOE Volatility & Market Fear Regime",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#16",
+      "primary_value": 28.18,
+      "unit": "Points",
+      "status": "ELEVATED_STRESS",
+      "market_bias": "RISK_OFF",
+      "inputs": {
+        "vix_close": 28.18
+      },
+      "interpretation": "30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime."
+    },
+    {
+      "model_id": "MODEL_25.14",
+      "model_name": "AI Hardware & Semiconductor Supply Chain Stress Gauge",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.14",
+      "primary_value": 0.11,
+      "unit": "Score (Normalized)",
+      "status": "BALANCED_HARDWARE_FLOW",
+      "inputs": {
+        "gscpi_std_dev": 0.0,
+        "sox_yoy_pct": 34.59,
+        "vix_level": 28.18
+      },
+      "components": {
+        "gscpi_weight": 0.0,
+        "sox_weight": -0.242,
+        "vix_weight": 0.352
+      },
+      "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation."
+    },
+    {
+      "model_id": "MODEL_25.13",
+      "model_name": "Labor Market Momentum Index (LMMI)",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.13",
+      "primary_value": 0.86,
+      "unit": "Net Momentum Pts",
+      "status": "MODERATE_LABOR_EXPANSION",
+      "inputs": {
+        "payems_current": 159293.0,
+        "payems_year_ago": 158408.0,
+        "unrate_current": 4.1,
+        "unrate_year_ago": 4.4
+      },
+      "metrics": {
+        "payroll_growth_yoy_pct": 0.56,
+        "unemployment_rate_diff_yoy": -0.3,
+        "employment_strength_ratio": 0.14
+      },
+      "interpretation": "Couples nonfarm payroll expansion with unemployment change to gauge labor slack and wage inflation momentum."
+    }
+  ]
+}
