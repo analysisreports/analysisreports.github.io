@@ -271,3 +271,6 @@ IND_KCRORO           | Source: KCFED / FRED | Name: Kansas City Fed Risk-ON Risk
 IND_KCROROE          | Source: KCFED / FRED | Name: Kansas City Fed Risk-ON Risk-Off Index: Equities (KCROROE)
 IND_KCROROG          | Source: KCFED / FRED | Name: Kansas City Fed Risk-ON Risk-Off Index: Gold and USD (KCROROG)
 IND_KCROROL          | Source: KCFED / FRED | Name: Kansas City Fed Risk-ON Risk-Off Index: Liquidity (KCROROL)
+IND_DEXJPUS          | Source: FRED | Name: Spot Exchange Rate US Dollars to Japanese Yen (DEXJPUS)
+IND_MUTAN_JP         | Source: Bank of Japan / FRED | Name: Japan Uncollateralized Overnight Call Rate (MUTAN)
+
