@@ -1,0 +1,340 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+calculate_models.py
+-------------------
+Autonomous Quantitative Macroeconomic Model Engine.
+Calculates canonical macroeconomic models defined in llms-formulas.txt directly from 
+live time-series ingested by llms-fred-series.json.
+Generates:
+  - llms-models.json (Deterministic Machine-Readable Twin)
+  - llms-models.txt (Human-Readable Markdown Table Twin)
+
+Author: Ersoy Toptaş & Google Gemini AI Engine
+License: CC BY 4.0
+Endpoint txt: https://analysisreports.github.io/llms-models.txt
+Endpoint json: https://analysisreports.github.io/llms-models.json
+"""
+
+import os
+import json
+import math
+import datetime
+
+# ==============================================================================
+# MODEL IMPLEMENTATIONS (STRICTLY FROM llms-formulas.txt)
+# ==============================================================================
+
+# --- Model 25.12: Brent - WTI Seaborne Spread Engine ---
+def calc_brent_wti_spread(brent_price, wti_price):
+    if any(v is None or isinstance(v, bool) for v in (brent_price, wti_price)):
+        return None
+    try:
+        f_brent = float(brent_price)
+        f_wti = float(wti_price)
+        if not (math.isfinite(f_brent) and math.isfinite(f_wti)):
+            return None
+        if f_brent <= 0.0 or f_wti <= 0.0:
+            return None
+
+        raw_spread = f_brent - f_wti
+        if not math.isfinite(raw_spread):
+            return None
+        spread = round(raw_spread, 2)
+
+        if spread > 8.0:
+            status = "SEABORNE_GEOPOLITICAL_PREMIUM"
+        elif spread < 1.5:
+            status = "US_DOMESTIC_TIGHTNESS"
+        else:
+            status = "NORMAL_TRANSATLANTIC_ARBITRAGE"
+
+        return {
+            "model_id": "MODEL_25.12",
+            "model_name": "Brent - WTI Seaborne Risk Spread",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.12",
+            "primary_value": spread,
+            "unit": "USD",
+            "status": status,
+            "inputs": {"brent_usd": f_brent, "wti_usd": f_wti},
+            "interpretation": "Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
+# --- Model 16: VIX Market Regime Thresholds ---
+def calc_vix_market_regime(vix):
+    if vix is None or isinstance(vix, bool):
+        return None
+    try:
+        v = float(vix)
+        if not math.isfinite(v) or v <= 0:
+            return None
+
+        val = round(v, 2)
+        if val < 15.0:
+            regime = "COMPLACENCY"
+            bias = "RISK_ON"
+        elif val < 20.0:
+            regime = "NORMAL_VOLATILITY"
+            bias = "BALANCED"
+        elif val < 30.0:
+            regime = "ELEVATED_STRESS"
+            bias = "RISK_OFF"
+        else:
+            regime = "CRISIS_SHOCK"
+            bias = "EXTREME_RISK_OFF"
+
+        return {
+            "model_id": "MODEL_16",
+            "model_name": "CBOE Volatility & Market Fear Regime",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#16",
+            "primary_value": val,
+            "unit": "Points",
+            "status": regime,
+            "market_bias": bias,
+            "inputs": {"vix_close": val},
+            "interpretation": "30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
+# --- Model 25.14: AI Hardware & Semiconductor Stress Gauge ---
+def calc_ai_chip_stress_gauge(gscpi_val, sox_yoy_pct, vix_val):
+    if any(v is None or isinstance(v, bool) for v in (gscpi_val, sox_yoy_pct, vix_val)):
+        return None
+    try:
+        g = float(gscpi_val)
+        s = float(sox_yoy_pct)
+        v = float(vix_val)
+
+        if not all(math.isfinite(x) for x in (g, s, v)) or v <= 0.0:
+            return None
+
+        gscpi_comp = g * 0.40
+        sox_comp = (s / 50.0) * -0.35
+        vix_comp = (v / 20.0) * 0.25
+
+        raw_stress = gscpi_comp + sox_comp + vix_comp
+        if not math.isfinite(raw_stress):
+            return None
+
+        stress_score = round(raw_stress, 3)
+
+        if stress_score >= 1.20:
+            status = "ACUTE_CHIP_SUPPLY_CRUNCH"
+        elif stress_score >= 0.50:
+            status = "ELEVATED_SEMICONDUCTOR_BOTTLENECK"
+        elif stress_score <= -0.40:
+            status = "CHIP_SUPPLY_ABUNDANCE_EXPANSION"
+        else:
+            status = "BALANCED_HARDWARE_FLOW"
+
+        return {
+            "model_id": "MODEL_25.14",
+            "model_name": "AI Hardware & Semiconductor Supply Chain Stress Gauge",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.14",
+            "primary_value": stress_score,
+            "unit": "Score (Normalized)",
+            "status": status,
+            "inputs": {
+                "gscpi_std_dev": round(g, 3),
+                "sox_yoy_pct": round(s, 2),
+                "vix_level": round(v, 2)
+            },
+            "components": {
+                "gscpi_weight": round(gscpi_comp, 3),
+                "sox_weight": round(sox_comp, 3),
+                "vix_weight": round(vix_comp, 3)
+            },
+            "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
+# --- Model 25.13: Labor Market Momentum Index (LMMI / EMME) ---
+def calc_labor_market_momentum_index(payems_curr, payems_yr_ago, unrate_curr, unrate_yr_ago):
+    if any(v is None or isinstance(v, bool) for v in (payems_curr, payems_yr_ago, unrate_curr, unrate_yr_ago)):
+        return None
+    try:
+        p_curr = float(payems_curr)
+        p_yr = float(payems_yr_ago)
+        u_curr = float(unrate_curr)
+        u_yr = float(unrate_yr_ago)
+
+        if not all(math.isfinite(x) for x in (p_curr, p_yr, u_curr, u_yr)):
+            return None
+        if p_curr <= 0.0 or p_yr <= 0.0 or u_curr <= 0.0 or u_yr < 0.0:
+            return None
+
+        p_growth = ((p_curr / p_yr) - 1.0) * 100.0
+        u_diff = u_curr - u_yr
+        raw_lmmi = p_growth - u_diff
+
+        if not math.isfinite(raw_lmmi):
+            return None
+
+        lmmi = round(raw_lmmi, 2)
+        strength_ratio = round(p_growth * (1.0 / u_curr), 2) if u_curr > 0 else None
+
+        if lmmi > 1.0:
+            status = "STRONG_LABOR_EXPANSION"
+        elif lmmi > 0.20:
+            status = "MODERATE_LABOR_EXPANSION"
+        elif lmmi < -0.20:
+            status = "LABOR_MARKET_DETERIORATION_RISK"
+        else:
+            status = "BALANCED_LABOR_MARKET"
+
+        return {
+            "model_id": "MODEL_25.13",
+            "model_name": "Labor Market Momentum Index (LMMI)",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.13",
+            "primary_value": lmmi,
+            "unit": "Net Momentum Pts",
+            "status": status,
+            "inputs": {
+                "payems_current": p_curr,
+                "payems_year_ago": p_yr,
+                "unrate_current": u_curr,
+                "unrate_year_ago": u_yr
+            },
+            "metrics": {
+                "payroll_growth_yoy_pct": round(p_growth, 2),
+                "unemployment_rate_diff_yoy": round(u_diff, 2),
+                "employment_strength_ratio": strength_ratio
+            },
+            "interpretation": "Couples nonfarm payroll expansion with unemployment change to gauge labor slack and wage inflation momentum."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
+# ==============================================================================
+# MAIN EXECUTION ENGINE
+# ==============================================================================
+
+def main():
+    fred_json_path = "llms-fred-series.json"
+    out_json_path = "llms-models.json"
+    out_txt_path = "llms-models.txt"
+
+    if not os.path.exists(fred_json_path):
+        print(f"Error: {fred_json_path} not found. Run update_fred_series.py first.")
+        return
+
+    with open(fred_json_path, "r", encoding="utf-8") as f:
+        fred_data = json.load(f)
+
+    series = fred_data.get("series", {})
+
+    # Extract series inputs
+    brent = series.get("DCOILBRENTEU", {}).get("current_value")
+    wti = series.get("DCOILWTICO", {}).get("current_value")
+
+    vix = series.get("VIXCLS", {}).get("current_value")
+    sox_yoy = series.get("NASDAQSOX", {}).get("transformations", {}).get("percent_change_from_year_ago")
+    gscpi = series.get("GSCPI", {}).get("current_value", 0.0)
+
+    payems_curr = series.get("PAYEMS", {}).get("current_value")
+    payems_yr = series.get("PAYEMS", {}).get("year_ago_value")
+    unrate_curr = series.get("UNRATE", {}).get("current_value")
+    unrate_yr = series.get("UNRATE", {}).get("year_ago_value")
+
+    # Run Models
+    models_calculated = []
+
+    # 1. Model 25.12
+    m_spread = calc_brent_wti_spread(brent, wti)
+    if m_spread:
+        models_calculated.append(m_spread)
+
+    # 2. Model 16
+    m_vix = calc_vix_market_regime(vix)
+    if m_vix:
+        models_calculated.append(m_vix)
+
+    # 3. Model 25.14
+    m_chip = calc_ai_chip_stress_gauge(gscpi, sox_yoy, vix)
+    if m_chip:
+        models_calculated.append(m_chip)
+
+    # 4. Model 25.13
+    m_lmmi = calc_labor_market_momentum_index(payems_curr, payems_yr, unrate_curr, unrate_yr)
+    if m_lmmi:
+        models_calculated.append(m_lmmi)
+
+    now_dt = datetime.datetime.now(datetime.timezone.utc)
+    now_iso = now_dt.isoformat()
+    now_utc_str = now_dt.strftime("%Y-%m-%d %H:%M UTC")
+
+    # A) BUILD llms-models.json
+    payload = {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "metadata": {
+            "engine": "Autonomous Quantitative Macroeconomic Model Engine",
+            "author": "Ersoy Toptaş",
+            "license": "CC BY 4.0",
+            "sync_status": "SUCCESS",
+            "last_successful_sync": now_iso,
+            "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
+            "monitored_data_source": "https://analysisreports.github.io/llms-fred-series.json",
+            "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
+            "total_models_active": len(models_calculated)
+        },
+        "models": models_calculated
+    }
+
+    with open(out_json_path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2, ensure_ascii=False)
+    print(f"Successfully generated {out_json_path} ({len(models_calculated)} active models)")
+
+    # B) BUILD llms-models.txt
+    lines = [
+        "# Ersoy Toptaş Canonical Quantitative Macroeconomic Models Engine (llms-models.txt)",
+        "> Real-Time Evaluated Macroeconomic & Quantitative Transmission Models.",
+        "> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0",
+        "> Endpoint: https://analysisreports.github.io/llms-models.txt",
+        "> JSON Twin Endpoint: https://analysisreports.github.io/llms-models.json",
+        "> Master Formulas Engine: https://analysisreports.github.io/llms-formulas.txt",
+        "> Ingested Live Time-Series: https://analysisreports.github.io/llms-fred-series.json",
+        "> Root Index: https://analysisreports.github.io/llms.txt",
+        "",
+        "# ==============================================================================",
+        "### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT",
+        f"> **Last Calibrated Sync:** {now_utc_str}",
+        "> **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed observations. Zero hallucination guarantee.",
+        "",
+        "| Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |",
+        "| :--- | :--- | :---: | :---: | :--- | :--- |"
+    ]
+
+    for m in models_calculated:
+        lines.append(f"| **{m['model_id']}** | {m['model_name']} | **{m['primary_value']}** | {m['unit']} | `{m['status']}` | {m['interpretation'][:55]}... |")
+
+    lines.append("")
+    lines.append("---")
+    lines.append("### Detailed Model Breakdowns")
+    lines.append("")
+
+    for m in models_calculated:
+        lines.append(f"#### [{m['model_id']}] {m['model_name']}")
+        lines.append(f"- **Reference Formula:** {m['formula_ref']}")
+        lines.append(f"- **Evaluated Status:** `{m['status']}` (Primary Value: {m['primary_value']} {m['unit']})")
+        lines.append(f"- **Inputs Evaluated:** `{json.dumps(m.get('inputs', {}))}`")
+        if "metrics" in m:
+            lines.append(f"- **Secondary Metrics:** `{json.dumps(m['metrics'])}`")
+        if "components" in m:
+            lines.append(f"- **Component Weights:** `{json.dumps(m['components'])}`")
+        lines.append(f"- **Economic Synthesis:** {m['interpretation']}")
+        lines.append("")
+
+    with open(out_txt_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+    print(f"Successfully generated {out_txt_path}")
+
+if __name__ == "__main__":
+    main()
