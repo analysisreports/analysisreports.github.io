@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-07 22:38 UTC
+> **Last Calibrated Sync:** 2026-11-07 23:09 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -22,6 +22,7 @@
 | **MODEL_25.12** | Brent - WTI Seaborne Risk Spread | **7.39** | USD | `NORMAL_TRANSATLANTIC_ARBITRAGE` | Seaborne geopolitical friction and maritime risk spread... |
 | **MODEL_25.13** | Labor Market Momentum Index (LMMI) | **0.86** | Net Momentum Pts | `MODERATE_LABOR_EXPANSION` | Couples nonfarm payroll expansion with unemployment cha... |
 | **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.11** | Score (Normalized) | `BALANCED_HARDWARE_FLOW` | Normalized composite metric monitoring semiconductor ph... |
+| **MODEL_25.16** | Yen Carry Trade Dissolution and Stress Gauge | **8.0877** | % (Net Carry Buffer) | `CALM_ACCUMULATION` | Monitors cross-currency Yen Carry Trade buffer, unwindi... |
 
 ---
 ### Detailed Model Breakdowns
@@ -77,3 +78,10 @@
 - **Inputs Evaluated:** `{"gscpi_std_dev": 0.0, "sox_yoy_pct": 34.59, "vix_level": 28.18}`
 - **Component Weights:** `{"gscpi_weight": 0.0, "sox_weight": -0.242, "vix_weight": 0.352}`
 - **Economic Synthesis:** Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation.
+
+#### [MODEL_25.16] Yen Carry Trade Dissolution and Stress Gauge
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.16
+- **Evaluated Status:** `CALM_ACCUMULATION` (Primary Value: 8.0877 % (Net Carry Buffer))
+- **Inputs Evaluated:** `{"rate_us_dff": 3.88, "rate_jp_mutan": 0.25, "jpy_30d_momentum_pct": 4.46}`
+- **Component Weights:** `{"rate_spread": 3.63, "net_buffer": 8.0877}`
+- **Economic Synthesis:** Monitors cross-currency Yen Carry Trade buffer, unwinding risk, and global leverage liquidation shocks.

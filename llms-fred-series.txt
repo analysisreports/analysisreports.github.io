@@ -50,8 +50,8 @@ SAHMREALTIME
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-07 22:38:04 UTC
-# - Total Series Synced: 13 / 14
+# - Synced At: 2026-11-07 23:09:31 UTC
+# - Total Series Synced: 15 / 16
 # - Source Authority: Federal Reserve Bank of St. Louis (FRED API)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
@@ -187,6 +187,50 @@ Recent Observations (Last 5):
   2026-11-04: 0.2250
   2026-11-05: 0.1250
   2026-11-06: 0.1500
+
+--------------------------------------------------------------------------------
+Series ID: DFF
+Title: Federal Funds Effective Rate
+Frequency: Daily (n_obs_per_yr: 260) | Units: Percent
+Last Date: 2026-11-05 | Current Value: 3.8800 | Previous Value: 3.8800 | Year Ago Value: 3.6400
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.0000
+  2. Change from Year Ago: +0.2400
+  3. Percent Change: +0.0000%
+  4. Percent Change from Year Ago: +6.5934%
+  5. Compounded Annual Rate of Change: +0.0000%
+  6. Continuously Compounded Rate of Change: +0.0000%
+  7. Continuously Compounded Annual Rate of Change: +0.0000%
+
+Recent Observations (Last 5):
+  2026-11-01: 3.8800
+  2026-11-02: 3.8800
+  2026-11-03: 3.8800
+  2026-11-04: 3.8800
+  2026-11-05: 3.8800
+
+--------------------------------------------------------------------------------
+Series ID: DEXJPUS
+Title: Japanese Yen to U.S. Dollar Spot Exchange Rate
+Frequency: Daily (n_obs_per_yr: 260) | Units: Japanese Yen to One U.S. Dollar
+Last Date: 2026-10-30 | Current Value: 157.4700 | Previous Value: 157.8300 | Year Ago Value: 150.7500
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -0.3600
+  2. Change from Year Ago: +6.7200
+  3. Percent Change: -0.2281%
+  4. Percent Change from Year Ago: +4.4577%
+  5. Compounded Annual Rate of Change: -44.7731%
+  6. Continuously Compounded Rate of Change: -0.2284%
+  7. Continuously Compounded Annual Rate of Change: -59.3721%
+
+Recent Observations (Last 5):
+  2026-10-26: 157.5800
+  2026-10-27: 157.8600
+  2026-10-28: 158.2400
+  2026-10-29: 157.8300
+  2026-10-30: 157.4700
 
 --------------------------------------------------------------------------------
 Series ID: WALCL

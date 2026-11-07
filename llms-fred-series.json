@@ -5,8 +5,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-07T22:38:04Z",
-    "total_series": 13,
+    "last_successful_sync": "2026-11-07T23:09:31Z",
+    "total_series": 15,
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -267,6 +267,92 @@
         {
           "date": "2026-11-06",
           "value": 0.15
+        }
+      ]
+    },
+    "DFF": {
+      "series_id": "DFF",
+      "title": "Federal Funds Effective Rate",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Percent",
+      "source": "Percent",
+      "last_date": "2026-11-05",
+      "current_value": 3.88,
+      "previous_value": 3.88,
+      "year_ago_value": 3.64,
+      "transformations": {
+        "change": 0.0,
+        "change_from_year_ago": 0.24,
+        "percent_change": 0.0,
+        "percent_change_from_year_ago": 6.5934,
+        "compounded_annual_rate_of_change": 0.0,
+        "continuously_compounded_rate_of_change": 0.0,
+        "continuously_compounded_annual_rate_of_change": 0.0
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-01",
+          "value": 3.88
+        },
+        {
+          "date": "2026-11-02",
+          "value": 3.88
+        },
+        {
+          "date": "2026-11-03",
+          "value": 3.88
+        },
+        {
+          "date": "2026-11-04",
+          "value": 3.88
+        },
+        {
+          "date": "2026-11-05",
+          "value": 3.88
+        }
+      ]
+    },
+    "DEXJPUS": {
+      "series_id": "DEXJPUS",
+      "title": "Japanese Yen to U.S. Dollar Spot Exchange Rate",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Japanese Yen to One U.S. Dollar",
+      "source": "Japanese Yen to One U.S. Dollar",
+      "last_date": "2026-10-30",
+      "current_value": 157.47,
+      "previous_value": 157.83,
+      "year_ago_value": 150.75,
+      "transformations": {
+        "change": -0.36,
+        "change_from_year_ago": 6.72,
+        "percent_change": -0.2281,
+        "percent_change_from_year_ago": 4.4577,
+        "compounded_annual_rate_of_change": -44.7731,
+        "continuously_compounded_rate_of_change": -0.2284,
+        "continuously_compounded_annual_rate_of_change": -59.3721
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-26",
+          "value": 157.58
+        },
+        {
+          "date": "2026-10-27",
+          "value": 157.86
+        },
+        {
+          "date": "2026-10-28",
+          "value": 158.24
+        },
+        {
+          "date": "2026-10-29",
+          "value": 157.83
+        },
+        {
+          "date": "2026-10-30",
+          "value": 157.47
         }
       ]
     },
