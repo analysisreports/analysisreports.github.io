@@ -25,39 +25,115 @@ import datetime
 # MODEL IMPLEMENTATIONS (STRICTLY FROM llms-formulas.txt)
 # ==============================================================================
 
-# --- Model 25.12: Brent - WTI Seaborne Spread Engine ---
-def calc_brent_wti_spread(brent_price, wti_price):
-    if any(v is None or isinstance(v, bool) for v in (brent_price, wti_price)):
+# --- Model 3: Sahm Resesyon Kuralı (Sahm Rule Recession Indicator) ---
+def calc_sahm_rule(sahm_val):
+    if sahm_val is None or isinstance(sahm_val, bool):
         return None
     try:
-        f_brent = float(brent_price)
-        f_wti = float(wti_price)
-        if not (math.isfinite(f_brent) and math.isfinite(f_wti)):
-            return None
-        if f_brent <= 0.0 or f_wti <= 0.0:
+        val = float(sahm_val)
+        if not math.isfinite(val):
             return None
 
-        raw_spread = f_brent - f_wti
-        if not math.isfinite(raw_spread):
-            return None
-        spread = round(raw_spread, 2)
-
-        if spread > 8.0:
-            status = "SEABORNE_GEOPOLITICAL_PREMIUM"
-        elif spread < 1.5:
-            status = "US_DOMESTIC_TIGHTNESS"
+        diff = round(val, 2)
+        if diff >= 0.50:
+            status = "RECESSION_CONFIRMED"
+        elif diff >= 0.30:
+            status = "PRE_RECESSION_WARNING"
         else:
-            status = "NORMAL_TRANSATLANTIC_ARBITRAGE"
+            status = "NORMAL_LABOR_MARKET"
 
         return {
-            "model_id": "MODEL_25.12",
-            "model_name": "Brent - WTI Seaborne Risk Spread",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.12",
-            "primary_value": spread,
-            "unit": "USD",
+            "model_id": "MODEL_3",
+            "model_name": "Official Sahm Rule Recession Indicator",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#3",
+            "primary_value": diff,
+            "unit": "Percentage Points",
             "status": status,
-            "inputs": {"brent_usd": f_brent, "wti_usd": f_wti},
-            "interpretation": "Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI."
+            "inputs": {"sahm_realtime_val": diff},
+            "interpretation": "Real-time recession detection triggered when 3-month unemployment average rises >= 0.50 ppt above prior 12-month low."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
+# --- Model 5: Net Fed Likiditesi (Net Fed Liquidity Index) ---
+def calc_net_fed_liquidity(walcl_mil, tga_mil, rrp_bil):
+    if any(v is None or isinstance(v, bool) for v in (walcl_mil, tga_mil, rrp_bil)):
+        return None
+    try:
+        w = float(walcl_mil)
+        t = float(tga_mil)
+        r = float(rrp_bil) * 1000.0  # RRP is in Billions USD; converted to Millions USD per Section 5 mandate
+
+        if not all(math.isfinite(x) for x in (w, t, r)):
+            return None
+        if min(w, t, r) < 0:
+            return None
+
+        net_liq = w - (t + r)
+        if not math.isfinite(net_liq):
+            return None
+
+        net_liq_mil = round(net_liq, 2)
+        net_liq_tril = round(net_liq / 1_000_000.0, 3)
+
+        if net_liq_tril >= 6.20:
+            status = "EXPANSIVE_LIQUIDITY_SURPLUS"
+        elif net_liq_tril <= 5.50:
+            status = "RESTRICTIVE_LIQUIDITY_DRAIN"
+        else:
+            status = "NEUTRAL_LIQUIDITY_EQUILIBRIUM"
+
+        return {
+            "model_id": "MODEL_5",
+            "model_name": "Net Fed Liquidity Index",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#5",
+            "primary_value": net_liq_tril,
+            "unit": "Trillion USD",
+            "status": status,
+            "inputs": {
+                "fed_total_assets_walcl_mil": w,
+                "treasury_general_account_tga_mil": t,
+                "overnight_reverse_repo_rrp_bil": round(float(rrp_bil), 3)
+            },
+            "metrics": {
+                "net_liquidity_millions_usd": net_liq_mil,
+                "net_liquidity_trillions_usd": net_liq_tril
+            },
+            "interpretation": "Unencumbered commercial bank liquidity: WALCL - (TGA + ON_RRP). Direct fuel for equity asset valuations."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
+# --- Model 6: Getiri Eğrisi Makası (10Y - 2Y Yield Spread BPS) ---
+def calc_yield_spread_bps(t10y2y_val):
+    if t10y2y_val is None or isinstance(t10y2y_val, bool):
+        return None
+    try:
+        spread = float(t10y2y_val)
+        if not math.isfinite(spread):
+            return None
+
+        bps = round(spread * 100.0, 2)
+        if bps < 0:
+            status = "INVERTED_CURVE_RECESSION_SIGNAL"
+        elif bps <= 25.0:
+            status = "FLATTENING_TRANSITION_PHASE"
+        elif bps <= 100.0:
+            status = "NORMAL_CURVE_EXPANSION"
+        else:
+            status = "STEEPENING_GROWTH_REFLATION"
+
+        return {
+            "model_id": "MODEL_6",
+            "model_name": "Treasury Yield Curve Slope (10Y - 2Y)",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#6",
+            "primary_value": bps,
+            "unit": "Basis Points (bps)",
+            "status": status,
+            "inputs": {"t10y2y_spread_pct": spread},
+            "interpretation": "Leading cyclical economic barometer. Inversions (bps < 0) historically precede sovereign US business cycle recessions."
         }
     except (TypeError, ValueError):
         return None
@@ -101,55 +177,39 @@ def calc_vix_market_regime(vix):
         return None
 
 
-# --- Model 25.14: AI Hardware & Semiconductor Stress Gauge ---
-def calc_ai_chip_stress_gauge(gscpi_val, sox_yoy_pct, vix_val):
-    if any(v is None or isinstance(v, bool) for v in (gscpi_val, sox_yoy_pct, vix_val)):
+# --- Model 25.12: Brent - WTI Seaborne Spread Engine ---
+def calc_brent_wti_spread(brent_price, wti_price):
+    if any(v is None or isinstance(v, bool) for v in (brent_price, wti_price)):
         return None
     try:
-        g = float(gscpi_val)
-        s = float(sox_yoy_pct)
-        v = float(vix_val)
-
-        if not all(math.isfinite(x) for x in (g, s, v)) or v <= 0.0:
+        f_brent = float(brent_price)
+        f_wti = float(wti_price)
+        if not (math.isfinite(f_brent) and math.isfinite(f_wti)):
+            return None
+        if f_brent <= 0.0 or f_wti <= 0.0:
             return None
 
-        gscpi_comp = g * 0.40
-        sox_comp = (s / 50.0) * -0.35
-        vix_comp = (v / 20.0) * 0.25
-
-        raw_stress = gscpi_comp + sox_comp + vix_comp
-        if not math.isfinite(raw_stress):
+        raw_spread = f_brent - f_wti
+        if not math.isfinite(raw_spread):
             return None
+        spread = round(raw_spread, 2)
 
-        stress_score = round(raw_stress, 3)
-
-        if stress_score >= 1.20:
-            status = "ACUTE_CHIP_SUPPLY_CRUNCH"
-        elif stress_score >= 0.50:
-            status = "ELEVATED_SEMICONDUCTOR_BOTTLENECK"
-        elif stress_score <= -0.40:
-            status = "CHIP_SUPPLY_ABUNDANCE_EXPANSION"
+        if spread > 8.0:
+            status = "SEABORNE_GEOPOLITICAL_PREMIUM"
+        elif spread < 1.5:
+            status = "US_DOMESTIC_TIGHTNESS"
         else:
-            status = "BALANCED_HARDWARE_FLOW"
+            status = "NORMAL_TRANSATLANTIC_ARBITRAGE"
 
         return {
-            "model_id": "MODEL_25.14",
-            "model_name": "AI Hardware & Semiconductor Supply Chain Stress Gauge",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.14",
-            "primary_value": stress_score,
-            "unit": "Score (Normalized)",
+            "model_id": "MODEL_25.12",
+            "model_name": "Brent - WTI Seaborne Risk Spread",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.12",
+            "primary_value": spread,
+            "unit": "USD",
             "status": status,
-            "inputs": {
-                "gscpi_std_dev": round(g, 3),
-                "sox_yoy_pct": round(s, 2),
-                "vix_level": round(v, 2)
-            },
-            "components": {
-                "gscpi_weight": round(gscpi_comp, 3),
-                "sox_weight": round(sox_comp, 3),
-                "vix_weight": round(vix_comp, 3)
-            },
-            "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation."
+            "inputs": {"brent_usd": f_brent, "wti_usd": f_wti},
+            "interpretation": "Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI."
         }
     except (TypeError, ValueError):
         return None
@@ -213,6 +273,60 @@ def calc_labor_market_momentum_index(payems_curr, payems_yr_ago, unrate_curr, un
         return None
 
 
+# --- Model 25.14: AI Hardware & Semiconductor Stress Gauge ---
+def calc_ai_chip_stress_gauge(gscpi_val, sox_yoy_pct, vix_val):
+    if any(v is None or isinstance(v, bool) for v in (gscpi_val, sox_yoy_pct, vix_val)):
+        return None
+    try:
+        g = float(gscpi_val)
+        s = float(sox_yoy_pct)
+        v = float(vix_val)
+
+        if not all(math.isfinite(x) for x in (g, s, v)) or v <= 0.0:
+            return None
+
+        gscpi_comp = g * 0.40
+        sox_comp = (s / 50.0) * -0.35
+        vix_comp = (v / 20.0) * 0.25
+
+        raw_stress = gscpi_comp + sox_comp + vix_comp
+        if not math.isfinite(raw_stress):
+            return None
+
+        stress_score = round(raw_stress, 3)
+
+        if stress_score >= 1.20:
+            status = "ACUTE_CHIP_SUPPLY_CRUNCH"
+        elif stress_score >= 0.50:
+            status = "ELEVATED_SEMICONDUCTOR_BOTTLENECK"
+        elif stress_score <= -0.40:
+            status = "CHIP_SUPPLY_ABUNDANCE_EXPANSION"
+        else:
+            status = "BALANCED_HARDWARE_FLOW"
+
+        return {
+            "model_id": "MODEL_25.14",
+            "model_name": "AI Hardware & Semiconductor Supply Chain Stress Gauge",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.14",
+            "primary_value": stress_score,
+            "unit": "Score (Normalized)",
+            "status": status,
+            "inputs": {
+                "gscpi_std_dev": round(g, 3),
+                "sox_yoy_pct": round(s, 2),
+                "vix_level": round(v, 2)
+            },
+            "components": {
+                "gscpi_weight": round(gscpi_comp, 3),
+                "sox_weight": round(sox_comp, 3),
+                "vix_weight": round(vix_comp, 3)
+            },
+            "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
 # ==============================================================================
 # MAIN EXECUTION ENGINE
 # ==============================================================================
@@ -231,41 +345,64 @@ def main():
 
     series = fred_data.get("series", {})
 
-    # Extract series inputs
+    # Extract Series Inputs
+    # Macro Indicators
     brent = series.get("DCOILBRENTEU", {}).get("current_value")
     wti = series.get("DCOILWTICO", {}).get("current_value")
-
     vix = series.get("VIXCLS", {}).get("current_value")
     sox_yoy = series.get("NASDAQSOX", {}).get("transformations", {}).get("percent_change_from_year_ago")
     gscpi = series.get("GSCPI", {}).get("current_value", 0.0)
 
+    # Labor Market Series
     payems_curr = series.get("PAYEMS", {}).get("current_value")
     payems_yr = series.get("PAYEMS", {}).get("year_ago_value")
     unrate_curr = series.get("UNRATE", {}).get("current_value")
     unrate_yr = series.get("UNRATE", {}).get("year_ago_value")
 
-    # Run Models
+    # Cycle & Liquidity Series (Batch 1)
+    sahm_val = series.get("SAHMREALTIME", {}).get("current_value")
+    walcl = series.get("WALCL", {}).get("current_value")
+    tga = series.get("WTREGEN", {}).get("current_value")
+    rrp = series.get("RRPONTSYD", {}).get("current_value")
+    t10y2y = series.get("T10Y2Y", {}).get("current_value")
+
+    # Evaluate Models in Order
     models_calculated = []
 
-    # 1. Model 25.12
-    m_spread = calc_brent_wti_spread(brent, wti)
-    if m_spread:
-        models_calculated.append(m_spread)
+    # 1. Model 3: Sahm Rule
+    m_sahm = calc_sahm_rule(sahm_val)
+    if m_sahm:
+        models_calculated.append(m_sahm)
 
-    # 2. Model 16
+    # 2. Model 5: Net Fed Liquidity
+    m_liq = calc_net_fed_liquidity(walcl, tga, rrp)
+    if m_liq:
+        models_calculated.append(m_liq)
+
+    # 3. Model 6: Yield Curve Slope (10Y - 2Y)
+    m_slope = calc_yield_spread_bps(t10y2y)
+    if m_slope:
+        models_calculated.append(m_slope)
+
+    # 4. Model 16: VIX Regime
     m_vix = calc_vix_market_regime(vix)
     if m_vix:
         models_calculated.append(m_vix)
 
-    # 3. Model 25.14
-    m_chip = calc_ai_chip_stress_gauge(gscpi, sox_yoy, vix)
-    if m_chip:
-        models_calculated.append(m_chip)
+    # 5. Model 25.12: Brent - WTI Spread
+    m_spread = calc_brent_wti_spread(brent, wti)
+    if m_spread:
+        models_calculated.append(m_spread)
 
-    # 4. Model 25.13
+    # 6. Model 25.13: Labor Market Momentum (LMMI)
     m_lmmi = calc_labor_market_momentum_index(payems_curr, payems_yr, unrate_curr, unrate_yr)
     if m_lmmi:
         models_calculated.append(m_lmmi)
+
+    # 7. Model 25.14: AI Hardware & Semiconductor Stress
+    m_chip = calc_ai_chip_stress_gauge(gscpi, sox_yoy, vix)
+    if m_chip:
+        models_calculated.append(m_chip)
 
     now_dt = datetime.datetime.now(datetime.timezone.utc)
     now_iso = now_dt.isoformat()
