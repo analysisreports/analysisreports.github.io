@@ -37,6 +37,9 @@ Core repository endpoints, manifests, and their operational roles:
 - [Relationships Matrix (llms-relationships.txt)](https://analysisreports.github.io/llms-relationships.txt): Actor polarity scores, critical trade chokepoints, and escalation matrix.
 - [Full Master Directory (llms-full.txt)](https://analysisreports.github.io/llms-full.txt): Comprehensive, unified architectural index of the complete library.
 - [Structured AI Catalog (ai-catalog.json)](https://analysisreports.github.io/ai-catalog.json): Autonomous machine discovery registry, category counters, and daily ecosystem status.
+- [Live FRED Series Registry (llms-fred-series.txt)](https://analysisreports.github.io/llms-fred-series.txt): Monitored FRED time-series, latest observation snapshots, and official growth rates.
+- [Live FRED Series JSON Twin (llms-fred-series.json)](https://analysisreports.github.io/llms-fred-series.json): Structured JSON endpoint for automated FRED time-series and St. Louis Fed transformations.
+- [Dynamic Relationships JSON Twin (llms-relationships.json)](https://analysisreports.github.io/llms-relationships.json): Live machine-readable geopolitical polarity snapshot, dynamic deltas, and active regime states.
 
 ---
 
