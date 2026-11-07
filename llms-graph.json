@@ -753,7 +753,7 @@
       "type": "Sub-National Autonomous Entity",
       "attributes": {
         "parent_authority": "ACTOR_RU",
-        "polarity_baseline": 0.70,
+        "polarity_baseline": 0.7,
         "structural_regime": "STRATEGIC_ALIGNMENT",
         "primary_exposure": "CASPIAN_SECURITY_ENERGY_CORRIDORS"
       }
@@ -765,7 +765,7 @@
       "type": "Sub-National Autonomous Entity",
       "attributes": {
         "parent_authority": "ACTOR_RU",
-        "polarity_baseline": 0.80,
+        "polarity_baseline": 0.8,
         "structural_regime": "STRATEGIC_ALIGNMENT",
         "primary_exposure": "FISCAL_FEDERALISM_RESOURCE_EXTRACTION"
       }
@@ -826,63 +826,563 @@
         ]
       }
     },
-    {"id": "ACTOR_DE", "label": "Federal Republic of Germany", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "EUR"}},
-{"id": "ACTOR_FR", "label": "French Republic", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "EUR"}},
-{"id": "ACTOR_GB", "label": "United Kingdom", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "GBP"}},
-{"id": "ACTOR_UA", "label": "Ukraine", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "UAH"}},
-{"id": "ACTOR_PL", "label": "Republic of Poland", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "PLN"}},
-{"id": "ACTOR_SE", "label": "Kingdom of Sweden", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "SEK"}},
-{"id": "ACTOR_NO", "label": "Kingdom of Norway", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "NOK"}},
-{"id": "ACTOR_CZ", "label": "Czech Republic", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "CZK"}},
-{"id": "ACTOR_HU", "label": "Hungary", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "HUF"}},
-{"id": "ACTOR_GR", "label": "Hellenic Republic", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "EUR"}},
-{"id": "ACTOR_CY", "label": "Republic of Cyprus", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "EUR"}},
-{"id": "ACTOR_JP", "label": "Japan", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "JPY"}},
-{"id": "ACTOR_KR", "label": "Republic of Korea", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "KRW"}},
-{"id": "ACTOR_TW", "label": "Taiwan (Republic of China)", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "TWD"}},
-{"id": "ACTOR_SG", "label": "Republic of Singapore", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "SGD"}},
-{"id": "ACTOR_AU", "label": "Commonwealth of Australia", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "AUD"}},
-{"id": "ACTOR_ID", "label": "Republic of Indonesia", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "IDR"}},
-{"id": "ACTOR_MY", "label": "Malaysia", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "MYR"}},
-{"id": "ACTOR_TH", "label": "Kingdom of Thailand", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "THB"}},
-{"id": "ACTOR_PH", "label": "Republic of the Philippines", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "PHP"}},
-{"id": "ACTOR_KZ", "label": "Republic of Kazakhstan", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "KZT"}},
-{"id": "ACTOR_AZ", "label": "Republic of Azerbaijan", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "AZN"}},
-{"id": "ACTOR_AM", "label": "Republic of Armenia", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "AMD"}},
-{"id": "ACTOR_UZ", "label": "Republic of Uzbekistan", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "UZS"}},
-{"id": "ACTOR_TM", "label": "Turkmenistan", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "TMT"}},
-{"id": "ACTOR_KG", "label": "Kyrgyz Republic", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "KGS"}},
-{"id": "ACTOR_TJ", "label": "Republic of Tajikistan", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "TJS"}},
-{"id": "ACTOR_EG", "label": "Arab Republic of Egypt", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "EGP"}},
-{"id": "ACTOR_ZA", "label": "Republic of South Africa", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "ZAR"}},
-{"id": "ACTOR_IQ", "label": "Republic of Iraq", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "IQD"}},
-{"id": "ACTOR_SY", "label": "Syrian Arab Republic", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "SYP"}},
-{"id": "ACTOR_LY", "label": "State of Libya", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "LYD"}},
-{"id": "ACTOR_MA", "label": "Kingdom of Morocco", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "MAD"}},
-{"id": "ACTOR_CA", "label": "Canada", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "CAD"}},
-{"id": "ACTOR_MX", "label": "United Mexican States", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "MXN"}},
-{"id": "ACTOR_BR", "label": "Federative Republic of Brazil", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "BRL"}},
-{"id": "ACTOR_AR", "label": "Argentine Republic", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "ARS"}},
-{"id": "ACTOR_CL", "label": "Republic of Chile", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "CLP"}},
-{"id": "ACTOR_BO", "label": "Plurinational State of Bolivia", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "BOB"}},
-{"id": "INST_FED_US", "label": "Federal Reserve System", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_US", "currency": "USD"}},
-{"id": "INST_TCMB_TR", "label": "Central Bank of the Republic of Türkiye", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_TR", "currency": "TRY"}},
-{"id": "INST_ECB_EU", "label": "European Central Bank", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_DE", "currency": "EUR"}},
-{"id": "INST_BOJ_JP", "label": "Bank of Japan", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_JP", "currency": "JPY"}},
-{"id": "INST_PBOC_CN", "label": "People's Bank of China", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_CN", "currency": "CNY"}},
-{"id": "INST_BOE_GB", "label": "Bank of England", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_GB", "currency": "GBP"}},
-{"id": "INST_SNB_CH", "label": "Swiss National Bank", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_CH", "currency": "CHF"}},
-{"id": "INST_RBA_AU", "label": "Reserve Bank of Australia", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_AU", "currency": "AUD"}},
-{"id": "INST_BOC_CA", "label": "Bank of Canada", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_CA", "currency": "CAD"}},
-{"id": "INST_RBI_IN", "label": "Reserve Bank of India", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_IN", "currency": "INR"}},
-{"id": "INST_CBR_RU", "label": "Bank of Russia", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_RU", "currency": "RUB"}},
-{"id": "INST_BOK_KR", "label": "Bank of Korea", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_KR", "currency": "KRW"}},
-{"id": "INST_CBC_TW", "label": "Central Bank of Taiwan", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_TW", "currency": "TWD"}},
-{"id": "INST_MAS_SG", "label": "Monetary Authority of Singapore", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_SG", "currency": "SGD"}},
-{"id": "INST_SAMA_SA", "label": "Saudi Central Bank", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_SA", "currency": "SAR"}},
-{"id": "INST_BCB_BR", "label": "Central Bank of Brazil", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_BR", "currency": "BRL"}},
-{"id": "INST_BANXICO_MX", "label": "Bank of Mexico", "category": "ACTOR", "type": "Central Bank", "attributes": {"jurisdiction": "GEO_MX", "currency": "MXN"}},
-{"id": "MODEL_25_14", "label": "AI Chip Stress Gauge", "category": "QUANT_MODEL", "source": "analysisreports"}
+    {
+      "id": "ACTOR_DE",
+      "label": "Federal Republic of Germany",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "EUR"
+      }
+    },
+    {
+      "id": "ACTOR_FR",
+      "label": "French Republic",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "EUR"
+      }
+    },
+    {
+      "id": "ACTOR_GB",
+      "label": "United Kingdom",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "GBP"
+      }
+    },
+    {
+      "id": "ACTOR_UA",
+      "label": "Ukraine",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "UAH"
+      }
+    },
+    {
+      "id": "ACTOR_PL",
+      "label": "Republic of Poland",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "PLN"
+      }
+    },
+    {
+      "id": "ACTOR_SE",
+      "label": "Kingdom of Sweden",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "SEK"
+      }
+    },
+    {
+      "id": "ACTOR_NO",
+      "label": "Kingdom of Norway",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "NOK"
+      }
+    },
+    {
+      "id": "ACTOR_CZ",
+      "label": "Czech Republic",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "CZK"
+      }
+    },
+    {
+      "id": "ACTOR_HU",
+      "label": "Hungary",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "HUF"
+      }
+    },
+    {
+      "id": "ACTOR_GR",
+      "label": "Hellenic Republic",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "EUR"
+      }
+    },
+    {
+      "id": "ACTOR_CY",
+      "label": "Republic of Cyprus",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "EUR"
+      }
+    },
+    {
+      "id": "ACTOR_JP",
+      "label": "Japan",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "JPY"
+      }
+    },
+    {
+      "id": "ACTOR_KR",
+      "label": "Republic of Korea",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "ACTOR_TW",
+      "label": "Taiwan (Republic of China)",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "TWD"
+      }
+    },
+    {
+      "id": "ACTOR_SG",
+      "label": "Republic of Singapore",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "SGD"
+      }
+    },
+    {
+      "id": "ACTOR_AU",
+      "label": "Commonwealth of Australia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "AUD"
+      }
+    },
+    {
+      "id": "ACTOR_ID",
+      "label": "Republic of Indonesia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "IDR"
+      }
+    },
+    {
+      "id": "ACTOR_MY",
+      "label": "Malaysia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "MYR"
+      }
+    },
+    {
+      "id": "ACTOR_TH",
+      "label": "Kingdom of Thailand",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "THB"
+      }
+    },
+    {
+      "id": "ACTOR_PH",
+      "label": "Republic of the Philippines",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "PHP"
+      }
+    },
+    {
+      "id": "ACTOR_KZ",
+      "label": "Republic of Kazakhstan",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "KZT"
+      }
+    },
+    {
+      "id": "ACTOR_AZ",
+      "label": "Republic of Azerbaijan",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "AZN"
+      }
+    },
+    {
+      "id": "ACTOR_AM",
+      "label": "Republic of Armenia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "AMD"
+      }
+    },
+    {
+      "id": "ACTOR_UZ",
+      "label": "Republic of Uzbekistan",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "UZS"
+      }
+    },
+    {
+      "id": "ACTOR_TM",
+      "label": "Turkmenistan",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "TMT"
+      }
+    },
+    {
+      "id": "ACTOR_KG",
+      "label": "Kyrgyz Republic",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "KGS"
+      }
+    },
+    {
+      "id": "ACTOR_TJ",
+      "label": "Republic of Tajikistan",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "TJS"
+      }
+    },
+    {
+      "id": "ACTOR_EG",
+      "label": "Arab Republic of Egypt",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "EGP"
+      }
+    },
+    {
+      "id": "ACTOR_ZA",
+      "label": "Republic of South Africa",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "ZAR"
+      }
+    },
+    {
+      "id": "ACTOR_IQ",
+      "label": "Republic of Iraq",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "IQD"
+      }
+    },
+    {
+      "id": "ACTOR_SY",
+      "label": "Syrian Arab Republic",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "SYP"
+      }
+    },
+    {
+      "id": "ACTOR_LY",
+      "label": "State of Libya",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "LYD"
+      }
+    },
+    {
+      "id": "ACTOR_MA",
+      "label": "Kingdom of Morocco",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "MAD"
+      }
+    },
+    {
+      "id": "ACTOR_CA",
+      "label": "Canada",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "CAD"
+      }
+    },
+    {
+      "id": "ACTOR_MX",
+      "label": "United Mexican States",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "MXN"
+      }
+    },
+    {
+      "id": "ACTOR_BR",
+      "label": "Federative Republic of Brazil",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "BRL"
+      }
+    },
+    {
+      "id": "ACTOR_AR",
+      "label": "Argentine Republic",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "ARS"
+      }
+    },
+    {
+      "id": "ACTOR_CL",
+      "label": "Republic of Chile",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "CLP"
+      }
+    },
+    {
+      "id": "ACTOR_BO",
+      "label": "Plurinational State of Bolivia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "BOB"
+      }
+    },
+    {
+      "id": "INST_FED_US",
+      "label": "Federal Reserve System",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_US",
+        "currency": "USD"
+      }
+    },
+    {
+      "id": "INST_TCMB_TR",
+      "label": "Central Bank of the Republic of Türkiye",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_TR",
+        "currency": "TRY"
+      }
+    },
+    {
+      "id": "INST_ECB_EU",
+      "label": "European Central Bank",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_DE",
+        "currency": "EUR"
+      }
+    },
+    {
+      "id": "INST_BOJ_JP",
+      "label": "Bank of Japan",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_JP",
+        "currency": "JPY"
+      }
+    },
+    {
+      "id": "INST_PBOC_CN",
+      "label": "People's Bank of China",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_CN",
+        "currency": "CNY"
+      }
+    },
+    {
+      "id": "INST_BOE_GB",
+      "label": "Bank of England",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_GB",
+        "currency": "GBP"
+      }
+    },
+    {
+      "id": "INST_SNB_CH",
+      "label": "Swiss National Bank",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_CH",
+        "currency": "CHF"
+      }
+    },
+    {
+      "id": "INST_RBA_AU",
+      "label": "Reserve Bank of Australia",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_AU",
+        "currency": "AUD"
+      }
+    },
+    {
+      "id": "INST_BOC_CA",
+      "label": "Bank of Canada",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_CA",
+        "currency": "CAD"
+      }
+    },
+    {
+      "id": "INST_RBI_IN",
+      "label": "Reserve Bank of India",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_IN",
+        "currency": "INR"
+      }
+    },
+    {
+      "id": "INST_CBR_RU",
+      "label": "Bank of Russia",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_RU",
+        "currency": "RUB"
+      }
+    },
+    {
+      "id": "INST_BOK_KR",
+      "label": "Bank of Korea",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_KR",
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "INST_CBC_TW",
+      "label": "Central Bank of Taiwan",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_TW",
+        "currency": "TWD"
+      }
+    },
+    {
+      "id": "INST_MAS_SG",
+      "label": "Monetary Authority of Singapore",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_SG",
+        "currency": "SGD"
+      }
+    },
+    {
+      "id": "INST_SAMA_SA",
+      "label": "Saudi Central Bank",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_SA",
+        "currency": "SAR"
+      }
+    },
+    {
+      "id": "INST_BCB_BR",
+      "label": "Central Bank of Brazil",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_BR",
+        "currency": "BRL"
+      }
+    },
+    {
+      "id": "INST_BANXICO_MX",
+      "label": "Bank of Mexico",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_MX",
+        "currency": "MXN"
+      }
+    },
+    {
+      "id": "MODEL_25_14",
+      "label": "AI Chip Stress Gauge",
+      "category": "QUANT_MODEL",
+      "source": "analysisreports"
+    },
+    {
+      "id": "IND_PAYEMS",
+      "label": "All Employees: Total Nonfarm Payrolls",
+      "category": "INDICATOR",
+      "source": "BLS / FRED"
+    },
+    {
+      "id": "IND_UNRATE",
+      "label": "Civilian Unemployment Rate",
+      "category": "INDICATOR",
+      "source": "BLS / FRED"
+    },
+    {
+      "id": "IND_SOX",
+      "label": "PHLX Semiconductor Index",
+      "category": "INDICATOR",
+      "source": "NASDAQ / FRED"
+    },
+    {
+      "id": "MODEL_25.13",
+      "label": "Labor Market Momentum Index Engine",
+      "category": "MODEL",
+      "description": "Blends PAYEMS YoY % growth with UNRATE YoY diff."
+    },
+    {
+      "id": "MODEL_25.14",
+      "label": "AI Hardware & Chip Stress Engine",
+      "category": "MODEL",
+      "description": "Quantifies semiconductor supply bottlenecks combining GSCPI, SOX, and VIX."
+    }
   ],
   "edges": [
     {
@@ -1290,14 +1790,14 @@
       "source": "ACTOR_RU",
       "target": "ACTOR_RF_CAUCASUS_ARC",
       "type": "PATRON_COUPLING",
-      "coupling_factor": 0.70,
+      "coupling_factor": 0.7,
       "role": "Federal Administrative & Security Control"
     },
     {
       "source": "ACTOR_RU",
       "target": "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
       "type": "PATRON_COUPLING",
-      "coupling_factor": 0.80,
+      "coupling_factor": 0.8,
       "role": "Fiscal Revenue & Extraction Oversight"
     },
     {
@@ -1361,50 +1861,339 @@
       "type": "INGESTS_SERIES",
       "role": "rrpontsyd_val"
     },
-    {"source": "ACTOR_US", "target": "ACTOR_DE", "type": "POLARITY_COUPLING", "p_baseline": 0.85, "regime": "ALLIANCE"},
-{"source": "ACTOR_US", "target": "ACTOR_FR", "type": "POLARITY_COUPLING", "p_baseline": 0.80, "regime": "ALLIANCE"},
-{"source": "ACTOR_US", "target": "ACTOR_GB", "type": "POLARITY_COUPLING", "p_baseline": 0.90, "regime": "ALLIANCE"},
-{"source": "ACTOR_US", "target": "ACTOR_UA", "type": "POLARITY_COUPLING", "p_baseline": 0.85, "regime": "STRATEGIC_ALIGNMENT"},
-{"source": "ACTOR_RU", "target": "ACTOR_UA", "type": "POLARITY_COUPLING", "p_baseline": -1.00, "regime": "KINETIC_WAR"},
-{"source": "ACTOR_RU", "target": "ACTOR_DE", "type": "POLARITY_COUPLING", "p_baseline": -0.75, "regime": "ECONOMIC_WARFARE"},
-{"source": "ACTOR_DE", "target": "ACTOR_FR", "type": "POLARITY_COUPLING", "p_baseline": 0.90, "regime": "ALLIANCE"},
-{"source": "ACTOR_US", "target": "ACTOR_PL", "type": "POLARITY_COUPLING", "p_baseline": 0.85, "regime": "ALLIANCE"},
-{"source": "ACTOR_RU", "target": "ACTOR_PL", "type": "POLARITY_COUPLING", "p_baseline": -0.85, "regime": "STRATEGIC_FRICTION"},
-{"source": "ACTOR_US", "target": "ACTOR_JP", "type": "POLARITY_COUPLING", "p_baseline": 0.90, "regime": "ALLIANCE"},
-{"source": "ACTOR_US", "target": "ACTOR_KR", "type": "POLARITY_COUPLING", "p_baseline": 0.85, "regime": "ALLIANCE"},
-{"source": "ACTOR_US", "target": "ACTOR_TW", "type": "POLARITY_COUPLING", "p_baseline": 0.85, "regime": "STRATEGIC_ALIGNMENT"},
-{"source": "ACTOR_CN", "target": "ACTOR_TW", "type": "POLARITY_COUPLING", "p_baseline": -0.90, "regime": "KINETIC_STANDOFF"},
-{"source": "ACTOR_CN", "target": "ACTOR_JP", "type": "POLARITY_COUPLING", "p_baseline": -0.60, "regime": "STRATEGIC_COMPETITION"},
-{"source": "ACTOR_US", "target": "ACTOR_AU", "type": "POLARITY_COUPLING", "p_baseline": 0.90, "regime": "ALLIANCE"},
-{"source": "ACTOR_US", "target": "ACTOR_SG", "type": "POLARITY_COUPLING", "p_baseline": 0.75, "regime": "TACTICAL_COOPERATION"},
-{"source": "ACTOR_CN", "target": "ACTOR_PH", "type": "POLARITY_COUPLING", "p_baseline": -0.70, "regime": "STRATEGIC_FRICTION"},
-{"source": "ACTOR_AZ", "target": "ACTOR_AM", "type": "POLARITY_COUPLING", "p_baseline": -0.80, "regime": "STRATEGIC_FRICTION"},
-{"source": "ACTOR_TR", "target": "ACTOR_AZ", "type": "POLARITY_COUPLING", "p_baseline": 0.95, "regime": "ALLIANCE"},
-{"source": "ACTOR_KZ", "target": "ACTOR_RU", "type": "POLARITY_COUPLING", "p_baseline": 0.60, "regime": "TACTICAL_COOPERATION"},
-{"source": "ACTOR_EG", "target": "ACTOR_US", "type": "POLARITY_COUPLING", "p_baseline": 0.65, "regime": "TACTICAL_COOPERATION"},
-{"source": "ACTOR_SA", "target": "ACTOR_US", "type": "POLARITY_COUPLING", "p_baseline": 0.70, "regime": "STRATEGIC_ALIGNMENT"},
-{"source": "ACTOR_IQ", "target": "ACTOR_IR", "type": "POLARITY_COUPLING", "p_baseline": 0.60, "regime": "TACTICAL_COOPERATION"},
-{"source": "ACTOR_SY", "target": "ACTOR_RU", "type": "POLARITY_COUPLING", "p_baseline": 0.85, "regime": "ALLIANCE"},
-{"source": "ACTOR_US", "target": "ACTOR_CA", "type": "POLARITY_COUPLING", "p_baseline": 0.95, "regime": "ALLIANCE"},
-{"source": "ACTOR_US", "target": "ACTOR_MX", "type": "POLARITY_COUPLING", "p_baseline": 0.80, "regime": "STRATEGIC_ALIGNMENT"},
-{"source": "ACTOR_US", "target": "ACTOR_BR", "type": "POLARITY_COUPLING", "p_baseline": 0.50, "regime": "NEUTRAL"},
-{"source": "ACTOR_SG", "target": "CHOKE_MALACCA", "type": "BRIDGES_TO_MODEL", "passes": "strait_security_monitoring"},
-{"source": "ACTOR_TW", "target": "CHOKE_TAIWAN", "type": "BRIDGES_TO_MODEL", "passes": "semiconductor_supply_chain"},
-{"source": "ACTOR_EG", "target": "CHOKE_BAB_EL_MANDEB", "type": "BRIDGES_TO_MODEL", "passes": "suez_canal_transit_flow"},
-{"source": "INST_FED_US", "target": "ACTOR_US", "type": "PATRON_COUPLING", "coupling_factor": 1.0, "role": "Monetary Authority"},
-{"source": "INST_TCMB_TR", "target": "ACTOR_TR", "type": "PATRON_COUPLING", "coupling_factor": 1.0, "role": "Monetary Authority"},
-{"source": "INST_ECB_EU", "target": "ACTOR_DE", "type": "PATRON_COUPLING", "coupling_factor": 0.9, "role": "Supranational Monetary Authority"},
-{"source": "INST_BOJ_JP", "target": "ACTOR_JP", "type": "PATRON_COUPLING", "coupling_factor": 1.0, "role": "Monetary Authority"},
-{"source": "INST_PBOC_CN", "target": "ACTOR_CN", "type": "PATRON_COUPLING", "coupling_factor": 1.0, "role": "Monetary Authority"},
-{"source": "INST_BOE_GB", "target": "ACTOR_GB", "type": "PATRON_COUPLING", "coupling_factor": 1.0, "role": "Monetary Authority"},
-{"source": "INST_CBR_RU", "target": "ACTOR_RU", "type": "PATRON_COUPLING", "coupling_factor": 1.0, "role": "Monetary Authority"},
-{"source": "INST_FED_US", "target": "IND_WALCL", "type": "TRIGGERS_INDICATOR", "impact": "BALANCE_SHEET_EXPANSION_OR_CONTRACTION"},
-{"source": "INST_FED_US", "target": "IND_EFFR", "type": "TRIGGERS_INDICATOR", "impact": "POLICY_RATE_SETTING"},
-{"source": "INST_FED_US", "target": "MODEL_5", "type": "BRIDGES_TO_MODEL", "passes": "liquidity_steering_policy"},
-{"source": "INST_TCMB_TR", "target": "MODEL_25.2", "type": "BRIDGES_TO_MODEL", "passes": "inflation_target_transmission"},
-{"source": "INST_ECB_EU", "target": "MODEL_25.5", "type": "BRIDGES_TO_MODEL", "passes": "eurodollar_repo_liquidity_impact"},
-{"source": "IND_GSCPI", "target": "MODEL_25_14", "type": "INGESTS_SERIES", "weight": 0.40},
-{"source": "IND_SOX", "target": "MODEL_25_14", "type": "INGESTS_SERIES", "weight": 0.35},
-{"source": "IND_VIXCLS", "target": "MODEL_25_14", "type": "INGESTS_SERIES", "weight": 0.25}
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_DE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_FR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.8,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_GB",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.9,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_UA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ACTOR_UA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -1,
+      "regime": "KINETIC_WAR"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ACTOR_DE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.75,
+      "regime": "ECONOMIC_WARFARE"
+    },
+    {
+      "source": "ACTOR_DE",
+      "target": "ACTOR_FR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.9,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_PL",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ACTOR_PL",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.85,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_JP",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.9,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_KR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_TW",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "ACTOR_CN",
+      "target": "ACTOR_TW",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.9,
+      "regime": "KINETIC_STANDOFF"
+    },
+    {
+      "source": "ACTOR_CN",
+      "target": "ACTOR_JP",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.6,
+      "regime": "STRATEGIC_COMPETITION"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_AU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.9,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_SG",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.75,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "ACTOR_CN",
+      "target": "ACTOR_PH",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.7,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "ACTOR_AZ",
+      "target": "ACTOR_AM",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.8,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "ACTOR_TR",
+      "target": "ACTOR_AZ",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.95,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_KZ",
+      "target": "ACTOR_RU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.6,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "ACTOR_EG",
+      "target": "ACTOR_US",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.65,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "ACTOR_SA",
+      "target": "ACTOR_US",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.7,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "ACTOR_IQ",
+      "target": "ACTOR_IR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.6,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "ACTOR_SY",
+      "target": "ACTOR_RU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_CA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.95,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_MX",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.8,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_BR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.5,
+      "regime": "NEUTRAL"
+    },
+    {
+      "source": "ACTOR_SG",
+      "target": "CHOKE_MALACCA",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "strait_security_monitoring"
+    },
+    {
+      "source": "ACTOR_TW",
+      "target": "CHOKE_TAIWAN",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "semiconductor_supply_chain"
+    },
+    {
+      "source": "ACTOR_EG",
+      "target": "CHOKE_BAB_EL_MANDEB",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "suez_canal_transit_flow"
+    },
+    {
+      "source": "INST_FED_US",
+      "target": "ACTOR_US",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1,
+      "role": "Monetary Authority"
+    },
+    {
+      "source": "INST_TCMB_TR",
+      "target": "ACTOR_TR",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1,
+      "role": "Monetary Authority"
+    },
+    {
+      "source": "INST_ECB_EU",
+      "target": "ACTOR_DE",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 0.9,
+      "role": "Supranational Monetary Authority"
+    },
+    {
+      "source": "INST_BOJ_JP",
+      "target": "ACTOR_JP",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1,
+      "role": "Monetary Authority"
+    },
+    {
+      "source": "INST_PBOC_CN",
+      "target": "ACTOR_CN",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1,
+      "role": "Monetary Authority"
+    },
+    {
+      "source": "INST_BOE_GB",
+      "target": "ACTOR_GB",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1,
+      "role": "Monetary Authority"
+    },
+    {
+      "source": "INST_CBR_RU",
+      "target": "ACTOR_RU",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1,
+      "role": "Monetary Authority"
+    },
+    {
+      "source": "INST_FED_US",
+      "target": "IND_WALCL",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "BALANCE_SHEET_EXPANSION_OR_CONTRACTION"
+    },
+    {
+      "source": "INST_FED_US",
+      "target": "IND_EFFR",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "POLICY_RATE_SETTING"
+    },
+    {
+      "source": "INST_FED_US",
+      "target": "MODEL_5",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "liquidity_steering_policy"
+    },
+    {
+      "source": "INST_TCMB_TR",
+      "target": "MODEL_25.2",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "inflation_target_transmission"
+    },
+    {
+      "source": "INST_ECB_EU",
+      "target": "MODEL_25.5",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "eurodollar_repo_liquidity_impact"
+    },
+    {
+      "source": "IND_GSCPI",
+      "target": "MODEL_25_14",
+      "type": "INGESTS_SERIES",
+      "weight": 0.4
+    },
+    {
+      "source": "IND_SOX",
+      "target": "MODEL_25_14",
+      "type": "INGESTS_SERIES",
+      "weight": 0.35
+    },
+    {
+      "source": "IND_VIXCLS",
+      "target": "MODEL_25_14",
+      "type": "INGESTS_SERIES",
+      "weight": 0.25
+    },
+    {
+      "source": "IND_PAYEMS",
+      "target": "MODEL_25.13",
+      "type": "INGESTS_SERIES",
+      "role": "payems_mom"
+    },
+    {
+      "source": "IND_UNRATE",
+      "target": "MODEL_25.13",
+      "type": "INGESTS_SERIES",
+      "role": "unrate_diff"
+    },
+    {
+      "source": "IND_GSCPI",
+      "target": "MODEL_25.14",
+      "type": "INGESTS_SERIES",
+      "role": "gscpi_val"
+    },
+    {
+      "source": "IND_SOX",
+      "target": "MODEL_25.14",
+      "type": "INGESTS_SERIES",
+      "role": "sox_yoy_pct"
+    },
+    {
+      "source": "IND_VIXCLS",
+      "target": "MODEL_25.14",
+      "type": "INGESTS_SERIES",
+      "role": "vix_val"
+    }
   ]
 }
