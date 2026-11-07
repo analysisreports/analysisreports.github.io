@@ -419,6 +419,48 @@ def calc_ai_chip_stress_gauge(gscpi_val, sox_yoy_pct, vix_val):
         return None
 
 
+
+def calc_jpy_carry_crack(dff_val, mutan_val, jpy_fx_mom) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (dff_val, mutan_val, jpy_fx_mom)):
+        return None
+    try:
+        r_us = float(dff_val)
+        r_jp = float(mutan_val)
+        fx_mom = float(jpy_fx_mom)
+        if not (math.isfinite(r_us) and math.isfinite(r_jp) and math.isfinite(fx_mom)):
+            return None
+        rate_spread = round(r_us - r_jp, 4)
+        net_buffer = round(rate_spread + fx_mom, 4)
+        if net_buffer <= -1.0 or (fx_mom <= -5.0 and rate_spread <= 3.0):
+            status = 'UNWIND_LIQUIDATION_CRASH'
+        elif net_buffer < 1.5 or fx_mom <= -3.0:
+            status = 'COMPRESSION_WARNING'
+        elif net_buffer >= 3.5 and fx_mom >= -1.0:
+            status = 'CALM_ACCUMULATION'
+        else:
+            status = 'MANAGED_TIGHTENING'
+        return {
+            'model_id': 'MODEL_25.16',
+            'model_name': 'Yen Carry Trade Dissolution and Stress Gauge',
+            'formula_ref': 'https://analysisreports.github.io/llms-formulas.txt#25.16',
+            'primary_value': net_buffer,
+            'unit': '% (Net Carry Buffer)',
+            'status': status,
+            'inputs': {
+                'rate_us_dff': round(r_us, 2),
+                'rate_jp_mutan': round(r_jp, 2),
+                'jpy_30d_momentum_pct': round(fx_mom, 2)
+            },
+            'components': {
+                'rate_spread': rate_spread,
+                'net_buffer': net_buffer
+            },
+            'interpretation': 'Monitors cross-currency Yen Carry Trade buffer, unwinding risk, and global leverage liquidation shocks.'
+        }
+    except (TypeError, ValueError, OverflowError):
+        return None
+
+
 # ==============================================================================
 # 3. MAIN EXECUTION ENGINE
 # ==============================================================================
@@ -503,6 +545,19 @@ def main():
     m_chip = calc_ai_chip_stress_gauge(gscpi, sox_yoy, vix)
     if m_chip:
         models_calculated.append(m_chip)
+
+    # Model 25.16: Yen Carry Trade Dissolution (BoJ / BIS / FRED)
+    dff_val = series.get('DFF', {}).get('current_value')
+    jpy_mom = series.get('DEXJPUS', {}).get('transformations', {}).get('percent_change_from_year_ago', 0.0)
+    boj_rate = None
+    if bis_rates and 'JP' in bis_rates:
+        boj_rate = bis_rates['JP'].get('current_rate')
+    if boj_rate is None:
+        boj_rate = series.get('MUTAN', {}).get('current_value', 0.25)
+
+    m_carry = calc_jpy_carry_crack(dff_val, boj_rate, jpy_mom)
+    if m_carry:
+        models_calculated.append(m_carry)
 
     now_dt = datetime.datetime.now(datetime.timezone.utc)
     now_iso = now_dt.isoformat()
