@@ -1,12 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "metadata": {
-    "engine": "Dynamic Geopolitical Polarity & Macro Transmission Engine",
+    "engine": "Dynamic Geopolitical Polarity & Sovereign Governance Engine",
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-07T13:03:05.920855+00:00",
+    "last_successful_sync": "2026-11-07T14:14:12.303901+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
+    "governance_reference": "https://analysisreports.github.io/llms-formulas.txt#25.15",
+    "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
       "brent_wti_spread_usd": 7.39,
       "vix_index": 28.18,
@@ -136,6 +138,74 @@
         "KOREAN_PENINSULA",
         "SEA_OF_JAPAN"
       ]
+    }
+  ],
+  "governance_matrix": [
+    {
+      "entity_id": "GEO_US",
+      "country_name": "United States",
+      "regime_type": "Presidential / Divided Bicameral Congress",
+      "majority_seat_margin": -15.0,
+      "gridlock_index": 0.9,
+      "executive_decree_power": 0.85,
+      "external_friction_bias": 0.765,
+      "status": "DIVIDED_GRIDLOCK_TARIFF_SURGE",
+      "primary_market_vector": "DXY Surge, Section 232/301 Tariffs, 10Y Yield Spikes"
+    },
+    {
+      "entity_id": "GEO_DE",
+      "country_name": "Germany / EU Core",
+      "regime_type": "Parliamentary Coalition (Bundestag)",
+      "majority_seat_margin": 4.0,
+      "gridlock_index": 0.34,
+      "executive_decree_power": 0.2,
+      "external_friction_bias": 0.068,
+      "status": "BALANCED_INSTITUTIONAL_EQUILIBRIUM",
+      "primary_market_vector": "Schuldenbremse Fiscal Freeze, EUR/USD Spot, Bund Yields"
+    },
+    {
+      "entity_id": "GEO_IL",
+      "country_name": "Israel",
+      "regime_type": "Fragile Parliamentary Coalition (Knesset)",
+      "majority_seat_margin": 2.0,
+      "gridlock_index": 0.37,
+      "executive_decree_power": 0.65,
+      "external_friction_bias": 0.24,
+      "status": "FRAGILE_COALITION_PARALYSIS",
+      "primary_market_vector": "Regional Kinetic Escalation, Shekel (ILS), Sovereign CDS"
+    },
+    {
+      "entity_id": "GEO_JP",
+      "country_name": "Japan",
+      "regime_type": "Dominant Parliamentary Coalition (Diet)",
+      "majority_seat_margin": 80.0,
+      "gridlock_index": 0.0,
+      "executive_decree_power": 0.4,
+      "external_friction_bias": 0.0,
+      "status": "UNIFIED_DOMESTIC_EXPANSION",
+      "primary_market_vector": "Yen Carry Trade (USD/JPY), JGB Yields, Chip Subsidies"
+    },
+    {
+      "entity_id": "GEO_CN",
+      "country_name": "China",
+      "regime_type": "Centralized Single-Party Command (Politburo)",
+      "majority_seat_margin": "N/A (Centralized Command)",
+      "gridlock_index": 0.0,
+      "executive_decree_power": 1.0,
+      "external_friction_bias": 0.75,
+      "status": "CENTRALIZED_STRATEGIC_COMMAND",
+      "primary_market_vector": "Strategic Export Quotas, Industrial Subsidies, Yuan (CNH)"
+    },
+    {
+      "entity_id": "GEO_RU",
+      "country_name": "Russian Federation",
+      "regime_type": "Super-Presidential Vertical of Power (Duma)",
+      "majority_seat_margin": "N/A (Centralized Command)",
+      "gridlock_index": 0.0,
+      "executive_decree_power": 1.0,
+      "external_friction_bias": 0.75,
+      "status": "CENTRALIZED_STRATEGIC_COMMAND",
+      "primary_market_vector": "Energy Export Controls, Sovereign Asset Seizures, Brent Oil"
     }
   ]
 }
