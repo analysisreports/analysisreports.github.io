@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "metadata": {
+    "engine": "Dynamic Geopolitical Polarity & Macro Transmission Engine",
+    "author": "Ersoy Toptaş",
+    "license": "CC BY 4.0",
+    "sync_status": "SUCCESS",
+    "last_successful_sync": "2026-11-07T00:27:40.787900+00:00",
+    "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
+    "macro_inputs": {
+      "brent_wti_spread_usd": 7.39,
+      "vix_index": 28.18,
+      "sox_yoy_pct": 31.5996,
+      "gscpi_std_dev": 0.0,
+      "ai_chip_stress_score": 0.131
+    }
+  },
+  "relationships": [
+    {
+      "id": "US_RU",
+      "label": "US - RU (United States vs. Russian Federation)",
+      "p_baseline": -0.85,
+      "dynamic_delta": 0.0,
+      "p_net": -0.85,
+      "regime_state": "PROXY_WAR",
+      "primary_driver": "VIX_AND_SANCTIONS",
+      "friction_nodes": [
+        "EASTERN_EUROPE",
+        "BLACK_SEA",
+        "ARCTIC",
+        "BALTIC"
+      ]
+    },
+    {
+      "id": "US_CN",
+      "label": "US - CN (United States vs. People's Republic of China)",
+      "p_baseline": -0.65,
+      "dynamic_delta": 0.0,
+      "p_net": -0.65,
+      "regime_state": "STRATEGIC_COMPETITION",
+      "primary_driver": "MODEL_25_14_AI_CHIP_STRESS",
+      "friction_nodes": [
+        "TAIWAN_STRAIT",
+        "SOUTH_CHINA_SEA",
+        "TECH_EXPORT_CONTROLS"
+      ]
+    },
+    {
+      "id": "RU_CN",
+      "label": "RU - CN (Russian Federation - People's Republic of China)",
+      "p_baseline": 0.75,
+      "dynamic_delta": 0.0,
+      "p_net": 0.75,
+      "regime_state": "STRATEGIC_ALIGNMENT",
+      "primary_driver": "MBRIDGE_BILATERAL_SETTLEMENT",
+      "friction_nodes": [
+        "CENTRAL_ASIA",
+        "ARCTIC_SEA_ROUTE"
+      ]
+    },
+    {
+      "id": "IL_IR",
+      "label": "IL - IR (Israel vs. Islamic Republic of Iran)",
+      "p_baseline": -0.95,
+      "dynamic_delta": 0.0,
+      "p_net": -0.95,
+      "regime_state": "PROXY_WAR",
+      "primary_driver": "MODEL_25_12_BRENT_WTI_SEABORNE_SPREAD",
+      "friction_nodes": [
+        "LEVANT",
+        "PERSIAN_GULF",
+        "RED_SEA",
+        "NUCLEAR_FACILITIES"
+      ]
+    },
+    {
+      "id": "SA_IR",
+      "label": "SA - IR (Kingdom of Saudi Arabia vs. Islamic Republic of Iran)",
+      "p_baseline": -0.2,
+      "dynamic_delta": 0.0,
+      "p_net": -0.2,
+      "regime_state": "STRATEGIC_FRICTION",
+      "primary_driver": "BEIJING_ACCORD_AND_OIL_FLOWS",
+      "friction_nodes": [
+        "YEMEN_BORDER",
+        "PERSIAN_GULF_SHIPPING"
+      ]
+    },
+    {
+      "id": "US_IL",
+      "label": "US - IL (United States - Israel)",
+      "p_baseline": 0.9,
+      "dynamic_delta": 0.0,
+      "p_net": 0.9,
+      "regime_state": "ALLIANCE",
+      "primary_driver": "STRATEGIC_DEFENSE_TREATY",
+      "friction_nodes": [
+        "REGIONAL_ESCALATION_SCALE"
+      ]
+    },
+    {
+      "id": "US_EU",
+      "label": "US - EU / NATO Core",
+      "p_baseline": 0.85,
+      "dynamic_delta": 0.0,
+      "p_net": 0.85,
+      "regime_state": "ALLIANCE",
+      "primary_driver": "TRANSATLANTIC_SECURITY",
+      "friction_nodes": [
+        "BURDEN_SHARING",
+        "INFLATION_REDUCTION_ACT"
+      ]
+    },
+    {
+      "id": "RU_EU",
+      "label": "RU - EU Core",
+      "p_baseline": -0.8,
+      "dynamic_delta": 0.0,
+      "p_net": -0.8,
+      "regime_state": "STRATEGIC_COMPETITION",
+      "primary_driver": "ECONOMIC_WARFARE_STANDOFF",
+      "friction_nodes": [
+        "NORD_STREAM",
+        "RUSSIAN_ASSET_SEIZURE"
+      ]
+    },
+    {
+      "id": "US_KP",
+      "label": "US - KP (United States vs. North Korea)",
+      "p_baseline": -0.9,
+      "dynamic_delta": 0.0,
+      "p_net": -0.9,
+      "regime_state": "PROXY_WAR",
+      "primary_driver": "NUCLEAR_PROLIFERATION",
+      "friction_nodes": [
+        "KOREAN_PENINSULA",
+        "SEA_OF_JAPAN"
+      ]
+    }
+  ]
+}
