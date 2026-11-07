@@ -19,6 +19,10 @@
 # - Daily: 260 obs/yr | Weekly: 52 obs/yr | Monthly: 12 obs/yr | Quarterly: 4 obs/yr | Semiannual: 2 obs/yr | Annual: 1 obs/yr
 
 [DAILY]
+DCOILBRENTEU
+DCOILWTICO
+VIXCLS
+NASDAQSOX
 
 [WEEKLY]
 
@@ -26,6 +30,7 @@
 PAYEMS
 UNRATE
 JTSJOL
+GSCPI
 
 [QUARTERLY]
 
