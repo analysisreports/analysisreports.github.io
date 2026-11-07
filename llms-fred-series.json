@@ -5,27 +5,205 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-06T22:05:42Z",
-    "data_as_of": "2026-11-06",
-    "source_vintage": "2026-11-06",
+    "last_successful_sync": "2026-11-07T00:14:50Z",
+    "data_as_of": "2026-11-07",
+    "source_vintage": "2026-11-07",
     "endpoint_txt": "https://analysisreports.github.io/llms-fred-series.txt",
     "endpoint_json": "https://analysisreports.github.io/llms-fred-series.json",
     "formulas_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
-    "monitored_series_count": 3
+    "monitored_series_count": 8
   },
   "frequencies": {
-    "DAILY": [],
+    "DAILY": [
+      "DCOILBRENTEU",
+      "DCOILWTICO",
+      "VIXCLS",
+      "NASDAQSOX"
+    ],
     "WEEKLY": [],
     "MONTHLY": [
       "PAYEMS",
       "UNRATE",
-      "JTSJOL"
+      "JTSJOL",
+      "GSCPI"
     ],
     "QUARTERLY": [],
     "SEMIANNUAL": [],
     "ANNUAL": []
   },
   "series": {
+    "DCOILBRENTEU": {
+      "series_id": "DCOILBRENTEU",
+      "title": "Crude Oil Prices: Brent - Europe",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Dollars per Barrel",
+      "source": "Dollars per Barrel",
+      "last_date": "2026-11-03",
+      "current_value": 107.03,
+      "previous_value": 107.39,
+      "year_ago_value": 66.32,
+      "transformations": {
+        "change": -0.36,
+        "change_from_year_ago": 40.71,
+        "percent_change": -0.3352,
+        "percent_change_from_year_ago": 61.3842,
+        "compounded_annual_rate_of_change": -58.2326,
+        "continuously_compounded_rate_of_change": -0.3358,
+        "continuously_compounded_annual_rate_of_change": -87.3054
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-28",
+          "value": 119.2
+        },
+        {
+          "date": "2026-10-29",
+          "value": 115.28
+        },
+        {
+          "date": "2026-10-30",
+          "value": 120.15
+        },
+        {
+          "date": "2026-11-02",
+          "value": 107.39
+        },
+        {
+          "date": "2026-11-03",
+          "value": 107.03
+        }
+      ]
+    },
+    "DCOILWTICO": {
+      "series_id": "DCOILWTICO",
+      "title": "Crude Oil Prices: West Texas Intermediate (WTI) - Cushing, Oklahoma",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Dollars per Barrel",
+      "source": "Dollars per Barrel",
+      "last_date": "2026-11-03",
+      "current_value": 99.64,
+      "previous_value": 100.06,
+      "year_ago_value": 58.34,
+      "transformations": {
+        "change": -0.42,
+        "change_from_year_ago": 41.3,
+        "percent_change": -0.4197,
+        "percent_change_from_year_ago": 70.7919,
+        "compounded_annual_rate_of_change": -66.5006,
+        "continuously_compounded_rate_of_change": -0.4206,
+        "continuously_compounded_annual_rate_of_change": -109.3642
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-28",
+          "value": 106.25
+        },
+        {
+          "date": "2026-10-29",
+          "value": 105.51
+        },
+        {
+          "date": "2026-10-30",
+          "value": 107.56
+        },
+        {
+          "date": "2026-11-02",
+          "value": 100.06
+        },
+        {
+          "date": "2026-11-03",
+          "value": 99.64
+        }
+      ]
+    },
+    "VIXCLS": {
+      "series_id": "VIXCLS",
+      "title": "CBOE Volatility Index: VIX",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Index",
+      "source": "Index",
+      "last_date": "2026-11-05",
+      "current_value": 28.18,
+      "previous_value": 16.61,
+      "year_ago_value": 17.17,
+      "transformations": {
+        "change": 11.57,
+        "change_from_year_ago": 11.01,
+        "percent_change": 69.6568,
+        "percent_change_from_year_ago": 64.1235,
+        "compounded_annual_rate_of_change": 4.881492694614741e+61,
+        "continuously_compounded_rate_of_change": 52.8608,
+        "continuously_compounded_annual_rate_of_change": 13743.7972
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-30",
+          "value": 19.42
+        },
+        {
+          "date": "2026-11-02",
+          "value": 21.15
+        },
+        {
+          "date": "2026-11-03",
+          "value": 20.83
+        },
+        {
+          "date": "2026-11-04",
+          "value": 16.61
+        },
+        {
+          "date": "2026-11-05",
+          "value": 28.18
+        }
+      ]
+    },
+    "NASDAQSOX": {
+      "series_id": "NASDAQSOX",
+      "title": "PHLX Semiconductor",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Index",
+      "source": "Index",
+      "last_date": "2026-11-05",
+      "current_value": 9011.14,
+      "previous_value": 10268.65,
+      "year_ago_value": 6847.39,
+      "transformations": {
+        "change": -1257.51,
+        "change_from_year_ago": 2163.75,
+        "percent_change": -12.2461,
+        "percent_change_from_year_ago": 31.5996,
+        "compounded_annual_rate_of_change": -100.0,
+        "continuously_compounded_rate_of_change": -13.0634,
+        "continuously_compounded_annual_rate_of_change": -3396.4833
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-30",
+          "value": 10688.8
+        },
+        {
+          "date": "2026-11-02",
+          "value": 10328.33
+        },
+        {
+          "date": "2026-11-03",
+          "value": 10600.4
+        },
+        {
+          "date": "2026-11-04",
+          "value": 10268.65
+        },
+        {
+          "date": "2026-11-05",
+          "value": 9011.14
+        }
+      ]
+    },
     "PAYEMS": {
       "series_id": "PAYEMS",
       "title": "All Employees, Total Nonfarm",

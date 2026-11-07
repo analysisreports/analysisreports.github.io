@@ -43,10 +43,99 @@ GSCPI
 # ==============================================================================
 # Transformations strictly follow Section 0.3 of llms-formulas.txt.
 # Mathematical Guardrail: Enforce x(t) > 0 for log and compounded rate calculations.
+# Methodological Note: Compounded Annual Rate reflects theoretical annualized pace if single-period momentum persisted for a full year; it is an official FRED transformation (SAAR), not an economic baseline forecast.
 #
 # Sync Status: SUCCESS
-# Last Successful Sync: 2026-11-06 22:05:42 UTC
-# Data As Of / Source Vintage: 2026-11-06
+# Last Successful Sync: 2026-11-07 00:14:50 UTC
+# Data As Of / Source Vintage: 2026-11-07
+
+--------------------------------------------------------------------------------
+Series ID: DCOILBRENTEU
+Title: Crude Oil Prices: Brent - Europe
+Frequency: Daily (n_obs_per_yr: 260) | Units: Dollars per Barrel
+Last Date: 2026-11-03 | Current Value: 107.0300 | Previous Value: 107.3900 | Year Ago Value: 66.3200
+
+Official Transformations (Section 0.3):
+- Change: -0.3600
+- Change from Year Ago: +40.7100
+- Percent Change: -0.3352%
+- Percent Change from Year Ago: +61.3842%
+- Compounded Annual Rate of Change: -58.2326%
+- Continuously Compounded Rate of Change: -0.3358%
+- Continuously Compounded Annual Rate of Change: -87.3054%
+
+Recent Observations (Last 5):
+  2026-10-28: 119.2000
+  2026-10-29: 115.2800
+  2026-10-30: 120.1500
+  2026-11-02: 107.3900
+  2026-11-03: 107.0300
+
+--------------------------------------------------------------------------------
+Series ID: DCOILWTICO
+Title: Crude Oil Prices: West Texas Intermediate (WTI) - Cushing, Oklahoma
+Frequency: Daily (n_obs_per_yr: 260) | Units: Dollars per Barrel
+Last Date: 2026-11-03 | Current Value: 99.6400 | Previous Value: 100.0600 | Year Ago Value: 58.3400
+
+Official Transformations (Section 0.3):
+- Change: -0.4200
+- Change from Year Ago: +41.3000
+- Percent Change: -0.4197%
+- Percent Change from Year Ago: +70.7919%
+- Compounded Annual Rate of Change: -66.5006%
+- Continuously Compounded Rate of Change: -0.4206%
+- Continuously Compounded Annual Rate of Change: -109.3642%
+
+Recent Observations (Last 5):
+  2026-10-28: 106.2500
+  2026-10-29: 105.5100
+  2026-10-30: 107.5600
+  2026-11-02: 100.0600
+  2026-11-03: 99.6400
+
+--------------------------------------------------------------------------------
+Series ID: VIXCLS
+Title: CBOE Volatility Index: VIX
+Frequency: Daily (n_obs_per_yr: 260) | Units: Index
+Last Date: 2026-11-05 | Current Value: 28.1800 | Previous Value: 16.6100 | Year Ago Value: 17.1700
+
+Official Transformations (Section 0.3):
+- Change: +11.5700
+- Change from Year Ago: +11.0100
+- Percent Change: +69.6568%
+- Percent Change from Year Ago: +64.1235%
+- Compounded Annual Rate of Change: +48814926946147408616581883885356685208210409369790612611530752.0000%
+- Continuously Compounded Rate of Change: +52.8608%
+- Continuously Compounded Annual Rate of Change: +13743.7972%
+
+Recent Observations (Last 5):
+  2026-10-30: 19.4200
+  2026-11-02: 21.1500
+  2026-11-03: 20.8300
+  2026-11-04: 16.6100
+  2026-11-05: 28.1800
+
+--------------------------------------------------------------------------------
+Series ID: NASDAQSOX
+Title: PHLX Semiconductor
+Frequency: Daily (n_obs_per_yr: 260) | Units: Index
+Last Date: 2026-11-05 | Current Value: 9011.1400 | Previous Value: 10268.6500 | Year Ago Value: 6847.3900
+
+Official Transformations (Section 0.3):
+- Change: -1257.5100
+- Change from Year Ago: +2163.7500
+- Percent Change: -12.2461%
+- Percent Change from Year Ago: +31.5996%
+- Compounded Annual Rate of Change: -100.0000%
+- Continuously Compounded Rate of Change: -13.0634%
+- Continuously Compounded Annual Rate of Change: -3396.4833%
+
+Recent Observations (Last 5):
+  2026-10-30: 10688.8000
+  2026-11-02: 10328.3300
+  2026-11-03: 10600.4000
+  2026-11-04: 10268.6500
+  2026-11-05: 9011.1400
 
 --------------------------------------------------------------------------------
 Series ID: PAYEMS
