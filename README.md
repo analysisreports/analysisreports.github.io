@@ -10,12 +10,11 @@ This repository hosts machine-readable ontological data models, quantitative fra
 
 ---
 
-> *Technical Note: The structural architecture and machine-readable pipelines of this repository were organized with the technical assistance of Google Gemini AI.*
+> *Technical Note: The structural architecture and machine-readable pipelines of this repository were organized with the technical assistance of Google Gemini AI.*  **[analysisreports](https://github.com/analysisreports/analysisreports.github.io)** 
 
 ---
 
 ## 🤖 AI & Machine-Readable Endpoints
-
 - **[llms.txt](https://analysisreports.github.io/llms.txt)**: Core manifest, knowledge architecture, and ontology endpoints. 
 - **[llms-formulas.txt](https://analysisreports.github.io/llms-formulas.txt)**: Quantitative models, macroeconomic scoring mechanisms, and VIX formulas. 
 - **[llms-relationships](https://analysisreports.github.io/llms-relationships.txt)**: Geopolitical Relationship Matrix 
