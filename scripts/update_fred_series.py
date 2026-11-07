@@ -78,8 +78,15 @@ def fred_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
     if not all(_is_pos(v) for v in (xt, xt_prev, n_obs_per_yr)):
         return None
     try:
-        res = (((xt / xt_prev) ** n_obs_per_yr) - 1.0) * 100.0
-        return round(res, 4) if math.isfinite(res) else None
+        ratio = xt / xt_prev
+        # Economic Boundary Guard: Prevents asymptotic exponential explosion on extreme daily volatility jumps (e.g. VIX)
+        if n_obs_per_yr >= 52 and (ratio > 1.40 or ratio < 0.60):
+            return None
+        res = (((ratio) ** n_obs_per_yr) - 1.0) * 100.0
+        # Strict Plausibility Filter: Cap between -100% and +10,000%
+        if not math.isfinite(res) or res > 10000.0 or res < -100.0:
+            return None
+        return round(res, 4)
     except (OverflowError, ValueError, ZeroDivisionError):
         return None
 
@@ -138,26 +145,33 @@ def get_series_data_api(series_id: str, api_key: str, n_obs_per_yr: int) -> Opti
     if not obs_json or "observations" not in obs_json:
         return None
 
-    valid_obs = []
-    for o in obs_json["observations"]:
-        v_str = o.get("value", "").strip()
-        if v_str and v_str != ".":
+    raw_obs = obs_json["observations"]
+    cleaned_obs = []
+    for o in raw_obs:
+        val_str = o.get("value", "").strip()
+        if val_str and val_str != ".":
             try:
-                valid_obs.append({"date": o["date"], "value": float(v_str)})
+                f_val = float(val_str)
+                cleaned_obs.append({"date": o["date"], "value": f_val})
             except ValueError:
-                pass
+                continue
 
-    if len(valid_obs) < 2:
+    cleaned_obs.reverse()
+
+    if len(cleaned_obs) < 2:
         return None
 
-    valid_obs.sort(key=lambda x: x["date"])
     return {
-        "metadata": s_meta,
-        "observations": valid_obs
+        "metadata": {
+            "title": s_meta.get("title", ""),
+            "units": s_meta.get("units", ""),
+            "source_institution": s_meta.get("source_institution", s_meta.get("units", "FRED"))
+        },
+        "observations": cleaned_obs
     }
 
 # ==============================================================================
-# 3. REGISTRY PARSER & SYNC ENGINE
+# 3. REGISTRY PARSER & OUTPUT BUILDER
 # ==============================================================================
 
 def parse_registry(txt_path: str) -> Tuple[Dict[str, List[str]], str]:
@@ -269,59 +283,60 @@ Title: {meta.get('title', '')}
 Frequency: {freq.capitalize()} (n_obs_per_yr: {n_obs_per_yr}) | Units: {meta.get('units', '')}
 Last Date: {t_curr['date']} | Current Value: {xt:.4f} | Previous Value: {xt_prev:.4f} | Year Ago Value: {f"{xt_year_ago:.4f}" if xt_year_ago is not None else "N/A"}
 
-Official Transformations (Section 0.3):
-- Change: {fmt(c_chg)}
-- Change from Year Ago: {fmt(c_chg_yr)}
-- Percent Change: {fmt(c_pct)}%
-- Percent Change from Year Ago: {fmt(c_pct_yr)}%
-- Compounded Annual Rate of Change: {fmt(c_car)}%
-- Continuously Compounded Rate of Change: {fmt(c_ccr)}%
-- Continuously Compounded Annual Rate of Change: {fmt(c_ccar)}%
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: {fmt(c_chg)}
+  2. Change from Year Ago: {fmt(c_chg_yr)}
+  3. Percent Change: {fmt(c_pct)}%
+  4. Percent Change from Year Ago: {fmt(c_pct_yr)}%
+  5. Compounded Annual Rate of Change: {fmt(c_car)}%
+  6. Continuously Compounded Rate of Change: {fmt(c_ccr)}%
+  7. Continuously Compounded Annual Rate of Change: {fmt(c_ccar)}%
 
 Recent Observations (Last 5):
 {recent_lines}"""
             txt_blocks.append(block)
 
-    # Master JSON with professional metadata audit fields
-    master_json = {
+    txt_body = "\n\n".join(txt_blocks)
+
+    full_txt = f"""# ==============================================================================
+# 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
+# ==============================================================================
+# Ingestion Contract & Epistemological Directives:
+# - Synced At: {now_utc}
+# - Total Series Synced: {len(json_series_dict)} / {total_series}
+# - Source Authority: Federal Reserve Bank of St. Louis (FRED API)
+# - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
+# - Zero-Hallucination Directive: Values below represent immutable ground truth.
+
+{txt_body}
+"""
+
+    full_json = {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "metadata": {
-            "engine": "Canonical FRED Time-Series Registry & Transformation Engine",
+            "title": "Canonical FRED Monitored Series & Official Transformations",
             "author": "Ersoy Toptaş",
             "license": "CC BY 4.0",
             "sync_status": "SUCCESS",
             "last_successful_sync": now_iso,
-            "data_as_of": today_date,
-            "source_vintage": today_date,
-            "endpoint_txt": "https://analysisreports.github.io/llms-fred-series.txt",
-            "endpoint_json": "https://analysisreports.github.io/llms-fred-series.json",
-            "formulas_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
-            "monitored_series_count": total_series
+            "total_series": len(json_series_dict),
+            "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
+            "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
+            "root_index": "https://analysisreports.github.io/llms.txt"
         },
-        "frequencies": frequencies,
         "series": json_series_dict
     }
 
-    # Master TXT with matching sync status header
-    sec2_header = f"""# ==============================================================================
-# 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
+    return full_txt, full_json
+
 # ==============================================================================
-# Transformations strictly follow Section 0.3 of llms-formulas.txt.
-# Mathematical Guardrail: Enforce x(t) > 0 for log and compounded rate calculations.
-# Methodological Note: Compounded Annual Rate reflects theoretical annualized pace if single-period momentum persisted for a full year; it is an official FRED transformation (SAAR), not an economic baseline forecast.
-#
-# Sync Status: SUCCESS
-# Last Successful Sync: {now_utc}
-# Data As Of / Source Vintage: {today_date}
-"""
-    master_txt_report = sec2_header + "\n" + "\n\n".join(txt_blocks) + "\n--------------------------------------------------------------------------------\n"
-    return master_txt_report, master_json
+# 4. ENTRYPOINT
+# ==============================================================================
 
 def main():
     api_key = os.environ.get("FRED_API_KEY", "").strip()
     if not api_key:
-        print("ERROR: FRED_API_KEY environment variable is missing.")
-        print("Please set FRED_API_KEY in GitHub Secrets or your environment.")
+        print("Error: FRED_API_KEY environment variable is missing.")
         return
 
     txt_path = "llms-fred-series.txt"
@@ -330,19 +345,18 @@ def main():
     print("Parsing monitored series configuration...")
     frequencies, config_header = parse_registry(txt_path)
 
-    print("Building canonical outputs and calculating official transformations...")
-    txt_report, json_data = build_outputs(frequencies, api_key)
+    print("Fetching FRED series and computing official transformations...")
+    auto_txt, auto_json = build_outputs(frequencies, api_key)
 
-    full_txt_content = config_header + "\n\n" + txt_report
+    full_txt_content = config_header + "\n\n" + auto_txt
+
     with open(txt_path, "w", encoding="utf-8") as f:
         f.write(full_txt_content)
-    print(f"Updated: {txt_path}")
+    print(f"Successfully generated {txt_path}")
 
     with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(json_data, f, indent=2, ensure_ascii=False)
-    print(f"Updated: {json_path}")
-
-    print("Synchronization successfully completed.")
+        json.dump(auto_json, f, indent=2, ensure_ascii=False)
+    print(f"Successfully generated {json_path}")
 
 if __name__ == "__main__":
     main()
