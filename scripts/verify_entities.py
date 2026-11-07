@@ -3,132 +3,144 @@
 """
 verify_entities.py
 ------------------
-Entity & Canonical ID Integrity Checker for LLM Ontologies.
-Validates all entity references in JSON, Markdown, and TXT files against
-the canonical ground-truth defined in llms-entities-id.txt.
-
-Detects:
-  - Unknown/unregistered entity identifiers
-  - Typographical mistakes and suggests closest valid alternatives via difflib
-
-Author: Ersoy Toptaş & AnalysisReports AI Engine
+Tamamen Dinamik Kanonik Varlık ve Şema Doğrulayıcı.
+- Kod içinde sabit dosya adı veya istisna kelime listesi TUTMAZ.
+- İzin verilen tüm kimlikleri doğrudan 'llms-entities-id.txt' içinden dinamik çeker.
+- 'llms-relationships.txt' içindeki tanımlı rejim durumlarını otomatik öğrenir.
+- Projedeki tüm .json ve ilgili metin dosyalarını otomatik bulup tarar.
 """
 
 import os
 import re
 import sys
-import json
 import difflib
-from typing import Set, List, Dict, Tuple
+from typing import Set, List, Tuple
 
-# Canonical ID prefix pattern defined in llms-entities-id.txt
-ENTITY_PREFIXES = (
-    "INST_", "GOV_", "GEO_", "REG_", "PROXY_", "ORG_", "BLOC_",
-    "CHOKE_", "CORRIDOR_", "BASIN_", "ZONE_", "STAT_", "REG_AGENCY_",
-    "MKT_", "SEC_", "IND_"
-)
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+ENTITIES_FILE = os.path.join(ROOT_DIR, "llms-entities-id.txt")
+RELATIONSHIPS_FILE = os.path.join(ROOT_DIR, "llms-relationships.txt")
 
-# Regex to capture entity-like tokens
-ENTITY_REGEX = re.compile(
-    r"\b((?:INST_|GOV_|GEO_|REG_|PROXY_|ORG_|BLOC_|CHOKE_|CORRIDOR_|BASIN_|ZONE_|STAT_|REG_AGENCY_|MKT_|SEC_|IND_)[A-Z0-9_]+)\b"
-)
+# Hariç tutulacak sistem ve versiyon kontrol klasörleri
+EXCLUDE_DIRS = {".git", ".github", "__pycache__", "scripts"}
 
 
-def load_canonical_entities(entities_file: str) -> Set[str]:
-    """Reads llms-entities-id.txt and extracts all valid canonical entity IDs."""
-    valid_ids: Set[str] = set()
-    if not os.path.exists(entities_file):
-        print(f"[HATA] Kanonik sözlük dosyası bulunamadı: {entities_file}", file=sys.stderr)
+def get_allowed_vocabularies() -> Tuple[Set[str], re.Pattern]:
+    """Sözlük dosyalarından geçerli tüm ID'leri ve rejim durumlarını dinamik olarak yükler."""
+    if not os.path.exists(ENTITIES_FILE):
+        print(f"[HATA] Sözlük dosyası bulunamadı: {ENTITIES_FILE}", file=sys.stderr)
         sys.exit(1)
 
-    with open(entities_file, "r", encoding="utf-8") as f:
+    valid_tokens: Set[str] = set()
+    dynamic_prefixes: Set[str] = set()
+
+    # 1. llms-entities-id.txt içindeki tüm ID ve önekleri dinamik topla
+    with open(ENTITIES_FILE, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
+            # Önek kuralı satırını dinamik yakala (Örn: Prefix: INST_ / GEO_ ...)
+            if "Prefix:" in line:
+                found_prefixes = re.findall(r"([A-Z0-9_]+_)", line)
+                dynamic_prefixes.update(found_prefixes)
+
             if not line or line.startswith("#"):
                 continue
-            # Format: ENTITY_ID | Aliases: ...
+
             parts = line.split("|")
-            entity_id = parts[0].strip()
-            if any(entity_id.startswith(prefix) for prefix in ENTITY_PREFIXES):
-                valid_ids.add(entity_id)
+            token_id = parts[0].strip()
+            if token_id:
+                valid_tokens.add(token_id)
+                prefix_match = re.match(r"^([A-Z0-9_]+_)", token_id)
+                if prefix_match:
+                    dynamic_prefixes.add(prefix_match.group(1))
 
-    return valid_ids
+    # 2. llms-relationships.txt içindeki rejim durumlarını (PROXY_WAR vb.) dinamik topla
+    if os.path.exists(RELATIONSHIPS_FILE):
+        with open(RELATIONSHIPS_FILE, "r", encoding="utf-8") as f:
+            regime_block = False
+            for line in f:
+                if "Regime States" in line:
+                    regime_block = True
+                    continue
+                if regime_block:
+                    if line.startswith("---") or line.startswith("#"):
+                        regime_block = False
+                        continue
+                    m = re.match(r"^\s*-\s*([A-Z0-9_]+)\s*:", line)
+                    if m:
+                        valid_tokens.add(m.group(1))
+
+    # Dinamik Regex oluştur
+    sorted_prefixes = sorted(dynamic_prefixes, key=len, reverse=True)
+    prefix_pattern = "|".join(re.escape(p) for p in sorted_prefixes)
+    token_regex = re.compile(rf"\b((?:{prefix_pattern})[A-Z0-9_]+)\b")
+
+    return valid_tokens, token_regex
 
 
-def check_file(file_path: str, valid_entities: Set[str]) -> List[Tuple[int, str, str]]:
-    """Scans a file for entity patterns and verifies them against the canonical set."""
-    issues = []
-    try:
-        with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
-            for line_no, line in enumerate(f, start=1):
-                # Skip comments in headers
-                matches = ENTITY_REGEX.findall(line)
-                for matched_id in matches:
-                    # Strip trailing underscores if any
-                    clean_id = matched_id.rstrip("_")
-                    if clean_id not in valid_entities:
-                        # Find closest match
-                        suggestions = difflib.get_close_matches(clean_id, valid_entities, n=1, cutoff=0.6)
-                        suggestion = suggestions[0] if suggestions else "Eşleşen öneri bulunamadı"
-                        issues.append((line_no, clean_id, suggestion))
-    except Exception as e:
-        print(f"[UYARI] Dosya okunamadı: {file_path} -> {e}", file=sys.stderr)
-
-    return issues
+def find_target_files() -> List[str]:
+    """Depodaki tüm doğrulanabilir veri dosyalarını dinamik olarak bulur."""
+    targets = []
+    for root, dirs, files in os.walk(ROOT_DIR):
+        dirs[:] = [d for d in dirs if d not in EXCLUDE_DIRS]
+        for f in files:
+            ext = os.path.splitext(f)[1].lower()
+            if ext in {".json", ".txt", ".md"}:
+                # Sözlüklerin kendisini doğrulamaya sokma
+                if f in {"llms-entities-id.txt", "LICENSE.md"}:
+                    continue
+                targets.append(os.path.join(root, f))
+    return sorted(targets)
 
 
 def main():
-    root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-    entities_file = os.path.join(root_dir, "llms-entities-id.txt")
-
     print("=" * 70)
-    print("CANONICAL ENTITY INTEGRITY CHECKER")
+    print("DİNAMİK KANONİK ENTITY DOĞRULAYICI (AUTO-DISCOVERY)")
     print("=" * 70)
 
-    valid_entities = load_canonical_entities(entities_file)
-    print(f"[*] Toplam {len(valid_entities)} adet geçerli Kanonik Entity ID yüklendi.\n")
+    valid_tokens, token_regex = get_allowed_vocabularies()
+    target_files = find_target_files()
 
-    # Files and folders to scan
-    target_files = [
-        "llms-graph.json",
-        "llms-relationships.json",
-        "llms-relationships.txt",
-        "llms-formulas.txt",
-        "llms-indicators.txt",
-        "llms-tools.json",
-        "WORKFLOW.md",
-        "country.json",
-        "economy.json",
-        "political.json",
-        "political-country.json",
-    ]
+    print(f"[*] Yüklenen geçerli varlık ve rejim sayısı : {len(valid_tokens)}")
+    print(f"[*] Taranacak dinamik dosya sayısı          : {len(target_files)}\n")
 
     total_issues = 0
 
-    for relative_path in target_files:
-        full_path = os.path.join(root_dir, relative_path)
-        if not os.path.exists(full_path):
+    for file_path in target_files:
+        rel_path = os.path.relpath(file_path, ROOT_DIR)
+        issues = []
+
+        try:
+            with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+                for line_no, line in enumerate(f, start=1):
+                    # llms.txt içindeki regex ve şablon açıklamalarını atla
+                    if "IDENTIFIER REGEX" in line or "Prefix:" in line:
+                        continue
+
+                    matches = token_regex.findall(line)
+                    for matched_id in matches:
+                        clean_id = matched_id.rstrip("_")
+                        if clean_id not in valid_tokens:
+                            suggestions = difflib.get_close_matches(clean_id, valid_tokens, n=1, cutoff=0.6)
+                            suggestion = suggestions[0] if suggestions else "Öneri yok"
+                            issues.append((line_no, clean_id, suggestion))
+        except Exception as e:
+            print(f"[UYARI] Okunamadı: {rel_path} -> {e}", file=sys.stderr)
             continue
 
-        issues = check_file(full_path, valid_entities)
         if issues:
-            print(f"[!] HATA: {relative_path} ({len(issues)} uyumsuzluk bulundu):")
+            print(f"[!] HATA: {rel_path} ({len(issues)} uyumsuzluk):")
             for line_no, invalid_id, suggestion in issues:
                 total_issues += 1
-                print(f"    - Satır {line_no:>4}: Geçersiz ID -> '{invalid_id}'")
-                print(f"      Öneri       -> '{suggestion}'")
+                print(f"    - Satır {line_no:>4}: '{invalid_id}' -> Öneri: '{suggestion}'")
             print("-" * 70)
-        else:
-            print(f"[+] DOĞRULANDI: {relative_path}")
 
     print("\n" + "=" * 70)
     if total_issues > 0:
-        print(f"[SONUÇ] Toplam {total_issues} adet geçersiz veya kayıt dışı Entity ID tespit edildi!")
-        print("Lütfen yukarıdaki hataları düzeltin veya 'llms-entities-id.txt' içine ekleyin.")
+        print(f"[SONUÇ] Toplam {total_issues} adet geçersiz veya tanımsız ID bulundu!")
         print("=" * 70)
         sys.exit(1)
     else:
-        print("[SONUÇ] Mükemmel! Tüm Entity ID'leri 'llms-entities-id.txt' ile %100 uyumlu.")
+        print(f"[SONUÇ] Başarılı! {len(target_files)} dosyanın tamamı sözlükle %100 uyumlu.")
         print("=" * 70)
         sys.exit(0)
 
