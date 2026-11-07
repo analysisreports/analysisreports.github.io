@@ -143,6 +143,7 @@ Cross-verify all analytical assertions against the deterministic code blocks in 
    - 25.12. Brent - WTI Jeopolitik Arbitraj ve Deniz Aşırı Risk Makası (Brent-WTI Seaborne Spread Engine: DCOILBRENTEU, DCOILWTICO)
    - 25.13. Labor Market Momentum Index (LMMI / EMME: PAYEMS, UNRATE)
    - 25.14. AI Hardware & Semiconductor Supply Chain Stress Gauge (AI_CHIP_STRESS: GSCPI, NASDAQSOX, VIXCLS)
+   - 25.15. Domestic Governance Gridlock & External Tariff Friction Engine (GOVERNANCE_GRIDLOCK_FRICTION: GEO_US, GEO_CN, GEO_RU, GEO_DE, GEO_IL, GEO_JP)
 
 3. KADEME: KURUMSAL KARAR, SİYASİ GERİLİM VE KALİBRASYON MOTORU
 - 26. Komite Ayrışma Katsayısı (Committee Dispersion Score: n_dissent, n_total)
