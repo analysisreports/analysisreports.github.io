@@ -1,42 +1,15 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "metadata": {
-    "engine": "Canonical FRED Time-Series Registry & Transformation Engine",
+    "title": "Canonical FRED Monitored Series & Official Transformations",
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-07T16:00:08Z",
-    "data_as_of": "2026-11-07",
-    "source_vintage": "2026-11-07",
-    "endpoint_txt": "https://analysisreports.github.io/llms-fred-series.txt",
-    "endpoint_json": "https://analysisreports.github.io/llms-fred-series.json",
-    "formulas_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
-    "monitored_series_count": 14
-  },
-  "frequencies": {
-    "DAILY": [
-      "DCOILBRENTEU",
-      "DCOILWTICO",
-      "VIXCLS",
-      "NASDAQSOX",
-      "T10Y2Y",
-      "RRPONTSYD"
-    ],
-    "WEEKLY": [
-      "WALCL",
-      "WTREGEN"
-    ],
-    "MONTHLY": [
-      "PAYEMS",
-      "UNRATE",
-      "JTSJOL",
-      "GSCPI",
-      "FEDFUNDS",
-      "SAHMREALTIME"
-    ],
-    "QUARTERLY": [],
-    "SEMIANNUAL": [],
-    "ANNUAL": []
+    "last_successful_sync": "2026-11-07T16:10:47Z",
+    "total_series": 13,
+    "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
+    "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
+    "root_index": "https://analysisreports.github.io/llms.txt"
   },
   "series": {
     "DCOILBRENTEU": {
@@ -141,7 +114,7 @@
         "change_from_year_ago": 11.01,
         "percent_change": 69.6568,
         "percent_change_from_year_ago": 64.1235,
-        "compounded_annual_rate_of_change": 4.881492694614741e+61,
+        "compounded_annual_rate_of_change": null,
         "continuously_compounded_rate_of_change": 52.8608,
         "continuously_compounded_annual_rate_of_change": 13743.7972
       },
@@ -184,7 +157,7 @@
         "change_from_year_ago": 2413.31,
         "percent_change": 4.2071,
         "percent_change_from_year_ago": 34.5898,
-        "compounded_annual_rate_of_change": 4501103.0667,
+        "compounded_annual_rate_of_change": null,
         "continuously_compounded_rate_of_change": 4.121,
         "continuously_compounded_annual_rate_of_change": 1071.4685
       },
@@ -270,7 +243,7 @@
         "change_from_year_ago": -3.855,
         "percent_change": 20.0,
         "percent_change_from_year_ago": -96.2547,
-        "compounded_annual_rate_of_change": 3.864772839398815e+22,
+        "compounded_annual_rate_of_change": null,
         "continuously_compounded_rate_of_change": 18.2322,
         "continuously_compounded_annual_rate_of_change": 4740.3605
       },

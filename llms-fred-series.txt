@@ -47,13 +47,12 @@ SAHMREALTIME
 # ==============================================================================
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
-# Transformations strictly follow Section 0.3 of llms-formulas.txt.
-# Mathematical Guardrail: Enforce x(t) > 0 for log and compounded rate calculations.
-# Methodological Note: Compounded Annual Rate reflects theoretical annualized pace if single-period momentum persisted for a full year; it is an official FRED transformation (SAAR), not an economic baseline forecast.
-#
-# Sync Status: SUCCESS
-# Last Successful Sync: 2026-11-07 16:00:08 UTC
-# Data As Of / Source Vintage: 2026-11-07
+# Ingestion Contract & Epistemological Directives:
+# - Synced At: 2026-11-07 16:10:47 UTC
+# - Total Series Synced: 13 / 14
+# - Source Authority: Federal Reserve Bank of St. Louis (FRED API)
+# - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
+# - Zero-Hallucination Directive: Values below represent immutable ground truth.
 
 --------------------------------------------------------------------------------
 Series ID: DCOILBRENTEU
@@ -61,14 +60,14 @@ Title: Crude Oil Prices: Brent - Europe
 Frequency: Daily (n_obs_per_yr: 260) | Units: Dollars per Barrel
 Last Date: 2026-11-03 | Current Value: 107.0300 | Previous Value: 107.3900 | Year Ago Value: 66.3200
 
-Official Transformations (Section 0.3):
-- Change: -0.3600
-- Change from Year Ago: +40.7100
-- Percent Change: -0.3352%
-- Percent Change from Year Ago: +61.3842%
-- Compounded Annual Rate of Change: -58.2326%
-- Continuously Compounded Rate of Change: -0.3358%
-- Continuously Compounded Annual Rate of Change: -87.3054%
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -0.3600
+  2. Change from Year Ago: +40.7100
+  3. Percent Change: -0.3352%
+  4. Percent Change from Year Ago: +61.3842%
+  5. Compounded Annual Rate of Change: -58.2326%
+  6. Continuously Compounded Rate of Change: -0.3358%
+  7. Continuously Compounded Annual Rate of Change: -87.3054%
 
 Recent Observations (Last 5):
   2026-10-28: 119.2000
@@ -83,14 +82,14 @@ Title: Crude Oil Prices: West Texas Intermediate (WTI) - Cushing, Oklahoma
 Frequency: Daily (n_obs_per_yr: 260) | Units: Dollars per Barrel
 Last Date: 2026-11-03 | Current Value: 99.6400 | Previous Value: 100.0600 | Year Ago Value: 58.3400
 
-Official Transformations (Section 0.3):
-- Change: -0.4200
-- Change from Year Ago: +41.3000
-- Percent Change: -0.4197%
-- Percent Change from Year Ago: +70.7919%
-- Compounded Annual Rate of Change: -66.5006%
-- Continuously Compounded Rate of Change: -0.4206%
-- Continuously Compounded Annual Rate of Change: -109.3642%
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -0.4200
+  2. Change from Year Ago: +41.3000
+  3. Percent Change: -0.4197%
+  4. Percent Change from Year Ago: +70.7919%
+  5. Compounded Annual Rate of Change: -66.5006%
+  6. Continuously Compounded Rate of Change: -0.4206%
+  7. Continuously Compounded Annual Rate of Change: -109.3642%
 
 Recent Observations (Last 5):
   2026-10-28: 106.2500
@@ -105,14 +104,14 @@ Title: CBOE Volatility Index: VIX
 Frequency: Daily (n_obs_per_yr: 260) | Units: Index
 Last Date: 2026-11-05 | Current Value: 28.1800 | Previous Value: 16.6100 | Year Ago Value: 17.1700
 
-Official Transformations (Section 0.3):
-- Change: +11.5700
-- Change from Year Ago: +11.0100
-- Percent Change: +69.6568%
-- Percent Change from Year Ago: +64.1235%
-- Compounded Annual Rate of Change: +48814926946147408616581883885356685208210409369790612611530752.0000%
-- Continuously Compounded Rate of Change: +52.8608%
-- Continuously Compounded Annual Rate of Change: +13743.7972%
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +11.5700
+  2. Change from Year Ago: +11.0100
+  3. Percent Change: +69.6568%
+  4. Percent Change from Year Ago: +64.1235%
+  5. Compounded Annual Rate of Change: N/A%
+  6. Continuously Compounded Rate of Change: +52.8608%
+  7. Continuously Compounded Annual Rate of Change: +13743.7972%
 
 Recent Observations (Last 5):
   2026-10-30: 19.4200
@@ -127,14 +126,14 @@ Title: PHLX Semiconductor
 Frequency: Daily (n_obs_per_yr: 260) | Units: Index
 Last Date: 2026-11-06 | Current Value: 9390.2500 | Previous Value: 9011.1400 | Year Ago Value: 6976.9400
 
-Official Transformations (Section 0.3):
-- Change: +379.1100
-- Change from Year Ago: +2413.3100
-- Percent Change: +4.2071%
-- Percent Change from Year Ago: +34.5898%
-- Compounded Annual Rate of Change: +4501103.0667%
-- Continuously Compounded Rate of Change: +4.1210%
-- Continuously Compounded Annual Rate of Change: +1071.4685%
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +379.1100
+  2. Change from Year Ago: +2413.3100
+  3. Percent Change: +4.2071%
+  4. Percent Change from Year Ago: +34.5898%
+  5. Compounded Annual Rate of Change: N/A%
+  6. Continuously Compounded Rate of Change: +4.1210%
+  7. Continuously Compounded Annual Rate of Change: +1071.4685%
 
 Recent Observations (Last 5):
   2026-11-02: 10328.3300
@@ -149,14 +148,14 @@ Title: 10-Year Treasury Constant Maturity Minus 2-Year Treasury Constant Maturit
 Frequency: Daily (n_obs_per_yr: 260) | Units: Percent
 Last Date: 2026-11-06 | Current Value: 0.3500 | Previous Value: 0.3800 | Year Ago Value: 0.5300
 
-Official Transformations (Section 0.3):
-- Change: -0.0300
-- Change from Year Ago: -0.1800
-- Percent Change: -7.8947%
-- Percent Change from Year Ago: -33.9623%
-- Compounded Annual Rate of Change: -100.0000%
-- Continuously Compounded Rate of Change: -8.2238%
-- Continuously Compounded Annual Rate of Change: -2138.1906%
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -0.0300
+  2. Change from Year Ago: -0.1800
+  3. Percent Change: -7.8947%
+  4. Percent Change from Year Ago: -33.9623%
+  5. Compounded Annual Rate of Change: -100.0000%
+  6. Continuously Compounded Rate of Change: -8.2238%
+  7. Continuously Compounded Annual Rate of Change: -2138.1906%
 
 Recent Observations (Last 5):
   2026-11-02: 0.3200
@@ -171,14 +170,14 @@ Title: Overnight Reverse Repurchase Agreements: Treasury Securities Sold by the 
 Frequency: Daily (n_obs_per_yr: 260) | Units: Billions of US Dollars
 Last Date: 2026-11-06 | Current Value: 0.1500 | Previous Value: 0.1250 | Year Ago Value: 4.0050
 
-Official Transformations (Section 0.3):
-- Change: +0.0250
-- Change from Year Ago: -3.8550
-- Percent Change: +20.0000%
-- Percent Change from Year Ago: -96.2547%
-- Compounded Annual Rate of Change: +38647728393988146724864.0000%
-- Continuously Compounded Rate of Change: +18.2322%
-- Continuously Compounded Annual Rate of Change: +4740.3605%
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.0250
+  2. Change from Year Ago: -3.8550
+  3. Percent Change: +20.0000%
+  4. Percent Change from Year Ago: -96.2547%
+  5. Compounded Annual Rate of Change: N/A%
+  6. Continuously Compounded Rate of Change: +18.2322%
+  7. Continuously Compounded Annual Rate of Change: +4740.3605%
 
 Recent Observations (Last 5):
   2026-11-02: 5.0870
@@ -193,14 +192,14 @@ Title: Assets: Total Assets: Total Assets (Less Eliminations from Consolidation)
 Frequency: Weekly (n_obs_per_yr: 52) | Units: Millions of U.S. Dollars
 Last Date: 2026-11-04 | Current Value: 6748145.0000 | Previous Value: 6745635.0000 | Year Ago Value: 6572732.0000
 
-Official Transformations (Section 0.3):
-- Change: +2510.0000
-- Change from Year Ago: +175413.0000
-- Percent Change: +0.0372%
-- Percent Change from Year Ago: +2.6688%
-- Compounded Annual Rate of Change: +1.9534%
-- Continuously Compounded Rate of Change: +0.0372%
-- Continuously Compounded Annual Rate of Change: +1.9345%
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +2510.0000
+  2. Change from Year Ago: +175413.0000
+  3. Percent Change: +0.0372%
+  4. Percent Change from Year Ago: +2.6688%
+  5. Compounded Annual Rate of Change: +1.9534%
+  6. Continuously Compounded Rate of Change: +0.0372%
+  7. Continuously Compounded Annual Rate of Change: +1.9345%
 
 Recent Observations (Last 5):
   2026-10-07: 6747560.0000
@@ -215,14 +214,14 @@ Title: Liabilities and Capital: Liabilities: Deposits with F.R. Banks, Other Tha
 Frequency: Weekly (n_obs_per_yr: 52) | Units: Millions of U.S. Dollars
 Last Date: 2026-11-04 | Current Value: 957175.0000 | Previous Value: 999727.0000 | Year Ago Value: 940979.0000
 
-Official Transformations (Section 0.3):
-- Change: -42552.0000
-- Change from Year Ago: +16196.0000
-- Percent Change: -4.2564%
-- Percent Change from Year Ago: +1.7212%
-- Compounded Annual Rate of Change: -89.5836%
-- Continuously Compounded Rate of Change: -4.3496%
-- Continuously Compounded Annual Rate of Change: -226.1792%
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -42552.0000
+  2. Change from Year Ago: +16196.0000
+  3. Percent Change: -4.2564%
+  4. Percent Change from Year Ago: +1.7212%
+  5. Compounded Annual Rate of Change: -89.5836%
+  6. Continuously Compounded Rate of Change: -4.3496%
+  7. Continuously Compounded Annual Rate of Change: -226.1792%
 
 Recent Observations (Last 5):
   2026-10-07: 880253.0000
@@ -237,14 +236,14 @@ Title: All Employees, Total Nonfarm
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Thousands of Persons
 Last Date: 2026-10-01 | Current Value: 159293.0000 | Previous Value: 159128.0000 | Year Ago Value: 158408.0000
 
-Official Transformations (Section 0.3):
-- Change: +165.0000
-- Change from Year Ago: +885.0000
-- Percent Change: +0.1037%
-- Percent Change from Year Ago: +0.5587%
-- Compounded Annual Rate of Change: +1.2514%
-- Continuously Compounded Rate of Change: +0.1036%
-- Continuously Compounded Annual Rate of Change: +1.2436%
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +165.0000
+  2. Change from Year Ago: +885.0000
+  3. Percent Change: +0.1037%
+  4. Percent Change from Year Ago: +0.5587%
+  5. Compounded Annual Rate of Change: +1.2514%
+  6. Continuously Compounded Rate of Change: +0.1036%
+  7. Continuously Compounded Annual Rate of Change: +1.2436%
 
 Recent Observations (Last 5):
   2026-06-01: 158892.0000
@@ -259,14 +258,14 @@ Title: Unemployment Rate
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent
 Last Date: 2026-10-01 | Current Value: 4.1000 | Previous Value: 4.2000 | Year Ago Value: 4.4000
 
-Official Transformations (Section 0.3):
-- Change: -0.1000
-- Change from Year Ago: -0.3000
-- Percent Change: -2.3810%
-- Percent Change from Year Ago: -6.8182%
-- Compounded Annual Rate of Change: -25.1116%
-- Continuously Compounded Rate of Change: -2.4098%
-- Continuously Compounded Annual Rate of Change: -28.9171%
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -0.1000
+  2. Change from Year Ago: -0.3000
+  3. Percent Change: -2.3810%
+  4. Percent Change from Year Ago: -6.8182%
+  5. Compounded Annual Rate of Change: -25.1116%
+  6. Continuously Compounded Rate of Change: -2.4098%
+  7. Continuously Compounded Annual Rate of Change: -28.9171%
 
 Recent Observations (Last 5):
   2026-06-01: 4.2000
@@ -281,14 +280,14 @@ Title: Job Openings: Total Nonfarm
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Level in Thousands
 Last Date: 2026-09-01 | Current Value: 7523.0000 | Previous Value: 7190.0000 | Year Ago Value: 7169.0000
 
-Official Transformations (Section 0.3):
-- Change: +333.0000
-- Change from Year Ago: +354.0000
-- Percent Change: +4.6314%
-- Percent Change from Year Ago: +4.9379%
-- Compounded Annual Rate of Change: +72.1655%
-- Continuously Compounded Rate of Change: +4.5274%
-- Continuously Compounded Annual Rate of Change: +54.3286%
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +333.0000
+  2. Change from Year Ago: +354.0000
+  3. Percent Change: +4.6314%
+  4. Percent Change from Year Ago: +4.9379%
+  5. Compounded Annual Rate of Change: +72.1655%
+  6. Continuously Compounded Rate of Change: +4.5274%
+  7. Continuously Compounded Annual Rate of Change: +54.3286%
 
 Recent Observations (Last 5):
   2026-05-01: 7537.0000
@@ -303,14 +302,14 @@ Title: Federal Funds Effective Rate
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent
 Last Date: 2026-10-01 | Current Value: 3.8800 | Previous Value: 3.7500 | Year Ago Value: 4.0900
 
-Official Transformations (Section 0.3):
-- Change: +0.1300
-- Change from Year Ago: -0.2100
-- Percent Change: +3.4667%
-- Percent Change from Year Ago: -5.1345%
-- Compounded Annual Rate of Change: +50.5239%
-- Continuously Compounded Rate of Change: +3.4079%
-- Continuously Compounded Annual Rate of Change: +40.8952%
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.1300
+  2. Change from Year Ago: -0.2100
+  3. Percent Change: +3.4667%
+  4. Percent Change from Year Ago: -5.1345%
+  5. Compounded Annual Rate of Change: +50.5239%
+  6. Continuously Compounded Rate of Change: +3.4079%
+  7. Continuously Compounded Annual Rate of Change: +40.8952%
 
 Recent Observations (Last 5):
   2026-06-01: 3.6300
@@ -325,14 +324,14 @@ Title: Real-time Sahm Rule Recession Indicator
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Percentage Points
 Last Date: 2026-10-01 | Current Value: 0.0000 | Previous Value: 0.0000 | Year Ago Value: 0.2300
 
-Official Transformations (Section 0.3):
-- Change: +0.0000
-- Change from Year Ago: -0.2300
-- Percent Change: N/A%
-- Percent Change from Year Ago: -100.0000%
-- Compounded Annual Rate of Change: N/A%
-- Continuously Compounded Rate of Change: N/A%
-- Continuously Compounded Annual Rate of Change: N/A%
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.0000
+  2. Change from Year Ago: -0.2300
+  3. Percent Change: N/A%
+  4. Percent Change from Year Ago: -100.0000%
+  5. Compounded Annual Rate of Change: N/A%
+  6. Continuously Compounded Rate of Change: N/A%
+  7. Continuously Compounded Annual Rate of Change: N/A%
 
 Recent Observations (Last 5):
   2026-06-01: 0.0700
@@ -340,4 +339,3 @@ Recent Observations (Last 5):
   2026-08-01: -0.0700
   2026-09-01: 0.0000
   2026-10-01: 0.0000
---------------------------------------------------------------------------------
