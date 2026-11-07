@@ -92,6 +92,7 @@ GEO_CZ               | Aliases: Czech Republic, Czechia, Prague
 GEO_HU               | Aliases: Hungary, Budapest
 GEO_GR               | Aliases: Greece, Hellenic Republic, Athens
 GEO_CY               | Aliases: Cyprus, Republic of Cyprus, Nicosia
+GEO_CH               | Aliases: Switzerland, Swiss Confederation, Bern, Swiss
 
 # [EAST ASIA & INDO-PACIFIC]
 GEO_JP               | Aliases: Japan, Tokyo
@@ -166,6 +167,7 @@ CHOKE_MOZAMBIQUE     | Aliases: Mozambique Channel
 CHOKE_SUEZ_NORTH     | Aliases: Suez Canal Northern Approach, Port Said Node
 CORRIDOR_ZANGEZUR    | Aliases: Zangezur Corridor Node, Zangezur Corridor
 BASIN_EAST_MED       | Aliases: Eastern Mediterranean Deep-Sea Basin, East Med Basin
+BASIN_EAST_MED_DEEPSEA| Aliases: Eastern Mediterranean Deep-Sea Basin Node, East Med Deep Sea
 BASIN_CASPIAN_SEA    | Aliases: Caspian Sea Transit Basin, Caspian Basin
 CORRIDOR_BLACK_SEA   | Aliases: Black Sea Grain Corridor, Black Sea Grain and Mineral Corridor, Odesa Transit Node
 ZONE_FIRST_ISLAND_CHAIN| Aliases: First Island Chain Core, Okinawa-Luzon Corridor
@@ -261,6 +263,7 @@ IND_CBBTCUSD         | Source: Coinbase / FRED | Name: Coinbase Bitcoin Spot Rat
 IND_DJTA             | Source: S&P Dow Jones / FRED | Name: Dow Jones Transportation Average (DJTA)
 IND_AAAFF            | Source: Moody's / FRED | Name: Moody's Seasoned Aaa Corporate Bond Yield Minus Federal Funds Rate (AAAFF %)
 IND_SOFRINDEX        | Source: NY Fed / FRED | Name: Secured Overnight Financing Rate Index (SOFRINDEX)
+IND_SOX              | Source: Philadelphia Stock Exchange / NASDAQ | Name: PHLX Semiconductor Sector Index (SOX)
 IND_EXHOSLUSM495S    | Source: NAR / FRED | Name: Existing Home Sales (EXHOSLUSM495S)
 IND_UMCSENT          | Source: UMich / FRED | Name: University of Michigan Consumer Sentiment Index (UMCSENT)
 IND_PCAGDPUAA646NWDB | Source: World Bank / FRED | Name: Gross Domestic Product Per Capita for Ukraine (PCAGDPUAA646NWDB USD)
