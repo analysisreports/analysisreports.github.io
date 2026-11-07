@@ -77,6 +77,7 @@ GEO_IN               | Aliases: Republic of India, India
 GEO_SA               | Aliases: Kingdom of Saudi Arabia, Saudi Arabia, KSA
 GEO_AE               | Aliases: United Arab Emirates, UAE
 GEO_VE               | Aliases: Bolivarian Republic of Venezuela, Venezuela
+GEO_YE               | Aliases: Republic of Yemen, Yemen, Sanaa
 
 # [EUROPE & EURASIA]
 GEO_DE               | Aliases: Germany, Federal Republic of Germany, FRG, Berlin
@@ -84,6 +85,7 @@ GEO_FR               | Aliases: France, French Republic, Paris
 GEO_GB               | Aliases: United Kingdom, UK, Great Britain, Britain, London
 GEO_UA               | Aliases: Ukraine, Kyiv
 GEO_PL               | Aliases: Poland, Republic of Poland, Warsaw
+GEO_LT               | Aliases: Republic of Lithuania, Lithuania, Vilnius
 GEO_SE               | Aliases: Sweden, Kingdom of Sweden, Stockholm
 GEO_NO               | Aliases: Norway, Kingdom of Norway, Oslo
 GEO_CZ               | Aliases: Czech Republic, Czechia, Prague
