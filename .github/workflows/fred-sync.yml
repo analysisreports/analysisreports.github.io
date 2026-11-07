@@ -5,11 +5,12 @@ on:
     # Her gün piyasalar kapandıktan sonra gece 00:00 UTC'de otomatik çalışır
     - cron: '0 0 * * *'
   push:
-    # llms-fred-series.txt içine yeni seri eklediğiniz an otomatik tetiklenir
+    # llms-fred-series.txt veya scriptler değiştiğinde tetiklenir
     paths:
       - 'llms-fred-series.txt'
+      - 'scripts/**'
   workflow_dispatch:
-    # GitHub arayüzünden "Run workflow" butonuyla istediğiniz an elle de çalıştırabilirsiniz
+    # Elle çalıştırma butonu
 
 permissions:
   contents: write
@@ -26,17 +27,18 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run Macro & Dynamic Relationship Sync Engine
+      - name: Run Macro, Dynamic Relationships & Quantitative Models Engine
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: |
           python scripts/update_fred_series.py
           python scripts/update_relationships.py
+          python scripts/calculate_models.py
 
       - name: Commit and Push Changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add llms-fred-series.txt llms-fred-series.json llms-relationships.txt llms-relationships.json
-          git diff-index --quiet HEAD || git commit -m "Auto update FRED series & dynamic relationships [skip ci]"
+          git add llms-fred-series.txt llms-fred-series.json llms-relationships.txt llms-relationships.json llms-models.txt llms-models.json
+          git diff-index --quiet HEAD || git commit -m "Auto update FRED series, relationships & quantitative models [skip ci]"
           git push
