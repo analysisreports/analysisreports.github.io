@@ -7,7 +7,7 @@ Tamamen Dinamik Kanonik Varlık ve Şema Doğrulayıcı.
 - Kod içinde sabit dosya adı veya istisna kelime listesi TUTMAZ.
 - İzin verilen tüm kimlikleri doğrudan 'llms-entities-id.txt' içinden dinamik çeker.
 - 'llms-relationships.txt' içindeki tanımlı rejim durumlarını otomatik öğrenir.
-- Projedeki tüm .json ve ilgili metin dosyalarını otomatik bulup tarar.
+- Şablon (schema) ve kılavuz dosyalarını atlayarak gerçek veri dosyalarını otomatik tarar.
 """
 
 import os
@@ -78,15 +78,15 @@ def get_allowed_vocabularies() -> Tuple[Set[str], re.Pattern]:
 
 
 def find_target_files() -> List[str]:
-    """Depodaki tüm doğrulanabilir veri dosyalarını dinamik olarak bulur."""
+    """Depodaki tüm doğrulanabilir gerçek veri dosyalarını dinamik olarak bulur."""
     targets = []
     for root, dirs, files in os.walk(ROOT_DIR):
         dirs[:] = [d for d in dirs if d not in EXCLUDE_DIRS]
         for f in files:
             ext = os.path.splitext(f)[1].lower()
             if ext in {".json", ".txt", ".md"}:
-                # Sözlüklerin kendisini doğrulamaya sokma
-                if f in {"llms-entities-id.txt", "LICENSE.md"}:
+                # Şablon ve dokümantasyon dosyalarını hariç tut
+                if f.startswith("llms-schema-") or f in {"llms-entities-id.txt", "WORKFLOW.md", "README.md", "LICENSE.md"}:
                     continue
                 targets.append(os.path.join(root, f))
     return sorted(targets)
@@ -101,7 +101,7 @@ def main():
     target_files = find_target_files()
 
     print(f"[*] Yüklenen geçerli varlık ve rejim sayısı : {len(valid_tokens)}")
-    print(f"[*] Taranacak dinamik dosya sayısı          : {len(target_files)}\n")
+    print(f"[*] Taranacak dinamik veri dosyası sayısı   : {len(target_files)}\n")
 
     total_issues = 0
 
