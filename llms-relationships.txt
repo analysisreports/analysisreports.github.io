@@ -570,3 +570,13 @@ Regime States (Discrete Mapping):
 - Actor Coupling: US-CN technological containment axis (2.1.2), TW advanced fab concentration (TSMC), and JP/KR lithography-chemical supply friction.
 - Transmission Linkage: AI_CHIP_STRESS crossing above +1.20 confirms physical or geopolitical disruption in advanced packaging/wafers, instantly compressing tech margins, triggering hardware Capex delays, and amplifying global tech equity volatility.
 
+### 8.11. Domestic Governance Gridlock & Trade War Friction Engine (Model 25.15)
+
+8.11.1. MODEL_25.15_GOVERNANCE_GRIDLOCK_FRICTION
+- Target Formula: llms-formulas.txt -> Model 25.15 (governance_gridlock_friction_engine)
+- Entities Coupled: GEO_US, GEO_CN, GEO_DE, GEO_IL, GEO_JP, GEO_RU (llms-entities-id.txt)
+- Status Enums: DIVIDED_GRIDLOCK_TARIFF_SURGE | FRAGILE_COALITION_PARALYSIS | UNIFIED_DOMESTIC_EXPANSION | CENTRALIZED_STRATEGIC_COMMAND | BALANCED_INSTITUTIONAL_EQUILIBRIUM
+- Primary Geopolitical Vector: US Congressional divided gridlock triggering unilateral Section 232/301 tariffs against GEO_CN and GEO_DE; German coalition fragmentation stalling EU fiscal cohesion; Israeli narrow coalition driving Middle East kinetic escalation.
+- Actor Coupling: US-CN trade war escalation (2.1.2), US-EU transatlantic tariff friction (2.3.1), IL-IR confrontation (2.2.1).
+- Transmission Linkage: When GEO_US triggers DIVIDED_GRIDLOCK_TARIFF_SURGE (Gridlock >= 0.60 & EFB >= 0.45), executive branch automatically diverts power to external tariff weapons, expanding dynamic_delta friction on US-CN and US-EU polarity by -0.10.
+
