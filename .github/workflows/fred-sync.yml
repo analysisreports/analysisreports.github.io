@@ -26,16 +26,17 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run FRED Sync Engine
+      - name: Run Macro & Dynamic Relationship Sync Engine
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: |
           python scripts/update_fred_series.py
+          python scripts/update_relationships.py
 
       - name: Commit and Push Changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add llms-fred-series.txt llms-fred-series.json
-          git diff-index --quiet HEAD || git commit -m "Auto update FRED series & transformations [skip ci]"
+          git add llms-fred-series.txt llms-fred-series.json llms-relationships.json
+          git diff-index --quiet HEAD || git commit -m "Auto update FRED series & dynamic relationships [skip ci]"
           git push
