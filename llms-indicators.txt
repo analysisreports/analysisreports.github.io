@@ -59,7 +59,7 @@ Aggregation Alignment Rule:
 12. CPIAUCSL (Consumer Price Index: All Urban Consumers - SA) | Source: BLS | Freq: m | Units: Index | Trans: pc1 (YoY)
 13. PCEPI / PCEPILFE (Headline / Core PCE Price Index) | Source: BEA | Freq: m | Units: Index | Trans: pc1 (YoY)
 
-### 2.4. Labor Market & Real Activity (Models 3, 8, 18, 23, 23.1, 23.4, 23.6)
+### 2.4. Labor Market & Real Activity (Models 3, 8, 18, 23, 23.1, 23.4, 23.6, 25.13)
 14. UNRATE (Civilian Unemployment Rate) | Source: BLS | Freq: m | Units: Percent (%) | Trans: lin
 15. SAHMREALTIME (Real-time Sahm Rule Recession Indicator) | Source: FRED | Freq: m | Units: Percentage Points
 16. PAYEMS (Nonfarm Payrolls) | Source: BLS | Freq: m | Units: Thousands | Trans: chg (MoM Net Change)
@@ -125,7 +125,7 @@ Aggregation Alignment Rule:
 62. DEXJPUS (Japanese Yen to U.S. Dollar Spot Exchange Rate) | Source: Board of Governors / FRED | Freq: d | Units: JPY per USD | Trans: lin
 63. SOX (PHLX Semiconductor Index / Taiwan Supply Chain Sensitivity) | Source: NASDAQ | Freq: d | Units: Index | Trans: lin
 
-### 2.12. Advanced Macro, Rate Friction & Energy Indicators (Models 25.2 - 25.9)
+### 2.12. Advanced Macro, Rate Friction & Energy Indicators (Models 25.2 - 25.14)
 64. STICKYCPIM157SFRBATL (Sticky CPI Less Food & Energy) | Source: Atlanta Fed / FRED | Freq: m | Units: Percent (%) | Trans: pc1 (YoY)
 65. FLEXCPIM157SFRBATL (Flexible CPI Less Food & Energy) | Source: Atlanta Fed / FRED | Freq: m | Units: Percent (%) | Trans: pc1 (YoY)
 66. MOVE (ICE BofA US Treasury Option Volatility Estimate) | Source: ICE / Merrill Lynch | Freq: d | Units: Index | Trans: lin
