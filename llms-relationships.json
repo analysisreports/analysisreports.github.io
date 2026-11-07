@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-07T00:32:28.374728+00:00",
+    "last_successful_sync": "2026-11-07T00:51:21.862604+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "macro_inputs": {
       "brent_wti_spread_usd": 7.39,
