@@ -1433,6 +1433,33 @@
           ]
         }
       }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_governance_gridlock_friction",
+        "description": "Calculates the Domestic Governance Gridlock & External Tariff Friction Index (Model 25.15) measuring how sovereign legislative seat margins force executive leadership toward unilateral trade tariffs, sanctions, and protectionism.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "country_code": {
+              "type": "string",
+              "description": "Canonical sovereign entity ID from llms-entities-id.txt (e.g., GEO_US, GEO_CN, GEO_RU, GEO_DE, GEO_IL, GEO_JP)."
+            },
+            "majority_seat_margin": {
+              "type": "number",
+              "description": "Difference between executive coalition seats and the legislative majority threshold. Negative values indicate divided government/gridlock."
+            },
+            "executive_decree_power": {
+              "type": "number",
+              "description": "Optional normalized decree authority (0.0 to 1.0). If omitted, default constitutional weight is applied."
+            }
+          },
+          "required": [
+            "country_code"
+          ]
+        }
+      }
     }
   ]
 }
