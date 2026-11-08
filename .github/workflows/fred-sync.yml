@@ -42,6 +42,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add llms-fred-series.txt llms-fred-series.json llms-ecb-series.txt llms-ecb-series.json llms-relationships.txt llms-relationships.json llms-models.txt llms-models.json
-          git diff-index --quiet HEAD || git commit -m "Auto update FRED and ECB series, relationships & quantitative models [skip ci]"
+          git add llms-fred-series.txt llms-fred-series.json llms-ecb-series.txt llms-ecb-series.json llms-worldbank-series.txt llms-worldbank-series.json llms-relationships.txt llms-relationships.json llms-models.txt llms-models.json
+          git diff-index --quiet HEAD || git commit -m "Auto update FRED, ECB, World Bank series, relationships & quantitative models [skip ci]"
           git push
