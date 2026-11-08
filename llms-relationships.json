@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-08T16:44:09.664699+00:00",
+    "last_successful_sync": "2026-11-08T18:46:52.737387+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "governance_reference": "https://analysisreports.github.io/llms-formulas.txt#25.15",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
@@ -263,6 +263,201 @@
       "external_friction_bias": 0.75,
       "status": "CENTRALIZED_STRATEGIC_COMMAND",
       "primary_market_vector": "Energy Export Controls, Sovereign Asset Seizures, Brent Oil"
+    }
+  ],
+  "chokepoints": [
+    {
+      "id": "HORMUZ_STRAIT",
+      "name": "Strait of Hormuz",
+      "location": "26°34'N 56°15'E (Persian Gulf exit)",
+      "primary_threat": "IR / IRGC Navy",
+      "volume_description": "~20-21 Million bpd (20% of global petroleum liquids)",
+      "daily_oil_volume_mbpd": 20.5,
+      "global_oil_share_pct": 20.0,
+      "disruption_severity": "CATASTROPHIC",
+      "direct_macro_indicators": [
+        "DCOILWTICO",
+        "CPIAUCSL",
+        "BAMLH0A0HYM2",
+        "OVXCLS",
+        "GSCPI",
+        "SOFR",
+        "IND_WB_GOLD"
+      ]
+    },
+    {
+      "id": "BAB_EL_MANDEB",
+      "name": "Bab el-Mandeb & Red Sea",
+      "location": "12°35'N 43°20'E",
+      "primary_threat": "YE-HOUTHI",
+      "volume_description": "~12% of global trade, 8-10% of seaborne oil and refined fuels",
+      "daily_oil_volume_mbpd": 8.8,
+      "global_trade_share_pct": 12.0,
+      "reroute_transit_days": 14,
+      "disruption_severity": "HIGH",
+      "direct_macro_indicators": [
+        "ISRATIO",
+        "RSAFS",
+        "PCEPI",
+        "GSCPI",
+        "OVXCLS",
+        "GASREGW"
+      ]
+    },
+    {
+      "id": "MALACCA_STRAIT",
+      "name": "Strait of Malacca",
+      "location": "1°26'N 103°00'E",
+      "primary_threat": "Malacca Dilemma / Asian Maritime Blockade",
+      "volume_description": "~80% of China's crude imports, ~60% of global maritime trade",
+      "daily_oil_volume_mbpd": 16.0,
+      "global_trade_share_pct": 60.0,
+      "disruption_severity": "CATASTROPHIC",
+      "direct_macro_indicators": [
+        "INDPRO",
+        "SCFI",
+        "BDI"
+      ]
+    },
+    {
+      "id": "TURKISH_STRAITS",
+      "name": "Turkish Straits (Bosphorus & Dardanelles)",
+      "location": "41°07'N 29°04'E & 40°12'N 26°24'E",
+      "primary_threat": "1936 Montreux Convention Enforcement / Black Sea Kinetic Spillover",
+      "volume_description": "Russian Black Sea oil exports (~3.0M bpd), Ukrainian/Russian grain & fertilizer",
+      "daily_oil_volume_mbpd": 3.0,
+      "disruption_severity": "HIGH",
+      "direct_macro_indicators": [
+        "PWHEAMTUSDM",
+        "PFERTUSDM"
+      ]
+    },
+    {
+      "id": "SUWALKI_GAP",
+      "name": "Suwalki Gap",
+      "location": "Poland - Lithuania border (Between Belarus and Kaliningrad)",
+      "primary_threat": "Direct NATO-Russia land corridor kinetic friction (NATO Article 5 detonator)",
+      "volume_description": "Land transit choke point for Baltic integration and European financial stability",
+      "disruption_severity": "CATASTROPHIC",
+      "direct_macro_indicators": [
+        "DEXUSEU",
+        "DGS10",
+        "VIXCLS"
+      ]
+    },
+    {
+      "id": "TAIWAN_STRAIT",
+      "name": "Taiwan Strait",
+      "location": "24°00'N 119°00'E",
+      "primary_threat": "PLA blockade, naval quarantine, or kinetic conflict",
+      "volume_description": "Global Tech & Semiconductor bottleneck; ~50% of global container ship transits",
+      "disruption_severity": "CATASTROPHIC",
+      "direct_macro_indicators": [
+        "SOX",
+        "VIXCLS",
+        "INDPRO"
+      ]
+    },
+    {
+      "id": "PANAMA_CANAL",
+      "name": "Panama Canal",
+      "location": "09°04'N 79°40'W",
+      "primary_threat": "Freshwater reservoir depletion / Draft restrictions",
+      "volume_description": "~5% of global maritime trade, 46% of US East Coast container traffic",
+      "global_trade_share_pct": 5.0,
+      "disruption_severity": "HIGH",
+      "direct_macro_indicators": [
+        "BDI",
+        "ISRATIO",
+        "PCEPI"
+      ]
+    },
+    {
+      "id": "DANISH_STRAITS",
+      "name": "Danish Straits (Great Belt, Little Belt, The Sound)",
+      "location": "55°30'N 11°00'E",
+      "primary_threat": "RU Shadow Fleet navigation curbs / Western sanctions interdiction",
+      "volume_description": "~3.2 Million bpd Russian seaborne crude and refined products",
+      "daily_oil_volume_mbpd": 3.2,
+      "disruption_severity": "HIGH",
+      "direct_macro_indicators": [
+        "DCOILBRENTEU",
+        "BDTI"
+      ]
+    },
+    {
+      "id": "GIUK_GAP",
+      "name": "GIUK Gap (Greenland-Iceland-UK Gap)",
+      "location": "63°00'N 18°00'W",
+      "primary_threat": "Subsea infrastructure sabotage (fiber-optic cables, energy interconnectors)",
+      "volume_description": "Transatlantic financial data transmission and NATO ASW control",
+      "disruption_severity": "CATASTROPHIC",
+      "direct_macro_indicators": [
+        "VIXCLS",
+        "TRANSATLANTIC_FX_SPREAD"
+      ]
+    },
+    {
+      "id": "LOMBOK_AND_MAKASSAR_STRAITS",
+      "name": "Lombok and Makassar Straits",
+      "location": "08°30'S 115°45'E & 00°20'S 118°10'E",
+      "primary_threat": "Deep-draft congestion and maritime choke risk",
+      "volume_description": "Primary deep-draft alternate corridor bypassing Malacca; Australian iron ore/coal to China",
+      "disruption_severity": "MODERATE-HIGH",
+      "direct_macro_indicators": [
+        "BDI",
+        "SCFI"
+      ]
+    },
+    {
+      "id": "STRAIT_OF_GIBRALTAR",
+      "name": "Strait of Gibraltar",
+      "location": "35°58'N 05°36'W",
+      "primary_threat": "Western Mediterranean bottleneck / Naval surveillance chokepoint",
+      "volume_description": "Mediterranean container hubs and Black Sea export access to Atlantic",
+      "disruption_severity": "HIGH",
+      "direct_macro_indicators": [
+        "BDTI",
+        "EU_IMPORT_PRICE"
+      ]
+    },
+    {
+      "id": "BERING_STRAIT",
+      "name": "Bering Strait (Northern Sea Route Chokepoint)",
+      "location": "66°00'N 169°00'W",
+      "primary_threat": "US-RU / CN Arctic confrontation and Polar Silk Road friction",
+      "volume_description": "Polar Silk Road LNG transits, Russian Arctic LNG-2 offloading",
+      "disruption_severity": "MODERATE-HIGH",
+      "direct_macro_indicators": [
+        "JKM_LNG_SPOT",
+        "WAR_RISK_PREMIUMS"
+      ]
+    },
+    {
+      "id": "MOZAMBIQUE_CHANNEL",
+      "name": "Mozambique Channel (Cape Route Bottleneck)",
+      "location": "18°00'S 41°00'E",
+      "primary_threat": "Red Sea bypass route bottleneck; asymmetric littoral security risks",
+      "volume_description": "Diverted ultra-large crude carriers (ULCC) and mega-container vessels",
+      "disruption_severity": "HIGH",
+      "direct_macro_indicators": [
+        "CLARKSEA_INDEX",
+        "BUNKER_FUEL_380CST"
+      ]
+    },
+    {
+      "id": "SUEZ_CANAL_NORTHERN_APPROACH",
+      "name": "Suez Canal Northern Approach (Port Said / Sinai Node)",
+      "location": "31°15'N 32°18'E",
+      "primary_threat": "Asymmetric littoral attacks, groundings / channel blockage",
+      "volume_description": "~12% of global seaborne cargo, ~30% of global container volume",
+      "global_trade_share_pct": 12.0,
+      "disruption_severity": "CATASTROPHIC",
+      "direct_macro_indicators": [
+        "SCFI",
+        "PCEPI",
+        "GSCPI"
+      ]
     }
   ]
 }
