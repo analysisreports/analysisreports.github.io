@@ -1550,6 +1550,61 @@
                     ]
                 }
             }
+        },
+        {
+            "type": "function",
+            "function": {
+                "name": "profile_macro_time_series",
+                "description": "Computes time-series statistical profile (Section 0.6) including mean, median, Bessel standard deviation, variance, latest z-score, anomaly regime, moving averages (SMA-6, SMA-12, EMA-6, EMA-12), and linear regression trend slope.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "series": {
+                            "type": "array",
+                            "items": {
+                                "type": "number"
+                            },
+                            "description": "Chronologically ordered array of numerical observations for a macro or financial indicator."
+                        }
+                    },
+                    "required": [
+                        "series"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "function",
+            "function": {
+                "name": "validate_forecast_baseline",
+                "description": "Evaluates live observed market data against historical baseline values established at publication date (Section 0.7) to determine absolute delta, percentage deviation, and thesis compass needle (THESIS_VALIDATED, WITHIN_TOLERANCE_BAND, THESIS_INVALIDATED).",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "v_baseline": {
+                            "type": "number",
+                            "description": "Initial indicator baseline level observed at publication date (e.g. 75.0)."
+                        },
+                        "v_current": {
+                            "type": "number",
+                            "description": "Current live observed indicator level from market or FRED series (e.g. 82.5)."
+                        },
+                        "target_direction": {
+                            "type": "string",
+                            "description": "Expected thesis direction: 'HIGHER', 'LOWER', or 'RANGE_BOUND'."
+                        },
+                        "tolerance_pct": {
+                            "type": "number",
+                            "description": "Neutral tolerance band percentage (default 2.0%)."
+                        }
+                    },
+                    "required": [
+                        "v_baseline",
+                        "v_current",
+                        "target_direction"
+                    ]
+                }
+            }
         }
     ]
 }

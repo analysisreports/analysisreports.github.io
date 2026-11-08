@@ -661,3 +661,11 @@ Regime States (Discrete Mapping):
 - Primary Macro Vector: Front-end Treasury funding spread (3M-1M T-Bill slope in bps) interacting with global crude oil cost inflation momentum (Brent YoY %).
 - Transmission Linkage: When calculate_liquidity_commodity_matrix status is 'ACUTE_STAGFLATION_CRUNCH' or 'STAGFLATION_SHOCK' (Brent YoY > 15% and slope < 0 bps), cost-push inflation combines with interbank funding friction, compressing profit margins and inhibiting Federal Reserve policy easing. Conversely, 'GOLDILOCKS_EXPANSION' (Brent YoY <= 15% and slope >= 0 bps) sustains equity multiple expansion, while 'DEFLATIONARY_RECESSION' (Brent YoY < 0% and slope < 0 bps) signals demand destruction and accelerates flight to long-duration government bonds.
 
+### 8.14. Time-Series Profiling & Live Forecast Validation Engine (Section 0.6 & 0.7)
+
+8.14.1. SECTION_0.6_SERIES_PROFILER_AND_FORECAST_VALIDATOR
+- Target Formula: llms-formulas.txt -> Section 0.6 (macro_series_profiler), Section 0.7 (forecast_scale_validator)
+- Entities Coupled: GEO_US, INST_FED_US, INST_ECB_EU (llms-entities-id.txt)
+- Status Enums: BLACK_SWAN_OUTLIER | ELEVATED_ANOMALY | MODERATE_DEVIATION | NORMAL_VARIATION | STRONG_UPTREND | MILD_UPTREND | FLAT_SIDEWAYS | MILD_DOWNTREND | STRONG_DOWNTREND | THESIS_VALIDATED | WITHIN_TOLERANCE_BAND | THESIS_INVALIDATED
+- Primary Macro Vector: Distributional moment evaluation, outlier anomaly identification, and real-time empirical verification of baseline research forecasts against live market trajectories.
+- Transmission Linkage: Connects historical time-series distributions to real-time model inputs. When macro_series_profiler detects 'BLACK_SWAN_OUTLIER' (|z| >= 3.0), standard deterministic linear transmission channels break down, triggering heightened non-linear tail-risk buffers across all Tier 1 and Tier 2 models. Concurrently, forecast_scale_validator tracks empirical thesis convergence, signaling 'THESIS_VALIDATED' when market trajectories confirm strategic projections or 'THESIS_INVALIDATED' when structural regime shifts require thesis recalibration.

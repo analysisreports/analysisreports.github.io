@@ -294,6 +294,173 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 
 ---
 
+### 0.6. TIME-SERIES STATISTICAL PROFILER & TREND ENGINE
+- Purpose: Computes comprehensive statistical distribution moments, Bessel-corrected volatility, historical anomaly z-scores, moving average trend structures (SMA-6, SMA-12, EMA-6, EMA-12), and linear regression trend slopes for macro time-series observations.
+- Formula:
+  - Mean: x_bar = (1 / n) * sum(x_i)
+  - Median: Middle value of sorted observations (or mean of two middle values)
+  - Sample Variance: s^2 = (1 / (n - 1)) * sum((x_i - x_bar)^2)
+  - Sample Standard Deviation: s = sqrt(s^2)
+  - Z-Score: z = (x_latest - x_bar) / s
+  - Simple Moving Average: SMA_k = (1 / k) * sum(x_{n-k+1..n})  (k = 6, 12)
+  - Exponential Moving Average: EMA_t = alpha * x_t + (1 - alpha) * EMA_{t-1},  alpha = 2 / (k + 1)
+  - Linear Trend Slope: m = (n * sum(t * x_t) - sum(t) * sum(x_t)) / (n * sum(t^2) - (sum(t))^2)
+- Machine-Executable Logic (Python):
+  def macro_series_profiler(series):
+      if not isinstance(series, (list, tuple)) or len(series) < 2:
+          return None
+      try:
+          clean = [float(v) for v in series if _is_num(v) and math.isfinite(float(v))]
+          n = len(clean)
+          if n < 2:
+              return None
+
+          mean_val = sum(clean) / n
+          sorted_s = sorted(clean)
+          mid = n // 2
+          median_val = (sorted_s[mid] if n % 2 != 0 else (sorted_s[mid - 1] + sorted_s[mid]) / 2.0)
+
+          var_val = sum((x - mean_val) ** 2 for x in clean) / (n - 1)
+          std_val = math.sqrt(var_val)
+
+          latest = clean[-1]
+          z_score = round((latest - mean_val) / std_val, 3) if std_val > 1e-9 else 0.0
+          abs_z = abs(z_score)
+          if abs_z >= 3.0:
+              z_regime = "BLACK_SWAN_OUTLIER"
+          elif abs_z >= 2.0:
+              z_regime = "ELEVATED_ANOMALY"
+          elif abs_z >= 1.0:
+              z_regime = "MODERATE_DEVIATION"
+          else:
+              z_regime = "NORMAL_VARIATION"
+
+          sma_6 = round(sum(clean[-6:]) / 6.0, 4) if n >= 6 else None
+          sma_12 = round(sum(clean[-12:]) / 12.0, 4) if n >= 12 else None
+
+          def calc_ema(data, span):
+              if len(data) < span:
+                  return None
+              alpha = 2.0 / (span + 1.0)
+              ema = data[0]
+              for val in data[1:]:
+                  ema = (alpha * val) + ((1.0 - alpha) * ema)
+              return round(ema, 4)
+
+          ema_6 = calc_ema(clean, 6)
+          ema_12 = calc_ema(clean, 12)
+
+          t_vals = list(range(1, n + 1))
+          sum_t = sum(t_vals)
+          sum_x = sum(clean)
+          sum_tx = sum(t * x for t, x in zip(t_vals, clean))
+          sum_t2 = sum(t ** 2 for t in t_vals)
+          denom = (n * sum_t2) - (sum_t ** 2)
+          slope = round(((n * sum_tx) - (sum_t * sum_x)) / denom, 4) if denom != 0 else 0.0
+
+          if slope > 0.10:
+              trend_regime = "STRONG_UPTREND"
+          elif slope >= 0.02:
+              trend_regime = "MILD_UPTREND"
+          elif slope > -0.02:
+              trend_regime = "FLAT_SIDEWAYS"
+          elif slope >= -0.10:
+              trend_regime = "MILD_DOWNTREND"
+          else:
+              trend_regime = "STRONG_DOWNTREND"
+
+          return {
+              "count": n,
+              "latest_value": round(latest, 4),
+              "mean": round(mean_val, 4),
+              "median": round(median_val, 4),
+              "std_dev": round(std_val, 4),
+              "variance": round(var_val, 4),
+              "z_score": z_score,
+              "z_score_regime": z_regime,
+              "sma_6": sma_6,
+              "sma_12": sma_12,
+              "ema_6": ema_6,
+              "ema_12": ema_12,
+              "slope": slope,
+              "trend_regime": trend_regime
+          }
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - Z-Score Anomaly Regimes:
+    - z_score_regime == BLACK_SWAN_OUTLIER : Extreme statistical anomaly beyond historical 3-sigma bands (|z| >= 3.0)
+    - z_score_regime == ELEVATED_ANOMALY : Significant regime tension outside 2-sigma historical distribution (2.0 <= |z| < 3.0)
+    - z_score_regime == MODERATE_DEVIATION : Moderate historical displacement or nascent trend emergence (1.0 <= |z| < 2.0)
+    - z_score_regime == NORMAL_VARIATION : Routine historical market distribution (|z| < 1.0)
+  - Trend Direction Regimes:
+    - trend_regime == STRONG_UPTREND : Aggressive upward trajectory and accelerating positive momentum (Slope > 0.10)
+    - trend_regime == MILD_UPTREND : Moderate positive expansion trend (0.02 <= Slope <= 0.10)
+    - trend_regime == FLAT_SIDEWAYS : Range-bound consolidation or structural plateau (-0.02 < Slope < 0.02)
+    - trend_regime == MILD_DOWNTREND : Moderate negative contraction trend (-0.10 <= Slope <= -0.02)
+    - trend_regime == STRONG_DOWNTREND : Severe downward trajectory and rapid macro deterioration (Slope < -0.10)
+
+---
+
+### 0.7. LIVE FORECAST BASELINE & SCALE VALIDATION ENGINE
+- Purpose: Continuously evaluates live observed market data against historical baseline values established at publication date to track prediction trajectory, delta magnitude, and thesis validity.
+- Formula:
+  - Delta_Absolute = V_current - V_baseline
+  - Delta_Percent = ((V_current - V_baseline) / abs(V_baseline)) * 100.0
+- Machine-Executable Logic (Python):
+  def forecast_scale_validator(v_baseline, v_current, target_direction, tolerance_pct=2.0):
+      if any(v is None or isinstance(v, bool) for v in (v_baseline, v_current)):
+          return None
+      try:
+          v0 = float(v_baseline)
+          vt = float(v_current)
+          tol = abs(float(tolerance_pct)) if _is_num(tolerance_pct) else 2.0
+          if not (math.isfinite(v0) and math.isfinite(vt)) or v0 == 0.0:
+              return None
+
+          delta_abs = round(vt - v0, 4)
+          delta_pct = round(((vt - v0) / abs(v0)) * 100.0, 2)
+          direction = str(target_direction).upper().strip()
+
+          if direction in ("HIGHER", "BULLISH", "HAWKISH", "UP"):
+              if delta_pct >= tol:
+                  compass = "THESIS_VALIDATED"
+              elif delta_pct > -tol:
+                  compass = "WITHIN_TOLERANCE_BAND"
+              else:
+                  compass = "THESIS_INVALIDATED"
+          elif direction in ("LOWER", "BEARISH", "DOVISH", "DOWN"):
+              if delta_pct <= -tol:
+                  compass = "THESIS_VALIDATED"
+              elif delta_pct < tol:
+                  compass = "WITHIN_TOLERANCE_BAND"
+              else:
+                  compass = "THESIS_INVALIDATED"
+          elif direction in ("RANGE_BOUND", "NEUTRAL", "FLAT"):
+              if abs(delta_pct) <= tol:
+                  compass = "THESIS_VALIDATED"
+              else:
+                  compass = "THESIS_INVALIDATED"
+          else:
+              compass = "UNKNOWN_DIRECTION"
+
+          return {
+              "v_baseline": v0,
+              "v_current": vt,
+              "delta_abs": delta_abs,
+              "delta_pct": delta_pct,
+              "target_direction": direction,
+              "compass_needle": compass
+          }
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - compass_needle == THESIS_VALIDATED : Observed market data validates expected direction beyond tolerance band
+  - compass_needle == WITHIN_TOLERANCE_BAND : Observed market data remains range-bound within neutral tolerance band
+  - compass_needle == THESIS_INVALIDATED : Observed market data contradicts expected directional thesis
+
+---
+
 ## 🏛️ TIER 1: CORE MACROECONOMIC MODELS
 
 ### 1. FED POLICY STANCE & MARKET PRESSURE GAUGE

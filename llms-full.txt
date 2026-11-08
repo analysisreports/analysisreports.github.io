@@ -98,6 +98,9 @@ Cross-verify all analytical assertions against the deterministic code blocks in 
 - 0.3. FRED / ALFRED Official Data Transformation & Growth Rate Engine
   (Change, Change Year Ago, Percent Change MoM/QoQ, Percent Change YoY, Compounded Annual Rate SAAR, Continuously Compounded Rate)
 - 0.4. Temporal Anchors & ISO 8601 Standard
+- 0.5. European Central Bank (ECB) Data Transformation & Monetary Metrics Engine
+- 0.6. Time-Series Statistical Profiler & Trend Engine (Mean, Median, StdDev, Z-Score, SMA, EMA, Linear Slope)
+- 0.7. Live Forecast Baseline & Scale Validation Engine (Anchor Delta, Percentage Tracking, Thesis Compass Needle)
 
 TIER 1: CORE MACROECONOMIC MODELS
 - 1. Fed Policy Stance & Market Pressure Gauge (DGS1MO, DFEDTARU)
