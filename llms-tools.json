@@ -774,7 +774,7 @@
             "type": "function",
             "function": {
                 "name": "calculate_safe_haven_flight_index",
-                "description": "Quantifies capital flight to cash and dollar safe haven during geopolitical or sovereign stress shocks.",
+                "description": "Quantifies capital flight to cash and dollar safe haven during geopolitical or sovereign stress shocks, evaluating dollar_bond_ratio, raw safe_haven_score, normalized flight_ratio, and macro regime.",
                 "parameters": {
                     "type": "object",
                     "properties": {

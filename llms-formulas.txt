@@ -1539,7 +1539,9 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - FRED: DGS10 (10-Year Treasury Constant Maturity Nominal Yield)
   - ICE BofA / FRED: BAMLH0A0HYM2 (ICE BofA US High Yield Index Option-Adjusted Spread)
 - Formula:
-  Flight_To_Safety_Ratio = (DTWEXBGS * BAMLH0A0HYM2) / (DGS10 * 100)
+  Dollar_Bond_Ratio = DTWEXBGS / DGS10
+  Safe_Haven_Score = Dollar_Bond_Ratio * BAMLH0A0HYM2
+  Flight_To_Safety_Ratio = Safe_Haven_Score / 100.0
 - Machine-Executable Logic (Python):
   def safe_haven_flight_index(dxy, hy_spread, dgs10):
       if any(v is None or isinstance(v, bool) for v in (dxy, hy_spread, dgs10)):
@@ -1550,9 +1552,15 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           if any(min(v, 0.0) == v or v == 0.0 for v in (dxy, hy_spread, dgs10)):
               return None
 
-          raw_ratio = (float(dxy) * float(hy_spread)) / (float(dgs10) * 100.0)
-          if not math.isfinite(raw_ratio):
+          raw_dollar_bond_ratio = float(dxy) / float(dgs10)
+          raw_score = raw_dollar_bond_ratio * float(hy_spread)
+          raw_ratio = raw_score / 100.0
+
+          if not (math.isfinite(raw_dollar_bond_ratio) and math.isfinite(raw_score) and math.isfinite(raw_ratio)):
               return None
+
+          dollar_bond_ratio = round(raw_dollar_bond_ratio, 2)
+          score = round(raw_score, 2)
           ratio = round(raw_ratio, 3)
 
           if max(ratio, 2.50) == ratio and ratio != 2.50:
@@ -1564,14 +1572,19 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           else:
               regime = "NORMAL_MARKET_REGIME"
 
-          return {"flight_ratio": ratio, "regime": regime}
+          return {
+              "dollar_bond_ratio": dollar_bond_ratio,
+              "safe_haven_score": score,
+              "flight_ratio": ratio,
+              "regime": regime
+          }
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - regime == EXTREME_LIQUIDITY_PANIC : Systemic liquidity shock, aggressive dash for cash, and heavy asset liquidation (Ratio > 2.50)
-  - regime == HIGH_FLIGHT_TO_SAFETY : Acute geopolitical tension and flight to safety (Ratio 1.80 to 2.50)
-  - regime == MODERATE_HEDGING : Moderate defensive portfolio posture (Ratio 1.00 to 1.80)
-  - regime == NORMAL_MARKET_REGIME : Routine risk appetite and balanced market pricing (Ratio < 1.00)
+  - regime == EXTREME_LIQUIDITY_PANIC : Systemic liquidity shock, aggressive dash for cash, and heavy asset liquidation (Score > 250.0 / Ratio > 2.50)
+  - regime == HIGH_FLIGHT_TO_SAFETY : Acute geopolitical tension and flight to safety (Score 180.0 to 250.0 / Ratio 1.80 to 2.50)
+  - regime == MODERATE_HEDGING : Moderate defensive portfolio posture and cautious stance (Score 100.0 to 180.0 / Ratio 1.00 to 1.80)
+  - regime == NORMAL_MARKET_REGIME : Routine risk appetite and balanced market pricing (Score < 100.0 / Ratio < 1.00)
 
 ---
 
