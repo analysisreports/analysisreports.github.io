@@ -146,6 +146,7 @@ ORG_IMF              | Aliases: IMF, International Monetary Fund
 ORG_BIS              | Aliases: BIS, Bank for International Settlements
 ORG_WORLD_BANK       | Aliases: World Bank, IBRD, International Bank for Reconstruction and Development
 ORG_OECD             | Aliases: OECD, Organisation for Economic Co-operation and Development
+BLOC_EU              | Aliases: European Union, EU, EU27, Brussels
 BLOC_OPEC            | Aliases: OPEC, Organization of the Petroleum Exporting Countries, OPEC+
 BLOC_BRICS_MBRIDGE   | Aliases: BRICS & mBridge Settlement Axis, mBridge, BIS Innovation Hub mBridge, CIPS, SPFS
 BLOC_C6              | Aliases: Central Asia & Azerbaijan Strategic Alignment Axis, C6 Consultative Format, C6 Bloc

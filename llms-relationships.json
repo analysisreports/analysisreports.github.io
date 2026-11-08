@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-08T21:50:47.551310+00:00",
+    "last_successful_sync": "2026-11-08T22:25:28.476153+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "governance_reference": "https://analysisreports.github.io/llms-formulas.txt#25.15",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
@@ -20,6 +20,8 @@
   "relationships": [
     {
       "id": "US_RU",
+      "source_entity": "GEO_US",
+      "target_entity": "GEO_RU",
       "label": "US - RU (United States vs. Russian Federation)",
       "p_baseline": -0.85,
       "dynamic_delta": 0.0,
@@ -35,6 +37,8 @@
     },
     {
       "id": "US_CN",
+      "source_entity": "GEO_US",
+      "target_entity": "GEO_CN",
       "label": "US - CN (United States vs. People's Republic of China)",
       "p_baseline": -0.65,
       "dynamic_delta": 0.0,
@@ -49,6 +53,8 @@
     },
     {
       "id": "RU_CN",
+      "source_entity": "GEO_RU",
+      "target_entity": "GEO_CN",
       "label": "RU - CN (Russian Federation - People's Republic of China)",
       "p_baseline": 0.75,
       "dynamic_delta": 0.0,
@@ -62,6 +68,8 @@
     },
     {
       "id": "IL_IR",
+      "source_entity": "GEO_IL",
+      "target_entity": "GEO_IR",
       "label": "IL - IR (Israel vs. Islamic Republic of Iran)",
       "p_baseline": -0.95,
       "dynamic_delta": 0.0,
@@ -77,6 +85,8 @@
     },
     {
       "id": "SA_IR",
+      "source_entity": "GEO_SA",
+      "target_entity": "GEO_IR",
       "label": "SA - IR (Kingdom of Saudi Arabia vs. Islamic Republic of Iran)",
       "p_baseline": -0.2,
       "dynamic_delta": 0.0,
@@ -90,6 +100,8 @@
     },
     {
       "id": "US_IL",
+      "source_entity": "GEO_US",
+      "target_entity": "GEO_IL",
       "label": "US - IL (United States - Israel)",
       "p_baseline": 0.9,
       "dynamic_delta": 0.0,
@@ -102,6 +114,8 @@
     },
     {
       "id": "US_EU",
+      "source_entity": "GEO_US",
+      "target_entity": "BLOC_EU",
       "label": "US - EU / NATO Core",
       "p_baseline": 0.85,
       "dynamic_delta": 0.0,
@@ -115,6 +129,8 @@
     },
     {
       "id": "RU_EU",
+      "source_entity": "GEO_RU",
+      "target_entity": "BLOC_EU",
       "label": "RU - EU Core",
       "p_baseline": -0.8,
       "dynamic_delta": 0.0,
@@ -128,6 +144,8 @@
     },
     {
       "id": "US_KP",
+      "source_entity": "GEO_US",
+      "target_entity": "GEO_KP",
       "label": "US - KP (United States vs. North Korea)",
       "p_baseline": -0.9,
       "dynamic_delta": 0.0,
@@ -141,6 +159,8 @@
     },
     {
       "id": "AZ_AM",
+      "source_entity": "GEO_AZ",
+      "target_entity": "GEO_AM",
       "label": "AZ - AM (Republic of Azerbaijan vs. Republic of Armenia)",
       "p_baseline": -0.7,
       "dynamic_delta": 0.0,
@@ -155,6 +175,8 @@
     },
     {
       "id": "LT_RU",
+      "source_entity": "GEO_LT",
+      "target_entity": "GEO_RU",
       "label": "LT - RU (Republic of Lithuania vs. Russian Federation)",
       "p_baseline": -0.85,
       "dynamic_delta": 0.0,
@@ -169,6 +191,8 @@
     },
     {
       "id": "YE_IL",
+      "source_entity": "GEO_YE",
+      "target_entity": "GEO_IL",
       "label": "YE - IL (Yemen Houthis / Ansarullah vs. State of Israel)",
       "p_baseline": -0.95,
       "dynamic_delta": 0.0,
@@ -184,6 +208,8 @@
     },
     {
       "id": "US_VE",
+      "source_entity": "GEO_US",
+      "target_entity": "GEO_VE",
       "label": "US - VE (United States vs. Bolivarian Republic of Venezuela)",
       "p_baseline": -0.75,
       "dynamic_delta": 0.0,

@@ -152,6 +152,8 @@ def main():
     actors = [
         {
             'id': 'US_RU',
+            'source_entity': 'GEO_US',
+            'target_entity': 'GEO_RU',
             'label': 'US - RU (United States vs. Russian Federation)',
             'p_baseline': -0.85,
             'dynamic_delta': vix_delta,
@@ -160,6 +162,8 @@ def main():
         },
         {
             'id': 'US_CN',
+            'source_entity': 'GEO_US',
+            'target_entity': 'GEO_CN',
             'label': "US - CN (United States vs. People's Republic of China)",
             'p_baseline': -0.65,
             'dynamic_delta': round(chip_delta + min(0.0, vix_delta), 2),
@@ -168,6 +172,8 @@ def main():
         },
         {
             'id': 'RU_CN',
+            'source_entity': 'GEO_RU',
+            'target_entity': 'GEO_CN',
             'label': "RU - CN (Russian Federation - People's Republic of China)",
             'p_baseline': +0.75,
             'dynamic_delta': 0.0,
@@ -176,6 +182,8 @@ def main():
         },
         {
             'id': 'IL_IR',
+            'source_entity': 'GEO_IL',
+            'target_entity': 'GEO_IR',
             'label': 'IL - IR (Israel vs. Islamic Republic of Iran)',
             'p_baseline': -0.95,
             'dynamic_delta': oil_delta,
@@ -184,6 +192,8 @@ def main():
         },
         {
             'id': 'SA_IR',
+            'source_entity': 'GEO_SA',
+            'target_entity': 'GEO_IR',
             'label': 'SA - IR (Kingdom of Saudi Arabia vs. Islamic Republic of Iran)',
             'p_baseline': -0.20,
             'dynamic_delta': round(oil_delta * 0.5, 2),
@@ -192,6 +202,8 @@ def main():
         },
         {
             'id': 'US_IL',
+            'source_entity': 'GEO_US',
+            'target_entity': 'GEO_IL',
             'label': 'US - IL (United States - Israel)',
             'p_baseline': +0.90,
             'dynamic_delta': 0.0,
@@ -200,6 +212,8 @@ def main():
         },
         {
             'id': 'US_EU',
+            'source_entity': 'GEO_US',
+            'target_entity': 'BLOC_EU',
             'label': 'US - EU / NATO Core',
             'p_baseline': +0.85,
             'dynamic_delta': 0.0,
@@ -208,6 +222,8 @@ def main():
         },
         {
             'id': 'RU_EU',
+            'source_entity': 'GEO_RU',
+            'target_entity': 'BLOC_EU',
             'label': 'RU - EU Core',
             'p_baseline': -0.80,
             'dynamic_delta': vix_delta,
@@ -216,6 +232,8 @@ def main():
         },
         {
             'id': 'US_KP',
+            'source_entity': 'GEO_US',
+            'target_entity': 'GEO_KP',
             'label': 'US - KP (United States vs. North Korea)',
             'p_baseline': -0.90,
             'dynamic_delta': 0.0,
@@ -224,6 +242,8 @@ def main():
         },
         {
             'id': 'AZ_AM',
+            'source_entity': 'GEO_AZ',
+            'target_entity': 'GEO_AM',
             'label': 'AZ - AM (Republic of Azerbaijan vs. Republic of Armenia)',
             'p_baseline': -0.70,
             'dynamic_delta': vix_delta,
@@ -232,6 +252,8 @@ def main():
         },
         {
             'id': 'LT_RU',
+            'source_entity': 'GEO_LT',
+            'target_entity': 'GEO_RU',
             'label': 'LT - RU (Republic of Lithuania vs. Russian Federation)',
             'p_baseline': -0.85,
             'dynamic_delta': vix_delta,
@@ -240,6 +262,8 @@ def main():
         },
         {
             'id': 'YE_IL',
+            'source_entity': 'GEO_YE',
+            'target_entity': 'GEO_IL',
             'label': 'YE - IL (Yemen Houthis / Ansarullah vs. State of Israel)',
             'p_baseline': -0.95,
             'dynamic_delta': oil_delta,
@@ -248,6 +272,8 @@ def main():
         },
         {
             'id': 'US_VE',
+            'source_entity': 'GEO_US',
+            'target_entity': 'GEO_VE',
             'label': 'US - VE (United States vs. Bolivarian Republic of Venezuela)',
             'p_baseline': -0.75,
             'dynamic_delta': round(oil_delta * 0.5, 2),
@@ -263,6 +289,8 @@ def main():
         regime = get_regime(p_net)
         relationships_output.append({
             'id': a['id'],
+            'source_entity': a['source_entity'],
+            'target_entity': a['target_entity'],
             'label': a['label'],
             'p_baseline': a['p_baseline'],
             'dynamic_delta': a['dynamic_delta'],
