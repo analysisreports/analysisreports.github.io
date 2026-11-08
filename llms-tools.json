@@ -492,7 +492,7 @@
                                                                                               },
                                                                              "gold_price":  {
                                                                                                 "type":  "number",
-                                                                                                "description":  "Gold Fixing Price per Troy Ounce (World Bank: IND_WB_GOLD)."
+                                                                                                "description":  "Official Gold Price per Troy Ounce (World Bank The Pink Sheet: IND_WB_GOLD)."
                                                                                             }
                                                                          },
                                                           "required":  [
@@ -1208,7 +1208,7 @@
                                                                                                 },
                                                                              "gold_yoy_pct":  {
                                                                                                   "type":  "number",
-                                                                                                  "description":  "Gold Fixing Price London time YoY % change (World Bank: IND_WB_GOLD)."
+                                                                                                  "description":  "Official Gold Price YoY % change (World Bank The Pink Sheet: IND_WB_GOLD: percent_change_from_year_ago)."
                                                                                               }
                                                                          },
                                                           "required":  [
