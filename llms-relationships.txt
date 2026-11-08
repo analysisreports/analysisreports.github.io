@@ -650,3 +650,14 @@ Regime States (Discrete Mapping):
 - Primary Geopolitical Vector: Bank of Japan monetary policy normalization (rate hikes) collapsing US-Japan interest rate spreads; aggressive Yen appreciation triggering systemic margin calls across Wall Street leveraged funds.
 - Actor Coupling: US-Japan Strategic Alliance (2.4.1), Trans-Pacific Financial Stability Corridor.
 - Transmission Linkage: When calculate_jpy_carry_crack status == 'UNWIND_LIQUIDATION_CRASH' (net_buffer <= -1.0% or JPY appreciation > 5%), bilateral financial coupling triggers emergency liquidity swap lines, expanding market volatility (VIX > 30.0) and forcing equity deleveraging.
+
+### 8.13. Liquidity & Commodity Macro Regime Transmission Matrix (Model 25.17)
+
+8.13.1. MODEL_25.17_LIQUIDITY_COMMODITY_MATRIX
+- Target Formula: llms-formulas.txt -> Model 25.17 (calculate_liquidity_commodity_matrix)
+- Entities Coupled: GEO_US, INST_FED_US (llms-entities-id.txt)
+- Canonical Input Indicators: IND_DGS3MO, IND_DGS1MO, IND_DCOILBRENTEU (llms-indicators.txt)
+- Status Enums: ACUTE_STAGFLATION_CRUNCH | STAGFLATION_SHOCK | REFLATIONARY_EXPANSION | DEFLATIONARY_RECESSION | GOLDILOCKS_EXPANSION | RESTRICTIVE_SLOWDOWN
+- Primary Macro Vector: Front-end Treasury funding spread (3M-1M T-Bill slope in bps) interacting with global crude oil cost inflation momentum (Brent YoY %).
+- Transmission Linkage: When calculate_liquidity_commodity_matrix status is 'ACUTE_STAGFLATION_CRUNCH' or 'STAGFLATION_SHOCK' (Brent YoY > 15% and slope < 0 bps), cost-push inflation combines with interbank funding friction, compressing profit margins and inhibiting Federal Reserve policy easing. Conversely, 'GOLDILOCKS_EXPANSION' (Brent YoY <= 15% and slope >= 0 bps) sustains equity multiple expansion, while 'DEFLATIONARY_RECESSION' (Brent YoY < 0% and slope < 0 bps) signals demand destruction and accelerates flight to long-duration government bonds.
+
