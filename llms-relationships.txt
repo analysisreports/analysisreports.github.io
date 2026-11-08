@@ -224,6 +224,43 @@ Regime States (Discrete Mapping):
    - Structural Regime: ALLIANCE
    - Strategic Role: Critical logistics spine for Black Sea and Caspian military/economic projection
    - Transmission Series: BDTI, PWHEAMTUSDM
+
+### 2.9. Emerging Strategic Fault Lines & Resource Chokepoints (100-Year Structural Baselines)
+2.9.1. AZ - AM (Republic of Azerbaijan vs. Republic of Armenia)
+   - Baseline Polarity (P_baseline): -0.70
+   - Structural Regime: STRATEGIC_COMPETITION
+   - Historical Heritage: 30+ year post-Soviet territorial conflict over Nagorno-Karabakh, sovereign border delimitation, and competing trans-Eurasian transport corridors.
+   - Primary Friction Nodes: ZANGEZUR_CORRIDOR, NAGORNO_KARABAKH, CASPIAN_TRANSIT
+   - Economic Coupling: 0.05 (Closed direct borders, indirect regional trade via Georgia/Iran)
+   - Strategic Axis: Trans-Caspian International Transport Route (Middle Corridor), Baku-Tbilisi-Ceyhan (BTC) pipeline, Southern Gas Corridor (SGC), and strategic Israeli military-defense technology alignment.
+   - Transmission Series: DCOILBRENTEU, VIXCLS
+
+2.9.2. LT - RU (Republic of Lithuania vs. Russian Federation)
+   - Baseline Polarity (P_baseline): -0.85
+   - Structural Regime: PROXY_WAR / COLD_WAR_STANDOFF
+   - Historical Heritage: Deep historical Soviet occupation memory, NATO eastern-flank tripwire deterrence, and European Union sanctions enforcement on rail/road transit to the Russian Kaliningrad exclave.
+   - Primary Friction Nodes: SUWALKI_GAP, BALTIC_SEA, KALININGRAD_EXCLAVE
+   - Economic Coupling: 0.08 (Substantially severed energy and rail integration, complete Baltic grid desynchronization from BRELL).
+   - Strategic Axis: 65-kilometer Suwalki Corridor bottleneck connecting Poland to Baltic States, separating Belarus from Kaliningrad. NATO Article 5 high-vulnerability flashpoint.
+   - Transmission Series: VIXCLS, BAMLH0A0HYM2
+
+2.9.3. YE_IL (Yemen Houthis / Ansarullah vs. State of Israel)
+   - Baseline Polarity (P_baseline): -0.95
+   - Structural Regime: PROXY_WAR / ASYMMETRIC_KINETIC_BLOCKADE
+   - Historical Heritage: Ideological anti-Zionist doctrine integrated into the regional Axis of Resistance, asymmetric naval interdiction of international maritime corridors in defense of Levant proxies.
+   - Primary Friction Nodes: BAB_EL_MANDEB, RED_SEA, GULF_OF_ADEN, PORT_OF_EILAT
+   - Economic Coupling: 0.00 (Zero trade, total naval hostility)
+   - Strategic Axis: Anti-ship ballistic missile and long-range UAV interdiction of container/tanker traffic passing through the Bab el-Mandeb strait, forcing Cape of Good Hope rerouting (+14-21 days maritime delay).
+   - Transmission Series: DCOILBRENTEU, DCOILWTICO (Model 25.12 Seaborne Risk Spread)
+
+2.9.4. US - VE (United States vs. Bolivarian Republic of Venezuela)
+   - Baseline Polarity (P_baseline): -0.75
+   - Structural Regime: STRATEGIC_COMPETITION / ASYMMETRIC_SANCTIONS_REGIME
+   - Historical Heritage: 25-year structural ideological confrontation following nationalization of Orinoco Belt oil reserves, US recognition of opposition factions, and extensive unilateral financial sanctions.
+   - Primary Friction Nodes: ORINOCO_BELT, CARIBBEAN_SEA, OFAC_SANCTIONS
+   - Economic Coupling: 0.25 (Controlled OFAC General License waivers for US major oil producers e.g. Chevron to export diluted heavy crude).
+   - Strategic Axis: World's largest proven heavy crude oil reserves (Merey 16 blend), heavy crude refinery compatibility on the US Gulf Coast, and Chinese/Russian bilateral oil-for-debt clearing mechanisms.
+   - Transmission Series: DCOILWTICO, DCOILBRENTEU
 ---
 
 ## 3. PROXY & ASYMMETRIC NON-STATE ACTOR REGISTRY
