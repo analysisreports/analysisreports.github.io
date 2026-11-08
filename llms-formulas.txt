@@ -2405,29 +2405,102 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ---
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
-### 26. KOMITE AYRISMA KATSAYISI (COMMITTEE DISPERSION SCORE)
-- Purpose: Merkez bankası para politikası kurullarındaki kararlara (faiz artırımı/indirimi) itiraz eden üye sayısının toplam üye sayısına oranını hesaplayarak, komite içindeki bölünme ve şahin/güvercin ayrışma seviyesini ölçer.
-- Target: economy.json -> committee_dispersion_score
+### 26. MERKEZ BANKASI OY AYRISMA VE SAHINLIK DAGILIMI MOTORU (CENTRAL BANK COMMITTEE DISPERSION & HAWKISHNESS INDEX)
+- Purpose: Merkez bankasi para politikasi kurullarindaki (FOMC, TCMB, ECB vb.) uyelerin oy dagilimini (Sahin, Guvercin, Notr) analiz ederek, kurulun politika yonelimini (H-Index: Hawkish/Dovish Tilt) ve ic fikir ayriligi seviyesini (Blau-Simpson Dispersiyon Katsayisi) deterministik olarak hesaplar.
+- Target: economy.json, llms-models.json -> MODEL_26_COMMITTEE_DISPERSION
+- Inputs:
+  - n_hawkish : Siki durus / faiz artisi isteyen uye sayisi
+  - n_dovish  : Gevsek durus / faiz indirimi isteyen uye sayisi
+  - n_neutral : Sabit tutma / ana karara uyum saglayan notr uye sayisi
+  - n_total   : Toplam oy kullanan uye sayisi (opsiyonel; verilmezse n_hawkish + n_dovish + n_neutral alinir)
 - Formula:
-  Dispersion_Score = n_dissent / n_total
+  1. Toplam Kurul Uyesi:
+     N_total = n_hawkish + n_dovish + n_neutral
+  2. Sahinlik Dengesi (H-Index):
+     H_Index = (n_hawkish - n_dovish) / N_total
+  3. Uye Paylari:
+     p_hawkish = n_hawkish / N_total
+     p_dovish = n_dovish / N_total
+     p_neutral = n_neutral / N_total
+  4. Komite Ici Cesitlilik / Ayrima (Blau-Simpson Dispersiyonu):
+     Dispersion = 1.0 - (p_hawkish^2 + p_dovish^2 + p_neutral^2)
 - Machine-Executable Logic (Python):
-  def committee_dispersion(n_dissent, n_total):
-      if not (_is_num(n_dissent) and _is_num(n_total)): return None
-      if min(n_total, 0) == n_total or min(n_dissent, 0) != 0 or max(n_dissent, n_total) != n_total:
+  def committee_dispersion(n_hawkish, n_dovish, n_neutral=0, n_total=None):
+      if any(v is None or isinstance(v, bool) for v in (n_hawkish, n_dovish, n_neutral)):
           return None
-      
-      score = round(float(n_dissent) / float(n_total), 4)
-      if score >= 0.25:
-          status = "HIGH_DISPERSION"
-      elif score >= 0.10:
-          status = "MODERATE_DISSENT"
-      else:
-          status = "STRONG_CONSENSUS"
-      return {"dispersion_score": score, "status": status}
+      try:
+          h = float(n_hawkish)
+          d = float(n_dovish)
+          neu = float(n_neutral)
+          if not (math.isfinite(h) and math.isfinite(d) and math.isfinite(neu)):
+              return None
+          if h < 0.0 or d < 0.0 or neu < 0.0:
+              return None
+
+          tot = h + d + neu
+          if n_total is not None and not isinstance(n_total, bool) and math.isfinite(float(n_total)):
+              f_tot = float(n_total)
+              if f_tot >= tot and f_tot > 0.0:
+                  tot = f_tot
+
+          if tot <= 0.0:
+              return None
+
+          p_h = h / tot
+          p_d = d / tot
+          p_neu = neu / tot
+
+          h_index = round((h - d) / tot, 4)
+          sum_sq = (p_h ** 2) + (p_d ** 2) + (p_neu ** 2)
+          dispersion = round(1.0 - sum_sq, 4)
+
+          # Politika Yönü (H-Index Rejimi)
+          if h_index >= 0.50:
+              directional_stance = "STRONG_HAWKISH_TILT"
+          elif h_index >= 0.15:
+              directional_stance = "MODERATE_HAWKISH_BIAS"
+          elif h_index <= -0.50:
+              directional_stance = "STRONG_DOVISH_TILT"
+          elif h_index <= -0.15:
+              directional_stance = "MODERATE_DOVISH_BIAS"
+          else:
+              directional_stance = "BALANCED_NEUTRAL_STANCE"
+
+          # Komite Konsensüs / Ayrışma Rejimi
+          if dispersion <= 0.30:
+              consensus_regime = "STRONG_CONSENSUS"
+          elif dispersion <= 0.48:
+              consensus_regime = "MODERATE_DISSENT"
+          else:
+              consensus_regime = "HIGH_DISPERSION"
+
+          return {
+              "model_id": "MODEL_26_COMMITTEE_DISPERSION",
+              "n_total": int(tot),
+              "n_hawkish": int(h),
+              "n_dovish": int(d),
+              "n_neutral": int(neu),
+              "share_hawkish_pct": round(p_h * 100.0, 2),
+              "share_dovish_pct": round(p_d * 100.0, 2),
+              "share_neutral_pct": round(p_neu * 100.0, 2),
+              "h_index": h_index,
+              "dispersion": dispersion,
+              "directional_stance": directional_stance,
+              "consensus_regime": consensus_regime
+          }
+      except (TypeError, ValueError, ZeroDivisionError, OverflowError):
+          return None
 - Interpretation:
-  - Dispersion_Score >= 0.25 : HIGH_DISPERSION (Komitede Ağır Bölünme / Gelecek Toplantılar İçin Yüksek Belirsizlik)
-  - 0.10 <= Dispersion_Score < 0.25 : MODERATE_DISSENT (Ilımlı Çatlak / Karşıt Görüş Sinyali)
-  - Dispersion_Score < 0.10 : STRONG_CONSENSUS (Güçlü Fikir Birliği / Net Para Politikası Duruşu)
+  - Directional Stance (H-Index):
+    * H_Index >= 0.50 : STRONG_HAWKISH_TILT (Acik Sahin Itisi / Faiz Artisi veya Siki Durus Baskisi)
+    * 0.15 <= H_Index < 0.50 : MODERATE_HAWKISH_BIAS (Ilimli Sahin Egilimi)
+    * -0.15 < H_Index < 0.15 : BALANCED_NEUTRAL_STANCE (Dengeli / Notr Politika Durusu)
+    * -0.50 < H_Index <= -0.15 : MODERATE_DOVISH_BIAS (Ilimli Guvercin Egilimi)
+    * H_Index <= -0.50 : STRONG_DOVISH_TILT (Acik Guvercin Itisi / Faiz Indirimi veya Gevseme Baskisi)
+  - Consensus Regime (Blau-Simpson Dispersion):
+    * Dispersion <= 0.30 : STRONG_CONSENSUS (Dusuk Ayrilma / Guclu Kurul Konsensu ve Karar Kararliligi)
+    * 0.30 < Dispersion <= 0.48 : MODERATE_DISSENT (Ilimli Catlak / Ayrik Oy Uyarisi)
+    * Dispersion > 0.48 : HIGH_DISPERSION (Yuksek Kurul Ayrilmasi / Agir Bolunme ve Gelecek Politika Belirsizligi)
 
 ### 27. SÖYLEM SERTLİK SKORU (RHETORIC INTENSITY SCORE)
 - Purpose: Siyasi lider ve aktörlerin açıklamalarındaki hedef alma, tasfiye dili, yaptırım tehdidi ve diplomatik teamül ihlallerini 0-100 ölçeğinde puanlar.

@@ -1518,6 +1518,38 @@
                     ]
                 }
             }
+        },
+        {
+            "type": "function",
+            "function": {
+                "name": "calculate_committee_dispersion",
+                "description": "Calculates Central Bank Committee Dispersion & Hawkishness Index (Model 26) measuring monetary policy voting distribution across hawkish, dovish, and neutral members to compute directional stance (H-Index) and internal committee fracture (Blau-Simpson Dispersion).",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "n_hawkish": {
+                            "type": "number",
+                            "description": "Number of committee members voting for rate hikes or hawkish tightening (e.g., 10)"
+                        },
+                        "n_dovish": {
+                            "type": "number",
+                            "description": "Number of committee members voting for rate cuts or dovish easing (e.g., 2)"
+                        },
+                        "n_neutral": {
+                            "type": "number",
+                            "description": "Number of committee members voting for pause, hold, or neutral stance (default 0)"
+                        },
+                        "n_total": {
+                            "type": "number",
+                            "description": "Optional total voting member count. If omitted, computed as sum of hawkish + dovish + neutral (e.g., 12)"
+                        }
+                    },
+                    "required": [
+                        "n_hawkish",
+                        "n_dovish"
+                    ]
+                }
+            }
         }
     ]
 }

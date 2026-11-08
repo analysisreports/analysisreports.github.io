@@ -154,7 +154,7 @@ Cross-verify all analytical assertions against the deterministic code blocks in 
    - 25.17. Likidite ve Emtia Makro Rejim Matrisi (Liquidity & Commodity Macro Regime Matrix: DGS3MO, DGS1MO, DCOILBRENTEU)
 
 3. KADEME: KURUMSAL KARAR, SİYASİ GERİLİM VE KALİBRASYON MOTORU
-- 26. Komite Ayrışma Katsayısı (Committee Dispersion Score: n_dissent, n_total)
+- 26. Merkez Bankası Oy Ayrışma ve Şahinlik Dağılımı Motoru (Central Bank Committee Dispersion & Hawkishness Index: n_hawkish, n_dovish, n_neutral, n_total)
 - 27. Söylem Sertlik Skoru (Rhetoric Intensity Score: direct_target, delegitimize, threat, norm_breach)
   - 27.1. Bileşik Siyasi Gerilim Skoru (Composite Tension Score: rhetoric, alliance_friction)
 - 28. Bileşik Ülke Stratejik Risk Skoru (Composite Strategic Score: pol, defense, geo, vuln)
