@@ -9,6 +9,10 @@ extracts historical observations, executes canonical transformations (change, Yo
 and generates both deterministic machine-readable twin (llms-worldbank-series.json)
 and official text registry snapshot (llms-worldbank-series.txt Section 2).
 
+Includes Rate & Yield Financial Guard: Percentage rates are already annualized.
+Compounding an already annualized rate is a category error and produces misleading exponential distortions;
+in such cases, CAR and CCAR return None and display as N/A (Rate is already annualized).
+
 Author: Ersoy Toptaş & Google Gemini AI Engine
 License: CC BY 4.0
 Endpoint: https://analysisreports.github.io/llms-worldbank-series.txt
@@ -97,9 +101,11 @@ def calc_compounded_annual_rate(xt, xt_prev, n_obs_per_yr: int = 12) -> Optional
         return None
     try:
         ratio = xt / xt_prev
+        # Economic Boundary Guard: Prevents asymptotic exponential explosion on extreme volatility jumps
         if n_obs_per_yr >= 52 and (ratio > 1.40 or ratio < 0.60):
             return None
         res = (((ratio) ** n_obs_per_yr) - 1.0) * 100.0
+        # Strict Plausibility Filter: Cap between -100% and +10,000%
         if not math.isfinite(res) or res > 10000.0 or res < -100.0:
             return None
         return round(res, 4)
@@ -162,14 +168,19 @@ def fetch_wb_series(key: str, meta: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     year_ago_idx = len(observations) - 1 - n_obs_per_yr
     year_ago_val = observations[year_ago_idx][1] if year_ago_idx >= 0 else None
 
+    # Rate & Yield Financial Guard: Percentage rates are already annualized.
+    # Compounding an already annualized rate is a category error and produces misleading exponential distortions.
+    units_str = meta.get("unit", "")
+    is_rate = "Percent" in units_str or "%" in units_str
+
     # Canonical transformations
     chg = calc_change(curr_val, prev_val)
     chg_yr = calc_change(curr_val, year_ago_val)
     pct_chg = calc_percent_change(curr_val, prev_val)
     pct_chg_yr = calc_percent_change_year_ago(curr_val, year_ago_val)
-    car = calc_compounded_annual_rate(curr_val, prev_val, n_obs_per_yr)
+    car = None if is_rate else calc_compounded_annual_rate(curr_val, prev_val, n_obs_per_yr)
     ccr = calc_continuously_compounded_rate(curr_val, prev_val)
-    ccar = calc_continuously_compounded_annual_rate(curr_val, prev_val, n_obs_per_yr)
+    ccar = None if is_rate else calc_continuously_compounded_annual_rate(curr_val, prev_val, n_obs_per_yr)
 
     recent_5 = [{"date": d, "value": v} for d, v in observations[-5:]]
 
@@ -255,6 +266,10 @@ def main():
 
                 # Format Section 2 Text Block
                 t = res["transformations"]
+                units_str = res.get("unit", "")
+                is_rate = "Percent" in units_str or "%" in units_str
+                car_str = "N/A (Rate is already annualized)" if is_rate else fmt_val(t['compounded_annual_rate_of_change'], '%')
+                ccar_str = "N/A (Rate is already annualized)" if is_rate else fmt_val(t['continuously_compounded_annual_rate_of_change'], '%')
                 recent_lines = "\n".join([f"  {r['date']}: {r['value']:.4f}" for r in res["recent_observations"]])
                 
                 block = f"""--------------------------------------------------------------------------------
@@ -268,9 +283,9 @@ Transformations (Official World Bank / St. Louis Fed Formulas):
   2. Change from Year Ago: {fmt_val(t['change_from_year_ago'], '')}
   3. Percent Change: {fmt_val(t['percent_change'], '%')}
   4. Percent Change from Year Ago: {fmt_val(t['percent_change_from_year_ago'], '%')}
-  5. Compounded Annual Rate of Change: {fmt_val(t['compounded_annual_rate_of_change'], '%')}
+  5. Compounded Annual Rate of Change: {car_str}
   6. Continuously Compounded Rate of Change: {fmt_val(t['continuously_compounded_rate_of_change'], '%')}
-  7. Continuously Compounded Annual Rate of Change: {fmt_val(t['continuously_compounded_annual_rate_of_change'], '%')}
+  7. Continuously Compounded Annual Rate of Change: {ccar_str}
 
 Recent Observations (Last 5):
 {recent_lines}"""
