@@ -500,6 +500,50 @@ def calc_gold_oil_ratio(gold_price, oil_price) -> Optional[Dict[str, Any]]:
     except (TypeError, ValueError, ZeroDivisionError):
         return None
 
+
+def calc_early_employment_crack(ic4wsa_yoy, unrate_delta) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (ic4wsa_yoy, unrate_delta)):
+        return None
+    try:
+        claims_yoy = float(ic4wsa_yoy)
+        u_delta = float(unrate_delta)
+        if not (math.isfinite(claims_yoy) and math.isfinite(u_delta)):
+            return None
+
+        # Prevent falling unemployment from generating false crisis signals
+        effective_u_delta = max(0.0, u_delta)
+        raw_index = claims_yoy - (effective_u_delta * 10.0)
+        if not math.isfinite(raw_index):
+            return None
+        index = round(raw_index, 2)
+
+        if claims_yoy >= 15.0 and index >= 15.0:
+            status = "HIDDEN_CRISIS_UNFOLDING"
+        elif claims_yoy >= 8.0 and index >= 5.0:
+            status = "EARLY_WARNING_CRACK"
+        else:
+            status = "LABOR_MARKET_ALIGNED"
+
+        return {
+            "model_id": "MODEL_23.6",
+            "model_name": "Early Employment Crack Signal",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.6",
+            "primary_value": index,
+            "unit": "Index Points",
+            "status": status,
+            "inputs": {
+                "ic4wsa_yoy_pct": round(claims_yoy, 2),
+                "unrate_delta_ppt": round(u_delta, 2)
+            },
+            "components": {
+                "effective_unrate_delta": round(effective_u_delta, 2),
+                "crack_threshold": 15.0
+            },
+            "interpretation": "Identifies early labor cracks by comparing weekly jobless claims spikes against delayed headline unemployment shifts."
+        }
+    except (TypeError, ValueError):
+        return None
+
 # ==============================================================================
 # 3. MAIN EXECUTION ENGINE
 # ==============================================================================
