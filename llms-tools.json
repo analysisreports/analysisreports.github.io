@@ -12,7 +12,7 @@
                       "type":  "function",
                       "function":  {
                                        "name":  "calculate_fed_policy_spread",
-                                       "description":  "Measures market expectations for Fed rate cuts or hikes relative to the policy ceiling (DGS1MO - DFEDTARU).",
+                                       "description":  "Calculates the Fed Policy Rate Market Pressure Gauge (DGS1MO - DFEDTARU) with calibrated thresholds (>+4 bps, -4 to +4 bps, <= -15 bps).",
                                        "parameters":  {
                                                           "type":  "object",
                                                           "properties":  {

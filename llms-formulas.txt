@@ -296,8 +296,8 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 
 ## 🏛️ 1. KADEME: ÇEKİRDEK MAKRO MODELLER
 
-### 1. FED POLITIKA DURUSU (FED POLICY STANCE & EXPECTATION SPREAD)
-- Purpose: Piyasanın Fed politika tavanına kıyasla kısa vadeli indirim/artırım beklentisini ölçer.
+### 1. FED POLITIKA DURUSU VE PIYASA BASKI KADRANI (FED POLICY STANCE & MARKET PRESSURE GAUGE)
+- Purpose: 1 aylık Hazine Bonosu faizi ile Fed politika faizi tavanı arasındaki makası (DGS1MO - DFEDTARU) ölçerek piyasanın Fed'e dayattığı indirim baskısını veya likidite daralması kaynaklı yukarı yönlü şahin stresini tespit eder.
 - Data Series Keys:
   - FRED: DGS1MO (Market Yield on U.S. Treasury Securities at 1-Month Constant Maturity)
   - FRED: DFEDTARU (Federal Funds Target Range - Upper Limit)
@@ -319,21 +319,24 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
               return None
           spread = round(raw_spread, 2)
 
-          if min(spread, -25.0) == spread and spread != -25.0:
-              status = "DOVISH_EASING_BIAS"
-          elif max(spread, 25.0) == spread and spread != 25.0:
-              status = "HAWKISH_TIGHTENING_BIAS"
+          if spread > 4.0:
+              status = "HAWKISH_MARKET_PRESSURE"
+          elif spread <= -15.0:
+              status = "AGGRESSIVE_EASING_PRESSURE"
+          elif spread < -4.0:
+              status = "MODERATE_EASING_BIAS"
           else:
-              status = "NEUTRAL_PRICING"
+              status = "BALANCED_POLICY_EQUILIBRIUM"
 
           return {"spread_bps": spread, "status": status}
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Spread altı -25 bps : DOVISH_EASING_BIAS (Güçlü Faiz İndirimi Beklentisi)
-  - Spread üstü +25 bps : HAWKISH_TIGHTENING_BIAS (Ek Faiz Artırımı Riski)
-  - -25 ile +25 arası : NEUTRAL_PRICING (Mevcut Politika ile Piyasa Dengeli)
-  
+  - Spread > +4 bps : HAWKISH_MARKET_PRESSURE (Piyasa Fed Politika Tavanının Bile Üzerinde Getiri Talep Ediyor / Aşırı Nakit Sıkışması / Şahin Sıkılaşma Baskısı)
+  - Spread <= -15 bps : AGGRESSIVE_EASING_PRESSURE (Piyasa Fed'i Agresif İndirime Zorluyor / Ağır Güvercin Baskı / Erken İndirim Fiyatlaması)
+  - -15 bps < Spread < -4 bps : MODERATE_EASING_BIAS (Hafif Güvercin Eğim / Yumuşak İndirim Beklentisi Başlangıcı)
+  - -4 bps ile +4 bps arası : BALANCED_POLICY_EQUILIBRIUM (Fed Politika Tavanı ile Piyasa Fiyatlaması Tam Uyumlu ve Dengede)
+
 ---
 
 ### 2. REEL POLITIKA FAIZI (REAL POLICY RATE & RESTRICTIVENESS)

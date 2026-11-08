@@ -100,7 +100,7 @@ Cross-verify all analytical assertions against the deterministic code blocks in 
 - 0.4. Temporal Anchors & ISO 8601 Standard
 
 1. KADEME: ÇEKİRDEK MAKRO MODELLER
-- 1. Fed Politika Duruşu (Fed Policy Stance & Expectation Spread: DGS1MO, DFEDTARU)
+- 1. Fed Politika Duruşu ve Piyasa Baskı Kadranı (Fed Policy Stance & Market Pressure Gauge: DGS1MO, DFEDTARU)
 - 2. Reel Politika Faizi (Real Policy Rate & Restrictiveness: DFF, CPIAUCSL)
 - 3. Sahm Resesyon Kuralı (Official Sahm Rule Recession Indicator: SAHMREALTIME, UNRATE)
 - 4. Kısa Vade Hazine Eğimi ve Likidite Makası (Front-End T-Bill Slope & Liquidity Spread: DGS3MO, DGS1MO)
