@@ -9,8 +9,8 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-08 14:15 UTC
-> **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed, BIS & World Bank observations. Zero hallucination guarantee.
+> **Last Calibrated Sync:** 2026-11-08 14:28 UTC
+> **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
 | :--- | :--- | :---: | :---: | :--- | :--- |
@@ -19,7 +19,6 @@
 | **MODEL_5** | Net Fed Liquidity Index | **5.791** | Trillion USD | `NEUTRAL_LIQUIDITY_EQUILIBRIUM` | Unencumbered commercial bank liquidity: WALCL - (TGA + ... |
 | **MODEL_6** | Treasury Yield Curve Slope (10Y - 2Y) | **35.0** | Basis Points (bps) | `NORMAL_CURVE_EXPANSION` | Leading cyclical economic barometer. Inversions (bps < ... |
 | **MODEL_16** | CBOE Volatility & Market Fear Regime | **28.18** | Points | `ELEVATED_STRESS` | 30-day forward S&P 500 implied volatility fear gauge an... |
-| **MODEL_21** | Gold to Oil Crisis & Recession Ratio | **41.2** | Barrels per Ounce | `MACRO_CRISIS_RECESSION` | Calculates ounces of gold per barrel of crude oil to cl... |
 | **MODEL_25.12** | Brent - WTI Seaborne Risk Spread | **7.39** | USD | `NORMAL_TRANSATLANTIC_ARBITRAGE` | Seaborne geopolitical friction and maritime risk spread... |
 | **MODEL_25.13** | Labor Market Momentum Index (LMMI) | **0.86** | Net Momentum Pts | `MODERATE_LABOR_EXPANSION` | Couples nonfarm payroll expansion with unemployment cha... |
 | **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.11** | Score (Normalized) | `BALANCED_HARDWARE_FLOW` | Normalized composite metric monitoring semiconductor ph... |
@@ -59,13 +58,6 @@
 - **Evaluated Status:** `ELEVATED_STRESS` (Primary Value: 28.18 Points)
 - **Inputs Evaluated:** `{"vix_close": 28.18}`
 - **Economic Synthesis:** 30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime.
-
-#### [MODEL_21] Gold to Oil Crisis & Recession Ratio
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#21
-- **Evaluated Status:** `MACRO_CRISIS_RECESSION` (Primary Value: 41.2 Barrels per Ounce)
-- **Inputs Evaluated:** `{"gold_price_usd_oz": 4105.0, "oil_price_usd_bbl": 99.64}`
-- **Component Weights:** `{"ratio": 41.2, "historical_equilibrium_band": "12.0 - 25.0"}`
-- **Economic Synthesis:** Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks.
 
 #### [MODEL_25.12] Brent - WTI Seaborne Risk Spread
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.12
