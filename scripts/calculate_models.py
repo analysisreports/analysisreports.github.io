@@ -461,6 +461,45 @@ def calc_jpy_carry_crack(dff_val, mutan_val, jpy_fx_mom) -> Optional[Dict[str, A
         return None
 
 
+
+def calc_gold_oil_ratio(gold_price, oil_price) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (gold_price, oil_price)):
+        return None
+    try:
+        g = float(gold_price)
+        o = float(oil_price)
+        if not (math.isfinite(g) and math.isfinite(o)):
+            return None
+        if g <= 0 or o <= 0:
+            return None
+        ratio = round(g / o, 2)
+        if ratio >= 25.0:
+            status = "MACRO_CRISIS_RECESSION"
+        elif ratio <= 12.0:
+            status = "SUPPLY_SHOCK_INFLATION"
+        else:
+            status = "HISTORICAL_EQUILIBRIUM"
+
+        return {
+            "model_id": "MODEL_21",
+            "model_name": "Gold to Oil Crisis & Recession Ratio",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#21",
+            "primary_value": ratio,
+            "unit": "Barrels per Ounce",
+            "status": status,
+            "inputs": {
+                "gold_price_usd_oz": round(g, 2),
+                "oil_price_usd_bbl": round(o, 2)
+            },
+            "components": {
+                "ratio": ratio,
+                "historical_equilibrium_band": "12.0 - 25.0"
+            },
+            "interpretation": "Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks."
+        }
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+
 # ==============================================================================
 # 3. MAIN EXECUTION ENGINE
 # ==============================================================================
@@ -595,7 +634,7 @@ def main():
         "> Endpoint: https://analysisreports.github.io/llms-models.txt",
         "> JSON Twin Endpoint: https://analysisreports.github.io/llms-models.json",
         "> Master Formulas Engine: https://analysisreports.github.io/llms-formulas.txt",
-        "> Ingested Live Time-Series: FRED & BIS APIs",
+        "> Ingested Live Time-Series: FRED, BIS & World Bank (The Pink Sheet) APIs",
         "> Root Index: https://analysisreports.github.io/llms.txt",
         "",
         "# ==============================================================================",

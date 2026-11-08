@@ -1,196 +1,214 @@
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "metadata": {
-    "engine": "Autonomous Quantitative Macroeconomic Model Engine",
-    "author": "Ersoy Toptaş",
-    "license": "CC BY 4.0",
-    "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-08T13:28:40.964654+00:00",
-    "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
-    "monitored_data_sources": [
-      "Federal Reserve Bank of St. Louis (FRED)",
-      "Bank for International Settlements (BIS)"
-    ],
-    "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 9
-  },
-  "models": [
-    {
-      "model_id": "MODEL_1",
-      "model_name": "Global Central Bank Policy Benchmark & Rate Disparity",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#1",
-      "primary_value": 3.875,
-      "unit": "Percent (%)",
-      "status": "CALIBRATED_POLICY_EASING",
-      "inputs": {
-        "fed_funds_midpoint": 3.875,
-        "ecb_deposit_facility": 2.5,
-        "boj_overnight_call": 1.25,
-        "boe_bank_rate": 3.75,
-        "pboc_loan_prime_rate": 3.0
-      },
-      "rate_disparities": {
-        "us_minus_ecb_spread_pts": 1.375,
-        "us_minus_boj_carry_spread_pts": 2.625
-      },
-      "rates_snapshot": [
-        {
-          "entity_id": "GEO_CN",
-          "authority": "China (People's Bank of China)",
-          "rate": 3.0,
-          "date": "2026-11-03"
-        },
-        {
-          "entity_id": "GEO_GB",
-          "authority": "United Kingdom (Bank of England)",
-          "rate": 3.75,
-          "date": "2026-11-02"
-        },
-        {
-          "entity_id": "GEO_JP",
-          "authority": "Japan (Bank of Japan)",
-          "rate": 1.25,
-          "date": "2026-11-03"
-        },
-        {
-          "entity_id": "GEO_US",
-          "authority": "United States (Federal Reserve)",
-          "rate": 3.875,
-          "date": "2026-11-03"
-        },
-        {
-          "entity_id": "GEO_DE",
-          "authority": "Eurozone (European Central Bank)",
-          "rate": 2.5,
-          "date": "2026-11-03"
-        }
-      ],
-      "interpretation": "Canonical policy rates across G5 central banks sourced from Bank for International Settlements (BIS). Guides cross-border carry trades and sovereign yields."
-    },
-    {
-      "model_id": "MODEL_3",
-      "model_name": "Official Sahm Rule Recession Indicator",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#3",
-      "primary_value": 0.0,
-      "unit": "Percentage Points",
-      "status": "NORMAL_LABOR_MARKET",
-      "inputs": {
-        "sahm_realtime_val": 0.0
-      },
-      "interpretation": "Real-time recession detection triggered when 3-month unemployment average rises >= 0.50 ppt above prior 12-month low."
-    },
-    {
-      "model_id": "MODEL_5",
-      "model_name": "Net Fed Liquidity Index",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#5",
-      "primary_value": 5.791,
-      "unit": "Trillion USD",
-      "status": "NEUTRAL_LIQUIDITY_EQUILIBRIUM",
-      "inputs": {
-        "fed_total_assets_walcl_mil": 6748145.0,
-        "treasury_general_account_tga_mil": 957175.0,
-        "overnight_reverse_repo_rrp_bil": 0.15
-      },
-      "metrics": {
-        "net_liquidity_millions_usd": 5790820.0,
-        "net_liquidity_trillions_usd": 5.791
-      },
-      "interpretation": "Unencumbered commercial bank liquidity: WALCL - (TGA + ON_RRP). Direct fuel for equity asset valuations."
-    },
-    {
-      "model_id": "MODEL_6",
-      "model_name": "Treasury Yield Curve Slope (10Y - 2Y)",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#6",
-      "primary_value": 35.0,
-      "unit": "Basis Points (bps)",
-      "status": "NORMAL_CURVE_EXPANSION",
-      "inputs": {
-        "t10y2y_spread_pct": 0.35
-      },
-      "interpretation": "Leading cyclical economic barometer. Inversions (bps < 0) historically precede sovereign US business cycle recessions."
-    },
-    {
-      "model_id": "MODEL_16",
-      "model_name": "CBOE Volatility & Market Fear Regime",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#16",
-      "primary_value": 28.18,
-      "unit": "Points",
-      "status": "ELEVATED_STRESS",
-      "market_bias": "RISK_OFF",
-      "inputs": {
-        "vix_close": 28.18
-      },
-      "interpretation": "30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime."
-    },
-    {
-      "model_id": "MODEL_25.12",
-      "model_name": "Brent - WTI Seaborne Risk Spread",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.12",
-      "primary_value": 7.39,
-      "unit": "USD",
-      "status": "NORMAL_TRANSATLANTIC_ARBITRAGE",
-      "inputs": {
-        "brent_usd": 107.03,
-        "wti_usd": 99.64
-      },
-      "interpretation": "Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI."
-    },
-    {
-      "model_id": "MODEL_25.13",
-      "model_name": "Labor Market Momentum Index (LMMI)",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.13",
-      "primary_value": 0.86,
-      "unit": "Net Momentum Pts",
-      "status": "MODERATE_LABOR_EXPANSION",
-      "inputs": {
-        "payems_current": 159293.0,
-        "payems_year_ago": 158408.0,
-        "unrate_current": 4.1,
-        "unrate_year_ago": 4.4
-      },
-      "metrics": {
-        "payroll_growth_yoy_pct": 0.56,
-        "unemployment_rate_diff_yoy": -0.3,
-        "employment_strength_ratio": 0.14
-      },
-      "interpretation": "Couples nonfarm payroll expansion with unemployment change to gauge labor slack and wage inflation momentum."
-    },
-    {
-      "model_id": "MODEL_25.14",
-      "model_name": "AI Hardware & Semiconductor Supply Chain Stress Gauge",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.14",
-      "primary_value": 0.11,
-      "unit": "Score (Normalized)",
-      "status": "BALANCED_HARDWARE_FLOW",
-      "inputs": {
-        "gscpi_std_dev": 0.0,
-        "sox_yoy_pct": 34.59,
-        "vix_level": 28.18
-      },
-      "components": {
-        "gscpi_weight": 0.0,
-        "sox_weight": -0.242,
-        "vix_weight": 0.352
-      },
-      "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation."
-    },
-    {
-      "model_id": "MODEL_25.16",
-      "model_name": "Yen Carry Trade Dissolution and Stress Gauge",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.16",
-      "primary_value": 8.0877,
-      "unit": "% (Net Carry Buffer)",
-      "status": "CALM_ACCUMULATION",
-      "inputs": {
-        "rate_us_dff": 3.88,
-        "rate_jp_mutan": 0.25,
-        "jpy_30d_momentum_pct": 4.46
-      },
-      "components": {
-        "rate_spread": 3.63,
-        "net_buffer": 8.0877
-      },
-      "interpretation": "Monitors cross-currency Yen Carry Trade buffer, unwinding risk, and global leverage liquidation shocks."
-    }
-  ]
+﻿{
+    "$schema":  "https://json-schema.org/draft/2020-12/schema",
+    "metadata":  {
+                     "engine":  "Autonomous Quantitative Macroeconomic Model Engine",
+                     "author":  "Ersoy ToptaÅŸ",
+                     "license":  "CC BY 4.0",
+                     "sync_status":  "SUCCESS",
+                     "last_successful_sync":  "2026-11-08T13:28:40.964654+00:00",
+                     "master_formulas_reference":  "https://analysisreports.github.io/llms-formulas.txt",
+                     "monitored_data_sources":  [
+                                                    "Federal Reserve Bank of St. Louis (FRED)",
+                                                    "Bank for International Settlements (BIS)",
+                                                    "World Bank (The Pink Sheet)"
+                                                ],
+                     "entity_dictionary":  "https://analysisreports.github.io/llms-entities-id.txt",
+                     "total_models_active":  10
+                 },
+    "models":  [
+                   {
+                       "model_id":  "MODEL_1",
+                       "model_name":  "Global Central Bank Policy Benchmark \u0026 Rate Disparity",
+                       "formula_ref":  "https://analysisreports.github.io/llms-formulas.txt#1",
+                       "primary_value":  3.875,
+                       "unit":  "Percent (%)",
+                       "status":  "CALIBRATED_POLICY_EASING",
+                       "inputs":  {
+                                      "fed_funds_midpoint":  3.875,
+                                      "ecb_deposit_facility":  2.5,
+                                      "boj_overnight_call":  1.25,
+                                      "boe_bank_rate":  3.75,
+                                      "pboc_loan_prime_rate":  3.0
+                                  },
+                       "rate_disparities":  {
+                                                "us_minus_ecb_spread_pts":  1.375,
+                                                "us_minus_boj_carry_spread_pts":  2.625
+                                            },
+                       "rates_snapshot":  [
+                                              {
+                                                  "entity_id":  "GEO_CN",
+                                                  "authority":  "China (People\u0027s Bank of China)",
+                                                  "rate":  3.0,
+                                                  "date":  "2026-11-03"
+                                              },
+                                              {
+                                                  "entity_id":  "GEO_GB",
+                                                  "authority":  "United Kingdom (Bank of England)",
+                                                  "rate":  3.75,
+                                                  "date":  "2026-11-02"
+                                              },
+                                              {
+                                                  "entity_id":  "GEO_JP",
+                                                  "authority":  "Japan (Bank of Japan)",
+                                                  "rate":  1.25,
+                                                  "date":  "2026-11-03"
+                                              },
+                                              {
+                                                  "entity_id":  "GEO_US",
+                                                  "authority":  "United States (Federal Reserve)",
+                                                  "rate":  3.875,
+                                                  "date":  "2026-11-03"
+                                              },
+                                              {
+                                                  "entity_id":  "GEO_DE",
+                                                  "authority":  "Eurozone (European Central Bank)",
+                                                  "rate":  2.5,
+                                                  "date":  "2026-11-03"
+                                              }
+                                          ],
+                       "interpretation":  "Canonical policy rates across G5 central banks sourced from Bank for International Settlements (BIS). Guides cross-border carry trades and sovereign yields."
+                   },
+                   {
+                       "model_id":  "MODEL_3",
+                       "model_name":  "Official Sahm Rule Recession Indicator",
+                       "formula_ref":  "https://analysisreports.github.io/llms-formulas.txt#3",
+                       "primary_value":  0.0,
+                       "unit":  "Percentage Points",
+                       "status":  "NORMAL_LABOR_MARKET",
+                       "inputs":  {
+                                      "sahm_realtime_val":  0.0
+                                  },
+                       "interpretation":  "Real-time recession detection triggered when 3-month unemployment average rises \u003e= 0.50 ppt above prior 12-month low."
+                   },
+                   {
+                       "model_id":  "MODEL_5",
+                       "model_name":  "Net Fed Liquidity Index",
+                       "formula_ref":  "https://analysisreports.github.io/llms-formulas.txt#5",
+                       "primary_value":  5.791,
+                       "unit":  "Trillion USD",
+                       "status":  "NEUTRAL_LIQUIDITY_EQUILIBRIUM",
+                       "inputs":  {
+                                      "fed_total_assets_walcl_mil":  6748145.0,
+                                      "treasury_general_account_tga_mil":  957175.0,
+                                      "overnight_reverse_repo_rrp_bil":  0.15
+                                  },
+                       "metrics":  {
+                                       "net_liquidity_millions_usd":  5790820.0,
+                                       "net_liquidity_trillions_usd":  5.791
+                                   },
+                       "interpretation":  "Unencumbered commercial bank liquidity: WALCL - (TGA + ON_RRP). Direct fuel for equity asset valuations."
+                   },
+                   {
+                       "model_id":  "MODEL_6",
+                       "model_name":  "Treasury Yield Curve Slope (10Y - 2Y)",
+                       "formula_ref":  "https://analysisreports.github.io/llms-formulas.txt#6",
+                       "primary_value":  35.0,
+                       "unit":  "Basis Points (bps)",
+                       "status":  "NORMAL_CURVE_EXPANSION",
+                       "inputs":  {
+                                      "t10y2y_spread_pct":  0.35
+                                  },
+                       "interpretation":  "Leading cyclical economic barometer. Inversions (bps \u003c 0) historically precede sovereign US business cycle recessions."
+                   },
+                   {
+                       "model_id":  "MODEL_16",
+                       "model_name":  "CBOE Volatility \u0026 Market Fear Regime",
+                       "formula_ref":  "https://analysisreports.github.io/llms-formulas.txt#16",
+                       "primary_value":  28.18,
+                       "unit":  "Points",
+                       "status":  "ELEVATED_STRESS",
+                       "market_bias":  "RISK_OFF",
+                       "inputs":  {
+                                      "vix_close":  28.18
+                                  },
+                       "interpretation":  "30-day forward S\u0026P 500 implied volatility fear gauge and systemic liquidity stress regime."
+                   },
+                   {
+                       "model_id":  "MODEL_21",
+                       "model_name":  "Gold to Oil Crisis \u0026 Recession Ratio",
+                       "formula_ref":  "https://analysisreports.github.io/llms-formulas.txt#21",
+                       "primary_value":  41.2,
+                       "unit":  "Barrels per Ounce",
+                       "status":  "MACRO_CRISIS_RECESSION",
+                       "inputs":  {
+                                      "gold_price_usd_oz":  4105,
+                                      "oil_price_usd_bbl":  99.64
+                                  },
+                       "components":  {
+                                          "ratio":  41.2,
+                                          "historical_equilibrium_band":  "12.0 - 25.0"
+                                      },
+                       "interpretation":  "Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks."
+                   },
+                   {
+                       "model_id":  "MODEL_25.12",
+                       "model_name":  "Brent - WTI Seaborne Risk Spread",
+                       "formula_ref":  "https://analysisreports.github.io/llms-formulas.txt#25.12",
+                       "primary_value":  7.39,
+                       "unit":  "USD",
+                       "status":  "NORMAL_TRANSATLANTIC_ARBITRAGE",
+                       "inputs":  {
+                                      "brent_usd":  107.03,
+                                      "wti_usd":  99.64
+                                  },
+                       "interpretation":  "Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI."
+                   },
+                   {
+                       "model_id":  "MODEL_25.13",
+                       "model_name":  "Labor Market Momentum Index (LMMI)",
+                       "formula_ref":  "https://analysisreports.github.io/llms-formulas.txt#25.13",
+                       "primary_value":  0.86,
+                       "unit":  "Net Momentum Pts",
+                       "status":  "MODERATE_LABOR_EXPANSION",
+                       "inputs":  {
+                                      "payems_current":  159293.0,
+                                      "payems_year_ago":  158408.0,
+                                      "unrate_current":  4.1,
+                                      "unrate_year_ago":  4.4
+                                  },
+                       "metrics":  {
+                                       "payroll_growth_yoy_pct":  0.56,
+                                       "unemployment_rate_diff_yoy":  -0.3,
+                                       "employment_strength_ratio":  0.14
+                                   },
+                       "interpretation":  "Couples nonfarm payroll expansion with unemployment change to gauge labor slack and wage inflation momentum."
+                   },
+                   {
+                       "model_id":  "MODEL_25.14",
+                       "model_name":  "AI Hardware \u0026 Semiconductor Supply Chain Stress Gauge",
+                       "formula_ref":  "https://analysisreports.github.io/llms-formulas.txt#25.14",
+                       "primary_value":  0.11,
+                       "unit":  "Score (Normalized)",
+                       "status":  "BALANCED_HARDWARE_FLOW",
+                       "inputs":  {
+                                      "gscpi_std_dev":  0.0,
+                                      "sox_yoy_pct":  34.59,
+                                      "vix_level":  28.18
+                                  },
+                       "components":  {
+                                          "gscpi_weight":  0.0,
+                                          "sox_weight":  -0.242,
+                                          "vix_weight":  0.352
+                                      },
+                       "interpretation":  "Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation."
+                   },
+                   {
+                       "model_id":  "MODEL_25.16",
+                       "model_name":  "Yen Carry Trade Dissolution and Stress Gauge",
+                       "formula_ref":  "https://analysisreports.github.io/llms-formulas.txt#25.16",
+                       "primary_value":  8.0877,
+                       "unit":  "% (Net Carry Buffer)",
+                       "status":  "CALM_ACCUMULATION",
+                       "inputs":  {
+                                      "rate_us_dff":  3.88,
+                                      "rate_jp_mutan":  0.25,
+                                      "jpy_30d_momentum_pct":  4.46
+                                  },
+                       "components":  {
+                                          "rate_spread":  3.63,
+                                          "net_buffer":  8.0877
+                                      },
+                       "interpretation":  "Monitors cross-currency Yen Carry Trade buffer, unwinding risk, and global leverage liquidation shocks."
+                   }
+               ]
 }
