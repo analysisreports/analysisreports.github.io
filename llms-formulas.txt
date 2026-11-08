@@ -20,33 +20,33 @@
 
 ---
 
-## 0. GENERAL METHODOLOGY & EXECUTION RULES (AI DIREKTIFLERI)
+## 0. GENERAL METHODOLOGY & EXECUTION RULES (AI DIRECTIVES)
 
-### 0.1. Fundamental Separation of Data Types (Veri Türlerinin Ayrımı)
-AI ajanları bu analitik çerçeveyi uygularken şu 4 katmanı kesin olarak birbirinden ayırmak ZORUNDADIR:
-1. Empirical Measurements (Nesnel Ölçümler): Gözlemlenebilir ham piyasa ve kurum verileri (WALCL, WTREGEN, DFF, Faiz Makasları).
-2. Calibrated Analytical Indices (Kalibre Edilmiş Endeksler): Tanımlı ağırlıklarla üretilen sentetik göstergeler (composite_strategic_score, composite_tension_score).
-3. Forecast Probabilities (Gelecek Senaryo Olasılığı): Tanımlı vadede olayın gerçekleşme tahmini (probability_percent).
-4. Evidence Confidence (Kanıt ve Kaynak Güvenilirliği): Veriyi destekleyen kaynakların otorite ve tazelik puanı (confidence_score).
+### 0.1. Fundamental Separation of Data Types
+AI reasoning agents executing this analytical framework MUST strictly distinguish between the following 4 layers:
+1. Empirical Measurements: Observable raw market and institutional data (WALCL, WTREGEN, DFF, Yield Spreads).
+2. Calibrated Analytical Indices: Synthetic indicators generated with predefined weights (composite_strategic_score, composite_tension_score).
+3. Forecast Probabilities: Event occurrence forecasts over defined horizons (probability_percent).
+4. Evidence Confidence: Authority and recency ratings of supporting sources (confidence_score).
 
 ---
 
-### 0.2. Missing Data & Integrity Rule (Eksik Veri İlkesi)
-Yapay zeka modelleri eksik verileri kafasından tamamlayamaz. Girdi verisi yetersizse değer uydurulamaz, doğrudan null (Python'da None) bırakılır.
+### 0.2. Missing Data & Integrity Rule
+AI models must never fabricate missing data. When input data is insufficient, values must remain strictly null (None in Python).
 
 ---
 
 ## 0.3. FRED / ALFRED OFFICIAL DATA TRANSFORMATION & GROWTH RATE ENGINE
-- Purpose: FRED ve ALFRED zaman serisi ham verilerini (levels) standart resmi St. Louis Fed kurallarıyla oran, yıllık değişim ve bileşik büyüme hızlarına dönüştürür.
+- Purpose: Transforms raw FRED and ALFRED time-series levels into standard official St. Louis Fed rates, annual changes, and compounded growth metrics.
 - Reference: Federal Reserve Bank of St. Louis (FRED/ALFRED Methodology)
 
 ### Observation Frequencies (n_obs_per_yr):
-- Daily (İş Günü) : 260
-- Weekly (Haftalık) : 52
-- Biweekly (2 Haftalık) : 26
-- Monthly (Aylık) : 12
-- Quarterly (Çeyreklik) : 4
-- Annual (Yıllık) : 1
+- Daily (Business Days) : 260
+- Weekly (Weeks) : 52
+- Biweekly (Bi-weekly Periods) : 26
+- Monthly (Calendar Months) : 12
+- Quarterly (Quarters) : 4
+- Annual (Years) : 1
 
 ### Core Transformation Formulas & Python Executables:
 
@@ -65,7 +65,7 @@ def _is_pos(val):
         return False
     return min(val, 0) != val
 
-1. Change (Dönemsel Mutlak Değişim):
+1. Change (Periodic Absolute Change):
    Formula: x(t) - x(t-1)
    Python:
    def fred_change(xt, xt_prev):
@@ -77,7 +77,7 @@ def _is_pos(val):
        except (OverflowError, ValueError):
            return None
 
-2. Change from Year Ago (Yıllık Mutlak Değişim):
+2. Change from Year Ago (Annual Absolute Change):
    Formula: x(t) - x(t - n_obs_per_yr)
    Python:
    def fred_change_year_ago(xt, xt_year_ago):
@@ -89,7 +89,7 @@ def _is_pos(val):
        except (OverflowError, ValueError):
            return None
 
-3. Percent Change (Dönemsel Yüzde Değişim - MoM / QoQ):
+3. Percent Change (Periodic Percent Change - MoM / QoQ):
    Formula: ((x(t) / x(t-1)) - 1) * 100
    Python:
    def fred_percent_change(xt, xt_prev):
@@ -101,7 +101,7 @@ def _is_pos(val):
        except (OverflowError, ValueError, ZeroDivisionError):
            return None
 
-4. Percent Change from Year Ago (Yıllık Yüzde Değişim - YoY):
+4. Percent Change from Year Ago (Annual Percent Change - YoY):
    Formula: ((x(t) / x(t - n_obs_per_yr)) - 1) * 100
    Python:
    def fred_percent_change_year_ago(xt, xt_year_ago):
@@ -113,7 +113,7 @@ def _is_pos(val):
        except (OverflowError, ValueError, ZeroDivisionError):
            return None
 
-5. Compounded Annual Rate of Change (Bileşik Yıllıklandırılmış Büyüme Hızı - SAAR):
+5. Compounded Annual Rate of Change (Compounded Annual Rate of Change - SAAR):
    Formula: (((x(t) / x(t-1)) ** n_obs_per_yr) - 1) * 100
    Python:
    def fred_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
@@ -125,7 +125,7 @@ def _is_pos(val):
        except (OverflowError, ValueError, ZeroDivisionError):
            return None
 
-6. Continuously Compounded Rate of Change (Sürekli Bileşik Değişim Hızı):
+6. Continuously Compounded Rate of Change (Continuously Compounded Rate of Change):
    Formula: (ln(x(t)) - ln(x(t-1))) * 100
    Python:
    def fred_continuously_compounded_rate(xt, xt_prev):
@@ -137,7 +137,7 @@ def _is_pos(val):
        except (OverflowError, ValueError):
            return None
 
-7. Continuously Compounded Annual Rate of Change (Yıllıklandırılmış Sürekli Bileşik Büyüme):
+7. Continuously Compounded Annual Rate of Change (Continuously Compounded Annual Rate of Change):
    Formula: ((ln(x(t)) - ln(x(t-1))) * 100) * n_obs_per_yr
    Python:
    def fred_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
@@ -155,9 +155,9 @@ Interest rates (e.g. FEDFUNDS, DFF, T10Y2Y) and unemployment rates (UNRATE) are 
 ---
 
 ### 0.4. TEMPORAL ANCHORS & ISO 8601 STANDARD
-Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açıklanma zamanları UTC bazlı ISO 8601 (YYYY-MM-DDTHH:MM:SSZ) standardına göre kalibre edilmiştir.
-- observation_date: Verinin ait olduğu ekonomik dönem.
-- release_date: Verinin piyasaya açıklandığı resmi an.
+All chronological timelines, observation windows, and release timestamps across this project are calibrated strictly to UTC-based ISO 8601 (YYYY-MM-DDTHH:MM:SSZ) standard.
+- observation_date: Economic period to which data pertains.
+- release_date: Official moment data is publicly released.
 
 ---
 
@@ -294,10 +294,10 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 
 ---
 
-## 🏛️ 1. KADEME: ÇEKİRDEK MAKRO MODELLER
+## 🏛️ TIER 1: CORE MACROECONOMIC MODELS
 
-### 1. FED POLITIKA DURUSU VE PIYASA BASKI KADRANI (FED POLICY STANCE & MARKET PRESSURE GAUGE)
-- Purpose: 1 aylık Hazine Bonosu faizi ile Fed politika faizi tavanı arasındaki makası (DGS1MO - DFEDTARU) ölçerek piyasanın Fed'e dayattığı indirim baskısını veya likidite daralması kaynaklı yukarı yönlü şahin stresini tespit eder.
+### 1. FED POLICY STANCE & MARKET PRESSURE GAUGE
+- Purpose: Measures the spread between the 1-month Treasury yield and the Federal Funds target upper limit (DGS1MO - DFEDTARU) to evaluate market-implied rate cut pressure or funding-driven hawkish stress.
 - Data Series Keys:
   - FRED: DGS1MO (Market Yield on U.S. Treasury Securities at 1-Month Constant Maturity)
   - FRED: DFEDTARU (Federal Funds Target Range - Upper Limit)
@@ -310,7 +310,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(dgs1mo) and math.isfinite(dfedtaru)):
               return None
-          # Nominal faiz ve politika hedefi negatif olamaz
+          # Nominal yield and policy target cannot be negative
           if min(dgs1mo, 0) != 0 or min(dfedtaru, 0) != 0:
               return None
 
@@ -332,15 +332,15 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Spread > +4 bps : HAWKISH_MARKET_PRESSURE (Piyasa Fed Politika Tavanının Bile Üzerinde Getiri Talep Ediyor / Aşırı Nakit Sıkışması / Şahin Sıkılaşma Baskısı)
-  - Spread <= -15 bps : AGGRESSIVE_EASING_PRESSURE (Piyasa Fed'i Agresif İndirime Zorluyor / Ağır Güvercin Baskı / Erken İndirim Fiyatlaması)
-  - -15 bps < Spread < -4 bps : MODERATE_EASING_BIAS (Hafif Güvercin Eğim / Yumuşak İndirim Beklentisi Başlangıcı)
-  - -4 bps ile +4 bps arası : BALANCED_POLICY_EQUILIBRIUM (Fed Politika Tavanı ile Piyasa Fiyatlaması Tam Uyumlu ve Dengede)
+  - Spread > +4 bps : HAWKISH_MARKET_PRESSURE (Market demands yield above Fed policy ceiling / Acute liquidity tightness / Hawkish stress)
+  - Spread <= -15 bps : AGGRESSIVE_EASING_PRESSURE (Market forces aggressive Fed easing / Heavy dovish pressure / Front-running rate cuts)
+  - -15 bps < Spread < -4 bps : MODERATE_EASING_BIAS (Moderate dovish tilt / Emerging rate cut expectations)
+  - -4 bps to +4 bps : BALANCED_POLICY_EQUILIBRIUM (Fed policy ceiling and market pricing are in full alignment and equilibrium)
 
 ---
 
-### 2. REEL POLITIKA FAIZI (REAL POLICY RATE & RESTRICTIVENESS)
-- Purpose: Efektif borçlanma maliyetinin resmi manşet enflasyondan arındırılmış reel ağırlığını ölçer.
+### 2. REAL POLICY RATE & RESTRICTIVENESS
+- Purpose: Measures the real stance of effective borrowing costs adjusted for headline inflation.
 - Data Series Keys:
   - FRED: DFF (Federal Funds Effective Rate)
   - BLS / FRED: CPIAUCSL (Consumer Price Index for All Urban Consumers: All Items - YoY % Change)
@@ -353,7 +353,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(dff) and math.isfinite(cpi_yoy)):
               return None
-          # Nominal politika faizi negatif olamaz (min(v, 0) == 0 kontrolu: v >= 0)
+          # Nominal policy rate cannot be negative (min(v, 0) == 0 check: v >= 0)
           if min(dff, 0) != 0:
               return None
 
@@ -373,14 +373,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Real_Rate üstü 1.5% : RESTRICTIVE (Sıkılaştırıcı / Dezenflasyon Destekleyici)
-  - 0.0% ile 1.5% arası : NEUTRAL (Nötr Para Politikası)
-  - Real_Rate altı 0.0% : ACCOMMODATIVE (Gevşek Para Politikası / Negatif Reel Getiri)
+  - Real_Rate > 1.5% : RESTRICTIVE (Restrictive stance / Supporting disinflation)
+  - 0.0% to 1.5% : NEUTRAL (Neutral monetary policy)
+  - Real_Rate < 0.0% : ACCOMMODATIVE (Accommodative policy / Negative real yield)
   
 ---
 
-### 3. SAHM RESESYON KURALI (OFFICIAL SAHM RULE RECESSION INDICATOR)
-- Purpose: İşgücü piyasasında 3 aylık hareketli ortalama işsizlik oranının son 12 ayın en düşük 3 aylık ortalamasına göre sıçramasını izleyerek gerçek zamanlı resesyon tespiti yapar.
+### 3. OFFICIAL SAHM RULE RECESSION INDICATOR
+- Purpose: Detects real-time recession onset by tracking whether the 3-month moving average of the unemployment rate exceeds its minimum 3-month average from the prior 12 months by 0.50 percentage points or more.
 - Data Series Keys:
   - Official FRED Benchmark: SAHMREALTIME (Real-time Sahm Rule Recession Indicator)
   - Component Series: UNRATE (Civilian Unemployment Rate - Monthly Seasonally Adjusted)
@@ -393,7 +393,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(unrate_3m_avg) and math.isfinite(min_prior_3m_avg)):
               return None
-          # Issizlik orani ortalamalari negatif olamaz
+          # Unemployment rate averages cannot be negative
           if min(unrate_3m_avg, 0) != 0 or min(min_prior_3m_avg, 0) != 0:
               return None
 
@@ -413,14 +413,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Sahm_Indicator 0.50 veya uzeri : RECESSION_CONFIRMED (Tarihsel Resmi Resesyon Sinyali)
-  - 0.30 ile 0.50 arası : PRE_RECESSION_WARNING (İşgücü Piyasasında Tehlikeli Soğuma)
-  - Sahm_Indicator altı 0.30 : NORMAL_LABOR_MARKET (Sağlıklı İstihdam Patikası)
+  - Sahm_Indicator >= 0.50 : RECESSION_CONFIRMED (Official historical recession trigger)
+  - 0.30 to 0.50 : PRE_RECESSION_WARNING (Dangerous labor market cooling)
+  - Sahm_Indicator < 0.30 : NORMAL_LABOR_MARKET (Healthy employment path)
   
 ---
 
-### 4. KISA VADE HAZINE EGIMI VE LIKIDITE MAKASI (FRONT-END T-BILL SLOPE & LIQUIDITY SPREAD)
-- Purpose: Para piyasalarında 3 aylık ve 1 aylık Hazine bonoları arasındaki eğimi ve kısa vadeli nakit fonlama baskısını izler.
+### 4. FRONT-END T-BILL SLOPE & LIQUIDITY SPREAD
+- Purpose: Tracks the slope between 3-month and 1-month Treasury bills to detect front-end cash funding strain and collateral squeeze in money markets.
 - Data Series Keys:
   - FRED: DGS3MO (3-Month Treasury Bill Secondary Market Rate)
   - FRED: DGS1MO (1-Month Treasury Bill Secondary Market Rate)
@@ -433,7 +433,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(dgs3mo) and math.isfinite(dgs1mo)):
               return None
-          # Nominal bono faizleri negatif olamaz
+          # Nominal bill yields cannot be negative
           if min(dgs3mo, 0) != 0 or min(dgs1mo, 0) != 0:
               return None
 
@@ -451,16 +451,16 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Spread altı 0 : INVERTED_FRONT_END (Ters Kısa Vade Eğrisi / Teminat & Likidite Baskısı / Collateral Squeeze)
-  - Spread 0 veya uzeri : NORMAL_SLOPE (Sağlıklı Kısa Vadeli Likidite Dağılımı)
+  - Spread < 0 : INVERTED_FRONT_END (Inverted front-end slope / Collateral & liquidity squeeze)
+  - Spread >= 0 : NORMAL_SLOPE (Healthy front-end liquidity distribution)
   
 ---
 
-## 📊 2. KADEME: İLERİ DÜZEY KURUMSAL MAKRO MODELLER
+## 📊 TIER 2: ADVANCED INSTITUTIONAL MACRO MODELS
 
-### 5. NET FED LIKIDITESI (NET FED LIQUIDITY INDEX)
-- Purpose: Fed bilanço büyüklüğünden Hazine genel hesabı (TGA) ve ters repo (ON RRP) rezervlerini düşerek piyasadaki serbest dolar likiditesini tam birim standardizasyonuyla hesaplar.
-- Unit Standard: Girdilerin tamamı Milyon Dolar (Millions of USD) standardında olmalıdır. RRPONTSYD Milyar Dolar çekilirse fonksiyona girmeden önce 1000 ile çarpılarak Milyon Dolar yapılmalıdır.
+### 5. NET FED LIQUIDITY INDEX
+- Purpose: Calculates free dollar liquidity in the financial system with strict unit standardization by subtracting the Treasury General Account (TGA) and overnight reverse repo (ON RRP) balances from total Federal Reserve assets.
+- Unit Standard: All input series must be standardized in Millions of USD. If RRPONTSYD is ingested in Billions of USD, it must be multiplied by 1000 before being passed to the function.
 - Data Series Keys:
   - FRED: WALCL (Federal Reserve Total Assets - Millions USD)
   - FRED: WTREGEN (Treasury General Account / TGA - Millions USD)
@@ -474,10 +474,10 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(walcl) and math.isfinite(wtregen) and math.isfinite(rrpontsyd)):
               return None
-          # Fed toplam bilancosu kesinlikle pozitif olmalidir
+          # Fed total balance sheet must be strictly positive
           if min(walcl, 0) == walcl:
               return None
-          # TGA ve ON RRP bakiye serileri negatif olamaz
+          # TGA and ON RRP balance series cannot be negative
           if min(wtregen, 0) != 0 or min(rrpontsyd, 0) != 0:
               return None
 
@@ -506,14 +506,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Delta Net_Liquidity pozitif : LIQUIDITY_EXPANSION (Piyasa Serbest Rezervi Pozitif / Risk-On Destekleyici)
-  - Delta Net_Liquidity nötr (0.00) : NEUTRAL (Parasal Denge / Değişmeyen Rezerv)
-  - Delta Net_Liquidity negatif : LIQUIDITY_CONTRACTION (Likidite Daralması / Risk-Off / Finansal Sıkılaşma)
+  - Delta Net_Liquidity > 0 : LIQUIDITY_EXPANSION (Positive net reserve liquidity / Risk-on support)
+  - Delta Net_Liquidity == 0.00 : NEUTRAL (Monetary equilibrium / Unchanged net reserves)
+  - Delta Net_Liquidity < 0 : LIQUIDITY_CONTRACTION (Liquidity contraction / Risk-off / Financial tightening)
 
 ---
 
-### 6. GETIRI EGRISI MAKASI (10Y - 2Y YIELD SPREAD BPS)
-- Purpose: Tahvil piyasasındaki döngüsel resesyon veya ekonomik toparlanma eğimini baz puan olarak ölçer.
+### 6. 10Y - 2Y YIELD SPREAD BPS
+- Purpose: Measures the cyclical recession or economic recovery slope in the Treasury bond market in basis points.
 - Data Series Keys:
   - FRED: DGS10 (Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity)
   - FRED: DGS2 (Market Yield on U.S. Treasury Securities at 2-Year Constant Maturity)
@@ -527,7 +527,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(dgs10) and math.isfinite(dgs2)):
               return None
-          # Nominal tahvil faizleri negatif olamaz (min(v, 0) == 0 kontrolu: v >= 0)
+          # Nominal Treasury yields cannot be negative (min(v, 0) == 0 check: v >= 0)
           if min(dgs10, 0) != 0 or min(dgs2, 0) != 0:
               return None
 
@@ -547,14 +547,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Yield_Spread_bps altı 0 : INVERTED (Ters Getiri Eğrisi / Resesyonist Fiyatlama)
-  - Yield_Spread_bps == 0 : FLAT (Düzleşen Eğri / Döngü Değişim Noktası)
-  - Yield_Spread_bps üstü 0 : NORMAL (Pozitif Eğim / Ekonomik Genişleme)
+  - Yield_Spread_bps < 0 : INVERTED (Inverted yield curve / Recessionary pricing)
+  - Yield_Spread_bps == 0 : FLAT (Flattening yield curve / Cyclical turning point)
+  - Yield_Spread_bps > 0 : NORMAL (Positive yield curve slope / Economic expansion)
 
 ---
 
-### 7. 10 YILLIK BASABAS ENFLASYON (10-YEAR BREAKEVEN INFLATION RATE)
-- Purpose: Tahvil piyasasının önümüzdeki 10 yıl için beklediği yıllık ortalama piyasa enflasyon fiyatlamasını gösterir.
+### 7. 10-YEAR BREAKEVEN INFLATION RATE
+- Purpose: Reflects the bond market's expected average annual inflation rate over the next 10 years.
 - Data Series Keys:
   - FRED: DGS10 (10-Year Treasury Constant Maturity Nominal Rate)
   - FRED: DFII10 (10-Year Treasury Inflation-Indexed Security / TIPS Yield)
@@ -568,7 +568,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(dgs10) and math.isfinite(dfii10)):
               return None
-          # Nominal faiz negatif olamaz (TIPS reel faizi negatif olabilir)
+          # Nominal yield cannot be negative (TIPS real yield may be negative)
           if min(dgs10, 0) != 0:
               return None
 
@@ -587,14 +587,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Breakeven üstü 2.50% : DE_ANCHORING_RISK (Enflasyon Çıpasında Çözülme Riski)
-  - 2.00% ile 2.50% arası : FED_ALIGNED_EQUILIBRIUM (Fed Hedefiyle Uyumlu Dengeli Fiyatlama)
-  - Breakeven altı 2.00% : DEFLATION_RISK (Deflasyon / Talep Yetersizliği Fiyatlaması)
+  - Breakeven > 2.50% : DE_ANCHORING_RISK (Inflation de-anchoring risk)
+  - 2.00% to 2.50% : FED_ALIGNED_EQUILIBRIUM (Balanced pricing aligned with Fed target)
+  - Breakeven < 2.00% : DEFLATION_RISK (Deflation / Insufficient aggregate demand pricing)
 
 ---
 
-### 8. YUMUSAK INIS & BEVERIDGE ORANI (BEVERIDGE CURVE LABOR TIGHTNESS)
-- Purpose: İşsizlik artmadan açık iş ilanlarının dengelenip dengelenmediğini ölçer (Açık iş ilanı / İşsiz sayısı oranı).
+### 8. BEVERIDGE CURVE LABOR TIGHTNESS
+- Purpose: Measures whether job openings are normalizing without driving up unemployment (Job Openings to Unemployed ratio).
 - Data Series Keys:
   - BLS / FRED: JTSJOL (Job Openings: Total Nonfarm - JOLTS)
   - BLS / FRED: UNEMPLOY (Unemployed Persons - Thousands)
@@ -607,7 +607,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(jtsjol) and math.isfinite(unemploy)):
               return None
-          # Kisi ve ilan sayisi negatif olamaz. Issiz sayisi sifir olamaz (zero division).
+          # Counts cannot be negative. Unemployed count cannot be zero (zero division guard).
           if min(jtsjol, 0) != 0 or min(unemploy, 0) != 0 or unemploy == 0:
               return None
 
@@ -626,14 +626,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - Ratio üstü 1.50 : OVERHEATED_LABOR (Aşırı Isınmış İşgücü Piyasası / Ücret Enflasyonu Riski)
-  - 1.00 ile 1.50 arası : SOFT_LANDING_BALANCE (Yumuşak İniş Patikası / Dengeli İstihdam)
-  - Ratio altı 1.00 : COOLING_LABOR (Zayıflayan İstihdam Talebi / İşsizlik Baskısı Artıyor)
+  - Ratio > 1.50 : OVERHEATED_LABOR (Overheated labor market / Wage inflation risk)
+  - 1.00 to 1.50 : SOFT_LANDING_BALANCE (Soft landing trajectory / Balanced employment)
+  - Ratio < 1.00 : COOLING_LABOR (Weakening labor demand / Rising unemployment pressure)
 
 ---
 
-### 9. FINANSAL BASKILANMA & BORC CEVRILEBILIRLIK (FINANCIAL REPRESSION INDEX)
-- Purpose: Negatif reel getiri ortamında kamu borcunun reel eritilmesi veya yüksek reel faizle borç krizine girme riskini puanlar.
+### 9. FINANCIAL REPRESSION INDEX
+- Purpose: Scores the risk of eroding public debt in real terms under negative real yields versus triggering a debt service crisis under high real rates.
 - Data Series Keys:
   - FRED: DGS10 (10-Year Nominal Treasury Yield)
   - BLS / FRED: CPIAUCSL (CPI YoY % Change)
@@ -648,7 +648,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(dgs10) and math.isfinite(cpi_yoy) and math.isfinite(debt_gdp_pct)):
               return None
-          # Nominal faiz ve borc/GSYIH orani negatif olamaz (min(v, 0) == 0 kontrolu: v >= 0)
+          # Nominal yield and debt/GDP ratio cannot be negative (min(v, 0) == 0 check: v >= 0)
           if min(dgs10, 0) != 0 or min(debt_gdp_pct, 0) != 0:
               return None
 
@@ -673,14 +673,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Index altı 0.00 : REPRESSION_REGIME (Finansal Baskılanma Rejimi / Enflasyon Kamu Borcunu Reel Olarak Eriyor)
-  - 0.00 ile 1.50 arası : SUSTAINABLE_CYCLE (Sürdürülebilir Kamu Borç Döngüsü)
-  - Index üstü 1.50 : DEBT_CRISIS_ALARM (Ağır Borç Servis Kriz Eşiği / Faiz Giderleri Bütçeyi Kilitliyor)
+  - Index < 0.00 : REPRESSION_REGIME (Financial repression regime / Inflation eroding public debt in real terms)
+  - 0.00 to 1.50 : SUSTAINABLE_CYCLE (Sustainable public debt service cycle)
+  - Index > 1.50 : DEBT_CRISIS_ALARM (Severe debt service crisis threshold / Interest expenses crowding out fiscal budget)
   
 ---
 
-### 10. KURESEL DOLAR HEGEMONYASI & TRIFFIN DILEMMASI (TRIFFIN EXTERNAL BALANCE)
-- Purpose: Doların rezerv para gücü ile ABD ticaret açığının küresel likidite dengesizliklerini izler.
+### 10. TRIFFIN EXTERNAL BALANCE
+- Purpose: Tracks global liquidity imbalances between the US dollar's reserve currency status and the US external trade deficit.
 - Data Series Keys:
   - FRED: DTWEXBGS (Nominal Broad U.S. Dollar Index)
   - BEA / FRED: BOPGSTB (U.S. Trade Balance: Goods and Services, Balance of Payments - Millions USD)
@@ -693,10 +693,10 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(dtwexbgs) and math.isfinite(bopgstb)):
               return None
-          # Dolar endeksi kesinlikle pozitif olmalidir (sifir ve negatif kontrolu)
+          # Dollar index must be strictly positive (zero and negative guard)
           if min(dtwexbgs, 0) == dtwexbgs:
               return None
-          # Dis denge mutlak degeri sifir olamaz (payda kontrolu)
+          # Trade balance absolute value cannot be zero (denominator guard)
           if bopgstb == 0 or abs(bopgstb) == 0:
               return None
 
@@ -705,18 +705,18 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - Artan Endeks : Güçlü Dolar & Dış Açık Kırılganlığı (Küresel Dolar Kıtlığı ve Fonlama Baskısı)
-  - Düşen Endeks : Küresel Finansal Koşullarda Rahatlama
+  - Rising Index : Strong Dollar & External Deficit Fragility (Offshore dollar shortage and funding stress)
+  - Falling Index : Global Financial Conditions Easing
 
 ---
 
-### 11. TAYLOR KURALI OPTIMAL POLITIKA FAIZI (TAYLOR RULE POLICY GAP)
-- Purpose: Mevcut enflasyon ve reel çıktı açığına göre Fed'in olması gereken optimal politika faizini ve sapmayı hesaplar.
+### 11. TAYLOR RULE POLICY GAP
+- Purpose: Computes the Fed's optimal policy rate and deviation gap based on headline inflation and the output gap.
 - Data Series Keys:
-  - FRED: DFF (Federal Funds Effective Rate - Fiili Politika Faizi)
-  - BLS / FRED: CPIAUCSL (Yıllık % Değişim / YoY Olarak Dönüştürülmelidir)
-  - BEA / FRED: GDPC1 (Real Gross Domestic Product - Milyar Dolar)
-  - CBO / FRED: GDPPOT (Real Potential Gross Domestic Product - Milyar Dolar)
+  - FRED: DFF (Federal Funds Effective Rate - Actual Policy Rate)
+  - BLS / FRED: CPIAUCSL (Must be transformed to YoY % Change)
+  - BEA / FRED: GDPC1 (Real Gross Domestic Product - Billions USD)
+  - CBO / FRED: GDPPOT (Real Potential Gross Domestic Product - Billions USD)
 - Baseline Assumptions:
   - Equilibrium Real Neutral Rate (r*): 2.0%
   - Target Inflation (pi*): 2.0%
@@ -731,10 +731,10 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(dff) and math.isfinite(cpi_yoy) and math.isfinite(gdpc1) and math.isfinite(gdppot)):
               return None
-          # Nominal politika faizi negatif olamaz (min(v, 0) == 0 kontrolu: v >= 0)
+          # Nominal policy rate cannot be negative (min(v, 0) == 0 check: v >= 0)
           if min(dff, 0) != 0:
               return None
-          # Reel GSYIH ve potansiyel GSYIH kesinlikle pozitif olmalidir
+          # Real GDP and potential GDP must be strictly positive
           if min(gdpc1, 0) == gdpc1 or min(gdppot, 0) == gdppot:
               return None
 
@@ -760,17 +760,17 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - Taylor_Policy_Gap altı -1.00 : BEHIND_THE_CURVE (Fed Enflasyonun Gerisinde / Aşırı Genişlemeci)
-  - -1.00 ile +1.00 arası : OPTIMAL_ALIGNMENT (Dengeli Para Politikası)
-  - Taylor_Policy_Gap üstü +1.00 : OVER_RESTRICTIVE (Aşırı Sıkılaştırıcı / Resesyon Riski Yaratan Duruş)
+  - Taylor_Policy_Gap < -1.00 : BEHIND_THE_CURVE (Fed behind the curve / Excessively loose)
+  - -1.00 to +1.00 : OPTIMAL_ALIGNMENT (Balanced monetary policy stance)
+  - Taylor_Policy_Gap > +1.00 : OVER_RESTRICTIVE (Excessively restrictive / Recession risk stance)
   
 ---
 
-### 12. CHICAGO FED FINANSAL KOSULLAR ENDEKSI (FINANCIAL CONDITIONS TIGHTNESS)
-- Purpose: Para politikasının piyasalara fiilen yansıyıp yansımadığını; borç, sermaye ve para piyasası risk primlerinin bileşik sıkılığını izler.
+### 12. FINANCIAL CONDITIONS TIGHTNESS (CHICAGO FED NFCI)
+- Purpose: Monitors whether monetary policy has transmitted to financial markets; tracks composite tightness across debt, equity, and money market risk premiums.
 - Data Series Keys:
   - FRED: NFCI (Chicago Fed National Financial Conditions Index)
-  - FRED: ANFCI (Adjusted National Financial Conditions Index - Makroekonomik Koşullardan Arındırılmış)
+  - FRED: ANFCI (Adjusted National Financial Conditions Index - Adjusted for Macroeconomic Conditions)
 - Formula:
   NFCI_Stress_Level = NFCI
 - Machine-Executable Logic (Python):
@@ -798,14 +798,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - NFCI üstü 0.00 : TIGHT (Sıkı Finansal Koşullar / Tarihsel Ortalamadan Daha Sıkı / Finansal Stres)
-  - NFCI == 0.00 : BALANCED (Tarihsel Dengeli Seviye)
-  - NFCI altı 0.00 : LOOSE (Gevşek Finansal Koşullar / Piyasada Likidite Bolluğu / Risk-On Desteği)
+  - NFCI > 0.00 : TIGHT (Tight financial conditions / Tighter than historical average / Financial stress)
+  - NFCI == 0.00 : BALANCED (Historically balanced financial conditions)
+  - NFCI < 0.00 : LOOSE (Loose financial conditions / Abundant liquidity / Risk-on support)
 
 ---
 
-### 13. YUKSEK GETIRILI KREDI RISKI MAKASI (HIGH YIELD CREDIT SPREAD / OAS)
-- Purpose: Reel sektör şirketlerinin kredi temerrüt riskini ve finansal piyasalardaki risk iştahı çöküşünü baz puan cinsinden ölçer.
+### 13. HIGH YIELD CREDIT SPREAD / OAS
+- Purpose: Measures corporate credit default risk and risk appetite contraction in basis points.
 - Data Series Keys:
   - ICE BofA / FRED: BAMLH0A0HYM2 (ICE BofA US High Yield Index Option-Adjusted Spread)
   - ICE BofA / FRED: BAMLC0A4CBBB (ICE BofA BBB US Corporate Index Option-Adjusted Spread)
@@ -818,7 +818,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not math.isfinite(hy_spread):
               return None
-          # Kredi risk primi pozitif ve sifirdan buyuk olmalidir
+          # Credit risk spread must be positive and greater than zero
           if min(hy_spread, 0) == hy_spread:
               return None
 
@@ -835,14 +835,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - HY_Spread 500 bps veya uzeri : CREDIT_CRUNCH_ALARM (Kredi Piyasasında Kriz / Temerrüt Patlaması / Resesyon)
-  - 350 bps ile 500 bps arası : ELEVATED_RISK (Risk İştahında Zayıflama / Dikkat Bölgesi)
-  - HY_Spread altı 350 bps : RISK_APPETITE_HEALTHY (Düşük İflas Riski / Sağlıklı Şirket Fonlaması)
+  - HY_Spread >= 500 bps : CREDIT_CRUNCH_ALARM (Credit crunch alarm / Default surge / Recession signal)
+  - 350 bps to 500 bps : ELEVATED_RISK (Softening risk appetite / Caution zone)
+  - HY_Spread < 350 bps : RISK_APPETITE_HEALTHY (Low default risk / Healthy corporate funding)
 
 ---
 
-### 14. REEL PARA ARZI MOMENTUMU (REAL M2 MONEY MOMENTUM)
-- Purpose: Finansal sistemdeki geniş para arzının (M2) enflasyona oranla genişleme veya daralma hızını belirleyerek talep şoklarını tespit eder.
+### 14. REAL M2 MONEY MOMENTUM
+- Purpose: Detects demand shocks by determining the real rate of expansion or contraction of broad money supply (M2) relative to headline inflation.
 - Data Series Keys:
   - FRED: M2SL (M2 Money Supply - Billions of USD, Seasonally Adjusted)
   - BLS / FRED: CPIAUCSL (Consumer Price Index - YoY % Change)
@@ -871,14 +871,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Real_M2_Growth altı 0 : LIQUIDITY_CONTRACTION (Reel Para Küçülmesi / Dezenflasyonist Talep Çöküşü)
-  - Real_M2_Growth == 0 : NEUTRAL (Nötr Parasal Denge)
-  - Real_M2_Growth üstü 0 : MONETARY_EXPANSION (Reel Para Genişlemesi / Şişen Talep / Enflasyonist Baskı)
+  - Real_M2_Growth < 0 : LIQUIDITY_CONTRACTION (Real money contraction / Disinflationary demand collapse)
+  - Real_M2_Growth == 0 : NEUTRAL (Neutral monetary equilibrium)
+  - Real_M2_Growth > 0 : MONETARY_EXPANSION (Real money expansion / Expanding aggregate demand / Inflationary pressure)
 
 ---
 
-### 15. NY FED 10 YILLIK VADE PRIMI MODELI (ACM 10-YEAR TERM PREMIUM)
-- Purpose: 10 yıllık Hazine tahvili getirisinin faiz beklentisi dışında kalan saf risk primini (borçlanma riski / arz baskısı) ölçer.
+### 15. NY FED 10-YEAR TERM PREMIUM (ACM 10-YEAR TERM PREMIUM)
+- Purpose: Measures the pure risk premium (fiscal supply pressure and inflation uncertainty) embedded in the 10-year Treasury yield beyond expected short rate paths.
 - Data Series Keys:
   - NY Fed / FRED: THREEFYTP10 (Adrian, Crump & Moench 10-Year Treasury Term Premium)
   - FRED: DGS10 (10-Year Treasury Constant Maturity Nominal Yield)
@@ -891,7 +891,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(dgs10) and math.isfinite(term_premium)):
               return None
-          # Nominal 10 yillik tahvil faizi negatif olamaz (min(v, 0) == 0 kontrolu: v >= 0)
+          # Nominal 10Y Treasury yield cannot be negative (min(v, 0) == 0 check: v >= 0)
           if min(dgs10, 0) != 0:
               return None
 
@@ -915,14 +915,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Term_Premium üstü 0.50% : FISCAL_SUPPLY_PRESSURE (Yüksek Hazine Borçlanma / Enflasyon Belirsizlik Primi)
-  - -0.50% ile 0.50% arası : BALANCED_PREMIUM (Dengeli Risk Primi / Normal Tahvil Talebi)
-  - Term_Premium altı -0.50% : FLIGHT_TO_SAFETY (Aşırı Güvenli Liman Talebi / Sentetik Tahvil Kıtlığı)
+  - Term_Premium > 0.50% : FISCAL_SUPPLY_PRESSURE (Elevated Treasury debt issuance / Inflation uncertainty premium)
+  - -0.50% to 0.50% : BALANCED_PREMIUM (Balanced risk premium / Normalized Treasury demand)
+  - Term_Premium < -0.50% : FLIGHT_TO_SAFETY (Excess safe-haven demand / Synthetic Treasury scarcity)
 
 ---
 
-### 16. CBOE OYNAKLIK ENDEKSI VE PIYASA KORKU REJIMI (VIX REGIME THRESHOLDS)
-- Purpose: S&P 500 opsiyon fiyatlamalarından türetilen 30 günlük piyasa oynaklık beklentisini ve kurumsal risk iştahı rejimini sınıflandırır.
+### 16. CBOE VOLATILITY INDEX & MARKET FEAR REGIME (VIX REGIME THRESHOLDS)
+- Purpose: Classifies 30-day market volatility expectations and institutional risk appetite regimes derived from S&P 500 option pricing.
 - Data Series Keys:
   - CBOE / FRED: VIXCLS (CBOE Volatility Index)
 - Formula:
@@ -934,7 +934,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not math.isfinite(vix):
               return None
-          # VIX seviyesi kesinlikle pozitif ve sifirdan buyuk olmalidir
+          # VIX level must be strictly positive and greater than zero
           if min(vix, 0) == vix:
               return None
 
@@ -951,15 +951,15 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - VIX altı 15.0 : COMPLACENCY (Rehavet / Düşük Oynaklık / Geniş Risk İştahı / Risk-On)
-  - 15.0 ile 20.0 arası : NORMAL_VOLATILITY (Tarihsel Dengeli Piyasa Seviyesi / Balanced)
-  - 20.0 ile 30.0 arası : ELEVATED_STRESS (Yüksek Belirsizlik / Portföy Korunma Baskısı / Risk-Off)
-  - VIX üstü 30.0 : CRISIS_SHOCK (Piyasa Şoku / Likidite Sıkışması ve Panik Satış Alarmı / Extreme Risk-Off)
+  - VIX < 15.0 : COMPLACENCY (Complacency / Low volatility / Broad risk appetite / Risk-on)
+  - 15.0 to 20.0 : NORMAL_VOLATILITY (Historically balanced market volatility / Balanced)
+  - 20.0 to 30.0 : ELEVATED_STRESS (Elevated uncertainty / Portfolio hedging demand / Risk-off)
+  - VIX > 30.0 : CRISIS_SHOCK (Market shock / Liquidity crunch & panic selling alarm / Extreme risk-off)
 
 ---
 
-### 17. MAKRO HISSE SENEDI RISK PRIMI (MACRO EQUITY RISK PREMIUM - ERP)
-- Purpose: Hisse senedi piyasasının (S&P 500 kazanç getirisi) risksiz 10 yıllık ABD Hazine tahviline kıyasla sunduğu ilave risk primini ölçer.
+### 17. MACRO EQUITY RISK PREMIUM (ERP)
+- Purpose: Measures the excess yield premium offered by equities (S&P 500 earnings yield) relative to the risk-free 10-year US Treasury yield.
 - Data Series Keys:
   - Multpl / FRED Proxy: SP500_EARNINGS_YIELD (S&P 500 Trailing/Forward Earnings Yield / 1/PE * 100)
   - FRED: DGS10 (Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity)
@@ -972,7 +972,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(earnings_yield) and math.isfinite(dgs10)):
               return None
-          # Nominal 10 yillik tahvil faizi negatif olamaz (min(v, 0) == 0 kontrolu: v >= 0)
+          # Nominal 10Y Treasury yield cannot be negative (min(v, 0) == 0 check: v >= 0)
           if min(dgs10, 0) != 0:
               return None
 
@@ -991,14 +991,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - ERP altı 0.50% : OVERVALUED_STOCKS (Hisse Senetleri Aşırı Pahalı / Tahvil Getirisi Hisseye Göre Çok Daha Cazip / Sermaye Tahvile Kaçar)
-  - 0.50% ile 2.50% arası : FAIR_VALUE (Makro Dengeli Değerleme Bölgesi)
-  - ERP üstü 2.50% : ATTRACTIVE_STOCKS (Hisse Senetleri Ucuz / Cazip Risk Primi / Hisse Portföyleri Desteklenir)
+  - ERP < 0.50% : OVERVALUED_STOCKS (Equities severely overvalued / Bond yields significantly more attractive / Capital rotates to fixed income)
+  - 0.50% to 2.50% : FAIR_VALUE (Macro balanced equity valuation zone)
+  - ERP > 2.50% : ATTRACTIVE_STOCKS (Equities undervalued / Attractive risk premium / Supportive for equity allocations)
   
 ---
 
-### 18. SEFALET ENDEKSI (OKUN MISERY INDEX)
-- Purpose: İşsizlik oranı ile yıllık enflasyonun toplamı üzerinden hanehalkı refah kaybını ve stagflasyonist ekonomik stresi ölçer.
+### 18. OKUN MISERY INDEX
+- Purpose: Measures household welfare loss and stagflationary economic stress by summing the unemployment rate and headline annual inflation.
 - Data Series Keys:
   - BLS / FRED: UNRATE (Civilian Unemployment Rate)
   - BLS / FRED: CPIAUCSL (Consumer Price Index - YoY % Change)
@@ -1011,7 +1011,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(unrate) and math.isfinite(cpi_yoy)):
               return None
-          # Issizlik orani kesinlikle negatif olamaz (min(v, 0) == 0 kontrolu: v >= 0)
+          # Unemployment rate cannot be negative (min(v, 0) == 0 check: v >= 0)
           if min(unrate, 0) != 0:
               return None
 
@@ -1032,15 +1032,15 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Misery_Index üstü 12.0% : ACUTE_CRISIS (Ağır Refah Kaybı / Stagflasyonist Şok Eşiği)
-  - 10.0% ile 12.0% arası : ELEVATED_STRESS (Yüksek Hanehalkı ve Tüketici Baskısı)
-  - 6.0% ile 10.0% arası : MODERATE (Yönetilebilir Makro Denge)
-  - Misery_Index altı 6.0% : GOLDILOCKS (Düşük İşsizlik & İstikrarlı Fiyatlar)
+  - Misery_Index > 12.0% : ACUTE_CRISIS (Severe welfare loss / Stagflationary shock threshold)
+  - 10.0% to 12.0% : ELEVATED_STRESS (Elevated household and consumer pressure)
+  - 6.0% to 10.0% : MODERATE (Manageable macroeconomic equilibrium)
+  - Misery_Index < 6.0% : GOLDILOCKS (Low unemployment & stable prices)
 
 ---
 
-### 19. BUFFETT GOSTERGESI (BUFFETT INDICATOR / CORPORATE EQUITIES TO GDP)
-- Purpose: Toplam kurumsal hisse senedi piyasası değerini nominal milli gelire oranlayarak varlık fiyatlarındaki köpük ve aşırı değerleme riskini resmi Fed Z.1 bilanço verisiyle ölçer.
+### 19. BUFFETT INDICATOR (CORPORATE EQUITIES TO GDP)
+- Purpose: Measures asset valuation froth and overvaluation risk by comparing total corporate equity market value to nominal gross domestic product using official Fed Z.1 financial accounts.
 - Data Series Keys:
   - Official FRED Series: DDLS01USA156NWDB (Stock Market Capitalization to GDP for United States - Percent)
   - Component Benchmark: NCBEILQ027S (Nonfinancial Corporate Business: Corporate Equities; Liability - Level, Millions USD)
@@ -1054,7 +1054,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(market_val) and math.isfinite(gdp_val)):
               return None
-          # Piyasa degeri ve GSYIH kesinlikle pozitif ve sonlu sayi olmalidir (sifir ve negatif kontrolu)
+          # Market value and GDP must be strictly positive and finite numbers (zero and negative guard)
           if min(market_val, 0) == market_val or min(gdp_val, 0) == gdp_val:
               return None
 
@@ -1076,15 +1076,15 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - Ratio 180.0% veya uzeri : SEVERELY_OVERVALUED (Kritik Balon Eşiği / Sert Düzeltme Riski)
-  - 140.0% ile 180.0% arası : OVERVALUED (Piyasa Reel Ekonomiden Kopuk / Pahalı)
-  - 100.0% ile 140.0% arası : FAIR_VALUED (Dengeli Piyasa Değerlemesi)
-  - Ratio altı 100.0% : UNDERVALUED (Hisse Senedi Piyasası Ucuz / Cazip Giriş Bölgesi)
+  - Ratio >= 180.0% : SEVERELY_OVERVALUED (Critical bubble threshold / Sharp correction risk)
+  - 140.0% to 180.0% : OVERVALUED (Market decoupled from real economy / Stretched valuation)
+  - 100.0% to 140.0% : FAIR_VALUED (Balanced market valuation)
+  - Ratio < 100.0% : UNDERVALUED (Equity market undervalued / Attractive entry territory)
 
 ---
 
-### 20. BAKIR / ALTIN ORANI (COPPER TO GOLD MACRO SENTIMENT RATIO)
-- Purpose: Sanayi talebi (Dr. Bakır) ile güvenli liman talebini (Altın) yarıştırarak küresel büyüme ivmesini ve tahvil faizi yönünü önceden modeller.
+### 20. COPPER TO GOLD MACRO SENTIMENT RATIO
+- Purpose: Models global cyclical growth momentum and bond yield direction by pitting industrial demand (Dr. Copper) against safe-haven store of value (Gold).
 - Data Series Keys:
   - IMF / FRED: PCOPPUSDM (Global price of Copper - USD per Metric Ton)
   - World Bank / FRED: IND_WB_GOLD (Gold Fixing Price in London Bullion Market - USD per Troy Ounce)
@@ -1097,7 +1097,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(copper_price) and math.isfinite(gold_price)):
               return None
-          # Emtia fiyatlari kesinlikle pozitif ve sonlu sayi olmalidir (sifir ve negatif kontrolu)
+          # Commodity prices must be strictly positive and finite numbers (zero and negative guard)
           if min(copper_price, 0) == copper_price or min(gold_price, 0) == gold_price:
               return None
           res = copper_price / gold_price
@@ -1105,13 +1105,13 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - Yükselen Trend : CYCLICAL_EXPANSION (Sanayi Talebi Güçlü / Büyüme Hızlanıyor / Tahvil Getirileri Artar)
-  - Düşen Trend : FLIGHT_TO_SAFETY (Güvenli Liman Talebi Hakim / Büyüme Soğuyor / Resesyonist Tahvil Alımı)
+  - Rising Trend : CYCLICAL_EXPANSION (Robust industrial demand / Growth acceleration / Rising bond yields)
+  - Falling Trend : FLIGHT_TO_SAFETY (Safe-haven demand dominates / Growth cooling / Recessionary bond buying)
 
 ---
 
-### 21. ALTIN / PETROL ORANI (GOLD TO OIL CRISIS & RECESSION RATIO)
-- Purpose: 1 ons altın ile kaç varil ham petrol satın alınabildiğini hesaplayarak jeopolitik kriz, talep çöküşü veya enerji enflasyonu rejimlerini tespit eder.
+### 21. GOLD TO OIL CRISIS & RECESSION RATIO
+- Purpose: Identifies geopolitical crises, demand collapse, or energy supply shocks by calculating how many barrels of crude oil can be purchased with one troy ounce of gold.
 - Data Series Keys:
   - World Bank / FRED: IND_WB_GOLD (Gold Price - USD per Troy Ounce)
   - EIA / FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - USD per Barrel)
@@ -1124,7 +1124,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(gold_price) and math.isfinite(oil_price)):
               return None
-          # Emtia fiyatlari kesinlikle pozitif ve sonlu sayi olmalidir (sifir ve negatif kontrolu)
+          # Commodity prices must be strictly positive and finite numbers (zero and negative guard)
           if min(gold_price, 0) == gold_price or min(oil_price, 0) == oil_price:
               return None
 
@@ -1141,14 +1141,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - Ratio üstü 25.0 : MACRO_CRISIS_RECESSION (Ağır Durgunluk / Talep Çöküşü veya Sistemik Kriz Fiyatlaması)
-  - 15.0 ile 25.0 arası : HISTORICAL_EQUILIBRIUM (Tarihsel Denge Seviyesi / 15-20 Varil Bandı)
-  - Ratio altı 12.0 : SUPPLY_SHOCK_INFLATION (Arz Yönlü Petrol Şoku / Maliyet Enflasyonu Baskısı)
+  - Ratio > 25.0 : MACRO_CRISIS_RECESSION (Severe economic slowdown / Demand collapse or systemic crisis pricing)
+  - 15.0 to 25.0 : HISTORICAL_EQUILIBRIUM (Historical equilibrium band / 15-20 barrels range)
+  - Ratio < 12.0 : SUPPLY_SHOCK_INFLATION (Supply-driven oil shock / Cost-push inflation pressure)
 
 ---
 
-### 22. TUKETICI KREDI STRES MODELI (HOUSEHOLD CREDIT STRESS GAUGE)
-- Purpose: Kredi kartı temerrüt oranını kişisel tasarruf oranına oranlayarak hanehalkı borç çevirme kırılganlığını ve tüketim frenleme riskini ölçer.
+### 22. HOUSEHOLD CREDIT STRESS GAUGE
+- Purpose: Measures consumer debt service vulnerability and consumption deceleration risk by evaluating credit card delinquency rates against the personal saving rate.
 - Data Series Keys:
   - FRED: DRCCLACBS (Delinquency Rate on Credit Card Loans, All Commercial Banks)
   - BEA / FRED: PSAVERT (Personal Saving Rate - % of Disposable Income)
@@ -1161,10 +1161,10 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(delinquency_rate) and math.isfinite(saving_rate)):
               return None
-          # Temerrut orani negatif olamaz (min(v, 0) == 0 kontrolu: v >= 0)
+          # Delinquency rate cannot be negative (min(v, 0) == 0 check: v >= 0)
           if min(delinquency_rate, 0) != 0:
               return None
-          # Tasarruf orani 0 veya negatifse hanehalki tamponu bitmistir
+          # If saving rate is 0 or negative, household buffer is exhausted
           if min(saving_rate, 0) == saving_rate:
               return {"stress_ratio": None, "status": "SEVERE_CONSUMER_STRESS"}
 
@@ -1181,14 +1181,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - Ratio üstü 1.00 : SEVERE_CONSUMER_STRESS (Temerrütler Tasarrufu Aştı / Tüketici Harcamalarında Ani Fren ve Resesyon Riski)
-  - 0.50 ile 1.00 arası : ELEVATED_PRESSURE (Tasarruf Tamponunda Erime / Kredi Geri Ödeme Zorluğu)
-  - Ratio altı 0.50 : HEALTHY_BALANCE_SHEET (Güçlü Tasarruf / Sağlıklı Tüketici Bilançosu)
+  - Ratio > 1.00 : SEVERE_CONSUMER_STRESS (Delinquencies exceed savings / Sudden brake on consumer spending and recession risk)
+  - 0.50 to 1.00 : ELEVATED_PRESSURE (Depleting saving cushion / Rising debt repayment strain)
+  - Ratio < 0.50 : HEALTHY_BALANCE_SHEET (Robust savings / Healthy consumer balance sheets)
 
 ---
 
-### 23. OKUN ACIĞI MODELI (OKUN GAP / GROWTH-EMPLOYMENT DIVERGENCE)
-- Purpose: Reel GSYİH büyümesi ile işsizlik değişimi arasındaki tarihsel elastikiyeti test ederek "istihdamsız büyüme" veya gizli işgücü bozulmasını ölçer.
+### 23. OKUN GAP (GROWTH-EMPLOYMENT DIVERGENCE)
+- Purpose: Tests historical elasticity between real GDP growth and changes in unemployment to detect 'jobless growth' or latent labor market deterioration.
 - Data Series Keys:
   - BEA / FRED: GDPC1 (Real GDP - YoY % Change)
   - BLS / FRED: UNRATE (Civilian Unemployment Rate - YoY Change in Percentage Points)
@@ -1219,12 +1219,12 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Okun_Gap üstü +0.50 : JOBLESS_GROWTH_WARNING (Büyümeye Rağmen İşsizlik Hızla Artıyor / Verimlilik veya Yapısal Kırılma)
-  - -0.50 ile +0.50 arası : BALANCED_OKUN_EQUILIBRIUM (Büyüme ve İstihdam Tarihsel Dengede)
-  - Okun_Gap altı -0.50 : LABOR_HOARDING (Düşük Büyümeye Rağmen Şirketler Çalışanlarını Tutuyor / Dirençli İstihdam)
+  - Okun_Gap > +0.50 : JOBLESS_GROWTH_WARNING (Unemployment rising despite growth / Productivity or structural disruption)
+  - -0.50 to +0.50 : BALANCED_OKUN_EQUILIBRIUM (Growth and employment in historical balance)
+  - Okun_Gap < -0.50 : LABOR_HOARDING (Firms retaining employees despite sluggish growth / Resilient employment)
 
-### 23.1. ISGUCU PIYASASI IKILI DENGE MATRISI (LABOR MARKET DUAL-TRACK DYNAMICS)
-- Purpose: Tarim disi istihdam (PAYEMS) ile issizlik orani ve isgucune katilimi (CIVPART) caprazlayarak istihdamin nufus artisini karsilama esigini ve resesyon riskini modeller.
+### 23.1. LABOR MARKET DUAL-TRACK DYNAMICS
+- Purpose: Cross-evaluates nonfarm payrolls (PAYEMS), the unemployment rate, and civilian labor force participation (CIVPART) to model whether job creation absorbs population growth or signals recession risk.
 - Data Series Keys:
   - BLS / FRED: PAYEMS (All Employees, Total Nonfarm - Monthly Change in Thousands)
   - BLS / FRED: UNRATE (Civilian Unemployment Rate - Percent)
@@ -1254,9 +1254,9 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - status == BENIGN_SUPPLY_EXPANSION : Isgucune katilim arttigi icin issizlik sabit/yuksek (Saglikli Genisleme)
-  - status == RECESSION_EARLY_WARNING : Istihdam artisi nufus esiginin altinda ve issizlik yukseliyor (Resesyon Oncusu)
-  - status == BALANCED_LABOR_MARKET : Dengeli Istihdam Piyasasi
+  - status == BENIGN_SUPPLY_EXPANSION : Unemployment steady/elevated due to rising participation (Healthy labor expansion)
+  - status == RECESSION_EARLY_WARNING : Job growth falls below population threshold while unemployment rises (Early recession warning)
+  - status == BALANCED_LABOR_MARKET : Balanced labor market dynamics
 
 ### 23.2. TOTAL FUNDS FLOW AND VELOCITY MOMENTUM (TOTAL FUNDS FLOW)
 - Purpose: Models real and financial transaction liquidity volume, effective monetary flow, and asset inflation pressure by multiplying broad money supply (M2) by the velocity of money (M2V). (Note: As M2V is quarterly, M2SL observations must be aligned to quarterly frequency).
@@ -1301,8 +1301,8 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - status == BALANCED_LIQUIDITY_FLOW : Balanced Liquidity Flow (0.0% <= TFF QoQ <= 2.0%)
   - status == LIQUIDITY_STAGNATION : Velocity Collapse, Liquidity Freeze & Deflationary Contraction Risk (TFF QoQ < 0.0%)
 
-### 23.3. KONUT BALONU VE BARINMA KRIZI ESIGI (HOUSING AFFORDABILITY AND BUBBLE GAUGE)
-- Purpose: Medyan konut satis fiyatini ozel sektor ortalama saatlik kazancina bolerek bir konutun kac saatlik emekle satin alindigini olcer. Konut erisilebilirligini, barinma krizini ve gayrimenkul balonu riskini modeller. (Not: MSPUS ceyreklik oldugu icin saatlik kazanc serisi ceyreklik periyoda hizalanmalidir).
+### 23.3. HOUSING AFFORDABILITY AND BUBBLE GAUGE
+- Purpose: Measures housing affordability and real estate bubble risks by dividing median home sales prices by average private hourly earnings to determine required labor hours per home. (Note: As MSPUS is quarterly, hourly earnings must be aligned to quarterly frequency).
 - Data Series Keys:
   - FRED: MSPUS (Median Sales Price of Houses Sold for the United States - Quarterly, USD)
   - BLS / FRED: CES0500000003 (Average Hourly Earnings of All Employees, Total Private - USD per Hour)
@@ -1334,13 +1334,13 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - status == SEVERE_HOUSING_BUBBLE : Siddetli Barinma Krizi ve Konut Balonu Alarmi (Oran 13500 saat ustu)
-  - status == ELEVATED_STRESS : Yuksek Konut Maliyeti ve Tuketici Barinma Baskisi (11000 ile 13500 saat arasi)
-  - status == ACCESSIBLE_MARKET : Tarihsel Denge ve Satin Alinabilir Konut Piyasasi (Oran 11000 saat alti)
+  - status == SEVERE_HOUSING_BUBBLE : Acute housing affordability crisis & bubble alarm (Ratio exceeds 13,500 hours)
+  - status == ELEVATED_STRESS : Stretched housing costs and consumer affordability pressure (11,000 to 13,500 hours)
+  - status == ACCESSIBLE_MARKET : Historical equilibrium and affordable housing market (Ratio below 11,000 hours)
 
 
-### 23.4. ERKEN ISTEN CIKARMA VE KRIZ SINYALI (EARLY LAYOFF AND RECESSION SIGNAL)
-- Purpose: Sanayi uretimi daralirken haftalik calisma saatlerinin dusmesini olcer. Sirketler isci cikarmadan once mesaileri kestigi icin resmi issizlik artmadan onceki gizli istihdam kayiplarini ve erken resesyon kirilimini tespit eder.
+### 23.4. EARLY LAYOFF AND RECESSION SIGNAL
+- Purpose: Detects latent employment losses and early recessionary inflection before official unemployment rises by measuring declining average weekly manufacturing hours alongside industrial production contraction.
 - Data Series Keys:
   - FRED: INDPRO (Industrial Production: Total Index - YoY Percent Change)
   - BLS / FRED: AWHAETP (Average Weekly Hours of All Employees, Total Private - YoY Percent Change)
@@ -1371,13 +1371,13 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - status == SEVERE_RECESSION_WARNING : Sirketler mesaiyi kesti, sanayi daraliyor (Erken Isten Cikarma Dalgasi ve Agir Resesyon Riski / Endeks alti -2.5)
-  - status == PRE_RECESSION_CRACK : Uretim ivme kaybediyor, calisma saatleri zayifliyor (Gizli Issizlik Baslangici / -2.5 ile 0.0 arasi)
-  - status == HEALTHY_PRODUCTION_CYCLE : Saglikli Sanayi Carklari ve Guclu Mesai Duzeni (Endeks sifir veya ustu)
+  - status == SEVERE_RECESSION_WARNING : Overtime cuts paired with industrial contraction (Early layoff wave & deep recession risk / Index < -2.5)
+  - status == PRE_RECESSION_CRACK : Production losing momentum and work hours softening (Latent unemployment onset / -2.5 to 0.0)
+  - status == HEALTHY_PRODUCTION_CYCLE : Resilient industrial activity and robust work hours (Index >= 0.0)
 
 
-### 23.5. REEL TUKETIM COKUSU RADARI (REAL CONSUMPTION COLLAPSE RADAR)
-- Purpose: Nominal perakende satis artisindan enflasyon oranini arindirarak hanehalkinin gercek tuketim hacmini olcer. Nominal artis surse bile reel sonucun negatife donmesi, fiyat illuzyonunu ve ic talepteki gizli daralmayi tespit eder.
+### 23.5. REAL CONSUMPTION COLLAPSE RADAR
+- Purpose: Measures real household consumption volume by stripping inflation from nominal retail sales growth. A negative real print despite positive nominal sales exposes price illusion and underlying consumer demand contraction.
 - Data Series Keys:
   - FRED: RSAFS (Advance Retail Sales: Retail and Food Services, Total - YoY Percent Change)
   - FRED Alternative: RSXFS (Advance Retail Sales: Retail Trade Excluding Food Services)
@@ -1410,13 +1410,13 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - status == SEVERE_REAL_CONTRACTION : Siddetli Hacim Cokusu ve Tuketici Durgunlugu (Reel artis eksi yuzde 2.0 alti)
-  - status == REAL_DEMAND_CONTRACTION : Fiyat Illuzyonu ve Satis Hacminde Daralma (Reel artis eksi yuzde 2.0 ile 0.0 arasi)
-  - status == MODERATE_VOLUME_EXPANSION : Dengeli ve Saglikli Tuketim Artisi (Reel artis sifir ile yuzde 2.0 arasi)
-  - status == STRONG_VOLUME_EXPANSION : Guclu Tuketici Talebi ve Hacimsel Buyume Patlamasi (Reel artis yuzde 2.0 ustu)
+  - status == SEVERE_REAL_CONTRACTION : Severe volume collapse & consumer stagnation (Real growth < -2.0%)
+  - status == REAL_DEMAND_CONTRACTION : Price illusion and contracting retail sales volume (-2.0% to 0.0%)
+  - status == MODERATE_VOLUME_EXPANSION : Balanced and healthy consumption growth (0.0% to 2.0%)
+  - status == STRONG_VOLUME_EXPANSION : Robust consumer demand and volumetric growth acceleration (> 2.0%)
 
-### 23.6. ISTIHDAMDA ERKEN CATIRDAMA VE GIZLI KRIZ SINYALI (EARLY EMPLOYMENT CRACK SIGNAL)
-- Purpose: Resmi issizlik orani (UNRATE) gecikmeli bir gosterge oldugu icin piyasa saglikli gorunurken, haftalik issizlik maasi basvurularindaki oncu sicramalari yakalar. Istihdamdaki gizli catlaklari ve manşetlere henuz yansimamis erken resesyon riskini modeller.
+### 23.6. EARLY EMPLOYMENT CRACK SIGNAL
+- Purpose: Detects leading employment cracks by tracking weekly initial claims spikes when the headline unemployment rate (a lagging metric) appears benign.
 - Data Series Keys:
   - FRED Benchmark: IC4WSA (4-Week Moving Average of Initial Claims - YoY Percent Change)
   - FRED Alternative: ICSA (Initial Claims - Weekly Level YoY Percent Change)
@@ -1453,12 +1453,12 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - status == HIDDEN_CRISIS_UNFOLDING : Haftalik basvurular hizla artiyor ancak resmi issizlik henuz tepki vermedi (Gizli Resesyon Baslangici / Basvuru artisi yuzde 15 ustu)
-  - status == EARLY_WARNING_CRACK : Istihdam piyasasinda ilk kirilimlar basladi (Oncu Catlak / Basvuru artisi yuzde 8 ustu)
-  - status == LABOR_MARKET_ALIGNED : Veriler dengeli veya resmi issizlik basvurularla tam paralel (Saglikli Istihdam Patikasi)
+  - status == HIDDEN_CRISIS_UNFOLDING : Weekly claims surging rapidly while official unemployment has not reacted (Latent recession onset / Claims growth > 15%)
+  - status == EARLY_WARNING_CRACK : Initial cracks emerging in the labor market (Leading crack signal / Claims growth > 8%)
+  - status == LABOR_MARKET_ALIGNED : Data balanced or official unemployment moving in lockstep with claims (Healthy employment path)
  
-### 23.7. TEDARIK ZINCIRI VE STOK KRIZI MODELI (INVENTORY TO SALES GLUT RATIO)
-- Purpose: Perakendeci, toptanci ve imalatcilarin depolarindaki stoklarin satis hizina oranini olcer. Bu oran yukseldiginde sirketler depolari bosaltmak icin siparisleri keser, fabrikalar uretimi durdurur ve istihdam daralir (Stok dongusu resesyonu).
+### 23.7. INVENTORY TO SALES GLUT RATIO
+- Purpose: Measures the ratio of total business inventories to monthly sales. When elevated, businesses curtail orders and cut production to liquidate stockpiles, precipitating an inventory-cycle recession.
 - Data Series Keys:
   - FRED: ISRATIO (Total Business: Inventories to Sales Ratio - Monthly, Seasonally Adjusted)
   - Component Inventories: BUSINV (Total Business Inventories - Millions USD)
@@ -1489,12 +1489,12 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - status == SYSTEMIC_INVENTORY_GLUT : Depolarda asiri stok birikimi, talep yetersizligi. Sirketler uretimi ve mesaileri kisacak (Stok Resesyonu Alarmi / Oran 1.45 ustu)
-  - status == BALANCED_SUPPLY_CHAIN : Uretim ve perakende satis dengeli (Saglikli Stok Devir Hizi / 1.28 ile 1.45 arasi)
-  - status == SUPPLY_SHOCK_SHORTAGE : Urun kitligi ve tedarik zinciri tikanmasi. Raf bosalmasi ve maliyet enflasyonu baskisi (Oran 1.28 alti)
+  - status == SYSTEMIC_INVENTORY_GLUT : Excessive inventory stockpiling paired with demand deficiency; manufacturers will slash output and shifts (Inventory recession alarm / Ratio > 1.45)
+  - status == BALANCED_SUPPLY_CHAIN : Production and retail sales in equilibrium (Healthy inventory turnover / 1.28 to 1.45)
+  - status == SUPPLY_SHOCK_SHORTAGE : Inventory depletion and supply chain bottlenecking; empty shelves and cost-push inflation pressure (Ratio < 1.28)
 
-### 23.8. INSAAT SEKTORU DONMA NOKTASI (MORTGAGE AND PERMIT DIVERGENCE)
-- Purpose: Kredi maliyetlerindeki artis ile muteahhitlerin yeni konut uretme istahi (ruhsatlar) arasindaki kopmayi olcer. Konut arzi daralmasini, emlak piyasasindaki kilitlenmeyi (lock-in effect) ve yapiskan kira enflasyonu riskini modeller. (Not: MORTGAGE30US haftalik oldugu icin aylik ortalamasi alinip PERMIT ile eslestirilmelidir).
+### 23.8. MORTGAGE AND PERMIT DIVERGENCE (HOUSING FREEZE INDEX)
+- Purpose: Measures divergence between surging mortgage rates and builder permitting appetite to model housing supply constraints, market lock-in effects, and shelter inflation persistence. (Note: As MORTGAGE30US is weekly, monthly average must be aligned to PERMIT).
 - Data Series Keys:
   - FRED: MORTGAGE30US (30-Year Fixed Rate Mortgage Average in the United States - Percent)
   - FRED: PERMIT (New Privately-Owned Housing Units Authorized - YoY Percent Change)
@@ -1527,13 +1527,13 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - status == SEVERE_HOUSING_FREEZE : Kredi maliyetleri cok yuksek, ruhsatlar cokuyor. Konut uretimi durdu, arz krizi (Endeks 8.0 ustu)
-  - status == SUPPLY_CONTRACTION : Borclanma maliyeti uretimi baskiliyor, yeni konut arzi daraliyor (Endeks 5.0 ile 8.0 arasi)
-  - status == HEALTHY_EXPANSION : Finansman kosullari insaati destekliyor, konut arzinda saglikli artis (Endeks 5.0 ve alti)
+  - status == SEVERE_HOUSING_FREEZE : Severe mortgage rate shock causing permit collapse; home construction frozen, acute supply crisis (Index > 8.0)
+  - status == SUPPLY_CONTRACTION : High borrowing costs depressing builder activity; new housing supply contracting (Index 5.0 to 8.0)
+  - status == HEALTHY_EXPANSION : Supportive financing conditions; healthy expansion in residential supply (Index <= 5.0)
 ---
 
-### 24. JEOPOLITIK GUVENLI LIMAN VE LIKIDITE KACIS ORANI (SAFE HAVEN FLIGHT INDEX)
-- Purpose: Askeri veya jeopolitik sok anlarinda tahvil faizleri duserken dolarin ve kredi risk priminin firlamasiyla sermayenin guvenli limana ve nakde kacis siddetini olcer.
+### 24. SAFE HAVEN FLIGHT INDEX
+- Purpose: Measures capital flight into safe-haven assets and cash during military or geopolitical shocks by evaluating US dollar strength and high-yield credit spreads against falling Treasury yields.
 - Data Series Keys:
   - FRED: DTWEXBGS (Nominal Broad U.S. Dollar Index)
   - FRED: DGS10 (10-Year Treasury Constant Maturity Nominal Yield)
@@ -1568,15 +1568,15 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - regime == EXTREME_LIQUIDITY_PANIC : Sistemik Likidite Soku, Nakde Kacis ve Agir Varlik Satisi (Oran 2.50 ustu)
-  - regime == HIGH_FLIGHT_TO_SAFETY : Yuksek Jeopolitik Gerilim ve Guvenli Liman Alimi (Oran 1.80 ile 2.50 arasi)
-  - regime == MODERATE_HEDGING : Ilimli Portfoy Korunma Durusu (Oran 1.00 ile 1.80 arasi)
-  - regime == NORMAL_MARKET_REGIME : Rutin Risk Istahi ve Dengeli Piyasa (Oran 1.00 alti)
+  - regime == EXTREME_LIQUIDITY_PANIC : Systemic liquidity shock, aggressive dash for cash, and heavy asset liquidation (Ratio > 2.50)
+  - regime == HIGH_FLIGHT_TO_SAFETY : Acute geopolitical tension and flight to safety (Ratio 1.80 to 2.50)
+  - regime == MODERATE_HEDGING : Moderate defensive portfolio posture (Ratio 1.00 to 1.80)
+  - regime == NORMAL_MARKET_REGIME : Routine risk appetite and balanced market pricing (Ratio < 1.00)
 
 ---
 
-### 25. DIS TICARET HADLERI VE SATIN ALMA GUCU (TERMS OF TRADE - TOT)
-- Purpose: İhracat fiyat endeksinin ithalat fiyat endeksine oranını izleyerek ülkenin dış ticaret satın alma gücünü, refah transferini ve cari denge kırılganlığını ayrışmış resmi serilerle ölçer.
+### 25. TERMS OF TRADE (TOT)
+- Purpose: Measures sovereign purchasing power, terms-of-trade welfare transfers, and current account fragility by evaluating the ratio of export prices to import prices.
 - Data Series Keys:
   - BLS / FRED (Import Price Index): IQ (U.S. Import Price Index - All Commodities)
   - BLS / FRED (Export Price Index): IQ1000 (U.S. Export Price Index - All Commodities)
@@ -1593,14 +1593,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - TOT üstü 100.0 : FAVORABLE_TRADE (İhracat Gelirinin İthalat Gücü Artıyor / Pozitif Dış Ticaret Hadleri)
-  - TOT == 100.0 : BASELINE_EQUILIBRIUM (Tarihsel Referans Dengesi)
-  - TOT altı 100.0 : DETERIORATING_TERMS (İthal Malların Göreceli Pahalanması / Refah Kaybı ve Cari Açık Baskısı)
+  - TOT > 100.0 : FAVORABLE_TRADE (Export revenue purchasing power expanding / Positive terms of trade)
+  - TOT == 100.0 : BASELINE_EQUILIBRIUM (Historical baseline equilibrium)
+  - TOT < 100.0 : DETERIORATING_TERMS (Imported goods relatively more expensive / Real income loss & current account pressure)
   
 ---
 
-### 25.1. DINAMIK JEOPOLITIK KUTUPLASMA VE REJIM MOTORU (DYNAMIC POLARITY & REGIME ENGINE)
-- Purpose: llms-relationships.txt ontolojisindeki P_baseline degerini dinamik gerilim sapmasiyla (dynamic_delta) toplayip [-1.0, 1.0] araligina kenetler (clamp). Belirlenen net polariteye gore ikili iliski rejim durumunu (Regime State) deterministik olarak dondurur.
+### 25.1. DYNAMIC POLARITY & REGIME ENGINE
+- Purpose: Calculates bilateral geopolitical affinity by combining baseline polarity (P_baseline) from llms-relationships.txt with dynamic event friction (dynamic_delta) clamped to [-1.0, 1.0]. Returns deterministic bilateral regime states.
 - Data Link: llms-relationships.txt -> Section 1 (DYNAMIC POLARITY & TRANSMISSION ENGINE)
 - Formula:
   P_net = min(1.0, max(-1.0, P_baseline + dynamic_delta))
@@ -1637,18 +1637,18 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - p_net ustu 0.85 : ALLIANCE (Ortak Savunma / Entegre Askeri Komuta)
-  - 0.50 ile 0.85 arasi : STRATEGIC_ALIGNMENT (Stratejik Ortaklik / Kurumsal Uyum)
-  - 0.10 ile 0.50 arasi : TACTICAL_COOPERATION (Taktiksel Isbirligi / Ekonomik Karsilikli Bagimlilik)
-  - -0.10 ile 0.10 arasi : NEUTRAL (Katiksiz Baglantisizlik / Stratejik Tarafsizlik)
-  - -0.40 ile -0.10 arasi : STRATEGIC_FRICTION (Stratejik Surtusme / Yonetilen Ayrisma)
-  - -0.80 ile -0.40 arasi : PROXY_WAR (Vekalet Savasi / Yaptirim Rejimi / Asimetrik Catisma)
-  - p_net alti -0.80 : KINETIC_WAR (Aktif Kinetik Savas / Topyekun Diplomatik Cokus)
+  - p_net > 0.85 : ALLIANCE (Joint Defense / Integrated Military Command)
+  - 0.50 to 0.85 : STRATEGIC_ALIGNMENT (Strategic Partnership / Institutional Alignment)
+  - 0.10 to 0.50 : TACTICAL_COOPERATION (Tactical Cooperation / Economic Interdependence)
+  - -0.10 to 0.10 : NEUTRAL (Strict Non-Alignment / Strategic Neutrality)
+  - -0.40 to -0.10 : STRATEGIC_FRICTION (Strategic Friction / Managed Divergence)
+  - -0.80 to -0.40 : PROXY_WAR (Proxy Warfare / Sanctions Regime / Asymmetric Conflict)
+  - p_net < -0.80 : KINETIC_WAR (Active Kinetic Warfare / Total Diplomatic Breakdown)
 
 ---
 
-### 25.2. ENFLASYON KATILIK VE YAPIŞKANLIK YAYILIMI (STICKY VS. FLEXIBLE CPI SPREAD)
-- Purpose: Esnek (akaryakıt, gıda vb.) ve yapışkan (hizmet, kira vb.) enflasyon bileşenleri arasındaki farkı ölçerek kemikleşmiş katılık riskini veya emtia kaynaklı geçici enflasyon şoklarını tespit eder.
+### 25.2. STICKY VS. FLEXIBLE CPI SPREAD
+- Purpose: Evaluates structural core inflation persistence versus commodity-driven transient price shocks by measuring the spread between sticky CPI (services, shelter) and flexible CPI (fuel, food).
 - Data Series Keys:
   - FRED: STICKYCPIM157SFRBATL (Sticky Consumer Price Index less Food and Energy - YoY % Change)
   - FRED: FLEXCPIM157SFRBATL (Flexible Consumer Price Index less Food and Energy - YoY % Change)
@@ -1676,14 +1676,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Sticky_Impulse üstü 2.0% : STRUCTURAL_INFLATION_TRAP (Yapışkan Enflasyon Baskısı / Hizmet-Barınma Katılığı / Çekirdek Enflasyon Tuzağı)
-  - Sticky_Impulse altı -2.0% : TRANSITORY_INFLATION_SURGE (Emtia-Enerji Kaynaklı Geçici Enflasyon Şoku / Esnek Fiyat Sıçraması)
-  - -2.0% ile 2.0% arası : BALANCED_DISINFLATION_PATH (Uyumlu ve Dengeli Enflasyon Trendi)
+  - Sticky_Impulse > 2.0% : STRUCTURAL_INFLATION_TRAP (Sticky inflation pressure / Shelter & services rigidity / Core inflation trap)
+  - Sticky_Impulse < -2.0% : TRANSITORY_INFLATION_SURGE (Transient commodity/energy price surge / Flexible price spike)
+  - -2.0% to 2.0% : BALANCED_DISINFLATION_PATH (Coherent and balanced disinflation trajectory)
 
 ---
 
-### 25.3. KÜRESEL TEDARİK ZİNCİRİ BASKI VE LOJİSTİK TIKANIKLIK MOTORU (NY FED GSCPI)
-- Purpose: Deniz navlun fiyatları, hava kargo maliyetleri ve tedarikçi teslimat sürelerinin tarihsel ortalamadan kaç standart sapma saptığını (Z-skoru) ölçerek arz yönlü maliyet enflasyonu şoklarını veya lojistik atıllığı tespit eder.
+### 25.3. GLOBAL SUPPLY CHAIN PRESSURE LOGISTICS ENGINE (NY FED GSCPI)
+- Purpose: Measures standard deviations (Z-score) of global freight rates, air cargo costs, and delivery times from their historical average to detect supply-side cost inflation shocks or logistics slack.
 - Data Series Keys:
   - FRED: GSCPI (New York Fed Global Supply Chain Pressure Index - Standard Deviations from Historical Mean)
 - Formula: GSCPI_ZScore = GSCPI_Value
@@ -1706,14 +1706,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - GSCPI_ZScore üstü 1.5 : SUPPLY_CHAIN_SHOCK (Arz Yönlü Maliyet Enflasyonu Şoku / Lojistik Kilitlenme / Navlun ve Teslimat Baskısı)
-  - GSCPI_ZScore altı -1.0 : LOGISTICS_DEFLATION_SLACK (Tedarik Zincirinde Aşırı Atıllık / Mal Fiyatlarında Dezenflasyonist Baskı)
-  - -1.0 ile 1.5 arası : NORMALIZED_GLOBAL_TRADE (Kabul Edilebilir Standart Lojistik ve Ticaret Akışı)
+  - GSCPI_ZScore > 1.5 : SUPPLY_CHAIN_SHOCK (Supply-side cost inflation shock / Logistics bottlenecks / Elevated freight and shipping delays)
+  - GSCPI_ZScore < -1.0 : LOGISTICS_DEFLATION_SLACK (Excess supply chain slack / Disinflationary goods pricing)
+  - -1.0 to 1.5 : NORMALIZED_GLOBAL_TRADE (Normalized global trade and logistics flows)
 
 ---
 
-### 25.4. TAHVİL-HİSSE OYNAKLIK AYRIŞMASI VE FAİZ RİSKİ YANLIŞ FİYATLAMA MOTORU (MOVE / VIX DISCONNECT)
-- Purpose: Tahvil piyasası oynaklığı (MOVE) ile hisse senedi oynaklığı (VIX) arasındaki oransal ayrışmayı hesaplayarak hisse senedi piyasasının faiz ve likidite risklerini yanlış fiyatlayıp fiyatlamadığını tespit eder.
+### 25.4. MOVE / VIX DISCONNECT RATIO ENGINE
+- Purpose: Identifies bond-equity volatility disconnects by calculating the ratio between Treasury volatility (MOVE) and equity volatility (VIX) to detect equity market mispricing of interest rate risks.
 - Data Series Keys:
   - CBOE / FRED: VIXCLS (CBOE Volatility Index)
   - ICE / Merrill Lynch: MOVE (ICE BofA US Treasury Option Volatility Estimate Index)
@@ -1741,14 +1741,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - Vol_Disconnect_Ratio üstü 6.5 : RATE_RISK_MISPRICING_ALARM (Faiz ve Tahvil Oynaklığı Yüksek / Hisse Senetleri Faiz Riskini Görmezden Geliyor / Şok Düzeltme Riski)
-  - Vol_Disconnect_Ratio altı 3.5 : EQUITY_PANIC_DOMINANCE (Hisse Senedi Piyasasında Aşırı Panik / Tahvil Piyasası Göreceli Stabil)
-  - 3.5 ile 6.5 arası : COHERENT_MARKET_VOLATILITY (Tahvil ve Hisse Piyasaları Arasında Uyumlu ve Dengeli Oynaklık Fiyatlaması)
+  - Vol_Disconnect_Ratio > 6.5 : RATE_RISK_MISPRICING_ALARM (Elevated rate volatility / Equity markets ignoring yield risks / Sharp repricing vulnerability)
+  - Vol_Disconnect_Ratio < 3.5 : EQUITY_PANIC_DOMINANCE (Equity panic dominates / Treasury market relatively calm)
+  - 3.5 to 6.5 : COHERENT_MARKET_VOLATILITY (Coherent and balanced pricing across bond and equity volatility)
 
 ---
 
-### 25.5. GECELİK TEMİNATLI LİKİDİTE SIKIŞIKLIĞI VE REPO SÜRTÜNMESİ MOTORU (SOFR - EFFR SPREAD)
-- Purpose: Teminatlı repo faizi (SOFR) ile teminatsız efektif Fed faizi (EFFR) arasındaki baz puan makasını ölçerek gecelik fonlama piyasasındaki likidite sıkışıklığını, bilanço kısıtlarını veya aşırı teminat kıtlığını tespit eder.
+### 25.5. REPO LIQUIDITY FRICTION SPREAD ENGINE (SOFR - EFFR SPREAD)
+- Purpose: Measures funding market friction and balance sheet constraints by tracking the spread between secured repo financing (SOFR) and unsecured effective Fed funds (EFFR).
 - Data Series Keys:
   - FRED: SOFR (Secured Overnight Financing Rate - Percent)
   - FRED: EFFR (Effective Federal Funds Rate - Percent)
@@ -1780,15 +1780,15 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Repo_Friction_bps üstü 10.0 bps : REPO_MARKET_LIQUIDITY_CRUNCH (Gecelik Fonlama Piyasasında Ağır Likidite Sıkışıklığı / Nakit Darlığı / Fed Müdahalesi Riski)
-  - 5.0 bps ile 10.0 bps arası : SYSTEMIC_CASH_DRAIN_WARNING (Sistemik Nakit Çekilmesi Uyarısı / Bilanço Kapasitesi Sıkılaşma Sınırı)
-  - -5.0 bps ile 5.0 bps arası : HEALTHY_MONETARY_TRANSMISSION (Sağlıklı, Dengeli ve Pürüzsüz Parasal Aktarım Mekanizması)
-  - Repo_Friction_bps altı -5.0 bps : COLLATERAL_SCARCITY_GLUT (Aşırı Nakit Fazlası / Hazine Kağıdı Açlığı / Teminat Kıtlığı Anomalisi)
+  - Repo_Friction_bps > 10.0 bps : REPO_MARKET_LIQUIDITY_CRUNCH (Acute overnight repo funding strain / Cash scarcity / Fed intervention risk)
+  - 5.0 bps to 10.0 bps : SYSTEMIC_CASH_DRAIN_WARNING (Systemic cash drain warning / Constrained balance sheet capacity)
+  - -5.0 bps to 5.0 bps : HEALTHY_MONETARY_TRANSMISSION (Healthy, balanced monetary transmission mechanism)
+  - Repo_Friction_bps < -5.0 bps : COLLATERAL_SCARCITY_GLUT (Excess cash liquidity / Treasury bill scarcity / Collateral squeeze)
 
 ---
 
-### 25.6. ALTIN - REEL GETİRİ AYRIŞMASI VE DE-DOLARİZASYON ANOMALİ MOTORU (GOLD / REAL YIELD DEBASEMENT GAUGE)
-- Purpose: Reel faizler ile altın fiyatları arasındaki geleneksel ters korelasyonun kopmasını ölçerek küresel de-dolarizasyon baskısını ve itibarî para birimlerine yönelik sistemik güven kaybını tespit eder.
+### 25.6. GOLD / REAL YIELD DEBASEMENT GAUGE
+- Purpose: Detects de-dollarization trends and institutional fiat debasement concerns by measuring breakdowns in the traditional inverse correlation between 10-year TIPS real yields and gold prices.
 - Data Series Keys:
   - FRED: DFII10 (10-Year Treasury Inflation-Indexed Security, Constant Maturity - Real Rate Percent)
   - World Bank (The Pink Sheet): IND_WB_GOLD (Official Gold Price USD/troy oz - YoY % Change: percent_change_from_year_ago)
@@ -1814,14 +1814,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Real_Yield > 1.5% VE Gold_YoY > 15.0% : DEBALANCING_DEDOLLARIZATION_PANIC (Sistemik Güven Kaybı / Jeopolitik De-Dolarizasyon / İtibari Para İtimat Çöküşü / Doğu Blok Rezerv Kayması)
-  - Real_Yield <= 0.0% VE Gold_YoY > 0.0% : ACCOMMODATIVE_GOLD_BULL (Klasik Negatif Reel Faiz Kaynaklı Altın Boğası / Parasal Genişleme Desteği)
-  - Aksi halde : TRADITIONAL_REAL_RATE_DOMINANCE (Geleneksel Piyasa Dengesi / Reel Faiz Oranının Altın Üzerindeki Baskı Dominansı)
+  - Real_Yield > 1.5% and Gold_YoY > 15.0% : DEBALANCING_DEDOLLARIZATION_PANIC (Systemic fiat distrust / Geopolitical de-dollarization / Reserve diversification)
+  - Real_Yield <= 0.0% and Gold_YoY > 0.0% : ACCOMMODATIVE_GOLD_BULL (Classic negative real yield gold bull / Monetary expansion tailwind)
+  - Otherwise : TRADITIONAL_REAL_RATE_DOMINANCE (Traditional market equilibrium / Real yields exerting downward pressure on gold)
 
 ---
 
-### 25.7. PETROL OYNAKLIĞI VE JEOPOLİTİK ENERJİ ŞOKU MOTORU (OVX / VIX RISK PREMIUM)
-- Purpose: CBOE Ham Petrol Oynaklığı (OVX) ile Hisse Senedi Oynaklığı (VIX) arasındaki göreceli oranı ölçerek, petrol piyasası kaynaklı jeopolitik arz şoklarını ve stagflasyon risklerini tespit eder.
+### 25.7. OVX / VIX GEOPOLITICAL ENERGY SHOCK ENGINE
+- Purpose: Detects geopolitical oil supply shocks and stagflationary risks by evaluating the ratio between crude oil volatility (OVX) and equity volatility (VIX).
 - Data Series Keys:
   - FRED: OVXCLS (CBOE Crude Oil Volatility Index)
   - FRED: VIXCLS (CBOE Volatility Index)
@@ -1849,14 +1849,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - Vol_Ratio üstü 2.2 : ENERGY_SUPPLY_SHOCK_ALARM (Petrol Kaynaklı Jeopolitik Arz Şoku / Stagflasyon Riski / Enerji Fiyat Sıçraması)
-  - Vol_Ratio altı 1.0 : EQUITY_PANIC_OVER_ENERGY (Hisse Senedi Piyasasında Panik Hakim / Petrol Piyasası Sakin)
-  - 1.0 ile 2.2 arası : BALANCED_ENERGY_VOLATILITY (Normal ve Denge Seviyesinde Enerji Oynaklığı)
+  - Vol_Ratio > 2.2 : ENERGY_SUPPLY_SHOCK_ALARM (Geopolitical energy supply shock / Stagflation risk / Energy price spike)
+  - Vol_Ratio < 1.0 : EQUITY_PANIC_OVER_ENERGY (Equity panic dominates / Oil market calm)
+  - 1.0 to 2.2 : BALANCED_ENERGY_VOLATILITY (Normalized energy volatility equilibrium)
 
 ---
 
-### 25.8. DOĞALGAZ - PETROL ENERJİ EŞDEĞERLİĞİ VE BTU PARİTE AYRIŞMASI MOTORU (NATGAS / CRUDE OIL BTU DISCONNECT)
-- Purpose: WTI Ham Petrol ile Henry Hub Doğalgaz fiyatları arasındaki fiziksel enerji eşdeğerliği rasyosunu (BTU Paritesi) ölçerek, doğalgaz tedarik krizlerini veya bölgesel gaz arzı fazlalığını tespit eder.
+### 25.8. NATGAS / CRUDE OIL BTU DISCONNECT ENGINE
+- Purpose: Identifies regional gas gluts or acute natural gas shortages by measuring the physical energy parity ratio (BTU Parity) between WTI Crude Oil and Henry Hub Natural Gas.
 - Data Series Keys:
   - FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - Dollars per Barrel)
   - FRED: DHHNGSP (Henry Hub Natural Gas Spot Price - Dollars per Million BTU)
@@ -1884,14 +1884,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - BTU_Disconnect_Ratio altı 6.0 : NATGAS_CRISIS_BLACKOUT_RISK (Ağır Doğalgaz Kıtlığı / Doğalgaz Petrole Göre Aşırı Pahalı / Isınma ve Elektrik Maliyeti Şoku)
-  - BTU_Disconnect_Ratio üstü 35.0 : NATGAS_GLUT_ENERGY_CHEAP (Doğalgaz Arz Fazlası / Sanayi ve Konut İçin Ucuz Enerji Desteği)
-  - 6.0 ile 35.0 arası : ENERGY_PARITY_EQUILIBRIUM (Sağlıklı ve Dengeli Enerji İkame Oranı)
+  - BTU_Disconnect_Ratio < 6.0 : NATGAS_CRISIS_BLACKOUT_RISK (Acute natural gas deficit / Gas extraordinarily expensive vs oil / Heating & power cost shock)
+  - BTU_Disconnect_Ratio > 35.0 : NATGAS_GLUT_ENERGY_CHEAP (Natural gas supply glut / Inexpensive industrial and residential fuel)
+  - 6.0 to 35.0 : ENERGY_PARITY_EQUILIBRIUM (Healthy and balanced energy substitution ratio)
 
 ---
 
-### 25.9. BENZİN / HAM PETROL RAFİNERİ SIKIŞMASI VE TÜKETİCİ ENERJİ BASKISI MOTORU (GASOLINE / CRUDE CRACK SPREAD IMPULSE)
-- Purpose: Perakende benzin fiyatları ile ham petrol varil fiyatı arasındaki rafineri marjını (Crack Spread) ölçerek, rafineri kapasite darboğazlarını ve tüketici bütçesi üzerindeki dolaysız enerji şoklarını tespit eder.
+### 25.9. GASOLINE / CRUDE CRACK SPREAD IMPULSE ENGINE
+- Purpose: Measures refinery processing margins (Crack Spread) between retail gasoline and crude oil to detect refining bottlenecks and direct consumer energy cost burdens.
 - Data Series Keys:
   - FRED: GASREGW (US Regular All Formulations Retail Gasoline Prices - Dollars per Gallon)
   - FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - Dollars per Barrel)
@@ -1920,14 +1920,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - Crack_Spread_USD üstü $40.0 : REFINERY_BOTTLENECK_CRUNCH (Rafineri Kapasite Darboğazı / Tüketici Bütçesinde Benzin Şoku / Yüksek İşleme Marjı)
-  - Crack_Spread_USD altı $5.0 : REFINING_MARGIN_COLLAPSE (Rafineri Marj Çöküşü / Akaryakıt Talebinde Daralma / Zayıf Tüketim)
-  - $5.0 ile $40.0 arası : NORMAL_REFINING_MARGIN (Sağlıklı ve Standart Rafineri İşleme Marjı)
+  - Crack_Spread_USD > $40.0 : REFINERY_BOTTLENECK_CRUNCH (Refinery capacity bottleneck / Gasoline price shock to consumer budgets / Elevated processing margin)
+  - Crack_Spread_USD < $5.0 : REFINING_MARGIN_COLLAPSE (Refinery margin collapse / Weak fuel demand / Depressed consumption)
+  - $5.0 to $40.0 : NORMAL_REFINING_MARGIN (Healthy and standard refinery processing margin)
 
 ---
 
-### 25.10. BANKACILIK KREDİ KANALI VE KREDİ SIKILIĞI MOTORU (SLOOS LENDING STANDARDS RECESSION GAUGE)
-- Purpose: ABD bankalarının ticari ve sınai kredilerde uyguladığı net sıkılaştırma oranını izleyerek bankacılık kredi kanalının donmasını ve reel sektör kredi daralmasını resesyondan 6-9 ay önce tespit eder.
+### 25.10. SLOOS LENDING STANDARDS RECESSION GAUGE
+- Purpose: Tracks the net percentage of domestic US banks tightening lending standards on commercial and industrial (C&I) loans to detect credit channel freezing 6-9 months ahead of recessions.
 - Data Series Keys:
   - FRED: DRTSCIS (Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Large and Middle-Market Firms - Quarterly Percent)
 - Formula: Credit_Tightening_Net_Pct = DRTSCIS
@@ -1952,15 +1952,15 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Credit_Tightening_Net_Pct üstü %40.0 : ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL (Şiddetli Kredi Kanalı Tıkanması / Tarihsel Kesin Resesyon Eşiği / Likidite Krizi Alarmı)
-  - %20.0 ile %40.0 arası : RESTRICTIVE_CREDIT_CONTRACTION (Kredi Standartlarında Belirgin Sıkılaşma / Yatırım ve İstihdam Baskısı)
-  - -%10.0 ile %20.0 arası : NEUTRAL_CREDIT_CONDITIONS (Dengeli Kredi Akışı ve Normal Bankacılık İştahı)
-  - Credit_Tightening_Net_Pct altı -%10.0 : AGGRESSIVE_CREDIT_EXPANSION (Gevşek Kredi Standartları / Kredi Genişlemesi / Varlık Balonu Eğilimi)
+  - Credit_Tightening_Net_Pct > 40.0% : ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL (Acute credit channel freeze / Historical recession benchmark / Liquidity crisis alarm)
+  - 20.0% to 40.0% : RESTRICTIVE_CREDIT_CONTRACTION (Noticeable lending standards tightening / Business investment and hiring headwinds)
+  - -10.0% to 20.0% : NEUTRAL_CREDIT_CONDITIONS (Balanced credit flow and standard bank lending appetite)
+  - Credit_Tightening_Net_Pct < -10.0% : AGGRESSIVE_CREDIT_EXPANSION (Loose credit standards / Aggressive credit expansion / Asset bubble risk)
 
 ---
 
-### 25.11. GİZLİ İSTİHDAM BOZULMASI VE YARI ZAMANLI AYRIŞMA MOTORU (FULL-TIME VS. INVOLUNTARY PART-TIME CRACK GAUGE)
-- Purpose: Ekonomik nedenlerle yarı zamanlı çalışanların artış oranını tam zamanlı istihdamdaki değişimle kıyaslayarak, manşet istihdam verisi (NFP) güçlü görünürken arka planda başlayan yapısal işgücü bozulmasını ve resesyon riskini tespit eder.
+### 25.11. FULL-TIME VS. INVOLUNTARY PART-TIME CRACK GAUGE
+- Purpose: Detects hidden labor market fragility by comparing the annual surge in involuntary part-time workers against changes in full-time employment, exposing structural deterioration obscured by headline NFP figures.
 - Data Series Keys:
   - FRED: LNS12500000 (Employed, Usually Work Full Time - Monthly Level, in Thousands)
   - FRED: LNS12032194 (Employed, Part-Time for Economic Reasons - Monthly Level, in Thousands)
@@ -2006,15 +2006,15 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Crack_Spread üstü %30.0 VE Part_Time_YoY üstü %15.0 : ACUTE_LABOR_MARKET_FRACTURE_RECESSION (İstihdam Piyasasında Ağır Kırılma / Şirketler Tam Zamanlıları Kovup Yarı Zamanlıya Geçiyor / Kesin Resesyon Sinyali)
-  - Crack_Spread üstü %18.0 : STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL (Yapısal İstihdam Zayıflaması / Manşet Verinin Gizlediği İşgücü Çatlağı Başladı)
-  - -%10.0 ile %18.0 arası : STABLE_EMPLOYMENT_COMPOSITION (İstihdam Kompozisyonu Dengeli / İşgücü Piyasasında Olağandışı Bir Bozulma Yok)
-  - Crack_Spread altı -%10.0 : ROBUST_FULL_TIME_EXPANSION (Güçlü Tam Zamanlı İstihdam Büyümesi / Sağlıklı İşgücü Piyasası)
+  - Crack_Spread > 30.0% and Part_Time_YoY > 15.0% : ACUTE_LABOR_MARKET_FRACTURE_RECESSION (Acute labor market fracture / Companies replacing full-time with part-time staff / High-conviction recession signal)
+  - Crack_Spread > 18.0% : STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL (Structural labor softening / Emerging cracks obscured by headline data)
+  - -10.0% to 18.0% : STABLE_EMPLOYMENT_COMPOSITION (Stable employment composition / No unusual labor market distortion)
+  - Crack_Spread < -10.0% : ROBUST_FULL_TIME_EXPANSION (Robust full-time job creation / Resilient labor market)
 
 ---
 
-### 25.12. BRENT - WTI JEOPOLITIK ARBITRAJ VE DENIZ ASIRI RISK MAKASI (BRENT-WTI SEABORNE SPREAD ENGINE)
-- Purpose: Küresel deniz aşırı gösterge petrolü (Brent) ile ABD iç kara petrolü (WTI) arasındaki fiyat farkını ölçerek küresel deniz ticaret yollarındaki (Hürmüz, Kızıldeniz/Süveyş) jeopolitik risk primlerini, tanker navlun sıkışıklıklarını veya ABD iç piyasasındaki fiziki arz sıkılığını tespit eder.
+### 25.12. BRENT-WTI SEABORNE SPREAD ENGINE
+- Purpose: Evaluates geopolitical maritime risk premiums, chokepoint transit disruptions (Hormuz, Red Sea/Suez), and tanker freight bottlenecks versus US domestic pipeline tightness by measuring the Brent-WTI spread.
 - Data Series Keys:
   - EIA / FRED: DCOILBRENTEU (Crude Oil Prices: Brent - Europe, USD per Barrel)
   - EIA / FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - USD per Barrel)
@@ -2048,9 +2048,9 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Spread üstü $8.00 : SEABORNE_GEOPOLITICAL_PREMIUM (Deniz Taşımacılığı ve Boğaz Güvenlik Primi / Kızıldeniz-Hürmüz Şoku / Artan Tanker Navlun ve Sigorta Maliyetleri)
-  - $1.50 ile $8.00 arası : NORMAL_TRANSATLANTIC_ARBITRAGE (Standart Transatlantik Arbitraj ve Dengeli Lojistik Koridoru)
-  - Spread altı $1.50 : US_DOMESTIC_TIGHTNESS (ABD İç Pazarında Fiziki Arz Sıkılığı / Cushing Stok Erimesi / İhracat Arbitraj Penceresinin Kapanması)
+  - Spread > $8.00 : SEABORNE_GEOPOLITICAL_PREMIUM (Maritime chokepoint security premium / Red Sea or Hormuz shock / Soaring tanker freight & insurance)
+  - $1.50 to $8.00 : NORMAL_TRANSATLANTIC_ARBITRAGE (Standard transatlantic arbitrage / Balanced shipping logistics)
+  - Spread < $1.50 : US_DOMESTIC_TIGHTNESS (US domestic physical tightness / Cushing inventory drawdown / Constrained export arbitrage)
 
 ---
 
@@ -2289,16 +2289,16 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 
 
 ### 25.16. YEN CARRY TRADE DISSOLUTION & CROSS-CURRENCY STRESS GAUGE (JPY_CARRY_CRACK)
-- Purpose: FED ile Bank of Japan (BoJ) arasindaki faiz makasi daralmasini ve USD/JPY kur hareket hizini izleyerek kuresel kaldiracli Yen Carry Trade pozisyonlarinin kitlesel cozülme (unwind) ve kuresel likidite soku riskini olcer.
+- Purpose: Evaluates global leveraged Yen Carry Trade unwinding and systemic liquidity shock risks by tracking the narrowing US-Japan interest rate differential against USD/JPY exchange rate velocity.
 - Target: economy.json, llms-models.json -> MODEL_25.16_JPY_CARRY_CRACK
-- Frequency: Daily (Is Gunu)
+- Frequency: Daily (Business Day)
 - Canonical Input Series:
   - IND_DFF : Federal Funds Effective Rate (FED)
   - IND_MUTAN_JP : Japan Uncollateralized Overnight Call Rate (BoJ)
   - IND_DEXJPUS : Spot Exchange Rate US Dollars to Japanese Yen
 - Mathematical Formulation:
   1. Rate Differential: Spread_Rate = Rate_US - Rate_JP
-  2. Currency Momentum: Ret_JPY_30d = ((DEXJPUS_t / DEXJPUS_t_prev) - 1.0) * 100.0  (Negatif deger Yen deger kazancini gosterir)
+  2. Currency Momentum: Ret_JPY_30d = ((DEXJPUS_t / DEXJPUS_t_prev) - 1.0) * 100.0  (Negative value indicates JPY appreciation)
   3. Net Carry Return Buffer: Buffer_Carry = Spread_Rate + Ret_JPY_30d
 - Machine-Executable Logic (Python):
   def calculate_jpy_carry_crack(rate_us, rate_jp, jpy_fx_mom_pct):
@@ -2331,10 +2331,10 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, OverflowError):
           return None
 - Interpretation:
-  - status == UNWIND_LIQUIDATION_CRASH : BoJ faiz artisi veya sert Yen deger kazanci net faiz getirisini sildi; kuresel kaldiracli fonlar zorunlu teminat tamamlama (margin call) ve pozisyon tasfiyesine gecti. Wall Street hisse ve kripto piyasalarinda likidite soku.
-  - status == COMPRESSION_WARNING : Faiz makasi daraliyor veya Yen gucleniyor; carry trade kar tamponu kritik seviyeye geriledi. Erken uyari alarmi.
-  - status == MANAGED_TIGHTENING : BoJ kontrollu normallesiyor, kur oynakligi absorbe edilebilir aralikta.
-  - status == CALM_ACCUMULATION : Faiz marji genis, Yen zayif/stabil; kuresel carry trade fonlamasi kesintisiz devam ediyor.
+  - status == UNWIND_LIQUIDATION_CRASH : BoJ rate hikes or aggressive Yen appreciation erased carry returns; leveraged funds facing margin calls and forced liquidations; systemic liquidity shock across global equities and crypto.
+  - status == COMPRESSION_WARNING : Compressing interest rate differentials or Yen appreciation; carry profit buffer compressed to critical thresholds; early warning alarm.
+  - status == MANAGED_TIGHTENING : BoJ normalizes policy in a controlled manner; currency volatility absorbed within manageable bounds.
+  - status == CALM_ACCUMULATION : Wide interest rate margin and stable/weak Yen; global carry trade funding flows uninterrupted.
 
 ### 25.17. LIQUIDITY & COMMODITY MACRO REGIME MATRIX (LIQUIDITY_COMMODITY_MATRIX)
 - Purpose: Evaluates front-end money market liquidity conditions (Treasury 3M-1M T-Bill spread in bps) against crude oil cost inflation momentum (Brent YoY % change) in a 2x2 deterministic macro matrix to identify systemic liquidity and cost shock regimes.
@@ -2403,7 +2403,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - status == RESTRICTIVE_SLOWDOWN : Restrictive monetary slowdown (Moderate energy cost, Inverted Yield Curve < 0 bps). Policy transmission cooling economic activity.
 
 ---
-## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
+## 🏛️ TIER 3: INSTITUTIONAL DECISION, GEOPOLITICAL TENSION & CALIBRATION ENGINE
 
 ### 26. CENTRAL BANK COMMITTEE DISPERSION & HAWKISHNESS INDEX (COMMITTEE DISPERSION)
 - Purpose: Quantifies monetary policy committee (FOMC, ECB, BOE, TCMB) voting distributions across hawkish, dovish, and neutral members to compute directional policy stance (Hawkish/Dovish H-Index) and internal committee fracture (Blau-Simpson Dispersion Index).
@@ -2502,8 +2502,8 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
     * 0.30 < Dispersion <= 0.48 : MODERATE_DISSENT (Moderate division / Emerging dissent signals)
     * Dispersion > 0.48 : HIGH_DISPERSION (High committee fracture / Deep institutional division and elevated policy uncertainty)
 
-### 27. SÖYLEM SERTLİK SKORU (RHETORIC INTENSITY SCORE)
-- Purpose: Siyasi lider ve aktörlerin açıklamalarındaki hedef alma, tasfiye dili, yaptırım tehdidi ve diplomatik teamül ihlallerini 0-100 ölçeğinde puanlar.
+### 27. RHETORIC INTENSITY SCORE
+- Purpose: Scores hostile targeting, delegitimizing language, sanction threats, and diplomatic norm breaches in political statements on a 0-100 scale.
 - Target: political.json -> rhetoric_intensity_score
 - Formula:
   Rhetoric_Score = (x1 * 0.30) + (x2 * 0.30) + (x3 * 0.20) + (x4 * 0.20)
@@ -2518,13 +2518,13 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       score = (x1 * 0.30) + (x2 * 0.30) + (x3 * 0.20) + (x4 * 0.20)
       return int(round(min(100.0, score)))
 - Interpretation:
-  - Rhetoric_Score >= 80 : HOSTILE_TARGETING (Şiddetli Düşmanlık / Tasfiye Hedefi)
-  - 50 <= Rhetoric_Score < 80 : AGGRESSIVE_POLEMIC (Kutuplaştırıcı ve Sert Siyasi Çatışma)
-  - 25 <= Rhetoric_Score < 50 : MODERATE_CRITICISM (Sert Ama Sınırları Belli Siyasi Eleştiri)
-  - Rhetoric_Score < 25 : DIPLOMATIC_DISCOURSE (Sakin / Rutin Siyasi Dil)
+  - Rhetoric_Score >= 80 : HOSTILE_TARGETING (Severe hostility / Existential targeting)
+  - 50 <= Rhetoric_Score < 80 : AGGRESSIVE_POLEMIC (Polarizing and aggressive political conflict)
+  - 25 <= Rhetoric_Score < 50 : MODERATE_CRITICISM (Firm but bounded political criticism)
+  - Rhetoric_Score < 25 : DIPLOMATIC_DISCOURSE (Measured / Routine diplomatic language)
 
-### 27.1. BİLEŞİK SİYASİ GERİLİM SKORU (COMPOSITE TENSION SCORE)
-- Purpose: Söylem sertliği ile kurumsal/ittifak çatlaklarını birleştirerek 0-100 skalasında dengeli gerilim seviyesini belirler.
+### 27.1. COMPOSITE TENSION SCORE
+- Purpose: Synthesizes rhetoric intensity with institutional and alliance friction to determine balanced political tension on a 0-100 scale.
 - Formula:
   Composite_Tension = (Rhetoric_Score * 0.50) + (Alliance_Friction * 0.50)
 - Machine-Executable Logic (Python):
@@ -2535,13 +2535,13 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       a = min(100.0, max(0.0, float(alliance_friction)))
       return int(round((r * 0.50) + (a * 0.50)))
 - Interpretation:
-  - Tension >= 75 : CRITICAL_POLITICAL_CRISIS (Hükümet/İttifak Çatlağı, Sistemik Kilitlenme)
-  - 50 <= Tension < 75 : HIGH_TENSION (Yönetilmesi Zor Siyasi Kutuplaşma)
-  - 25 <= Tension < 50 : MODERATE_FRICTION (Olağan Siyasi Sürtüşme)
-  - Tension < 25 : STABLE_POLITICAL_CLIMATE (Güçlü İttifak/Siyasi İstikrar)
+  - Tension >= 75 : CRITICAL_POLITICAL_CRISIS (Government/Alliance fracture, systemic gridlock)
+  - 50 <= Tension < 75 : HIGH_TENSION (Severe political polarization)
+  - 25 <= Tension < 50 : MODERATE_FRICTION (Routine political friction)
+  - Tension < 25 : STABLE_POLITICAL_CLIMATE (Robust alliance / Political stability)
 
-### 28. BILESIK ULKE STRATEJIK RISK SKORU (COMPOSITE STRATEGIC SCORE)
-- Purpose: Ülkelerin iç siyasi istikrar, savunma doktrini, jeopolitik kutuplaşma ve ekonomik/altyapı kırılganlıklarını birleştirerek 0-100 ölçeğinde genel makro-stratejik risk haritasını çıkarır.
+### 28. COMPOSITE STRATEGIC SCORE
+- Purpose: Generates a holistic sovereign macro-strategic risk score on a 0-100 scale by synthesizing internal political stability, defense doctrine, geopolitical polarization, and economic/infrastructure vulnerability.
 - Target: country.json -> composite_strategic_score
 - Formula:
   Composite_Strategic_Score = (pol * 0.25) + (defense * 0.35) + (geo * 0.20) + (vuln * 0.20)
@@ -2564,13 +2564,13 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           status = "STABLE_SOVEREIGN"
       return {"composite_strategic_score": score, "status": status}
 - Interpretation:
-  - Score >= 80 : CRITICAL_STRATEGIC_RISK (Ağır Jeopolitik/İç Kriz, Yaptırım veya Savaş Riski Yüksek)
-  - 60 <= Score < 80 : HIGH_STRATEGIC_RISK (Yüksek Kırılganlık ve Potansiyel Çatışma Sınırı)
-  - 40 <= Score < 60 : MODERATE_STRATEGIC_RISK (Yönetilebilir Bölgesel/İç Dinamik Baskısı)
-  - Score < 40 : STABLE_SOVEREIGN (İstikrarlı ve Dirençli Devlet Yapısı)
+  - Score >= 80 : CRITICAL_STRATEGIC_RISK (Severe geopolitical/domestic crisis; elevated war or sanction risk)
+  - 60 <= Score < 80 : HIGH_STRATEGIC_RISK (High vulnerability and potential conflict threshold)
+  - 40 <= Score < 60 : MODERATE_STRATEGIC_RISK (Manageable regional/domestic dynamic pressure)
+  - Score < 40 : STABLE_SOVEREIGN (Stable and resilient sovereign structure)
 
-### 28.1. ÇATIŞMA HARARETİ (CONFLICT HEAT SCORE)
-- Purpose: Kinetik çatışma, diplomatik sürtüşme ve kritik altyapı/ticaret hattı kesinti risklerini 0-100 ölçeğinde puanlar.
+### 28.1. CONFLICT HEAT SCORE
+- Purpose: Scores kinetic military conflict, diplomatic friction, and critical infrastructure/trade transit disruption risks on a 0-100 scale.
 - Target: core_analysis -> conflict_heat
 - Formula:
   Conflict_Heat = (c1 * 0.40) + (c2 * 0.35) + (c3 * 0.25)
@@ -2584,13 +2584,13 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       score = (c1 * 0.40) + (c2 * 0.35) + (c3 * 0.25)
       return int(round(min(100.0, score)))
 - Interpretation:
-  - Conflict_Heat >= 80 : CRITICAL_KINETIC_ESCALATION (Ağır Savaş / Darboğaz Kapanması / Yüksek Çatışma)
-  - 55 <= Conflict_Heat < 80 : HIGH_FRICTION (Sıcak Çatışma Riski / Ağır Diplomatik Kriz)
-  - 30 <= Conflict_Heat < 55 : MODERATE_TENSION (Vekalet Savaşı / Kontrollü Bölgesel Gerilim)
-  - Conflict_Heat < 30 : LOW_RISK_ENVIRONMENT (Rutin Jeopolitik Akış)
+  - Conflict_Heat >= 80 : CRITICAL_KINETIC_ESCALATION (Major war / Chokepoint closure / Acute kinetic escalation)
+  - 55 <= Conflict_Heat < 80 : HIGH_FRICTION (Direct conflict risk / Severe diplomatic crisis)
+  - 30 <= Conflict_Heat < 55 : MODERATE_TENSION (Proxy warfare / Managed regional tension)
+  - Conflict_Heat < 30 : LOW_RISK_ENVIRONMENT (Routine geopolitical baseline)
 
-### 28.2. PİYASA ETKİ SKORU (MARKET IMPACT SCORE)
-- Purpose: Varlık oynaklığı, kredi/likidite makası ve makro aktarım mekanizmasını birleştirerek olayın finansal şok şiddetini 0-100 ölçeğinde hesaplar.
+### 28.2. MARKET IMPACT SCORE
+- Purpose: Synthesizes asset volatility, credit/liquidity spreads, and macro transmission linkages to calculate financial shock severity on a 0-100 scale.
 - Target: core_analysis -> market_impact_score
 - Formula:
   Market_Impact = (m1 * 0.35) + (m2 * 0.35) + (m3 * 0.30)
@@ -2604,21 +2604,21 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       score = (m1 * 0.35) + (m2 * 0.35) + (m3 * 0.30)
       return int(round(min(100.0, score)))
 - Interpretation:
-  - Market_Impact >= 75 : SEVERE_MARKET_SHOCK (Küresel Satış Dalgası / Likidite Krizi / Panik)
-  - 50 <= Market_Impact < 75 : ELEVATED_VOLATILITY (Yüksek Oynaklık / Risk Primi Artışı)
-  - 25 <= Market_Impact < 50 : MODERATE_REPRICING (Sınırlı Fiyatlama Değişikliği / Lokal Etki)
-  - Market_Impact < 25 : MUTED_RESPONSE (Piyasalar Olayı İhmal Ediyor / Fiyatlanmış)
+  - Market_Impact >= 75 : SEVERE_MARKET_SHOCK (Global sell-off / Liquidity crisis / Panic)
+  - 50 <= Market_Impact < 75 : ELEVATED_VOLATILITY (Elevated volatility / Rising risk premium)
+  - 25 <= Market_Impact < 50 : MODERATE_REPRICING (Bounded repricing / Localized impact)
+  - Market_Impact < 25 : MUTED_RESPONSE (Markets discount or absorb event / Fully priced in)
 
-### 28.3. DARBOĞAZ VE KORİDOR KESİNTİ AĞIRLIK MOTORU (CHOKEPOINT DISRUPTION SEVERITY ENGINE)
-- Purpose: llms-relationships.txt ontolojisinde Bolum 4 (Darbogazlar) ve Bolum 7'de (Stratejik Koridorlar) tanimlanan ayrik Disruption Severity enum degerlerini sayisal agirlik katsayilarina donusturur. Uretilen katsayi, 28.1 Catısma Harareti (disruption_risk) ve 28.2 Piyasa Etki Skoru (macro_spillover) modellerine dogrudan girdi teskil eder.
+### 28.3. CHOKEPOINT DISRUPTION SEVERITY ENGINE
+- Purpose: Converts qualitative Disruption Severity enum values from llms-relationships.txt (Section 4 Chokepoints & Section 7 Strategic Corridors) into normalized numeric weights (0.0 to 1.0) and 0-100 scores. Directly feeds disruption_risk in Model 28.1 and macro_spillover in Model 28.2.
 - Data Link: llms-relationships.txt -> Section 4 & Section 7 (Disruption Severity Registries)
 - Input Schema:
   - severity_enum: "CATASTROPHIC" | "HIGH" | "MODERATE-HIGH" | "MODERATE"
 - Weights Dictionary:
-  - CATASTROPHIC  : 1.00 (Tam blokaj, kuresel tedarik soku)
-  - HIGH          : 0.70 (Agir aksama, zorunlu rota sapmasi)
-  - MODERATE-HIGH : 0.45 (Bolgesel kapasite kisiti, ilave ton-mil maliyeti)
-  - MODERATE      : 0.20 (Lokal surtusme, yonetilebilir lojistik gecikme)
+  - CATASTROPHIC  : 1.00 (Complete dual-direction blockade, global supply shock)
+  - HIGH          : 0.70 (Severe disruption, mandatory route diversion)
+  - MODERATE-HIGH : 0.45 (Regional capacity constraint, added ton-mile freight costs)
+  - MODERATE      : 0.20 (Localized friction, manageable logistical delays)
 - Formula:
   Disruption_Weight = SEVERITY_WEIGHT_MAP[severity_enum]
   Disruption_Score_100 = Disruption_Weight * 100
@@ -2649,14 +2649,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, AttributeError):
           return None
 - Interpretation:
-  - severity == CATASTROPHIC : weight 1.00 / score 100 (Sistemik Kuresel Sok / Kritik Bogazin Cift Yonlu Kapanmasi)
-  - severity == HIGH : weight 0.70 / score 70 (Agir Tedarik Kesintisi / Navlun ve Transit Gun Sicramasi)
-  - severity == MODERATE-HIGH : weight 0.45 / score 45 (Bolgesel Lojistik Darbogaz / Kismi Kapasite Kaybi)
-  - severity == MODERATE : weight 0.20 / score 20 (Dusuk Olcekli Operasyonel Baski / Yerel Dagitim Aksamasi)
+  - severity == CATASTROPHIC : weight 1.00 / score 100 (Systemic global shock / Complete dual-direction chokepoint closure)
+  - severity == HIGH : weight 0.70 / score 70 (Severe supply disruption / Freight rates and transit days surge)
+  - severity == MODERATE-HIGH : weight 0.45 / score 45 (Regional logistics bottleneck / Partial capacity loss)
+  - severity == MODERATE : weight 0.20 / score 20 (Low-scale operational pressure / Localized distribution delay)
 
 
-### 28.4. BOĞAZ KESİNTİSİ MAKRO AKTARIM KÖPRÜSÜ (CHOKEPOINT MACRO SPILLOVER BRIDGE)
-- Purpose: llms-relationships.txt ontolojisindeki darbogazin Disruption Severity agirligi ile ilgili aktorlerin P_net kutuplasma gerilimini dinamik olarak birlestirir. Elde edilen deger, 28.1 Catısma Harareti modelindeki disruption_risk parametresine ve 28.2 Piyasa Etki Skoru modelindeki macro_spillover parametresine 0-100 olceginde dogrudan deterministik girdi saglar.
+### 28.4. CHOKEPOINT MACRO SPILLOVER BRIDGE
+- Purpose: Dynamically couples chokepoint Disruption Severity weight from llms-relationships.txt with actor bilateral net polarity tension (P_net). Generates deterministic 0-100 inputs for Model 28.1 (disruption_risk) and Model 28.2 (macro_spillover).
 - Data Links:
   - llms-relationships.txt -> Section 1 (P_net) & Section 4/7 (Disruption Severity)
   - llms-formulas.txt -> Model 25.1 (dynamic_polarity_engine), 28.1 (conflict_heat_score), 28.2 (market_impact_score), 28.3 (chokepoint_severity_multiplier)
@@ -2670,13 +2670,13 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       if isinstance(p_net, bool):
           return None
       try:
-          # Severity agirligini Model 28.3 uzerinden cozumleme
+          # Resolve severity weight via Model 28.3
           sev_data = chokepoint_severity_multiplier(severity_enum)
           if not sev_data:
               return None
           w_sev = float(sev_data["weight"])
 
-          # Polarite kontrolu (None ise notr 0.0 kabul edilir)
+          # Polarity check (None defaults to neutral 0.0)
           p_val = 0.0 if p_net is None else float(p_net)
           if not math.isfinite(p_val):
               return None
@@ -2684,7 +2684,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           pol_clamped = min(1.0, max(-1.0, p_val))
           friction = max(0.0, -pol_clamped)
 
-          # %70 fiziksel tikanma agirligi + %30 jeopolitik kutuplasma surtusmesi
+          # 70% physical disruption weight + 30% geopolitical polarity friction
           raw_score = (w_sev * 70.0) + (friction * 30.0)
           score = int(round(min(100.0, max(0.0, raw_score))))
 
@@ -2708,13 +2708,13 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - bridge_score >= 85 : CRITICAL_SYSTEMIC_SHOCK (28.1 disruption_risk ve 28.2 macro_spillover icin tam kapasite sistemik sok girdisi)
-  - 60 <= bridge_score < 85 : HIGH_SPILLOVER (Kuresel emtia/navlun fiyatlarina yuksek aktarim baskisi)
-  - 30 <= bridge_score < 60 : MODERATE_FRICTION (Bolgesel tedarik zinciri tikanmasi ve lokal maliyet artisi)
-  - bridge_score < 30 : LOCALIZED_IMPACT (Piyasa tarafindan absorbe edilebilir sinirli operasyonel gecikme)
+  - bridge_score >= 85 : CRITICAL_SYSTEMIC_SHOCK (Full-capacity systemic shock input for 28.1 disruption_risk and 28.2 macro_spillover)
+  - 60 <= bridge_score < 85 : HIGH_SPILLOVER (High pass-through pressure on global commodity/freight prices)
+  - 30 <= bridge_score < 60 : MODERATE_FRICTION (Regional supply chain congestion and localized cost increases)
+  - bridge_score < 30 : LOCALIZED_IMPACT (Market-absorbable limited operational delays)
 
-### 28.5. MAKRO REJİM VE LİKİDİTE ŞOK ÇARPANI (REGIME-ADJUSTED MARKET IMPACT)
-- Purpose: Model 28.2'de üretilen ham Piyasa Etki Skorunu, para politikası sıkılığı (Model 2) ve finansal koşullara (Model 12) göre deterministik çarpanla ölçekler.
+### 28.5. REGIME-ADJUSTED MARKET IMPACT
+- Purpose: Scales raw Market Impact Score from Model 28.2 with a deterministic multiplier based on monetary policy stance (Model 2) and financial conditions (Model 12).
 - Data Links:
   - llms-formulas.txt -> Model 2 (real_policy_rate), Model 12 (financial_conditions_regime), Model 28.2 (market_impact_score)
 - Formula:
@@ -2755,15 +2755,15 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Multiplier == 1.25 : AMPLIFIED_SHOCK (Sıkı Para / Finansal Stres / Likidite Kısıtı Kriz Şokunu Büyütür)
-  - Multiplier == 1.00 : NEUTRAL_PASS_THROUGH (Dengeli Makro Rejim / Standart Aktarım)
-  - Multiplier == 0.75 : DAMPED_LIQUIDITY_IMPACT (Gevşek Likidite / Fazla Rezerv Şoku Sönümler)
+  - Multiplier == 1.25 : AMPLIFIED_SHOCK (Tight money / Financial stress / Liquidity constraints amplify crisis shock)
+  - Multiplier == 1.00 : NEUTRAL_PASS_THROUGH (Balanced macro regime / Standard transmission)
+  - Multiplier == 0.75 : DAMPED_LIQUIDITY_IMPACT (Loose liquidity / Excess reserves absorb and cushion shock)
 
 ---
 
-### 29. KANIT VE GUVENILIRLIK SKORU (CONFIDENCE SCORE)
-- Purpose: Analizi destekleyen kaynakların otorite, doğrulama ve güncellik düzeylerini 0-100 ölçeğinde puanlar.
-- Input Normalization: Girdiler 0.0-1.0 aralığında veya 0-100 aralığında girilebilir; fonksiyon her iki ölçeği otomatik normalize eder.
+### 29. EVIDENCE & SOURCE CONFIDENCE SCORE
+- Purpose: Evaluates authority, corroboration, and recency of intelligence supporting analytical assertions on a 0-100 scale.
+- Input Normalization: Inputs can be supplied in 0.0-1.0 or 0-100 scale; function automatically normalizes both.
 - Machine-Executable Logic (Python):
   def confidence_score(authority, confirmation, recency):
       if not all(_is_num(v) for v in (authority, confirmation, recency)): return None
@@ -2775,21 +2775,21 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 
 ---
 
-## 4. KADEME: RESMI MAKRO TAKVIM VE GERI SAYIM MOTORU (RELEASE COUNTDOWN ENGINE)
+## ⏱️ TIER 4: OFFICIAL MACROECONOMIC RELEASE CALENDARS & COUNTDOWN ENGINE
 
-### 30. RESMI MAKRO BULTEN TAKVIMLERI VE KALAN GUN PROTOKOLU (OFFICIAL BLS & BEA COUNTDOWN)
-- Purpose: CPI (TUFE), NFP (Istihdam), PPI, PCE Enflasyonu ve GDP (GSYIH) gibi kritik bultenlerin resmi yayin tarihlerini deterministik olarak cozer ve kalan gunu hesaplar.
+### 30. OFFICIAL MACROECONOMIC RELEASE CALENDARS & COUNTDOWN ENGINE
+- Purpose: Deterministically resolves scheduled release dates and computes remaining days for Tier-1 economic releases including CPI, NFP, PPI, PCE Inflation, and GDP.
 - Canonical Calendar Sources:
   - BLS Schedule (CPI, NFP, PPI): https://www.bls.gov/schedule/news_release/bls.ics
-  - BEA Schedule (PCE, GDP, Dis Ticaret): https://apps.bea.gov/API/signup/release_dates.json
+  - BEA Schedule (PCE, GDP, Trade Balance): https://apps.bea.gov/API/signup/release_dates.json
 - Countdown Formula:
-  Kalan_Gun = (Target_Date - Current_Date).days
-  (Saat ve dakika sapmalarini engellemek icin her iki tarihin saati gece yarisina 00:00:00 esitlenir.)
+  Days_Remaining = (Target_Date - Current_Date).days
+  (Both timestamps normalized to midnight 00:00:00 UTC to prevent time-of-day distortion.)
 - Status Mapping:
-  - Kalan_Gun == 0 : "Bugun"
-  - Kalan_Gun == 1 : "Yarin"
-  - Kalan_Gun pozitif : str(Kalan_Gun) + " gun sonra"
-  - Kalan_Gun negatif : str(abs(Kalan_Gun)) + " gun once"
+  - Days_Remaining == 0 : "Today"
+  - Days_Remaining == 1 : "Tomorrow"
+  - Days_Remaining > 1 : str(Days_Remaining) + " days remaining"
+  - Days_Remaining < 0 : str(abs(Days_Remaining)) + " days ago"
 - Machine-Executable Logic (Python):
   from datetime import datetime
 
@@ -2805,17 +2805,17 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       delta_days = (t_target - t_current).days
 
       if delta_days == 0:
-          status = "Bugun"
+          status = "Today"
       elif delta_days == 1:
-          status = "Yarin"
-      elif max(delta_days, 2) == delta_days:
-          status = str(delta_days) + " gun sonra"
+          status = "Tomorrow"
+      elif delta_days > 1:
+          status = f"{delta_days} days remaining"
       else:
-          status = str(abs(delta_days)) + " gun once"
+          status = f"{abs(delta_days)} days ago"
 
       return {"days_remaining": delta_days, "status": status}
 - Execution Directive for AI Agents:
-  Kullanici bir sonraki makro verinin tarihini sordugunda:
-  1. CPI, NFP veya PPI icin BLS kaynagini; PCE veya GDP icin BEA JSON takvimini baz al.
-  2. Hedef gostergenin en yakin resmi yayin tarihini (Target_Date) tespit et.
-  3. macro_release_countdown mantigini isleterek guncel gune gore kalan sureyi net durum etiketiyle yanitla.
+  When querying scheduled release timing for forthcoming macroeconomic data:
+  1. Query BLS schedule for CPI, NFP, PPI; query BEA JSON calendar for PCE, GDP.
+  2. Identify nearest official scheduled release date (Target_Date).
+  3. Execute macro_release_countdown logic to determine exact remaining duration with unambiguous status tags.
