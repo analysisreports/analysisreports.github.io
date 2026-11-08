@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-08T01:25:57Z",
+    "last_successful_sync": "2026-11-08T04:07:40Z",
     "total_series": 15,
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
@@ -200,9 +200,9 @@
         "change_from_year_ago": -0.18,
         "percent_change": -7.8947,
         "percent_change_from_year_ago": -33.9623,
-        "compounded_annual_rate_of_change": -100.0,
+        "compounded_annual_rate_of_change": null,
         "continuously_compounded_rate_of_change": -8.2238,
-        "continuously_compounded_annual_rate_of_change": -2138.1906
+        "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
         {
@@ -286,9 +286,9 @@
         "change_from_year_ago": 0.24,
         "percent_change": 0.0,
         "percent_change_from_year_ago": 6.5934,
-        "compounded_annual_rate_of_change": 0.0,
+        "compounded_annual_rate_of_change": null,
         "continuously_compounded_rate_of_change": 0.0,
-        "continuously_compounded_annual_rate_of_change": 0.0
+        "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
         {
@@ -501,9 +501,9 @@
         "change_from_year_ago": -0.3,
         "percent_change": -2.381,
         "percent_change_from_year_ago": -6.8182,
-        "compounded_annual_rate_of_change": -25.1116,
+        "compounded_annual_rate_of_change": null,
         "continuously_compounded_rate_of_change": -2.4098,
-        "continuously_compounded_annual_rate_of_change": -28.9171
+        "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
         {
@@ -587,9 +587,9 @@
         "change_from_year_ago": -0.21,
         "percent_change": 3.4667,
         "percent_change_from_year_ago": -5.1345,
-        "compounded_annual_rate_of_change": 50.5239,
+        "compounded_annual_rate_of_change": null,
         "continuously_compounded_rate_of_change": 3.4079,
-        "continuously_compounded_annual_rate_of_change": 40.8952
+        "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
         {
