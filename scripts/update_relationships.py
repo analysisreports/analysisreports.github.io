@@ -253,14 +253,6 @@ def main():
             'dynamic_delta': round(oil_delta * 0.5, 2),
             'friction_nodes': ['ORINOCO_BELT', 'CARIBBEAN_SEA', 'OFAC_SANCTIONS'],
             'primary_driver': 'HEAVY_CRUDE_OIL_SANCTIONS_AND_LICENSING'
-        },
-        {
-            'id': 'DE_FR',
-            'label': 'DE - FR (Federal Republic of Germany vs. French Republic)',
-            'p_baseline': +0.80,
-            'dynamic_delta': -0.45,
-            'friction_nodes': ['SCHULDENBREMSE_DEBT_BRAKE', 'EURO_DEFENSE_BONDS', 'NUCLEAR_VS_RENEWABLES_PARITY', 'SKY_SHIELD_AIR_DEFENSE'],
-            'primary_driver': 'EUROZONE_FISCAL_STAGNATION_AND_ENERGY_DIVERGENCE'
         }
     ]
 
