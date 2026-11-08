@@ -5,8 +5,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-08T21:12:45Z",
-    "total_series": 18,
+    "last_successful_sync": "2026-11-08T21:32:52Z",
+    "total_series": 29,
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -442,6 +442,49 @@
         }
       ]
     },
+    "SP500": {
+      "series_id": "SP500",
+      "title": "S&P 500",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Index",
+      "source": "Index",
+      "last_date": "2026-11-05",
+      "current_value": 7353.73,
+      "previous_value": 7688.62,
+      "year_ago_value": 6738.44,
+      "transformations": {
+        "change": -334.89,
+        "change_from_year_ago": 615.29,
+        "percent_change": -4.3557,
+        "percent_change_from_year_ago": 9.131,
+        "compounded_annual_rate_of_change": -99.9991,
+        "continuously_compounded_rate_of_change": -4.4534,
+        "continuously_compounded_annual_rate_of_change": -1157.8748
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-30",
+          "value": 7580.07
+        },
+        {
+          "date": "2026-11-02",
+          "value": 7541.4
+        },
+        {
+          "date": "2026-11-03",
+          "value": 7568.92
+        },
+        {
+          "date": "2026-11-04",
+          "value": 7688.62
+        },
+        {
+          "date": "2026-11-05",
+          "value": 7353.73
+        }
+      ]
+    },
     "WALCL": {
       "series_id": "WALCL",
       "title": "Assets: Total Assets: Total Assets (Less Eliminations from Consolidation): Wednesday Level",
@@ -571,6 +614,49 @@
         }
       ]
     },
+    "MORTGAGE30US": {
+      "series_id": "MORTGAGE30US",
+      "title": "30-Year Fixed Rate Mortgage Average in the United States",
+      "frequency": "Weekly",
+      "n_obs_per_yr": 52,
+      "units": "Percent",
+      "source": "Percent",
+      "last_date": "2026-11-05",
+      "current_value": 7.18,
+      "previous_value": 7.24,
+      "year_ago_value": 6.22,
+      "transformations": {
+        "change": -0.06,
+        "change_from_year_ago": 0.96,
+        "percent_change": -0.8287,
+        "percent_change_from_year_ago": 15.4341,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": -0.8322,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-08",
+          "value": 7.4
+        },
+        {
+          "date": "2026-10-15",
+          "value": 7.4
+        },
+        {
+          "date": "2026-10-22",
+          "value": 7.32
+        },
+        {
+          "date": "2026-10-29",
+          "value": 7.24
+        },
+        {
+          "date": "2026-11-05",
+          "value": 7.18
+        }
+      ]
+    },
     "PAYEMS": {
       "series_id": "PAYEMS",
       "title": "All Employees, Total Nonfarm",
@@ -611,6 +697,92 @@
         {
           "date": "2026-10-01",
           "value": 159293.0
+        }
+      ]
+    },
+    "CIVPART": {
+      "series_id": "CIVPART",
+      "title": "Labor Force Participation Rate",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Percent",
+      "source": "Percent",
+      "last_date": "2026-10-01",
+      "current_value": 61.9,
+      "previous_value": 61.8,
+      "year_ago_value": 62.5,
+      "transformations": {
+        "change": 0.1,
+        "change_from_year_ago": -0.6,
+        "percent_change": 0.1618,
+        "percent_change_from_year_ago": -0.96,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 0.1617,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-06-01",
+          "value": 61.5
+        },
+        {
+          "date": "2026-07-01",
+          "value": 61.4
+        },
+        {
+          "date": "2026-08-01",
+          "value": 61.6
+        },
+        {
+          "date": "2026-09-01",
+          "value": 61.8
+        },
+        {
+          "date": "2026-10-01",
+          "value": 61.9
+        }
+      ]
+    },
+    "UMCSENT": {
+      "series_id": "UMCSENT",
+      "title": "University of Michigan: Consumer Sentiment",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Index 1966:Q1=100",
+      "source": "Index 1966:Q1=100",
+      "last_date": "2026-09-01",
+      "current_value": 48.1,
+      "previous_value": 51.7,
+      "year_ago_value": 55.1,
+      "transformations": {
+        "change": -3.6,
+        "change_from_year_ago": -7.0,
+        "percent_change": -6.9632,
+        "percent_change_from_year_ago": -12.7042,
+        "compounded_annual_rate_of_change": -57.9414,
+        "continuously_compounded_rate_of_change": -7.2176,
+        "continuously_compounded_annual_rate_of_change": -86.6107
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 44.8
+        },
+        {
+          "date": "2026-06-01",
+          "value": 49.5
+        },
+        {
+          "date": "2026-07-01",
+          "value": 55.2
+        },
+        {
+          "date": "2026-08-01",
+          "value": 51.7
+        },
+        {
+          "date": "2026-09-01",
+          "value": 48.1
         }
       ]
     },
@@ -743,6 +915,49 @@
         }
       ]
     },
+    "INDPRO": {
+      "series_id": "INDPRO",
+      "title": "Industrial Production: Total Index",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Index 2017=100",
+      "source": "Index 2017=100",
+      "last_date": "2026-09-01",
+      "current_value": 103.9506,
+      "previous_value": 103.2664,
+      "year_ago_value": 101.668,
+      "transformations": {
+        "change": 0.6842,
+        "change_from_year_ago": 2.2826,
+        "percent_change": 0.6626,
+        "percent_change_from_year_ago": 2.2452,
+        "compounded_annual_rate_of_change": 8.2469,
+        "continuously_compounded_rate_of_change": 0.6604,
+        "continuously_compounded_annual_rate_of_change": 7.9245
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 102.7232
+        },
+        {
+          "date": "2026-06-01",
+          "value": 102.961
+        },
+        {
+          "date": "2026-07-01",
+          "value": 103.2006
+        },
+        {
+          "date": "2026-08-01",
+          "value": 103.2664
+        },
+        {
+          "date": "2026-09-01",
+          "value": 103.9506
+        }
+      ]
+    },
     "SAHMREALTIME": {
       "series_id": "SAHMREALTIME",
       "title": "Real-time Sahm Rule Recession Indicator",
@@ -783,6 +998,264 @@
         {
           "date": "2026-10-01",
           "value": 0.0
+        }
+      ]
+    },
+    "CPIAUCSL": {
+      "series_id": "CPIAUCSL",
+      "title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Index 1982-1984=100",
+      "source": "Index 1982-1984=100",
+      "last_date": "2026-09-01",
+      "current_value": 336.298,
+      "previous_value": 334.131,
+      "year_ago_value": 323.291,
+      "transformations": {
+        "change": 2.167,
+        "change_from_year_ago": 13.007,
+        "percent_change": 0.6485,
+        "percent_change_from_year_ago": 4.0233,
+        "compounded_annual_rate_of_change": 8.0663,
+        "continuously_compounded_rate_of_change": 0.6465,
+        "continuously_compounded_annual_rate_of_change": 7.7574
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 333.979
+        },
+        {
+          "date": "2026-06-01",
+          "value": 332.568
+        },
+        {
+          "date": "2026-07-01",
+          "value": 332.813
+        },
+        {
+          "date": "2026-08-01",
+          "value": 334.131
+        },
+        {
+          "date": "2026-09-01",
+          "value": 336.298
+        }
+      ]
+    },
+    "CORESTICKM159SFRBATL": {
+      "series_id": "CORESTICKM159SFRBATL",
+      "title": "Sticky Price Consumer Price Index less Food and Energy",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Percent Change from Year Ago",
+      "source": "Percent Change from Year Ago",
+      "last_date": "2026-09-01",
+      "current_value": 2.776528554,
+      "previous_value": 2.700641247,
+      "year_ago_value": 3.322171495,
+      "transformations": {
+        "change": 0.0759,
+        "change_from_year_ago": -0.5456,
+        "percent_change": 2.81,
+        "percent_change_from_year_ago": -16.4243,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 2.7712,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 3.091256621
+        },
+        {
+          "date": "2026-06-01",
+          "value": 2.806860184
+        },
+        {
+          "date": "2026-07-01",
+          "value": 2.715835582
+        },
+        {
+          "date": "2026-08-01",
+          "value": 2.700641247
+        },
+        {
+          "date": "2026-09-01",
+          "value": 2.776528554
+        }
+      ]
+    },
+    "PCE": {
+      "series_id": "PCE",
+      "title": "Personal Consumption Expenditures",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Billions of Dollars",
+      "source": "Billions of Dollars",
+      "last_date": "2026-09-01",
+      "current_value": 22452.8,
+      "previous_value": 22339.7,
+      "year_ago_value": 21126.5,
+      "transformations": {
+        "change": 113.1,
+        "change_from_year_ago": 1326.3,
+        "percent_change": 0.5063,
+        "percent_change_from_year_ago": 6.2779,
+        "compounded_annual_rate_of_change": 6.2473,
+        "continuously_compounded_rate_of_change": 0.505,
+        "continuously_compounded_annual_rate_of_change": 6.06
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 22027.2
+        },
+        {
+          "date": "2026-06-01",
+          "value": 22095.5
+        },
+        {
+          "date": "2026-07-01",
+          "value": 22146.0
+        },
+        {
+          "date": "2026-08-01",
+          "value": 22339.7
+        },
+        {
+          "date": "2026-09-01",
+          "value": 22452.8
+        }
+      ]
+    },
+    "IR": {
+      "series_id": "IR",
+      "title": "Import Price Index (End Use): All Commodities",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Index 2000=100",
+      "source": "Index 2000=100",
+      "last_date": "2026-09-01",
+      "current_value": 152.2,
+      "previous_value": 150.5,
+      "year_ago_value": 141.0,
+      "transformations": {
+        "change": 1.7,
+        "change_from_year_ago": 11.2,
+        "percent_change": 1.1296,
+        "percent_change_from_year_ago": 7.9433,
+        "compounded_annual_rate_of_change": 14.4295,
+        "continuously_compounded_rate_of_change": 1.1232,
+        "continuously_compounded_annual_rate_of_change": 13.4788
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 150.7
+        },
+        {
+          "date": "2026-06-01",
+          "value": 150.3
+        },
+        {
+          "date": "2026-07-01",
+          "value": 149.7
+        },
+        {
+          "date": "2026-08-01",
+          "value": 150.5
+        },
+        {
+          "date": "2026-09-01",
+          "value": 152.2
+        }
+      ]
+    },
+    "IQ": {
+      "series_id": "IQ",
+      "title": "Export Price Index (End Use): All Commodities",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Index 2000=100",
+      "source": "Index 2000=100",
+      "last_date": "2026-09-01",
+      "current_value": 170.8,
+      "previous_value": 167.2,
+      "year_ago_value": 153.0,
+      "transformations": {
+        "change": 3.6,
+        "change_from_year_ago": 17.8,
+        "percent_change": 2.1531,
+        "percent_change_from_year_ago": 11.634,
+        "compounded_annual_rate_of_change": 29.1276,
+        "continuously_compounded_rate_of_change": 2.1303,
+        "continuously_compounded_annual_rate_of_change": 25.5631
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 168.8
+        },
+        {
+          "date": "2026-06-01",
+          "value": 167.5
+        },
+        {
+          "date": "2026-07-01",
+          "value": 165.2
+        },
+        {
+          "date": "2026-08-01",
+          "value": 167.2
+        },
+        {
+          "date": "2026-09-01",
+          "value": 170.8
+        }
+      ]
+    },
+    "GDPC1": {
+      "series_id": "GDPC1",
+      "title": "Real Gross Domestic Product",
+      "frequency": "Quarterly",
+      "n_obs_per_yr": 4,
+      "units": "Billions of Chained 2017 Dollars",
+      "source": "Billions of Chained 2017 Dollars",
+      "last_date": "2026-07-01",
+      "current_value": 24611.077,
+      "previous_value": 24408.011,
+      "year_ago_value": 24112.966,
+      "transformations": {
+        "change": 203.066,
+        "change_from_year_ago": 498.111,
+        "percent_change": 0.832,
+        "percent_change_from_year_ago": 2.0657,
+        "compounded_annual_rate_of_change": 3.3696,
+        "continuously_compounded_rate_of_change": 0.8285,
+        "continuously_compounded_annual_rate_of_change": 3.3141
+      },
+      "recent_observations": [
+        {
+          "date": "2025-07-01",
+          "value": 24112.966
+        },
+        {
+          "date": "2025-10-01",
+          "value": 24125.479
+        },
+        {
+          "date": "2026-01-01",
+          "value": 24274.383
+        },
+        {
+          "date": "2026-04-01",
+          "value": 24408.011
+        },
+        {
+          "date": "2026-07-01",
+          "value": 24611.077
         }
       ]
     }
