@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-08T00:31:11.117978+00:00",
+    "last_successful_sync": "2026-11-08T01:16:13.126965+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "governance_reference": "https://analysisreports.github.io/llms-formulas.txt#25.15",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
@@ -194,6 +194,21 @@
         "ORINOCO_BELT",
         "CARIBBEAN_SEA",
         "OFAC_SANCTIONS"
+      ]
+    },
+    {
+      "id": "DE_FR",
+      "label": "DE - FR (Federal Republic of Germany vs. French Republic)",
+      "p_baseline": 0.8,
+      "dynamic_delta": -0.45,
+      "p_net": 0.35,
+      "regime_state": "TACTICAL_COOPERATION",
+      "primary_driver": "EUROZONE_FISCAL_STAGNATION_AND_ENERGY_DIVERGENCE",
+      "friction_nodes": [
+        "SCHULDENBREMSE_DEBT_BRAKE",
+        "EURO_DEFENSE_BONDS",
+        "NUCLEAR_VS_RENEWABLES_PARITY",
+        "SKY_SHIELD_AIR_DEFENSE"
       ]
     }
   ],
