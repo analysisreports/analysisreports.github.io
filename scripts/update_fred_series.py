@@ -239,13 +239,18 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str) -> Tuple[str,
             xt_prev = t_prev["value"]
             xt_year_ago = t_year_ago["value"] if t_year_ago else None
 
+            units_str = meta.get("units", "")
+            # Rate & Yield Financial Guard: Percentage rates are already annualized.
+            # Compounding an already annualized rate is a category error and produces misleading exponential distortions.
+            is_rate = "Percent" in units_str or "%" in units_str
+
             c_chg = fred_change(xt, xt_prev)
             c_chg_yr = fred_change_year_ago(xt, xt_year_ago) if xt_year_ago is not None else None
             c_pct = fred_percent_change(xt, xt_prev)
             c_pct_yr = fred_percent_change_year_ago(xt, xt_year_ago) if xt_year_ago is not None else None
-            c_car = fred_compounded_annual_rate(xt, xt_prev, n_obs_per_yr)
+            c_car = None if is_rate else fred_compounded_annual_rate(xt, xt_prev, n_obs_per_yr)
             c_ccr = fred_continuously_compounded_rate(xt, xt_prev)
-            c_ccar = fred_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr)
+            c_ccar = None if is_rate else fred_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr)
 
             recent_5 = obs[-5:]
 
@@ -272,8 +277,11 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str) -> Tuple[str,
                 "recent_observations": recent_5
             }
 
-            def fmt(v):
-                return f"{v:+.4f}" if v is not None else "N/A"
+            def fmt(v, suffix="%"):
+                return f"{v:+.4f}{suffix}" if v is not None else "N/A"
+
+            car_str = "N/A (Rate is already annualized)" if is_rate else fmt(c_car, "%")
+            ccar_str = "N/A (Rate is already annualized)" if is_rate else fmt(c_ccar, "%")
 
             recent_lines = "\n".join([f"  {r['date']}: {r['value']:.4f}" for r in recent_5])
 
@@ -284,13 +292,13 @@ Frequency: {freq.capitalize()} (n_obs_per_yr: {n_obs_per_yr}) | Units: {meta.get
 Last Date: {t_curr['date']} | Current Value: {xt:.4f} | Previous Value: {xt_prev:.4f} | Year Ago Value: {f"{xt_year_ago:.4f}" if xt_year_ago is not None else "N/A"}
 
 Transformations (Official St. Louis Fed Formulas):
-  1. Change: {fmt(c_chg)}
-  2. Change from Year Ago: {fmt(c_chg_yr)}
-  3. Percent Change: {fmt(c_pct)}%
-  4. Percent Change from Year Ago: {fmt(c_pct_yr)}%
-  5. Compounded Annual Rate of Change: {fmt(c_car)}%
-  6. Continuously Compounded Rate of Change: {fmt(c_ccr)}%
-  7. Continuously Compounded Annual Rate of Change: {fmt(c_ccar)}%
+  1. Change: {fmt(c_chg, '')}
+  2. Change from Year Ago: {fmt(c_chg_yr, '')}
+  3. Percent Change: {fmt(c_pct, '%')}
+  4. Percent Change from Year Ago: {fmt(c_pct_yr, '%')}
+  5. Compounded Annual Rate of Change: {car_str}
+  6. Continuously Compounded Rate of Change: {fmt(c_ccr, '%')}
+  7. Continuously Compounded Annual Rate of Change: {ccar_str}
 
 Recent Observations (Last 5):
 {recent_lines}"""

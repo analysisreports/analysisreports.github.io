@@ -192,6 +192,18 @@
       "description": "Automated St. Louis Fed macro series, latest observation snapshots, and official growth rate transformations."
     },
     {
+      "id": "live-ecb-series",
+      "name": "Canonical European Central Bank (ECB) Time-Series Registry & Official Transformations",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-ecb-series.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-ecb-series.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Automated European Central Bank Data Portal time-series, observation snapshots, and official monetary metrics."
+    },
+    {
       "id": "dynamic-geopolitical-matrix",
       "name": "Dynamic Geopolitical Polarity & Sovereign Governance Engine",
       "type": "dataset",

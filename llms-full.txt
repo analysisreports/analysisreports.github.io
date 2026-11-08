@@ -61,6 +61,8 @@ Core Manifests & System Engines:
 - Author and Methodological Profile (llms-about.txt): https://analysisreports.github.io/llms-about.txt
 - Live FRED Time-Series Registry: https://analysisreports.github.io/llms-fred-series.txt
 - Live FRED JSON Twin: https://analysisreports.github.io/llms-fred-series.json
+- Live ECB Time-Series Registry: https://analysisreports.github.io/llms-ecb-series.txt
+- Live ECB JSON Twin: https://analysisreports.github.io/llms-ecb-series.json
 - Dynamic Relationships JSON Twin: https://analysisreports.github.io/llms-relationships.json
 - Live Quantitative Models Engine: https://analysisreports.github.io/llms-models.txt
 - Live Quantitative Models JSON Twin: https://analysisreports.github.io/llms-models.json

@@ -148,6 +148,9 @@ def _is_pos(val):
            return round(res, 4) if math.isfinite(res) else None
        except (OverflowError, ValueError):
            return None
+
+#### Rate & Yield Financial Guard:
+Interest rates (e.g. FEDFUNDS, DFF, T10Y2Y) and unemployment rates (UNRATE) are already expressed as annualized percentages. Compounding an already annualized percentage metric is a category error that yields deceptive exponential distortions. For all series where units represent percentage rates, compounded annual growth rates (SAAR/CAGR) are strictly suppressed to null (N/A in textual reports).
            
 ---
 
@@ -155,6 +158,139 @@ def _is_pos(val):
 Bu projedeki tüm kronolojik akışlar, veri serisi gözlem dönemleri ve açıklanma zamanları UTC bazlı ISO 8601 (YYYY-MM-DDTHH:MM:SSZ) standardına göre kalibre edilmiştir.
 - observation_date: Verinin ait olduğu ekonomik dönem.
 - release_date: Verinin piyasaya açıklandığı resmi an.
+
+---
+
+### 0.5. EUROPEAN CENTRAL BANK (ECB) DATA TRANSFORMATION & MONETARY METRICS ENGINE
+- Purpose: Direct ingestion and mathematical transformation of official European Central Bank (ECB Data Portal) time-series without third-party aggregator lag or hallucinations.
+- Source Authority: European Central Bank (ECB Data Portal REST API: data-api.ecb.europa.eu)
+- Data Ingestion Protocol: SDMX 2.1 RESTful CSV endpoint (/service/data/{flowRef}/{key}?format=csvdata&detail=dataonly).
+- Reference Endpoints:
+  - Text Registry: https://analysisreports.github.io/llms-ecb-series.txt
+  - JSON Twin: https://analysisreports.github.io/llms-ecb-series.json
+
+#### Observation Frequencies (n_obs_per_yr):
+- Daily (Business Days) : 260
+- Weekly (Banking Weeks) : 52
+- Monthly (Calendar Months) : 12
+- Quarterly (Economic Quarters) : 4
+- Annual (Calendar Years) : 1
+
+#### Core Transformation Formulas & Machine-Executable Logic (Python):
+
+import math
+
+def _is_num(val):
+    if val is None or isinstance(val, bool) or not isinstance(val, (int, float)):
+        return False
+    try:
+        return math.isfinite(val)
+    except (OverflowError, ValueError, TypeError):
+        return False
+
+def _is_pos(val):
+    if not _is_num(val):
+        return False
+    return min(val, 0) != val
+
+# 1. Periodic Absolute Change: x(t) - x(t-1)
+def ecb_change(xt, xt_prev):
+    if not (_is_num(xt) and _is_num(xt_prev)):
+        return None
+    try:
+        res = xt - xt_prev
+        return round(res, 4) if math.isfinite(res) else None
+    except (OverflowError, ValueError):
+        return None
+
+# 2. Change from Year Ago: x(t) - x(t - n_obs_per_yr)
+def ecb_change_year_ago(xt, xt_year_ago):
+    if not (_is_num(xt) and _is_num(xt_year_ago)):
+        return None
+    try:
+        res = xt - xt_year_ago
+        return round(res, 4) if math.isfinite(res) else None
+    except (OverflowError, ValueError):
+        return None
+
+# 3. Percent Change: ((x(t) / x(t-1)) - 1) * 100
+def ecb_percent_change(xt, xt_prev):
+    if not (_is_num(xt) and _is_num(xt_prev)) or xt_prev == 0:
+        return None
+    try:
+        res = ((xt / xt_prev) - 1.0) * 100.0
+        return round(res, 4) if math.isfinite(res) else None
+    except (OverflowError, ValueError, ZeroDivisionError):
+        return None
+
+# 4. Percent Change from Year Ago (YoY): ((x(t) / x(t - n_obs_per_yr)) - 1) * 100
+def ecb_percent_change_year_ago(xt, xt_year_ago):
+    if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago == 0:
+        return None
+    try:
+        res = ((xt / xt_year_ago) - 1.0) * 100.0
+        return round(res, 4) if math.isfinite(res) else None
+    except (OverflowError, ValueError, ZeroDivisionError):
+        return None
+
+# 5. Compounded Annual Rate of Change (SAAR / CAGR): (((x(t) / x(t-1)) ** n_obs_per_yr) - 1) * 100
+def ecb_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
+    if not all(_is_pos(v) for v in (xt, xt_prev, n_obs_per_yr)):
+        return None
+    try:
+        ratio = xt / xt_prev
+        # Economic Boundary Guard: Prevents asymptotic explosion on daily shock jumps
+        if n_obs_per_yr >= 52 and (ratio > 1.40 or ratio < 0.60):
+            return None
+        res = (((ratio) ** n_obs_per_yr) - 1.0) * 100.0
+        if not math.isfinite(res) or res > 10000.0 or res < -100.0:
+            return None
+        return round(res, 4)
+    except (OverflowError, ValueError, ZeroDivisionError):
+        return None
+
+# 6. Continuously Compounded Rate of Change: (ln(x(t)) - ln(x(t-1))) * 100
+def ecb_continuously_compounded_rate(xt, xt_prev):
+    if not all(_is_pos(v) for v in (xt, xt_prev)):
+        return None
+    try:
+        res = (math.log(xt) - math.log(xt_prev)) * 100.0
+        return round(res, 4) if math.isfinite(res) else None
+    except (OverflowError, ValueError):
+        return None
+
+# 7. Continuously Compounded Annual Rate of Change: ((ln(x(t)) - ln(x(t-1))) * 100) * n_obs_per_yr
+def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
+    if not all(_is_pos(v) for v in (xt, xt_prev, n_obs_per_yr)):
+        return None
+    try:
+        res = ((math.log(xt) - math.log(xt_prev)) * 100.0) * n_obs_per_yr
+        return round(res, 4) if math.isfinite(res) else None
+    except (OverflowError, ValueError):
+        return None
+
+# Rate & Yield Financial Guard:
+# Interest rates and inflation percentages are already annualized metrics.
+# Compounding an already annualized rate represents a category error;
+# for these series, compounded annual rates are strictly suppressed to None (N/A).
+
+#### Canonical ECB Dataflows & Monitored Key Hierarchy:
+- EXR (Foreign Exchange Rates):
+  - D.USD.EUR.SP00.A : EUR/USD Daily Spot Reference Rate
+  - D.GBP.EUR.SP00.A : EUR/GBP Daily Spot Reference Rate
+  - D.CHF.EUR.SP00.A : EUR/CHF Daily Spot Reference Rate
+  - D.JPY.EUR.SP00.A : EUR/JPY Daily Spot Reference Rate
+- FM (Financial Markets & Policy Benchmark Rates):
+  - B.U2.EUR.4F.KR.MRR_FR.LEV : Main Refinancing Operations (MRO) Fixed Rate
+  - B.U2.EUR.4F.KR.DFR.LEV    : Deposit Facility Rate (DFR - Primary Policy Rate)
+  - B.U2.EUR.4F.KR.MLFR.LEV   : Marginal Lending Facility Rate (MLFR)
+  - B.U2.EUR.4F.KR.ESTR.LEV   : Euro Short-Term Rate (ESTR Interbank Benchmark)
+- ILM (Internal Liquidity & Consolidated Balance Sheet):
+  - W.U2.C.A010.U2.Z5.0000    : European Central Bank Total Assets / Balance Sheet (Weekly)
+  - B.U2.EUR.4F.KR.EXLIQ.LEV  : Eurosystem Excess Liquidity (Daily)
+- ICP (Harmonised Index of Consumer Prices - Inflation):
+  - M.U2.N.000000.4.ANR       : Euro Area HICP Overall Index - Annual Rate of Change
+  - M.U2.N.XEF000.4.ANR       : Euro Area Core HICP (Excl. Energy & Food) - Annual Rate of Change
 
 ---
 

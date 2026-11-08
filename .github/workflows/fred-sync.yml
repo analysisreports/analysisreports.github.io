@@ -1,4 +1,4 @@
-name: FRED Series Daily & On-Push Sync
+name: FRED and ECB Series Daily and On-Push Sync
 
 on:
   schedule:
@@ -8,6 +8,7 @@ on:
     # llms-fred-series.txt veya scriptler değiştiğinde tetiklenir
     paths:
       - 'llms-fred-series.txt'
+      - 'llms-ecb-series.txt'
       - 'scripts/**'
   workflow_dispatch:
     # Elle çalıştırma butonu
@@ -32,6 +33,7 @@ jobs:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: |
           python scripts/update_fred_series.py
+          python scripts/update_ecb_series.py
           python scripts/update_relationships.py
           python scripts/calculate_models.py
 
@@ -39,6 +41,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add llms-fred-series.txt llms-fred-series.json llms-relationships.txt llms-relationships.json llms-models.txt llms-models.json
-          git diff-index --quiet HEAD || git commit -m "Auto update FRED series, relationships & quantitative models [skip ci]"
+          git add llms-fred-series.txt llms-fred-series.json llms-ecb-series.txt llms-ecb-series.json llms-relationships.txt llms-relationships.json llms-models.txt llms-models.json
+          git diff-index --quiet HEAD || git commit -m "Auto update FRED and ECB series, relationships & quantitative models [skip ci]"
           git push
