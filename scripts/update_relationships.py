@@ -463,7 +463,8 @@ def main():
         lines_rel.append('| Actor Pair | P_baseline (Structural) | Dynamic Delta (Live Shock) | P_net (Active Polarity) | Active Regime State | Primary Macro Transmission Vector |')
         lines_rel.append('| :--- | :---: | :---: | :---: | :--- | :--- |')
         for a in relationships_output:
-            delta_str = f'+{a["dynamic_delta"]:.2f}' if a['dynamic_delta'] >= 0 else f'{a["dynamic_delta"]:.2f}'
+            dyn = 0.0 if abs(a['dynamic_delta']) < 1e-6 else a['dynamic_delta']
+            delta_str = f'+{dyn:.2f}' if dyn >= 0 else f'{dyn:.2f}'
             p_net_str = f'+{a["p_net"]:.2f}' if a['p_net'] >= 0 else f'{a["p_net"]:.2f}'
             p_base_str = f'+{a["p_baseline"]:.2f}' if a['p_baseline'] >= 0 else f'{a["p_baseline"]:.2f}'
             lines_rel.append(f'| **{a["id"]}** | {p_base_str} | {delta_str} | {p_net_str} | {a["regime_state"]} | {a["primary_driver"]} |')
