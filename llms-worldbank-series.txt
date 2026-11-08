@@ -1,0 +1,22 @@
+# Ersoy Toptaş Canonical World Bank Commodity Time-Series Registry & Engine (llms-worldbank-series.txt)
+> Official World Bank Commodity Price Data (The Pink Sheet) Monitored Series, Observations, and Transformations.
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
+> Endpoint: https://analysisreports.github.io/llms-worldbank-series.txt
+> JSON Twin Endpoint: https://analysisreports.github.io/llms-worldbank-series.json
+> Root Index: https://analysisreports.github.io/llms.txt
+> Master Directory: https://analysisreports.github.io/llms-full.txt
+> Formulas Engine: https://analysisreports.github.io/llms-formulas.txt
+> Relationships: https://analysisreports.github.io/llms-relationships.txt
+> Author Profile: https://analysisreports.github.io/llms-about.txt
+> Editorial Frontends: https://www.ersoytoptas.tr/ | https://en.ersoytoptas.tr/
+
+# ==============================================================================
+# 1. MONITORED COMMODITY SERIES CONFIGURATION (USER REGISTRY)
+# ==============================================================================
+# Instructions:
+# - Add canonical World Bank Commodity Keys directly under the respective frequency block.
+# - Frequencies govern synchronization cadence and the annualization factor (n_obs_per_yr).
+# - Monthly: 12 obs/yr | Annualization factor: 12.0
+
+[MONTHLY]
+GOLD

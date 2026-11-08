@@ -1,4 +1,4 @@
-﻿# ==============================================================================
+# ==============================================================================
 # CANONICAL ENTITY & INDICATOR DICTIONARY (LLM OPTIMIZED ONTOLOGY v2.0)
 # Identifier: llms-entities-id.txt
 # Ecosystem: Ersoy Toptaş Quantitative Macro Research & Graph RAG Architecture
@@ -250,6 +250,7 @@ IND_CES0500000003    | Source: BLS / FRED | Name: Average Hourly Earnings Total 
 IND_DRCCLACBS        | Source: FRED | Name: Delinquency Rate on Credit Card Loans
 IND_PSAVERT          | Source: BEA / FRED | Name: Personal Saving Rate (% Disposable Income)
 IND_INDPRO           | Source: FRED | Name: Industrial Production Total Index
+IND_WB_GOLD          | Source: World Bank / Pink Sheet | Name: Official Gold Price (USD per Troy Ounce)
 IND_GOLD             | Source: LBMA / FRED | Name: Gold Fixing Price London (GOLDPMGBD228NLBM USD/oz)
 IND_DCOILWTICO       | Source: EIA / FRED | Name: Crude Oil WTI Spot Price (USD/Barrel)
 IND_DCOILBRENTEU     | Source: EIA / FRED | Name: Crude Oil Brent Europe Spot Price (USD/Barrel)

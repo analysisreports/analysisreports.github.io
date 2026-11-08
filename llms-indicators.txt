@@ -89,7 +89,7 @@ Aggregation Alignment Rule:
 
 ### 2.7. Commodities & Geopolitics (Models 20, 21)
 36. PCOPPUSDM (Global Price of Copper) | Source: IMF | Freq: m | Units: USD per Metric Ton | Trans: lin
-37. GOLDAMGBD228NLBM (Gold Fixing Price London Bullion) | Source: London Bullion | Freq: d | Units: USD per Troy Ounce | Trans: lin
+37. IND_WB_GOLD (World Bank Official Gold Price - The Pink Sheet) | Source: World Bank | Freq: m | Units: USD per Troy Ounce | Trans: lin
 38. DCOILWTICO (Crude Oil: WTI) | Source: EIA | Freq: d | Units: USD per Barrel | Trans: lin
 
 ### 2.8. Consumer Stress, Housing & Supply Chain (Models 19, 22, 23.3, 23.5, 23.7, 23.8)

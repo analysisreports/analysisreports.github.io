@@ -34,6 +34,7 @@ jobs:
         run: |
           python scripts/update_fred_series.py
           python scripts/update_ecb_series.py
+          python scripts/update_worldbank_series.py
           python scripts/update_relationships.py
           python scripts/calculate_models.py
 

@@ -1,0 +1,33 @@
+{
+    "$schema":  "https://json-schema.org/draft/2020-12/schema",
+    "metadata":  {
+                     "engine":  "Autonomous World Bank Commodity Time-Series Engine",
+                     "author":  "Ersoy Toptaş",
+                     "license":  "CC BY 4.0",
+                     "sync_status":  "SUCCESS",
+                     "last_successful_sync":  "2026-11-08T12:21:22Z",
+                     "data_source":  "World Bank Commodity Price Data (The Pink Sheet)",
+                     "monitored_series_count":  1
+                 },
+    "series":  {
+                   "IND_WB_GOLD":  {
+                                       "series_id":  "IND_WB_GOLD",
+                                       "commodity_key":  "GOLD",
+                                       "name":  "World Bank Official Gold Price (The Pink Sheet)",
+                                       "description":  "Gold (USD/troy oz), 99.5% fine, London afternoon fixing, average of daily rates",
+                                       "source":  "World Bank (The Pink Sheet)",
+                                       "frequency":  "Monthly",
+                                       "unit":  "USD per Troy Ounce",
+                                       "observation_date":  "2026-10-01",
+                                       "current_value":  4105,
+                                       "previous_value":  4319,
+                                       "year_ago_value":  4058,
+                                       "transformations":  {
+                                                               "change":  -214,
+                                                               "change_from_year_ago":  47,
+                                                               "percent_change":  -4.9549,
+                                                               "percent_change_from_year_ago":  1.1582
+                                                           }
+                                   }
+               }
+}

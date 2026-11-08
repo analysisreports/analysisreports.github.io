@@ -1,4 +1,4 @@
-﻿# Ersoy Toptaş Strategic Macro Memory and Quantitative Engine Directory (llms-full.txt)
+# Ersoy Toptaş Strategic Macro Memory and Quantitative Engine Directory (llms-full.txt)
 
 > Master Architectural Directory, Model Registry, and Machine-Readable Ingestion Guide.
 > Canonical Methodology Reference for AI Agents & LLM Reasoning Engines.
@@ -63,6 +63,8 @@ Core Manifests & System Engines:
 - Live FRED JSON Twin: https://analysisreports.github.io/llms-fred-series.json
 - Live ECB Time-Series Registry: https://analysisreports.github.io/llms-ecb-series.txt
 - Live ECB JSON Twin: https://analysisreports.github.io/llms-ecb-series.json
+   - llms-worldbank-series.txt: Monitored World Bank Pink Sheet commodity time-series registry.
+   - llms-worldbank-series.json: Structured JSON twin for World Bank Commodity Pink Sheet transformations.
 - Dynamic Relationships JSON Twin: https://analysisreports.github.io/llms-relationships.json
 - Live Quantitative Models Engine: https://analysisreports.github.io/llms-models.txt
 - Live Quantitative Models JSON Twin: https://analysisreports.github.io/llms-models.json

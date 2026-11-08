@@ -1,4 +1,4 @@
-﻿# Ersoy Toptaş Quantitative Models, Scoring Calibration & Formulation Engine
+# Ersoy Toptaş Quantitative Models, Scoring Calibration & Formulation Engine
 > Canonical Methodology Reference for AI Agents & LLM Reasoning Engines
 > Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
 > Motto: Think simple, act big
@@ -1084,7 +1084,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 - Purpose: Sanayi talebi (Dr. Bakır) ile güvenli liman talebini (Altın) yarıştırarak küresel büyüme ivmesini ve tahvil faizi yönünü önceden modeller.
 - Data Series Keys:
   - IMF / FRED: PCOPPUSDM (Global price of Copper - USD per Metric Ton)
-  - World Bank / FRED: GOLDAMGBD228NLBM (Gold Fixing Price in London Bullion Market - USD per Troy Ounce)
+  - World Bank / FRED: IND_WB_GOLD (Gold Fixing Price in London Bullion Market - USD per Troy Ounce)
 - Formula:
   Copper_Gold_Ratio = Copper_Price_Metric_Ton / Gold_Price_Ounce
 - Machine-Executable Logic (Python):
@@ -1110,7 +1110,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ### 21. ALTIN / PETROL ORANI (GOLD TO OIL CRISIS & RECESSION RATIO)
 - Purpose: 1 ons altın ile kaç varil ham petrol satın alınabildiğini hesaplayarak jeopolitik kriz, talep çöküşü veya enerji enflasyonu rejimlerini tespit eder.
 - Data Series Keys:
-  - World Bank / FRED: GOLDAMGBD228NLBM (Gold Price - USD per Troy Ounce)
+  - World Bank / FRED: IND_WB_GOLD (Gold Price - USD per Troy Ounce)
   - EIA / FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - USD per Barrel)
 - Formula:
   Gold_Oil_Ratio = Gold_Price_Ounce / Oil_Price_Barrel

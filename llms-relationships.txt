@@ -1,4 +1,4 @@
-﻿# Ersoy Toptaş Canonical Ingestion Contract (llms-relationships.txt)
+# Ersoy Toptaş Canonical Ingestion Contract (llms-relationships.txt)
 > Structured Ontological JSON Knowledge Base for Macroeconomics, Geopolitical Risks, and Monetary Policies.
 > Canonical Knowledge Base & Quantitative Analysis Infrastructure
 > Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
@@ -116,7 +116,7 @@ Regime States (Discrete Mapping):
    - Baseline Polarity (P_baseline): -0.95
    - Structural Regime: PROXY_WAR / KINETIC_STANDOFF
    - Primary Friction Nodes: LEVANT, PERSIAN_GULF, RED_SEA, NUCLEAR_FACILITIES
-   - Transmission Series: DCOILWTICO, GOLDAMGBD228NLBM, VIXCLS
+   - Transmission Series: DCOILWTICO, IND_WB_GOLD, VIXCLS
 
 2.2.2. SA - IR (Kingdom of Saudi Arabia vs. Islamic Republic of Iran)
    - Baseline Polarity (P_baseline): -0.50 [Downgraded - Polarity negatively pressured due to Houthi ballistic escalation and reciprocal military retaliations]
