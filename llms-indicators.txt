@@ -38,7 +38,8 @@ Aggregation Alignment Rule:
 
 ---
 
-## 2. CANONICAL SERIES REGISTRY & SCALE NORMALIZATION
+## PART 1: OFFICIAL CENTRAL BANK & MULTILATERAL INSTITUTION TIME-SERIES
+> Fully automated, live-ingested via St. Louis Fed (FRED), European Central Bank (ECB), and World Bank APIs.
 
 ### 2.1. Net Fed Liquidity & Monetary Policy (Models 1, 2, 4, 5, 11)
 1. WALCL (Fed Total Assets) | Source: Fed H.4.1 | Freq: wew | Units: Millions USD | Mult: 1.0
@@ -87,58 +88,57 @@ Aggregation Alignment Rule:
 34. M2SL (M2 Money Stock) | Source: Fed | Freq: m | Units: Billions USD | Trans: pc1 (YoY)
 35. M2V (Velocity of M2 Money Stock) | Source: Fed | Freq: q | Units: Ratio | Note: Align M2SL to Quarterly (avg)
 
-### 2.7. Commodities & Geopolitics (Models 20, 21)
-36. PCOPPUSDM (Global Price of Copper) | Source: IMF | Freq: m | Units: USD per Metric Ton | Trans: lin
+### 2.7. Commodities & Multilateral Benchmarks (Models 20, 21, 25.6, 25.12)
+36. PCOPPUSDM (Global Price of Copper) | Source: IMF / FRED | Freq: m | Units: USD per Metric Ton | Trans: lin
 37. IND_WB_GOLD (World Bank Official Gold Price - The Pink Sheet) | Source: World Bank | Freq: m | Units: USD per Troy Ounce | Trans: lin
-38. DCOILWTICO (Crude Oil: WTI) | Source: EIA | Freq: d | Units: USD per Barrel | Trans: lin
+38. DCOILWTICO (Crude Oil: WTI Spot) | Source: EIA / FRED | Freq: d | Units: USD per Barrel | Trans: lin
+39. DCOILBRENTEU (Crude Oil: Brent Europe Spot) | Source: EIA / FRED | Freq: d | Units: USD per Barrel | Trans: lin
+40. PWHEAMTUSDM (Global Price of Wheat) | Source: IMF / FRED | Freq: m | Units: USD per Metric Ton | Trans: lin
+41. PFERTUSDM (Global Price of Fertilizer Index) | Source: IMF / FRED | Freq: m | Units: Index 2016=100 | Trans: lin
+42. WPU06 (Producer Price Index: Chemicals and Allied Products) | Source: BLS / FRED | Freq: m | Units: Index 1982=100 | Trans: lin
 
-### 2.8. Consumer Stress, Housing & Supply Chain (Models 19, 22, 23.3, 23.5, 23.7, 23.8)
-39. NCBEILQ027S (Corporate Equities Liability / Buffett Proxy) | Source: Fed Z.1 | Freq: q | Units: Millions USD | Note: Scale by 1000 when dividing by GDP (NCBEILQ027S / (GDP * 1000.0))
-40. DRCCLACBS (Delinquency Rate on Credit Card Loans) | Source: Fed | Freq: q | Units: Percent (%) | Trans: lin
-41. PSAVERT (Personal Saving Rate) | Source: BEA | Freq: m | Units: Percent (%) | Trans: lin
-42. RSAFS (Retail and Food Services Sales) | Source: Census | Freq: m | Units: Millions USD | Trans: pc1 (YoY)
-43. ISRATIO (Total Business: Inventories to Sales Ratio) | Source: Census | Freq: m | Units: Ratio | Trans: lin
-44. MSPUS (Median Sales Price of Houses Sold) | Source: Census/HUD | Freq: q | Units: USD ($) | Trans: lin
-45. CES0500000003 (Average Hourly Earnings: Total Private) | Source: BLS | Freq: m | Units: Dollars per Hour ($/Hr) | Align: Quarterly (avg)
-46. MORTGAGE30US (30-Year Fixed Mortgage Average) | Source: Freddie Mac | Freq: w | Units: Percent (%) | Align: Monthly (avg)
-47. PERMIT (New Housing Units Authorized) | Source: Census | Freq: m | Units: Thousands | Trans: pc1 (YoY)
+### 2.8. Consumer Stress, Housing & Supply Chain (Models 19, 22, 23.3, 23.5, 23.7, 23.8, 25.3)
+43. NCBEILQ027S (Corporate Equities Liability / Buffett Proxy) | Source: Fed Z.1 | Freq: q | Units: Millions USD | Note: Scale by 1000 when dividing by GDP (NCBEILQ027S / (GDP * 1000.0))
+44. DRCCLACBS (Delinquency Rate on Credit Card Loans) | Source: Fed | Freq: q | Units: Percent (%) | Trans: lin
+45. PSAVERT (Personal Saving Rate) | Source: BEA | Freq: m | Units: Percent (%) | Trans: lin
+46. RSAFS (Retail and Food Services Sales) | Source: Census | Freq: m | Units: Millions USD | Trans: pc1 (YoY)
+47. ISRATIO (Total Business: Inventories to Sales Ratio) | Source: Census | Freq: m | Units: Ratio | Trans: lin
+48. MSPUS (Median Sales Price of Houses Sold) | Source: Census/HUD | Freq: q | Units: USD ($) | Trans: lin
+49. CES0500000003 (Average Hourly Earnings: Total Private) | Source: BLS | Freq: m | Units: Dollars per Hour ($/Hr) | Align: Quarterly (avg)
+50. MORTGAGE30US (30-Year Fixed Mortgage Average) | Source: Freddie Mac | Freq: w | Units: Percent (%) | Align: Monthly (avg)
+51. PERMIT (New Housing Units Authorized) | Source: Census | Freq: m | Units: Thousands | Trans: pc1 (YoY)
+52. GSCPI (Global Supply Chain Pressure Index) | Source: NY Fed / FRED | Freq: m | Units: Standard Deviations | Trans: lin
 
-### 2.9. Maritime Chokepoints, Freight & Shipping Indexes (Ontology Section 4)
-48. DCOILBRENTEU (Crude Oil Prices: Brent - Europe) | Source: EIA / FRED | Freq: d | Units: USD per Barrel | Trans: lin
-49. BDI (Baltic Dry Index) | Source: Baltic Exchange | Freq: d | Units: Index | Trans: lin
-50. BDTI (Baltic Dirty Tanker Index) | Source: Baltic Exchange | Freq: d | Units: Index | Trans: lin
-51. SCFI (Shanghai Containerized Freight Index) | Source: Shanghai Shipping Exchange | Freq: w | Units: Index | Trans: lin
-52. CLARKSEA_INDEX (ClarkSea Global Shipping Earnings Index) | Source: Clarksons | Freq: w | Units: USD per Day | Trans: lin
-53. BUNKER_FUEL_380CST (Bunker Fuel 380 CST High Sulfur Fuel Oil) | Source: S&P Global Platts | Freq: d | Units: USD per Metric Ton | Trans: lin
-54. GSCPI (Global Supply Chain Pressure Index) | Source: NY Fed / FRED | Freq: m | Units: Standard Deviations | Trans: lin
+### 2.9. Geopolitical FX Spreads & High-Tech Equity Benchmarks (Models 25.14, 25.16)
+53. DEXUSEU (U.S. Dollars to Euro Spot Exchange Rate) | Source: Board of Governors / FRED | Freq: d | Units: USD per EUR | Trans: lin
+54. DEXJPUS (Japanese Yen to U.S. Dollar Spot Exchange Rate) | Source: Board of Governors / FRED | Freq: d | Units: JPY per USD | Trans: lin
+55. NASDAQSOX (PHLX Semiconductor Sector Index) | Source: NASDAQ / FRED | Freq: d | Units: Index | Trans: pc1 (YoY)
 
-### 2.10. Agricultural, Metals & Energy Transition Commodities (Ontology Section 7)
-55. PWHEAMTUSDM (Global Price of Wheat) | Source: IMF / FRED | Freq: m | Units: USD per Metric Ton | Trans: lin
-56. PFERTUSDM (Global Price of Fertilizer Index) | Source: IMF / FRED | Freq: m | Units: Index 2016=100 | Trans: lin
-57. WPU06 (Producer Price Index: Chemicals and Allied Products) | Source: BLS / FRED | Freq: m | Units: Index 1982=100 | Trans: lin
-58. LME_COBALT_CASH (LME Cobalt Cash Physical Settlement) | Source: London Metal Exchange | Freq: d | Units: USD per Metric Ton | Trans: lin
-59. JKM_LNG_SPOT (Platts Japan Korea Marker LNG Spot Price) | Source: S&P Global Commodity Insights | Freq: d | Units: USD per MMBtu | Trans: lin
-60. TTF_GAS_HUB_PRICE (Dutch TTF Natural Gas Hub Day-Ahead / Front-Month) | Source: ICE Futures Europe | Freq: d | Units: EUR per MWh | Trans: lin
+### 2.10. Advanced Macro, Rate Friction & Energy Indicators (Models 25.2, 25.5, 25.7 - 25.17)
+56. STICKYCPIM157SFRBATL (Sticky CPI Less Food & Energy) | Source: Atlanta Fed / FRED | Freq: m | Units: Percent (%) | Trans: pc1 (YoY)
+57. FLEXCPIM157SFRBATL (Flexible CPI Less Food & Energy) | Source: Atlanta Fed / FRED | Freq: m | Units: Percent (%) | Trans: pc1 (YoY)
+58. SOFR (Secured Overnight Financing Rate) | Source: NY Fed / FRED | Freq: d | Units: Percent (%) | Mult for Bps: 100.0
+59. EFFR (Effective Federal Funds Rate) | Source: NY Fed / FRED | Freq: d | Units: Percent (%) | Mult for Bps: 100.0
+60. OVXCLS (CBOE Crude Oil Volatility Index) | Source: CBOE / FRED | Freq: d | Units: Index | Trans: lin
+61. DHHNGSP (Henry Hub Natural Gas Spot Price) | Source: EIA / FRED | Freq: d | Units: USD per Million BTU | Trans: lin
+62. GASREGW (US Regular All Formulations Retail Gasoline Prices) | Source: EIA / FRED | Freq: w | Units: USD per Gallon | Trans: lin
+63. DRTSCIS (Net Percentage of Domestic Banks Tightening C&I Loan Standards) | Source: Board of Governors / FRED | Freq: q | Units: Percent (%) | Trans: lin
+64. LNS12500000 (Employed, Usually Work Full Time) | Source: BLS / FRED | Freq: m | Units: Thousands | Trans: pc1 (YoY)
+65. LNS12032194 (Employed, Part-Time for Economic Reasons) | Source: BLS / FRED | Freq: m | Units: Thousands | Trans: pc1 (YoY)
+66. MUTAN (Japan Uncollateralized Overnight Call Rate) | Source: Bank of Japan / FRED | Freq: d | Units: Percent (%) | Trans: lin
+67. FEDFUNDS (Federal Funds Effective Rate - Monthly Benchmark) | Source: Board of Governors / FRED | Freq: m | Units: Percent (%) | Trans: lin
+68. T10Y2Y (10-Year Treasury Constant Maturity Minus 2-Year Treasury Constant Maturity) | Source: FRED | Freq: d | Units: Percent (%) | Trans: lin
 
-### 2.11. Geopolitical FX Spreads & High-Tech Equity Benchmarks (Ontology Sections 4 & 7)
-61. DEXUSEU (U.S. Dollars to Euro Spot Exchange Rate) | Source: Board of Governors / FRED | Freq: d | Units: USD per EUR | Trans: lin
-62. DEXJPUS (Japanese Yen to U.S. Dollar Spot Exchange Rate) | Source: Board of Governors / FRED | Freq: d | Units: JPY per USD | Trans: lin
-63. NASDAQSOX / SOX (PHLX Semiconductor Sector Index / Taiwan Supply Chain Sensitivity) | Source: NASDAQ / FRED | Freq: d | Units: Index | Trans: pc1 (YoY)
+---
 
-### 2.12. Advanced Macro, Rate Friction & Energy Indicators (Models 25.2 - 25.15)
-64. STICKYCPIM157SFRBATL (Sticky CPI Less Food & Energy) | Source: Atlanta Fed / FRED | Freq: m | Units: Percent (%) | Trans: pc1 (YoY)
-65. FLEXCPIM157SFRBATL (Flexible CPI Less Food & Energy) | Source: Atlanta Fed / FRED | Freq: m | Units: Percent (%) | Trans: pc1 (YoY)
-66. MOVE (ICE BofA US Treasury Option Volatility Estimate) | Source: ICE / Merrill Lynch | Freq: d | Units: Index | Trans: lin
-67. SOFR (Secured Overnight Financing Rate) | Source: NY Fed / FRED | Freq: d | Units: Percent (%) | Mult for Bps: 100.0
-68. EFFR (Effective Federal Funds Rate) | Source: NY Fed / FRED | Freq: d | Units: Percent (%) | Mult for Bps: 100.0
-69. IND_WB_GOLD (World Bank Official Gold Price - The Pink Sheet) | Source: World Bank | Freq: m | Units: USD per Troy Ounce | Trans: pc1 (YoY)
-70. OVXCLS (CBOE Crude Oil Volatility Index) | Source: CBOE / FRED | Freq: d | Units: Index | Trans: lin
-71. DHHNGSP (Henry Hub Natural Gas Spot Price) | Source: EIA / FRED | Freq: d | Units: USD per Million BTU | Trans: lin
-72. GASREGW (US Regular All Formulations Retail Gasoline Prices) | Source: EIA / FRED | Freq: w | Units: USD per Gallon | Trans: lin
-73. DRTSCIS (Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Large and Middle-Market Firms) | Source: Board of Governors / FRED | Freq: q | Units: Percent (%) | Trans: lin
-74. LNS12500000 (Employed, Usually Work Full Time) | Source: BLS / FRED | Freq: m | Units: Thousands | Trans: pc1 (YoY)
-75. LNS12032194 (Employed, Part-Time for Economic Reasons) | Source: BLS / FRED | Freq: m | Units: Thousands | Trans: pc1 (YoY)
-76. DEXJPUS (Spot Exchange Rate US Dollars to Japanese Yen) | Source: FRED | Freq: d | Units: JPY per USD | Trans: lin
-77. MUTAN (Japan Uncollateralized Overnight Call Rate) | Source: Bank of Japan / FRED | Freq: d | Units: Percent (%) | Trans: lin
-78. FEDFUNDS (Federal Funds Effective Rate - Monthly Benchmark) | Source: Board of Governors / FRED | Freq: m | Units: Percent (%) | Trans: lin
-79. T10Y2Y (10-Year Treasury Constant Maturity Minus 2-Year Treasury Constant Maturity / Yield Curve Slope) | Source: FRED | Freq: d | Units: Percent (%) | Trans: lin
+## PART 2: GLOBAL MARITIME & COMMODITY BENCHMARK INDICES (EXTERNAL EXCHANGE FEEDS)
+> Institutional Reference Benchmarks (Proprietary Exchange Feeds - Not Ingested into Automated FRED Pipeline).
+
+1. BDI (Baltic Dry Index) | Source: Baltic Exchange | Freq: d | Units: Index | Mode: External Maritime Reference
+2. BDTI (Baltic Dirty Tanker Index) | Source: Baltic Exchange | Freq: d | Units: Index | Mode: External Maritime Reference
+3. SCFI (Shanghai Containerized Freight Index) | Source: Shanghai Shipping Exchange | Freq: w | Units: Index | Mode: External Maritime Reference
+4. CLARKSEA_INDEX (ClarkSea Global Shipping Earnings Index) | Source: Clarksons | Freq: w | Units: USD per Day | Mode: External Maritime Reference
+5. BUNKER_FUEL_380CST (Bunker Fuel 380 CST High Sulfur Fuel Oil) | Source: S&P Global Platts | Freq: d | Units: USD per Metric Ton | Mode: External Energy Reference
+6. LME_COBALT_CASH (LME Cobalt Cash Physical Settlement) | Source: London Metal Exchange | Freq: d | Units: USD per Metric Ton | Mode: External Metal Reference
+7. JKM_LNG_SPOT (Platts Japan Korea Marker LNG Spot Price) | Source: S&P Global Commodity Insights | Freq: d | Units: USD per MMBtu | Mode: External LNG Reference
+8. TTF_GAS_HUB_PRICE (Dutch TTF Natural Gas Hub Day-Ahead / Front-Month) | Source: ICE Futures Europe | Freq: d | Units: EUR per MWh | Mode: External Gas Reference

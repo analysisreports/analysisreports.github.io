@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-08T18:56:03.549820+00:00",
+    "last_successful_sync": "2026-11-08T20:50:52.059012+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "governance_reference": "https://analysisreports.github.io/llms-formulas.txt#25.15",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
@@ -315,8 +315,8 @@
       "disruption_severity": "CATASTROPHIC",
       "direct_macro_indicators": [
         "INDPRO",
-        "SCFI",
-        "BDI"
+        "GSCPI",
+        "ISRATIO"
       ]
     },
     {
@@ -328,8 +328,9 @@
       "daily_oil_volume_mbpd": 3.0,
       "disruption_severity": "HIGH",
       "direct_macro_indicators": [
-        "PWHEAMTUSDM",
-        "PFERTUSDM"
+        "DCOILBRENTEU",
+        "WPU06",
+        "IND_WB_GOLD"
       ]
     },
     {
@@ -353,7 +354,7 @@
       "volume_description": "Global Tech & Semiconductor bottleneck; ~50% of global container ship transits",
       "disruption_severity": "CATASTROPHIC",
       "direct_macro_indicators": [
-        "SOX",
+        "NASDAQSOX",
         "VIXCLS",
         "INDPRO"
       ]
@@ -367,7 +368,7 @@
       "global_trade_share_pct": 5.0,
       "disruption_severity": "HIGH",
       "direct_macro_indicators": [
-        "BDI",
+        "GSCPI",
         "ISRATIO",
         "PCEPI"
       ]
@@ -382,7 +383,7 @@
       "disruption_severity": "HIGH",
       "direct_macro_indicators": [
         "DCOILBRENTEU",
-        "BDTI"
+        "OVXCLS"
       ]
     },
     {
@@ -394,7 +395,7 @@
       "disruption_severity": "CATASTROPHIC",
       "direct_macro_indicators": [
         "VIXCLS",
-        "TRANSATLANTIC_FX_SPREAD"
+        "DEXUSEU"
       ]
     },
     {
@@ -405,8 +406,8 @@
       "volume_description": "Primary deep-draft alternate corridor bypassing Malacca; Australian iron ore/coal to China",
       "disruption_severity": "MODERATE-HIGH",
       "direct_macro_indicators": [
-        "BDI",
-        "SCFI"
+        "GSCPI",
+        "INDPRO"
       ]
     },
     {
@@ -417,8 +418,8 @@
       "volume_description": "Mediterranean container hubs and Black Sea export access to Atlantic",
       "disruption_severity": "HIGH",
       "direct_macro_indicators": [
-        "BDTI",
-        "EU_IMPORT_PRICE"
+        "DCOILBRENTEU",
+        "DEXUSEU"
       ]
     },
     {
@@ -429,8 +430,8 @@
       "volume_description": "Polar Silk Road LNG transits, Russian Arctic LNG-2 offloading",
       "disruption_severity": "MODERATE-HIGH",
       "direct_macro_indicators": [
-        "JKM_LNG_SPOT",
-        "WAR_RISK_PREMIUMS"
+        "DHHNGSP",
+        "DCOILWTICO"
       ]
     },
     {
@@ -441,8 +442,8 @@
       "volume_description": "Diverted ultra-large crude carriers (ULCC) and mega-container vessels",
       "disruption_severity": "HIGH",
       "direct_macro_indicators": [
-        "CLARKSEA_INDEX",
-        "BUNKER_FUEL_380CST"
+        "GASREGW",
+        "DCOILBRENTEU"
       ]
     },
     {
@@ -454,9 +455,9 @@
       "global_trade_share_pct": 12.0,
       "disruption_severity": "CATASTROPHIC",
       "direct_macro_indicators": [
-        "SCFI",
+        "GSCPI",
         "PCEPI",
-        "GSCPI"
+        "ISRATIO"
       ]
     }
   ]

@@ -141,7 +141,6 @@ TIER 2: ADVANCED INSTITUTIONAL MACRO MODELS
    - 25.1. Dynamic Polarity & Regime Engine (P_baseline, dynamic_delta)
    - 25.2. Sticky vs. Flexible CPI Spread Engine (STICKYCPIM157SFRBATL, FLEXCPIM157SFRBATL)
    - 25.3. Global Supply Chain Pressure Logistics Engine (NY Fed GSCPI: GSCPI)
-   - 25.4. MOVE / VIX Disconnect Ratio Engine (MOVE, VIXCLS)
    - 25.5. Repo Liquidity Friction Spread Engine (SOFR, EFFR)
    - 25.6. Gold / Real Yield Debasement Gauge (DFII10, IND_WB_GOLD)
    - 25.7. OVX / VIX Geopolitical Energy Shock Engine (OVXCLS, VIXCLS)

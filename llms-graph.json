@@ -226,16 +226,6 @@
                                      }
                   },
                   {
-                      "id":  "IND_MOVE",
-                      "label":  "ICE BofA US Treasury Volatility (MOVE)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "ICE / FRED",
-                                         "units":  "Index",
-                                         "trans":  "lin"
-                                     }
-                  },
-                  {
                       "id":  "IND_VIXCLS",
                       "label":  "CBOE Volatility Index (VIXCLS)",
                       "category":  "INDICATOR",
@@ -377,20 +367,6 @@
                                                               "SUPPLY_CHAIN_SHOCK",
                                                               "LOGISTICS_DEFLATION_SLACK",
                                                               "NORMALIZED_GLOBAL_TRADE"
-                                                          ]
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_25.4",
-                      "label":  "MOVE / VIX Disconnect Ratio Engine",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "move_vix_disconnect_ratio",
-                                         "formula":  "Vol_Disconnect_Ratio = MOVE_Index / VIX_Index",
-                                         "status_enums":  [
-                                                              "RATE_RISK_MISPRICING_ALARM",
-                                                              "EQUITY_PANIC_DOMINANCE",
-                                                              "COHERENT_MARKET_VOLATILITY"
                                                           ]
                                      }
                   },
@@ -799,16 +775,6 @@
                       "attributes":  {
                                          "source":  "IMF / FRED",
                                          "units":  "USD per Metric Ton",
-                                         "trans":  "lin"
-                                     }
-                  },
-                  {
-                      "id":  "IND_BDTI",
-                      "label":  "Baltic Dirty Tanker Index (BDTI)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "Baltic Exchange",
-                                         "units":  "Index",
                                          "trans":  "lin"
                                      }
                   },
@@ -1366,7 +1332,7 @@
                       "source":  "BLS / FRED"
                   },
                   {
-                      "id":  "IND_SOX",
+                      "id":  "IND_NASDAQSOX",
                       "label":  "PHLX Semiconductor Index",
                       "category":  "INDICATOR",
                       "source":  "NASDAQ / FRED"
@@ -1553,18 +1519,6 @@
                       "target":  "MODEL_25.5",
                       "type":  "INGESTS_SERIES",
                       "role":  "effr_val"
-                  },
-                  {
-                      "source":  "IND_MOVE",
-                      "target":  "MODEL_25.4",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "move_val"
-                  },
-                  {
-                      "source":  "IND_VIXCLS",
-                      "target":  "MODEL_25.4",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "vix_val"
                   },
                   {
                       "source":  "IND_GSCPI",
@@ -1863,7 +1817,7 @@
                   },
                   {
                       "source":  "ACTOR_RF_SOUTHERN_KRAIS",
-                      "target":  "IND_BDTI",
+                      "target":  "IND_DCOILBRENTEU",
                       "type":  "TRIGGERS_INDICATOR",
                       "impact":  "NOVOROSSIYSK_TANKER_FREIGHT_SURCHARGE"
                   },
@@ -2184,7 +2138,7 @@
                       "weight":  0.4
                   },
                   {
-                      "source":  "IND_SOX",
+                      "source":  "IND_NASDAQSOX",
                       "target":  "MODEL_25_14",
                       "type":  "INGESTS_SERIES",
                       "weight":  0.35
@@ -2214,7 +2168,7 @@
                       "role":  "gscpi_val"
                   },
                   {
-                      "source":  "IND_SOX",
+                      "source":  "IND_NASDAQSOX",
                       "target":  "MODEL_25.14",
                       "type":  "INGESTS_SERIES",
                       "role":  "sox_yoy_pct"

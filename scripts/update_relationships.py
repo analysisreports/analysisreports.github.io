@@ -470,7 +470,7 @@ CRITICAL_CHOKEPOINTS = [
         "daily_oil_volume_mbpd": 16.0,
         "global_trade_share_pct": 60.0,
         "disruption_severity": "CATASTROPHIC",
-        "direct_macro_indicators": ["INDPRO", "SCFI", "BDI"]
+        "direct_macro_indicators": ["INDPRO", "GSCPI", "ISRATIO"]
     },
     {
         "id": "TURKISH_STRAITS",
@@ -480,7 +480,7 @@ CRITICAL_CHOKEPOINTS = [
         "volume_description": "Russian Black Sea oil exports (~3.0M bpd), Ukrainian/Russian grain & fertilizer",
         "daily_oil_volume_mbpd": 3.0,
         "disruption_severity": "HIGH",
-        "direct_macro_indicators": ["PWHEAMTUSDM", "PFERTUSDM"]
+        "direct_macro_indicators": ["DCOILBRENTEU", "WPU06", "IND_WB_GOLD"]
     },
     {
         "id": "SUWALKI_GAP",
@@ -498,7 +498,7 @@ CRITICAL_CHOKEPOINTS = [
         "primary_threat": "PLA blockade, naval quarantine, or kinetic conflict",
         "volume_description": "Global Tech & Semiconductor bottleneck; ~50% of global container ship transits",
         "disruption_severity": "CATASTROPHIC",
-        "direct_macro_indicators": ["SOX", "VIXCLS", "INDPRO"]
+        "direct_macro_indicators": ["NASDAQSOX", "VIXCLS", "INDPRO"]
     },
     {
         "id": "PANAMA_CANAL",
@@ -508,7 +508,7 @@ CRITICAL_CHOKEPOINTS = [
         "volume_description": "~5% of global maritime trade, 46% of US East Coast container traffic",
         "global_trade_share_pct": 5.0,
         "disruption_severity": "HIGH",
-        "direct_macro_indicators": ["BDI", "ISRATIO", "PCEPI"]
+        "direct_macro_indicators": ["GSCPI", "ISRATIO", "PCEPI"]
     },
     {
         "id": "DANISH_STRAITS",
@@ -518,7 +518,7 @@ CRITICAL_CHOKEPOINTS = [
         "volume_description": "~3.2 Million bpd Russian seaborne crude and refined products",
         "daily_oil_volume_mbpd": 3.2,
         "disruption_severity": "HIGH",
-        "direct_macro_indicators": ["DCOILBRENTEU", "BDTI"]
+        "direct_macro_indicators": ["DCOILBRENTEU", "OVXCLS"]
     },
     {
         "id": "GIUK_GAP",
@@ -527,7 +527,7 @@ CRITICAL_CHOKEPOINTS = [
         "primary_threat": "Subsea infrastructure sabotage (fiber-optic cables, energy interconnectors)",
         "volume_description": "Transatlantic financial data transmission and NATO ASW control",
         "disruption_severity": "CATASTROPHIC",
-        "direct_macro_indicators": ["VIXCLS", "TRANSATLANTIC_FX_SPREAD"]
+        "direct_macro_indicators": ["VIXCLS", "DEXUSEU"]
     },
     {
         "id": "LOMBOK_AND_MAKASSAR_STRAITS",
@@ -536,7 +536,7 @@ CRITICAL_CHOKEPOINTS = [
         "primary_threat": "Deep-draft congestion and maritime choke risk",
         "volume_description": "Primary deep-draft alternate corridor bypassing Malacca; Australian iron ore/coal to China",
         "disruption_severity": "MODERATE-HIGH",
-        "direct_macro_indicators": ["BDI", "SCFI"]
+        "direct_macro_indicators": ["GSCPI", "INDPRO"]
     },
     {
         "id": "STRAIT_OF_GIBRALTAR",
@@ -545,7 +545,7 @@ CRITICAL_CHOKEPOINTS = [
         "primary_threat": "Western Mediterranean bottleneck / Naval surveillance chokepoint",
         "volume_description": "Mediterranean container hubs and Black Sea export access to Atlantic",
         "disruption_severity": "HIGH",
-        "direct_macro_indicators": ["BDTI", "EU_IMPORT_PRICE"]
+        "direct_macro_indicators": ["DCOILBRENTEU", "DEXUSEU"]
     },
     {
         "id": "BERING_STRAIT",
@@ -554,7 +554,7 @@ CRITICAL_CHOKEPOINTS = [
         "primary_threat": "US-RU / CN Arctic confrontation and Polar Silk Road friction",
         "volume_description": "Polar Silk Road LNG transits, Russian Arctic LNG-2 offloading",
         "disruption_severity": "MODERATE-HIGH",
-        "direct_macro_indicators": ["JKM_LNG_SPOT", "WAR_RISK_PREMIUMS"]
+        "direct_macro_indicators": ["DHHNGSP", "DCOILWTICO"]
     },
     {
         "id": "MOZAMBIQUE_CHANNEL",
@@ -563,7 +563,7 @@ CRITICAL_CHOKEPOINTS = [
         "primary_threat": "Red Sea bypass route bottleneck; asymmetric littoral security risks",
         "volume_description": "Diverted ultra-large crude carriers (ULCC) and mega-container vessels",
         "disruption_severity": "HIGH",
-        "direct_macro_indicators": ["CLARKSEA_INDEX", "BUNKER_FUEL_380CST"]
+        "direct_macro_indicators": ["GASREGW", "DCOILBRENTEU"]
     },
     {
         "id": "SUEZ_CANAL_NORTHERN_APPROACH",
@@ -573,7 +573,7 @@ CRITICAL_CHOKEPOINTS = [
         "volume_description": "~12% of global seaborne cargo, ~30% of global container volume",
         "global_trade_share_pct": 12.0,
         "disruption_severity": "CATASTROPHIC",
-        "direct_macro_indicators": ["SCFI", "PCEPI", "GSCPI"]
+        "direct_macro_indicators": ["GSCPI", "PCEPI", "ISRATIO"]
     }
 ]
 

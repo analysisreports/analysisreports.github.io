@@ -230,7 +230,6 @@ IND_GDPPOT           | Source: CBO / FRED | Name: Real Potential Gross Domestic 
 IND_GFDEGDQ188S      | Source: FRED | Name: Federal Debt Total Public Debt as Percent of GDP
 IND_BOPGSTB          | Source: BEA / FRED | Name: U.S. Trade Balance Goods and Services (Millions USD)
 IND_DTWEXBGS         | Source: FRED | Name: Nominal Broad U.S. Dollar Index
-IND_MOVE             | Source: ICE / FRED | Name: ICE BofA US Treasury Option Volatility Estimate Index
 IND_VIXCLS           | Source: CBOE / FRED | Name: CBOE Volatility Index (VIX)
 IND_OVXCLS           | Source: CBOE / FRED | Name: CBOE Crude Oil Volatility Index (OVX)
 IND_GSCPI            | Source: NY Fed / FRED | Name: NY Fed Global Supply Chain Pressure Index (Z-Score)
@@ -257,13 +256,11 @@ IND_DHHNGSP          | Source: EIA / FRED | Name: Henry Hub Natural Gas Spot Pri
 IND_GASREGW          | Source: EIA / FRED | Name: US Regular Retail Gasoline Price (USD/Gallon)
 IND_PCOPPUSDM        | Source: IMF / FRED | Name: Global Price of Copper (USD/Metric Ton)
 IND_PWHEAMTUSDM      | Source: IMF / FRED | Name: Global Price of Wheat (USD/Metric Ton)
-IND_BDTI             | Source: Baltic Exchange | Name: Baltic Dirty Tanker Index
 IND_SP500            | Source: S&P / FRED | Name: S&P 500 Index (SP500)
 IND_CBBTCUSD         | Source: Coinbase / FRED | Name: Coinbase Bitcoin Spot Rate (CBBTCUSD USD)
 IND_DJTA             | Source: S&P Dow Jones / FRED | Name: Dow Jones Transportation Average (DJTA)
 IND_AAAFF            | Source: Moody's / FRED | Name: Moody's Seasoned Aaa Corporate Bond Yield Minus Federal Funds Rate (AAAFF %)
 IND_SOFRINDEX        | Source: NY Fed / FRED | Name: Secured Overnight Financing Rate Index (SOFRINDEX)
-IND_SOX              | Source: Philadelphia Stock Exchange / NASDAQ | Name: PHLX Semiconductor Sector Index (SOX)
 IND_EXHOSLUSM495S    | Source: NAR / FRED | Name: Existing Home Sales (EXHOSLUSM495S)
 IND_UMCSENT          | Source: UMich / FRED | Name: University of Michigan Consumer Sentiment Index (UMCSENT)
 IND_PCAGDPUAA646NWDB | Source: World Bank / FRED | Name: Gross Domestic Product Per Capita for Ukraine (PCAGDPUAA646NWDB USD)
