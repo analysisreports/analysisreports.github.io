@@ -1788,7 +1788,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 - Purpose: Reel faizler ile altın fiyatları arasındaki geleneksel ters korelasyonun kopmasını ölçerek küresel de-dolarizasyon baskısını ve itibarî para birimlerine yönelik sistemik güven kaybını tespit eder.
 - Data Series Keys:
   - FRED: DFII10 (10-Year Treasury Inflation-Indexed Security, Constant Maturity - Real Rate Percent)
-  - FRED / LBMA: GOLDPMGBD228NLBM (Gold Fixing Price 3:00 P.M. London time - YoY % Change)
+  - World Bank (The Pink Sheet): IND_WB_GOLD (Official Gold Price USD/troy oz - YoY % Change: percent_change_from_year_ago)
 - Formula: Anomaly_Signal = f(Real_Yield_10Y, Gold_YoY_Pct)
 - Machine-Executable Logic (Python):
   def gold_real_yield_debasement_gauge(real_yield_10y, gold_yoy_pct):

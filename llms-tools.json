@@ -492,7 +492,7 @@
                                                                                               },
                                                                              "gold_price":  {
                                                                                                 "type":  "number",
-                                                                                                "description":  "Gold Fixing Price per Troy Ounce (World Bank/FRED: GOLDAMGBD228NLBM)."
+                                                                                                "description":  "Gold Fixing Price per Troy Ounce (World Bank: IND_WB_GOLD)."
                                                                                             }
                                                                          },
                                                           "required":  [
@@ -512,7 +512,7 @@
                                                           "properties":  {
                                                                              "gold_price":  {
                                                                                                 "type":  "number",
-                                                                                                "description":  "Gold Price per Troy Ounce (FRED: GOLDAMGBD228NLBM)."
+                                                                                                "description":  "Gold Price per Troy Ounce (World Bank: IND_WB_GOLD)."
                                                                                             },
                                                                              "oil_price":  {
                                                                                                "type":  "number",
@@ -1208,7 +1208,7 @@
                                                                                                 },
                                                                              "gold_yoy_pct":  {
                                                                                                   "type":  "number",
-                                                                                                  "description":  "Gold Fixing Price London time YoY % change (FRED/LBMA: GOLDPMGBD228NLBM)."
+                                                                                                  "description":  "Gold Fixing Price London time YoY % change (World Bank: IND_WB_GOLD)."
                                                                                               }
                                                                          },
                                                           "required":  [

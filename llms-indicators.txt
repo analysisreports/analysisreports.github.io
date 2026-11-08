@@ -131,7 +131,7 @@ Aggregation Alignment Rule:
 66. MOVE (ICE BofA US Treasury Option Volatility Estimate) | Source: ICE / Merrill Lynch | Freq: d | Units: Index | Trans: lin
 67. SOFR (Secured Overnight Financing Rate) | Source: NY Fed / FRED | Freq: d | Units: Percent (%) | Mult for Bps: 100.0
 68. EFFR (Effective Federal Funds Rate) | Source: NY Fed / FRED | Freq: d | Units: Percent (%) | Mult for Bps: 100.0
-69. GOLDPMGBD228NLBM (Gold Fixing Price 3:00 P.M. London time) | Source: LBMA / FRED | Freq: d | Units: USD per Troy Ounce | Trans: pc1 (YoY)
+69. IND_WB_GOLD (World Bank Official Gold Price - The Pink Sheet) | Source: World Bank | Freq: m | Units: USD per Troy Ounce | Trans: pc1 (YoY)
 70. OVXCLS (CBOE Crude Oil Volatility Index) | Source: CBOE / FRED | Freq: d | Units: Index | Trans: lin
 71. DHHNGSP (Henry Hub Natural Gas Spot Price) | Source: EIA / FRED | Freq: d | Units: USD per Million BTU | Trans: lin
 72. GASREGW (US Regular All Formulations Retail Gasoline Prices) | Source: EIA / FRED | Freq: w | Units: USD per Gallon | Trans: lin

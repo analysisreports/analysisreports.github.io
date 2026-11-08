@@ -316,11 +316,11 @@
                                      }
                   },
                   {
-                      "id":  "IND_GOLD",
-                      "label":  "Gold Fixing Price London (GOLDPMGBD228NLBM)",
+                      "id":  "IND_WB_GOLD",
+                      "label":  "World Bank Official Gold Price (IND_WB_GOLD)",
                       "category":  "INDICATOR",
                       "attributes":  {
-                                         "source":  "LBMA / FRED",
+                                         "source":  "World Bank (The Pink Sheet)",
                                          "units":  "USD per Troy Ounce",
                                          "trans":  "pc1"
                                      }
@@ -1490,7 +1490,7 @@
                   },
                   {
                       "source":  "CHOKE_HORMUZ",
-                      "target":  "IND_GOLD",
+                      "target":  "IND_WB_GOLD",
                       "type":  "TRIGGERS_INDICATOR",
                       "impact":  "SAFE_HAVEN_DEMAND"
                   },
@@ -1579,7 +1579,7 @@
                       "role":  "real_yield_10y"
                   },
                   {
-                      "source":  "IND_GOLD",
+                      "source":  "IND_WB_GOLD",
                       "target":  "MODEL_25.6",
                       "type":  "INGESTS_SERIES",
                       "role":  "gold_yoy_pct"

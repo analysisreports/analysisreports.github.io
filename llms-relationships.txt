@@ -177,7 +177,7 @@ Regime States (Discrete Mapping):
    - Primary Friction Nodes: SWIFT_ALTERNATIVE, PETRODOLLAR_EROSION, OFAC_SDN_BYPASS
    - Economic Coupling to USD: 0.40 (High physical trade integration, declining USD clearing share)
    - Macro Spillover Bridge: Erosion in reserve currency demand, structural surge in central bank gold accumulation, spike in US Treasury term premium (ACM)
-   - Transmission Series: DFII10, GOLDPMGBD228NLBM, DTWEXBGS, THREEFYTP10
+   - Transmission Series: DFII10, IND_WB_GOLD, DTWEXBGS, THREEFYTP10
 
 2.6.2. CIPS_CROSS_BORDER_CLEARING - INTERNATIONAL PAYMENT NETWORK
    - Baseline Polarity (P_baseline): -0.65
@@ -286,7 +286,7 @@ Regime States (Discrete Mapping):
    - Asymmetric Tools: Airborne regime security stabilization, tactical mineral extraction concessions tracking, anti-Western information operations, and cross-border logistics escort
    - Geopolitical Target: Absolute displacement of G7/French geopolitical dominance, secure parallel commodity clearing flows, and strategic denial of Western mining concessions
    - Primary Market Transmission: Central bank gold accumulation velocity, uranium spot market structural volatility, and trans-continental maritime logistics risk premium
-   - Transmission Series: GOLDPMGBD228NLBM, GSCPI, VIXCLS
+   - Transmission Series: IND_WB_GOLD, GSCPI, VIXCLS
 
 4. SY-SDF (Syrian Democratic Forces / YPG)
    - Primary Patron: US (Coupling Factor: 0.70)
@@ -301,7 +301,7 @@ Regime States (Discrete Mapping):
 - Location: 26°34'N 56°15'E (Persian Gulf exit)
 - Primary Control / Threat: IR / IRGC Navy
 - Volume: ~20-21 Million bpd (20% of global petroleum liquids)
-- Direct Macro Indicators Triggered: DCOILWTICO, CPIAUCSL, BAMLH0A0HYM2, OVXCLS, GSCPI, SOFR, GOLDPMGBD228NLBM
+- Direct Macro Indicators Triggered: DCOILWTICO, CPIAUCSL, BAMLH0A0HYM2, OVXCLS, GSCPI, SOFR, IND_WB_GOLD
 - Disruption Severity: CATASTROPHIC
 
 4.2. BAB_EL_MANDEB & RED_SEA
@@ -541,7 +541,7 @@ Regime States (Discrete Mapping):
 ### 8.3. Dedollarization, Gold & Real Rate Anomaly Engine (Model 25.6)
 8.3.1. MODEL_25.6_GOLD_REAL_YIELD_DEBASEMENT_GAUGE
 - Target Formula: llms-formulas.txt -> Model 25.6 (gold_real_yield_debasement_gauge)
-- Data Series Triggered: DFII10, GOLDPMGBD228NLBM
+- Data Series Triggered: DFII10, IND_WB_GOLD
 - Status Enums: DEBALANCING_DEDOLLARIZATION_PANIC | ACCOMMODATIVE_GOLD_BULL | TRADITIONAL_REAL_RATE_DOMINANCE
 - Primary Geopolitical Vector: RU-CN dedollarization axis (2.1.3), Eastern Bloc central bank gold accumulation, Western sovereign asset seizure precedents (2.3.2).
 - Transmission Linkage: Severe disconnect where Gold YoY > 15.0% despite Real Yield > 1.5% signals systemic fiat currency trust degradation.
@@ -594,7 +594,7 @@ Regime States (Discrete Mapping):
 ### 8.7. Multipolar Settlement & Term Premium Spillover Engine (Actor 2.6.1 & Model 15 / Model 25.6 Linkage)
 8.7.1. MBRIDGE_SOVEREIGN_RESERVE_DIVERSIFICATION
 - Target Formulas: llms-formulas.txt -> Model 15 (acm_term_premium), Model 25.6 (gold_real_yield_debasement_gauge)
-- Data Series Triggered: THREEFYTP10, DFII10, GOLDPMGBD228NLBM
+- Data Series Triggered: THREEFYTP10, DFII10, IND_WB_GOLD
 - Status Enums: DEBALANCING_DEDOLLARIZATION_PANIC | ACCOMMODATIVE_GOLD_BULL | TRADITIONAL_REAL_RATE_DOMINANCE
 - Primary Geopolitical Vector: mBridge (2.6.1) expansion accelerating sovereign reallocation from US Treasuries to physical gold.
 - Actor Coupling: BRICS_MBRIDGE - G7 clearing (2.6.1), RU-CN energy clearing (2.1.3), Gulf oil diversification (2.4.3).
