@@ -70,8 +70,8 @@ GDPC1
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-08 21:32:52 UTC
-# - Total Series Synced: 29 / 29
+# - Synced At: 2026-11-08 21:43:41 UTC
+# - Total Series Synced: 34 / 34
 # - Source Authority: Federal Reserve Bank of St. Louis (FRED API)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
@@ -251,6 +251,28 @@ Recent Observations (Last 5):
   2026-10-28: 158.2400
   2026-10-29: 157.8300
   2026-10-30: 157.4700
+
+--------------------------------------------------------------------------------
+Series ID: DGS10
+Title: Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity, Quoted on an Investment Basis
+Frequency: Daily (n_obs_per_yr: 260) | Units: Percent
+Last Date: 2026-11-05 | Current Value: 4.8400 | Previous Value: 4.9000 | Year Ago Value: 3.9700
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -0.0600
+  2. Change from Year Ago: +0.8700
+  3. Percent Change: -1.2245%
+  4. Percent Change from Year Ago: +21.9144%
+  5. Compounded Annual Rate of Change: N/A (Rate is already annualized)
+  6. Continuously Compounded Rate of Change: -1.2320%
+  7. Continuously Compounded Annual Rate of Change: N/A (Rate is already annualized)
+
+Recent Observations (Last 5):
+  2026-10-30: 4.9400
+  2026-11-02: 4.9100
+  2026-11-03: 4.9500
+  2026-11-04: 4.9000
+  2026-11-05: 4.8400
 
 --------------------------------------------------------------------------------
 Series ID: DGS1MO
@@ -451,6 +473,72 @@ Recent Observations (Last 5):
   2026-10-01: 61.9000
 
 --------------------------------------------------------------------------------
+Series ID: TOTALSL
+Title: Total Consumer Credit Owned and Securitized
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Millions of U.S. Dollars
+Last Date: 2026-09-01 | Current Value: 5224415.9900 | Previous Value: 5196577.3600 | Year Ago Value: 5071963.4300
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +27838.6300
+  2. Change from Year Ago: +152452.5600
+  3. Percent Change: +0.5357%
+  4. Percent Change from Year Ago: +3.0058%
+  5. Compounded Annual Rate of Change: +6.6214%
+  6. Continuously Compounded Rate of Change: +0.5343%
+  7. Continuously Compounded Annual Rate of Change: +6.4114%
+
+Recent Observations (Last 5):
+  2026-05-01: 5155910.7500
+  2026-06-01: 5170754.9300
+  2026-07-01: 5188386.4600
+  2026-08-01: 5196577.3600
+  2026-09-01: 5224415.9900
+
+--------------------------------------------------------------------------------
+Series ID: BOGMBASE
+Title: Monetary Base: Total
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Billions of Dollars
+Last Date: 2026-09-01 | Current Value: 5449.8000 | Previous Value: 5411.6000 | Year Ago Value: 5478.0000
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +38.2000
+  2. Change from Year Ago: -28.2000
+  3. Percent Change: +0.7059%
+  4. Percent Change from Year Ago: -0.5148%
+  5. Compounded Annual Rate of Change: +8.8074%
+  6. Continuously Compounded Rate of Change: +0.7034%
+  7. Continuously Compounded Annual Rate of Change: +8.4409%
+
+Recent Observations (Last 5):
+  2026-05-01: 5538.9000
+  2026-06-01: 5488.4000
+  2026-07-01: 5523.9000
+  2026-08-01: 5411.6000
+  2026-09-01: 5449.8000
+
+--------------------------------------------------------------------------------
+Series ID: PERMIT
+Title: New Privately-Owned Housing Units Authorized in Permit-Issuing Places: Total Units
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Thousands of Units
+Last Date: 2026-09-01 | Current Value: 1398.0000 | Previous Value: 1403.0000 | Year Ago Value: 1444.0000
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -5.0000
+  2. Change from Year Ago: -46.0000
+  3. Percent Change: -0.3564%
+  4. Percent Change from Year Ago: -3.1856%
+  5. Compounded Annual Rate of Change: -4.1937%
+  6. Continuously Compounded Rate of Change: -0.3570%
+  7. Continuously Compounded Annual Rate of Change: -4.2842%
+
+Recent Observations (Last 5):
+  2026-05-01: 1410.0000
+  2026-06-01: 1374.0000
+  2026-07-01: 1433.0000
+  2026-08-01: 1403.0000
+  2026-09-01: 1398.0000
+
+--------------------------------------------------------------------------------
 Series ID: UMCSENT
 Title: University of Michigan: Consumer Sentiment
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Index 1966:Q1=100
@@ -625,6 +713,28 @@ Recent Observations (Last 5):
   2026-07-01: 2.7158
   2026-08-01: 2.7006
   2026-09-01: 2.7765
+
+--------------------------------------------------------------------------------
+Series ID: ISRATIO
+Title: Total Business: Inventories to Sales Ratio
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Ratio
+Last Date: 2026-08-01 | Current Value: 1.3300 | Previous Value: 1.3400 | Year Ago Value: 1.4000
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -0.0100
+  2. Change from Year Ago: -0.0700
+  3. Percent Change: -0.7463%
+  4. Percent Change from Year Ago: -5.0000%
+  5. Compounded Annual Rate of Change: -8.5967%
+  6. Continuously Compounded Rate of Change: -0.7491%
+  7. Continuously Compounded Annual Rate of Change: -8.9888%
+
+Recent Observations (Last 5):
+  2026-04-01: 1.3400
+  2026-05-01: 1.3100
+  2026-06-01: 1.3300
+  2026-07-01: 1.3400
+  2026-08-01: 1.3300
 
 --------------------------------------------------------------------------------
 Series ID: PCE
