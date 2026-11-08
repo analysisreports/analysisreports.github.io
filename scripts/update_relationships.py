@@ -279,6 +279,56 @@ def main():
             'dynamic_delta': round(oil_delta * 0.5, 2),
             'friction_nodes': ['ORINOCO_BELT', 'CARIBBEAN_SEA', 'OFAC_SANCTIONS'],
             'primary_driver': 'HEAVY_CRUDE_OIL_SANCTIONS_AND_LICENSING'
+        },
+        {
+            'id': 'TR_SY',
+            'source_entity': 'GEO_TR',
+            'target_entity': 'GEO_SY',
+            'label': 'TR - SY (Republic of Türkiye vs. Syrian Arab Republic)',
+            'p_baseline': -0.60,
+            'dynamic_delta': round(oil_delta * 0.3, 2),
+            'friction_nodes': ['NORTHERN_SYRIA_BUFFER', 'CROSS_BORDER_SECURITY', 'REFUGEE_REPATRIATION', 'EUPHRATES_BASIN'],
+            'primary_driver': 'BORDER_SECURITY_AND_SOVEREIGN_BUFFER_ARCHITECTURE'
+        },
+        {
+            'id': 'TR_GR',
+            'source_entity': 'GEO_TR',
+            'target_entity': 'GEO_GR',
+            'label': 'TR - GR (Republic of Türkiye vs. Hellenic Republic)',
+            'p_baseline': -0.35,
+            'dynamic_delta': 0.0,
+            'friction_nodes': ['AEGEAN_AIRSPACE', 'EAST_MED_CONTINENTAL_SHELF', 'MARITIME_DELIMITATION'],
+            'primary_driver': 'EAST_MED_CONTINENTAL_SHELF_AND_AEGEAN_SOVEREIGNTY'
+        },
+        {
+            'id': 'EG_IL',
+            'source_entity': 'GEO_EG',
+            'target_entity': 'GEO_IL',
+            'label': 'EG - IL (Arab Republic of Egypt vs. State of Israel)',
+            'p_baseline': +0.30,
+            'dynamic_delta': round(-oil_delta * 0.5, 2),
+            'friction_nodes': ['PHILADELPHI_CORRIDOR', 'RAFAH_TRANSIT', 'SINAI_SECURITY_GRID', 'SUEZ_CANAL_APPROACH'],
+            'primary_driver': 'PHILADELPHI_CORRIDOR_AND_SUEZ_MARITIME_STABILITY'
+        },
+        {
+            'id': 'SA_YE',
+            'source_entity': 'GEO_SA',
+            'target_entity': 'GEO_YE',
+            'label': 'SA - YE (Kingdom of Saudi Arabia vs. Republic of Yemen)',
+            'p_baseline': -0.40,
+            'dynamic_delta': round(oil_delta * 0.4, 2),
+            'friction_nodes': ['YEMEN_SOUTHERN_BORDER', 'RED_SEA_LITTORAL', 'BAB_EL_MANDEB_CORRIDOR', 'ASIR_NAJRAN_SECURITY'],
+            'primary_driver': 'CROSS_BORDER_AIRSPACE_AND_BAB_EL_MANDEB_STABILIZATION'
+        },
+        {
+            'id': 'IR_IQ',
+            'source_entity': 'GEO_IR',
+            'target_entity': 'GEO_IQ',
+            'label': 'IR - IQ (Islamic Republic of Iran vs. Republic of Iraq)',
+            'p_baseline': +0.45,
+            'dynamic_delta': 0.0,
+            'friction_nodes': ['SHATT_AL_ARAB', 'BASRA_ENERGY_GRID', 'BILATERAL_CURRENCY_CLEARING', 'NORTHERN_BORDER_TRANSIT'],
+            'primary_driver': 'CROSS_BORDER_HYDROCARBON_AND_TRANSIT_INTEGRATION'
         }
     ]
 

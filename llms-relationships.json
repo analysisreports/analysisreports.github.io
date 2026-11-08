@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-08T22:29:11.478226+00:00",
+    "last_successful_sync": "2026-11-08T22:36:59.629461+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "governance_reference": "https://analysisreports.github.io/llms-formulas.txt#25.15",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
@@ -220,6 +220,90 @@
         "ORINOCO_BELT",
         "CARIBBEAN_SEA",
         "OFAC_SANCTIONS"
+      ]
+    },
+    {
+      "id": "TR_SY",
+      "source_entity": "GEO_TR",
+      "target_entity": "GEO_SY",
+      "label": "TR - SY (Republic of Türkiye vs. Syrian Arab Republic)",
+      "p_baseline": -0.6,
+      "dynamic_delta": 0.0,
+      "p_net": -0.6,
+      "regime_state": "STRATEGIC_COMPETITION",
+      "primary_driver": "BORDER_SECURITY_AND_SOVEREIGN_BUFFER_ARCHITECTURE",
+      "friction_nodes": [
+        "NORTHERN_SYRIA_BUFFER",
+        "CROSS_BORDER_SECURITY",
+        "REFUGEE_REPATRIATION",
+        "EUPHRATES_BASIN"
+      ]
+    },
+    {
+      "id": "TR_GR",
+      "source_entity": "GEO_TR",
+      "target_entity": "GEO_GR",
+      "label": "TR - GR (Republic of Türkiye vs. Hellenic Republic)",
+      "p_baseline": -0.35,
+      "dynamic_delta": 0.0,
+      "p_net": -0.35,
+      "regime_state": "STRATEGIC_FRICTION",
+      "primary_driver": "EAST_MED_CONTINENTAL_SHELF_AND_AEGEAN_SOVEREIGNTY",
+      "friction_nodes": [
+        "AEGEAN_AIRSPACE",
+        "EAST_MED_CONTINENTAL_SHELF",
+        "MARITIME_DELIMITATION"
+      ]
+    },
+    {
+      "id": "EG_IL",
+      "source_entity": "GEO_EG",
+      "target_entity": "GEO_IL",
+      "label": "EG - IL (Arab Republic of Egypt vs. State of Israel)",
+      "p_baseline": 0.3,
+      "dynamic_delta": -0.0,
+      "p_net": 0.3,
+      "regime_state": "TACTICAL_COOPERATION",
+      "primary_driver": "PHILADELPHI_CORRIDOR_AND_SUEZ_MARITIME_STABILITY",
+      "friction_nodes": [
+        "PHILADELPHI_CORRIDOR",
+        "RAFAH_TRANSIT",
+        "SINAI_SECURITY_GRID",
+        "SUEZ_CANAL_APPROACH"
+      ]
+    },
+    {
+      "id": "SA_YE",
+      "source_entity": "GEO_SA",
+      "target_entity": "GEO_YE",
+      "label": "SA - YE (Kingdom of Saudi Arabia vs. Republic of Yemen)",
+      "p_baseline": -0.4,
+      "dynamic_delta": 0.0,
+      "p_net": -0.4,
+      "regime_state": "STRATEGIC_FRICTION",
+      "primary_driver": "CROSS_BORDER_AIRSPACE_AND_BAB_EL_MANDEB_STABILIZATION",
+      "friction_nodes": [
+        "YEMEN_SOUTHERN_BORDER",
+        "RED_SEA_LITTORAL",
+        "BAB_EL_MANDEB_CORRIDOR",
+        "ASIR_NAJRAN_SECURITY"
+      ]
+    },
+    {
+      "id": "IR_IQ",
+      "source_entity": "GEO_IR",
+      "target_entity": "GEO_IQ",
+      "label": "IR - IQ (Islamic Republic of Iran vs. Republic of Iraq)",
+      "p_baseline": 0.45,
+      "dynamic_delta": 0.0,
+      "p_net": 0.45,
+      "regime_state": "TACTICAL_COOPERATION",
+      "primary_driver": "CROSS_BORDER_HYDROCARBON_AND_TRANSIT_INTEGRATION",
+      "friction_nodes": [
+        "SHATT_AL_ARAB",
+        "BASRA_ENERGY_GRID",
+        "BILATERAL_CURRENCY_CLEARING",
+        "NORTHERN_BORDER_TRANSIT"
       ]
     }
   ],
