@@ -20,3 +20,35 @@
 
 [MONTHLY]
 GOLD
+
+# ==============================================================================
+# 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
+# ==============================================================================
+# Ingestion Contract & Epistemological Directives:
+# - Synced At: 2026-11-08 12:35:00 UTC
+# - Total Series Synced: 1 / 1
+# - Source Authority: World Bank Commodity Price Data (The Pink Sheet)
+# - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
+# - Zero-Hallucination Directive: Values below represent immutable ground truth.
+
+--------------------------------------------------------------------------------
+Series ID: IND_WB_GOLD
+Title: World Bank Official Gold Price (The Pink Sheet)
+Frequency: Monthly (n_obs_per_yr: 12) | Units: USD per Troy Ounce
+Last Date: 2026-10-01 | Current Value: 4105.0000 | Previous Value: 4319.0000 | Year Ago Value: 4058.0000
+
+Transformations (Official World Bank / St. Louis Fed Formulas):
+  1. Change: -214.0000
+  2. Change from Year Ago: +47.0000
+  3. Percent Change: -4.9549%
+  4. Percent Change from Year Ago: +1.1582%
+  5. Compounded Annual Rate of Change: -45.6550%
+  6. Continuously Compounded Rate of Change: -5.0818%
+  7. Continuously Compounded Annual Rate of Change: -60.9818%
+
+Recent Observations (Last 5):
+  2026-06: 4228.0000
+  2026-07: 4073.0000
+  2026-08: 4411.0000
+  2026-09: 4319.0000
+  2026-10: 4105.0000
