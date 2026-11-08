@@ -329,6 +329,16 @@ def main():
             'dynamic_delta': 0.0,
             'friction_nodes': ['SHATT_AL_ARAB', 'BASRA_ENERGY_GRID', 'BILATERAL_CURRENCY_CLEARING', 'NORTHERN_BORDER_TRANSIT'],
             'primary_driver': 'CROSS_BORDER_HYDROCARBON_AND_TRANSIT_INTEGRATION'
+        },
+        {
+            'id': 'TR_SA',
+            'source_entity': 'GEO_TR',
+            'target_entity': 'GEO_SA',
+            'label': 'TR - SA (Republic of Türkiye - Kingdom of Saudi Arabia)',
+            'p_baseline': +0.85,
+            'dynamic_delta': 0.0,
+            'friction_nodes': ['RED_SEA_SECURITY', 'GULF_ENERGY_DEFENSE', 'DEFENSE_INDUSTRIAL_CO_PRODUCTION'],
+            'primary_driver': 'MECCA_MUTUAL_DEFENSE_TREATY_AND_AIRSPACE_SECURITY'
         }
     ]
 

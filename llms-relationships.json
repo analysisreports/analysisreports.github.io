@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-08T22:41:43.528774+00:00",
+    "last_successful_sync": "2026-11-08T23:15:29.086843+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "governance_reference": "https://analysisreports.github.io/llms-formulas.txt#25.15",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
@@ -304,6 +304,22 @@
         "BASRA_ENERGY_GRID",
         "BILATERAL_CURRENCY_CLEARING",
         "NORTHERN_BORDER_TRANSIT"
+      ]
+    },
+    {
+      "id": "TR_SA",
+      "source_entity": "GEO_TR",
+      "target_entity": "GEO_SA",
+      "label": "TR - SA (Republic of Türkiye - Kingdom of Saudi Arabia)",
+      "p_baseline": 0.85,
+      "dynamic_delta": 0.0,
+      "p_net": 0.85,
+      "regime_state": "ALLIANCE",
+      "primary_driver": "MECCA_MUTUAL_DEFENSE_TREATY_AND_AIRSPACE_SECURITY",
+      "friction_nodes": [
+        "RED_SEA_SECURITY",
+        "GULF_ENERGY_DEFENSE",
+        "DEFENSE_INDUSTRIAL_CO_PRODUCTION"
       ]
     }
   ],

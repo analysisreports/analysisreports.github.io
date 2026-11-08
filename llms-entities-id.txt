@@ -74,6 +74,7 @@ GEO_IR               | Aliases: Islamic Republic of Iran, Iran
 GEO_TR               | Aliases: Republic of Türkiye, Türkiye, Turkey
 GEO_KP               | Aliases: Democratic People's Republic of Korea, North Korea, DPRK
 GEO_IN               | Aliases: Republic of India, India
+GEO_PK               | Aliases: Islamic Republic of Pakistan, Pakistan, Islamabad
 GEO_SA               | Aliases: Kingdom of Saudi Arabia, Saudi Arabia, KSA
 GEO_AE               | Aliases: United Arab Emirates, UAE
 GEO_VE               | Aliases: Bolivarian Republic of Venezuela, Venezuela
@@ -150,6 +151,7 @@ BLOC_EU              | Aliases: European Union, EU, EU27, Brussels
 BLOC_OPEC            | Aliases: OPEC, Organization of the Petroleum Exporting Countries, OPEC+
 BLOC_BRICS_MBRIDGE   | Aliases: BRICS & mBridge Settlement Axis, mBridge, BIS Innovation Hub mBridge, CIPS, SPFS
 BLOC_C6              | Aliases: Central Asia & Azerbaijan Strategic Alignment Axis, C6 Consultative Format, C6 Bloc
+BLOC_MECCA_DEFENSE   | Aliases: Mecca Joint Defense Agreement, Mecca Defence Alliance, Mecca Pact, TR-SA-PK Alliance
 
 # [MARITIME CHOKEPOINTS, CANALS & STRATEGIC CORRIDORS] (Prefix: CHOKE_ / CORRIDOR_ / BASIN_ / ZONE_)
 CHOKE_HORMUZ         | Aliases: Hormuz Strait, Strait of Hormuz
