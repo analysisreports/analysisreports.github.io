@@ -137,7 +137,7 @@ TIER 2: ADVANCED INSTITUTIONAL MACRO MODELS
   - 23.7. Inventory to Sales Glut Ratio (ISRATIO, BUSINV, TOTBUSSALES)
   - 23.8. Mortgage and Permit Divergence (Housing Freeze Index: MORTGAGE30US, PERMIT)
 - 24. Safe Haven Flight Index (DTWEXBGS, BAMLH0A0HYM2, DGS10)
-- 25. Terms of Trade - TOT (IQ, IQ1000)
+- 25. Terms of Trade - TOT (IQ, IR)
    - 25.1. Dynamic Polarity & Regime Engine (P_baseline, dynamic_delta)
    - 25.2. Sticky vs. Flexible CPI Spread Engine (STICKYCPIM157SFRBATL, FLEXCPIM157SFRBATL)
    - 25.3. Global Supply Chain Pressure Logistics Engine (NY Fed GSCPI: GSCPI)

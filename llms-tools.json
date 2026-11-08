@@ -809,11 +809,11 @@
                     "properties": {
                         "export_idx": {
                             "type": "number",
-                            "description": "U.S. Export Price Index (BLS: IQ1000)."
+                            "description": "U.S. Export Price Index (FRED: IQ)."
                         },
                         "import_idx": {
                             "type": "number",
-                            "description": "U.S. Import Price Index (BLS: IQ)."
+                            "description": "U.S. Import Price Index (FRED: IR)."
                         }
                     },
                     "required": [

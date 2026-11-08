@@ -78,8 +78,8 @@ Aggregation Alignment Rule:
 26. GFDEGDQ188S (Total Public Debt as Percent of GDP) | Source: U.S. Treasury | Freq: q | Units: Percent (%) | Trans: lin
 27. BOPGSTB (Trade Balance: Goods and Services) | Source: BEA | Freq: m | Units: Millions USD | Scale: BOPGSTB / 1000.0 (Preserve sign: negative=deficit, positive=surplus)
 28. DTWEXBGS (Nominal Broad U.S. Dollar Index) | Source: Fed | Freq: d | Units: Index Jan 2006=100 | Trans: lin
-29. IQ (U.S. Import Price Index: All Commodities) | Source: BLS | Freq: m | Units: Index | Trans: lin
-30. IQ1000 (U.S. Export Price Index: All Commodities) | Source: BLS | Freq: m | Units: Index | Trans: lin
+29. IR (U.S. Import Price Index: All Commodities) | Source: BLS / FRED | Freq: m | Units: Index 2000=100 | Trans: lin
+30. IQ (U.S. Export Price Index: All Commodities) | Source: BLS / FRED | Freq: m | Units: Index 2000=100 | Trans: lin
 
 ### 2.6. Financial Conditions, Credit Spreads & Liquidity (Models 12, 13, 14, 16, 23.2, 24)
 31. NFCI / ANFCI (Chicago Fed Financial Conditions Index) | Source: Chicago Fed | Freq: wef | Units: Std Dev

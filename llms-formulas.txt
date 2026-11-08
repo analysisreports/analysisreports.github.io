@@ -1758,8 +1758,8 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ### 25. TERMS OF TRADE (TOT)
 - Purpose: Measures sovereign purchasing power, terms-of-trade welfare transfers, and current account fragility by evaluating the ratio of export prices to import prices.
 - Data Series Keys:
-  - BLS / FRED (Import Price Index): IQ (U.S. Import Price Index - All Commodities)
-  - BLS / FRED (Export Price Index): IQ1000 (U.S. Export Price Index - All Commodities)
+  - BLS / FRED (Export Price Index): IQ (U.S. Export Price Index - All Commodities)
+  - BLS / FRED (Import Price Index): IR (U.S. Import Price Index - All Commodities)
 - Formula:
   Terms_Of_Trade = (Export_Price_Index / Import_Price_Index) * 100
 - Machine-Executable Logic (Python):

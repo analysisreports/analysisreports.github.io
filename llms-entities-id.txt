@@ -223,8 +223,8 @@ IND_STICKY_CPI       | Source: Atlanta Fed / FRED | Name: Sticky CPI Less Food &
 IND_FLEX_CPI         | Source: Atlanta Fed / FRED | Name: Flexible CPI Less Food & Energy (FLEXCPIM157SFRBATL)
 IND_PCEPI            | Source: BEA / FRED | Name: Personal Consumption Expenditures Price Index
 IND_WPU06            | Source: BLS / FRED | Name: PPI Chemicals and Allied Products
-IND_IQ               | Source: BLS / FRED | Name: U.S. Import Price Index All Commodities
-IND_IQ1000           | Source: BLS / FRED | Name: U.S. Export Price Index All Commodities
+IND_IQ               | Source: BLS / FRED | Name: U.S. Export Price Index All Commodities (IQ)
+IND_IR               | Source: BLS / FRED | Name: U.S. Import Price Index All Commodities (IR)
 IND_GDPC1            | Source: BEA / FRED | Name: Real Gross Domestic Product (Billions USD)
 IND_GDPPOT           | Source: CBO / FRED | Name: Real Potential Gross Domestic Product (Billions USD)
 IND_GFDEGDQ188S      | Source: FRED | Name: Federal Debt Total Public Debt as Percent of GDP

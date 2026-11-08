@@ -103,7 +103,7 @@ Regime States (Discrete Mapping):
    - Structural Regime: STRATEGIC_COMPETITION
    - Primary Friction Nodes: TAIWAN_STRAIT, SOUTH_CHINA_SEA, TECH_EXPORT_CONTROLS
    - Economic Coupling: 0.65 (High interdependence with selective decoupling)
-   - Transmission Series: DTWEXBGS, IQ, IQ1000, JTSJOL
+   - Transmission Series: DTWEXBGS, IQ, IR, JTSJOL
 
 2.1.3. RU - CN (Russian Federation - People's Republic of China)
    - Baseline Polarity (P_baseline): +0.75
