@@ -1,6 +1,0 @@
-# Python cache
-__pycache__/
-*.pyc
-
-# Local research scratchpad
-test-governance-research.md
