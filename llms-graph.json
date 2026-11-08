@@ -240,7 +240,7 @@
                       "label":  "NY Fed Global Supply Chain Pressure Index (GSCPI)",
                       "category":  "INDICATOR",
                       "attributes":  {
-                                         "source":  "NY Fed / FRED",
+                                         "source":  "Federal Reserve Bank of New York",
                                          "units":  "Standard Deviations",
                                          "trans":  "lin"
                                      }

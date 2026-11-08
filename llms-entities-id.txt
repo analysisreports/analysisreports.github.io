@@ -232,7 +232,7 @@ IND_BOPGSTB          | Source: BEA / FRED | Name: U.S. Trade Balance Goods and S
 IND_DTWEXBGS         | Source: FRED | Name: Nominal Broad U.S. Dollar Index
 IND_VIXCLS           | Source: CBOE / FRED | Name: CBOE Volatility Index (VIX)
 IND_OVXCLS           | Source: CBOE / FRED | Name: CBOE Crude Oil Volatility Index (OVX)
-IND_GSCPI            | Source: NY Fed / FRED | Name: NY Fed Global Supply Chain Pressure Index (Z-Score)
+IND_GSCPI            | Source: Federal Reserve Bank of New York | Name: Global Supply Chain Pressure Index (Z-Score)
 IND_NFCI             | Source: FRED | Name: Chicago Fed National Financial Conditions Index
 IND_ANFCI            | Source: FRED | Name: Adjusted National Financial Conditions Index
 IND_BAMLH0A0HYM2     | Source: ICE BofA / FRED | Name: ICE BofA US High Yield Index Option-Adjusted Spread

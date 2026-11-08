@@ -39,7 +39,6 @@ IC4WSA
 PAYEMS
 UNRATE
 JTSJOL
-GSCPI
 FEDFUNDS
 SAHMREALTIME
 
@@ -54,7 +53,7 @@ SAHMREALTIME
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
 # - Synced At: 2026-11-08 20:54:12 UTC
-# - Total Series Synced: 18 / 19
+# - Total Series Synced: 18 / 18
 # - Source Authority: Federal Reserve Bank of St. Louis (FRED API)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
