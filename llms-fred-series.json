@@ -5,8 +5,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-08T14:28:25Z",
-    "total_series": 15,
+    "last_successful_sync": "2026-11-08T15:57:44Z",
+    "total_series": 16,
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -439,6 +439,49 @@
         {
           "date": "2026-11-04",
           "value": 957175.0
+        }
+      ]
+    },
+    "IC4WSA": {
+      "series_id": "IC4WSA",
+      "title": "4-Week Moving Average of Initial Claims",
+      "frequency": "Weekly",
+      "n_obs_per_yr": 52,
+      "units": "Number",
+      "source": "Number",
+      "last_date": "2026-10-31",
+      "current_value": 194750.0,
+      "previous_value": 197000.0,
+      "year_ago_value": 225500.0,
+      "transformations": {
+        "change": -2250.0,
+        "change_from_year_ago": -30750.0,
+        "percent_change": -1.1421,
+        "percent_change_from_year_ago": -13.6364,
+        "compounded_annual_rate_of_change": -44.9719,
+        "continuously_compounded_rate_of_change": -1.1487,
+        "continuously_compounded_annual_rate_of_change": -59.7326
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-03",
+          "value": 198250.0
+        },
+        {
+          "date": "2026-10-10",
+          "value": 198750.0
+        },
+        {
+          "date": "2026-10-17",
+          "value": 198000.0
+        },
+        {
+          "date": "2026-10-24",
+          "value": 197000.0
+        },
+        {
+          "date": "2026-10-31",
+          "value": 194750.0
         }
       ]
     },
