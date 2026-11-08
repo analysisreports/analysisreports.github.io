@@ -2313,27 +2313,94 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           rate_spread = round(r_us - r_jp, 4)
           net_buffer = round(rate_spread + fx_mom, 4)
           if net_buffer <= -1.0 or (fx_mom <= -5.0 and rate_spread <= 3.0):
-              status = " UNWIND_LIQUIDATION_CRASH\
- elif net_buffer < 1.5 or fx_mom <= -3.0:
- status = \COMPRESSION_WARNING\
- elif net_buffer >= 3.5 and fx_mom >= -1.0:
- status = \CALM_ACCUMULATION\
- else:
- \rate_spread\: rate_spread,
- return {
- \model_id\: \MODEL_25.16_JPY_CARRY_CRACK\,
- \rate_spread\: rate_spread Stakeholder,
- \fx_momentum_30d_pct\: fx_mom,
- \net_carry_buffer\: net_buffer,
- \status\: status
- }
- except (TypeError, ValueError, OverflowError):
- return None
+              status = "UNWIND_LIQUIDATION_CRASH"
+          elif net_buffer < 1.5 or fx_mom <= -3.0:
+              status = "COMPRESSION_WARNING"
+          elif net_buffer >= 3.5 and fx_mom >= -1.0:
+              status = "CALM_ACCUMULATION"
+          else:
+              status = "MANAGED_TIGHTENING"
+
+          return {
+              "model_id": "MODEL_25.16_JPY_CARRY_CRACK",
+              "rate_spread": rate_spread,
+              "fx_momentum_30d_pct": fx_mom,
+              "net_carry_buffer": net_buffer,
+              "status": status
+          }
+      except (TypeError, ValueError, OverflowError):
+          return None
 - Interpretation:
- - status == UNWIND_LIQUIDATION_CRASH : BoJ faiz artisi veya sert Yen deger kazanci net faiz getirisini sildi; kuresel kaldiracli fonlar zorunlu teminat tamamlama (margin call) ve pozisyon tasfiyesine gecti. Wall Street hisse ve kripto piyasalarinda likidite soku.
- - status == COMPRESSION_WARNING : Faiz makasi daraliyor veya Yen gucleniyor; carry trade kar tamponu kritik seviyeye geriledi. Erken uyari alarmi.
- - status == MANAGED_TIGHTENING : BoJ kontrollu normallesiyor, kur oynakligi absorbe edilebilir aralikta.
- - status == CALM_ACCUMULATION : Faiz marji genis, Yen zayif/stabil; kuresel carry trade fonlamasi kesintisiz devam ediyor.
+  - status == UNWIND_LIQUIDATION_CRASH : BoJ faiz artisi veya sert Yen deger kazanci net faiz getirisini sildi; kuresel kaldiracli fonlar zorunlu teminat tamamlama (margin call) ve pozisyon tasfiyesine gecti. Wall Street hisse ve kripto piyasalarinda likidite soku.
+  - status == COMPRESSION_WARNING : Faiz makasi daraliyor veya Yen gucleniyor; carry trade kar tamponu kritik seviyeye geriledi. Erken uyari alarmi.
+  - status == MANAGED_TIGHTENING : BoJ kontrollu normallesiyor, kur oynakligi absorbe edilebilir aralikta.
+  - status == CALM_ACCUMULATION : Faiz marji genis, Yen zayif/stabil; kuresel carry trade fonlamasi kesintisiz devam ediyor.
+
+### 25.17. LIKIDITE VE EMTIA MAKRO REJIM MATRISI (LIQUIDITY & COMMODITY MACRO REGIME MATRIX)
+- Purpose: Para piyasasi kisa vadeli likidite kosullari (Hazine bonosu 3M-1M makasi) ile ham petrol maliyet enflasyon ivmesini (Brent petrol yillik yuzde degisimi) 2x2 deterministik makro matriste birlestirerek ekonominin likidite ve maliyet soku rejimini tespit eder.
+- Target: economy.json, llms-models.json -> MODEL_25.17_LIQUIDITY_COMMODITY_MATRIX
+- Frequency: Daily (Is Gunu)
+- Canonical Input Series:
+  - FRED: DGS3MO (3-Month Treasury Bill Secondary Market Rate, Percent)
+  - FRED: DGS1MO (1-Month Treasury Bill Secondary Market Rate, Percent)
+  - EIA / FRED: DCOILBRENTEU (Crude Oil Prices: Brent - Europe, USD per Barrel)
+- Mathematical Formulation:
+  1. Front-End Liquidity Slope (bps):
+     Slope_bps = (DGS3MO - DGS1MO) * 100.0
+  2. Commodity Inflation Momentum (YoY %):
+     Brent_YoY_pct = ((Brent_t / Brent_t_year_ago) - 1.0) * 100.0
+- Machine-Executable Logic (Python):
+  def calculate_liquidity_commodity_matrix(dgs3mo, dgs1mo, brent_yoy_pct):
+      if any(v is None or isinstance(v, bool) for v in (dgs3mo, dgs1mo, brent_yoy_pct)):
+          return None
+      try:
+          f_3m = float(dgs3mo)
+          f_1m = float(dgs1mo)
+          f_brent_yoy = float(brent_yoy_pct)
+          if not (math.isfinite(f_3m) and math.isfinite(f_1m) and math.isfinite(f_brent_yoy)):
+              return None
+          if f_3m < 0.0 or f_1m < 0.0:
+              return None
+
+          slope_bps = round((f_3m - f_1m) * 100.0, 2)
+          brent_yoy = round(f_brent_yoy, 2)
+
+          # Rejim Karar Matrisi
+          if brent_yoy > 15.0:
+              if slope_bps < 0.0:
+                  if slope_bps <= -25.0:
+                      status = "ACUTE_STAGFLATION_CRUNCH"
+                  else:
+                      status = "STAGFLATION_SHOCK"
+              else:
+                  status = "REFLATIONARY_EXPANSION"
+          elif brent_yoy < 0.0:
+              if slope_bps < 0.0:
+                  status = "DEFLATIONARY_RECESSION"
+              else:
+                  status = "GOLDILOCKS_EXPANSION"
+          else:
+              # Ilimli / Notr Maliyet Bolgesi (0% <= brent_yoy <= 15.0%)
+              if slope_bps < 0.0:
+                  status = "RESTRICTIVE_SLOWDOWN"
+              else:
+                  status = "GOLDILOCKS_EXPANSION"
+
+          return {
+              "model_id": "MODEL_25.17_LIQUIDITY_COMMODITY_MATRIX",
+              "slope_bps": slope_bps,
+              "brent_yoy_pct": brent_yoy,
+              "status": status
+          }
+      except (TypeError, ValueError, OverflowError):
+          return None
+- Interpretation:
+  - status == ACUTE_STAGFLATION_CRUNCH : Yuksek maliyet enflasyonu (Brent YoY > %15) ve derin likidite daralmasi (Makas <= -25 bps). Siddetli sistemik stagflasyon soku.
+  - status == STAGFLATION_SHOCK : Arz Soku ve Stagflasyon (Brent YoY > %15, Ters Egri < 0 bps). Maliyetler yuksek fakat fonlama sikisik; riskli varliklar icin yuksek baski.
+  - status == REFLATIONARY_EXPANSION : Enflasyonist Buyume ve Reflasyon (Brent YoY > %15, Normal Egri >= 0 bps). Canli talep petrolu cekiyor, likidite sistemi destekliyor.
+  - status == DEFLATIONARY_RECESSION : Deflasyonist Resesyon (Brent YoY < %0, Ters Egri < 0 bps). Talep zayif, petrol dusuyor, likidite kuruyor; resesyon baskisi.
+  - status == GOLDILOCKS_EXPANSION : Dezenflasyonist Buyume (Brent YoY <= %15, Normal Egri >= 0 bps). Enflasyon baskisi hafif/notr, para piyasasinda likidite rahat.
+  - status == RESTRICTIVE_SLOWDOWN : Kisitlayici Yavaslama (Ilimli petrol maliyeti, Ters Egri < 0 bps). Para politikasinin ekonomiyi sogutma evresi.
 
 ---
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
