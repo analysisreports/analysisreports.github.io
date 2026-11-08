@@ -45,7 +45,7 @@ ICP/M.U2.N.XEF000.4.ANR
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-08 21:50:42 UTC
+# - Synced At: 2026-11-08 22:29:06 UTC
 # - Total Series Synced: 11 / 11
 # - Source Authority: European Central Bank (ECB Data Portal REST API)
 # - Canonical Formulas Reference: Section 0.5 of https://analysisreports.github.io/llms-formulas.txt
