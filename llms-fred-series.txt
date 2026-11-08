@@ -53,8 +53,8 @@ SAHMREALTIME
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-08 15:57:44 UTC
-# - Total Series Synced: 16 / 17
+# - Synced At: 2026-11-08 16:43:51 UTC
+# - Total Series Synced: 18 / 19
 # - Source Authority: Federal Reserve Bank of St. Louis (FRED API)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
@@ -234,6 +234,50 @@ Recent Observations (Last 5):
   2026-10-28: 158.2400
   2026-10-29: 157.8300
   2026-10-30: 157.4700
+
+--------------------------------------------------------------------------------
+Series ID: DGS1MO
+Title: Market Yield on U.S. Treasury Securities at 1-Month Constant Maturity, Quoted on an Investment Basis
+Frequency: Daily (n_obs_per_yr: 260) | Units: Percent
+Last Date: 2026-11-05 | Current Value: 4.0300 | Previous Value: 4.0100 | Year Ago Value: 4.1100
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.0200
+  2. Change from Year Ago: -0.0800
+  3. Percent Change: +0.4988%
+  4. Percent Change from Year Ago: -1.9465%
+  5. Compounded Annual Rate of Change: N/A (Rate is already annualized)
+  6. Continuously Compounded Rate of Change: +0.4975%
+  7. Continuously Compounded Annual Rate of Change: N/A (Rate is already annualized)
+
+Recent Observations (Last 5):
+  2026-10-30: 4.0600
+  2026-11-02: 4.0500
+  2026-11-03: 4.0300
+  2026-11-04: 4.0100
+  2026-11-05: 4.0300
+
+--------------------------------------------------------------------------------
+Series ID: DGS3MO
+Title: Market Yield on U.S. Treasury Securities at 3-Month Constant Maturity, Quoted on an Investment Basis
+Frequency: Daily (n_obs_per_yr: 260) | Units: Percent
+Last Date: 2026-11-05 | Current Value: 4.1700 | Previous Value: 4.2100 | Year Ago Value: 3.9600
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -0.0400
+  2. Change from Year Ago: +0.2100
+  3. Percent Change: -0.9501%
+  4. Percent Change from Year Ago: +5.3030%
+  5. Compounded Annual Rate of Change: N/A (Rate is already annualized)
+  6. Continuously Compounded Rate of Change: -0.9547%
+  7. Continuously Compounded Annual Rate of Change: N/A (Rate is already annualized)
+
+Recent Observations (Last 5):
+  2026-10-30: 4.1600
+  2026-11-02: 4.2100
+  2026-11-03: 4.2100
+  2026-11-04: 4.2100
+  2026-11-05: 4.1700
 
 --------------------------------------------------------------------------------
 Series ID: WALCL

@@ -5,8 +5,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-08T15:57:44Z",
-    "total_series": 16,
+    "last_successful_sync": "2026-11-08T16:43:51Z",
+    "total_series": 18,
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -353,6 +353,92 @@
         {
           "date": "2026-10-30",
           "value": 157.47
+        }
+      ]
+    },
+    "DGS1MO": {
+      "series_id": "DGS1MO",
+      "title": "Market Yield on U.S. Treasury Securities at 1-Month Constant Maturity, Quoted on an Investment Basis",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Percent",
+      "source": "Percent",
+      "last_date": "2026-11-05",
+      "current_value": 4.03,
+      "previous_value": 4.01,
+      "year_ago_value": 4.11,
+      "transformations": {
+        "change": 0.02,
+        "change_from_year_ago": -0.08,
+        "percent_change": 0.4988,
+        "percent_change_from_year_ago": -1.9465,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 0.4975,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-30",
+          "value": 4.06
+        },
+        {
+          "date": "2026-11-02",
+          "value": 4.05
+        },
+        {
+          "date": "2026-11-03",
+          "value": 4.03
+        },
+        {
+          "date": "2026-11-04",
+          "value": 4.01
+        },
+        {
+          "date": "2026-11-05",
+          "value": 4.03
+        }
+      ]
+    },
+    "DGS3MO": {
+      "series_id": "DGS3MO",
+      "title": "Market Yield on U.S. Treasury Securities at 3-Month Constant Maturity, Quoted on an Investment Basis",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Percent",
+      "source": "Percent",
+      "last_date": "2026-11-05",
+      "current_value": 4.17,
+      "previous_value": 4.21,
+      "year_ago_value": 3.96,
+      "transformations": {
+        "change": -0.04,
+        "change_from_year_ago": 0.21,
+        "percent_change": -0.9501,
+        "percent_change_from_year_ago": 5.303,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": -0.9547,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-30",
+          "value": 4.16
+        },
+        {
+          "date": "2026-11-02",
+          "value": 4.21
+        },
+        {
+          "date": "2026-11-03",
+          "value": 4.21
+        },
+        {
+          "date": "2026-11-04",
+          "value": 4.21
+        },
+        {
+          "date": "2026-11-05",
+          "value": 4.17
         }
       ]
     },
