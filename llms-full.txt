@@ -151,10 +151,10 @@ Cross-verify all analytical assertions against the deterministic code blocks in 
    - 25.14. AI Hardware & Semiconductor Supply Chain Stress Gauge (AI_CHIP_STRESS: GSCPI, NASDAQSOX, VIXCLS)
    - 25.15. Domestic Governance Gridlock & External Tariff Friction Engine (GOVERNANCE_GRIDLOCK_FRICTION: GEO_US, GEO_CN, GEO_RU, GEO_DE, GEO_IL, GEO_JP)
    - 25.16. Yen Carry Trade Dissolution & Cross-Currency Stress Gauge (JPY_CARRY_CRACK: IND_DFF, IND_MUTAN_JP, IND_DEXJPUS)
-   - 25.17. Likidite ve Emtia Makro Rejim Matrisi (Liquidity & Commodity Macro Regime Matrix: DGS3MO, DGS1MO, DCOILBRENTEU)
+   - 25.17. Liquidity & Commodity Macro Regime Matrix (LIQUIDITY_COMMODITY_MATRIX: DGS3MO, DGS1MO, DCOILBRENTEU)
 
 3. KADEME: KURUMSAL KARAR, SİYASİ GERİLİM VE KALİBRASYON MOTORU
-- 26. Merkez Bankası Oy Ayrışma ve Şahinlik Dağılımı Motoru (Central Bank Committee Dispersion & Hawkishness Index: n_hawkish, n_dovish, n_neutral, n_total)
+- 26. Central Bank Committee Dispersion & Hawkishness Index (COMMITTEE_DISPERSION: n_hawkish, n_dovish, n_neutral, n_total)
 - 27. Söylem Sertlik Skoru (Rhetoric Intensity Score: direct_target, delegitimize, threat, norm_breach)
   - 27.1. Bileşik Siyasi Gerilim Skoru (Composite Tension Score: rhetoric, alliance_friction)
 - 28. Bileşik Ülke Stratejik Risk Skoru (Composite Strategic Score: pol, defense, geo, vuln)

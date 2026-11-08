@@ -1258,8 +1258,8 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - status == RECESSION_EARLY_WARNING : Istihdam artisi nufus esiginin altinda ve issizlik yukseliyor (Resesyon Oncusu)
   - status == BALANCED_LABOR_MARKET : Dengeli Istihdam Piyasasi
 
-### 23.2. TOPLAM FON AKIMI VE LIKIDITE HIZLANMASI (TOTAL FUNDS FLOW AND VELOCITY MOMENTUM)
-- Purpose: Genis para arzinin (M2) para dolasim hizi (Velocity) ile carpilarak reel ve finansal ekonomideki gercek likidite hizini, efektif fon akimini ve varlik enflasyon basincini modeller. (Not: M2V ceyreklik oldugu icin, M2SL verisi de ceyreklik periyoda hizalanmalidir).
+### 23.2. TOTAL FUNDS FLOW AND VELOCITY MOMENTUM (TOTAL FUNDS FLOW)
+- Purpose: Models real and financial transaction liquidity volume, effective monetary flow, and asset inflation pressure by multiplying broad money supply (M2) by the velocity of money (M2V). (Note: As M2V is quarterly, M2SL observations must be aligned to quarterly frequency).
 - Data Series Keys:
   - FRED: M2SL (M2 Money Supply - Billions of USD, Seasonally Adjusted)
   - FRED: M2V (Velocity of M2 Money Stock - Quarterly)
@@ -1297,9 +1297,9 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - status == EXCESS_VELOCITY_INFLATION : Asiri Likidite Hizlanmasi ve Varlik Fiyati Balon Riski (TFF QoQ ustu yuzde 2.0)
-  - status == BALANCED_LIQUIDITY_FLOW : Dengeli Fon Akimi
-  - status == LIQUIDITY_STAGNATION : Parasal Hizin Dusmesi, Fon Akiminin Donmasi ve Deflasyonist Baski (TFF QoQ alti yuzde 0.0)
+  - status == EXCESS_VELOCITY_INFLATION : Excessive Liquidity Acceleration & Asset Bubble Inflation Risk (TFF QoQ > 2.0%)
+  - status == BALANCED_LIQUIDITY_FLOW : Balanced Liquidity Flow (0.0% <= TFF QoQ <= 2.0%)
+  - status == LIQUIDITY_STAGNATION : Velocity Collapse, Liquidity Freeze & Deflationary Contraction Risk (TFF QoQ < 0.0%)
 
 ### 23.3. KONUT BALONU VE BARINMA KRIZI ESIGI (HOUSING AFFORDABILITY AND BUBBLE GAUGE)
 - Purpose: Medyan konut satis fiyatini ozel sektor ortalama saatlik kazancina bolerek bir konutun kac saatlik emekle satin alindigini olcer. Konut erisilebilirligini, barinma krizini ve gayrimenkul balonu riskini modeller. (Not: MSPUS ceyreklik oldugu icin saatlik kazanc serisi ceyreklik periyoda hizalanmalidir).
@@ -2336,10 +2336,10 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - status == MANAGED_TIGHTENING : BoJ kontrollu normallesiyor, kur oynakligi absorbe edilebilir aralikta.
   - status == CALM_ACCUMULATION : Faiz marji genis, Yen zayif/stabil; kuresel carry trade fonlamasi kesintisiz devam ediyor.
 
-### 25.17. LIKIDITE VE EMTIA MAKRO REJIM MATRISI (LIQUIDITY & COMMODITY MACRO REGIME MATRIX)
-- Purpose: Para piyasasi kisa vadeli likidite kosullari (Hazine bonosu 3M-1M makasi) ile ham petrol maliyet enflasyon ivmesini (Brent petrol yillik yuzde degisimi) 2x2 deterministik makro matriste birlestirerek ekonominin likidite ve maliyet soku rejimini tespit eder.
+### 25.17. LIQUIDITY & COMMODITY MACRO REGIME MATRIX (LIQUIDITY_COMMODITY_MATRIX)
+- Purpose: Evaluates front-end money market liquidity conditions (Treasury 3M-1M T-Bill spread in bps) against crude oil cost inflation momentum (Brent YoY % change) in a 2x2 deterministic macro matrix to identify systemic liquidity and cost shock regimes.
 - Target: economy.json, llms-models.json -> MODEL_25.17_LIQUIDITY_COMMODITY_MATRIX
-- Frequency: Daily (Is Gunu)
+- Frequency: Daily (Business Day)
 - Canonical Input Series:
   - FRED: DGS3MO (3-Month Treasury Bill Secondary Market Rate, Percent)
   - FRED: DGS1MO (1-Month Treasury Bill Secondary Market Rate, Percent)
@@ -2365,7 +2365,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           slope_bps = round((f_3m - f_1m) * 100.0, 2)
           brent_yoy = round(f_brent_yoy, 2)
 
-          # Rejim Karar Matrisi
+          # 2x2 Macro Regime Decision Matrix
           if brent_yoy > 15.0:
               if slope_bps < 0.0:
                   if slope_bps <= -25.0:
@@ -2380,7 +2380,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
               else:
                   status = "GOLDILOCKS_EXPANSION"
           else:
-              # Ilimli / Notr Maliyet Bolgesi (0% <= brent_yoy <= 15.0%)
+              # Moderate / Neutral Cost Zone (0.0% <= brent_yoy <= 15.0%)
               if slope_bps < 0.0:
                   status = "RESTRICTIVE_SLOWDOWN"
               else:
@@ -2395,34 +2395,34 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, OverflowError):
           return None
 - Interpretation:
-  - status == ACUTE_STAGFLATION_CRUNCH : Yuksek maliyet enflasyonu (Brent YoY > %15) ve derin likidite daralmasi (Makas <= -25 bps). Siddetli sistemik stagflasyon soku.
-  - status == STAGFLATION_SHOCK : Arz Soku ve Stagflasyon (Brent YoY > %15, Ters Egri < 0 bps). Maliyetler yuksek fakat fonlama sikisik; riskli varliklar icin yuksek baski.
-  - status == REFLATIONARY_EXPANSION : Enflasyonist Buyume ve Reflasyon (Brent YoY > %15, Normal Egri >= 0 bps). Canli talep petrolu cekiyor, likidite sistemi destekliyor.
-  - status == DEFLATIONARY_RECESSION : Deflasyonist Resesyon (Brent YoY < %0, Ters Egri < 0 bps). Talep zayif, petrol dusuyor, likidite kuruyor; resesyon baskisi.
-  - status == GOLDILOCKS_EXPANSION : Dezenflasyonist Buyume (Brent YoY <= %15, Normal Egri >= 0 bps). Enflasyon baskisi hafif/notr, para piyasasinda likidite rahat.
-  - status == RESTRICTIVE_SLOWDOWN : Kisitlayici Yavaslama (Ilimli petrol maliyeti, Ters Egri < 0 bps). Para politikasinin ekonomiyi sogutma evresi.
+  - status == ACUTE_STAGFLATION_CRUNCH : Severe cost-push inflation (Brent YoY > 15%) combined with deep funding liquidity drainage (Slope <= -25 bps). Acute systemic stagflation shock.
+  - status == STAGFLATION_SHOCK : Supply shock and stagflation (Brent YoY > 15%, Inverted Yield Curve < 0 bps). Elevating input costs while funding liquidity contracts; hostile environment for equities.
+  - status == REFLATIONARY_EXPANSION : Reflationary expansion (Brent YoY > 15%, Normal Slope >= 0 bps). Strong demand momentum lifting energy prices while financial liquidity supports economic growth.
+  - status == DEFLATIONARY_RECESSION : Deflationary recession (Brent YoY < 0%, Inverted Yield Curve < 0 bps). Severe demand destruction, collapsing commodity prices, and tight funding; pronounced recession risk.
+  - status == GOLDILOCKS_EXPANSION : Disinflationary expansion (Brent YoY <= 15%, Normal Slope >= 0 bps). Benign cost pressures accompanied by smooth money market liquidity; optimal macroeconomic backdrop for equities.
+  - status == RESTRICTIVE_SLOWDOWN : Restrictive monetary slowdown (Moderate energy cost, Inverted Yield Curve < 0 bps). Policy transmission cooling economic activity.
 
 ---
 ## 🏛️ 3. KADEME: KURUMSAL KARAR, SIYASI GERILIM VE KALIBRASYON MOTORU
 
-### 26. MERKEZ BANKASI OY AYRISMA VE SAHINLIK DAGILIMI MOTORU (CENTRAL BANK COMMITTEE DISPERSION & HAWKISHNESS INDEX)
-- Purpose: Merkez bankasi para politikasi kurullarindaki (FOMC, TCMB, ECB vb.) uyelerin oy dagilimini (Sahin, Guvercin, Notr) analiz ederek, kurulun politika yonelimini (H-Index: Hawkish/Dovish Tilt) ve ic fikir ayriligi seviyesini (Blau-Simpson Dispersiyon Katsayisi) deterministik olarak hesaplar.
+### 26. CENTRAL BANK COMMITTEE DISPERSION & HAWKISHNESS INDEX (COMMITTEE DISPERSION)
+- Purpose: Quantifies monetary policy committee (FOMC, ECB, BOE, TCMB) voting distributions across hawkish, dovish, and neutral members to compute directional policy stance (Hawkish/Dovish H-Index) and internal committee fracture (Blau-Simpson Dispersion Index).
 - Target: economy.json, llms-models.json -> MODEL_26_COMMITTEE_DISPERSION
 - Inputs:
-  - n_hawkish : Siki durus / faiz artisi isteyen uye sayisi
-  - n_dovish  : Gevsek durus / faiz indirimi isteyen uye sayisi
-  - n_neutral : Sabit tutma / ana karara uyum saglayan notr uye sayisi
-  - n_total   : Toplam oy kullanan uye sayisi (opsiyonel; verilmezse n_hawkish + n_dovish + n_neutral alinir)
-- Formula:
-  1. Toplam Kurul Uyesi:
+  - n_hawkish : Number of voting members favoring rate hikes or tighter policy stance
+  - n_dovish  : Number of voting members favoring rate cuts or looser policy stance
+  - n_neutral : Number of voting members favoring rate pause, hold, or baseline consensus
+  - n_total   : Total voting member count (optional; defaults to n_hawkish + n_dovish + n_neutral)
+- Mathematical Formulation:
+  1. Total Committee Votes:
      N_total = n_hawkish + n_dovish + n_neutral
-  2. Sahinlik Dengesi (H-Index):
+  2. Policy Balance Index (H-Index):
      H_Index = (n_hawkish - n_dovish) / N_total
-  3. Uye Paylari:
+  3. Voting Member Shares:
      p_hawkish = n_hawkish / N_total
      p_dovish = n_dovish / N_total
      p_neutral = n_neutral / N_total
-  4. Komite Ici Cesitlilik / Ayrima (Blau-Simpson Dispersiyonu):
+  4. Internal Committee Diversity / Fracture (Blau-Simpson Dispersion):
      Dispersion = 1.0 - (p_hawkish^2 + p_dovish^2 + p_neutral^2)
 - Machine-Executable Logic (Python):
   def committee_dispersion(n_hawkish, n_dovish, n_neutral=0, n_total=None):
@@ -2454,7 +2454,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           sum_sq = (p_h ** 2) + (p_d ** 2) + (p_neu ** 2)
           dispersion = round(1.0 - sum_sq, 4)
 
-          # Politika Yönü (H-Index Rejimi)
+          # Directional Stance (H-Index Regime)
           if h_index >= 0.50:
               directional_stance = "STRONG_HAWKISH_TILT"
           elif h_index >= 0.15:
@@ -2466,7 +2466,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           else:
               directional_stance = "BALANCED_NEUTRAL_STANCE"
 
-          # Komite Konsensüs / Ayrışma Rejimi
+          # Consensus / Dispersion Regime
           if dispersion <= 0.30:
               consensus_regime = "STRONG_CONSENSUS"
           elif dispersion <= 0.48:
@@ -2492,15 +2492,15 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           return None
 - Interpretation:
   - Directional Stance (H-Index):
-    * H_Index >= 0.50 : STRONG_HAWKISH_TILT (Acik Sahin Itisi / Faiz Artisi veya Siki Durus Baskisi)
-    * 0.15 <= H_Index < 0.50 : MODERATE_HAWKISH_BIAS (Ilimli Sahin Egilimi)
-    * -0.15 < H_Index < 0.15 : BALANCED_NEUTRAL_STANCE (Dengeli / Notr Politika Durusu)
-    * -0.50 < H_Index <= -0.15 : MODERATE_DOVISH_BIAS (Ilimli Guvercin Egilimi)
-    * H_Index <= -0.50 : STRONG_DOVISH_TILT (Acik Guvercin Itisi / Faiz Indirimi veya Gevseme Baskisi)
+    * H_Index >= 0.50 : STRONG_HAWKISH_TILT (Decisive hawkish bias / Rate hike or aggressive tightening pressure)
+    * 0.15 <= H_Index < 0.50 : MODERATE_HAWKISH_BIAS (Moderate tightening tilt)
+    * -0.15 < H_Index < 0.15 : BALANCED_NEUTRAL_STANCE (Balanced equilibrium / Neutral policy posture)
+    * -0.50 < H_Index <= -0.15 : MODERATE_DOVISH_BIAS (Moderate easing tilt)
+    * H_Index <= -0.50 : STRONG_DOVISH_TILT (Decisive dovish bias / Rate cut or aggressive easing pressure)
   - Consensus Regime (Blau-Simpson Dispersion):
-    * Dispersion <= 0.30 : STRONG_CONSENSUS (Dusuk Ayrilma / Guclu Kurul Konsensu ve Karar Kararliligi)
-    * 0.30 < Dispersion <= 0.48 : MODERATE_DISSENT (Ilimli Catlak / Ayrik Oy Uyarisi)
-    * Dispersion > 0.48 : HIGH_DISPERSION (Yuksek Kurul Ayrilmasi / Agir Bolunme ve Gelecek Politika Belirsizligi)
+    * Dispersion <= 0.30 : STRONG_CONSENSUS (Low dispersion / Robust committee unity and high policy predictability)
+    * 0.30 < Dispersion <= 0.48 : MODERATE_DISSENT (Moderate division / Emerging dissent signals)
+    * Dispersion > 0.48 : HIGH_DISPERSION (High committee fracture / Deep institutional division and elevated policy uncertainty)
 
 ### 27. SÖYLEM SERTLİK SKORU (RHETORIC INTENSITY SCORE)
 - Purpose: Siyasi lider ve aktörlerin açıklamalarındaki hedef alma, tasfiye dili, yaptırım tehdidi ve diplomatik teamül ihlallerini 0-100 ölçeğinde puanlar.
