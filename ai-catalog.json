@@ -179,7 +179,7 @@
       },
       "description": "Ontological relationship network between actors, chokepoints, indicators, and models."
     },
-        {
+    {
       "id": "live-fred-series",
       "name": "Canonical FRED Time-Series Registry & Official Transformations",
       "type": "dataset",
@@ -222,7 +222,7 @@
     "tool_calling": true,
     "structured_data_payload": "structured_content_analysis"
   },
-  "last_updated": "2026-11-07",
+  "last_updated": "2026-11-08",
   "monitored_directories": {
     "economy": {
       "total_payloads": 2,
