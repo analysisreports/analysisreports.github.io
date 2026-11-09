@@ -5,8 +5,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-08T23:31:04Z",
-    "total_series": 34,
+    "last_successful_sync": "2026-11-09T00:33:34Z",
+    "total_series": 38,
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -525,6 +525,92 @@
         {
           "date": "2026-11-05",
           "value": 7353.73
+        }
+      ]
+    },
+    "SOFR": {
+      "series_id": "SOFR",
+      "title": "Secured Overnight Financing Rate",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Percent",
+      "source": "Percent",
+      "last_date": "2026-11-05",
+      "current_value": 3.92,
+      "previous_value": 3.94,
+      "year_ago_value": 4.23,
+      "transformations": {
+        "change": -0.02,
+        "change_from_year_ago": -0.31,
+        "percent_change": -0.5076,
+        "percent_change_from_year_ago": -7.3286,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": -0.5089,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-30",
+          "value": 3.95
+        },
+        {
+          "date": "2026-11-02",
+          "value": 3.95
+        },
+        {
+          "date": "2026-11-03",
+          "value": 3.97
+        },
+        {
+          "date": "2026-11-04",
+          "value": 3.94
+        },
+        {
+          "date": "2026-11-05",
+          "value": 3.92
+        }
+      ]
+    },
+    "OVXCLS": {
+      "series_id": "OVXCLS",
+      "title": "CBOE Crude Oil ETF Volatility Index",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Index",
+      "source": "Index",
+      "last_date": "2026-11-05",
+      "current_value": 60.29,
+      "previous_value": 58.81,
+      "year_ago_value": 40.46,
+      "transformations": {
+        "change": 1.48,
+        "change_from_year_ago": 19.83,
+        "percent_change": 2.5166,
+        "percent_change_from_year_ago": 49.0114,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 2.4854,
+        "continuously_compounded_annual_rate_of_change": 646.2129
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-30",
+          "value": 58.48
+        },
+        {
+          "date": "2026-11-02",
+          "value": 62.69
+        },
+        {
+          "date": "2026-11-03",
+          "value": 61.69
+        },
+        {
+          "date": "2026-11-04",
+          "value": 58.81
+        },
+        {
+          "date": "2026-11-05",
+          "value": 60.29
         }
       ]
     },
@@ -1431,6 +1517,49 @@
         }
       ]
     },
+    "TRESEGSAM052N": {
+      "series_id": "TRESEGSAM052N",
+      "title": "Reserves Excluding Gold for Saudi Arabia",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Millions of Dollars",
+      "source": "Millions of Dollars",
+      "last_date": "2026-08-01",
+      "current_value": 486875.6560709552,
+      "previous_value": 488250.5489133492,
+      "year_ago_value": 456207.1398723231,
+      "transformations": {
+        "change": -1374.8928,
+        "change_from_year_ago": 30668.5162,
+        "percent_change": -0.2816,
+        "percent_change_from_year_ago": 6.7225,
+        "compounded_annual_rate_of_change": -3.3273,
+        "continuously_compounded_rate_of_change": -0.282,
+        "continuously_compounded_annual_rate_of_change": -3.3839
+      },
+      "recent_observations": [
+        {
+          "date": "2026-04-01",
+          "value": 494481.7536739328
+        },
+        {
+          "date": "2026-05-01",
+          "value": 487903.3288267426
+        },
+        {
+          "date": "2026-06-01",
+          "value": 494117.8004066819
+        },
+        {
+          "date": "2026-07-01",
+          "value": 488250.5489133492
+        },
+        {
+          "date": "2026-08-01",
+          "value": 486875.6560709552
+        }
+      ]
+    },
     "GDPC1": {
       "series_id": "GDPC1",
       "title": "Real Gross Domestic Product",
@@ -1471,6 +1600,49 @@
         {
           "date": "2026-07-01",
           "value": 24611.077
+        }
+      ]
+    },
+    "TURB6BLTT02STSAQ": {
+      "series_id": "TURB6BLTT02STSAQ",
+      "title": "Balance of Payments: Current Account: Balance (Revenue Minus Expenditure) for Turkiye",
+      "frequency": "Quarterly",
+      "n_obs_per_yr": 4,
+      "units": "Percentage of GDP",
+      "source": "Percentage of GDP",
+      "last_date": "2024-07-01",
+      "current_value": 0.07052057,
+      "previous_value": -0.47808500000000004,
+      "year_ago_value": -3.7428550000000005,
+      "transformations": {
+        "change": 0.5486,
+        "change_from_year_ago": 3.8134,
+        "percent_change": -114.7506,
+        "percent_change_from_year_ago": -101.8841,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": null,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2023-07-01",
+          "value": -3.7428550000000005
+        },
+        {
+          "date": "2023-10-01",
+          "value": -1.8112099999999998
+        },
+        {
+          "date": "2024-01-01",
+          "value": -0.34333600000000003
+        },
+        {
+          "date": "2024-04-01",
+          "value": -0.47808500000000004
+        },
+        {
+          "date": "2024-07-01",
+          "value": 0.07052057
         }
       ]
     }
