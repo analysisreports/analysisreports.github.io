@@ -1811,6 +1811,12 @@
           "DEFLATION_RISK"
         ]
       }
+    },
+    {
+      "id": "IND_GFDEGDQ188S",
+      "label": "Federal Debt: Total Public Debt as Percent of GDP",
+      "category": "INDICATOR",
+      "source": "FRED"
     }
   ],
   "edges": [
@@ -2881,6 +2887,24 @@
       "target": "MODEL_7",
       "type": "INGESTS_SERIES",
       "role": "10-Year TIPS Real Yield"
+    },
+    {
+      "source": "IND_DGS10",
+      "target": "MODEL_9",
+      "type": "INGESTS_SERIES",
+      "role": "10-Year Nominal Treasury Yield"
+    },
+    {
+      "source": "IND_CPIAUCSL",
+      "target": "MODEL_9",
+      "type": "INGESTS_SERIES",
+      "role": "Headline CPI YoY Inflation"
+    },
+    {
+      "source": "IND_GFDEGDQ188S",
+      "target": "MODEL_9",
+      "type": "INGESTS_SERIES",
+      "role": "Federal Debt as Percent of GDP"
     }
   ]
 }

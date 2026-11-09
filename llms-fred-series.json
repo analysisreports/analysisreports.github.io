@@ -6,7 +6,7 @@
     "license": "CC BY-NC-ND 4.0",
     "sync_status": "SUCCESS",
     "last_successful_sync": "2026-11-09T01:39:06Z",
-    "total_series": 42,
+    "total_series": 43,
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -1815,6 +1815,49 @@
         {
           "date": "2026-11-06",
           "value": 2.63
+        }
+      ]
+    },
+    "GFDEGDQ188S": {
+      "series_id": "GFDEGDQ188S",
+      "title": "Federal Debt: Total Public Debt as Percent of Gross Domestic Product",
+      "frequency": "Quarterly",
+      "n_obs_per_yr": 4,
+      "units": "Percent of GDP",
+      "source": "Percent of GDP",
+      "last_date": "2026-04-01",
+      "current_value": 121.18773,
+      "previous_value": 122.43805,
+      "year_ago_value": 118.22156,
+      "transformations": {
+        "change": -1.2503,
+        "change_from_year_ago": 2.9662,
+        "percent_change": -1.0212,
+        "percent_change_from_year_ago": 2.509,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": -1.0264,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2025-04-01",
+          "value": 118.22156
+        },
+        {
+          "date": "2025-07-01",
+          "value": 120.70865
+        },
+        {
+          "date": "2025-10-01",
+          "value": 122.41233
+        },
+        {
+          "date": "2026-01-01",
+          "value": 122.43805
+        },
+        {
+          "date": "2026-04-01",
+          "value": 121.18773
         }
       ]
     }

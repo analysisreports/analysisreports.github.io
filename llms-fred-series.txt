@@ -985,3 +985,25 @@ Recent Observations (Last 5):
   2026-11-04: 2.6400
   2026-11-05: 2.6000
   2026-11-06: 2.6300
+
+--------------------------------------------------------------------------------
+Series ID: GFDEGDQ188S
+Title: Federal Debt: Total Public Debt as Percent of Gross Domestic Product
+Frequency: Quarterly (n_obs_per_yr: 4) | Units: Percent of GDP
+Last Date: 2026-04-01 | Current Value: 121.1877 | Previous Value: 122.4381 | Year Ago Value: 118.2216
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -1.2503
+  2. Change from Year Ago: +2.9662
+  3. Percent Change: -1.0212%
+  4. Percent Change from Year Ago: +2.5090%
+  5. Compounded Annual Rate of Change: N/A
+  6. Continuously Compounded Rate of Change: -1.0264%
+  7. Continuously Compounded Annual Rate of Change: N/A
+
+Recent Observations (Last 5):
+  2025-04-01: 118.2216
+  2025-07-01: 120.7087
+  2025-10-01: 122.4123
+  2026-01-01: 122.4381
+  2026-04-01: 121.1877

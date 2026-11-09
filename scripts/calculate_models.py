@@ -375,6 +375,55 @@ def calc_beveridge_labor_tightness(jtsjol_val, unemploy_val) -> Optional[Dict[st
         return None
 
 
+# --- Model 9: Financial Repression Index ---
+def calc_financial_repression_index(dgs10_val, cpi_yoy_val, debt_gdp_val) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (dgs10_val, cpi_yoy_val, debt_gdp_val)):
+        return None
+    try:
+        nom = float(dgs10_val)
+        cpi = float(cpi_yoy_val)
+        debt = float(debt_gdp_val)
+        if not (math.isfinite(nom) and math.isfinite(cpi) and math.isfinite(debt)):
+            return None
+        if nom < 0.0 or debt <= 0.0:
+            return None
+
+        real_yield = round(nom - cpi, 2)
+        raw_index = real_yield * (debt / 100.0)
+        if not math.isfinite(raw_index):
+            return None
+        index = round(raw_index, 3)
+
+        if index < 0.0:
+            status = "REPRESSION_REGIME"
+        elif index > 1.50:
+            status = "DEBT_CRISIS_ALARM"
+        else:
+            status = "SUSTAINABLE_CYCLE"
+
+        return {
+            "model_id": "MODEL_9",
+            "model_name": "Financial Repression Index",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#9",
+            "primary_value": index,
+            "unit": "Index Score",
+            "status": status,
+            "inputs": {
+                "nominal_10y_yield_dgs10": round(nom, 2),
+                "headline_cpi_yoy_pct": round(cpi, 2),
+                "federal_debt_pct_gdp": round(debt, 2)
+            },
+            "metrics": {
+                "debt_pressure_index": index,
+                "real_10y_yield_pct": real_yield,
+                "federal_debt_gdp_ratio": round(debt, 2)
+            },
+            "interpretation": "Scores the risk of eroding public debt in real terms under negative real yields versus triggering an explosive debt service crisis under high real yields and high sovereign debt ratios."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
 # --- Model 16: VIX Market Regime Thresholds ---
 def calc_vix_market_regime(vix):
     if vix is None or isinstance(vix, bool):
@@ -1330,6 +1379,12 @@ def main():
     m_bev = calc_beveridge_labor_tightness(jtsjol_val, unemploy_val)
     if m_bev:
         models_calculated.append(m_bev)
+
+    # Model 9: Financial Repression Index
+    debt_gdp_val = series.get("GFDEGDQ188S", {}).get("current_value")
+    m_repression = calc_financial_repression_index(dgs10_val, cpi_yoy, debt_gdp_val)
+    if m_repression:
+        models_calculated.append(m_repression)
 
     # Model 16: VIX Regime
     m_vix = calc_vix_market_regime(vix)

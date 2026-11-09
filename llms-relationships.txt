@@ -60,6 +60,9 @@ Regime States (Discrete Mapping):
 - DE_ANCHORING_RISK             : 10-year breakeven inflation rate exceeding 2.50% signaling unanchored inflation expectations.
 - FED_ALIGNED_EQUILIBRIUM       : 10-year breakeven inflation rate priced between 2.00% and 2.50% aligned with the Fed inflation target.
 - DEFLATION_RISK                : 10-year breakeven inflation rate falling below 2.00% indicating deflationary contraction risk.
+- REPRESSION_REGIME             : Negative real Treasury yields eroding public debt burden in real terms.
+- SUSTAINABLE_CYCLE             : Public debt service costs and real borrowing yields within sustainable fiscal bounds.
+- DEBT_CRISIS_ALARM             : Severe debt pressure index exceeding 1.50 signaling explosive debt service crowding out fiscal budgets.
 
 ---
 

@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T22:08:58.241796+00:00",
+    "last_successful_sync": "2026-11-09T22:20:50.141106+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 27
+    "total_models_active": 28
   },
   "models": [
     {
@@ -148,6 +148,25 @@
         "unemployed_k": 7068.0
       },
       "interpretation": "Evaluates the ratio of job openings to unemployed job seekers. Ratios > 1.50 signal overheated wage pressure, < 1.00 signal loosening labor demand."
+    },
+    {
+      "model_id": "MODEL_9",
+      "model_name": "Financial Repression Index",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#9",
+      "primary_value": 0.994,
+      "unit": "Index Score",
+      "status": "SUSTAINABLE_CYCLE",
+      "inputs": {
+        "nominal_10y_yield_dgs10": 4.84,
+        "headline_cpi_yoy_pct": 4.02,
+        "federal_debt_pct_gdp": 121.19
+      },
+      "metrics": {
+        "debt_pressure_index": 0.994,
+        "real_10y_yield_pct": 0.82,
+        "federal_debt_gdp_ratio": 121.19
+      },
+      "interpretation": "Scores the risk of eroding public debt in real terms under negative real yields versus triggering an explosive debt service crisis under high real yields and high sovereign debt ratios."
     },
     {
       "model_id": "MODEL_16",
