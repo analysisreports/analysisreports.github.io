@@ -1412,6 +1412,28 @@
                                      }
                   },
                   {
+                      "id":  "IND_JP_FPOLM_PA",
+                      "label":  "Central Bank Policy Rate for Japan",
+                      "category":  "INDICATOR",
+                      "type":  "Monetary Policy Benchmark",
+                      "attributes":  {
+                                         "source":  "IMF IFS",
+                                         "units":  "Percent per Annum",
+                                         "trans":  "lin"
+                                     }
+                  },
+                  {
+                      "id":  "IND_GB_FPOLM_PA",
+                      "label":  "Central Bank Policy Rate for United Kingdom",
+                      "category":  "INDICATOR",
+                      "type":  "Monetary Policy Benchmark",
+                      "attributes":  {
+                                         "source":  "IMF IFS",
+                                         "units":  "Percent per Annum",
+                                         "trans":  "lin"
+                                     }
+                  },
+                  {
                       "id":  "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
                       "label":  "Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact)",
                       "category":  "MODEL",
@@ -2248,6 +2270,12 @@
                       "target":  "MODEL_25.16_JPY_CARRY_CRACK",
                       "type":  "INGESTS_SERIES",
                       "role":  "US Benchmark Rate"
+                  },
+                  {
+                      "source":  "IND_JP_FPOLM_PA",
+                      "target":  "MODEL_25.16_JPY_CARRY_CRACK",
+                      "type":  "INGESTS_SERIES",
+                      "role":  "Japan Policy Benchmark Rate"
                   },
                   {
                       "source":  "IND_DEXJPUS",

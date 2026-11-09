@@ -1453,7 +1453,7 @@
                         },
                         "rate_jp": {
                             "type": "number",
-                            "description": "Japan Policy / Call Money Rate (IND_IRSTCI01JPM156N) in percent (e.g., 0.25)"
+                            "description": "Japan Policy Rate (IND_JP_FPOLM_PA, IMF IFS) in percent (e.g., 1.25)"
                         }
                     },
                     "type": "object",

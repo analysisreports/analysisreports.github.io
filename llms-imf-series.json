@@ -5,13 +5,99 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T02:12:24Z",
-    "total_series": 1,
+    "last_successful_sync": "2026-11-09T14:42:11Z",
+    "total_series": 3,
     "source_authority": "International Monetary Fund (IMF)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
     "root_index": "https://analysisreports.github.io/llms.txt"
   },
   "series": {
+    "JP_FPOLM_PA": {
+      "series_id": "JP_FPOLM_PA",
+      "title": "Central Bank Policy Rate for Japan",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Percent per Annum",
+      "source": "International Monetary Fund (IMF) IFS",
+      "last_date": "2026-10-01",
+      "current_value": 1.25,
+      "previous_value": 1.25,
+      "year_ago_value": 0.75,
+      "transformations": {
+        "change": 0.0,
+        "change_from_year_ago": 0.5,
+        "percent_change": 0.0,
+        "percent_change_from_year_ago": 66.6667,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 0.0,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-06-01",
+          "value": 1.0
+        },
+        {
+          "date": "2026-07-01",
+          "value": 1.0
+        },
+        {
+          "date": "2026-08-01",
+          "value": 1.0
+        },
+        {
+          "date": "2026-09-01",
+          "value": 1.25
+        },
+        {
+          "date": "2026-10-01",
+          "value": 1.25
+        }
+      ]
+    },
+    "GB_FPOLM_PA": {
+      "series_id": "GB_FPOLM_PA",
+      "title": "Central Bank Policy Rate for United Kingdom",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Percent per Annum",
+      "source": "International Monetary Fund (IMF) IFS",
+      "last_date": "2026-11-01",
+      "current_value": 4.0,
+      "previous_value": 4.0,
+      "year_ago_value": 4.25,
+      "transformations": {
+        "change": 0.0,
+        "change_from_year_ago": -0.25,
+        "percent_change": 0.0,
+        "percent_change_from_year_ago": -5.8824,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 0.0,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-07-01",
+          "value": 4.0
+        },
+        {
+          "date": "2026-08-01",
+          "value": 4.0
+        },
+        {
+          "date": "2026-09-01",
+          "value": 4.0
+        },
+        {
+          "date": "2026-10-01",
+          "value": 4.0
+        },
+        {
+          "date": "2026-11-01",
+          "value": 4.0
+        }
+      ]
+    },
     "SAUPZPIOILBEGUSD": {
       "series_id": "SAUPZPIOILBEGUSD",
       "title": "Fiscal Breakeven Oil Price for Saudi Arabia",

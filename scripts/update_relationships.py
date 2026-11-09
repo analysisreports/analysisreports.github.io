@@ -130,18 +130,98 @@ def main():
     sofr = series.get('SOFR', {}).get('current_value', 3.92)
     delta_treaty = 0.10
 
-    # Ingest dynamic IMF Saudi Fiscal Breakeven Oil Price if available
+    # Ingest dynamic IMF series (Saudi Fiscal Breakeven Oil Price, BoJ & BoE Policy Rates)
     imf_json_path = 'llms-imf-series.json'
     if not os.path.exists(imf_json_path):
         imf_json_path = os.path.join(os.path.dirname(__file__), '..', 'llms-imf-series.json')
     breakeven_oil = 86.2
+    imf_series_data = {}
     if os.path.exists(imf_json_path):
         try:
             with open(imf_json_path, 'r', encoding='utf-8') as f:
                 imf_json = json.load(f)
-                breakeven_oil = imf_json.get('series', {}).get('SAUPZPIOILBEGUSD', {}).get('current_value', 86.2)
+                imf_series_data = imf_json.get('series', {})
+                breakeven_oil = imf_series_data.get('SAUPZPIOILBEGUSD', {}).get('current_value', 86.2)
         except Exception:
             breakeven_oil = 86.2
+
+    # Ingest dynamic ECB series
+    ecb_json_path = 'llms-ecb-series.json'
+    if not os.path.exists(ecb_json_path):
+        ecb_json_path = os.path.join(os.path.dirname(__file__), '..', 'llms-ecb-series.json')
+    ecb_series_data = {}
+    if os.path.exists(ecb_json_path):
+        try:
+            with open(ecb_json_path, 'r', encoding='utf-8') as f:
+                ecb_json = json.load(f)
+                ecb_series_data = ecb_json.get('series', {})
+        except Exception:
+            ecb_series_data = {}
+
+    # Extract Policy Rates and Dates
+    fed_series = series.get('DFF', {})
+    fed_rate = fed_series.get('current_value', 3.88)
+    fed_date = fed_series.get('last_date', '2026-11-05')
+
+    ecb_series = ecb_series_data.get('FM/B.U2.EUR.4F.KR.DFR.LEV', {})
+    ecb_rate = ecb_series.get('current_value', 2.50)
+    ecb_date = ecb_series.get('last_date', '2026-09-16')
+
+    boj_series = imf_series_data.get('JP_FPOLM_PA', {})
+    boj_rate = boj_series.get('current_value', 1.25)
+    boj_date = boj_series.get('last_date', '2026-10-01')
+
+    boe_series = imf_series_data.get('GB_FPOLM_PA', {})
+    boe_rate = boe_series.get('current_value', 4.00)
+    boe_date = boe_series.get('last_date', '2026-10-01')
+
+    # Spreads vs Fed Funds (DFF)
+    spread_ecb = round(ecb_rate - fed_rate, 2)
+    spread_boj = round(boj_rate - fed_rate, 2)
+    spread_boe = round(boe_rate - fed_rate, 2)
+
+    cb_rates_snapshot = [
+        {
+            'authority': 'United States',
+            'entity_id': 'GEO_US',
+            'institution_id': 'INST_FED_US',
+            'benchmark': 'Federal Funds Effective Rate (DFF)',
+            'rate': fed_rate,
+            'effective_date': fed_date,
+            'spread_vs_dff_ppt': 0.0,
+            'spread_str': 'Benchmark (0.00)'
+        },
+        {
+            'authority': 'European Union / Eurozone',
+            'entity_id': 'BLOC_EU',
+            'institution_id': 'INST_ECB_EU',
+            'benchmark': 'ECB Deposit Facility Rate (DFR)',
+            'rate': ecb_rate,
+            'effective_date': ecb_date,
+            'spread_vs_dff_ppt': spread_ecb,
+            'spread_str': f'{spread_ecb:+.2f} ppt'
+        },
+        {
+            'authority': 'Japan',
+            'entity_id': 'GEO_JP',
+            'institution_id': 'INST_BOJ_JP',
+            'benchmark': 'BoJ Central Bank Policy Rate',
+            'rate': boj_rate,
+            'effective_date': boj_date,
+            'spread_vs_dff_ppt': spread_boj,
+            'spread_str': f'{spread_boj:+.2f} ppt'
+        },
+        {
+            'authority': 'United Kingdom',
+            'entity_id': 'GEO_GB',
+            'institution_id': 'INST_BOE_GB',
+            'benchmark': 'BoE Official Bank Rate',
+            'rate': boe_rate,
+            'effective_date': boe_date,
+            'spread_vs_dff_ppt': spread_boe,
+            'spread_str': f'{spread_boe:+.2f} ppt'
+        }
+    ]
 
     r_oil = (brent / breakeven_oil) if (brent is not None and brent > 0 and breakeven_oil > 0) else 1.0
     if r_oil >= 1.05:
@@ -492,6 +572,18 @@ def main():
                 'ai_chip_stress_score': chip_stress
             }
         },
+        'central_bank_policy_benchmark': {
+            'us_fed_funds_dff': fed_rate,
+            'ecb_deposit_facility': ecb_rate,
+            'boj_policy_rate': boj_rate,
+            'boe_bank_rate': boe_rate,
+            'disparities': {
+                'us_minus_ecb_ppt': round(fed_rate - ecb_rate, 2),
+                'us_minus_boj_carry_ppt': round(fed_rate - boj_rate, 2),
+                'us_minus_boe_ppt': round(fed_rate - boe_rate, 2)
+            },
+            'rates': cb_rates_snapshot
+        },
         'relationships': relationships_output,
         'governance_matrix': governance_output,
         'chokepoints': CRITICAL_CHOKEPOINTS
@@ -548,6 +640,22 @@ def main():
         lines_gov.append('<!-- DYNAMIC_GOVERNANCE_END -->')
         new_governance_block = '\n'.join(lines_gov)
 
+        # 3. Central Bank Policy Benchmark Block
+        lines_cb = []
+        lines_cb.append('<!-- DYNAMIC_CENTRAL_BANK_RATES_START -->')
+        lines_cb.append('### 1.3. LIVE G4 CENTRAL BANK POLICY BENCHMARK & MONETARY DISPARITY')
+        lines_cb.append('> **AI Ingestion Contract & Epistemological Directive:**')
+        lines_cb.append(f'> - **Sync Cadence & ISO 8601 Timestamp:** {now_utc}')
+        lines_cb.append('> - **Monitored Central Banks:** Federal Reserve (FRED DFF), European Central Bank (ECB DFR), Bank of Japan (IMF IFS JP_FPOLM_PA), Bank of England (IMF IFS GB_FPOLM_PA)')
+        lines_cb.append('> - **Operational Rule for LLMs:** Monetary policy rate disparities determine structural sovereign yield differentials, cross-border currency carry trade flows, and foreign exchange valuation pressure.')
+        lines_cb.append('')
+        lines_cb.append('| Authority / Jurisdiction | Entity ID | Institution ID | Policy Benchmark | Current Policy Rate | Effective Date | Spread vs Fed Funds (DFF) |')
+        lines_cb.append('| :--- | :--- | :--- | :--- | :---: | :---: | :---: |')
+        for c in cb_rates_snapshot:
+            lines_cb.append(f'| **{c["authority"]}** | {c["entity_id"]} | {c["institution_id"]} | {c["benchmark"]} | {c["rate"]:.2f}% | {c["effective_date"]} | {c["spread_str"]} |')
+        lines_cb.append('<!-- DYNAMIC_CENTRAL_BANK_RATES_END -->')
+        new_cb_block = '\n'.join(lines_cb)
+
         # Update Polarity Block
         start_pol = '<!-- DYNAMIC_POLARITY_START -->'
         end_pol = '<!-- DYNAMIC_POLARITY_END -->'
@@ -570,6 +678,21 @@ def main():
                 txt_content = parts[0] + end_pol + '\n\n' + new_governance_block + parts[1]
             else:
                 txt_content += '\n\n' + new_governance_block
+
+        # Update Central Bank Rates Block
+        start_cb = '<!-- DYNAMIC_CENTRAL_BANK_RATES_START -->'
+        end_cb = '<!-- DYNAMIC_CENTRAL_BANK_RATES_END -->'
+        if start_cb in txt_content and end_cb in txt_content:
+            before_cb = txt_content.split(start_cb)[0]
+            after_cb = txt_content.split(end_cb)[1]
+            txt_content = before_cb + new_cb_block + after_cb
+        else:
+            # Insert right after DYNAMIC_GOVERNANCE_END
+            if end_gov in txt_content:
+                parts = txt_content.split(end_gov)
+                txt_content = parts[0] + end_gov + '\n\n' + new_cb_block + parts[1]
+            else:
+                txt_content += '\n\n' + new_cb_block
 
         with open(txt_path, 'w', encoding='utf-8') as f:
             f.write(txt_content)

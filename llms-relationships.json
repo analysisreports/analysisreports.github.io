@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T02:12:24.404355+00:00",
+    "last_successful_sync": "2026-11-09T14:59:38.257860+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "governance_reference": "https://analysisreports.github.io/llms-formulas.txt#25.15",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
@@ -16,6 +16,59 @@
       "gscpi_std_dev": 0.0,
       "ai_chip_stress_score": 0.11
     }
+  },
+  "central_bank_policy_benchmark": {
+    "us_fed_funds_dff": 3.88,
+    "ecb_deposit_facility": 2.5,
+    "boj_policy_rate": 1.25,
+    "boe_bank_rate": 4.0,
+    "disparities": {
+      "us_minus_ecb_ppt": 1.38,
+      "us_minus_boj_carry_ppt": 2.63,
+      "us_minus_boe_ppt": -0.12
+    },
+    "rates": [
+      {
+        "authority": "United States",
+        "entity_id": "GEO_US",
+        "institution_id": "INST_FED_US",
+        "benchmark": "Federal Funds Effective Rate (DFF)",
+        "rate": 3.88,
+        "effective_date": "2026-11-05",
+        "spread_vs_dff_ppt": 0.0,
+        "spread_str": "Benchmark (0.00)"
+      },
+      {
+        "authority": "European Union / Eurozone",
+        "entity_id": "BLOC_EU",
+        "institution_id": "INST_ECB_EU",
+        "benchmark": "ECB Deposit Facility Rate (DFR)",
+        "rate": 2.5,
+        "effective_date": "2026-09-16",
+        "spread_vs_dff_ppt": -1.38,
+        "spread_str": "-1.38 ppt"
+      },
+      {
+        "authority": "Japan",
+        "entity_id": "GEO_JP",
+        "institution_id": "INST_BOJ_JP",
+        "benchmark": "BoJ Central Bank Policy Rate",
+        "rate": 1.25,
+        "effective_date": "2026-10-01",
+        "spread_vs_dff_ppt": -2.63,
+        "spread_str": "-2.63 ppt"
+      },
+      {
+        "authority": "United Kingdom",
+        "entity_id": "GEO_GB",
+        "institution_id": "INST_BOE_GB",
+        "benchmark": "BoE Official Bank Rate",
+        "rate": 4.0,
+        "effective_date": "2026-11-01",
+        "spread_vs_dff_ppt": 0.12,
+        "spread_str": "+0.12 ppt"
+      }
+    ]
   },
   "relationships": [
     {

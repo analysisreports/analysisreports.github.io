@@ -1688,49 +1688,6 @@
           "value": 4.7
         }
       ]
-    },
-    "IRSTCI01JPM156N": {
-      "series_id": "IRSTCI01JPM156N",
-      "title": "Interest Rates: Immediate Rates (< 24 Hours): Call Money/Interbank Rate: Total for Japan",
-      "frequency": "Monthly",
-      "n_obs_per_yr": 12,
-      "units": "Percent",
-      "source": "OECD / Bank of Japan",
-      "last_date": "2026-10-01",
-      "current_value": 0.25,
-      "previous_value": 0.25,
-      "year_ago_value": -0.01,
-      "transformations": {
-        "change": 0.0,
-        "change_from_year_ago": 0.26,
-        "percent_change": 0.0,
-        "percent_change_from_year_ago": -2600.0,
-        "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 0.0,
-        "continuously_compounded_annual_rate_of_change": null
-      },
-      "recent_observations": [
-        {
-          "date": "2026-06-01",
-          "value": 0.1
-        },
-        {
-          "date": "2026-07-01",
-          "value": 0.1
-        },
-        {
-          "date": "2026-08-01",
-          "value": 0.25
-        },
-        {
-          "date": "2026-09-01",
-          "value": 0.25
-        },
-        {
-          "date": "2026-10-01",
-          "value": 0.25
-        }
-      ]
     }
   }
 }

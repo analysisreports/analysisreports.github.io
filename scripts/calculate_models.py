@@ -6,7 +6,9 @@ calculate_models.py
 Autonomous Quantitative Macroeconomic Model Engine.
 Calculates canonical macroeconomic models defined in llms-formulas.txt directly from:
   1. Live St. Louis Fed (FRED) time-series ingested by llms-fred-series.json
-  2. Live Bank for International Settlements (BIS) central bank policy rate API
+  2. Live European Central Bank (ECB) time-series ingested by llms-ecb-series.json
+  3. Live World Bank (Pink Sheet) commodity prices ingested by llms-worldbank-series.json
+  4. Live International Monetary Fund (IMF IFS) time-series ingested by llms-imf-series.json
 Generates:
   - llms-models.json (Deterministic Machine-Readable Twin)
   - llms-models.txt (Human-Readable Markdown Table Twin)
@@ -18,12 +20,9 @@ Endpoint json: https://analysisreports.github.io/llms-models.json
 """
 
 import os
-import csv
-import io
 import json
 import math
 import datetime
-import urllib.request
 from typing import Dict, Any, Optional
 
 # ==============================================================================
@@ -383,12 +382,12 @@ def calc_ai_chip_stress_gauge(gscpi_val, sox_yoy_pct, vix_val):
 
 
 
-def calc_jpy_carry_crack(dff_val, mutan_val, jpy_fx_mom) -> Optional[Dict[str, Any]]:
-    if any(v is None or isinstance(v, bool) for v in (dff_val, mutan_val, jpy_fx_mom)):
+def calc_jpy_carry_crack(dff_val, boj_rate_val, jpy_fx_mom) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (dff_val, boj_rate_val, jpy_fx_mom)):
         return None
     try:
         r_us = float(dff_val)
-        r_jp = float(mutan_val)
+        r_jp = float(boj_rate_val)
         fx_mom = float(jpy_fx_mom)
         if not (math.isfinite(r_us) and math.isfinite(r_jp) and math.isfinite(fx_mom)):
             return None
@@ -411,7 +410,7 @@ def calc_jpy_carry_crack(dff_val, mutan_val, jpy_fx_mom) -> Optional[Dict[str, A
             'status': status,
             'inputs': {
                 'rate_us_dff': round(r_us, 2),
-                'rate_jp_mutan': round(r_jp, 2),
+                'rate_jp_boj': round(r_jp, 2),
                 'jpy_30d_momentum_pct': round(fx_mom, 2)
             },
             'components': {
@@ -676,25 +675,29 @@ def main():
     if m_chip:
         models_calculated.append(m_chip)
 
-    # Model 25.16: Yen Carry Trade Dissolution (BoJ / BIS / FRED)
+    # Load dynamic IMF series (BoJ Policy Rate & Saudi Fiscal Breakeven Oil Price)
+    imf_json_path = "llms-imf-series.json"
+    breakeven_oil = 86.2
+    boj_rate = 1.25
+    if os.path.exists(imf_json_path):
+        try:
+            with open(imf_json_path, "r", encoding="utf-8") as f:
+                imf_json = json.load(f)
+                imf_series_data = imf_json.get("series", {})
+                breakeven_oil = imf_series_data.get("SAUPZPIOILBEGUSD", {}).get("current_value", 86.2)
+                boj_rate = imf_series_data.get("JP_FPOLM_PA", {}).get("current_value", 1.25)
+        except Exception:
+            breakeven_oil = 86.2
+            boj_rate = 1.25
+
+    # Model 25.16: Yen Carry Trade Dissolution (BoJ Policy Rate via IMF / FED DFF)
     dff_val = series.get('DFF', {}).get('current_value')
     jpy_mom = series.get('DEXJPUS', {}).get('transformations', {}).get('percent_change_from_year_ago', 0.0)
-    boj_rate = series.get('IRSTCI01JPM156N', {}).get('current_value', 0.25)
 
     m_carry = calc_jpy_carry_crack(dff_val, boj_rate, jpy_mom)
     if m_carry:
         models_calculated.append(m_carry)
 
-    # Load dynamic IMF Fiscal Breakeven Oil Price if available
-    imf_json_path = "llms-imf-series.json"
-    breakeven_oil = 86.2
-    if os.path.exists(imf_json_path):
-        try:
-            with open(imf_json_path, "r", encoding="utf-8") as f:
-                imf_json = json.load(f)
-                breakeven_oil = imf_json.get("series", {}).get("SAUPZPIOILBEGUSD", {}).get("current_value", 86.2)
-        except Exception:
-            breakeven_oil = 86.2
     sofr = series.get("SOFR", {}).get("current_value", 3.92)
 
     # Model 25.18: Mecca Pact Dynamic Transmission Engine

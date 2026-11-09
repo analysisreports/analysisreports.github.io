@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-09 12:23 UTC
+> **Last Calibrated Sync:** 2026-11-09 14:59 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -24,7 +24,7 @@
 | **MODEL_25.12** | Brent - WTI Seaborne Risk Spread | **7.39** | USD | `NORMAL_TRANSATLANTIC_ARBITRAGE` | Seaborne geopolitical friction and maritime risk spread... |
 | **MODEL_25.13** | Labor Market Momentum Index (LMMI) | **0.86** | Net Momentum Pts | `MODERATE_LABOR_EXPANSION` | Couples nonfarm payroll expansion with unemployment cha... |
 | **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.11** | Score (Normalized) | `BALANCED_HARDWARE_FLOW` | Normalized composite metric monitoring semiconductor ph... |
-| **MODEL_25.16** | Yen Carry Trade Dissolution and Stress Gauge | **8.0877** | % (Net Carry Buffer) | `CALM_ACCUMULATION` | Monitors cross-currency Yen Carry Trade buffer, unwindi... |
+| **MODEL_25.16** | Yen Carry Trade Dissolution and Stress Gauge | **7.0877** | % (Net Carry Buffer) | `CALM_ACCUMULATION` | Monitors cross-currency Yen Carry Trade buffer, unwindi... |
 | **MODEL_25.18** | Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact) | **0.133** | Dynamic Delta Index (Avg) | `TREATY_ACTIVE_SURPLUS_EXPANSION` | Non-contiguous trilateral defense integration linking T... |
 
 ---
@@ -98,9 +98,9 @@
 
 #### [MODEL_25.16] Yen Carry Trade Dissolution and Stress Gauge
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.16
-- **Evaluated Status:** `CALM_ACCUMULATION` (Primary Value: 8.0877 % (Net Carry Buffer))
-- **Inputs Evaluated:** `{"rate_us_dff": 3.88, "rate_jp_mutan": 0.25, "jpy_30d_momentum_pct": 4.46}`
-- **Component Weights:** `{"rate_spread": 3.63, "net_buffer": 8.0877}`
+- **Evaluated Status:** `CALM_ACCUMULATION` (Primary Value: 7.0877 % (Net Carry Buffer))
+- **Inputs Evaluated:** `{"rate_us_dff": 3.88, "rate_jp_boj": 1.25, "jpy_30d_momentum_pct": 4.46}`
+- **Component Weights:** `{"rate_spread": 2.63, "net_buffer": 7.0877}`
 - **Economic Synthesis:** Monitors cross-currency Yen Carry Trade buffer, unwinding risk, and global leverage liquidation shocks.
 
 #### [MODEL_25.18] Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact)

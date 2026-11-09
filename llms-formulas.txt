@@ -2439,7 +2439,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 - Frequency: Daily (Business Day)
 - Canonical Input Series:
   - IND_DFF : Federal Funds Effective Rate (FED)
-  - IND_IRSTCI01JPM156N : Japan Call Money / Interbank Rate (BoJ / OECD)
+  - IND_JP_FPOLM_PA : Central Bank Policy Rate for Japan (BoJ / IMF IFS)
   - IND_DEXJPUS : Spot Exchange Rate US Dollars to Japanese Yen
 - Mathematical Formulation:
   1. Rate Differential: Spread_Rate = Rate_US - Rate_JP
