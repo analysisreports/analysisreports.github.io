@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T23:07:02.853304+00:00",
+    "last_successful_sync": "2026-11-09T23:23:57.685426+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 31
+    "total_models_active": 33
   },
   "models": [
     {
@@ -225,6 +225,40 @@
         "macroeconomic_divergence": -0.024
       },
       "interpretation": "Monitors monetary policy transmission into financial markets across debt, equity, and leverage risk premiums. Values < 0 indicate looser than average financial conditions; > 0 indicates restrictive financial conditions."
+    },
+    {
+      "model_id": "MODEL_13",
+      "model_name": "High Yield Credit Spread / OAS",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#13",
+      "primary_value": 342,
+      "unit": "Basis Points (bps)",
+      "status": "RISK_APPETITE_HEALTHY",
+      "inputs": {
+        "high_yield_oas_bamlh0a0hym2": 3.42
+      },
+      "metrics": {
+        "spread_bps": 342,
+        "bamlh0a0hym2_pct": 3.42
+      },
+      "interpretation": "Measures corporate credit default risk and risk appetite contraction. Spreads above 500 bps signal acute default and refinancing distress; below 350 bps reflect healthy risk appetite."
+    },
+    {
+      "model_id": "MODEL_14",
+      "model_name": "Real M2 Money Momentum",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#14",
+      "primary_value": 1.69,
+      "unit": "Percentage Points (ppt)",
+      "status": "MONETARY_EXPANSION",
+      "inputs": {
+        "m2_money_growth_yoy_pct": 5.71,
+        "headline_cpi_yoy_pct": 4.02
+      },
+      "metrics": {
+        "real_m2_growth_ppt": 1.69,
+        "m2_yoy_pct": 5.71,
+        "cpi_yoy_pct": 4.02
+      },
+      "interpretation": "Detects aggregate demand and monetary impulse by calculating the real expansion or contraction rate of broad money supply (M2) relative to headline CPI inflation. Values < 0 indicate monetary contraction; > 0 indicate broad liquidity expansion."
     },
     {
       "model_id": "MODEL_16",

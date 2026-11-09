@@ -72,6 +72,11 @@ Regime States (Discrete Mapping):
 - TIGHT_FINANCIAL_CONDITIONS    : Chicago Fed NFCI crossing positive territory indicating market risk premiums and tighter than average conditions.
 - BALANCED_FINANCIAL_CONDITIONS : Financial conditions index at historical benchmark zero.
 - LOOSE_FINANCIAL_CONDITIONS    : Negative Chicago Fed NFCI indicating accommodative liquidity and suppressed risk spreads.
+- CREDIT_CRUNCH_ALARM           : High yield credit spread exceeding 500 bps indicating acute default and corporate refinancing distress.
+- ELEVATED_RISK                 : High yield credit spread between 350 and 500 bps reflecting softening risk appetite and caution.
+- RISK_APPETITE_HEALTHY         : High yield credit spread below 350 bps reflecting robust corporate funding liquidity and low default risk.
+- MONETARY_EXPANSION            : Real M2 money growth positive reflecting expanding broad liquidity and aggregate demand support.
+- LIQUIDITY_CONTRACTION         : Real M2 money growth negative reflecting monetary contraction and disinflationary drag.
 
 ---
 

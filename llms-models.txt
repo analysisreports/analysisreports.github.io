@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-09 23:07 UTC
+> **Last Calibrated Sync:** 2026-11-09 23:23 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -26,6 +26,8 @@
 | **MODEL_10** | Triffin External Balance | **1.1602** | Tension Ratio | `BALANCED_TRIFFIN_EQUILIBRIUM` | Tracks global liquidity imbalances between the US dolla... |
 | **MODEL_11** | Taylor Rule Policy Gap | **-3.73** | Percentage Points (ppt) | `BEHIND_THE_CURVE` | Computes the Federal Reserve optimal policy rate prescr... |
 | **MODEL_12** | Financial Conditions Tightness (Chicago Fed NFCI) | **-0.459** | Index Points | `LOOSE_FINANCIAL_CONDITIONS` | Monitors monetary policy transmission into financial ma... |
+| **MODEL_13** | High Yield Credit Spread / OAS | **342** | Basis Points (bps) | `RISK_APPETITE_HEALTHY` | Measures corporate credit default risk and risk appetit... |
+| **MODEL_14** | Real M2 Money Momentum | **1.69** | Percentage Points (ppt) | `MONETARY_EXPANSION` | Detects aggregate demand and monetary impulse by calcul... |
 | **MODEL_16** | CBOE Volatility & Market Fear Regime | **28.18** | Points | `ELEVATED_STRESS` | 30-day forward S&P 500 implied volatility fear gauge an... |
 | **MODEL_18** | Okun Misery Index | **8.12** | Index Points | `MODERATE` | Measures household welfare loss and stagflationary stre... |
 | **MODEL_21** | Gold to Oil Crisis & Recession Ratio | **41.2** | Barrels per Ounce | `MACRO_CRISIS_RECESSION` | Calculates ounces of gold per barrel of crude oil to cl... |
@@ -130,6 +132,20 @@
 - **Inputs Evaluated:** `{"chicago_fed_nfci": -0.459, "adjusted_anfci": -0.435}`
 - **Secondary Metrics:** `{"nfci_stress_level": -0.459, "adjusted_anfci": -0.435, "macroeconomic_divergence": -0.024}`
 - **Economic Synthesis:** Monitors monetary policy transmission into financial markets across debt, equity, and leverage risk premiums. Values < 0 indicate looser than average financial conditions; > 0 indicates restrictive financial conditions.
+
+#### [MODEL_13] High Yield Credit Spread / OAS
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#13
+- **Evaluated Status:** `RISK_APPETITE_HEALTHY` (Primary Value: 342 Basis Points (bps))
+- **Inputs Evaluated:** `{"high_yield_oas_bamlh0a0hym2": 3.42}`
+- **Secondary Metrics:** `{"spread_bps": 342, "bamlh0a0hym2_pct": 3.42}`
+- **Economic Synthesis:** Measures corporate credit default risk and risk appetite contraction. Spreads above 500 bps signal acute default and refinancing distress; below 350 bps reflect healthy risk appetite.
+
+#### [MODEL_14] Real M2 Money Momentum
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#14
+- **Evaluated Status:** `MONETARY_EXPANSION` (Primary Value: 1.69 Percentage Points (ppt))
+- **Inputs Evaluated:** `{"m2_money_growth_yoy_pct": 5.71, "headline_cpi_yoy_pct": 4.02}`
+- **Secondary Metrics:** `{"real_m2_growth_ppt": 1.69, "m2_yoy_pct": 5.71, "cpi_yoy_pct": 4.02}`
+- **Economic Synthesis:** Detects aggregate demand and monetary impulse by calculating the real expansion or contraction rate of broad money supply (M2) relative to headline CPI inflation. Values < 0 indicate monetary contraction; > 0 indicate broad liquidity expansion.
 
 #### [MODEL_16] CBOE Volatility & Market Fear Regime
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#16

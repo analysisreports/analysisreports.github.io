@@ -568,6 +568,90 @@ def calc_financial_conditions_tightness(nfci_val, anfci_val) -> Optional[Dict[st
         return None
 
 
+# --- Model 13: High Yield Credit Spread / OAS ---
+def calc_high_yield_credit_stress(hy_spread_val) -> Optional[Dict[str, Any]]:
+    if hy_spread_val is None or isinstance(hy_spread_val, bool):
+        return None
+    try:
+        hy = float(hy_spread_val)
+        if not math.isfinite(hy):
+            return None
+        # Credit spread must be strictly positive
+        if hy <= 0.0:
+            return None
+
+        bps = int(round(hy * 100.0))
+
+        if bps >= 500:
+            status = "CREDIT_CRUNCH_ALARM"
+        elif bps >= 350:
+            status = "ELEVATED_RISK"
+        else:
+            status = "RISK_APPETITE_HEALTHY"
+
+        return {
+            "model_id": "MODEL_13",
+            "model_name": "High Yield Credit Spread / OAS",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#13",
+            "primary_value": bps,
+            "unit": "Basis Points (bps)",
+            "status": status,
+            "inputs": {
+                "high_yield_oas_bamlh0a0hym2": round(hy, 2)
+            },
+            "metrics": {
+                "spread_bps": bps,
+                "bamlh0a0hym2_pct": round(hy, 2)
+            },
+            "interpretation": "Measures corporate credit default risk and risk appetite contraction. Spreads above 500 bps signal acute default and refinancing distress; below 350 bps reflect healthy risk appetite."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
+# --- Model 14: Real M2 Money Momentum ---
+def calc_real_m2_momentum(m2_yoy_val, cpi_yoy_val) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (m2_yoy_val, cpi_yoy_val)):
+        return None
+    try:
+        m2 = float(m2_yoy_val)
+        cpi = float(cpi_yoy_val)
+        if not (math.isfinite(m2) and math.isfinite(cpi)):
+            return None
+
+        diff = round(m2 - cpi, 2)
+        if not math.isfinite(diff):
+            return None
+
+        if diff == 0.0:
+            status = "NEUTRAL"
+        elif diff < 0.0:
+            status = "LIQUIDITY_CONTRACTION"
+        else:
+            status = "MONETARY_EXPANSION"
+
+        return {
+            "model_id": "MODEL_14",
+            "model_name": "Real M2 Money Momentum",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#14",
+            "primary_value": diff,
+            "unit": "Percentage Points (ppt)",
+            "status": status,
+            "inputs": {
+                "m2_money_growth_yoy_pct": round(m2, 2),
+                "headline_cpi_yoy_pct": round(cpi, 2)
+            },
+            "metrics": {
+                "real_m2_growth_ppt": diff,
+                "m2_yoy_pct": round(m2, 2),
+                "cpi_yoy_pct": round(cpi, 2)
+            },
+            "interpretation": "Detects aggregate demand and monetary impulse by calculating the real expansion or contraction rate of broad money supply (M2) relative to headline CPI inflation. Values < 0 indicate monetary contraction; > 0 indicate broad liquidity expansion."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
 # --- Model 16: VIX Market Regime Thresholds ---
 def calc_vix_market_regime(vix):
     if vix is None or isinstance(vix, bool):
@@ -1550,6 +1634,18 @@ def main():
     m_nfci = calc_financial_conditions_tightness(nfci_val, anfci_val)
     if m_nfci:
         models_calculated.append(m_nfci)
+
+    # Model 13: High Yield Credit Spread / OAS
+    hy_spread = series.get("BAMLH0A0HYM2", {}).get("current_value")
+    m_hy = calc_high_yield_credit_stress(hy_spread)
+    if m_hy:
+        models_calculated.append(m_hy)
+
+    # Model 14: Real M2 Money Momentum
+    m2_yoy = series.get("M2SL", {}).get("transformations", {}).get("percent_change_from_year_ago")
+    m_m2 = calc_real_m2_momentum(m2_yoy, cpi_yoy)
+    if m_m2:
+        models_calculated.append(m_m2)
 
     # Model 16: VIX Regime
     m_vix = calc_vix_market_regime(vix)

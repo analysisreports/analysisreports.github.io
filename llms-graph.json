@@ -1889,6 +1889,46 @@
           "LOOSE_FINANCIAL_CONDITIONS"
         ]
       }
+    },
+    {
+      "id": "IND_BAMLH0A0HYM2",
+      "label": "ICE BofA US High Yield Index Option-Adjusted Spread",
+      "category": "INDICATOR",
+      "source": "ICE BofA / FRED"
+    },
+    {
+      "id": "IND_M2SL",
+      "label": "M2 Money Supply",
+      "category": "INDICATOR",
+      "source": "FRED"
+    },
+    {
+      "id": "MODEL_13",
+      "label": "High Yield Credit Spread / OAS",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_high_yield_credit_stress",
+        "formula": "HY_OAS_Spread_bps = BAMLH0A0HYM2 * 100",
+        "status_enums": [
+          "CREDIT_CRUNCH_ALARM",
+          "ELEVATED_RISK",
+          "RISK_APPETITE_HEALTHY"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_14",
+      "label": "Real M2 Money Momentum",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_real_m2_momentum",
+        "formula": "Real_M2_Growth = M2_YoY_Growth_Pct - CPI_YoY_Pct",
+        "status_enums": [
+          "LIQUIDITY_CONTRACTION",
+          "NEUTRAL",
+          "MONETARY_EXPANSION"
+        ]
+      }
     }
   ],
   "edges": [
@@ -3025,6 +3065,24 @@
       "target": "MODEL_12",
       "type": "INGESTS_SERIES",
       "role": "Adjusted National Financial Conditions Index"
+    },
+    {
+      "source": "IND_BAMLH0A0HYM2",
+      "target": "MODEL_13",
+      "type": "INGESTS_SERIES",
+      "role": "High Yield Option-Adjusted Spread"
+    },
+    {
+      "source": "IND_M2SL",
+      "target": "MODEL_14",
+      "type": "INGESTS_SERIES",
+      "role": "M2 Money Supply YoY Growth"
+    },
+    {
+      "source": "IND_CPIAUCSL",
+      "target": "MODEL_14",
+      "type": "INGESTS_SERIES",
+      "role": "Headline CPI YoY Inflation"
     }
   ]
 }
