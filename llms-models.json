@@ -5,68 +5,16 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T01:40:17.598503+00:00",
+    "last_successful_sync": "2026-11-09T02:12:25.053290+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
       "Bank for International Settlements (BIS)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 9
+    "total_models_active": 8
   },
   "models": [
-    {
-      "model_id": "MODEL_1",
-      "model_name": "Global Central Bank Policy Benchmark & Rate Disparity",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#1",
-      "primary_value": 3.875,
-      "unit": "Percent (%)",
-      "status": "CALIBRATED_POLICY_EASING",
-      "inputs": {
-        "fed_funds_midpoint": 3.875,
-        "ecb_deposit_facility": 2.5,
-        "boj_overnight_call": 1.25,
-        "boe_bank_rate": 3.75,
-        "pboc_loan_prime_rate": 3.0
-      },
-      "rate_disparities": {
-        "us_minus_ecb_spread_pts": 1.375,
-        "us_minus_boj_carry_spread_pts": 2.625
-      },
-      "rates_snapshot": [
-        {
-          "entity_id": "GEO_CN",
-          "authority": "China (People's Bank of China)",
-          "rate": 3.0,
-          "date": "2026-11-03"
-        },
-        {
-          "entity_id": "GEO_GB",
-          "authority": "United Kingdom (Bank of England)",
-          "rate": 3.75,
-          "date": "2026-11-02"
-        },
-        {
-          "entity_id": "GEO_JP",
-          "authority": "Japan (Bank of Japan)",
-          "rate": 1.25,
-          "date": "2026-11-03"
-        },
-        {
-          "entity_id": "GEO_US",
-          "authority": "United States (Federal Reserve)",
-          "rate": 3.875,
-          "date": "2026-11-03"
-        },
-        {
-          "entity_id": "GEO_DE",
-          "authority": "Eurozone (European Central Bank)",
-          "rate": 2.5,
-          "date": "2026-11-03"
-        }
-      ],
-      "interpretation": "Canonical policy rates across G5 central banks sourced from Bank for International Settlements (BIS). Guides cross-border carry trades and sovereign yields."
-    },
     {
       "model_id": "MODEL_3",
       "model_name": "Official Sahm Rule Recession Indicator",

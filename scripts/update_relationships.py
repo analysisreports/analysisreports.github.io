@@ -129,7 +129,21 @@ def main():
     # Model 25.18: Mecca Pact Dynamic Transmission Engine
     sofr = series.get('SOFR', {}).get('current_value', 3.92)
     delta_treaty = 0.10
-    r_oil = (brent / 84.0) if (brent is not None and brent > 0) else 1.0
+
+    # Ingest dynamic IMF Saudi Fiscal Breakeven Oil Price if available
+    imf_json_path = 'llms-imf-series.json'
+    if not os.path.exists(imf_json_path):
+        imf_json_path = os.path.join(os.path.dirname(__file__), '..', 'llms-imf-series.json')
+    breakeven_oil = 86.2
+    if os.path.exists(imf_json_path):
+        try:
+            with open(imf_json_path, 'r', encoding='utf-8') as f:
+                imf_json = json.load(f)
+                breakeven_oil = imf_json.get('series', {}).get('SAUPZPIOILBEGUSD', {}).get('current_value', 86.2)
+        except Exception:
+            breakeven_oil = 86.2
+
+    r_oil = (brent / breakeven_oil) if (brent is not None and brent > 0 and breakeven_oil > 0) else 1.0
     if r_oil >= 1.05:
         s_energy = 0.05
     elif r_oil < 0.90:

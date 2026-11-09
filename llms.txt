@@ -43,6 +43,8 @@ Core repository endpoints, manifests, and their operational roles:
 - [Live ECB Series JSON Twin (llms-ecb-series.json)](https://analysisreports.github.io/llms-ecb-series.json): Structured JSON endpoint for automated ECB Data Portal time-series and monetary metrics.
 - [World Bank Commodity Series (llms-worldbank-series.txt)](https://analysisreports.github.io/llms-worldbank-series.txt): Monitored World Bank Pink Sheet commodity time-series registry.
 - [World Bank Commodity Series JSON Twin (llms-worldbank-series.json)](https://analysisreports.github.io/llms-worldbank-series.json): Structured JSON endpoint for automated World Bank Commodity Pink Sheet data.
+- [IMF Series Registry (llms-imf-series.txt)](https://analysisreports.github.io/llms-imf-series.txt): Monitored International Monetary Fund time-series registry and official growth metrics.
+- [IMF Series JSON Twin (llms-imf-series.json)](https://analysisreports.github.io/llms-imf-series.json): Structured JSON endpoint for automated International Monetary Fund data and transformations.
 - [Dynamic Relationships JSON Twin (llms-relationships.json)](https://analysisreports.github.io/llms-relationships.json): Live machine-readable geopolitical polarity snapshot, dynamic deltas, and active regime states.
 - [Live Quantitative Models Engine (llms-models.txt)](https://analysisreports.github.io/llms-models.txt): Real-time evaluated macroeconomic models, fear indices, and transmission metrics.
 - [Live Quantitative Models JSON Twin (llms-models.json)](https://analysisreports.github.io/llms-models.json): Structured JSON twin for real-time quantitative model evaluation and regime states.
