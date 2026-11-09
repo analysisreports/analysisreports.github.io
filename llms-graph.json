@@ -1,9 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "name": "Ersoy ToptaÅŸ Macroeconomic & Geopolitical Knowledge Graph",
+  "name": "Ersoy Toptas Macroeconomic & Geopolitical Knowledge Graph",
   "version": "3.0.0",
   "description": "Ontological knowledge graph linking sovereign actors, maritime chokepoints, FRED/BLS indicators, deterministic macro models, and manifest endpoints (v3 complete).",
-  "author": "Ersoy ToptaÅŸ",
+  "author": "Ersoy Toptas",
   "license": "CC BY-NC-ND 4.0",
   "repository": "https://analysisreports.github.io/",
   "graph_metadata": {
