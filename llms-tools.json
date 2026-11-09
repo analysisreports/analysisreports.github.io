@@ -1453,7 +1453,7 @@
                         },
                         "rate_jp": {
                             "type": "number",
-                            "description": "Japan Policy / Overnight Call Rate (IND_MUTAN_JP) in percent (e.g., 0.25)"
+                            "description": "Japan Policy / Call Money Rate (IND_IRSTCI01JPM156N) in percent (e.g., 0.25)"
                         }
                     },
                     "type": "object",

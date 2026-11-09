@@ -679,7 +679,7 @@ def main():
     # Model 25.16: Yen Carry Trade Dissolution (BoJ / BIS / FRED)
     dff_val = series.get('DFF', {}).get('current_value')
     jpy_mom = series.get('DEXJPUS', {}).get('transformations', {}).get('percent_change_from_year_ago', 0.0)
-    boj_rate = series.get('MUTAN', {}).get('current_value', 0.25)
+    boj_rate = series.get('IRSTCI01JPM156N', {}).get('current_value', 0.25)
 
     m_carry = calc_jpy_carry_crack(dff_val, boj_rate, jpy_mom)
     if m_carry:

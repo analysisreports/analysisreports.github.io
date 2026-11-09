@@ -152,8 +152,9 @@ TIER 2: ADVANCED INSTITUTIONAL MACRO MODELS
    - 25.13. Labor Market Momentum Index (LMMI / EMME: PAYEMS, UNRATE)
    - 25.14. AI Hardware & Semiconductor Supply Chain Stress Gauge (AI_CHIP_STRESS: GSCPI, NASDAQSOX, VIXCLS)
    - 25.15. Domestic Governance Gridlock & External Tariff Friction Engine (GOVERNANCE_GRIDLOCK_FRICTION: GEO_US, GEO_CN, GEO_RU, GEO_DE, GEO_IL, GEO_JP)
-   - 25.16. Yen Carry Trade Dissolution & Cross-Currency Stress Gauge (JPY_CARRY_CRACK: IND_DFF, IND_MUTAN_JP, IND_DEXJPUS)
+   - 25.16. Yen Carry Trade Dissolution & Cross-Currency Stress Gauge (JPY_CARRY_CRACK: IND_DFF, IND_IRSTCI01JPM156N, IND_DEXJPUS)
    - 25.17. Liquidity & Commodity Macro Regime Matrix (LIQUIDITY_COMMODITY_MATRIX: DGS3MO, DGS1MO, DCOILBRENTEU)
+   - 25.18. Non-Contiguous Alliance Dynamic Transmission Engine (MECCA_PACT_DYNAMIC_ENGINE: DCOILBRENTEU, SOFR, SAUPZPIOILBEGUSD)
 
 TIER 3: INSTITUTIONAL DECISION, GEOPOLITICAL TENSION & CALIBRATION ENGINE
 - 26. Central Bank Committee Dispersion & Hawkishness Index (COMMITTEE_DISPERSION: n_hawkish, n_dovish, n_neutral, n_total)
