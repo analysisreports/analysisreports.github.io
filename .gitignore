@@ -1,9 +1,0 @@
-# Yerel araştırma dökümanları ve taslaklar (GitHub'a gitmez, aramızdaki çalışma alanı)
-sources/
-drafts/
-
-# Geçici sistem dosyaları
-__pycache__/
-*.pyc
-.DS_Store
-Thumbs.db
