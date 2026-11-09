@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T18:04:48.580533+00:00",
+    "last_successful_sync": "2026-11-09T18:44:44.417976+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 17
+    "total_models_active": 18
   },
   "models": [
     {
@@ -234,6 +234,22 @@
         "gscpi_zscore": 1.26
       },
       "interpretation": "Tracks standard deviations of global freight rates, shipping costs, and delivery times from historical mean. Values > 1.5 indicate supply chain shocks."
+    },
+    {
+      "model_id": "MODEL_25.5",
+      "model_name": "Repo Liquidity Friction Spread Engine",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.5",
+      "primary_value": 4.0,
+      "unit": "Basis Points (bps)",
+      "status": "HEALTHY_MONETARY_TRANSMISSION",
+      "inputs": {
+        "sofr_rate": 3.92,
+        "effr_rate": 3.88
+      },
+      "metrics": {
+        "spread_bps": 4.0
+      },
+      "interpretation": "Measures funding market friction tracking the spread between secured repo financing (SOFR) and unsecured Fed funds (EFFR). Spreads between -5.0 and +5.0 bps indicate healthy monetary transmission."
     },
     {
       "model_id": "MODEL_25.14",

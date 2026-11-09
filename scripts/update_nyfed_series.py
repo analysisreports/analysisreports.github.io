@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-update_nyfed_gscpi.py
----------------------
-Official New York Fed Global Supply Chain Pressure Index (GSCPI) Data Ingestion.
-Directly fetches and parses official time-series data from the Federal Reserve Bank of New York.
+update_nyfed_series.py
+----------------------
+Official New York Fed Time-Series Ingestion & Transformation Engine.
+Directly fetches and parses official time-series data from the Federal Reserve Bank of New York (AMEC / Markets).
 Zero fallbacks, 100% authentic central bank research data.
 
 Source: Federal Reserve Bank of New York (AMEC)

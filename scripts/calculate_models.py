@@ -448,6 +448,50 @@ def calc_supply_chain_pressure(gscpi_val):
         return None
 
 
+# --- Model 25.5: Repo Liquidity Friction Spread Engine (SOFR - EFFR) ---
+def calc_repo_liquidity_friction_spread(sofr_val, effr_val):
+    if any(v is None or isinstance(v, bool) for v in (sofr_val, effr_val)):
+        return None
+    try:
+        f_sofr = float(sofr_val)
+        f_effr = float(effr_val)
+        if not (math.isfinite(f_sofr) and math.isfinite(f_effr)):
+            return None
+        if f_sofr < 0.0 or f_effr < 0.0:
+            return None
+        raw_spread = (f_sofr - f_effr) * 100.0
+        if not math.isfinite(raw_spread):
+            return None
+        spread = round(raw_spread, 2)
+        if spread > 10.0:
+            status = "REPO_MARKET_LIQUIDITY_CRUNCH"
+        elif spread >= 5.0:
+            status = "SYSTEMIC_CASH_DRAIN_WARNING"
+        elif spread < -5.0:
+            status = "COLLATERAL_SCARCITY_GLUT"
+        else:
+            status = "HEALTHY_MONETARY_TRANSMISSION"
+
+        return {
+            "model_id": "MODEL_25.5",
+            "model_name": "Repo Liquidity Friction Spread Engine",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.5",
+            "primary_value": spread,
+            "unit": "Basis Points (bps)",
+            "status": status,
+            "inputs": {
+                "sofr_rate": f_sofr,
+                "effr_rate": f_effr
+            },
+            "metrics": {
+                "spread_bps": spread
+            },
+            "interpretation": "Measures funding market friction tracking the spread between secured repo financing (SOFR) and unsecured Fed funds (EFFR). Spreads between -5.0 and +5.0 bps indicate healthy monetary transmission."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
 # --- Model 25.14: AI Hardware & Semiconductor Stress Gauge ---
 def calc_ai_chip_stress_gauge(gscpi_val, sox_yoy_pct, vix_val):
     if any(v is None or isinstance(v, bool) for v in (gscpi_val, sox_yoy_pct, vix_val)):
@@ -799,6 +843,7 @@ def main():
     wti = series.get("DCOILWTICO", {}).get("current_value")
     vix = series.get("VIXCLS", {}).get("current_value")
     sox_yoy = series.get("NASDAQSOX", {}).get("transformations", {}).get("percent_change_from_year_ago")
+    sofr = series.get("SOFR", {}).get("current_value")
 
     # Dynamic New York Fed GSCPI Series (AMEC) - Zero Fallbacks
     nyfed_json_path = "llms-nyfed-series.json"
@@ -909,6 +954,11 @@ def main():
     m_gscpi = calc_supply_chain_pressure(gscpi)
     if m_gscpi:
         models_calculated.append(m_gscpi)
+
+    # Model 25.5: Repo Liquidity Friction Spread Engine (SOFR - EFFR)
+    m_repo = calc_repo_liquidity_friction_spread(sofr, dff_curr)
+    if m_repo:
+        models_calculated.append(m_repo)
 
     # Model 25.14: AI Hardware & Semiconductor Stress
     m_chip = calc_ai_chip_stress_gauge(gscpi, sox_yoy, vix)
