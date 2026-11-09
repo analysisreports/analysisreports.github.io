@@ -1687,6 +1687,58 @@
           "BALANCED_LABOR_MARKET"
         ]
       }
+    },
+    {
+      "id": "IND_MORTGAGE30US",
+      "label": "30-Year Fixed Rate Mortgage Average",
+      "category": "INDICATOR",
+      "source": "FRED"
+    },
+    {
+      "id": "IND_PERMIT",
+      "label": "New Privately-Owned Housing Units Authorized",
+      "category": "INDICATOR",
+      "source": "FRED"
+    },
+    {
+      "id": "IND_IQ",
+      "label": "U.S. Export Price Index All Commodities",
+      "category": "INDICATOR",
+      "source": "BLS / FRED"
+    },
+    {
+      "id": "IND_IR",
+      "label": "U.S. Import Price Index All Commodities",
+      "category": "INDICATOR",
+      "source": "BLS / FRED"
+    },
+    {
+      "id": "MODEL_23.8",
+      "label": "Mortgage and Permit Divergence (Housing Freeze Index)",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_housing_freeze_index",
+        "formula": "Housing_Freeze_Index = MORTGAGE30US - (PERMIT_YoY / 10.0)",
+        "status_enums": [
+          "SEVERE_HOUSING_FREEZE",
+          "SUPPLY_CONTRACTION",
+          "HEALTHY_EXPANSION"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25",
+      "label": "Terms of Trade (TOT)",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_terms_of_trade",
+        "formula": "Terms_Of_Trade = (IQ / IR) * 100",
+        "status_enums": [
+          "FAVORABLE_TRADE",
+          "BASELINE_EQUILIBRIUM",
+          "DETERIORATING_TERMS"
+        ]
+      }
     }
   ],
   "edges": [
@@ -2697,6 +2749,30 @@
       "target": "MODEL_23.1",
       "type": "INGESTS_SERIES",
       "role": "Labor Force Participation Rate MoM Diff"
+    },
+    {
+      "source": "IND_MORTGAGE30US",
+      "target": "MODEL_23.8",
+      "type": "INGESTS_SERIES",
+      "role": "30-Year Fixed Rate Mortgage Average"
+    },
+    {
+      "source": "IND_PERMIT",
+      "target": "MODEL_23.8",
+      "type": "INGESTS_SERIES",
+      "role": "New Privately-Owned Housing Units Authorized YoY Diff"
+    },
+    {
+      "source": "IND_IQ",
+      "target": "MODEL_25",
+      "type": "INGESTS_SERIES",
+      "role": "U.S. Export Price Index"
+    },
+    {
+      "source": "IND_IR",
+      "target": "MODEL_25",
+      "type": "INGESTS_SERIES",
+      "role": "U.S. Import Price Index"
     }
   ]
 }

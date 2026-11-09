@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-09 20:54 UTC
+> **Last Calibrated Sync:** 2026-11-09 21:02 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -27,6 +27,8 @@
 | **MODEL_23.1** | Labor Market Dual-Track Dynamics | **165.0** | Thousands (k) | `BALANCED_LABOR_MARKET` | Cross-evaluates payroll gains against unemployment rate... |
 | **MODEL_23.6** | Early Employment Crack Signal | **-13.64** | Index Points | `LABOR_MARKET_ALIGNED` | Identifies early labor cracks by comparing weekly joble... |
 | **MODEL_23.7** | Inventory to Sales Glut Ratio | **1.33** | Ratio | `BALANCED_SUPPLY_CHAIN` | Measures total business inventories relative to monthly... |
+| **MODEL_23.8** | Mortgage and Permit Divergence (Housing Freeze Index) | **7.5** | Index Points | `SUPPLY_CONTRACTION` | Measures divergence between surging mortgage borrowing ... |
+| **MODEL_25** | Terms of Trade (TOT) | **112.22** | Index Points | `FAVORABLE_TRADE` | Evaluates sovereign purchasing power and current accoun... |
 | **MODEL_25.12** | Brent - WTI Seaborne Risk Spread | **7.39** | USD | `NORMAL_TRANSATLANTIC_ARBITRAGE` | Seaborne geopolitical friction and maritime risk spread... |
 | **MODEL_25.13** | Labor Market Momentum Index (LMMI) | **0.86** | Net Momentum Pts | `MODERATE_LABOR_EXPANSION` | Couples nonfarm payroll expansion with unemployment cha... |
 | **MODEL_25.3** | Global Supply Chain Pressure Logistics Engine (NY Fed GSCPI) | **1.26** | Standard Deviations (Z-Score) | `NORMALIZED_GLOBAL_TRADE` | Tracks standard deviations of global freight rates, shi... |
@@ -126,6 +128,20 @@
 - **Evaluated Status:** `BALANCED_SUPPLY_CHAIN` (Primary Value: 1.33 Ratio)
 - **Inputs Evaluated:** `{"total_business_isratio": 1.33}`
 - **Economic Synthesis:** Measures total business inventories relative to monthly sales. Values > 1.45 indicate severe inventory glut and recessionary production cuts.
+
+#### [MODEL_23.8] Mortgage and Permit Divergence (Housing Freeze Index)
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23.8
+- **Evaluated Status:** `SUPPLY_CONTRACTION` (Primary Value: 7.5 Index Points)
+- **Inputs Evaluated:** `{"mortgage_30y_rate_pct": 7.18, "building_permits_yoy_pct": -3.19}`
+- **Secondary Metrics:** `{"housing_freeze_index": 7.5, "mortgage_rate": 7.18, "permits_yoy_pct": -3.19}`
+- **Economic Synthesis:** Measures divergence between surging mortgage borrowing costs and residential building permit momentum to model lock-in supply bottlenecks and housing transaction freezes.
+
+#### [MODEL_25] Terms of Trade (TOT)
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25
+- **Evaluated Status:** `FAVORABLE_TRADE` (Primary Value: 112.22 Index Points)
+- **Inputs Evaluated:** `{"export_price_index_iq": 170.8, "import_price_index_ir": 152.2}`
+- **Secondary Metrics:** `{"terms_of_trade_ratio": 112.22, "export_index": 170.8, "import_index": 152.2}`
+- **Economic Synthesis:** Evaluates sovereign purchasing power and current account terms-of-trade transfers by measuring the relative price of exported commodities against imported goods.
 
 #### [MODEL_25.12] Brent - WTI Seaborne Risk Spread
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.12

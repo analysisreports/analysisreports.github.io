@@ -45,6 +45,12 @@ Regime States (Discrete Mapping):
 - BALANCED_LABOR_MARKET     : Balanced job creation and civilian participation dynamics.
 - BENIGN_SUPPLY_EXPANSION   : Rising participation absorbing labor with steady unemployment.
 - RECESSION_EARLY_WARNING   : Job creation below demographic replacement alongside rising unemployment.
+- SEVERE_HOUSING_FREEZE     : Elevated mortgage rates and collapsing permits stalling housing transaction liquidity.
+- SUPPLY_CONTRACTION        : Restrictive financing suppressing new residential construction permits.
+- HEALTHY_EXPANSION         : Balanced mortgage rates and expanding building permit momentum.
+- FAVORABLE_TRADE           : Export price power expanding sovereign purchasing terms over imports.
+- BASELINE_EQUILIBRIUM      : Bilateral terms of trade in historical balance.
+- DETERIORATING_TERMS       : Import prices outpacing export revenues creating terms of trade drag.
 
 ---
 

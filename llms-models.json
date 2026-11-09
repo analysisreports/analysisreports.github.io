@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T20:54:00.589414+00:00",
+    "last_successful_sync": "2026-11-09T21:02:47.272724+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 22
+    "total_models_active": 24
   },
   "models": [
     {
@@ -227,6 +227,42 @@
         "total_business_isratio": 1.33
       },
       "interpretation": "Measures total business inventories relative to monthly sales. Values > 1.45 indicate severe inventory glut and recessionary production cuts."
+    },
+    {
+      "model_id": "MODEL_23.8",
+      "model_name": "Mortgage and Permit Divergence (Housing Freeze Index)",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.8",
+      "primary_value": 7.5,
+      "unit": "Index Points",
+      "status": "SUPPLY_CONTRACTION",
+      "inputs": {
+        "mortgage_30y_rate_pct": 7.18,
+        "building_permits_yoy_pct": -3.19
+      },
+      "metrics": {
+        "housing_freeze_index": 7.5,
+        "mortgage_rate": 7.18,
+        "permits_yoy_pct": -3.19
+      },
+      "interpretation": "Measures divergence between surging mortgage borrowing costs and residential building permit momentum to model lock-in supply bottlenecks and housing transaction freezes."
+    },
+    {
+      "model_id": "MODEL_25",
+      "model_name": "Terms of Trade (TOT)",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25",
+      "primary_value": 112.22,
+      "unit": "Index Points",
+      "status": "FAVORABLE_TRADE",
+      "inputs": {
+        "export_price_index_iq": 170.8,
+        "import_price_index_ir": 152.2
+      },
+      "metrics": {
+        "terms_of_trade_ratio": 112.22,
+        "export_index": 170.8,
+        "import_index": 152.2
+      },
+      "interpretation": "Evaluates sovereign purchasing power and current account terms-of-trade transfers by measuring the relative price of exported commodities against imported goods."
     },
     {
       "model_id": "MODEL_25.12",

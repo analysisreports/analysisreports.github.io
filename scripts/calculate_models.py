@@ -935,14 +935,108 @@ def calc_inventory_to_sales_glut(isratio_val):
         return None
 
 
+# --- Model 23.8: Mortgage and Permit Divergence (Housing Freeze Index) ---
+def calc_housing_freeze_index(mortgage_rate, permit_yoy) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (mortgage_rate, permit_yoy)):
+        return None
+    try:
+        m_rate = float(mortgage_rate)
+        p_yoy = float(permit_yoy)
+        if not (math.isfinite(m_rate) and math.isfinite(p_yoy)):
+            return None
+        if m_rate <= 0.0:
+            return None
+
+        raw_index = m_rate - (p_yoy / 10.0)
+        if not math.isfinite(raw_index):
+            return None
+        index = round(raw_index, 2)
+
+        if index > 8.0:
+            status = "SEVERE_HOUSING_FREEZE"
+        elif index > 5.0:
+            status = "SUPPLY_CONTRACTION"
+        else:
+            status = "HEALTHY_EXPANSION"
+
+        return {
+            "model_id": "MODEL_23.8",
+            "model_name": "Mortgage and Permit Divergence (Housing Freeze Index)",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.8",
+            "primary_value": index,
+            "unit": "Index Points",
+            "status": status,
+            "inputs": {
+                "mortgage_30y_rate_pct": round(m_rate, 2),
+                "building_permits_yoy_pct": round(p_yoy, 2)
+            },
+            "metrics": {
+                "housing_freeze_index": index,
+                "mortgage_rate": round(m_rate, 2),
+                "permits_yoy_pct": round(p_yoy, 2)
+            },
+            "interpretation": "Measures divergence between surging mortgage borrowing costs and residential building permit momentum to model lock-in supply bottlenecks and housing transaction freezes."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
+# --- Model 25: Terms of Trade (TOT) ---
+def calc_terms_of_trade(export_idx, import_idx) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (export_idx, import_idx)):
+        return None
+    try:
+        iq = float(export_idx)
+        ir = float(import_idx)
+        if not (math.isfinite(iq) and math.isfinite(ir)):
+            return None
+        if iq <= 0.0 or ir <= 0.0:
+            return None
+
+        raw_tot = (iq / ir) * 100.0
+        if not math.isfinite(raw_tot):
+            return None
+        tot = round(raw_tot, 2)
+
+        if tot > 100.0:
+            status = "FAVORABLE_TRADE"
+        elif tot == 100.0:
+            status = "BASELINE_EQUILIBRIUM"
+        else:
+            status = "DETERIORATING_TERMS"
+
+        return {
+            "model_id": "MODEL_25",
+            "model_name": "Terms of Trade (TOT)",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25",
+            "primary_value": tot,
+            "unit": "Index Points",
+            "status": status,
+            "inputs": {
+                "export_price_index_iq": round(iq, 2),
+                "import_price_index_ir": round(ir, 2)
+            },
+            "metrics": {
+                "terms_of_trade_ratio": tot,
+                "export_index": round(iq, 2),
+                "import_index": round(ir, 2)
+            },
+            "interpretation": "Evaluates sovereign purchasing power and current account terms-of-trade transfers by measuring the relative price of exported commodities against imported goods."
+        }
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+
+
 # --- Model 25.18: Mecca Pact Dynamic Transmission Engine ---
 def calc_mecca_pact_transmission(brent_val, sofr_val, breakeven_oil=None):
-    if any(v is None or isinstance(v, bool) for v in (brent_val, sofr_val)):
+    if any(v is None or isinstance(v, bool) for v in (brent_val, sofr_val, breakeven_oil)):
         return None
     try:
         brent = float(brent_val)
         sofr = float(sofr_val)
-        be = float(breakeven_oil) if (breakeven_oil is not None and not isinstance(breakeven_oil, bool) and float(breakeven_oil) > 0) else 86.2
+        be = float(breakeven_oil)
+        if not all(math.isfinite(x) for x in (brent, sofr, be)) or brent <= 0.0 or be <= 0.0:
+            return None
         if not all(math.isfinite(x) for x in (brent, sofr, be)) or brent <= 0.0 or be <= 0.0:
             return None
 
@@ -1139,6 +1233,20 @@ def main():
     m_glut = calc_inventory_to_sales_glut(isratio_val)
     if m_glut:
         models_calculated.append(m_glut)
+
+    # Model 23.8: Mortgage and Permit Divergence (Housing Freeze Index)
+    mortgage_rate = series.get("MORTGAGE30US", {}).get("current_value")
+    permit_yoy = series.get("PERMIT", {}).get("transformations", {}).get("percent_change_from_year_ago")
+    m_housing = calc_housing_freeze_index(mortgage_rate, permit_yoy)
+    if m_housing:
+        models_calculated.append(m_housing)
+
+    # Model 25: Terms of Trade (TOT)
+    export_idx = series.get("IQ", {}).get("current_value")
+    import_idx = series.get("IR", {}).get("current_value")
+    m_tot = calc_terms_of_trade(export_idx, import_idx)
+    if m_tot:
+        models_calculated.append(m_tot)
 
     # Model 25.12: Brent - WTI Spread
     m_spread = calc_brent_wti_spread(brent, wti)
