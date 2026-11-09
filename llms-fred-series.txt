@@ -68,6 +68,7 @@ TRESEGSAM052N
 GDPC1
 TURB6BLTT02STSAQ
 GFDEGDQ188S
+GDPPOT
 
 
 [SEMIANNUAL]
@@ -1007,3 +1008,25 @@ Recent Observations (Last 5):
   2025-10-01: 122.4123
   2026-01-01: 122.4381
   2026-04-01: 121.1877
+
+--------------------------------------------------------------------------------
+Series ID: GDPPOT
+Title: Real Potential Gross Domestic Product
+Frequency: Quarterly (n_obs_per_yr: 4) | Units: Billions of Chained 2017 Dollars
+Last Date: 2026-10-01 | Current Value: 24330.3745 | Previous Value: 24200.4447 | Year Ago Value: 23811.2239
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +129.9298
+  2. Change from Year Ago: +519.1506
+  3. Percent Change: +0.5369%
+  4. Percent Change from Year Ago: +2.1803%
+  5. Compounded Annual Rate of Change: +2.1649%
+  6. Continuously Compounded Rate of Change: +0.5355%
+  7. Continuously Compounded Annual Rate of Change: +2.1418%
+
+Recent Observations (Last 5):
+  2025-10-01: 23811.2239
+  2026-01-01: 23945.1378
+  2026-04-01: 24070.9386
+  2026-07-01: 24200.4447
+  2026-10-01: 24330.3745

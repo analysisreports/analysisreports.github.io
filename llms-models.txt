@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-09 22:20 UTC
+> **Last Calibrated Sync:** 2026-11-09 22:43 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -23,6 +23,7 @@
 | **MODEL_7** | 10-Year Breakeven Inflation Rate | **2.21** | Percent (%) | `FED_ALIGNED_EQUILIBRIUM` | Reflects the bond market's expected average annual infl... |
 | **MODEL_8** | Beveridge Curve Labor Tightness | **1.06** | Ratio | `BALANCED_LABOR_TIGHTNESS` | Evaluates the ratio of job openings to unemployed job s... |
 | **MODEL_9** | Financial Repression Index | **0.994** | Index Score | `SUSTAINABLE_CYCLE` | Scores the risk of eroding public debt in real terms un... |
+| **MODEL_11** | Taylor Rule Policy Gap | **-3.73** | Percentage Points (ppt) | `BEHIND_THE_CURVE` | Computes the Federal Reserve optimal policy rate prescr... |
 | **MODEL_16** | CBOE Volatility & Market Fear Regime | **28.18** | Points | `ELEVATED_STRESS` | 30-day forward S&P 500 implied volatility fear gauge an... |
 | **MODEL_18** | Okun Misery Index | **8.12** | Index Points | `MODERATE` | Measures household welfare loss and stagflationary stre... |
 | **MODEL_21** | Gold to Oil Crisis & Recession Ratio | **41.2** | Barrels per Ounce | `MACRO_CRISIS_RECESSION` | Calculates ounces of gold per barrel of crude oil to cl... |
@@ -106,6 +107,13 @@
 - **Inputs Evaluated:** `{"nominal_10y_yield_dgs10": 4.84, "headline_cpi_yoy_pct": 4.02, "federal_debt_pct_gdp": 121.19}`
 - **Secondary Metrics:** `{"debt_pressure_index": 0.994, "real_10y_yield_pct": 0.82, "federal_debt_gdp_ratio": 121.19}`
 - **Economic Synthesis:** Scores the risk of eroding public debt in real terms under negative real yields versus triggering an explosive debt service crisis under high real yields and high sovereign debt ratios.
+
+#### [MODEL_11] Taylor Rule Policy Gap
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#11
+- **Evaluated Status:** `BEHIND_THE_CURVE` (Primary Value: -3.73 Percentage Points (ppt))
+- **Inputs Evaluated:** `{"fed_policy_rate_dff": 3.88, "headline_cpi_yoy_pct": 4.02, "real_gdp_gdpc1_bil": 24611.08, "real_potential_gdp_gdppot_bil": 24330.37}`
+- **Secondary Metrics:** `{"policy_gap_ppt": -3.73, "taylor_optimal_rate_pct": 7.61, "output_gap_pct": 1.15, "equilibrium_real_neutral_rate_pct": 2.0, "target_inflation_pct": 2.0}`
+- **Economic Synthesis:** Computes the Federal Reserve optimal policy rate prescribed by the standard Taylor (1993) rule and quantifies policy divergence. Gaps < -1.0 ppt reflect an accommodative central bank behind the curve; > +1.0 ppt reflect excessive restrictiveness.
 
 #### [MODEL_16] CBOE Volatility & Market Fear Regime
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#16

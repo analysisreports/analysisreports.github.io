@@ -6,7 +6,7 @@
     "license": "CC BY-NC-ND 4.0",
     "sync_status": "SUCCESS",
     "last_successful_sync": "2026-11-09T01:39:06Z",
-    "total_series": 43,
+    "total_series": 44,
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -1858,6 +1858,49 @@
         {
           "date": "2026-04-01",
           "value": 121.18773
+        }
+      ]
+    },
+    "GDPPOT": {
+      "series_id": "GDPPOT",
+      "title": "Real Potential Gross Domestic Product",
+      "frequency": "Quarterly",
+      "n_obs_per_yr": 4,
+      "units": "Billions of Chained 2017 Dollars",
+      "source": "Billions of Chained 2017 Dollars",
+      "last_date": "2026-10-01",
+      "current_value": 24330.3745288,
+      "previous_value": 24200.4446936,
+      "year_ago_value": 23811.2238968,
+      "transformations": {
+        "change": 129.9298,
+        "change_from_year_ago": 519.1506,
+        "percent_change": 0.5369,
+        "percent_change_from_year_ago": 2.1803,
+        "compounded_annual_rate_of_change": 2.1649,
+        "continuously_compounded_rate_of_change": 0.5355,
+        "continuously_compounded_annual_rate_of_change": 2.1418
+      },
+      "recent_observations": [
+        {
+          "date": "2025-10-01",
+          "value": 23811.2238968
+        },
+        {
+          "date": "2026-01-01",
+          "value": 23945.1378387
+        },
+        {
+          "date": "2026-04-01",
+          "value": 24070.9386484
+        },
+        {
+          "date": "2026-07-01",
+          "value": 24200.4446936
+        },
+        {
+          "date": "2026-10-01",
+          "value": 24330.3745288
         }
       ]
     }

@@ -424,6 +424,60 @@ def calc_financial_repression_index(dgs10_val, cpi_yoy_val, debt_gdp_val) -> Opt
         return None
 
 
+# --- Model 11: Taylor Rule Policy Gap ---
+def calc_taylor_policy_gap(dff_val, cpi_yoy_val, gdpc1_val, gdppot_val) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (dff_val, cpi_yoy_val, gdpc1_val, gdppot_val)):
+        return None
+    try:
+        dff = float(dff_val)
+        cpi = float(cpi_yoy_val)
+        gdp = float(gdpc1_val)
+        pot = float(gdppot_val)
+        if not (math.isfinite(dff) and math.isfinite(cpi) and math.isfinite(gdp) and math.isfinite(pot)):
+            return None
+        if dff < 0.0 or gdp <= 0.0 or pot <= 0.0:
+            return None
+
+        output_gap = round(((gdp - pot) / pot) * 100.0, 2)
+        optimal_rate = round(2.0 + cpi + 0.5 * (cpi - 2.0) + 0.5 * output_gap, 2)
+        raw_gap = dff - optimal_rate
+        if not math.isfinite(raw_gap):
+            return None
+        gap = round(raw_gap, 2)
+
+        if gap < -1.00:
+            status = "BEHIND_THE_CURVE"
+        elif gap > 1.00:
+            status = "OVER_RESTRICTIVE"
+        else:
+            status = "OPTIMAL_ALIGNMENT"
+
+        return {
+            "model_id": "MODEL_11",
+            "model_name": "Taylor Rule Policy Gap",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#11",
+            "primary_value": gap,
+            "unit": "Percentage Points (ppt)",
+            "status": status,
+            "inputs": {
+                "fed_policy_rate_dff": round(dff, 2),
+                "headline_cpi_yoy_pct": round(cpi, 2),
+                "real_gdp_gdpc1_bil": round(gdp, 2),
+                "real_potential_gdp_gdppot_bil": round(pot, 2)
+            },
+            "metrics": {
+                "policy_gap_ppt": gap,
+                "taylor_optimal_rate_pct": optimal_rate,
+                "output_gap_pct": output_gap,
+                "equilibrium_real_neutral_rate_pct": 2.0,
+                "target_inflation_pct": 2.0
+            },
+            "interpretation": "Computes the Federal Reserve optimal policy rate prescribed by the standard Taylor (1993) rule and quantifies policy divergence. Gaps < -1.0 ppt reflect an accommodative central bank behind the curve; > +1.0 ppt reflect excessive restrictiveness."
+        }
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+
+
 # --- Model 16: VIX Market Regime Thresholds ---
 def calc_vix_market_regime(vix):
     if vix is None or isinstance(vix, bool):
@@ -1385,6 +1439,13 @@ def main():
     m_repression = calc_financial_repression_index(dgs10_val, cpi_yoy, debt_gdp_val)
     if m_repression:
         models_calculated.append(m_repression)
+
+    # Model 11: Taylor Rule Policy Gap
+    gdpc1_val = series.get("GDPC1", {}).get("current_value")
+    gdppot_val = series.get("GDPPOT", {}).get("current_value")
+    m_taylor = calc_taylor_policy_gap(dff_curr, cpi_yoy, gdpc1_val, gdppot_val)
+    if m_taylor:
+        models_calculated.append(m_taylor)
 
     # Model 16: VIX Regime
     m_vix = calc_vix_market_regime(vix)

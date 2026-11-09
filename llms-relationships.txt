@@ -63,6 +63,9 @@ Regime States (Discrete Mapping):
 - REPRESSION_REGIME             : Negative real Treasury yields eroding public debt burden in real terms.
 - SUSTAINABLE_CYCLE             : Public debt service costs and real borrowing yields within sustainable fiscal bounds.
 - DEBT_CRISIS_ALARM             : Severe debt pressure index exceeding 1.50 signaling explosive debt service crowding out fiscal budgets.
+- BEHIND_THE_CURVE              : Federal Reserve policy rate trailing optimal Taylor rule benchmark by over 100 bps.
+- OPTIMAL_ALIGNMENT             : Federal Reserve policy rate aligned within +/- 100 bps of optimal Taylor rule prescription.
+- OVER_RESTRICTIVE              : Federal Reserve policy rate exceeding optimal Taylor rule benchmark by over 100 bps risking recession.
 
 ---
 

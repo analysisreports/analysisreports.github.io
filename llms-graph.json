@@ -1817,6 +1817,26 @@
       "label": "Federal Debt: Total Public Debt as Percent of GDP",
       "category": "INDICATOR",
       "source": "FRED"
+    },
+    {
+      "id": "IND_GDPPOT",
+      "label": "Real Potential Gross Domestic Product",
+      "category": "INDICATOR",
+      "source": "CBO / FRED"
+    },
+    {
+      "id": "MODEL_11",
+      "label": "Taylor Rule Policy Gap",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_taylor_policy_gap",
+        "formula": "Taylor_Policy_Gap = DFF - (2.0 + CPI_YoY + 0.5 * (CPI_YoY - 2.0) + 0.5 * Output_Gap)",
+        "status_enums": [
+          "BEHIND_THE_CURVE",
+          "OPTIMAL_ALIGNMENT",
+          "OVER_RESTRICTIVE"
+        ]
+      }
     }
   ],
   "edges": [
@@ -2905,6 +2925,30 @@
       "target": "MODEL_9",
       "type": "INGESTS_SERIES",
       "role": "Federal Debt as Percent of GDP"
+    },
+    {
+      "source": "IND_DFF",
+      "target": "MODEL_11",
+      "type": "INGESTS_SERIES",
+      "role": "Federal Funds Effective Rate"
+    },
+    {
+      "source": "IND_CPIAUCSL",
+      "target": "MODEL_11",
+      "type": "INGESTS_SERIES",
+      "role": "Headline CPI YoY Inflation"
+    },
+    {
+      "source": "IND_GDPC1",
+      "target": "MODEL_11",
+      "type": "INGESTS_SERIES",
+      "role": "Real Gross Domestic Product"
+    },
+    {
+      "source": "IND_GDPPOT",
+      "target": "MODEL_11",
+      "type": "INGESTS_SERIES",
+      "role": "Real Potential Gross Domestic Product"
     }
   ]
 }
