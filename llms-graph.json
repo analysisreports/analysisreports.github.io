@@ -4,7 +4,7 @@
   "version": "3.0.0",
   "description": "Ontological knowledge graph linking sovereign actors, maritime chokepoints, FRED/BLS indicators, deterministic macro models, and manifest endpoints (v3 complete).",
   "author": "Ersoy ToptaÅŸ",
-  "license": "CC-BY-4.0",
+  "license": "CC BY-NC-ND 4.0",
   "repository": "https://analysisreports.github.io/",
   "graph_metadata": {
     "node_categories": [

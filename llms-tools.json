@@ -4,7 +4,7 @@
     "version": "2026-Q4",
     "description": "Deterministic macro, geopolitical, and econometric model schemas enabling autonomous LLM research agents to execute quantitative formulas without hallucination.",
     "author": "Ersoy Toptas",
-    "license": "CC-BY-4.0",
+    "license": "CC BY-NC-ND 4.0",
     "repository": "https://analysisreports.github.io/",
     "documentation": "https://analysisreports.github.io/llms-formulas.txt",
     "tools": [
