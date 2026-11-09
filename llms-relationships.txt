@@ -66,6 +66,12 @@ Regime States (Discrete Mapping):
 - BEHIND_THE_CURVE              : Federal Reserve policy rate trailing optimal Taylor rule benchmark by over 100 bps.
 - OPTIMAL_ALIGNMENT             : Federal Reserve policy rate aligned within +/- 100 bps of optimal Taylor rule prescription.
 - OVER_RESTRICTIVE              : Federal Reserve policy rate exceeding optimal Taylor rule benchmark by over 100 bps risking recession.
+- RESERVE_CURRENCY_STRAIN       : Strong dollar index combined with expanding external trade deficits signaling global offshore dollar shortage.
+- BALANCED_TRIFFIN_EQUILIBRIUM  : Trade deficit and dollar reserve liquidity expanding in balanced global transmission.
+- ABUNDANT_OFFSHORE_LIQUIDITY   : Softening dollar valuation and narrowing deficit reflecting abundant global liquidity.
+- TIGHT_FINANCIAL_CONDITIONS    : Chicago Fed NFCI crossing positive territory indicating market risk premiums and tighter than average conditions.
+- BALANCED_FINANCIAL_CONDITIONS : Financial conditions index at historical benchmark zero.
+- LOOSE_FINANCIAL_CONDITIONS    : Negative Chicago Fed NFCI indicating accommodative liquidity and suppressed risk spreads.
 
 ---
 

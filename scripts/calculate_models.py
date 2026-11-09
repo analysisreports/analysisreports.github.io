@@ -424,6 +424,53 @@ def calc_financial_repression_index(dgs10_val, cpi_yoy_val, debt_gdp_val) -> Opt
         return None
 
 
+# --- Model 10: Triffin External Balance ---
+def calc_triffin_external_balance(dtwexbgs_val, bopgstb_val) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (dtwexbgs_val, bopgstb_val)):
+        return None
+    try:
+        dxy = float(dtwexbgs_val)
+        trade = float(bopgstb_val)
+        if not (math.isfinite(dxy) and math.isfinite(trade)):
+            return None
+        if dxy <= 0.0 or trade == 0.0:
+            return None
+
+        deficit_bil = abs(trade) / 1000.0
+        raw_tension = dxy / deficit_bil
+        if not math.isfinite(raw_tension):
+            return None
+        tension = round(raw_tension, 4)
+
+        if tension > 1.25:
+            status = "RESERVE_CURRENCY_STRAIN"
+        elif tension < 1.00:
+            status = "ABUNDANT_OFFSHORE_LIQUIDITY"
+        else:
+            status = "BALANCED_TRIFFIN_EQUILIBRIUM"
+
+        return {
+            "model_id": "MODEL_10",
+            "model_name": "Triffin External Balance",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#10",
+            "primary_value": tension,
+            "unit": "Tension Ratio",
+            "status": status,
+            "inputs": {
+                "broad_dollar_index_dtwexbgs": round(dxy, 4),
+                "trade_balance_bopgstb_mil": round(trade, 2)
+            },
+            "metrics": {
+                "dxy_deficit_tension": tension,
+                "monthly_trade_deficit_bil": round(deficit_bil, 2),
+                "broad_dollar_index": round(dxy, 4)
+            },
+            "interpretation": "Tracks global liquidity imbalances between the US dollar's reserve currency status and the US external trade deficit. Rising ratios signal offshore dollar shortage and structural funding stress."
+        }
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+
+
 # --- Model 11: Taylor Rule Policy Gap ---
 def calc_taylor_policy_gap(dff_val, cpi_yoy_val, gdpc1_val, gdppot_val) -> Optional[Dict[str, Any]]:
     if any(v is None or isinstance(v, bool) for v in (dff_val, cpi_yoy_val, gdpc1_val, gdppot_val)):
@@ -475,6 +522,49 @@ def calc_taylor_policy_gap(dff_val, cpi_yoy_val, gdpc1_val, gdppot_val) -> Optio
             "interpretation": "Computes the Federal Reserve optimal policy rate prescribed by the standard Taylor (1993) rule and quantifies policy divergence. Gaps < -1.0 ppt reflect an accommodative central bank behind the curve; > +1.0 ppt reflect excessive restrictiveness."
         }
     except (TypeError, ValueError, ZeroDivisionError):
+        return None
+
+
+# --- Model 12: Financial Conditions Tightness (Chicago Fed NFCI) ---
+def calc_financial_conditions_tightness(nfci_val, anfci_val) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (nfci_val, anfci_val)):
+        return None
+    try:
+        n = float(nfci_val)
+        a = float(anfci_val)
+        if not (math.isfinite(n) and math.isfinite(a)):
+            return None
+
+        nfci = round(n, 3)
+        anfci = round(a, 3)
+        macro_div = round(nfci - anfci, 3)
+
+        if nfci > 0.0:
+            status = "TIGHT_FINANCIAL_CONDITIONS"
+        elif nfci == 0.0:
+            status = "BALANCED_FINANCIAL_CONDITIONS"
+        else:
+            status = "LOOSE_FINANCIAL_CONDITIONS"
+
+        return {
+            "model_id": "MODEL_12",
+            "model_name": "Financial Conditions Tightness (Chicago Fed NFCI)",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#12",
+            "primary_value": nfci,
+            "unit": "Index Points",
+            "status": status,
+            "inputs": {
+                "chicago_fed_nfci": nfci,
+                "adjusted_anfci": anfci
+            },
+            "metrics": {
+                "nfci_stress_level": nfci,
+                "adjusted_anfci": anfci,
+                "macroeconomic_divergence": macro_div
+            },
+            "interpretation": "Monitors monetary policy transmission into financial markets across debt, equity, and leverage risk premiums. Values < 0 indicate looser than average financial conditions; > 0 indicates restrictive financial conditions."
+        }
+    except (TypeError, ValueError):
         return None
 
 
@@ -1440,12 +1530,26 @@ def main():
     if m_repression:
         models_calculated.append(m_repression)
 
+    # Model 10: Triffin External Balance
+    dtwexbgs_val = series.get("DTWEXBGS", {}).get("current_value")
+    bopgstb_val = series.get("BOPGSTB", {}).get("current_value")
+    m_triffin = calc_triffin_external_balance(dtwexbgs_val, bopgstb_val)
+    if m_triffin:
+        models_calculated.append(m_triffin)
+
     # Model 11: Taylor Rule Policy Gap
     gdpc1_val = series.get("GDPC1", {}).get("current_value")
     gdppot_val = series.get("GDPPOT", {}).get("current_value")
     m_taylor = calc_taylor_policy_gap(dff_curr, cpi_yoy, gdpc1_val, gdppot_val)
     if m_taylor:
         models_calculated.append(m_taylor)
+
+    # Model 12: Financial Conditions Tightness (Chicago Fed NFCI)
+    nfci_val = series.get("NFCI", {}).get("current_value")
+    anfci_val = series.get("ANFCI", {}).get("current_value")
+    m_nfci = calc_financial_conditions_tightness(nfci_val, anfci_val)
+    if m_nfci:
+        models_calculated.append(m_nfci)
 
     # Model 16: VIX Regime
     m_vix = calc_vix_market_regime(vix)

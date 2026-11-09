@@ -1837,6 +1837,58 @@
           "OVER_RESTRICTIVE"
         ]
       }
+    },
+    {
+      "id": "IND_DTWEXBGS",
+      "label": "Nominal Broad U.S. Dollar Index",
+      "category": "INDICATOR",
+      "source": "FRED"
+    },
+    {
+      "id": "IND_BOPGSTB",
+      "label": "U.S. Trade Balance Goods and Services",
+      "category": "INDICATOR",
+      "source": "BEA / FRED"
+    },
+    {
+      "id": "IND_NFCI",
+      "label": "Chicago Fed National Financial Conditions Index",
+      "category": "INDICATOR",
+      "source": "FRED"
+    },
+    {
+      "id": "IND_ANFCI",
+      "label": "Adjusted National Financial Conditions Index",
+      "category": "INDICATOR",
+      "source": "FRED"
+    },
+    {
+      "id": "MODEL_10",
+      "label": "Triffin External Balance",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_triffin_external_balance",
+        "formula": "DXY_Deficit_Tension = DTWEXBGS / (abs(BOPGSTB) / 1000)",
+        "status_enums": [
+          "RESERVE_CURRENCY_STRAIN",
+          "BALANCED_TRIFFIN_EQUILIBRIUM",
+          "ABUNDANT_OFFSHORE_LIQUIDITY"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_12",
+      "label": "Financial Conditions Tightness (Chicago Fed NFCI)",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_financial_conditions_tightness",
+        "formula": "NFCI_Stress_Level = NFCI",
+        "status_enums": [
+          "TIGHT_FINANCIAL_CONDITIONS",
+          "BALANCED_FINANCIAL_CONDITIONS",
+          "LOOSE_FINANCIAL_CONDITIONS"
+        ]
+      }
     }
   ],
   "edges": [
@@ -2949,6 +3001,30 @@
       "target": "MODEL_11",
       "type": "INGESTS_SERIES",
       "role": "Real Potential Gross Domestic Product"
+    },
+    {
+      "source": "IND_DTWEXBGS",
+      "target": "MODEL_10",
+      "type": "INGESTS_SERIES",
+      "role": "Nominal Broad U.S. Dollar Index"
+    },
+    {
+      "source": "IND_BOPGSTB",
+      "target": "MODEL_10",
+      "type": "INGESTS_SERIES",
+      "role": "U.S. Trade Balance Goods and Services"
+    },
+    {
+      "source": "IND_NFCI",
+      "target": "MODEL_12",
+      "type": "INGESTS_SERIES",
+      "role": "Chicago Fed National Financial Conditions Index"
+    },
+    {
+      "source": "IND_ANFCI",
+      "target": "MODEL_12",
+      "type": "INGESTS_SERIES",
+      "role": "Adjusted National Financial Conditions Index"
     }
   ]
 }

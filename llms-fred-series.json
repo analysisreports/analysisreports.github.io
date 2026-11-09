@@ -6,7 +6,7 @@
     "license": "CC BY-NC-ND 4.0",
     "sync_status": "SUCCESS",
     "last_successful_sync": "2026-11-09T01:39:06Z",
-    "total_series": 44,
+    "total_series": 51,
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -1901,6 +1901,307 @@
         {
           "date": "2026-10-01",
           "value": 24330.3745288
+        }
+      ]
+    },
+    "BAMLH0A0HYM2": {
+      "series_id": "BAMLH0A0HYM2",
+      "title": "ICE BofA US High Yield Index Option-Adjusted Spread",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Percent",
+      "source": "Percent",
+      "last_date": "2026-11-06",
+      "current_value": 3.42,
+      "previous_value": 3.48,
+      "year_ago_value": 3.02,
+      "transformations": {
+        "change": -0.06,
+        "change_from_year_ago": 0.4,
+        "percent_change": -1.7241,
+        "percent_change_from_year_ago": 13.245,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": -1.7392,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-02",
+          "value": 3.43
+        },
+        {
+          "date": "2026-11-03",
+          "value": 3.4
+        },
+        {
+          "date": "2026-11-04",
+          "value": 3.32
+        },
+        {
+          "date": "2026-11-05",
+          "value": 3.48
+        },
+        {
+          "date": "2026-11-06",
+          "value": 3.42
+        }
+      ]
+    },
+    "DTWEXBGS": {
+      "series_id": "DTWEXBGS",
+      "title": "Nominal Broad U.S. Dollar Index",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Index Jan 2006=100",
+      "source": "Index Jan 2006=100",
+      "last_date": "2026-11-06",
+      "current_value": 121.8803,
+      "previous_value": 121.5061,
+      "year_ago_value": 120.9531,
+      "transformations": {
+        "change": 0.3742,
+        "change_from_year_ago": 0.9272,
+        "percent_change": 0.308,
+        "percent_change_from_year_ago": 0.7666,
+        "compounded_annual_rate_of_change": 122.4399,
+        "continuously_compounded_rate_of_change": 0.3075,
+        "continuously_compounded_annual_rate_of_change": 79.9487
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-02",
+          "value": 121.3702
+        },
+        {
+          "date": "2026-11-03",
+          "value": 121.8084
+        },
+        {
+          "date": "2026-11-04",
+          "value": 121.3983
+        },
+        {
+          "date": "2026-11-05",
+          "value": 121.5061
+        },
+        {
+          "date": "2026-11-06",
+          "value": 121.8803
+        }
+      ]
+    },
+    "THREEFYTP10": {
+      "series_id": "THREEFYTP10",
+      "title": "ACM 10-Year Treasury Term Premium",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Percent",
+      "source": "Percent",
+      "last_date": "2026-10-30",
+      "current_value": 0.9089,
+      "previous_value": 0.932,
+      "year_ago_value": 0.4205,
+      "transformations": {
+        "change": -0.0231,
+        "change_from_year_ago": 0.4884,
+        "percent_change": -2.4785,
+        "percent_change_from_year_ago": 116.1474,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": -2.5098,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-26",
+          "value": 0.9375
+        },
+        {
+          "date": "2026-10-27",
+          "value": 0.9346
+        },
+        {
+          "date": "2026-10-28",
+          "value": 0.9524
+        },
+        {
+          "date": "2026-10-29",
+          "value": 0.932
+        },
+        {
+          "date": "2026-10-30",
+          "value": 0.9089
+        }
+      ]
+    },
+    "NFCI": {
+      "series_id": "NFCI",
+      "title": "Chicago Fed National Financial Conditions Index",
+      "frequency": "Weekly",
+      "n_obs_per_yr": 52,
+      "units": "Index",
+      "source": "Index",
+      "last_date": "2026-10-30",
+      "current_value": -0.459,
+      "previous_value": -0.467,
+      "year_ago_value": -0.511,
+      "transformations": {
+        "change": 0.008,
+        "change_from_year_ago": 0.052,
+        "percent_change": -1.7131,
+        "percent_change_from_year_ago": -10.1761,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": null,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-02",
+          "value": -0.498
+        },
+        {
+          "date": "2026-10-09",
+          "value": -0.487
+        },
+        {
+          "date": "2026-10-16",
+          "value": -0.477
+        },
+        {
+          "date": "2026-10-23",
+          "value": -0.467
+        },
+        {
+          "date": "2026-10-30",
+          "value": -0.459
+        }
+      ]
+    },
+    "ANFCI": {
+      "series_id": "ANFCI",
+      "title": "Adjusted National Financial Conditions Index",
+      "frequency": "Weekly",
+      "n_obs_per_yr": 52,
+      "units": "Index",
+      "source": "Index",
+      "last_date": "2026-10-30",
+      "current_value": -0.435,
+      "previous_value": -0.443,
+      "year_ago_value": -0.558,
+      "transformations": {
+        "change": 0.008,
+        "change_from_year_ago": 0.123,
+        "percent_change": -1.8059,
+        "percent_change_from_year_ago": -22.043,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": null,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-02",
+          "value": -0.474
+        },
+        {
+          "date": "2026-10-09",
+          "value": -0.464
+        },
+        {
+          "date": "2026-10-16",
+          "value": -0.454
+        },
+        {
+          "date": "2026-10-23",
+          "value": -0.443
+        },
+        {
+          "date": "2026-10-30",
+          "value": -0.435
+        }
+      ]
+    },
+    "M2SL": {
+      "series_id": "M2SL",
+      "title": "M2 Money Supply",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Billions of Dollars",
+      "source": "Billions of Dollars",
+      "last_date": "2026-09-01",
+      "current_value": 23413.9,
+      "previous_value": 23300.9,
+      "year_ago_value": 22149.2,
+      "transformations": {
+        "change": 113.0,
+        "change_from_year_ago": 1264.7,
+        "percent_change": 0.485,
+        "percent_change_from_year_ago": 5.7099,
+        "compounded_annual_rate_of_change": 5.9773,
+        "continuously_compounded_rate_of_change": 0.4838,
+        "continuously_compounded_annual_rate_of_change": 5.8055
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 22980.9
+        },
+        {
+          "date": "2026-06-01",
+          "value": 23077.7
+        },
+        {
+          "date": "2026-07-01",
+          "value": 23177.4
+        },
+        {
+          "date": "2026-08-01",
+          "value": 23300.9
+        },
+        {
+          "date": "2026-09-01",
+          "value": 23413.9
+        }
+      ]
+    },
+    "BOPGSTB": {
+      "series_id": "BOPGSTB",
+      "title": "U.S. Trade Balance: Goods and Services, Balance of Payments",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Millions of Dollars",
+      "source": "Millions of Dollars",
+      "last_date": "2026-09-01",
+      "current_value": -105047.0,
+      "previous_value": -105737.0,
+      "year_ago_value": -59392.0,
+      "transformations": {
+        "change": 690.0,
+        "change_from_year_ago": -45655.0,
+        "percent_change": -0.6526,
+        "percent_change_from_year_ago": 76.8706,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": null,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": -75752.0
+        },
+        {
+          "date": "2026-06-01",
+          "value": -71182.0
+        },
+        {
+          "date": "2026-07-01",
+          "value": -92826.0
+        },
+        {
+          "date": "2026-08-01",
+          "value": -105737.0
+        },
+        {
+          "date": "2026-09-01",
+          "value": -105047.0
         }
       ]
     }

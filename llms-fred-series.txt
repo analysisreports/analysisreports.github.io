@@ -20,6 +20,9 @@
 
 [DAILY]
 DCOILBRENTEU
+BAMLH0A0HYM2
+DTWEXBGS
+THREEFYTP10
 DCOILWTICO
 VIXCLS
 NASDAQSOX
@@ -41,6 +44,8 @@ WALCL
 WTREGEN
 IC4WSA
 MORTGAGE30US
+NFCI
+ANFCI
 
 [MONTHLY]
 PAYEMS
@@ -59,10 +64,12 @@ SAHMREALTIME
 CPIAUCSL
 CORESTICKM159SFRBATL
 ISRATIO
+M2SL
 PCE
 IR
 IQ
 TRESEGSAM052N
+BOPGSTB
 
 [QUARTERLY]
 GDPC1
@@ -1030,3 +1037,157 @@ Recent Observations (Last 5):
   2026-04-01: 24070.9386
   2026-07-01: 24200.4447
   2026-10-01: 24330.3745
+
+--------------------------------------------------------------------------------
+Series ID: BAMLH0A0HYM2
+Title: ICE BofA US High Yield Index Option-Adjusted Spread
+Frequency: Daily (n_obs_per_yr: 260) | Units: Percent
+Last Date: 2026-11-06 | Current Value: 3.4200 | Previous Value: 3.4800 | Year Ago Value: 3.0200
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -0.0600
+  2. Change from Year Ago: +0.4000
+  3. Percent Change: -1.7241%
+  4. Percent Change from Year Ago: +13.2450%
+  5. Compounded Annual Rate of Change: N/A
+  6. Continuously Compounded Rate of Change: -1.7392%
+  7. Continuously Compounded Annual Rate of Change: N/A
+
+Recent Observations (Last 5):
+  2026-11-02: 3.4300
+  2026-11-03: 3.4000
+  2026-11-04: 3.3200
+  2026-11-05: 3.4800
+  2026-11-06: 3.4200
+
+--------------------------------------------------------------------------------
+Series ID: DTWEXBGS
+Title: Nominal Broad U.S. Dollar Index
+Frequency: Daily (n_obs_per_yr: 260) | Units: Index Jan 2006=100
+Last Date: 2026-11-06 | Current Value: 121.8803 | Previous Value: 121.5061 | Year Ago Value: 120.9531
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.3742
+  2. Change from Year Ago: +0.9272
+  3. Percent Change: +0.3080%
+  4. Percent Change from Year Ago: +0.7666%
+  5. Compounded Annual Rate of Change: +122.4399%
+  6. Continuously Compounded Rate of Change: +0.3075%
+  7. Continuously Compounded Annual Rate of Change: +79.9487%
+
+Recent Observations (Last 5):
+  2026-11-02: 121.3702
+  2026-11-03: 121.8084
+  2026-11-04: 121.3983
+  2026-11-05: 121.5061
+  2026-11-06: 121.8803
+
+--------------------------------------------------------------------------------
+Series ID: THREEFYTP10
+Title: ACM 10-Year Treasury Term Premium
+Frequency: Daily (n_obs_per_yr: 260) | Units: Percent
+Last Date: 2026-10-30 | Current Value: 0.9089 | Previous Value: 0.9320 | Year Ago Value: 0.4205
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -0.0231
+  2. Change from Year Ago: +0.4884
+  3. Percent Change: -2.4785%
+  4. Percent Change from Year Ago: +116.1474%
+  5. Compounded Annual Rate of Change: N/A
+  6. Continuously Compounded Rate of Change: -2.5098%
+  7. Continuously Compounded Annual Rate of Change: N/A
+
+Recent Observations (Last 5):
+  2026-10-26: 0.9375
+  2026-10-27: 0.9346
+  2026-10-28: 0.9524
+  2026-10-29: 0.9320
+  2026-10-30: 0.9089
+
+--------------------------------------------------------------------------------
+Series ID: NFCI
+Title: Chicago Fed National Financial Conditions Index
+Frequency: Weekly (n_obs_per_yr: 52) | Units: Index
+Last Date: 2026-10-30 | Current Value: -0.4590 | Previous Value: -0.4670 | Year Ago Value: -0.5110
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.0080
+  2. Change from Year Ago: +0.0520
+  3. Percent Change: -1.7131%
+  4. Percent Change from Year Ago: -10.1761%
+  5. Compounded Annual Rate of Change: N/A
+  6. Continuously Compounded Rate of Change: N/A
+  7. Continuously Compounded Annual Rate of Change: N/A
+
+Recent Observations (Last 5):
+  2026-10-02: -0.4980
+  2026-10-09: -0.4870
+  2026-10-16: -0.4770
+  2026-10-23: -0.4670
+  2026-10-30: -0.4590
+
+--------------------------------------------------------------------------------
+Series ID: ANFCI
+Title: Adjusted National Financial Conditions Index
+Frequency: Weekly (n_obs_per_yr: 52) | Units: Index
+Last Date: 2026-10-30 | Current Value: -0.4350 | Previous Value: -0.4430 | Year Ago Value: -0.5580
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.0080
+  2. Change from Year Ago: +0.1230
+  3. Percent Change: -1.8059%
+  4. Percent Change from Year Ago: -22.0430%
+  5. Compounded Annual Rate of Change: N/A
+  6. Continuously Compounded Rate of Change: N/A
+  7. Continuously Compounded Annual Rate of Change: N/A
+
+Recent Observations (Last 5):
+  2026-10-02: -0.4740
+  2026-10-09: -0.4640
+  2026-10-16: -0.4540
+  2026-10-23: -0.4430
+  2026-10-30: -0.4350
+
+--------------------------------------------------------------------------------
+Series ID: M2SL
+Title: M2 Money Supply
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Billions of Dollars
+Last Date: 2026-09-01 | Current Value: 23413.9000 | Previous Value: 23300.9000 | Year Ago Value: 22149.2000
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +113.0000
+  2. Change from Year Ago: +1264.7000
+  3. Percent Change: +0.4850%
+  4. Percent Change from Year Ago: +5.7099%
+  5. Compounded Annual Rate of Change: +5.9773%
+  6. Continuously Compounded Rate of Change: +0.4838%
+  7. Continuously Compounded Annual Rate of Change: +5.8055%
+
+Recent Observations (Last 5):
+  2026-05-01: 22980.9000
+  2026-06-01: 23077.7000
+  2026-07-01: 23177.4000
+  2026-08-01: 23300.9000
+  2026-09-01: 23413.9000
+
+--------------------------------------------------------------------------------
+Series ID: BOPGSTB
+Title: U.S. Trade Balance: Goods and Services, Balance of Payments
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Millions of Dollars
+Last Date: 2026-09-01 | Current Value: -105047.0000 | Previous Value: -105737.0000 | Year Ago Value: -59392.0000
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +690.0000
+  2. Change from Year Ago: -45655.0000
+  3. Percent Change: -0.6526%
+  4. Percent Change from Year Ago: +76.8706%
+  5. Compounded Annual Rate of Change: N/A
+  6. Continuously Compounded Rate of Change: N/A
+  7. Continuously Compounded Annual Rate of Change: N/A
+
+Recent Observations (Last 5):
+  2026-05-01: -75752.0000
+  2026-06-01: -71182.0000
+  2026-07-01: -92826.0000
+  2026-08-01: -105737.0000
+  2026-09-01: -105047.0000

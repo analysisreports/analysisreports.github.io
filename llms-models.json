@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T22:43:24.285904+00:00",
+    "last_successful_sync": "2026-11-09T23:07:02.853304+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 29
+    "total_models_active": 31
   },
   "models": [
     {
@@ -169,6 +169,24 @@
       "interpretation": "Scores the risk of eroding public debt in real terms under negative real yields versus triggering an explosive debt service crisis under high real yields and high sovereign debt ratios."
     },
     {
+      "model_id": "MODEL_10",
+      "model_name": "Triffin External Balance",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#10",
+      "primary_value": 1.1602,
+      "unit": "Tension Ratio",
+      "status": "BALANCED_TRIFFIN_EQUILIBRIUM",
+      "inputs": {
+        "broad_dollar_index_dtwexbgs": 121.8803,
+        "trade_balance_bopgstb_mil": -105047.0
+      },
+      "metrics": {
+        "dxy_deficit_tension": 1.1602,
+        "monthly_trade_deficit_bil": 105.05,
+        "broad_dollar_index": 121.8803
+      },
+      "interpretation": "Tracks global liquidity imbalances between the US dollar's reserve currency status and the US external trade deficit. Rising ratios signal offshore dollar shortage and structural funding stress."
+    },
+    {
       "model_id": "MODEL_11",
       "model_name": "Taylor Rule Policy Gap",
       "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#11",
@@ -189,6 +207,24 @@
         "target_inflation_pct": 2.0
       },
       "interpretation": "Computes the Federal Reserve optimal policy rate prescribed by the standard Taylor (1993) rule and quantifies policy divergence. Gaps < -1.0 ppt reflect an accommodative central bank behind the curve; > +1.0 ppt reflect excessive restrictiveness."
+    },
+    {
+      "model_id": "MODEL_12",
+      "model_name": "Financial Conditions Tightness (Chicago Fed NFCI)",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#12",
+      "primary_value": -0.459,
+      "unit": "Index Points",
+      "status": "LOOSE_FINANCIAL_CONDITIONS",
+      "inputs": {
+        "chicago_fed_nfci": -0.459,
+        "adjusted_anfci": -0.435
+      },
+      "metrics": {
+        "nfci_stress_level": -0.459,
+        "adjusted_anfci": -0.435,
+        "macroeconomic_divergence": -0.024
+      },
+      "interpretation": "Monitors monetary policy transmission into financial markets across debt, equity, and leverage risk premiums. Values < 0 indicate looser than average financial conditions; > 0 indicates restrictive financial conditions."
     },
     {
       "model_id": "MODEL_16",
