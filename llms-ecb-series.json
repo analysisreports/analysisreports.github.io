@@ -5,8 +5,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T00:33:58.047805+00:00",
-    "total_series": 11,
+    "last_successful_sync": "2026-11-09T00:59:43.951252+00:00",
+    "total_series": 9,
     "source_authority": "European Central Bank (ECB Data Portal)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.5",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -185,50 +185,6 @@
         {
           "date": "2026-11-06",
           "value": 176.77
-        }
-      ]
-    },
-    "EST/B.EU000A2X2A25.WT": {
-      "series_ref": "EST/B.EU000A2X2A25.WT",
-      "title": "Euro Short-Term Rate (€STR) Benchmark",
-      "frequency": "Daily",
-      "n_obs_per_yr": 260,
-      "units": "Percent per Annum",
-      "category": "Money Market Benchmark",
-      "source": "European Central Bank (ECB Data Portal)",
-      "last_date": "2026-11-05",
-      "current_value": 2.442,
-      "previous_value": 2.442,
-      "year_ago_value": 1.931,
-      "transformations": {
-        "change": 0.0,
-        "change_from_year_ago": 0.511,
-        "percent_change": 0.0,
-        "percent_change_from_year_ago": 26.463,
-        "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 0.0,
-        "continuously_compounded_annual_rate_of_change": null
-      },
-      "recent_observations": [
-        {
-          "date": "2026-10-30",
-          "value": 2.44
-        },
-        {
-          "date": "2026-11-02",
-          "value": 2.441
-        },
-        {
-          "date": "2026-11-03",
-          "value": 2.445
-        },
-        {
-          "date": "2026-11-04",
-          "value": 2.442
-        },
-        {
-          "date": "2026-11-05",
-          "value": 2.442
         }
       ]
     },
@@ -449,50 +405,6 @@
         {
           "date": "2025-12",
           "value": 1.9
-        }
-      ]
-    },
-    "ICP/M.U2.N.XEF000.4.ANR": {
-      "series_ref": "ICP/M.U2.N.XEF000.4.ANR",
-      "title": "Euro Area Core HICP Inflation Rate (Excl. Energy & Food)",
-      "frequency": "Monthly",
-      "n_obs_per_yr": 12,
-      "units": "Annual Rate of Change (%)",
-      "category": "Consumer Prices",
-      "source": "European Central Bank (ECB Data Portal)",
-      "last_date": "2025-12",
-      "current_value": 2.3,
-      "previous_value": 2.4,
-      "year_ago_value": 2.7,
-      "transformations": {
-        "change": -0.1,
-        "change_from_year_ago": -0.4,
-        "percent_change": -4.1667,
-        "percent_change_from_year_ago": -14.8148,
-        "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": -4.256,
-        "continuously_compounded_annual_rate_of_change": null
-      },
-      "recent_observations": [
-        {
-          "date": "2025-08",
-          "value": 2.3
-        },
-        {
-          "date": "2025-09",
-          "value": 2.4
-        },
-        {
-          "date": "2025-10",
-          "value": 2.4
-        },
-        {
-          "date": "2025-11",
-          "value": 2.4
-        },
-        {
-          "date": "2025-12",
-          "value": 2.3
         }
       ]
     }
