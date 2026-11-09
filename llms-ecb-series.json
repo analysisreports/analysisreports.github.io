@@ -5,8 +5,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T00:59:43.951252+00:00",
-    "total_series": 9,
+    "last_successful_sync": "2026-11-09T01:39:24.296858+00:00",
+    "total_series": 8,
     "source_authority": "European Central Bank (ECB Data Portal)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.5",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -144,50 +144,6 @@
         }
       ]
     },
-    "EXR/D.JPY.EUR.SP00.A": {
-      "series_ref": "EXR/D.JPY.EUR.SP00.A",
-      "title": "Euro / Japanese Yen Spot Exchange Rate",
-      "frequency": "Daily",
-      "n_obs_per_yr": 260,
-      "units": "JPY per 1 EUR",
-      "category": "Foreign Exchange",
-      "source": "European Central Bank (ECB Data Portal)",
-      "last_date": "2026-11-06",
-      "current_value": 176.77,
-      "previous_value": 177.85,
-      "year_ago_value": 178.37,
-      "transformations": {
-        "change": -1.08,
-        "change_from_year_ago": -1.6,
-        "percent_change": -0.6073,
-        "percent_change_from_year_ago": -0.897,
-        "compounded_annual_rate_of_change": -79.478,
-        "continuously_compounded_rate_of_change": -0.6091,
-        "continuously_compounded_annual_rate_of_change": -158.3672
-      },
-      "recent_observations": [
-        {
-          "date": "2026-11-02",
-          "value": 177.1
-        },
-        {
-          "date": "2026-11-03",
-          "value": 176.95
-        },
-        {
-          "date": "2026-11-04",
-          "value": 178.3
-        },
-        {
-          "date": "2026-11-05",
-          "value": 177.85
-        },
-        {
-          "date": "2026-11-06",
-          "value": 176.77
-        }
-      ]
-    },
     "ILM/W.U2.C.T000000.Z5.Z01": {
       "series_ref": "ILM/W.U2.C.T000000.Z5.Z01",
       "title": "Eurosystem Consolidated Balance Sheet - Total Assets",
@@ -320,50 +276,6 @@
         }
       ]
     },
-    "FM/B.U2.EUR.4F.KR.MLFR.LEV": {
-      "series_ref": "FM/B.U2.EUR.4F.KR.MLFR.LEV",
-      "title": "ECB Marginal Lending Facility Rate (MLFR)",
-      "frequency": "Monthly",
-      "n_obs_per_yr": 12,
-      "units": "Percent per Annum",
-      "category": "Policy Benchmark Rate",
-      "source": "European Central Bank (ECB Data Portal)",
-      "last_date": "2026-09-16",
-      "current_value": 2.9,
-      "previous_value": 2.65,
-      "year_ago_value": 4.25,
-      "transformations": {
-        "change": 0.25,
-        "change_from_year_ago": -1.35,
-        "percent_change": 9.434,
-        "percent_change_from_year_ago": -31.7647,
-        "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 9.0151,
-        "continuously_compounded_annual_rate_of_change": null
-      },
-      "recent_observations": [
-        {
-          "date": "2025-03-12",
-          "value": 2.9
-        },
-        {
-          "date": "2025-04-23",
-          "value": 2.65
-        },
-        {
-          "date": "2025-06-11",
-          "value": 2.4
-        },
-        {
-          "date": "2026-06-17",
-          "value": 2.65
-        },
-        {
-          "date": "2026-09-16",
-          "value": 2.9
-        }
-      ]
-    },
     "ICP/M.U2.N.000000.4.ANR": {
       "series_ref": "ICP/M.U2.N.000000.4.ANR",
       "title": "Euro Area HICP Headline Inflation Rate",
@@ -405,6 +317,50 @@
         {
           "date": "2025-12",
           "value": 1.9
+        }
+      ]
+    },
+    "ICP/M.U2.N.XEF000.4.ANR": {
+      "series_ref": "ICP/M.U2.N.XEF000.4.ANR",
+      "title": "Euro Area Core HICP Inflation Rate (Excl. Energy & Food)",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Annual Rate of Change (%)",
+      "category": "Consumer Prices",
+      "source": "European Central Bank (ECB Data Portal)",
+      "last_date": "2025-12",
+      "current_value": 2.3,
+      "previous_value": 2.4,
+      "year_ago_value": 2.7,
+      "transformations": {
+        "change": -0.1,
+        "change_from_year_ago": -0.4,
+        "percent_change": -4.1667,
+        "percent_change_from_year_ago": -14.8148,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": -4.256,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2025-08",
+          "value": 2.3
+        },
+        {
+          "date": "2025-09",
+          "value": 2.4
+        },
+        {
+          "date": "2025-10",
+          "value": 2.4
+        },
+        {
+          "date": "2025-11",
+          "value": 2.4
+        },
+        {
+          "date": "2025-12",
+          "value": 2.3
         }
       ]
     }
