@@ -773,6 +773,91 @@ def calc_gold_oil_ratio(gold_price, oil_price) -> Optional[Dict[str, Any]]:
         return None
 
 
+# --- Model 23: Okun Gap (Growth-Employment Divergence) ---
+def calc_okun_labor_gap(actual_unrate_delta, real_gdp_yoy) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (actual_unrate_delta, real_gdp_yoy)):
+        return None
+    try:
+        actual_delta = float(actual_unrate_delta)
+        gdp_yoy = float(real_gdp_yoy)
+        if not (math.isfinite(actual_delta) and math.isfinite(gdp_yoy)):
+            return None
+
+        expected_delta = -0.5 * (gdp_yoy - 2.0)
+        gap = round(actual_delta - expected_delta, 2)
+
+        if gap > 0.50:
+            status = "JOBLESS_GROWTH_WARNING"
+        elif gap < -0.50:
+            status = "LABOR_HOARDING"
+        else:
+            status = "BALANCED_OKUN_EQUILIBRIUM"
+
+        return {
+            "model_id": "MODEL_23",
+            "model_name": "Okun Gap (Growth-Employment Divergence)",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23",
+            "primary_value": gap,
+            "unit": "Percentage Points (ppt)",
+            "status": status,
+            "inputs": {
+                "actual_unrate_delta_yoy": round(actual_delta, 2),
+                "real_gdp_yoy_pct": round(gdp_yoy, 2)
+            },
+            "metrics": {
+                "okun_gap_ppt": gap,
+                "expected_unrate_delta": round(expected_delta, 2),
+                "actual_unrate_delta": round(actual_delta, 2),
+                "real_gdp_growth_yoy": round(gdp_yoy, 2)
+            },
+            "interpretation": "Evaluates the historical elasticity between real GDP growth and changes in unemployment to detect jobless growth or labor hoarding."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
+# --- Model 23.1: Labor Market Dual-Track Dynamics ---
+def calc_labor_dual_track_matrix(payems_mom, unrate_delta, civpart_delta) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (payems_mom, unrate_delta, civpart_delta)):
+        return None
+    try:
+        p_mom = float(payems_mom)
+        u_diff = round(float(unrate_delta), 2)
+        c_diff = round(float(civpart_delta), 2)
+
+        if not (math.isfinite(p_mom) and math.isfinite(u_diff) and math.isfinite(c_diff)):
+            return None
+
+        if p_mom > 150.0 and u_diff >= 0.0 and c_diff > 0.0:
+            status = "BENIGN_SUPPLY_EXPANSION"
+        elif p_mom < 100.0 and u_diff > 0.10:
+            status = "RECESSION_EARLY_WARNING"
+        else:
+            status = "BALANCED_LABOR_MARKET"
+
+        return {
+            "model_id": "MODEL_23.1",
+            "model_name": "Labor Market Dual-Track Dynamics",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.1",
+            "primary_value": round(p_mom, 2),
+            "unit": "Thousands (k)",
+            "status": status,
+            "inputs": {
+                "payems_change_mom_k": round(p_mom, 2),
+                "unrate_change_mom_ppt": u_diff,
+                "civpart_change_mom_ppt": c_diff
+            },
+            "metrics": {
+                "payems_change_k": round(p_mom, 2),
+                "unrate_change_ppt": u_diff,
+                "civpart_change_ppt": c_diff
+            },
+            "interpretation": "Cross-evaluates payroll gains against unemployment rate and participation rate shifts to determine whether employment growth is organically absorbing new entrants or masking structural deterioration."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
 def calc_early_employment_crack(ic4wsa_yoy, unrate_delta) -> Optional[Dict[str, Any]]:
     if any(v is None or isinstance(v, bool) for v in (ic4wsa_yoy, unrate_delta)):
         return None
@@ -1026,6 +1111,21 @@ def main():
     m_gold_oil = calc_gold_oil_ratio(gold_price, wti)
     if m_gold_oil:
         models_calculated.append(m_gold_oil)
+
+    # Model 23: Okun Gap (Growth-Employment Divergence)
+    gdp_yoy = series.get("GDPC1", {}).get("transformations", {}).get("percent_change_from_year_ago")
+    unrate_delta_yoy = round(unrate_curr - unrate_yr, 2) if (unrate_curr is not None and unrate_yr is not None) else None
+    m_okun = calc_okun_labor_gap(unrate_delta_yoy, gdp_yoy)
+    if m_okun:
+        models_calculated.append(m_okun)
+
+    # Model 23.1: Labor Market Dual-Track Dynamics
+    payems_mom = series.get("PAYEMS", {}).get("transformations", {}).get("change")
+    unrate_mom = series.get("UNRATE", {}).get("transformations", {}).get("change")
+    civpart_mom = series.get("CIVPART", {}).get("transformations", {}).get("change")
+    m_dual_track = calc_labor_dual_track_matrix(payems_mom, unrate_mom, civpart_mom)
+    if m_dual_track:
+        models_calculated.append(m_dual_track)
 
     # Model 23.6: Early Employment Crack Signal (FRED IC4WSA x UNRATE)
     ic4wsa_yoy = series.get("IC4WSA", {}).get("transformations", {}).get("percent_change_from_year_ago")

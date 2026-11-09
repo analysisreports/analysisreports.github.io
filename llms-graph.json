@@ -1404,7 +1404,7 @@
       "description": "Quantifies domestic legislative gridlock driving unilateral trade tariffs and external economic friction."
     },
     {
-      "id": "MODEL_25.16_JPY_CARRY_CRACK",
+      "id": "MODEL_25.16",
       "label": "Yen Carry Trade Dissolution & Stress Gauge",
       "category": "MODEL",
       "type": "Macroeconomic Friction Model",
@@ -1461,7 +1461,7 @@
       }
     },
     {
-      "id": "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
+      "id": "MODEL_25.18",
       "label": "Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact)",
       "category": "MODEL",
       "type": "Geopolitical Alliance Transmission Model",
@@ -1645,6 +1645,46 @@
           "EARLY_EMPLOYMENT_FRACTURE",
           "LABOR_HOARDING_CRACK_WARNING",
           "LABOR_MARKET_ALIGNED"
+        ]
+      }
+    },
+    {
+      "id": "IND_GDPC1",
+      "label": "Real Gross Domestic Product",
+      "category": "INDICATOR",
+      "source": "BEA / FRED"
+    },
+    {
+      "id": "IND_CIVPART",
+      "label": "Civilian Labor Force Participation Rate",
+      "category": "INDICATOR",
+      "source": "BLS / FRED"
+    },
+    {
+      "id": "MODEL_23",
+      "label": "Okun Gap (Growth-Employment Divergence)",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_okun_labor_gap",
+        "formula": "Okun_Gap = Actual_Unemployment_Delta - Expected_Unemployment_Delta",
+        "status_enums": [
+          "JOBLESS_GROWTH_WARNING",
+          "BALANCED_OKUN_EQUILIBRIUM",
+          "LABOR_HOARDING"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_23.1",
+      "label": "Labor Market Dual-Track Dynamics",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_labor_dual_track_matrix",
+        "formula": "labor_dual_track_matrix(PAYEMS_MoM, UNRATE_Delta, CIVPART_Delta)",
+        "status_enums": [
+          "BENIGN_SUPPLY_EXPANSION",
+          "RECESSION_EARLY_WARNING",
+          "BALANCED_LABOR_MARKET"
         ]
       }
     }
@@ -2492,43 +2532,43 @@
     },
     {
       "source": "IND_DFF",
-      "target": "MODEL_25.16_JPY_CARRY_CRACK",
+      "target": "MODEL_25.16",
       "type": "INGESTS_SERIES",
       "role": "US Benchmark Rate"
     },
     {
       "source": "IND_JP_FPOLM_PA",
-      "target": "MODEL_25.16_JPY_CARRY_CRACK",
+      "target": "MODEL_25.16",
       "type": "INGESTS_SERIES",
       "role": "Japan Policy Benchmark Rate"
     },
     {
       "source": "IND_DEXJPUS",
-      "target": "MODEL_25.16_JPY_CARRY_CRACK",
+      "target": "MODEL_25.16",
       "type": "INGESTS_SERIES",
       "role": "Currency Momentum Pair"
     },
     {
       "source": "INST_BOJ_JP",
-      "target": "MODEL_25.16_JPY_CARRY_CRACK",
+      "target": "MODEL_25.16",
       "type": "MONETARY_AUTHORITY",
       "role": "Funding Currency Regulator"
     },
     {
       "source": "IND_SAUPZPIOILBEGUSD",
-      "target": "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
+      "target": "MODEL_25.18",
       "type": "INGESTS_SERIES",
       "role": "Hydrocarbon Fiscal Breakeven Threshold"
     },
     {
       "source": "IND_DCOILBRENTEU",
-      "target": "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
+      "target": "MODEL_25.18",
       "type": "INGESTS_SERIES",
       "role": "Brent Spot Benchmark"
     },
     {
       "source": "IND_SOFR",
-      "target": "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
+      "target": "MODEL_25.18",
       "type": "INGESTS_SERIES",
       "role": "Global Dollar Liquidity Benchmark"
     },
@@ -2627,6 +2667,36 @@
       "target": "IND_GB_FPOLM_PA",
       "type": "SETS_POLICY_RATE",
       "role": "Official Bank Rate Setting"
+    },
+    {
+      "source": "IND_GDPC1",
+      "target": "MODEL_23",
+      "type": "INGESTS_SERIES",
+      "role": "Real GDP YoY Growth"
+    },
+    {
+      "source": "IND_UNRATE",
+      "target": "MODEL_23",
+      "type": "INGESTS_SERIES",
+      "role": "Civilian Unemployment Rate YoY Diff"
+    },
+    {
+      "source": "IND_PAYEMS",
+      "target": "MODEL_23.1",
+      "type": "INGESTS_SERIES",
+      "role": "Total Nonfarm Payrolls MoM Change"
+    },
+    {
+      "source": "IND_UNRATE",
+      "target": "MODEL_23.1",
+      "type": "INGESTS_SERIES",
+      "role": "Civilian Unemployment Rate MoM Diff"
+    },
+    {
+      "source": "IND_CIVPART",
+      "target": "MODEL_23.1",
+      "type": "INGESTS_SERIES",
+      "role": "Labor Force Participation Rate MoM Diff"
     }
   ]
 }

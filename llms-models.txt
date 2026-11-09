@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-09 19:44 UTC
+> **Last Calibrated Sync:** 2026-11-09 20:54 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -23,6 +23,8 @@
 | **MODEL_16** | CBOE Volatility & Market Fear Regime | **28.18** | Points | `ELEVATED_STRESS` | 30-day forward S&P 500 implied volatility fear gauge an... |
 | **MODEL_18** | Okun Misery Index | **8.12** | Index Points | `MODERATE` | Measures household welfare loss and stagflationary stre... |
 | **MODEL_21** | Gold to Oil Crisis & Recession Ratio | **41.2** | Barrels per Ounce | `MACRO_CRISIS_RECESSION` | Calculates ounces of gold per barrel of crude oil to cl... |
+| **MODEL_23** | Okun Gap (Growth-Employment Divergence) | **-0.27** | Percentage Points (ppt) | `BALANCED_OKUN_EQUILIBRIUM` | Evaluates the historical elasticity between real GDP gr... |
+| **MODEL_23.1** | Labor Market Dual-Track Dynamics | **165.0** | Thousands (k) | `BALANCED_LABOR_MARKET` | Cross-evaluates payroll gains against unemployment rate... |
 | **MODEL_23.6** | Early Employment Crack Signal | **-13.64** | Index Points | `LABOR_MARKET_ALIGNED` | Identifies early labor cracks by comparing weekly joble... |
 | **MODEL_23.7** | Inventory to Sales Glut Ratio | **1.33** | Ratio | `BALANCED_SUPPLY_CHAIN` | Measures total business inventories relative to monthly... |
 | **MODEL_25.12** | Brent - WTI Seaborne Risk Spread | **7.39** | USD | `NORMAL_TRANSATLANTIC_ARBITRAGE` | Seaborne geopolitical friction and maritime risk spread... |
@@ -97,6 +99,20 @@
 - **Inputs Evaluated:** `{"gold_price_usd_oz": 4105.0, "oil_price_usd_bbl": 99.64}`
 - **Component Weights:** `{"ratio": 41.2, "historical_equilibrium_band": "12.0 - 25.0"}`
 - **Economic Synthesis:** Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks.
+
+#### [MODEL_23] Okun Gap (Growth-Employment Divergence)
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23
+- **Evaluated Status:** `BALANCED_OKUN_EQUILIBRIUM` (Primary Value: -0.27 Percentage Points (ppt))
+- **Inputs Evaluated:** `{"actual_unrate_delta_yoy": -0.3, "real_gdp_yoy_pct": 2.07}`
+- **Secondary Metrics:** `{"okun_gap_ppt": -0.27, "expected_unrate_delta": -0.03, "actual_unrate_delta": -0.3, "real_gdp_growth_yoy": 2.07}`
+- **Economic Synthesis:** Evaluates the historical elasticity between real GDP growth and changes in unemployment to detect jobless growth or labor hoarding.
+
+#### [MODEL_23.1] Labor Market Dual-Track Dynamics
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23.1
+- **Evaluated Status:** `BALANCED_LABOR_MARKET` (Primary Value: 165.0 Thousands (k))
+- **Inputs Evaluated:** `{"payems_change_mom_k": 165.0, "unrate_change_mom_ppt": -0.1, "civpart_change_mom_ppt": 0.1}`
+- **Secondary Metrics:** `{"payems_change_k": 165.0, "unrate_change_ppt": -0.1, "civpart_change_ppt": 0.1}`
+- **Economic Synthesis:** Cross-evaluates payroll gains against unemployment rate and participation rate shifts to determine whether employment growth is organically absorbing new entrants or masking structural deterioration.
 
 #### [MODEL_23.6] Early Employment Crack Signal
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23.6

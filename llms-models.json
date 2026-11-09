@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T19:44:50.679725+00:00",
+    "last_successful_sync": "2026-11-09T20:54:00.589414+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 20
+    "total_models_active": 22
   },
   "models": [
     {
@@ -160,6 +160,44 @@
         "historical_equilibrium_band": "12.0 - 25.0"
       },
       "interpretation": "Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks."
+    },
+    {
+      "model_id": "MODEL_23",
+      "model_name": "Okun Gap (Growth-Employment Divergence)",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23",
+      "primary_value": -0.27,
+      "unit": "Percentage Points (ppt)",
+      "status": "BALANCED_OKUN_EQUILIBRIUM",
+      "inputs": {
+        "actual_unrate_delta_yoy": -0.3,
+        "real_gdp_yoy_pct": 2.07
+      },
+      "metrics": {
+        "okun_gap_ppt": -0.27,
+        "expected_unrate_delta": -0.03,
+        "actual_unrate_delta": -0.3,
+        "real_gdp_growth_yoy": 2.07
+      },
+      "interpretation": "Evaluates the historical elasticity between real GDP growth and changes in unemployment to detect jobless growth or labor hoarding."
+    },
+    {
+      "model_id": "MODEL_23.1",
+      "model_name": "Labor Market Dual-Track Dynamics",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.1",
+      "primary_value": 165.0,
+      "unit": "Thousands (k)",
+      "status": "BALANCED_LABOR_MARKET",
+      "inputs": {
+        "payems_change_mom_k": 165.0,
+        "unrate_change_mom_ppt": -0.1,
+        "civpart_change_mom_ppt": 0.1
+      },
+      "metrics": {
+        "payems_change_k": 165.0,
+        "unrate_change_ppt": -0.1,
+        "civpart_change_ppt": 0.1
+      },
+      "interpretation": "Cross-evaluates payroll gains against unemployment rate and participation rate shifts to determine whether employment growth is organically absorbing new entrants or masking structural deterioration."
     },
     {
       "model_id": "MODEL_23.6",

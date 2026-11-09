@@ -34,11 +34,17 @@ Polarity Spectrum:
 - -1.00 : Active Kinetic Warfare / Total Diplomatic Breakdown
 
 Regime States (Discrete Mapping):
-- ALLIANCE            : Structural alignment, intelligence sharing, collective defense.
-- DETENTE             : Formal treaties de-escalating structural conflict.
-- DIPLOMATIC_CONTACT  : Tactical communication without shifting structural baseline.
-- PROXY_WAR           : Non-state or asymmetric conflict through third-party theaters.
-- KINETIC_WAR         : Direct, state-on-state military engagements.
+- ALLIANCE                  : Structural alignment, intelligence sharing, collective defense.
+- DETENTE                   : Formal treaties de-escalating structural conflict.
+- DIPLOMATIC_CONTACT        : Tactical communication without shifting structural baseline.
+- PROXY_WAR                 : Non-state or asymmetric conflict through third-party theaters.
+- KINETIC_WAR               : Direct, state-on-state military engagements.
+- BALANCED_OKUN_EQUILIBRIUM : Okun growth and employment elasticity in historical equilibrium.
+- JOBLESS_GROWTH_WARNING    : Unemployment rising despite real GDP growth expansion.
+- LABOR_HOARDING            : Firms retaining labor despite sub-trend economic growth.
+- BALANCED_LABOR_MARKET     : Balanced job creation and civilian participation dynamics.
+- BENIGN_SUPPLY_EXPANSION   : Rising participation absorbing labor with steady unemployment.
+- RECESSION_EARLY_WARNING   : Job creation below demographic replacement alongside rising unemployment.
 
 ---
 
