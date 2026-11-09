@@ -1,15 +1,9 @@
-name: FRED and ECB Series Daily and On-Push Sync
+name: FRED and ECB Series Daily Sync
 
 on:
   schedule:
-    # Her gün piyasalar kapandıktan sonra gece 00:00 UTC'de otomatik çalışır
+    # Her gün piyasalar kapandıktan sonra gece 00:00 UTC'de otomatik çalışır (Günde 1 kez)
     - cron: '0 0 * * *'
-  push:
-    # llms-fred-series.txt veya scriptler değiştiğinde tetiklenir
-    paths:
-      - 'llms-fred-series.txt'
-      - 'llms-ecb-series.txt'
-      - 'scripts/**'
   workflow_dispatch:
     # Elle çalıştırma butonu
 
