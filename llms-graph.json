@@ -800,6 +800,33 @@
                                      }
                   },
                   {
+                      "id":  "MODEL_2",
+                      "label":  "Real Policy Rate & Restrictiveness",
+                      "category":  "MODEL",
+                      "attributes":  {
+                                         "function":  "real_policy_rate",
+                                         "formula":  "Real_Policy_Rate = DFF - CPI_YoY",
+                                         "status_enums":  [
+                                                              "RESTRICTIVE",
+                                                              "NEUTRAL",
+                                                              "ACCOMMODATIVE"
+                                                          ]
+                                     }
+                  },
+                  {
+                      "id":  "MODEL_4",
+                      "label":  "Front-End T-Bill Slope & Liquidity Spread",
+                      "category":  "MODEL",
+                      "attributes":  {
+                                         "function":  "front_end_liquidity_spread",
+                                         "formula":  "Front_End_Slope_bps = (DGS3MO - DGS1MO) * 100",
+                                         "status_enums":  [
+                                                              "NORMAL_SLOPE",
+                                                              "INVERTED_FRONT_END"
+                                                          ]
+                                     }
+                  },
+                  {
                       "id":  "MODEL_5",
                       "label":  "Net Fed Liquidity Index",
                       "category":  "MODEL",
@@ -1894,6 +1921,30 @@
                       "target":  "IND_PWHEAMTUSDM",
                       "type":  "TRIGGERS_INDICATOR",
                       "impact":  "BLACK_SEA_AGRO_EXPORT_BOTTLENECK"
+                  },
+                  {
+                      "source":  "IND_DFF",
+                      "target":  "MODEL_2",
+                      "type":  "INGESTS_SERIES",
+                      "role":  "Nominal Policy Rate Benchmark"
+                  },
+                  {
+                      "source":  "IND_CPIAUCSL",
+                      "target":  "MODEL_2",
+                      "type":  "INGESTS_SERIES",
+                      "role":  "Headline Inflation Deflator"
+                  },
+                  {
+                      "source":  "IND_DGS3MO",
+                      "target":  "MODEL_4",
+                      "type":  "INGESTS_SERIES",
+                      "role":  "3-Month T-Bill Yield Benchmark"
+                  },
+                  {
+                      "source":  "IND_DGS1MO",
+                      "target":  "MODEL_4",
+                      "type":  "INGESTS_SERIES",
+                      "role":  "1-Month T-Bill Yield Benchmark"
                   },
                   {
                       "source":  "IND_WALCL",

@@ -9,13 +9,15 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-09 14:59 UTC
+> **Last Calibrated Sync:** 2026-11-09 15:53 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
 | :--- | :--- | :---: | :---: | :--- | :--- |
 | **MODEL_1** | Fed Policy Stance & Market Pressure Gauge | **15.0** | Basis Points (bps) | `HAWKISH_MARKET_PRESSURE` | Spread between 1-Month Treasury yield and Fed Funds Rat... |
+| **MODEL_2** | Real Policy Rate & Restrictiveness | **-0.14** | Percent (%) | `ACCOMMODATIVE` | Measures the real stance of effective borrowing costs a... |
 | **MODEL_3** | Official Sahm Rule Recession Indicator | **0.0** | Percentage Points | `NORMAL_LABOR_MARKET` | Real-time recession detection triggered when 3-month un... |
+| **MODEL_4** | Front-End T-Bill Slope & Liquidity Spread | **14.0** | Basis Points (bps) | `NORMAL_SLOPE` | Tracks the slope between 3-month and 1-month Treasury b... |
 | **MODEL_5** | Net Fed Liquidity Index | **5.791** | Trillion USD | `NEUTRAL_LIQUIDITY_EQUILIBRIUM` | Unencumbered commercial bank liquidity: WALCL - (TGA + ... |
 | **MODEL_6** | Treasury Yield Curve Slope (10Y - 2Y) | **35.0** | Basis Points (bps) | `NORMAL_CURVE_EXPANSION` | Leading cyclical economic barometer. Inversions (bps < ... |
 | **MODEL_16** | CBOE Volatility & Market Fear Regime | **28.18** | Points | `ELEVATED_STRESS` | 30-day forward S&P 500 implied volatility fear gauge an... |
@@ -37,11 +39,25 @@
 - **Secondary Metrics:** `{"spread_basis_points": 15.0, "dgs1mo_yield": 4.03, "fed_funds_rate": 3.88}`
 - **Economic Synthesis:** Spread between 1-Month Treasury yield and Fed Funds Rate. Measures market-implied rate cut pressure (<= -15 bps) or liquidity-driven hawkish stress (> +4 bps).
 
+#### [MODEL_2] Real Policy Rate & Restrictiveness
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#2
+- **Evaluated Status:** `ACCOMMODATIVE` (Primary Value: -0.14 Percent (%))
+- **Inputs Evaluated:** `{"fed_policy_rate_dff": 3.88, "headline_cpi_yoy_pct": 4.02}`
+- **Secondary Metrics:** `{"real_interest_rate_pct": -0.14, "dff_nominal_rate": 3.88, "inflation_cpi_yoy": 4.02}`
+- **Economic Synthesis:** Measures the real stance of effective borrowing costs adjusted for headline inflation. Values > 1.5% reflect restrictive policy, < 0.0% accommodative.
+
 #### [MODEL_3] Official Sahm Rule Recession Indicator
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#3
 - **Evaluated Status:** `NORMAL_LABOR_MARKET` (Primary Value: 0.0 Percentage Points)
 - **Inputs Evaluated:** `{"sahm_realtime_val": 0.0}`
 - **Economic Synthesis:** Real-time recession detection triggered when 3-month unemployment average rises >= 0.50 ppt above prior 12-month low.
+
+#### [MODEL_4] Front-End T-Bill Slope & Liquidity Spread
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#4
+- **Evaluated Status:** `NORMAL_SLOPE` (Primary Value: 14.0 Basis Points (bps))
+- **Inputs Evaluated:** `{"treasury_3m_yield_dgs3mo": 4.17, "treasury_1m_yield_dgs1mo": 4.03}`
+- **Secondary Metrics:** `{"spread_basis_points": 14.0, "dgs3mo_yield": 4.17, "dgs1mo_yield": 4.03}`
+- **Economic Synthesis:** Tracks the slope between 3-month and 1-month Treasury bills. Negative values indicate acute front-end cash collateral squeeze and inverted money market slope.
 
 #### [MODEL_5] Net Fed Liquidity Index
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#5

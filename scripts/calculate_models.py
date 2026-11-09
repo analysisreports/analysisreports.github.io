@@ -79,6 +79,52 @@ def calc_fed_policy_stance(dgs1mo_val, fed_rate_val):
 # 2. MODEL IMPLEMENTATIONS (STRICTLY FROM llms-formulas.txt)
 # ==============================================================================
 
+# --- Model 2: Reel Politika Faizi (Real Policy Rate & Restrictiveness) ---
+def calc_real_policy_rate(dff_val, cpi_yoy_val):
+    if any(v is None or isinstance(v, bool) for v in (dff_val, cpi_yoy_val)):
+        return None
+    try:
+        dff = float(dff_val)
+        cpi_yoy = float(cpi_yoy_val)
+        if not (math.isfinite(dff) and math.isfinite(cpi_yoy)):
+            return None
+        if dff < 0.0:
+            return None
+
+        raw_rate = dff - cpi_yoy
+        if not math.isfinite(raw_rate):
+            return None
+        rate = round(raw_rate, 2)
+
+        if rate > 1.50:
+            status = "RESTRICTIVE"
+        elif rate < 0.0:
+            status = "ACCOMMODATIVE"
+        else:
+            status = "NEUTRAL"
+
+        return {
+            "model_id": "MODEL_2",
+            "model_name": "Real Policy Rate & Restrictiveness",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#2",
+            "primary_value": rate,
+            "unit": "Percent (%)",
+            "status": status,
+            "inputs": {
+                "fed_policy_rate_dff": round(dff, 2),
+                "headline_cpi_yoy_pct": round(cpi_yoy, 2)
+            },
+            "metrics": {
+                "real_interest_rate_pct": rate,
+                "dff_nominal_rate": round(dff, 2),
+                "inflation_cpi_yoy": round(cpi_yoy, 2)
+            },
+            "interpretation": "Measures the real stance of effective borrowing costs adjusted for headline inflation. Values > 1.5% reflect restrictive policy, < 0.0% accommodative."
+        }
+    except (TypeError, ValueError, OverflowError):
+        return None
+
+
 # --- Model 3: Sahm Resesyon Kuralı (Sahm Rule Recession Indicator) ---
 def calc_sahm_rule(sahm_val):
     if sahm_val is None or isinstance(sahm_val, bool):
@@ -107,6 +153,50 @@ def calc_sahm_rule(sahm_val):
             "interpretation": "Real-time recession detection triggered when 3-month unemployment average rises >= 0.50 ppt above prior 12-month low."
         }
     except (TypeError, ValueError):
+        return None
+
+
+# --- Model 4: Ön Uç Hazine Bonosu Eğimi ve Likidite Makası (Front-End T-Bill Slope) ---
+def calc_front_end_t_bill_slope(dgs3mo_val, dgs1mo_val):
+    if any(v is None or isinstance(v, bool) for v in (dgs3mo_val, dgs1mo_val)):
+        return None
+    try:
+        dgs3mo = float(dgs3mo_val)
+        dgs1mo = float(dgs1mo_val)
+        if not (math.isfinite(dgs3mo) and math.isfinite(dgs1mo)):
+            return None
+        if dgs3mo < 0.0 or dgs1mo < 0.0:
+            return None
+
+        raw_spread = (dgs3mo - dgs1mo) * 100.0
+        if not math.isfinite(raw_spread):
+            return None
+        spread = round(raw_spread, 2)
+
+        if spread < 0.0:
+            status = "INVERTED_FRONT_END"
+        else:
+            status = "NORMAL_SLOPE"
+
+        return {
+            "model_id": "MODEL_4",
+            "model_name": "Front-End T-Bill Slope & Liquidity Spread",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#4",
+            "primary_value": spread,
+            "unit": "Basis Points (bps)",
+            "status": status,
+            "inputs": {
+                "treasury_3m_yield_dgs3mo": round(dgs3mo, 2),
+                "treasury_1m_yield_dgs1mo": round(dgs1mo, 2)
+            },
+            "metrics": {
+                "spread_basis_points": spread,
+                "dgs3mo_yield": round(dgs3mo, 2),
+                "dgs1mo_yield": round(dgs1mo, 2)
+            },
+            "interpretation": "Tracks the slope between 3-month and 1-month Treasury bills. Negative values indicate acute front-end cash collateral squeeze and inverted money market slope."
+        }
+    except (TypeError, ValueError, OverflowError):
         return None
 
 
@@ -587,9 +677,13 @@ def main():
 
     # Extract Series Inputs
     dgs1mo = series.get("DGS1MO", {}).get("current_value")
+    dgs3mo = series.get("DGS3MO", {}).get("current_value")
+    dff_curr = series.get("DFF", {}).get("current_value")
+    cpi_yoy = series.get("CPIAUCSL", {}).get("transformations", {}).get("percent_change_from_year_ago")
+
     fed_rate = series.get("DFEDTARU", {}).get("current_value")
     if fed_rate is None:
-        fed_rate = series.get("DFF", {}).get("current_value")
+        fed_rate = dff_curr
 
     brent = series.get("DCOILBRENTEU", {}).get("current_value")
     wti = series.get("DCOILWTICO", {}).get("current_value")
@@ -618,10 +712,20 @@ def main():
     if m_fed_stance:
         models_calculated.append(m_fed_stance)
 
+    # Model 2: Real Policy Rate & Restrictiveness
+    m_real_rate = calc_real_policy_rate(dff_curr, cpi_yoy)
+    if m_real_rate:
+        models_calculated.append(m_real_rate)
+
     # Model 3: Sahm Rule
     m_sahm = calc_sahm_rule(sahm_val)
     if m_sahm:
         models_calculated.append(m_sahm)
+
+    # Model 4: Front-End T-Bill Slope & Liquidity Spread
+    m_t_bill = calc_front_end_t_bill_slope(dgs3mo, dgs1mo)
+    if m_t_bill:
+        models_calculated.append(m_t_bill)
 
     # Model 5: Net Fed Liquidity
     m_liq = calc_net_fed_liquidity(walcl, tga, rrp)

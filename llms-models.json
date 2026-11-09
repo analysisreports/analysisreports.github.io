@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T14:59:31.434197+00:00",
+    "last_successful_sync": "2026-11-09T15:53:08.226966+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 12
+    "total_models_active": 14
   },
   "models": [
     {
@@ -36,6 +36,24 @@
       "interpretation": "Spread between 1-Month Treasury yield and Fed Funds Rate. Measures market-implied rate cut pressure (<= -15 bps) or liquidity-driven hawkish stress (> +4 bps)."
     },
     {
+      "model_id": "MODEL_2",
+      "model_name": "Real Policy Rate & Restrictiveness",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#2",
+      "primary_value": -0.14,
+      "unit": "Percent (%)",
+      "status": "ACCOMMODATIVE",
+      "inputs": {
+        "fed_policy_rate_dff": 3.88,
+        "headline_cpi_yoy_pct": 4.02
+      },
+      "metrics": {
+        "real_interest_rate_pct": -0.14,
+        "dff_nominal_rate": 3.88,
+        "inflation_cpi_yoy": 4.02
+      },
+      "interpretation": "Measures the real stance of effective borrowing costs adjusted for headline inflation. Values > 1.5% reflect restrictive policy, < 0.0% accommodative."
+    },
+    {
       "model_id": "MODEL_3",
       "model_name": "Official Sahm Rule Recession Indicator",
       "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#3",
@@ -46,6 +64,24 @@
         "sahm_realtime_val": 0.0
       },
       "interpretation": "Real-time recession detection triggered when 3-month unemployment average rises >= 0.50 ppt above prior 12-month low."
+    },
+    {
+      "model_id": "MODEL_4",
+      "model_name": "Front-End T-Bill Slope & Liquidity Spread",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#4",
+      "primary_value": 14.0,
+      "unit": "Basis Points (bps)",
+      "status": "NORMAL_SLOPE",
+      "inputs": {
+        "treasury_3m_yield_dgs3mo": 4.17,
+        "treasury_1m_yield_dgs1mo": 4.03
+      },
+      "metrics": {
+        "spread_basis_points": 14.0,
+        "dgs3mo_yield": 4.17,
+        "dgs1mo_yield": 4.03
+      },
+      "interpretation": "Tracks the slope between 3-month and 1-month Treasury bills. Negative values indicate acute front-end cash collateral squeeze and inverted money market slope."
     },
     {
       "model_id": "MODEL_5",
