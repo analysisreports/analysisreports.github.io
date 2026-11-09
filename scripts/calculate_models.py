@@ -27,95 +27,58 @@ import urllib.request
 from typing import Dict, Any, Optional
 
 # ==============================================================================
-# 1. LIVE DATA INGESTION UTILITIES
+# 1. MODEL 1: FED POLICY STANCE & MARKET PRESSURE GAUGE
 # ==============================================================================
 
-def fetch_bis_policy_rates() -> Optional[Dict[str, Dict[str, Any]]]:
-    """Fetches official central bank policy rates directly from the Bank for International Settlements (BIS)."""
-    url = "https://stats.bis.org/api/v1/data/WS_CBPOL/D.XM+JP+GB+CN+US?lastNObservations=1&format=csv"
-    req = urllib.request.Request(url, headers={"User-Agent": "AnalysisReports-GlobalMacro-Engine/1.0"})
-    rates = {}
-    name_map = {
-        "US": ("GEO_US", "INST_FED_US", "United States (Federal Reserve)"),
-        "XM": ("GEO_DE", "INST_ECB_EZ", "Eurozone (European Central Bank)"),
-        "JP": ("GEO_JP", "INST_BOJ_JP", "Japan (Bank of Japan)"),
-        "GB": ("GEO_GB", "INST_BOE_GB", "United Kingdom (Bank of England)"),
-        "CN": ("GEO_CN", "INST_PBOC_CN", "China (People's Bank of China)")
-    }
+def calc_fed_policy_stance(dgs1mo_val, fed_rate_val):
+    if any(v is None or isinstance(v, bool) for v in (dgs1mo_val, fed_rate_val)):
+        return None
     try:
-        with urllib.request.urlopen(req, timeout=12) as resp:
-            text = resp.read().decode("utf-8")
-        reader = csv.DictReader(io.StringIO(text))
-        for row in reader:
-            area = row.get("REF_AREA")
-            if area in name_map:
-                geo_id, inst_id, label = name_map[area]
-                rates[area] = {
-                    "entity_id": geo_id,
-                    "institution_id": inst_id,
-                    "authority": label,
-                    "policy_rate": float(row["OBS_VALUE"]),
-                    "last_decision_date": row["TIME_PERIOD"]
-                }
-        return rates
-    except Exception as e:
-        print(f"Warning: Could not fetch live BIS policy rates: {e}")
+        dgs1mo = float(dgs1mo_val)
+        fed_rate = float(fed_rate_val)
+        if not (math.isfinite(dgs1mo) and math.isfinite(fed_rate)):
+            return None
+        if dgs1mo < 0.0 or fed_rate < 0.0:
+            return None
+
+        raw_spread = (dgs1mo - fed_rate) * 100.0
+        if not math.isfinite(raw_spread):
+            return None
+        spread = round(raw_spread, 2)
+
+        if spread > 4.0:
+            status = "HAWKISH_MARKET_PRESSURE"
+        elif spread <= -15.0:
+            status = "AGGRESSIVE_EASING_PRESSURE"
+        elif spread < -4.0:
+            status = "MODERATE_EASING_BIAS"
+        else:
+            status = "BALANCED_POLICY_EQUILIBRIUM"
+
+        return {
+            "model_id": "MODEL_1",
+            "model_name": "Fed Policy Stance & Market Pressure Gauge",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#1",
+            "primary_value": spread,
+            "unit": "Basis Points (bps)",
+            "status": status,
+            "inputs": {
+                "treasury_1m_yield_dgs1mo": round(dgs1mo, 2),
+                "fed_policy_rate_dff": round(fed_rate, 2)
+            },
+            "metrics": {
+                "spread_basis_points": spread,
+                "dgs1mo_yield": round(dgs1mo, 2),
+                "fed_funds_rate": round(fed_rate, 2)
+            },
+            "interpretation": "Spread between 1-Month Treasury yield and Fed Funds Rate. Measures market-implied rate cut pressure (<= -15 bps) or liquidity-driven hawkish stress (> +4 bps)."
+        }
+    except (TypeError, ValueError):
         return None
 
 # ==============================================================================
 # 2. MODEL IMPLEMENTATIONS (STRICTLY FROM llms-formulas.txt)
 # ==============================================================================
-
-# --- Model 1: Global Central Bank Policy Rates & Monetary Stance ---
-def calc_global_central_bank_rates(bis_rates: Optional[Dict[str, Dict[str, Any]]]):
-    if not bis_rates or "US" not in bis_rates:
-        return None
-    try:
-        fed_rate = bis_rates["US"]["policy_rate"]
-        ecb_rate = bis_rates.get("XM", {}).get("policy_rate", 2.50)
-        boj_rate = bis_rates.get("JP", {}).get("policy_rate", 1.25)
-        boe_rate = bis_rates.get("GB", {}).get("policy_rate", 3.75)
-        pboc_rate = bis_rates.get("CN", {}).get("policy_rate", 3.00)
-
-        us_ecb_spread = round(fed_rate - ecb_rate, 3)
-        us_boj_spread = round(fed_rate - boj_rate, 3)
-
-        if fed_rate >= 4.50:
-            regime = "TIGHT_GLOBAL_RESTRICTION"
-        elif fed_rate <= 2.50:
-            regime = "EXPANSIVE_ACCOMMODATION"
-        else:
-            regime = "CALIBRATED_POLICY_EASING"
-
-        rates_table = [
-            {"entity_id": v["entity_id"], "authority": v["authority"], "rate": v["policy_rate"], "date": v["last_decision_date"]}
-            for v in bis_rates.values()
-        ]
-
-        return {
-            "model_id": "MODEL_1",
-            "model_name": "Global Central Bank Policy Benchmark & Rate Disparity",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#1",
-            "primary_value": fed_rate,
-            "unit": "Percent (%)",
-            "status": regime,
-            "inputs": {
-                "fed_funds_midpoint": fed_rate,
-                "ecb_deposit_facility": ecb_rate,
-                "boj_overnight_call": boj_rate,
-                "boe_bank_rate": boe_rate,
-                "pboc_loan_prime_rate": pboc_rate
-            },
-            "rate_disparities": {
-                "us_minus_ecb_spread_pts": us_ecb_spread,
-                "us_minus_boj_carry_spread_pts": us_boj_spread
-            },
-            "rates_snapshot": rates_table,
-            "interpretation": "Canonical policy rates across G5 central banks sourced from Bank for International Settlements (BIS). Guides cross-border carry trades and sovereign yields."
-        }
-    except Exception:
-        return None
-
 
 # --- Model 3: Sahm Resesyon Kuralı (Sahm Rule Recession Indicator) ---
 def calc_sahm_rule(sahm_val):
@@ -544,6 +507,67 @@ def calc_early_employment_crack(ic4wsa_yoy, unrate_delta) -> Optional[Dict[str, 
     except (TypeError, ValueError):
         return None
 
+
+# --- Model 25.18: Mecca Pact Dynamic Transmission Engine ---
+def calc_mecca_pact_transmission(brent_val, sofr_val, breakeven_oil=None):
+    if any(v is None or isinstance(v, bool) for v in (brent_val, sofr_val)):
+        return None
+    try:
+        brent = float(brent_val)
+        sofr = float(sofr_val)
+        be = float(breakeven_oil) if (breakeven_oil is not None and not isinstance(breakeven_oil, bool) and float(breakeven_oil) > 0) else 86.2
+        if not all(math.isfinite(x) for x in (brent, sofr, be)) or brent <= 0.0 or be <= 0.0:
+            return None
+
+        delta_treaty = 0.10
+        r_oil = round(brent / be, 4)
+
+        if r_oil >= 1.05:
+            s_energy = 0.05
+            status = "TREATY_ACTIVE_SURPLUS_EXPANSION"
+        elif r_oil < 0.90:
+            s_energy = -0.05
+            status = "TREATY_ACTIVE_FISCAL_RESTRAINT"
+        else:
+            s_energy = 0.00
+            status = "TREATY_ACTIVE_EQUILIBRIUM"
+
+        delta_dollar = -0.03 if sofr >= 5.25 else 0.00
+
+        delta_tr_sa = round(min(0.30, max(-0.30, delta_treaty + s_energy + delta_dollar)), 2)
+        delta_sa_pk = round(min(0.30, max(-0.30, delta_treaty + s_energy + delta_dollar)), 2)
+        delta_tr_pk = round(min(0.30, max(-0.30, delta_treaty + min(0.0, delta_dollar))), 2)
+
+        avg_uplift = round((delta_tr_sa + delta_sa_pk + delta_tr_pk) / 3.0, 3)
+
+        return {
+            "model_id": "MODEL_25.18",
+            "model_name": "Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact)",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.18",
+            "primary_value": avg_uplift,
+            "unit": "Dynamic Delta Index (Avg)",
+            "status": status,
+            "inputs": {
+                "brent_usd_bbl": round(brent, 2),
+                "sofr_percent": round(sofr, 2),
+                "imf_breakeven_usd_bbl": round(be, 2)
+            },
+            "metrics": {
+                "oil_breakeven_ratio": r_oil,
+                "delta_treaty_baseline": delta_treaty,
+                "energy_fiscal_component": s_energy,
+                "dollar_liquidity_friction": delta_dollar,
+                "bilateral_deltas": {
+                    "TR_SA": delta_tr_sa,
+                    "SA_PK": delta_sa_pk,
+                    "TR_PK": delta_tr_pk
+                }
+            },
+            "interpretation": "Non-contiguous trilateral defense integration linking Turkish aerospace/defense co-production, Saudi sovereign liquidity, and Pakistani strategic deterrence under dynamic oil and dollar regimes."
+        }
+    except (TypeError, ValueError):
+        return None
+
 # ==============================================================================
 # 3. MAIN EXECUTION ENGINE
 # ==============================================================================
@@ -562,11 +586,12 @@ def main():
 
     series = fred_data.get("series", {})
 
-    # 1. Fetch Live BIS Policy Rates
-    print("Fetching live central bank rates from Bank for International Settlements (BIS)...")
-    bis_rates = fetch_bis_policy_rates()
+    # Extract Series Inputs
+    dgs1mo = series.get("DGS1MO", {}).get("current_value")
+    fed_rate = series.get("DFEDTARU", {}).get("current_value")
+    if fed_rate is None:
+        fed_rate = series.get("DFF", {}).get("current_value")
 
-    # 2. Extract FRED Series Inputs
     brent = series.get("DCOILBRENTEU", {}).get("current_value")
     wti = series.get("DCOILWTICO", {}).get("current_value")
     vix = series.get("VIXCLS", {}).get("current_value")
@@ -586,13 +611,13 @@ def main():
     rrp = series.get("RRPONTSYD", {}).get("current_value")
     t10y2y = series.get("T10Y2Y", {}).get("current_value")
 
-    # 3. Evaluate Models in Canonical Order
+    # Evaluate Models in Canonical Order
     models_calculated = []
 
-    # Model 1: Global Central Bank Policy Rates (BIS)
-    m_cb = calc_global_central_bank_rates(bis_rates)
-    if m_cb:
-        models_calculated.append(m_cb)
+    # Model 1: Fed Policy Stance & Market Pressure Gauge
+    m_fed_stance = calc_fed_policy_stance(dgs1mo, fed_rate)
+    if m_fed_stance:
+        models_calculated.append(m_fed_stance)
 
     # Model 3: Sahm Rule
     m_sahm = calc_sahm_rule(sahm_val)
@@ -614,6 +639,28 @@ def main():
     if m_vix:
         models_calculated.append(m_vix)
 
+    # Model 21: Gold to Oil Ratio (World Bank Pink Sheet x FRED WTI)
+    wb_json_path = "llms-worldbank-series.json"
+    gold_price = None
+    if os.path.exists(wb_json_path):
+        try:
+            with open(wb_json_path, "r", encoding="utf-8") as f:
+                wb_json = json.load(f)
+                gold_price = wb_json.get("series", {}).get("IND_WB_GOLD", {}).get("current_value")
+        except Exception:
+            gold_price = None
+
+    m_gold_oil = calc_gold_oil_ratio(gold_price, wti)
+    if m_gold_oil:
+        models_calculated.append(m_gold_oil)
+
+    # Model 23.6: Early Employment Crack Signal (FRED IC4WSA x UNRATE)
+    ic4wsa_yoy = series.get("IC4WSA", {}).get("transformations", {}).get("percent_change_from_year_ago")
+    unrate_delta = round(unrate_curr - unrate_yr, 2) if (unrate_curr is not None and unrate_yr is not None) else None
+    m_crack = calc_early_employment_crack(ic4wsa_yoy, unrate_delta)
+    if m_crack:
+        models_calculated.append(m_crack)
+
     # Model 25.12: Brent - WTI Spread
     m_spread = calc_brent_wti_spread(brent, wti)
     if m_spread:
@@ -632,15 +679,29 @@ def main():
     # Model 25.16: Yen Carry Trade Dissolution (BoJ / BIS / FRED)
     dff_val = series.get('DFF', {}).get('current_value')
     jpy_mom = series.get('DEXJPUS', {}).get('transformations', {}).get('percent_change_from_year_ago', 0.0)
-    boj_rate = None
-    if bis_rates and 'JP' in bis_rates:
-        boj_rate = bis_rates['JP'].get('current_rate')
-    if boj_rate is None:
-        boj_rate = series.get('MUTAN', {}).get('current_value', 0.25)
+    boj_rate = series.get('MUTAN', {}).get('current_value', 0.25)
 
     m_carry = calc_jpy_carry_crack(dff_val, boj_rate, jpy_mom)
     if m_carry:
         models_calculated.append(m_carry)
+
+    # Load dynamic IMF Fiscal Breakeven Oil Price if available
+    imf_json_path = "llms-imf-series.json"
+    breakeven_oil = 86.2
+    if os.path.exists(imf_json_path):
+        try:
+            with open(imf_json_path, "r", encoding="utf-8") as f:
+                imf_json = json.load(f)
+                breakeven_oil = imf_json.get("series", {}).get("SAUPZPIOILBEGUSD", {}).get("current_value", 86.2)
+        except Exception:
+            breakeven_oil = 86.2
+    sofr = series.get("SOFR", {}).get("current_value", 3.92)
+
+    # Model 25.18: Mecca Pact Dynamic Transmission Engine
+    m_mecca = calc_mecca_pact_transmission(brent, sofr, breakeven_oil)
+    if m_mecca:
+        models_calculated.append(m_mecca)
+
 
     now_dt = datetime.datetime.now(datetime.timezone.utc)
     now_iso = now_dt.isoformat()
@@ -658,7 +719,9 @@ def main():
             "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
             "monitored_data_sources": [
                 "Federal Reserve Bank of St. Louis (FRED)",
-                "Bank for International Settlements (BIS)"
+                "European Central Bank (ECB)",
+                "World Bank (The Pink Sheet)",
+                "International Monetary Fund (IMF)"
             ],
             "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
             "total_models_active": len(models_calculated)
@@ -678,7 +741,7 @@ def main():
         "> Endpoint: https://analysisreports.github.io/llms-models.txt",
         "> JSON Twin Endpoint: https://analysisreports.github.io/llms-models.json",
         "> Master Formulas Engine: https://analysisreports.github.io/llms-formulas.txt",
-        "> Ingested Live Time-Series: FRED, BIS & World Bank (The Pink Sheet) APIs",
+        "> Ingested Live Time-Series: FRED, ECB, World Bank & IMF Canonical APIs",
         "> Root Index: https://analysisreports.github.io/llms.txt",
         "",
         "# ==============================================================================",

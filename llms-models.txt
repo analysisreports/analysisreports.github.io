@@ -4,27 +4,38 @@
 > Endpoint: https://analysisreports.github.io/llms-models.txt
 > JSON Twin Endpoint: https://analysisreports.github.io/llms-models.json
 > Master Formulas Engine: https://analysisreports.github.io/llms-formulas.txt
-> Ingested Live Time-Series: FRED, BIS & World Bank (The Pink Sheet) APIs
+> Ingested Live Time-Series: FRED, ECB, World Bank & IMF Canonical APIs
 > Root Index: https://analysisreports.github.io/llms.txt
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-09 02:12 UTC
+> **Last Calibrated Sync:** 2026-11-09 11:58 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
 | :--- | :--- | :---: | :---: | :--- | :--- |
+| **MODEL_1** | Fed Policy Stance & Market Pressure Gauge | **15.0** | Basis Points (bps) | `HAWKISH_MARKET_PRESSURE` | Spread between 1-Month Treasury yield and Fed Funds Rat... |
 | **MODEL_3** | Official Sahm Rule Recession Indicator | **0.0** | Percentage Points | `NORMAL_LABOR_MARKET` | Real-time recession detection triggered when 3-month un... |
 | **MODEL_5** | Net Fed Liquidity Index | **5.791** | Trillion USD | `NEUTRAL_LIQUIDITY_EQUILIBRIUM` | Unencumbered commercial bank liquidity: WALCL - (TGA + ... |
 | **MODEL_6** | Treasury Yield Curve Slope (10Y - 2Y) | **35.0** | Basis Points (bps) | `NORMAL_CURVE_EXPANSION` | Leading cyclical economic barometer. Inversions (bps < ... |
 | **MODEL_16** | CBOE Volatility & Market Fear Regime | **28.18** | Points | `ELEVATED_STRESS` | 30-day forward S&P 500 implied volatility fear gauge an... |
+| **MODEL_21** | Gold to Oil Crisis & Recession Ratio | **41.2** | Barrels per Ounce | `MACRO_CRISIS_RECESSION` | Calculates ounces of gold per barrel of crude oil to cl... |
+| **MODEL_23.6** | Early Employment Crack Signal | **-13.64** | Index Points | `LABOR_MARKET_ALIGNED` | Identifies early labor cracks by comparing weekly joble... |
 | **MODEL_25.12** | Brent - WTI Seaborne Risk Spread | **7.39** | USD | `NORMAL_TRANSATLANTIC_ARBITRAGE` | Seaborne geopolitical friction and maritime risk spread... |
 | **MODEL_25.13** | Labor Market Momentum Index (LMMI) | **0.86** | Net Momentum Pts | `MODERATE_LABOR_EXPANSION` | Couples nonfarm payroll expansion with unemployment cha... |
 | **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.11** | Score (Normalized) | `BALANCED_HARDWARE_FLOW` | Normalized composite metric monitoring semiconductor ph... |
 | **MODEL_25.16** | Yen Carry Trade Dissolution and Stress Gauge | **8.0877** | % (Net Carry Buffer) | `CALM_ACCUMULATION` | Monitors cross-currency Yen Carry Trade buffer, unwindi... |
+| **MODEL_25.18** | Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact) | **0.133** | Dynamic Delta Index (Avg) | `TREATY_ACTIVE_SURPLUS_EXPANSION` | Non-contiguous trilateral defense integration linking T... |
 
 ---
 ### Detailed Model Breakdowns
+
+#### [MODEL_1] Fed Policy Stance & Market Pressure Gauge
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#1
+- **Evaluated Status:** `HAWKISH_MARKET_PRESSURE` (Primary Value: 15.0 Basis Points (bps))
+- **Inputs Evaluated:** `{"treasury_1m_yield_dgs1mo": 4.03, "fed_policy_rate_dff": 3.88}`
+- **Secondary Metrics:** `{"spread_basis_points": 15.0, "dgs1mo_yield": 4.03, "fed_funds_rate": 3.88}`
+- **Economic Synthesis:** Spread between 1-Month Treasury yield and Fed Funds Rate. Measures market-implied rate cut pressure (<= -15 bps) or liquidity-driven hawkish stress (> +4 bps).
 
 #### [MODEL_3] Official Sahm Rule Recession Indicator
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#3
@@ -50,6 +61,20 @@
 - **Evaluated Status:** `ELEVATED_STRESS` (Primary Value: 28.18 Points)
 - **Inputs Evaluated:** `{"vix_close": 28.18}`
 - **Economic Synthesis:** 30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime.
+
+#### [MODEL_21] Gold to Oil Crisis & Recession Ratio
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#21
+- **Evaluated Status:** `MACRO_CRISIS_RECESSION` (Primary Value: 41.2 Barrels per Ounce)
+- **Inputs Evaluated:** `{"gold_price_usd_oz": 4105.0, "oil_price_usd_bbl": 99.64}`
+- **Component Weights:** `{"ratio": 41.2, "historical_equilibrium_band": "12.0 - 25.0"}`
+- **Economic Synthesis:** Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks.
+
+#### [MODEL_23.6] Early Employment Crack Signal
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23.6
+- **Evaluated Status:** `LABOR_MARKET_ALIGNED` (Primary Value: -13.64 Index Points)
+- **Inputs Evaluated:** `{"ic4wsa_yoy_pct": -13.64, "unrate_delta_ppt": -0.3}`
+- **Component Weights:** `{"effective_unrate_delta": 0.0, "crack_threshold": 15.0}`
+- **Economic Synthesis:** Identifies early labor cracks by comparing weekly jobless claims spikes against delayed headline unemployment shifts.
 
 #### [MODEL_25.12] Brent - WTI Seaborne Risk Spread
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.12
@@ -77,3 +102,10 @@
 - **Inputs Evaluated:** `{"rate_us_dff": 3.88, "rate_jp_mutan": 0.25, "jpy_30d_momentum_pct": 4.46}`
 - **Component Weights:** `{"rate_spread": 3.63, "net_buffer": 8.0877}`
 - **Economic Synthesis:** Monitors cross-currency Yen Carry Trade buffer, unwinding risk, and global leverage liquidation shocks.
+
+#### [MODEL_25.18] Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact)
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.18
+- **Evaluated Status:** `TREATY_ACTIVE_SURPLUS_EXPANSION` (Primary Value: 0.133 Dynamic Delta Index (Avg))
+- **Inputs Evaluated:** `{"brent_usd_bbl": 107.03, "sofr_percent": 3.92, "imf_breakeven_usd_bbl": 86.2}`
+- **Secondary Metrics:** `{"oil_breakeven_ratio": 1.2416, "delta_treaty_baseline": 0.1, "energy_fiscal_component": 0.05, "dollar_liquidity_friction": 0.0, "bilateral_deltas": {"TR_SA": 0.15, "SA_PK": 0.15, "TR_PK": 0.1}}`
+- **Economic Synthesis:** Non-contiguous trilateral defense integration linking Turkish aerospace/defense co-production, Saudi sovereign liquidity, and Pakistani strategic deterrence under dynamic oil and dollar regimes.

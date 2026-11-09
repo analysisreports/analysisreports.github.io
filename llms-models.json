@@ -5,16 +5,36 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T02:12:25.053290+00:00",
+    "last_successful_sync": "2026-11-09T11:58:55.865128+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
-      "Bank for International Settlements (BIS)"
+      "European Central Bank (ECB)",
+      "World Bank (The Pink Sheet)",
+      "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 8
+    "total_models_active": 12
   },
   "models": [
+    {
+      "model_id": "MODEL_1",
+      "model_name": "Fed Policy Stance & Market Pressure Gauge",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#1",
+      "primary_value": 15.0,
+      "unit": "Basis Points (bps)",
+      "status": "HAWKISH_MARKET_PRESSURE",
+      "inputs": {
+        "treasury_1m_yield_dgs1mo": 4.03,
+        "fed_policy_rate_dff": 3.88
+      },
+      "metrics": {
+        "spread_basis_points": 15.0,
+        "dgs1mo_yield": 4.03,
+        "fed_funds_rate": 3.88
+      },
+      "interpretation": "Spread between 1-Month Treasury yield and Fed Funds Rate. Measures market-implied rate cut pressure (<= -15 bps) or liquidity-driven hawkish stress (> +4 bps)."
+    },
     {
       "model_id": "MODEL_3",
       "model_name": "Official Sahm Rule Recession Indicator",
@@ -69,6 +89,40 @@
         "vix_close": 28.18
       },
       "interpretation": "30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime."
+    },
+    {
+      "model_id": "MODEL_21",
+      "model_name": "Gold to Oil Crisis & Recession Ratio",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#21",
+      "primary_value": 41.2,
+      "unit": "Barrels per Ounce",
+      "status": "MACRO_CRISIS_RECESSION",
+      "inputs": {
+        "gold_price_usd_oz": 4105.0,
+        "oil_price_usd_bbl": 99.64
+      },
+      "components": {
+        "ratio": 41.2,
+        "historical_equilibrium_band": "12.0 - 25.0"
+      },
+      "interpretation": "Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks."
+    },
+    {
+      "model_id": "MODEL_23.6",
+      "model_name": "Early Employment Crack Signal",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.6",
+      "primary_value": -13.64,
+      "unit": "Index Points",
+      "status": "LABOR_MARKET_ALIGNED",
+      "inputs": {
+        "ic4wsa_yoy_pct": -13.64,
+        "unrate_delta_ppt": -0.3
+      },
+      "components": {
+        "effective_unrate_delta": 0.0,
+        "crack_threshold": 15.0
+      },
+      "interpretation": "Identifies early labor cracks by comparing weekly jobless claims spikes against delayed headline unemployment shifts."
     },
     {
       "model_id": "MODEL_25.12",
@@ -139,6 +193,31 @@
         "net_buffer": 8.0877
       },
       "interpretation": "Monitors cross-currency Yen Carry Trade buffer, unwinding risk, and global leverage liquidation shocks."
+    },
+    {
+      "model_id": "MODEL_25.18",
+      "model_name": "Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact)",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.18",
+      "primary_value": 0.133,
+      "unit": "Dynamic Delta Index (Avg)",
+      "status": "TREATY_ACTIVE_SURPLUS_EXPANSION",
+      "inputs": {
+        "brent_usd_bbl": 107.03,
+        "sofr_percent": 3.92,
+        "imf_breakeven_usd_bbl": 86.2
+      },
+      "metrics": {
+        "oil_breakeven_ratio": 1.2416,
+        "delta_treaty_baseline": 0.1,
+        "energy_fiscal_component": 0.05,
+        "dollar_liquidity_friction": 0.0,
+        "bilateral_deltas": {
+          "TR_SA": 0.15,
+          "SA_PK": 0.15,
+          "TR_PK": 0.1
+        }
+      },
+      "interpretation": "Non-contiguous trilateral defense integration linking Turkish aerospace/defense co-production, Saudi sovereign liquidity, and Pakistani strategic deterrence under dynamic oil and dollar regimes."
     }
   ]
 }
