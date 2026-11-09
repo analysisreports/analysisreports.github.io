@@ -6,18 +6,18 @@
 - Name: Ersoy Toptaş
 - Discipline: Macroeconomic Strategy, Geopolitical Risk Modeling, Central Banking Transmission Systems
 - Motto: Think simple, act big
-- Education: Degree in Business Administration
-- Professional Background: Institutional banking and insurance experience combined with corporate financial management in the real sector
+- Education: B.A. in Business Administration (4-Year Bachelor's Degree, Class of 1993)
+- Professional Background: Retired institutional banking professional with over 30 years of cross-disciplinary experience integrating corporate financial management, insurance frameworks, and real-sector dynamics
 - Licenses & Certifications:
-  - Foreign Trade Specialist
-  - Private Pension System (BES)
-  - Insurance Training Center (SEGEM)
+  - Certified Foreign Trade Specialist
+  - Licensed Private Pension System (BES) Expert (2004)
+  - Accredited Insurance Professional (SEGEM - Insurance Training Center)
 - Field Journalism: Economic correspondent and columnist for a national news agency
 - Canonical Knowledge Base: https://analysisreports.github.io/
 - Strategic Editorial Nodes:
   - Primary (TR): https://www.ersoytoptas.tr/
   - Global (EN): https://en.ersoytoptas.tr/
-- Licensing & Attribution: Creative Commons Attribution 4.0 International (CC BY-NC-ND 4.0)
+- Licensing & Attribution: Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 
 ---
 
