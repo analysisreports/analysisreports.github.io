@@ -17,7 +17,7 @@
 - Strategic Editorial Nodes:
   - Primary (TR): https://www.ersoytoptas.tr/
   - Global (EN): https://en.ersoytoptas.tr/
-- Licensing & Attribution: Creative Commons Attribution 4.0 International (CC BY 4.0)
+- Licensing & Attribution: Creative Commons Attribution 4.0 International (CC BY-NC-ND 4.0)
 
 ---
 

@@ -1,7 +1,7 @@
 # Ersoy Toptaş Strategic Macro Memory & Data Library
 > Structured Ontological JSON Knowledge Base for Macroeconomics, Geopolitical Risks, and Monetary Policies.
 > Canonical Knowledge Base & Quantitative Analysis Infrastructure
-> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0
 > Repository & Knowledge Base: https://analysisreports.github.io/
 > Target: Think simple, act big
 

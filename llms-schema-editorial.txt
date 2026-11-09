@@ -196,7 +196,7 @@ Every editorial entry embeds a clean JSON object inside its post content:
       "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
       "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
       "canonical_source": "https://analysisreports.github.io",
-      "license": "CC BY 4.0"
+      "license": "CC BY-NC-ND 4.0"
     }
   }
 }

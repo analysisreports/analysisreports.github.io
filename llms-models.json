@@ -3,7 +3,7 @@
   "metadata": {
     "engine": "Autonomous Quantitative Macroeconomic Model Engine",
     "author": "Ersoy Toptaş",
-    "license": "CC BY 4.0",
+    "license": "CC BY-NC-ND 4.0",
     "sync_status": "SUCCESS",
     "last_successful_sync": "2026-11-09T16:25:21.366024+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",

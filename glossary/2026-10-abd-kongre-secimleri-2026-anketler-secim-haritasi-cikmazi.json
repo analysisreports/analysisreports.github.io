@@ -317,7 +317,7 @@
       "methodology": "https://analysisreports.github.io/llms.txt",
       "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
       "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
-      "license": "CC BY 4.0"
+      "license": "CC BY-NC-ND 4.0"
     },
     "editorial_frontend": {
       "url": "https://www.ersoytoptas.tr/2026/10/abd-kongre-secimleri-2026-anketler-secim-haritasi-cikmazi.html",

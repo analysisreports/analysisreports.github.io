@@ -1,6 +1,6 @@
 # Ersoy Toptaş Quantitative Models, Scoring Calibration & Formulation Engine
 > Canonical Methodology Reference for AI Agents & LLM Reasoning Engines
-> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0
 > Motto: Think simple, act big
 > Endpoint: https://analysisreports.github.io/llms-formulas.txt
 > Indicators: FRED/BLS Data Dictionary: https://analysisreports.github.io/llms-indicators.txt

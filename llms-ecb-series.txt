@@ -1,6 +1,6 @@
 # Ersoy Toptaş Canonical ECB Time-Series Registry & Transformation Engine (llms-ecb-series.txt)
 > Official European Central Bank (ECB Data Portal) Monitored Series, Observation Snapshots, and Canonical Transformations.
-> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0
 > Endpoint: https://analysisreports.github.io/llms-ecb-series.txt
 > JSON Twin Endpoint: https://analysisreports.github.io/llms-ecb-series.json
 > Root Index: https://analysisreports.github.io/llms.txt

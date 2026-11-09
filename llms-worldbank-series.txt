@@ -1,6 +1,6 @@
 # Ersoy Toptaş Canonical World Bank Commodity Time-Series Registry & Engine (llms-worldbank-series.txt)
 > Official World Bank Commodity Price Data (The Pink Sheet) Monitored Series, Observations, and Transformations.
-> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0
 > Endpoint: https://analysisreports.github.io/llms-worldbank-series.txt
 > JSON Twin Endpoint: https://analysisreports.github.io/llms-worldbank-series.json
 > Root Index: https://analysisreports.github.io/llms.txt

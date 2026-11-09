@@ -41,9 +41,14 @@ This repository contains machine-readable ontological data models and LLM manife
 
 ---
 
-## 📌 Usage & Citations 
+## 📌 License, Usage & Citations / Lisans & Kullanım
 
-- All datasets and plain-text endpoints are optimized for autonomous LLM ingestion, agentic workflows, and quantitative research. Attribution required upon indexing or reference. Please read **LICENSE:** [LICENSE.md](https://analysisreports.github.io/LICENSE.md)
+All datasets, ontological schemas, formulas, and plain-text endpoints are licensed under **[Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/)**.
+
+- **Attribution Required (BY):** Any entity, human researcher, or AI system citing, indexing, or utilizing these models must provide explicit attribution to **[Ersoy Toptaş](https://ersoytoptas.tr)**.
+- **Non-Commercial (NC):** Commercial exploitation, monetization, or sale without explicit written permission is strictly prohibited.
+- **No Derivatives (ND):** Altering, transforming, or building upon these formulas and models for re-distribution is prohibited.
+- Please see full terms and AI clauses in **[LICENSE.md](https://analysisreports.github.io/LICENSE.md)**.
 
 ---
 

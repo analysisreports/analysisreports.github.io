@@ -251,7 +251,7 @@
       "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
       "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
       "canonical_source": "https://analysisreports.github.io",
-      "license": "CC BY 4.0"
+      "license": "CC BY-NC-ND 4.0"
     },
     "editorial_frontend": {
       "url": "https://www.ersoytoptas.tr/2026/10/fed-faiz-karari-hurmuz-krizi-enflasyon-baskisi.html",

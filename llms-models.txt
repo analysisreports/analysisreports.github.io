@@ -1,6 +1,6 @@
 # Ersoy Toptaş Canonical Quantitative Macroeconomic Models Engine (llms-models.txt)
 > Real-Time Evaluated Macroeconomic & Quantitative Transmission Models.
-> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0
 > Endpoint: https://analysisreports.github.io/llms-models.txt
 > JSON Twin Endpoint: https://analysisreports.github.io/llms-models.json
 > Master Formulas Engine: https://analysisreports.github.io/llms-formulas.txt

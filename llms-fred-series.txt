@@ -1,6 +1,6 @@
 # Ersoy Toptaş Canonical FRED Time-Series Registry & Transformation Engine (llms-fred-series.txt)
 > Official St. Louis Fed (FRED) Monitored Series, Observation Snapshots, and Canonical Transformations.
-> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0
 > Endpoint: https://analysisreports.github.io/llms-fred-series.txt
 > JSON Twin Endpoint: https://analysisreports.github.io/llms-fred-series.json
 > Root Index: https://analysisreports.github.io/llms.txt

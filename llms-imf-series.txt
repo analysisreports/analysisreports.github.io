@@ -1,6 +1,6 @@
 # Ersoy Toptaş Canonical IMF Time-Series Registry & Engine (llms-imf-series.txt)
 > Official International Monetary Fund (IMF) Monitored Series, Observations, and Transformations.
-> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0
 > Endpoint: https://analysisreports.github.io/llms-imf-series.txt
 > JSON Twin Endpoint: https://analysisreports.github.io/llms-imf-series.json
 > Root Index: https://analysisreports.github.io/llms.txt
