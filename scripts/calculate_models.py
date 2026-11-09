@@ -1150,6 +1150,107 @@ def calc_misery_index(unrate_val, cpi_yoy_val):
         return None
 
 
+# --- Model 19: Buffett Indicator (Corporate Equities to GDP) ---
+def calc_buffett_indicator(market_val_mil, gdp_val_bil) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (market_val_mil, gdp_val_bil)):
+        return None
+    try:
+        m_val = float(market_val_mil)
+        gdp_val = float(gdp_val_bil)
+        if not (math.isfinite(m_val) and math.isfinite(gdp_val)):
+            return None
+        if m_val <= 0.0 or gdp_val <= 0.0:
+            return None
+
+        # Convert nominal GDP from billions to millions for unit consistency
+        gdp_mil = gdp_val * 1000.0
+        raw_ratio = (m_val / gdp_mil) * 100.0
+        if not math.isfinite(raw_ratio):
+            return None
+        ratio = round(raw_ratio, 2)
+
+        if ratio >= 180.0:
+            status = "SEVERELY_OVERVALUED"
+        elif ratio >= 140.0:
+            status = "OVERVALUED"
+        elif ratio >= 100.0:
+            status = "FAIR_VALUED"
+        else:
+            status = "UNDERVALUED"
+
+        return {
+            "model_id": "MODEL_19",
+            "model_name": "Buffett Indicator (Corporate Equities to GDP)",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#19",
+            "primary_value": ratio,
+            "unit": "Percent (%)",
+            "status": status,
+            "inputs": {
+                "corporate_equities_liability_ncbeilq027s_mil": round(m_val, 2),
+                "nominal_gdp_bil": round(gdp_val, 2)
+            },
+            "metrics": {
+                "buffett_ratio_pct": ratio,
+                "total_equities_market_val_bil": round(m_val / 1000.0, 2),
+                "nominal_gdp_bil": round(gdp_val, 2)
+            },
+            "interpretation": "Measures total equity valuation froth against national economic output using official Fed Z.1 accounts. Ratios >= 180% signal speculative bubble territory; < 100% reflect attractive valuation."
+        }
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+
+
+# --- Model 20: Copper to Gold Macro Sentiment Ratio ---
+def calc_copper_gold_ratio(copper_price_val, gold_price_val, copper_prev_val=None, gold_prev_val=None) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (copper_price_val, gold_price_val)):
+        return None
+    try:
+        c_price = float(copper_price_val)
+        g_price = float(gold_price_val)
+        if not (math.isfinite(c_price) and math.isfinite(g_price)):
+            return None
+        if c_price <= 0.0 or g_price <= 0.0:
+            return None
+
+        ratio = round(c_price / g_price, 4)
+        if not math.isfinite(ratio):
+            return None
+
+        # Determine trend if previous observations available, else historical benchmark
+        if copper_prev_val is not None and gold_prev_val is not None:
+            c_prev = float(copper_prev_val)
+            g_prev = float(gold_prev_val)
+            ratio_prev = round(c_prev / g_prev, 4) if (c_prev > 0 and g_prev > 0) else None
+        else:
+            ratio_prev = None
+
+        if ratio_prev is not None:
+            status = "CYCLICAL_EXPANSION" if ratio >= ratio_prev else "FLIGHT_TO_SAFETY"
+        else:
+            status = "CYCLICAL_EXPANSION" if ratio >= 3.00 else "FLIGHT_TO_SAFETY"
+
+        return {
+            "model_id": "MODEL_20",
+            "model_name": "Copper to Gold Macro Sentiment Ratio",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#20",
+            "primary_value": ratio,
+            "unit": "Ratio (USD/MT to USD/oz)",
+            "status": status,
+            "inputs": {
+                "copper_price_pcoppusdm_usd_mt": round(c_price, 2),
+                "gold_price_ind_wb_gold_usd_oz": round(g_price, 2)
+            },
+            "metrics": {
+                "copper_gold_ratio": ratio,
+                "copper_price_usd_mt": round(c_price, 2),
+                "gold_price_usd_oz": round(g_price, 2)
+            },
+            "interpretation": "Pits industrial cyclical momentum (Doctor Copper) against safe-haven store of value (Gold). A rising ratio signals robust global industrial demand and cyclical growth acceleration."
+        }
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+
+
 def calc_gold_oil_ratio(gold_price, oil_price) -> Optional[Dict[str, Any]]:
     if any(v is None or isinstance(v, bool) for v in (gold_price, oil_price)):
         return None
@@ -1710,17 +1811,35 @@ def main():
     if m_misery:
         models_calculated.append(m_misery)
 
-    # Model 21: Gold to Oil Ratio (World Bank Pink Sheet x FRED WTI)
+    # Model 19: Buffett Indicator (Corporate Equities to GDP)
+    ncbeilq_val = series.get("NCBEILQ027S", {}).get("current_value")
+    gdp_nom_val = series.get("GDP", {}).get("current_value")
+    m_buffett = calc_buffett_indicator(ncbeilq_val, gdp_nom_val)
+    if m_buffett:
+        models_calculated.append(m_buffett)
+
+    # Load World Bank Pink Sheet series for commodity models
     wb_json_path = "llms-worldbank-series.json"
     gold_price = None
+    gold_prev = None
     if os.path.exists(wb_json_path):
         try:
             with open(wb_json_path, "r", encoding="utf-8") as f:
                 wb_json = json.load(f)
                 gold_price = wb_json.get("series", {}).get("IND_WB_GOLD", {}).get("current_value")
+                gold_prev = wb_json.get("series", {}).get("IND_WB_GOLD", {}).get("previous_value")
         except Exception:
             gold_price = None
+            gold_prev = None
 
+    # Model 20: Copper to Gold Macro Sentiment Ratio
+    copper_val = series.get("PCOPPUSDM", {}).get("current_value")
+    copper_prev = series.get("PCOPPUSDM", {}).get("previous_value")
+    m_copper_gold = calc_copper_gold_ratio(copper_val, gold_price, copper_prev, gold_prev)
+    if m_copper_gold:
+        models_calculated.append(m_copper_gold)
+
+    # Model 21: Gold to Oil Ratio (World Bank Pink Sheet x FRED WTI)
     m_gold_oil = calc_gold_oil_ratio(gold_price, wti)
     if m_gold_oil:
         models_calculated.append(m_gold_oil)

@@ -229,8 +229,10 @@ IND_WPU06            | Source: BLS / FRED | Name: PPI Chemicals and Allied Produ
 IND_IQ               | Source: BLS / FRED | Name: U.S. Export Price Index All Commodities (IQ)
 IND_IR               | Source: BLS / FRED | Name: U.S. Import Price Index All Commodities (IR)
 IND_GDPC1            | Source: BEA / FRED | Name: Real Gross Domestic Product (Billions USD)
+IND_GDP              | Source: BEA / FRED | Name: Gross Domestic Product Nominal (Billions USD)
 IND_GDPPOT           | Source: CBO / FRED | Name: Real Potential Gross Domestic Product (Billions USD)
 IND_GFDEGDQ188S      | Source: FRED | Name: Federal Debt Total Public Debt as Percent of GDP
+IND_NCBEILQ027S      | Source: Board of Governors / FRED | Name: Nonfinancial Corporate Business: Corporate Equities Liability (Millions USD)
 IND_BOPGSTB          | Source: BEA / FRED | Name: U.S. Trade Balance Goods and Services (Millions USD)
 IND_DTWEXBGS         | Source: FRED | Name: Nominal Broad U.S. Dollar Index
 IND_VIXCLS           | Source: CBOE / FRED | Name: CBOE Volatility Index (VIX)

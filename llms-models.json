@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T23:30:33.499036+00:00",
+    "last_successful_sync": "2026-11-09T23:48:19.248654+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 34
+    "total_models_active": 36
   },
   "models": [
     {
@@ -308,6 +308,42 @@
         "inflation_component": 4.02
       },
       "interpretation": "Measures household welfare loss and stagflationary stress by summing civilian unemployment and annual inflation. Values > 12 indicate acute crisis."
+    },
+    {
+      "model_id": "MODEL_19",
+      "model_name": "Buffett Indicator (Corporate Equities to GDP)",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#19",
+      "primary_value": 251.59,
+      "unit": "Percent (%)",
+      "status": "SEVERELY_OVERVALUED",
+      "inputs": {
+        "corporate_equities_liability_ncbeilq027s_mil": 83050847.0,
+        "nominal_gdp_bil": 33010.04
+      },
+      "metrics": {
+        "buffett_ratio_pct": 251.59,
+        "total_equities_market_val_bil": 83050.85,
+        "nominal_gdp_bil": 33010.04
+      },
+      "interpretation": "Measures total equity valuation froth against national economic output using official Fed Z.1 accounts. Ratios >= 180% signal speculative bubble territory; < 100% reflect attractive valuation."
+    },
+    {
+      "model_id": "MODEL_20",
+      "model_name": "Copper to Gold Macro Sentiment Ratio",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#20",
+      "primary_value": 3.5257,
+      "unit": "Ratio (USD/MT to USD/oz)",
+      "status": "CYCLICAL_EXPANSION",
+      "inputs": {
+        "copper_price_pcoppusdm_usd_mt": 14473.06,
+        "gold_price_ind_wb_gold_usd_oz": 4105.0
+      },
+      "metrics": {
+        "copper_gold_ratio": 3.5257,
+        "copper_price_usd_mt": 14473.06,
+        "gold_price_usd_oz": 4105.0
+      },
+      "interpretation": "Pits industrial cyclical momentum (Doctor Copper) against safe-haven store of value (Gold). A rising ratio signals robust global industrial demand and cyclical growth acceleration."
     },
     {
       "model_id": "MODEL_21",

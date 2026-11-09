@@ -70,12 +70,15 @@ IR
 IQ
 TRESEGSAM052N
 BOPGSTB
+PCOPPUSDM
 
 [QUARTERLY]
 GDPC1
 TURB6BLTT02STSAQ
 GFDEGDQ188S
 GDPPOT
+NCBEILQ027S
+GDP
 
 
 [SEMIANNUAL]
@@ -1191,3 +1194,69 @@ Recent Observations (Last 5):
   2026-07-01: -92826.0000
   2026-08-01: -105737.0000
   2026-09-01: -105047.0000
+
+--------------------------------------------------------------------------------
+Series ID: NCBEILQ027S
+Title: Nonfinancial Corporate Business; Corporate Equities; Liability, Level
+Frequency: Quarterly (n_obs_per_yr: 4) | Units: Millions of Dollars
+Last Date: 2026-04-01 | Current Value: 83050847.0000 | Previous Value: 70018384.0000 | Year Ago Value: 65333338.0000
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +13032463.0000
+  2. Change from Year Ago: +17717509.0000
+  3. Percent Change: +18.6129%
+  4. Percent Change from Year Ago: +27.1186%
+  5. Compounded Annual Rate of Change: +97.9374%
+  6. Continuously Compounded Rate of Change: +17.0695%
+  7. Continuously Compounded Annual Rate of Change: +68.2781%
+
+Recent Observations (Last 5):
+  2025-04-01: 65333338.0000
+  2025-07-01: 70397225.0000
+  2025-10-01: 71994893.0000
+  2026-01-01: 70018384.0000
+  2026-04-01: 83050847.0000
+
+--------------------------------------------------------------------------------
+Series ID: GDP
+Title: Gross Domestic Product
+Frequency: Quarterly (n_obs_per_yr: 4) | Units: Billions of Dollars
+Last Date: 2026-07-01 | Current Value: 33010.0360 | Previous Value: 32563.0300 | Year Ago Value: 31180.4930
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +447.0060
+  2. Change from Year Ago: +1829.5430
+  3. Percent Change: +1.3727%
+  4. Percent Change from Year Ago: +5.8676%
+  5. Compounded Annual Rate of Change: +5.6051%
+  6. Continuously Compounded Rate of Change: +1.3634%
+  7. Continuously Compounded Annual Rate of Change: +5.4536%
+
+Recent Observations (Last 5):
+  2025-07-01: 31180.4930
+  2025-10-01: 31462.5230
+  2026-01-01: 31906.2740
+  2026-04-01: 32563.0300
+  2026-07-01: 33010.0360
+
+--------------------------------------------------------------------------------
+Series ID: PCOPPUSDM
+Title: Global price of Copper
+Frequency: Monthly (n_obs_per_yr: 12) | Units: U.S. Dollars per Metric Ton
+Last Date: 2026-09-01 | Current Value: 14473.0559 | Previous Value: 14331.2648 | Year Ago Value: 9994.7732
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +141.7911
+  2. Change from Year Ago: +4478.2827
+  3. Percent Change: +0.9894%
+  4. Percent Change from Year Ago: +44.8062%
+  5. Compounded Annual Rate of Change: +12.5404%
+  6. Continuously Compounded Rate of Change: +0.9845%
+  7. Continuously Compounded Annual Rate of Change: +11.8143%
+
+Recent Observations (Last 5):
+  2026-05-01: 13512.1562
+  2026-06-01: 13552.0409
+  2026-07-01: 13542.8209
+  2026-08-01: 14331.2648
+  2026-09-01: 14473.0559

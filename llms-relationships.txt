@@ -80,6 +80,11 @@ Regime States (Discrete Mapping):
 - FISCAL_SUPPLY_PRESSURE        : 10-year Treasury term premium exceeding 0.50% reflecting elevated fiscal deficit issuance and inflation risk.
 - BALANCED_PREMIUM              : 10-year Treasury term premium within historical normal band of -0.50% to +0.50%.
 - FLIGHT_TO_SAFETY              : 10-year Treasury term premium below -0.50% reflecting acute flight to safety and Treasury scarcity.
+- SEVERELY_OVERVALUED           : Equity market valuation to GDP exceeding 180% indicating speculative bubble froth and severe correction risk.
+- OVERVALUED                    : Equity market valuation to GDP between 140% and 180% reflecting stretched valuations above trend.
+- FAIR_VALUED                   : Equity market valuation to GDP between 100% and 140% reflecting balanced asset pricing.
+- UNDERVALUED                   : Equity market valuation to GDP below 100% reflecting attractive entry territory.
+- CYCLICAL_EXPANSION            : Copper-to-gold ratio exhibiting rising momentum reflecting industrial demand expansion and cyclical economic acceleration.
 
 ---
 

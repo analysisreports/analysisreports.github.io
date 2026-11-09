@@ -9,7 +9,8 @@
     "total_series": 51,
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
-    "root_index": "https://analysisreports.github.io/llms.txt"
+    "root_index": "https://analysisreports.github.io/llms.txt",
+    "series_count": 54
   },
   "series": {
     "DCOILBRENTEU": {
@@ -2202,6 +2203,135 @@
         {
           "date": "2026-09-01",
           "value": -105047.0
+        }
+      ]
+    },
+    "NCBEILQ027S": {
+      "series_id": "NCBEILQ027S",
+      "title": "Nonfinancial Corporate Business; Corporate Equities; Liability, Level",
+      "frequency": "Quarterly",
+      "n_obs_per_yr": 4,
+      "units": "Millions of Dollars",
+      "source": "Millions of Dollars",
+      "last_date": "2026-04-01",
+      "current_value": 83050847.0,
+      "previous_value": 70018384.0,
+      "year_ago_value": 65333338.0,
+      "transformations": {
+        "change": 13032463.0,
+        "change_from_year_ago": 17717509.0,
+        "percent_change": 18.6129,
+        "percent_change_from_year_ago": 27.1186,
+        "compounded_annual_rate_of_change": 97.9374,
+        "continuously_compounded_rate_of_change": 17.0695,
+        "continuously_compounded_annual_rate_of_change": 68.2781
+      },
+      "recent_observations": [
+        {
+          "date": "2025-04-01",
+          "value": 65333338.0
+        },
+        {
+          "date": "2025-07-01",
+          "value": 70397225.0
+        },
+        {
+          "date": "2025-10-01",
+          "value": 71994893.0
+        },
+        {
+          "date": "2026-01-01",
+          "value": 70018384.0
+        },
+        {
+          "date": "2026-04-01",
+          "value": 83050847.0
+        }
+      ]
+    },
+    "GDP": {
+      "series_id": "GDP",
+      "title": "Gross Domestic Product",
+      "frequency": "Quarterly",
+      "n_obs_per_yr": 4,
+      "units": "Billions of Dollars",
+      "source": "Billions of Dollars",
+      "last_date": "2026-07-01",
+      "current_value": 33010.036,
+      "previous_value": 32563.03,
+      "year_ago_value": 31180.493,
+      "transformations": {
+        "change": 447.006,
+        "change_from_year_ago": 1829.543,
+        "percent_change": 1.3727,
+        "percent_change_from_year_ago": 5.8676,
+        "compounded_annual_rate_of_change": 5.6051,
+        "continuously_compounded_rate_of_change": 1.3634,
+        "continuously_compounded_annual_rate_of_change": 5.4536
+      },
+      "recent_observations": [
+        {
+          "date": "2025-07-01",
+          "value": 31180.493
+        },
+        {
+          "date": "2025-10-01",
+          "value": 31462.523
+        },
+        {
+          "date": "2026-01-01",
+          "value": 31906.274
+        },
+        {
+          "date": "2026-04-01",
+          "value": 32563.03
+        },
+        {
+          "date": "2026-07-01",
+          "value": 33010.036
+        }
+      ]
+    },
+    "PCOPPUSDM": {
+      "series_id": "PCOPPUSDM",
+      "title": "Global price of Copper",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "U.S. Dollars per Metric Ton",
+      "source": "U.S. Dollars per Metric Ton",
+      "last_date": "2026-09-01",
+      "current_value": 14473.05590909091,
+      "previous_value": 14331.26476190476,
+      "year_ago_value": 9994.773181818182,
+      "transformations": {
+        "change": 141.7911,
+        "change_from_year_ago": 4478.2827,
+        "percent_change": 0.9894,
+        "percent_change_from_year_ago": 44.8062,
+        "compounded_annual_rate_of_change": 12.5404,
+        "continuously_compounded_rate_of_change": 0.9845,
+        "continuously_compounded_annual_rate_of_change": 11.8143
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 13512.15619047619
+        },
+        {
+          "date": "2026-06-01",
+          "value": 13552.04090909091
+        },
+        {
+          "date": "2026-07-01",
+          "value": 13542.82086956522
+        },
+        {
+          "date": "2026-08-01",
+          "value": 14331.26476190476
+        },
+        {
+          "date": "2026-09-01",
+          "value": 14473.05590909091
         }
       ]
     }

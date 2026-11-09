@@ -1949,6 +1949,46 @@
           "FLIGHT_TO_SAFETY"
         ]
       }
+    },
+    {
+      "id": "IND_NCBEILQ027S",
+      "label": "Nonfinancial Corporate Business: Corporate Equities Liability",
+      "category": "INDICATOR",
+      "source": "FRED"
+    },
+    {
+      "id": "IND_GDP",
+      "label": "Gross Domestic Product (Nominal)",
+      "category": "INDICATOR",
+      "source": "BEA / FRED"
+    },
+    {
+      "id": "MODEL_19",
+      "label": "Buffett Indicator (Corporate Equities to GDP)",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_buffett_indicator",
+        "formula": "Buffett_Ratio_Pct = (Total_Equities_Market_Value / GDP) * 100",
+        "status_enums": [
+          "SEVERELY_OVERVALUED",
+          "OVERVALUED",
+          "FAIR_VALUED",
+          "UNDERVALUED"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_20",
+      "label": "Copper to Gold Macro Sentiment Ratio",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_copper_gold_ratio",
+        "formula": "Copper_Gold_Ratio = Copper_Price_Metric_Ton / Gold_Price_Ounce",
+        "status_enums": [
+          "CYCLICAL_EXPANSION",
+          "FLIGHT_TO_SAFETY"
+        ]
+      }
     }
   ],
   "edges": [
@@ -3115,6 +3155,30 @@
       "target": "MODEL_15",
       "type": "INGESTS_SERIES",
       "role": "10-Year Nominal Treasury Yield"
+    },
+    {
+      "source": "IND_NCBEILQ027S",
+      "target": "MODEL_19",
+      "type": "INGESTS_SERIES",
+      "role": "Corporate Equities Market Liability"
+    },
+    {
+      "source": "IND_GDP",
+      "target": "MODEL_19",
+      "type": "INGESTS_SERIES",
+      "role": "Nominal Gross Domestic Product"
+    },
+    {
+      "source": "IND_PCOPPUSDM",
+      "target": "MODEL_20",
+      "type": "INGESTS_SERIES",
+      "role": "Global Copper Price per Metric Ton"
+    },
+    {
+      "source": "IND_WB_GOLD",
+      "target": "MODEL_20",
+      "type": "INGESTS_SERIES",
+      "role": "World Bank Gold Fixing Price per Ounce"
     }
   ]
 }

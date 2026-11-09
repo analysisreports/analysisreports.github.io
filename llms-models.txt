@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-09 23:30 UTC
+> **Last Calibrated Sync:** 2026-11-09 23:48 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -31,6 +31,8 @@
 | **MODEL_15** | NY Fed ACM 10-Year Term Premium | **0.91** | Percent (%) | `FISCAL_SUPPLY_PRESSURE` | Decomposes the 10-year Treasury yield into expected sho... |
 | **MODEL_16** | CBOE Volatility & Market Fear Regime | **28.18** | Points | `ELEVATED_STRESS` | 30-day forward S&P 500 implied volatility fear gauge an... |
 | **MODEL_18** | Okun Misery Index | **8.12** | Index Points | `MODERATE` | Measures household welfare loss and stagflationary stre... |
+| **MODEL_19** | Buffett Indicator (Corporate Equities to GDP) | **251.59** | Percent (%) | `SEVERELY_OVERVALUED` | Measures total equity valuation froth against national ... |
+| **MODEL_20** | Copper to Gold Macro Sentiment Ratio | **3.5257** | Ratio (USD/MT to USD/oz) | `CYCLICAL_EXPANSION` | Pits industrial cyclical momentum (Doctor Copper) again... |
 | **MODEL_21** | Gold to Oil Crisis & Recession Ratio | **41.2** | Barrels per Ounce | `MACRO_CRISIS_RECESSION` | Calculates ounces of gold per barrel of crude oil to cl... |
 | **MODEL_23** | Okun Gap (Growth-Employment Divergence) | **-0.27** | Percentage Points (ppt) | `BALANCED_OKUN_EQUILIBRIUM` | Evaluates the historical elasticity between real GDP gr... |
 | **MODEL_23.1** | Labor Market Dual-Track Dynamics | **165.0** | Thousands (k) | `BALANCED_LABOR_MARKET` | Cross-evaluates payroll gains against unemployment rate... |
@@ -167,6 +169,20 @@
 - **Inputs Evaluated:** `{"civilian_unemployment_unrate": 4.1, "headline_cpi_yoy_pct": 4.02}`
 - **Secondary Metrics:** `{"misery_score": 8.12, "unemployment_component": 4.1, "inflation_component": 4.02}`
 - **Economic Synthesis:** Measures household welfare loss and stagflationary stress by summing civilian unemployment and annual inflation. Values > 12 indicate acute crisis.
+
+#### [MODEL_19] Buffett Indicator (Corporate Equities to GDP)
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#19
+- **Evaluated Status:** `SEVERELY_OVERVALUED` (Primary Value: 251.59 Percent (%))
+- **Inputs Evaluated:** `{"corporate_equities_liability_ncbeilq027s_mil": 83050847.0, "nominal_gdp_bil": 33010.04}`
+- **Secondary Metrics:** `{"buffett_ratio_pct": 251.59, "total_equities_market_val_bil": 83050.85, "nominal_gdp_bil": 33010.04}`
+- **Economic Synthesis:** Measures total equity valuation froth against national economic output using official Fed Z.1 accounts. Ratios >= 180% signal speculative bubble territory; < 100% reflect attractive valuation.
+
+#### [MODEL_20] Copper to Gold Macro Sentiment Ratio
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#20
+- **Evaluated Status:** `CYCLICAL_EXPANSION` (Primary Value: 3.5257 Ratio (USD/MT to USD/oz))
+- **Inputs Evaluated:** `{"copper_price_pcoppusdm_usd_mt": 14473.06, "gold_price_ind_wb_gold_usd_oz": 4105.0}`
+- **Secondary Metrics:** `{"copper_gold_ratio": 3.5257, "copper_price_usd_mt": 14473.06, "gold_price_usd_oz": 4105.0}`
+- **Economic Synthesis:** Pits industrial cyclical momentum (Doctor Copper) against safe-haven store of value (Gold). A rising ratio signals robust global industrial demand and cyclical growth acceleration.
 
 #### [MODEL_21] Gold to Oil Crisis & Recession Ratio
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#21
