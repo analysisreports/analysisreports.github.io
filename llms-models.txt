@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-09 17:45 UTC
+> **Last Calibrated Sync:** 2026-11-09 18:04 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -27,6 +27,8 @@
 | **MODEL_23.7** | Inventory to Sales Glut Ratio | **1.33** | Ratio | `BALANCED_SUPPLY_CHAIN` | Measures total business inventories relative to monthly... |
 | **MODEL_25.12** | Brent - WTI Seaborne Risk Spread | **7.39** | USD | `NORMAL_TRANSATLANTIC_ARBITRAGE` | Seaborne geopolitical friction and maritime risk spread... |
 | **MODEL_25.13** | Labor Market Momentum Index (LMMI) | **0.86** | Net Momentum Pts | `MODERATE_LABOR_EXPANSION` | Couples nonfarm payroll expansion with unemployment cha... |
+| **MODEL_25.3** | Global Supply Chain Pressure Logistics Engine (NY Fed GSCPI) | **1.26** | Standard Deviations (Z-Score) | `NORMALIZED_GLOBAL_TRADE` | Tracks standard deviations of global freight rates, shi... |
+| **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.615** | Score (Normalized) | `ELEVATED_SEMICONDUCTOR_BOTTLENECK` | Normalized composite metric monitoring semiconductor ph... |
 | **MODEL_25.16** | Yen Carry Trade Dissolution and Stress Gauge | **7.0877** | % (Net Carry Buffer) | `CALM_ACCUMULATION` | Monitors cross-currency Yen Carry Trade buffer, unwindi... |
 | **MODEL_25.18** | Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact) | **0.133** | Dynamic Delta Index (Avg) | `TREATY_ACTIVE_SURPLUS_EXPANSION` | Non-contiguous trilateral defense integration linking T... |
 
@@ -118,6 +120,19 @@
 - **Inputs Evaluated:** `{"payems_current": 159293.0, "payems_year_ago": 158408.0, "unrate_current": 4.1, "unrate_year_ago": 4.4}`
 - **Secondary Metrics:** `{"payroll_growth_yoy_pct": 0.56, "unemployment_rate_diff_yoy": -0.3, "employment_strength_ratio": 0.14}`
 - **Economic Synthesis:** Couples nonfarm payroll expansion with unemployment change to gauge labor slack and wage inflation momentum.
+
+#### [MODEL_25.3] Global Supply Chain Pressure Logistics Engine (NY Fed GSCPI)
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.3
+- **Evaluated Status:** `NORMALIZED_GLOBAL_TRADE` (Primary Value: 1.26 Standard Deviations (Z-Score))
+- **Inputs Evaluated:** `{"gscpi_zscore": 1.26}`
+- **Economic Synthesis:** Tracks standard deviations of global freight rates, shipping costs, and delivery times from historical mean. Values > 1.5 indicate supply chain shocks.
+
+#### [MODEL_25.14] AI Hardware & Semiconductor Supply Chain Stress Gauge
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.14
+- **Evaluated Status:** `ELEVATED_SEMICONDUCTOR_BOTTLENECK` (Primary Value: 0.615 Score (Normalized))
+- **Inputs Evaluated:** `{"gscpi_std_dev": 1.262, "sox_yoy_pct": 34.59, "vix_level": 28.18}`
+- **Component Weights:** `{"gscpi_weight": 0.505, "sox_weight": -0.242, "vix_weight": 0.352}`
+- **Economic Synthesis:** Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation.
 
 #### [MODEL_25.16] Yen Carry Trade Dissolution and Stress Gauge
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.16

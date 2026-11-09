@@ -1,0 +1,82 @@
+{
+  "$schema": "./schema/nyfed-series.json",
+  "metadata": {
+    "name": "Ersoy Toptaş Official New York Fed Research Series Ingestion",
+    "version": "2026-Q4",
+    "license": "CC BY-NC-ND 4.0",
+    "source": "Federal Reserve Bank of New York",
+    "last_updated": "2026-11-09T18:01:01.479272+00:00"
+  },
+  "series": {
+    "GSCPI": {
+      "series_id": "GSCPI",
+      "entity_id": "IND_GSCPI",
+      "title": "Global Supply Chain Pressure Index",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Standard Deviations from Historical Mean (Z-Score)",
+      "source": "Federal Reserve Bank of New York (AMEC)",
+      "endpoint": "https://www.newyorkfed.org/medialibrary/research/interactives/gscpi/downloads/gscpi_data.xlsx",
+      "last_date": "2026-10-31",
+      "current_value": 1.2619,
+      "previous_value": 1.3612,
+      "year_ago_value": -0.0842,
+      "transformations": {
+        "change": -0.0993,
+        "change_from_year_ago": 1.3461,
+        "percent_change": -7.295,
+        "percent_change_from_year_ago": -1598.6936
+      },
+      "recent_observations": [
+        {
+          "date": "2025-11-30",
+          "value": -0.1452
+        },
+        {
+          "date": "2025-12-31",
+          "value": 0.5546
+        },
+        {
+          "date": "2026-01-31",
+          "value": 0.4297
+        },
+        {
+          "date": "2026-02-28",
+          "value": 0.5331
+        },
+        {
+          "date": "2026-03-31",
+          "value": 0.642
+        },
+        {
+          "date": "2026-04-30",
+          "value": 1.8055
+        },
+        {
+          "date": "2026-05-31",
+          "value": 1.8017
+        },
+        {
+          "date": "2026-06-30",
+          "value": 1.2026
+        },
+        {
+          "date": "2026-07-31",
+          "value": 0.9511
+        },
+        {
+          "date": "2026-08-31",
+          "value": 1.271
+        },
+        {
+          "date": "2026-09-30",
+          "value": 1.3612
+        },
+        {
+          "date": "2026-10-31",
+          "value": 1.2619
+        }
+      ]
+    }
+  }
+}

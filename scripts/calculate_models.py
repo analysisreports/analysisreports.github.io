@@ -417,6 +417,37 @@ def calc_labor_market_momentum_index(payems_curr, payems_yr_ago, unrate_curr, un
         return None
 
 
+# --- Model 25.3: NY Fed GSCPI Logistics Engine ---
+def calc_supply_chain_pressure(gscpi_val):
+    if gscpi_val is None or isinstance(gscpi_val, bool):
+        return None
+    try:
+        f_gscpi = float(gscpi_val)
+        if not math.isfinite(f_gscpi):
+            return None
+        z_score = round(f_gscpi, 2)
+        if z_score > 1.5:
+            status = "SUPPLY_CHAIN_SHOCK"
+        elif z_score < -1.0:
+            status = "LOGISTICS_DEFLATION_SLACK"
+        else:
+            status = "NORMALIZED_GLOBAL_TRADE"
+        return {
+            "model_id": "MODEL_25.3",
+            "model_name": "Global Supply Chain Pressure Logistics Engine (NY Fed GSCPI)",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.3",
+            "primary_value": z_score,
+            "unit": "Standard Deviations (Z-Score)",
+            "status": status,
+            "inputs": {
+                "gscpi_zscore": z_score
+            },
+            "interpretation": "Tracks standard deviations of global freight rates, shipping costs, and delivery times from historical mean. Values > 1.5 indicate supply chain shocks."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
 # --- Model 25.14: AI Hardware & Semiconductor Stress Gauge ---
 def calc_ai_chip_stress_gauge(gscpi_val, sox_yoy_pct, vix_val):
     if any(v is None or isinstance(v, bool) for v in (gscpi_val, sox_yoy_pct, vix_val)):
@@ -768,7 +799,17 @@ def main():
     wti = series.get("DCOILWTICO", {}).get("current_value")
     vix = series.get("VIXCLS", {}).get("current_value")
     sox_yoy = series.get("NASDAQSOX", {}).get("transformations", {}).get("percent_change_from_year_ago")
-    gscpi = series.get("GSCPI", {}).get("current_value")
+
+    # Dynamic New York Fed GSCPI Series (AMEC) - Zero Fallbacks
+    nyfed_json_path = "llms-nyfed-series.json"
+    gscpi = None
+    if os.path.exists(nyfed_json_path):
+        try:
+            with open(nyfed_json_path, "r", encoding="utf-8") as f:
+                nyfed_json = json.load(f)
+                gscpi = nyfed_json.get("series", {}).get("GSCPI", {}).get("current_value")
+        except Exception:
+            gscpi = None
 
     # Labor Market Series
     payems_curr = series.get("PAYEMS", {}).get("current_value")
@@ -863,6 +904,11 @@ def main():
     m_lmmi = calc_labor_market_momentum_index(payems_curr, payems_yr, unrate_curr, unrate_yr)
     if m_lmmi:
         models_calculated.append(m_lmmi)
+
+    # Model 25.3: Global Supply Chain Pressure Logistics Engine (NY Fed GSCPI)
+    m_gscpi = calc_supply_chain_pressure(gscpi)
+    if m_gscpi:
+        models_calculated.append(m_gscpi)
 
     # Model 25.14: AI Hardware & Semiconductor Stress
     m_chip = calc_ai_chip_stress_gauge(gscpi, sox_yoy, vix)
