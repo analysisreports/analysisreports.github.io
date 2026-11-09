@@ -126,6 +126,22 @@ def main():
     # Model 25.14: AI Chip Stress
     chip_stress = round((gscpi * 0.40) + ((sox_yoy / 50.0) * -0.35) + ((vix / 20.0) * 0.25), 3)
 
+    # Model 25.18: Mecca Pact Dynamic Transmission Engine
+    sofr = series.get('SOFR', {}).get('current_value', 3.92)
+    delta_treaty = 0.10
+    r_oil = (brent / 84.0) if (brent is not None and brent > 0) else 1.0
+    if r_oil >= 1.05:
+        s_energy = 0.05
+    elif r_oil < 0.90:
+        s_energy = -0.05
+    else:
+        s_energy = 0.00
+
+    delta_dollar = -0.03 if (sofr is not None and sofr >= 5.25) else 0.00
+    mecca_delta_tr_sa = round(min(0.30, max(-0.30, delta_treaty + s_energy + delta_dollar)), 2)
+    mecca_delta_sa_pk = round(min(0.30, max(-0.30, delta_treaty + s_energy + delta_dollar)), 2)
+    mecca_delta_tr_pk = round(min(0.30, max(-0.30, delta_treaty + min(0.0, delta_dollar))), 2)
+
     # 3. Dynamic Deltas for Bilateral Corridors
     # Oil Shock (Middle East, Red Sea & Latin America)
     if brent_wti_spread > 12.0:
@@ -336,9 +352,9 @@ def main():
             'target_entity': 'GEO_SA',
             'label': 'TR - SA (Republic of Türkiye - Kingdom of Saudi Arabia)',
             'p_baseline': +0.35,
-            'dynamic_delta': 0.0,
+            'dynamic_delta': mecca_delta_tr_sa,
             'friction_nodes': ['RED_SEA_SECURITY', 'GULF_ENERGY_DEFENSE', 'DEFENSE_INDUSTRIAL_CO_PRODUCTION'],
-            'primary_driver': 'MECCA_MUTUAL_DEFENSE_TREATY_AND_AIRSPACE_SECURITY'
+            'primary_driver': 'MECCA_DEFENSE_PACT_TR_SA_AIR_NAVAL_SECURITY'
         },
         {
             'id': 'SA_PK',
@@ -346,9 +362,9 @@ def main():
             'target_entity': 'GEO_PK',
             'label': 'SA - PK (Kingdom of Saudi Arabia - Islamic Republic of Pakistan)',
             'p_baseline': +0.65,
-            'dynamic_delta': 0.0,
+            'dynamic_delta': mecca_delta_sa_pk,
             'friction_nodes': ['ARABIAN_SEA_LITTORAL', 'GWADAR_SECURITY_CORRIDOR', 'PETRODOLLAR_LIQUIDITY_TRANSFERS', 'NUCLEAR_DETERRENCE_UMBRELLA'],
-            'primary_driver': 'STRATEGIC_NUCLEAR_AND_FINANCIAL_SECURITY_COMPACT'
+            'primary_driver': 'MECCA_DEFENSE_PACT_SA_PK_NUCLEAR_FINANCIAL_SECURITY'
         },
         {
             'id': 'TR_PK',
@@ -356,9 +372,9 @@ def main():
             'target_entity': 'GEO_PK',
             'label': 'TR - PK (Republic of Türkiye - Islamic Republic of Pakistan)',
             'p_baseline': +0.80,
-            'dynamic_delta': 0.0,
+            'dynamic_delta': mecca_delta_tr_pk,
             'friction_nodes': ['DEFENSE_AEROSPACE_CO_PRODUCTION', 'KASHMIR_CYPRUS_DIPLOMATIC_AXIS', 'MIDDLE_CORRIDOR_ECO_RAIL', 'MILGEM_MARITIME_INTEGRATION'],
-            'primary_driver': 'FRATERNAL_DEFENSE_AEROSPACE_STRATEGIC_ALLIANCE'
+            'primary_driver': 'MECCA_DEFENSE_PACT_TR_PK_AEROSPACE_DEFENSE_ALLIANCE'
         }
     ]
 
