@@ -283,6 +283,52 @@ def calc_yield_spread_bps(t10y2y_val):
         return None
 
 
+# --- Model 8: Beveridge Curve Labor Tightness ---
+def calc_beveridge_labor_tightness(jtsjol_val, unemploy_val) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (jtsjol_val, unemploy_val)):
+        return None
+    try:
+        j = float(jtsjol_val)
+        u = float(unemploy_val)
+        if not (math.isfinite(j) and math.isfinite(u)):
+            return None
+        if j <= 0.0 or u <= 0.0:
+            return None
+
+        raw_ratio = j / u
+        if not math.isfinite(raw_ratio):
+            return None
+        ratio = round(raw_ratio, 2)
+
+        if ratio > 1.50:
+            status = "OVERHEATED_LABOR"
+        elif ratio < 1.00:
+            status = "COOLING_LABOR"
+        else:
+            status = "BALANCED_LABOR_TIGHTNESS"
+
+        return {
+            "model_id": "MODEL_8",
+            "model_name": "Beveridge Curve Labor Tightness",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#8",
+            "primary_value": ratio,
+            "unit": "Ratio",
+            "status": status,
+            "inputs": {
+                "job_openings_jtsjol_k": round(j, 2),
+                "unemployed_persons_unemploy_k": round(u, 2)
+            },
+            "metrics": {
+                "beveridge_ratio": ratio,
+                "job_openings_k": round(j, 2),
+                "unemployed_k": round(u, 2)
+            },
+            "interpretation": "Evaluates the ratio of job openings to unemployed job seekers. Ratios > 1.50 signal overheated wage pressure, < 1.00 signal loosening labor demand."
+        }
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+
+
 # --- Model 16: VIX Market Regime Thresholds ---
 def calc_vix_market_regime(vix):
     if vix is None or isinstance(vix, bool):
@@ -858,6 +904,50 @@ def calc_labor_dual_track_matrix(payems_mom, unrate_delta, civpart_delta) -> Opt
         return None
 
 
+# --- Model 23.4: Early Layoff and Recession Signal ---
+def calc_early_layoff_signal(indpro_yoy_pct, awhaetp_yoy_pct) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (indpro_yoy_pct, awhaetp_yoy_pct)):
+        return None
+    try:
+        ip = float(indpro_yoy_pct)
+        hrs = float(awhaetp_yoy_pct)
+        if not (math.isfinite(ip) and math.isfinite(hrs)):
+            return None
+
+        raw_index = ip + (hrs * 2.0)
+        if not math.isfinite(raw_index):
+            return None
+        index = round(raw_index, 2)
+
+        if index < -2.50:
+            status = "ACUTE_LAYOFF_CONTRACTION"
+        elif index < 0.0:
+            status = "EARLY_RECESSION_SIGNAL"
+        else:
+            status = "EXPANSION_EMPLOYMENT_MOMENTUM"
+
+        return {
+            "model_id": "MODEL_23.4",
+            "model_name": "Early Layoff and Recession Signal",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.4",
+            "primary_value": index,
+            "unit": "Index Points",
+            "status": status,
+            "inputs": {
+                "industrial_production_yoy_pct": round(ip, 2),
+                "weekly_hours_yoy_pct": round(hrs, 2)
+            },
+            "metrics": {
+                "early_layoff_index": index,
+                "indpro_yoy_pct": round(ip, 2),
+                "awhaetp_yoy_pct": round(hrs, 2)
+            },
+            "interpretation": "Detects latent employment losses and early recessionary inflection before headline unemployment rises by synthesizing weekly hours worked against industrial production momentum."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
 def calc_early_employment_crack(ic4wsa_yoy, unrate_delta) -> Optional[Dict[str, Any]]:
     if any(v is None or isinstance(v, bool) for v in (ic4wsa_yoy, unrate_delta)):
         return None
@@ -1181,6 +1271,13 @@ def main():
     if m_slope:
         models_calculated.append(m_slope)
 
+    # Model 8: Beveridge Curve Labor Tightness
+    jtsjol_val = series.get("JTSJOL", {}).get("current_value")
+    unemploy_val = series.get("UNEMPLOY", {}).get("current_value")
+    m_bev = calc_beveridge_labor_tightness(jtsjol_val, unemploy_val)
+    if m_bev:
+        models_calculated.append(m_bev)
+
     # Model 16: VIX Regime
     m_vix = calc_vix_market_regime(vix)
     if m_vix:
@@ -1220,6 +1317,13 @@ def main():
     m_dual_track = calc_labor_dual_track_matrix(payems_mom, unrate_mom, civpart_mom)
     if m_dual_track:
         models_calculated.append(m_dual_track)
+
+    # Model 23.4: Early Layoff and Recession Signal
+    indpro_yoy = series.get("INDPRO", {}).get("transformations", {}).get("percent_change_from_year_ago")
+    awhaetp_yoy = series.get("AWHAETP", {}).get("transformations", {}).get("percent_change_from_year_ago")
+    m_layoff = calc_early_layoff_signal(indpro_yoy, awhaetp_yoy)
+    if m_layoff:
+        models_calculated.append(m_layoff)
 
     # Model 23.6: Early Employment Crack Signal (FRED IC4WSA x UNRATE)
     ic4wsa_yoy = series.get("IC4WSA", {}).get("transformations", {}).get("percent_change_from_year_ago")

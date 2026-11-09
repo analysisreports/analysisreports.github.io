@@ -50,7 +50,13 @@ Regime States (Discrete Mapping):
 - HEALTHY_EXPANSION         : Balanced mortgage rates and expanding building permit momentum.
 - FAVORABLE_TRADE           : Export price power expanding sovereign purchasing terms over imports.
 - BASELINE_EQUILIBRIUM      : Bilateral terms of trade in historical balance.
-- DETERIORATING_TERMS       : Import prices outpacing export revenues creating terms of trade drag.
+- DETERIORATING_TERMS           : Import prices outpacing export revenues creating terms of trade drag.
+- OVERHEATED_LABOR              : Job openings far outstripping unemployed workers indicating acute wage-price spiral risk.
+- COOLING_LABOR                 : Job openings falling below unemployed headcount signaling labor demand contraction.
+- BALANCED_LABOR_TIGHTNESS      : Beveridge curve ratio in historical labor supply-demand equilibrium.
+- ACUTE_LAYOFF_CONTRACTION      : Severe decline in weekly manufacturing hours and industrial production confirming recessionary layoffs.
+- EARLY_RECESSION_SIGNAL        : Contraction in hours worked preceding headline employment deterioration.
+- EXPANSION_EMPLOYMENT_MOMENTUM : Expanding industrial production and resilient workweek hours signaling robust employment.
 
 ---
 

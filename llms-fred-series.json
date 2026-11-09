@@ -6,7 +6,7 @@
     "license": "CC BY-NC-ND 4.0",
     "sync_status": "SUCCESS",
     "last_successful_sync": "2026-11-09T01:39:06Z",
-    "total_series": 40,
+    "total_series": 41,
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -1686,6 +1686,92 @@
         {
           "date": "2026-11-06",
           "value": 4.7
+        }
+      ]
+    },
+    "UNEMPLOY": {
+      "series_id": "UNEMPLOY",
+      "title": "Unemployment Level",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Thousands of Persons",
+      "source": "Thousands of Persons",
+      "last_date": "2026-10-01",
+      "current_value": 7068.0,
+      "previous_value": 7109.0,
+      "year_ago_value": 7605.0,
+      "transformations": {
+        "change": -41.0,
+        "change_from_year_ago": -537.0,
+        "percent_change": -0.5767,
+        "percent_change_from_year_ago": -7.0611,
+        "compounded_annual_rate_of_change": -6.7054,
+        "continuously_compounded_rate_of_change": -0.5784,
+        "continuously_compounded_annual_rate_of_change": -6.9408
+      },
+      "recent_observations": [
+        {
+          "date": "2026-06-01",
+          "value": 7094.0
+        },
+        {
+          "date": "2026-07-01",
+          "value": 6916.0
+        },
+        {
+          "date": "2026-08-01",
+          "value": 7031.0
+        },
+        {
+          "date": "2026-09-01",
+          "value": 7109.0
+        },
+        {
+          "date": "2026-10-01",
+          "value": 7068.0
+        }
+      ]
+    },
+    "AWHAETP": {
+      "series_id": "AWHAETP",
+      "title": "Average Weekly Hours of All Employees, Total Private",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Hours",
+      "source": "Hours",
+      "last_date": "2026-10-01",
+      "current_value": 34.4,
+      "previous_value": 34.4,
+      "year_ago_value": 34.2,
+      "transformations": {
+        "change": 0.0,
+        "change_from_year_ago": 0.2,
+        "percent_change": 0.0,
+        "percent_change_from_year_ago": 0.5848,
+        "compounded_annual_rate_of_change": 0.0,
+        "continuously_compounded_rate_of_change": 0.0,
+        "continuously_compounded_annual_rate_of_change": 0.0
+      },
+      "recent_observations": [
+        {
+          "date": "2026-06-01",
+          "value": 34.3
+        },
+        {
+          "date": "2026-07-01",
+          "value": 34.3
+        },
+        {
+          "date": "2026-08-01",
+          "value": 34.4
+        },
+        {
+          "date": "2026-09-01",
+          "value": 34.4
+        },
+        {
+          "date": "2026-10-01",
+          "value": 34.4
         }
       ]
     }

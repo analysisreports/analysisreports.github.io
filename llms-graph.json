@@ -1739,6 +1739,58 @@
           "DETERIORATING_TERMS"
         ]
       }
+    },
+    {
+      "id": "IND_JTSJOL",
+      "label": "Job Openings: Total Nonfarm",
+      "category": "INDICATOR",
+      "source": "BLS / FRED"
+    },
+    {
+      "id": "IND_UNEMPLOY",
+      "label": "Unemployed Persons",
+      "category": "INDICATOR",
+      "source": "BLS / FRED"
+    },
+    {
+      "id": "IND_INDPRO",
+      "label": "Industrial Production Total Index",
+      "category": "INDICATOR",
+      "source": "FRED"
+    },
+    {
+      "id": "IND_AWHAETP",
+      "label": "Average Weekly Hours Total Private",
+      "category": "INDICATOR",
+      "source": "BLS / FRED"
+    },
+    {
+      "id": "MODEL_8",
+      "label": "Beveridge Curve Labor Tightness",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_beveridge_labor_tightness",
+        "formula": "Beveridge_Ratio = JTSJOL / UNEMPLOY",
+        "status_enums": [
+          "OVERHEATED_LABOR",
+          "COOLING_LABOR",
+          "BALANCED_LABOR_TIGHTNESS"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_23.4",
+      "label": "Early Layoff and Recession Signal",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_early_layoff_signal",
+        "formula": "Early_Layoff_Index = INDPRO_YoY + (AWHAETP_YoY * 2.0)",
+        "status_enums": [
+          "ACUTE_LAYOFF_CONTRACTION",
+          "EARLY_RECESSION_SIGNAL",
+          "EXPANSION_EMPLOYMENT_MOMENTUM"
+        ]
+      }
     }
   ],
   "edges": [
@@ -2773,6 +2825,30 @@
       "target": "MODEL_25",
       "type": "INGESTS_SERIES",
       "role": "U.S. Import Price Index"
+    },
+    {
+      "source": "IND_JTSJOL",
+      "target": "MODEL_8",
+      "type": "INGESTS_SERIES",
+      "role": "Job Openings Total Nonfarm"
+    },
+    {
+      "source": "IND_UNEMPLOY",
+      "target": "MODEL_8",
+      "type": "INGESTS_SERIES",
+      "role": "Unemployed Persons"
+    },
+    {
+      "source": "IND_INDPRO",
+      "target": "MODEL_23.4",
+      "type": "INGESTS_SERIES",
+      "role": "Industrial Production Total Index YoY"
+    },
+    {
+      "source": "IND_AWHAETP",
+      "target": "MODEL_23.4",
+      "type": "INGESTS_SERIES",
+      "role": "Average Weekly Hours Total Private YoY"
     }
   ]
 }

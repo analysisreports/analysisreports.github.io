@@ -917,3 +917,47 @@ Recent Observations (Last 5):
   2024-01-01: -0.3433
   2024-04-01: -0.4781
   2024-07-01: 0.0705
+
+--------------------------------------------------------------------------------
+Series ID: UNEMPLOY
+Title: Unemployment Level
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Thousands of Persons
+Last Date: 2026-10-01 | Current Value: 7068.0000 | Previous Value: 7109.0000 | Year Ago Value: 7605.0000
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -41.0000
+  2. Change from Year Ago: -537.0000
+  3. Percent Change: -0.5767%
+  4. Percent Change from Year Ago: -7.0611%
+  5. Compounded Annual Rate of Change: -6.7054%
+  6. Continuously Compounded Rate of Change: -0.5784%
+  7. Continuously Compounded Annual Rate of Change: -6.9408%
+
+Recent Observations (Last 5):
+  2026-06-01: 7094.0000
+  2026-07-01: 6916.0000
+  2026-08-01: 7031.0000
+  2026-09-01: 7109.0000
+  2026-10-01: 7068.0000
+
+--------------------------------------------------------------------------------
+Series ID: AWHAETP
+Title: Average Weekly Hours of All Employees, Total Private
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Hours
+Last Date: 2026-10-01 | Current Value: 34.4000 | Previous Value: 34.4000 | Year Ago Value: 34.2000
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: 0.0000
+  2. Change from Year Ago: +0.2000
+  3. Percent Change: 0.0000%
+  4. Percent Change from Year Ago: +0.5848%
+  5. Compounded Annual Rate of Change: 0.0000%
+  6. Continuously Compounded Rate of Change: 0.0000%
+  7. Continuously Compounded Annual Rate of Change: 0.0000%
+
+Recent Observations (Last 5):
+  2026-06-01: 34.3000
+  2026-07-01: 34.3000
+  2026-08-01: 34.4000
+  2026-09-01: 34.4000
+  2026-10-01: 34.4000

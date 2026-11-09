@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-09 21:02 UTC
+> **Last Calibrated Sync:** 2026-11-09 21:32 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -20,11 +20,13 @@
 | **MODEL_4** | Front-End T-Bill Slope & Liquidity Spread | **14.0** | Basis Points (bps) | `NORMAL_SLOPE` | Tracks the slope between 3-month and 1-month Treasury b... |
 | **MODEL_5** | Net Fed Liquidity Index | **5.791** | Trillion USD | `NEUTRAL_LIQUIDITY_EQUILIBRIUM` | Unencumbered commercial bank liquidity: WALCL - (TGA + ... |
 | **MODEL_6** | Treasury Yield Curve Slope (10Y - 2Y) | **35.0** | Basis Points (bps) | `NORMAL_CURVE_EXPANSION` | Leading cyclical economic barometer. Inversions (bps < ... |
+| **MODEL_8** | Beveridge Curve Labor Tightness | **1.06** | Ratio | `BALANCED_LABOR_TIGHTNESS` | Evaluates the ratio of job openings to unemployed job s... |
 | **MODEL_16** | CBOE Volatility & Market Fear Regime | **28.18** | Points | `ELEVATED_STRESS` | 30-day forward S&P 500 implied volatility fear gauge an... |
 | **MODEL_18** | Okun Misery Index | **8.12** | Index Points | `MODERATE` | Measures household welfare loss and stagflationary stre... |
 | **MODEL_21** | Gold to Oil Crisis & Recession Ratio | **41.2** | Barrels per Ounce | `MACRO_CRISIS_RECESSION` | Calculates ounces of gold per barrel of crude oil to cl... |
 | **MODEL_23** | Okun Gap (Growth-Employment Divergence) | **-0.27** | Percentage Points (ppt) | `BALANCED_OKUN_EQUILIBRIUM` | Evaluates the historical elasticity between real GDP gr... |
 | **MODEL_23.1** | Labor Market Dual-Track Dynamics | **165.0** | Thousands (k) | `BALANCED_LABOR_MARKET` | Cross-evaluates payroll gains against unemployment rate... |
+| **MODEL_23.4** | Early Layoff and Recession Signal | **3.41** | Index Points | `EXPANSION_EMPLOYMENT_MOMENTUM` | Detects latent employment losses and early recessionary... |
 | **MODEL_23.6** | Early Employment Crack Signal | **-13.64** | Index Points | `LABOR_MARKET_ALIGNED` | Identifies early labor cracks by comparing weekly joble... |
 | **MODEL_23.7** | Inventory to Sales Glut Ratio | **1.33** | Ratio | `BALANCED_SUPPLY_CHAIN` | Measures total business inventories relative to monthly... |
 | **MODEL_23.8** | Mortgage and Permit Divergence (Housing Freeze Index) | **7.5** | Index Points | `SUPPLY_CONTRACTION` | Measures divergence between surging mortgage borrowing ... |
@@ -82,6 +84,13 @@
 - **Inputs Evaluated:** `{"t10y2y_spread_pct": 0.35}`
 - **Economic Synthesis:** Leading cyclical economic barometer. Inversions (bps < 0) historically precede sovereign US business cycle recessions.
 
+#### [MODEL_8] Beveridge Curve Labor Tightness
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#8
+- **Evaluated Status:** `BALANCED_LABOR_TIGHTNESS` (Primary Value: 1.06 Ratio)
+- **Inputs Evaluated:** `{"job_openings_jtsjol_k": 7523.0, "unemployed_persons_unemploy_k": 7068.0}`
+- **Secondary Metrics:** `{"beveridge_ratio": 1.06, "job_openings_k": 7523.0, "unemployed_k": 7068.0}`
+- **Economic Synthesis:** Evaluates the ratio of job openings to unemployed job seekers. Ratios > 1.50 signal overheated wage pressure, < 1.00 signal loosening labor demand.
+
 #### [MODEL_16] CBOE Volatility & Market Fear Regime
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#16
 - **Evaluated Status:** `ELEVATED_STRESS` (Primary Value: 28.18 Points)
@@ -115,6 +124,13 @@
 - **Inputs Evaluated:** `{"payems_change_mom_k": 165.0, "unrate_change_mom_ppt": -0.1, "civpart_change_mom_ppt": 0.1}`
 - **Secondary Metrics:** `{"payems_change_k": 165.0, "unrate_change_ppt": -0.1, "civpart_change_ppt": 0.1}`
 - **Economic Synthesis:** Cross-evaluates payroll gains against unemployment rate and participation rate shifts to determine whether employment growth is organically absorbing new entrants or masking structural deterioration.
+
+#### [MODEL_23.4] Early Layoff and Recession Signal
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23.4
+- **Evaluated Status:** `EXPANSION_EMPLOYMENT_MOMENTUM` (Primary Value: 3.41 Index Points)
+- **Inputs Evaluated:** `{"industrial_production_yoy_pct": 2.25, "weekly_hours_yoy_pct": 0.58}`
+- **Secondary Metrics:** `{"early_layoff_index": 3.41, "indpro_yoy_pct": 2.25, "awhaetp_yoy_pct": 0.58}`
+- **Economic Synthesis:** Detects latent employment losses and early recessionary inflection before headline unemployment rises by synthesizing weekly hours worked against industrial production momentum.
 
 #### [MODEL_23.6] Early Employment Crack Signal
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23.6

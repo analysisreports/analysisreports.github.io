@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T21:02:47.272724+00:00",
+    "last_successful_sync": "2026-11-09T21:32:10.329109+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 24
+    "total_models_active": 26
   },
   "models": [
     {
@@ -114,6 +114,24 @@
       "interpretation": "Leading cyclical economic barometer. Inversions (bps < 0) historically precede sovereign US business cycle recessions."
     },
     {
+      "model_id": "MODEL_8",
+      "model_name": "Beveridge Curve Labor Tightness",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#8",
+      "primary_value": 1.06,
+      "unit": "Ratio",
+      "status": "BALANCED_LABOR_TIGHTNESS",
+      "inputs": {
+        "job_openings_jtsjol_k": 7523.0,
+        "unemployed_persons_unemploy_k": 7068.0
+      },
+      "metrics": {
+        "beveridge_ratio": 1.06,
+        "job_openings_k": 7523.0,
+        "unemployed_k": 7068.0
+      },
+      "interpretation": "Evaluates the ratio of job openings to unemployed job seekers. Ratios > 1.50 signal overheated wage pressure, < 1.00 signal loosening labor demand."
+    },
+    {
       "model_id": "MODEL_16",
       "model_name": "CBOE Volatility & Market Fear Regime",
       "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#16",
@@ -198,6 +216,24 @@
         "civpart_change_ppt": 0.1
       },
       "interpretation": "Cross-evaluates payroll gains against unemployment rate and participation rate shifts to determine whether employment growth is organically absorbing new entrants or masking structural deterioration."
+    },
+    {
+      "model_id": "MODEL_23.4",
+      "model_name": "Early Layoff and Recession Signal",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.4",
+      "primary_value": 3.41,
+      "unit": "Index Points",
+      "status": "EXPANSION_EMPLOYMENT_MOMENTUM",
+      "inputs": {
+        "industrial_production_yoy_pct": 2.25,
+        "weekly_hours_yoy_pct": 0.58
+      },
+      "metrics": {
+        "early_layoff_index": 3.41,
+        "indpro_yoy_pct": 2.25,
+        "awhaetp_yoy_pct": 0.58
+      },
+      "interpretation": "Detects latent employment losses and early recessionary inflection before headline unemployment rises by synthesizing weekly hours worked against industrial production momentum."
     },
     {
       "model_id": "MODEL_23.6",
