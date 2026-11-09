@@ -335,10 +335,30 @@ def main():
             'source_entity': 'GEO_TR',
             'target_entity': 'GEO_SA',
             'label': 'TR - SA (Republic of Türkiye - Kingdom of Saudi Arabia)',
-            'p_baseline': +0.85,
+            'p_baseline': +0.35,
             'dynamic_delta': 0.0,
             'friction_nodes': ['RED_SEA_SECURITY', 'GULF_ENERGY_DEFENSE', 'DEFENSE_INDUSTRIAL_CO_PRODUCTION'],
             'primary_driver': 'MECCA_MUTUAL_DEFENSE_TREATY_AND_AIRSPACE_SECURITY'
+        },
+        {
+            'id': 'SA_PK',
+            'source_entity': 'GEO_SA',
+            'target_entity': 'GEO_PK',
+            'label': 'SA - PK (Kingdom of Saudi Arabia - Islamic Republic of Pakistan)',
+            'p_baseline': +0.65,
+            'dynamic_delta': 0.0,
+            'friction_nodes': ['ARABIAN_SEA_LITTORAL', 'GWADAR_SECURITY_CORRIDOR', 'PETRODOLLAR_LIQUIDITY_TRANSFERS', 'NUCLEAR_DETERRENCE_UMBRELLA'],
+            'primary_driver': 'STRATEGIC_NUCLEAR_AND_FINANCIAL_SECURITY_COMPACT'
+        },
+        {
+            'id': 'TR_PK',
+            'source_entity': 'GEO_TR',
+            'target_entity': 'GEO_PK',
+            'label': 'TR - PK (Republic of Türkiye - Islamic Republic of Pakistan)',
+            'p_baseline': +0.80,
+            'dynamic_delta': 0.0,
+            'friction_nodes': ['DEFENSE_AEROSPACE_CO_PRODUCTION', 'KASHMIR_CYPRUS_DIPLOMATIC_AXIS', 'MIDDLE_CORRIDOR_ECO_RAIL', 'MILGEM_MARITIME_INTEGRATION'],
+            'primary_driver': 'FRATERNAL_DEFENSE_AEROSPACE_STRATEGIC_ALLIANCE'
         }
     ]
 

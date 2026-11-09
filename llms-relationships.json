@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-08T23:31:45.451155+00:00",
+    "last_successful_sync": "2026-11-09T00:27:39.051857+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "governance_reference": "https://analysisreports.github.io/llms-formulas.txt#25.15",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
@@ -311,15 +311,49 @@
       "source_entity": "GEO_TR",
       "target_entity": "GEO_SA",
       "label": "TR - SA (Republic of Türkiye - Kingdom of Saudi Arabia)",
-      "p_baseline": 0.85,
+      "p_baseline": 0.35,
       "dynamic_delta": 0.0,
-      "p_net": 0.85,
-      "regime_state": "ALLIANCE",
+      "p_net": 0.35,
+      "regime_state": "TACTICAL_COOPERATION",
       "primary_driver": "MECCA_MUTUAL_DEFENSE_TREATY_AND_AIRSPACE_SECURITY",
       "friction_nodes": [
         "RED_SEA_SECURITY",
         "GULF_ENERGY_DEFENSE",
         "DEFENSE_INDUSTRIAL_CO_PRODUCTION"
+      ]
+    },
+    {
+      "id": "SA_PK",
+      "source_entity": "GEO_SA",
+      "target_entity": "GEO_PK",
+      "label": "SA - PK (Kingdom of Saudi Arabia - Islamic Republic of Pakistan)",
+      "p_baseline": 0.65,
+      "dynamic_delta": 0.0,
+      "p_net": 0.65,
+      "regime_state": "STRATEGIC_ALIGNMENT",
+      "primary_driver": "STRATEGIC_NUCLEAR_AND_FINANCIAL_SECURITY_COMPACT",
+      "friction_nodes": [
+        "ARABIAN_SEA_LITTORAL",
+        "GWADAR_SECURITY_CORRIDOR",
+        "PETRODOLLAR_LIQUIDITY_TRANSFERS",
+        "NUCLEAR_DETERRENCE_UMBRELLA"
+      ]
+    },
+    {
+      "id": "TR_PK",
+      "source_entity": "GEO_TR",
+      "target_entity": "GEO_PK",
+      "label": "TR - PK (Republic of Türkiye - Islamic Republic of Pakistan)",
+      "p_baseline": 0.8,
+      "dynamic_delta": 0.0,
+      "p_net": 0.8,
+      "regime_state": "STRATEGIC_ALIGNMENT",
+      "primary_driver": "FRATERNAL_DEFENSE_AEROSPACE_STRATEGIC_ALLIANCE",
+      "friction_nodes": [
+        "DEFENSE_AEROSPACE_CO_PRODUCTION",
+        "KASHMIR_CYPRUS_DIPLOMATIC_AXIS",
+        "MIDDLE_CORRIDOR_ECO_RAIL",
+        "MILGEM_MARITIME_INTEGRATION"
       ]
     }
   ],
