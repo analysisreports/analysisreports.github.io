@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-09 23:23 UTC
+> **Last Calibrated Sync:** 2026-11-09 23:30 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -28,6 +28,7 @@
 | **MODEL_12** | Financial Conditions Tightness (Chicago Fed NFCI) | **-0.459** | Index Points | `LOOSE_FINANCIAL_CONDITIONS` | Monitors monetary policy transmission into financial ma... |
 | **MODEL_13** | High Yield Credit Spread / OAS | **342** | Basis Points (bps) | `RISK_APPETITE_HEALTHY` | Measures corporate credit default risk and risk appetit... |
 | **MODEL_14** | Real M2 Money Momentum | **1.69** | Percentage Points (ppt) | `MONETARY_EXPANSION` | Detects aggregate demand and monetary impulse by calcul... |
+| **MODEL_15** | NY Fed ACM 10-Year Term Premium | **0.91** | Percent (%) | `FISCAL_SUPPLY_PRESSURE` | Decomposes the 10-year Treasury yield into expected sho... |
 | **MODEL_16** | CBOE Volatility & Market Fear Regime | **28.18** | Points | `ELEVATED_STRESS` | 30-day forward S&P 500 implied volatility fear gauge an... |
 | **MODEL_18** | Okun Misery Index | **8.12** | Index Points | `MODERATE` | Measures household welfare loss and stagflationary stre... |
 | **MODEL_21** | Gold to Oil Crisis & Recession Ratio | **41.2** | Barrels per Ounce | `MACRO_CRISIS_RECESSION` | Calculates ounces of gold per barrel of crude oil to cl... |
@@ -146,6 +147,13 @@
 - **Inputs Evaluated:** `{"m2_money_growth_yoy_pct": 5.71, "headline_cpi_yoy_pct": 4.02}`
 - **Secondary Metrics:** `{"real_m2_growth_ppt": 1.69, "m2_yoy_pct": 5.71, "cpi_yoy_pct": 4.02}`
 - **Economic Synthesis:** Detects aggregate demand and monetary impulse by calculating the real expansion or contraction rate of broad money supply (M2) relative to headline CPI inflation. Values < 0 indicate monetary contraction; > 0 indicate broad liquidity expansion.
+
+#### [MODEL_15] NY Fed ACM 10-Year Term Premium
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#15
+- **Evaluated Status:** `FISCAL_SUPPLY_PRESSURE` (Primary Value: 0.91 Percent (%))
+- **Inputs Evaluated:** `{"nominal_10y_yield_dgs10": 4.84, "acm_10y_term_premium_threefytp10": 0.91}`
+- **Secondary Metrics:** `{"term_premium_pct": 0.91, "expected_average_short_rate_pct": 3.93, "nominal_10y_yield_pct": 4.84}`
+- **Economic Synthesis:** Decomposes the 10-year Treasury yield into expected short-term interest rate path and the pure term premium risk compensation (ACM model). Values > +0.50% reflect elevated Treasury supply and fiscal issuance risk.
 
 #### [MODEL_16] CBOE Volatility & Market Fear Regime
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#16

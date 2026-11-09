@@ -77,6 +77,9 @@ Regime States (Discrete Mapping):
 - RISK_APPETITE_HEALTHY         : High yield credit spread below 350 bps reflecting robust corporate funding liquidity and low default risk.
 - MONETARY_EXPANSION            : Real M2 money growth positive reflecting expanding broad liquidity and aggregate demand support.
 - LIQUIDITY_CONTRACTION         : Real M2 money growth negative reflecting monetary contraction and disinflationary drag.
+- FISCAL_SUPPLY_PRESSURE        : 10-year Treasury term premium exceeding 0.50% reflecting elevated fiscal deficit issuance and inflation risk.
+- BALANCED_PREMIUM              : 10-year Treasury term premium within historical normal band of -0.50% to +0.50%.
+- FLIGHT_TO_SAFETY              : 10-year Treasury term premium below -0.50% reflecting acute flight to safety and Treasury scarcity.
 
 ---
 

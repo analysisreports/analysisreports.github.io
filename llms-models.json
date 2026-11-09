@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T23:23:57.685426+00:00",
+    "last_successful_sync": "2026-11-09T23:30:33.499036+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 33
+    "total_models_active": 34
   },
   "models": [
     {
@@ -259,6 +259,24 @@
         "cpi_yoy_pct": 4.02
       },
       "interpretation": "Detects aggregate demand and monetary impulse by calculating the real expansion or contraction rate of broad money supply (M2) relative to headline CPI inflation. Values < 0 indicate monetary contraction; > 0 indicate broad liquidity expansion."
+    },
+    {
+      "model_id": "MODEL_15",
+      "model_name": "NY Fed ACM 10-Year Term Premium",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#15",
+      "primary_value": 0.91,
+      "unit": "Percent (%)",
+      "status": "FISCAL_SUPPLY_PRESSURE",
+      "inputs": {
+        "nominal_10y_yield_dgs10": 4.84,
+        "acm_10y_term_premium_threefytp10": 0.91
+      },
+      "metrics": {
+        "term_premium_pct": 0.91,
+        "expected_average_short_rate_pct": 3.93,
+        "nominal_10y_yield_pct": 4.84
+      },
+      "interpretation": "Decomposes the 10-year Treasury yield into expected short-term interest rate path and the pure term premium risk compensation (ACM model). Values > +0.50% reflect elevated Treasury supply and fiscal issuance risk."
     },
     {
       "model_id": "MODEL_16",

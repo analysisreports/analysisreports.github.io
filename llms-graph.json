@@ -1929,6 +1929,26 @@
           "MONETARY_EXPANSION"
         ]
       }
+    },
+    {
+      "id": "IND_THREEFYTP10",
+      "label": "Adrian, Crump & Moench 10-Year Treasury Term Premium",
+      "category": "INDICATOR",
+      "source": "NY Fed / FRED"
+    },
+    {
+      "id": "MODEL_15",
+      "label": "NY Fed ACM 10-Year Term Premium",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_acm_term_premium",
+        "formula": "Expected_Short_Rate_Component = DGS10 - THREEFYTP10",
+        "status_enums": [
+          "FISCAL_SUPPLY_PRESSURE",
+          "BALANCED_PREMIUM",
+          "FLIGHT_TO_SAFETY"
+        ]
+      }
     }
   ],
   "edges": [
@@ -3083,6 +3103,18 @@
       "target": "MODEL_14",
       "type": "INGESTS_SERIES",
       "role": "Headline CPI YoY Inflation"
+    },
+    {
+      "source": "IND_THREEFYTP10",
+      "target": "MODEL_15",
+      "type": "INGESTS_SERIES",
+      "role": "Adrian, Crump & Moench 10-Year Term Premium"
+    },
+    {
+      "source": "IND_DGS10",
+      "target": "MODEL_15",
+      "type": "INGESTS_SERIES",
+      "role": "10-Year Nominal Treasury Yield"
     }
   ]
 }

@@ -652,6 +652,53 @@ def calc_real_m2_momentum(m2_yoy_val, cpi_yoy_val) -> Optional[Dict[str, Any]]:
         return None
 
 
+# --- Model 15: NY Fed ACM 10-Year Term Premium ---
+def calc_acm_term_premium(dgs10_val, threefytp10_val) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (dgs10_val, threefytp10_val)):
+        return None
+    try:
+        nom = float(dgs10_val)
+        tp = float(threefytp10_val)
+        if not (math.isfinite(nom) and math.isfinite(tp)):
+            return None
+        # Nominal 10Y yield cannot be negative
+        if nom < 0.0:
+            return None
+
+        term_prem = round(tp, 2)
+        exp_rate = round(nom - term_prem, 2)
+        if not math.isfinite(exp_rate):
+            return None
+
+        if term_prem > 0.50:
+            status = "FISCAL_SUPPLY_PRESSURE"
+        elif term_prem < -0.50:
+            status = "FLIGHT_TO_SAFETY"
+        else:
+            status = "BALANCED_PREMIUM"
+
+        return {
+            "model_id": "MODEL_15",
+            "model_name": "NY Fed ACM 10-Year Term Premium",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#15",
+            "primary_value": term_prem,
+            "unit": "Percent (%)",
+            "status": status,
+            "inputs": {
+                "nominal_10y_yield_dgs10": round(nom, 2),
+                "acm_10y_term_premium_threefytp10": term_prem
+            },
+            "metrics": {
+                "term_premium_pct": term_prem,
+                "expected_average_short_rate_pct": exp_rate,
+                "nominal_10y_yield_pct": round(nom, 2)
+            },
+            "interpretation": "Decomposes the 10-year Treasury yield into expected short-term interest rate path and the pure term premium risk compensation (ACM model). Values > +0.50% reflect elevated Treasury supply and fiscal issuance risk."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
 # --- Model 16: VIX Market Regime Thresholds ---
 def calc_vix_market_regime(vix):
     if vix is None or isinstance(vix, bool):
@@ -1646,6 +1693,12 @@ def main():
     m_m2 = calc_real_m2_momentum(m2_yoy, cpi_yoy)
     if m_m2:
         models_calculated.append(m_m2)
+
+    # Model 15: NY Fed ACM 10-Year Term Premium
+    threefytp10_val = series.get("THREEFYTP10", {}).get("current_value")
+    m_acm = calc_acm_term_premium(dgs10_val, threefytp10_val)
+    if m_acm:
+        models_calculated.append(m_acm)
 
     # Model 16: VIX Regime
     m_vix = calc_vix_market_regime(vix)
