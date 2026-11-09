@@ -39,7 +39,7 @@ Aggregation Alignment Rule:
 ---
 
 ## PART 1: OFFICIAL CENTRAL BANK & MULTILATERAL INSTITUTION TIME-SERIES
-> Fully automated, live-ingested via St. Louis Fed (FRED), European Central Bank (ECB), and World Bank APIs.
+> Fully automated, live-ingested via St. Louis Fed (FRED), European Central Bank (ECB), World Bank, and IMF APIs.
 
 ### 2.1. Net Fed Liquidity & Monetary Policy (Models 1, 2, 4, 5, 11)
 1. WALCL (Fed Total Assets) | Source: Fed H.4.1 | Freq: wew | Units: Millions USD | Mult: 1.0
@@ -113,7 +113,7 @@ Aggregation Alignment Rule:
 53. DEXJPUS (Japanese Yen to U.S. Dollar Spot Exchange Rate) | Source: Board of Governors / FRED | Freq: d | Units: JPY per USD | Trans: lin
 54. NASDAQSOX (PHLX Semiconductor Sector Index) | Source: NASDAQ / FRED | Freq: d | Units: Index | Trans: pc1 (YoY)
 
-### 2.10. Advanced Macro, Rate Friction & Energy Indicators (Models 25.2, 25.5, 25.7 - 25.17)
+### 2.10. Advanced Macro, Rate Friction & Energy Indicators (Models 25.2, 25.5, 25.7 - 25.18)
 55. STICKYCPIM157SFRBATL (Sticky CPI Less Food & Energy) | Source: Atlanta Fed / FRED | Freq: m | Units: Percent (%) | Trans: pc1 (YoY)
 56. FLEXCPIM157SFRBATL (Flexible CPI Less Food & Energy) | Source: Atlanta Fed / FRED | Freq: m | Units: Percent (%) | Trans: pc1 (YoY)
 57. SOFR (Secured Overnight Financing Rate) | Source: NY Fed / FRED | Freq: d | Units: Percent (%) | Mult for Bps: 100.0
@@ -127,6 +127,7 @@ Aggregation Alignment Rule:
 65. MUTAN (Japan Uncollateralized Overnight Call Rate) | Source: Bank of Japan / FRED | Freq: d | Units: Percent (%) | Trans: lin
 66. FEDFUNDS (Federal Funds Effective Rate - Monthly Benchmark) | Source: Board of Governors / FRED | Freq: m | Units: Percent (%) | Trans: lin
 67. T10Y2Y (10-Year Treasury Constant Maturity Minus 2-Year Treasury Constant Maturity) | Source: FRED | Freq: d | Units: Percent (%) | Trans: lin
+68. SAUPZPIOILBEGUSD (Fiscal Breakeven Oil Price for Saudi Arabia) | Source: IMF | Freq: a | Units: U.S. Dollars per Barrel | Trans: lin
 
 ---
 

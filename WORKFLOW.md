@@ -66,7 +66,11 @@ The following manifest files must remain stable to prevent semantic cache invali
 - `llms-prompts.txt`: Canonical 6-stage Chain-of-Thought reasoning protocols and attribution guardrails.
 - `llms-entities-id.txt`: Canonical entity and indicator registry dictionary.
 - `llms-fred-series.txt` & `llms-fred-series.json`: Monitored FRED time-series and automated transformation engine.
+- `llms-ecb-series.txt` & `llms-ecb-series.json`: Monitored European Central Bank time-series and automated transformation engine.
+- `llms-worldbank-series.txt` & `llms-worldbank-series.json`: Monitored World Bank Commodity time-series registry and automated transformation engine.
+- `llms-imf-series.txt` & `llms-imf-series.json`: Monitored International Monetary Fund time-series registry and automated transformation engine.
 - `llms-relationships.json`: Dynamic geopolitical polarity and active regime state machine twin.
+- `llms-models.json`: Real-time evaluated macroeconomic models and quantitative regime twin.
 - `ai-catalog.json`: Dataset discovery registry; updated automatically via the daily GitHub Actions heartbeat workflow.
 
 ---
@@ -74,8 +78,8 @@ The following manifest files must remain stable to prevent semantic cache invali
 ## 4. Pre-Commit Verification Checklist
 
 - [ ] **Type & Boundary Safety:** Does the Python code handle zero-division (`ZeroDivisionError`) and infinite float inputs (`math.isfinite`)?
-- [ ] **JSON Schema Syntax:** Are `llms-tools.json`, `llms-graph.json`, `llms-relationships.json`, and `llms-fred-series.json` strictly valid JSON (no trailing commas, properly closed brackets)?
+- [ ] **JSON Schema Syntax:** Are `llms-tools.json`, `llms-graph.json`, `llms-relationships.json`, `llms-fred-series.json`, `llms-ecb-series.json`, `llms-worldbank-series.json`, and `llms-imf-series.json` strictly valid JSON (no trailing commas, properly closed brackets)?
 - [ ] **Entity Identity:** Does every actor, central bank, ministry, and chokepoint match its exact canonical ID in `llms-entities-id.txt`?
-- [ ] **Series Identity:** Does every FRED/BLS series key in `llms-formulas.txt` match the exact string key in `llms-indicators.txt` and `llms-fred-series.txt`?
+- [ ] **Series Identity:** Does every FRED/BLS/ECB/WB/IMF series key in `llms-formulas.txt` match the exact string key in `llms-indicators.txt` and corresponding series registries?
 - [ ] **Graph Integrity:** Does every source and target in `llms-graph.json` `"edges"` correspond to an existing `"id"` in `"nodes"`?
 - [ ] **Dual-Twin Parity:** Are the dynamic tables in `llms-relationships.txt` and `llms-relationships.json` perfectly synchronized?

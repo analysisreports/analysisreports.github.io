@@ -2554,13 +2554,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 - Canonical Input Series:
   - EIA / FRED: DCOILBRENTEU (Crude Oil Prices: Brent - Europe, USD per Barrel)
   - FRED: SOFR (Secured Overnight Financing Rate, Percent)
+  - IMF: SAUPZPIOILBEGUSD (Fiscal Breakeven Oil Price for Saudi Arabia, USD per Barrel)
   - SAMA / FRED: TRESEGSAM052N (Saudi Arabia Total Reserves excluding Gold, USD)
   - OECD / FRED: TURB6BLTT02STSAQ (Türkiye Current Account Balance % of GDP, Quarterly SA)
 - Mathematical Formulation:
   1. Treaty Activation Uplift:
      Delta_treaty = +0.10 (Institutional mutual collective defense commitment upon pact ratification)
   2. Hydrocarbon Fiscal Breakeven Ratio:
-     R_oil = Brent / 84.0 (Calibrated to Saudi sovereign budget breakeven threshold of $84/bbl)
+     R_oil = Brent / Breakeven_oil (Where Breakeven_oil is dynamically ingested from IMF SAUPZPIOILBEGUSD; defaults to calibrated baseline $86.20/bbl if offline)
      If R_oil >= 1.05: S_energy = +0.05 (Fiscal surplus enables expanded defense procurement and bilateral sovereign liquidity deposits)
      Else If R_oil < 0.90: S_energy = -0.05 (Fiscal consolidation pressure)
      Else: S_energy = 0.00 (Fiscal equilibrium)
@@ -2572,17 +2573,18 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
      dynamic_delta(SA_PK) = round(clamp(Delta_treaty + S_energy + delta_dollar, -0.30, 0.30), 2)
      dynamic_delta(TR_PK) = round(clamp(Delta_treaty + min(0.0, delta_dollar), -0.30, 0.30), 2)
 - Machine-Executable Logic (Python):
-  def calculate_mecca_pact_transmission(brent, sofr, sa_reserves=None, tr_current_account=None):
+  def calculate_mecca_pact_transmission(brent, sofr, breakeven_oil=86.2, sa_reserves=None, tr_current_account=None):
       if brent is None or sofr is None:
           return None
       try:
           f_brent = float(brent)
           f_sofr = float(sofr)
-          if not (math.isfinite(f_brent) and math.isfinite(f_sofr)):
+          f_be = float(breakeven_oil) if (breakeven_oil is not None and float(breakeven_oil) > 0) else 86.2
+          if not (math.isfinite(f_brent) and math.isfinite(f_sofr) and math.isfinite(f_be)):
               return None
 
           delta_treaty = 0.10
-          r_oil = f_brent / 84.0
+          r_oil = f_brent / f_be
           if r_oil >= 1.05:
               s_energy = 0.05
           elif r_oil < 0.90:
@@ -2599,6 +2601,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           return {
               "model_id": "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
               "oil_breakeven_ratio": round(r_oil, 4),
+              "breakeven_oil_price": round(f_be, 2),
               "delta_treaty": delta_treaty,
               "s_energy": s_energy,
               "delta_dollar": delta_dollar,
@@ -2612,9 +2615,9 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, OverflowError):
           return None
 - Interpretation:
-  - status == TREATY_ACTIVE_SURPLUS_EXPANSION : High hydrocarbon revenues (Brent >= $88.2/bbl) combined with benign global interest rates; sovereign wealth investments, bilateral defense procurement, and liquidity deposits operate at peak velocity.
-  - status == TREATY_ACTIVE_EQUILIBRIUM : Hydrocarbon revenues aligned with sovereign budgetary requirements ($75.6 - $88.2/bbl); mutual defense treaty guarantees and defense co-production pipelines proceed on schedule.
-  - status == TREATY_ACTIVE_FISCAL_RESTRAINT : Hydrocarbon revenues fall below sovereign breakeven threshold (< $75.6/bbl) or dollar funding stresses elevate; mutual security umbrella remains intact while non-essential discretionary capital deployments moderate.
+  - status == TREATY_ACTIVE_SURPLUS_EXPANSION : High hydrocarbon revenues (Brent >= 1.05 * Breakeven) combined with benign global interest rates; sovereign wealth investments, bilateral defense procurement, and liquidity deposits operate at peak velocity.
+  - status == TREATY_ACTIVE_EQUILIBRIUM : Hydrocarbon revenues aligned with sovereign budgetary requirements (0.90 <= R_oil < 1.05); mutual defense treaty guarantees and defense co-production pipelines proceed on schedule.
+  - status == TREATY_ACTIVE_FISCAL_RESTRAINT : Hydrocarbon revenues fall below sovereign breakeven threshold (R_oil < 0.90) or dollar funding stresses elevate; mutual security umbrella remains intact while non-essential discretionary capital deployments moderate.
 
 ---
 ## 🏛️ TIER 3: INSTITUTIONAL DECISION, GEOPOLITICAL TENSION & CALIBRATION ENGINE

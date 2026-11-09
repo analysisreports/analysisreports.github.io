@@ -87,12 +87,22 @@
                   },
                   {
                       "id":  "ACTOR_TR",
-                      "label":  "Republic of TÃ¼rkiye",
+                      "label":  "Republic of Türkiye",
                       "category":  "ACTOR",
                       "type":  "Strategic Transit Hub",
                       "attributes":  {
                                          "chokepoint_control":  "TURKISH_STRAITS",
                                          "montreux_enforcer":  true
+                                     }
+                  },
+                  {
+                      "id":  "ACTOR_SA",
+                      "label":  "Kingdom of Saudi Arabia",
+                      "category":  "ACTOR",
+                      "type":  "Sovereign State",
+                      "attributes":  {
+                                         "currency":  "SAR",
+                                         "jurisdiction":  "GEO_SA"
                                      }
                   },
                   {
@@ -203,6 +213,17 @@
                                          "units":  "Billions USD",
                                          "trans":  "lin",
                                          "mult":  1000
+                                     }
+                  },
+                  {
+                      "id":  "IND_DFF",
+                      "label":  "Federal Funds Effective Rate (DFF)",
+                      "category":  "INDICATOR",
+                      "type":  "Benchmark Interest Rate",
+                      "attributes":  {
+                                         "source":  "FRED",
+                                         "units":  "Percent (%)",
+                                         "trans":  "lin"
                                      }
                   },
                   {
@@ -1378,6 +1399,31 @@
                       "attributes":  {
                                          "source":  "FRED"
                                      }
+                  },
+                  {
+                      "id":  "IND_SAUPZPIOILBEGUSD",
+                      "label":  "Fiscal Breakeven Oil Price for Saudi Arabia",
+                      "category":  "INDICATOR",
+                      "type":  "Macroeconomic Commodity Benchmark",
+                      "attributes":  {
+                                         "source":  "IMF",
+                                         "units":  "USD per Barrel",
+                                         "trans":  "lin"
+                                     }
+                  },
+                  {
+                      "id":  "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
+                      "label":  "Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact)",
+                      "category":  "MODEL",
+                      "type":  "Geopolitical Alliance Transmission Model",
+                      "attributes":  {
+                                         "target_regimes":  [
+                                                                "TREATY_ACTIVE_SURPLUS_EXPANSION",
+                                                                "TREATY_ACTIVE_EQUILIBRIUM",
+                                                                "TREATY_ACTIVE_FISCAL_RESTRAINT"
+                                                            ],
+                                         "jurisdiction":  "BLOC_MECCA_DEFENSE"
+                                     }
                   }
               ],
     "edges":  [
@@ -2214,6 +2260,24 @@
                       "target":  "MODEL_25.16_JPY_CARRY_CRACK",
                       "type":  "MONETARY_AUTHORITY",
                       "role":  "Funding Currency Regulator"
+                  },
+                  {
+                      "source":  "IND_SAUPZPIOILBEGUSD",
+                      "target":  "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
+                      "type":  "INGESTS_SERIES",
+                      "role":  "Hydrocarbon Fiscal Breakeven Threshold"
+                  },
+                  {
+                      "source":  "IND_DCOILBRENTEU",
+                      "target":  "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
+                      "type":  "INGESTS_SERIES",
+                      "role":  "Brent Spot Benchmark"
+                  },
+                  {
+                      "source":  "IND_SOFR",
+                      "target":  "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
+                      "type":  "INGESTS_SERIES",
+                      "role":  "Global Dollar Liquidity Benchmark"
                   }
               ]
 }
