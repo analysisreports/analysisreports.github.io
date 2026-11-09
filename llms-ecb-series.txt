@@ -45,8 +45,8 @@ ICP/M.U2.N.XEF000.4.ANR
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-09 00:33:58 UTC
-# - Total Series Synced: 11 / 11
+# - Synced At: 2026-11-09 00:59:43 UTC
+# - Total Series Synced: 9 / 11
 # - Source Authority: European Central Bank (ECB Data Portal REST API)
 # - Canonical Formulas Reference: Section 0.5 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
@@ -138,28 +138,6 @@ Recent Observations (Last 5):
   2026-11-04: 178.3000
   2026-11-05: 177.8500
   2026-11-06: 176.7700
-
---------------------------------------------------------------------------------
-Series Ref: EST/B.EU000A2X2A25.WT
-Title: Euro Short-Term Rate (€STR) Benchmark
-Frequency: Daily (n_obs_per_yr: 260) | Units: Percent per Annum
-Last Date: 2026-11-05 | Current Value: 2.4420 | Previous Value: 2.4420 | Year Ago Value: 1.9310
-
-Transformations (Official ECB Formulation - Section 0.5):
-  1. Change: +0.0000
-  2. Change from Year Ago: +0.5110
-  3. Percent Change: +0.0000%
-  4. Percent Change from Year Ago: +26.4630%
-  5. Compounded Annual Rate of Change: N/A (Rate is already annualized)
-  6. Continuously Compounded Rate of Change: +0.0000%
-  7. Continuously Compounded Annual Rate of Change: N/A (Rate is already annualized)
-
-Recent Observations (Last 5):
-  2026-10-30: 2.4400
-  2026-11-02: 2.4410
-  2026-11-03: 2.4450
-  2026-11-04: 2.4420
-  2026-11-05: 2.4420
 
 --------------------------------------------------------------------------------
 Series Ref: ILM/W.U2.C.T000000.Z5.Z01
@@ -270,25 +248,3 @@ Recent Observations (Last 5):
   2025-10: 2.1000
   2025-11: 2.1000
   2025-12: 1.9000
-
---------------------------------------------------------------------------------
-Series Ref: ICP/M.U2.N.XEF000.4.ANR
-Title: Euro Area Core HICP Inflation Rate (Excl. Energy & Food)
-Frequency: Monthly (n_obs_per_yr: 12) | Units: Annual Rate of Change (%)
-Last Date: 2025-12 | Current Value: 2.3000 | Previous Value: 2.4000 | Year Ago Value: 2.7000
-
-Transformations (Official ECB Formulation - Section 0.5):
-  1. Change: -0.1000
-  2. Change from Year Ago: -0.4000
-  3. Percent Change: -4.1667%
-  4. Percent Change from Year Ago: -14.8148%
-  5. Compounded Annual Rate of Change: N/A (Rate is already annualized)
-  6. Continuously Compounded Rate of Change: -4.2560%
-  7. Continuously Compounded Annual Rate of Change: N/A (Rate is already annualized)
-
-Recent Observations (Last 5):
-  2025-08: 2.3000
-  2025-09: 2.4000
-  2025-10: 2.4000
-  2025-11: 2.4000
-  2025-12: 2.3000
