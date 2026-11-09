@@ -1,11 +1,15 @@
 {
-  "$schema": "./schema/nyfed-series.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "metadata": {
-    "name": "Ersoy Toptaş Official New York Fed Research Series Ingestion",
-    "version": "2026-Q4",
+    "title": "Canonical New York Fed Research Series & Official Transformations",
+    "author": "Ersoy Toptaş",
     "license": "CC BY-NC-ND 4.0",
-    "source": "Federal Reserve Bank of New York",
-    "last_updated": "2026-11-09T18:01:01.479272+00:00"
+    "sync_status": "SUCCESS",
+    "last_successful_sync": "2026-11-09T18:27:14Z",
+    "total_series": 1,
+    "source_authority": "Federal Reserve Bank of New York (AMEC)",
+    "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
+    "root_index": "https://analysisreports.github.io/llms.txt"
   },
   "series": {
     "GSCPI": {
@@ -25,9 +29,60 @@
         "change": -0.0993,
         "change_from_year_ago": 1.3461,
         "percent_change": -7.295,
-        "percent_change_from_year_ago": -1598.6936
+        "percent_change_from_year_ago": -1598.6936,
+        "compounded_annual_rate_of_change": -59.7064,
+        "continuously_compounded_rate_of_change": -7.5748,
+        "continuously_compounded_annual_rate_of_change": -90.8976
       },
       "recent_observations": [
+        {
+          "date": "2024-11-30",
+          "value": -0.2995
+        },
+        {
+          "date": "2024-12-31",
+          "value": -0.2853
+        },
+        {
+          "date": "2025-01-31",
+          "value": -0.1916
+        },
+        {
+          "date": "2025-02-28",
+          "value": -0.0262
+        },
+        {
+          "date": "2025-03-31",
+          "value": -0.2005
+        },
+        {
+          "date": "2025-04-30",
+          "value": -0.255
+        },
+        {
+          "date": "2025-05-31",
+          "value": 0.2718
+        },
+        {
+          "date": "2025-06-30",
+          "value": 0.0718
+        },
+        {
+          "date": "2025-07-31",
+          "value": 0.0137
+        },
+        {
+          "date": "2025-08-31",
+          "value": -0.0855
+        },
+        {
+          "date": "2025-09-30",
+          "value": -0.0293
+        },
+        {
+          "date": "2025-10-31",
+          "value": -0.0842
+        },
         {
           "date": "2025-11-30",
           "value": -0.1452
