@@ -1,2362 +1,2415 @@
 {
-    "$schema":  "https://json-schema.org/draft/2020-12/schema",
-    "name":  "Ersoy ToptaÅŸ Macroeconomic \u0026 Geopolitical Knowledge Graph",
-    "version":  "3.0.0",
-    "description":  "Ontological knowledge graph linking sovereign actors, maritime chokepoints, FRED/BLS indicators, deterministic macro models, and manifest endpoints (v3 complete).",
-    "author":  "Ersoy ToptaÅŸ",
-    "license":  "CC-BY-4.0",
-    "repository":  "https://analysisreports.github.io/",
-    "graph_metadata":  {
-                           "node_categories":  [
-                                                   "ACTOR",
-                                                   "CHOKEPOINT",
-                                                   "INDICATOR",
-                                                   "MODEL",
-                                                   "ENDPOINT_SCHEMA",
-                                                   "COMMODITY_STRATEGIC",
-                                                   "CRITICAL_MINERAL",
-                                                   "ENERGY_BENCHMARK"
-                                               ],
-                           "edge_types":  [
-                                              "POLARITY_COUPLING",
-                                              "PATRON_COUPLING",
-                                              "TRIGGERS_INDICATOR",
-                                              "EXECUTES_MODEL",
-                                              "BRIDGES_TO_MODEL",
-                                              "INGESTS_SERIES",
-                                              "INDEXES",
-                                              "CONTROLS_LEVERAGE",
-                                              "TRANSMITS_RISK",
-                                              "INFLATION_IMPACT",
-                                              "SUPPLY_DISRUPTION"
-                                          ]
-                       },
-    "nodes":  [
-                  {
-                      "id":  "ACTOR_US",
-                      "label":  "United States",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "USD",
-                                         "economic_coupling_cn":  0.65,
-                                         "economic_coupling_ru":  0.1
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_RU",
-                      "label":  "Russian Federation",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "RUB",
-                                         "primary_friction":  "EASTERN_EUROPE_BLACK_SEA"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_CN",
-                      "label":  "People\u0027s Republic of China",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "CNY",
-                                         "primary_friction":  "TAIWAN_STRAIT_TECH_EXPORTS"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_IL",
-                      "label":  "State of Israel",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "primary_friction":  "LEVANT_PERSIAN_GULF_NUCLEAR"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_IR",
-                      "label":  "Islamic Republic of Iran",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "chokepoint_control":  "HORMUZ_STRAIT",
-                                         "proxy_network":  [
-                                                               "YE-HOUTHI",
-                                                               "LB-HEZB"
-                                                           ]
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_TR",
-                      "label":  "Republic of Türkiye",
-                      "category":  "ACTOR",
-                      "type":  "Strategic Transit Hub",
-                      "attributes":  {
-                                         "chokepoint_control":  "TURKISH_STRAITS",
-                                         "montreux_enforcer":  true
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_SA",
-                      "label":  "Kingdom of Saudi Arabia",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "SAR",
-                                         "jurisdiction":  "GEO_SA"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_YE_HOUTHI",
-                      "label":  "Ansarullah / Yemen Houthis",
-                      "category":  "ACTOR",
-                      "type":  "Non-State Proxy",
-                      "attributes":  {
-                                         "patron":  "ACTOR_IR",
-                                         "patron_coupling":  0.85,
-                                         "theater":  "BAB_EL_MANDEB_RED_SEA"
-                                     }
-                  },
-                  {
-                      "id":  "CHOKE_HORMUZ",
-                      "label":  "Hormuz Strait",
-                      "category":  "CHOKEPOINT",
-                      "attributes":  {
-                                         "location":  "26Â°34\u0027N 56Â°15\u0027E",
-                                         "volume":  "~20-21 Million bpd (20% of global petroleum)",
-                                         "disruption_severity":  "CATASTROPHIC",
-                                         "severity_weight":  1
-                                     }
-                  },
-                  {
-                      "id":  "CHOKE_BAB_EL_MANDEB",
-                      "label":  "Bab el-Mandeb \u0026 Red Sea",
-                      "category":  "CHOKEPOINT",
-                      "attributes":  {
-                                         "location":  "12Â°35\u0027N 43Â°20\u0027E",
-                                         "volume":  "~12% of global trade",
-                                         "disruption_severity":  "HIGH",
-                                         "severity_weight":  0.7
-                                     }
-                  },
-                  {
-                      "id":  "CHOKE_MALACCA",
-                      "label":  "Malacca Strait",
-                      "category":  "CHOKEPOINT",
-                      "attributes":  {
-                                         "location":  "1Â°26\u0027N 103Â°00\u0027E",
-                                         "volume":  "~80% of China\u0027s crude imports",
-                                         "disruption_severity":  "CATASTROPHIC",
-                                         "severity_weight":  1
-                                     }
-                  },
-                  {
-                      "id":  "CHOKE_TAIWAN",
-                      "label":  "Taiwan Strait",
-                      "category":  "CHOKEPOINT",
-                      "attributes":  {
-                                         "location":  "24Â°00\u0027N 119Â°00\u0027E",
-                                         "vulnerability":  "Advanced Semiconductor Supply Shock",
-                                         "disruption_severity":  "CATASTROPHIC",
-                                         "severity_weight":  1
-                                     }
-                  },
-                  {
-                      "id":  "CORRIDOR_ZANGEZUR",
-                      "label":  "Zangezur Corridor Node",
-                      "category":  "CHOKEPOINT",
-                      "attributes":  {
-                                         "location":  "39Â°10\u0027N 46Â°25\u0027E",
-                                         "type":  "Terrestrial Resource Gateway",
-                                         "disruption_severity":  "HIGH",
-                                         "severity_weight":  0.7
-                                     }
-                  },
-                  {
-                      "id":  "BASIN_EAST_MED_DEEPSEA",
-                      "label":  "Eastern Mediterranean Deep-Sea Basin",
-                      "category":  "CHOKEPOINT",
-                      "attributes":  {
-                                         "location":  "33Â°30\u0027N 30Â°00\u0027E",
-                                         "type":  "Offshore Hydrocarbon \u0026 Maritime Gateway",
-                                         "disruption_severity":  "HIGH",
-                                         "severity_weight":  0.7
-                                     }
-                  },
-                  {
-                      "id":  "IND_WALCL",
-                      "label":  "Fed Total Assets (WALCL)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "FRED",
-                                         "units":  "Millions USD",
-                                         "trans":  "lin",
-                                         "mult":  1
-                                     }
-                  },
-                  {
-                      "id":  "IND_WTREGEN",
-                      "label":  "Treasury General Account (WTREGEN)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "FRED",
-                                         "units":  "Millions USD",
-                                         "trans":  "lin",
-                                         "mult":  1
-                                     }
-                  },
-                  {
-                      "id":  "IND_RRPONTSYD",
-                      "label":  "Overnight Reverse Repo (RRPONTSYD)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "NY Fed / FRED",
-                                         "units":  "Billions USD",
-                                         "trans":  "lin",
-                                         "mult":  1000
-                                     }
-                  },
-                  {
-                      "id":  "IND_DFF",
-                      "label":  "Federal Funds Effective Rate (DFF)",
-                      "category":  "INDICATOR",
-                      "type":  "Benchmark Interest Rate",
-                      "attributes":  {
-                                         "source":  "FRED",
-                                         "units":  "Percent (%)",
-                                         "trans":  "lin"
-                                     }
-                  },
-                  {
-                      "id":  "IND_SOFR",
-                      "label":  "Secured Overnight Financing Rate (SOFR)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "NY Fed / FRED",
-                                         "units":  "Percent (%)",
-                                         "mult_for_bps":  100
-                                     }
-                  },
-                  {
-                      "id":  "IND_EFFR",
-                      "label":  "Effective Federal Funds Rate (EFFR)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "NY Fed / FRED",
-                                         "units":  "Percent (%)",
-                                         "mult_for_bps":  100
-                                     }
-                  },
-                  {
-                      "id":  "IND_VIXCLS",
-                      "label":  "CBOE Volatility Index (VIXCLS)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "CBOE / FRED",
-                                         "units":  "Index",
-                                         "trans":  "lin"
-                                     }
-                  },
-                  {
-                      "id":  "IND_GSCPI",
-                      "label":  "NY Fed Global Supply Chain Pressure Index (GSCPI)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "Federal Reserve Bank of New York",
-                                         "units":  "Standard Deviations",
-                                         "trans":  "lin"
-                                     }
-                  },
-                  {
-                      "id":  "IND_STICKY_CPI",
-                      "label":  "Sticky CPI Less Food \u0026 Energy (STICKYCPIM157SFRBATL)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "Atlanta Fed / FRED",
-                                         "units":  "Percent (%)",
-                                         "trans":  "pc1"
-                                     }
-                  },
-                  {
-                      "id":  "IND_FLEX_CPI",
-                      "label":  "Flexible CPI Less Food \u0026 Energy (FLEXCPIM157SFRBATL)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "Atlanta Fed / FRED",
-                                         "units":  "Percent (%)",
-                                         "trans":  "pc1"
-                                     }
-                  },
-                  {
-                      "id":  "IND_OVXCLS",
-                      "label":  "CBOE Crude Oil Volatility Index (OVXCLS)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "CBOE / FRED",
-                                         "units":  "Index",
-                                         "trans":  "lin"
-                                     }
-                  },
-                  {
-                      "id":  "IND_DCOILWTICO",
-                      "label":  "Crude Oil WTI (DCOILWTICO)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "EIA / FRED",
-                                         "units":  "USD per Barrel",
-                                         "trans":  "lin"
-                                     }
-                  },
-                  {
-                      "id":  "IND_DHHNGSP",
-                      "label":  "Henry Hub Natural Gas Spot Price (DHHNGSP)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "EIA / FRED",
-                                         "units":  "USD per MMBtu",
-                                         "trans":  "lin"
-                                     }
-                  },
-                  {
-                      "id":  "IND_GASREGW",
-                      "label":  "US Regular Retail Gasoline Price (GASREGW)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "EIA / FRED",
-                                         "units":  "USD per Gallon",
-                                         "trans":  "lin"
-                                     }
-                  },
-                  {
-                      "id":  "IND_WB_GOLD",
-                      "label":  "World Bank Official Gold Price (IND_WB_GOLD)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "World Bank (The Pink Sheet)",
-                                         "units":  "USD per Troy Ounce",
-                                         "trans":  "pc1"
-                                     }
-                  },
-                  {
-                      "id":  "IND_DFII10",
-                      "label":  "10-Year TIPS Real Rate (DFII10)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "U.S. Treasury / FRED",
-                                         "units":  "Percent (%)"
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_25.1",
-                      "label":  "Dynamic Polarity \u0026 Regime Engine",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "dynamic_polarity_engine",
-                                         "formula":  "P_net = min(1.0, max(-1.0, P_baseline + dynamic_delta))",
-                                         "regimes":  [
-                                                         "ALLIANCE",
-                                                         "STRATEGIC_ALIGNMENT",
-                                                         "TACTICAL_COOPERATION",
-                                                         "NEUTRAL",
-                                                         "STRATEGIC_FRICTION",
-                                                         "PROXY_WAR",
-                                                         "KINETIC_WAR"
-                                                     ]
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_25.2",
-                      "label":  "Sticky vs. Flexible CPI Spread Engine",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "sticky_flexible_cpi_spread",
-                                         "formula":  "Sticky_Impulse = Sticky_CPI_YoY - Flexible_CPI_YoY",
-                                         "status_enums":  [
-                                                              "STRUCTURAL_INFLATION_TRAP",
-                                                              "TRANSITORY_INFLATION_SURGE",
-                                                              "BALANCED_DISINFLATION_PATH"
-                                                          ]
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_25.3",
-                      "label":  "NY Fed GSCPI Logistics Engine",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "global_supply_chain_pressure",
-                                         "formula":  "GSCPI_ZScore = GSCPI_Value",
-                                         "status_enums":  [
-                                                              "SUPPLY_CHAIN_SHOCK",
-                                                              "LOGISTICS_DEFLATION_SLACK",
-                                                              "NORMALIZED_GLOBAL_TRADE"
-                                                          ]
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_25.5",
-                      "label":  "Repo Liquidity Friction Spread Engine",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "repo_liquidity_friction_spread",
-                                         "formula":  "Repo_Friction_bps = (SOFR - EFFR) * 100",
-                                         "status_enums":  [
-                                                              "REPO_MARKET_LIQUIDITY_CRUNCH",
-                                                              "SYSTEMIC_CASH_DRAIN_WARNING",
-                                                              "COLLATERAL_SCARCITY_GLUT",
-                                                              "HEALTHY_MONETARY_TRANSMISSION"
-                                                          ]
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_25.6",
-                      "label":  "Gold / Real Yield Debasement Gauge",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "gold_real_yield_debasement_gauge",
-                                         "formula":  "f(Real_Yield_10Y, Gold_YoY_Pct)",
-                                         "status_enums":  [
-                                                              "DEBALANCING_DEDOLLARIZATION_PANIC",
-                                                              "ACCOMMODATIVE_GOLD_BULL",
-                                                              "TRADITIONAL_REAL_RATE_DOMINANCE"
-                                                          ]
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_25.7",
-                      "label":  "OVX / VIX Geopolitical Energy Shock Engine",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "ovx_vix_risk_premium",
-                                         "formula":  "Vol_Ratio = OVX_Index / VIX_Index",
-                                         "status_enums":  [
-                                                              "ENERGY_SUPPLY_SHOCK_ALARM",
-                                                              "EQUITY_PANIC_OVER_ENERGY",
-                                                              "BALANCED_ENERGY_VOLATILITY"
-                                                          ]
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_25.8",
-                      "label":  "NatGas / Crude Oil BTU Disconnect Engine",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "natgas_crude_btu_disconnect",
-                                         "formula":  "BTU_Disconnect_Ratio = WTI_Price / NatGas_Price",
-                                         "status_enums":  [
-                                                              "NATGAS_CRISIS_BLACKOUT_RISK",
-                                                              "NATGAS_GLUT_ENERGY_CHEAP",
-                                                              "ENERGY_PARITY_EQUILIBRIUM"
-                                                          ]
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_25.9",
-                      "label":  "Gasoline / Crude Crack Spread Impulse Engine",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "gasoline_crude_crack_spread",
-                                         "formula":  "Crack_Spread_USD = (Gasoline_Gallon_Price * 42) - WTI_Barrel_Price",
-                                         "status_enums":  [
-                                                              "REFINERY_BOTTLENECK_CRUNCH",
-                                                              "REFINING_MARGIN_COLLAPSE",
-                                                              "NORMAL_REFINING_MARGIN"
-                                                          ]
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_28.3",
-                      "label":  "Chokepoint Severity Multiplier Engine",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "chokepoint_severity_multiplier",
-                                         "formula":  "Disruption_Weight = SEVERITY_WEIGHT_MAP[severity_enum]",
-                                         "weight_map":  {
-                                                            "CATASTROPHIC":  1,
-                                                            "HIGH":  0.7,
-                                                            "MODERATE-HIGH":  0.45,
-                                                            "MODERATE":  0.2
-                                                        }
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_28.4",
-                      "label":  "Chokepoint Macro Transmission Bridge",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "chokepoint_transmission_bridge",
-                                         "formula":  "Spillover_Score = min(100.0, (Disruption_Weight * 70.0) + (Friction_Factor * 30.0))",
-                                         "status_enums":  [
-                                                              "CRITICAL_SYSTEMIC_SHOCK",
-                                                              "HIGH_SPILLOVER",
-                                                              "MODERATE_FRICTION",
-                                                              "LOCALIZED_IMPACT"
-                                                          ]
-                                     }
-                  },
-                  {
-                      "id":  "EP_LLMS_TXT",
-                      "label":  "Root Manifest (llms.txt)",
-                      "category":  "ENDPOINT_SCHEMA",
-                      "attributes":  {
-                                         "url":  "https://analysisreports.github.io/llms.txt",
-                                         "role":  "Master Directory \u0026 Knowledge Architecture"
-                                     }
-                  },
-                  {
-                      "id":  "EP_FORMULAS",
-                      "label":  "Quantitative Formulas Engine (llms-formulas.txt)",
-                      "category":  "ENDPOINT_SCHEMA",
-                      "attributes":  {
-                                         "url":  "https://analysisreports.github.io/llms-formulas.txt",
-                                         "role":  "Deterministic Python Model Rules"
-                                     }
-                  },
-                  {
-                      "id":  "EP_INDICATORS",
-                      "label":  "Data Dictionary \u0026 Ingestion Contract (llms-indicators.txt)",
-                      "category":  "ENDPOINT_SCHEMA",
-                      "attributes":  {
-                                         "url":  "https://analysisreports.github.io/llms-indicators.txt",
-                                         "role":  "Series Scale Normalization Dictionary"
-                                     }
-                  },
-                  {
-                      "id":  "EP_RELATIONSHIPS",
-                      "label":  "Geopolitical Relationship Matrix (llms-relationships.txt)",
-                      "category":  "ENDPOINT_SCHEMA",
-                      "attributes":  {
-                                         "url":  "https://analysisreports.github.io/llms-relationships.txt",
-                                         "role":  "Sovereign Baselines \u0026 Transmission Vectors"
-                                     }
-                  },
-                  {
-                      "id":  "EP_TOOLS_JSON",
-                      "label":  "Executable Agent Tool Manifest (llms-tools.json)",
-                      "category":  "ENDPOINT_SCHEMA",
-                      "attributes":  {
-                                         "url":  "https://analysisreports.github.io/llms-tools.json",
-                                         "role":  "JSON Schema Function Calling Definitions"
-                                     }
-                  },
-                  {
-                      "id":  "EP_PROMPTS_TXT",
-                      "label":  "Canonical AI Reasoning Specification (llms-prompts.txt)",
-                      "category":  "ENDPOINT_SCHEMA",
-                      "attributes":  {
-                                         "url":  "https://analysisreports.github.io/llms-prompts.txt",
-                                         "role":  "6-Stage CoT \u0026 Guardrail Instructions"
-                                     }
-                  },
-                  {
-                      "id":  "EP_GRAPH_JSON",
-                      "label":  "llms-graph.json",
-                      "category":  "ENDPOINT_SCHEMA",
-                      "type":  "graph_rag_manifest",
-                      "attributes":  {
-                                         "url":  "https://analysisreports.github.io/llms-graph.json",
-                                         "format":  "application/json",
-                                         "description":  "Ontological knowledge graph linking actors, chokepoints, indicators, models and schemas."
-                                     }
-                  },
-                  {
-                      "id":  "EP_AI_CATALOG",
-                      "label":  "ai-catalog.json",
-                      "category":  "ENDPOINT_SCHEMA",
-                      "type":  "ai_catalog_manifest",
-                      "attributes":  {
-                                         "url":  "https://analysisreports.github.io/ai-catalog.json",
-                                         "format":  "application/json",
-                                         "description":  "Master AI Resource Discovery Directory."
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_KP",
-                      "label":  "Democratic People\u0027s Republic of Korea",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "structural_regime":  "KINETIC_STANDOFF",
-                                         "asymmetric_threat":  "NUCLEAR_BALLISTIC_PROLIFERATION",
-                                         "economic_coupling":  0.01
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_BRICS_MBRIDGE",
-                      "label":  "BRICS \u0026 mBridge Settlement Axis",
-                      "category":  "ACTOR",
-                      "type":  "Multilateral Clearing Bloc",
-                      "attributes":  {
-                                         "structural_regime":  "MONETARY_DECOUPLING",
-                                         "core_nodes":  [
-                                                            "mBridge",
-                                                            "CIPS",
-                                                            "SPFS"
-                                                        ]
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_C6_BLOC",
-                      "label":  "Orta Asya - Azerbaycan Ä°stiÅŸare MekanizmasÄ± (C6)",
-                      "category":  "ACTOR",
-                      "type":  "Regional Multilateral Bloc",
-                      "attributes":  {
-                                         "members":  [
-                                                         "KZ",
-                                                         "UZ",
-                                                         "KG",
-                                                         "TM",
-                                                         "TJ",
-                                                         "AZ"
-                                                     ],
-                                         "economic_formula":  "SIX_ECONOMIES_ONE_PRODUCT",
-                                         "key_infrastructure":  "TRANS_CASPIAN_PIPELINE_AND_RAIL"
-                                     }
-                  },
-                  {
-                      "id":  "IND_DRTSCIS",
-                      "label":  "Net % Tightening C\u0026I Loan Standards (DRTSCIS)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "Board of Governors / FRED",
-                                         "units":  "Percent (%)",
-                                         "freq":  "Quarterly"
-                                     }
-                  },
-                  {
-                      "id":  "IND_LNS12500000",
-                      "label":  "Employed, Usually Work Full Time (LNS12500000)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "BLS / FRED",
-                                         "units":  "Thousands",
-                                         "freq":  "Monthly"
-                                     }
-                  },
-                  {
-                      "id":  "IND_LNS12032194",
-                      "label":  "Employed, Part-Time for Economic Reasons (LNS12032194)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "BLS / FRED",
-                                         "units":  "Thousands",
-                                         "freq":  "Monthly"
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_25.10",
-                      "label":  "SLOOS Lending Standards Recession Gauge",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "sloos_lending_tightness_gauge",
-                                         "formula":  "Credit_Tightening_Net_Pct = DRTSCIS",
-                                         "status_enums":  [
-                                                              "ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL",
-                                                              "RESTRICTIVE_CREDIT_CONTRACTION",
-                                                              "NEUTRAL_CREDIT_CONDITIONS",
-                                                              "AGGRESSIVE_CREDIT_EXPANSION"
-                                                          ]
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_25.11",
-                      "label":  "Full-Time vs. Involuntary Part-Time Crack Gauge",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "hidden_employment_crack_gauge",
-                                         "formula":  "Crack_Spread = Part_Time_Econ_YoY_Pct - Full_Time_YoY_Pct",
-                                         "status_enums":  [
-                                                              "ACUTE_LABOR_MARKET_FRACTURE_RECESSION",
-                                                              "STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL",
-                                                              "STABLE_EMPLOYMENT_COMPOSITION",
-                                                              "ROBUST_FULL_TIME_EXPANSION"
-                                                          ]
-                                     }
-                  },
-                  {
-                      "id":  "IND_DCOILBRENTEU",
-                      "label":  "Crude Oil Prices: Brent - Europe (DCOILBRENTEU)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "EIA / FRED",
-                                         "units":  "USD per Barrel",
-                                         "freq":  "Daily"
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_25.12",
-                      "label":  "Brent-WTI Seaborne Spread Engine",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "brent_wti_spread",
-                                         "formula":  "Brent_WTI_Spread = DCOILBRENTEU - DCOILWTICO",
-                                         "status_enums":  [
-                                                              "SEABORNE_GEOPOLITICAL_PREMIUM",
-                                                              "US_DOMESTIC_TIGHTNESS",
-                                                              "NORMAL_TRANSATLANTIC_ARBITRAGE"
-                                                          ]
-                                     }
-                  },
-                  {
-                      "id":  "ENERGY_URANIUM",
-                      "label":  "ZenginleÅŸtirilmiÅŸ Uranyum ve NÃ¼kleer YakÄ±t",
-                      "category":  "COMMODITY_STRATEGIC",
-                      "attributes":  {
-                                         "dominant_supplier":  "ACTOR_RU"
-                                     }
-                  },
-                  {
-                      "id":  "ENERGY_LITHIUM",
-                      "label":  "Lityum ve Batarya Hammaddeleri",
-                      "category":  "CRITICAL_MINERAL",
-                      "attributes":  {
-                                         "geographic_basin":  "LATAM_TRIANGLE"
-                                     }
-                  },
-                  {
-                      "id":  "COMMODITY_CRUDE_OIL",
-                      "label":  "Brent \u0026 WTI Ham Petrol ArzÄ±",
-                      "category":  "ENERGY_BENCHMARK",
-                      "attributes":  {
-                                         "chokepoint_sensitivity":  "CHOKE_HORMUZ"
-                                     }
-                  },
-                  {
-                      "id":  "IND_WPU06",
-                      "label":  "PPI Chemicals and Allied Products (WPU06)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "BLS / FRED",
-                                         "units":  "Index",
-                                         "trans":  "pc1"
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_9",
-                      "label":  "Financial Repression \u0026 Debt Sustainability Index",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "financial_repression_index",
-                                         "formula":  "Debt_Pressure_Index = (DGS10 - CPI_YoY) * (GFDEGDQ188S / 100)",
-                                         "status_enums":  [
-                                                              "REPRESSION_REGIME",
-                                                              "SUSTAINABLE_CYCLE",
-                                                              "DEBT_CRISIS_ALARM"
-                                                          ]
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_RF_CAUCASUS_ARC",
-                      "label":  "North Caucasus Autonomous Line (Karachay-Cherkessia, Kabardino-Balkaria, Dagestan)",
-                      "category":  "ACTOR",
-                      "type":  "Sub-National Autonomous Entity",
-                      "attributes":  {
-                                         "parent_authority":  "ACTOR_RU",
-                                         "polarity_baseline":  0.7,
-                                         "structural_regime":  "STRATEGIC_ALIGNMENT",
-                                         "primary_exposure":  "CASPIAN_SECURITY_ENERGY_CORRIDORS"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
-                      "label":  "Volga-Ural \u0026 Siberian Arc (Tatarstan, Bashkortostan, Sakha, Altai, etc.)",
-                      "category":  "ACTOR",
-                      "type":  "Sub-National Autonomous Entity",
-                      "attributes":  {
-                                         "parent_authority":  "ACTOR_RU",
-                                         "polarity_baseline":  0.8,
-                                         "structural_regime":  "STRATEGIC_ALIGNMENT",
-                                         "primary_exposure":  "FISCAL_FEDERALISM_RESOURCE_EXTRACTION"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_RF_SOUTHERN_KRAIS",
-                      "label":  "Southern Administrative Krais (Stavropol, Krasnodar)",
-                      "category":  "ACTOR",
-                      "type":  "Sub-National Administrative Region",
-                      "attributes":  {
-                                         "parent_authority":  "ACTOR_RU",
-                                         "polarity_baseline":  0.95,
-                                         "structural_regime":  "ALLIANCE",
-                                         "primary_exposure":  "BLACK_SEA_AGRO_PORT_LOGISTICS"
-                                     }
-                  },
-                  {
-                      "id":  "IND_PWHEAMTUSDM",
-                      "label":  "Global Price of Wheat (PWHEAMTUSDM)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "IMF / FRED",
-                                         "units":  "USD per Metric Ton",
-                                         "trans":  "lin"
-                                     }
-                  },
-                  {
-                      "id":  "IND_PCOPPUSDM",
-                      "label":  "Global Price of Copper (PCOPPUSDM)",
-                      "category":  "INDICATOR",
-                      "attributes":  {
-                                         "source":  "IMF / FRED",
-                                         "units":  "USD per Metric Ton",
-                                         "trans":  "lin"
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_2",
-                      "label":  "Real Policy Rate & Restrictiveness",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "real_policy_rate",
-                                         "formula":  "Real_Policy_Rate = DFF - CPI_YoY",
-                                         "status_enums":  [
-                                                              "RESTRICTIVE",
-                                                              "NEUTRAL",
-                                                              "ACCOMMODATIVE"
-                                                          ]
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_4",
-                      "label":  "Front-End T-Bill Slope & Liquidity Spread",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "front_end_liquidity_spread",
-                                         "formula":  "Front_End_Slope_bps = (DGS3MO - DGS1MO) * 100",
-                                         "status_enums":  [
-                                                              "NORMAL_SLOPE",
-                                                              "INVERTED_FRONT_END"
-                                                          ]
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_5",
-                      "label":  "Net Fed Liquidity Index",
-                      "category":  "MODEL",
-                      "attributes":  {
-                                         "function":  "net_fed_liquidity",
-                                         "formula":  "Net_Liquidity_Millions = WALCL - (WTREGEN + RRPONTSYD)",
-                                         "status_enums":  [
-                                                              "LIQUIDITY_EXPANSION",
-                                                              "NEUTRAL",
-                                                              "LIQUIDITY_CONTRACTION"
-                                                          ]
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_DE",
-                      "label":  "Federal Republic of Germany",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "EUR"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_FR",
-                      "label":  "French Republic",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "EUR"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_GB",
-                      "label":  "United Kingdom",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "GBP"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_UA",
-                      "label":  "Ukraine",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "UAH"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_PL",
-                      "label":  "Republic of Poland",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "PLN"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_SE",
-                      "label":  "Kingdom of Sweden",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "SEK"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_NO",
-                      "label":  "Kingdom of Norway",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "NOK"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_CZ",
-                      "label":  "Czech Republic",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "CZK"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_HU",
-                      "label":  "Hungary",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "HUF"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_GR",
-                      "label":  "Hellenic Republic",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "EUR"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_CY",
-                      "label":  "Republic of Cyprus",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "EUR"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_JP",
-                      "label":  "Japan",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "JPY"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_KR",
-                      "label":  "Republic of Korea",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "KRW"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_TW",
-                      "label":  "Taiwan (Republic of China)",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "TWD"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_SG",
-                      "label":  "Republic of Singapore",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "SGD"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_AU",
-                      "label":  "Commonwealth of Australia",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "AUD"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_ID",
-                      "label":  "Republic of Indonesia",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "IDR"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_MY",
-                      "label":  "Malaysia",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "MYR"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_TH",
-                      "label":  "Kingdom of Thailand",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "THB"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_PH",
-                      "label":  "Republic of the Philippines",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "PHP"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_KZ",
-                      "label":  "Republic of Kazakhstan",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "KZT"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_AZ",
-                      "label":  "Republic of Azerbaijan",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "AZN"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_AM",
-                      "label":  "Republic of Armenia",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "AMD"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_UZ",
-                      "label":  "Republic of Uzbekistan",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "UZS"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_TM",
-                      "label":  "Turkmenistan",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "TMT"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_KG",
-                      "label":  "Kyrgyz Republic",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "KGS"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_TJ",
-                      "label":  "Republic of Tajikistan",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "TJS"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_EG",
-                      "label":  "Arab Republic of Egypt",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "EGP"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_ZA",
-                      "label":  "Republic of South Africa",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "ZAR"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_IQ",
-                      "label":  "Republic of Iraq",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "IQD"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_SY",
-                      "label":  "Syrian Arab Republic",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "SYP"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_LY",
-                      "label":  "State of Libya",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "LYD"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_MA",
-                      "label":  "Kingdom of Morocco",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "MAD"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_CA",
-                      "label":  "Canada",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "CAD"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_MX",
-                      "label":  "United Mexican States",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "MXN"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_BR",
-                      "label":  "Federative Republic of Brazil",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "BRL"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_AR",
-                      "label":  "Argentine Republic",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "ARS"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_CL",
-                      "label":  "Republic of Chile",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "CLP"
-                                     }
-                  },
-                  {
-                      "id":  "ACTOR_BO",
-                      "label":  "Plurinational State of Bolivia",
-                      "category":  "ACTOR",
-                      "type":  "Sovereign State",
-                      "attributes":  {
-                                         "currency":  "BOB"
-                                     }
-                  },
-                  {
-                      "id":  "INST_FED_US",
-                      "label":  "Federal Reserve System",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_US",
-                                         "currency":  "USD"
-                                     }
-                  },
-                  {
-                      "id":  "INST_TCMB_TR",
-                      "label":  "Central Bank of the Republic of TÃ¼rkiye",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_TR",
-                                         "currency":  "TRY"
-                                     }
-                  },
-                  {
-                      "id":  "INST_ECB_EU",
-                      "label":  "European Central Bank",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_DE",
-                                         "currency":  "EUR"
-                                     }
-                  },
-                  {
-                      "id":  "INST_BOJ_JP",
-                      "label":  "Bank of Japan",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_JP",
-                                         "currency":  "JPY"
-                                     }
-                  },
-                  {
-                      "id":  "INST_PBOC_CN",
-                      "label":  "People\u0027s Bank of China",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_CN",
-                                         "currency":  "CNY"
-                                     }
-                  },
-                  {
-                      "id":  "INST_BOE_GB",
-                      "label":  "Bank of England",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_GB",
-                                         "currency":  "GBP"
-                                     }
-                  },
-                  {
-                      "id":  "INST_SNB_CH",
-                      "label":  "Swiss National Bank",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_CH",
-                                         "currency":  "CHF"
-                                     }
-                  },
-                  {
-                      "id":  "INST_RBA_AU",
-                      "label":  "Reserve Bank of Australia",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_AU",
-                                         "currency":  "AUD"
-                                     }
-                  },
-                  {
-                      "id":  "INST_BOC_CA",
-                      "label":  "Bank of Canada",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_CA",
-                                         "currency":  "CAD"
-                                     }
-                  },
-                  {
-                      "id":  "INST_RBI_IN",
-                      "label":  "Reserve Bank of India",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_IN",
-                                         "currency":  "INR"
-                                     }
-                  },
-                  {
-                      "id":  "INST_CBR_RU",
-                      "label":  "Bank of Russia",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_RU",
-                                         "currency":  "RUB"
-                                     }
-                  },
-                  {
-                      "id":  "INST_BOK_KR",
-                      "label":  "Bank of Korea",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_KR",
-                                         "currency":  "KRW"
-                                     }
-                  },
-                  {
-                      "id":  "INST_CBC_TW",
-                      "label":  "Central Bank of Taiwan",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_TW",
-                                         "currency":  "TWD"
-                                     }
-                  },
-                  {
-                      "id":  "INST_MAS_SG",
-                      "label":  "Monetary Authority of Singapore",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_SG",
-                                         "currency":  "SGD"
-                                     }
-                  },
-                  {
-                      "id":  "INST_SAMA_SA",
-                      "label":  "Saudi Central Bank",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_SA",
-                                         "currency":  "SAR"
-                                     }
-                  },
-                  {
-                      "id":  "INST_BCB_BR",
-                      "label":  "Central Bank of Brazil",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_BR",
-                                         "currency":  "BRL"
-                                     }
-                  },
-                  {
-                      "id":  "INST_BANXICO_MX",
-                      "label":  "Bank of Mexico",
-                      "category":  "ACTOR",
-                      "type":  "Central Bank",
-                      "attributes":  {
-                                         "jurisdiction":  "GEO_MX",
-                                         "currency":  "MXN"
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_25_14",
-                      "label":  "AI Chip Stress Gauge",
-                      "category":  "QUANT_MODEL",
-                      "source":  "analysisreports"
-                  },
-                  {
-                      "id":  "IND_PAYEMS",
-                      "label":  "All Employees: Total Nonfarm Payrolls",
-                      "category":  "INDICATOR",
-                      "source":  "BLS / FRED"
-                  },
-                  {
-                      "id":  "IND_UNRATE",
-                      "label":  "Civilian Unemployment Rate",
-                      "category":  "INDICATOR",
-                      "source":  "BLS / FRED"
-                  },
-                  {
-                      "id":  "IND_NASDAQSOX",
-                      "label":  "PHLX Semiconductor Index",
-                      "category":  "INDICATOR",
-                      "source":  "NASDAQ / FRED"
-                  },
-                  {
-                      "id":  "MODEL_25.13",
-                      "label":  "Labor Market Momentum Index Engine",
-                      "category":  "MODEL",
-                      "description":  "Blends PAYEMS YoY % growth with UNRATE YoY diff."
-                  },
-                  {
-                      "id":  "MODEL_25.14",
-                      "label":  "AI Hardware \u0026 Chip Stress Engine",
-                      "category":  "MODEL",
-                      "description":  "Quantifies semiconductor supply bottlenecks combining GSCPI, SOX, and VIX."
-                  },
-                  {
-                      "id":  "MODEL_25.15",
-                      "label":  "Domestic Governance Gridlock \u0026 Tariff Friction Engine",
-                      "category":  "MODEL",
-                      "description":  "Quantifies domestic legislative gridlock driving unilateral trade tariffs and external economic friction."
-                  },
-                  {
-                      "id":  "MODEL_25.16_JPY_CARRY_CRACK",
-                      "label":  "Yen Carry Trade Dissolution \u0026 Stress Gauge",
-                      "category":  "MODEL",
-                      "type":  "Macroeconomic Friction Model",
-                      "attributes":  {
-                                         "target_regimes":  [
-                                                                "CALM_ACCUMULATION",
-                                                                "MANAGED_TIGHTENING",
-                                                                "COMPRESSION_WARNING",
-                                                                "UNWIND_LIQUIDATION_CRASH"
-                                                            ],
-                                         "jurisdiction":  "GEO_JP"
-                                     }
-                  },
-                  {
-                      "id":  "IND_DEXJPUS",
-                      "label":  "Spot Exchange Rate USD/JPY",
-                      "category":  "INDICATOR",
-                      "type":  "Exchange Rate",
-                      "attributes":  {
-                                         "source":  "FRED"
-                                     }
-                  },
-                  {
-                      "id":  "IND_SAUPZPIOILBEGUSD",
-                      "label":  "Fiscal Breakeven Oil Price for Saudi Arabia",
-                      "category":  "INDICATOR",
-                      "type":  "Macroeconomic Commodity Benchmark",
-                      "attributes":  {
-                                         "source":  "IMF",
-                                         "units":  "USD per Barrel",
-                                         "trans":  "lin"
-                                     }
-                  },
-                  {
-                      "id":  "IND_JP_FPOLM_PA",
-                      "label":  "Central Bank Policy Rate for Japan",
-                      "category":  "INDICATOR",
-                      "type":  "Monetary Policy Benchmark",
-                      "attributes":  {
-                                         "source":  "IMF IFS",
-                                         "units":  "Percent per Annum",
-                                         "trans":  "lin"
-                                     }
-                  },
-                  {
-                      "id":  "IND_GB_FPOLM_PA",
-                      "label":  "Central Bank Policy Rate for United Kingdom",
-                      "category":  "INDICATOR",
-                      "type":  "Monetary Policy Benchmark",
-                      "attributes":  {
-                                         "source":  "IMF IFS",
-                                         "units":  "Percent per Annum",
-                                         "trans":  "lin"
-                                     }
-                  },
-                  {
-                      "id":  "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
-                      "label":  "Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact)",
-                      "category":  "MODEL",
-                      "type":  "Geopolitical Alliance Transmission Model",
-                      "attributes":  {
-                                         "target_regimes":  [
-                                                                "TREATY_ACTIVE_SURPLUS_EXPANSION",
-                                                                "TREATY_ACTIVE_EQUILIBRIUM",
-                                                                "TREATY_ACTIVE_FISCAL_RESTRAINT"
-                                                            ],
-                                         "jurisdiction":  "BLOC_MECCA_DEFENSE"
-                                     }
-                  }
-              ],
-    "edges":  [
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "ACTOR_RU",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  -0.85,
-                      "regime":  "PROXY_WAR"
-                  },
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "ACTOR_CN",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  -0.65,
-                      "regime":  "STRATEGIC_COMPETITION"
-                  },
-                  {
-                      "source":  "ACTOR_RU",
-                      "target":  "ACTOR_CN",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.75,
-                      "regime":  "STRATEGIC_ALIGNMENT"
-                  },
-                  {
-                      "source":  "ACTOR_IL",
-                      "target":  "ACTOR_IR",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  -0.95,
-                      "regime":  "PROXY_WAR / KINETIC_STANDOFF"
-                  },
-                  {
-                      "source":  "ACTOR_IR",
-                      "target":  "ACTOR_YE_HOUTHI",
-                      "type":  "PATRON_COUPLING",
-                      "coupling_factor":  0.85,
-                      "role":  "Proxy Supply \u0026 Targeting"
-                  },
-                  {
-                      "source":  "ACTOR_TR",
-                      "target":  "ACTOR_RU",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.15,
-                      "regime":  "TACTICAL_COOPERATION"
-                  },
-                  {
-                      "source":  "ACTOR_TR",
-                      "target":  "ACTOR_US",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.25,
-                      "regime":  "STRATEGIC_ALIGNMENT"
-                  },
-                  {
-                      "source":  "CHOKE_HORMUZ",
-                      "target":  "IND_DCOILWTICO",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "CRUDE_PRICE_SHOCK"
-                  },
-                  {
-                      "source":  "CHOKE_HORMUZ",
-                      "target":  "IND_OVXCLS",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "OIL_VOLATILITY_SPIKE"
-                  },
-                  {
-                      "source":  "CHOKE_HORMUZ",
-                      "target":  "IND_GSCPI",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "GLOBAL_LOGISTICS_STRESS"
-                  },
-                  {
-                      "source":  "CHOKE_HORMUZ",
-                      "target":  "IND_SOFR",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "FUNDING_FLIGHT_TO_SAFETY"
-                  },
-                  {
-                      "source":  "CHOKE_HORMUZ",
-                      "target":  "IND_WB_GOLD",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "SAFE_HAVEN_DEMAND"
-                  },
-                  {
-                      "source":  "CHOKE_BAB_EL_MANDEB",
-                      "target":  "IND_GSCPI",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "CAPE_REROUTING_DELAY"
-                  },
-                  {
-                      "source":  "CHOKE_BAB_EL_MANDEB",
-                      "target":  "IND_OVXCLS",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "ENERGY_FREIGHT_RISK_PREMIUM"
-                  },
-                  {
-                      "source":  "CHOKE_BAB_EL_MANDEB",
-                      "target":  "IND_GASREGW",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "REFINED_FUEL_RETAIL_PASS_THROUGH"
-                  },
-                  {
-                      "source":  "CHOKE_MALACCA",
-                      "target":  "IND_DCOILWTICO",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "ASIAN_CRUDE_IMPORT_DISRUPTION"
-                  },
-                  {
-                      "source":  "CHOKE_TAIWAN",
-                      "target":  "IND_GSCPI",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "TECH_LOGISTICS_BOTTLENECK"
-                  },
-                  {
-                      "source":  "CORRIDOR_ZANGEZUR",
-                      "target":  "IND_DHHNGSP",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "CASPIAN_GAS_FLOW_FRICTION"
-                  },
-                  {
-                      "source":  "IND_STICKY_CPI",
-                      "target":  "MODEL_25.2",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "sticky_val"
-                  },
-                  {
-                      "source":  "IND_FLEX_CPI",
-                      "target":  "MODEL_25.2",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "flex_val"
-                  },
-                  {
-                      "source":  "IND_SOFR",
-                      "target":  "MODEL_25.5",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "sofr_val"
-                  },
-                  {
-                      "source":  "IND_EFFR",
-                      "target":  "MODEL_25.5",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "effr_val"
-                  },
-                  {
-                      "source":  "IND_GSCPI",
-                      "target":  "MODEL_25.3",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "gscpi_val"
-                  },
-                  {
-                      "source":  "IND_DFII10",
-                      "target":  "MODEL_25.6",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "real_yield_10y"
-                  },
-                  {
-                      "source":  "IND_WB_GOLD",
-                      "target":  "MODEL_25.6",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "gold_yoy_pct"
-                  },
-                  {
-                      "source":  "IND_OVXCLS",
-                      "target":  "MODEL_25.7",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "ovx_val"
-                  },
-                  {
-                      "source":  "IND_VIXCLS",
-                      "target":  "MODEL_25.7",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "vix_val"
-                  },
-                  {
-                      "source":  "IND_DCOILWTICO",
-                      "target":  "MODEL_25.8",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "wti_price"
-                  },
-                  {
-                      "source":  "IND_DHHNGSP",
-                      "target":  "MODEL_25.8",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "natgas_price"
-                  },
-                  {
-                      "source":  "IND_GASREGW",
-                      "target":  "MODEL_25.9",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "gas_gal_price"
-                  },
-                  {
-                      "source":  "IND_DCOILWTICO",
-                      "target":  "MODEL_25.9",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "wti_barrel_price"
-                  },
-                  {
-                      "source":  "CHOKE_HORMUZ",
-                      "target":  "MODEL_28.3",
-                      "type":  "EXECUTES_MODEL",
-                      "severity_enum":  "CATASTROPHIC"
-                  },
-                  {
-                      "source":  "MODEL_28.3",
-                      "target":  "MODEL_28.4",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "severity_weight"
-                  },
-                  {
-                      "source":  "MODEL_25.1",
-                      "target":  "MODEL_28.4",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "p_net"
-                  },
-                  {
-                      "source":  "EP_LLMS_TXT",
-                      "target":  "EP_FORMULAS",
-                      "type":  "INDEXES"
-                  },
-                  {
-                      "source":  "EP_LLMS_TXT",
-                      "target":  "EP_INDICATORS",
-                      "type":  "INDEXES"
-                  },
-                  {
-                      "source":  "EP_LLMS_TXT",
-                      "target":  "EP_RELATIONSHIPS",
-                      "type":  "INDEXES"
-                  },
-                  {
-                      "source":  "EP_LLMS_TXT",
-                      "target":  "EP_TOOLS_JSON",
-                      "type":  "INDEXES"
-                  },
-                  {
-                      "source":  "EP_LLMS_TXT",
-                      "target":  "EP_PROMPTS_TXT",
-                      "type":  "INDEXES"
-                  },
-                  {
-                      "source":  "EP_LLMS_TXT",
-                      "target":  "EP_GRAPH_JSON",
-                      "type":  "INDEXES"
-                  },
-                  {
-                      "source":  "EP_LLMS_TXT",
-                      "target":  "EP_AI_CATALOG",
-                      "type":  "INDEXES"
-                  },
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "ACTOR_KP",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  -0.9,
-                      "regime":  "KINETIC_STANDOFF"
-                  },
-                  {
-                      "source":  "ACTOR_BRICS_MBRIDGE",
-                      "target":  "ACTOR_US",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  -0.7,
-                      "regime":  "MONETARY_DECOUPLING"
-                  },
-                  {
-                      "source":  "IND_DRTSCIS",
-                      "target":  "MODEL_25.10",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "drtscis_val"
-                  },
-                  {
-                      "source":  "IND_LNS12500000",
-                      "target":  "MODEL_25.11",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "full_time_level"
-                  },
-                  {
-                      "source":  "IND_LNS12032194",
-                      "target":  "MODEL_25.11",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "part_time_econ_level"
-                  },
-                  {
-                      "source":  "ACTOR_BRICS_MBRIDGE",
-                      "target":  "MODEL_25.10",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "capital_fragmentation_drain"
-                  },
-                  {
-                      "source":  "CHOKE_TAIWAN",
-                      "target":  "MODEL_25.11",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "hardware_labor_shock"
-                  },
-                  {
-                      "source":  "ACTOR_BRICS_MBRIDGE",
-                      "target":  "MODEL_25.6",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "sovereign_gold_accumulation"
-                  },
-                  {
-                      "source":  "IND_DCOILBRENTEU",
-                      "target":  "MODEL_25.12",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "brent_price"
-                  },
-                  {
-                      "source":  "IND_DCOILWTICO",
-                      "target":  "MODEL_25.12",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "wti_price"
-                  },
-                  {
-                      "source":  "CHOKE_BAB_EL_MANDEB",
-                      "target":  "MODEL_25.12",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "seaborne_risk_premium"
-                  },
-                  {
-                      "source":  "ACTOR_RU",
-                      "target":  "ENERGY_URANIUM",
-                      "type":  "CONTROLS_LEVERAGE",
-                      "description":  "NÃ¼kleer yakÄ±t tedarik zinciri Ã¼zerinden asimetrik jeopolitik baskÄ±."
-                  },
-                  {
-                      "source":  "ENERGY_URANIUM",
-                      "target":  "MODEL_9",
-                      "type":  "TRANSMITS_RISK",
-                      "vector":  "BASELOAD_ENERGY_COST"
-                  },
-                  {
-                      "source":  "ENERGY_LITHIUM",
-                      "target":  "IND_WPU06",
-                      "type":  "INFLATION_IMPACT",
-                      "description":  "Batarya ve kimyasal sanayi maliyetleri Ã¼zerinden Ã¼retici fiyat baskÄ±sÄ±."
-                  },
-                  {
-                      "source":  "CHOKE_HORMUZ",
-                      "target":  "COMMODITY_CRUDE_OIL",
-                      "type":  "SUPPLY_DISRUPTION",
-                      "description":  "HÃ¼rmÃ¼z BoÄŸazÄ± risk priminin ham petrol fiyatlarÄ±na doÄŸrudan aktarÄ±mÄ±."
-                  },
-                  {
-                      "source":  "ACTOR_C6_BLOC",
-                      "target":  "ACTOR_TR",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.8,
-                      "regime":  "STRATEGIC_ALIGNMENT"
-                  },
-                  {
-                      "source":  "ACTOR_C6_BLOC",
-                      "target":  "ACTOR_RU",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.2,
-                      "regime":  "TACTICAL_COOPERATION"
-                  },
-                  {
-                      "source":  "ACTOR_C6_BLOC",
-                      "target":  "ACTOR_CN",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.65,
-                      "regime":  "STRATEGIC_ALIGNMENT"
-                  },
-                  {
-                      "source":  "ACTOR_C6_BLOC",
-                      "target":  "CORRIDOR_ZANGEZUR",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "middle_corridor_freight_volume"
-                  },
-                  {
-                      "source":  "ACTOR_TR",
-                      "target":  "BASIN_EAST_MED_DEEPSEA",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "maritime_eez_projection"
-                  },
-                  {
-                      "source":  "BASIN_EAST_MED_DEEPSEA",
-                      "target":  "IND_DCOILBRENTEU",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "MEDITERRANEAN_RISK_PREMIUM"
-                  },
-                  {
-                      "source":  "BASIN_EAST_MED_DEEPSEA",
-                      "target":  "IND_DHHNGSP",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "LNG_FEEDSTOCK_DISRUPTION"
-                  },
-                  {
-                      "source":  "BASIN_EAST_MED_DEEPSEA",
-                      "target":  "MODEL_28.3",
-                      "type":  "EXECUTES_MODEL",
-                      "severity_enum":  "HIGH"
-                  },
-                  {
-                      "source":  "ACTOR_RU",
-                      "target":  "ACTOR_RF_CAUCASUS_ARC",
-                      "type":  "PATRON_COUPLING",
-                      "coupling_factor":  0.7,
-                      "role":  "Federal Administrative \u0026 Security Control"
-                  },
-                  {
-                      "source":  "ACTOR_RU",
-                      "target":  "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
-                      "type":  "PATRON_COUPLING",
-                      "coupling_factor":  0.8,
-                      "role":  "Fiscal Revenue \u0026 Extraction Oversight"
-                  },
-                  {
-                      "source":  "ACTOR_RU",
-                      "target":  "ACTOR_RF_SOUTHERN_KRAIS",
-                      "type":  "PATRON_COUPLING",
-                      "coupling_factor":  0.95,
-                      "role":  "Logistics \u0026 Maritime Terminal Command"
-                  },
-                  {
-                      "source":  "ACTOR_RF_CAUCASUS_ARC",
-                      "target":  "IND_DCOILBRENTEU",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "CASPIAN_BYPASS_FLOW_SECURITY"
-                  },
-                  {
-                      "source":  "ACTOR_RF_CAUCASUS_ARC",
-                      "target":  "IND_PWHEAMTUSDM",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "NORTH_CAUCASUS_TRANSIT_FRICTION"
-                  },
-                  {
-                      "source":  "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
-                      "target":  "IND_DCOILWTICO",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "GLOBAL_REFINERY_CRUDE_COMPENSATION"
-                  },
-                  {
-                      "source":  "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
-                      "target":  "IND_PCOPPUSDM",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "SIBERIAN_MINERAL_EXTRACTION_PRESSURE"
-                  },
-                  {
-                      "source":  "ACTOR_RF_SOUTHERN_KRAIS",
-                      "target":  "IND_DCOILBRENTEU",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "NOVOROSSIYSK_TANKER_FREIGHT_SURCHARGE"
-                  },
-                  {
-                      "source":  "ACTOR_RF_SOUTHERN_KRAIS",
-                      "target":  "IND_PWHEAMTUSDM",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "BLACK_SEA_AGRO_EXPORT_BOTTLENECK"
-                  },
-                  {
-                      "source":  "IND_DFF",
-                      "target":  "MODEL_2",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "Nominal Policy Rate Benchmark"
-                  },
-                  {
-                      "source":  "IND_CPIAUCSL",
-                      "target":  "MODEL_2",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "Headline Inflation Deflator"
-                  },
-                  {
-                      "source":  "IND_DGS3MO",
-                      "target":  "MODEL_4",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "3-Month T-Bill Yield Benchmark"
-                  },
-                  {
-                      "source":  "IND_DGS1MO",
-                      "target":  "MODEL_4",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "1-Month T-Bill Yield Benchmark"
-                  },
-                  {
-                      "source":  "IND_WALCL",
-                      "target":  "MODEL_5",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "walcl_val"
-                  },
-                  {
-                      "source":  "IND_WTREGEN",
-                      "target":  "MODEL_5",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "wtregen_val"
-                  },
-                  {
-                      "source":  "IND_RRPONTSYD",
-                      "target":  "MODEL_5",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "rrpontsyd_val"
-                  },
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "ACTOR_DE",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.85,
-                      "regime":  "ALLIANCE"
-                  },
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "ACTOR_FR",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.8,
-                      "regime":  "ALLIANCE"
-                  },
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "ACTOR_GB",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.9,
-                      "regime":  "ALLIANCE"
-                  },
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "ACTOR_UA",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.85,
-                      "regime":  "STRATEGIC_ALIGNMENT"
-                  },
-                  {
-                      "source":  "ACTOR_RU",
-                      "target":  "ACTOR_UA",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  -1,
-                      "regime":  "KINETIC_WAR"
-                  },
-                  {
-                      "source":  "ACTOR_RU",
-                      "target":  "ACTOR_DE",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  -0.75,
-                      "regime":  "ECONOMIC_WARFARE"
-                  },
-                  {
-                      "source":  "ACTOR_DE",
-                      "target":  "ACTOR_FR",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.9,
-                      "regime":  "ALLIANCE"
-                  },
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "ACTOR_PL",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.85,
-                      "regime":  "ALLIANCE"
-                  },
-                  {
-                      "source":  "ACTOR_RU",
-                      "target":  "ACTOR_PL",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  -0.85,
-                      "regime":  "STRATEGIC_FRICTION"
-                  },
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "ACTOR_JP",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.9,
-                      "regime":  "ALLIANCE"
-                  },
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "ACTOR_KR",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.85,
-                      "regime":  "ALLIANCE"
-                  },
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "ACTOR_TW",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.85,
-                      "regime":  "STRATEGIC_ALIGNMENT"
-                  },
-                  {
-                      "source":  "ACTOR_CN",
-                      "target":  "ACTOR_TW",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  -0.9,
-                      "regime":  "KINETIC_STANDOFF"
-                  },
-                  {
-                      "source":  "ACTOR_CN",
-                      "target":  "ACTOR_JP",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  -0.6,
-                      "regime":  "STRATEGIC_COMPETITION"
-                  },
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "ACTOR_AU",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.9,
-                      "regime":  "ALLIANCE"
-                  },
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "ACTOR_SG",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.75,
-                      "regime":  "TACTICAL_COOPERATION"
-                  },
-                  {
-                      "source":  "ACTOR_CN",
-                      "target":  "ACTOR_PH",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  -0.7,
-                      "regime":  "STRATEGIC_FRICTION"
-                  },
-                  {
-                      "source":  "ACTOR_AZ",
-                      "target":  "ACTOR_AM",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  -0.8,
-                      "regime":  "STRATEGIC_FRICTION"
-                  },
-                  {
-                      "source":  "ACTOR_TR",
-                      "target":  "ACTOR_AZ",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.95,
-                      "regime":  "ALLIANCE"
-                  },
-                  {
-                      "source":  "ACTOR_KZ",
-                      "target":  "ACTOR_RU",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.6,
-                      "regime":  "TACTICAL_COOPERATION"
-                  },
-                  {
-                      "source":  "ACTOR_EG",
-                      "target":  "ACTOR_US",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.65,
-                      "regime":  "TACTICAL_COOPERATION"
-                  },
-                  {
-                      "source":  "ACTOR_SA",
-                      "target":  "ACTOR_US",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.7,
-                      "regime":  "STRATEGIC_ALIGNMENT"
-                  },
-                  {
-                      "source":  "ACTOR_IQ",
-                      "target":  "ACTOR_IR",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.6,
-                      "regime":  "TACTICAL_COOPERATION"
-                  },
-                  {
-                      "source":  "ACTOR_SY",
-                      "target":  "ACTOR_RU",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.85,
-                      "regime":  "ALLIANCE"
-                  },
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "ACTOR_CA",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.95,
-                      "regime":  "ALLIANCE"
-                  },
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "ACTOR_MX",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.8,
-                      "regime":  "STRATEGIC_ALIGNMENT"
-                  },
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "ACTOR_BR",
-                      "type":  "POLARITY_COUPLING",
-                      "p_baseline":  0.5,
-                      "regime":  "NEUTRAL"
-                  },
-                  {
-                      "source":  "ACTOR_SG",
-                      "target":  "CHOKE_MALACCA",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "strait_security_monitoring"
-                  },
-                  {
-                      "source":  "ACTOR_TW",
-                      "target":  "CHOKE_TAIWAN",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "semiconductor_supply_chain"
-                  },
-                  {
-                      "source":  "ACTOR_EG",
-                      "target":  "CHOKE_BAB_EL_MANDEB",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "suez_canal_transit_flow"
-                  },
-                  {
-                      "source":  "INST_FED_US",
-                      "target":  "ACTOR_US",
-                      "type":  "PATRON_COUPLING",
-                      "coupling_factor":  1,
-                      "role":  "Monetary Authority"
-                  },
-                  {
-                      "source":  "INST_TCMB_TR",
-                      "target":  "ACTOR_TR",
-                      "type":  "PATRON_COUPLING",
-                      "coupling_factor":  1,
-                      "role":  "Monetary Authority"
-                  },
-                  {
-                      "source":  "INST_ECB_EU",
-                      "target":  "ACTOR_DE",
-                      "type":  "PATRON_COUPLING",
-                      "coupling_factor":  0.9,
-                      "role":  "Supranational Monetary Authority"
-                  },
-                  {
-                      "source":  "INST_BOJ_JP",
-                      "target":  "ACTOR_JP",
-                      "type":  "PATRON_COUPLING",
-                      "coupling_factor":  1,
-                      "role":  "Monetary Authority"
-                  },
-                  {
-                      "source":  "INST_PBOC_CN",
-                      "target":  "ACTOR_CN",
-                      "type":  "PATRON_COUPLING",
-                      "coupling_factor":  1,
-                      "role":  "Monetary Authority"
-                  },
-                  {
-                      "source":  "INST_BOE_GB",
-                      "target":  "ACTOR_GB",
-                      "type":  "PATRON_COUPLING",
-                      "coupling_factor":  1,
-                      "role":  "Monetary Authority"
-                  },
-                  {
-                      "source":  "INST_CBR_RU",
-                      "target":  "ACTOR_RU",
-                      "type":  "PATRON_COUPLING",
-                      "coupling_factor":  1,
-                      "role":  "Monetary Authority"
-                  },
-                  {
-                      "source":  "INST_FED_US",
-                      "target":  "IND_WALCL",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "BALANCE_SHEET_EXPANSION_OR_CONTRACTION"
-                  },
-                  {
-                      "source":  "INST_FED_US",
-                      "target":  "IND_EFFR",
-                      "type":  "TRIGGERS_INDICATOR",
-                      "impact":  "POLICY_RATE_SETTING"
-                  },
-                  {
-                      "source":  "INST_FED_US",
-                      "target":  "MODEL_5",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "liquidity_steering_policy"
-                  },
-                  {
-                      "source":  "INST_TCMB_TR",
-                      "target":  "MODEL_25.2",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "inflation_target_transmission"
-                  },
-                  {
-                      "source":  "INST_ECB_EU",
-                      "target":  "MODEL_25.5",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "eurodollar_repo_liquidity_impact"
-                  },
-                  {
-                      "source":  "IND_GSCPI",
-                      "target":  "MODEL_25_14",
-                      "type":  "INGESTS_SERIES",
-                      "weight":  0.4
-                  },
-                  {
-                      "source":  "IND_NASDAQSOX",
-                      "target":  "MODEL_25_14",
-                      "type":  "INGESTS_SERIES",
-                      "weight":  0.35
-                  },
-                  {
-                      "source":  "IND_VIXCLS",
-                      "target":  "MODEL_25_14",
-                      "type":  "INGESTS_SERIES",
-                      "weight":  0.25
-                  },
-                  {
-                      "source":  "IND_PAYEMS",
-                      "target":  "MODEL_25.13",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "payems_mom"
-                  },
-                  {
-                      "source":  "IND_UNRATE",
-                      "target":  "MODEL_25.13",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "unrate_diff"
-                  },
-                  {
-                      "source":  "IND_GSCPI",
-                      "target":  "MODEL_25.14",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "gscpi_val"
-                  },
-                  {
-                      "source":  "IND_NASDAQSOX",
-                      "target":  "MODEL_25.14",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "sox_yoy_pct"
-                  },
-                  {
-                      "source":  "IND_VIXCLS",
-                      "target":  "MODEL_25.14",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "vix_val"
-                  },
-                  {
-                      "source":  "ACTOR_US",
-                      "target":  "MODEL_25.15",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "legislative_gridlock_tariff_impulse"
-                  },
-                  {
-                      "source":  "ACTOR_CN",
-                      "target":  "MODEL_25.15",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "centralized_strategic_retaliation"
-                  },
-                  {
-                      "source":  "ACTOR_DE",
-                      "target":  "MODEL_25.15",
-                      "type":  "BRIDGES_TO_MODEL",
-                      "passes":  "parliamentary_coalition_fiscal_brake"
-                  },
-                  {
-                      "source":  "IND_DFF",
-                      "target":  "MODEL_25.16_JPY_CARRY_CRACK",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "US Benchmark Rate"
-                  },
-                  {
-                      "source":  "IND_JP_FPOLM_PA",
-                      "target":  "MODEL_25.16_JPY_CARRY_CRACK",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "Japan Policy Benchmark Rate"
-                  },
-                  {
-                      "source":  "IND_DEXJPUS",
-                      "target":  "MODEL_25.16_JPY_CARRY_CRACK",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "Currency Momentum Pair"
-                  },
-                  {
-                      "source":  "INST_BOJ_JP",
-                      "target":  "MODEL_25.16_JPY_CARRY_CRACK",
-                      "type":  "MONETARY_AUTHORITY",
-                      "role":  "Funding Currency Regulator"
-                  },
-                  {
-                      "source":  "IND_SAUPZPIOILBEGUSD",
-                      "target":  "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "Hydrocarbon Fiscal Breakeven Threshold"
-                  },
-                  {
-                      "source":  "IND_DCOILBRENTEU",
-                      "target":  "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "Brent Spot Benchmark"
-                  },
-                  {
-                      "source":  "IND_SOFR",
-                      "target":  "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
-                      "type":  "INGESTS_SERIES",
-                      "role":  "Global Dollar Liquidity Benchmark"
-                  }
-              ]
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Ersoy ToptaÅŸ Macroeconomic & Geopolitical Knowledge Graph",
+  "version": "3.0.0",
+  "description": "Ontological knowledge graph linking sovereign actors, maritime chokepoints, FRED/BLS indicators, deterministic macro models, and manifest endpoints (v3 complete).",
+  "author": "Ersoy ToptaÅŸ",
+  "license": "CC-BY-4.0",
+  "repository": "https://analysisreports.github.io/",
+  "graph_metadata": {
+    "node_categories": [
+      "ACTOR",
+      "CHOKEPOINT",
+      "INDICATOR",
+      "MODEL",
+      "ENDPOINT_SCHEMA",
+      "COMMODITY_STRATEGIC",
+      "CRITICAL_MINERAL",
+      "ENERGY_BENCHMARK"
+    ],
+    "edge_types": [
+      "POLARITY_COUPLING",
+      "PATRON_COUPLING",
+      "TRIGGERS_INDICATOR",
+      "EXECUTES_MODEL",
+      "BRIDGES_TO_MODEL",
+      "INGESTS_SERIES",
+      "INDEXES",
+      "CONTROLS_LEVERAGE",
+      "TRANSMITS_RISK",
+      "INFLATION_IMPACT",
+      "SUPPLY_DISRUPTION"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "ACTOR_US",
+      "label": "United States",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "USD",
+        "economic_coupling_cn": 0.65,
+        "economic_coupling_ru": 0.1
+      }
+    },
+    {
+      "id": "ACTOR_RU",
+      "label": "Russian Federation",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "RUB",
+        "primary_friction": "EASTERN_EUROPE_BLACK_SEA"
+      }
+    },
+    {
+      "id": "ACTOR_CN",
+      "label": "People's Republic of China",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "CNY",
+        "primary_friction": "TAIWAN_STRAIT_TECH_EXPORTS"
+      }
+    },
+    {
+      "id": "ACTOR_IL",
+      "label": "State of Israel",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "primary_friction": "LEVANT_PERSIAN_GULF_NUCLEAR"
+      }
+    },
+    {
+      "id": "ACTOR_IR",
+      "label": "Islamic Republic of Iran",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "chokepoint_control": "HORMUZ_STRAIT",
+        "proxy_network": [
+          "YE-HOUTHI",
+          "LB-HEZB"
+        ]
+      }
+    },
+    {
+      "id": "ACTOR_TR",
+      "label": "Republic of Türkiye",
+      "category": "ACTOR",
+      "type": "Strategic Transit Hub",
+      "attributes": {
+        "chokepoint_control": "TURKISH_STRAITS",
+        "montreux_enforcer": true
+      }
+    },
+    {
+      "id": "ACTOR_SA",
+      "label": "Kingdom of Saudi Arabia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "SAR",
+        "jurisdiction": "GEO_SA"
+      }
+    },
+    {
+      "id": "ACTOR_YE_HOUTHI",
+      "label": "Ansarullah / Yemen Houthis",
+      "category": "ACTOR",
+      "type": "Non-State Proxy",
+      "attributes": {
+        "patron": "ACTOR_IR",
+        "patron_coupling": 0.85,
+        "theater": "BAB_EL_MANDEB_RED_SEA"
+      }
+    },
+    {
+      "id": "CHOKE_HORMUZ",
+      "label": "Hormuz Strait",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "26Â°34'N 56Â°15'E",
+        "volume": "~20-21 Million bpd (20% of global petroleum)",
+        "disruption_severity": "CATASTROPHIC",
+        "severity_weight": 1
+      }
+    },
+    {
+      "id": "CHOKE_BAB_EL_MANDEB",
+      "label": "Bab el-Mandeb & Red Sea",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "12Â°35'N 43Â°20'E",
+        "volume": "~12% of global trade",
+        "disruption_severity": "HIGH",
+        "severity_weight": 0.7
+      }
+    },
+    {
+      "id": "CHOKE_MALACCA",
+      "label": "Malacca Strait",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "1Â°26'N 103Â°00'E",
+        "volume": "~80% of China's crude imports",
+        "disruption_severity": "CATASTROPHIC",
+        "severity_weight": 1
+      }
+    },
+    {
+      "id": "CHOKE_TAIWAN",
+      "label": "Taiwan Strait",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "24Â°00'N 119Â°00'E",
+        "vulnerability": "Advanced Semiconductor Supply Shock",
+        "disruption_severity": "CATASTROPHIC",
+        "severity_weight": 1
+      }
+    },
+    {
+      "id": "CORRIDOR_ZANGEZUR",
+      "label": "Zangezur Corridor Node",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "39Â°10'N 46Â°25'E",
+        "type": "Terrestrial Resource Gateway",
+        "disruption_severity": "HIGH",
+        "severity_weight": 0.7
+      }
+    },
+    {
+      "id": "BASIN_EAST_MED_DEEPSEA",
+      "label": "Eastern Mediterranean Deep-Sea Basin",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "33Â°30'N 30Â°00'E",
+        "type": "Offshore Hydrocarbon & Maritime Gateway",
+        "disruption_severity": "HIGH",
+        "severity_weight": 0.7
+      }
+    },
+    {
+      "id": "IND_WALCL",
+      "label": "Fed Total Assets (WALCL)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "Millions USD",
+        "trans": "lin",
+        "mult": 1
+      }
+    },
+    {
+      "id": "IND_WTREGEN",
+      "label": "Treasury General Account (WTREGEN)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "Millions USD",
+        "trans": "lin",
+        "mult": 1
+      }
+    },
+    {
+      "id": "IND_RRPONTSYD",
+      "label": "Overnight Reverse Repo (RRPONTSYD)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "NY Fed / FRED",
+        "units": "Billions USD",
+        "trans": "lin",
+        "mult": 1000
+      }
+    },
+    {
+      "id": "IND_DFF",
+      "label": "Federal Funds Effective Rate (DFF)",
+      "category": "INDICATOR",
+      "type": "Benchmark Interest Rate",
+      "attributes": {
+        "source": "FRED",
+        "units": "Percent (%)",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_SOFR",
+      "label": "Secured Overnight Financing Rate (SOFR)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "NY Fed / FRED",
+        "units": "Percent (%)",
+        "mult_for_bps": 100
+      }
+    },
+    {
+      "id": "IND_EFFR",
+      "label": "Effective Federal Funds Rate (EFFR)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "NY Fed / FRED",
+        "units": "Percent (%)",
+        "mult_for_bps": 100
+      }
+    },
+    {
+      "id": "IND_VIXCLS",
+      "label": "CBOE Volatility Index (VIXCLS)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "CBOE / FRED",
+        "units": "Index",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_GSCPI",
+      "label": "NY Fed Global Supply Chain Pressure Index (GSCPI)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Federal Reserve Bank of New York",
+        "units": "Standard Deviations",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_STICKY_CPI",
+      "label": "Sticky CPI Less Food & Energy (STICKYCPIM157SFRBATL)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Atlanta Fed / FRED",
+        "units": "Percent (%)",
+        "trans": "pc1"
+      }
+    },
+    {
+      "id": "IND_FLEX_CPI",
+      "label": "Flexible CPI Less Food & Energy (FLEXCPIM157SFRBATL)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Atlanta Fed / FRED",
+        "units": "Percent (%)",
+        "trans": "pc1"
+      }
+    },
+    {
+      "id": "IND_OVXCLS",
+      "label": "CBOE Crude Oil Volatility Index (OVXCLS)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "CBOE / FRED",
+        "units": "Index",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_DCOILWTICO",
+      "label": "Crude Oil WTI (DCOILWTICO)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA / FRED",
+        "units": "USD per Barrel",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_DHHNGSP",
+      "label": "Henry Hub Natural Gas Spot Price (DHHNGSP)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA / FRED",
+        "units": "USD per MMBtu",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_GASREGW",
+      "label": "US Regular Retail Gasoline Price (GASREGW)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA / FRED",
+        "units": "USD per Gallon",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_WB_GOLD",
+      "label": "World Bank Official Gold Price (IND_WB_GOLD)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "World Bank (The Pink Sheet)",
+        "units": "USD per Troy Ounce",
+        "trans": "pc1"
+      }
+    },
+    {
+      "id": "IND_DFII10",
+      "label": "10-Year TIPS Real Rate (DFII10)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "U.S. Treasury / FRED",
+        "units": "Percent (%)"
+      }
+    },
+    {
+      "id": "MODEL_25.1",
+      "label": "Dynamic Polarity & Regime Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "dynamic_polarity_engine",
+        "formula": "P_net = min(1.0, max(-1.0, P_baseline + dynamic_delta))",
+        "regimes": [
+          "ALLIANCE",
+          "STRATEGIC_ALIGNMENT",
+          "TACTICAL_COOPERATION",
+          "NEUTRAL",
+          "STRATEGIC_FRICTION",
+          "PROXY_WAR",
+          "KINETIC_WAR"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.2",
+      "label": "Sticky vs. Flexible CPI Spread Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "sticky_flexible_cpi_spread",
+        "formula": "Sticky_Impulse = Sticky_CPI_YoY - Flexible_CPI_YoY",
+        "status_enums": [
+          "STRUCTURAL_INFLATION_TRAP",
+          "TRANSITORY_INFLATION_SURGE",
+          "BALANCED_DISINFLATION_PATH"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.3",
+      "label": "NY Fed GSCPI Logistics Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "global_supply_chain_pressure",
+        "formula": "GSCPI_ZScore = GSCPI_Value",
+        "status_enums": [
+          "SUPPLY_CHAIN_SHOCK",
+          "LOGISTICS_DEFLATION_SLACK",
+          "NORMALIZED_GLOBAL_TRADE"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.5",
+      "label": "Repo Liquidity Friction Spread Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "repo_liquidity_friction_spread",
+        "formula": "Repo_Friction_bps = (SOFR - EFFR) * 100",
+        "status_enums": [
+          "REPO_MARKET_LIQUIDITY_CRUNCH",
+          "SYSTEMIC_CASH_DRAIN_WARNING",
+          "COLLATERAL_SCARCITY_GLUT",
+          "HEALTHY_MONETARY_TRANSMISSION"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.6",
+      "label": "Gold / Real Yield Debasement Gauge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "gold_real_yield_debasement_gauge",
+        "formula": "f(Real_Yield_10Y, Gold_YoY_Pct)",
+        "status_enums": [
+          "DEBALANCING_DEDOLLARIZATION_PANIC",
+          "ACCOMMODATIVE_GOLD_BULL",
+          "TRADITIONAL_REAL_RATE_DOMINANCE"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.7",
+      "label": "OVX / VIX Geopolitical Energy Shock Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "ovx_vix_risk_premium",
+        "formula": "Vol_Ratio = OVX_Index / VIX_Index",
+        "status_enums": [
+          "ENERGY_SUPPLY_SHOCK_ALARM",
+          "EQUITY_PANIC_OVER_ENERGY",
+          "BALANCED_ENERGY_VOLATILITY"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.8",
+      "label": "NatGas / Crude Oil BTU Disconnect Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "natgas_crude_btu_disconnect",
+        "formula": "BTU_Disconnect_Ratio = WTI_Price / NatGas_Price",
+        "status_enums": [
+          "NATGAS_CRISIS_BLACKOUT_RISK",
+          "NATGAS_GLUT_ENERGY_CHEAP",
+          "ENERGY_PARITY_EQUILIBRIUM"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.9",
+      "label": "Gasoline / Crude Crack Spread Impulse Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "gasoline_crude_crack_spread",
+        "formula": "Crack_Spread_USD = (Gasoline_Gallon_Price * 42) - WTI_Barrel_Price",
+        "status_enums": [
+          "REFINERY_BOTTLENECK_CRUNCH",
+          "REFINING_MARGIN_COLLAPSE",
+          "NORMAL_REFINING_MARGIN"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_28.3",
+      "label": "Chokepoint Severity Multiplier Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "chokepoint_severity_multiplier",
+        "formula": "Disruption_Weight = SEVERITY_WEIGHT_MAP[severity_enum]",
+        "weight_map": {
+          "CATASTROPHIC": 1,
+          "HIGH": 0.7,
+          "MODERATE-HIGH": 0.45,
+          "MODERATE": 0.2
+        }
+      }
+    },
+    {
+      "id": "MODEL_28.4",
+      "label": "Chokepoint Macro Transmission Bridge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "chokepoint_transmission_bridge",
+        "formula": "Spillover_Score = min(100.0, (Disruption_Weight * 70.0) + (Friction_Factor * 30.0))",
+        "status_enums": [
+          "CRITICAL_SYSTEMIC_SHOCK",
+          "HIGH_SPILLOVER",
+          "MODERATE_FRICTION",
+          "LOCALIZED_IMPACT"
+        ]
+      }
+    },
+    {
+      "id": "EP_LLMS_TXT",
+      "label": "Root Manifest (llms.txt)",
+      "category": "ENDPOINT_SCHEMA",
+      "attributes": {
+        "url": "https://analysisreports.github.io/llms.txt",
+        "role": "Master Directory & Knowledge Architecture"
+      }
+    },
+    {
+      "id": "EP_FORMULAS",
+      "label": "Quantitative Formulas Engine (llms-formulas.txt)",
+      "category": "ENDPOINT_SCHEMA",
+      "attributes": {
+        "url": "https://analysisreports.github.io/llms-formulas.txt",
+        "role": "Deterministic Python Model Rules"
+      }
+    },
+    {
+      "id": "EP_INDICATORS",
+      "label": "Data Dictionary & Ingestion Contract (llms-indicators.txt)",
+      "category": "ENDPOINT_SCHEMA",
+      "attributes": {
+        "url": "https://analysisreports.github.io/llms-indicators.txt",
+        "role": "Series Scale Normalization Dictionary"
+      }
+    },
+    {
+      "id": "EP_RELATIONSHIPS",
+      "label": "Geopolitical Relationship Matrix (llms-relationships.txt)",
+      "category": "ENDPOINT_SCHEMA",
+      "attributes": {
+        "url": "https://analysisreports.github.io/llms-relationships.txt",
+        "role": "Sovereign Baselines & Transmission Vectors"
+      }
+    },
+    {
+      "id": "EP_TOOLS_JSON",
+      "label": "Executable Agent Tool Manifest (llms-tools.json)",
+      "category": "ENDPOINT_SCHEMA",
+      "attributes": {
+        "url": "https://analysisreports.github.io/llms-tools.json",
+        "role": "JSON Schema Function Calling Definitions"
+      }
+    },
+    {
+      "id": "EP_PROMPTS_TXT",
+      "label": "Canonical AI Reasoning Specification (llms-prompts.txt)",
+      "category": "ENDPOINT_SCHEMA",
+      "attributes": {
+        "url": "https://analysisreports.github.io/llms-prompts.txt",
+        "role": "6-Stage CoT & Guardrail Instructions"
+      }
+    },
+    {
+      "id": "EP_GRAPH_JSON",
+      "label": "llms-graph.json",
+      "category": "ENDPOINT_SCHEMA",
+      "type": "graph_rag_manifest",
+      "attributes": {
+        "url": "https://analysisreports.github.io/llms-graph.json",
+        "format": "application/json",
+        "description": "Ontological knowledge graph linking actors, chokepoints, indicators, models and schemas."
+      }
+    },
+    {
+      "id": "EP_AI_CATALOG",
+      "label": "ai-catalog.json",
+      "category": "ENDPOINT_SCHEMA",
+      "type": "ai_catalog_manifest",
+      "attributes": {
+        "url": "https://analysisreports.github.io/ai-catalog.json",
+        "format": "application/json",
+        "description": "Master AI Resource Discovery Directory."
+      }
+    },
+    {
+      "id": "ACTOR_KP",
+      "label": "Democratic People's Republic of Korea",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "structural_regime": "KINETIC_STANDOFF",
+        "asymmetric_threat": "NUCLEAR_BALLISTIC_PROLIFERATION",
+        "economic_coupling": 0.01
+      }
+    },
+    {
+      "id": "ACTOR_BRICS_MBRIDGE",
+      "label": "BRICS & mBridge Settlement Axis",
+      "category": "ACTOR",
+      "type": "Multilateral Clearing Bloc",
+      "attributes": {
+        "structural_regime": "MONETARY_DECOUPLING",
+        "core_nodes": [
+          "mBridge",
+          "CIPS",
+          "SPFS"
+        ]
+      }
+    },
+    {
+      "id": "ACTOR_C6_BLOC",
+      "label": "Orta Asya - Azerbaycan Ä°stiÅŸare MekanizmasÄ± (C6)",
+      "category": "ACTOR",
+      "type": "Regional Multilateral Bloc",
+      "attributes": {
+        "members": [
+          "KZ",
+          "UZ",
+          "KG",
+          "TM",
+          "TJ",
+          "AZ"
+        ],
+        "economic_formula": "SIX_ECONOMIES_ONE_PRODUCT",
+        "key_infrastructure": "TRANS_CASPIAN_PIPELINE_AND_RAIL"
+      }
+    },
+    {
+      "id": "IND_DRTSCIS",
+      "label": "Net % Tightening C&I Loan Standards (DRTSCIS)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Board of Governors / FRED",
+        "units": "Percent (%)",
+        "freq": "Quarterly"
+      }
+    },
+    {
+      "id": "IND_LNS12500000",
+      "label": "Employed, Usually Work Full Time (LNS12500000)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED",
+        "units": "Thousands",
+        "freq": "Monthly"
+      }
+    },
+    {
+      "id": "IND_LNS12032194",
+      "label": "Employed, Part-Time for Economic Reasons (LNS12032194)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED",
+        "units": "Thousands",
+        "freq": "Monthly"
+      }
+    },
+    {
+      "id": "MODEL_25.10",
+      "label": "SLOOS Lending Standards Recession Gauge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "sloos_lending_tightness_gauge",
+        "formula": "Credit_Tightening_Net_Pct = DRTSCIS",
+        "status_enums": [
+          "ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL",
+          "RESTRICTIVE_CREDIT_CONTRACTION",
+          "NEUTRAL_CREDIT_CONDITIONS",
+          "AGGRESSIVE_CREDIT_EXPANSION"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.11",
+      "label": "Full-Time vs. Involuntary Part-Time Crack Gauge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "hidden_employment_crack_gauge",
+        "formula": "Crack_Spread = Part_Time_Econ_YoY_Pct - Full_Time_YoY_Pct",
+        "status_enums": [
+          "ACUTE_LABOR_MARKET_FRACTURE_RECESSION",
+          "STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL",
+          "STABLE_EMPLOYMENT_COMPOSITION",
+          "ROBUST_FULL_TIME_EXPANSION"
+        ]
+      }
+    },
+    {
+      "id": "IND_DCOILBRENTEU",
+      "label": "Crude Oil Prices: Brent - Europe (DCOILBRENTEU)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA / FRED",
+        "units": "USD per Barrel",
+        "freq": "Daily"
+      }
+    },
+    {
+      "id": "MODEL_25.12",
+      "label": "Brent-WTI Seaborne Spread Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "brent_wti_spread",
+        "formula": "Brent_WTI_Spread = DCOILBRENTEU - DCOILWTICO",
+        "status_enums": [
+          "SEABORNE_GEOPOLITICAL_PREMIUM",
+          "US_DOMESTIC_TIGHTNESS",
+          "NORMAL_TRANSATLANTIC_ARBITRAGE"
+        ]
+      }
+    },
+    {
+      "id": "ENERGY_URANIUM",
+      "label": "ZenginleÅŸtirilmiÅŸ Uranyum ve NÃ¼kleer YakÄ±t",
+      "category": "COMMODITY_STRATEGIC",
+      "attributes": {
+        "dominant_supplier": "ACTOR_RU"
+      }
+    },
+    {
+      "id": "ENERGY_LITHIUM",
+      "label": "Lityum ve Batarya Hammaddeleri",
+      "category": "CRITICAL_MINERAL",
+      "attributes": {
+        "geographic_basin": "LATAM_TRIANGLE"
+      }
+    },
+    {
+      "id": "COMMODITY_CRUDE_OIL",
+      "label": "Brent & WTI Ham Petrol ArzÄ±",
+      "category": "ENERGY_BENCHMARK",
+      "attributes": {
+        "chokepoint_sensitivity": "CHOKE_HORMUZ"
+      }
+    },
+    {
+      "id": "IND_WPU06",
+      "label": "PPI Chemicals and Allied Products (WPU06)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED",
+        "units": "Index",
+        "trans": "pc1"
+      }
+    },
+    {
+      "id": "MODEL_9",
+      "label": "Financial Repression & Debt Sustainability Index",
+      "category": "MODEL",
+      "attributes": {
+        "function": "financial_repression_index",
+        "formula": "Debt_Pressure_Index = (DGS10 - CPI_YoY) * (GFDEGDQ188S / 100)",
+        "status_enums": [
+          "REPRESSION_REGIME",
+          "SUSTAINABLE_CYCLE",
+          "DEBT_CRISIS_ALARM"
+        ]
+      }
+    },
+    {
+      "id": "ACTOR_RF_CAUCASUS_ARC",
+      "label": "North Caucasus Autonomous Line (Karachay-Cherkessia, Kabardino-Balkaria, Dagestan)",
+      "category": "ACTOR",
+      "type": "Sub-National Autonomous Entity",
+      "attributes": {
+        "parent_authority": "ACTOR_RU",
+        "polarity_baseline": 0.7,
+        "structural_regime": "STRATEGIC_ALIGNMENT",
+        "primary_exposure": "CASPIAN_SECURITY_ENERGY_CORRIDORS"
+      }
+    },
+    {
+      "id": "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
+      "label": "Volga-Ural & Siberian Arc (Tatarstan, Bashkortostan, Sakha, Altai, etc.)",
+      "category": "ACTOR",
+      "type": "Sub-National Autonomous Entity",
+      "attributes": {
+        "parent_authority": "ACTOR_RU",
+        "polarity_baseline": 0.8,
+        "structural_regime": "STRATEGIC_ALIGNMENT",
+        "primary_exposure": "FISCAL_FEDERALISM_RESOURCE_EXTRACTION"
+      }
+    },
+    {
+      "id": "ACTOR_RF_SOUTHERN_KRAIS",
+      "label": "Southern Administrative Krais (Stavropol, Krasnodar)",
+      "category": "ACTOR",
+      "type": "Sub-National Administrative Region",
+      "attributes": {
+        "parent_authority": "ACTOR_RU",
+        "polarity_baseline": 0.95,
+        "structural_regime": "ALLIANCE",
+        "primary_exposure": "BLACK_SEA_AGRO_PORT_LOGISTICS"
+      }
+    },
+    {
+      "id": "IND_PWHEAMTUSDM",
+      "label": "Global Price of Wheat (PWHEAMTUSDM)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "IMF / FRED",
+        "units": "USD per Metric Ton",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_PCOPPUSDM",
+      "label": "Global Price of Copper (PCOPPUSDM)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "IMF / FRED",
+        "units": "USD per Metric Ton",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "MODEL_2",
+      "label": "Real Policy Rate & Restrictiveness",
+      "category": "MODEL",
+      "attributes": {
+        "function": "real_policy_rate",
+        "formula": "Real_Policy_Rate = DFF - CPI_YoY",
+        "status_enums": [
+          "RESTRICTIVE",
+          "NEUTRAL",
+          "ACCOMMODATIVE"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_4",
+      "label": "Front-End T-Bill Slope & Liquidity Spread",
+      "category": "MODEL",
+      "attributes": {
+        "function": "front_end_liquidity_spread",
+        "formula": "Front_End_Slope_bps = (DGS3MO - DGS1MO) * 100",
+        "status_enums": [
+          "NORMAL_SLOPE",
+          "INVERTED_FRONT_END"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_5",
+      "label": "Net Fed Liquidity Index",
+      "category": "MODEL",
+      "attributes": {
+        "function": "net_fed_liquidity",
+        "formula": "Net_Liquidity_Millions = WALCL - (WTREGEN + RRPONTSYD)",
+        "status_enums": [
+          "LIQUIDITY_EXPANSION",
+          "NEUTRAL",
+          "LIQUIDITY_CONTRACTION"
+        ]
+      }
+    },
+    {
+      "id": "ACTOR_DE",
+      "label": "Federal Republic of Germany",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "EUR"
+      }
+    },
+    {
+      "id": "ACTOR_FR",
+      "label": "French Republic",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "EUR"
+      }
+    },
+    {
+      "id": "ACTOR_GB",
+      "label": "United Kingdom",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "GBP"
+      }
+    },
+    {
+      "id": "ACTOR_UA",
+      "label": "Ukraine",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "UAH"
+      }
+    },
+    {
+      "id": "ACTOR_PL",
+      "label": "Republic of Poland",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "PLN"
+      }
+    },
+    {
+      "id": "ACTOR_SE",
+      "label": "Kingdom of Sweden",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "SEK"
+      }
+    },
+    {
+      "id": "ACTOR_NO",
+      "label": "Kingdom of Norway",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "NOK"
+      }
+    },
+    {
+      "id": "ACTOR_CZ",
+      "label": "Czech Republic",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "CZK"
+      }
+    },
+    {
+      "id": "ACTOR_HU",
+      "label": "Hungary",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "HUF"
+      }
+    },
+    {
+      "id": "ACTOR_GR",
+      "label": "Hellenic Republic",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "EUR"
+      }
+    },
+    {
+      "id": "ACTOR_CY",
+      "label": "Republic of Cyprus",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "EUR"
+      }
+    },
+    {
+      "id": "ACTOR_JP",
+      "label": "Japan",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "JPY"
+      }
+    },
+    {
+      "id": "ACTOR_KR",
+      "label": "Republic of Korea",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "ACTOR_TW",
+      "label": "Taiwan (Republic of China)",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "TWD"
+      }
+    },
+    {
+      "id": "ACTOR_SG",
+      "label": "Republic of Singapore",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "SGD"
+      }
+    },
+    {
+      "id": "ACTOR_AU",
+      "label": "Commonwealth of Australia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "AUD"
+      }
+    },
+    {
+      "id": "ACTOR_ID",
+      "label": "Republic of Indonesia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "IDR"
+      }
+    },
+    {
+      "id": "ACTOR_MY",
+      "label": "Malaysia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "MYR"
+      }
+    },
+    {
+      "id": "ACTOR_TH",
+      "label": "Kingdom of Thailand",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "THB"
+      }
+    },
+    {
+      "id": "ACTOR_PH",
+      "label": "Republic of the Philippines",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "PHP"
+      }
+    },
+    {
+      "id": "ACTOR_KZ",
+      "label": "Republic of Kazakhstan",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "KZT"
+      }
+    },
+    {
+      "id": "ACTOR_AZ",
+      "label": "Republic of Azerbaijan",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "AZN"
+      }
+    },
+    {
+      "id": "ACTOR_AM",
+      "label": "Republic of Armenia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "AMD"
+      }
+    },
+    {
+      "id": "ACTOR_UZ",
+      "label": "Republic of Uzbekistan",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "UZS"
+      }
+    },
+    {
+      "id": "ACTOR_TM",
+      "label": "Turkmenistan",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "TMT"
+      }
+    },
+    {
+      "id": "ACTOR_KG",
+      "label": "Kyrgyz Republic",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "KGS"
+      }
+    },
+    {
+      "id": "ACTOR_TJ",
+      "label": "Republic of Tajikistan",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "TJS"
+      }
+    },
+    {
+      "id": "ACTOR_EG",
+      "label": "Arab Republic of Egypt",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "EGP"
+      }
+    },
+    {
+      "id": "ACTOR_ZA",
+      "label": "Republic of South Africa",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "ZAR"
+      }
+    },
+    {
+      "id": "ACTOR_IQ",
+      "label": "Republic of Iraq",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "IQD"
+      }
+    },
+    {
+      "id": "ACTOR_SY",
+      "label": "Syrian Arab Republic",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "SYP"
+      }
+    },
+    {
+      "id": "ACTOR_LY",
+      "label": "State of Libya",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "LYD"
+      }
+    },
+    {
+      "id": "ACTOR_MA",
+      "label": "Kingdom of Morocco",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "MAD"
+      }
+    },
+    {
+      "id": "ACTOR_CA",
+      "label": "Canada",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "CAD"
+      }
+    },
+    {
+      "id": "ACTOR_MX",
+      "label": "United Mexican States",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "MXN"
+      }
+    },
+    {
+      "id": "ACTOR_BR",
+      "label": "Federative Republic of Brazil",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "BRL"
+      }
+    },
+    {
+      "id": "ACTOR_AR",
+      "label": "Argentine Republic",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "ARS"
+      }
+    },
+    {
+      "id": "ACTOR_CL",
+      "label": "Republic of Chile",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "CLP"
+      }
+    },
+    {
+      "id": "ACTOR_BO",
+      "label": "Plurinational State of Bolivia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "BOB"
+      }
+    },
+    {
+      "id": "INST_FED_US",
+      "label": "Federal Reserve System",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_US",
+        "currency": "USD"
+      }
+    },
+    {
+      "id": "INST_TCMB_TR",
+      "label": "Central Bank of the Republic of TÃ¼rkiye",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_TR",
+        "currency": "TRY"
+      }
+    },
+    {
+      "id": "INST_ECB_EU",
+      "label": "European Central Bank",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_DE",
+        "currency": "EUR"
+      }
+    },
+    {
+      "id": "INST_BOJ_JP",
+      "label": "Bank of Japan",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_JP",
+        "currency": "JPY"
+      }
+    },
+    {
+      "id": "INST_PBOC_CN",
+      "label": "People's Bank of China",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_CN",
+        "currency": "CNY"
+      }
+    },
+    {
+      "id": "INST_BOE_GB",
+      "label": "Bank of England",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_GB",
+        "currency": "GBP"
+      }
+    },
+    {
+      "id": "INST_SNB_CH",
+      "label": "Swiss National Bank",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_CH",
+        "currency": "CHF"
+      }
+    },
+    {
+      "id": "INST_RBA_AU",
+      "label": "Reserve Bank of Australia",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_AU",
+        "currency": "AUD"
+      }
+    },
+    {
+      "id": "INST_BOC_CA",
+      "label": "Bank of Canada",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_CA",
+        "currency": "CAD"
+      }
+    },
+    {
+      "id": "INST_RBI_IN",
+      "label": "Reserve Bank of India",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_IN",
+        "currency": "INR"
+      }
+    },
+    {
+      "id": "INST_CBR_RU",
+      "label": "Bank of Russia",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_RU",
+        "currency": "RUB"
+      }
+    },
+    {
+      "id": "INST_BOK_KR",
+      "label": "Bank of Korea",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_KR",
+        "currency": "KRW"
+      }
+    },
+    {
+      "id": "INST_CBC_TW",
+      "label": "Central Bank of Taiwan",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_TW",
+        "currency": "TWD"
+      }
+    },
+    {
+      "id": "INST_MAS_SG",
+      "label": "Monetary Authority of Singapore",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_SG",
+        "currency": "SGD"
+      }
+    },
+    {
+      "id": "INST_SAMA_SA",
+      "label": "Saudi Central Bank",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_SA",
+        "currency": "SAR"
+      }
+    },
+    {
+      "id": "INST_BCB_BR",
+      "label": "Central Bank of Brazil",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_BR",
+        "currency": "BRL"
+      }
+    },
+    {
+      "id": "INST_BANXICO_MX",
+      "label": "Bank of Mexico",
+      "category": "ACTOR",
+      "type": "Central Bank",
+      "attributes": {
+        "jurisdiction": "GEO_MX",
+        "currency": "MXN"
+      }
+    },
+    {
+      "id": "MODEL_25_14",
+      "label": "AI Chip Stress Gauge",
+      "category": "QUANT_MODEL",
+      "source": "analysisreports"
+    },
+    {
+      "id": "IND_PAYEMS",
+      "label": "All Employees: Total Nonfarm Payrolls",
+      "category": "INDICATOR",
+      "source": "BLS / FRED"
+    },
+    {
+      "id": "IND_UNRATE",
+      "label": "Civilian Unemployment Rate",
+      "category": "INDICATOR",
+      "source": "BLS / FRED"
+    },
+    {
+      "id": "IND_NASDAQSOX",
+      "label": "PHLX Semiconductor Index",
+      "category": "INDICATOR",
+      "source": "NASDAQ / FRED"
+    },
+    {
+      "id": "MODEL_25.13",
+      "label": "Labor Market Momentum Index Engine",
+      "category": "MODEL",
+      "description": "Blends PAYEMS YoY % growth with UNRATE YoY diff."
+    },
+    {
+      "id": "MODEL_25.14",
+      "label": "AI Hardware & Chip Stress Engine",
+      "category": "MODEL",
+      "description": "Quantifies semiconductor supply bottlenecks combining GSCPI, SOX, and VIX."
+    },
+    {
+      "id": "MODEL_25.15",
+      "label": "Domestic Governance Gridlock & Tariff Friction Engine",
+      "category": "MODEL",
+      "description": "Quantifies domestic legislative gridlock driving unilateral trade tariffs and external economic friction."
+    },
+    {
+      "id": "MODEL_25.16_JPY_CARRY_CRACK",
+      "label": "Yen Carry Trade Dissolution & Stress Gauge",
+      "category": "MODEL",
+      "type": "Macroeconomic Friction Model",
+      "attributes": {
+        "target_regimes": [
+          "CALM_ACCUMULATION",
+          "MANAGED_TIGHTENING",
+          "COMPRESSION_WARNING",
+          "UNWIND_LIQUIDATION_CRASH"
+        ],
+        "jurisdiction": "GEO_JP"
+      }
+    },
+    {
+      "id": "IND_DEXJPUS",
+      "label": "Spot Exchange Rate USD/JPY",
+      "category": "INDICATOR",
+      "type": "Exchange Rate",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "IND_SAUPZPIOILBEGUSD",
+      "label": "Fiscal Breakeven Oil Price for Saudi Arabia",
+      "category": "INDICATOR",
+      "type": "Macroeconomic Commodity Benchmark",
+      "attributes": {
+        "source": "IMF",
+        "units": "USD per Barrel",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_JP_FPOLM_PA",
+      "label": "Central Bank Policy Rate for Japan",
+      "category": "INDICATOR",
+      "type": "Monetary Policy Benchmark",
+      "attributes": {
+        "source": "IMF IFS",
+        "units": "Percent per Annum",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_GB_FPOLM_PA",
+      "label": "Central Bank Policy Rate for United Kingdom",
+      "category": "INDICATOR",
+      "type": "Monetary Policy Benchmark",
+      "attributes": {
+        "source": "IMF IFS",
+        "units": "Percent per Annum",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
+      "label": "Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact)",
+      "category": "MODEL",
+      "type": "Geopolitical Alliance Transmission Model",
+      "attributes": {
+        "target_regimes": [
+          "TREATY_ACTIVE_SURPLUS_EXPANSION",
+          "TREATY_ACTIVE_EQUILIBRIUM",
+          "TREATY_ACTIVE_FISCAL_RESTRAINT"
+        ],
+        "jurisdiction": "BLOC_MECCA_DEFENSE"
+      }
+    },
+    {
+      "id": "MODEL_18",
+      "label": "Okun Misery Index",
+      "category": "MODEL",
+      "attributes": {
+        "function": "misery_index",
+        "formula": "Misery_Index = UNRATE + CPI_YoY",
+        "status_enums": [
+          "GOLDILOCKS",
+          "MODERATE",
+          "ELEVATED_STRESS",
+          "ACUTE_CRISIS"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_23.7",
+      "label": "Inventory to Sales Glut Ratio",
+      "category": "MODEL",
+      "attributes": {
+        "function": "inventory_to_sales_glut",
+        "formula": "Inventory_Glut_Ratio = ISRATIO",
+        "status_enums": [
+          "BALANCED_SUPPLY_CHAIN",
+          "SYSTEMIC_INVENTORY_GLUT",
+          "SUPPLY_SHOCK_SHORTAGE"
+        ]
+      }
+    },
+    {
+      "id": "IND_ISRATIO",
+      "label": "Total Business Inventories to Sales Ratio",
+      "category": "INDICATOR",
+      "source": "FRED"
+    }
+  ],
+  "edges": [
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_RU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.85,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_CN",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.65,
+      "regime": "STRATEGIC_COMPETITION"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ACTOR_CN",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.75,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "ACTOR_IL",
+      "target": "ACTOR_IR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.95,
+      "regime": "PROXY_WAR / KINETIC_STANDOFF"
+    },
+    {
+      "source": "ACTOR_IR",
+      "target": "ACTOR_YE_HOUTHI",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 0.85,
+      "role": "Proxy Supply & Targeting"
+    },
+    {
+      "source": "ACTOR_TR",
+      "target": "ACTOR_RU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.15,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "ACTOR_TR",
+      "target": "ACTOR_US",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.25,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "CHOKE_HORMUZ",
+      "target": "IND_DCOILWTICO",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "CRUDE_PRICE_SHOCK"
+    },
+    {
+      "source": "CHOKE_HORMUZ",
+      "target": "IND_OVXCLS",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "OIL_VOLATILITY_SPIKE"
+    },
+    {
+      "source": "CHOKE_HORMUZ",
+      "target": "IND_GSCPI",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "GLOBAL_LOGISTICS_STRESS"
+    },
+    {
+      "source": "CHOKE_HORMUZ",
+      "target": "IND_SOFR",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "FUNDING_FLIGHT_TO_SAFETY"
+    },
+    {
+      "source": "CHOKE_HORMUZ",
+      "target": "IND_WB_GOLD",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "SAFE_HAVEN_DEMAND"
+    },
+    {
+      "source": "CHOKE_BAB_EL_MANDEB",
+      "target": "IND_GSCPI",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "CAPE_REROUTING_DELAY"
+    },
+    {
+      "source": "CHOKE_BAB_EL_MANDEB",
+      "target": "IND_OVXCLS",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "ENERGY_FREIGHT_RISK_PREMIUM"
+    },
+    {
+      "source": "CHOKE_BAB_EL_MANDEB",
+      "target": "IND_GASREGW",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "REFINED_FUEL_RETAIL_PASS_THROUGH"
+    },
+    {
+      "source": "CHOKE_MALACCA",
+      "target": "IND_DCOILWTICO",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "ASIAN_CRUDE_IMPORT_DISRUPTION"
+    },
+    {
+      "source": "CHOKE_TAIWAN",
+      "target": "IND_GSCPI",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "TECH_LOGISTICS_BOTTLENECK"
+    },
+    {
+      "source": "CORRIDOR_ZANGEZUR",
+      "target": "IND_DHHNGSP",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "CASPIAN_GAS_FLOW_FRICTION"
+    },
+    {
+      "source": "IND_STICKY_CPI",
+      "target": "MODEL_25.2",
+      "type": "INGESTS_SERIES",
+      "role": "sticky_val"
+    },
+    {
+      "source": "IND_FLEX_CPI",
+      "target": "MODEL_25.2",
+      "type": "INGESTS_SERIES",
+      "role": "flex_val"
+    },
+    {
+      "source": "IND_SOFR",
+      "target": "MODEL_25.5",
+      "type": "INGESTS_SERIES",
+      "role": "sofr_val"
+    },
+    {
+      "source": "IND_EFFR",
+      "target": "MODEL_25.5",
+      "type": "INGESTS_SERIES",
+      "role": "effr_val"
+    },
+    {
+      "source": "IND_GSCPI",
+      "target": "MODEL_25.3",
+      "type": "INGESTS_SERIES",
+      "role": "gscpi_val"
+    },
+    {
+      "source": "IND_DFII10",
+      "target": "MODEL_25.6",
+      "type": "INGESTS_SERIES",
+      "role": "real_yield_10y"
+    },
+    {
+      "source": "IND_WB_GOLD",
+      "target": "MODEL_25.6",
+      "type": "INGESTS_SERIES",
+      "role": "gold_yoy_pct"
+    },
+    {
+      "source": "IND_OVXCLS",
+      "target": "MODEL_25.7",
+      "type": "INGESTS_SERIES",
+      "role": "ovx_val"
+    },
+    {
+      "source": "IND_VIXCLS",
+      "target": "MODEL_25.7",
+      "type": "INGESTS_SERIES",
+      "role": "vix_val"
+    },
+    {
+      "source": "IND_DCOILWTICO",
+      "target": "MODEL_25.8",
+      "type": "INGESTS_SERIES",
+      "role": "wti_price"
+    },
+    {
+      "source": "IND_DHHNGSP",
+      "target": "MODEL_25.8",
+      "type": "INGESTS_SERIES",
+      "role": "natgas_price"
+    },
+    {
+      "source": "IND_GASREGW",
+      "target": "MODEL_25.9",
+      "type": "INGESTS_SERIES",
+      "role": "gas_gal_price"
+    },
+    {
+      "source": "IND_DCOILWTICO",
+      "target": "MODEL_25.9",
+      "type": "INGESTS_SERIES",
+      "role": "wti_barrel_price"
+    },
+    {
+      "source": "CHOKE_HORMUZ",
+      "target": "MODEL_28.3",
+      "type": "EXECUTES_MODEL",
+      "severity_enum": "CATASTROPHIC"
+    },
+    {
+      "source": "MODEL_28.3",
+      "target": "MODEL_28.4",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "severity_weight"
+    },
+    {
+      "source": "MODEL_25.1",
+      "target": "MODEL_28.4",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "p_net"
+    },
+    {
+      "source": "EP_LLMS_TXT",
+      "target": "EP_FORMULAS",
+      "type": "INDEXES"
+    },
+    {
+      "source": "EP_LLMS_TXT",
+      "target": "EP_INDICATORS",
+      "type": "INDEXES"
+    },
+    {
+      "source": "EP_LLMS_TXT",
+      "target": "EP_RELATIONSHIPS",
+      "type": "INDEXES"
+    },
+    {
+      "source": "EP_LLMS_TXT",
+      "target": "EP_TOOLS_JSON",
+      "type": "INDEXES"
+    },
+    {
+      "source": "EP_LLMS_TXT",
+      "target": "EP_PROMPTS_TXT",
+      "type": "INDEXES"
+    },
+    {
+      "source": "EP_LLMS_TXT",
+      "target": "EP_GRAPH_JSON",
+      "type": "INDEXES"
+    },
+    {
+      "source": "EP_LLMS_TXT",
+      "target": "EP_AI_CATALOG",
+      "type": "INDEXES"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_KP",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.9,
+      "regime": "KINETIC_STANDOFF"
+    },
+    {
+      "source": "ACTOR_BRICS_MBRIDGE",
+      "target": "ACTOR_US",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.7,
+      "regime": "MONETARY_DECOUPLING"
+    },
+    {
+      "source": "IND_DRTSCIS",
+      "target": "MODEL_25.10",
+      "type": "INGESTS_SERIES",
+      "role": "drtscis_val"
+    },
+    {
+      "source": "IND_LNS12500000",
+      "target": "MODEL_25.11",
+      "type": "INGESTS_SERIES",
+      "role": "full_time_level"
+    },
+    {
+      "source": "IND_LNS12032194",
+      "target": "MODEL_25.11",
+      "type": "INGESTS_SERIES",
+      "role": "part_time_econ_level"
+    },
+    {
+      "source": "ACTOR_BRICS_MBRIDGE",
+      "target": "MODEL_25.10",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "capital_fragmentation_drain"
+    },
+    {
+      "source": "CHOKE_TAIWAN",
+      "target": "MODEL_25.11",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "hardware_labor_shock"
+    },
+    {
+      "source": "ACTOR_BRICS_MBRIDGE",
+      "target": "MODEL_25.6",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "sovereign_gold_accumulation"
+    },
+    {
+      "source": "IND_DCOILBRENTEU",
+      "target": "MODEL_25.12",
+      "type": "INGESTS_SERIES",
+      "role": "brent_price"
+    },
+    {
+      "source": "IND_DCOILWTICO",
+      "target": "MODEL_25.12",
+      "type": "INGESTS_SERIES",
+      "role": "wti_price"
+    },
+    {
+      "source": "CHOKE_BAB_EL_MANDEB",
+      "target": "MODEL_25.12",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "seaborne_risk_premium"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ENERGY_URANIUM",
+      "type": "CONTROLS_LEVERAGE",
+      "description": "NÃ¼kleer yakÄ±t tedarik zinciri Ã¼zerinden asimetrik jeopolitik baskÄ±."
+    },
+    {
+      "source": "ENERGY_URANIUM",
+      "target": "MODEL_9",
+      "type": "TRANSMITS_RISK",
+      "vector": "BASELOAD_ENERGY_COST"
+    },
+    {
+      "source": "ENERGY_LITHIUM",
+      "target": "IND_WPU06",
+      "type": "INFLATION_IMPACT",
+      "description": "Batarya ve kimyasal sanayi maliyetleri Ã¼zerinden Ã¼retici fiyat baskÄ±sÄ±."
+    },
+    {
+      "source": "CHOKE_HORMUZ",
+      "target": "COMMODITY_CRUDE_OIL",
+      "type": "SUPPLY_DISRUPTION",
+      "description": "HÃ¼rmÃ¼z BoÄŸazÄ± risk priminin ham petrol fiyatlarÄ±na doÄŸrudan aktarÄ±mÄ±."
+    },
+    {
+      "source": "ACTOR_C6_BLOC",
+      "target": "ACTOR_TR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.8,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "ACTOR_C6_BLOC",
+      "target": "ACTOR_RU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.2,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "ACTOR_C6_BLOC",
+      "target": "ACTOR_CN",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.65,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "ACTOR_C6_BLOC",
+      "target": "CORRIDOR_ZANGEZUR",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "middle_corridor_freight_volume"
+    },
+    {
+      "source": "ACTOR_TR",
+      "target": "BASIN_EAST_MED_DEEPSEA",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "maritime_eez_projection"
+    },
+    {
+      "source": "BASIN_EAST_MED_DEEPSEA",
+      "target": "IND_DCOILBRENTEU",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "MEDITERRANEAN_RISK_PREMIUM"
+    },
+    {
+      "source": "BASIN_EAST_MED_DEEPSEA",
+      "target": "IND_DHHNGSP",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "LNG_FEEDSTOCK_DISRUPTION"
+    },
+    {
+      "source": "BASIN_EAST_MED_DEEPSEA",
+      "target": "MODEL_28.3",
+      "type": "EXECUTES_MODEL",
+      "severity_enum": "HIGH"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ACTOR_RF_CAUCASUS_ARC",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 0.7,
+      "role": "Federal Administrative & Security Control"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 0.8,
+      "role": "Fiscal Revenue & Extraction Oversight"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ACTOR_RF_SOUTHERN_KRAIS",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 0.95,
+      "role": "Logistics & Maritime Terminal Command"
+    },
+    {
+      "source": "ACTOR_RF_CAUCASUS_ARC",
+      "target": "IND_DCOILBRENTEU",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "CASPIAN_BYPASS_FLOW_SECURITY"
+    },
+    {
+      "source": "ACTOR_RF_CAUCASUS_ARC",
+      "target": "IND_PWHEAMTUSDM",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "NORTH_CAUCASUS_TRANSIT_FRICTION"
+    },
+    {
+      "source": "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
+      "target": "IND_DCOILWTICO",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "GLOBAL_REFINERY_CRUDE_COMPENSATION"
+    },
+    {
+      "source": "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
+      "target": "IND_PCOPPUSDM",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "SIBERIAN_MINERAL_EXTRACTION_PRESSURE"
+    },
+    {
+      "source": "ACTOR_RF_SOUTHERN_KRAIS",
+      "target": "IND_DCOILBRENTEU",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "NOVOROSSIYSK_TANKER_FREIGHT_SURCHARGE"
+    },
+    {
+      "source": "ACTOR_RF_SOUTHERN_KRAIS",
+      "target": "IND_PWHEAMTUSDM",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "BLACK_SEA_AGRO_EXPORT_BOTTLENECK"
+    },
+    {
+      "source": "IND_DFF",
+      "target": "MODEL_2",
+      "type": "INGESTS_SERIES",
+      "role": "Nominal Policy Rate Benchmark"
+    },
+    {
+      "source": "IND_CPIAUCSL",
+      "target": "MODEL_2",
+      "type": "INGESTS_SERIES",
+      "role": "Headline Inflation Deflator"
+    },
+    {
+      "source": "IND_DGS3MO",
+      "target": "MODEL_4",
+      "type": "INGESTS_SERIES",
+      "role": "3-Month T-Bill Yield Benchmark"
+    },
+    {
+      "source": "IND_DGS1MO",
+      "target": "MODEL_4",
+      "type": "INGESTS_SERIES",
+      "role": "1-Month T-Bill Yield Benchmark"
+    },
+    {
+      "source": "IND_WALCL",
+      "target": "MODEL_5",
+      "type": "INGESTS_SERIES",
+      "role": "walcl_val"
+    },
+    {
+      "source": "IND_WTREGEN",
+      "target": "MODEL_5",
+      "type": "INGESTS_SERIES",
+      "role": "wtregen_val"
+    },
+    {
+      "source": "IND_RRPONTSYD",
+      "target": "MODEL_5",
+      "type": "INGESTS_SERIES",
+      "role": "rrpontsyd_val"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_DE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_FR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.8,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_GB",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.9,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_UA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ACTOR_UA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -1,
+      "regime": "KINETIC_WAR"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ACTOR_DE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.75,
+      "regime": "ECONOMIC_WARFARE"
+    },
+    {
+      "source": "ACTOR_DE",
+      "target": "ACTOR_FR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.9,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_PL",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ACTOR_PL",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.85,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_JP",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.9,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_KR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_TW",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "ACTOR_CN",
+      "target": "ACTOR_TW",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.9,
+      "regime": "KINETIC_STANDOFF"
+    },
+    {
+      "source": "ACTOR_CN",
+      "target": "ACTOR_JP",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.6,
+      "regime": "STRATEGIC_COMPETITION"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_AU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.9,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_SG",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.75,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "ACTOR_CN",
+      "target": "ACTOR_PH",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.7,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "ACTOR_AZ",
+      "target": "ACTOR_AM",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.8,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "ACTOR_TR",
+      "target": "ACTOR_AZ",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.95,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_KZ",
+      "target": "ACTOR_RU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.6,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "ACTOR_EG",
+      "target": "ACTOR_US",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.65,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "ACTOR_SA",
+      "target": "ACTOR_US",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.7,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "ACTOR_IQ",
+      "target": "ACTOR_IR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.6,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "ACTOR_SY",
+      "target": "ACTOR_RU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_CA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.95,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_MX",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.8,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "ACTOR_BR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.5,
+      "regime": "NEUTRAL"
+    },
+    {
+      "source": "ACTOR_SG",
+      "target": "CHOKE_MALACCA",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "strait_security_monitoring"
+    },
+    {
+      "source": "ACTOR_TW",
+      "target": "CHOKE_TAIWAN",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "semiconductor_supply_chain"
+    },
+    {
+      "source": "ACTOR_EG",
+      "target": "CHOKE_BAB_EL_MANDEB",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "suez_canal_transit_flow"
+    },
+    {
+      "source": "INST_FED_US",
+      "target": "ACTOR_US",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1,
+      "role": "Monetary Authority"
+    },
+    {
+      "source": "INST_TCMB_TR",
+      "target": "ACTOR_TR",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1,
+      "role": "Monetary Authority"
+    },
+    {
+      "source": "INST_ECB_EU",
+      "target": "ACTOR_DE",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 0.9,
+      "role": "Supranational Monetary Authority"
+    },
+    {
+      "source": "INST_BOJ_JP",
+      "target": "ACTOR_JP",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1,
+      "role": "Monetary Authority"
+    },
+    {
+      "source": "INST_PBOC_CN",
+      "target": "ACTOR_CN",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1,
+      "role": "Monetary Authority"
+    },
+    {
+      "source": "INST_BOE_GB",
+      "target": "ACTOR_GB",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1,
+      "role": "Monetary Authority"
+    },
+    {
+      "source": "INST_CBR_RU",
+      "target": "ACTOR_RU",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1,
+      "role": "Monetary Authority"
+    },
+    {
+      "source": "INST_FED_US",
+      "target": "IND_WALCL",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "BALANCE_SHEET_EXPANSION_OR_CONTRACTION"
+    },
+    {
+      "source": "INST_FED_US",
+      "target": "IND_EFFR",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "POLICY_RATE_SETTING"
+    },
+    {
+      "source": "INST_FED_US",
+      "target": "MODEL_5",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "liquidity_steering_policy"
+    },
+    {
+      "source": "INST_TCMB_TR",
+      "target": "MODEL_25.2",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "inflation_target_transmission"
+    },
+    {
+      "source": "INST_ECB_EU",
+      "target": "MODEL_25.5",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "eurodollar_repo_liquidity_impact"
+    },
+    {
+      "source": "IND_GSCPI",
+      "target": "MODEL_25_14",
+      "type": "INGESTS_SERIES",
+      "weight": 0.4
+    },
+    {
+      "source": "IND_NASDAQSOX",
+      "target": "MODEL_25_14",
+      "type": "INGESTS_SERIES",
+      "weight": 0.35
+    },
+    {
+      "source": "IND_VIXCLS",
+      "target": "MODEL_25_14",
+      "type": "INGESTS_SERIES",
+      "weight": 0.25
+    },
+    {
+      "source": "IND_PAYEMS",
+      "target": "MODEL_25.13",
+      "type": "INGESTS_SERIES",
+      "role": "payems_mom"
+    },
+    {
+      "source": "IND_UNRATE",
+      "target": "MODEL_25.13",
+      "type": "INGESTS_SERIES",
+      "role": "unrate_diff"
+    },
+    {
+      "source": "IND_GSCPI",
+      "target": "MODEL_25.14",
+      "type": "INGESTS_SERIES",
+      "role": "gscpi_val"
+    },
+    {
+      "source": "IND_NASDAQSOX",
+      "target": "MODEL_25.14",
+      "type": "INGESTS_SERIES",
+      "role": "sox_yoy_pct"
+    },
+    {
+      "source": "IND_VIXCLS",
+      "target": "MODEL_25.14",
+      "type": "INGESTS_SERIES",
+      "role": "vix_val"
+    },
+    {
+      "source": "ACTOR_US",
+      "target": "MODEL_25.15",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "legislative_gridlock_tariff_impulse"
+    },
+    {
+      "source": "ACTOR_CN",
+      "target": "MODEL_25.15",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "centralized_strategic_retaliation"
+    },
+    {
+      "source": "ACTOR_DE",
+      "target": "MODEL_25.15",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "parliamentary_coalition_fiscal_brake"
+    },
+    {
+      "source": "IND_DFF",
+      "target": "MODEL_25.16_JPY_CARRY_CRACK",
+      "type": "INGESTS_SERIES",
+      "role": "US Benchmark Rate"
+    },
+    {
+      "source": "IND_JP_FPOLM_PA",
+      "target": "MODEL_25.16_JPY_CARRY_CRACK",
+      "type": "INGESTS_SERIES",
+      "role": "Japan Policy Benchmark Rate"
+    },
+    {
+      "source": "IND_DEXJPUS",
+      "target": "MODEL_25.16_JPY_CARRY_CRACK",
+      "type": "INGESTS_SERIES",
+      "role": "Currency Momentum Pair"
+    },
+    {
+      "source": "INST_BOJ_JP",
+      "target": "MODEL_25.16_JPY_CARRY_CRACK",
+      "type": "MONETARY_AUTHORITY",
+      "role": "Funding Currency Regulator"
+    },
+    {
+      "source": "IND_SAUPZPIOILBEGUSD",
+      "target": "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
+      "type": "INGESTS_SERIES",
+      "role": "Hydrocarbon Fiscal Breakeven Threshold"
+    },
+    {
+      "source": "IND_DCOILBRENTEU",
+      "target": "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
+      "type": "INGESTS_SERIES",
+      "role": "Brent Spot Benchmark"
+    },
+    {
+      "source": "IND_SOFR",
+      "target": "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
+      "type": "INGESTS_SERIES",
+      "role": "Global Dollar Liquidity Benchmark"
+    },
+    {
+      "source": "IND_UNRATE",
+      "target": "MODEL_18",
+      "type": "INGESTS_SERIES",
+      "role": "Civilian Unemployment Rate"
+    },
+    {
+      "source": "IND_CPIAUCSL",
+      "target": "MODEL_18",
+      "type": "INGESTS_SERIES",
+      "role": "Headline Inflation Rate YoY"
+    },
+    {
+      "source": "IND_ISRATIO",
+      "target": "MODEL_23.7",
+      "type": "INGESTS_SERIES",
+      "role": "Total Business Inventory to Sales Ratio"
+    }
+  ]
 }

@@ -513,6 +513,52 @@ def calc_jpy_carry_crack(dff_val, boj_rate_val, jpy_fx_mom) -> Optional[Dict[str
         return None
 
 
+# --- Model 18: Okun Sefalet Endeksi (Okun Misery Index) ---
+def calc_misery_index(unrate_val, cpi_yoy_val):
+    if any(v is None or isinstance(v, bool) for v in (unrate_val, cpi_yoy_val)):
+        return None
+    try:
+        u = float(unrate_val)
+        c = float(cpi_yoy_val)
+        if not (math.isfinite(u) and math.isfinite(c)):
+            return None
+        if u < 0.0:
+            return None
+
+        score = round(u + c, 2)
+        if not math.isfinite(score):
+            return None
+
+        if score > 12.0:
+            status = "ACUTE_CRISIS"
+        elif score >= 10.0:
+            status = "ELEVATED_STRESS"
+        elif score >= 6.0:
+            status = "MODERATE"
+        else:
+            status = "GOLDILOCKS"
+
+        return {
+            "model_id": "MODEL_18",
+            "model_name": "Okun Misery Index",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#18",
+            "primary_value": score,
+            "unit": "Index Points",
+            "status": status,
+            "inputs": {
+                "civilian_unemployment_unrate": round(u, 2),
+                "headline_cpi_yoy_pct": round(c, 2)
+            },
+            "metrics": {
+                "misery_score": score,
+                "unemployment_component": round(u, 2),
+                "inflation_component": round(c, 2)
+            },
+            "interpretation": "Measures household welfare loss and stagflationary stress by summing civilian unemployment and annual inflation. Values > 12 indicate acute crisis."
+        }
+    except (TypeError, ValueError, OverflowError):
+        return None
+
 
 def calc_gold_oil_ratio(gold_price, oil_price) -> Optional[Dict[str, Any]]:
     if any(v is None or isinstance(v, bool) for v in (gold_price, oil_price)):
@@ -594,6 +640,39 @@ def calc_early_employment_crack(ic4wsa_yoy, unrate_delta) -> Optional[Dict[str, 
             "interpretation": "Identifies early labor cracks by comparing weekly jobless claims spikes against delayed headline unemployment shifts."
         }
     except (TypeError, ValueError):
+        return None
+
+
+# --- Model 23.7: Stok/Satış Tıkanıklık Oranı (Inventory to Sales Glut Ratio) ---
+def calc_inventory_to_sales_glut(isratio_val):
+    if isratio_val is None or isinstance(isratio_val, bool):
+        return None
+    try:
+        r = float(isratio_val)
+        if not math.isfinite(r) or r <= 0.0:
+            return None
+
+        ratio = round(r, 2)
+        if ratio > 1.45:
+            status = "SYSTEMIC_INVENTORY_GLUT"
+        elif ratio < 1.28:
+            status = "SUPPLY_SHOCK_SHORTAGE"
+        else:
+            status = "BALANCED_SUPPLY_CHAIN"
+
+        return {
+            "model_id": "MODEL_23.7",
+            "model_name": "Inventory to Sales Glut Ratio",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.7",
+            "primary_value": ratio,
+            "unit": "Ratio",
+            "status": status,
+            "inputs": {
+                "total_business_isratio": ratio
+            },
+            "interpretation": "Measures total business inventories relative to monthly sales. Values > 1.45 indicate severe inventory glut and recessionary production cuts."
+        }
+    except (TypeError, ValueError, OverflowError):
         return None
 
 
@@ -742,6 +821,11 @@ def main():
     if m_vix:
         models_calculated.append(m_vix)
 
+    # Model 18: Okun Misery Index (UNRATE x CPI YoY)
+    m_misery = calc_misery_index(unrate_curr, cpi_yoy)
+    if m_misery:
+        models_calculated.append(m_misery)
+
     # Model 21: Gold to Oil Ratio (World Bank Pink Sheet x FRED WTI)
     wb_json_path = "llms-worldbank-series.json"
     gold_price = None
@@ -763,6 +847,12 @@ def main():
     m_crack = calc_early_employment_crack(ic4wsa_yoy, unrate_delta)
     if m_crack:
         models_calculated.append(m_crack)
+
+    # Model 23.7: Inventory to Sales Glut Ratio (ISRATIO)
+    isratio_val = series.get("ISRATIO", {}).get("current_value")
+    m_glut = calc_inventory_to_sales_glut(isratio_val)
+    if m_glut:
+        models_calculated.append(m_glut)
 
     # Model 25.12: Brent - WTI Spread
     m_spread = calc_brent_wti_spread(brent, wti)

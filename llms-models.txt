@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-09 15:53 UTC
+> **Last Calibrated Sync:** 2026-11-09 16:25 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -21,8 +21,10 @@
 | **MODEL_5** | Net Fed Liquidity Index | **5.791** | Trillion USD | `NEUTRAL_LIQUIDITY_EQUILIBRIUM` | Unencumbered commercial bank liquidity: WALCL - (TGA + ... |
 | **MODEL_6** | Treasury Yield Curve Slope (10Y - 2Y) | **35.0** | Basis Points (bps) | `NORMAL_CURVE_EXPANSION` | Leading cyclical economic barometer. Inversions (bps < ... |
 | **MODEL_16** | CBOE Volatility & Market Fear Regime | **28.18** | Points | `ELEVATED_STRESS` | 30-day forward S&P 500 implied volatility fear gauge an... |
+| **MODEL_18** | Okun Misery Index | **8.12** | Index Points | `MODERATE` | Measures household welfare loss and stagflationary stre... |
 | **MODEL_21** | Gold to Oil Crisis & Recession Ratio | **41.2** | Barrels per Ounce | `MACRO_CRISIS_RECESSION` | Calculates ounces of gold per barrel of crude oil to cl... |
 | **MODEL_23.6** | Early Employment Crack Signal | **-13.64** | Index Points | `LABOR_MARKET_ALIGNED` | Identifies early labor cracks by comparing weekly joble... |
+| **MODEL_23.7** | Inventory to Sales Glut Ratio | **1.33** | Ratio | `BALANCED_SUPPLY_CHAIN` | Measures total business inventories relative to monthly... |
 | **MODEL_25.12** | Brent - WTI Seaborne Risk Spread | **7.39** | USD | `NORMAL_TRANSATLANTIC_ARBITRAGE` | Seaborne geopolitical friction and maritime risk spread... |
 | **MODEL_25.13** | Labor Market Momentum Index (LMMI) | **0.86** | Net Momentum Pts | `MODERATE_LABOR_EXPANSION` | Couples nonfarm payroll expansion with unemployment cha... |
 | **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.11** | Score (Normalized) | `BALANCED_HARDWARE_FLOW` | Normalized composite metric monitoring semiconductor ph... |
@@ -78,6 +80,13 @@
 - **Inputs Evaluated:** `{"vix_close": 28.18}`
 - **Economic Synthesis:** 30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime.
 
+#### [MODEL_18] Okun Misery Index
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#18
+- **Evaluated Status:** `MODERATE` (Primary Value: 8.12 Index Points)
+- **Inputs Evaluated:** `{"civilian_unemployment_unrate": 4.1, "headline_cpi_yoy_pct": 4.02}`
+- **Secondary Metrics:** `{"misery_score": 8.12, "unemployment_component": 4.1, "inflation_component": 4.02}`
+- **Economic Synthesis:** Measures household welfare loss and stagflationary stress by summing civilian unemployment and annual inflation. Values > 12 indicate acute crisis.
+
 #### [MODEL_21] Gold to Oil Crisis & Recession Ratio
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#21
 - **Evaluated Status:** `MACRO_CRISIS_RECESSION` (Primary Value: 41.2 Barrels per Ounce)
@@ -91,6 +100,12 @@
 - **Inputs Evaluated:** `{"ic4wsa_yoy_pct": -13.64, "unrate_delta_ppt": -0.3}`
 - **Component Weights:** `{"effective_unrate_delta": 0.0, "crack_threshold": 15.0}`
 - **Economic Synthesis:** Identifies early labor cracks by comparing weekly jobless claims spikes against delayed headline unemployment shifts.
+
+#### [MODEL_23.7] Inventory to Sales Glut Ratio
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23.7
+- **Evaluated Status:** `BALANCED_SUPPLY_CHAIN` (Primary Value: 1.33 Ratio)
+- **Inputs Evaluated:** `{"total_business_isratio": 1.33}`
+- **Economic Synthesis:** Measures total business inventories relative to monthly sales. Values > 1.45 indicate severe inventory glut and recessionary production cuts.
 
 #### [MODEL_25.12] Brent - WTI Seaborne Risk Spread
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.12
