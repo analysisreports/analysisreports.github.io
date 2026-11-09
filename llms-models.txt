@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-09 19:26 UTC
+> **Last Calibrated Sync:** 2026-11-09 19:44 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -30,6 +30,7 @@
 | **MODEL_25.3** | Global Supply Chain Pressure Logistics Engine (NY Fed GSCPI) | **1.26** | Standard Deviations (Z-Score) | `NORMALIZED_GLOBAL_TRADE` | Tracks standard deviations of global freight rates, shi... |
 | **MODEL_25.5** | Repo Liquidity Friction Spread Engine | **4.0** | Basis Points (bps) | `HEALTHY_MONETARY_TRANSMISSION` | Measures funding market friction tracking the spread be... |
 | **MODEL_25.7** | OVX / VIX Geopolitical Energy Shock Engine | **2.14** | Ratio | `BALANCED_ENERGY_VOLATILITY` | Evaluates the ratio between crude oil volatility (OVX) ... |
+| **MODEL_25.17** | Liquidity & Commodity Macro Regime Matrix | **14.0** | Basis Points (bps) | `REFLATIONARY_EXPANSION` | Evaluates front-end money market liquidity (3M-1M T-Bil... |
 | **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.615** | Score (Normalized) | `ELEVATED_SEMICONDUCTOR_BOTTLENECK` | Normalized composite metric monitoring semiconductor ph... |
 | **MODEL_25.16** | Yen Carry Trade Dissolution and Stress Gauge | **7.0877** | % (Net Carry Buffer) | `CALM_ACCUMULATION` | Monitors cross-currency Yen Carry Trade buffer, unwindi... |
 | **MODEL_25.18** | Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact) | **0.133** | Dynamic Delta Index (Avg) | `TREATY_ACTIVE_SURPLUS_EXPANSION` | Non-contiguous trilateral defense integration linking T... |
@@ -142,6 +143,13 @@
 - **Inputs Evaluated:** `{"ovx_close": 60.29, "vix_close": 28.18}`
 - **Secondary Metrics:** `{"ovx_vix_ratio": 2.14}`
 - **Economic Synthesis:** Evaluates the ratio between crude oil volatility (OVX) and equity volatility (VIX). Ratios > 2.2 signal severe geopolitical oil supply shocks and stagflationary headwinds.
+
+#### [MODEL_25.17] Liquidity & Commodity Macro Regime Matrix
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.17
+- **Evaluated Status:** `REFLATIONARY_EXPANSION` (Primary Value: 14.0 Basis Points (bps))
+- **Inputs Evaluated:** `{"treasury_3m_yield_dgs3mo": 4.17, "treasury_1m_yield_dgs1mo": 4.03, "brent_crude_yoy_pct": 61.38}`
+- **Secondary Metrics:** `{"slope_bps": 14.0, "brent_yoy_pct": 61.38}`
+- **Economic Synthesis:** Evaluates front-end money market liquidity (3M-1M T-Bill spread) against crude oil cost inflation (Brent YoY %) in a 2x2 macro matrix to identify systemic liquidity and cost shock regimes.
 
 #### [MODEL_25.14] AI Hardware & Semiconductor Supply Chain Stress Gauge
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.14

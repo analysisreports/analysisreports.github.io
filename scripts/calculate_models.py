@@ -532,6 +532,65 @@ def calc_ovx_vix_risk_premium(ovx_val, vix_val):
         return None
 
 
+# --- Model 25.17: Liquidity & Commodity Macro Regime Matrix ---
+def calc_liquidity_commodity_matrix(dgs3mo, dgs1mo, brent_yoy_pct):
+    if any(v is None or isinstance(v, bool) for v in (dgs3mo, dgs1mo, brent_yoy_pct)):
+        return None
+    try:
+        f_3m = float(dgs3mo)
+        f_1m = float(dgs1mo)
+        f_brent_yoy = float(brent_yoy_pct)
+        if not (math.isfinite(f_3m) and math.isfinite(f_1m) and math.isfinite(f_brent_yoy)):
+            return None
+        if f_3m < 0.0 or f_1m < 0.0:
+            return None
+
+        slope_bps = round((f_3m - f_1m) * 100.0, 2)
+        brent_yoy = round(f_brent_yoy, 2)
+
+        # 2x2 Macro Regime Decision Matrix
+        if brent_yoy > 15.0:
+            if slope_bps < 0.0:
+                if slope_bps <= -25.0:
+                    status = "ACUTE_STAGFLATION_CRUNCH"
+                else:
+                    status = "STAGFLATION_SHOCK"
+            else:
+                status = "REFLATIONARY_EXPANSION"
+        elif brent_yoy < 0.0:
+            if slope_bps < 0.0:
+                status = "DEFLATIONARY_RECESSION"
+            else:
+                status = "GOLDILOCKS_EXPANSION"
+        else:
+            # Moderate / Neutral Cost Zone (0.0% <= brent_yoy <= 15.0%)
+            if slope_bps < 0.0:
+                status = "RESTRICTIVE_SLOWDOWN"
+            else:
+                status = "GOLDILOCKS_EXPANSION"
+
+        return {
+            "model_id": "MODEL_25.17",
+            "model_name": "Liquidity & Commodity Macro Regime Matrix",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.17",
+            "primary_value": slope_bps,
+            "unit": "Basis Points (bps)",
+            "status": status,
+            "inputs": {
+                "treasury_3m_yield_dgs3mo": f_3m,
+                "treasury_1m_yield_dgs1mo": f_1m,
+                "brent_crude_yoy_pct": brent_yoy
+            },
+            "metrics": {
+                "slope_bps": slope_bps,
+                "brent_yoy_pct": brent_yoy
+            },
+            "interpretation": "Evaluates front-end money market liquidity (3M-1M T-Bill spread) against crude oil cost inflation (Brent YoY %) in a 2x2 macro matrix to identify systemic liquidity and cost shock regimes."
+        }
+    except (TypeError, ValueError, OverflowError):
+        return None
+
+
 # --- Model 25.14: AI Hardware & Semiconductor Stress Gauge ---
 def calc_ai_chip_stress_gauge(gscpi_val, sox_yoy_pct, vix_val):
     if any(v is None or isinstance(v, bool) for v in (gscpi_val, sox_yoy_pct, vix_val)):
@@ -1005,6 +1064,12 @@ def main():
     m_ovx_vix = calc_ovx_vix_risk_premium(ovx, vix)
     if m_ovx_vix:
         models_calculated.append(m_ovx_vix)
+
+    # Model 25.17: Liquidity & Commodity Macro Regime Matrix
+    brent_yoy = series.get("DCOILBRENTEU", {}).get("transformations", {}).get("percent_change_from_year_ago")
+    m_matrix = calc_liquidity_commodity_matrix(dgs3mo, dgs1mo, brent_yoy)
+    if m_matrix:
+        models_calculated.append(m_matrix)
 
     # Model 25.14: AI Hardware & Semiconductor Stress
     m_chip = calc_ai_chip_stress_gauge(gscpi, sox_yoy, vix)

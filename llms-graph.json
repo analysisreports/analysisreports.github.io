@@ -1508,6 +1508,145 @@
       "label": "Total Business Inventories to Sales Ratio",
       "category": "INDICATOR",
       "source": "FRED"
+    },
+    {
+      "id": "IND_DGS1MO",
+      "label": "1-Month Treasury Rate",
+      "category": "MACRO_INDICATOR",
+      "source": "FRED"
+    },
+    {
+      "id": "IND_DGS3MO",
+      "label": "3-Month Treasury Rate",
+      "category": "MACRO_INDICATOR",
+      "source": "FRED"
+    },
+    {
+      "id": "MODEL_25.17",
+      "label": "Liquidity & Commodity Macro Regime Matrix",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_liquidity_commodity_matrix",
+        "formula": "Slope_bps = (DGS3MO - DGS1MO) * 100, Brent_YoY = pc1(DCOILBRENTEU)",
+        "status_enums": [
+          "ACUTE_STAGFLATION_CRUNCH",
+          "STAGFLATION_SHOCK",
+          "REFLATIONARY_EXPANSION",
+          "DEFLATIONARY_RECESSION",
+          "GOLDILOCKS_EXPANSION",
+          "RESTRICTIVE_SLOWDOWN"
+        ]
+      }
+    },
+    {
+      "id": "IND_CPIAUCSL",
+      "label": "Consumer Price Index (CPI-U Headline)",
+      "category": "MACRO_INDICATOR",
+      "source": "BLS / FRED"
+    },
+    {
+      "id": "IND_SAHMREALTIME",
+      "label": "Real-Time Sahm Rule Recession Indicator",
+      "category": "MACRO_INDICATOR",
+      "source": "FRED"
+    },
+    {
+      "id": "IND_T10Y2Y",
+      "label": "10Y - 2Y Treasury Yield Spread",
+      "category": "MACRO_INDICATOR",
+      "source": "FRED"
+    },
+    {
+      "id": "IND_IC4WSA",
+      "label": "Initial Jobless Claims (4-Week Moving Avg)",
+      "category": "MACRO_INDICATOR",
+      "source": "FRED"
+    },
+    {
+      "id": "MODEL_1",
+      "label": "Fed Policy Stance & Market Pressure Gauge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_fed_policy_stance",
+        "formula": "Policy_Stance_Spread_bps = (DGS1MO - Fed_Policy_Rate) * 100",
+        "status_enums": [
+          "HAWKISH_MARKET_PRESSURE",
+          "AGGRESSIVE_EASING_PRESSURE",
+          "MODERATE_EASING_BIAS",
+          "BALANCED_POLICY_EQUILIBRIUM"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_3",
+      "label": "Official Sahm Rule Recession Indicator",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_sahm_rule",
+        "formula": "Sahm_Diff = SAHMREALTIME",
+        "status_enums": [
+          "RECESSION_CONFIRMED",
+          "RECESSION_WARNING",
+          "NORMAL_LABOR_MARKET"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_6",
+      "label": "Treasury Yield Curve Slope (10Y - 2Y)",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_yield_spread_bps",
+        "formula": "Slope_bps = T10Y2Y * 100",
+        "status_enums": [
+          "INVERTED_CURVE_RECESSION_SIGNAL",
+          "FLAT_CURVE_WARNING",
+          "NORMAL_CURVE_EXPANSION"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_16",
+      "label": "CBOE Volatility & Market Fear Regime",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_vix_market_regime",
+        "formula": "f(VIXCLS)",
+        "status_enums": [
+          "COMPLACENCY",
+          "NORMAL_VOLATILITY",
+          "ELEVATED_STRESS",
+          "ACUTE_FEAR_PANIC"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_21",
+      "label": "Gold to Oil Crisis & Recession Ratio",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_gold_oil_ratio",
+        "formula": "Gold_Oil_Ratio = IND_WB_GOLD / DCOILWTICO",
+        "status_enums": [
+          "NORMAL_ECONOMIC_EXPANSION",
+          "ELEVATED_MACRO_FRICTION",
+          "MACRO_CRISIS_RECESSION"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_23.6",
+      "label": "Early Employment Crack Signal",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_early_employment_crack",
+        "formula": "Early_Crack = IC4WSA_YoY - (UNRATE_Delta * 10)",
+        "status_enums": [
+          "EARLY_EMPLOYMENT_FRACTURE",
+          "LABOR_HOARDING_CRACK_WARNING",
+          "LABOR_MARKET_ALIGNED"
+        ]
+      }
     }
   ],
   "edges": [
@@ -2410,6 +2549,84 @@
       "target": "MODEL_23.7",
       "type": "INGESTS_SERIES",
       "role": "Total Business Inventory to Sales Ratio"
+    },
+    {
+      "source": "IND_DGS3MO",
+      "target": "MODEL_25.17",
+      "type": "INGESTS_SERIES",
+      "role": "dgs3mo"
+    },
+    {
+      "source": "IND_DGS1MO",
+      "target": "MODEL_25.17",
+      "type": "INGESTS_SERIES",
+      "role": "dgs1mo"
+    },
+    {
+      "source": "IND_DCOILBRENTEU",
+      "target": "MODEL_25.17",
+      "type": "INGESTS_SERIES",
+      "role": "brent_yoy_pct"
+    },
+    {
+      "source": "IND_DGS1MO",
+      "target": "MODEL_1",
+      "type": "INGESTS_SERIES",
+      "role": "1-Month T-Bill Yield Benchmark"
+    },
+    {
+      "source": "IND_DFF",
+      "target": "MODEL_1",
+      "type": "INGESTS_SERIES",
+      "role": "Effective Federal Funds Rate"
+    },
+    {
+      "source": "IND_SAHMREALTIME",
+      "target": "MODEL_3",
+      "type": "INGESTS_SERIES",
+      "role": "Sahm Real-Time Recession Metric"
+    },
+    {
+      "source": "IND_T10Y2Y",
+      "target": "MODEL_6",
+      "type": "INGESTS_SERIES",
+      "role": "10Y - 2Y Yield Spread Benchmark"
+    },
+    {
+      "source": "IND_VIXCLS",
+      "target": "MODEL_16",
+      "type": "INGESTS_SERIES",
+      "role": "CBOE Volatility Index Benchmark"
+    },
+    {
+      "source": "IND_WB_GOLD",
+      "target": "MODEL_21",
+      "type": "INGESTS_SERIES",
+      "role": "World Bank Pink Sheet Gold Benchmark"
+    },
+    {
+      "source": "IND_DCOILWTICO",
+      "target": "MODEL_21",
+      "type": "INGESTS_SERIES",
+      "role": "WTI Crude Oil Benchmark"
+    },
+    {
+      "source": "IND_IC4WSA",
+      "target": "MODEL_23.6",
+      "type": "INGESTS_SERIES",
+      "role": "Initial Jobless Claims 4W-MA YoY"
+    },
+    {
+      "source": "IND_UNRATE",
+      "target": "MODEL_23.6",
+      "type": "INGESTS_SERIES",
+      "role": "Civilian Unemployment Rate YoY Diff"
+    },
+    {
+      "source": "INST_BOE_GB",
+      "target": "IND_GB_FPOLM_PA",
+      "type": "SETS_POLICY_RATE",
+      "role": "Official Bank Rate Setting"
     }
   ]
 }

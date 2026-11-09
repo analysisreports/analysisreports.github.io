@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T19:26:21.350062+00:00",
+    "last_successful_sync": "2026-11-09T19:44:50.679725+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 19
+    "total_models_active": 20
   },
   "models": [
     {
@@ -266,6 +266,24 @@
         "ovx_vix_ratio": 2.14
       },
       "interpretation": "Evaluates the ratio between crude oil volatility (OVX) and equity volatility (VIX). Ratios > 2.2 signal severe geopolitical oil supply shocks and stagflationary headwinds."
+    },
+    {
+      "model_id": "MODEL_25.17",
+      "model_name": "Liquidity & Commodity Macro Regime Matrix",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.17",
+      "primary_value": 14.0,
+      "unit": "Basis Points (bps)",
+      "status": "REFLATIONARY_EXPANSION",
+      "inputs": {
+        "treasury_3m_yield_dgs3mo": 4.17,
+        "treasury_1m_yield_dgs1mo": 4.03,
+        "brent_crude_yoy_pct": 61.38
+      },
+      "metrics": {
+        "slope_bps": 14.0,
+        "brent_yoy_pct": 61.38
+      },
+      "interpretation": "Evaluates front-end money market liquidity (3M-1M T-Bill spread) against crude oil cost inflation (Brent YoY %) in a 2x2 macro matrix to identify systemic liquidity and cost shock regimes."
     },
     {
       "model_id": "MODEL_25.14",
