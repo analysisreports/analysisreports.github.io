@@ -57,6 +57,9 @@ Regime States (Discrete Mapping):
 - ACUTE_LAYOFF_CONTRACTION      : Severe decline in weekly manufacturing hours and industrial production confirming recessionary layoffs.
 - EARLY_RECESSION_SIGNAL        : Contraction in hours worked preceding headline employment deterioration.
 - EXPANSION_EMPLOYMENT_MOMENTUM : Expanding industrial production and resilient workweek hours signaling robust employment.
+- DE_ANCHORING_RISK             : 10-year breakeven inflation rate exceeding 2.50% signaling unanchored inflation expectations.
+- FED_ALIGNED_EQUILIBRIUM       : 10-year breakeven inflation rate priced between 2.00% and 2.50% aligned with the Fed inflation target.
+- DEFLATION_RISK                : 10-year breakeven inflation rate falling below 2.00% indicating deflationary contraction risk.
 
 ---
 

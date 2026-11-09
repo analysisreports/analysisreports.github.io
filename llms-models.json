@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T21:32:10.329109+00:00",
+    "last_successful_sync": "2026-11-09T22:08:58.241796+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 26
+    "total_models_active": 27
   },
   "models": [
     {
@@ -112,6 +112,24 @@
         "t10y2y_spread_pct": 0.35
       },
       "interpretation": "Leading cyclical economic barometer. Inversions (bps < 0) historically precede sovereign US business cycle recessions."
+    },
+    {
+      "model_id": "MODEL_7",
+      "model_name": "10-Year Breakeven Inflation Rate",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#7",
+      "primary_value": 2.21,
+      "unit": "Percent (%)",
+      "status": "FED_ALIGNED_EQUILIBRIUM",
+      "inputs": {
+        "nominal_10y_yield_dgs10": 4.84,
+        "tips_10y_real_yield_dfii10": 2.63
+      },
+      "metrics": {
+        "breakeven_inflation_rate_pct": 2.21,
+        "dgs10_nominal": 4.84,
+        "dfii10_tips_real": 2.63
+      },
+      "interpretation": "Reflects the bond market's expected average annual inflation rate over the next 10 years by subtracting 10-year TIPS real yields from 10-year nominal Treasury yields."
     },
     {
       "model_id": "MODEL_8",

@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-09 21:32 UTC
+> **Last Calibrated Sync:** 2026-11-09 22:08 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -20,6 +20,7 @@
 | **MODEL_4** | Front-End T-Bill Slope & Liquidity Spread | **14.0** | Basis Points (bps) | `NORMAL_SLOPE` | Tracks the slope between 3-month and 1-month Treasury b... |
 | **MODEL_5** | Net Fed Liquidity Index | **5.791** | Trillion USD | `NEUTRAL_LIQUIDITY_EQUILIBRIUM` | Unencumbered commercial bank liquidity: WALCL - (TGA + ... |
 | **MODEL_6** | Treasury Yield Curve Slope (10Y - 2Y) | **35.0** | Basis Points (bps) | `NORMAL_CURVE_EXPANSION` | Leading cyclical economic barometer. Inversions (bps < ... |
+| **MODEL_7** | 10-Year Breakeven Inflation Rate | **2.21** | Percent (%) | `FED_ALIGNED_EQUILIBRIUM` | Reflects the bond market's expected average annual infl... |
 | **MODEL_8** | Beveridge Curve Labor Tightness | **1.06** | Ratio | `BALANCED_LABOR_TIGHTNESS` | Evaluates the ratio of job openings to unemployed job s... |
 | **MODEL_16** | CBOE Volatility & Market Fear Regime | **28.18** | Points | `ELEVATED_STRESS` | 30-day forward S&P 500 implied volatility fear gauge an... |
 | **MODEL_18** | Okun Misery Index | **8.12** | Index Points | `MODERATE` | Measures household welfare loss and stagflationary stre... |
@@ -83,6 +84,13 @@
 - **Evaluated Status:** `NORMAL_CURVE_EXPANSION` (Primary Value: 35.0 Basis Points (bps))
 - **Inputs Evaluated:** `{"t10y2y_spread_pct": 0.35}`
 - **Economic Synthesis:** Leading cyclical economic barometer. Inversions (bps < 0) historically precede sovereign US business cycle recessions.
+
+#### [MODEL_7] 10-Year Breakeven Inflation Rate
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#7
+- **Evaluated Status:** `FED_ALIGNED_EQUILIBRIUM` (Primary Value: 2.21 Percent (%))
+- **Inputs Evaluated:** `{"nominal_10y_yield_dgs10": 4.84, "tips_10y_real_yield_dfii10": 2.63}`
+- **Secondary Metrics:** `{"breakeven_inflation_rate_pct": 2.21, "dgs10_nominal": 4.84, "dfii10_tips_real": 2.63}`
+- **Economic Synthesis:** Reflects the bond market's expected average annual inflation rate over the next 10 years by subtracting 10-year TIPS real yields from 10-year nominal Treasury yields.
 
 #### [MODEL_8] Beveridge Curve Labor Tightness
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#8

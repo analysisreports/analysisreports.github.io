@@ -962,3 +962,25 @@ Recent Observations (Last 5):
   2026-08-01: 34.4000
   2026-09-01: 34.4000
   2026-10-01: 34.4000
+
+--------------------------------------------------------------------------------
+Series ID: DFII10
+Title: Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity, Quoted on an Investment Basis, Inflation-Indexed
+Frequency: Daily (n_obs_per_yr: 260) | Units: Percent
+Last Date: 2026-11-06 | Current Value: 2.6300 | Previous Value: 2.6000 | Year Ago Value: 1.7100
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.0300
+  2. Change from Year Ago: +0.9200
+  3. Percent Change: +1.1538%
+  4. Percent Change from Year Ago: +53.8012%
+  5. Compounded Annual Rate of Change: N/A
+  6. Continuously Compounded Rate of Change: +1.1472%
+  7. Continuously Compounded Annual Rate of Change: N/A
+
+Recent Observations (Last 5):
+  2026-11-02: 2.6200
+  2026-11-03: 2.6500
+  2026-11-04: 2.6400
+  2026-11-05: 2.6000
+  2026-11-06: 2.6300

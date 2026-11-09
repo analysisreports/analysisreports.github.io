@@ -283,6 +283,52 @@ def calc_yield_spread_bps(t10y2y_val):
         return None
 
 
+# --- Model 7: 10-Year Breakeven Inflation Rate ---
+def calc_breakeven_inflation(dgs10_val, dfii10_val) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (dgs10_val, dfii10_val)):
+        return None
+    try:
+        nom = float(dgs10_val)
+        tips = float(dfii10_val)
+        if not (math.isfinite(nom) and math.isfinite(tips)):
+            return None
+        if nom <= 0.0:
+            return None
+
+        raw_rate = nom - tips
+        if not math.isfinite(raw_rate):
+            return None
+        rate = round(raw_rate, 2)
+
+        if rate > 2.50:
+            status = "DE_ANCHORING_RISK"
+        elif rate < 2.00:
+            status = "DEFLATION_RISK"
+        else:
+            status = "FED_ALIGNED_EQUILIBRIUM"
+
+        return {
+            "model_id": "MODEL_7",
+            "model_name": "10-Year Breakeven Inflation Rate",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#7",
+            "primary_value": rate,
+            "unit": "Percent (%)",
+            "status": status,
+            "inputs": {
+                "nominal_10y_yield_dgs10": round(nom, 2),
+                "tips_10y_real_yield_dfii10": round(tips, 2)
+            },
+            "metrics": {
+                "breakeven_inflation_rate_pct": rate,
+                "dgs10_nominal": round(nom, 2),
+                "dfii10_tips_real": round(tips, 2)
+            },
+            "interpretation": "Reflects the bond market's expected average annual inflation rate over the next 10 years by subtracting 10-year TIPS real yields from 10-year nominal Treasury yields."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
 # --- Model 8: Beveridge Curve Labor Tightness ---
 def calc_beveridge_labor_tightness(jtsjol_val, unemploy_val) -> Optional[Dict[str, Any]]:
     if any(v is None or isinstance(v, bool) for v in (jtsjol_val, unemploy_val)):
@@ -1270,6 +1316,13 @@ def main():
     m_slope = calc_yield_spread_bps(t10y2y)
     if m_slope:
         models_calculated.append(m_slope)
+
+    # Model 7: 10-Year Breakeven Inflation Rate
+    dgs10_val = series.get("DGS10", {}).get("current_value")
+    dfii10_val = series.get("DFII10", {}).get("current_value")
+    m_breakeven = calc_breakeven_inflation(dgs10_val, dfii10_val)
+    if m_breakeven:
+        models_calculated.append(m_breakeven)
 
     # Model 8: Beveridge Curve Labor Tightness
     jtsjol_val = series.get("JTSJOL", {}).get("current_value")

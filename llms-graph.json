@@ -1791,6 +1791,26 @@
           "EXPANSION_EMPLOYMENT_MOMENTUM"
         ]
       }
+    },
+    {
+      "id": "IND_DGS10",
+      "label": "10-Year Treasury Constant Maturity Nominal Rate",
+      "category": "INDICATOR",
+      "source": "FRED"
+    },
+    {
+      "id": "MODEL_7",
+      "label": "10-Year Breakeven Inflation Rate",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_breakeven_inflation",
+        "formula": "Breakeven_Inflation_Rate = DGS10 - DFII10",
+        "status_enums": [
+          "DE_ANCHORING_RISK",
+          "FED_ALIGNED_EQUILIBRIUM",
+          "DEFLATION_RISK"
+        ]
+      }
     }
   ],
   "edges": [
@@ -2849,6 +2869,18 @@
       "target": "MODEL_23.4",
       "type": "INGESTS_SERIES",
       "role": "Average Weekly Hours Total Private YoY"
+    },
+    {
+      "source": "IND_DGS10",
+      "target": "MODEL_7",
+      "type": "INGESTS_SERIES",
+      "role": "10-Year Nominal Treasury Yield"
+    },
+    {
+      "source": "IND_DFII10",
+      "target": "MODEL_7",
+      "type": "INGESTS_SERIES",
+      "role": "10-Year TIPS Real Yield"
     }
   ]
 }
