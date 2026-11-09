@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T18:44:44.417976+00:00",
+    "last_successful_sync": "2026-11-09T19:26:21.350062+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 18
+    "total_models_active": 19
   },
   "models": [
     {
@@ -250,6 +250,22 @@
         "spread_bps": 4.0
       },
       "interpretation": "Measures funding market friction tracking the spread between secured repo financing (SOFR) and unsecured Fed funds (EFFR). Spreads between -5.0 and +5.0 bps indicate healthy monetary transmission."
+    },
+    {
+      "model_id": "MODEL_25.7",
+      "model_name": "OVX / VIX Geopolitical Energy Shock Engine",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.7",
+      "primary_value": 2.14,
+      "unit": "Ratio",
+      "status": "BALANCED_ENERGY_VOLATILITY",
+      "inputs": {
+        "ovx_close": 60.29,
+        "vix_close": 28.18
+      },
+      "metrics": {
+        "ovx_vix_ratio": 2.14
+      },
+      "interpretation": "Evaluates the ratio between crude oil volatility (OVX) and equity volatility (VIX). Ratios > 2.2 signal severe geopolitical oil supply shocks and stagflationary headwinds."
     },
     {
       "model_id": "MODEL_25.14",

@@ -492,6 +492,46 @@ def calc_repo_liquidity_friction_spread(sofr_val, effr_val):
         return None
 
 
+# --- Model 25.7: OVX / VIX Geopolitical Energy Shock Engine ---
+def calc_ovx_vix_risk_premium(ovx_val, vix_val):
+    if any(v is None or isinstance(v, bool) for v in (ovx_val, vix_val)):
+        return None
+    try:
+        f_ovx = float(ovx_val)
+        f_vix = float(vix_val)
+        if not (math.isfinite(f_ovx) and math.isfinite(f_vix)) or f_vix <= 0.0 or f_ovx < 0.0:
+            return None
+        raw_ratio = f_ovx / f_vix
+        if not math.isfinite(raw_ratio):
+            return None
+        ratio = round(raw_ratio, 2)
+        if ratio > 2.2:
+            status = "ENERGY_SUPPLY_SHOCK_ALARM"
+        elif ratio < 1.0:
+            status = "EQUITY_PANIC_OVER_ENERGY"
+        else:
+            status = "BALANCED_ENERGY_VOLATILITY"
+
+        return {
+            "model_id": "MODEL_25.7",
+            "model_name": "OVX / VIX Geopolitical Energy Shock Engine",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.7",
+            "primary_value": ratio,
+            "unit": "Ratio",
+            "status": status,
+            "inputs": {
+                "ovx_close": f_ovx,
+                "vix_close": f_vix
+            },
+            "metrics": {
+                "ovx_vix_ratio": ratio
+            },
+            "interpretation": "Evaluates the ratio between crude oil volatility (OVX) and equity volatility (VIX). Ratios > 2.2 signal severe geopolitical oil supply shocks and stagflationary headwinds."
+        }
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+
+
 # --- Model 25.14: AI Hardware & Semiconductor Stress Gauge ---
 def calc_ai_chip_stress_gauge(gscpi_val, sox_yoy_pct, vix_val):
     if any(v is None or isinstance(v, bool) for v in (gscpi_val, sox_yoy_pct, vix_val)):
@@ -842,6 +882,7 @@ def main():
     brent = series.get("DCOILBRENTEU", {}).get("current_value")
     wti = series.get("DCOILWTICO", {}).get("current_value")
     vix = series.get("VIXCLS", {}).get("current_value")
+    ovx = series.get("OVXCLS", {}).get("current_value")
     sox_yoy = series.get("NASDAQSOX", {}).get("transformations", {}).get("percent_change_from_year_ago")
     sofr = series.get("SOFR", {}).get("current_value")
 
@@ -959,6 +1000,11 @@ def main():
     m_repo = calc_repo_liquidity_friction_spread(sofr, dff_curr)
     if m_repo:
         models_calculated.append(m_repo)
+
+    # Model 25.7: OVX / VIX Geopolitical Energy Shock Engine
+    m_ovx_vix = calc_ovx_vix_risk_premium(ovx, vix)
+    if m_ovx_vix:
+        models_calculated.append(m_ovx_vix)
 
     # Model 25.14: AI Hardware & Semiconductor Stress
     m_chip = calc_ai_chip_stress_gauge(gscpi, sox_yoy, vix)

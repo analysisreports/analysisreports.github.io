@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-09 18:44 UTC
+> **Last Calibrated Sync:** 2026-11-09 19:26 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -29,6 +29,7 @@
 | **MODEL_25.13** | Labor Market Momentum Index (LMMI) | **0.86** | Net Momentum Pts | `MODERATE_LABOR_EXPANSION` | Couples nonfarm payroll expansion with unemployment cha... |
 | **MODEL_25.3** | Global Supply Chain Pressure Logistics Engine (NY Fed GSCPI) | **1.26** | Standard Deviations (Z-Score) | `NORMALIZED_GLOBAL_TRADE` | Tracks standard deviations of global freight rates, shi... |
 | **MODEL_25.5** | Repo Liquidity Friction Spread Engine | **4.0** | Basis Points (bps) | `HEALTHY_MONETARY_TRANSMISSION` | Measures funding market friction tracking the spread be... |
+| **MODEL_25.7** | OVX / VIX Geopolitical Energy Shock Engine | **2.14** | Ratio | `BALANCED_ENERGY_VOLATILITY` | Evaluates the ratio between crude oil volatility (OVX) ... |
 | **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.615** | Score (Normalized) | `ELEVATED_SEMICONDUCTOR_BOTTLENECK` | Normalized composite metric monitoring semiconductor ph... |
 | **MODEL_25.16** | Yen Carry Trade Dissolution and Stress Gauge | **7.0877** | % (Net Carry Buffer) | `CALM_ACCUMULATION` | Monitors cross-currency Yen Carry Trade buffer, unwindi... |
 | **MODEL_25.18** | Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact) | **0.133** | Dynamic Delta Index (Avg) | `TREATY_ACTIVE_SURPLUS_EXPANSION` | Non-contiguous trilateral defense integration linking T... |
@@ -134,6 +135,13 @@
 - **Inputs Evaluated:** `{"sofr_rate": 3.92, "effr_rate": 3.88}`
 - **Secondary Metrics:** `{"spread_bps": 4.0}`
 - **Economic Synthesis:** Measures funding market friction tracking the spread between secured repo financing (SOFR) and unsecured Fed funds (EFFR). Spreads between -5.0 and +5.0 bps indicate healthy monetary transmission.
+
+#### [MODEL_25.7] OVX / VIX Geopolitical Energy Shock Engine
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.7
+- **Evaluated Status:** `BALANCED_ENERGY_VOLATILITY` (Primary Value: 2.14 Ratio)
+- **Inputs Evaluated:** `{"ovx_close": 60.29, "vix_close": 28.18}`
+- **Secondary Metrics:** `{"ovx_vix_ratio": 2.14}`
+- **Economic Synthesis:** Evaluates the ratio between crude oil volatility (OVX) and equity volatility (VIX). Ratios > 2.2 signal severe geopolitical oil supply shocks and stagflationary headwinds.
 
 #### [MODEL_25.14] AI Hardware & Semiconductor Supply Chain Stress Gauge
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.14
