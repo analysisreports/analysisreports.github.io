@@ -3,9 +3,9 @@
   "metadata": {
     "engine": "Autonomous Quantitative Macroeconomic Model Engine",
     "author": "Ersoy Toptaş",
-    "license": "CC BY-NC-ND 4.0",
+    "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T16:25:21.366024+00:00",
+    "last_successful_sync": "2026-11-09T17:45:32.914326+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 16
+    "total_models_active": 15
   },
   "models": [
     {
@@ -222,25 +222,6 @@
         "employment_strength_ratio": 0.14
       },
       "interpretation": "Couples nonfarm payroll expansion with unemployment change to gauge labor slack and wage inflation momentum."
-    },
-    {
-      "model_id": "MODEL_25.14",
-      "model_name": "AI Hardware & Semiconductor Supply Chain Stress Gauge",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.14",
-      "primary_value": 0.11,
-      "unit": "Score (Normalized)",
-      "status": "BALANCED_HARDWARE_FLOW",
-      "inputs": {
-        "gscpi_std_dev": 0.0,
-        "sox_yoy_pct": 34.59,
-        "vix_level": 28.18
-      },
-      "components": {
-        "gscpi_weight": 0.0,
-        "sox_weight": -0.242,
-        "vix_weight": 0.352
-      },
-      "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation."
     },
     {
       "model_id": "MODEL_25.16",

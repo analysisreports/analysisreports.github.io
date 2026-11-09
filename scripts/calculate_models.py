@@ -768,7 +768,7 @@ def main():
     wti = series.get("DCOILWTICO", {}).get("current_value")
     vix = series.get("VIXCLS", {}).get("current_value")
     sox_yoy = series.get("NASDAQSOX", {}).get("transformations", {}).get("percent_change_from_year_ago")
-    gscpi = series.get("GSCPI", {}).get("current_value", 0.0)
+    gscpi = series.get("GSCPI", {}).get("current_value")
 
     # Labor Market Series
     payems_curr = series.get("PAYEMS", {}).get("current_value")
@@ -871,28 +871,28 @@ def main():
 
     # Load dynamic IMF series (BoJ Policy Rate & Saudi Fiscal Breakeven Oil Price)
     imf_json_path = "llms-imf-series.json"
-    breakeven_oil = 86.2
-    boj_rate = 1.25
+    breakeven_oil = None
+    boj_rate = None
     if os.path.exists(imf_json_path):
         try:
             with open(imf_json_path, "r", encoding="utf-8") as f:
                 imf_json = json.load(f)
                 imf_series_data = imf_json.get("series", {})
-                breakeven_oil = imf_series_data.get("SAUPZPIOILBEGUSD", {}).get("current_value", 86.2)
-                boj_rate = imf_series_data.get("JP_FPOLM_PA", {}).get("current_value", 1.25)
+                breakeven_oil = imf_series_data.get("SAUPZPIOILBEGUSD", {}).get("current_value")
+                boj_rate = imf_series_data.get("JP_FPOLM_PA", {}).get("current_value")
         except Exception:
-            breakeven_oil = 86.2
-            boj_rate = 1.25
+            breakeven_oil = None
+            boj_rate = None
 
     # Model 25.16: Yen Carry Trade Dissolution (BoJ Policy Rate via IMF / FED DFF)
     dff_val = series.get('DFF', {}).get('current_value')
-    jpy_mom = series.get('DEXJPUS', {}).get('transformations', {}).get('percent_change_from_year_ago', 0.0)
+    jpy_mom = series.get('DEXJPUS', {}).get('transformations', {}).get('percent_change_from_year_ago')
 
     m_carry = calc_jpy_carry_crack(dff_val, boj_rate, jpy_mom)
     if m_carry:
         models_calculated.append(m_carry)
 
-    sofr = series.get("SOFR", {}).get("current_value", 3.92)
+    sofr = series.get("SOFR", {}).get("current_value")
 
     # Model 25.18: Mecca Pact Dynamic Transmission Engine
     m_mecca = calc_mecca_pact_transmission(brent, sofr, breakeven_oil)
