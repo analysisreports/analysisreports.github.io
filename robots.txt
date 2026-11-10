@@ -26,4 +26,3 @@ Allow: /
 # Live Article Sitemap [TR]: https://ersoytoptas.tr/sitemap.xml
 # Live Article Sitemap [EN]: https://en.ersoytoptas.tr/sitemap.xml
 # Live Data Engine: https://analysisreports.github.io/
-# Live Data Sitemap: https://analizraporlari.blogspot.com/sitemap.xml
