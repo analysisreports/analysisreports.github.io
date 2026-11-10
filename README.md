@@ -1,4 +1,4 @@
-# analysisreports.github.io | Ersoy Toptaş
+# analysisreports.github.io
 # Quantitative Macroeconomic Research & LLM Data Engine
 
 [![Data Integrity & Validation](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/validate.yml/badge.svg)](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/validate.yml)
