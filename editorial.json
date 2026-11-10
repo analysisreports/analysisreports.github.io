@@ -81,6 +81,7 @@
         ],
         "sector_or_product_dynamics": [
           {
+            "sector_entity_id": null,
             "category_name": "",
             "growth_or_value": "",
             "impact_note": ""
@@ -90,6 +91,7 @@
       "market_and_liquidity_indicators": [
         {
           "series_entity_id": null,
+          "asset_entity_id": null,
           "segment": "MONEY_MARKET",
           "asset_or_rate_name": "",
           "current_level": "",
@@ -173,18 +175,45 @@
       "direction": "Neutral",
       "confidence_score": 80
     },
+    "target_queries": {
+      "qa_pairs": [
+        {
+          "q": "",
+          "a": ""
+        }
+      ]
+    },
     "categorization": {
       "tags": [
         ""
       ]
     },
+    "editorial_frontend": {
+      "url": "",
+      "format": "Human-Readable Narrative",
+      "author": "Ersoy Toptaş",
+      "published_date": "",
+      "language": "tr",
+      "description": ""
+    },
+    "cross_references": {
+      "relations": [
+        {
+          "target_url": "",
+          "predicate": "",
+          "impact_window": "",
+          "description": ""
+        }
+      ]
+    },
     "metadata": {
       "analyst": "Ersoy Toptaş",
+      "canonical_url": "",
+      "canonical_source": "https://analysisreports.github.io",
       "methodology": "https://analysisreports.github.io/llms.txt",
-      "ai-prompts": "https://analysisreports.github.io/llms-prompts.txt",
+      "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
       "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
       "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-      "canonical_source": "https://analysisreports.github.io",
       "license": "CC BY-NC-ND 4.0"
     }
   }
