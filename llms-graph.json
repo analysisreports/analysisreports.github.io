@@ -2066,6 +2066,61 @@
           "HIGH_DISPERSION"
         ]
       }
+    },
+    {
+      "id": "ACTOR_LT",
+      "label": "Republic of Lithuania",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "EUR",
+        "bloc": "BLOC_BALTIC_ASSEMBLY"
+      }
+    },
+    {
+      "id": "ACTOR_EE",
+      "label": "Republic of Estonia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "EUR",
+        "bloc": "BLOC_BALTIC_ASSEMBLY"
+      }
+    },
+    {
+      "id": "ACTOR_LV",
+      "label": "Republic of Latvia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "EUR",
+        "bloc": "BLOC_BALTIC_ASSEMBLY"
+      }
+    },
+    {
+      "id": "BLOC_BALTIC_ASSEMBLY",
+      "label": "Baltic Assembly (Estonia, Latvia, Lithuania)",
+      "category": "ACTOR",
+      "type": "Multilateral Bloc",
+      "attributes": {
+        "members": [
+          "ACTOR_EE",
+          "ACTOR_LV",
+          "ACTOR_LT"
+        ]
+      }
+    },
+    {
+      "id": "CHOKE_SUWALKI_GAP",
+      "label": "Suwalki Gap Corridor",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "54deg 15min N 23deg 20min E",
+        "type": "Terrestrial Corridor Flashpoint",
+        "length_km": 65,
+        "disruption_severity": "HIGH",
+        "severity_weight": 0.7
+      }
     }
   ],
   "edges": [
@@ -3286,6 +3341,52 @@
       "target": "MODEL_26",
       "type": "INGESTS_COMMITTEE",
       "role": "FOMC Voting Member Roster"
+    },
+    {
+      "source": "ACTOR_LT",
+      "target": "ACTOR_RU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.85,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "ACTOR_EE",
+      "target": "ACTOR_RU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.85,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "ACTOR_LV",
+      "target": "ACTOR_RU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.85,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "ACTOR_LT",
+      "target": "CHOKE_SUWALKI_GAP",
+      "type": "FLANKS_CHOKEPOINT"
+    },
+    {
+      "source": "ACTOR_PL",
+      "target": "CHOKE_SUWALKI_GAP",
+      "type": "FLANKS_CHOKEPOINT"
+    },
+    {
+      "source": "BLOC_BALTIC_ASSEMBLY",
+      "target": "ACTOR_EE",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_BALTIC_ASSEMBLY",
+      "target": "ACTOR_LV",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_BALTIC_ASSEMBLY",
+      "target": "ACTOR_LT",
+      "type": "INCLUDES_MEMBER"
     }
   ]
 }

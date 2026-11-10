@@ -87,6 +87,8 @@ GEO_GB               | Aliases: United Kingdom, UK, Great Britain, Britain, Lond
 GEO_UA               | Aliases: Ukraine, Kyiv
 GEO_PL               | Aliases: Poland, Republic of Poland, Warsaw
 GEO_LT               | Aliases: Republic of Lithuania, Lithuania, Vilnius
+GEO_EE               | Aliases: Republic of Estonia, Estonia, Tallinn
+GEO_LV               | Aliases: Republic of Latvia, Latvia, Riga
 GEO_SE               | Aliases: Sweden, Kingdom of Sweden, Stockholm
 GEO_NO               | Aliases: Norway, Kingdom of Norway, Oslo
 GEO_CZ               | Aliases: Czech Republic, Czechia, Prague
@@ -152,6 +154,7 @@ BLOC_OPEC            | Aliases: OPEC, Organization of the Petroleum Exporting Co
 BLOC_BRICS_MBRIDGE   | Aliases: BRICS & mBridge Settlement Axis, mBridge, BIS Innovation Hub mBridge, CIPS, SPFS
 BLOC_C6              | Aliases: Central Asia & Azerbaijan Strategic Alignment Axis, C6 Consultative Format, C6 Bloc
 BLOC_MECCA_DEFENSE   | Aliases: Mecca Joint Defense Agreement, Mecca Defence Alliance, Mecca Pact, TR-SA-PK Alliance
+BLOC_BALTIC_ASSEMBLY | Aliases: Baltic Assembly, Baltic States Trio, Estonia Latvia Lithuania Alliance
 
 # [MARITIME CHOKEPOINTS, CANALS & STRATEGIC CORRIDORS] (Prefix: CHOKE_ / CORRIDOR_ / BASIN_ / ZONE_)
 CHOKE_HORMUZ         | Aliases: Hormuz Strait, Strait of Hormuz
@@ -177,6 +180,8 @@ ZONE_FIRST_ISLAND_CHAIN| Aliases: First Island Chain Core, Okinawa-Luzon Corrido
 ZONE_LITHIUM_TRIANGLE| Aliases: Lithium Triangle, Salar de Uyuni-Atacama Basin
 ZONE_COPPER_COBALT_BELT| Aliases: Katanga Copper-Cobalt Belt, DRC Mining Belt
 ZONE_ORINOCO_PETROLEUM| Aliases: Orinoco Petroleum Belt, Orinoco Heavy Crude Basin
+CORRIDOR_RAIL_BALTICA| Aliases: Rail Baltica Strategic Corridor, Rail Baltica European Gauge Axis
+ZONE_BRELL_GRID      | Aliases: BRELL Grid Ring, Belarus-Russia-Estonia-Latvia-Lithuania Power Ring
 
 # [STATISTICAL, REGULATORY & ENFORCEMENT AGENCIES] (Prefix: STAT_ / REG_AGENCY_)
 STAT_BLS_US          | Aliases: BLS, Bureau of Labor Statistics, U.S. Bureau of Labor Statistics

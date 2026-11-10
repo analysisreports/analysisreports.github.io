@@ -371,6 +371,26 @@ def main():
             'primary_driver': 'SUWALKI_GAP_NATO_BORDER_FRICTION'
         },
         {
+            'id': 'EE_RU',
+            'source_entity': 'GEO_EE',
+            'target_entity': 'GEO_RU',
+            'label': 'EE - RU (Republic of Estonia vs. Russian Federation)',
+            'p_baseline': -0.85,
+            'dynamic_delta': vix_delta,
+            'friction_nodes': ['NARVA_BORDER', 'BALTIC_SEA', 'CYBER_WARFARE_STANDOFF'],
+            'primary_driver': 'BALTIC_DEFENCE_LINE_AND_CYBER_FRICTION'
+        },
+        {
+            'id': 'LV_RU',
+            'source_entity': 'GEO_LV',
+            'target_entity': 'GEO_RU',
+            'label': 'LV - RU (Republic of Latvia vs. Russian Federation)',
+            'p_baseline': -0.85,
+            'dynamic_delta': vix_delta,
+            'friction_nodes': ['LATGALE_BORDER', 'BALTIC_SEA', 'BRELL_DESYNCHRONIZATION'],
+            'primary_driver': 'BRELL_ENERGY_GRID_DESYNCHRONIZATION'
+        },
+        {
             'id': 'YE_IL',
             'source_entity': 'GEO_YE',
             'target_entity': 'GEO_IL',

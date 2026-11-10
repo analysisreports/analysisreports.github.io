@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-10T00:52:29.830993+00:00",
+    "last_successful_sync": "2026-11-10T02:28:21.205136+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "governance_reference": "https://analysisreports.github.io/llms-formulas.txt#25.15",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
@@ -240,6 +240,38 @@
         "SUWALKI_GAP",
         "BALTIC_SEA",
         "KALININGRAD_EXCLAVE"
+      ]
+    },
+    {
+      "id": "EE_RU",
+      "source_entity": "GEO_EE",
+      "target_entity": "GEO_RU",
+      "label": "EE - RU (Republic of Estonia vs. Russian Federation)",
+      "p_baseline": -0.85,
+      "dynamic_delta": 0.0,
+      "p_net": -0.85,
+      "regime_state": "PROXY_WAR",
+      "primary_driver": "BALTIC_DEFENCE_LINE_AND_CYBER_FRICTION",
+      "friction_nodes": [
+        "NARVA_BORDER",
+        "BALTIC_SEA",
+        "CYBER_WARFARE_STANDOFF"
+      ]
+    },
+    {
+      "id": "LV_RU",
+      "source_entity": "GEO_LV",
+      "target_entity": "GEO_RU",
+      "label": "LV - RU (Republic of Latvia vs. Russian Federation)",
+      "p_baseline": -0.85,
+      "dynamic_delta": 0.0,
+      "p_net": -0.85,
+      "regime_state": "PROXY_WAR",
+      "primary_driver": "BRELL_ENERGY_GRID_DESYNCHRONIZATION",
+      "friction_nodes": [
+        "LATGALE_BORDER",
+        "BALTIC_SEA",
+        "BRELL_DESYNCHRONIZATION"
       ]
     },
     {
