@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-10T02:02:06.937417+00:00",
+    "last_successful_sync": "2026-11-10T03:07:15.192291+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 46
+    "total_models_active": 44
   },
   "models": [
     {
@@ -739,24 +739,6 @@
       "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation."
     },
     {
-      "model_id": "MODEL_25.15",
-      "model_name": "Domestic Governance Gridlock & External Tariff Friction Engine",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.15",
-      "primary_value": 0.765,
-      "unit": "Friction Bias",
-      "status": "DIVIDED_GRIDLOCK_TARIFF_SURGE",
-      "inputs": {
-        "country_code": "GEO_US",
-        "majority_seat_margin": -15.0,
-        "executive_decree_power": 0.85
-      },
-      "metrics": {
-        "gridlock_index": 0.9,
-        "external_friction_bias": 0.765
-      },
-      "interpretation": "Quantifies domestic legislative gridlock driving unilateral executive trade tariffs, foreign sanctions, and cross-border economic friction."
-    },
-    {
       "model_id": "MODEL_25.16",
       "model_name": "Yen Carry Trade Dissolution and Stress Gauge",
       "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.16",
@@ -798,29 +780,6 @@
         }
       },
       "interpretation": "Non-contiguous trilateral defense integration linking Turkish aerospace/defense co-production, Saudi sovereign liquidity, and Pakistani strategic deterrence under dynamic oil and dollar regimes."
-    },
-    {
-      "model_id": "MODEL_26",
-      "model_name": "Central Bank Committee Dispersion & Hawkishness Index",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#26",
-      "primary_value": 0.1667,
-      "unit": "H-Index",
-      "status": "MODERATE_HAWKISH_BIAS",
-      "inputs": {
-        "n_total": 12,
-        "n_hawkish": 4,
-        "n_dovish": 2,
-        "n_neutral": 6
-      },
-      "metrics": {
-        "share_hawkish_pct": 33.33,
-        "share_dovish_pct": 16.67,
-        "share_neutral_pct": 50.0,
-        "h_index": 0.1667,
-        "dispersion": 0.6111,
-        "consensus_regime": "HIGH_DISPERSION"
-      },
-      "interpretation": "Quantifies FOMC monetary policy committee voting distribution across hawkish, dovish, and neutral members to compute directional policy stance and internal voting fracture."
     }
   ]
 }

@@ -2532,11 +2532,6 @@ def main():
     if m_chip:
         models_calculated.append(m_chip)
 
-    # Model 25.15: Domestic Governance Gridlock & External Tariff Friction Engine
-    m_governance = calc_governance_gridlock_friction("GEO_US", majority_seat_margin=-15.0, executive_decree_power=0.85)
-    if m_governance:
-        models_calculated.append(m_governance)
-
     # Load dynamic IMF series (BoJ Policy Rate & Saudi Fiscal Breakeven Oil Price)
     imf_json_path = "llms-imf-series.json"
     breakeven_oil = None
@@ -2566,12 +2561,6 @@ def main():
     m_mecca = calc_mecca_pact_transmission(brent, sofr, breakeven_oil)
     if m_mecca:
         models_calculated.append(m_mecca)
-
-    # Model 26: Central Bank Committee Dispersion & Hawkishness Index
-    m_fomc_dispersion = calc_committee_dispersion(n_hawkish=4, n_dovish=2, n_neutral=6, n_total=12)
-    if m_fomc_dispersion:
-        models_calculated.append(m_fomc_dispersion)
-
 
     now_dt = datetime.datetime.now(datetime.timezone.utc)
     now_iso = now_dt.isoformat()
