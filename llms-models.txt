@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-10 01:06 UTC
+> **Last Calibrated Sync:** 2026-11-10 01:14 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -52,6 +52,8 @@
 | **MODEL_25.7** | OVX / VIX Geopolitical Energy Shock Engine | **2.27** | Ratio | `ENERGY_SUPPLY_SHOCK_ALARM` | Evaluates the ratio between crude oil volatility (OVX) ... |
 | **MODEL_25.8** | Natgas / Crude Oil BTU Disconnect Engine | **37.89** | WTI/NatGas Ratio | `NATGAS_GLUT_ENERGY_CHEAP` | Measures physical energy parity between WTI crude oil a... |
 | **MODEL_25.9** | Gasoline / Crude Crack Spread Impulse Engine | **74.79** | USD per Barrel | `REFINERY_BOTTLENECK_CRUNCH` | Measures refinery processing margins between retail gas... |
+| **MODEL_25.10** | SLOOS Lending Standards Recession Gauge | **5.1** | Net Percent (%) | `NEUTRAL_CREDIT_CONDITIONS` | Tracks the net percentage of domestic US banks tighteni... |
+| **MODEL_25.11** | Full-Time vs. Involuntary Part-Time Crack Gauge | **5.4** | Percentage Points (ppt) | `STABLE_EMPLOYMENT_COMPOSITION` | Detects hidden labor market fragility by comparing the ... |
 | **MODEL_25.17** | Liquidity & Commodity Macro Regime Matrix | **17.0** | Basis Points (bps) | `REFLATIONARY_EXPANSION` | Evaluates front-end money market liquidity (3M-1M T-Bil... |
 | **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.583** | Score (Normalized) | `ELEVATED_SEMICONDUCTOR_BOTTLENECK` | Normalized composite metric monitoring semiconductor ph... |
 | **MODEL_25.16** | Yen Carry Trade Dissolution and Stress Gauge | **6.2379** | % (Net Carry Buffer) | `CALM_ACCUMULATION` | Monitors cross-currency Yen Carry Trade buffer, unwindi... |
@@ -319,6 +321,20 @@
 - **Inputs Evaluated:** `{"gasoline_retail_usd_gal": 4.153, "wti_crude_usd_bbl": 99.64}`
 - **Secondary Metrics:** `{"crack_spread_usd": 74.79, "gasoline_barrel_equiv_usd": 174.43, "wti_crude_usd": 99.64}`
 - **Economic Synthesis:** Measures refinery processing margins between retail gasoline and crude oil. Spreads > $40/bbl signal refinery capacity bottlenecks and consumer fuel cost shocks; < $5 indicate refining margin collapse.
+
+#### [MODEL_25.10] SLOOS Lending Standards Recession Gauge
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.10
+- **Evaluated Status:** `NEUTRAL_CREDIT_CONDITIONS` (Primary Value: 5.1 Net Percent (%))
+- **Inputs Evaluated:** `{"drtscis_net_pct": 5.1}`
+- **Secondary Metrics:** `{"credit_tightening_net_pct": 5.1}`
+- **Economic Synthesis:** Tracks the net percentage of domestic US banks tightening lending standards on commercial and industrial (C&I) loans. Values > 40% signal an acute credit channel freeze and recession.
+
+#### [MODEL_25.11] Full-Time vs. Involuntary Part-Time Crack Gauge
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.11
+- **Evaluated Status:** `STABLE_EMPLOYMENT_COMPOSITION` (Primary Value: 5.4 Percentage Points (ppt))
+- **Inputs Evaluated:** `{"involuntary_part_time_lns12032194_k": 4840.0, "full_time_employed_lns12500000_k": 135090.0}`
+- **Secondary Metrics:** `{"crack_spread_pct": 5.4, "part_time_econ_yoy_pct": 5.35, "full_time_yoy_pct": -0.05}`
+- **Economic Synthesis:** Detects hidden labor market fragility by comparing the annual surge in involuntary part-time workers against changes in full-time employment. Spreads > 18.0 ppt signal structural weakening obscured by headline data.
 
 #### [MODEL_25.17] Liquidity & Commodity Macro Regime Matrix
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.17

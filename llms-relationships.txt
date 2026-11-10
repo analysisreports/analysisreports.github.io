@@ -104,6 +104,14 @@ Regime States (Discrete Mapping):
 - REFINERY_BOTTLENECK_CRUNCH    : Gasoline crack spread exceeding $40.0/bbl signaling refinery throughput bottlenecks and retail fuel price shocks.
 - REFINING_MARGIN_COLLAPSE      : Gasoline crack spread below $5.0/bbl indicating refinery margin collapse and weak fuel consumption demand.
 - NORMAL_REFINING_MARGIN        : Gasoline crack spread within healthy operating corridor of $5.0 to $40.0/bbl.
+- ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL : Net percentage of banks tightening C&I loan standards exceeding 40% signaling severe credit channel freeze and recession.
+- RESTRICTIVE_CREDIT_CONTRACTION : Net percentage of banks tightening C&I loan standards between 20% and 40% reflecting restrictive commercial bank lending.
+- AGGRESSIVE_CREDIT_EXPANSION   : Net percentage of banks loosening lending standards below -10% reflecting loose credit expansion.
+- NEUTRAL_CREDIT_CONDITIONS     : Net percentage of banks tightening lending standards within balanced historical corridor of -10% to 20%.
+- ACUTE_LABOR_MARKET_FRACTURE_RECESSION : Involuntary part-time surge outpacing full-time jobs by over 30% alongside part-time growth > 15% signaling acute labor recession.
+- STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL : Involuntary part-time growth exceeding full-time employment by over 18% exposing hidden structural labor fragility.
+- ROBUST_FULL_TIME_EXPANSION    : Full-time employment growth strongly outstripping part-time additions reflecting resilient labor market fundamentals.
+- STABLE_EMPLOYMENT_COMPOSITION : Full-time and involuntary part-time employment dynamics in stable historical balance.
 
 ---
 

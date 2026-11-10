@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-10T01:06:21.050238+00:00",
+    "last_successful_sync": "2026-11-10T01:14:09.808601+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 42
+    "total_models_active": 44
   },
   "models": [
     {
@@ -667,6 +667,39 @@
         "wti_crude_usd": 99.64
       },
       "interpretation": "Measures refinery processing margins between retail gasoline and crude oil. Spreads > $40/bbl signal refinery capacity bottlenecks and consumer fuel cost shocks; < $5 indicate refining margin collapse."
+    },
+    {
+      "model_id": "MODEL_25.10",
+      "model_name": "SLOOS Lending Standards Recession Gauge",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.10",
+      "primary_value": 5.1,
+      "unit": "Net Percent (%)",
+      "status": "NEUTRAL_CREDIT_CONDITIONS",
+      "inputs": {
+        "drtscis_net_pct": 5.1
+      },
+      "metrics": {
+        "credit_tightening_net_pct": 5.1
+      },
+      "interpretation": "Tracks the net percentage of domestic US banks tightening lending standards on commercial and industrial (C&I) loans. Values > 40% signal an acute credit channel freeze and recession."
+    },
+    {
+      "model_id": "MODEL_25.11",
+      "model_name": "Full-Time vs. Involuntary Part-Time Crack Gauge",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.11",
+      "primary_value": 5.4,
+      "unit": "Percentage Points (ppt)",
+      "status": "STABLE_EMPLOYMENT_COMPOSITION",
+      "inputs": {
+        "involuntary_part_time_lns12032194_k": 4840.0,
+        "full_time_employed_lns12500000_k": 135090.0
+      },
+      "metrics": {
+        "crack_spread_pct": 5.4,
+        "part_time_econ_yoy_pct": 5.35,
+        "full_time_yoy_pct": -0.05
+      },
+      "interpretation": "Detects hidden labor market fragility by comparing the annual surge in involuntary part-time workers against changes in full-time employment. Spreads > 18.0 ppt signal structural weakening obscured by headline data."
     },
     {
       "model_id": "MODEL_25.17",

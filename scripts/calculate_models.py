@@ -1122,6 +1122,101 @@ def calc_gasoline_crude_crack_spread(gas_gal_price_val, wti_barrel_price_val) ->
         return None
 
 
+# --- Model 25.10: SLOOS Lending Standards Recession Gauge ---
+def calc_sloos_lending_tightness_gauge(drtscis_val) -> Optional[Dict[str, Any]]:
+    if drtscis_val is None or isinstance(drtscis_val, bool):
+        return None
+    try:
+        val = float(drtscis_val)
+        if not math.isfinite(val):
+            return None
+        tightness = round(val, 2)
+
+        if tightness > 40.0:
+            status = "ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL"
+        elif tightness >= 20.0:
+            status = "RESTRICTIVE_CREDIT_CONTRACTION"
+        elif tightness <= -10.0:
+            status = "AGGRESSIVE_CREDIT_EXPANSION"
+        else:
+            status = "NEUTRAL_CREDIT_CONDITIONS"
+
+        return {
+            "model_id": "MODEL_25.10",
+            "model_name": "SLOOS Lending Standards Recession Gauge",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.10",
+            "primary_value": tightness,
+            "unit": "Net Percent (%)",
+            "status": status,
+            "inputs": {
+                "drtscis_net_pct": tightness
+            },
+            "metrics": {
+                "credit_tightening_net_pct": tightness
+            },
+            "interpretation": "Tracks the net percentage of domestic US banks tightening lending standards on commercial and industrial (C&I) loans. Values > 40% signal an acute credit channel freeze and recession."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
+# --- Model 25.11: Full-Time vs. Involuntary Part-Time Crack Gauge ---
+def calc_hidden_employment_crack_gauge(part_time_econ_level_current, part_time_econ_level_yr_ago, full_time_level_current, full_time_level_yr_ago) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (part_time_econ_level_current, part_time_econ_level_yr_ago, full_time_level_current, full_time_level_yr_ago)):
+        return None
+    try:
+        pt_curr = float(part_time_econ_level_current)
+        pt_yr = float(part_time_econ_level_yr_ago)
+        ft_curr = float(full_time_level_current)
+        ft_yr = float(full_time_level_yr_ago)
+
+        if not all(math.isfinite(x) for x in (pt_curr, pt_yr, ft_curr, ft_yr)):
+            return None
+        if pt_yr <= 0 or ft_yr <= 0 or pt_curr < 0 or ft_curr < 0:
+            return None
+
+        pt_yoy = ((pt_curr / pt_yr) - 1.0) * 100.0
+        ft_yoy = ((ft_curr / ft_yr) - 1.0) * 100.0
+        raw_spread = pt_yoy - ft_yoy
+
+        if not math.isfinite(raw_spread):
+            return None
+
+        spread = round(raw_spread, 2)
+        pt_yoy_rounded = round(pt_yoy, 2)
+        ft_yoy_rounded = round(ft_yoy, 2)
+
+        if spread > 30.0 and pt_yoy_rounded > 15.0:
+            status = "ACUTE_LABOR_MARKET_FRACTURE_RECESSION"
+        elif spread > 18.0:
+            status = "STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL"
+        elif spread < -10.0:
+            status = "ROBUST_FULL_TIME_EXPANSION"
+        else:
+            status = "STABLE_EMPLOYMENT_COMPOSITION"
+
+        return {
+            "model_id": "MODEL_25.11",
+            "model_name": "Full-Time vs. Involuntary Part-Time Crack Gauge",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.11",
+            "primary_value": spread,
+            "unit": "Percentage Points (ppt)",
+            "status": status,
+            "inputs": {
+                "involuntary_part_time_lns12032194_k": round(pt_curr, 1),
+                "full_time_employed_lns12500000_k": round(ft_curr, 1)
+            },
+            "metrics": {
+                "crack_spread_pct": spread,
+                "part_time_econ_yoy_pct": pt_yoy_rounded,
+                "full_time_yoy_pct": ft_yoy_rounded
+            },
+            "interpretation": "Detects hidden labor market fragility by comparing the annual surge in involuntary part-time workers against changes in full-time employment. Spreads > 18.0 ppt signal structural weakening obscured by headline data."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
 # --- Model 25.17: Liquidity & Commodity Macro Regime Matrix ---
 def calc_liquidity_commodity_matrix(dgs3mo, dgs1mo, brent_yoy_pct):
     if any(v is None or isinstance(v, bool) for v in (dgs3mo, dgs1mo, brent_yoy_pct)):
@@ -2242,6 +2337,21 @@ def main():
     m_crack_spread = calc_gasoline_crude_crack_spread(gas_price, wti)
     if m_crack_spread:
         models_calculated.append(m_crack_spread)
+
+    # Model 25.10: SLOOS Lending Standards Recession Gauge
+    drtscis_val = series.get("DRTSCIS", {}).get("current_value")
+    m_sloos = calc_sloos_lending_tightness_gauge(drtscis_val)
+    if m_sloos:
+        models_calculated.append(m_sloos)
+
+    # Model 25.11: Full-Time vs. Involuntary Part-Time Crack Gauge
+    pt_curr = series.get("LNS12032194", {}).get("current_value")
+    pt_yr = series.get("LNS12032194", {}).get("year_ago_value")
+    ft_curr = series.get("LNS12500000", {}).get("current_value")
+    ft_yr = series.get("LNS12500000", {}).get("year_ago_value")
+    m_pt_crack = calc_hidden_employment_crack_gauge(pt_curr, pt_yr, ft_curr, ft_yr)
+    if m_pt_crack:
+        models_calculated.append(m_pt_crack)
 
     # Model 25.17: Liquidity & Commodity Macro Regime Matrix
     brent_yoy = series.get("DCOILBRENTEU", {}).get("transformations", {}).get("percent_change_from_year_ago")
