@@ -2213,7 +2213,8 @@ def main():
     dff_curr = series.get("DFF", {}).get("current_value")
     cpi_yoy = series.get("CPIAUCSL", {}).get("transformations", {}).get("percent_change_from_year_ago")
 
-    fed_rate = dff_curr
+    dfedtaru_curr = series.get("DFEDTARU", {}).get("current_value")
+    fed_rate = dfedtaru_curr if dfedtaru_curr is not None else dff_curr
 
     brent = series.get("DCOILBRENTEU", {}).get("current_value")
     wti = series.get("DCOILWTICO", {}).get("current_value")

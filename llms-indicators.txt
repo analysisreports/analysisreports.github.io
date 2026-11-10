@@ -50,6 +50,7 @@ Mathematical Guardrails:
 10. **DCOILWTICO** (Crude Oil Prices: West Texas Intermediate (WTI) - Cushing, Oklahoma) | Freq: Daily | Units: Dollars per Barrel | Source: FRED
 11. **DEXJPUS** (Japanese Yen to U.S. Dollar Spot Exchange Rate) | Freq: Daily | Units: Japanese Yen to One U.S. Dollar | Source: FRED
 12. **DFF** (Federal Funds Effective Rate) | Freq: Daily | Units: Percent | Source: FRED
+13. **DFEDTARU** (Federal Funds Target Range - Upper Limit) | Freq: Daily | Units: Percent | Source: FOMC / FRED
 13. **DFII10** (Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity, Quoted on an Investment Basis, Inflation-Indexed) | Freq: Daily | Units: Percent | Source: FRED
 14. **DGS10** (Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity, Quoted on an Investment Basis) | Freq: Daily | Units: Percent | Source: FRED
 15. **DGS1MO** (Market Yield on U.S. Treasury Securities at 1-Month Constant Maturity, Quoted on an Investment Basis) | Freq: Daily | Units: Percent | Source: FRED
