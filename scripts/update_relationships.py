@@ -116,34 +116,49 @@ def main():
 
     brent = series.get('DCOILBRENTEU', {}).get('current_value')
     wti = series.get('DCOILWTICO', {}).get('current_value')
-    brent_wti_spread = round(brent - wti, 2) if (brent is not None and wti is not None) else 0.0
+    brent_wti_spread = round(brent - wti, 2) if (brent is not None and wti is not None) else None
 
-    vix = series.get('VIXCLS', {}).get('current_value', 20.0)
-    sox_yoy = series.get('NASDAQSOX', {}).get('transformations', {}).get('percent_change_from_year_ago', 0.0)
-    gscpi = series.get('GSCPI', {}).get('current_value', 0.0)
+    vix = series.get('VIXCLS', {}).get('current_value')
+    sox_yoy = series.get('NASDAQSOX', {}).get('transformations', {}).get('percent_change_from_year_ago')
+    
+    # Ingest GSCPI directly from official NY Fed JSON twin (ZERO synthetic fallback)
+    nyfed_json_path = 'llms-nyfed-series.json'
+    if not os.path.exists(nyfed_json_path):
+        nyfed_json_path = os.path.join(os.path.dirname(__file__), '..', 'llms-nyfed-series.json')
+    nyfed_series_data = {}
+    if os.path.exists(nyfed_json_path):
+        try:
+            with open(nyfed_json_path, 'r', encoding='utf-8') as f:
+                nyfed_json = json.load(f)
+                nyfed_series_data = nyfed_json.get('series', {})
+        except Exception:
+            nyfed_series_data = {}
+    gscpi = nyfed_series_data.get('GSCPI', {}).get('current_value')
 
     # 2. Compute Quantitative Transmission Models
-    # Model 25.14: AI Chip Stress
-    chip_stress = round((gscpi * 0.40) + ((sox_yoy / 50.0) * -0.35) + ((vix / 20.0) * 0.25), 3)
+    # Model 25.14: AI Chip Stress (Strictly None if any input is missing)
+    if gscpi is not None and sox_yoy is not None and vix is not None:
+        chip_stress = round((gscpi * 0.40) + ((sox_yoy / 50.0) * -0.35) + ((vix / 20.0) * 0.25), 3)
+    else:
+        chip_stress = None
 
-    # Model 25.18: Mecca Pact Dynamic Transmission Engine
-    sofr = series.get('SOFR', {}).get('current_value', 3.92)
+    # Model 25.18: Mecca Pact Dynamic Transmission Engine (Strictly None if missing)
+    sofr = series.get('SOFR', {}).get('current_value')
     delta_treaty = 0.10
 
     # Ingest dynamic IMF series (Saudi Fiscal Breakeven Oil Price, BoJ & BoE Policy Rates)
     imf_json_path = 'llms-imf-series.json'
     if not os.path.exists(imf_json_path):
         imf_json_path = os.path.join(os.path.dirname(__file__), '..', 'llms-imf-series.json')
-    breakeven_oil = 86.2
     imf_series_data = {}
     if os.path.exists(imf_json_path):
         try:
             with open(imf_json_path, 'r', encoding='utf-8') as f:
                 imf_json = json.load(f)
                 imf_series_data = imf_json.get('series', {})
-                breakeven_oil = imf_series_data.get('SAUPZPIOILBEGUSD', {}).get('current_value', 86.2)
         except Exception:
-            breakeven_oil = 86.2
+            imf_series_data = {}
+    breakeven_oil = imf_series_data.get('SAUPZPIOILBEGUSD', {}).get('current_value')
 
     # Ingest dynamic ECB series
     ecb_json_path = 'llms-ecb-series.json'
@@ -158,27 +173,27 @@ def main():
         except Exception:
             ecb_series_data = {}
 
-    # Extract Policy Rates and Dates
+    # Extract Policy Rates and Dates (ZERO synthetic fallbacks)
     fed_series = series.get('DFF', {})
-    fed_rate = fed_series.get('current_value', 3.88)
-    fed_date = fed_series.get('last_date', '2026-11-05')
+    fed_rate = fed_series.get('current_value')
+    fed_date = fed_series.get('last_date')
 
     ecb_series = ecb_series_data.get('FM/B.U2.EUR.4F.KR.DFR.LEV', {})
-    ecb_rate = ecb_series.get('current_value', 2.50)
-    ecb_date = ecb_series.get('last_date', '2026-09-16')
+    ecb_rate = ecb_series.get('current_value')
+    ecb_date = ecb_series.get('last_date')
 
     boj_series = imf_series_data.get('JP_FPOLM_PA', {})
-    boj_rate = boj_series.get('current_value', 1.25)
-    boj_date = boj_series.get('last_date', '2026-10-01')
+    boj_rate = boj_series.get('current_value')
+    boj_date = boj_series.get('last_date')
 
     boe_series = imf_series_data.get('GB_FPOLM_PA', {})
-    boe_rate = boe_series.get('current_value', 4.00)
-    boe_date = boe_series.get('last_date', '2026-10-01')
+    boe_rate = boe_series.get('current_value')
+    boe_date = boe_series.get('last_date')
 
     # Spreads vs Fed Funds (DFF)
-    spread_ecb = round(ecb_rate - fed_rate, 2)
-    spread_boj = round(boj_rate - fed_rate, 2)
-    spread_boe = round(boe_rate - fed_rate, 2)
+    spread_ecb = round(ecb_rate - fed_rate, 2) if (ecb_rate is not None and fed_rate is not None) else None
+    spread_boj = round(boj_rate - fed_rate, 2) if (boj_rate is not None and fed_rate is not None) else None
+    spread_boe = round(boe_rate - fed_rate, 2) if (boe_rate is not None and fed_rate is not None) else None
 
     cb_rates_snapshot = [
         {
