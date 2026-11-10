@@ -1362,12 +1362,6 @@
       }
     },
     {
-      "id": "MODEL_25_14",
-      "label": "AI Chip Stress Gauge",
-      "category": "QUANT_MODEL",
-      "source": "analysisreports"
-    },
-    {
       "id": "IND_PAYEMS",
       "label": "All Employees: Total Nonfarm Payrolls",
       "category": "INDICATOR",
@@ -1523,13 +1517,13 @@
     {
       "id": "IND_DGS1MO",
       "label": "1-Month Treasury Rate",
-      "category": "MACRO_INDICATOR",
+      "category": "INDICATOR",
       "source": "FRED"
     },
     {
       "id": "IND_DGS3MO",
       "label": "3-Month Treasury Rate",
-      "category": "MACRO_INDICATOR",
+      "category": "INDICATOR",
       "source": "FRED"
     },
     {
@@ -1552,25 +1546,25 @@
     {
       "id": "IND_CPIAUCSL",
       "label": "Consumer Price Index (CPI-U Headline)",
-      "category": "MACRO_INDICATOR",
+      "category": "INDICATOR",
       "source": "BLS / FRED"
     },
     {
       "id": "IND_SAHMREALTIME",
       "label": "Real-Time Sahm Rule Recession Indicator",
-      "category": "MACRO_INDICATOR",
+      "category": "INDICATOR",
       "source": "FRED"
     },
     {
       "id": "IND_T10Y2Y",
       "label": "10Y - 2Y Treasury Yield Spread",
-      "category": "MACRO_INDICATOR",
+      "category": "INDICATOR",
       "source": "FRED"
     },
     {
       "id": "IND_IC4WSA",
       "label": "Initial Jobless Claims (4-Week Moving Avg)",
-      "category": "MACRO_INDICATOR",
+      "category": "INDICATOR",
       "source": "FRED"
     },
     {
@@ -2848,24 +2842,6 @@
       "target": "MODEL_25.5",
       "type": "BRIDGES_TO_MODEL",
       "passes": "eurodollar_repo_liquidity_impact"
-    },
-    {
-      "source": "IND_GSCPI",
-      "target": "MODEL_25_14",
-      "type": "INGESTS_SERIES",
-      "weight": 0.4
-    },
-    {
-      "source": "IND_NASDAQSOX",
-      "target": "MODEL_25_14",
-      "type": "INGESTS_SERIES",
-      "weight": 0.35
-    },
-    {
-      "source": "IND_VIXCLS",
-      "target": "MODEL_25_14",
-      "type": "INGESTS_SERIES",
-      "weight": 0.25
     },
     {
       "source": "IND_PAYEMS",
