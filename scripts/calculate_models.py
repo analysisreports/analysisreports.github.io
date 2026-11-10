@@ -1033,6 +1033,95 @@ def calc_ovx_vix_risk_premium(ovx_val, vix_val):
         return None
 
 
+# --- Model 25.8: Natgas / Crude Oil BTU Disconnect Engine ---
+def calc_natgas_crude_btu_disconnect(wti_price_val, natgas_price_val) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (wti_price_val, natgas_price_val)):
+        return None
+    try:
+        f_wti = float(wti_price_val)
+        f_gas = float(natgas_price_val)
+        if not (math.isfinite(f_wti) and math.isfinite(f_gas)) or f_gas <= 0.0 or f_wti < 0.0:
+            return None
+
+        raw_ratio = f_wti / f_gas
+        if not math.isfinite(raw_ratio):
+            return None
+        ratio = round(raw_ratio, 2)
+
+        if ratio < 6.0:
+            status = "NATGAS_CRISIS_BLACKOUT_RISK"
+        elif ratio > 35.0:
+            status = "NATGAS_GLUT_ENERGY_CHEAP"
+        else:
+            status = "ENERGY_PARITY_EQUILIBRIUM"
+
+        return {
+            "model_id": "MODEL_25.8",
+            "model_name": "Natgas / Crude Oil BTU Disconnect Engine",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.8",
+            "primary_value": ratio,
+            "unit": "WTI/NatGas Ratio",
+            "status": status,
+            "inputs": {
+                "wti_crude_usd_bbl": round(f_wti, 2),
+                "henry_hub_natgas_usd_mmbtu": round(f_gas, 2)
+            },
+            "metrics": {
+                "btu_disconnect_ratio": ratio,
+                "wti_price": round(f_wti, 2),
+                "natgas_price": round(f_gas, 2)
+            },
+            "interpretation": "Measures physical energy parity between WTI crude oil and Henry Hub natural gas. Ratios > 35 indicate natural gas supply glut and cheap domestic fuel; < 6 signal acute gas deficit and power shock."
+        }
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+
+
+# --- Model 25.9: Gasoline / Crude Crack Spread Impulse Engine ---
+def calc_gasoline_crude_crack_spread(gas_gal_price_val, wti_barrel_price_val) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (gas_gal_price_val, wti_barrel_price_val)):
+        return None
+    try:
+        f_gas = float(gas_gal_price_val)
+        f_wti = float(wti_barrel_price_val)
+        if not (math.isfinite(f_gas) and math.isfinite(f_wti)) or f_wti <= 0.0 or f_gas <= 0.0:
+            return None
+
+        gas_barrel_equiv = f_gas * 42.0
+        raw_spread = gas_barrel_equiv - f_wti
+        if not math.isfinite(raw_spread):
+            return None
+        spread = round(raw_spread, 2)
+
+        if spread > 40.0:
+            status = "REFINERY_BOTTLENECK_CRUNCH"
+        elif spread < 5.0:
+            status = "REFINING_MARGIN_COLLAPSE"
+        else:
+            status = "NORMAL_REFINING_MARGIN"
+
+        return {
+            "model_id": "MODEL_25.9",
+            "model_name": "Gasoline / Crude Crack Spread Impulse Engine",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.9",
+            "primary_value": spread,
+            "unit": "USD per Barrel",
+            "status": status,
+            "inputs": {
+                "gasoline_retail_usd_gal": round(f_gas, 3),
+                "wti_crude_usd_bbl": round(f_wti, 2)
+            },
+            "metrics": {
+                "crack_spread_usd": spread,
+                "gasoline_barrel_equiv_usd": round(gas_barrel_equiv, 2),
+                "wti_crude_usd": round(f_wti, 2)
+            },
+            "interpretation": "Measures refinery processing margins between retail gasoline and crude oil. Spreads > $40/bbl signal refinery capacity bottlenecks and consumer fuel cost shocks; < $5 indicate refining margin collapse."
+        }
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+
+
 # --- Model 25.17: Liquidity & Commodity Macro Regime Matrix ---
 def calc_liquidity_commodity_matrix(dgs3mo, dgs1mo, brent_yoy_pct):
     if any(v is None or isinstance(v, bool) for v in (dgs3mo, dgs1mo, brent_yoy_pct)):
@@ -2141,6 +2230,18 @@ def main():
     m_ovx_vix = calc_ovx_vix_risk_premium(ovx, vix)
     if m_ovx_vix:
         models_calculated.append(m_ovx_vix)
+
+    # Model 25.8: Natgas / Crude Oil BTU Disconnect Engine
+    natgas_price = series.get("DHHNGSP", {}).get("current_value")
+    m_btu = calc_natgas_crude_btu_disconnect(wti, natgas_price)
+    if m_btu:
+        models_calculated.append(m_btu)
+
+    # Model 25.9: Gasoline / Crude Crack Spread Impulse Engine
+    gas_price = series.get("GASREGW", {}).get("current_value")
+    m_crack_spread = calc_gasoline_crude_crack_spread(gas_price, wti)
+    if m_crack_spread:
+        models_calculated.append(m_crack_spread)
 
     # Model 25.17: Liquidity & Commodity Macro Regime Matrix
     brent_yoy = series.get("DCOILBRENTEU", {}).get("transformations", {}).get("percent_change_from_year_ago")

@@ -98,6 +98,12 @@ Regime States (Discrete Mapping):
 - STRUCTURAL_INFLATION_TRAP     : Sticky CPI exceeding flexible CPI by over 2.0% indicating structural service-shelter inflation entrapment.
 - TRANSITORY_INFLATION_SURGE    : Flexible CPI outpacing sticky CPI by over 2.0% reflecting transient commodity-led supply price spikes.
 - BALANCED_DISINFLATION_PATH    : Sticky and flexible inflation rates aligned within a +/- 2.0% spread along a balanced disinflation trajectory.
+- NATGAS_CRISIS_BLACKOUT_RISK   : Crude-to-gas ratio falling below 6.0 reflecting acute natural gas deficit and power generation blackout risks.
+- NATGAS_GLUT_ENERGY_CHEAP      : Crude-to-gas ratio exceeding 35.0 indicating extreme regional natural gas oversupply and depressed fuel costs.
+- ENERGY_PARITY_EQUILIBRIUM     : Crude-to-gas ratio within historical BTU parity corridor of 6.0 to 35.0.
+- REFINERY_BOTTLENECK_CRUNCH    : Gasoline crack spread exceeding $40.0/bbl signaling refinery throughput bottlenecks and retail fuel price shocks.
+- REFINING_MARGIN_COLLAPSE      : Gasoline crack spread below $5.0/bbl indicating refinery margin collapse and weak fuel consumption demand.
+- NORMAL_REFINING_MARGIN        : Gasoline crack spread within healthy operating corridor of $5.0 to $40.0/bbl.
 
 ---
 

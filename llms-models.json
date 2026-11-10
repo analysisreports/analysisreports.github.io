@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-10T00:52:29.877387+00:00",
+    "last_successful_sync": "2026-11-10T01:06:21.050238+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 40
+    "total_models_active": 42
   },
   "models": [
     {
@@ -631,6 +631,42 @@
         "ovx_vix_ratio": 2.27
       },
       "interpretation": "Evaluates the ratio between crude oil volatility (OVX) and equity volatility (VIX). Ratios > 2.2 signal severe geopolitical oil supply shocks and stagflationary headwinds."
+    },
+    {
+      "model_id": "MODEL_25.8",
+      "model_name": "Natgas / Crude Oil BTU Disconnect Engine",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.8",
+      "primary_value": 37.89,
+      "unit": "WTI/NatGas Ratio",
+      "status": "NATGAS_GLUT_ENERGY_CHEAP",
+      "inputs": {
+        "wti_crude_usd_bbl": 99.64,
+        "henry_hub_natgas_usd_mmbtu": 2.63
+      },
+      "metrics": {
+        "btu_disconnect_ratio": 37.89,
+        "wti_price": 99.64,
+        "natgas_price": 2.63
+      },
+      "interpretation": "Measures physical energy parity between WTI crude oil and Henry Hub natural gas. Ratios > 35 indicate natural gas supply glut and cheap domestic fuel; < 6 signal acute gas deficit and power shock."
+    },
+    {
+      "model_id": "MODEL_25.9",
+      "model_name": "Gasoline / Crude Crack Spread Impulse Engine",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.9",
+      "primary_value": 74.79,
+      "unit": "USD per Barrel",
+      "status": "REFINERY_BOTTLENECK_CRUNCH",
+      "inputs": {
+        "gasoline_retail_usd_gal": 4.153,
+        "wti_crude_usd_bbl": 99.64
+      },
+      "metrics": {
+        "crack_spread_usd": 74.79,
+        "gasoline_barrel_equiv_usd": 174.43,
+        "wti_crude_usd": 99.64
+      },
+      "interpretation": "Measures refinery processing margins between retail gasoline and crude oil. Spreads > $40/bbl signal refinery capacity bottlenecks and consumer fuel cost shocks; < $5 indicate refining margin collapse."
     },
     {
       "model_id": "MODEL_25.17",

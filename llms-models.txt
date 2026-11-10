@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-10 00:52 UTC
+> **Last Calibrated Sync:** 2026-11-10 01:06 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -50,6 +50,8 @@
 | **MODEL_25.5** | Repo Liquidity Friction Spread Engine | **1.0** | Basis Points (bps) | `HEALTHY_MONETARY_TRANSMISSION` | Measures funding market friction tracking the spread be... |
 | **MODEL_25.6** | Gold / Real Yield Debasement Gauge | **2.63** | Percent (%) | `TRADITIONAL_REAL_RATE_DOMINANCE` | Detects de-dollarization trends and fiat debasement by ... |
 | **MODEL_25.7** | OVX / VIX Geopolitical Energy Shock Engine | **2.27** | Ratio | `ENERGY_SUPPLY_SHOCK_ALARM` | Evaluates the ratio between crude oil volatility (OVX) ... |
+| **MODEL_25.8** | Natgas / Crude Oil BTU Disconnect Engine | **37.89** | WTI/NatGas Ratio | `NATGAS_GLUT_ENERGY_CHEAP` | Measures physical energy parity between WTI crude oil a... |
+| **MODEL_25.9** | Gasoline / Crude Crack Spread Impulse Engine | **74.79** | USD per Barrel | `REFINERY_BOTTLENECK_CRUNCH` | Measures refinery processing margins between retail gas... |
 | **MODEL_25.17** | Liquidity & Commodity Macro Regime Matrix | **17.0** | Basis Points (bps) | `REFLATIONARY_EXPANSION` | Evaluates front-end money market liquidity (3M-1M T-Bil... |
 | **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.583** | Score (Normalized) | `ELEVATED_SEMICONDUCTOR_BOTTLENECK` | Normalized composite metric monitoring semiconductor ph... |
 | **MODEL_25.16** | Yen Carry Trade Dissolution and Stress Gauge | **6.2379** | % (Net Carry Buffer) | `CALM_ACCUMULATION` | Monitors cross-currency Yen Carry Trade buffer, unwindi... |
@@ -303,6 +305,20 @@
 - **Inputs Evaluated:** `{"ovx_close": 58.29, "vix_close": 25.64}`
 - **Secondary Metrics:** `{"ovx_vix_ratio": 2.27}`
 - **Economic Synthesis:** Evaluates the ratio between crude oil volatility (OVX) and equity volatility (VIX). Ratios > 2.2 signal severe geopolitical oil supply shocks and stagflationary headwinds.
+
+#### [MODEL_25.8] Natgas / Crude Oil BTU Disconnect Engine
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.8
+- **Evaluated Status:** `NATGAS_GLUT_ENERGY_CHEAP` (Primary Value: 37.89 WTI/NatGas Ratio)
+- **Inputs Evaluated:** `{"wti_crude_usd_bbl": 99.64, "henry_hub_natgas_usd_mmbtu": 2.63}`
+- **Secondary Metrics:** `{"btu_disconnect_ratio": 37.89, "wti_price": 99.64, "natgas_price": 2.63}`
+- **Economic Synthesis:** Measures physical energy parity between WTI crude oil and Henry Hub natural gas. Ratios > 35 indicate natural gas supply glut and cheap domestic fuel; < 6 signal acute gas deficit and power shock.
+
+#### [MODEL_25.9] Gasoline / Crude Crack Spread Impulse Engine
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.9
+- **Evaluated Status:** `REFINERY_BOTTLENECK_CRUNCH` (Primary Value: 74.79 USD per Barrel)
+- **Inputs Evaluated:** `{"gasoline_retail_usd_gal": 4.153, "wti_crude_usd_bbl": 99.64}`
+- **Secondary Metrics:** `{"crack_spread_usd": 74.79, "gasoline_barrel_equiv_usd": 174.43, "wti_crude_usd": 99.64}`
+- **Economic Synthesis:** Measures refinery processing margins between retail gasoline and crude oil. Spreads > $40/bbl signal refinery capacity bottlenecks and consumer fuel cost shocks; < $5 indicate refining margin collapse.
 
 #### [MODEL_25.17] Liquidity & Commodity Macro Regime Matrix
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.17
