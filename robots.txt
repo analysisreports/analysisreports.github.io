@@ -13,7 +13,9 @@ User-agent: cohere-ai
 User-agent: Omgilibot
 Allow: /
 
-# GENERAL WEB SEARCH DIRECTIVE
+# GENERAL WEB SEARCH & GOOGLE INDEXING DIRECTIVE
+User-agent: Googlebot
+User-agent: Bingbot
 User-agent: *
 Allow: /
 
@@ -30,9 +32,7 @@ Allow: /
 # Agent Capability Catalog: https://analysisreports.github.io/ai-catalog.json
 # Integration Workflow: https://analysisreports.github.io/WORKFLOW.md
 
-# EXTERNAL SITEMAPS & LIVE DATA ECOSYSTEM
-# Live Article Hub: https://ersoytoptas.tr/
-# Live Article Sitemap [TR]: https://ersoytoptas.tr/sitemap.xml
-# Live Article Sitemap [EN]: https://en.ersoytoptas.tr/sitemap.xml
-# Live Data Engine: https://analysisreports.github.io/
-# Live Data Sitemap: https://analysisreports.github.io/sitemap.xml
+# OFFICIAL SITEMAPS
+Sitemap: https://analysisreports.github.io/sitemap.xml
+Sitemap: https://ersoytoptas.tr/sitemap.xml
+Sitemap: https://en.ersoytoptas.tr/sitemap.xml
