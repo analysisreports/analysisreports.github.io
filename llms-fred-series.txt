@@ -99,8 +99,8 @@ DRTSCIS
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-10 00:31:29 UTC
-# - Total Series Synced: 56 / 56
+# - Synced At: 2026-11-10 00:51:45 UTC
+# - Total Series Synced: 63 / 63
 # - Source Authority: Federal Reserve Bank of St. Louis (FRED API)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
@@ -324,6 +324,28 @@ Recent Observations (Last 5):
   2026-11-04: 3.8800
   2026-11-05: 3.8800
   2026-11-06: 3.8800
+
+--------------------------------------------------------------------------------
+Series ID: DHHNGSP
+Title: Henry Hub Natural Gas Spot Price
+Frequency: Daily (n_obs_per_yr: 260) | Units: Dollars per Million BTU
+Last Date: 2026-11-03 | Current Value: 2.6300 | Previous Value: 2.5400 | Year Ago Value: 2.7900
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.0900
+  2. Change from Year Ago: -0.1600
+  3. Percent Change: +3.5433%
+  4. Percent Change from Year Ago: -5.7348%
+  5. Compounded Annual Rate of Change: N/A
+  6. Continuously Compounded Rate of Change: +3.4820%
+  7. Continuously Compounded Annual Rate of Change: +905.3139%
+
+Recent Observations (Last 5):
+  2026-10-28: 2.8600
+  2026-10-29: 2.6800
+  2026-10-30: 2.4200
+  2026-11-02: 2.5400
+  2026-11-03: 2.6300
 
 --------------------------------------------------------------------------------
 Series ID: DFII10
@@ -654,6 +676,28 @@ Recent Observations (Last 5):
   2026-10-16: -0.4540
   2026-10-23: -0.4430
   2026-10-30: -0.4350
+
+--------------------------------------------------------------------------------
+Series ID: GASREGW
+Title: US Regular All Formulations Gas Price
+Frequency: Weekly (n_obs_per_yr: 52) | Units: Dollars per Gallon
+Last Date: 2026-11-02 | Current Value: 4.1530 | Previous Value: 4.2690 | Year Ago Value: 3.0190
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -0.1160
+  2. Change from Year Ago: +1.1340
+  3. Percent Change: -2.7173%
+  4. Percent Change from Year Ago: +37.5621%
+  5. Compounded Annual Rate of Change: -76.1296%
+  6. Continuously Compounded Rate of Change: -2.7549%
+  7. Continuously Compounded Annual Rate of Change: -143.2529%
+
+Recent Observations (Last 5):
+  2026-10-05: 4.3540
+  2026-10-12: 4.3310
+  2026-10-19: 4.2840
+  2026-10-26: 4.2690
+  2026-11-02: 4.1530
 
 --------------------------------------------------------------------------------
 Series ID: PAYEMS
@@ -1184,6 +1228,94 @@ Recent Observations (Last 5):
   2026-09-01: 14473.0559
 
 --------------------------------------------------------------------------------
+Series ID: STICKCPIM157SFRBATL
+Title: Sticky Price Consumer Price Index
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent Change
+Last Date: 2026-09-01 | Current Value: 0.2791 | Previous Value: 0.2539 | Year Ago Value: 0.2067
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.0252
+  2. Change from Year Ago: +0.0724
+  3. Percent Change: +9.9172%
+  4. Percent Change from Year Ago: +35.0033%
+  5. Compounded Annual Rate of Change: N/A (Rate is already annualized)
+  6. Continuously Compounded Rate of Change: +9.4557%
+  7. Continuously Compounded Annual Rate of Change: N/A (Rate is already annualized)
+
+Recent Observations (Last 5):
+  2026-05-01: 0.2386
+  2026-06-01: 0.0676
+  2026-07-01: 0.2859
+  2026-08-01: 0.2539
+  2026-09-01: 0.2791
+
+--------------------------------------------------------------------------------
+Series ID: FLEXCPIM157SFRBATL
+Title: Flexible Price Consumer Price Index
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent Change
+Last Date: 2026-09-01 | Current Value: 1.6862 | Previous Value: 0.8105 | Year Ago Value: 0.5547
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.8757
+  2. Change from Year Ago: +1.1315
+  3. Percent Change: +108.0374%
+  4. Percent Change from Year Ago: +203.9714%
+  5. Compounded Annual Rate of Change: N/A (Rate is already annualized)
+  6. Continuously Compounded Rate of Change: +73.2547%
+  7. Continuously Compounded Annual Rate of Change: N/A (Rate is already annualized)
+
+Recent Observations (Last 5):
+  2026-05-01: 1.1076
+  2026-06-01: -1.7743
+  2026-07-01: -0.5143
+  2026-08-01: 0.8105
+  2026-09-01: 1.6862
+
+--------------------------------------------------------------------------------
+Series ID: LNS12500000
+Title: Employed, Usually Work Full Time
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Thousands of Persons
+Last Date: 2026-10-01 | Current Value: 135090.0000 | Previous Value: 134376.0000 | Year Ago Value: 135157.0000
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +714.0000
+  2. Change from Year Ago: -67.0000
+  3. Percent Change: +0.5313%
+  4. Percent Change from Year Ago: -0.0496%
+  5. Compounded Annual Rate of Change: +6.5658%
+  6. Continuously Compounded Rate of Change: +0.5299%
+  7. Continuously Compounded Annual Rate of Change: +6.3593%
+
+Recent Observations (Last 5):
+  2026-06-01: 133659.0000
+  2026-07-01: 133553.0000
+  2026-08-01: 134288.0000
+  2026-09-01: 134376.0000
+  2026-10-01: 135090.0000
+
+--------------------------------------------------------------------------------
+Series ID: LNS12032194
+Title: Employment Level - Part-Time for Economic Reasons, All Industries
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Thousands of Persons
+Last Date: 2026-10-01 | Current Value: 4840.0000 | Previous Value: 4501.0000 | Year Ago Value: 4594.0000
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +339.0000
+  2. Change from Year Ago: +246.0000
+  3. Percent Change: +7.5317%
+  4. Percent Change from Year Ago: +5.3548%
+  5. Compounded Annual Rate of Change: +139.0211%
+  6. Continuously Compounded Rate of Change: +7.2615%
+  7. Continuously Compounded Annual Rate of Change: +87.1382%
+
+Recent Observations (Last 5):
+  2026-06-01: 4681.0000
+  2026-07-01: 4804.0000
+  2026-08-01: 4390.0000
+  2026-09-01: 4501.0000
+  2026-10-01: 4840.0000
+
+--------------------------------------------------------------------------------
 Series ID: GDPC1
 Title: Real Gross Domestic Product
 Frequency: Quarterly (n_obs_per_yr: 4) | Units: Billions of Chained 2017 Dollars
@@ -1338,45 +1470,23 @@ Recent Observations (Last 5):
   2026-04-01: 2.8500
 
 --------------------------------------------------------------------------------
-Series ID: STICKCPIM157SFRBATL
-Title: Sticky Price Consumer Price Index
-Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent Change at Annual Rate
-Last Date: 2026-09-01 | Current Value: 0.2791 | Previous Value: 0.2539 | Year Ago Value: 0.2067
+Series ID: DRTSCIS
+Title: Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Small Firms
+Frequency: Quarterly (n_obs_per_yr: 4) | Units: Percent
+Last Date: 2026-10-01 | Current Value: 5.1000 | Previous Value: 1.8000 | Year Ago Value: 8.3000
 
 Transformations (Official St. Louis Fed Formulas):
-  1. Change: +0.0252
-  2. Change from Year Ago: +0.0724
-  3. Percent Change: +9.9172%
-  4. Percent Change from Year Ago: +35.0033%
-  5. Compounded Annual Rate of Change: N/A
-  6. Continuously Compounded Rate of Change: +9.4557%
-  7. Continuously Compounded Annual Rate of Change: +113.4686%
+  1. Change: +3.3000
+  2. Change from Year Ago: -3.2000
+  3. Percent Change: +183.3333%
+  4. Percent Change from Year Ago: -38.5542%
+  5. Compounded Annual Rate of Change: N/A (Rate is already annualized)
+  6. Continuously Compounded Rate of Change: +104.1454%
+  7. Continuously Compounded Annual Rate of Change: N/A (Rate is already annualized)
 
 Recent Observations (Last 5):
-  2026-05-01: 0.2386
-  2026-06-01: 0.0676
-  2026-07-01: 0.2859
-  2026-08-01: 0.2539
-  2026-09-01: 0.2791
-
---------------------------------------------------------------------------------
-Series ID: FLEXCPIM157SFRBATL
-Title: Flexible Price Consumer Price Index
-Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent Change at Annual Rate
-Last Date: 2026-09-01 | Current Value: 1.6862 | Previous Value: 0.8105 | Year Ago Value: 0.5547
-
-Transformations (Official St. Louis Fed Formulas):
-  1. Change: +0.8757
-  2. Change from Year Ago: +1.1315
-  3. Percent Change: +108.0374%
-  4. Percent Change from Year Ago: +203.9714%
-  5. Compounded Annual Rate of Change: N/A
-  6. Continuously Compounded Rate of Change: +73.2547%
-  7. Continuously Compounded Annual Rate of Change: +879.0570%
-
-Recent Observations (Last 5):
-  2026-05-01: 1.1076
-  2026-06-01: -1.7743
-  2026-07-01: -0.5143
-  2026-08-01: 0.8105
-  2026-09-01: 1.6862
+  2025-10-01: 8.3000
+  2026-01-01: 8.9000
+  2026-04-01: 6.6000
+  2026-07-01: 1.8000
+  2026-10-01: 5.1000

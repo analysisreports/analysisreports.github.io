@@ -5,12 +5,11 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-10T00:31:29Z",
-    "total_series": 56,
+    "last_successful_sync": "2026-11-10T00:51:45Z",
+    "total_series": 63,
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
-    "root_index": "https://analysisreports.github.io/llms.txt",
-    "series_count": 58
+    "root_index": "https://analysisreports.github.io/llms.txt"
   },
   "series": {
     "DCOILBRENTEU": {
@@ -440,6 +439,49 @@
         {
           "date": "2026-11-06",
           "value": 3.88
+        }
+      ]
+    },
+    "DHHNGSP": {
+      "series_id": "DHHNGSP",
+      "title": "Henry Hub Natural Gas Spot Price",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Dollars per Million BTU",
+      "source": "Dollars per Million BTU",
+      "last_date": "2026-11-03",
+      "current_value": 2.63,
+      "previous_value": 2.54,
+      "year_ago_value": 2.79,
+      "transformations": {
+        "change": 0.09,
+        "change_from_year_ago": -0.16,
+        "percent_change": 3.5433,
+        "percent_change_from_year_ago": -5.7348,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 3.482,
+        "continuously_compounded_annual_rate_of_change": 905.3139
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-28",
+          "value": 2.86
+        },
+        {
+          "date": "2026-10-29",
+          "value": 2.68
+        },
+        {
+          "date": "2026-10-30",
+          "value": 2.42
+        },
+        {
+          "date": "2026-11-02",
+          "value": 2.54
+        },
+        {
+          "date": "2026-11-03",
+          "value": 2.63
         }
       ]
     },
@@ -1085,6 +1127,49 @@
         {
           "date": "2026-10-30",
           "value": -0.435
+        }
+      ]
+    },
+    "GASREGW": {
+      "series_id": "GASREGW",
+      "title": "US Regular All Formulations Gas Price",
+      "frequency": "Weekly",
+      "n_obs_per_yr": 52,
+      "units": "Dollars per Gallon",
+      "source": "Dollars per Gallon",
+      "last_date": "2026-11-02",
+      "current_value": 4.153,
+      "previous_value": 4.269,
+      "year_ago_value": 3.019,
+      "transformations": {
+        "change": -0.116,
+        "change_from_year_ago": 1.134,
+        "percent_change": -2.7173,
+        "percent_change_from_year_ago": 37.5621,
+        "compounded_annual_rate_of_change": -76.1296,
+        "continuously_compounded_rate_of_change": -2.7549,
+        "continuously_compounded_annual_rate_of_change": -143.2529
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-05",
+          "value": 4.354
+        },
+        {
+          "date": "2026-10-12",
+          "value": 4.331
+        },
+        {
+          "date": "2026-10-19",
+          "value": 4.284
+        },
+        {
+          "date": "2026-10-26",
+          "value": 4.269
+        },
+        {
+          "date": "2026-11-02",
+          "value": 4.153
         }
       ]
     },
@@ -2120,6 +2205,178 @@
         }
       ]
     },
+    "STICKCPIM157SFRBATL": {
+      "series_id": "STICKCPIM157SFRBATL",
+      "title": "Sticky Price Consumer Price Index",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Percent Change",
+      "source": "Percent Change",
+      "last_date": "2026-09-01",
+      "current_value": 0.279114413,
+      "previous_value": 0.253931514,
+      "year_ago_value": 0.206746387,
+      "transformations": {
+        "change": 0.0252,
+        "change_from_year_ago": 0.0724,
+        "percent_change": 9.9172,
+        "percent_change_from_year_ago": 35.0033,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 9.4557,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 0.238615079
+        },
+        {
+          "date": "2026-06-01",
+          "value": 0.0676495
+        },
+        {
+          "date": "2026-07-01",
+          "value": 0.28592279
+        },
+        {
+          "date": "2026-08-01",
+          "value": 0.253931514
+        },
+        {
+          "date": "2026-09-01",
+          "value": 0.279114413
+        }
+      ]
+    },
+    "FLEXCPIM157SFRBATL": {
+      "series_id": "FLEXCPIM157SFRBATL",
+      "title": "Flexible Price Consumer Price Index",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Percent Change",
+      "source": "Percent Change",
+      "last_date": "2026-09-01",
+      "current_value": 1.686174531,
+      "previous_value": 0.810515262,
+      "year_ago_value": 0.55471486,
+      "transformations": {
+        "change": 0.8757,
+        "change_from_year_ago": 1.1315,
+        "percent_change": 108.0374,
+        "percent_change_from_year_ago": 203.9714,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 73.2547,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 1.107630624
+        },
+        {
+          "date": "2026-06-01",
+          "value": -1.774278179
+        },
+        {
+          "date": "2026-07-01",
+          "value": -0.514324319
+        },
+        {
+          "date": "2026-08-01",
+          "value": 0.810515262
+        },
+        {
+          "date": "2026-09-01",
+          "value": 1.686174531
+        }
+      ]
+    },
+    "LNS12500000": {
+      "series_id": "LNS12500000",
+      "title": "Employed, Usually Work Full Time",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Thousands of Persons",
+      "source": "Thousands of Persons",
+      "last_date": "2026-10-01",
+      "current_value": 135090.0,
+      "previous_value": 134376.0,
+      "year_ago_value": 135157.0,
+      "transformations": {
+        "change": 714.0,
+        "change_from_year_ago": -67.0,
+        "percent_change": 0.5313,
+        "percent_change_from_year_ago": -0.0496,
+        "compounded_annual_rate_of_change": 6.5658,
+        "continuously_compounded_rate_of_change": 0.5299,
+        "continuously_compounded_annual_rate_of_change": 6.3593
+      },
+      "recent_observations": [
+        {
+          "date": "2026-06-01",
+          "value": 133659.0
+        },
+        {
+          "date": "2026-07-01",
+          "value": 133553.0
+        },
+        {
+          "date": "2026-08-01",
+          "value": 134288.0
+        },
+        {
+          "date": "2026-09-01",
+          "value": 134376.0
+        },
+        {
+          "date": "2026-10-01",
+          "value": 135090.0
+        }
+      ]
+    },
+    "LNS12032194": {
+      "series_id": "LNS12032194",
+      "title": "Employment Level - Part-Time for Economic Reasons, All Industries",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Thousands of Persons",
+      "source": "Thousands of Persons",
+      "last_date": "2026-10-01",
+      "current_value": 4840.0,
+      "previous_value": 4501.0,
+      "year_ago_value": 4594.0,
+      "transformations": {
+        "change": 339.0,
+        "change_from_year_ago": 246.0,
+        "percent_change": 7.5317,
+        "percent_change_from_year_ago": 5.3548,
+        "compounded_annual_rate_of_change": 139.0211,
+        "continuously_compounded_rate_of_change": 7.2615,
+        "continuously_compounded_annual_rate_of_change": 87.1382
+      },
+      "recent_observations": [
+        {
+          "date": "2026-06-01",
+          "value": 4681.0
+        },
+        {
+          "date": "2026-07-01",
+          "value": 4804.0
+        },
+        {
+          "date": "2026-08-01",
+          "value": 4390.0
+        },
+        {
+          "date": "2026-09-01",
+          "value": 4501.0
+        },
+        {
+          "date": "2026-10-01",
+          "value": 4840.0
+        }
+      ]
+    },
     "GDPC1": {
       "series_id": "GDPC1",
       "title": "Real Gross Domestic Product",
@@ -2421,89 +2678,46 @@
         }
       ]
     },
-    "STICKCPIM157SFRBATL": {
-      "series_id": "STICKCPIM157SFRBATL",
-      "title": "Sticky Price Consumer Price Index",
-      "frequency": "Monthly",
-      "n_obs_per_yr": 12,
-      "units": "Percent Change at Annual Rate",
-      "source": "Percent Change at Annual Rate",
-      "last_date": "2026-09-01",
-      "current_value": 0.279114413,
-      "previous_value": 0.253931514,
-      "year_ago_value": 0.206746387,
+    "DRTSCIS": {
+      "series_id": "DRTSCIS",
+      "title": "Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Small Firms",
+      "frequency": "Quarterly",
+      "n_obs_per_yr": 4,
+      "units": "Percent",
+      "source": "Percent",
+      "last_date": "2026-10-01",
+      "current_value": 5.1,
+      "previous_value": 1.8,
+      "year_ago_value": 8.3,
       "transformations": {
-        "change": 0.0252,
-        "change_from_year_ago": 0.0724,
-        "percent_change": 9.9172,
-        "percent_change_from_year_ago": 35.0033,
+        "change": 3.3,
+        "change_from_year_ago": -3.2,
+        "percent_change": 183.3333,
+        "percent_change_from_year_ago": -38.5542,
         "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 9.4557,
-        "continuously_compounded_annual_rate_of_change": 113.4686
+        "continuously_compounded_rate_of_change": 104.1454,
+        "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
         {
-          "date": "2026-05-01",
-          "value": 0.238615079
+          "date": "2025-10-01",
+          "value": 8.3
         },
         {
-          "date": "2026-06-01",
-          "value": 0.0676495
+          "date": "2026-01-01",
+          "value": 8.9
         },
         {
-          "date": "2026-07-01",
-          "value": 0.28592279
-        },
-        {
-          "date": "2026-08-01",
-          "value": 0.253931514
-        },
-        {
-          "date": "2026-09-01",
-          "value": 0.279114413
-        }
-      ]
-    },
-    "FLEXCPIM157SFRBATL": {
-      "series_id": "FLEXCPIM157SFRBATL",
-      "title": "Flexible Price Consumer Price Index",
-      "frequency": "Monthly",
-      "n_obs_per_yr": 12,
-      "units": "Percent Change at Annual Rate",
-      "source": "Percent Change at Annual Rate",
-      "last_date": "2026-09-01",
-      "current_value": 1.686174531,
-      "previous_value": 0.810515262,
-      "year_ago_value": 0.55471486,
-      "transformations": {
-        "change": 0.8757,
-        "change_from_year_ago": 1.1315,
-        "percent_change": 108.0374,
-        "percent_change_from_year_ago": 203.9714,
-        "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 73.2547,
-        "continuously_compounded_annual_rate_of_change": 879.057
-      },
-      "recent_observations": [
-        {
-          "date": "2026-05-01",
-          "value": 1.107630624
-        },
-        {
-          "date": "2026-06-01",
-          "value": -1.774278179
+          "date": "2026-04-01",
+          "value": 6.6
         },
         {
           "date": "2026-07-01",
-          "value": -0.514324319
+          "value": 1.8
         },
         {
-          "date": "2026-08-01",
-          "value": 0.810515262
-        },
-        {
-          "date": "2026-09-01",
-          "value": 1.686174531
+          "date": "2026-10-01",
+          "value": 5.1
         }
       ]
     }

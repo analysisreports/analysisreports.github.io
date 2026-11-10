@@ -5,8 +5,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-10T00:31:59.069950+00:00",
-    "total_series": 9,
+    "last_successful_sync": "2026-11-10T00:52:21.526379+00:00",
+    "total_series": 11,
     "source_authority": "European Central Bank (ECB Data Portal)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.5",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -320,6 +320,50 @@
         }
       ]
     },
+    "FM/B.U2.EUR.4F.KR.DFR.LEV": {
+      "series_ref": "FM/B.U2.EUR.4F.KR.DFR.LEV",
+      "title": "ECB Deposit Facility Rate (DFR - Primary Policy Rate)",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Percent per Annum",
+      "category": "Policy Benchmark Rate",
+      "source": "European Central Bank (ECB Data Portal)",
+      "last_date": "2026-09-16",
+      "current_value": 2.5,
+      "previous_value": 2.25,
+      "year_ago_value": 3.5,
+      "transformations": {
+        "change": 0.25,
+        "change_from_year_ago": -1.0,
+        "percent_change": 11.1111,
+        "percent_change_from_year_ago": -28.5714,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 10.5361,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2025-03-12",
+          "value": 2.5
+        },
+        {
+          "date": "2025-04-23",
+          "value": 2.25
+        },
+        {
+          "date": "2025-06-11",
+          "value": 2.0
+        },
+        {
+          "date": "2026-06-17",
+          "value": 2.25
+        },
+        {
+          "date": "2026-09-16",
+          "value": 2.5
+        }
+      ]
+    },
     "FM/B.U2.EUR.4F.KR.MLFR.LEV": {
       "series_ref": "FM/B.U2.EUR.4F.KR.MLFR.LEV",
       "title": "ECB Marginal Lending Facility Rate (MLFR)",
@@ -405,6 +449,50 @@
         {
           "date": "2025-12",
           "value": 1.9
+        }
+      ]
+    },
+    "ICP/M.U2.N.XEF000.4.ANR": {
+      "series_ref": "ICP/M.U2.N.XEF000.4.ANR",
+      "title": "Euro Area Core HICP Inflation Rate (Excl. Energy & Food)",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Annual Rate of Change (%)",
+      "category": "Consumer Prices",
+      "source": "European Central Bank (ECB Data Portal)",
+      "last_date": "2025-12",
+      "current_value": 2.3,
+      "previous_value": 2.4,
+      "year_ago_value": 2.7,
+      "transformations": {
+        "change": -0.1,
+        "change_from_year_ago": -0.4,
+        "percent_change": -4.1667,
+        "percent_change_from_year_ago": -14.8148,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": -4.256,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2025-08",
+          "value": 2.3
+        },
+        {
+          "date": "2025-09",
+          "value": 2.4
+        },
+        {
+          "date": "2025-10",
+          "value": 2.4
+        },
+        {
+          "date": "2025-11",
+          "value": 2.4
+        },
+        {
+          "date": "2025-12",
+          "value": 2.3
         }
       ]
     }
