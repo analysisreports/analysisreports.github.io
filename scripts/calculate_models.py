@@ -1290,6 +1290,54 @@ def calc_gold_oil_ratio(gold_price, oil_price) -> Optional[Dict[str, Any]]:
         return None
 
 
+# --- Model 22: Household Credit Stress Gauge ---
+def calc_household_credit_stress(delinquency_rate_val, saving_rate_val) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (delinquency_rate_val, saving_rate_val)):
+        return None
+    try:
+        delinq = float(delinquency_rate_val)
+        saving = float(saving_rate_val)
+        if not (math.isfinite(delinq) and math.isfinite(saving)):
+            return None
+        # Delinquency rate cannot be negative
+        if delinq < 0.0:
+            return None
+
+        # If saving rate is zero or negative, buffer is exhausted
+        if saving <= 0.0:
+            ratio = 999.0
+            status = "SEVERE_CONSUMER_STRESS"
+        else:
+            ratio = round(delinq / saving, 3)
+            if ratio > 1.00:
+                status = "SEVERE_CONSUMER_STRESS"
+            elif ratio >= 0.50:
+                status = "ELEVATED_PRESSURE"
+            else:
+                status = "HEALTHY_BALANCE_SHEET"
+
+        return {
+            "model_id": "MODEL_22",
+            "model_name": "Household Credit Stress Gauge",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#22",
+            "primary_value": ratio,
+            "unit": "Stress Ratio",
+            "status": status,
+            "inputs": {
+                "credit_card_delinquency_rate_drcclacbs_pct": round(delinq, 2),
+                "personal_saving_rate_psavert_pct": round(saving, 2)
+            },
+            "metrics": {
+                "household_stress_ratio": ratio,
+                "delinquency_rate_pct": round(delinq, 2),
+                "saving_rate_pct": round(saving, 2)
+            },
+            "interpretation": "Measures consumer debt service vulnerability by evaluating credit card delinquency rates against the personal saving rate cushion. Ratios > 1.00 reflect severe consumer distress and spending contraction risk."
+        }
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+
+
 # --- Model 23: Okun Gap (Growth-Employment Divergence) ---
 def calc_okun_labor_gap(actual_unrate_delta, real_gdp_yoy) -> Optional[Dict[str, Any]]:
     if any(v is None or isinstance(v, bool) for v in (actual_unrate_delta, real_gdp_yoy)):
@@ -1539,6 +1587,62 @@ def calc_housing_freeze_index(mortgage_rate, permit_yoy) -> Optional[Dict[str, A
             "interpretation": "Measures divergence between surging mortgage borrowing costs and residential building permit momentum to model lock-in supply bottlenecks and housing transaction freezes."
         }
     except (TypeError, ValueError):
+        return None
+
+
+# --- Model 24: Safe Haven Flight Index ---
+def calc_safe_haven_flight_index(dxy_val, hy_spread_val, dgs10_val) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (dxy_val, hy_spread_val, dgs10_val)):
+        return None
+    try:
+        dxy = float(dxy_val)
+        hy = float(hy_spread_val)
+        y10 = float(dgs10_val)
+        if not (math.isfinite(dxy) and math.isfinite(hy) and math.isfinite(y10)):
+            return None
+        if dxy <= 0.0 or hy <= 0.0 or y10 <= 0.0:
+            return None
+
+        raw_dollar_bond_ratio = dxy / y10
+        raw_score = raw_dollar_bond_ratio * hy
+        raw_ratio = raw_score / 100.0
+
+        if not (math.isfinite(raw_dollar_bond_ratio) and math.isfinite(raw_score) and math.isfinite(raw_ratio)):
+            return None
+
+        dollar_bond_ratio = round(raw_dollar_bond_ratio, 2)
+        score = round(raw_score, 2)
+        ratio = round(raw_ratio, 3)
+
+        if ratio > 2.50:
+            status = "EXTREME_LIQUIDITY_PANIC"
+        elif ratio > 1.80:
+            status = "HIGH_FLIGHT_TO_SAFETY"
+        elif ratio > 1.00:
+            status = "MODERATE_HEDGING"
+        else:
+            status = "NORMAL_MARKET_REGIME"
+
+        return {
+            "model_id": "MODEL_24",
+            "model_name": "Safe Haven Flight Index",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#24",
+            "primary_value": ratio,
+            "unit": "Flight Ratio",
+            "status": status,
+            "inputs": {
+                "nominal_broad_dollar_index_dtwexbgs": round(dxy, 4),
+                "high_yield_oas_bamlh0a0hym2": round(hy, 2),
+                "nominal_10y_treasury_dgs10": round(y10, 2)
+            },
+            "metrics": {
+                "flight_ratio": ratio,
+                "safe_haven_score": score,
+                "dollar_bond_ratio": dollar_bond_ratio
+            },
+            "interpretation": "Measures capital flight into safe-haven USD and flight-to-safety dynamics by evaluating dollar strength and credit spreads against Treasury yields. Values > 1.80 indicate acute flight to safety."
+        }
+    except (TypeError, ValueError, ZeroDivisionError):
         return None
 
 
@@ -1844,6 +1948,13 @@ def main():
     if m_gold_oil:
         models_calculated.append(m_gold_oil)
 
+    # Model 22: Household Credit Stress Gauge
+    drcclacbs_val = series.get("DRCCLACBS", {}).get("current_value")
+    psavert_val = series.get("PSAVERT", {}).get("current_value")
+    m_household = calc_household_credit_stress(drcclacbs_val, psavert_val)
+    if m_household:
+        models_calculated.append(m_household)
+
     # Model 23: Okun Gap (Growth-Employment Divergence)
     gdp_yoy = series.get("GDPC1", {}).get("transformations", {}).get("percent_change_from_year_ago")
     unrate_delta_yoy = round(unrate_curr - unrate_yr, 2) if (unrate_curr is not None and unrate_yr is not None) else None
@@ -1885,6 +1996,12 @@ def main():
     m_housing = calc_housing_freeze_index(mortgage_rate, permit_yoy)
     if m_housing:
         models_calculated.append(m_housing)
+
+    # Model 24: Safe Haven Flight Index
+    dtwexbgs_val = series.get("DTWEXBGS", {}).get("current_value")
+    m_flight = calc_safe_haven_flight_index(dtwexbgs_val, hy_spread, dgs10_val)
+    if m_flight:
+        models_calculated.append(m_flight)
 
     # Model 25: Terms of Trade (TOT)
     export_idx = series.get("IQ", {}).get("current_value")

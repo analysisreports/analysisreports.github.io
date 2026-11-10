@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T23:48:19.248654+00:00",
+    "last_successful_sync": "2026-11-10T00:24:02.420724+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 36
+    "total_models_active": 38
   },
   "models": [
     {
@@ -363,6 +363,24 @@
       "interpretation": "Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks."
     },
     {
+      "model_id": "MODEL_22",
+      "model_name": "Household Credit Stress Gauge",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#22",
+      "primary_value": 0.75,
+      "unit": "Stress Ratio",
+      "status": "ELEVATED_PRESSURE",
+      "inputs": {
+        "credit_card_delinquency_rate_drcclacbs_pct": 2.85,
+        "personal_saving_rate_psavert_pct": 3.8
+      },
+      "metrics": {
+        "household_stress_ratio": 0.75,
+        "delinquency_rate_pct": 2.85,
+        "saving_rate_pct": 3.8
+      },
+      "interpretation": "Measures consumer debt service vulnerability by evaluating credit card delinquency rates against the personal saving rate cushion. Ratios > 1.00 reflect severe consumer distress and spending contraction risk."
+    },
+    {
       "model_id": "MODEL_23",
       "model_name": "Okun Gap (Growth-Employment Divergence)",
       "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23",
@@ -464,6 +482,25 @@
         "permits_yoy_pct": -3.19
       },
       "interpretation": "Measures divergence between surging mortgage borrowing costs and residential building permit momentum to model lock-in supply bottlenecks and housing transaction freezes."
+    },
+    {
+      "model_id": "MODEL_24",
+      "model_name": "Safe Haven Flight Index",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#24",
+      "primary_value": 0.861,
+      "unit": "Flight Ratio",
+      "status": "NORMAL_MARKET_REGIME",
+      "inputs": {
+        "nominal_broad_dollar_index_dtwexbgs": 121.8803,
+        "high_yield_oas_bamlh0a0hym2": 3.42,
+        "nominal_10y_treasury_dgs10": 4.84
+      },
+      "metrics": {
+        "flight_ratio": 0.861,
+        "safe_haven_score": 86.12,
+        "dollar_bond_ratio": 25.18
+      },
+      "interpretation": "Measures capital flight into safe-haven USD and flight-to-safety dynamics by evaluating dollar strength and credit spreads against Treasury yields. Values > 1.80 indicate acute flight to safety."
     },
     {
       "model_id": "MODEL_25",

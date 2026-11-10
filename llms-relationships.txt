@@ -85,6 +85,13 @@ Regime States (Discrete Mapping):
 - FAIR_VALUED                   : Equity market valuation to GDP between 100% and 140% reflecting balanced asset pricing.
 - UNDERVALUED                   : Equity market valuation to GDP below 100% reflecting attractive entry territory.
 - CYCLICAL_EXPANSION            : Copper-to-gold ratio exhibiting rising momentum reflecting industrial demand expansion and cyclical economic acceleration.
+- SEVERE_CONSUMER_STRESS        : Household credit delinquency rate exceeding personal saving rate indicating consumer insolvency and spending contraction.
+- ELEVATED_PRESSURE             : Household credit delinquency rate between 0.50 and 1.00 of personal saving rate reflecting thinning household liquidity buffers.
+- HEALTHY_BALANCE_SHEET         : Household credit delinquency rate below 0.50 of personal saving rate indicating resilient consumer balance sheets.
+- EXTREME_LIQUIDITY_PANIC       : Flight to safety ratio exceeding 2.50 indicating acute flight to cash and systemic liquidity panic.
+- HIGH_FLIGHT_TO_SAFETY         : Flight to safety ratio between 1.80 and 2.50 reflecting intense safe-haven flows into dollars and sovereign debt.
+- MODERATE_HEDGING              : Flight to safety ratio between 1.00 and 1.80 indicating defensive macro portfolio positioning.
+- NORMAL_MARKET_REGIME          : Flight to safety ratio below 1.00 reflecting orderly risk pricing and calm capital markets.
 
 ---
 

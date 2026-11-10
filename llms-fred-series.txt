@@ -49,6 +49,7 @@ ANFCI
 
 [MONTHLY]
 PAYEMS
+PSAVERT
 CIVPART
 TOTALSL
 BOGMBASE
@@ -79,6 +80,7 @@ GFDEGDQ188S
 GDPPOT
 NCBEILQ027S
 GDP
+DRCCLACBS
 
 
 [SEMIANNUAL]
@@ -1260,3 +1262,47 @@ Recent Observations (Last 5):
   2026-07-01: 13542.8209
   2026-08-01: 14331.2648
   2026-09-01: 14473.0559
+
+--------------------------------------------------------------------------------
+Series ID: PSAVERT
+Title: Personal Saving Rate
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent
+Last Date: 2026-09-01 | Current Value: 3.8000 | Previous Value: 4.0000 | Year Ago Value: 5.1000
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -0.2000
+  2. Change from Year Ago: -1.3000
+  3. Percent Change: -5.0000%
+  4. Percent Change from Year Ago: -25.4902%
+  5. Compounded Annual Rate of Change: N/A
+  6. Continuously Compounded Rate of Change: -5.1293%
+  7. Continuously Compounded Annual Rate of Change: -61.5520%
+
+Recent Observations (Last 5):
+  2026-05-01: 4.4000
+  2026-06-01: 4.4000
+  2026-07-01: 4.5000
+  2026-08-01: 4.0000
+  2026-09-01: 3.8000
+
+--------------------------------------------------------------------------------
+Series ID: DRCCLACBS
+Title: Delinquency Rate on Credit Card Loans, All Commercial Banks
+Frequency: Quarterly (n_obs_per_yr: 4) | Units: Percent
+Last Date: 2026-04-01 | Current Value: 2.8500 | Previous Value: 2.9100 | Year Ago Value: 3.0400
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -0.0600
+  2. Change from Year Ago: -0.1900
+  3. Percent Change: -2.0619%
+  4. Percent Change from Year Ago: -6.2500%
+  5. Compounded Annual Rate of Change: N/A
+  6. Continuously Compounded Rate of Change: -2.0834%
+  7. Continuously Compounded Annual Rate of Change: -8.3336%
+
+Recent Observations (Last 5):
+  2025-04-01: 3.0400
+  2025-07-01: 2.9900
+  2025-10-01: 2.9500
+  2026-01-01: 2.9100
+  2026-04-01: 2.8500

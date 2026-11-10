@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-09 23:48 UTC
+> **Last Calibrated Sync:** 2026-11-10 00:24 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -34,12 +34,14 @@
 | **MODEL_19** | Buffett Indicator (Corporate Equities to GDP) | **251.59** | Percent (%) | `SEVERELY_OVERVALUED` | Measures total equity valuation froth against national ... |
 | **MODEL_20** | Copper to Gold Macro Sentiment Ratio | **3.5257** | Ratio (USD/MT to USD/oz) | `CYCLICAL_EXPANSION` | Pits industrial cyclical momentum (Doctor Copper) again... |
 | **MODEL_21** | Gold to Oil Crisis & Recession Ratio | **41.2** | Barrels per Ounce | `MACRO_CRISIS_RECESSION` | Calculates ounces of gold per barrel of crude oil to cl... |
+| **MODEL_22** | Household Credit Stress Gauge | **0.75** | Stress Ratio | `ELEVATED_PRESSURE` | Measures consumer debt service vulnerability by evaluat... |
 | **MODEL_23** | Okun Gap (Growth-Employment Divergence) | **-0.27** | Percentage Points (ppt) | `BALANCED_OKUN_EQUILIBRIUM` | Evaluates the historical elasticity between real GDP gr... |
 | **MODEL_23.1** | Labor Market Dual-Track Dynamics | **165.0** | Thousands (k) | `BALANCED_LABOR_MARKET` | Cross-evaluates payroll gains against unemployment rate... |
 | **MODEL_23.4** | Early Layoff and Recession Signal | **3.41** | Index Points | `EXPANSION_EMPLOYMENT_MOMENTUM` | Detects latent employment losses and early recessionary... |
 | **MODEL_23.6** | Early Employment Crack Signal | **-13.64** | Index Points | `LABOR_MARKET_ALIGNED` | Identifies early labor cracks by comparing weekly joble... |
 | **MODEL_23.7** | Inventory to Sales Glut Ratio | **1.33** | Ratio | `BALANCED_SUPPLY_CHAIN` | Measures total business inventories relative to monthly... |
 | **MODEL_23.8** | Mortgage and Permit Divergence (Housing Freeze Index) | **7.5** | Index Points | `SUPPLY_CONTRACTION` | Measures divergence between surging mortgage borrowing ... |
+| **MODEL_24** | Safe Haven Flight Index | **0.861** | Flight Ratio | `NORMAL_MARKET_REGIME` | Measures capital flight into safe-haven USD and flight-... |
 | **MODEL_25** | Terms of Trade (TOT) | **112.22** | Index Points | `FAVORABLE_TRADE` | Evaluates sovereign purchasing power and current accoun... |
 | **MODEL_25.12** | Brent - WTI Seaborne Risk Spread | **7.39** | USD | `NORMAL_TRANSATLANTIC_ARBITRAGE` | Seaborne geopolitical friction and maritime risk spread... |
 | **MODEL_25.13** | Labor Market Momentum Index (LMMI) | **0.86** | Net Momentum Pts | `MODERATE_LABOR_EXPANSION` | Couples nonfarm payroll expansion with unemployment cha... |
@@ -191,6 +193,13 @@
 - **Component Weights:** `{"ratio": 41.2, "historical_equilibrium_band": "12.0 - 25.0"}`
 - **Economic Synthesis:** Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks.
 
+#### [MODEL_22] Household Credit Stress Gauge
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#22
+- **Evaluated Status:** `ELEVATED_PRESSURE` (Primary Value: 0.75 Stress Ratio)
+- **Inputs Evaluated:** `{"credit_card_delinquency_rate_drcclacbs_pct": 2.85, "personal_saving_rate_psavert_pct": 3.8}`
+- **Secondary Metrics:** `{"household_stress_ratio": 0.75, "delinquency_rate_pct": 2.85, "saving_rate_pct": 3.8}`
+- **Economic Synthesis:** Measures consumer debt service vulnerability by evaluating credit card delinquency rates against the personal saving rate cushion. Ratios > 1.00 reflect severe consumer distress and spending contraction risk.
+
 #### [MODEL_23] Okun Gap (Growth-Employment Divergence)
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23
 - **Evaluated Status:** `BALANCED_OKUN_EQUILIBRIUM` (Primary Value: -0.27 Percentage Points (ppt))
@@ -231,6 +240,13 @@
 - **Inputs Evaluated:** `{"mortgage_30y_rate_pct": 7.18, "building_permits_yoy_pct": -3.19}`
 - **Secondary Metrics:** `{"housing_freeze_index": 7.5, "mortgage_rate": 7.18, "permits_yoy_pct": -3.19}`
 - **Economic Synthesis:** Measures divergence between surging mortgage borrowing costs and residential building permit momentum to model lock-in supply bottlenecks and housing transaction freezes.
+
+#### [MODEL_24] Safe Haven Flight Index
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#24
+- **Evaluated Status:** `NORMAL_MARKET_REGIME` (Primary Value: 0.861 Flight Ratio)
+- **Inputs Evaluated:** `{"nominal_broad_dollar_index_dtwexbgs": 121.8803, "high_yield_oas_bamlh0a0hym2": 3.42, "nominal_10y_treasury_dgs10": 4.84}`
+- **Secondary Metrics:** `{"flight_ratio": 0.861, "safe_haven_score": 86.12, "dollar_bond_ratio": 25.18}`
+- **Economic Synthesis:** Measures capital flight into safe-haven USD and flight-to-safety dynamics by evaluating dollar strength and credit spreads against Treasury yields. Values > 1.80 indicate acute flight to safety.
 
 #### [MODEL_25] Terms of Trade (TOT)
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25

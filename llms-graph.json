@@ -1989,6 +1989,47 @@
           "FLIGHT_TO_SAFETY"
         ]
       }
+    },
+    {
+      "id": "IND_DRCCLACBS",
+      "label": "Delinquency Rate on Credit Card Loans",
+      "category": "INDICATOR",
+      "source": "FRED"
+    },
+    {
+      "id": "IND_PSAVERT",
+      "label": "Personal Saving Rate",
+      "category": "INDICATOR",
+      "source": "BEA / FRED"
+    },
+    {
+      "id": "MODEL_22",
+      "label": "Household Credit Stress Gauge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_household_credit_stress",
+        "formula": "Household_Stress_Ratio = DRCCLACBS / PSAVERT",
+        "status_enums": [
+          "SEVERE_CONSUMER_STRESS",
+          "ELEVATED_PRESSURE",
+          "HEALTHY_BALANCE_SHEET"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_24",
+      "label": "Safe Haven Flight Index",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calc_safe_haven_flight_index",
+        "formula": "Flight_To_Safety_Ratio = ((DTWEXBGS / DGS10) * BAMLH0A0HYM2) / 100.0",
+        "status_enums": [
+          "EXTREME_LIQUIDITY_PANIC",
+          "HIGH_FLIGHT_TO_SAFETY",
+          "MODERATE_HEDGING",
+          "NORMAL_MARKET_REGIME"
+        ]
+      }
     }
   ],
   "edges": [
@@ -3179,6 +3220,36 @@
       "target": "MODEL_20",
       "type": "INGESTS_SERIES",
       "role": "World Bank Gold Fixing Price per Ounce"
+    },
+    {
+      "source": "IND_DRCCLACBS",
+      "target": "MODEL_22",
+      "type": "INGESTS_SERIES",
+      "role": "Credit Card Loan Delinquency Rate"
+    },
+    {
+      "source": "IND_PSAVERT",
+      "target": "MODEL_22",
+      "type": "INGESTS_SERIES",
+      "role": "Personal Saving Rate"
+    },
+    {
+      "source": "IND_DTWEXBGS",
+      "target": "MODEL_24",
+      "type": "INGESTS_SERIES",
+      "role": "Nominal Broad U.S. Dollar Index"
+    },
+    {
+      "source": "IND_BAMLH0A0HYM2",
+      "target": "MODEL_24",
+      "type": "INGESTS_SERIES",
+      "role": "High Yield Option-Adjusted Spread"
+    },
+    {
+      "source": "IND_DGS10",
+      "target": "MODEL_24",
+      "type": "INGESTS_SERIES",
+      "role": "10-Year Nominal Treasury Yield"
     }
   ]
 }
