@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-10T00:24:02.420724+00:00",
+    "last_successful_sync": "2026-11-10T00:32:06.441366+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 38
+    "total_models_active": 39
   },
   "models": [
     {
@@ -580,6 +580,23 @@
         "spread_bps": 4.0
       },
       "interpretation": "Measures funding market friction tracking the spread between secured repo financing (SOFR) and unsecured Fed funds (EFFR). Spreads between -5.0 and +5.0 bps indicate healthy monetary transmission."
+    },
+    {
+      "model_id": "MODEL_25.6",
+      "model_name": "Gold / Real Yield Debasement Gauge",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.6",
+      "primary_value": 2.63,
+      "unit": "Percent (%)",
+      "status": "TRADITIONAL_REAL_RATE_DOMINANCE",
+      "inputs": {
+        "tips_10y_real_yield_dfii10": 2.63,
+        "gold_price_yoy_pct_ind_wb_gold": 1.16
+      },
+      "metrics": {
+        "real_yield_10y_pct": 2.63,
+        "gold_yoy_pct": 1.16
+      },
+      "interpretation": "Detects de-dollarization trends and fiat debasement by measuring breakdowns in the traditional inverse correlation between 10-year TIPS real yields and gold prices. Gold rallying above 15% alongside real yields > 1.5% signals systemic de-dollarization."
     },
     {
       "model_id": "MODEL_25.7",
