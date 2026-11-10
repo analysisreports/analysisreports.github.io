@@ -3,9 +3,9 @@
   "metadata": {
     "title": "Canonical IMF Monitored Series & Official Transformations",
     "author": "Ersoy Toptaş",
-    "license": "CC BY-NC-ND 4.0",
+    "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T14:42:11Z",
+    "last_successful_sync": "2026-11-10T00:32:36Z",
     "total_series": 3,
     "source_authority": "International Monetary Fund (IMF)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
@@ -100,44 +100,44 @@
     },
     "SAUPZPIOILBEGUSD": {
       "series_id": "SAUPZPIOILBEGUSD",
-      "title": "Fiscal Breakeven Oil Price for Saudi Arabia",
+      "title": "Breakeven Fiscal Oil Price for Saudi Arabia",
       "frequency": "Annual",
       "n_obs_per_yr": 1,
-      "units": "U.S. Dollars per Barrel",
+      "units": "US Dollars Per Barrel",
       "source": "International Monetary Fund (IMF)",
-      "last_date": "2026-01-01",
-      "current_value": 86.2,
-      "previous_value": 88.0,
-      "year_ago_value": 88.0,
+      "last_date": "2025-01-01",
+      "current_value": 90.9388267,
+      "previous_value": 98.36077063,
+      "year_ago_value": 98.36077063,
       "transformations": {
-        "change": -1.8,
-        "change_from_year_ago": -1.8,
-        "percent_change": -2.0455,
-        "percent_change_from_year_ago": -2.0455,
-        "compounded_annual_rate_of_change": -2.0455,
-        "continuously_compounded_rate_of_change": -2.0667,
-        "continuously_compounded_annual_rate_of_change": -2.0667
+        "change": -7.4219,
+        "change_from_year_ago": -7.4219,
+        "percent_change": -7.5456,
+        "percent_change_from_year_ago": -7.5456,
+        "compounded_annual_rate_of_change": -7.5456,
+        "continuously_compounded_rate_of_change": -7.8455,
+        "continuously_compounded_annual_rate_of_change": -7.8455
       },
       "recent_observations": [
         {
+          "date": "2021-01-01",
+          "value": 83.61123011
+        },
+        {
           "date": "2022-01-01",
-          "value": 85.8
+          "value": 87.97227444
         },
         {
           "date": "2023-01-01",
-          "value": 86.0
+          "value": 94.90850277
         },
         {
           "date": "2024-01-01",
-          "value": 90.9
+          "value": 98.36077063
         },
         {
           "date": "2025-01-01",
-          "value": 88.0
-        },
-        {
-          "date": "2026-01-01",
-          "value": 86.2
+          "value": 90.9388267
         }
       ]
     }

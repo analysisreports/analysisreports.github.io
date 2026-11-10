@@ -3,10 +3,10 @@
   "metadata": {
     "title": "Canonical European Central Bank (ECB) Monitored Series & Official Transformations",
     "author": "Ersoy Toptaş",
-    "license": "CC BY-NC-ND 4.0",
+    "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T01:39:24.296858+00:00",
-    "total_series": 8,
+    "last_successful_sync": "2026-11-10T00:31:59.069950+00:00",
+    "total_series": 9,
     "source_authority": "European Central Bank (ECB Data Portal)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.5",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -20,24 +20,20 @@
       "units": "USD per 1 EUR",
       "category": "Foreign Exchange",
       "source": "European Central Bank (ECB Data Portal)",
-      "last_date": "2026-11-06",
-      "current_value": 1.1165,
-      "previous_value": 1.1224,
-      "year_ago_value": 1.155,
+      "last_date": "2026-11-09",
+      "current_value": 1.1193,
+      "previous_value": 1.1165,
+      "year_ago_value": 1.1554,
       "transformations": {
-        "change": -0.0059,
-        "change_from_year_ago": -0.0385,
-        "percent_change": -0.5257,
-        "percent_change_from_year_ago": -3.3333,
-        "compounded_annual_rate_of_change": -74.5974,
-        "continuously_compounded_rate_of_change": -0.527,
-        "continuously_compounded_annual_rate_of_change": -137.0319
+        "change": 0.0028,
+        "change_from_year_ago": -0.0361,
+        "percent_change": 0.2508,
+        "percent_change_from_year_ago": -3.1245,
+        "compounded_annual_rate_of_change": 91.7882,
+        "continuously_compounded_rate_of_change": 0.2505,
+        "continuously_compounded_annual_rate_of_change": 65.1221
       },
       "recent_observations": [
-        {
-          "date": "2026-11-02",
-          "value": 1.1216
-        },
         {
           "date": "2026-11-03",
           "value": 1.1179
@@ -53,6 +49,10 @@
         {
           "date": "2026-11-06",
           "value": 1.1165
+        },
+        {
+          "date": "2026-11-09",
+          "value": 1.1193
         }
       ]
     },
@@ -64,24 +64,20 @@
       "units": "GBP per 1 EUR",
       "category": "Foreign Exchange",
       "source": "European Central Bank (ECB Data Portal)",
-      "last_date": "2026-11-06",
-      "current_value": 0.83415,
-      "previous_value": 0.83393,
-      "year_ago_value": 0.8801,
+      "last_date": "2026-11-09",
+      "current_value": 0.8343,
+      "previous_value": 0.83415,
+      "year_ago_value": 0.8816,
       "transformations": {
         "change": 0.0002,
-        "change_from_year_ago": -0.046,
-        "percent_change": 0.0264,
-        "percent_change_from_year_ago": -5.221,
-        "compounded_annual_rate_of_change": 7.0988,
-        "continuously_compounded_rate_of_change": 0.0264,
-        "continuously_compounded_annual_rate_of_change": 6.8582
+        "change_from_year_ago": -0.0473,
+        "percent_change": 0.018,
+        "percent_change_from_year_ago": -5.3652,
+        "compounded_annual_rate_of_change": 4.786,
+        "continuously_compounded_rate_of_change": 0.018,
+        "continuously_compounded_annual_rate_of_change": 4.675
       },
       "recent_observations": [
-        {
-          "date": "2026-11-02",
-          "value": 0.8358
-        },
         {
           "date": "2026-11-03",
           "value": 0.83358
@@ -97,6 +93,10 @@
         {
           "date": "2026-11-06",
           "value": 0.83415
+        },
+        {
+          "date": "2026-11-09",
+          "value": 0.8343
         }
       ]
     },
@@ -108,24 +108,20 @@
       "units": "CHF per 1 EUR",
       "category": "Foreign Exchange",
       "source": "European Central Bank (ECB Data Portal)",
-      "last_date": "2026-11-06",
-      "current_value": 0.9143,
-      "previous_value": 0.918,
-      "year_ago_value": 0.9281,
+      "last_date": "2026-11-09",
+      "current_value": 0.9164,
+      "previous_value": 0.9143,
+      "year_ago_value": 0.9287,
       "transformations": {
-        "change": -0.0037,
-        "change_from_year_ago": -0.0138,
-        "percent_change": -0.4031,
-        "percent_change_from_year_ago": -1.4869,
-        "compounded_annual_rate_of_change": -65.0079,
-        "continuously_compounded_rate_of_change": -0.4039,
-        "continuously_compounded_annual_rate_of_change": -105.0048
+        "change": 0.0021,
+        "change_from_year_ago": -0.0123,
+        "percent_change": 0.2297,
+        "percent_change_from_year_ago": -1.3244,
+        "compounded_annual_rate_of_change": 81.5741,
+        "continuously_compounded_rate_of_change": 0.2294,
+        "continuously_compounded_annual_rate_of_change": 59.6493
       },
       "recent_observations": [
-        {
-          "date": "2026-11-02",
-          "value": 0.9193
-        },
         {
           "date": "2026-11-03",
           "value": 0.9166
@@ -141,6 +137,98 @@
         {
           "date": "2026-11-06",
           "value": 0.9143
+        },
+        {
+          "date": "2026-11-09",
+          "value": 0.9164
+        }
+      ]
+    },
+    "EXR/D.JPY.EUR.SP00.A": {
+      "series_ref": "EXR/D.JPY.EUR.SP00.A",
+      "title": "Euro / Japanese Yen Spot Exchange Rate",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "JPY per 1 EUR",
+      "category": "Foreign Exchange",
+      "source": "European Central Bank (ECB Data Portal)",
+      "last_date": "2026-11-09",
+      "current_value": 176.79,
+      "previous_value": 176.77,
+      "year_ago_value": 178.14,
+      "transformations": {
+        "change": 0.02,
+        "change_from_year_ago": -1.35,
+        "percent_change": 0.0113,
+        "percent_change_from_year_ago": -0.7578,
+        "compounded_annual_rate_of_change": 2.9852,
+        "continuously_compounded_rate_of_change": 0.0113,
+        "continuously_compounded_annual_rate_of_change": 2.9415
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-03",
+          "value": 176.95
+        },
+        {
+          "date": "2026-11-04",
+          "value": 178.3
+        },
+        {
+          "date": "2026-11-05",
+          "value": 177.85
+        },
+        {
+          "date": "2026-11-06",
+          "value": 176.77
+        },
+        {
+          "date": "2026-11-09",
+          "value": 176.79
+        }
+      ]
+    },
+    "EST/B.EU000A2X2A25.WT": {
+      "series_ref": "EST/B.EU000A2X2A25.WT",
+      "title": "Euro Short-Term Rate (€STR) Benchmark",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Percent per Annum",
+      "category": "Money Market Benchmark",
+      "source": "European Central Bank (ECB Data Portal)",
+      "last_date": "2026-11-06",
+      "current_value": 2.443,
+      "previous_value": 2.442,
+      "year_ago_value": 1.931,
+      "transformations": {
+        "change": 0.001,
+        "change_from_year_ago": 0.512,
+        "percent_change": 0.041,
+        "percent_change_from_year_ago": 26.5148,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 0.0409,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-02",
+          "value": 2.441
+        },
+        {
+          "date": "2026-11-03",
+          "value": 2.445
+        },
+        {
+          "date": "2026-11-04",
+          "value": 2.442
+        },
+        {
+          "date": "2026-11-05",
+          "value": 2.442
+        },
+        {
+          "date": "2026-11-06",
+          "value": 2.443
         }
       ]
     },
@@ -232,47 +320,47 @@
         }
       ]
     },
-    "FM/B.U2.EUR.4F.KR.DFR.LEV": {
-      "series_ref": "FM/B.U2.EUR.4F.KR.DFR.LEV",
-      "title": "ECB Deposit Facility Rate (DFR - Primary Policy Rate)",
+    "FM/B.U2.EUR.4F.KR.MLFR.LEV": {
+      "series_ref": "FM/B.U2.EUR.4F.KR.MLFR.LEV",
+      "title": "ECB Marginal Lending Facility Rate (MLFR)",
       "frequency": "Monthly",
       "n_obs_per_yr": 12,
       "units": "Percent per Annum",
       "category": "Policy Benchmark Rate",
       "source": "European Central Bank (ECB Data Portal)",
       "last_date": "2026-09-16",
-      "current_value": 2.5,
-      "previous_value": 2.25,
-      "year_ago_value": 3.5,
+      "current_value": 2.9,
+      "previous_value": 2.65,
+      "year_ago_value": 4.25,
       "transformations": {
         "change": 0.25,
-        "change_from_year_ago": -1.0,
-        "percent_change": 11.1111,
-        "percent_change_from_year_ago": -28.5714,
+        "change_from_year_ago": -1.35,
+        "percent_change": 9.434,
+        "percent_change_from_year_ago": -31.7647,
         "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 10.5361,
+        "continuously_compounded_rate_of_change": 9.0151,
         "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
         {
           "date": "2025-03-12",
-          "value": 2.5
+          "value": 2.9
         },
         {
           "date": "2025-04-23",
-          "value": 2.25
+          "value": 2.65
         },
         {
           "date": "2025-06-11",
-          "value": 2.0
+          "value": 2.4
         },
         {
           "date": "2026-06-17",
-          "value": 2.25
+          "value": 2.65
         },
         {
           "date": "2026-09-16",
-          "value": 2.5
+          "value": 2.9
         }
       ]
     },
@@ -317,50 +405,6 @@
         {
           "date": "2025-12",
           "value": 1.9
-        }
-      ]
-    },
-    "ICP/M.U2.N.XEF000.4.ANR": {
-      "series_ref": "ICP/M.U2.N.XEF000.4.ANR",
-      "title": "Euro Area Core HICP Inflation Rate (Excl. Energy & Food)",
-      "frequency": "Monthly",
-      "n_obs_per_yr": 12,
-      "units": "Annual Rate of Change (%)",
-      "category": "Consumer Prices",
-      "source": "European Central Bank (ECB Data Portal)",
-      "last_date": "2025-12",
-      "current_value": 2.3,
-      "previous_value": 2.4,
-      "year_ago_value": 2.7,
-      "transformations": {
-        "change": -0.1,
-        "change_from_year_ago": -0.4,
-        "percent_change": -4.1667,
-        "percent_change_from_year_ago": -14.8148,
-        "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": -4.256,
-        "continuously_compounded_annual_rate_of_change": null
-      },
-      "recent_observations": [
-        {
-          "date": "2025-08",
-          "value": 2.3
-        },
-        {
-          "date": "2025-09",
-          "value": 2.4
-        },
-        {
-          "date": "2025-10",
-          "value": 2.4
-        },
-        {
-          "date": "2025-11",
-          "value": 2.4
-        },
-        {
-          "date": "2025-12",
-          "value": 2.3
         }
       ]
     }

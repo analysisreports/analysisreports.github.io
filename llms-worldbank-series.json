@@ -3,9 +3,9 @@
   "metadata": {
     "engine": "Autonomous World Bank Commodity Time-Series Engine",
     "author": "Ersoy Toptaş",
-    "license": "CC BY-NC-ND 4.0",
+    "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T01:40:15Z",
+    "last_successful_sync": "2026-11-10T00:32:35Z",
     "data_source": "World Bank Commodity Price Data (The Pink Sheet)",
     "monitored_series_count": 1,
     "canonical_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt"

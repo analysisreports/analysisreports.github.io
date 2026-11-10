@@ -3,18 +3,18 @@
   "metadata": {
     "engine": "Dynamic Geopolitical Polarity & Sovereign Governance Engine",
     "author": "Ersoy Toptaş",
-    "license": "CC BY-NC-ND 4.0",
+    "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-09T14:59:38.257860+00:00",
+    "last_successful_sync": "2026-11-10T00:32:37.554972+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "governance_reference": "https://analysisreports.github.io/llms-formulas.txt#25.15",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
       "brent_wti_spread_usd": 7.39,
-      "vix_index": 28.18,
+      "vix_index": 25.64,
       "sox_yoy_pct": 34.5898,
       "gscpi_std_dev": 0.0,
-      "ai_chip_stress_score": 0.11
+      "ai_chip_stress_score": 0.078
     }
   },
   "central_bank_policy_benchmark": {
@@ -34,7 +34,7 @@
         "institution_id": "INST_FED_US",
         "benchmark": "Federal Funds Effective Rate (DFF)",
         "rate": 3.88,
-        "effective_date": "2026-11-05",
+        "effective_date": "2026-11-06",
         "spread_vs_dff_ppt": 0.0,
         "spread_str": "Benchmark (0.00)"
       },
