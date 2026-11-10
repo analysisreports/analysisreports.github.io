@@ -367,7 +367,7 @@ def main():
             'label': 'LT - RU (Republic of Lithuania vs. Russian Federation)',
             'p_baseline': -0.85,
             'dynamic_delta': vix_delta,
-            'friction_nodes': ['SUWALKI_GAP', 'BALTIC_SEA', 'KALININGRAD_EXCLAVE'],
+            'friction_nodes': ['SUWALKI_GAP', 'BALTIC_SEA', 'ZONE_KALININGRAD_EXCLAVE', 'CORRIDOR_KALININGRAD_TRANSIT'],
             'primary_driver': 'SUWALKI_GAP_NATO_BORDER_FRICTION'
         },
         {

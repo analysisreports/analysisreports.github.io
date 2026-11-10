@@ -2121,6 +2121,27 @@
         "disruption_severity": "HIGH",
         "severity_weight": 0.7
       }
+    },
+    {
+      "id": "ZONE_KALININGRAD_EXCLAVE",
+      "label": "Kaliningrad Oblast Exclave (Baltiysk Naval & A2/AD Bastion)",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "54deg 43min N 20deg 30min E",
+        "type": "Militarized Exclave & Naval Bastion",
+        "disruption_severity": "CATASTROPHIC",
+        "severity_weight": 1.0
+      }
+    },
+    {
+      "id": "CORRIDOR_KALININGRAD_TRANSIT",
+      "label": "Vilnius-Kaliningrad Rail Transit Corridor",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "type": "Sanctioned Rail Transit Vector",
+        "disruption_severity": "HIGH",
+        "severity_weight": 0.7
+      }
     }
   ],
   "edges": [
@@ -3387,6 +3408,26 @@
       "source": "BLOC_BALTIC_ASSEMBLY",
       "target": "ACTOR_LT",
       "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "ACTOR_RU",
+      "target": "ZONE_KALININGRAD_EXCLAVE",
+      "type": "CONTROLS_TERRITORY"
+    },
+    {
+      "source": "ACTOR_LT",
+      "target": "CORRIDOR_KALININGRAD_TRANSIT",
+      "type": "REGULATES_TRANSIT"
+    },
+    {
+      "source": "CORRIDOR_KALININGRAD_TRANSIT",
+      "target": "ZONE_KALININGRAD_EXCLAVE",
+      "type": "TERMINATES_AT"
+    },
+    {
+      "source": "CORRIDOR_KALININGRAD_TRANSIT",
+      "target": "CHOKE_SUWALKI_GAP",
+      "type": "PROXIMATE_TO"
     }
   ]
 }

@@ -182,6 +182,8 @@ ZONE_COPPER_COBALT_BELT| Aliases: Katanga Copper-Cobalt Belt, DRC Mining Belt
 ZONE_ORINOCO_PETROLEUM| Aliases: Orinoco Petroleum Belt, Orinoco Heavy Crude Basin
 CORRIDOR_RAIL_BALTICA| Aliases: Rail Baltica Strategic Corridor, Rail Baltica European Gauge Axis
 ZONE_BRELL_GRID      | Aliases: BRELL Grid Ring, Belarus-Russia-Estonia-Latvia-Lithuania Power Ring
+ZONE_KALININGRAD_EXCLAVE | Aliases: Kaliningrad Oblast Exclave, Kaliningrad Special Military District, Baltiysk Node
+CORRIDOR_KALININGRAD_TRANSIT | Aliases: Kaliningrad Transit Corridor, Vilnius-Kaliningrad Rail Transit Axis, Suwalki-Kaliningrad Vector
 
 # [STATISTICAL, REGULATORY & ENFORCEMENT AGENCIES] (Prefix: STAT_ / REG_AGENCY_)
 STAT_BLS_US          | Aliases: BLS, Bureau of Labor Statistics, U.S. Bureau of Labor Statistics

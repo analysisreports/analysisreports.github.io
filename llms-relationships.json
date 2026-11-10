@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-10T02:28:21.205136+00:00",
+    "last_successful_sync": "2026-11-10T02:35:00.635895+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "governance_reference": "https://analysisreports.github.io/llms-formulas.txt#25.15",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
@@ -239,7 +239,8 @@
       "friction_nodes": [
         "SUWALKI_GAP",
         "BALTIC_SEA",
-        "KALININGRAD_EXCLAVE"
+        "ZONE_KALININGRAD_EXCLAVE",
+        "CORRIDOR_KALININGRAD_TRANSIT"
       ]
     },
     {
