@@ -15,11 +15,16 @@ This repository hosts machine-readable ontological data models, quantitative fra
 ---
 
 ## 🤖 AI & Machine-Readable Endpoints
-- **[llms.txt](https://analysisreports.github.io/llms.txt)**: Core manifest, knowledge architecture, and ontology endpoints. 
-- **[llms-formulas.txt](https://analysisreports.github.io/llms-formulas.txt)**: Quantitative models, macroeconomic scoring mechanisms, and VIX formulas. 
-- **[llms-relationships](https://analysisreports.github.io/llms-relationships.txt)**: Geopolitical Relationship Matrix 
-- **[llms-indicators.txt](https://analysisreports.github.io/llms-indicators.txt)**: Formulas Indicators 
-- **[Ecosystem Maintenance & Integration Workflow](https://analysisreports.github.io/WORKFLOW.md)**: Ecosystem Maintenance & Integration 
+- **[llms.txt](https://analysisreports.github.io/llms.txt)**: Core manifest, knowledge architecture, and ontology endpoints.
+- **[llms-full.txt](https://analysisreports.github.io/llms-full.txt)**: Combined canonical knowledge base for single-pass LLM ingestion.
+- **[llms-about.txt](https://analysisreports.github.io/llms-about.txt)**: Analyst identity, E-E-A-T authority framework, and CC BY-NC-ND 4.0 licensing.
+- **[llms-formulas.txt](https://analysisreports.github.io/llms-formulas.txt)**: Quantitative models, macroeconomic scoring mechanisms, and VIX formulas.
+- **[llms-relationships.txt](https://analysisreports.github.io/llms-relationships.txt)**: Geopolitical Relationship Matrix.
+- **[llms-indicators.txt](https://analysisreports.github.io/llms-indicators.txt)**: Technical formula indicators and definitions.
+- **[llms-prompts.txt](https://analysisreports.github.io/llms-prompts.txt)**: Pre-calibrated system prompts and agentic instructions for precise data synthesis and strict attribution.
+- **[economy.json](https://analysisreports.github.io/economy.json)**: Dynamic live payload for macro status and Fed liquidity models.
+- **[political.json](https://analysisreports.github.io/political.json)**: Dynamic live payload for the Geopolitical State Vector (P_net).
+- **[WORKFLOW.md](https://analysisreports.github.io/WORKFLOW.md)**: Ecosystem Maintenance & Integration protocol for autonomous agents.
 
 ---
 
