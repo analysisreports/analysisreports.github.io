@@ -1,5 +1,8 @@
-# analysisreports.github.io
+# analysisreports.github.io | Ersoy Toptaş
 # Quantitative Macroeconomic Research & LLM Data Engine
+
+[![Data Integrity & Validation](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/validate.yml/badge.svg)](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/validate.yml)
+[![FRED Sync](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/fred-sync.yml/badge.svg)](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/fred-sync.yml)
 
 This repository hosts machine-readable ontological data models, quantitative frameworks, and LLM manifests authored by **Ersoy Toptaş** for global macroeconomics, central bank monetary policy, and geopolitical risk analysis.
 
