@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-10 01:14 UTC
+> **Last Calibrated Sync:** 2026-11-10 01:50 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -56,8 +56,10 @@
 | **MODEL_25.11** | Full-Time vs. Involuntary Part-Time Crack Gauge | **5.4** | Percentage Points (ppt) | `STABLE_EMPLOYMENT_COMPOSITION` | Detects hidden labor market fragility by comparing the ... |
 | **MODEL_25.17** | Liquidity & Commodity Macro Regime Matrix | **17.0** | Basis Points (bps) | `REFLATIONARY_EXPANSION` | Evaluates front-end money market liquidity (3M-1M T-Bil... |
 | **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.583** | Score (Normalized) | `ELEVATED_SEMICONDUCTOR_BOTTLENECK` | Normalized composite metric monitoring semiconductor ph... |
+| **MODEL_25.15** | Domestic Governance Gridlock & External Tariff Friction Engine | **0.765** | Friction Bias | `DIVIDED_GRIDLOCK_TARIFF_SURGE` | Quantifies domestic legislative gridlock driving unilat... |
 | **MODEL_25.16** | Yen Carry Trade Dissolution and Stress Gauge | **6.2379** | % (Net Carry Buffer) | `CALM_ACCUMULATION` | Monitors cross-currency Yen Carry Trade buffer, unwindi... |
 | **MODEL_25.18** | Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact) | **0.133** | Dynamic Delta Index (Avg) | `TREATY_ACTIVE_SURPLUS_EXPANSION` | Non-contiguous trilateral defense integration linking T... |
+| **MODEL_26** | Central Bank Committee Dispersion & Hawkishness Index | **0.1667** | H-Index | `MODERATE_HAWKISH_BIAS` | Quantifies FOMC monetary policy committee voting distri... |
 
 ---
 ### Detailed Model Breakdowns
@@ -350,6 +352,13 @@
 - **Component Weights:** `{"gscpi_weight": 0.505, "sox_weight": -0.242, "vix_weight": 0.321}`
 - **Economic Synthesis:** Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation.
 
+#### [MODEL_25.15] Domestic Governance Gridlock & External Tariff Friction Engine
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.15
+- **Evaluated Status:** `DIVIDED_GRIDLOCK_TARIFF_SURGE` (Primary Value: 0.765 Friction Bias)
+- **Inputs Evaluated:** `{"country_code": "GEO_US", "majority_seat_margin": -15.0, "executive_decree_power": 0.85}`
+- **Secondary Metrics:** `{"gridlock_index": 0.9, "external_friction_bias": 0.765}`
+- **Economic Synthesis:** Quantifies domestic legislative gridlock driving unilateral executive trade tariffs, foreign sanctions, and cross-border economic friction.
+
 #### [MODEL_25.16] Yen Carry Trade Dissolution and Stress Gauge
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.16
 - **Evaluated Status:** `CALM_ACCUMULATION` (Primary Value: 6.2379 % (Net Carry Buffer))
@@ -363,3 +372,10 @@
 - **Inputs Evaluated:** `{"brent_usd_bbl": 107.03, "sofr_percent": 3.89, "imf_breakeven_usd_bbl": 90.94}`
 - **Secondary Metrics:** `{"oil_breakeven_ratio": 1.1769, "delta_treaty_baseline": 0.1, "energy_fiscal_component": 0.05, "dollar_liquidity_friction": 0.0, "bilateral_deltas": {"TR_SA": 0.15, "SA_PK": 0.15, "TR_PK": 0.1}}`
 - **Economic Synthesis:** Non-contiguous trilateral defense integration linking Turkish aerospace/defense co-production, Saudi sovereign liquidity, and Pakistani strategic deterrence under dynamic oil and dollar regimes.
+
+#### [MODEL_26] Central Bank Committee Dispersion & Hawkishness Index
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#26
+- **Evaluated Status:** `MODERATE_HAWKISH_BIAS` (Primary Value: 0.1667 H-Index)
+- **Inputs Evaluated:** `{"n_total": 12, "n_hawkish": 4, "n_dovish": 2, "n_neutral": 6}`
+- **Secondary Metrics:** `{"share_hawkish_pct": 33.33, "share_dovish_pct": 16.67, "share_neutral_pct": 50.0, "h_index": 0.1667, "dispersion": 0.6111, "consensus_regime": "HIGH_DISPERSION"}`
+- **Economic Synthesis:** Quantifies FOMC monetary policy committee voting distribution across hawkish, dovish, and neutral members to compute directional policy stance and internal voting fracture.

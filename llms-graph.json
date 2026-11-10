@@ -1401,7 +1401,18 @@
       "id": "MODEL_25.15",
       "label": "Domestic Governance Gridlock & Tariff Friction Engine",
       "category": "MODEL",
-      "description": "Quantifies domestic legislative gridlock driving unilateral trade tariffs and external economic friction."
+      "description": "Quantifies domestic legislative gridlock driving unilateral trade tariffs and external economic friction.",
+      "attributes": {
+        "function": "governance_gridlock_friction_engine",
+        "formula": "Gridlock = min(1.0, 0.60 + abs(Majority_Seat_Margin)*0.02); External_Friction = Gridlock * Executive_Decree_Power",
+        "status_enums": [
+          "DIVIDED_GRIDLOCK_TARIFF_SURGE",
+          "FRAGILE_COALITION_PARALYSIS",
+          "UNIFIED_DOMESTIC_EXPANSION",
+          "CENTRALIZED_STRATEGIC_COMMAND",
+          "BALANCED_INSTITUTIONAL_EQUILIBRIUM"
+        ]
+      }
     },
     {
       "id": "MODEL_25.16",
@@ -2042,6 +2053,25 @@
       "label": "Flexible Price Consumer Price Index",
       "category": "INDICATOR",
       "source": "Atlanta Fed / FRED"
+    },
+    {
+      "id": "MODEL_26",
+      "label": "Central Bank Committee Dispersion & Hawkishness Index",
+      "category": "MODEL",
+      "attributes": {
+        "function": "committee_dispersion",
+        "formula": "H_Index = (n_hawkish - n_dovish) / N_total; Dispersion = 1.0 - (p_h^2 + p_d^2 + p_neu^2)",
+        "status_enums": [
+          "STRONG_HAWKISH_TILT",
+          "MODERATE_HAWKISH_BIAS",
+          "BALANCED_NEUTRAL_STANCE",
+          "MODERATE_DOVISH_BIAS",
+          "STRONG_DOVISH_TILT",
+          "STRONG_CONSENSUS",
+          "MODERATE_DISSENT",
+          "HIGH_DISPERSION"
+        ]
+      }
     }
   ],
   "edges": [
@@ -3274,6 +3304,12 @@
       "target": "MODEL_25.2",
       "type": "INGESTS_SERIES",
       "role": "Flexible CPI Rate"
+    },
+    {
+      "source": "INST_FED_US",
+      "target": "MODEL_26",
+      "type": "INGESTS_COMMITTEE",
+      "role": "FOMC Voting Member Roster"
     }
   ]
 }

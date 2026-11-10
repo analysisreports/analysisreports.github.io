@@ -2023,6 +2023,174 @@ def calc_mecca_pact_transmission(brent_val, sofr_val, breakeven_oil=None):
     except (TypeError, ValueError):
         return None
 
+
+# --- Model 25.15: Domestic Governance Gridlock & External Tariff Friction Engine ---
+def calc_governance_gridlock_friction(country_code="GEO_US", majority_seat_margin=-15.0, executive_decree_power=0.85):
+    if not isinstance(country_code, str):
+        return None
+
+    country = country_code.upper().strip()
+    valid_countries = {"GEO_US", "GEO_CN", "GEO_RU", "GEO_DE", "GEO_IL", "GEO_JP"}
+    if country not in valid_countries:
+        return None
+
+    decree_defaults = {
+        "GEO_US": 0.85,
+        "GEO_CN": 1.00,
+        "GEO_RU": 1.00,
+        "GEO_DE": 0.20,
+        "GEO_IL": 0.65,
+        "GEO_JP": 0.40
+    }
+
+    decree = decree_defaults[country] if executive_decree_power is None else float(executive_decree_power)
+    if not math.isfinite(decree) or decree < 0.0 or decree > 1.0:
+        return None
+
+    if country in {"GEO_CN", "GEO_RU"}:
+        gridlock = 0.0
+        ext_friction = round(decree * 0.75, 3)
+        status = "CENTRALIZED_STRATEGIC_COMMAND"
+        return {
+            "model_id": "MODEL_25.15",
+            "model_name": "Domestic Governance Gridlock & External Tariff Friction Engine",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.15",
+            "primary_value": ext_friction,
+            "unit": "Friction Bias",
+            "status": status,
+            "inputs": {
+                "country_code": country,
+                "executive_decree_power": decree
+            },
+            "metrics": {
+                "gridlock_index": gridlock,
+                "external_friction_bias": ext_friction
+            },
+            "interpretation": "Centralized vertical strategic command deploying external trade and economic leverage without domestic legislative gridlock."
+        }
+
+    if majority_seat_margin is None or isinstance(majority_seat_margin, bool):
+        return None
+
+    try:
+        margin = float(majority_seat_margin)
+        if not math.isfinite(margin):
+            return None
+
+        if margin < 0:
+            gridlock = round(min(1.0, 0.60 + abs(margin) * 0.02), 3)
+        else:
+            gridlock = round(max(0.0, 0.40 - (margin * 0.015)), 3)
+
+        ext_friction = round(gridlock * decree, 3)
+
+        if gridlock >= 0.60 and ext_friction >= 0.45:
+            status = "DIVIDED_GRIDLOCK_TARIFF_SURGE"
+        elif gridlock >= 0.35 and ext_friction < 0.45:
+            status = "FRAGILE_COALITION_PARALYSIS"
+        elif gridlock < 0.25 and margin >= 15:
+            status = "UNIFIED_DOMESTIC_EXPANSION"
+        else:
+            status = "BALANCED_INSTITUTIONAL_EQUILIBRIUM"
+
+        return {
+            "model_id": "MODEL_25.15",
+            "model_name": "Domestic Governance Gridlock & External Tariff Friction Engine",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.15",
+            "primary_value": ext_friction,
+            "unit": "Friction Bias",
+            "status": status,
+            "inputs": {
+                "country_code": country,
+                "majority_seat_margin": margin,
+                "executive_decree_power": decree
+            },
+            "metrics": {
+                "gridlock_index": gridlock,
+                "external_friction_bias": ext_friction
+            },
+            "interpretation": "Quantifies domestic legislative gridlock driving unilateral executive trade tariffs, foreign sanctions, and cross-border economic friction."
+        }
+    except (TypeError, ValueError, OverflowError):
+        return None
+
+
+# --- Model 26: Central Bank Committee Dispersion & Hawkishness Index ---
+def calc_committee_dispersion(n_hawkish=4, n_dovish=2, n_neutral=6, n_total=12):
+    if any(v is None or isinstance(v, bool) for v in (n_hawkish, n_dovish, n_neutral)):
+        return None
+    try:
+        h = float(n_hawkish)
+        d = float(n_dovish)
+        neu = float(n_neutral)
+        if not (math.isfinite(h) and math.isfinite(d) and math.isfinite(neu)):
+            return None
+        if h < 0.0 or d < 0.0 or neu < 0.0:
+            return None
+
+        tot = h + d + neu
+        if n_total is not None and not isinstance(n_total, bool) and math.isfinite(float(n_total)):
+            f_tot = float(n_total)
+            if f_tot >= tot and f_tot > 0.0:
+                tot = f_tot
+
+        if tot <= 0.0:
+            return None
+
+        p_h = h / tot
+        p_d = d / tot
+        p_neu = neu / tot
+
+        h_index = round((h - d) / tot, 4)
+        sum_sq = (p_h ** 2) + (p_d ** 2) + (p_neu ** 2)
+        dispersion = round(1.0 - sum_sq, 4)
+
+        # Directional Stance (H-Index Regime)
+        if h_index >= 0.50:
+            directional_stance = "STRONG_HAWKISH_TILT"
+        elif h_index >= 0.15:
+            directional_stance = "MODERATE_HAWKISH_BIAS"
+        elif h_index <= -0.50:
+            directional_stance = "STRONG_DOVISH_TILT"
+        elif h_index <= -0.15:
+            directional_stance = "MODERATE_DOVISH_BIAS"
+        else:
+            directional_stance = "BALANCED_NEUTRAL_STANCE"
+
+        # Consensus / Dispersion Regime
+        if dispersion <= 0.30:
+            consensus_regime = "STRONG_CONSENSUS"
+        elif dispersion <= 0.48:
+            consensus_regime = "MODERATE_DISSENT"
+        else:
+            consensus_regime = "HIGH_DISPERSION"
+
+        return {
+            "model_id": "MODEL_26",
+            "model_name": "Central Bank Committee Dispersion & Hawkishness Index",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#26",
+            "primary_value": h_index,
+            "unit": "H-Index",
+            "status": directional_stance,
+            "inputs": {
+                "n_total": int(tot),
+                "n_hawkish": int(h),
+                "n_dovish": int(d),
+                "n_neutral": int(neu)
+            },
+            "metrics": {
+                "share_hawkish_pct": round(p_h * 100.0, 2),
+                "share_dovish_pct": round(p_d * 100.0, 2),
+                "share_neutral_pct": round(p_neu * 100.0, 2),
+                "h_index": h_index,
+                "dispersion": dispersion,
+                "consensus_regime": consensus_regime
+            },
+            "interpretation": "Quantifies FOMC monetary policy committee voting distribution across hawkish, dovish, and neutral members to compute directional policy stance and internal voting fracture."
+        }
+    except (TypeError, ValueError, OverflowError):
+        return None
+
 # ==============================================================================
 # 3. MAIN EXECUTION ENGINE
 # ==============================================================================
@@ -2364,6 +2532,11 @@ def main():
     if m_chip:
         models_calculated.append(m_chip)
 
+    # Model 25.15: Domestic Governance Gridlock & External Tariff Friction Engine
+    m_governance = calc_governance_gridlock_friction("GEO_US", majority_seat_margin=-15.0, executive_decree_power=0.85)
+    if m_governance:
+        models_calculated.append(m_governance)
+
     # Load dynamic IMF series (BoJ Policy Rate & Saudi Fiscal Breakeven Oil Price)
     imf_json_path = "llms-imf-series.json"
     breakeven_oil = None
@@ -2393,6 +2566,11 @@ def main():
     m_mecca = calc_mecca_pact_transmission(brent, sofr, breakeven_oil)
     if m_mecca:
         models_calculated.append(m_mecca)
+
+    # Model 26: Central Bank Committee Dispersion & Hawkishness Index
+    m_fomc_dispersion = calc_committee_dispersion(n_hawkish=4, n_dovish=2, n_neutral=6, n_total=12)
+    if m_fomc_dispersion:
+        models_calculated.append(m_fomc_dispersion)
 
 
     now_dt = datetime.datetime.now(datetime.timezone.utc)

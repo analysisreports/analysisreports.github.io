@@ -112,6 +112,19 @@ Regime States (Discrete Mapping):
 - STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL : Involuntary part-time growth exceeding full-time employment by over 18% exposing hidden structural labor fragility.
 - ROBUST_FULL_TIME_EXPANSION    : Full-time employment growth strongly outstripping part-time additions reflecting resilient labor market fundamentals.
 - STABLE_EMPLOYMENT_COMPOSITION : Full-time and involuntary part-time employment dynamics in stable historical balance.
+- DIVIDED_GRIDLOCK_TARIFF_SURGE : Domestic legislation paralyzed by divided legislature forcing executive pivot toward unilateral tariffs and protectionism.
+- FRAGILE_COALITION_PARALYSIS   : Parliamentary coalition gridlock holding fiscal policy hostage.
+- UNIFIED_DOMESTIC_EXPANSION     : Unified legislative majority enabling aggressive domestic fiscal reform.
+- CENTRALIZED_STRATEGIC_COMMAND  : Zero domestic legislative gridlock under centralized vertical state authority.
+- BALANCED_INSTITUTIONAL_EQUILIBRIUM : Institutional legislative-executive balance operating within normal constitutional friction.
+- STRONG_HAWKISH_TILT            : Committee policy balance index exceeding +0.50 favoring aggressive monetary tightening.
+- MODERATE_HAWKISH_BIAS          : Committee policy balance index between +0.15 and +0.50 favoring moderate tightening.
+- BALANCED_NEUTRAL_STANCE        : Committee policy balance index between -0.15 and +0.15 reflecting balanced policy consensus.
+- MODERATE_DOVISH_BIAS           : Committee policy balance index between -0.50 and -0.15 favoring moderate easing.
+- STRONG_DOVISH_TILT             : Committee policy balance index below -0.50 favoring aggressive rate cuts.
+- STRONG_CONSENSUS               : Committee voting dispersion below 0.30 reflecting robust unity.
+- MODERATE_DISSENT               : Committee voting dispersion between 0.30 and 0.48 reflecting emerging division.
+- HIGH_DISPERSION                : Committee voting dispersion exceeding 0.48 reflecting elevated internal fracture.
 
 ---
 
