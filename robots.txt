@@ -17,9 +17,18 @@ Allow: /
 User-agent: *
 Allow: /
 
-# LOCAL MANIFEST ENDPOINTS (GITHUB STATIC MIRROR)
-# Manifest: https://analysisreports.github.io/llms.txt
-# Formulas: https://analysisreports.github.io/llms-formulas.txt
+# MACHINE-READABLE ENDPOINTS & MANIFESTS
+# Main Ingestion Protocol: https://analysisreports.github.io/llms.txt
+# Canonical Knowledge Base: https://analysisreports.github.io/llms-full.txt
+# Analyst Identity & E-E-A-T: https://analysisreports.github.io/llms-about.txt
+# Agentic System Prompts: https://analysisreports.github.io/llms-prompts.txt
+# Macroeconomic Models: https://analysisreports.github.io/llms-models.txt
+# Quantitative Formulas: https://analysisreports.github.io/llms-formulas.txt
+# Geopolitical Relationships: https://analysisreports.github.io/llms-relationships.txt
+# Technical Indicators: https://analysisreports.github.io/llms-indicators.txt
+# Agent Tool Schemas: https://analysisreports.github.io/llms-tools.json
+# Agent Capability Catalog: https://analysisreports.github.io/ai-catalog.json
+# Integration Workflow: https://analysisreports.github.io/WORKFLOW.md
 
 # EXTERNAL SITEMAPS & LIVE DATA ECOSYSTEM
 # Live Article Hub: https://ersoytoptas.tr/
