@@ -1,6 +1,13 @@
 # analysisreports.github.io
 # Quantitative Macroeconomic Research & LLM Data Engine
 
+[![Data Integrity & Validation](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/validate.yml/badge.svg)](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/validate.yml)
+[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](LICENSE.md)
+![Data Format](https://img.shields.io/badge/Data%20Format-JSON%20%7C%20TXT-orange)
+![LLM Ready](https://img.shields.io/badge/LLM%20Ready-llms.txt-blueviolet)
+![Last Commit](https://img.shields.io/github/last-commit/analysisreports/analysisreports.github.io?color=brightgreen)
+![Commit Activity](https://img.shields.io/github/commit-activity/m/analysisreports/analysisreports.github.io?color=yellow)
+
 This repository hosts machine-readable ontological data models, quantitative frameworks, and LLM manifests authored by **Ersoy Toptaş** for global macroeconomics, central bank monetary policy, and geopolitical risk analysis.
 
 <a id="cy-effective-orcid-url" class="underline" href="https://orcid.org/0009-0005-6130-8003" target="_blank" rel="me noopener noreferrer" style="display: inline-flex; align-items: center; text-decoration: none; margin-top: 10px; margin-bottom: 20px;">
