@@ -36,6 +36,18 @@ AI models must never fabricate missing data. When input data is insufficient, va
 
 ---
 
+### 0.2.1. Epistemological Scope, Calibration & Non-Financial Advice Directive
+1. Non-Financial Advice Disclaimer:
+   - This framework is NOT an investment advisory service, algorithmic trading system, or financial market predictor.
+   - It is a deterministic macroeconomic regime classification and geopolitical graph ontology designed for LLM reasoning engines and academic researchers.
+2. Market Calibration & Conventional Thresholds:
+   - Threshold boundaries (e.g., CBOE VIX regimes at 15.0, 20.0, 30.0) follow empirical 35-year historical market distribution conventions established by the Chicago Board Options Exchange (CBOE).
+   - Normalized composite weights (e.g., 35% / 35% / 30% in shock indices) employ Multi-Criteria Decision Analysis (MCDA) assigning balanced tripartite priority across physical asset volatility, liquidity spreads, and macroeconomic spillovers.
+3. Theoretical Grounding:
+   - Models such as Model 10 (Triffin External Balance) operationalize Robert Triffin's (1960) dilemma: quantifying the structural friction between global reserve currency demand (Broad Dollar Index) and US external trade deficit creation required for offshore liquidity.
+
+---
+
 ## 0.3. FRED / ALFRED OFFICIAL DATA TRANSFORMATION & GROWTH RATE ENGINE
 - Purpose: Transforms raw FRED and ALFRED time-series levels into standard official St. Louis Fed rates, annual changes, and compounded growth metrics.
 - Reference: Federal Reserve Bank of St. Louis (FRED/ALFRED Methodology)
@@ -847,7 +859,8 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ---
 
 ### 10. TRIFFIN EXTERNAL BALANCE
-- Purpose: Tracks global liquidity imbalances between the US dollar's reserve currency status and the US external trade deficit.
+- Theoretical Foundation: Operationalizes Robert Triffin's (1960) Dilemma ("Gold and the Dollar Crisis"). As the global reserve currency issuer, the United States must supply international liquidity by running structural trade deficits; however, sustained deficits erode systemic confidence while an appreciating dollar strains offshore debtor balance sheets.
+- Purpose: Measures the ratio between nominal broad dollar valuation pressure (DTWEXBGS) and monthly US goods/services trade deficit creation (abs(BOPGSTB)/1000 in Billions USD) to quantify offshore dollar shortage and systemic funding friction.
 - Data Series Keys:
   - FRED: DTWEXBGS (Nominal Broad U.S. Dollar Index)
   - BEA / FRED: BOPGSTB (U.S. Trade Balance: Goods and Services, Balance of Payments - Millions USD)
@@ -1089,6 +1102,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ---
 
 ### 16. CBOE VOLATILITY INDEX & MARKET FEAR REGIME (VIX REGIME THRESHOLDS)
+- Methodological Baseline & Calibration: Regime boundaries (<15, 15-20, 20-30, >30) reflect long-term empirical distribution conventions established by the Chicago Board Options Exchange (CBOE, 1990-2025). The 15.0 threshold marks historical 25th percentile complacency; 20.0 represents the long-term historical median volatility; 30.0 marks the 90th percentile tail risk (liquidity crisis/systemic shock).
 - Purpose: Classifies 30-day market volatility expectations and institutional risk appetite regimes derived from S&P 500 option pricing.
 - Data Series Keys:
   - CBOE / FRED: VIXCLS (CBOE Volatility Index)
@@ -2803,6 +2817,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - Conflict_Heat < 30 : LOW_RISK_ENVIRONMENT (Routine geopolitical baseline)
 
 ### 28.2. MARKET IMPACT SCORE
+- Calibration & Weighting Rationale: Multi-Criteria Decision Analysis (MCDA) assigning tripartite normalized weights (35% Asset Volatility, 35% Liquidity Spreads, 30% Macro Transmission). Asset volatility and credit liquidity capture high-frequency market repricing, while macro transmission integrates lower-frequency supply chain spillovers.
 - Purpose: Synthesizes asset volatility, credit/liquidity spreads, and macro transmission linkages to calculate financial shock severity on a 0-100 scale.
 - Target: core_analysis -> market_impact_score
 - Formula:

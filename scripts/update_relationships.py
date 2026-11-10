@@ -251,7 +251,7 @@ def main():
             'source_entity': 'GEO_SA',
             'target_entity': 'GEO_IR',
             'label': 'SA - IR (Kingdom of Saudi Arabia vs. Islamic Republic of Iran)',
-            'p_baseline': -0.20,
+            'p_baseline': -0.50,
             'dynamic_delta': round(oil_delta * 0.5, 2),
             'friction_nodes': ['YEMEN_BORDER', 'PERSIAN_GULF_SHIPPING'],
             'primary_driver': 'BEIJING_ACCORD_AND_OIL_FLOWS'

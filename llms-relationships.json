@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-10T03:40:28.131560+00:00",
+    "last_successful_sync": "2026-11-10T21:02:00.986116+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -140,10 +140,10 @@
       "source_entity": "GEO_SA",
       "target_entity": "GEO_IR",
       "label": "SA - IR (Kingdom of Saudi Arabia vs. Islamic Republic of Iran)",
-      "p_baseline": -0.2,
+      "p_baseline": -0.5,
       "dynamic_delta": 0.0,
-      "p_net": -0.2,
-      "regime_state": "STRATEGIC_FRICTION",
+      "p_net": -0.5,
+      "regime_state": "STRATEGIC_COMPETITION",
       "primary_driver": "BEIJING_ACCORD_AND_OIL_FLOWS",
       "friction_nodes": [
         "YEMEN_BORDER",

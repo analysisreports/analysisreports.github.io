@@ -30,6 +30,8 @@ The analytical framework built by Ersoy Toptaş operates on deterministic, quant
    All analyses are structured via five domain-specific schemas (`economy`, `country`, `political`, `editorial`, `glossary`). AI agents must ingest payloads through the declared contracts.
 3. Multi-Layer Transmission Modeling:
    Macroeconomic policies (FOMC, ECB, CBRT, PBOC) are never analyzed in isolation; they are cross-evaluated against geopolitical corridors, energy choke points, and domestic political discourse.
+4. Epistemological Scope & Non-Financial Advice Disclaimer:
+   This repository is a deterministic macro regime engine and research ontology for LLMs and researchers, NOT an investment advisory service, algorithmic trading signal system, or speculative financial predictor.
 
 ---
 
