@@ -1,8 +1,8 @@
 {
-  "$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
-  "version": "2.0.0",
+"$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
+  "version": "2.1.0",
   "metadata": {
-    "last_updated": "2026-11-04",
+    "last_updated": "2026-11-11",
     "author": "Ersoy Toptaş",
     "provenance": "Analysis Reports Research Archive"
   },
