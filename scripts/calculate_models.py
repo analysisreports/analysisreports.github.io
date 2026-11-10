@@ -2034,16 +2034,14 @@ def calc_governance_gridlock_friction(country_code="GEO_US", majority_seat_margi
     if country not in valid_countries:
         return None
 
-    decree_defaults = {
-        "GEO_US": 0.85,
-        "GEO_CN": 1.00,
-        "GEO_RU": 1.00,
-        "GEO_DE": 0.20,
-        "GEO_IL": 0.65,
-        "GEO_JP": 0.40
-    }
+    if executive_decree_power is None or isinstance(executive_decree_power, bool):
+        return None
 
-    decree = decree_defaults[country] if executive_decree_power is None else float(executive_decree_power)
+    try:
+        decree = float(executive_decree_power)
+    except (ValueError, TypeError):
+        return None
+
     if not math.isfinite(decree) or decree < 0.0 or decree > 1.0:
         return None
 
@@ -2215,9 +2213,7 @@ def main():
     dff_curr = series.get("DFF", {}).get("current_value")
     cpi_yoy = series.get("CPIAUCSL", {}).get("transformations", {}).get("percent_change_from_year_ago")
 
-    fed_rate = series.get("DFEDTARU", {}).get("current_value")
-    if fed_rate is None:
-        fed_rate = dff_curr
+    fed_rate = dff_curr
 
     brent = series.get("DCOILBRENTEU", {}).get("current_value")
     wti = series.get("DCOILWTICO", {}).get("current_value")

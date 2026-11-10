@@ -218,7 +218,9 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str) -> Tuple[str,
     total_series = sum(len(v) for v in frequencies.values())
 
     for freq, s_list in frequencies.items():
-        n_obs_per_yr = FREQ_N_MAP.get(freq, 12)
+        if freq not in FREQ_N_MAP:
+            raise ValueError(f"Unknown FRED frequency '{freq}'")
+        n_obs_per_yr = FREQ_N_MAP[freq]
         for s_id in s_list:
             print(f"Fetching: {s_id} ({freq})...")
             data = get_series_data_api(s_id, api_key, n_obs_per_yr)

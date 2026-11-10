@@ -249,7 +249,9 @@ def main():
     total_synced = 0
 
     for freq, series_ids in registry.items():
-        n_obs_per_yr = freq_n_map.get(freq, 1)
+        if freq not in freq_n_map:
+            raise ValueError(f"Unknown IMF frequency '{freq}'")
+        n_obs_per_yr = freq_n_map[freq]
 
         for s_id in series_ids:
             data = get_series_data_live(s_id, api_key, n_obs_per_yr)

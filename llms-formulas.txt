@@ -2365,16 +2365,12 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       if country not in valid_countries:
           return None
           
-      decree_defaults = {
-          "GEO_US": 0.85,
-          "GEO_CN": 1.00,
-          "GEO_RU": 1.00,
-          "GEO_DE": 0.20,
-          "GEO_IL": 0.65,
-          "GEO_JP": 0.40
-      }
-      
-      decree = decree_defaults[country] if executive_decree_power is None else float(executive_decree_power)
+      if executive_decree_power is None:
+          return None
+      try:
+          decree = float(executive_decree_power)
+      except (TypeError, ValueError):
+          return None
       if not math.isfinite(decree) or decree < 0.0 or decree > 1.0:
           return None
 

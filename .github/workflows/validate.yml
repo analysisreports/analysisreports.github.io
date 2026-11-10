@@ -37,3 +37,7 @@ jobs:
       - name: Verify Canonical Entity IDs Integrity
         run: |
           python scripts/verify_entities.py
+
+      - name: Verify Strict Zero Synthetic Data & Zero Fallbacks
+        run: |
+          python scripts/verify_zero_fallbacks.py

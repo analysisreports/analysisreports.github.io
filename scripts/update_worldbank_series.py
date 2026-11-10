@@ -159,7 +159,7 @@ def fetch_wb_series(key: str, meta: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     if not observations:
         return None
 
-    n_obs_per_yr = meta.get("n_obs_per_yr", 12)
+    n_obs_per_yr = meta["n_obs_per_yr"]
 
     # Current, previous (1 month ago), and year ago (12 months ago)
     curr_date, curr_val = observations[-1]

@@ -281,7 +281,9 @@ def build_outputs(frequencies: Dict[str, List[str]]) -> Tuple[str, Dict[str, Any
     for freq, s_list in frequencies.items():
         if not s_list:
             continue
-        n_obs_per_yr = FREQ_N_MAP.get(freq, 260)
+        if freq not in FREQ_N_MAP:
+        raise ValueError(f"Unknown ECB frequency '{freq}' for series {code}")
+    n_obs_per_yr = FREQ_N_MAP[freq]
 
         for s_ref in s_list:
             print(f"Processing ECB series: {s_ref} [{freq}]...")
