@@ -1,70 +1,69 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Root / Home Node -->
-  <url>
-    <loc>https://analysisreports.github.io/</loc>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
+import os
+import glob
+from datetime import datetime, timezone
+import xml.etree.ElementTree as ET
 
-  <!-- Core LLM & Manifest Endpoints -->
-  <url>
-    <loc>https://analysisreports.github.io/llms.txt</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://analysisreports.github.io/llms-full.txt</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://analysisreports.github.io/llms-about.txt</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://analysisreports.github.io/llms-models.txt</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://analysisreports.github.io/llms-formulas.txt</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://analysisreports.github.io/llms-relationships.txt</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://analysisreports.github.io/llms-indicators.txt</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://analysisreports.github.io/llms-prompts.txt</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(BASE_DIR)
+BASE_URL = "https://analysisreports.github.io"
 
-  <!-- JSON Schemas & Machine Tools -->
-  <url>
-    <loc>https://analysisreports.github.io/llms-tools.json</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://analysisreports.github.io/ai-catalog.json</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
+# Static core endpoints
+CORE_ENDPOINTS = [
+    ("", "1.0", "daily"),
+    ("llms.txt", "0.9", "daily"),
+    ("llms-full.txt", "0.9", "daily"),
+    ("llms-about.txt", "0.8", "daily"),
+    ("llms-models.txt", "0.9", "daily"),
+    ("llms-formulas.txt", "0.8", "daily"),
+    ("llms-relationships.txt", "0.8", "daily"),
+    ("llms-indicators.txt", "0.7", "daily"),
+    ("llms-prompts.txt", "0.7", "daily"),
+    ("llms-tools.json", "0.7", "daily"),
+    ("ai-catalog.json", "0.8", "daily"),
+    ("WORKFLOW.html", "0.5", "daily")
+]
 
-  <!-- Documentation & Workflow Architecture -->
-  <url>
-    <loc>https://analysisreports.github.io/WORKFLOW.html</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-</urlset>
+# Dynamic analysis directories
+ANALYSIS_DIRS = [
+    "country",
+    "economy",
+    "political",
+    "concept",
+    "glossary",
+    "editorial",
+    "political-country"
+]
+
+urlset = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
+
+def add_entry(loc, priority, changefreq, mtime=None):
+    url_el = ET.SubElement(urlset, "url")
+    ET.SubElement(url_el, "loc").text = loc
+    if mtime:
+        dt = datetime.fromtimestamp(mtime, tz=timezone.utc)
+        ET.SubElement(url_el, "lastmod").text = dt.strftime("%Y-%m-%d")
+    ET.SubElement(url_el, "changefreq").text = changefreq
+    ET.SubElement(url_el, "priority").text = priority
+
+# Add core endpoints
+for rel_path, prio, freq in CORE_ENDPOINTS:
+    full_path = os.path.join(ROOT_DIR, rel_path) if rel_path else ROOT_DIR
+    mtime = os.path.getmtime(full_path) if os.path.exists(full_path) else None
+    url = f"{BASE_URL}/{rel_path}" if rel_path else f"{BASE_URL}/"
+    add_entry(url, prio, freq, mtime)
+
+# Add dynamic analysis JSON files
+for cat in ANALYSIS_DIRS:
+    search_path = os.path.join(ROOT_DIR, cat)
+    for file_path in glob.glob(f"{search_path}/**/*.json", recursive=True):
+        rel_file = os.path.relpath(file_path, ROOT_DIR).replace(os.sep, "/")
+        mtime = os.path.getmtime(file_path)
+        file_url = f"{BASE_URL}/{rel_file}"
+        add_entry(file_url, "0.7", "weekly", mtime)
+
+tree = ET.ElementTree(urlset)
+ET.indent(tree, space="  ")
+
+output_path = os.path.join(ROOT_DIR, "sitemap.xml")
+tree.write(output_path, encoding="utf-8", xml_declaration=True)
+print(f"sitemap.xml updated successfully. Total URLs: {len(urlset)}")
