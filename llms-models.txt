@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-10 00:32 UTC
+> **Last Calibrated Sync:** 2026-11-10 00:39 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -45,6 +45,7 @@
 | **MODEL_25** | Terms of Trade (TOT) | **112.22** | Index Points | `FAVORABLE_TRADE` | Evaluates sovereign purchasing power and current accoun... |
 | **MODEL_25.12** | Brent - WTI Seaborne Risk Spread | **7.39** | USD | `NORMAL_TRANSATLANTIC_ARBITRAGE` | Seaborne geopolitical friction and maritime risk spread... |
 | **MODEL_25.13** | Labor Market Momentum Index (LMMI) | **0.86** | Net Momentum Pts | `MODERATE_LABOR_EXPANSION` | Couples nonfarm payroll expansion with unemployment cha... |
+| **MODEL_25.2** | Sticky vs. Flexible CPI Spread | **-1.41** | Percentage Points (ppt) | `BALANCED_DISINFLATION_PATH` | Evaluates core inflation persistence versus transient p... |
 | **MODEL_25.3** | Global Supply Chain Pressure Logistics Engine (NY Fed GSCPI) | **1.26** | Standard Deviations (Z-Score) | `NORMALIZED_GLOBAL_TRADE` | Tracks standard deviations of global freight rates, shi... |
 | **MODEL_25.5** | Repo Liquidity Friction Spread Engine | **4.0** | Basis Points (bps) | `HEALTHY_MONETARY_TRANSMISSION` | Measures funding market friction tracking the spread be... |
 | **MODEL_25.6** | Gold / Real Yield Debasement Gauge | **2.63** | Percent (%) | `TRADITIONAL_REAL_RATE_DOMINANCE` | Detects de-dollarization trends and fiat debasement by ... |
@@ -268,6 +269,13 @@
 - **Inputs Evaluated:** `{"payems_current": 159293.0, "payems_year_ago": 158408.0, "unrate_current": 4.1, "unrate_year_ago": 4.4}`
 - **Secondary Metrics:** `{"payroll_growth_yoy_pct": 0.56, "unemployment_rate_diff_yoy": -0.3, "employment_strength_ratio": 0.14}`
 - **Economic Synthesis:** Couples nonfarm payroll expansion with unemployment change to gauge labor slack and wage inflation momentum.
+
+#### [MODEL_25.2] Sticky vs. Flexible CPI Spread
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.2
+- **Evaluated Status:** `BALANCED_DISINFLATION_PATH` (Primary Value: -1.41 Percentage Points (ppt))
+- **Inputs Evaluated:** `{"sticky_cpi_val": 0.28, "flexible_cpi_val": 1.69}`
+- **Secondary Metrics:** `{"sticky_impulse_ppt": -1.41, "sticky_cpi_rate": 0.28, "flexible_cpi_rate": 1.69}`
+- **Economic Synthesis:** Evaluates core inflation persistence versus transient price shocks by measuring the spread between sticky CPI (services, shelter) and flexible CPI (fuel, food). Spreads > 2.0 ppt reflect structural service-shelter inflation entrapment.
 
 #### [MODEL_25.3] Global Supply Chain Pressure Logistics Engine (NY Fed GSCPI)
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.3

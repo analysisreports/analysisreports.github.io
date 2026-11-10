@@ -10,7 +10,7 @@
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
     "root_index": "https://analysisreports.github.io/llms.txt",
-    "series_count": 56
+    "series_count": 58
   },
   "series": {
     "DCOILBRENTEU": {
@@ -2418,6 +2418,92 @@
         {
           "date": "2026-04-01",
           "value": 2.85
+        }
+      ]
+    },
+    "STICKCPIM157SFRBATL": {
+      "series_id": "STICKCPIM157SFRBATL",
+      "title": "Sticky Price Consumer Price Index",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Percent Change at Annual Rate",
+      "source": "Percent Change at Annual Rate",
+      "last_date": "2026-09-01",
+      "current_value": 0.279114413,
+      "previous_value": 0.253931514,
+      "year_ago_value": 0.206746387,
+      "transformations": {
+        "change": 0.0252,
+        "change_from_year_ago": 0.0724,
+        "percent_change": 9.9172,
+        "percent_change_from_year_ago": 35.0033,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 9.4557,
+        "continuously_compounded_annual_rate_of_change": 113.4686
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 0.238615079
+        },
+        {
+          "date": "2026-06-01",
+          "value": 0.0676495
+        },
+        {
+          "date": "2026-07-01",
+          "value": 0.28592279
+        },
+        {
+          "date": "2026-08-01",
+          "value": 0.253931514
+        },
+        {
+          "date": "2026-09-01",
+          "value": 0.279114413
+        }
+      ]
+    },
+    "FLEXCPIM157SFRBATL": {
+      "series_id": "FLEXCPIM157SFRBATL",
+      "title": "Flexible Price Consumer Price Index",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Percent Change at Annual Rate",
+      "source": "Percent Change at Annual Rate",
+      "last_date": "2026-09-01",
+      "current_value": 1.686174531,
+      "previous_value": 0.810515262,
+      "year_ago_value": 0.55471486,
+      "transformations": {
+        "change": 0.8757,
+        "change_from_year_ago": 1.1315,
+        "percent_change": 108.0374,
+        "percent_change_from_year_ago": 203.9714,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 73.2547,
+        "continuously_compounded_annual_rate_of_change": 879.057
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 1.107630624
+        },
+        {
+          "date": "2026-06-01",
+          "value": -1.774278179
+        },
+        {
+          "date": "2026-07-01",
+          "value": -0.514324319
+        },
+        {
+          "date": "2026-08-01",
+          "value": 0.810515262
+        },
+        {
+          "date": "2026-09-01",
+          "value": 1.686174531
         }
       ]
     }

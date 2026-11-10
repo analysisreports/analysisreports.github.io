@@ -224,6 +224,8 @@ IND_AWHAETP          | Source: BLS / FRED | Name: Average Weekly Hours Total Pri
 IND_CPIAUCSL         | Source: BLS / FRED | Name: Consumer Price Index for All Urban Consumers (CPI YoY %)
 IND_STICKY_CPI       | Source: Atlanta Fed / FRED | Name: Sticky CPI Less Food & Energy (STICKYCPIM157SFRBATL)
 IND_FLEX_CPI         | Source: Atlanta Fed / FRED | Name: Flexible CPI Less Food & Energy (FLEXCPIM157SFRBATL)
+IND_STICKCPIM157SFRBATL | Source: Atlanta Fed / FRED | Name: Sticky Price Consumer Price Index (STICKCPIM157SFRBATL)
+IND_FLEXCPIM157SFRBATL  | Source: Atlanta Fed / FRED | Name: Flexible Price Consumer Price Index (FLEXCPIM157SFRBATL)
 IND_PCEPI            | Source: BEA / FRED | Name: Personal Consumption Expenditures Price Index
 IND_WPU06            | Source: BLS / FRED | Name: PPI Chemicals and Allied Products
 IND_IQ               | Source: BLS / FRED | Name: U.S. Export Price Index All Commodities (IQ)

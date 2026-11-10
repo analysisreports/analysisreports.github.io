@@ -2030,6 +2030,18 @@
           "NORMAL_MARKET_REGIME"
         ]
       }
+    },
+    {
+      "id": "IND_STICKCPIM157SFRBATL",
+      "label": "Sticky Price Consumer Price Index",
+      "category": "INDICATOR",
+      "source": "Atlanta Fed / FRED"
+    },
+    {
+      "id": "IND_FLEXCPIM157SFRBATL",
+      "label": "Flexible Price Consumer Price Index",
+      "category": "INDICATOR",
+      "source": "Atlanta Fed / FRED"
     }
   ],
   "edges": [
@@ -3250,6 +3262,18 @@
       "target": "MODEL_24",
       "type": "INGESTS_SERIES",
       "role": "10-Year Nominal Treasury Yield"
+    },
+    {
+      "source": "IND_STICKCPIM157SFRBATL",
+      "target": "MODEL_25.2",
+      "type": "INGESTS_SERIES",
+      "role": "Sticky CPI Rate"
+    },
+    {
+      "source": "IND_FLEXCPIM157SFRBATL",
+      "target": "MODEL_25.2",
+      "type": "INGESTS_SERIES",
+      "role": "Flexible CPI Rate"
     }
   ]
 }

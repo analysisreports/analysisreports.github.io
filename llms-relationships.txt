@@ -95,6 +95,9 @@ Regime States (Discrete Mapping):
 - DEBALANCING_DEDOLLARIZATION_PANIC : Gold rallying despite high real yields indicating systemic fiat currency debasement and central bank de-dollarization.
 - ACCOMMODATIVE_GOLD_BULL       : Negative real Treasury yields providing monetary liquidity tailwinds for gold appreciation.
 - TRADITIONAL_REAL_RATE_DOMINANCE : Positive real Treasury yields exerting orthodox downward pressure on non-yielding physical gold.
+- STRUCTURAL_INFLATION_TRAP     : Sticky CPI exceeding flexible CPI by over 2.0% indicating structural service-shelter inflation entrapment.
+- TRANSITORY_INFLATION_SURGE    : Flexible CPI outpacing sticky CPI by over 2.0% reflecting transient commodity-led supply price spikes.
+- BALANCED_DISINFLATION_PATH    : Sticky and flexible inflation rates aligned within a +/- 2.0% spread along a balanced disinflation trajectory.
 
 ---
 

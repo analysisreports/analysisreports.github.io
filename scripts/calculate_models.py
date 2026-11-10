@@ -833,6 +833,50 @@ def calc_labor_market_momentum_index(payems_curr, payems_yr_ago, unrate_curr, un
         return None
 
 
+# --- Model 25.2: Sticky vs. Flexible CPI Spread ---
+def calc_sticky_flexible_cpi_spread(sticky_val, flex_val) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (sticky_val, flex_val)):
+        return None
+    try:
+        f_sticky = float(sticky_val)
+        f_flex = float(flex_val)
+        if not (math.isfinite(f_sticky) and math.isfinite(f_flex)):
+            return None
+
+        raw_impulse = f_sticky - f_flex
+        if not math.isfinite(raw_impulse):
+            return None
+        impulse = round(raw_impulse, 2)
+
+        if impulse > 2.0:
+            status = "STRUCTURAL_INFLATION_TRAP"
+        elif impulse < -2.0:
+            status = "TRANSITORY_INFLATION_SURGE"
+        else:
+            status = "BALANCED_DISINFLATION_PATH"
+
+        return {
+            "model_id": "MODEL_25.2",
+            "model_name": "Sticky vs. Flexible CPI Spread",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.2",
+            "primary_value": impulse,
+            "unit": "Percentage Points (ppt)",
+            "status": status,
+            "inputs": {
+                "sticky_cpi_val": round(f_sticky, 2),
+                "flexible_cpi_val": round(f_flex, 2)
+            },
+            "metrics": {
+                "sticky_impulse_ppt": impulse,
+                "sticky_cpi_rate": round(f_sticky, 2),
+                "flexible_cpi_rate": round(f_flex, 2)
+            },
+            "interpretation": "Evaluates core inflation persistence versus transient price shocks by measuring the spread between sticky CPI (services, shelter) and flexible CPI (fuel, food). Spreads > 2.0 ppt reflect structural service-shelter inflation entrapment."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
 # --- Model 25.3: NY Fed GSCPI Logistics Engine ---
 def calc_supply_chain_pressure(gscpi_val):
     if gscpi_val is None or isinstance(gscpi_val, bool):
@@ -2060,6 +2104,13 @@ def main():
     m_lmmi = calc_labor_market_momentum_index(payems_curr, payems_yr, unrate_curr, unrate_yr)
     if m_lmmi:
         models_calculated.append(m_lmmi)
+
+    # Model 25.2: Sticky vs. Flexible CPI Spread
+    sticky_cpi = series.get("STICKCPIM157SFRBATL", {}).get("current_value")
+    flex_cpi = series.get("FLEXCPIM157SFRBATL", {}).get("current_value")
+    m_sticky = calc_sticky_flexible_cpi_spread(sticky_cpi, flex_cpi)
+    if m_sticky:
+        models_calculated.append(m_sticky)
 
     # Model 25.3: Global Supply Chain Pressure Logistics Engine (NY Fed GSCPI)
     m_gscpi = calc_supply_chain_pressure(gscpi)

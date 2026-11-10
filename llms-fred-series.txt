@@ -72,6 +72,9 @@ IQ
 TRESEGSAM052N
 BOPGSTB
 PCOPPUSDM
+STICKCPIM157SFRBATL
+FLEXCPIM157SFRBATL
+
 
 [QUARTERLY]
 GDPC1
@@ -1306,3 +1309,47 @@ Recent Observations (Last 5):
   2025-10-01: 2.9500
   2026-01-01: 2.9100
   2026-04-01: 2.8500
+
+--------------------------------------------------------------------------------
+Series ID: STICKCPIM157SFRBATL
+Title: Sticky Price Consumer Price Index
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent Change at Annual Rate
+Last Date: 2026-09-01 | Current Value: 0.2791 | Previous Value: 0.2539 | Year Ago Value: 0.2067
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.0252
+  2. Change from Year Ago: +0.0724
+  3. Percent Change: +9.9172%
+  4. Percent Change from Year Ago: +35.0033%
+  5. Compounded Annual Rate of Change: N/A
+  6. Continuously Compounded Rate of Change: +9.4557%
+  7. Continuously Compounded Annual Rate of Change: +113.4686%
+
+Recent Observations (Last 5):
+  2026-05-01: 0.2386
+  2026-06-01: 0.0676
+  2026-07-01: 0.2859
+  2026-08-01: 0.2539
+  2026-09-01: 0.2791
+
+--------------------------------------------------------------------------------
+Series ID: FLEXCPIM157SFRBATL
+Title: Flexible Price Consumer Price Index
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent Change at Annual Rate
+Last Date: 2026-09-01 | Current Value: 1.6862 | Previous Value: 0.8105 | Year Ago Value: 0.5547
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.8757
+  2. Change from Year Ago: +1.1315
+  3. Percent Change: +108.0374%
+  4. Percent Change from Year Ago: +203.9714%
+  5. Compounded Annual Rate of Change: N/A
+  6. Continuously Compounded Rate of Change: +73.2547%
+  7. Continuously Compounded Annual Rate of Change: +879.0570%
+
+Recent Observations (Last 5):
+  2026-05-01: 1.1076
+  2026-06-01: -1.7743
+  2026-07-01: -0.5143
+  2026-08-01: 0.8105
+  2026-09-01: 1.6862

@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-10T00:32:06.441366+00:00",
+    "last_successful_sync": "2026-11-10T00:39:01.216550+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 39
+    "total_models_active": 40
   },
   "models": [
     {
@@ -552,6 +552,24 @@
         "employment_strength_ratio": 0.14
       },
       "interpretation": "Couples nonfarm payroll expansion with unemployment change to gauge labor slack and wage inflation momentum."
+    },
+    {
+      "model_id": "MODEL_25.2",
+      "model_name": "Sticky vs. Flexible CPI Spread",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.2",
+      "primary_value": -1.41,
+      "unit": "Percentage Points (ppt)",
+      "status": "BALANCED_DISINFLATION_PATH",
+      "inputs": {
+        "sticky_cpi_val": 0.28,
+        "flexible_cpi_val": 1.69
+      },
+      "metrics": {
+        "sticky_impulse_ppt": -1.41,
+        "sticky_cpi_rate": 0.28,
+        "flexible_cpi_rate": 1.69
+      },
+      "interpretation": "Evaluates core inflation persistence versus transient price shocks by measuring the spread between sticky CPI (services, shelter) and flexible CPI (fuel, food). Spreads > 2.0 ppt reflect structural service-shelter inflation entrapment."
     },
     {
       "model_id": "MODEL_25.3",
