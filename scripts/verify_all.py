@@ -5,7 +5,7 @@ verify_all.py
 --------------
 Master Enterprise Orchestrator & Unified CI/CD Continuous Quality Suite.
 
-Runs the complete 7-pillar institutional verification pipeline:
+Runs the complete 8-pillar institutional verification pipeline:
 1. Entity Dictionary Compliance (verify_entities.py)
 2. Zero-Synthetic-Data & Fallback Validator (verify_zero_fallbacks.py)
 3. Cross-File Polarity Auto-Sync & SSOT Equalizer (verify_cross_consistency.py)
@@ -13,6 +13,7 @@ Runs the complete 7-pillar institutional verification pipeline:
 5. Chronological & Treaty Sequence Sanity Auditor (verify_temporal_sanity.py)
 6. Knowledge Graph Topology & Edge Integrity Auditor (verify_graph_topology.py)
 7. Quantitative Models Stress & Numerical Stability Auditor (verify_model_stress.py)
+8. LLM Tool Specification & Function Calling Schema Auditor (verify_tools_schema.py)
 
 Author: Ersoy Toptaş
 License: CC BY 4.0
@@ -35,7 +36,8 @@ TEST_SUITE: List[Tuple[str, str, str]] = [
     ("Dyad Symmetry & Hub Isolation Guard", "verify_dyad_integrity.py", "165 Dyads, 0 Leaks, 100% Symmetric Mirrors"),
     ("Chronological & Treaty Temporal Sanity", "verify_temporal_sanity.py", "Sequence (Sign<=Enact), Watersheds, 2026 Horizon"),
     ("Knowledge Graph Topology & Edge Integrity", "verify_graph_topology.py", "Topological Health, Zero Broken Edges, SSOT Polarity Invariance"),
-    ("Quantitative Models Stress & Stability", "verify_model_stress.py", "42 Active Models, Zero NaN/Inf under Crisis Shocks")
+    ("Quantitative Models Stress & Stability", "verify_model_stress.py", "42 Active Models, Zero NaN/Inf under Crisis Shocks"),
+    ("LLM Tool Specification & Schema Integrity", "verify_tools_schema.py", "63 Active Tools, Zero Schema Defects, 100% Parameter Coverage")
 ]
 
 def run_step(title: str, script_name: str, desc: str) -> Tuple[bool, float, str]:
