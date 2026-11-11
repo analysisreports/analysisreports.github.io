@@ -58,7 +58,7 @@ def fred_change_year_ago(xt, xt_year_ago):
         return None
 
 def fred_percent_change(xt, xt_prev):
-    if not (_is_num(xt) and _is_num(xt_prev)) or xt_prev == 0:
+    if not (_is_num(xt) and _is_num(xt_prev)) or xt_prev <= 0:
         return None
     try:
         res = ((xt / xt_prev) - 1.0) * 100.0
@@ -67,7 +67,7 @@ def fred_percent_change(xt, xt_prev):
         return None
 
 def fred_percent_change_year_ago(xt, xt_year_ago):
-    if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago == 0:
+    if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago <= 0:
         return None
     try:
         res = ((xt / xt_year_ago) - 1.0) * 100.0

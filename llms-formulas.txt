@@ -105,7 +105,7 @@ def _is_pos(val):
    Formula: ((x(t) / x(t-1)) - 1) * 100
    Python:
    def fred_percent_change(xt, xt_prev):
-       if not (_is_num(xt) and _is_num(xt_prev)) or xt_prev == 0:
+       if not (_is_num(xt) and _is_num(xt_prev)) or xt_prev <= 0:
            return None
        try:
            res = ((xt / xt_prev) - 1.0) * 100.0
@@ -117,7 +117,7 @@ def _is_pos(val):
    Formula: ((x(t) / x(t - n_obs_per_yr)) - 1) * 100
    Python:
    def fred_percent_change_year_ago(xt, xt_year_ago):
-       if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago == 0:
+       if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago <= 0:
            return None
        try:
            res = ((xt / xt_year_ago) - 1.0) * 100.0
@@ -1252,9 +1252,9 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 - Data Series Keys:
   - Official FRED Series: DDLS01USA156NWDB (Stock Market Capitalization to GDP for United States - Percent)
   - Component Benchmark: NCBEILQ027S (Nonfinancial Corporate Business: Corporate Equities; Liability - Level, Millions USD)
-  - BEA / FRED: GDP (Gross Domestic Product - Nominal Millions of USD)
+  - BEA / FRED: GDP (Gross Domestic Product - Nominal Billions of USD)
 - Formula:
-  Buffett_Ratio_Pct = (Total_Equities_Market_Value / GDP) * 100
+  Buffett_Ratio_Pct = (Total_Equities_Market_Value_mil / (GDP_bil * 1000.0)) * 100
 - Machine-Executable Logic (Python):
   def buffett_indicator(market_val, gdp_val):
       if any(v is None or isinstance(v, bool) for v in (market_val, gdp_val)):
@@ -1266,7 +1266,8 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           if min(market_val, 0) == market_val or min(gdp_val, 0) == gdp_val:
               return None
 
-          raw_ratio = (market_val / gdp_val) * 100.0
+          gdp_mil = gdp_val * 1000.0
+          raw_ratio = (market_val / gdp_mil) * 100.0
           if not math.isfinite(raw_ratio):
               return None
           ratio = round(raw_ratio, 2)
@@ -2115,7 +2116,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ### 25.10. SLOOS LENDING STANDARDS RECESSION GAUGE
 - Purpose: Tracks the net percentage of domestic US banks tightening lending standards on commercial and industrial (C&I) loans to detect credit channel freezing 6-9 months ahead of recessions.
 - Data Series Keys:
-  - FRED: DRTSCIS (Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Large and Middle-Market Firms - Quarterly Percent)
+  - FRED: DRTSCIS (Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Small Firms - Quarterly Percent)
 - Formula: Credit_Tightening_Net_Pct = DRTSCIS
 - Machine-Executable Logic (Python):
   def sloos_lending_tightness_gauge(drtscis_val):
