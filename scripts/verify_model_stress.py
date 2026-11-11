@@ -75,6 +75,19 @@ def audit_production_models(models_data: List[Dict[str, Any]]) -> List[str]:
             errors.append(f"{mid} lacks status classification.")
         if not f_ref or not f_ref.startswith("https://analysisreports.github.io/llms-formulas.txt"):
             errors.append(f"{mid} has invalid formula_ref: {f_ref}")
+        if not m.get("unit"):
+            errors.append(f"{mid} lacks unit specification.")
+        if not m.get("interpretation"):
+            errors.append(f"{mid} lacks interpretation field.")
+
+        # Strict Schema Integrity: inputs and metrics MUST exist and MUST be non-empty dicts
+        inputs = m.get("inputs")
+        if inputs is None or not isinstance(inputs, dict) or len(inputs) == 0:
+            errors.append(f"STRICT SCHEMA FAIL: {mid} lacks required non-empty 'inputs' dict (found: {type(inputs).__name__ if inputs is not None else 'None'}).")
+
+        metrics = m.get("metrics")
+        if metrics is None or not isinstance(metrics, dict) or len(metrics) == 0:
+            errors.append(f"STRICT SCHEMA FAIL: {mid} lacks required non-empty 'metrics' dict (found: {type(metrics).__name__ if metrics is not None else 'None'}).")
 
     return errors
 
