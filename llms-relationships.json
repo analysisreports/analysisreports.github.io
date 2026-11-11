@@ -5,15 +5,15 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-10T22:05:31.679190+00:00",
+    "last_successful_sync": "2026-11-11T00:52:51.795591+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
       "brent_wti_spread_usd": 7.39,
-      "vix_index": 25.64,
-      "sox_yoy_pct": 34.5898,
+      "vix_index": 19.92,
+      "sox_yoy_pct": 39.9827,
       "gscpi_std_dev": 1.2619,
-      "ai_chip_stress_score": 0.583
+      "ai_chip_stress_score": 0.474
     }
   },
   "central_bank_policy_benchmark": {
@@ -33,7 +33,7 @@
         "institution_id": "INST_FED_US",
         "benchmark": "Federal Funds Effective Rate (DFF)",
         "rate": 3.88,
-        "effective_date": "2026-11-06",
+        "effective_date": "2026-11-09",
         "spread_vs_dff_ppt": 0.0,
         "spread_str": "Benchmark (0.00)"
       },
@@ -93,8 +93,8 @@
       "target_entity": "GEO_CN",
       "label": "US - CN (United States vs. People's Republic of China)",
       "p_baseline": -0.65,
-      "dynamic_delta": -0.08,
-      "p_net": -0.73,
+      "dynamic_delta": 0.0,
+      "p_net": -0.65,
       "regime_state": "STRATEGIC_COMPETITION",
       "primary_driver": "MODEL_25_14_AI_CHIP_STRESS",
       "friction_nodes": [

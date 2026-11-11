@@ -37,7 +37,7 @@ SAUPZPIOILBEGUSD
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-10 00:52:28 UTC
+# - Synced At: 2026-11-11 00:52:50 UTC
 # - Total Series Synced: 3 / 3
 # - Source Authority: International Monetary Fund (IMF)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
@@ -47,13 +47,13 @@ SAUPZPIOILBEGUSD
 Series ID: JP_FPOLM_PA
 Title: Central Bank Policy Rate for Japan
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent per Annum
-Last Date: 2026-10-01 | Current Value: 1.2500 | Previous Value: 1.2500 | Year Ago Value: 0.7500
+Last Date: 2026-10-01 | Current Value: 1.2500 | Previous Value: 1.2500 | Year Ago Value: N/A
 
 Transformations (Official IMF / St. Louis Fed Formulas):
   1. Change: +0.0000
-  2. Change from Year Ago: +0.5000
+  2. Change from Year Ago: N/A
   3. Percent Change: +0.0000%
-  4. Percent Change from Year Ago: +66.6667%
+  4. Percent Change from Year Ago: N/A
   5. Compounded Annual Rate of Change: N/A (Rate is already annualized)
   6. Continuously Compounded Rate of Change: +0.0000%
   7. Continuously Compounded Annual Rate of Change: N/A (Rate is already annualized)
@@ -69,13 +69,13 @@ Recent Observations (Last 5):
 Series ID: GB_FPOLM_PA
 Title: Central Bank Policy Rate for United Kingdom
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent per Annum
-Last Date: 2026-11-01 | Current Value: 4.0000 | Previous Value: 4.0000 | Year Ago Value: 4.2500
+Last Date: 2026-11-01 | Current Value: 4.0000 | Previous Value: 4.0000 | Year Ago Value: N/A
 
 Transformations (Official IMF / St. Louis Fed Formulas):
   1. Change: +0.0000
-  2. Change from Year Ago: -0.2500
+  2. Change from Year Ago: N/A
   3. Percent Change: +0.0000%
-  4. Percent Change from Year Ago: -5.8824%
+  4. Percent Change from Year Ago: N/A
   5. Compounded Annual Rate of Change: N/A (Rate is already annualized)
   6. Continuously Compounded Rate of Change: +0.0000%
   7. Continuously Compounded Annual Rate of Change: N/A (Rate is already annualized)
