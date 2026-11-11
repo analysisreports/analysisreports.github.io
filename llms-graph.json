@@ -595,7 +595,7 @@
     },
     {
       "id": "ACTOR_C6_BLOC",
-      "label": "Orta Asya - Azerbaycan Ä°stiÅŸare MekanizmasÄ± (C6)",
+      "label": "Central Asia - Azerbaijan Consultative Mechanism (C6)",
       "category": "ACTOR",
       "type": "Regional Multilateral Bloc",
       "attributes": {
@@ -697,7 +697,7 @@
     },
     {
       "id": "ENERGY_URANIUM",
-      "label": "ZenginleÅŸtirilmiÅŸ Uranyum ve NÃ¼kleer YakÄ±t",
+      "label": "Enriched Uranium and Nuclear Fuel Supply",
       "category": "COMMODITY_STRATEGIC",
       "attributes": {
         "dominant_supplier": "ACTOR_RU"
@@ -713,7 +713,7 @@
     },
     {
       "id": "COMMODITY_CRUDE_OIL",
-      "label": "Brent & WTI Ham Petrol ArzÄ±",
+      "label": "Brent and WTI Crude Oil Supply Benchmark",
       "category": "ENERGY_BENCHMARK",
       "attributes": {
         "chokepoint_sensitivity": "CHOKE_HORMUZ"
@@ -1203,7 +1203,7 @@
     },
     {
       "id": "INST_CBRT_TR",
-      "label": "Central Bank of the Republic of TÃ¼rkiye",
+      "label": "Central Bank of the Republic of Türkiye",
       "category": "ACTOR",
       "type": "Central Bank",
       "attributes": {
@@ -2247,7 +2247,7 @@
       "source": "ACTOR_RU",
       "target": "ACTOR_CN",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.75,
+      "p_baseline": 0.85,
       "regime": "STRATEGIC_ALIGNMENT"
     },
     {
@@ -2268,7 +2268,7 @@
       "source": "ACTOR_TR",
       "target": "ACTOR_RU",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.15,
+      "p_baseline": 0.35,
       "regime": "TACTICAL_COOPERATION"
     },
     {
@@ -2547,7 +2547,7 @@
       "source": "ACTOR_RU",
       "target": "ENERGY_URANIUM",
       "type": "CONTROLS_LEVERAGE",
-      "description": "NÃ¼kleer yakÄ±t tedarik zinciri Ã¼zerinden asimetrik jeopolitik baskÄ±."
+      "description": "Asymmetric geopolitical pressure via nuclear fuel supply chain vulnerabilities."
     },
     {
       "source": "ENERGY_URANIUM",
@@ -2559,13 +2559,13 @@
       "source": "ENERGY_LITHIUM",
       "target": "IND_WPU06",
       "type": "INFLATION_IMPACT",
-      "description": "Batarya ve kimyasal sanayi maliyetleri Ã¼zerinden Ã¼retici fiyat baskÄ±sÄ±."
+      "description": "Producer price cost pressures transmitted via industrial battery and chemical mineral chains."
     },
     {
       "source": "CHOKE_HORMUZ",
       "target": "COMMODITY_CRUDE_OIL",
       "type": "SUPPLY_DISRUPTION",
-      "description": "HÃ¼rmÃ¼z BoÄŸazÄ± risk priminin ham petrol fiyatlarÄ±na doÄŸrudan aktarÄ±mÄ±."
+      "description": "Direct risk premium transmission to crude oil prices driven by Strait of Hormuz chokepoint escalations."
     },
     {
       "source": "ACTOR_C6_BLOC",
@@ -2735,28 +2735,28 @@
       "source": "ACTOR_US",
       "target": "ACTOR_GB",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.9,
+      "p_baseline": 0.95,
       "regime": "ALLIANCE"
     },
     {
       "source": "ACTOR_US",
       "target": "ACTOR_UA",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.85,
+      "p_baseline": 0.7,
       "regime": "STRATEGIC_ALIGNMENT"
     },
     {
       "source": "ACTOR_RU",
       "target": "ACTOR_UA",
       "type": "POLARITY_COUPLING",
-      "p_baseline": -1,
+      "p_baseline": -0.95,
       "regime": "KINETIC_WAR"
     },
     {
       "source": "ACTOR_RU",
       "target": "ACTOR_DE",
       "type": "POLARITY_COUPLING",
-      "p_baseline": -0.75,
+      "p_baseline": -0.7,
       "regime": "ECONOMIC_WARFARE"
     },
     {
@@ -2777,7 +2777,7 @@
       "source": "ACTOR_RU",
       "target": "ACTOR_PL",
       "type": "POLARITY_COUPLING",
-      "p_baseline": -0.85,
+      "p_baseline": -0.8,
       "regime": "STRATEGIC_FRICTION"
     },
     {
@@ -2798,7 +2798,7 @@
       "source": "ACTOR_US",
       "target": "ACTOR_TW",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.85,
+      "p_baseline": 0.75,
       "regime": "STRATEGIC_ALIGNMENT"
     },
     {
@@ -2812,21 +2812,21 @@
       "source": "ACTOR_CN",
       "target": "ACTOR_JP",
       "type": "POLARITY_COUPLING",
-      "p_baseline": -0.6,
+      "p_baseline": -0.55,
       "regime": "STRATEGIC_COMPETITION"
     },
     {
       "source": "ACTOR_US",
       "target": "ACTOR_AU",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.9,
+      "p_baseline": 0.95,
       "regime": "ALLIANCE"
     },
     {
       "source": "ACTOR_US",
       "target": "ACTOR_SG",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.75,
+      "p_baseline": 0.7,
       "regime": "TACTICAL_COOPERATION"
     },
     {
@@ -2854,35 +2854,35 @@
       "source": "ACTOR_KZ",
       "target": "ACTOR_RU",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.6,
+      "p_baseline": 0.65,
       "regime": "TACTICAL_COOPERATION"
     },
     {
       "source": "ACTOR_EG",
       "target": "ACTOR_US",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.65,
+      "p_baseline": 0.4,
       "regime": "TACTICAL_COOPERATION"
     },
     {
       "source": "ACTOR_SA",
       "target": "ACTOR_US",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.7,
+      "p_baseline": 0.5,
       "regime": "STRATEGIC_ALIGNMENT"
     },
     {
       "source": "ACTOR_IQ",
       "target": "ACTOR_IR",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.6,
+      "p_baseline": 0.75,
       "regime": "TACTICAL_COOPERATION"
     },
     {
       "source": "ACTOR_SY",
       "target": "ACTOR_RU",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.85,
+      "p_baseline": 0.8,
       "regime": "ALLIANCE"
     },
     {
@@ -2896,14 +2896,14 @@
       "source": "ACTOR_US",
       "target": "ACTOR_MX",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.8,
+      "p_baseline": 0.6,
       "regime": "STRATEGIC_ALIGNMENT"
     },
     {
       "source": "ACTOR_US",
       "target": "ACTOR_BR",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.5,
+      "p_baseline": 0.3,
       "regime": "NEUTRAL"
     },
     {
