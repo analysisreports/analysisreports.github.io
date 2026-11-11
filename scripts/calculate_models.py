@@ -681,21 +681,25 @@ def calc_acm_term_premium(dgs10_val, threefytp10_val) -> Optional[Dict[str, Any]
         tp = float(threefytp10_val)
         if not (math.isfinite(nom) and math.isfinite(tp)):
             return None
-        # Nominal 10Y yield cannot be negative
-        if nom < 0.0:
+        # Nominal 10Y yield sanity bounds [0.0%, 25.0%]
+        if nom < 0.0 or nom > 25.0:
             return None
+        # Term premium quality & unit guard: reject bps vs pct confusion (must be within [-5.0%, +5.0%])
+        if tp < -5.0 or tp > 5.0:
+            return None
+
+        # Harmonize with llms-formulas.txt threshold rules: >= 0.50 and <= -0.50
+        if tp >= 0.50:
+            status = "FISCAL_SUPPLY_PRESSURE"
+        elif tp <= -0.50:
+            status = "FLIGHT_TO_SAFETY"
+        else:
+            status = "BALANCED_PREMIUM"
 
         term_prem = round(tp, 2)
         exp_rate = round(nom - term_prem, 2)
         if not math.isfinite(exp_rate):
             return None
-
-        if term_prem > 0.50:
-            status = "FISCAL_SUPPLY_PRESSURE"
-        elif term_prem < -0.50:
-            status = "FLIGHT_TO_SAFETY"
-        else:
-            status = "BALANCED_PREMIUM"
 
         return {
             "model_id": "MODEL_15",
@@ -713,7 +717,7 @@ def calc_acm_term_premium(dgs10_val, threefytp10_val) -> Optional[Dict[str, Any]
                 "expected_average_short_rate_pct": exp_rate,
                 "nominal_10y_yield_pct": round(nom, 2)
             },
-            "interpretation": "Decomposes the 10-year Treasury yield into expected short-term interest rate path and the pure term premium risk compensation (ACM model). Values > +0.50% reflect elevated Treasury supply and fiscal issuance risk."
+            "interpretation": "Decomposes 10-year Treasury yields via the Adrian, Crump & Moench (ACM) model. Term premium >= +0.50% reflects duration risk, fiscal supply pressure, or inflation uncertainty; <= -0.50% reflects safe-haven duration demand or central bank asset purchases."
         }
     except (TypeError, ValueError):
         return None

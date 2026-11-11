@@ -83,7 +83,7 @@ def audit_extreme_stress_regimes() -> Tuple[List[str], int, int]:
     if cm is None:
         return ["Failed to import calculate_models.py for stress testing."], 0, 7
 
-    total_regimes = 7
+    total_regimes = 8
     passed_regimes = 0
 
     # Regime 1: Severe Credit Crunch & Sovereign Stress
@@ -218,6 +218,36 @@ def audit_extreme_stress_regimes() -> Tuple[List[str], int, int]:
         errors.append(f"CRASH in Regime 7 Committee Dispersion: {e}")
         r7_ok = False
     if r7_ok: passed_regimes += 1
+
+    # Regime 8: ACM Term Premium Unit Guard & Threshold Invariance
+    r8_ok = True
+    try:
+        # 1. Reject bps confused for pct (55.0% term premium is an obvious unit error)
+        if cm.calc_acm_term_premium(4.5, 55.0) is not None:
+            errors.append("VULNERABILITY FAIL (Regime 8 - ACM): Bps confused for percent was accepted.")
+            r8_ok = False
+        # 2. Reject extreme anomaly (< -5.0%)
+        if cm.calc_acm_term_premium(4.5, -6.5) is not None:
+            errors.append("VULNERABILITY FAIL (Regime 8 - ACM): Extreme negative anomaly was accepted.")
+            r8_ok = False
+        # 3. Exact threshold boundary alignment with formulas.txt (>= 0.50 and <= -0.50)
+        res_pos = cm.calc_acm_term_premium(4.0, 0.50)
+        if not res_pos or res_pos.get("status") != "FISCAL_SUPPLY_PRESSURE":
+            errors.append("THRESHOLD FAIL (Regime 8 - ACM): +0.50 did not map to FISCAL_SUPPLY_PRESSURE.")
+            r8_ok = False
+        res_neg = cm.calc_acm_term_premium(4.0, -0.50)
+        if not res_neg or res_neg.get("status") != "FLIGHT_TO_SAFETY":
+            errors.append("THRESHOLD FAIL (Regime 8 - ACM): -0.50 did not map to FLIGHT_TO_SAFETY.")
+            r8_ok = False
+        # 4. Negative term premium expected short rate decomposition (4.0 - (-1.5) = 5.50%)
+        res_qe = cm.calc_acm_term_premium(4.0, -1.50)
+        if not res_qe or abs(res_qe["metrics"]["expected_average_short_rate_pct"] - 5.50) > 0.001:
+            errors.append("DECOMPOSITION FAIL (Regime 8 - ACM): Negative term premium decomposition error.")
+            r8_ok = False
+    except Exception as e:
+        errors.append(f"CRASH in Regime 8 ACM Term Premium: {e}")
+        r8_ok = False
+    if r8_ok: passed_regimes += 1
 
     return errors, passed_regimes, total_regimes
 

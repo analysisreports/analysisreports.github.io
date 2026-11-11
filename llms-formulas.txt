@@ -1081,8 +1081,11 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       try:
           if not (math.isfinite(dgs10) and math.isfinite(term_premium)):
               return None
-          # Nominal 10Y Treasury yield cannot be negative (min(v, 0) == 0 check: v >= 0)
-          if min(dgs10, 0) != 0:
+          # Nominal 10Y Treasury yield bounds [0.0%, 25.0%]
+          if dgs10 < 0.0 or dgs10 > 25.0:
+              return None
+          # Term premium bounds [-5.0%, +5.0%] to reject basis points vs percent unit errors
+          if term_premium < -5.0 or term_premium > 5.0:
               return None
 
           tp = round(float(term_premium), 2)
@@ -1090,9 +1093,9 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           if not math.isfinite(exp_rate):
               return None
 
-          if max(tp, 0.50) == tp:
+          if tp >= 0.50:
               status = "FISCAL_SUPPLY_PRESSURE"
-          elif min(tp, -0.50) == tp:
+          elif tp <= -0.50:
               status = "FLIGHT_TO_SAFETY"
           else:
               status = "BALANCED_PREMIUM"
@@ -1105,9 +1108,9 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Term_Premium > 0.50% : FISCAL_SUPPLY_PRESSURE (Elevated Treasury debt issuance / Inflation uncertainty premium)
+  - Term_Premium >= 0.50% : FISCAL_SUPPLY_PRESSURE (Duration risk, fiscal supply pressure, or inflation uncertainty)
   - -0.50% to 0.50% : BALANCED_PREMIUM (Balanced risk premium / Normalized Treasury demand)
-  - Term_Premium < -0.50% : FLIGHT_TO_SAFETY (Excess safe-haven demand / Synthetic Treasury scarcity)
+  - Term_Premium <= -0.50% : FLIGHT_TO_SAFETY (Safe-haven duration demand / Central bank asset purchase scarcity)
 
 ---
 

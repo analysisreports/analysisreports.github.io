@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-11 14:46 UTC
+> **Last Calibrated Sync:** 2026-11-11 14:55 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -28,7 +28,7 @@
 | **MODEL_12** | Financial Conditions Tightness (Chicago Fed NFCI) | **-0.459** | Index Points | `LOOSE_FINANCIAL_CONDITIONS` | Monitors monetary policy transmission into financial ma... |
 | **MODEL_13** | High Yield Credit Spread / OAS | **334** | Basis Points (bps) | `RISK_APPETITE_HEALTHY` | Measures corporate credit default risk and risk appetit... |
 | **MODEL_14** | Real M2 Money Momentum | **1.63** | Percentage Points (ppt) | `MONETARY_EXPANSION` | Detects aggregate demand and monetary impulse by calcul... |
-| **MODEL_15** | NY Fed ACM 10-Year Term Premium | **0.87** | Percent (%) | `FISCAL_SUPPLY_PRESSURE` | Decomposes the 10-year Treasury yield into expected sho... |
+| **MODEL_15** | NY Fed ACM 10-Year Term Premium | **0.87** | Percent (%) | `FISCAL_SUPPLY_PRESSURE` | Decomposes 10-year Treasury yields via the Adrian, Crum... |
 | **MODEL_16** | CBOE Volatility & Market Fear Regime | **19.92** | Points | `NORMAL_VOLATILITY` | 30-day forward S&P 500 implied volatility fear gauge an... |
 | **MODEL_18** | Okun Misery Index | **8.18** | Index Points | `MODERATE` | Measures household welfare loss and stagflationary stre... |
 | **MODEL_20** | Copper to Gold Macro Sentiment Ratio | **3.5257** | Ratio (USD/MT to USD/oz) | `CYCLICAL_EXPANSION` | Pits industrial cyclical momentum (Doctor Copper) again... |
@@ -161,7 +161,7 @@
 - **Evaluated Status:** `FISCAL_SUPPLY_PRESSURE` (Primary Value: 0.87 Percent (%))
 - **Inputs Evaluated:** `{"nominal_10y_yield_dgs10": 4.88, "acm_10y_term_premium_threefytp10": 0.87}`
 - **Secondary Metrics:** `{"term_premium_pct": 0.87, "expected_average_short_rate_pct": 4.01, "nominal_10y_yield_pct": 4.88}`
-- **Economic Synthesis:** Decomposes the 10-year Treasury yield into expected short-term interest rate path and the pure term premium risk compensation (ACM model). Values > +0.50% reflect elevated Treasury supply and fiscal issuance risk.
+- **Economic Synthesis:** Decomposes 10-year Treasury yields via the Adrian, Crump & Moench (ACM) model. Term premium >= +0.50% reflects duration risk, fiscal supply pressure, or inflation uncertainty; <= -0.50% reflects safe-haven duration demand or central bank asset purchases.
 
 #### [MODEL_16] CBOE Volatility & Market Fear Regime
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#16
