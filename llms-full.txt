@@ -58,6 +58,8 @@ Core Manifests & System Engines:
 - Quantitative Formula Engine (llms-formulas.txt): https://analysisreports.github.io/llms-formulas.txt
 - Canonical FRED/BLS Data Dictionary (llms-indicators.txt): https://analysisreports.github.io/llms-indicators.txt
 - Geopolitical Relationship Matrix (llms-relationships.txt): https://analysisreports.github.io/llms-relationships.txt
+- Bilateral Country Relationships (llms-country-relationships.txt): https://analysisreports.github.io/llms-country-relationships.txt
+- Bilateral Country Relationships JSON Twin (llms-country-relationships.json): https://analysisreports.github.io/llms-country-relationships.json
 - Author and Methodological Profile (llms-about.txt): https://analysisreports.github.io/llms-about.txt
 - Live FRED Time-Series Registry: https://analysisreports.github.io/llms-fred-series.txt
 - Live FRED JSON Twin: https://analysisreports.github.io/llms-fred-series.json

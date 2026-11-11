@@ -1,0 +1,2632 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "metadata": {
+    "title": "Canonical Bilateral Country Relationships & Dyadic Matrix",
+    "author": "Ersoy Toptaş",
+    "version": "2026-Q4",
+    "license": "CC BY-NC-ND 4.0",
+    "last_successful_sync": "2026-11-11T03:17:54Z",
+    "total_hubs": 1,
+    "total_dyads": 73,
+    "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
+    "multilateral_relationships": "https://analysisreports.github.io/llms-relationships.txt",
+    "canonical_endpoint": "https://analysisreports.github.io/llms-country-relationships.txt"
+  },
+  "sovereign_hubs": {
+    "GEO_US": {
+      "hub_id": "GEO_US",
+      "hub_name": "UNITED STATES OF AMERICA",
+      "dyads": {
+        "REL_GEO_US_GEO_GB": {
+          "dyad_id": "REL_GEO_US_GEO_GB",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_GB",
+          "common_reference": "United States ↔ United Kingdom",
+          "bilateral_stance": 0.95,
+          "stance_classification": "Special Relationship & Global Naval/Nuclear Command",
+          "strategic_category": "Anglo-American Special Relationship & Five Eyes Core",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Intelligence Fusion",
+              "description": "Seamless Five Eyes signals intelligence integration (NSA / GCHQ) and submarine surveillance."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Nuclear Technology",
+              "description": "Trident ballistic missile leasing and shared strategic deterrence infrastructure."
+            },
+            {
+              "leverage_holder": "GEO_GB",
+              "domain": "Geostrategic Bases",
+              "description": "Sovereign base areas in Cyprus (Akrotiri/Dhekelia), Diego Garcia (BIOT), and Ascension Island."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Atlantic-Pacific naval deterrence coordination against Chinese maritime expansion.",
+            "Northern Atlantic and GIUK Gap anti-submarine surveillance posture (CHOKE_GIUK_GAP).",
+            "Global financial clearing standards and cross-border sanctions enforcement."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "BLOC_AUKUS",
+            "CHOKE_GIUK_GAP"
+          ]
+        },
+        "REL_GEO_US_GEO_CA": {
+          "dyad_id": "REL_GEO_US_GEO_CA",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_CA",
+          "common_reference": "United States ↔ Canada",
+          "bilateral_stance": 0.95,
+          "stance_classification": "Continental Defense & Deep Energy Integration",
+          "strategic_category": "NORAD Continental Defense & USMCA Trade Axis",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Air & Aerospace Defense",
+              "description": "Binational command under NORAD with integrated aerospace early warning architecture."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Trade & Financial System",
+              "description": "US accounts for over 75% of total Canadian merchandise exports under BLOC_USMCA framework."
+            },
+            {
+              "leverage_holder": "GEO_CA",
+              "domain": "Critical Minerals & Energy",
+              "description": "Primary foreign supplier of crude oil (Alberta heavy oil pipeline network), uranium, and hydroelectric power."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Arctic sovereignty disputes over Northwest Passage navigation rights.",
+            "Modernization of NORAD radar arrays across the high North against hypersonic cruise threats.",
+            "Border trade compliance and tariff dispute adjudication under BLOC_USMCA."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_USMCA",
+            "BLOC_NATO"
+          ]
+        },
+        "REL_GEO_US_GEO_AU": {
+          "dyad_id": "REL_GEO_US_GEO_AU",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_AU",
+          "common_reference": "United States ↔ Commonwealth of Australia",
+          "bilateral_stance": 0.95,
+          "stance_classification": "Indo-Pacific Strategic Anchor & Deep Submarine Integration",
+          "strategic_category": "AUKUS Pillar I & II & Southern Hemisphere Forward Posture",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Defense Technology",
+              "description": "SSN-AUKUS conventionally armed nuclear-powered submarine technology and Virginia-class sales."
+            },
+            {
+              "leverage_holder": "GEO_AU",
+              "domain": "Strategic Geography & Minerals",
+              "description": "Pine Gap joint defense facility, Darwin Marine rotational force base, and global lithium/rare earth supplies."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Indo-Pacific Interoperability",
+              "description": "Unrestricted access to Australian airfields, deepwater naval bases (HMAS Stirling), and training ranges."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Deterrence along the Second Island Chain and Indian-Pacific transit approaches.",
+            "Protection of maritime sea lines of communication through Indonesian straits (CHOKE_LOMBOK_MAKASSAR).",
+            "Supply chain decoupling from Chinese critical mineral processing monopolies."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_AUKUS",
+            "BLOC_QUAD",
+            "CHOKE_LOMBOK_MAKASSAR"
+          ]
+        },
+        "REL_GEO_US_GEO_NZ": {
+          "dyad_id": "REL_GEO_US_GEO_NZ",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_NZ",
+          "common_reference": "United States ↔ New Zealand",
+          "bilateral_stance": 0.9,
+          "stance_classification": "Five Eyes Pacific Strategic Partnership",
+          "strategic_category": "South Pacific Security Architecture & Intelligence Cooperation",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Signals Intelligence",
+              "description": "Full Five Eyes SIGINT partnership (GCSB / NSA) covering South Pacific maritime surveillance."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "High-Tech Defense Equipment",
+              "description": "P-8A Poseidon maritime patrol aircraft and advanced space tracking infrastructure."
+            },
+            {
+              "leverage_holder": "GEO_NZ",
+              "domain": "Pacific Island Diplomacy",
+              "description": "Deep historical diplomatic and economic relationships with Polynesian and Melanesian island states."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Chinese diplomatic and security penetration across South Pacific island states (Solomon Islands, Kiribati).",
+            "Antarctic environmental protection, scientific logistics, and Southern Ocean surveillance.",
+            "Potential New Zealand accession to AUKUS Pillar II advanced technology collaboration."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_AUKUS",
+            "GEO_AU"
+          ]
+        },
+        "REL_GEO_US_GEO_IL": {
+          "dyad_id": "REL_GEO_US_GEO_IL",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_IL",
+          "common_reference": "United States ↔ State of Israel",
+          "bilateral_stance": 0.9,
+          "stance_classification": "Ironclad Strategic & Qualitative Military Edge (QME",
+          "strategic_category": "Middle Eastern Security Architecture & Tactical Intelligence Axis",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Foreign Military Financing (FMF)",
+              "description": "Annual multibillion-dollar military aid and diplomatic veto shield at the UN Security Council."
+            },
+            {
+              "leverage_holder": "GEO_IL",
+              "domain": "Tactical Tech & Intelligence",
+              "description": "Missile defense co-development (Arrow-3, David's Sling) and deep human/cyber intelligence penetration in GEO_IR."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Regional Preemption",
+              "description": "Shared objective to deny GEO_IR break-out nuclear weaponization capacity."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Direct military strikes on Iranian nuclear enrichment sites and regional proxy networks.",
+            "Escalation dynamics along the northern border with GEO_LB and Gaza stabilization architecture.",
+            "Preservation of US qualitative military edge (QME) across Middle Eastern arms transfer deals."
+          ],
+          "multilateral_cross_references": [
+            "GEO_IR",
+            "GEO_LB",
+            "BASIN_EAST_MED"
+          ]
+        },
+        "REL_GEO_US_GEO_JP": {
+          "dyad_id": "REL_GEO_US_GEO_JP",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_JP",
+          "common_reference": "United States ↔ Japan",
+          "bilateral_stance": 0.9,
+          "stance_classification": "Primary Indo-Pacific Linchpin & Forward Naval Force",
+          "strategic_category": "First Island Chain Defense & High-Tech Allied Industrial Base",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Nuclear Umbrella",
+              "description": "Extended nuclear deterrence covering all Japanese sovereign territories (including Senkaku Islands)."
+            },
+            {
+              "leverage_holder": "GEO_JP",
+              "domain": "Host-Nation Staging",
+              "description": "Forward-basing of US Seventh Fleet (Yokosuka), 3rd Marine Expeditionary Force (Okinawa), and Kadena Air Base."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Semiconductor R&D",
+              "description": "Joint next-generation 2nm semiconductor development and export control enforcement against GEO_CN."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Cross-strait contingency operations and maritime defense of GEO_TW.",
+            "East China Sea sovereignty confrontations and air defense identification zone (ADIZ) violations.",
+            "Disruption of maritime chokepoints along First Island Chain (CHOKE_TAIWAN, CHOKE_LUZON)."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_QUAD",
+            "CHOKE_TAIWAN",
+            "CHOKE_LUZON"
+          ]
+        },
+        "REL_GEO_US_GEO_KR": {
+          "dyad_id": "REL_GEO_US_GEO_KR",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_KR",
+          "common_reference": "United States ↔ Republic of Korea",
+          "bilateral_stance": 0.85,
+          "stance_classification": "Mutual Defense Alliance & Combined Forces Command",
+          "strategic_category": "Korean Peninsula Deterrence & High-Tech Hardware Core",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Extended Nuclear Deterrence",
+              "description": "Washington Declaration nuclear consultative group (NCG) and strategic submarine port calls."
+            },
+            {
+              "leverage_holder": "GEO_KR",
+              "domain": "Semiconductor Memory & Ordnance",
+              "description": "Dominant global production share of DRAM/NAND chips and large-scale 155mm artillery shell manufacturing."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Combined Command Structure",
+              "description": "Wartime operational control (OPCON) integration under Combined Forces Command (CFC)."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "North Korean (GEO_KP) nuclear escalation, ICBM tests, and tactical artillery threat to Seoul metro area.",
+            "South Korean corporate exposure to Chinese supply chains under US export control regimes.",
+            "Transition timeline for wartime operational control (OPCON) transfer."
+          ],
+          "multilateral_cross_references": [
+            "GEO_KP",
+            "GEO_JP"
+          ]
+        },
+        "REL_GEO_US_GEO_DE": {
+          "dyad_id": "REL_GEO_US_GEO_DE",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_DE",
+          "common_reference": "United States ↔ Federal Republic of Germany",
+          "bilateral_stance": 0.85,
+          "stance_classification": "European Security & Transatlantic Economic Anchor",
+          "strategic_category": "NATO Central European Command & Allied Logistics Hub",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Security Architecture",
+              "description": "Nuclear sharing (B61 bombs hosted at Büchel Air Base) and US European Command (EUCOM) in Stuttgart."
+            },
+            {
+              "leverage_holder": "GEO_DE",
+              "domain": "Industrial Machinery & Transit",
+              "description": "Core industrial powerhouse of the European Union, host of Ramstein Air Base logistical node."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Energy Transition",
+              "description": "US LNG exports to German terminals replacing historic Russian pipeline dependency."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "NATO 2% GDP defense spending commitment and European defense industrial capability.",
+            "Industrial exposure of German automakers and chemical firms to Chinese market decoupling.",
+            "Long-range conventional precision strike weapons deployment on German soil."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "BLOC_EU",
+            "INST_ECB_EU"
+          ]
+        },
+        "REL_GEO_US_GEO_FR": {
+          "dyad_id": "REL_GEO_US_GEO_FR",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_FR",
+          "common_reference": "United States ↔ French Republic",
+          "bilateral_stance": 0.8,
+          "stance_classification": "Strategic Autonomy Ally with Global Reach",
+          "strategic_category": "Nuclear Power Allied Sovereignty & African-Indo-Pacific Footprint",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Nuclear Status",
+              "description": "Independent strategic nuclear deterrent (Force de Frappe) and UN Security Council permanent seat."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Intelligence & Logistics",
+              "description": "Heavy air refueling, satellite surveillance, and precision electronic warfare support."
+            },
+            {
+              "leverage_holder": "GEO_FR",
+              "domain": "Global EEZ & Power Projection",
+              "description": "World's second-largest exclusive economic zone (EEZ) across Indian and Pacific Oceans."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "European strategic autonomy doctrine vs. unquestioned NATO transatlantic leadership.",
+            "Arms sales competition in Indo-Pacific and Middle Eastern markets (Rafale vs. F-35).",
+            "Security vacuum in Francophone West Africa following military coups and Russian PMC entry."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "BLOC_EU"
+          ]
+        },
+        "REL_GEO_US_GEO_IT": {
+          "dyad_id": "REL_GEO_US_GEO_IT",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_IT",
+          "common_reference": "United States ↔ Italian Republic",
+          "bilateral_stance": 0.8,
+          "stance_classification": "NATO Southern Flank Anchor & Mediterranean Command",
+          "strategic_category": "Transatlantic Alliance & Mediterranean Maritime Security",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Security & Military Bases",
+              "description": "Crucial military staging nodes including Naval Air Station Sigonella (Sicily), Camp Darby, and Vicenza."
+            },
+            {
+              "leverage_holder": "GEO_IT",
+              "domain": "Mediterranean Naval Projection",
+              "description": "Major carrier-capable naval fleet in Central Mediterranean and primary energy bridge to North Africa."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Belt and Road Exit",
+              "description": "Italian withdrawal from Chinese BRI framework, aligning closely with G7 and Transatlantic economic security."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Migration pressures and maritime stability across Central Mediterranean and Libyan coast.",
+            "Balkan regional stabilization and NATO peacekeeping operations in Kosovo (KFOR).",
+            "Defense industrial integration within NATO and GCAP next-gen fighter program."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "BLOC_EU",
+            "CHOKE_GIBRALTAR"
+          ]
+        },
+        "REL_GEO_US_GEO_PL": {
+          "dyad_id": "REL_GEO_US_GEO_PL",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_PL",
+          "common_reference": "United States ↔ Republic of Poland",
+          "bilateral_stance": 0.85,
+          "stance_classification": "NATO Eastern Flank Heavy Land Deterrent",
+          "strategic_category": "Frontline Defense & Land Combat Procurement Heavyweight",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Defense Sales & Forward Presence",
+              "description": "Massive supply of Abrams tanks, Apache helicopters, HIMARS, and Permanent US V Corps Forward HQ (Poznan)."
+            },
+            {
+              "leverage_holder": "GEO_PL",
+              "domain": "Ground Forces Scale & Transit",
+              "description": "Fastest growing conventional land army in Europe, primary logistical rail transit hub into GEO_UA."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Containment of GEO_RU",
+              "description": "Shared determination to eliminate Russian revanchism and secure Suwalki corridor (CHOKE_SUWALKI_GAP)."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Defense of Suwalki Gap (CHOKE_SUWALKI_GAP) connecting Poland to Baltic States.",
+            "Border security operations against hybrid warfare and weaponized migration from GEO_BY.",
+            "Logistical transport and missile defense shield operations along Ukrainian border."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "CHOKE_SUWALKI_GAP",
+            "GEO_UA",
+            "GEO_BY"
+          ]
+        },
+        "REL_GEO_US_GEO_LT": {
+          "dyad_id": "REL_GEO_US_GEO_LT",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_LT",
+          "common_reference": "United States ↔ Republic of Lithuania",
+          "bilateral_stance": 0.85,
+          "stance_classification": "Frontline Baltic Ally & Suwalki Anchor",
+          "strategic_category": "NATO Eastern Flank & Baltic Sea Security",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Air Defense & Deterrence",
+              "description": "NATO Baltic Air Policing missions and rotational US heavy armor battalion deployments (Pabrade)."
+            },
+            {
+              "leverage_holder": "GEO_LT",
+              "domain": "Suwalki Flank Security",
+              "description": "Physical defense of the southern border with GEO_BY and northern flank of Suwalki Gap (CHOKE_SUWALKI_GAP)."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Democratic Alignment",
+              "description": "Direct diplomatic resistance to authoritarian coercion, including hosting Taiwanese representative office."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Suwalki Gap military closure scenarios isolating Baltic states from continental NATO (CHOKE_SUWALKI_GAP).",
+            "Russian transit access and security dynamics regarding Kaliningrad exclave (CORRIDOR_KALININGRAD_TRANSIT).",
+            "Hybrid border provocations and electronic jamming from Belarusian territory."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "CHOKE_SUWALKI_GAP",
+            "CORRIDOR_KALININGRAD_TRANSIT",
+            "BLOC_BALTIC_ASSEMBLY"
+          ]
+        },
+        "REL_GEO_US_GEO_LV": {
+          "dyad_id": "REL_GEO_US_GEO_LV",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_LV",
+          "common_reference": "United States ↔ Republic of Latvia",
+          "bilateral_stance": 0.85,
+          "stance_classification": "Frontline Baltic Ally & Border Surveillance",
+          "strategic_category": "NATO Eastern Flank Defense & Strategic Intelligence",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Rotational Deterrence",
+              "description": "Forward presence under NATO enhanced Forward Presence (eFP) and US missile defense equipment."
+            },
+            {
+              "leverage_holder": "GEO_LV",
+              "domain": "Eastern Border Defense",
+              "description": "Direct 214 km border with GEO_RU, strategic intelligence collection, and Baltic defense line construction."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Information Warfare",
+              "description": "Host to NATO Strategic Communications Centre of Excellence (StratCom COE) in Riga."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Direct cross-border hybrid provocations, cyber warfare, and sabotage against undersea critical infrastructure.",
+            "Integration of Baltic regional air defense with NATO integrated air and missile defense (IAMD).",
+            "Logistical rail development connecting Baltic states to Europe (CORRIDOR_RAIL_BALTICA)."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "CORRIDOR_RAIL_BALTICA",
+            "BLOC_BALTIC_ASSEMBLY"
+          ]
+        },
+        "REL_GEO_US_GEO_EE": {
+          "dyad_id": "REL_GEO_US_GEO_EE",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_EE",
+          "common_reference": "United States ↔ Republic of Estonia",
+          "bilateral_stance": 0.85,
+          "stance_classification": "Frontline Baltic Ally & Cyber Defense Pioneer",
+          "strategic_category": "NATO Eastern Flank & Global Cyber Warfare Hub",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Tactical Missile Defense",
+              "description": "HIMARS long-range rocket systems, air defense rotations, and NATO rapid reinforcement guarantees."
+            },
+            {
+              "leverage_holder": "GEO_EE",
+              "domain": "Cyber Warfare Doctrine",
+              "description": "Home to NATO Cooperative Cyber Defence Centre of Excellence (CCDCOE) and world-leading digital defense infrastructure."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Gulf of Finland Defense",
+              "description": "Joint coastal anti-ship missile defense closing the maritime exit from St. Petersburg into Baltic Sea."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Narva border crossing dynamics and Russian military posturing on eastern frontier.",
+            "Protection of Baltic undersea data cables and gas interconnectors against underwater sabotage.",
+            "Rapid implementation of national defense spending exceeding 3% of GDP."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "BLOC_BALTIC_ASSEMBLY"
+          ]
+        },
+        "REL_GEO_US_GEO_NL": {
+          "dyad_id": "REL_GEO_US_GEO_NL",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_NL",
+          "common_reference": "United States ↔ Kingdom of the Netherlands",
+          "bilateral_stance": 0.85,
+          "stance_classification": "Founding NATO Ally & Semiconductor Equipment Monolith",
+          "strategic_category": "Transatlantic High-Tech Decoupling & Allied Naval Force",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_NL",
+              "domain": "Lithography Monopoly",
+              "description": "Sovereign jurisdiction over ASML, sole global manufacturer of extreme ultraviolet (EUV) photolithography machines."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Defense Procurement & F-35",
+              "description": "Advanced defense cooperation, F-35 fighter fleet interoperability, and NATO nuclear sharing mission (Volkel)."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Global Trade Gateway",
+              "description": "Port of Rotterdam acts as the primary maritime container and energy import hub for Western Europe."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Trilateral semiconductor export controls restricting sales of advanced DUV/EUV equipment to GEO_CN.",
+            "Security of North Sea undersea wind farms, pipelines, and telecommunications cables.",
+            "European air defense integration through Patriot and advanced naval frigates."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "BLOC_EU",
+            "GEO_CN"
+          ]
+        },
+        "REL_GEO_US_GEO_NO": {
+          "dyad_id": "REL_GEO_US_GEO_NO",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_NO",
+          "common_reference": "United States ↔ Kingdom of Norway",
+          "bilateral_stance": 0.85,
+          "stance_classification": "High North Sentinel & European Energy Pillar",
+          "strategic_category": "NATO Arctic High North & Undersea Maritime Chokepoint",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_NO",
+              "domain": "Arctic Geography & Gas",
+              "description": "Controls the Barents Sea maritime approach, GIUK Gap surveillance (CHOKE_GIUK_GAP), and Europe's largest natural gas supplier."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Strategic Bomber & Sub Rotations",
+              "description": "US Air Force strategic bomber deployments (Orland) and nuclear submarine maintenance access (Tromso)."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Maritime Domain Awareness",
+              "description": "P-8A Poseidon maritime surveillance patrols tracking Russian Northern Fleet submarines."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Militarization of the Arctic and Russian Northern Fleet bastion defense near Kola Peninsula.",
+            "Svalbard archipelago treaty compliance, scientific espionage, and seabed mining.",
+            "Securing continental Europe's subsea energy pipeline grid against underwater sabotage."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "CHOKE_GIUK_GAP",
+            "GEO_RU"
+          ]
+        },
+        "REL_GEO_US_GEO_SE": {
+          "dyad_id": "REL_GEO_US_GEO_SE",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_SE",
+          "common_reference": "United States ↔ Kingdom of Sweden",
+          "bilateral_stance": 0.85,
+          "stance_classification": "Nordic NATO Bastion & Baltic Sea Dominance",
+          "strategic_category": "Baltic Sea Maritime Security & High-Tech Defense Industry",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_SE",
+              "domain": "Gotland Island & Submarines",
+              "description": "Gotland island commands central Baltic Sea air-sea space; world-leading Gotland-class AIP stealth submarines."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Nuclear Umbrella Integration",
+              "description": "Full integration under Article 5 collective defense and US bilateral Defense Cooperation Agreement (DCA access to 17 bases)."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Advanced Defense Tech",
+              "description": "Collaborative development of advanced radar, Gripen fighter systems, and anti-tank munitions."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Complete transformation of the Baltic Sea into a NATO-dominated maritime theater.",
+            "Russian electronic warfare, GPS spoofing, and air space violations over southern Sweden.",
+            "Interoperability of Swedish air force with US Nordic joint air command doctrine."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "BLOC_EU"
+          ]
+        },
+        "REL_GEO_US_GEO_FI": {
+          "dyad_id": "REL_GEO_US_GEO_FI",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_FI",
+          "common_reference": "United States ↔ Republic of Finland",
+          "bilateral_stance": 0.85,
+          "stance_classification": "Nordic Frontline Bastion & Arctic Combat Elite",
+          "strategic_category": "NATO Northern Flank & 1,340 km Russian Land Border",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_FI",
+              "domain": "Total Defense & Artillery",
+              "description": "Largest artillery force in Western Europe, 900,000-strong trained reserve, and cold-weather warfare supremacy."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Fifth-Gen Air Power",
+              "description": "Fleet procurement of 64 F-35A stealth fighters and full integration into US Northern European air command."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Direct Russian Containment",
+              "description": "Securing the 1,340 km direct land border with GEO_RU, threatening the Kola Peninsula logistical corridor."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Border closure dynamics due to Russian weaponized hybrid migrant operations.",
+            "Vulnerability of Finnish Gulf of Finland undersea infrastructure (Balticconnector pipeline, telecoms).",
+            "Russian deployment of new military district forces along the Finnish frontier."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "GEO_RU"
+          ]
+        },
+        "REL_GEO_US_GEO_DK": {
+          "dyad_id": "REL_GEO_US_GEO_DK",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_DK",
+          "common_reference": "United States ↔ Kingdom of Denmark",
+          "bilateral_stance": 0.85,
+          "stance_classification": "Baltic Maritime Gatekeeper & Greenland Sovereign Anchor",
+          "strategic_category": "Maritime Chokepoint Control & Arctic Early Warning",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_DK",
+              "domain": "Greenland & Danish Straits",
+              "description": "Sovereignty over Greenland (Pituffik Space Base early warning radar) and Danish Straits (CHOKE_DANISH_STRAITS)."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Security & Air Modernization",
+              "description": "F-35 joint fighter integration, training Ukrainian pilots, and comprehensive maritime intelligence sharing."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Arctic Security Architecture",
+              "description": "Joint US-Danish-Greenlandic defense committee monitoring Russian Arctic submarine navigation."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Controlling the entry and exit of Russian Baltic Fleet through Danish Straits (CHOKE_DANISH_STRAITS).",
+            "Chinese commercial and mining investment attempts in Greenland.",
+            "Defense modernization of the Faroe-Iceland-Greenland surveillance gap."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "CHOKE_DANISH_STRAITS"
+          ]
+        },
+        "REL_GEO_US_GEO_RO": {
+          "dyad_id": "REL_GEO_US_GEO_RO",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_RO",
+          "common_reference": "United States ↔ Romania",
+          "bilateral_stance": 0.8,
+          "stance_classification": "Black Sea Strategic Anchor & Land Bridge",
+          "strategic_category": "NATO Southeastern Flank & Black Sea Maritime Deterrence",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RO",
+              "domain": "Black Sea Geography",
+              "description": "Danube river mouth access, Constanta port, and expansion of Mihail Kogalniceanu air base into Europe's largest NATO base."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Missile Defense Shield",
+              "description": "Aegis Ashore missile defense facility at Deveselu and rotational 101st Airborne brigade deployments."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Grain & Transit Corridor",
+              "description": "Securing Ukrainian Black Sea grain transit along Romanian territorial waters (CORRIDOR_BLACK_SEA)."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Russian drone and missile debris falling on Romanian territory during Danube port strikes.",
+            "Maritime drone attacks and naval mine hazards across western Black Sea (CORRIDOR_BLACK_SEA).",
+            "Stability of neighboring Moldova and Transnistria Russian garrison."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "CORRIDOR_BLACK_SEA",
+            "GEO_UA"
+          ]
+        },
+        "REL_GEO_US_GEO_GR": {
+          "dyad_id": "REL_GEO_US_GEO_GR",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_GR",
+          "common_reference": "United States ↔ Hellenic Republic",
+          "bilateral_stance": 0.75,
+          "stance_classification": "Mediterranean Naval Anchor & Strategic Base Network",
+          "strategic_category": "NATO Southern Flank & Balkan Energy Interconnector",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_GR",
+              "domain": "Basing & Maritime Logistics",
+              "description": "Souda Bay deepwater naval base (Crete) accommodating US aircraft carriers, Alexandroupoli northern logistics corridor."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Defense Modernization",
+              "description": "F-35 fighter procurement approval, surplus military hardware transfers, and Mutual Defense Cooperation Agreement (MDCA)."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "LNG & Regional Energy",
+              "description": "Alexandroupoli floating storage and regasification unit (FSRU) importing US LNG to bypass Russian gas in Balkans."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Aegean Sea maritime boundary, airspace disputes, and militarization of islands with GEO_TR.",
+            "Eastern Mediterranean energy exploration rights and exclusive economic zone (EEZ) demarcations.",
+            "Logistical throughput of military material through Alexandroupoli bypassing Turkish Straits."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "GEO_TR",
+            "BASIN_EAST_MED"
+          ]
+        },
+        "REL_GEO_US_GEO_ES": {
+          "dyad_id": "REL_GEO_US_GEO_ES",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_ES",
+          "common_reference": "United States ↔ Kingdom of Spain",
+          "bilateral_stance": 0.8,
+          "stance_classification": "NATO Southern Flank & Naval Shield Node",
+          "strategic_category": "Strait of Gibraltar Security & Aegis Destroyer Base",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_ES",
+              "domain": "Naval Staging & Gibraltar",
+              "description": "Naval Station Rota hosting forward-deployed US Navy Aegis ballistic missile defense destroyers, Moron Air Base."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Naval Technology Sharing",
+              "description": "Combat systems integration for Spanish F-100/F-110 frigates and US strategic air mobility access."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Strait Security",
+              "description": "Joint control and surveillance over Strait of Gibraltar maritime traffic (CHOKE_GIBRALTAR)."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Russian submarine tracking entering Mediterranean through Strait of Gibraltar (CHOKE_GIBRALTAR).",
+            "Defense spending debates regarding NATO 2% threshold compliance.",
+            "Relations with North African states (Algeria gas pipeline vs. Morocco Western Sahara recognition)."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "BLOC_EU",
+            "CHOKE_GIBRALTAR"
+          ]
+        },
+        "REL_GEO_US_GEO_BE": {
+          "dyad_id": "REL_GEO_US_GEO_BE",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_BE",
+          "common_reference": "United States ↔ Kingdom of Belgium",
+          "bilateral_stance": 0.8,
+          "stance_classification": "Transatlantic Institutional Host & Nuclear Sharing Ally",
+          "strategic_category": "NATO HQ Host Nation & Strategic Logistics Node",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_BE",
+              "domain": "Diplomatic Headquarters",
+              "description": "Host nation to NATO Political Headquarters (Brussels) and Supreme Headquarters Allied Powers Europe (SHAPE in Mons)."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Nuclear Deterrence & Procurement",
+              "description": "Kleine Brogel Air Base hosts US B61 nuclear gravity bombs; F-35 fleet procurement program."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Logistical Throughput",
+              "description": "Port of Antwerp-Bruges serves as primary strategic sea-debarkation port for US military gear arriving in Europe."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Belgian defense spending trajectories and burden-sharing commitments inside NATO.",
+            "Immobilized Russian sovereign assets held at Euroclear in Brussels and legal confiscation debates.",
+            "Protection of critical chemical and petrochemical refining clusters along North Sea coast."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "BLOC_EU"
+          ]
+        },
+        "REL_GEO_US_GEO_TR": {
+          "dyad_id": "REL_GEO_US_GEO_TR",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_TR",
+          "common_reference": "United States ↔ Republic of Türkiye",
+          "bilateral_stance": 0.25,
+          "stance_classification": "Complex Transactional Alliance with Regional Frictions",
+          "strategic_category": "NATO Strategic Flank Anchor & Multipolar Pivot",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_TR",
+              "domain": "Strategic Geography",
+              "description": "Sovereign control over Turkish Straits (CHOKE_TURKISH_STRAITS) under Montreux Convention, plus Incirlik Air Base."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Defense Procurement",
+              "description": "Arms sales conditionality, CAATSA sanctions, and Congressional export licensing controls."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Financial & Capital",
+              "description": "Turkish corporate and banking exposure to global dollar liquidity tightening and credit ratings."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Northern Syrian border stabilization and cross-border security architecture vs. Turkish national security doctrine.",
+            "Air defense procurement (S-400 vs. F-16 modernization and F-35 exclusion).",
+            "Eastern Mediterranean maritime jurisdiction (EEZ) disputes and Cyprus balance of power."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "CHOKE_TURKISH_STRAITS",
+            "CORRIDOR_ZANGEZUR"
+          ]
+        },
+        "REL_GEO_US_GEO_UA": {
+          "dyad_id": "REL_GEO_US_GEO_UA",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_UA",
+          "common_reference": "United States ↔ Ukraine",
+          "bilateral_stance": 0.7,
+          "stance_classification": "Strategic Wartime Defense & Bilateral Security Agreement",
+          "strategic_category": "Eastern European Frontline Sovereignty & Deterrence",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Military & Financial Assistance",
+              "description": "Overwhelming provider of precision strike artillery (HIMARS, ATACMS), Patriot air defense, and macro-financial budget support."
+            },
+            {
+              "leverage_holder": "GEO_UA",
+              "domain": "Active Land Defense Force",
+              "description": "Combat-tested military engaging Russian conventional ground forces, critical battlefield intelligence, and drone innovation."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Black Sea Deterrence",
+              "description": "Joint strategic objective to defeat Russian maritime hegemony in the Black Sea (CORRIDOR_BLACK_SEA)."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Territorial integrity restoration and active frontline defense against Russian offensive operations.",
+            "Conditions and timeline for future NATO membership accession.",
+            "Post-war reconstruction financing and long-term bilateral security commitments."
+          ],
+          "multilateral_cross_references": [
+            "GEO_RU",
+            "CORRIDOR_BLACK_SEA",
+            "BLOC_NATO"
+          ]
+        },
+        "REL_GEO_US_GEO_TW": {
+          "dyad_id": "REL_GEO_US_GEO_TW",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_TW",
+          "common_reference": "United States ↔ Taiwan",
+          "bilateral_stance": 0.75,
+          "stance_classification": "Taiwan Relations Act & Silicon Shield Partnership",
+          "strategic_category": "First Island Chain Bastion & Semiconductor Monolith",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_TW",
+              "domain": "Advanced Semiconductor Foundry",
+              "description": "TSMC manufactures over 90% of the world's most advanced (<3nm) logic semiconductors; indispensable silicon shield."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Asymmetric Arms & Defense Guarantees",
+              "description": "Arms sales under Taiwan Relations Act, presidential drawdown authority, and ambiguous deterrence umbrella."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "First Island Chain Defense",
+              "description": "Taiwan's geography anchors the First Island Chain, preventing Chinese submarine breakout into Central Pacific."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Chinese military blockade or amphibious invasion scenario across Taiwan Strait (CHOKE_TAIWAN).",
+            "Resilience of global electronics supply chain against disruption in Hsinchu Science Park.",
+            "Diplomatic status and US high-level official engagement protocols."
+          ],
+          "multilateral_cross_references": [
+            "GEO_CN",
+            "CHOKE_TAIWAN",
+            "CHOKE_LUZON"
+          ]
+        },
+        "REL_GEO_US_GEO_IN": {
+          "dyad_id": "REL_GEO_US_GEO_IN",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_IN",
+          "common_reference": "United States ↔ Republic of India",
+          "bilateral_stance": 0.55,
+          "stance_classification": "Strategic Alignment & Counter-Hegemonic Partnership",
+          "strategic_category": "Quad Indo-Pacific Anchor & Multipolar Balance of Power",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Containment of GEO_CN",
+              "description": "Shared interest in checking Chinese territorial expansion along the Line of Actual Control (Himalayas) and Indian Ocean."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Advanced Jet Engines & Co-Production",
+              "description": "GE F414 jet engine technology transfer for Tejas fighters, MQ-9B Predator drone procurement."
+            },
+            {
+              "leverage_holder": "GEO_IN",
+              "domain": "Strategic Autonomy & Energy Imports",
+              "description": "Refusal to join unilateral sanctions, massive imports of discounted Russian crude, non-aligned BRICS posture."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Indian crude oil refining and re-export of Russian oil products to European/US markets.",
+            "Maritime domain security across northern Indian Ocean and Malacca Strait approaches (CHOKE_MALACCA).",
+            "US allegations of extra-territorial intelligence operations vs. Indian domestic security priorities."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_QUAD",
+            "BLOC_BRICS",
+            "CHOKE_MALACCA"
+          ]
+        },
+        "REL_GEO_US_GEO_SA": {
+          "dyad_id": "REL_GEO_US_GEO_SA",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_SA",
+          "common_reference": "United States ↔ Kingdom of Saudi Arabia",
+          "bilateral_stance": 0.5,
+          "stance_classification": "Petrodollar Axis & Emerging Mutual Defense Pact",
+          "strategic_category": "Middle Eastern Energy Anchor & Regional Normalization Pivot",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_SA",
+              "domain": "Spare Oil Production Capacity",
+              "description": "Global swing producer capable of regulating crude oil prices via OPEC+ output decisions (BLOC_OPEC)."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Defense Technology & Security Umbrella",
+              "description": "Terminal High Altitude Area Defense (THAAD), Patriot missile batteries, and advanced fighter fleet maintenance."
+            },
+            {
+              "leverage_holder": "GEO_SA",
+              "domain": "Financial Diversification & BRICS",
+              "description": "Substantial sovereign wealth fund (PIF) capital, warming ties with China, and formal entry into BRICS framework."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Comprehensive US-Saudi mutual defense treaty and civilian nuclear energy cooperation package.",
+            "Conditionality of diplomatic normalization with GEO_IL and Palestinian statehood pathways.",
+            "Oil pricing policy disputes during US electoral cycles and inflation spikes."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_OPEC",
+            "BLOC_BRICS",
+            "CHOKE_HORMUZ"
+          ]
+        },
+        "REL_GEO_US_GEO_AE": {
+          "dyad_id": "REL_GEO_US_GEO_AE",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_AE",
+          "common_reference": "United States ↔ United Arab Emirates",
+          "bilateral_stance": 0.45,
+          "stance_classification": "Strategic Hedging & Commercial Tech Nexus",
+          "strategic_category": "Gulf Security Architecture & Emerging Technology Hub",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_AE",
+              "domain": "Commercial Hub & Financial Transit",
+              "description": "Global logistics node (Jebel Ali port), regional aviation hub, and major Gulf sovereign wealth deployer."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Advanced AI Chips & Defense Systems",
+              "description": "US export licensing for advanced AI processors (G42/Microsoft deal) conditioned on decoupling from Chinese hardware."
+            },
+            {
+              "leverage_holder": "GEO_AE",
+              "domain": "Multipolar Hedging",
+              "description": "Deep financial and commercial ties with Russia, China, and entry into BRICS framework."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Sanctions enforcement on Russian financial flows, dual-use electronics, and shadow tanker shipping.",
+            "AI infrastructure development and Huawei hardware phase-out verification.",
+            "Security of maritime energy traffic transiting Strait of Hormuz (CHOKE_HORMUZ)."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_HORMUZ",
+            "BLOC_BRICS",
+            "BLOC_OPEC"
+          ]
+        },
+        "REL_GEO_US_GEO_QA": {
+          "dyad_id": "REL_GEO_US_GEO_QA",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_QA",
+          "common_reference": "United States ↔ State of Qatar",
+          "bilateral_stance": 0.65,
+          "stance_classification": "Major Non-NATO Ally & Gulf Staging Command",
+          "strategic_category": "US Forward Military Command & Strategic Energy Supply",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_QA",
+              "domain": "Al Udeid Air Base & Diplomacy",
+              "description": "Hosts US CENTCOM Forward Headquarters (Al Udeid Air Base); world's premier diplomatic intermediary (Gaza, Taliban)."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Security Umbrella & Weaponry",
+              "description": "Formal Major Non-NATO Ally designation, Patriot missile defense, and security guarantees."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Global LNG Market Stability",
+              "description": "World's top LNG exporter balancing European and Asian natural gas security."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Al Udeid Air Base 10-year lease renewal and forward operations command.",
+            "Host and mediation role for regional diplomatic negotiations (Hamas political office, Afghan discussions).",
+            "Expansion of North Field LNG export terminals and long-term contracts with Asian/European buyers."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_HORMUZ",
+            "GEO_IR"
+          ]
+        },
+        "REL_GEO_US_GEO_EG": {
+          "dyad_id": "REL_GEO_US_GEO_EG",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_EG",
+          "common_reference": "United States ↔ Arab Republic of Egypt",
+          "bilateral_stance": 0.4,
+          "stance_classification": "Camp David Strategic Cornerstone & Suez Transit",
+          "strategic_category": "North African Security & Maritime Chokepoint Governance",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_EG",
+              "domain": "Suez Canal Sovereignty",
+              "description": "Sovereign operator of Suez Canal (CHOKE_SUEZ), granting expedited transit rights to US naval strike groups."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Foreign Military Financing (FMF)",
+              "description": "$1.3 billion annual military assistance package, M1A1 tank co-production, and IMF balance-of-payments loan support."
+            },
+            {
+              "leverage_holder": "GEO_EG",
+              "domain": "Sinai Border & Gaza Gatekeeper",
+              "description": "Sole sovereign land border control into Gaza Strip via Rafah crossing."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Loss of Suez Canal transit revenues due to Houthi maritime attacks in Bab el-Mandeb (CHOKE_BAB_EL_MANDEB).",
+            "Human rights and political conditionality attached to US military assistance allocations.",
+            "Grand Ethiopian Renaissance Dam (GERD) dispute and Nile River water security."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_SUEZ",
+            "CHOKE_BAB_EL_MANDEB",
+            "GEO_IL"
+          ]
+        },
+        "REL_GEO_US_GEO_JO": {
+          "dyad_id": "REL_GEO_US_GEO_JO",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_JO",
+          "common_reference": "United States ↔ Hashemite Kingdom of Jordan",
+          "bilateral_stance": 0.6,
+          "stance_classification": "Major Non-NATO Ally & Levant Security Linchpin",
+          "strategic_category": "Middle Eastern Stability & Regional Counter-Terrorism Anchor",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Macro-Financial & Military Aid",
+              "description": "Over $1.45 billion annual economic and military aid, bilateral defense cooperation agreement granting base access."
+            },
+            {
+              "leverage_holder": "GEO_JO",
+              "domain": "Tower 22 & Airspace Defense",
+              "description": "Hosts US military forward stations (Tower 22, Muwaffaq Salti Air Base); actively intercepts ballistic/drone threats aimed at GEO_IL."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Refugee & Border Stabilization",
+              "description": "Buffer state maintaining borders with Israel, the West Bank, Syria, and Iraq."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Protection of US forward military personnel against proxy drone attacks along Jordan-Syria border.",
+            "Custodianship of Jerusalem Islamic holy sites (Haram al-Sharif) and West Bank stability.",
+            "Internal economic pressures from Syrian and Palestinian refugee populations."
+          ],
+          "multilateral_cross_references": [
+            "GEO_IL",
+            "GEO_SY",
+            "GEO_IQ"
+          ]
+        },
+        "REL_GEO_US_GEO_IQ": {
+          "dyad_id": "REL_GEO_US_GEO_IQ",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_IQ",
+          "common_reference": "United States ↔ Republic of Iraq",
+          "bilateral_stance": 0.2,
+          "stance_classification": "Fragile Strategic Framework & Host Nation Tensions",
+          "strategic_category": "Mesopotamian Buffer State & Counter-Terrorism Mission",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Federal Reserve Oil Dollar Accounts",
+              "description": "All Iraqi oil export revenues cleared through Federal Reserve Bank of New York (INST_NY_FED)."
+            },
+            {
+              "leverage_holder": "GEO_IQ",
+              "domain": "US Troop Basing Status",
+              "description": "Sovereign jurisdiction over US military presence at Ain al-Asad and Erbil air bases under Operation Inherent Resolve."
+            },
+            {
+              "leverage_holder": "GEO_IQ",
+              "domain": "Pro-Iranian Militia Penetration",
+              "description": "Significant domestic political and paramilitary influence of pro-Iranian factions within Baghdad's ruling coalition."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Negotiated timeline for the withdrawal or transition of US-led coalition military forces from Iraq.",
+            "Targeting of US military bases by Iranian-aligned paramilitary factions.",
+            "Federal Reserve compliance scrutiny on Iraqi private commercial banks regarding dollar smuggling to GEO_IR."
+          ],
+          "multilateral_cross_references": [
+            "GEO_IR",
+            "INST_NY_FED",
+            "BLOC_OPEC"
+          ]
+        },
+        "REL_GEO_US_GEO_KW": {
+          "dyad_id": "REL_GEO_US_GEO_KW",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_KW",
+          "common_reference": "United States ↔ State of Kuwait",
+          "bilateral_stance": 0.65,
+          "stance_classification": "Major Non-NATO Ally & Forward Logistics Bastion",
+          "strategic_category": "Gulf Security Architecture & US Land Force Forward Command",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_KW",
+              "domain": "Camp Arifjan & Host Logistics",
+              "description": "Hosts Camp Arifjan (US Army Central forward HQ), Ali Al Salem Air Base, and pre-positioned armored brigade equipment."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Sovereign Defense Guarantees",
+              "description": "Historical liberator in Gulf War (1991), providing security guarantees against northern threats."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Oil Reserves & OPEC Quotas",
+              "description": "Major global crude oil producer holding massive reserves in Burgan field."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Maritime border disputes over Durra offshore gas field with GEO_IR and GEO_SA.",
+            "Kuwaiti domestic parliamentary oversight on sovereign wealth investments and foreign military presence.",
+            "Logistical support for US forces operating across the northern Persian Gulf theater."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_OPEC",
+            "CHOKE_HORMUZ",
+            "GEO_IQ"
+          ]
+        },
+        "REL_GEO_US_GEO_BH": {
+          "dyad_id": "REL_GEO_US_GEO_BH",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_BH",
+          "common_reference": "United States ↔ Kingdom of Bahrain",
+          "bilateral_stance": 0.65,
+          "stance_classification": "Major Non-NATO Ally & Fifth Fleet Command Host",
+          "strategic_category": "US Naval Hegemony in Persian Gulf & Maritime Security",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_BH",
+              "domain": "NAVCENT & Fifth Fleet HQ",
+              "description": "Hosts US Naval Support Activity Bahrain, headquarters of US Naval Forces Central Command and Combined Maritime Forces."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Monarchy Security & C-SIPA",
+              "description": "Comprehensive Security Integration and Prosperity Agreement (C-SIPA) guaranteeing Bahrain's sovereign defense."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Abraham Accords Anchor",
+              "description": "Early signatory of Abraham Accords fostering open diplomatic and security cooperation with GEO_IL."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Direct asymmetric drone and missile threats from Iranian proxy networks targeting naval assets.",
+            "Internal sectarian stability and domestic political opposition to normalization with Israel.",
+            "Securing merchant navigation through Strait of Hormuz (CHOKE_HORMUZ)."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_HORMUZ",
+            "GEO_IL",
+            "GEO_IR"
+          ]
+        },
+        "REL_GEO_US_GEO_OM": {
+          "dyad_id": "REL_GEO_US_GEO_OM",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_OM",
+          "common_reference": "United States ↔ Sultanate of Oman",
+          "bilateral_stance": 0.5,
+          "stance_classification": "Strategic Hormuz Sentinel & Diplomatic Facilitator",
+          "strategic_category": "Hormuz Chokepoint Oversight & Backchannel Diplomacy",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_OM",
+              "domain": "Hormuz Geography & Duqm Port",
+              "description": "Controls the southern shores of Strait of Hormuz (CHOKE_HORMUZ); Duqm Port provides deepwater naval berths bypassing the Gulf."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Military Access Agreement",
+              "description": "Decades-long bilateral military access agreement granting US forces pre-positioned staging rights."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Neutral Diplomatic Channel",
+              "description": "Sultanate's strict foreign neutrality enables secret backchannel diplomacy between Washington and Tehran."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Freedom of navigation and counter-mining operations in the Strait of Hormuz (CHOKE_HORMUZ).",
+            "Expansion of Duqm Port commercial and naval facilities to bypass inner Gulf risks.",
+            "Succession and fiscal consolidation under Sultan Haitham bin Tarik."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_HORMUZ",
+            "GEO_IR"
+          ]
+        },
+        "REL_GEO_US_GEO_PH": {
+          "dyad_id": "REL_GEO_US_GEO_PH",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_PH",
+          "common_reference": "United States ↔ Republic of the Philippines",
+          "bilateral_stance": 0.7,
+          "stance_classification": "Enhanced Defense Cooperation & First Island Chain Anchor",
+          "strategic_category": "South China Sea Frontline & Luzon Chokepoint Guardian",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_PH",
+              "domain": "Luzon Strait & Basing Access",
+              "description": "Enhanced Defense Cooperation Agreement (EDCA) granting US forces access to 9 strategic bases; overlooks Luzon Strait (CHOKE_LUZON)."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Mutual Defense Treaty (MDT)",
+              "description": "1951 Mutual Defense Treaty explicitly confirmed to cover Philippine public vessels and aircraft in South China Sea."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Maritime Sovereignty Defense",
+              "description": "Joint patrols and resupply escort operations to Second Thomas Shoal (Sierra Madre)."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Chinese coast guard water cannon, ramming, and acoustic weapon clashes at Second Thomas Shoal and Sabina Shoal.",
+            "US rotational forces deployment and missile placement (Typhon mid-range system) in northern Luzon.",
+            "Cross-strait contingency preparation directly south of GEO_TW."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_LUZON",
+            "GEO_TW",
+            "GEO_CN"
+          ]
+        },
+        "REL_GEO_US_GEO_SG": {
+          "dyad_id": "REL_GEO_US_GEO_SG",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_SG",
+          "common_reference": "United States ↔ Republic of Singapore",
+          "bilateral_stance": 0.7,
+          "stance_classification": "Major Security Cooperation Partner & Malacca Gateway",
+          "strategic_category": "Indo-Pacific Strategic Chokepoint & High-Tech Financial Hub",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_SG",
+              "domain": "Changi Naval Base & Malacca Control",
+              "description": "Sovereign command over Strait of Malacca (CHOKE_MALACCA); Changi Naval Base accommodates US Navy aircraft carriers."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Defense Equipment & Training",
+              "description": "F-35B stealth fighter sales, P-8A rotational maritime patrol deployments, and advanced pilot training in US."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Global Financial & Tech Node",
+              "description": "Premier Asian headquarters for US multinational tech giants, asset managers, and semiconductor design centers."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Naval dominance and open transit through Strait of Malacca in any East Asian maritime crisis (CHOKE_MALACCA).",
+            "Balancing deep economic interdependence with China against security reliance on the US.",
+            "Regional AI chip export controls enforcement and transshipment scrutiny."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_MALACCA",
+            "GEO_CN"
+          ]
+        },
+        "REL_GEO_US_GEO_TH": {
+          "dyad_id": "REL_GEO_US_GEO_TH",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_TH",
+          "common_reference": "United States ↔ Kingdom of Thailand",
+          "bilateral_stance": 0.55,
+          "stance_classification": "Treaty Ally & Historic Mainland Southeast Asia Hub",
+          "strategic_category": "Southeast Asian Defense Cooperation & Logistics Hub",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_TH",
+              "domain": "Utapao Airfield & Joint Exercises",
+              "description": "Hosts Exercise Cobra Gold, one of the world's longest-running multinational military exercises; strategic staging at Utapao."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Major Non-NATO Ally Status",
+              "description": "Access to US defense technologies, training, and institutional security assistance."
+            },
+            {
+              "leverage_holder": "GEO_TH",
+              "domain": "Chinese Economic Hedging",
+              "description": "High-speed rail construction and major Chinese EV manufacturing plants establishing deep ties with Beijing."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Balancing modernization of Royal Thai Armed Forces between US and Chinese hardware (submarines, fighters).",
+            "Border security and transnational crime networks operating along Myanmar border (GEO_MM).",
+            "US congressional scrutiny over domestic electoral stability and monarchical legal structures."
+          ],
+          "multilateral_cross_references": [
+            "GEO_CN",
+            "GEO_MM"
+          ]
+        },
+        "REL_GEO_US_GEO_VN": {
+          "dyad_id": "REL_GEO_US_GEO_VN",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_VN",
+          "common_reference": "United States ↔ Socialist Republic of Vietnam",
+          "bilateral_stance": 0.45,
+          "stance_classification": "Comprehensive Strategic Partnership & Supply Chain Pivot",
+          "strategic_category": "South China Sea Balance of Power & Tech Manufacturing",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Resistance to Hegemony",
+              "description": "Shared imperative to resist Chinese maritime coercion and nine-dash line expansionism in South China Sea."
+            },
+            {
+              "leverage_holder": "GEO_VN",
+              "domain": "Supply Chain Redundancy",
+              "description": "Primary beneficiary of Western manufacturing 'China+1' diversification for electronics and textile assembly."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Trade Market Access & Chips",
+              "description": "US market absorbs over 30% of Vietnamese exports; semiconductor assembly and testing partnership."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Vietnamese maritime island reclamation and coast guard clashes with Chinese maritime militia in Spratlys.",
+            "US non-market economy (NME) trade status adjudication and currency monitoring.",
+            "Vietnamese military equipment procurement diversification away from historic Russian suppliers."
+          ],
+          "multilateral_cross_references": [
+            "GEO_CN",
+            "CHOKE_MALACCA"
+          ]
+        },
+        "REL_GEO_US_GEO_ID": {
+          "dyad_id": "REL_GEO_US_GEO_ID",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_ID",
+          "common_reference": "United States ↔ Republic of Indonesia",
+          "bilateral_stance": 0.4,
+          "stance_classification": "Comprehensive Strategic Partnership & Resource Power",
+          "strategic_category": "ASEAN Leadership & Maritime Archipelagic Chokepoints",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_ID",
+              "domain": "Nickel Monopoly & Archipelagic Straits",
+              "description": "Controls world's largest nickel mining/refining capacity and vital alternative naval straits (CHOKE_LOMBOK_MAKASSAR)."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Military Sales & Super Garuda Shield",
+              "description": "Joint F-15IDN fighter procurement deals and expansion of annual Super Garuda Shield military exercise."
+            },
+            {
+              "leverage_holder": "GEO_ID",
+              "domain": "Chinese Industrial Dominance",
+              "description": "Overwhelming Chinese capital investment in Indonesian high-pressure acid leach (HPAL) nickel smelting."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Chinese coast guard intrusions into Indonesian North Natuna Sea exclusive economic zone.",
+            "Indonesian non-aligned foreign policy posture and application to join BRICS framework (BLOC_BRICS).",
+            "US Inflation Reduction Act (IRA) electric vehicle tax credit eligibility for Indonesian nickel."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_LOMBOK_MAKASSAR",
+            "BLOC_BRICS",
+            "GEO_CN"
+          ]
+        },
+        "REL_GEO_US_GEO_MY": {
+          "dyad_id": "REL_GEO_US_GEO_MY",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_MY",
+          "common_reference": "United States ↔ Malaysia",
+          "bilateral_stance": 0.35,
+          "stance_classification": "Comprehensive Partnership & Tech Semiconductor Core",
+          "strategic_category": "Malacca Strait Security & Semiconductor Packaging Capital",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_MY",
+              "domain": "Advanced Packaging (ATP)",
+              "description": "Penang semiconductor cluster handles 13% of global chip assembly, testing, and packaging (ATP)."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "High-Tech FDI & Market",
+              "description": "Massive investments by US tech giants (Intel, Micron, Nvidia) into advanced data centers and chip plants."
+            },
+            {
+              "leverage_holder": "GEO_MY",
+              "domain": "Independent Foreign Stance",
+              "description": "Strong criticism of Western Middle East policy, warming ties with China, and formal BRICS partner country status."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "South China Sea overlapping maritime claims at Kasawari gas field facing Chinese harassment.",
+            "Enforcement of US export controls preventing diversion of AI chips through Malaysian transit nodes.",
+            "Piracy, smuggling, and maritime traffic management along Strait of Malacca (CHOKE_MALACCA)."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_MALACCA",
+            "BLOC_BRICS",
+            "GEO_CN"
+          ]
+        },
+        "REL_GEO_US_GEO_MX": {
+          "dyad_id": "REL_GEO_US_GEO_MX",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_MX",
+          "common_reference": "United States ↔ United Mexican States",
+          "bilateral_stance": 0.6,
+          "stance_classification": "USMCA Deep Integration & Asymmetric Interdependence",
+          "strategic_category": "North American Economic Cohesion & Border Security",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Economic Magnetism",
+              "description": "Over 80% of Mexican exports flow to US markets; massive remittances and auto manufacturing co-dependence."
+            },
+            {
+              "leverage_holder": "GEO_MX",
+              "domain": "Migration & Border Flow",
+              "description": "Sovereign enforcement of southern migration containment, fentanyl precursor interdiction, and shared 3,145 km border."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Nearshoring Integration",
+              "description": "Primary US merchandise trading partner, serving as the leading destination for industrial supply chain nearshoring."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Joint security strategy on transnational drug cartels, fentanyl trafficking, and firearms smuggling.",
+            "Energy sector nationalization policies in Mexico vs. US investor protections under BLOC_USMCA.",
+            "Dispute over Chinese automotive manufacturing investments near the US border."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_USMCA"
+          ]
+        },
+        "REL_GEO_US_GEO_BR": {
+          "dyad_id": "REL_GEO_US_GEO_BR",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_BR",
+          "common_reference": "United States ↔ Federative Republic of Brazil",
+          "bilateral_stance": 0.3,
+          "stance_classification": "Democratic Engagement with Global South Strategic Hedging",
+          "strategic_category": "South American Agricultural Giant & BRICS Founder",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_BR",
+              "domain": "Agricultural & Mineral Scale",
+              "description": "World's top exporter of soybeans, beef, iron ore, and niobium; key player in global food security."
+            },
+            {
+              "leverage_holder": "GEO_BR",
+              "domain": "BRICS Leadership",
+              "description": "Founding member of BRICS (BLOC_BRICS) actively advocating for local currency settlement and de-dollarization."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Capital Markets & Aerospace",
+              "description": "Substantial US foreign direct investment, institutional capital, and Boeing-Embraer commercial ties."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Brazilian neutral posture on the Ukraine conflict and defense of Venezuelan sovereignty dialogue.",
+            "Amazon basin conservation financing and environmental governance conditions.",
+            "Chinese commercial dominance as Brazil's primary export destination."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS"
+          ]
+        },
+        "REL_GEO_US_GEO_CO": {
+          "dyad_id": "REL_GEO_US_GEO_CO",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_CO",
+          "common_reference": "United States ↔ Republic of Colombia",
+          "bilateral_stance": 0.5,
+          "stance_classification": "Major Non-NATO Ally & Pacific-Caribbean Anchor",
+          "strategic_category": "South American Security Cooperation & Counter-Narcotics",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Security Assistance & Trade",
+              "description": "Over two decades of Plan Colombia institutional assistance, free trade agreement, and Major Non-NATO Ally status."
+            },
+            {
+              "leverage_holder": "GEO_CO",
+              "domain": "Strategic Geography & Darien Gap",
+              "description": "Connects Central and South America; controls the migratory transit chokepoint through Darien Gap."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Counter-Narcotics Reality",
+              "description": "Joint intelligence coordination combating cocaine production and maritime interdiction."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Leftist foreign policy shifts under Petro administration and re-evaluation of forced coca eradication.",
+            "Management and repatriation of Venezuelan migrant flows crossing Colombian territory.",
+            "Diplomatic rupture with Israel over Gaza and impact on Colombian military hardware maintenance."
+          ],
+          "multilateral_cross_references": [
+            "GEO_VE",
+            "CHOKE_PANAMA"
+          ]
+        },
+        "REL_GEO_US_GEO_CL": {
+          "dyad_id": "REL_GEO_US_GEO_CL",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_CL",
+          "common_reference": "United States ↔ Republic of Chile",
+          "bilateral_stance": 0.55,
+          "stance_classification": "OECD Democracy & Critical Lithium Triangle Pillar",
+          "strategic_category": "Pacific Rim Trade & Clean Energy Mineral Supply",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CL",
+              "domain": "Lithium & Copper Dominance",
+              "description": "World's largest copper producer and premier brine lithium reserves (Salar de Atacama); national lithium strategy."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Free Trade Agreement & Tech FDI",
+              "description": "Bilateral FTA, US tech giant investments in astronomical observatories, cloud data centers, and clean tech."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Institutional Rule of Law",
+              "description": "Strong democratic institutions, OECD member, and stable legal protections for foreign mining investment."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Implementation of state-led public-private partnerships in Chilean lithium extraction.",
+            "Chinese acquisition of Chilean electricity distribution grids and port infrastructure.",
+            "Pacific maritime security and Antarctic territorial research cooperation."
+          ],
+          "multilateral_cross_references": [
+            "ORG_OECD"
+          ]
+        },
+        "REL_GEO_US_GEO_AR": {
+          "dyad_id": "REL_GEO_US_GEO_AR",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_AR",
+          "common_reference": "United States ↔ Argentine Republic",
+          "bilateral_stance": 0.45,
+          "stance_classification": "Pro-Western Strategic Pivot & Liberalization Reform",
+          "strategic_category": "Southern Cone Security Realignment & Lithium Resource Hub",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "IMF Leverage & Currency Support",
+              "description": "Overwhelming US influence within IMF executive board determining Argentina's $44 billion debt restructuring."
+            },
+            {
+              "leverage_holder": "GEO_AR",
+              "domain": "Vaca Muerta & Lithium Reserves",
+              "description": "Massive unconventional shale oil/gas reserves in Vaca Muerta basin and lithium brine projects."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Ideological Alignment",
+              "description": "Milei administration's declared alignment with Washington and Tel Aviv, rejecting BRICS membership invitation."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "F-16 fighter jet acquisition from Denmark supported by US financing, replacing Chinese fighter proposals.",
+            "Chinese space surveillance and satellite tracking ground station in Neuquen province.",
+            "Macroeconomic dollarization debate and foreign reserve stabilization."
+          ],
+          "multilateral_cross_references": [
+            "ORG_IMF",
+            "BLOC_BRICS"
+          ]
+        },
+        "REL_GEO_US_GEO_PA": {
+          "dyad_id": "REL_GEO_US_GEO_PA",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_PA",
+          "common_reference": "United States ↔ Republic of Panama",
+          "bilateral_stance": 0.6,
+          "stance_classification": "Canal Security Sovereignty & Vital Maritime Lifeline",
+          "strategic_category": "Global Maritime Chokepoint & Hemisphere Transit",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_PA",
+              "domain": "Panama Canal Sovereignty",
+              "description": "Sovereign jurisdiction over Panama Canal (CHOKE_PANAMA), vital to US Gulf-to-Pacific commercial and naval logistics."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Security Guarantees & Neutrality Treaty",
+              "description": "1977 Torrijos-Carter Treaties grant the US permanent legal right to defend the canal's neutrality."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Darien Gap Migration Control",
+              "description": "Joint enforcement agreements to curb irregular migration surging through Darien jungle corridor."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Climate-driven freshwater shortages and transit slot capacity restrictions in Panama Canal (CHOKE_PANAMA).",
+            "Chinese port terminal concessions (Hutchison Ports) operating at Pacific and Atlantic entrances.",
+            "Biometric screening and deportation logistics along the southern border."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_PANAMA"
+          ]
+        },
+        "REL_GEO_US_GEO_NG": {
+          "dyad_id": "REL_GEO_US_GEO_NG",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_NG",
+          "common_reference": "United States ↔ Federal Republic of Nigeria",
+          "bilateral_stance": 0.35,
+          "stance_classification": "West African Demographic Giant & Commercial Pivot",
+          "strategic_category": "Gulf of Guinea Energy Security & ECOWAS Hegemon",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_NG",
+              "domain": "Demographic Scale & Oil Exports",
+              "description": "Africa's most populous nation (220M+), Bonny Light sweet crude producer, and leader of ECOWAS."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Military Sales & Financial Tech",
+              "description": "Super Tucano light attack aircraft sales, counter-terrorism intelligence, and US venture capital funding Nigerian tech."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Gulf of Guinea Maritime Domain",
+              "description": "Joint anti-piracy operations and oil theft interdiction along the West African coast."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Regional response to military juntas in the Sahel (Niger, Mali, Burkina Faso) and Russian Wagner footprint.",
+            "Domestic macroeconomic stabilization, foreign exchange volatility, and energy sector reform.",
+            "Counter-insurgency operations against Boko Haram and ISWAP across Lake Chad basin."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_OPEC"
+          ]
+        },
+        "REL_GEO_US_GEO_KE": {
+          "dyad_id": "REL_GEO_US_GEO_KE",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_KE",
+          "common_reference": "United States ↔ Republic of Kenya",
+          "bilateral_stance": 0.55,
+          "stance_classification": "Major Non-NATO Ally & East African Security Anchor",
+          "strategic_category": "East African Counter-Terrorism & Silicon Savannah Hub",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_KE",
+              "domain": "Manda Bay Staging & Peacekeeping",
+              "description": "Cooperative security location at Camp Simba (Manda Bay); leading multinational police mission into Haiti (GEO_HT)."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Major Non-NATO Ally Status",
+              "description": "First sub-Saharan African state elevated to MNNA status; extensive bilateral trade negotiations and security aid."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Tech & Green Energy Leader",
+              "description": "East African tech center ('Silicon Savannah') running on over 90% renewable geothermal/hydro power."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Al-Shabaab cross-border terrorist threats emanating from Somalia (GEO_SO).",
+            "Kenyan police deployment leadership in Port-au-Prince, Haiti stabilization mission.",
+            "Managing heavy sovereign debt liabilities to Chinese state lenders."
+          ],
+          "multilateral_cross_references": [
+            "GEO_SO",
+            "GEO_HT"
+          ]
+        },
+        "REL_GEO_US_GEO_ZA": {
+          "dyad_id": "REL_GEO_US_GEO_ZA",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_ZA",
+          "common_reference": "United States ↔ Republic of South Africa",
+          "bilateral_stance": 0.1,
+          "stance_classification": "Non-Aligned BRICS Anchor with Growing Frictions",
+          "strategic_category": "Sub-Saharan Diplomatic Heavyweight & Critical Minerals",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_ZA",
+              "domain": "Platinum Group Metals (PGMs)",
+              "description": "World's largest producer of platinum, palladium, and manganese essential for industrial catalysis and steelmaking."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "AGOA Trade Preference Access",
+              "description": "African Growth and Opportunity Act (AGOA) duty-free market access vital for South African automotive exports."
+            },
+            {
+              "leverage_holder": "GEO_ZA",
+              "domain": "BRICS Expansion & Legal Posture",
+              "description": "Key BRICS driver (BLOC_BRICS); initiated International Court of Justice genocide case against Israel."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "US Congressional reviews of South Africa's AGOA trade eligibility following joint naval drills with Russia/China.",
+            "Diplomatic divergence over the war in Gaza and legal challenges at the ICJ.",
+            "Domestic energy sector crisis (Eskom load-shedding) and just energy transition funding."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "GEO_IL"
+          ]
+        },
+        "REL_GEO_US_GEO_MA": {
+          "dyad_id": "REL_GEO_US_GEO_MA",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_MA",
+          "common_reference": "United States ↔ Kingdom of Morocco",
+          "bilateral_stance": 0.6,
+          "stance_classification": "Major Non-NATO Ally & Abraham Accords Pioneer",
+          "strategic_category": "North African Security Architecture & Phosphate Monolith",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_MA",
+              "domain": "Global Phosphate Reserves",
+              "description": "Controls over 70% of world's proven phosphate rock reserves, indispensable for global fertilizer and food security."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Western Sahara Recognition",
+              "description": "US official diplomatic recognition of Moroccan sovereignty over Western Sahara under the Abraham Accords framework."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "African Lion Military Exercise",
+              "description": "Hosts Exercise African Lion, US military's largest annual combined joint exercise on the African continent."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Tensions and military readiness along the Algerian border and Polisario Front skirmishes.",
+            "Deepening military and intelligence cooperation with GEO_IL under tripartite declaration.",
+            "Securing the southern approaches to Strait of Gibraltar (CHOKE_GIBRALTAR)."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_GIBRALTAR",
+            "GEO_IL"
+          ]
+        },
+        "REL_GEO_US_GEO_AZ": {
+          "dyad_id": "REL_GEO_US_GEO_AZ",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_AZ",
+          "common_reference": "United States ↔ Republic of Azerbaijan",
+          "bilateral_stance": 0.35,
+          "stance_classification": "Caspian Energy Anchor & Strategic Transit Hub",
+          "strategic_category": "Southern Gas Corridor & Zangezur Transit Security",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_AZ",
+              "domain": "Southern Gas Corridor & Israel Oil",
+              "description": "Primary supplier of natural gas to Southern Europe bypassing Russia; supplies over 40% of Israel's crude oil."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Section 907 Waiver Conditionality",
+              "description": "US legislative restrictions on direct military aid (Section 907 of Freedom Support Act) conditioned on peace with GEO_AM."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Caspian Sea Basin Security",
+              "description": "Securing energy pipelines and counteracting Iranian hegemonic ambition in the Caspian Basin (BASIN_CASPIAN_SEA)."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Finalization of a formal bilateral peace treaty and border demarcation with Armenia (GEO_AM).",
+            "Opening of the Zangezur transit corridor (CORRIDOR_ZANGEZUR) connecting mainland Azerbaijan to Nakhchivan.",
+            "Deterrence against Iranian military posturing along the Arax river frontier."
+          ],
+          "multilateral_cross_references": [
+            "BASIN_CASPIAN_SEA",
+            "CORRIDOR_ZANGEZUR",
+            "GEO_AM",
+            "GEO_IL"
+          ]
+        },
+        "REL_GEO_US_GEO_KZ": {
+          "dyad_id": "REL_GEO_US_GEO_KZ",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_KZ",
+          "common_reference": "United States ↔ Republic of Kazakhstan",
+          "bilateral_stance": 0.3,
+          "stance_classification": "C5+1 Multivector Anchor & Energy Colossus",
+          "strategic_category": "Central Asian Non-Aligned Balance & Uranium Hegemon",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_KZ",
+              "domain": "Uranium & Hydrocarbons",
+              "description": "World's largest producer of mined uranium (>40% global supply); vast Tengiz oil field operated by Chevron/ExxonMobil."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Western Technology & Investment",
+              "description": "Bilateral investment treaties, technological assistance for Middle Corridor routing, and C5+1 diplomatic format."
+            },
+            {
+              "leverage_holder": "GEO_KZ",
+              "domain": "Multivector Balancing",
+              "description": "Maintains calibrated neutral sovereignty between Russian security influence (CSTO) and Chinese commercial hegemony."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Security and uninterrupted throughput of CPC pipeline carrying Kazakh oil through Russian territory to Black Sea.",
+            "Development of Trans-Caspian International Transport Route bypassing Russia and Iran.",
+            "Enforcement of secondary sanctions preventing Western dual-use tech diversion to Russian military industry."
+          ],
+          "multilateral_cross_references": [
+            "BASIN_CASPIAN_SEA",
+            "GEO_RU",
+            "GEO_CN"
+          ]
+        },
+        "REL_GEO_US_GEO_AM": {
+          "dyad_id": "REL_GEO_US_GEO_AM",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_AM",
+          "common_reference": "United States ↔ Republic of Armenia",
+          "bilateral_stance": 0.3,
+          "stance_classification": "Democratic Pivot & Transcaucasian Realignment",
+          "strategic_category": "South Caucasus Security Diversification & Peace Process",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_AM",
+              "domain": "Diaspora & Regional Pivot",
+              "description": "Influential Armenian-American diaspora; decisive foreign policy pivot away from CSTO towards Western integration."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Economic Support & Joint Drills",
+              "description": "Bilateral defense cooperation (Eagle Partner joint military drills), USAID assistance, and diplomatic mediation."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Regional Peace Transit",
+              "description": "Implementation of 'Crossroads of Peace' regional connectivity vision establishing normalized transit."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Border demarcation and signing of irreversible peace treaty with Azerbaijan (GEO_AZ).",
+            "Russian border guard presence withdrawal and freezing of Armenian participation in CSTO.",
+            "Sovereignty and customs controls governing the southern Syunik transit corridor (CORRIDOR_ZANGEZUR)."
+          ],
+          "multilateral_cross_references": [
+            "CORRIDOR_ZANGEZUR",
+            "GEO_AZ",
+            "GEO_RU"
+          ]
+        },
+        "REL_GEO_US_GEO_CN": {
+          "dyad_id": "REL_GEO_US_GEO_CN",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_CN",
+          "common_reference": "United States ↔ People's Republic of China",
+          "bilateral_stance": -0.65,
+          "stance_classification": "Structural Geoeconomic & Technological Rivalry",
+          "strategic_category": "Hegemonic Transition & High-Tech Decoupling Axis",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Technology",
+              "description": "Advanced semiconductor export controls (CHIPS Act, EUV lithography embargoes, AI processor bans)."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Supply Chain & Raw Materials",
+              "description": "Rare earth element refining monopoly (gallium, germanium, antimony) and battery supply chains."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Capital & Currency",
+              "description": "Structural balance of financial terror; massive Chinese US Treasury holdings vs. US Swift weaponization."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Sovereignty of GEO_TW and First Island Chain containment architecture.",
+            "Maritime freedom of navigation operations (FONOPS) in the South China Sea vs. Chinese nine-dash line expansionism.",
+            "Strategic maritime transit choke points, primarily CHOKE_MALACCA dependency."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_MALACCA",
+            "BLOC_BRICS",
+            "BLOC_NATO",
+            "GEO_TW"
+          ]
+        },
+        "REL_GEO_US_GEO_RU": {
+          "dyad_id": "REL_GEO_US_GEO_RU",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_RU",
+          "common_reference": "United States ↔ Russian Federation",
+          "bilateral_stance": -0.85,
+          "stance_classification": "Direct Strategic & Nuclear Proxy Conflict",
+          "strategic_category": "Nuclear Deterrence & Post-Cold War Containment",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Nuclear Strategic Force",
+              "description": "Symmetric mutual assured destruction (MAD) parity under New START framework limitations."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Financial & Sanctions",
+              "description": "Overwhelming asymmetric leverage; full Russian Central Bank (INST_CBR_RU) reserve freeze and secondary banking sanctions."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Energy & Commodities",
+              "description": "Russian counter-leverage via Eurasian natural gas, enriched uranium, and fertilizer supply to global markets."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Armed proxy conflict in GEO_UA and resistance to Eastern European NATO expansion.",
+            "Arctic militarization and control over Northern Sea Route shipping lanes.",
+            "Strategic nuclear posture and hypersonic weapons deployment in Europe/Kaliningrad."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "BLOC_BRICS",
+            "INST_FED_US",
+            "INST_CBR_RU",
+            "GEO_UA"
+          ]
+        },
+        "REL_GEO_US_GEO_IR": {
+          "dyad_id": "REL_GEO_US_GEO_IR",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_IR",
+          "common_reference": "United States ↔ Islamic Republic of Iran",
+          "bilateral_stance": -0.8,
+          "stance_classification": "Active Kinetic Stand-Off & Asymmetric Proxy War",
+          "strategic_category": "Persian Gulf Regional Containment & Non-Proliferation",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Chokepoint Interdiction",
+              "description": "Threat of closing the Strait of Hormuz (CHOKE_HORMUZ) via naval mines, anti-ship missiles, and drone swarms."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Economic Embargo",
+              "description": "Maximum pressure sanctions, primary and secondary oil export boycotts, and targeted strikes on high-value commanders."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Axis of Resistance",
+              "description": "Regional proxy network encircling US bases and Israeli territory across Levant and Red Sea."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Iranian uranium enrichment threshold (>60% to 90% weapons-grade) and nuclear breakout timeline.",
+            "Direct ballistic missile and UAV exchanges targeting GEO_IL and US military installations.",
+            "Maritime harassment and seizure of commercial tankers in the Persian Gulf and Gulf of Oman."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_HORMUZ",
+            "GEO_IL",
+            "GEO_YE"
+          ]
+        },
+        "REL_GEO_US_GEO_KP": {
+          "dyad_id": "REL_GEO_US_GEO_KP",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_KP",
+          "common_reference": "United States ↔ Democratic People's Republic of Korea",
+          "bilateral_stance": -0.9,
+          "stance_classification": "Acute Existential Threat & Frozen Kinetic Armistice",
+          "strategic_category": "Northeast Asian Nuclear Deterrence & Ballistic Non-Proliferation",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_KP",
+              "domain": "Asymmetric Strike Capability",
+              "description": "Thermonuclear warhead stockpile, solid-fuel ICBMs targeting continental US, and massive conventional artillery aimed at Seoul."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Strategic Deterrence",
+              "description": "Extended nuclear deterrence, rotational nuclear ballistic missile submarine deployments to GEO_KR, and unilateral sanctions."
+            },
+            {
+              "leverage_holder": "GEO_KP",
+              "domain": "Russian Military Axis",
+              "description": "Direct conventional munitions and ballistic missile transfers to GEO_RU in exchange for advanced missile and satellite technology."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Tactical nuclear weapons integration into front-line artillery units along the 38th Parallel.",
+            "Long-range solid-fuel ICBM atmospheric re-entry and multiple independently targetable reentry vehicle (MIRV) tests.",
+            "Cyber-theft operations laundering cryptocurrency to fund covert weapons development."
+          ],
+          "multilateral_cross_references": [
+            "GEO_KR",
+            "GEO_RU",
+            "GEO_JP"
+          ]
+        },
+        "REL_GEO_US_GEO_CU": {
+          "dyad_id": "REL_GEO_US_GEO_CU",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_CU",
+          "common_reference": "United States ↔ Republic of Cuba",
+          "bilateral_stance": -0.7,
+          "stance_classification": "Total Economic Embargo & Caribbean Confrontation",
+          "strategic_category": "Monroe Doctrine Caribbean Chokepoint & Regime Containment",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Comprehensive Embargo",
+              "description": "Decades-long trade embargo (Helms-Burton Act) and State Sponsor of Terrorism designation cutting off international finance."
+            },
+            {
+              "leverage_holder": "GEO_CU",
+              "domain": "Geostrategic Positioning",
+              "description": "Proximity to Florida Straits (145 km); hosting foreign intelligence gathering facilities for China and Russia."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Guantanamo Bay Naval Base",
+              "description": "Perpetual sovereign leasehold over Guantanamo Bay Naval Station commanding Caribbean sea lanes."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Chinese electronic intelligence and military listening posts operating on Cuban sovereign territory.",
+            "Mass irregular maritime migration waves across Florida Straits driven by domestic economic collapse.",
+            "Russian naval port calls and joint exercises in Havana harbor."
+          ],
+          "multilateral_cross_references": [
+            "GEO_RU",
+            "GEO_CN",
+            "GEO_VE"
+          ]
+        },
+        "REL_GEO_US_GEO_VE": {
+          "dyad_id": "REL_GEO_US_GEO_VE",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_VE",
+          "common_reference": "United States ↔ Bolivarian Republic of Venezuela",
+          "bilateral_stance": -0.75,
+          "stance_classification": "Monroe Doctrine Containment & Acute Sanctions Axis",
+          "strategic_category": "Western Hemisphere Energy & Geopolitical Rivalry",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_VE",
+              "domain": "Energy Reserves",
+              "description": "World's largest proven oil reserves (Orinoco heavy crude), historically refined in US Gulf Coast refineries (Citgo)."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Financial Sanctions",
+              "description": "Comprehensive financial embargo, secondary sanctions on state oil company PDVSA, and asset freezes."
+            },
+            {
+              "leverage_holder": "GEO_VE",
+              "domain": "Geopolitical Penetration",
+              "description": "Hosting Latin American military, intelligence, and commercial assets for Russia, China, and Iran."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Enforcement of Monroe Doctrine against external extra-hemispheric powers in South America.",
+            "Control and ownership adjudication of US-based refining subsidiary Citgo.",
+            "Venezuelan territorial claims over Guyana's Essequibo oil basin (BASIN_ESSEQUIBO)."
+          ],
+          "multilateral_cross_references": [
+            "BASIN_ESSEQUIBO",
+            "GEO_RU",
+            "GEO_CN",
+            "GEO_IR"
+          ]
+        },
+        "REL_GEO_US_GEO_BY": {
+          "dyad_id": "REL_GEO_US_GEO_BY",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_BY",
+          "common_reference": "United States ↔ Republic of Belarus",
+          "bilateral_stance": -0.8,
+          "stance_classification": "Russian Union State Proxy & Tactical Nuclear Staging",
+          "strategic_category": "Eastern European Threat Vector & Suwalki Flank",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_BY",
+              "domain": "Staging Ground & Tactical Nukes",
+              "description": "Hosts Russian tactical nuclear weapons; served as the direct northern staging vector for the 2022 assault on Kyiv."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Comprehensive Sanctions",
+              "description": "Severe US and EU sanctions targeting sovereign state enterprises (Belaruskali potash), aviation, and leadership assets."
+            },
+            {
+              "leverage_holder": "GEO_BY",
+              "domain": "Hybrid Suwalki Threat",
+              "description": "Weaponized migration flows and direct border friction along Suwalki Gap (CHOKE_SUWALKI_GAP) bordering Poland and Lithuania."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Deployment and potential command-and-control activation of Russian nuclear weapons in Belarus.",
+            "Direct border incursions, jamming, or hybrid operations threatening the Suwalki Corridor (CHOKE_SUWALKI_GAP).",
+            "Total political and military integration into the Russia-Belarus Union State architecture."
+          ],
+          "multilateral_cross_references": [
+            "GEO_RU",
+            "GEO_PL",
+            "GEO_LT",
+            "CHOKE_SUWALKI_GAP"
+          ]
+        },
+        "REL_GEO_US_GEO_NI": {
+          "dyad_id": "REL_GEO_US_GEO_NI",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_NI",
+          "common_reference": "United States ↔ Republic of Nicaragua",
+          "bilateral_stance": -0.7,
+          "stance_classification": "Authoritarian Resistance & Extra-Hemispheric Hub",
+          "strategic_category": "Central American Anti-Imperial Axis & Monroe Friction",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "NICA Act & Financial Sanctions",
+              "description": "Nicaraguan Investment Conditionality Act (NICA Act) blocking international loans, targeted sanctions on leadership."
+            },
+            {
+              "leverage_holder": "GEO_NI",
+              "domain": "Strategic Alliances with Competitors",
+              "description": "Deep security cooperation with Russia (satellite ground station) and commercial ties with China."
+            },
+            {
+              "leverage_holder": "GEO_NI",
+              "domain": "Weaponized Migration Transit",
+              "description": "Facilitation of visa-free charter flights from across the globe creating unregulated migration flows toward US southern border."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Russian military personnel and training facilities stationed in Managua.",
+            "Human rights crackdowns, closure of independent institutions, and expulsion of international observers.",
+            "Potential revivement of trans-oceanic canal concession plans with Chinese backing."
+          ],
+          "multilateral_cross_references": [
+            "GEO_RU",
+            "GEO_CN",
+            "GEO_CU"
+          ]
+        },
+        "REL_GEO_US_GEO_SY": {
+          "dyad_id": "REL_GEO_US_GEO_SY",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_SY",
+          "common_reference": "United States ↔ Syrian Arab Republic",
+          "bilateral_stance": -0.7,
+          "stance_classification": "Direct Kinetic Military Presence & Regime Boycott",
+          "strategic_category": "Levantine Conflict Zone & Counter-Terrorism Mission",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Caesar Sanctions & Military Outposts",
+              "description": "Caesar Act economic embargo, military outpost at Al-Tanf garrison, and footprint in eastern energy fields."
+            },
+            {
+              "leverage_holder": "GEO_SY",
+              "domain": "Russian & Iranian Staging Base",
+              "description": "Hosts Russian naval facility in Tartus and Khmeimim Air Base; primary overland logistical corridor for Iranian arms to Hezbollah."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Counter-Terrorism Realities",
+              "description": "Residual shared operational necessity to prevent Islamic State (ISIS) territorial resurgence."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Direct drone and rocket strikes on US garrisons by Iranian-aligned paramilitary factions.",
+            "De-confliction channel friction with Russian Aerospace Forces in Syrian airspace.",
+            "Enforcement of sovereign border controls and illicit Captagon amphetamine trafficking routes."
+          ],
+          "multilateral_cross_references": [
+            "GEO_RU",
+            "GEO_IR",
+            "GEO_IL",
+            "GEO_TR"
+          ]
+        },
+        "REL_GEO_US_GEO_YE": {
+          "dyad_id": "REL_GEO_US_GEO_YE",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_YE",
+          "common_reference": "United States ↔ Republic of Yemen",
+          "bilateral_stance": -0.6,
+          "stance_classification": "Maritime Chokepoint Kinetic Warfare & Special Diplomacy",
+          "strategic_category": "Red Sea Maritime Security & Anti-Ship Interdiction",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_YE",
+              "domain": "Bab el-Mandeb Interdiction",
+              "description": "Houthi movement (Ansar Allah) controls coastal missile/drone launchers shutting commercial traffic through Bab el-Mandeb (CHOKE_BAB_EL_MANDEB)."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Kinetic Strikes & Naval Coalitions",
+              "description": "Operation Prosperity Guardian, carrier strike group airstrikes on radar/missile sites, and SDGT terrorist designation."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Diplomatic Recognition",
+              "description": "Official US recognition and financial support for the internationally recognized Presidential Leadership Council (PLC) in Aden."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Sustained anti-ship ballistic missile and one-way drone attacks on Western merchant vessels and US warships.",
+            "Rerouting of global container shipping around the Cape of Good Hope, driving up global supply chain inflation.",
+            "Fragile UN-brokered truce mechanisms between Saudi Arabia and Houthi authorities."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_BAB_EL_MANDEB",
+            "CHOKE_SUEZ",
+            "GEO_IR",
+            "GEO_SA"
+          ]
+        },
+        "REL_GEO_US_GEO_LB": {
+          "dyad_id": "REL_GEO_US_GEO_LB",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_LB",
+          "common_reference": "United States ↔ Lebanese Republic",
+          "bilateral_stance": -0.3,
+          "stance_classification": "State Fragility & Counter-Hezbollah Proxy Balancing",
+          "strategic_category": "Levantine Buffer State & Institutional Stabilization",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Lebanese Armed Forces (LAF) Financing",
+              "description": "Primary donor and military supplier of the official Lebanese Armed Forces as an institutional counterweight to Hezbollah."
+            },
+            {
+              "leverage_holder": "GEO_LB",
+              "domain": "Hezbollah Rocket Arsenal",
+              "description": "Hezbollah possesses massive missile arsenal capable of striking all Israeli infrastructure, triggering wider Middle East war."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Maritime Gas Demarcation",
+              "description": "US-brokered historic maritime border agreement between Lebanon and Israel unlocking offshore gas exploration."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Large-scale war between Israel and Hezbollah devastating southern Lebanon and northern Israel.",
+            "Complete banking collapse, hyperinflation, and protracted presidential power vacuum.",
+            "Enforcement of UN Security Council Resolution 1701 and disarmament south of the Litani River."
+          ],
+          "multilateral_cross_references": [
+            "GEO_IL",
+            "GEO_IR",
+            "BASIN_EAST_MED"
+          ]
+        },
+        "REL_GEO_US_GEO_AF": {
+          "dyad_id": "REL_GEO_US_GEO_AF",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_AF",
+          "common_reference": "United States ↔ Islamic Emirate of Afghanistan",
+          "bilateral_stance": -0.65,
+          "stance_classification": "Unrecognized De Facto Regime & Over-the-Horizon Deterrence",
+          "strategic_category": "Post-Withdrawal Counter-Terrorism & Frozen Sovereign Assets",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Frozen Central Bank Reserves",
+              "description": "$7 billion in Afghan central bank (DAB) reserves frozen in US; total lack of formal diplomatic recognition."
+            },
+            {
+              "leverage_holder": "GEO_AF",
+              "domain": "Counter-Terrorism Realities",
+              "description": "Taliban regime controls physical territory; fighting ISIS-Khorasan (ISIS-K) while providing safe haven to al-Qaeda elements."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Over-the-Horizon Strike Capability",
+              "description": "Unmanned aerial strike platforms operating from regional bases targeting high-profile terrorist leaders."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "ISIS-K external operations planning and terrorist attacks directed against Western and regional targets.",
+            "Humanitarian catastrophe, severe female education bans, and conditional delivery of international aid.",
+            "Chinese commercial investment in Afghan lithium deposits and Aynak copper mine."
+          ],
+          "multilateral_cross_references": [
+            "GEO_PK",
+            "GEO_CN"
+          ]
+        },
+        "REL_GEO_US_GEO_LY": {
+          "dyad_id": "REL_GEO_US_GEO_LY",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_LY",
+          "common_reference": "United States ↔ State of Libya",
+          "bilateral_stance": -0.25,
+          "stance_classification": "Fractured Sovereignty & Multilateral Stabilization",
+          "strategic_category": "North African Energy Security & Counter-Foreign Meddling",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Central Bank Foreign Currency Access",
+              "description": "US Treasury and Federal Reserve oversight of Libyan oil revenue transfers passing through National Oil Corporation."
+            },
+            {
+              "leverage_holder": "GEO_LY",
+              "domain": "Light Sweet Crude & Gas Supplies",
+              "description": "Possesses Africa's largest proven oil reserves; major pipeline gas exporter (Greenstream) to Italy."
+            },
+            {
+              "leverage_holder": "GEO_LY",
+              "domain": "Russian Mercenary Footprint",
+              "description": "Russian Africa Corps / Wagner maintaining deep military bases in central and eastern Libya (Al Jufra, Sirte)."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Rivalry between Government of National Unity (Tripoli) and eastern-based Libyan National Army (Haftar).",
+            "Periodic oil blockades disrupting Mediterranean light sweet crude supplies.",
+            "Russian military expansion establishing naval logistics access along the central Mediterranean coast."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_OPEC",
+            "GEO_RU",
+            "GEO_TR",
+            "GEO_IT"
+          ]
+        },
+        "REL_GEO_US_GEO_SD": {
+          "dyad_id": "REL_GEO_US_GEO_SD",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_SD",
+          "common_reference": "United States ↔ Republic of the Sudan",
+          "bilateral_stance": -0.5,
+          "stance_classification": "Catastrophic Civil War & Diplomatic Humanitarian Pressure",
+          "strategic_category": "Red Sea Flank Stability & Humanitarian Interdiction",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Targeted Sanctions & Mediation",
+              "description": "Targeted financial sanctions on military leaders and corporate conglomerates backing SAF (Burhan) and RSF (Hemedti)."
+            },
+            {
+              "leverage_holder": "GEO_SD",
+              "domain": "Red Sea Strategic Coastline",
+              "description": "Long coastline commanding Red Sea approaches; proposed Russian naval logistics facility in Port Sudan."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Regional Contagion Prevention",
+              "description": "Urgent necessity to prevent total state collapse destabilizing Chad, Egypt, South Sudan, and Central African Republic."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "World's largest displacement and famine crisis driven by relentless fighting between SAF and RSF.",
+            "External weapon pipelines flowing from regional powers (UAE backing RSF, Iran/Russia backing SAF).",
+            "Russian pursuit of a formal naval base agreement at Port Sudan."
+          ],
+          "multilateral_cross_references": [
+            "GEO_EG",
+            "GEO_AE",
+            "GEO_RU",
+            "CHOKE_BAB_EL_MANDEB"
+          ]
+        },
+        "REL_GEO_US_GEO_SO": {
+          "dyad_id": "REL_GEO_US_GEO_SO",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_SO",
+          "common_reference": "United States ↔ Federal Republic of Somalia",
+          "bilateral_stance": -0.15,
+          "stance_classification": "Asymmetric Counter-Terrorism & Fragile Federal Assistance",
+          "strategic_category": "Horn of Africa Security & Indian Ocean Maritime Domain",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "AFRICOM Drone Strikes & Training",
+              "description": "US Africa Command provides direct drone strike support and trains the elite Danab Special Forces brigade."
+            },
+            {
+              "leverage_holder": "GEO_SO",
+              "domain": "Al-Shabaab Threat & Strategic Coast",
+              "description": "Longest coastline in mainland Africa commanding Gulf of Aden and Indian Ocean maritime lanes."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "State Fragility vs. Sovereignty",
+              "description": "Preserving Somali territorial integrity in the face of Ethiopian sea access memorandum with Somaliland."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Al-Shabaab asymmetric attacks, suicide bombings, and territorial insurgencies in central and southern Somalia.",
+            "Diplomatic crisis between Mogadishu and Addis Ababa over Ethiopia-Somaliland port MOU.",
+            "Turkish-Somali defense and economic cooperation agreement securing maritime EEZ."
+          ],
+          "multilateral_cross_references": [
+            "GEO_TR",
+            "CHOKE_BAB_EL_MANDEB"
+          ]
+        },
+        "REL_GEO_US_GEO_HT": {
+          "dyad_id": "REL_GEO_US_GEO_HT",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_HT",
+          "common_reference": "United States ↔ Republic of Haiti",
+          "bilateral_stance": -0.2,
+          "stance_classification": "Institutional Collapse & Multinational Security Support",
+          "strategic_category": "Caribbean State Failure & Maritime Border Containment",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Mission Funding & Coast Guard Interdiction",
+              "description": "Primary financial backer of Kenyan-led Multinational Security Support (MSS) mission; Coast Guard repatriation patrols."
+            },
+            {
+              "leverage_holder": "GEO_HT",
+              "domain": "Proximity & Migration Waves",
+              "description": "Massive potential for catastrophic irregular sea migration directly striking Florida coastline."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Gang Violence Neutralization",
+              "description": "Essential imperative to break armed gang control over Port-au-Prince seaport, airport, and fuel terminals."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Operational sustainability and funding deficits of the multinational security support mission.",
+            "Mass weapon trafficking originating from US Florida gun shops fueling Haitian criminal gangs.",
+            "Establishment of transitional governance mechanisms to organize credible presidential elections."
+          ],
+          "multilateral_cross_references": [
+            "GEO_KE"
+          ]
+        },
+        "REL_GEO_US_GEO_PK": {
+          "dyad_id": "REL_GEO_US_GEO_PK",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_PK",
+          "common_reference": "United States ↔ Islamic Republic of Pakistan",
+          "bilateral_stance": 0.15,
+          "stance_classification": "Transactional Realpolitik & Nuclear Risk Management",
+          "strategic_category": "South Asian Nuclear Flashpoint & Counter-Terrorism Buffer",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "IMF Financial Lifeline",
+              "description": "Decisive US voting power within IMF governing board ensuring continuous loan disbursements avoiding sovereign debt default."
+            },
+            {
+              "leverage_holder": "GEO_PK",
+              "domain": "Nuclear Arsenal & Staging",
+              "description": "Possesses fastest growing tactical nuclear warhead stockpile; essential overland intelligence cooperation on Afghan border."
+            },
+            {
+              "leverage_holder": "GEO_PK",
+              "domain": "CPEC & Chinese Alignment",
+              "description": "China-Pakistan Economic Corridor (CPEC) anchors Pakistan to Beijing, terminating at Gwadar port."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Cross-border terrorism originating from Afghan soil and TTP attacks targeting Pakistani military.",
+            "Escalation dynamics along the Line of Control with GEO_IN and tactical nuclear thresholds.",
+            "Chinese military footprint expansion at Gwadar deepwater port."
+          ],
+          "multilateral_cross_references": [
+            "GEO_IN",
+            "GEO_CN",
+            "GEO_AF",
+            "ORG_IMF"
+          ]
+        },
+        "REL_GEO_US_GEO_MM": {
+          "dyad_id": "REL_GEO_US_GEO_MM",
+          "actor_1": "GEO_US",
+          "actor_2": "GEO_MM",
+          "common_reference": "United States ↔ Republic of the Union of Myanmar",
+          "bilateral_stance": -0.65,
+          "stance_classification": "Junta Isolation & Democratic Resistance Support",
+          "strategic_category": "Mainland Southeast Asian Civil War & Chinese Hegemony",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "BURMA Act & Sanctions",
+              "description": "BURMA Act authorizing non-lethal aid to democratic resistance (NUG/PDF) and targeted sanctions on state oil enterprise (MOGE)."
+            },
+            {
+              "leverage_holder": "GEO_MM",
+              "domain": "Indian Ocean Gateway to China",
+              "description": "Hosts China-Myanmar Economic Corridor (CMEC) oil/gas pipelines to Yunnan bypassing Malacca (CHOKE_MALACCA)."
+            },
+            {
+              "leverage_holder": "GEO_MM",
+              "domain": "Transnational Crime Hubs",
+              "description": "Proliferation of border telecom fraud factories, drug manufacturing, and human trafficking syndicates."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Sweeping territorial gains by ethnic armed organizations (Three Brotherhood Alliance) collapsing junta control.",
+            "Protection of Chinese oil/gas pipeline transit corridors and Kyaukphyu deepwater port.",
+            "Severe humanitarian crisis, displacement of Rohingya populations, and regional refugee spillover into Thailand/India."
+          ],
+          "multilateral_cross_references": [
+            "GEO_CN",
+            "GEO_TH",
+            "GEO_IN",
+            "CHOKE_MALACCA"
+          ]
+        }
+      }
+    }
+  }
+}

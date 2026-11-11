@@ -84,18 +84,26 @@ GEO_YE               | Aliases: Republic of Yemen, Yemen, Sanaa
 GEO_DE               | Aliases: Germany, Federal Republic of Germany, FRG, Berlin
 GEO_FR               | Aliases: France, French Republic, Paris
 GEO_GB               | Aliases: United Kingdom, UK, Great Britain, Britain, London
+GEO_IT               | Aliases: Italy, Italian Republic, Rome
 GEO_UA               | Aliases: Ukraine, Kyiv
 GEO_PL               | Aliases: Poland, Republic of Poland, Warsaw
 GEO_LT               | Aliases: Republic of Lithuania, Lithuania, Vilnius
 GEO_EE               | Aliases: Republic of Estonia, Estonia, Tallinn
 GEO_LV               | Aliases: Republic of Latvia, Latvia, Riga
+GEO_NL               | Aliases: Netherlands, Kingdom of the Netherlands, Holland, Amsterdam, The Hague
+GEO_BE               | Aliases: Belgium, Kingdom of Belgium, Brussels
+GEO_ES               | Aliases: Spain, Kingdom of Spain, Madrid
 GEO_SE               | Aliases: Sweden, Kingdom of Sweden, Stockholm
 GEO_NO               | Aliases: Norway, Kingdom of Norway, Oslo
+GEO_FI               | Aliases: Finland, Republic of Finland, Helsinki
+GEO_DK               | Aliases: Denmark, Kingdom of Denmark, Copenhagen
+GEO_RO               | Aliases: Romania, Bucharest
 GEO_CZ               | Aliases: Czech Republic, Czechia, Prague
 GEO_HU               | Aliases: Hungary, Budapest
 GEO_GR               | Aliases: Greece, Hellenic Republic, Athens
 GEO_CY               | Aliases: Cyprus, Republic of Cyprus, Nicosia
 GEO_CH               | Aliases: Switzerland, Swiss Confederation, Bern, Swiss
+GEO_BY               | Aliases: Belarus, Republic of Belarus, Minsk
 
 # [EAST ASIA & INDO-PACIFIC]
 GEO_JP               | Aliases: Japan, Tokyo
@@ -103,10 +111,13 @@ GEO_KR               | Aliases: South Korea, Republic of Korea, ROK, Seoul
 GEO_TW               | Aliases: Taiwan, Republic of China, ROC, Taipei
 GEO_SG               | Aliases: Singapore, Republic of Singapore
 GEO_AU               | Aliases: Australia, Commonwealth of Australia, Canberra
+GEO_NZ               | Aliases: New Zealand, Aotearoa, Wellington
 GEO_ID               | Aliases: Indonesia, Republic of Indonesia, Jakarta
 GEO_MY               | Aliases: Malaysia, Kuala Lumpur
 GEO_TH               | Aliases: Thailand, Kingdom of Thailand, Bangkok
 GEO_PH               | Aliases: Philippines, Republic of the Philippines, Manila
+GEO_VN               | Aliases: Socialist Republic of Vietnam, Vietnam, Hanoi
+GEO_MM               | Aliases: Myanmar, Burma, Naypyidaw
 
 # [CENTRAL ASIA & CAUCASUS]
 GEO_KZ               | Aliases: Kazakhstan, Republic of Kazakhstan, Astana
@@ -124,6 +135,18 @@ GEO_IQ               | Aliases: Iraq, Republic of Iraq, Baghdad
 GEO_SY               | Aliases: Syria, Syrian Arab Republic, Damascus
 GEO_LY               | Aliases: Libya, State of Libya, Tripoli
 GEO_MA               | Aliases: Morocco, Kingdom of Morocco, Rabat
+GEO_QA               | Aliases: State of Qatar, Qatar, Doha
+GEO_JO               | Aliases: Jordan, Hashemite Kingdom of Jordan, Amman
+GEO_KW               | Aliases: Kuwait, State of Kuwait, Kuwait City
+GEO_BH               | Aliases: Bahrain, Kingdom of Bahrain, Manama
+GEO_OM               | Aliases: Oman, Sultanate of Oman, Muscat
+GEO_LB               | Aliases: Lebanon, Lebanese Republic, Beirut
+GEO_YE               | Aliases: Republic of Yemen, Yemen, Sanaa
+GEO_AF               | Aliases: Afghanistan, Islamic Emirate of Afghanistan, Kabul
+GEO_NG               | Aliases: Nigeria, Federal Republic of Nigeria, Abuja
+GEO_KE               | Aliases: Kenya, Republic of Kenya, Nairobi
+GEO_SD               | Aliases: Sudan, Republic of the Sudan, Khartoum
+GEO_SO               | Aliases: Somalia, Federal Republic of Somalia, Mogadishu
 
 # [AMERICAS]
 GEO_CA               | Aliases: Canada, Ottawa
@@ -131,7 +154,12 @@ GEO_MX               | Aliases: Mexico, United Mexican States, Mexico City
 GEO_BR               | Aliases: Brazil, Federative Republic of Brazil, Brasilia
 GEO_AR               | Aliases: Argentina, Argentine Republic, Buenos Aires
 GEO_CL               | Aliases: Chile, Republic of Chile, Santiago
+GEO_CO               | Aliases: Republic of Colombia, Colombia, Bogota
+GEO_PA               | Aliases: Panama, Republic of Panama, Panama City
 GEO_BO               | Aliases: Bolivia, Plurinational State of Bolivia, La Paz
+GEO_CU               | Aliases: Republic of Cuba, Cuba, Havana
+GEO_NI               | Aliases: Nicaragua, Republic of Nicaragua, Managua
+GEO_HT               | Aliases: Haiti, Republic of Haiti, Port-au-Prince
 
 # [SUB-NATIONAL & AUTONOMOUS REGIONAL ACTORS] (Prefix: REG_)
 REG_RF_CAUCASUS_ARC  | Aliases: North Caucasus Autonomous Line, Karachay-Cherkessia, Kabardino-Balkaria, Dagestan
@@ -142,16 +170,20 @@ REG_RF_SOUTHERN_KRAIS| Aliases: Southern Administrative Krais, Stavropol Krai, K
 PROXY_YE_HOUTHI      | Aliases: Ansarullah, Yemen Houthis, Houthis, YE-HOUTHI
 PROXY_LB_HEZB        | Aliases: Hezbollah, Lebanon Hezbollah, LB-HEZB
 PROXY_RU_AFRICA      | Aliases: Wagner Group, Africa Corps, RU-AFRICA
-PROXY_SY_SDF         | Aliases: Syrian Democratic Forces, SDF, YPG, SY-SDF
 
 # [INTERNATIONAL ORGANIZATIONS & MULTILATERAL BLOCS] (Prefix: ORG_ / BLOC_)
 ORG_IMF              | Aliases: IMF, International Monetary Fund
 ORG_BIS              | Aliases: BIS, Bank for International Settlements
 ORG_WORLD_BANK       | Aliases: World Bank, IBRD, International Bank for Reconstruction and Development
 ORG_OECD             | Aliases: OECD, Organisation for Economic Co-operation and Development
+BLOC_NATO            | Aliases: NATO, North Atlantic Treaty Organization, North Atlantic Alliance, Brussels
 BLOC_EU              | Aliases: European Union, EU, EU27, Brussels
 BLOC_OPEC            | Aliases: OPEC, Organization of the Petroleum Exporting Countries, OPEC+
+BLOC_BRICS           | Aliases: BRICS, BRICS Plus, BRICS Alliance
 BLOC_BRICS_MBRIDGE   | Aliases: BRICS & mBridge Settlement Axis, mBridge, BIS Innovation Hub mBridge, CIPS, SPFS
+BLOC_AUKUS           | Aliases: AUKUS, Australia-United Kingdom-United States Security Partnership
+BLOC_QUAD            | Aliases: QUAD, Quadrilateral Security Dialogue
+BLOC_USMCA           | Aliases: USMCA, United States-Mexico-Canada Agreement, NAFTA
 BLOC_C6              | Aliases: Central Asia & Azerbaijan Strategic Alignment Axis, C6 Consultative Format, C6 Bloc
 BLOC_MECCA_DEFENSE   | Aliases: Mecca Joint Defense Agreement, Mecca Defence Alliance, Mecca Pact, TR-SA-PK Alliance
 BLOC_BALTIC_ASSEMBLY | Aliases: Baltic Assembly, Baltic States Trio, Estonia Latvia Lithuania Alliance
@@ -161,6 +193,7 @@ CHOKE_HORMUZ         | Aliases: Hormuz Strait, Strait of Hormuz
 CHOKE_BAB_EL_MANDEB  | Aliases: Bab el-Mandeb, Bab el-Mandeb & Red Sea
 CHOKE_MALACCA        | Aliases: Malacca Strait, Strait of Malacca
 CHOKE_TAIWAN         | Aliases: Taiwan Strait
+CHOKE_LUZON          | Aliases: Luzon Strait, Bashi Channel
 CHOKE_TURKISH_STRAITS| Aliases: Turkish Straits, Bosphorus, Dardanelles, Montreux Transit
 CHOKE_SUWALKI_GAP    | Aliases: Suwalki Gap
 CHOKE_PANAMA         | Aliases: Panama Canal
@@ -170,8 +203,11 @@ CHOKE_LOMBOK_MAKASSAR| Aliases: Lombok & Makassar Straits, Lombok Strait, Makass
 CHOKE_GIBRALTAR      | Aliases: Strait of Gibraltar, Gibraltar
 CHOKE_BERING         | Aliases: Bering Strait, Polar Silk Road Corridor
 CHOKE_MOZAMBIQUE     | Aliases: Mozambique Channel
+CHOKE_SUEZ           | Aliases: Suez Canal, Suez Canal Transit
 CHOKE_SUEZ_NORTH     | Aliases: Suez Canal Northern Approach, Port Said Node
 CORRIDOR_ZANGEZUR    | Aliases: Zangezur Corridor Node, Zangezur Corridor
+CORRIDOR_IMEC        | Aliases: India-Middle East-Europe Economic Corridor, IMEC
+BASIN_ESSEQUIBO      | Aliases: Essequibo Basin, Guayana Esequiba, Stabroek Block
 BASIN_EAST_MED       | Aliases: Eastern Mediterranean Deep-Sea Basin, East Med Basin
 BASIN_EAST_MED_DEEPSEA| Aliases: Eastern Mediterranean Deep-Sea Basin Node, East Med Deep Sea
 BASIN_CASPIAN_SEA    | Aliases: Caspian Sea Transit Basin, Caspian Basin

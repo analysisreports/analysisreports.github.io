@@ -34,7 +34,9 @@ Core repository endpoints, manifests, and their operational roles:
 - [Knowledge Graph (llms-graph.json)](https://analysisreports.github.io/llms-graph.json): Relational graph structure linking central banks, geopolitical nodes, and macroeconomic indicators.
 - [Entities Dictionary (llms-entities-id.txt)](https://analysisreports.github.io/llms-entities-id.txt): Canonical entity IDs, geographic aliases, and actor classification codes.
 - [Indicator Dictionary (llms-indicators.txt)](https://analysisreports.github.io/llms-indicators.txt): Macroeconomic time-series identifiers (FRED, BLS, BEA) and scaling specifications.
-- [Relationships Matrix (llms-relationships.txt)](https://analysisreports.github.io/llms-relationships.txt): Actor polarity scores, critical trade chokepoints, and escalation matrix.
+- [Relationships Matrix (llms-relationships.txt)](https://analysisreports.github.io/llms-relationships.txt): Multilateral frameworks, strategic corridors, escalation matrix, and alliance pacts.
+- [Bilateral Country Relationships (llms-country-relationships.txt)](https://analysisreports.github.io/llms-country-relationships.txt): Sovereign state-by-state dyadic relationship matrix, asymmetric power vectors, and flashpoints.
+- [Bilateral Country Relationships JSON Twin (llms-country-relationships.json)](https://analysisreports.github.io/llms-country-relationships.json): Structured JSON endpoint for sovereign bilateral dyads, numerical stance scores, and flashpoints.
 - [Full Master Directory (llms-full.txt)](https://analysisreports.github.io/llms-full.txt): Comprehensive, unified architectural index of the complete library.
 - [Structured AI Catalog (ai-catalog.json)](https://analysisreports.github.io/ai-catalog.json): Autonomous machine discovery registry, category counters, and daily ecosystem status.
 - [Live FRED Series Registry (llms-fred-series.txt)](https://analysisreports.github.io/llms-fred-series.txt): Monitored FRED time-series, latest observation snapshots, and official growth rates.

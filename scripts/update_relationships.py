@@ -204,6 +204,27 @@ def main():
     # General Financial Stress Delta
     vix_delta = -0.05 if vix >= 32.0 else (+0.03 if vix <= 15.0 else 0.0)
 
+    # Ingest Canonical Sovereign Baselines from llms-country-relationships.json (SSOT)
+    country_json_path = 'llms-country-relationships.json'
+    if not os.path.exists(country_json_path):
+        country_json_path = os.path.join(os.path.dirname(__file__), '..', 'llms-country-relationships.json')
+    
+    country_baselines = {}
+    if os.path.exists(country_json_path):
+        try:
+            with open(country_json_path, 'r', encoding='utf-8') as f:
+                c_json = json.load(f)
+                for h_id, hub in c_json.get('sovereign_hubs', {}).items():
+                    for dyad_id, dyad in hub.get('dyads', {}).items():
+                        a1 = dyad.get('actor_1')
+                        a2 = dyad.get('actor_2')
+                        b_val = dyad.get('bilateral_stance')
+                        if a1 and a2 and b_val is not None:
+                            country_baselines[(a1, a2)] = float(b_val)
+                            country_baselines[(a2, a1)] = float(b_val)
+        except Exception as e:
+            print(f"[WARN] Error reading country baselines: {e}")
+
     # 4. Bilateral Actor Matrix (llms-relationships.txt Section 2)
     actors = [
         {
@@ -437,6 +458,12 @@ def main():
             'primary_driver': 'MECCA_DEFENSE_PACT_TR_PK_AEROSPACE_DEFENSE_ALLIANCE'
         }
     ]
+
+    # Auto-synchronize actors with sovereign baseline SSOT (llms-country-relationships)
+    for a in actors:
+        pair_key = (a['source_entity'], a['target_entity'])
+        if pair_key in country_baselines:
+            a['p_baseline'] = country_baselines[pair_key]
 
     relationships_output = []
     for a in actors:
