@@ -471,7 +471,7 @@
       "category": "MODEL",
       "attributes": {
         "function": "chokepoint_transmission_bridge",
-        "formula": "Spillover_Score = min(100.0, (Disruption_Weight * 70.0) + (Friction_Factor * 30.0))",
+        "formula": "Base_Shock = (Severity_Weight * Net_Deficit_Ratio * 70.0) + (Friction_Factor * 30.0); Spillover_Score = round(min(100.0, max(0.0, Base_Shock * Duration_Scale)))",
         "status_enums": [
           "CRITICAL_SYSTEMIC_SHOCK",
           "HIGH_SPILLOVER",

@@ -1086,7 +1086,7 @@
                             "type": "integer",
                             "minimum": 1,
                             "maximum": 180,
-                            "description": "Crisis duration in days (default: 14) for S-curve non-linear physical exhaustion scaling."
+                            "description": "Crisis duration in days (default: 14). t0=14 represents the critical maritime logistics inflection point where in-transit waterborne tankers dock and refinery working inventories (10-14 days) are exhausted."
                         },
                         "bypass_capacity_mbpd": {
                             "type": "number",

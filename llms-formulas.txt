@@ -3011,7 +3011,8 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   3. Sigmoid Crisis Duration Multiplier (S-Curve):
      M_duration(t) = 1.0 / (1.0 + exp(-0.15 * (t - 14.0)))
      Duration_Scale = 0.40 + 0.60 * M_duration(t)
-     (Day 1: ~0.48 panic pricing; Day 14: ~0.70 operational inventory depletion; Day 30: ~0.95 physical exhaustion)
+     - Empirical Grounding for t0 = 14 Days: Represents the critical global maritime logistics inflection point. Average waterborne transit time for VLCC supertankers from the Persian Gulf to primary Asian/European hubs is 10 to 18 days. Concurrently, global refineries maintain an operational working inventory buffer of 10 to 14 days. Prior to Day 14, disruptions generate financial market panic pricing (OVX/VIX) while pre-loaded floating storage continues to dock; after Day 14, waterborne transit exhausts, refinery storage hits bottom, and acute physical rationing/industrial shutdowns commence.
+     - Day 1: ~0.48 panic pricing; Day 14: ~0.70 operational inventory depletion; Day 30: ~0.95 physical exhaustion; Day 60+: ~1.00 acute structural shock.
   4. Final Spillover Score:
      Base_Shock = (Severity_Weight * Net_Deficit_Ratio * 70.0) + (Friction_Factor * 30.0)
      Spillover_Score = round(min(100.0, max(0.0, Base_Shock * Duration_Scale)))
