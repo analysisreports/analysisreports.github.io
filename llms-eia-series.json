@@ -4,19 +4,599 @@
     "title": "Canonical U.S. Energy Information Administration (EIA) Series Registry",
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
-    "sync_status": "PENDING_INITIAL_PULL",
-    "last_successful_sync": "2026-11-11T22:53:39Z",
-    "total_series": 0,
+    "sync_status": "SUCCESS",
+    "last_successful_sync": "2026-11-11T23:06:31Z",
+    "total_series": 5,
     "total_registered": 5,
-    "missing_series": [
-      "PET.WCSSTUS1.W",
-      "PET.WCESTUS1.W",
-      "PET.WCRFPUS2.W",
-      "PET.WGTSTUS1.W",
-      "NG.NW2_EPG0_SWO_R48_BCF.W"
-    ],
+    "missing_series": [],
     "source_authority": "U.S. Energy Information Administration (EIA API v2)",
     "root_index": "https://analysisreports.github.io/llms.txt"
   },
-  "series": {}
+  "series": {
+    "PET.WCSSTUS1.W": {
+      "series_id": "PET.WCSSTUS1.W",
+      "title": "Weekly U.S. Ending Stocks of Crude Oil in Strategic Petroleum Reserve (SPR)",
+      "frequency": "Weekly",
+      "n_obs_per_yr": 52,
+      "units": "Thousand Barrels",
+      "description": "Crude oil stocks held in the federal Strategic Petroleum Reserve emergency caverns.",
+      "last_date": "2026-10-30",
+      "last_synced_utc": "2026-11-11T23:06:31Z",
+      "current_value": 282184.0,
+      "previous_value": 282583.0,
+      "year_ago_value": 409595.0,
+      "transformations": {
+        "change": -399.0,
+        "change_from_year_ago": -127411.0,
+        "percent_change": -0.1412,
+        "percent_change_from_year_ago": -31.1066
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-22",
+          "value": 365112.0
+        },
+        {
+          "date": "2026-05-29",
+          "value": 357119.0
+        },
+        {
+          "date": "2026-06-05",
+          "value": 349192.0
+        },
+        {
+          "date": "2026-06-12",
+          "value": 340251.0
+        },
+        {
+          "date": "2026-06-19",
+          "value": 331191.0
+        },
+        {
+          "date": "2026-06-26",
+          "value": 325655.0
+        },
+        {
+          "date": "2026-07-03",
+          "value": 319489.0
+        },
+        {
+          "date": "2026-07-10",
+          "value": 316504.0
+        },
+        {
+          "date": "2026-07-17",
+          "value": 311447.0
+        },
+        {
+          "date": "2026-07-24",
+          "value": 307650.0
+        },
+        {
+          "date": "2026-07-31",
+          "value": 304809.0
+        },
+        {
+          "date": "2026-08-07",
+          "value": 298694.0
+        },
+        {
+          "date": "2026-08-14",
+          "value": 293426.0
+        },
+        {
+          "date": "2026-08-21",
+          "value": 289726.0
+        },
+        {
+          "date": "2026-08-28",
+          "value": 286604.0
+        },
+        {
+          "date": "2026-09-04",
+          "value": 285360.0
+        },
+        {
+          "date": "2026-09-11",
+          "value": 284957.0
+        },
+        {
+          "date": "2026-09-18",
+          "value": 284552.0
+        },
+        {
+          "date": "2026-09-25",
+          "value": 283767.0
+        },
+        {
+          "date": "2026-10-02",
+          "value": 282983.0
+        },
+        {
+          "date": "2026-10-09",
+          "value": 282983.0
+        },
+        {
+          "date": "2026-10-16",
+          "value": 282683.0
+        },
+        {
+          "date": "2026-10-23",
+          "value": 282583.0
+        },
+        {
+          "date": "2026-10-30",
+          "value": 282184.0
+        }
+      ]
+    },
+    "PET.WCESTUS1.W": {
+      "series_id": "PET.WCESTUS1.W",
+      "title": "Weekly U.S. Ending Stocks of Crude Oil Excluding SPR (Commercial Stocks)",
+      "frequency": "Weekly",
+      "n_obs_per_yr": 52,
+      "units": "Thousand Barrels",
+      "description": "Domestic commercial crude oil inventories held at refineries, bulk terminals, and pipelines.",
+      "last_date": "2026-10-30",
+      "last_synced_utc": "2026-11-11T23:06:31Z",
+      "current_value": 409760.0,
+      "previous_value": 410625.0,
+      "year_ago_value": 421168.0,
+      "transformations": {
+        "change": -865.0,
+        "change_from_year_ago": -11408.0,
+        "percent_change": -0.2107,
+        "percent_change_from_year_ago": -2.7087
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-22",
+          "value": 441686.0
+        },
+        {
+          "date": "2026-05-29",
+          "value": 433712.0
+        },
+        {
+          "date": "2026-06-05",
+          "value": 426485.0
+        },
+        {
+          "date": "2026-06-12",
+          "value": 418222.0
+        },
+        {
+          "date": "2026-06-19",
+          "value": 412134.0
+        },
+        {
+          "date": "2026-06-26",
+          "value": 408359.0
+        },
+        {
+          "date": "2026-07-03",
+          "value": 411357.0
+        },
+        {
+          "date": "2026-07-10",
+          "value": 409665.0
+        },
+        {
+          "date": "2026-07-17",
+          "value": 411675.0
+        },
+        {
+          "date": "2026-07-24",
+          "value": 404508.0
+        },
+        {
+          "date": "2026-07-31",
+          "value": 406987.0
+        },
+        {
+          "date": "2026-08-07",
+          "value": 424410.0
+        },
+        {
+          "date": "2026-08-14",
+          "value": 428815.0
+        },
+        {
+          "date": "2026-08-21",
+          "value": 428910.0
+        },
+        {
+          "date": "2026-08-28",
+          "value": 424460.0
+        },
+        {
+          "date": "2026-09-04",
+          "value": 424069.0
+        },
+        {
+          "date": "2026-09-11",
+          "value": 423429.0
+        },
+        {
+          "date": "2026-09-18",
+          "value": 426398.0
+        },
+        {
+          "date": "2026-09-25",
+          "value": 427320.0
+        },
+        {
+          "date": "2026-10-02",
+          "value": 424134.0
+        },
+        {
+          "date": "2026-10-09",
+          "value": 415577.0
+        },
+        {
+          "date": "2026-10-16",
+          "value": 412517.0
+        },
+        {
+          "date": "2026-10-23",
+          "value": 410625.0
+        },
+        {
+          "date": "2026-10-30",
+          "value": 409760.0
+        }
+      ]
+    },
+    "PET.WCRFPUS2.W": {
+      "series_id": "PET.WCRFPUS2.W",
+      "title": "Weekly U.S. Field Production of Crude Oil",
+      "frequency": "Weekly",
+      "n_obs_per_yr": 52,
+      "units": "Thousand Barrels per Day",
+      "description": "Aggregate domestic crude extraction rate across US shale and conventional basins.",
+      "last_date": "2026-10-30",
+      "last_synced_utc": "2026-11-11T23:06:31Z",
+      "current_value": 14003.0,
+      "previous_value": 13992.0,
+      "year_ago_value": 13651.0,
+      "transformations": {
+        "change": 11.0,
+        "change_from_year_ago": 352.0,
+        "percent_change": 0.0786,
+        "percent_change_from_year_ago": 2.5786
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-22",
+          "value": 13715.0
+        },
+        {
+          "date": "2026-05-29",
+          "value": 13707.0
+        },
+        {
+          "date": "2026-06-05",
+          "value": 13799.0
+        },
+        {
+          "date": "2026-06-12",
+          "value": 13806.0
+        },
+        {
+          "date": "2026-06-19",
+          "value": 13819.0
+        },
+        {
+          "date": "2026-06-26",
+          "value": 13810.0
+        },
+        {
+          "date": "2026-07-03",
+          "value": 13860.0
+        },
+        {
+          "date": "2026-07-10",
+          "value": 13861.0
+        },
+        {
+          "date": "2026-07-17",
+          "value": 13798.0
+        },
+        {
+          "date": "2026-07-24",
+          "value": 13796.0
+        },
+        {
+          "date": "2026-07-31",
+          "value": 13804.0
+        },
+        {
+          "date": "2026-08-07",
+          "value": 13805.0
+        },
+        {
+          "date": "2026-08-14",
+          "value": 13830.0
+        },
+        {
+          "date": "2026-08-21",
+          "value": 13843.0
+        },
+        {
+          "date": "2026-08-28",
+          "value": 13862.0
+        },
+        {
+          "date": "2026-09-04",
+          "value": 13947.0
+        },
+        {
+          "date": "2026-09-11",
+          "value": 13944.0
+        },
+        {
+          "date": "2026-09-18",
+          "value": 13939.0
+        },
+        {
+          "date": "2026-09-25",
+          "value": 13955.0
+        },
+        {
+          "date": "2026-10-02",
+          "value": 13979.0
+        },
+        {
+          "date": "2026-10-09",
+          "value": 13679.0
+        },
+        {
+          "date": "2026-10-16",
+          "value": 13269.0
+        },
+        {
+          "date": "2026-10-23",
+          "value": 13992.0
+        },
+        {
+          "date": "2026-10-30",
+          "value": 14003.0
+        }
+      ]
+    },
+    "PET.WGTSTUS1.W": {
+      "series_id": "PET.WGTSTUS1.W",
+      "title": "Weekly U.S. Ending Stocks of Total Gasoline",
+      "frequency": "Weekly",
+      "n_obs_per_yr": 52,
+      "units": "Thousand Barrels",
+      "description": "Finished motor gasoline and blending components held in commercial storage.",
+      "last_date": "2026-10-30",
+      "last_synced_utc": "2026-11-11T23:06:31Z",
+      "current_value": 208958.0,
+      "previous_value": 209180.0,
+      "year_ago_value": 206009.0,
+      "transformations": {
+        "change": -222.0,
+        "change_from_year_ago": 2949.0,
+        "percent_change": -0.1061,
+        "percent_change_from_year_ago": 1.4315
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-22",
+          "value": 211591.0
+        },
+        {
+          "date": "2026-05-29",
+          "value": 214955.0
+        },
+        {
+          "date": "2026-06-05",
+          "value": 215141.0
+        },
+        {
+          "date": "2026-06-12",
+          "value": 214235.0
+        },
+        {
+          "date": "2026-06-19",
+          "value": 216299.0
+        },
+        {
+          "date": "2026-06-26",
+          "value": 213966.0
+        },
+        {
+          "date": "2026-07-03",
+          "value": 212062.0
+        },
+        {
+          "date": "2026-07-10",
+          "value": 210529.0
+        },
+        {
+          "date": "2026-07-17",
+          "value": 211294.0
+        },
+        {
+          "date": "2026-07-24",
+          "value": 211301.0
+        },
+        {
+          "date": "2026-07-31",
+          "value": 209658.0
+        },
+        {
+          "date": "2026-08-07",
+          "value": 208690.0
+        },
+        {
+          "date": "2026-08-14",
+          "value": 209378.0
+        },
+        {
+          "date": "2026-08-21",
+          "value": 206842.0
+        },
+        {
+          "date": "2026-08-28",
+          "value": 205669.0
+        },
+        {
+          "date": "2026-09-04",
+          "value": 206938.0
+        },
+        {
+          "date": "2026-09-11",
+          "value": 207732.0
+        },
+        {
+          "date": "2026-09-18",
+          "value": 206046.0
+        },
+        {
+          "date": "2026-09-25",
+          "value": 204362.0
+        },
+        {
+          "date": "2026-10-02",
+          "value": 204744.0
+        },
+        {
+          "date": "2026-10-09",
+          "value": 208262.0
+        },
+        {
+          "date": "2026-10-16",
+          "value": 205310.0
+        },
+        {
+          "date": "2026-10-23",
+          "value": 209180.0
+        },
+        {
+          "date": "2026-10-30",
+          "value": 208958.0
+        }
+      ]
+    },
+    "NG.NW2_EPG0_SWO_R48_BCF.W": {
+      "series_id": "NG.NW2_EPG0_SWO_R48_BCF.W",
+      "title": "Weekly Lower 48 States Working Gas in Underground Natural Gas Storage",
+      "frequency": "Weekly",
+      "n_obs_per_yr": 52,
+      "units": "Billion Cubic Feet",
+      "description": "Volume of working natural gas in underground storage facilities across the Lower 48 states.",
+      "last_date": "2026-10-30",
+      "last_synced_utc": "2026-11-11T23:06:31Z",
+      "current_value": 3801.0,
+      "previous_value": 3724.0,
+      "year_ago_value": 3905.0,
+      "transformations": {
+        "change": 77.0,
+        "change_from_year_ago": -104.0,
+        "percent_change": 2.0677,
+        "percent_change_from_year_ago": -2.6633
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-22",
+          "value": 2483.0
+        },
+        {
+          "date": "2026-05-29",
+          "value": 2578.0
+        },
+        {
+          "date": "2026-06-05",
+          "value": 2686.0
+        },
+        {
+          "date": "2026-06-12",
+          "value": 2759.0
+        },
+        {
+          "date": "2026-06-19",
+          "value": 2835.0
+        },
+        {
+          "date": "2026-06-26",
+          "value": 2922.0
+        },
+        {
+          "date": "2026-07-03",
+          "value": 2983.0
+        },
+        {
+          "date": "2026-07-10",
+          "value": 3024.0
+        },
+        {
+          "date": "2026-07-17",
+          "value": 3056.0
+        },
+        {
+          "date": "2026-07-24",
+          "value": 3084.0
+        },
+        {
+          "date": "2026-07-31",
+          "value": 3117.0
+        },
+        {
+          "date": "2026-08-07",
+          "value": 3153.0
+        },
+        {
+          "date": "2026-08-14",
+          "value": 3169.0
+        },
+        {
+          "date": "2026-08-21",
+          "value": 3184.0
+        },
+        {
+          "date": "2026-08-28",
+          "value": 3214.0
+        },
+        {
+          "date": "2026-09-04",
+          "value": 3254.0
+        },
+        {
+          "date": "2026-09-11",
+          "value": 3298.0
+        },
+        {
+          "date": "2026-09-18",
+          "value": 3351.0
+        },
+        {
+          "date": "2026-09-25",
+          "value": 3415.0
+        },
+        {
+          "date": "2026-10-02",
+          "value": 3500.0
+        },
+        {
+          "date": "2026-10-09",
+          "value": 3567.0
+        },
+        {
+          "date": "2026-10-16",
+          "value": 3644.0
+        },
+        {
+          "date": "2026-10-23",
+          "value": 3724.0
+        },
+        {
+          "date": "2026-10-30",
+          "value": 3801.0
+        }
+      ]
+    }
+  }
 }

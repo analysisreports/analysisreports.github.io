@@ -4,20 +4,61 @@
     "title": "Canonical European Central Bank (ECB) Monitored Series & Official Transformations",
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
-    "sync_status": "PARTIAL_SUCCESS",
-    "last_successful_sync": "2026-11-11T01:46:59.035192+00:00",
-    "total_series": 8,
+    "sync_status": "SUCCESS",
+    "last_successful_sync": "2026-11-11T23:06:27.771830+00:00",
+    "total_series": 11,
     "total_registered": 11,
-    "missing_series": [
-      "EXR/D.USD.EUR.SP00.A",
-      "ILM/W.U2.C.T000000.Z5.Z01",
-      "ICP/M.U2.N.XEF000.4.ANR"
-    ],
+    "missing_series": [],
     "source_authority": "European Central Bank (ECB Data Portal)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.5",
     "root_index": "https://analysisreports.github.io/llms.txt"
   },
   "series": {
+    "EXR/D.USD.EUR.SP00.A": {
+      "series_ref": "EXR/D.USD.EUR.SP00.A",
+      "title": "Euro / US Dollar Spot Exchange Rate",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "USD per 1 EUR",
+      "category": "Foreign Exchange",
+      "source": "European Central Bank (ECB Data Portal)",
+      "last_date": "2026-11-11",
+      "last_synced_utc": "2026-11-11T23:06:27.771830+00:00",
+      "current_value": 1.1127,
+      "previous_value": 1.1214,
+      "year_ago_value": 1.1491,
+      "transformations": {
+        "change": -0.0087,
+        "change_from_year_ago": -0.0364,
+        "percent_change": -0.7758,
+        "percent_change_from_year_ago": -3.1677,
+        "compounded_annual_rate_of_change": -86.8004,
+        "continuously_compounded_rate_of_change": -0.7788,
+        "continuously_compounded_annual_rate_of_change": -202.4987
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-05",
+          "value": 1.1224
+        },
+        {
+          "date": "2026-11-06",
+          "value": 1.1165
+        },
+        {
+          "date": "2026-11-09",
+          "value": 1.1193
+        },
+        {
+          "date": "2026-11-10",
+          "value": 1.1214
+        },
+        {
+          "date": "2026-11-11",
+          "value": 1.1127
+        }
+      ]
+    },
     "EXR/D.GBP.EUR.SP00.A": {
       "series_ref": "EXR/D.GBP.EUR.SP00.A",
       "title": "Euro / UK Pound Sterling Spot Exchange Rate",
@@ -198,6 +239,51 @@
       ],
       "last_synced_utc": "2026-11-11T01:41:29.066890+00:00"
     },
+    "ILM/W.U2.C.T000000.Z5.Z01": {
+      "series_ref": "ILM/W.U2.C.T000000.Z5.Z01",
+      "title": "Eurosystem Consolidated Balance Sheet - Total Assets",
+      "frequency": "Weekly",
+      "n_obs_per_yr": 52,
+      "units": "Millions of EUR",
+      "category": "Central Bank Liquidity",
+      "source": "European Central Bank (ECB Data Portal)",
+      "last_date": "2026-W45",
+      "last_synced_utc": "2026-11-11T23:06:27.771830+00:00",
+      "current_value": 5913173.0,
+      "previous_value": 5945410.0,
+      "year_ago_value": 6156666.0,
+      "transformations": {
+        "change": -32237.0,
+        "change_from_year_ago": -243493.0,
+        "percent_change": -0.5422,
+        "percent_change_from_year_ago": -3.9549,
+        "compounded_annual_rate_of_change": -24.6269,
+        "continuously_compounded_rate_of_change": -0.5437,
+        "continuously_compounded_annual_rate_of_change": -28.272
+      },
+      "recent_observations": [
+        {
+          "date": "2026-W41",
+          "value": 5943911.0
+        },
+        {
+          "date": "2026-W42",
+          "value": 5935346.0
+        },
+        {
+          "date": "2026-W43",
+          "value": 5934983.0
+        },
+        {
+          "date": "2026-W44",
+          "value": 5945410.0
+        },
+        {
+          "date": "2026-W45",
+          "value": 5913173.0
+        }
+      ]
+    },
     "FM/B.U2.EUR.4F.KR.MRR_FR.LEV": {
       "series_ref": "FM/B.U2.EUR.4F.KR.MRR_FR.LEV",
       "title": "ECB Main Refinancing Operations (MRO) Fixed Rate",
@@ -377,6 +463,51 @@
         }
       ],
       "last_synced_utc": "2026-11-11T01:41:29.066890+00:00"
+    },
+    "ICP/M.U2.N.XEF000.4.ANR": {
+      "series_ref": "ICP/M.U2.N.XEF000.4.ANR",
+      "title": "Euro Area Core HICP Inflation Rate (Excl. Energy & Food)",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Annual Rate of Change (%)",
+      "category": "Consumer Prices",
+      "source": "European Central Bank (ECB Data Portal)",
+      "last_date": "2025-12",
+      "last_synced_utc": "2026-11-11T23:06:27.771830+00:00",
+      "current_value": 2.3,
+      "previous_value": 2.4,
+      "year_ago_value": 2.7,
+      "transformations": {
+        "change": -0.1,
+        "change_from_year_ago": -0.4,
+        "percent_change": -4.1667,
+        "percent_change_from_year_ago": -14.8148,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": -4.256,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2025-08",
+          "value": 2.3
+        },
+        {
+          "date": "2025-09",
+          "value": 2.4
+        },
+        {
+          "date": "2025-10",
+          "value": 2.4
+        },
+        {
+          "date": "2025-11",
+          "value": 2.4
+        },
+        {
+          "date": "2025-12",
+          "value": 2.3
+        }
+      ]
     }
   }
 }

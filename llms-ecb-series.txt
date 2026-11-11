@@ -45,12 +45,34 @@ ICP/M.U2.N.XEF000.4.ANR
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-11 01:46:59 UTC
-# - Sync Status: PARTIAL_SUCCESS (8 / 11 series active)
-# - Total Series Synced: 8 / 11
+# - Synced At: 2026-11-11 23:06:27 UTC
+# - Sync Status: SUCCESS (11 / 11 series active)
+# - Total Series Synced: 11 / 11
 # - Source Authority: European Central Bank (ECB Data Portal REST API)
 # - Canonical Formulas Reference: Section 0.5 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
+
+--------------------------------------------------------------------------------
+Series Ref: EXR/D.USD.EUR.SP00.A
+Title: Euro / US Dollar Spot Exchange Rate
+Frequency: Daily (n_obs_per_yr: 260) | Units: USD per 1 EUR
+Last Date: 2026-11-11 | Current Value: 1.1127 | Previous Value: 1.1214 | Year Ago Value: 1.1491
+
+Transformations (Official ECB Formulation - Section 0.5):
+  1. Change: -0.0087
+  2. Change from Year Ago: -0.0364
+  3. Percent Change: -0.7758%
+  4. Percent Change from Year Ago: -3.1677%
+  5. Compounded Annual Rate of Change: -86.8004%
+  6. Continuously Compounded Rate of Change: -0.7788%
+  7. Continuously Compounded Annual Rate of Change: -202.4987%
+
+Recent Observations (Last 5):
+  2026-11-05: 1.1224
+  2026-11-06: 1.1165
+  2026-11-09: 1.1193
+  2026-11-10: 1.1214
+  2026-11-11: 1.1127
 
 --------------------------------------------------------------------------------
 Series Ref: EXR/D.GBP.EUR.SP00.A
@@ -141,6 +163,28 @@ Recent Observations (Last 5):
   2026-11-09: 2.4420
 
 --------------------------------------------------------------------------------
+Series Ref: ILM/W.U2.C.T000000.Z5.Z01
+Title: Eurosystem Consolidated Balance Sheet - Total Assets
+Frequency: Weekly (n_obs_per_yr: 52) | Units: Millions of EUR
+Last Date: 2026-W45 | Current Value: 5913173.0000 | Previous Value: 5945410.0000 | Year Ago Value: 6156666.0000
+
+Transformations (Official ECB Formulation - Section 0.5):
+  1. Change: -32237.0000
+  2. Change from Year Ago: -243493.0000
+  3. Percent Change: -0.5422%
+  4. Percent Change from Year Ago: -3.9549%
+  5. Compounded Annual Rate of Change: -24.6269%
+  6. Continuously Compounded Rate of Change: -0.5437%
+  7. Continuously Compounded Annual Rate of Change: -28.2720%
+
+Recent Observations (Last 5):
+  2026-W41: 5943911.0000
+  2026-W42: 5935346.0000
+  2026-W43: 5934983.0000
+  2026-W44: 5945410.0000
+  2026-W45: 5913173.0000
+
+--------------------------------------------------------------------------------
 Series Ref: FM/B.U2.EUR.4F.KR.MRR_FR.LEV
 Title: ECB Main Refinancing Operations (MRO) Fixed Rate
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent per Annum
@@ -227,3 +271,25 @@ Recent Observations (Last 5):
   2025-10: 2.1000
   2025-11: 2.1000
   2025-12: 1.9000
+
+--------------------------------------------------------------------------------
+Series Ref: ICP/M.U2.N.XEF000.4.ANR
+Title: Euro Area Core HICP Inflation Rate (Excl. Energy & Food)
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Annual Rate of Change (%)
+Last Date: 2025-12 | Current Value: 2.3000 | Previous Value: 2.4000 | Year Ago Value: 2.7000
+
+Transformations (Official ECB Formulation - Section 0.5):
+  1. Change: -0.1000
+  2. Change from Year Ago: -0.4000
+  3. Percent Change: -4.1667%
+  4. Percent Change from Year Ago: -14.8148%
+  5. Compounded Annual Rate of Change: N/A (Rate is already annualized)
+  6. Continuously Compounded Rate of Change: -4.2560%
+  7. Continuously Compounded Annual Rate of Change: N/A (Rate is already annualized)
+
+Recent Observations (Last 5):
+  2025-08: 2.3000
+  2025-09: 2.4000
+  2025-10: 2.4000
+  2025-11: 2.4000
+  2025-12: 2.3000

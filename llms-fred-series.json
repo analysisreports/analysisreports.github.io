@@ -4,21 +4,59 @@
     "title": "Canonical FRED Monitored Series & Official Transformations",
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
-    "sync_status": "PARTIAL_SUCCESS",
-    "last_successful_sync": "2026-11-11T21:17:51Z",
-    "total_series": 60,
-    "total_registered": 64,
-    "missing_series": [
-      "NCBEILQ027S",
-      "GDP",
-      "DRCCLACBS",
-      "DRTSCIS"
-    ],
+    "sync_status": "SUCCESS",
+    "last_successful_sync": "2026-11-11T23:06:21Z",
+    "total_series": 67,
+    "total_registered": 67,
+    "missing_series": [],
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
     "root_index": "https://analysisreports.github.io/llms.txt"
   },
   "series": {
+    "THREEFYTP10": {
+      "series_id": "THREEFYTP10",
+      "title": "Term Premium on a 10 Year Zero Coupon Bond",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Percent",
+      "source": "Percent",
+      "last_date": "2026-11-06",
+      "current_value": 0.8738,
+      "previous_value": 0.8693,
+      "year_ago_value": 0.4366,
+      "transformations": {
+        "change": 0.0045,
+        "change_from_year_ago": 0.4372,
+        "percent_change": 0.5177,
+        "percent_change_from_year_ago": 100.1374,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 0.5163,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-02",
+          "value": 0.9088
+        },
+        {
+          "date": "2026-11-03",
+          "value": 0.9084
+        },
+        {
+          "date": "2026-11-04",
+          "value": 0.8988
+        },
+        {
+          "date": "2026-11-05",
+          "value": 0.8693
+        },
+        {
+          "date": "2026-11-06",
+          "value": 0.8738
+        }
+      ]
+    },
     "DCOILBRENTEU": {
       "series_id": "DCOILBRENTEU",
       "title": "Crude Oil Prices: Brent - Europe",
@@ -145,49 +183,6 @@
         {
           "date": "2026-11-06",
           "value": 121.8803
-        }
-      ]
-    },
-    "THREEFYTP10": {
-      "series_id": "THREEFYTP10",
-      "title": "Term Premium on a 10 Year Zero Coupon Bond",
-      "frequency": "Daily",
-      "n_obs_per_yr": 260,
-      "units": "Percent",
-      "source": "Percent",
-      "last_date": "2026-11-06",
-      "current_value": 0.8738,
-      "previous_value": 0.8693,
-      "year_ago_value": 0.4366,
-      "transformations": {
-        "change": 0.0045,
-        "change_from_year_ago": 0.4372,
-        "percent_change": 0.5177,
-        "percent_change_from_year_ago": 100.1374,
-        "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 0.5163,
-        "continuously_compounded_annual_rate_of_change": null
-      },
-      "recent_observations": [
-        {
-          "date": "2026-11-02",
-          "value": 0.9088
-        },
-        {
-          "date": "2026-11-03",
-          "value": 0.9084
-        },
-        {
-          "date": "2026-11-04",
-          "value": 0.8988
-        },
-        {
-          "date": "2026-11-05",
-          "value": 0.8693
-        },
-        {
-          "date": "2026-11-06",
-          "value": 0.8738
         }
       ]
     },
@@ -922,6 +917,50 @@
         }
       ]
     },
+    "STLFSI4": {
+      "series_id": "STLFSI4",
+      "title": "St. Louis Fed Financial Stress Index",
+      "frequency": "Weekly",
+      "n_obs_per_yr": 52,
+      "units": "Index",
+      "source": "Index",
+      "last_date": "2026-10-30",
+      "last_synced_utc": "2026-11-11T23:06:21Z",
+      "current_value": -0.5224,
+      "previous_value": -0.5842,
+      "year_ago_value": -0.4581,
+      "transformations": {
+        "change": 0.0618,
+        "change_from_year_ago": -0.0643,
+        "percent_change": null,
+        "percent_change_from_year_ago": null,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": null,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-02",
+          "value": -0.4612
+        },
+        {
+          "date": "2026-10-09",
+          "value": -0.7203
+        },
+        {
+          "date": "2026-10-16",
+          "value": -0.634
+        },
+        {
+          "date": "2026-10-23",
+          "value": -0.5842
+        },
+        {
+          "date": "2026-10-30",
+          "value": -0.5224
+        }
+      ]
+    },
     "WALCL": {
       "series_id": "WALCL",
       "title": "Assets: Total Assets: Total Assets (Less Eliminations from Consolidation): Wednesday Level",
@@ -1220,6 +1259,94 @@
         {
           "date": "2026-11-09",
           "value": 3.995
+        }
+      ]
+    },
+    "PNGASEUUSDM": {
+      "series_id": "PNGASEUUSDM",
+      "title": "Global price of Natural gas, EU",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "U.S. Dollars per Million Metric British Thermal Unit",
+      "source": "U.S. Dollars per Million Metric British Thermal Unit",
+      "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-11T23:06:21Z",
+      "current_value": 25.494,
+      "previous_value": 20.922,
+      "year_ago_value": 11.003,
+      "transformations": {
+        "change": 4.572,
+        "change_from_year_ago": 14.491,
+        "percent_change": 21.8526,
+        "percent_change_from_year_ago": 131.7004,
+        "compounded_annual_rate_of_change": 971.5622,
+        "continuously_compounded_rate_of_change": 19.7642,
+        "continuously_compounded_annual_rate_of_change": 237.1703
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 16.153
+        },
+        {
+          "date": "2026-06-01",
+          "value": 15.092
+        },
+        {
+          "date": "2026-07-01",
+          "value": 17.93
+        },
+        {
+          "date": "2026-08-01",
+          "value": 20.922
+        },
+        {
+          "date": "2026-09-01",
+          "value": 25.494
+        }
+      ]
+    },
+    "PNGASJPUSDM": {
+      "series_id": "PNGASJPUSDM",
+      "title": "Global price of LNG, Asia",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "U.S. Dollars per Million Metric British Thermal Unit",
+      "source": "U.S. Dollars per Million Metric British Thermal Unit",
+      "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-11T23:06:21Z",
+      "current_value": 26.637,
+      "previous_value": 22.038,
+      "year_ago_value": 11.277,
+      "transformations": {
+        "change": 4.599,
+        "change_from_year_ago": 15.36,
+        "percent_change": 20.8685,
+        "percent_change_from_year_ago": 136.2064,
+        "compounded_annual_rate_of_change": 872.2044,
+        "continuously_compounded_rate_of_change": 18.9533,
+        "continuously_compounded_annual_rate_of_change": 227.4396
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 18.101
+        },
+        {
+          "date": "2026-06-01",
+          "value": 17.189
+        },
+        {
+          "date": "2026-07-01",
+          "value": 19.562
+        },
+        {
+          "date": "2026-08-01",
+          "value": 22.038
+        },
+        {
+          "date": "2026-09-01",
+          "value": 26.637
         }
       ]
     },
@@ -2596,6 +2723,182 @@
         {
           "date": "2036-10-01",
           "value": 29443.0227307
+        }
+      ]
+    },
+    "NCBEILQ027S": {
+      "series_id": "NCBEILQ027S",
+      "title": "Nonfinancial Corporate Business; Corporate Equities; Liability, Level",
+      "frequency": "Quarterly",
+      "n_obs_per_yr": 4,
+      "units": "Millions of U.S. Dollars",
+      "source": "Millions of U.S. Dollars",
+      "last_date": "2026-04-01",
+      "last_synced_utc": "2026-11-11T23:06:21Z",
+      "current_value": 83050847.0,
+      "previous_value": 70018384.0,
+      "year_ago_value": 65333338.0,
+      "transformations": {
+        "change": 13032463.0,
+        "change_from_year_ago": 17717509.0,
+        "percent_change": 18.6129,
+        "percent_change_from_year_ago": 27.1186,
+        "compounded_annual_rate_of_change": 97.9374,
+        "continuously_compounded_rate_of_change": 17.0695,
+        "continuously_compounded_annual_rate_of_change": 68.2781
+      },
+      "recent_observations": [
+        {
+          "date": "2025-04-01",
+          "value": 65333338.0
+        },
+        {
+          "date": "2025-07-01",
+          "value": 70397225.0
+        },
+        {
+          "date": "2025-10-01",
+          "value": 71994893.0
+        },
+        {
+          "date": "2026-01-01",
+          "value": 70018384.0
+        },
+        {
+          "date": "2026-04-01",
+          "value": 83050847.0
+        }
+      ]
+    },
+    "GDP": {
+      "series_id": "GDP",
+      "title": "Gross Domestic Product",
+      "frequency": "Quarterly",
+      "n_obs_per_yr": 4,
+      "units": "Billions of Dollars",
+      "source": "Billions of Dollars",
+      "last_date": "2026-07-01",
+      "last_synced_utc": "2026-11-11T23:06:21Z",
+      "current_value": 33010.036,
+      "previous_value": 32563.03,
+      "year_ago_value": 31180.493,
+      "transformations": {
+        "change": 447.006,
+        "change_from_year_ago": 1829.543,
+        "percent_change": 1.3727,
+        "percent_change_from_year_ago": 5.8676,
+        "compounded_annual_rate_of_change": 5.6051,
+        "continuously_compounded_rate_of_change": 1.3634,
+        "continuously_compounded_annual_rate_of_change": 5.4536
+      },
+      "recent_observations": [
+        {
+          "date": "2025-07-01",
+          "value": 31180.493
+        },
+        {
+          "date": "2025-10-01",
+          "value": 31462.523
+        },
+        {
+          "date": "2026-01-01",
+          "value": 31906.274
+        },
+        {
+          "date": "2026-04-01",
+          "value": 32563.03
+        },
+        {
+          "date": "2026-07-01",
+          "value": 33010.036
+        }
+      ]
+    },
+    "DRCCLACBS": {
+      "series_id": "DRCCLACBS",
+      "title": "Delinquency Rate on Credit Card Loans, All Commercial Banks",
+      "frequency": "Quarterly",
+      "n_obs_per_yr": 4,
+      "units": "Percent",
+      "source": "Percent",
+      "last_date": "2026-04-01",
+      "last_synced_utc": "2026-11-11T23:06:21Z",
+      "current_value": 2.85,
+      "previous_value": 2.91,
+      "year_ago_value": 3.04,
+      "transformations": {
+        "change": -0.06,
+        "change_from_year_ago": -0.19,
+        "percent_change": -2.0619,
+        "percent_change_from_year_ago": -6.25,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": -2.0834,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2025-04-01",
+          "value": 3.04
+        },
+        {
+          "date": "2025-07-01",
+          "value": 2.99
+        },
+        {
+          "date": "2025-10-01",
+          "value": 2.95
+        },
+        {
+          "date": "2026-01-01",
+          "value": 2.91
+        },
+        {
+          "date": "2026-04-01",
+          "value": 2.85
+        }
+      ]
+    },
+    "DRTSCIS": {
+      "series_id": "DRTSCIS",
+      "title": "Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Small Firms",
+      "frequency": "Quarterly",
+      "n_obs_per_yr": 4,
+      "units": "Percent",
+      "source": "Percent",
+      "last_date": "2026-10-01",
+      "last_synced_utc": "2026-11-11T23:06:21Z",
+      "current_value": 5.1,
+      "previous_value": 1.8,
+      "year_ago_value": 8.3,
+      "transformations": {
+        "change": 3.3,
+        "change_from_year_ago": -3.2,
+        "percent_change": 183.3333,
+        "percent_change_from_year_ago": -38.5542,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 104.1454,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2025-10-01",
+          "value": 8.3
+        },
+        {
+          "date": "2026-01-01",
+          "value": 8.9
+        },
+        {
+          "date": "2026-04-01",
+          "value": 6.6
+        },
+        {
+          "date": "2026-07-01",
+          "value": 1.8
+        },
+        {
+          "date": "2026-10-01",
+          "value": 5.1
         }
       ]
     }
