@@ -114,6 +114,11 @@ def parse_country_relationships(txt_content: str) -> Dict[str, Any]:
         line_clean = line.strip()
         hub_match = re.search(r"# \d+\.\s*SOVEREIGN HUB:\s*(.+?)\s*\((GEO_[A-Z0-9_]+)\)", line)
         if hub_match:
+            if current_block_lines and current_hub:
+                parsed = process_block(current_block_lines)
+                if parsed:
+                    hubs[current_hub]["dyads"][parsed["dyad_id"]] = parsed
+                current_block_lines = []
             current_hub = hub_match.group(2).strip()
             hub_name = hub_match.group(1).strip()
             if current_hub not in hubs:

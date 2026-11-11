@@ -5,9 +5,9 @@
     "author": "Ersoy Toptaş",
     "version": "2026-Q4",
     "license": "CC BY-NC-ND 4.0",
-    "last_successful_sync": "2026-11-11T10:35:53Z",
-    "total_hubs": 3,
-    "total_dyads": 140,
+    "last_successful_sync": "2026-11-11T11:27:34Z",
+    "total_hubs": 4,
+    "total_dyads": 165,
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "multilateral_relationships": "https://analysisreports.github.io/llms-relationships.txt",
     "canonical_endpoint": "https://analysisreports.github.io/llms-country-relationships.txt"
@@ -2051,8 +2051,8 @@
           "actor_1": "GEO_US",
           "actor_2": "GEO_IR",
           "common_reference": "United States ↔ Islamic Republic of Iran",
-          "bilateral_stance": -0.8,
-          "stance_classification": "Active Kinetic Stand-Off & Asymmetric Proxy War",
+          "bilateral_stance": -0.85,
+          "stance_classification": "Direct Kinetic Stand-Off & Asymmetric Proxy War",
           "strategic_category": "Persian Gulf Regional Containment & Non-Proliferation",
           "asymmetric_power_vectors": [
             {
@@ -2588,13 +2588,7 @@
             "GEO_AF",
             "ORG_IMF"
           ]
-        }
-      }
-    },
-    "GEO_RU": {
-      "hub_id": "GEO_RU",
-      "hub_name": "RUSSIAN FEDERATION",
-      "dyads": {
+        },
         "REL_GEO_US_GEO_MM": {
           "dyad_id": "REL_GEO_US_GEO_MM",
           "actor_1": "GEO_US",
@@ -2631,7 +2625,13 @@
             "GEO_IN",
             "CHOKE_MALACCA"
           ]
-        },
+        }
+      }
+    },
+    "GEO_RU": {
+      "hub_id": "GEO_RU",
+      "hub_name": "RUSSIAN FEDERATION",
+      "dyads": {
         "REL_GEO_RU_GEO_BY": {
           "dyad_id": "REL_GEO_RU_GEO_BY",
           "actor_1": "GEO_RU",
@@ -3749,13 +3749,7 @@
             "BASIN_ESSEQUIBO",
             "GEO_US"
           ]
-        }
-      }
-    },
-    "GEO_CN": {
-      "hub_id": "GEO_CN",
-      "hub_name": "PEOPLE'S REPUBLIC OF CHINA",
-      "dyads": {
+        },
         "REL_GEO_RU_GEO_CU": {
           "dyad_id": "REL_GEO_RU_GEO_CU",
           "actor_1": "GEO_RU",
@@ -3789,7 +3783,13 @@
             "GEO_US",
             "CHOKE_PANAMA"
           ]
-        },
+        }
+      }
+    },
+    "GEO_CN": {
+      "hub_id": "GEO_CN",
+      "hub_name": "PEOPLE'S REPUBLIC OF CHINA",
+      "dyads": {
         "REL_GEO_CN_GEO_RU": {
           "dyad_id": "REL_GEO_CN_GEO_RU",
           "actor_1": "GEO_CN",
@@ -4985,6 +4985,888 @@
             "CHOKE_MALACCA",
             "GEO_IN",
             "GEO_US"
+          ]
+        }
+      }
+    },
+    "GEO_IR": {
+      "hub_id": "GEO_IR",
+      "hub_name": "ISLAMIC REPUBLIC OF IRAN",
+      "dyads": {
+        "REL_GEO_IR_GEO_RU": {
+          "dyad_id": "REL_GEO_IR_GEO_RU",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_RU",
+          "common_reference": "Iran ↔ Russian Federation",
+          "bilateral_stance": 0.75,
+          "stance_classification": "Strategic Defense Industrial & Logistics Axis",
+          "strategic_category": "Drone Technology Integration & INSTC Chokepoint Bypassing (Canonical Mirror: REL_GEO_RU_GEO_IR)",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Asymmetric Strike Platforms",
+              "description": "Mass transfer of Shahed-type loitering munitions, ballistic missile components, and licensed domestic manufacturing facilities."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Advanced Aerospace & Air Defense",
+              "description": "Delivery of modern fighter aircraft (Su-35), advanced radar units, and technical assistance on the Bushehr nuclear complex."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "INSTC Trade Corridor",
+              "description": "Multimodal trade integration across the Caspian Sea (BASIN_CASPIAN_SEA) and Iranian railways bypassing European waters under the 20-Year Strategic Accord (ratified Oct 2025)."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Escalation with Israel and Western strikes on Iranian defense infrastructure impacting joint munitions supply chains.",
+            "Naval and maritime security exercises in the Persian Gulf and Caspian Sea basin."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "BLOC_SCO",
+            "CORRIDOR_INSTC",
+            "BASIN_CASPIAN_SEA"
+          ]
+        },
+        "REL_GEO_IR_GEO_CN": {
+          "dyad_id": "REL_GEO_IR_GEO_CN",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_CN",
+          "common_reference": "Iran ↔ People's Republic of China",
+          "bilateral_stance": 0.65,
+          "stance_classification": "25-Year Strategic Accord & Non-SWIFT Petro-Yuan Energy Conduit",
+          "strategic_category": "Persian Gulf Energy Security & Anti-Hegemonic Alignment (Canonical Mirror: REL_GEO_CN_GEO_IR)",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Sole Major Seaborne Crude Offtaker",
+              "description": "Chinese independent \"teapot\" refineries absorb over 85% of Iranian crude exports settled in Renminbi via non-SWIFT networks."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Hormuz Chokepoint & Basra Influence",
+              "description": "Iranian control over the Strait of Hormuz (CHOKE_HORMUZ) where substantial Chinese oil imports transit daily."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "25-Year Strategic Accord",
+              "description": "Long-term roadmap (2021-2046) committing $400B Chinese infrastructure and telecom investments for stable discounted crude flows."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "US secondary sanctions enforcement targeting independent Chinese shipping logistics and regional coastal terminals.",
+            "Regional military escalation with Israel and Western strikes risking disruptions to Persian Gulf energy transit."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "BLOC_SCO",
+            "CHOKE_HORMUZ",
+            "CORRIDOR_INSTC"
+          ]
+        },
+        "REL_GEO_IR_GEO_SY": {
+          "dyad_id": "REL_GEO_IR_GEO_SY",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_SY",
+          "common_reference": "Iran ↔ Syrian Arab Republic",
+          "bilateral_stance": -0.45,
+          "stance_classification": "Post-Assad Rupture / Severed Levant Logistics & Frozen Hostility",
+          "strategic_category": "Strategic Axis Collapse & Expulsion of IRGC Military Presence",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_SY",
+              "domain": "Severed Land Bridge & Expulsion",
+              "description": "New post-Assad Damascus administration expelled IRGC military advisors, banned Iranian commercial imports, and cut weapon corridors to Lebanon."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Residual Proxy Networks & Financial Claims",
+              "description": "Latent asymmetric intelligence cells and multi-billion-dollar sovereign debt claims incurred during regime survival defense."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Total Geopolitical Realignment",
+              "description": "Complete diplomatic freeze with Damascus pivoting toward Turkish, Arab League, and Western diplomatic normalization."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Clashes between local Syrian transitional forces and residual pro-Iranian Shiite militias along the eastern Euphrates border.",
+            "Full interdiction of Iranian weapons convoys attempting to transit from western Iraq into Lebanese territory."
+          ],
+          "multilateral_cross_references": [
+            "GEO_TR",
+            "GEO_IL",
+            "BASIN_EAST_MED_DEEPSEA"
+          ]
+        },
+        "REL_GEO_IR_GEO_IQ": {
+          "dyad_id": "REL_GEO_IR_GEO_IQ",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_IQ",
+          "common_reference": "Iran ↔ Republic of Iraq",
+          "bilateral_stance": 0.75,
+          "stance_classification": "Popular Mobilization Forces Integration & Deep Strategic Depth",
+          "strategic_category": "Bilateral Security Pact & Western Asymmetric Power Bastion",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Paramilitary & Political Penetration",
+              "description": "Deep ideological, logistical, and command influence over core Hashd al-Shaabi factions (Kata'ib Hezbollah, Asa'ib Ahl al-Haq)."
+            },
+            {
+              "leverage_holder": "GEO_IQ",
+              "domain": "Commercial Transit & Dollar Liquidity",
+              "description": "Critical conduit for Iranian civilian imports, religious pilgrimage revenues (Arbaeen), and informal dollar cross-border clearing."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "March 2023 Border Security Agreement",
+              "description": "Formal bilateral security framework coordinating joint border deployments against Kurdish dissident factions in northern Iraq."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Retaliatory ballistic missile and drone strikes launched by Iraqi resistance factions against US and Israeli targets.",
+            "US Treasury financial restrictions and enforcement actions against Iraqi private banks facilitating illicit dollar transfers to Tehran."
+          ],
+          "multilateral_cross_references": [
+            "GEO_US",
+            "GEO_IL",
+            "BLOC_OPEC"
+          ]
+        },
+        "REL_GEO_IR_GEO_LB": {
+          "dyad_id": "REL_GEO_IR_GEO_LB",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_LB",
+          "common_reference": "Iran ↔ Republic of Lebanon",
+          "bilateral_stance": 0.7,
+          "stance_classification": "Hezbollah Strategic Bastion & Mediterranean Forward Deterrence",
+          "strategic_category": "Asymmetric Resistance Anchor & Levant Military Outpost",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Defense Funding & Precision Rocketry",
+              "description": "Core sponsor, weapons supplier, and strategic director of Hezbollah since its 1982 inception through the IRGC Quds Force."
+            },
+            {
+              "leverage_holder": "GEO_LB",
+              "domain": "Northern Israeli Border Pressure",
+              "description": "Provides Iran an immediate, highly armed forward deterrent directly along Israel's northern territorial boundary."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Alternative Commercial Concessions",
+              "description": "Subsidized fuel supplies, pharmaceutical aid, and parallel financial institutions (Al-Qard Al-Hasan) sustaining community support."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Massive Israeli aerial campaigns and ground incursions targeting Hezbollah leadership and precision missile stockpiles.",
+            "Domestic Lebanese political deadlocks and sovereignty demands pushing to disarm sectarian militias."
+          ],
+          "multilateral_cross_references": [
+            "GEO_IL",
+            "BASIN_EAST_MED_DEEPSEA",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_IR_GEO_YE": {
+          "dyad_id": "REL_GEO_IR_GEO_YE",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_YE",
+          "common_reference": "Iran ↔ Republic of Yemen",
+          "bilateral_stance": 0.75,
+          "stance_classification": "Ansarullah Strategic Alliance & Red Sea Maritime Chokepoint Axis",
+          "strategic_category": "Southern Flank Missile Standoff & Bab el-Mandeb Interdiction",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Advanced Armaments & Targeting Intelligence",
+              "description": "Supply of anti-ship ballistic missiles, long-range attack drones, and technical advisors sustaining Houthi military mass."
+            },
+            {
+              "leverage_holder": "GEO_YE",
+              "domain": "Bab el-Mandeb Chokepoint Interdiction",
+              "description": "Ansarullah control over the southwestern Arabian littoral (CHOKE_BAB_EL_MANDEB), executing shipping blockades."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Ideological Alignment",
+              "description": "Dedicated membership in the Axis of Resistance opposing US naval operations and Israeli maritime logistics."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "US and allied Operation Prosperity Guardian airstrikes targeting underground launch facilities across western Yemen.",
+            "Cross-border ballistic missile attacks launched from Yemen striking central Israeli urban centers."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_BAB_EL_MANDEB",
+            "GEO_US",
+            "GEO_SA",
+            "GEO_IL"
+          ]
+        },
+        "REL_GEO_IR_GEO_KP": {
+          "dyad_id": "REL_GEO_IR_GEO_KP",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_KP",
+          "common_reference": "Iran ↔ Democratic People's Republic of Korea",
+          "bilateral_stance": 0.7,
+          "stance_classification": "Ballistic Missile Tech Sharing & Anti-Hegemonic Weaponry Axis",
+          "strategic_category": "Covert Defense Technology Cooperation & Hardened Underground Engineering",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_KP",
+              "domain": "Missile Engines & Heavy Artillery Engineering",
+              "description": "Historical transfer of Scud, Nodong, and Musudan liquid/solid-fuel rocket designs serving as prototypes for Iranian ballistic systems."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Deep Underground Hardening",
+              "description": "North Korean engineering assistance designing heavily fortified, subterranean missile and uranium enrichment facilities."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Diplomatic Solidarity & Barter Trade",
+              "description": "Mutual diplomatic shielding in multilateral forums and non-monetary resource exchanges defying unilateral US sanctions."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Western intelligence tracking of joint delegations coordinating long-range hypersonic or solid-propellant technologies.",
+            "Secondary sanctions on dual-use procurement networks operating through East Asian intermediaries."
+          ],
+          "multilateral_cross_references": [
+            "GEO_US",
+            "GEO_KR"
+          ]
+        },
+        "REL_GEO_IR_GEO_VE": {
+          "dyad_id": "REL_GEO_IR_GEO_VE",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_VE",
+          "common_reference": "Iran ↔ Bolivarian Republic of Venezuela",
+          "bilateral_stance": 0.7,
+          "stance_classification": "Sanctions-Defying Petrochemical Axis & Caribbean Refineries",
+          "strategic_category": "Transatlantic Anti-Imperialist Front & Heavy Crude Barter",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Refinery Technical Overhauls & Condensate",
+              "description": "NIORDC engineers rehabilitating Venezuelan refining complexes (El Palito, Paraguana) and exporting essential gas condensate diluent."
+            },
+            {
+              "leverage_holder": "GEO_VE",
+              "domain": "Caribbean Diplomatic & Logistics Bastion",
+              "description": "Direct commercial and military entry point into South America, exchanging heavy crude and gold bullion."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Sanctions Evasion Playbook",
+              "description": "Coordinated deployment of shadow tanker fleets, vessel AIS manipulation, and shared technical workarounds."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "US interdictions of Iranian-flagged oil tankers transiting Atlantic or Caribbean sea routes.",
+            "Expansion of bilateral defense technological exchanges including Iranian armed reconnaissance drone assembly in Venezuela."
+          ],
+          "multilateral_cross_references": [
+            "ZONE_ORINOCO_PETROLEUM",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_IR_GEO_TR": {
+          "dyad_id": "REL_GEO_IR_GEO_TR",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_TR",
+          "common_reference": "Iran ↔ Republic of Türkiye",
+          "bilateral_stance": 0.2,
+          "stance_classification": "1639 Qasr-e Shirin Border Stability / Managed Geopolitical Rivalry",
+          "strategic_category": "Historical Border Permanence & Trans-Anatolian Energy Interdependence",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "400-Year Border Invariance",
+              "description": "Shared frontier unbroken since the 1639 Treaty of Qasr-e Shirin (Zuhab), reinforced by the 1926 Friendship Treaty and 1937 Saadabad Pact."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Natural Gas Pipeline Export",
+              "description": "Long-term natural gas supply contracts pumping gas via Tabriz-Dogubayazit pipeline to Turkish industrial centers."
+            },
+            {
+              "leverage_holder": "GEO_TR",
+              "domain": "Neutral Mediation & Trade Gateway",
+              "description": "Türkiye serves as a premier commercial clearing house, tourism haven, and mediator working to prevent regional war contagion."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Acute geopolitical divergence in northern Syria following the fall of Assad and ongoing influence competition in the South Caucasus.",
+            "Iranian redlines opposing the extraterritorial Zangezur Corridor (CORRIDOR_ZANGEZUR) bypassing Iranian territory."
+          ],
+          "multilateral_cross_references": [
+            "CORRIDOR_ZANGEZUR",
+            "BASIN_CASPIAN_SEA",
+            "BLOC_NATO"
+          ]
+        },
+        "REL_GEO_IR_GEO_SA": {
+          "dyad_id": "REL_GEO_IR_GEO_SA",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_SA",
+          "common_reference": "Iran ↔ Kingdom of Saudi Arabia",
+          "bilateral_stance": 0.15,
+          "stance_classification": "2023 Beijing Detente Accord / De-escalation & Defense Coordination",
+          "strategic_category": "Hegemonic Regional Co-Existence & Controlled Asymmetric Standoff",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "March 2023 Beijing Accord",
+              "description": "Chinese-brokered normalization re-establishing formal embassies, non-aggression protocols, and regular defense leadership dialogue."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Drone & Missile Deterrence",
+              "description": "Latent capability to target Saudi energy infrastructure (Aramco Abqaiq) via domestic or proxy strike vectors."
+            },
+            {
+              "leverage_holder": "GEO_SA",
+              "domain": "Airspace Neutrality & OPEC+ Coordination",
+              "description": "Saudi refusal to allow its airspace for third-party strikes against Iran, balanced against ongoing defense coordination with Washington."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Houthi cross-border threats or maritime missile launches near Saudi coastal economic zones.",
+            "Maritime border delineation disputes regarding the shared Arash/Dorra offshore natural gas field."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "BLOC_OPEC",
+            "CHOKE_HORMUZ"
+          ]
+        },
+        "REL_GEO_IR_GEO_AE": {
+          "dyad_id": "REL_GEO_IR_GEO_AE",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_AE",
+          "common_reference": "Iran ↔ United Arab Emirates",
+          "bilateral_stance": 0.2,
+          "stance_classification": "Premier Commercial Re-Export Hub vs Disputed Gulf Islands",
+          "strategic_category": "Non-Western Financial Clearing Lifeline & Strategic Island Friction",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_AE",
+              "domain": "Vital Re-Export & Foreign Exchange Clearing",
+              "description": "Dubai functions as Iran's foremost non-oil commercial lifeline, handling tens of billions in parallel re-exports."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Hormuz Geographic Primacy & Maritime Security",
+              "description": "Proximity to UAE northern emirates, holding naval interdiction power over commercial container traffic."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Sovereign Territorial Disputes",
+              "description": "Long-standing dispute over sovereign control of the three strategic Gulf islands: Abu Musa, Greater Tunb, and Lesser Tunb."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "UAE alignment with Western financial compliance standards restricting shadow banking channels.",
+            "Periodic diplomatic clashes over multilateral joint communiques regarding the sovereignty of the three Gulf islands."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_HORMUZ",
+            "BLOC_BRICS",
+            "BLOC_OPEC"
+          ]
+        },
+        "REL_GEO_IR_GEO_QA": {
+          "dyad_id": "REL_GEO_IR_GEO_QA",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_QA",
+          "common_reference": "Iran ↔ State of Qatar",
+          "bilateral_stance": 0.45,
+          "stance_classification": "South Pars Shared Gas Basin & Critical Diplomatic Ceasefire Mediation",
+          "strategic_category": "Offshore Energy Condominium & Top-Tier Indirect Mediation Axis",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "World's Largest Offshore Gas Field",
+              "description": "Joint exploitation of the giant South Pars / North Dome natural gas reservoir, requiring technical coordination."
+            },
+            {
+              "leverage_holder": "GEO_QA",
+              "domain": "Indispensable Mediation Bridge",
+              "description": "Qatar hosts and finances high-level indirect ceasefire negotiations between US, Israeli, and Iranian intermediaries."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Airspace & Food Security Lifeline",
+              "description": "Iranian airspace and agricultural exports provided essential relief during the 2017-2021 Gulf blockade of Qatar."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Presence of forward US military headquarters at Al Udeid Air Base within short-range Iranian missile trajectory.",
+            "Management of shared gas extraction rates and cross-boundary reservoir pressure maintenance."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_HORMUZ",
+            "BLOC_OPEC",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_IR_GEO_OM": {
+          "dyad_id": "REL_GEO_IR_GEO_OM",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_OM",
+          "common_reference": "Iran ↔ Sultanate of Oman",
+          "bilateral_stance": 0.55,
+          "stance_classification": "Historic Confidential Diplomatic Channel & Hormuz Strait Co-Stewardship",
+          "strategic_category": "Premier Confidential Backchannel & Maritime Chokepoint Harmony",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_OM",
+              "domain": "Unbroken Confidential Diplomacy",
+              "description": "Muscat serves as the primary, most trusted diplomatic mediator hosting secret indirect JCPOA and prisoner swap negotiations."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Co-Guardianship of the Strait of Hormuz",
+              "description": "Shared jurisdiction over the vital 21-nautical-mile navigational shipping lanes (CHOKE_HORMUZ)."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Maritime Security Interdependence",
+              "description": "Joint naval search-and-rescue drills and planned undersea natural gas pipeline projects connecting to Omani liquefaction terminals."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Managing naval escalation and international tanker escort operations without compromising Omani neutrality.",
+            "Western sanctions complicating planned cross-Gulf energy pipeline construction."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_HORMUZ",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_IR_GEO_IN": {
+          "dyad_id": "REL_GEO_IR_GEO_IN",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_IN",
+          "common_reference": "Iran ↔ Republic of India",
+          "bilateral_stance": 0.45,
+          "stance_classification": "Chabahar Port Operating Concession & INSTC Eurasian Transit Gateway",
+          "strategic_category": "Multimodal Transit Integration & Strategic Non-Alignment",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_IN",
+              "domain": "Chabahar Port Operation",
+              "description": "India Ports Global Limited signed a 10-year operating contract for the Shahid Beheshti terminal at Chabahar, securing a route to Central Asia bypassing Pakistan."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Gateway to Afghanistan & INSTC",
+              "description": "Crucial transit territory linking western Indian ports with the Caucasus, Central Asia, and Russian markets."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Sanctions Balancing",
+              "description": "Indian compliance with US oil import waivers balanced against sovereign infrastructure investments in Iranian rail corridors."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "US threats of secondary sanctions targeting Indian commercial entities operating at Chabahar.",
+            "Indian diplomatic balancing between strategic partnerships with Israel/US and long-term transit investments in Iran."
+          ],
+          "multilateral_cross_references": [
+            "CORRIDOR_INSTC",
+            "BLOC_BRICS",
+            "BLOC_SCO",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_IR_GEO_PK": {
+          "dyad_id": "REL_GEO_IR_GEO_PK",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_PK",
+          "common_reference": "Iran ↔ Islamic Republic of Pakistan",
+          "bilateral_stance": 0.3,
+          "stance_classification": "Border Security Coordination & Islamabad Ceasefire Mediation",
+          "strategic_category": "Delicate Border Equilibrium & Counter-Terrorism Co-Management",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Sistan-Balochistan Border Friction",
+              "description": "Shared volatile 900 km border afflicted by ethnic Baloch militant groups (Jaish al-Adl), leading to periodic retaliatory cross-border strikes."
+            },
+            {
+              "leverage_holder": "GEO_PK",
+              "domain": "Ceasefire Mediation Hosting",
+              "description": "Pakistan hosted and mediated high-level diplomatic contacts (June 2026 Islamabad Accord) aiming to prevent wider regional conflict."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Iran-Pakistan Gas Pipeline",
+              "description": "Completed Iranian section of the IP gas pipeline with pending $18B arbitration penalty for Pakistani contractual non-performance."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Cross-border militant attacks and rapid reciprocal missile strikes across the Balochistan border.",
+            "Pakistani diplomatic balancing between historic security dependency on Saudi Arabia/US and border stability with Iran."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_SCO",
+            "CORRIDOR_CPEC",
+            "GEO_SA"
+          ]
+        },
+        "REL_GEO_IR_GEO_AM": {
+          "dyad_id": "REL_GEO_IR_GEO_AM",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_AM",
+          "common_reference": "Iran ↔ Republic of Armenia",
+          "bilateral_stance": 0.5,
+          "stance_classification": "Syunik Border Redline & Historical South Caucasus Strategic Pivot",
+          "strategic_category": "Caucasus Geopolitical Balance & Transit Sovereignty Defense",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Absolute Border Invariance Redline",
+              "description": "Tehran officially declared any alteration of the historic Armenian-Iranian border via an extraterritorial corridor as an unacceptable casus belli."
+            },
+            {
+              "leverage_holder": "GEO_AM",
+              "domain": "Sovereign Non-Turkic Land Route",
+              "description": "Armenia provides Iran its sole direct land bridge into the South Caucasus that is entirely independent of Turkish or Azerbaijani transit control."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Gas-for-Electricity Swap",
+              "description": "Comprehensive bilateral energy protocol trading Iranian natural gas for Armenian electrical power."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Military opposition to the realization of the Zangezur Corridor (CORRIDOR_ZANGEZUR) cutting off direct Iranian-Armenian territorial access.",
+            "Expanding Western and EU civilian monitoring missions along the Armenian-Azerbaijani border near Iran."
+          ],
+          "multilateral_cross_references": [
+            "CORRIDOR_ZANGEZUR",
+            "GEO_AZ",
+            "GEO_TR",
+            "GEO_RU"
+          ]
+        },
+        "REL_GEO_IR_GEO_AZ": {
+          "dyad_id": "REL_GEO_IR_GEO_AZ",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_AZ",
+          "common_reference": "Iran ↔ Republic of Azerbaijan",
+          "bilateral_stance": -0.2,
+          "stance_classification": "Israeli Defense Procurement Friction & Zangezur Standoff vs Aras Route",
+          "strategic_category": "South Caucasus Geopolitical Tension & Cross-Border Ethno-Nationalism",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_AZ",
+              "domain": "Strategic Security Ties with Israel",
+              "description": "Azerbaijan serves as a premier intelligence, oil export, and defense procurement partner of Israel directly on Iran's northern border."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Military Superiority & Ethnic Sensitivities",
+              "description": "Deploys major military drills along the Aras River while managing internal ethnic Azerbaijani demographic sensitivities."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Aras Corridor Transit Agreement",
+              "description": "Pragmatic bilateral consensus developing the Aras road/rail corridor through Iranian territory linking mainland Azerbaijan to Nakhchivan."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Azerbaijani demands for extraterritorial transit through Armenia (Zangezur Corridor) vs Iranian insistence on sovereign Iranian transit routes.",
+            "Intelligence and security incidents surrounding alleged Israeli surveillance platforms stationed near the Iranian frontier."
+          ],
+          "multilateral_cross_references": [
+            "CORRIDOR_ZANGEZUR",
+            "CORRIDOR_INSTC",
+            "GEO_IL",
+            "GEO_TR"
+          ]
+        },
+        "REL_GEO_IR_GEO_TM": {
+          "dyad_id": "REL_GEO_IR_GEO_TM",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_TM",
+          "common_reference": "Iran ↔ Turkmenistan",
+          "bilateral_stance": 0.4,
+          "stance_classification": "Trilateral Gas Swap Agreements & Caspian Maritime Stability",
+          "strategic_category": "Central Asian Energy Swap Corridor & Border Harmonization",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_TM",
+              "domain": "Natural Gas Reserves",
+              "description": "World-class natural gas resources piped south into energy-deficit northern Iranian urban provinces."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Re-Export Transit Conduit",
+              "description": "Iran acts as a vital transit bridge, swapping Turkmen gas onward to Azerbaijan and Iraq."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Caspian Sea Legal Consensus",
+              "description": "Shared adherence to the Caspian Legal Convention excluding non-littoral military fleets from Caspian waters (BASIN_CASPIAN_SEA)."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Historical pricing and arrears settlement disputes concerning winter gas delivery volumes.",
+            "Trans-Caspian pipeline proposals designed to bypass Iranian transit infrastructure entirely."
+          ],
+          "multilateral_cross_references": [
+            "BASIN_CASPIAN_SEA",
+            "BLOC_SCO",
+            "GEO_AZ"
+          ]
+        },
+        "REL_GEO_IR_GEO_IL": {
+          "dyad_id": "REL_GEO_IR_GEO_IL",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_IL",
+          "common_reference": "Iran ↔ State of Israel",
+          "bilateral_stance": -0.95,
+          "stance_classification": "Active Existential Kinetic Warfare & Direct Ballistic Strikes",
+          "strategic_category": "Total State-on-State Kinetic Confrontation & Nuclear Sabotage",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_IL",
+              "domain": "Air Superiority, Precision Strikes & Covert Ops",
+              "description": "Unrivaled deep intelligence penetration (Mossad), stealth F-35 air dominance, and targeted assassinations of senior Iranian leadership."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Massive Ballistic & Hypersonic Missile Arsenals",
+              "description": "Heavy saturation missile barrages (Fattah, Kheibar Shekan) and drone swarms capable of overwhelming Israeli air defenses."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Zero-Sum Existential Rupture",
+              "description": "Absolute refusal of diplomatic recognition; reciprocal commitment to systemic deterrence breakdown."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Direct Israeli and US kinetic strikes targeting Iranian subterranean nuclear enrichment complexes (Natanz, Fordow).",
+            "Iranian saturation ballistic missile salvos targeting Israeli military airbases, intelligence centers, and critical power infrastructure."
+          ],
+          "multilateral_cross_references": [
+            "GEO_US",
+            "CHOKE_HORMUZ",
+            "BASIN_EAST_MED_DEEPSEA"
+          ]
+        },
+        "REL_GEO_IR_GEO_US": {
+          "dyad_id": "REL_GEO_IR_GEO_US",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_US",
+          "common_reference": "Iran ↔ United States of America",
+          "bilateral_stance": -0.85,
+          "stance_classification": "Direct Strategic & Nuclear Proxy Conflict",
+          "strategic_category": "Primary Hegemonic Containment & Maritime Blockade (Canonical Mirror: REL_GEO_US_GEO_IR)",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Maximum Pressure Sanctions & CENTCOM Dominance",
+              "description": "Comprehensive global secondary banking sanctions, naval carrier strike groups, and energy export embargoes."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Asymmetric Hormuz Closure & Regional Base Threats",
+              "description": "Ability to shut down commercial traffic in the Strait of Hormuz (CHOKE_HORMUZ) and target US military installations across the Gulf."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "High-Stakes Indirect Diplomacy",
+              "description": "Continuous reliance on Swiss, Omani, and Qatari diplomatic channels to prevent uncontrolled nuclear or regional escalation."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Maritime tanker seizures, mine strikes, and drone intercepts in the Strait of Hormuz and Gulf of Oman.",
+            "Potential breakout toward weapons-grade 90% enriched uranium and resultant preemptive military strikes."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_HORMUZ",
+            "BLOC_OPEC",
+            "GEO_IL"
+          ]
+        },
+        "REL_GEO_IR_GEO_GB": {
+          "dyad_id": "REL_GEO_IR_GEO_GB",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_GB",
+          "common_reference": "Iran ↔ United Kingdom",
+          "bilateral_stance": -0.65,
+          "stance_classification": "August 2025 JCPOA Snapback Sanctions & Gulf Maritime Escorts",
+          "strategic_category": "Core European Sanctions Architect & Historical Hostility Theater",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_GB",
+              "domain": "E3 Snapback Trigger & Financial Sanctions",
+              "description": "Leadership in reinstating comprehensive UN Security Council sanctions in August 2025 and enforcing global maritime insurance embargoes."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Maritime Pressure & Dual-National Detentions",
+              "description": "Ability to disrupt UK-flagged commercial vessels in the Gulf and exert consular pressure via detained dual-national citizens."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Deep Historical Mistrust",
+              "description": "Persistent Iranian institutional memory of the 1953 Anglo-American covert coup and colonial resource exploitation."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Royal Navy participation in Persian Gulf and Red Sea maritime task forces intercepting Iranian missile shipments.",
+            "Designation of the Islamic Revolutionary Guard Corps (IRGC) as a proscribed terrorist organization in the UK."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "CHOKE_HORMUZ",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_IR_GEO_FR": {
+          "dyad_id": "REL_GEO_IR_GEO_FR",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_FR",
+          "common_reference": "Iran ↔ French Republic",
+          "bilateral_stance": -0.6,
+          "stance_classification": "E3 Snapback Enforcement & Ballistic Proliferation Standoff",
+          "strategic_category": "European Diplomatic Hardening & Levant Spheres Conflict",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_FR",
+              "domain": "Diplomatic & Nuclear Enforcement",
+              "description": "Permanent UN Security Council veto power and co-trigger of the August 2025 JCPOA snapback sanctions regime."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Lebanese & Regional Influence",
+              "description": "Decisive influence over Hezbollah, serving as the essential interlocutor France must engage regarding Lebanese state stability."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Severed Economic Ties",
+              "description": "Complete withdrawal of French corporate giants (TotalEnergies, PSA Peugeot-Citroen) from the Iranian market under US secondary sanctions."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Protests and legal cases surrounding French citizens detained in Iran under state security charges.",
+            "French maritime naval deployments participating in European-led Gulf surveillance missions (EMASOH)."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_EU",
+            "BASIN_EAST_MED_DEEPSEA",
+            "GEO_LB"
+          ]
+        },
+        "REL_GEO_IR_GEO_DE": {
+          "dyad_id": "REL_GEO_IR_GEO_DE",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_DE",
+          "common_reference": "Iran ↔ Federal Republic of Germany",
+          "bilateral_stance": -0.6,
+          "stance_classification": "European Trade Embargo & E3 Multilateral Sanctions Front",
+          "strategic_category": "European Commercial Severance & Consular Disengagement",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_DE",
+              "domain": "Trade & Export Credit Terminations",
+              "description": "Complete cancellation of Hermes export credit guarantees, total collapse of bilateral trade, and closure of Iranian consulates."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Critical Mineral & Regional Leverage",
+              "description": "Interruption of European transit routes and energy security pressure via OPEC+ market tightness."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Full Multilateral Alignment",
+              "description": "Total German alignment with the reinstated UN snapback sanctions regime and rigorous enforcement of dual-use technology export bans."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Severe diplomatic ruptures following the execution of dual-national citizens and consequent diplomatic expulsions.",
+            "Regulatory crackdowns and asset freezes targeting Iranian-affiliated commercial and banking entities operating in Germany."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_EU",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_IR_GEO_AF": {
+          "dyad_id": "REL_GEO_IR_GEO_AF",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_AF",
+          "common_reference": "Iran ↔ Islamic Emirate of Afghanistan",
+          "bilateral_stance": -0.1,
+          "stance_classification": "Pragmatic De Facto Ties vs Helmand Water Treaty Disputes",
+          "strategic_category": "Eastern Frontier Border Management & Hydrological Friction",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_AF",
+              "domain": "Upstream Hydrological Leverage",
+              "description": "Taliban control over upstream dams (Kamal Khan Dam) on the Helmand River, restricting water flows guaranteed by the 1973 treaty to drought-stricken Sistan."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Trade Transit & Refugee Repatriation",
+              "description": "Iran hosts millions of Afghan refugees, utilizing deportation threats and transit access to Chabahar Port as leverage."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Fragile Frontier Security",
+              "description": "Shared 900 km desert border subject to drug trafficking, militant skirmishes, and sectarian friction between Sunni Taliban and Shiite Hazaras."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Lethal border clashes between Taliban border guards and Iranian frontier security forces over irrigation canal construction.",
+            "Severe humanitarian and demographic strains caused by large-scale deportations of undocumented Afghan migrants."
+          ],
+          "multilateral_cross_references": [
+            "GEO_PK",
+            "BLOC_SCO"
+          ]
+        },
+        "REL_GEO_IR_GEO_BH": {
+          "dyad_id": "REL_GEO_IR_GEO_BH",
+          "actor_1": "GEO_IR",
+          "actor_2": "GEO_BH",
+          "common_reference": "Iran ↔ Kingdom of Bahrain",
+          "bilateral_stance": -0.2,
+          "stance_classification": "Fifth Fleet Naval Host & Abraham Accords Alignment vs Shia Majority",
+          "strategic_category": "Persian Gulf Sectarian Chokepoint & Western Naval Bastion",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_BH",
+              "domain": "US Naval Support Activity (Fifth Fleet)",
+              "description": "Bahrain hosts the primary headquarters of US naval forces in the Middle East, directly coordinating maritime deterrence against Iran."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Sectarian & Societal Penetration",
+              "description": "Historic religious affinity and cross-border ideological links with Bahrain's majority Shiite population governed by a Sunni monarchy."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Cautious Normalization Diplomacy",
+              "description": "Bilateral discussions exploring the resumption of diplomatic ties severed in 2016 following the Saudi-Iranian reconciliation."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Bahraini participation in international maritime defense coalitions intercepting Houthi and Iranian naval drones in the Persian Gulf.",
+            "Domestic security crackdowns by Manama authorities on suspected underground cells allegedly supported by the IRGC."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_HORMUZ",
+            "GEO_US",
+            "GEO_SA"
           ]
         }
       }
