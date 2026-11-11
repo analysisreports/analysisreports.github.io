@@ -34,7 +34,7 @@ TEST_SUITE: List[Tuple[str, str, str]] = [
     ("Cross-File Polarity Auto-Sync (SSOT)", "verify_cross_consistency.py", "Single Source of Truth Invariance"),
     ("Dyad Symmetry & Hub Isolation Guard", "verify_dyad_integrity.py", "165 Dyads, 0 Leaks, 100% Symmetric Mirrors"),
     ("Chronological & Treaty Temporal Sanity", "verify_temporal_sanity.py", "Sequence (Sign<=Enact), Watersheds, 2026 Horizon"),
-    ("Knowledge Graph Topology & Edge Integrity", "verify_graph_topology.py", "216 Nodes, 221 Edges, Zero Broken Edges"),
+    ("Knowledge Graph Topology & Edge Integrity", "verify_graph_topology.py", "Topological Health, Zero Broken Edges, SSOT Polarity Invariance"),
     ("Quantitative Models Stress & Stability", "verify_model_stress.py", "42 Active Models, Zero NaN/Inf under Crisis Shocks")
 ]
 

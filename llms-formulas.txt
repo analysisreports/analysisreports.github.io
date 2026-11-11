@@ -897,6 +897,8 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - BLS / FRED: CPIAUCSL (Must be transformed to YoY % Change)
   - BEA / FRED: GDPC1 (Real Gross Domestic Product - Billions USD)
   - CBO / FRED: GDPPOT (Real Potential Gross Domestic Product - Billions USD)
+  - Unit requirement: Both series must be labeled "Billions of Chained 2017 Dollars"; unlabeled or different units are rejected rather than implicitly converted.
+  - Input guards: GDPPOT must exceed 1.0 (in billions), and the computed output gap must be within +/-50%; invalid or implausible inputs return no model result.
 - Baseline Assumptions:
   - Equilibrium Real Neutral Rate (r*): 2.0%
   - Target Inflation (pi*): 2.0%
@@ -905,7 +907,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   Taylor_Optimal_Rate = 2.0 + CPI_YoY + 0.5 * (CPI_YoY - 2.0) + 0.5 * Output_Gap_Pct
   Taylor_Policy_Gap = DFF - Taylor_Optimal_Rate
 - Machine-Executable Logic (Python):
-  def taylor_policy_gap(dff, cpi_yoy, gdpc1, gdppot):
+  def taylor_policy_gap(dff, cpi_yoy, gdpc1, gdppot, gdpc1_units, gdppot_units):
       if any(v is None or isinstance(v, bool) for v in (dff, cpi_yoy, gdpc1, gdppot)):
           return None
       try:
@@ -914,11 +916,19 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           # Nominal policy rate cannot be negative (min(v, 0) == 0 check: v >= 0)
           if min(dff, 0) != 0:
               return None
-          # Real GDP and potential GDP must be strictly positive
-          if min(gdpc1, 0) == gdpc1 or min(gdppot, 0) == gdppot:
+          # GDP inputs use billions of chained 2017 dollars; reject a near-zero denominator.
+          if gdpc1 <= 0 or gdppot <= 1.0:
               return None
 
-          output_gap = round(((gdpc1 - gdppot) / gdppot) * 100.0, 2)
+          expected_units = "billions of chained 2017 dollars"
+          normalize_units = lambda value: " ".join(str(value).casefold().split())
+          if normalize_units(gdpc1_units) != expected_units or normalize_units(gdppot_units) != expected_units:
+              return None
+
+          output_gap_raw = ((gdpc1 / gdppot) - 1.0) * 100.0
+          if not math.isfinite(output_gap_raw) or abs(output_gap_raw) > 50.0:
+              return None
+          output_gap = round(output_gap_raw, 2)
           optimal_rate = round(2.0 + cpi_yoy + 0.5 * (cpi_yoy - 2.0) + 0.5 * output_gap, 2)
           gap = round(dff - optimal_rate, 2)
           if not math.isfinite(gap):

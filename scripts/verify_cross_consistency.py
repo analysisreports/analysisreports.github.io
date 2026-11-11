@@ -3,58 +3,64 @@
 """
 verify_cross_consistency.py
 ----------------------------
-Self-Healing Dynamic Cross-File Consistency & Auto-Sync Engine.
+Self-Healing Dynamic Cross-File Consistency & Master SSOT Auto-Sync Engine.
 Uses 'llms-country-relationships.txt' as the absolute Single Source of Truth (SSOT).
-Automatically detects and equalizes any baseline polarity (P_baseline) discrepancies
-in 'llms-relationships.txt' without breaking CI/CD or halting processes.
+
+Automatically detects and equalizes baseline polarities across ALL secondary files:
+1. 'llms-relationships.txt' (Core Geopolitical Dyads text)
+2. 'llms-relationships.json' (Core Relationships JSON)
+3. 'llms-graph.json' (Knowledge Graph Edges with p_baseline)
+4. 'llms-country-relationships.json' (Verified against TXT twin)
 
 Author: Ersoy Toptaş
 License: CC BY-NC-ND 4.0
+Endpoint: https://analysisreports.github.io/llms-country-relationships.txt
 """
 
 import os
 import re
 import sys
+import json
+from typing import Dict, Tuple, Any
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-REL_TXT = os.path.join(ROOT_DIR, "llms-relationships.txt")
 COUNTRY_TXT = os.path.join(ROOT_DIR, "llms-country-relationships.txt")
+COUNTRY_JSON = os.path.join(ROOT_DIR, "llms-country-relationships.json")
+REL_TXT = os.path.join(ROOT_DIR, "llms-relationships.txt")
+REL_JSON = os.path.join(ROOT_DIR, "llms-relationships.json")
+GRAPH_JSON = os.path.join(ROOT_DIR, "llms-graph.json")
 
-def main():
-    print("=" * 70)
-    print("SELF-HEALING CROSS-FILE POLARITY AUTO-SYNC & EQUALIZER")
-    print("Master Source of Truth (SSOT): llms-country-relationships.txt")
-    print("=" * 70)
+def load_master_country_polarities(txt_path: str) -> Dict[Tuple[str, str], float]:
+    with open(txt_path, "r", encoding="utf-8") as f:
+        content = f.read()
 
-    if not os.path.exists(REL_TXT) or not os.path.exists(COUNTRY_TXT):
-        print("[WARN] Relationship files not found, skipping auto-sync.")
-        sys.exit(0)
-
-    with open(COUNTRY_TXT, "r", encoding="utf-8") as f:
-        country_content = f.read()
-
-    with open(REL_TXT, "r", encoding="utf-8") as f:
-        rel_content = f.read()
-
-    # 1. Build Master Baseline Dictionary from llms-country-relationships.txt (SSOT)
     country_dyads = re.findall(
         r"Bilateral Dyad:\s*GEO_([A-Z0-9_]+)\s*↔\s*GEO_([A-Z0-9_]+).*?Bilateral Stance:\s*([+\-0-9\.]+)",
-        country_content,
+        content,
         re.S
     )
 
     country_map = {}
     for a1, a2, score in country_dyads:
         s_val = float(score)
+        # Symmetric mappings for GEO and ACTOR formats
         country_map[(f"GEO_{a1}", f"GEO_{a2}")] = s_val
         country_map[(f"GEO_{a2}", f"GEO_{a1}")] = s_val
+        country_map[(f"ACTOR_{a1}", f"ACTOR_{a2}")] = s_val
+        country_map[(f"ACTOR_{a2}", f"ACTOR_{a1}")] = s_val
 
-    print(f"[*] Loaded {len(country_dyads)} master sovereign baselines from country-relationships.")
+    return country_map
 
-    # 2. Scan and Auto-Equalize Section 2 in llms-relationships.txt
+def sync_relationships_txt(rel_txt_path: str, country_map: Dict[Tuple[str, str], float]) -> int:
+    if not os.path.exists(rel_txt_path):
+        return 0
+
+    with open(rel_txt_path, "r", encoding="utf-8") as f:
+        rel_content = f.read()
+
     updated_count = 0
 
-    def replace_baseline_callback(match):
+    def replace_callback(match):
         nonlocal updated_count
         full_block = match.group(0)
         e1 = match.group(2)
@@ -69,25 +75,104 @@ def main():
                 sign = "+" if master_val > 0 else ""
                 new_str = f"{sign}{master_val:.2f}"
                 updated_count += 1
-                print(f"  [AUTO-SYNC] Equalized {e1} vs {e2}: {old_val:+.2f} -> {new_str} (Synced from Master)")
-                # Replace the old value string in the block
-                return full_block.replace(f"Baseline Polarity (P_baseline): {old_val_str}", f"Baseline Polarity (P_baseline): {new_str}")
+                return full_block.replace(
+                    f"Baseline Polarity (P_baseline): {old_val_str}",
+                    f"Baseline Polarity (P_baseline): {new_str}"
+                )
         return full_block
 
     pattern = re.compile(
         r"(Canonical Entities:\s*(GEO_[A-Z0-9_]+)\s*(?:vs\.?|-)\s*(GEO_[A-Z0-9_]+)\s*\n\s*-\s*Baseline Polarity\s*\((?:P_baseline)?\):\s*([+\-0-9\.]+))"
     )
 
-    new_rel_content = pattern.sub(replace_baseline_callback, rel_content)
-
-    # 3. Write back if any discrepancies were equalized
+    new_content = pattern.sub(replace_callback, rel_content)
     if updated_count > 0:
-        with open(REL_TXT, "w", encoding="utf-8") as f:
-            f.write(new_rel_content)
-        print(f"[SUCCESS] Auto-equalized and synchronized {updated_count} baselines in llms-relationships.txt!")
-    else:
-        print("[SUCCESS] 100% Invariance: All overlapping baselines are already perfectly equalized.")
+        with open(rel_txt_path, "w", encoding="utf-8") as f:
+            f.write(new_content)
 
+    return updated_count
+
+def sync_graph_json(graph_path: str, country_map: Dict[Tuple[str, str], float]) -> int:
+    if not os.path.exists(graph_path):
+        return 0
+
+    with open(graph_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    updated_count = 0
+    for edge in data.get("edges", []):
+        s = edge.get("source")
+        t = edge.get("target")
+        p_base = edge.get("p_baseline")
+
+        if p_base is not None and (s, t) in country_map:
+            master_val = country_map[(s, t)]
+            if abs(p_base - master_val) > 0.001:
+                edge["p_baseline"] = master_val
+                updated_count += 1
+
+    if updated_count > 0:
+        with open(graph_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+
+    return updated_count
+
+def sync_relationships_json(rel_json_path: str, country_map: Dict[Tuple[str, str], float]) -> int:
+    if not os.path.exists(rel_json_path):
+        return 0
+
+    with open(rel_json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    updated_count = 0
+    for rel in data.get("relationships", []):
+        s = rel.get("source_entity")
+        t = rel.get("target_entity")
+        pol = rel.get("polarity")
+
+        if pol is not None and (s, t) in country_map:
+            master_val = country_map[(s, t)]
+            if abs(pol - master_val) > 0.001:
+                rel["polarity"] = master_val
+                updated_count += 1
+
+    if updated_count > 0:
+        with open(rel_json_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+
+    return updated_count
+
+def main():
+    print("=" * 70)
+    print("ENTERPRISE CROSS-FILE POLARITY AUTO-SYNC & SSOT EQUALIZER")
+    print("Master Source of Truth (SSOT): llms-country-relationships.txt")
+    print("=" * 70)
+
+    if not os.path.exists(COUNTRY_TXT):
+        print(f"[FAIL] Master SSOT file not found at {COUNTRY_TXT}")
+        sys.exit(1)
+
+    country_map = load_master_country_polarities(COUNTRY_TXT)
+    print(f"[*] Loaded {len(country_map)//4} sovereign dyads from Master SSOT.")
+
+    # 1. Sync llms-relationships.txt
+    txt_sync = sync_relationships_txt(REL_TXT, country_map)
+    print(f"[*] llms-relationships.txt       : {txt_sync} baselines equalized")
+
+    # 2. Sync llms-graph.json
+    graph_sync = sync_graph_json(GRAPH_JSON, country_map)
+    print(f"[*] llms-graph.json               : {graph_sync} edge polarities equalized")
+
+    # 3. Sync llms-relationships.json
+    json_sync = sync_relationships_json(REL_JSON, country_map)
+    print(f"[*] llms-relationships.json      : {json_sync} relationships equalized")
+
+    total_synced = txt_sync + graph_sync + json_sync
+    print("-" * 70)
+    if total_synced > 0:
+        print(f"[AUTO-HEALED] Successfully equalized {total_synced} discrepancies across secondary files!")
+    else:
+        print("[SUCCESS] 100% Invariance: All secondary files are perfectly synchronized with Master SSOT.")
     print("=" * 70)
     sys.exit(0)
 

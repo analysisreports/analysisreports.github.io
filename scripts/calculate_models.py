@@ -472,7 +472,14 @@ def calc_triffin_external_balance(dtwexbgs_val, bopgstb_val) -> Optional[Dict[st
 
 
 # --- Model 11: Taylor Rule Policy Gap ---
-def calc_taylor_policy_gap(dff_val, cpi_yoy_val, gdpc1_val, gdppot_val) -> Optional[Dict[str, Any]]:
+def calc_taylor_policy_gap(
+    dff_val,
+    cpi_yoy_val,
+    gdpc1_val,
+    gdppot_val,
+    gdpc1_units=None,
+    gdppot_units=None
+) -> Optional[Dict[str, Any]]:
     if any(v is None or isinstance(v, bool) for v in (dff_val, cpi_yoy_val, gdpc1_val, gdppot_val)):
         return None
     try:
@@ -482,10 +489,23 @@ def calc_taylor_policy_gap(dff_val, cpi_yoy_val, gdpc1_val, gdppot_val) -> Optio
         pot = float(gdppot_val)
         if not (math.isfinite(dff) and math.isfinite(cpi) and math.isfinite(gdp) and math.isfinite(pot)):
             return None
-        if dff < 0.0 or gdp <= 0.0 or pot <= 0.0:
+        if dff < 0.0 or gdp <= 0.0 or pot <= 1.0:
             return None
 
-        output_gap = round(((gdp - pot) / pot) * 100.0, 2)
+        expected_units = "billions of chained 2017 dollars"
+        normalize_units = lambda value: " ".join(str(value).casefold().split())
+        if (
+            gdpc1_units is None
+            or gdppot_units is None
+            or normalize_units(gdpc1_units) != expected_units
+            or normalize_units(gdppot_units) != expected_units
+        ):
+            return None
+
+        output_gap_raw = ((gdp / pot) - 1.0) * 100.0
+        if not math.isfinite(output_gap_raw) or abs(output_gap_raw) > 50.0:
+            return None
+        output_gap = round(output_gap_raw, 2)
         optimal_rate = round(2.0 + cpi + 0.5 * (cpi - 2.0) + 0.5 * output_gap, 2)
         raw_gap = dff - optimal_rate
         if not math.isfinite(raw_gap):
@@ -2383,9 +2403,16 @@ def main():
         models_calculated.append(m_triffin)
 
     # Model 11: Taylor Rule Policy Gap
-    gdpc1_val = series.get("GDPC1", {}).get("current_value")
-    gdppot_val = series.get("GDPPOT", {}).get("current_value")
-    m_taylor = calc_taylor_policy_gap(dff_curr, cpi_yoy, gdpc1_val, gdppot_val)
+    gdpc1_series = series.get("GDPC1", {})
+    gdppot_series = series.get("GDPPOT", {})
+    m_taylor = calc_taylor_policy_gap(
+        dff_curr,
+        cpi_yoy,
+        gdpc1_series.get("current_value"),
+        gdppot_series.get("current_value"),
+        gdpc1_series.get("units"),
+        gdppot_series.get("units")
+    )
     if m_taylor:
         models_calculated.append(m_taylor)
 

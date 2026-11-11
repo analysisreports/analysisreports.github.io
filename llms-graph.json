@@ -267,26 +267,6 @@
       }
     },
     {
-      "id": "IND_STICKY_CPI",
-      "label": "Sticky CPI Less Food & Energy (STICKYCPIM157SFRBATL)",
-      "category": "INDICATOR",
-      "attributes": {
-        "source": "Atlanta Fed / FRED",
-        "units": "Percent (%)",
-        "trans": "pc1"
-      }
-    },
-    {
-      "id": "IND_FLEX_CPI",
-      "label": "Flexible CPI Less Food & Energy (FLEXCPIM157SFRBATL)",
-      "category": "INDICATOR",
-      "attributes": {
-        "source": "Atlanta Fed / FRED",
-        "units": "Percent (%)",
-        "trans": "pc1"
-      }
-    },
-    {
       "id": "IND_OVXCLS",
       "label": "CBOE Crude Oil Volatility Index (OVXCLS)",
       "category": "INDICATOR",
@@ -2021,15 +2001,23 @@
     },
     {
       "id": "IND_STICKCPIM157SFRBATL",
-      "label": "Sticky Price Consumer Price Index",
+      "label": "Sticky Price Consumer Price Index (Atlanta Fed)",
       "category": "INDICATOR",
-      "source": "Atlanta Fed / FRED"
+      "attributes": {
+        "source": "Federal Reserve Bank of Atlanta / FRED",
+        "units": "Percent Change from Year Ago",
+        "trans": "pc1"
+      }
     },
     {
       "id": "IND_FLEXCPIM157SFRBATL",
-      "label": "Flexible Price Consumer Price Index",
+      "label": "Flexible Price Consumer Price Index (Atlanta Fed)",
       "category": "INDICATOR",
-      "source": "Atlanta Fed / FRED"
+      "attributes": {
+        "source": "Federal Reserve Bank of Atlanta / FRED",
+        "units": "Percent Change from Year Ago",
+        "trans": "pc1"
+      }
     },
     {
       "id": "ACTOR_LT",
@@ -2343,18 +2331,6 @@
       "target": "IND_DHHNGSP",
       "type": "TRIGGERS_INDICATOR",
       "impact": "CASPIAN_GAS_FLOW_FRICTION"
-    },
-    {
-      "source": "IND_STICKY_CPI",
-      "target": "MODEL_25.2",
-      "type": "INGESTS_SERIES",
-      "role": "sticky_val"
-    },
-    {
-      "source": "IND_FLEX_CPI",
-      "target": "MODEL_25.2",
-      "type": "INGESTS_SERIES",
-      "role": "flex_val"
     },
     {
       "source": "IND_SOFR",
@@ -3415,13 +3391,13 @@
       "source": "IND_STICKCPIM157SFRBATL",
       "target": "MODEL_25.2",
       "type": "INGESTS_SERIES",
-      "role": "Sticky CPI Rate"
+      "role": "sticky_val"
     },
     {
       "source": "IND_FLEXCPIM157SFRBATL",
       "target": "MODEL_25.2",
       "type": "INGESTS_SERIES",
-      "role": "Flexible CPI Rate"
+      "role": "flex_val"
     },
     {
       "source": "ACTOR_LT",

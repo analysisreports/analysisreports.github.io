@@ -21,7 +21,7 @@ import os
 import re
 import sys
 import json
-from typing import Dict, List, Set, Any
+from typing import Dict, List, Set, Any, Tuple
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 GRAPH_PATH = os.path.join(ROOT_DIR, "llms-graph.json")
@@ -103,7 +103,7 @@ def main():
     errors = enc_errors
     warnings = []
 
-    # 2. Node Uniqueness
+    # 2. Node & Edge Uniqueness
     node_registry: Dict[str, Dict[str, Any]] = {}
     duplicate_nodes = []
     for n in nodes:
@@ -117,6 +117,22 @@ def main():
 
     if duplicate_nodes:
         errors.append(f"DUPLICATE NODE IDs detected: {duplicate_nodes}")
+
+    seen_edges: Dict[Tuple[str, str, str], int] = {}
+    duplicate_edges = []
+    for idx, e in enumerate(edges):
+        s = e.get("source")
+        t = e.get("target")
+        etype = e.get("type", "")
+        edge_key = (s, t, etype)
+        if edge_key in seen_edges:
+            duplicate_edges.append((idx, seen_edges[edge_key], edge_key))
+        else:
+            seen_edges[edge_key] = idx
+
+    if duplicate_edges:
+        for curr_idx, prev_idx, k in duplicate_edges:
+            errors.append(f"DUPLICATE EDGE detected: Edge #{curr_idx} duplicates Edge #{prev_idx} ({k[0]} -> {k[1]} [{k[2]}])")
 
     # 3. Edge Integrity (Zero Broken Edges & Self-Loops)
     broken_edges = []
@@ -175,6 +191,7 @@ def main():
         print("  - Zero encoding corruption / Zero mojibake")
         print("  - Zero broken edges (All sources and targets resolve)")
         print(f"  - 100% Edge polarities match Master Country SSOT ({synced_count} checked)")
+        print(f"  - Zero duplicate edge connections ({len(edges)} unique edges verified)")
         print("  - Zero duplicate node IDs")
         print("=" * 70)
         sys.exit(0)
