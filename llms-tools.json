@@ -1105,6 +1105,14 @@
                             "minimum": 0.1,
                             "maximum": 100.0,
                             "description": "Total unconstrained daily hydrocarbon flow through chokepoint in million barrels per day (default: 20.5 for Hormuz)."
+                        },
+                        "spr_stocks_kbbl": {
+                            "type": "number",
+                            "description": "Weekly U.S. Ending Stocks of Crude Oil in Strategic Petroleum Reserve in thousand barrels (EIA: PET.WCSSTUS1.W). When provided, overrides spr_release_mbpd with dynamic 90-day sustainable drawdown rate."
+                        },
+                        "us_crude_prod_kbpd": {
+                            "type": "number",
+                            "description": "Weekly U.S. Field Production of Crude Oil in thousand barrels per day (EIA: PET.WCRFPUS2.W) providing domestic buffer capacity."
                         }
                     },
                     "required": [
@@ -1337,6 +1345,10 @@
                         "wti_barrel_price": {
                             "type": "number",
                             "description": "Crude Oil Prices: West Texas Intermediate in dollars per barrel (FRED: DCOILWTICO)."
+                        },
+                        "gasoline_stocks_kbbl": {
+                            "type": "number",
+                            "description": "Weekly U.S. Ending Stocks of Total Gasoline in thousand barrels (EIA: PET.WGTSTUS1.W) to compute dynamic days of supply inventory cover."
                         }
                     },
                     "required": [

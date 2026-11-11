@@ -351,3 +351,8 @@ IND_NASDAQSOX        | Source: NASDAQ / FRED | Name: PHLX Semiconductor Sector I
 IND_SAUPZPIOILBEGUSD  | Source: IMF / FRED | Name: Fiscal Breakeven Oil Price for Saudi Arabia (SAUPZPIOILBEGUSD USD/Barrel)
 IND_JP_FPOLM_PA       | Source: IMF IFS | Name: Central Bank Policy Rate for Japan (JP_FPOLM_PA %)
 IND_GB_FPOLM_PA       | Source: IMF IFS | Name: Central Bank Policy Rate for United Kingdom (GB_FPOLM_PA %)
+IND_PET_WCSSTUS1_W    | Source: EIA | Name: Weekly U.S. Ending Stocks of Crude Oil in SPR (Thousand Barrels)
+IND_PET_WCESTUS1_W    | Source: EIA | Name: Weekly U.S. Commercial Crude Oil Ending Stocks Excluding SPR (Thousand Barrels)
+IND_PET_WCRFPUS2_W    | Source: EIA | Name: Weekly U.S. Field Production of Crude Oil (Thousand Barrels per Day)
+IND_PET_WGTSTUS1_W    | Source: EIA | Name: Weekly U.S. Ending Stocks of Total Gasoline (Thousand Barrels)
+IND_NG_NW2_EPG0_SWO_R48_BCF_W | Source: EIA | Name: Weekly Lower 48 Natural Gas In Underground Storage (Billion Cubic Feet)

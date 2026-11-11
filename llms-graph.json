@@ -2222,6 +2222,56 @@
         "jurisdiction": "GEO_JP",
         "role": "Currency Intervention & JGB Management"
       }
+    },
+    {
+      "id": "IND_PET_WCSSTUS1_W",
+      "label": "Weekly U.S. Ending Stocks of Crude Oil in SPR (PET.WCSSTUS1.W)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Thousand Barrels",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_PET_WCESTUS1_W",
+      "label": "Weekly U.S. Commercial Crude Oil Ending Stocks Excluding SPR (PET.WCESTUS1.W)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Thousand Barrels",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_PET_WCRFPUS2_W",
+      "label": "Weekly U.S. Field Production of Crude Oil (PET.WCRFPUS2.W)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Thousand Barrels per Day",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_PET_WGTSTUS1_W",
+      "label": "Weekly U.S. Ending Stocks of Total Gasoline (PET.WGTSTUS1.W)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Thousand Barrels",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_NG_NW2_EPG0_SWO_R48_BCF_W",
+      "label": "Weekly Lower 48 Natural Gas In Underground Storage (NG.NW2_EPG0_SWO_R48_BCF.W)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Billion Cubic Feet",
+        "trans": "lin"
+      }
     }
   ],
   "edges": [
@@ -3584,6 +3634,36 @@
       "target": "BASIN_EAST_MED_DEEPSEA",
       "type": "CONTROLS_LEVERAGE",
       "description": "Naval patrol, EEZ protection, and maritime security projection."
+    },
+    {
+      "source": "IND_PET_WCSSTUS1_W",
+      "target": "MODEL_28.4",
+      "type": "INGESTS_SERIES",
+      "role": "spr_stocks_kbbl"
+    },
+    {
+      "source": "IND_PET_WCRFPUS2_W",
+      "target": "MODEL_28.4",
+      "type": "INGESTS_SERIES",
+      "role": "us_crude_prod_kbpd"
+    },
+    {
+      "source": "IND_PET_WGTSTUS1_W",
+      "target": "MODEL_25.9",
+      "type": "INGESTS_SERIES",
+      "role": "gasoline_stocks_kbbl"
+    },
+    {
+      "source": "IND_NG_NW2_EPG0_SWO_R48_BCF_W",
+      "target": "MODEL_25.8",
+      "type": "INGESTS_SERIES",
+      "role": "natgas_storage_bcf"
+    },
+    {
+      "source": "IND_PET_WCESTUS1_W",
+      "target": "MODEL_25.12",
+      "type": "INGESTS_SERIES",
+      "role": "commercial_crude_stocks_kbbl"
     }
   ]
 }

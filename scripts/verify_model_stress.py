@@ -96,7 +96,7 @@ def audit_extreme_stress_regimes() -> Tuple[List[str], int, int]:
     if cm is None:
         return ["Failed to import calculate_models.py for stress testing."], 0, 7
 
-    total_regimes = 8
+    total_regimes = 9
     passed_regimes = 0
 
     # Regime 1: Severe Credit Crunch & Sovereign Stress
@@ -261,6 +261,34 @@ def audit_extreme_stress_regimes() -> Tuple[List[str], int, int]:
         errors.append(f"CRASH in Regime 8 ACM Term Premium: {e}")
         r8_ok = False
     if r8_ok: passed_regimes += 1
+
+    # Regime 9: Chokepoint Macro Spillover Bridge & EIA Dynamic Ingestion Guard
+    r9_ok = True
+    try:
+        # 1. Zero-synthetic-fallback guard: Missing SPR parameters must strictly fail closed (return None)
+        if cm.calc_chokepoint_transmission_bridge("CATASTROPHIC", -0.95) is not None:
+            errors.append("VULNERABILITY FAIL (Regime 9 - Chokepoint Bridge): Missing SPR data did not fail closed.")
+            r9_ok = False
+        # 2. Reject invalid severity enum
+        if cm.calc_chokepoint_transmission_bridge("INVALID_SEV", -0.95, spr_stocks_kbbl=282000.0) is not None:
+            errors.append("VULNERABILITY FAIL (Regime 9 - Chokepoint Bridge): Invalid severity enum was accepted.")
+            r9_ok = False
+        # 3. Reject NaN / Inf polarity
+        if cm.calc_chokepoint_transmission_bridge("CATASTROPHIC", float("nan"), spr_stocks_kbbl=282000.0) is not None:
+            errors.append("VULNERABILITY FAIL (Regime 9 - Chokepoint Bridge): NaN polarity was accepted.")
+            r9_ok = False
+        # 4. Extreme crisis bounding: Maximum conflict, zero SPR, 90-day blockade
+        res_shock = cm.calc_chokepoint_transmission_bridge("CATASTROPHIC", -1.0, duration_days=90, spr_stocks_kbbl=0.0)
+        if not res_shock or not (0 <= res_shock["primary_value"] <= 100):
+            errors.append("BOUNDING FAIL (Regime 9 - Chokepoint Bridge): Shock score outside [0, 100].")
+            r9_ok = False
+        elif res_shock.get("status") not in ["CRITICAL_SYSTEMIC_SHOCK", "HIGH_SPILLOVER", "MODERATE_FRICTION", "LOCALIZED_IMPACT"]:
+            errors.append("STATUS FAIL (Regime 9 - Chokepoint Bridge): Status enum is invalid.")
+            r9_ok = False
+    except Exception as e:
+        errors.append(f"CRASH in Regime 9 Chokepoint Spillover Bridge: {e}")
+        r9_ok = False
+    if r9_ok: passed_regimes += 1
 
     return errors, passed_regimes, total_regimes
 

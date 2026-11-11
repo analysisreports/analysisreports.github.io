@@ -7,16 +7,17 @@
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-11T23:18:27.208573+00:00",
+    "last_successful_sync": "2026-11-11T23:28:43.447600+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
       "European Central Bank (ECB)",
       "World Bank (The Pink Sheet)",
-      "International Monetary Fund (IMF)"
+      "International Monetary Fund (IMF)",
+      "U.S. Energy Information Administration (EIA)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 45
+    "total_models_active": 46
   },
   "models": [
     {
@@ -555,14 +556,18 @@
       "status": "NORMAL_TRANSATLANTIC_ARBITRAGE",
       "inputs": {
         "brent_usd": 107.03,
-        "wti_usd": 99.64
+        "wti_usd": 99.64,
+        "commercial_crude_stocks_mbbl": 409.76,
+        "us_crude_production_mbpd": 14.0
       },
       "metrics": {
         "brent_wti_spread_usd": 7.39,
         "brent_usd": 107.03,
-        "wti_usd": 99.64
+        "wti_usd": 99.64,
+        "commercial_crude_stocks_mbbl": 409.76,
+        "us_crude_production_mbpd": 14.0
       },
-      "interpretation": "Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI."
+      "interpretation": "Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI. Live EIA commercial crude stocks: 409.76 mbbl. Live EIA US crude field production: 14.0 mbpd."
     },
     {
       "model_id": "MODEL_25.13",
@@ -675,14 +680,18 @@
       "status": "NATGAS_GLUT_ENERGY_CHEAP",
       "inputs": {
         "wti_crude_usd_bbl": 99.64,
-        "henry_hub_natgas_usd_mmbtu": 2.63
+        "henry_hub_natgas_usd_mmbtu": 2.63,
+        "lower48_natgas_storage_bcf": 3801.0,
+        "natgas_storage_yoy_pct": -2.66
       },
       "metrics": {
         "btu_disconnect_ratio": 37.89,
         "wti_price": 99.64,
-        "natgas_price": 2.63
+        "natgas_price": 2.63,
+        "lower48_natgas_storage_bcf": 3801.0,
+        "natgas_storage_yoy_pct": -2.66
       },
-      "interpretation": "Measures physical energy parity between WTI crude oil and Henry Hub natural gas. Ratios > 35 indicate natural gas supply glut and cheap domestic fuel; < 6 signal acute gas deficit and power shock."
+      "interpretation": "Measures physical energy parity between WTI crude oil and Henry Hub natural gas. Live EIA underground gas storage: 3801.0 Bcf. Ratios > 35 indicate natural gas supply glut and cheap domestic fuel; < 6 signal acute gas deficit and power shock."
     },
     {
       "model_id": "MODEL_25.9",
@@ -693,14 +702,20 @@
       "status": "REFINERY_BOTTLENECK_CRUNCH",
       "inputs": {
         "gasoline_retail_usd_gal": 3.995,
-        "wti_crude_usd_bbl": 99.64
+        "wti_crude_usd_bbl": 99.64,
+        "gasoline_stocks_kbbl": 208958.0,
+        "gasoline_stocks_yoy_pct": 1.43
       },
       "metrics": {
         "crack_spread_usd": 68.15,
         "gasoline_barrel_equiv_usd": 167.79,
-        "wti_crude_usd": 99.64
+        "wti_crude_usd": 99.64,
+        "gasoline_stocks_kbbl": 208958.0,
+        "gasoline_days_of_supply": 23.2,
+        "inventory_cover_status": "BALANCED_INVENTORY_COVER",
+        "gasoline_stocks_yoy_pct": 1.43
       },
-      "interpretation": "Measures refinery processing margins between retail gasoline and crude oil. Spreads > $40/bbl signal refinery capacity bottlenecks and consumer fuel cost shocks; < $5 indicate refining margin collapse."
+      "interpretation": "Measures refinery processing margins between retail gasoline and crude oil. Live EIA gasoline inventories (208,958 kbbl) provide 23.2 days of supply (BALANCED_INVENTORY_COVER). Spreads > $40/bbl signal refinery capacity bottlenecks and consumer fuel cost shocks; < $5 indicate refining margin collapse."
     },
     {
       "model_id": "MODEL_25.10",
@@ -843,6 +858,37 @@
         "dynamic_transmission_delta": -0.08
       },
       "interpretation": "Actuarial credit risk model computing synthetic sovereign CDS and default probability using ISDA emerging market 40% recovery rate assumptions."
+    },
+    {
+      "model_id": "MODEL_28.4",
+      "model_name": "Chokepoint Macro Spillover Bridge (Hormuz - Live EIA SPR)",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#28.4",
+      "primary_value": 52,
+      "unit": "Index (0-100)",
+      "status": "MODERATE_FRICTION",
+      "inputs": {
+        "chokepoint_id": "CHOKE_HORMUZ",
+        "severity_enum": "CATASTROPHIC",
+        "p_net": -0.95,
+        "crisis_duration_days": 14,
+        "gross_flow_mbpd": 20.5,
+        "regional_bypass_capacity_mbpd": 4.0,
+        "eia_spr_stocks_mbbl": 282.18,
+        "eia_us_crude_prod_mbpd": 14.0
+      },
+      "metrics": {
+        "severity_weight": 1.0,
+        "polarity_friction_factor": 0.95,
+        "spr_sustainable_drawdown_mbpd": 3.14,
+        "effective_spr_release_mbpd": 3.14,
+        "total_buffer_capacity_mbpd": 7.14,
+        "net_unmet_deficit_mbpd": 13.36,
+        "net_deficit_ratio": 0.6517,
+        "duration_scale_factor": 0.7,
+        "unscaled_base_shock": 74.12,
+        "us_crude_field_production_mbpd": 14.0
+      },
+      "interpretation": "Couples maritime chokepoint severity (CATASTROPHIC) with live EIA SPR inventory (3.14 mbpd sustainable release) and regional pipeline bypass to evaluate macroeconomic spillover under acute crisis."
     }
   ]
 }
