@@ -2996,15 +2996,34 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 
 
 ### 28.4. CHOKEPOINT MACRO SPILLOVER BRIDGE
-- Purpose: Dynamically couples chokepoint Disruption Severity weight from llms-relationships.txt with actor bilateral net polarity tension (P_net). Generates deterministic 0-100 inputs for Model 28.1 (disruption_risk) and Model 28.2 (macro_spillover).
+- Purpose: Dynamically couples chokepoint Disruption Severity weight from llms-relationships.txt with actor bilateral net polarity tension (P_net), engineering pipeline bypass buffers, strategic petroleum reserve (SPR) emergency releases, and an S-curve crisis duration multiplier. Generates deterministic 0-100 inputs for Model 28.1 (disruption_risk) and Model 28.2 (macro_spillover).
 - Data Links:
   - llms-relationships.txt -> Section 1 (P_net) & Section 4/7 (Disruption Severity)
   - llms-formulas.txt -> Model 25.1 (dynamic_polarity_engine), 28.1 (conflict_heat_score), 28.2 (market_impact_score), 28.3 (chokepoint_severity_multiplier)
-- Formula:
-  Friction_Factor = max(0.0, -P_net)
-  Spillover_Score = min(100.0, (Disruption_Weight * 70.0) + (Friction_Factor * 30.0))
+- Mathematical Formulation:
+  1. Geopolitical Polarity Friction:
+     Friction_Factor = max(0.0, -P_net)
+     (Where P_net in [-1.0, 1.0]; negative values indicate kinetic/diplomatic hostility, positive values indicate detente/alliance with zero friction)
+  2. Physical Buffer & Clamped Net Deficit Ratio:
+     Effective_SPR = spr_release_mbpd * (1.0 if t <= 60 else (0.50 if t <= 90 else 0.25))
+     Total_Buffer = min(Gross_Flow, Bypass_Capacity + Effective_SPR)
+     Net_Deficit_Ratio = max(0.0, (Gross_Flow - Total_Buffer) / Gross_Flow)
+  3. Sigmoid Crisis Duration Multiplier (S-Curve):
+     M_duration(t) = 1.0 / (1.0 + exp(-0.15 * (t - 14.0)))
+     Duration_Scale = 0.40 + 0.60 * M_duration(t)
+     (Day 1: ~0.48 panic pricing; Day 14: ~0.70 operational inventory depletion; Day 30: ~0.95 physical exhaustion)
+  4. Final Spillover Score:
+     Base_Shock = (Severity_Weight * Net_Deficit_Ratio * 70.0) + (Friction_Factor * 30.0)
+     Spillover_Score = round(min(100.0, max(0.0, Base_Shock * Duration_Scale)))
 - Machine-Executable Logic (Python):
-  def chokepoint_transmission_bridge(severity_enum, p_net):
+  def chokepoint_transmission_bridge(
+      severity_enum,
+      p_net,
+      duration_days=14,
+      bypass_capacity_mbpd=4.0,
+      spr_release_mbpd=2.0,
+      gross_flow_mbpd=20.5
+  ):
       if any(v is None or isinstance(v, bool) for v in (severity_enum, p_net)):
           return None
       try:
@@ -3021,9 +3040,33 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           pol_clamped = min(1.0, max(-1.0, p_val))
           friction = max(0.0, -pol_clamped)
 
-          # 70% physical disruption weight + 30% geopolitical polarity friction
-          raw_score = (w_sev * 70.0) + (friction * 30.0)
-          score = int(round(min(100.0, max(0.0, raw_score))))
+          # Duration & Physical Bounds
+          t = max(1, int(duration_days)) if duration_days is not None else 14
+          f_gross = max(0.1, float(gross_flow_mbpd)) if gross_flow_mbpd is not None else 20.5
+          f_bypass = max(0.0, float(bypass_capacity_mbpd)) if bypass_capacity_mbpd is not None else 4.0
+          raw_spr = max(0.0, float(spr_release_mbpd)) if spr_release_mbpd is not None else 2.0
+
+          # SPR Depletion Decay Rule:
+          # <= 60d: 100% capacity | 61-90d: 50% capacity | >90d: 25% emergency reserve
+          if t <= 60:
+              spr_decay = 1.0
+          elif t <= 90:
+              spr_decay = 0.50
+          else:
+              spr_decay = 0.25
+          effective_spr = round(raw_spr * spr_decay, 2)
+
+          # Net Unmet Deficit with Clamping Guard
+          total_buffer = min(f_gross, f_bypass + effective_spr)
+          net_deficit_ratio = round(max(0.0, (f_gross - total_buffer) / f_gross), 4)
+
+          # Sigmoid Crisis Duration Scaling (Centered at t0=14 with k=0.15)
+          sigmoid_val = 1.0 / (1.0 + math.exp(-0.15 * (t - 14.0)))
+          duration_scale = round(0.40 + 0.60 * sigmoid_val, 4)
+
+          # Weighted Transmission: 70% physical disruption + 30% geopolitical polarity friction
+          base_shock = (w_sev * net_deficit_ratio * 70.0) + (friction * 30.0)
+          score = int(round(min(100.0, max(0.0, base_shock * duration_scale))))
 
           if score >= 85:
               transmission_regime = "CRITICAL_SYSTEMIC_SHOCK"
@@ -3039,10 +3082,16 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
               "transmission_regime": transmission_regime,
               "inputs": {
                   "severity_weight": w_sev,
-                  "friction_factor": round(friction, 2)
+                  "friction_factor": round(friction, 2),
+                  "duration_days": t,
+                  "gross_flow_mbpd": round(f_gross, 2),
+                  "bypass_capacity_mbpd": round(f_bypass, 2),
+                  "effective_spr_release_mbpd": effective_spr,
+                  "net_deficit_ratio": net_deficit_ratio,
+                  "duration_scale": duration_scale
               }
           }
-      except (TypeError, ValueError):
+      except (TypeError, ValueError, OverflowError):
           return None
 - Interpretation:
   - bridge_score >= 85 : CRITICAL_SYSTEMIC_SHOCK (Full-capacity systemic shock input for 28.1 disruption_risk and 28.2 macro_spillover)
