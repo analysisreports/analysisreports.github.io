@@ -85,6 +85,8 @@ FREQ_N_MAP = {
     "DAILY": 260,
     "WEEKLY": 52,
     "MONTHLY": 12,
+    "QUARTERLY": 4,
+    "SEMIANNUAL": 2,
     "ANNUAL": 1
 }
 
@@ -92,6 +94,8 @@ CACHE_TTL_DAYS = {
     "DAILY": 3,
     "WEEKLY": 8,
     "MONTHLY": 32,
+    "QUARTERLY": 95,
+    "SEMIANNUAL": 185,
     "ANNUAL": 365
 }
 
@@ -104,11 +108,23 @@ def _is_num(val: Any) -> bool:
     except (ValueError, TypeError):
         return False
 
+def _is_pos(val: Any) -> bool:
+    return _is_num(val) and float(val) > 0.0
+
 def eia_change(xt: float, xt_prev: float) -> Optional[float]:
     if not (_is_num(xt) and _is_num(xt_prev)):
         return None
     try:
         res = xt - xt_prev
+        return round(res, 4) if math.isfinite(res) else None
+    except (OverflowError, ValueError):
+        return None
+
+def eia_change_year_ago(xt: float, xt_year_ago: float) -> Optional[float]:
+    if not (_is_num(xt) and _is_num(xt_year_ago)):
+        return None
+    try:
+        res = xt - xt_year_ago
         return round(res, 4) if math.isfinite(res) else None
     except (OverflowError, ValueError):
         return None
@@ -122,6 +138,49 @@ def eia_percent_change(xt: float, xt_prev: float) -> Optional[float]:
             return None
         return round(res, 4)
     except (OverflowError, ValueError, ZeroDivisionError):
+        return None
+
+def eia_percent_change_year_ago(xt: float, xt_year_ago: float) -> Optional[float]:
+    if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago <= 0:
+        return None
+    try:
+        res = ((xt / xt_year_ago) - 1.0) * 100.0
+        if not math.isfinite(res) or res > 10000.0 or res < -100.0:
+            return None
+        return round(res, 4)
+    except (OverflowError, ValueError, ZeroDivisionError):
+        return None
+
+def eia_compounded_annual_rate(xt: float, xt_prev: float, n_obs_per_yr: int) -> Optional[float]:
+    if not all(_is_pos(v) for v in (xt, xt_prev, n_obs_per_yr)):
+        return None
+    try:
+        ratio = xt / xt_prev
+        if n_obs_per_yr >= 52 and (ratio > 1.40 or ratio < 0.60):
+            return None
+        res = (((ratio) ** n_obs_per_yr) - 1.0) * 100.0
+        if not math.isfinite(res) or res > 10000.0 or res < -100.0:
+            return None
+        return round(res, 4)
+    except (OverflowError, ValueError, ZeroDivisionError):
+        return None
+
+def eia_continuously_compounded_rate(xt: float, xt_prev: float) -> Optional[float]:
+    if not all(_is_pos(v) for v in (xt, xt_prev)):
+        return None
+    try:
+        res = (math.log(xt) - math.log(xt_prev)) * 100.0
+        return round(res, 4) if math.isfinite(res) else None
+    except (OverflowError, ValueError):
+        return None
+
+def eia_continuously_compounded_annual_rate(xt: float, xt_prev: float, n_obs_per_yr: int) -> Optional[float]:
+    if not all(_is_pos(v) for v in (xt, xt_prev, n_obs_per_yr)):
+        return None
+    try:
+        res = ((math.log(xt) - math.log(xt_prev)) * 100.0) * n_obs_per_yr
+        return round(res, 4) if math.isfinite(res) else None
+    except (OverflowError, ValueError):
         return None
 
 def fetch_eia_series_observations(series_id: str, api_key: str) -> Optional[List[Dict[str, Any]]]:
@@ -174,6 +233,13 @@ def read_config_section() -> Tuple[Dict[str, List[str]], str]:
 # ==============================================================================
 # 1. MONITORED TIME-SERIES CONFIGURATION (USER REGISTRY)
 # ==============================================================================
+# Instructions:
+# - Add or remove canonical EIA Series IDs directly under the respective frequency block.
+# - Frequencies govern synchronization cadence and the annualization factor (n_obs_per_yr).
+# - Daily: 260 obs/yr | Weekly: 52 obs/yr | Monthly: 12 obs/yr | Quarterly: 4 obs/yr | Semiannual: 2 obs/yr | Annual: 1 obs/yr
+
+[DAILY]
+
 [WEEKLY]
 PET.WCSSTUS1.W
 PET.WCESTUS1.W
@@ -182,6 +248,12 @@ PET.WGTSTUS1.W
 NG.NW2_EPG0_SWO_R48_BCF.W
 
 [MONTHLY]
+
+[QUARTERLY]
+
+[SEMIANNUAL]
+
+[ANNUAL]
 """
         with open(CONFIG_FILE, "w", encoding="utf-8") as f:
             f.write(default_cfg)
@@ -195,7 +267,14 @@ NG.NW2_EPG0_SWO_R48_BCF.W
     else:
         config_part = content
 
-    frequencies: Dict[str, List[str]] = {"DAILY": [], "WEEKLY": [], "MONTHLY": [], "ANNUAL": []}
+    frequencies: Dict[str, List[str]] = {
+        "DAILY": [],
+        "WEEKLY": [],
+        "MONTHLY": [],
+        "QUARTERLY": [],
+        "SEMIANNUAL": [],
+        "ANNUAL": []
+    }
     curr_freq = None
     for line in config_part.splitlines():
         line_clean = line.strip()
@@ -212,6 +291,22 @@ NG.NW2_EPG0_SWO_R48_BCF.W
 
     return frequencies, config_part.rstrip()
 
+def recompute_eia_transformations(entry: Dict[str, Any], n_obs_per_yr: int):
+    units_str = entry.get("units", "")
+    is_rate = "Percent" in units_str or "%" in units_str
+    xt = entry.get("current_value")
+    xt_prev = entry.get("previous_value")
+    xt_year_ago = entry.get("year_ago_value")
+    entry["transformations"] = {
+        "change": eia_change(xt, xt_prev),
+        "change_from_year_ago": eia_change_year_ago(xt, xt_year_ago) if xt_year_ago is not None else None,
+        "percent_change": eia_percent_change(xt, xt_prev),
+        "percent_change_from_year_ago": eia_percent_change_year_ago(xt, xt_year_ago) if xt_year_ago is not None else None,
+        "compounded_annual_rate_of_change": None if is_rate else eia_compounded_annual_rate(xt, xt_prev, n_obs_per_yr),
+        "continuously_compounded_rate_of_change": eia_continuously_compounded_rate(xt, xt_prev),
+        "continuously_compounded_annual_rate_of_change": None if is_rate else eia_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr)
+    }
+
 def format_eia_txt_block(entry: Dict[str, Any]) -> str:
     s_id = entry.get("series_id", "")
     title = entry.get("title", "")
@@ -224,8 +319,13 @@ def format_eia_txt_block(entry: Dict[str, Any]) -> str:
     xt_year_ago = entry.get("year_ago_value")
     t = entry.get("transformations", {})
 
+    is_rate = "Percent" in units or "%" in units
+
     def fmt_val(v, suffix=""):
         return f"{v:+.4f}{suffix}" if v is not None else "N/A"
+
+    car_str = "N/A (Rate is already annualized)" if is_rate else fmt_val(t.get("compounded_annual_rate_of_change"), "%")
+    ccar_str = "N/A (Rate is already annualized)" if is_rate else fmt_val(t.get("continuously_compounded_annual_rate_of_change"), "%")
 
     recent_5 = entry.get("recent_observations", [])
     recent_lines = "\n".join([f"  {r['date']}: {r['value']:.4f}" for r in recent_5])
@@ -240,11 +340,14 @@ Title: {title}
 Frequency: {freq} (n_obs_per_yr: {n_obs}) | Units: {units}
 Last Date: {last_date} | Current Value: {xt_str} | Previous Value: {xt_prev_str} | Year Ago Value: {xt_yr_str}
 
-Transformations (Official U.S. EIA Methodology):
+Transformations (Official St. Louis Fed & U.S. EIA Formulas):
   1. Change: {fmt_val(t.get("change"))}
   2. Change from Year Ago: {fmt_val(t.get("change_from_year_ago"))}
   3. Percent Change: {fmt_val(t.get("percent_change"), "%")}
   4. Percent Change from Year Ago: {fmt_val(t.get("percent_change_from_year_ago"), "%")}
+  5. Compounded Annual Rate of Change: {car_str}
+  6. Continuously Compounded Rate of Change: {fmt_val(t.get("continuously_compounded_rate_of_change"), "%")}
+  7. Continuously Compounded Annual Rate of Change: {ccar_str}
 
 Recent Observations (Last 5):
 {recent_lines}"""
@@ -307,6 +410,7 @@ def main():
 
             if is_cache_valid:
                 print(f"  [CACHE HIT] {s_id} [{freq}]: Snapshot fresh. Using cached entry.")
+                recompute_eia_transformations(cached_entry, n_obs)
                 json_series_dict[s_id] = cached_entry
                 txt_blocks.append(format_eia_txt_block(cached_entry))
                 continue
@@ -319,6 +423,7 @@ def main():
             if not observations:
                 if cached_entry:
                     print(f"  [RETAINED] {s_id} [{freq}]: API call unfulfilled. Retaining valid existing snapshot.")
+                    recompute_eia_transformations(cached_entry, n_obs)
                     json_series_dict[s_id] = cached_entry
                     txt_blocks.append(format_eia_txt_block(cached_entry))
                     continue
@@ -341,6 +446,11 @@ def main():
             pct = eia_percent_change(xt, xt_prev)
             pct_yr = eia_percent_change(xt, xt_yr)
 
+            is_rate = "Percent" in meta["units"] or "%" in meta["units"]
+            car = None if is_rate else eia_compounded_annual_rate(xt, xt_prev, meta["n_obs_per_yr"])
+            ccr = eia_continuously_compounded_rate(xt, xt_prev)
+            ccar = None if is_rate else eia_continuously_compounded_annual_rate(xt, xt_prev, meta["n_obs_per_yr"])
+
             entry_dict = {
                 "series_id": s_id,
                 "title": meta["title"],
@@ -357,7 +467,10 @@ def main():
                     "change": chg,
                     "change_from_year_ago": chg_yr,
                     "percent_change": pct,
-                    "percent_change_from_year_ago": pct_yr
+                    "percent_change_from_year_ago": pct_yr,
+                    "compounded_annual_rate_of_change": car,
+                    "continuously_compounded_rate_of_change": ccr,
+                    "continuously_compounded_annual_rate_of_change": ccar
                 },
                 "recent_observations": observations[-24:]
             }
@@ -383,6 +496,7 @@ def main():
 # - Sync Status: {sync_status} ({synced_count} / {total_registered} series active)
 # - Total Series Synced: {synced_count} / {total_registered}{missing_line}
 # - Source Authority: U.S. Energy Information Administration (EIA Open Data API v2)
+# - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
 
 {txt_body}

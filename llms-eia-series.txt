@@ -8,6 +8,13 @@
 # ==============================================================================
 # 1. MONITORED TIME-SERIES CONFIGURATION (USER REGISTRY)
 # ==============================================================================
+# Instructions:
+# - Add or remove canonical EIA Series IDs directly under the respective frequency block.
+# - Frequencies govern synchronization cadence and the annualization factor (n_obs_per_yr).
+# - Daily: 260 obs/yr | Weekly: 52 obs/yr | Monthly: 12 obs/yr | Quarterly: 4 obs/yr | Semiannual: 2 obs/yr | Annual: 1 obs/yr
+
+[DAILY]
+
 [WEEKLY]
 PET.WCSSTUS1.W
 PET.WCESTUS1.W
@@ -17,14 +24,21 @@ NG.NW2_EPG0_SWO_R48_BCF.W
 
 [MONTHLY]
 
+[QUARTERLY]
+
+[SEMIANNUAL]
+
+[ANNUAL]
+
 # ==============================================================================
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-11 23:06:31 UTC
+# - Synced At: 2026-11-11 23:12:43 UTC
 # - Sync Status: SUCCESS (5 / 5 series active)
 # - Total Series Synced: 5 / 5
 # - Source Authority: U.S. Energy Information Administration (EIA Open Data API v2)
+# - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
 
 --------------------------------------------------------------------------------
@@ -33,11 +47,14 @@ Title: Weekly U.S. Ending Stocks of Crude Oil in Strategic Petroleum Reserve (SP
 Frequency: Weekly (n_obs_per_yr: 52) | Units: Thousand Barrels
 Last Date: 2026-10-30 | Current Value: 282184.0000 | Previous Value: 282583.0000 | Year Ago Value: 409595.0000
 
-Transformations (Official U.S. EIA Methodology):
+Transformations (Official St. Louis Fed & U.S. EIA Formulas):
   1. Change: -399.0000
   2. Change from Year Ago: -127411.0000
   3. Percent Change: -0.1412%
   4. Percent Change from Year Ago: -31.1066%
+  5. Compounded Annual Rate of Change: -7.0840%
+  6. Continuously Compounded Rate of Change: -0.1413%
+  7. Continuously Compounded Annual Rate of Change: -7.3475%
 
 Recent Observations (Last 5):
   2026-05-22: 365112.0000
@@ -71,11 +88,14 @@ Title: Weekly U.S. Ending Stocks of Crude Oil Excluding SPR (Commercial Stocks)
 Frequency: Weekly (n_obs_per_yr: 52) | Units: Thousand Barrels
 Last Date: 2026-10-30 | Current Value: 409760.0000 | Previous Value: 410625.0000 | Year Ago Value: 421168.0000
 
-Transformations (Official U.S. EIA Methodology):
+Transformations (Official St. Louis Fed & U.S. EIA Formulas):
   1. Change: -865.0000
   2. Change from Year Ago: -11408.0000
   3. Percent Change: -0.2107%
   4. Percent Change from Year Ago: -2.7087%
+  5. Compounded Annual Rate of Change: -10.3858%
+  6. Continuously Compounded Rate of Change: -0.2109%
+  7. Continuously Compounded Annual Rate of Change: -10.9656%
 
 Recent Observations (Last 5):
   2026-05-22: 441686.0000
@@ -109,11 +129,14 @@ Title: Weekly U.S. Field Production of Crude Oil
 Frequency: Weekly (n_obs_per_yr: 52) | Units: Thousand Barrels per Day
 Last Date: 2026-10-30 | Current Value: 14003.0000 | Previous Value: 13992.0000 | Year Ago Value: 13651.0000
 
-Transformations (Official U.S. EIA Methodology):
+Transformations (Official St. Louis Fed & U.S. EIA Formulas):
   1. Change: +11.0000
   2. Change from Year Ago: +352.0000
   3. Percent Change: +0.0786%
   4. Percent Change from Year Ago: +2.5786%
+  5. Compounded Annual Rate of Change: +4.1711%
+  6. Continuously Compounded Rate of Change: +0.0786%
+  7. Continuously Compounded Annual Rate of Change: +4.0864%
 
 Recent Observations (Last 5):
   2026-05-22: 13715.0000
@@ -147,11 +170,14 @@ Title: Weekly U.S. Ending Stocks of Total Gasoline
 Frequency: Weekly (n_obs_per_yr: 52) | Units: Thousand Barrels
 Last Date: 2026-10-30 | Current Value: 208958.0000 | Previous Value: 209180.0000 | Year Ago Value: 206009.0000
 
-Transformations (Official U.S. EIA Methodology):
+Transformations (Official St. Louis Fed & U.S. EIA Formulas):
   1. Change: -222.0000
   2. Change from Year Ago: +2949.0000
   3. Percent Change: -0.1061%
   4. Percent Change from Year Ago: +1.4315%
+  5. Compounded Annual Rate of Change: -5.3719%
+  6. Continuously Compounded Rate of Change: -0.1062%
+  7. Continuously Compounded Annual Rate of Change: -5.5216%
 
 Recent Observations (Last 5):
   2026-05-22: 211591.0000
@@ -185,11 +211,14 @@ Title: Weekly Lower 48 States Working Gas in Underground Natural Gas Storage
 Frequency: Weekly (n_obs_per_yr: 52) | Units: Billion Cubic Feet
 Last Date: 2026-10-30 | Current Value: 3801.0000 | Previous Value: 3724.0000 | Year Ago Value: 3905.0000
 
-Transformations (Official U.S. EIA Methodology):
+Transformations (Official St. Louis Fed & U.S. EIA Formulas):
   1. Change: +77.0000
   2. Change from Year Ago: -104.0000
   3. Percent Change: +2.0677%
   4. Percent Change from Year Ago: -2.6633%
+  5. Compounded Annual Rate of Change: +189.8586%
+  6. Continuously Compounded Rate of Change: +2.0466%
+  7. Continuously Compounded Annual Rate of Change: +106.4223%
 
 Recent Observations (Last 5):
   2026-05-22: 2483.0000

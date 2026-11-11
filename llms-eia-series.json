@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-11T23:06:31Z",
+    "last_successful_sync": "2026-11-11T23:12:43Z",
     "total_series": 5,
     "total_registered": 5,
     "missing_series": [],
@@ -29,7 +29,10 @@
         "change": -399.0,
         "change_from_year_ago": -127411.0,
         "percent_change": -0.1412,
-        "percent_change_from_year_ago": -31.1066
+        "percent_change_from_year_ago": -31.1066,
+        "compounded_annual_rate_of_change": -7.084,
+        "continuously_compounded_rate_of_change": -0.1413,
+        "continuously_compounded_annual_rate_of_change": -7.3475
       },
       "recent_observations": [
         {
@@ -146,7 +149,10 @@
         "change": -865.0,
         "change_from_year_ago": -11408.0,
         "percent_change": -0.2107,
-        "percent_change_from_year_ago": -2.7087
+        "percent_change_from_year_ago": -2.7087,
+        "compounded_annual_rate_of_change": -10.3858,
+        "continuously_compounded_rate_of_change": -0.2109,
+        "continuously_compounded_annual_rate_of_change": -10.9656
       },
       "recent_observations": [
         {
@@ -263,7 +269,10 @@
         "change": 11.0,
         "change_from_year_ago": 352.0,
         "percent_change": 0.0786,
-        "percent_change_from_year_ago": 2.5786
+        "percent_change_from_year_ago": 2.5786,
+        "compounded_annual_rate_of_change": 4.1711,
+        "continuously_compounded_rate_of_change": 0.0786,
+        "continuously_compounded_annual_rate_of_change": 4.0864
       },
       "recent_observations": [
         {
@@ -380,7 +389,10 @@
         "change": -222.0,
         "change_from_year_ago": 2949.0,
         "percent_change": -0.1061,
-        "percent_change_from_year_ago": 1.4315
+        "percent_change_from_year_ago": 1.4315,
+        "compounded_annual_rate_of_change": -5.3719,
+        "continuously_compounded_rate_of_change": -0.1062,
+        "continuously_compounded_annual_rate_of_change": -5.5216
       },
       "recent_observations": [
         {
@@ -497,7 +509,10 @@
         "change": 77.0,
         "change_from_year_ago": -104.0,
         "percent_change": 2.0677,
-        "percent_change_from_year_ago": -2.6633
+        "percent_change_from_year_ago": -2.6633,
+        "compounded_annual_rate_of_change": 189.8586,
+        "continuously_compounded_rate_of_change": 2.0466,
+        "continuously_compounded_annual_rate_of_change": 106.4223
       },
       "recent_observations": [
         {
