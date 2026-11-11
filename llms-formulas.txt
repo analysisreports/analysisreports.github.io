@@ -670,6 +670,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - FRED: RRPONTSYD (Overnight Reverse Repurchase Agreements / ON RRP - Millions USD)
 - Formula:
   Net_Liquidity_Millions = WALCL - (WTREGEN + RRPONTSYD)
+  Net_Liquidity_Trillions = Net_Liquidity_Millions / 1,000,000.0
 - Machine-Executable Logic (Python):
   def net_fed_liquidity(walcl, wtregen, rrpontsyd, prev_net_liquidity=None):
       if any(v is None or isinstance(v, bool) for v in (walcl, wtregen, rrpontsyd)):
@@ -687,31 +688,35 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           raw_net = float(walcl) - (float(wtregen) + float(rrpontsyd))
           if not math.isfinite(raw_net):
               return None
-          net_liq = round(raw_net, 2)
+          net_liq_mil = round(raw_net, 2)
+          net_liq_tril = round(raw_net / 1_000_000.0, 3)
+
+          if net_liq_tril >= 6.20:
+              status = "EXPANSIVE_LIQUIDITY_SURPLUS"
+          elif net_liq_tril <= 5.50:
+              status = "RESTRICTIVE_LIQUIDITY_DRAIN"
+          else:
+              status = "NEUTRAL_LIQUIDITY_EQUILIBRIUM"
 
           delta = None
-          status = None
           if prev_net_liquidity is not None and not isinstance(prev_net_liquidity, bool):
               if math.isfinite(prev_net_liquidity):
-                  delta = round(net_liq - float(prev_net_liquidity), 2)
-                  if delta == 0.0:
-                      status = "NEUTRAL"
-                  elif min(delta, 0.0) == delta:
-                      status = "LIQUIDITY_CONTRACTION"
-                  else:
-                      status = "LIQUIDITY_EXPANSION"
+                  delta = round(net_liq_mil - float(prev_net_liquidity), 2)
 
           return {
-              "net_liquidity_mil": net_liq,
+              "net_liquidity_mil": net_liq_mil,
+              "net_liquidity_tril": net_liq_tril,
               "delta": delta,
               "status": status
           }
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Delta Net_Liquidity > 0 : LIQUIDITY_EXPANSION (Positive net reserve liquidity / Risk-on support)
-  - Delta Net_Liquidity == 0.00 : NEUTRAL (Monetary equilibrium / Unchanged net reserves)
-  - Delta Net_Liquidity < 0 : LIQUIDITY_CONTRACTION (Liquidity contraction / Risk-off / Financial tightening)
+  - Net_Liquidity >= $6.20T : EXPANSIVE_LIQUIDITY_SURPLUS (Ample central bank reserve liquidity / Risk asset tailwind)
+  - $5.50T to $6.20T : NEUTRAL_LIQUIDITY_EQUILIBRIUM (Balanced money market reserves / Baseline funding conditions)
+  - Net_Liquidity <= $5.50T : RESTRICTIVE_LIQUIDITY_DRAIN (Contracting reserve liquidity / QT drain / Risk-off headwind)
+  - Delta Net_Liquidity > 0 : LIQUIDITY_EXPANSION (Positive week-on-week reserve impulse)
+  - Delta Net_Liquidity < 0 : LIQUIDITY_CONTRACTION (Negative reserve impulse)
 
 ---
 

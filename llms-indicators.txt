@@ -1,5 +1,5 @@
 # Ersoy Toptaş Canonical Central Bank & Multilateral Data Dictionary (llms-indicators.txt)
-> Official St. Louis Fed (FRED), European Central Bank (ECB), World Bank, IMF, and NY Fed Time-Series Ingestion Contract.
+> Official St. Louis Fed (FRED), European Central Bank (ECB), World Bank, IMF, NY Fed, and U.S. EIA Time-Series Ingestion Contract.
 > Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0
 > Endpoint: https://analysisreports.github.io/llms-indicators.txt
 > Root Index: https://analysisreports.github.io/llms.txt
@@ -130,3 +130,11 @@ Mathematical Guardrails:
 ### 2.5. Federal Reserve Bank of New York (AMEC) Official Series (1 Series)
 
 1. **GSCPI** (Global Supply Chain Pressure Index) | Freq: Monthly | Units: Standard Deviations from Historical Mean (Z-Score) | Source: NY Fed AMEC
+
+### 2.6. U.S. Energy Information Administration (EIA Open Data API) Official Series (5 Series)
+
+1. **PET.WCSSTUS1.W** (Weekly U.S. Ending Stocks of Crude Oil in Strategic Petroleum Reserve (SPR)) | Freq: Weekly | Units: Thousand Barrels | Source: EIA Open Data API v2
+2. **PET.WCESTUS1.W** (Weekly U.S. Ending Stocks of Crude Oil Excluding SPR (Commercial Stocks)) | Freq: Weekly | Units: Thousand Barrels | Source: EIA Open Data API v2
+3. **PET.WCRFPUS2.W** (Weekly U.S. Field Production of Crude Oil) | Freq: Weekly | Units: Thousand Barrels per Day | Source: EIA Open Data API v2
+4. **PET.WGTSTUS1.W** (Weekly U.S. Ending Stocks of Total Gasoline) | Freq: Weekly | Units: Thousand Barrels | Source: EIA Open Data API v2
+5. **NG.NW2_EPG0_SWO_R48_BCF.W** (Weekly Lower 48 States Working Gas in Underground Natural Gas Storage) | Freq: Weekly | Units: Billion Cubic Feet | Source: EIA Open Data API v2

@@ -163,6 +163,7 @@ TIER 2: ADVANCED INSTITUTIONAL MACRO MODELS
    - 25.16. Yen Carry Trade Dissolution & Cross-Currency Stress Gauge (JPY_CARRY_CRACK: IND_DFF, IND_JP_FPOLM_PA, IND_DEXJPUS)
    - 25.17. Liquidity & Commodity Macro Regime Matrix (LIQUIDITY_COMMODITY_MATRIX: DGS3MO, DGS1MO, DCOILBRENTEU)
    - 25.18. Non-Contiguous Alliance Dynamic Transmission Engine (MECCA_PACT_DYNAMIC_ENGINE: DCOILBRENTEU, SOFR, SAUPZPIOILBEGUSD)
+   - 25.19. Sovereign Synthetic CDS & Actuarial Default Probability Engine (SOVEREIGN_SYNTHETIC_CDS_PD: BAMLH0A0HYM2)
 
 TIER 3: INSTITUTIONAL DECISION, GEOPOLITICAL TENSION & CALIBRATION ENGINE
 - 26. Central Bank Committee Dispersion & Hawkishness Index (COMMITTEE_DISPERSION: n_hawkish, n_dovish, n_neutral, n_total)
@@ -172,7 +173,7 @@ TIER 3: INSTITUTIONAL DECISION, GEOPOLITICAL TENSION & CALIBRATION ENGINE
   - 28.1. Conflict Heat Score (kinetic_military, geo_tension, disruption_risk)
   - 28.2. Market Impact Score (asset_volatility, liquidity_spread, macro_spillover)
   - 28.3. Chokepoint Severity Multiplier Engine (CATASTROPHIC, HIGH, MODERATE-HIGH, MODERATE)
-  - 28.4. Chokepoint Macro Transmission Bridge (Spillover_Score)
+  - 28.4. Chokepoint Macro Transmission Bridge (CHOKEPOINT_TRANSMISSION_BRIDGE: PET.WCSSTUS1.W, PET.WCRFPUS2.W, CHOKE_HORMUZ, P_net)
   - 28.5. Regime-Adjusted Market Impact (real_rate, nfci_val)
 - 29. Evidence & Source Confidence Score (authority, confirmation, recency)
 

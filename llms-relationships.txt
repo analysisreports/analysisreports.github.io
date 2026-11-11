@@ -918,3 +918,35 @@ Regime States (Discrete Mapping):
 - Status Enums: BLACK_SWAN_OUTLIER | ELEVATED_ANOMALY | MODERATE_DEVIATION | NORMAL_VARIATION | STRONG_UPTREND | MILD_UPTREND | FLAT_SIDEWAYS | MILD_DOWNTREND | STRONG_DOWNTREND | THESIS_VALIDATED | WITHIN_TOLERANCE_BAND | THESIS_INVALIDATED
 - Primary Macro Vector: Distributional moment evaluation, outlier anomaly identification, and real-time empirical verification of baseline research forecasts against live market trajectories.
 - Transmission Linkage: Connects historical time-series distributions to real-time model inputs. When macro_series_profiler detects 'BLACK_SWAN_OUTLIER' (|z| >= 3.0), standard deterministic linear transmission channels break down, triggering heightened non-linear tail-risk buffers across all Tier 1 and Tier 2 models. Concurrently, forecast_scale_validator tracks empirical thesis convergence, signaling 'THESIS_VALIDATED' when market trajectories confirm strategic projections or 'THESIS_INVALIDATED' when structural regime shifts require thesis recalibration.
+
+### 8.15. Non-Contiguous Alliance Dynamic Transmission Engine (Model 25.18)
+
+8.15.1. MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE
+- Target Formula: llms-formulas.txt -> Model 25.18 (calc_mecca_pact_transmission)
+- Entities Coupled: GEO_US, GEO_SA, BLOC_MECCA_DEFENSE (llms-entities-id.txt)
+- Data Series Triggered: DCOILBRENTEU, SOFR, SAUPZPIOILBEGUSD
+- Status Enums: TREATY_ACTIVE_SURPLUS_EXPANSION | TREATY_ACTIVE_EQUILIBRIUM | TREATY_ACTIVE_FISCAL_RESTRAINT
+- Primary Geopolitical Vector: U.S.-Saudi strategic security guarantee and dollar recycling corridor linked to live hydrocarbon fiscal breakeven parity.
+- Actor Coupling: US-Saudi bilateral pact (2.4.3), OPEC+ quota discipline, Petro-dollar liquidity absorption.
+- Transmission Linkage: Brent oil price exceeding Saudi fiscal breakeven (IMF SAUPZPIOILBEGUSD) alongside moderate funding rates generates surplus petrodollar liquidity reinvested in US Treasuries and strategic bilateral defense assets.
+
+### 8.16. Sovereign Synthetic CDS & Actuarial Default Probability Engine (Model 25.19)
+
+8.16.1. MODEL_25.19_SOVEREIGN_SYNTHETIC_CDS_PD
+- Target Formula: llms-formulas.txt -> Model 25.19 (calc_sovereign_synthetic_cds_pd)
+- Data Series Triggered: BAMLH0A0HYM2
+- Status Enums: DISTRESSED_DEBT_CRISIS | HIGH_DEFAULT_VULNERABILITY | ELEVATED_CREDIT_RISK | BENIGN_SOVEREIGN_SOLVENCY
+- Primary Geopolitical Vector: Global debt refinancing stress and credit contagion across vulnerable emerging and sovereign issuers.
+- Actor Coupling: High-yield credit OAS widening transmitting to sovereign refinancing spreads and debt default probabilities.
+- Transmission Linkage: HY credit spread widening beyond 650 bps pushes cumulative 1-year default probability above 6.5%, triggering sovereign debt rollover distress and flight-to-quality duration inflows.
+
+### 8.17. Chokepoint Macro Spillover Bridge (Model 28.4)
+
+8.17.1. MODEL_28.4_CHOKEPOINT_MACRO_SPILLOVER_BRIDGE
+- Target Formula: llms-formulas.txt -> Model 28.4 (chokepoint_transmission_bridge)
+- Entities Coupled: GEO_US, GEO_IR, GEO_IL, CHOKE_HORMUZ (llms-entities-id.txt)
+- Data Series Triggered: PET.WCSSTUS1.W, PET.WCRFPUS2.W, DCOILWTICO, DCOILBRENTEU, OVXCLS
+- Status Enums: CRITICAL_SYSTEMIC_SHOCK | HIGH_SPILLOVER | MODERATE_FRICTION | LOCALIZED_IMPACT
+- Primary Geopolitical Vector: Maritime blockade and Persian Gulf transit interdiction at Strait of Hormuz.
+- Actor Coupling: Bilateral polarity tension (P_net = -0.95), regional bypass pipelines, live EIA Strategic Petroleum Reserve (SPR) drawdown capacity.
+- Transmission Linkage: Couples 20.5 mbpd gross transit exposure with live EIA SPR inventories (282.18 mbbl -> 3.14 mbpd sustainable drawdown rate) and US field production (14.0 mbpd) through an S-curve crisis duration multiplier to evaluate net macroeconomic price and supply shock transmission.
