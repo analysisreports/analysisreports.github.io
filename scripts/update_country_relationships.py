@@ -36,7 +36,7 @@ def parse_country_relationships(txt_content: str) -> Dict[str, Any]:
         dyad_m = re.search(r"Bilateral Dyad:\s*(\S+)\s*↔\s*(\S+)", text)
         ref_m = re.search(r"Common Reference:\s*(.+)", text)
         id_m = re.search(r"Dyad ID:\s*(\S+)", text)
-        stance_m = re.search(r"Bilateral Stance:\s*([+\-0-9\.]+)\s*\((.+?)\)", text)
+        stance_m = re.search(r"Bilateral Stance:\s*([+\-0-9\.]+)\s*\((.+)\)", text)
         cat_m = re.search(r"Strategic Category:\s*(.+)", text)
         
         if not (dyad_m and id_m and stance_m):

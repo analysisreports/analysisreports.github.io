@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "version": "2026-Q4",
     "license": "CC BY-NC-ND 4.0",
-    "last_successful_sync": "2026-11-11T03:17:54Z",
+    "last_successful_sync": "2026-11-11T03:40:09Z",
     "total_hubs": 1,
     "total_dyads": 73,
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
@@ -165,7 +165,7 @@
           "actor_2": "GEO_IL",
           "common_reference": "United States ↔ State of Israel",
           "bilateral_stance": 0.9,
-          "stance_classification": "Ironclad Strategic & Qualitative Military Edge (QME",
+          "stance_classification": "Ironclad Strategic & Qualitative Military Edge (QME)",
           "strategic_category": "Middle Eastern Security Architecture & Tactical Intelligence Axis",
           "asymmetric_power_vectors": [
             {
