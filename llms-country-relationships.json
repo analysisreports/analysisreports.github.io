@@ -5,9 +5,9 @@
     "author": "Ersoy Toptaş",
     "version": "2026-Q4",
     "license": "CC BY-NC-ND 4.0",
-    "last_successful_sync": "2026-11-11T09:25:00Z",
-    "total_hubs": 2,
-    "total_dyads": 106,
+    "last_successful_sync": "2026-11-11T10:35:53Z",
+    "total_hubs": 3,
+    "total_dyads": 140,
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "multilateral_relationships": "https://analysisreports.github.io/llms-relationships.txt",
     "canonical_endpoint": "https://analysisreports.github.io/llms-country-relationships.txt"
@@ -3749,7 +3749,13 @@
             "BASIN_ESSEQUIBO",
             "GEO_US"
           ]
-        },
+        }
+      }
+    },
+    "GEO_CN": {
+      "hub_id": "GEO_CN",
+      "hub_name": "PEOPLE'S REPUBLIC OF CHINA",
+      "dyads": {
         "REL_GEO_RU_GEO_CU": {
           "dyad_id": "REL_GEO_RU_GEO_CU",
           "actor_1": "GEO_RU",
@@ -3782,6 +3788,1203 @@
           "multilateral_cross_references": [
             "GEO_US",
             "CHOKE_PANAMA"
+          ]
+        },
+        "REL_GEO_CN_GEO_RU": {
+          "dyad_id": "REL_GEO_CN_GEO_RU",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_RU",
+          "common_reference": "China ↔ Russian Federation",
+          "bilateral_stance": 0.85,
+          "stance_classification": "No-Limits Comprehensive Strategic Partnership & Anti-Hegemonic Axis",
+          "strategic_category": "Eurasian Geoeconomic Core Alignment (Canonical Mirror: REL_GEO_RU_GEO_CN)",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Industrial Machinery & Dual-Use Technology",
+              "description": "Critical supplier of electronics, vehicle fleets, tooling, and consumer industrial inputs replacing Western trade."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Hydrocarbon & Commodity Security",
+              "description": "Long-term discounted pipeline crude (ESPO), natural gas (Power of Siberia), and enriched uranium exports."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Dedollarization & Non-Western Clearing",
+              "description": "Complete transition to Ruble and Yuan bilateral trade clearing through CIPS and SPFS networks."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Western secondary sanctions targeting Chinese financial institutions facilitating cross-border settlements.",
+            "Arctic commercial coordination along the Northern Sea Route (CORRIDOR_NORTHERN_SEA_ROUTE) and joint Pacific air patrols."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "BLOC_SCO",
+            "CORRIDOR_NORTHERN_SEA_ROUTE"
+          ]
+        },
+        "REL_GEO_CN_GEO_PK": {
+          "dyad_id": "REL_GEO_CN_GEO_PK",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_PK",
+          "common_reference": "China ↔ Islamic Republic of Pakistan",
+          "bilateral_stance": 0.85,
+          "stance_classification": "All-Weather Strategic Cooperative Partnership & Iron Brotherhood",
+          "strategic_category": "Flagship BRI Corridor & Indian Ocean Naval Power Projection",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "CPEC Megaprojects & Sovereign Debt Rollovers",
+              "description": "$60B+ China-Pakistan Economic Corridor (CORRIDOR_CPEC) investments and continuous emergency central bank SAFE deposits."
+            },
+            {
+              "leverage_holder": "GEO_PK",
+              "domain": "Arabian Sea Gateway & Malacca Bypass",
+              "description": "Gwadar deepwater port providing China an overland logistics shortcut to the Arabian Sea bypassing the Malacca Strait."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Advanced Defense Industrial Co-Production",
+              "description": "Joint manufacturing of JF-17 Thunder multirole fighters, Type 054A frigates, and Hangor-class AIP submarines."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Security threats from Baloch insurgent groups (BLA) targeting Chinese engineers and infrastructure across CPEC.",
+            "Nuclear deterrence dynamics and cross-border skirmishes on the Line of Control with India."
+          ],
+          "multilateral_cross_references": [
+            "CORRIDOR_CPEC",
+            "BLOC_SCO",
+            "GEO_IN",
+            "CHOKE_MALACCA"
+          ]
+        },
+        "REL_GEO_CN_GEO_KP": {
+          "dyad_id": "REL_GEO_CN_GEO_KP",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_KP",
+          "common_reference": "China ↔ Democratic People's Republic of Korea",
+          "bilateral_stance": 0.8,
+          "stance_classification": "1961 Mutual Defense Treaty & Strategic Peninsula Buffer",
+          "strategic_category": "Cold War Legacy Defense Alliance & Northeast Asian Security",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Economic & Energy Lifeblood",
+              "description": "China accounts for over 90% of North Korean external commerce, supplying critical pipeline crude and essential grains."
+            },
+            {
+              "leverage_holder": "GEO_KP",
+              "domain": "Strategic Geopolitical Buffer",
+              "description": "Prevents direct deployment of US/South Korean conventional ground forces on China's northeastern Yalu River border."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "1961 Mutual Defense Treaty",
+              "description": "Formal mutual defense treaty (renewed 2021, legally binding through 2041) requiring automatic military intervention if either state is attacked."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "North Korean ballistic missile and nuclear testing precipitating enhanced US-ROK-Japan trilateral ballistic missile defense architecture.",
+            "Enforcement vs evasion of UN Security Council sanctions regimes through ship-to-ship maritime transfers."
+          ],
+          "multilateral_cross_references": [
+            "GEO_KR",
+            "GEO_US",
+            "GEO_JP"
+          ]
+        },
+        "REL_GEO_CN_GEO_KH": {
+          "dyad_id": "REL_GEO_CN_GEO_KH",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_KH",
+          "common_reference": "China ↔ Kingdom of Cambodia",
+          "bilateral_stance": 0.75,
+          "stance_classification": "Diamond Hexagon Strategic Partnership & Ream Naval Base",
+          "strategic_category": "Indochina Diplomatic Anchor & Maritime Logistics Outpost",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Infrastructure Financing & Funan Techo Canal",
+              "description": "Financing mega-infrastructure projects including the expressways, airports, and the Funan Techo inland waterway canal."
+            },
+            {
+              "leverage_holder": "GEO_KH",
+              "domain": "Ream Naval Base Logistics",
+              "description": "Modernized Ream Naval Base on the Gulf of Thailand providing dedicated facilities for PLA Navy warships."
+            },
+            {
+              "leverage_holder": "GEO_KH",
+              "domain": "ASEAN Diplomatic Veto",
+              "description": "Cambodia functions as a diplomatic block against ASEAN consensus statements censuring Chinese maritime claims in the South China Sea."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Permanent Chinese naval presence at Ream Naval Base altering the maritime balance of power in the Gulf of Thailand.",
+            "Environmental and geopolitical friction with Vietnam over the diversion of Mekong River waters via the Funan Techo canal."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_RCEP",
+            "GEO_VN",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_CN_GEO_LA": {
+          "dyad_id": "REL_GEO_CN_GEO_LA",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_LA",
+          "common_reference": "China ↔ Lao People's Democratic Republic",
+          "bilateral_stance": 0.7,
+          "stance_classification": "China-Laos Railway Integration & Comprehensive Economic Dependency",
+          "strategic_category": "Land-Linked BRI Transport Spine & Hydropower Interconnection",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "High-Speed Railway & Sovereign Debt Leverage",
+              "description": "Financing and construction of the $6B Boten-Vientiane Railway linking Yunnan province directly to Vientiane."
+            },
+            {
+              "leverage_holder": "GEO_LA",
+              "domain": "Pan-Asian Railway Conduit",
+              "description": "Essential overland gateway connecting southwestern China to Thailand, Malaysia, and Singapore."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Power Grid Control",
+              "description": "Majority Chinese state utility ownership (CSG) of Laos' national electricity transmission grid (EDL-T)."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Severe sovereign debt distress and foreign exchange reserves depletion requiring Chinese debt restructuring.",
+            "Cascade of mega-dams along the Upper Mekong (Lancan) altering hydrological cycles across downstream Southeast Asia."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_RCEP",
+            "GEO_TH",
+            "GEO_VN"
+          ]
+        },
+        "REL_GEO_CN_GEO_MM": {
+          "dyad_id": "REL_GEO_CN_GEO_MM",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_MM",
+          "common_reference": "China ↔ Republic of the Union of Myanmar",
+          "bilateral_stance": 0.6,
+          "stance_classification": "China-Myanmar Economic Corridor & Bay of Bengal Energy Arteries",
+          "strategic_category": "Indian Ocean Direct Access & Dual-Track Border Diplomacy",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_MM",
+              "domain": "Strategic Energy Bypass",
+              "description": "Parallel crude oil and natural gas pipelines from Kyaukphyu on the Bay of Bengal directly into Yunnan, circumventing the Malacca Strait."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Border Arbitrage & Mediation",
+              "description": "Leverage over ethnic armed organizations (Three Brotherhood Alliance) controlling northern border gates and cross-border trade."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Diplomatic Shield",
+              "description": "UN Security Council protection and arms supplies insulating the ruling military junta from total international isolation."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Expansion of rebel offensives capturing northern border trading gates and threatening Chinese pipeline infrastructure.",
+            "Massive crackdowns on transnational cyber-scam industrial parks along the Kokang and Shan State frontiers."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_MALACCA",
+            "GEO_IN",
+            "GEO_TH"
+          ]
+        },
+        "REL_GEO_CN_GEO_IR": {
+          "dyad_id": "REL_GEO_CN_GEO_IR",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_IR",
+          "common_reference": "China ↔ Islamic Republic of Iran",
+          "bilateral_stance": 0.65,
+          "stance_classification": "25-Year Comprehensive Strategic Agreement & Discounted Crude Flow",
+          "strategic_category": "Persian Gulf Energy Security & Anti-Hegemonic Eurasian Alignment",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Sole Major Seaborne Crude Offtaker",
+              "description": "Chinese independent \"teapot\" refineries absorb over 85% of Iranian crude exports settled in Renminbi via non-SWIFT networks."
+            },
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Hormuz Chokepoint & Basra Influence",
+              "description": "Iranian control over the Strait of Hormuz (CHOKE_HORMUZ) where substantial Chinese oil imports transit daily."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "25-Year Strategic Accord",
+              "description": "Comprehensive roadmap (signed 2021, valid through 2046) committing $400B Chinese infrastructure and telecom investments for stable discounted crude flows."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "US secondary sanctions enforcement targeting independent Chinese shipping logistics and regional coastal terminals.",
+            "Regional military escalation with Israel and Western strikes risking disruptions to Persian Gulf energy transit."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "BLOC_SCO",
+            "CHOKE_HORMUZ",
+            "CORRIDOR_INSTC"
+          ]
+        },
+        "REL_GEO_CN_GEO_SB": {
+          "dyad_id": "REL_GEO_CN_GEO_SB",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_SB",
+          "common_reference": "China ↔ Solomon Islands",
+          "bilateral_stance": 0.65,
+          "stance_classification": "Bilateral Security Framework Agreement & South Pacific Foothold",
+          "strategic_category": "Second Island Chain Breakthrough & Pacific Maritime Logistics",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Infrastructure Financing & Budgetary Support",
+              "description": "Funding of the National Stadium, telecommunications towers (Huawei), and direct sovereign budget grants."
+            },
+            {
+              "leverage_holder": "GEO_SB",
+              "domain": "South Pacific Maritime Strategic Node",
+              "description": "Strategic geography flanking Australian sea lines of communication and breaking the Second Island Chain."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Security Pact",
+              "description": "Bilateral security agreement allowing Chinese armed police deployments to protect Chinese personnel and infrastructure."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Australian and US security alarms regarding potential future militarization or dual-use naval berthing rights.",
+            "Domestic political friction in Honiara between pro-Beijing governance and provincial autonomists.",
+            "Diplomatic competition undermining traditional Taiwan influence in the South Pacific."
+          ],
+          "multilateral_cross_references": [
+            "GEO_AU",
+            "GEO_US",
+            "GEO_NZ"
+          ]
+        },
+        "REL_GEO_CN_GEO_SA": {
+          "dyad_id": "REL_GEO_CN_GEO_SA",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_SA",
+          "common_reference": "China ↔ Kingdom of Saudi Arabia",
+          "bilateral_stance": 0.6,
+          "stance_classification": "Comprehensive Strategic Partnership / Petro-Yuan Energy Synergy",
+          "strategic_category": "Hydrocarbon Supply Security & Gulf Sovereign Capital Integration",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Giant Energy-Consumer Symbiosis",
+              "description": "Saudi Arabia is a premier seaborne crude supplier to China, while China is Aramco's largest export customer."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Downstream Refining & Industrial Tech",
+              "description": "Chinese petrochemical consortiums building massive refining complexes in Yanbu and Liaoning."
+            },
+            {
+              "leverage_holder": "GEO_SA",
+              "domain": "Sovereign Wealth Capital & Vision 2030",
+              "description": "Multi-billion-dollar Saudi PIF capital allocations into Chinese green technology, EVs, and semiconductors."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Gradual expansion of crude oil contracts denominated in Renminbi (Petro-Yuan) challenging the traditional Petro-Dollar architecture.",
+            "Balancing Saudi security cooperation with Washington against deep telecommunications and ballistic missile tech cooperation with Beijing."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "BLOC_OPEC",
+            "CHOKE_HORMUZ",
+            "BLOC_BRICS_MBRIDGE"
+          ]
+        },
+        "REL_GEO_CN_GEO_AE": {
+          "dyad_id": "REL_GEO_CN_GEO_AE",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_AE",
+          "common_reference": "China ↔ United Arab Emirates",
+          "bilateral_stance": 0.55,
+          "stance_classification": "Regional Financial & Re-export Hub / mBridge CBDC Platform Core",
+          "strategic_category": "Middle East Financial Clearing & Belt and Road Logistics Gateway",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_AE",
+              "domain": "Commercial Re-Export & Sovereign Wealth",
+              "description": "Dubai and Abu Dhabi serve as primary logistics gateways handling over 60% of Chinese exports to MENA."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Project mBridge Digital Settlement",
+              "description": "Co-founders of the BIS multi-CBDC mBridge platform enabling instant, non-SWIFT cross-border liquidity."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Advanced Tech & Aviation Hub",
+              "description": "Comprehensive adoption of Chinese 5G networks, cloud computing, and industrial logistics zones at Khalifa Port."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "US pressure on UAE advanced AI chip import approvals regarding concerns over unauthorized tech transfers to China.",
+            "Expansion of Renminbi offshore clearing hubs in Abu Dhabi and local currency swap operations."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "BLOC_BRICS_MBRIDGE",
+            "CHOKE_HORMUZ"
+          ]
+        },
+        "REL_GEO_CN_GEO_KZ": {
+          "dyad_id": "REL_GEO_CN_GEO_KZ",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_KZ",
+          "common_reference": "China ↔ Republic of Kazakhstan",
+          "bilateral_stance": 0.6,
+          "stance_classification": "Permanent Comprehensive Strategic Partnership & BRI Birthplace",
+          "strategic_category": "Trans-Eurasian Landbridge & Uranium/Energy Transit Backbone",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_KZ",
+              "domain": "Strategic Overland Gateway",
+              "description": "Khorgos dry port and rail corridors handling the overwhelming bulk of China-Europe freight rail traffic."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Sovereign Energy & Uranium Offtake",
+              "description": "Long-term purchase agreements for Kazakh natural uranium (Kazatomprom) and crude oil via the Kenkiyak-Kumkol pipeline."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "SCO Security Harmonization",
+              "description": "Joint counter-terrorism, border stability, and coordination across Central Asian transit grids."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Western secondary sanctions compliance inspections on railway freight transit across the Kazakh border.",
+            "Popular domestic environmental and land-lease sensitivities regarding large-scale Chinese agro-industrial investments."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_SCO",
+            "BASIN_CASPIAN_SEA",
+            "GEO_RU"
+          ]
+        },
+        "REL_GEO_CN_GEO_ID": {
+          "dyad_id": "REL_GEO_CN_GEO_ID",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_ID",
+          "common_reference": "China ↔ Republic of Indonesia",
+          "bilateral_stance": 0.55,
+          "stance_classification": "Comprehensive Strategic Partnership / Nickel Battery Supply Chain",
+          "strategic_category": "Southeast Asian Heavy Industry Anchor & High-Speed Rail Corridor",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Nickel Downstream Smelting Monopoly",
+              "description": "Multi-billion-dollar investments by Tsingshan and CATL in Morowali converting raw nickel into battery-grade chemicals."
+            },
+            {
+              "leverage_holder": "GEO_ID",
+              "domain": "Global Nickel Ore Monopoly",
+              "description": "Indonesia controls the world's largest nickel reserves, essential for Chinese global EV battery supremacy."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Whoosh High-Speed Railway",
+              "description": "Southeast Asia's first operational high-speed rail line (Jakarta-Bandung) built with Chinese technology and standards."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Overlapping maritime exclusive economic zones near the gas-rich Natuna Islands in the southern South China Sea.",
+            "Western EV subsidy rules (US Inflation Reduction Act) discriminating against Indonesian nickel processed by Chinese-owned smelters."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_RCEP",
+            "CHOKE_LOMBOK_MAKASSAR",
+            "CHOKE_MALACCA"
+          ]
+        },
+        "REL_GEO_CN_GEO_MY": {
+          "dyad_id": "REL_GEO_CN_GEO_MY",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_MY",
+          "common_reference": "China ↔ Malaysia",
+          "bilateral_stance": 0.5,
+          "stance_classification": "Comprehensive Strategic Partnership / Semiconductor Backend Hub",
+          "strategic_category": "Malacca Strait Littoral Logistics & East Coast Rail Link (ECRL)",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_MY",
+              "domain": "Semiconductor Assembly & Testing (OSAT)",
+              "description": "Malaysia handles ~13% of global chip assembly, packaging, and testing, serving as a vital node in Chinese hardware supply chains."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "East Coast Rail Link (ECRL)",
+              "description": "Flagship $10B+ infrastructure artery linking peninsular Malaysian ports, bypassing southern naval chokepoints."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Malacca Strait Stewardship",
+              "description": "Shared interest in safe, unimpeded commercial vessel traffic through the Malacca Strait (CHOKE_MALACCA)."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Chinese coast guard patrols near the Luconia Shoals and offshore Malaysian oil exploration fields (Kasawari gas field).",
+            "US export control compliance pressures on Penang semiconductor packaging facilities handling dual-use chips."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_RCEP",
+            "CHOKE_MALACCA",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_CN_GEO_VN": {
+          "dyad_id": "REL_GEO_CN_GEO_VN",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_VN",
+          "common_reference": "China ↔ Socialist Republic of Vietnam",
+          "bilateral_stance": 0.45,
+          "stance_classification": "Community with a Shared Future / Deep Supply Chain Integration",
+          "strategic_category": "Cross-Border Industrial Symbiosis & South China Sea Maritime Friction",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Tightly Coupled Manufacturing",
+              "description": "Vietnamese electronics exporters heavily depend on intermediate components, displays, and printed circuit boards imported from southern China."
+            },
+            {
+              "leverage_holder": "GEO_VN",
+              "domain": "\"China+1\" Diversification Destination",
+              "description": "Vietnam serves as the prime hub for international manufacturers hedging Chinese manufacturing risk."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Ideological Party-to-Party Ties",
+              "description": "Traditional fraternal coordination between the Communist Party of China and Communist Party of Vietnam."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Intense sovereignty disputes over the Paracel and Spratly Islands, featuring regular coast guard standoffs.",
+            "Standard-gauge railway cross-border modernization connecting Kunming and Nanning with Hanoi and Haiphong."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_RCEP",
+            "CHOKE_MALACCA",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_CN_GEO_SG": {
+          "dyad_id": "REL_GEO_CN_GEO_SG",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_SG",
+          "common_reference": "China ↔ Republic of Singapore",
+          "bilateral_stance": 0.5,
+          "stance_classification": "All-Round High-Quality Future-Oriented Partnership & Financial Hub",
+          "strategic_category": "Global Maritime Crossroads & Offshore Renminbi Clearing Nexus",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_SG",
+              "domain": "Premier Maritime Logistics & Legal Node",
+              "description": "Control over critical port transshipment facilities at the Malacca/Singapore straits junction."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Massive Bilateral Trade & Capital Inflows",
+              "description": "China is Singapore's top trading partner; massive Chinese private family office wealth managed in Singapore."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Institutional Cooperation",
+              "description": "Joint state-level megaprojects including Suzhou Industrial Park, Tianjin Eco-City, and Chongqing Connectivity Initiative."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Diplomatic balancing between hosting US naval littoral combat ships and maintaining premier economic ties with Beijing.",
+            "Cross-border capital flight controls and anti-money laundering regulatory compliance."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_RCEP",
+            "CHOKE_MALACCA",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_CN_GEO_TH": {
+          "dyad_id": "REL_GEO_CN_GEO_TH",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_TH",
+          "common_reference": "China ↔ Kingdom of Thailand",
+          "bilateral_stance": 0.5,
+          "stance_classification": "Comprehensive Strategic Cooperative Partnership / Pan-Asian Rail",
+          "strategic_category": "Indochina High-Speed Rail Corridor & Defense Procurement Node",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Electric Vehicle Manufacturing Base",
+              "description": "Massive investments by BYD, Great Wall, and SAIC transforming Thailand into Southeast Asia's primary EV export hub."
+            },
+            {
+              "leverage_holder": "GEO_TH",
+              "domain": "Central Mainland ASEAN Geography",
+              "description": "Central missing link in the planned Kunming-Singapore Pan-Asian high-speed railway grid."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Military Hardware & Joint Exercises",
+              "description": "Thai armed forces procurement of Chinese submarines, VT-4 tanks, and regular Falcon Strike air combat drills."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Financing and land expropriation negotiations delaying sections of the Bangkok-Nong Khai high-speed railway.",
+            "Regional telecommunications crime syndicates operating across Thai-Myanmar border zones."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_RCEP",
+            "GEO_US",
+            "CHOKE_MALACCA"
+          ]
+        },
+        "REL_GEO_CN_GEO_TR": {
+          "dyad_id": "REL_GEO_CN_GEO_TR",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_TR",
+          "common_reference": "China ↔ Republic of Türkiye",
+          "bilateral_stance": 0.4,
+          "stance_classification": "Strategic Cooperation / Middle Corridor & Trans-Caspian Gateway",
+          "strategic_category": "Trans-Eurasian Rail Logistics & Industrial Battery Investment",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_TR",
+              "domain": "Middle Corridor (TITR) & Straits Hegemony",
+              "description": "Control over the Bosphorus (CHOKE_TURKISH_STRAITS) and the Trans-Caspian railway route linking China to Europe."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Electric Vehicle & Green Tech Manufacturing",
+              "description": "$1B+ BYD electric vehicle production plant in Manisa and major battery energy storage investments."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Bilateral Currency Swap",
+              "description": "PBoC-CBRT currency swap facilities providing foreign exchange liquidity."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Domestic sensitivities in Turkey regarding Uyghur cultural identity balancing against pragmatic economic cooperation.",
+            "Significant bilateral trade imbalance favoring Chinese industrial imports."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_TURKISH_STRAITS",
+            "BASIN_CASPIAN_SEA",
+            "BLOC_NATO"
+          ]
+        },
+        "REL_GEO_CN_GEO_HU": {
+          "dyad_id": "REL_GEO_CN_GEO_HU",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_HU",
+          "common_reference": "China ↔ Hungary",
+          "bilateral_stance": 0.6,
+          "stance_classification": "All-Weather Comprehensive Strategic Partnership / European EV Hub",
+          "strategic_category": "Central European Industrial Bridgehead & EU Institutional Shield",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Massive Battery & Automotive FDI",
+              "description": "Gigafactories by CATL ($7.6B) and BYD in Debrecen and Szeged cementing Hungary as China's premier European manufacturing base."
+            },
+            {
+              "leverage_holder": "GEO_HU",
+              "domain": "EU Diplomatic Veto",
+              "description": "Budapest regularly blocks or waters down European Union consensus resolutions criticizing Chinese trade or political policies."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Budapest-Belgrade Railway",
+              "description": "Landmark BRI high-speed rail modernization connecting the Hungarian capital with the Balkans and Piraeus port."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Legal and regulatory conflicts with the European Commission regarding Chinese state subsidies in green technology.",
+            "Vulnerability to future EU-wide foreign direct investment screening and technology transfer restrictions."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_EU",
+            "BLOC_NATO",
+            "GEO_DE"
+          ]
+        },
+        "REL_GEO_CN_GEO_RS": {
+          "dyad_id": "REL_GEO_CN_GEO_RS",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_RS",
+          "common_reference": "China ↔ Republic of Serbia",
+          "bilateral_stance": 0.65,
+          "stance_classification": "Ironclad Friendship & Community with a Shared Future",
+          "strategic_category": "Non-EU Balkan Industrial Foothold & High-Speed Rail Corridor",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Strategic Industrial Assets",
+              "description": "Chinese state acquisition and expansion of the Smederevo Steel Mill (HBIS) and the Bor copper mining complex (Zijin Mining)."
+            },
+            {
+              "leverage_holder": "GEO_RS",
+              "domain": "Strategic Balkan Rail Artery",
+              "description": "Modernized Belgrade-Novi Sad-Subotica railway linking Chinese-owned Piraeus Port (Greece) into the heart of Central Europe."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Sovereign Diplomatic Alignment",
+              "description": "China provides firm UN Security Council veto support for Serbian sovereignty over Kosovo; Serbia provides full backing on Taiwan."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Western diplomatic scrutiny regarding Chinese surveillance cameras (Huawei Safe City) and security tech in Belgrade.",
+            "Environmental compliance protests concerning heavy metallurgical and copper smelting operations."
+          ],
+          "multilateral_cross_references": [
+            "GEO_RU",
+            "BLOC_EU"
+          ]
+        },
+        "REL_GEO_CN_GEO_BR": {
+          "dyad_id": "REL_GEO_CN_GEO_BR",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_BR",
+          "common_reference": "China ↔ Federative Republic of Brazil",
+          "bilateral_stance": 0.55,
+          "stance_classification": "Global Strategic Partnership / Agribusiness & Mineral Trade Axis",
+          "strategic_category": "South American Resource Superpower & Non-Western Financial Clearing",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Massive Agro-Industrial Complementarity",
+              "description": "Brazil supplies over 70% of China's imported soybeans, alongside huge volumes of beef and cellulose pulp."
+            },
+            {
+              "leverage_holder": "GEO_BR",
+              "domain": "High-Grade Iron Ore & Lithium",
+              "description": "Vale exports vast quantities of premium low-impurity iron ore essential for Chinese green steelmaking and critical lithium."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Local Currency Trade Settlement",
+              "description": "Direct trade settlements in Real and Renminbi bypassing the US Dollar within the BRICS framework."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Chinese investments in Brazilian port terminals (Paranagua) and electrical transmission grids facing Western scrutiny.",
+            "Anti-dumping disputes regarding cheap Chinese steel and industrial goods competing with Brazilian domestic manufacturers."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "ZONE_LITHIUM_TRIANGLE",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_CN_GEO_ZA": {
+          "dyad_id": "REL_GEO_CN_GEO_ZA",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_ZA",
+          "common_reference": "China ↔ Republic of South Africa",
+          "bilateral_stance": 0.5,
+          "stance_classification": "Comprehensive Strategic Partnership / African BRICS Pillar",
+          "strategic_category": "Continental Diplomatic Anchor & Critical Mineral Supply Chains",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_ZA",
+              "domain": "Strategic Mineral Reserves",
+              "description": "Crucial exporter of platinum group metals, manganese, chrome, and iron ore to Chinese industrial giants."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Renewable Energy & Port Logistics",
+              "description": "Major investments by Chinese state grid and rail enterprises to rehabilitate South Africa's struggling state logistics (Transnet)."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Multilateral Alignment",
+              "description": "South Africa anchors Beijing's diplomatic outreach across the African Union and G20 platforms."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Chronic domestic port and rail bottlenecks delaying bulk mineral shipments to Chinese ports.",
+            "US Congressional threats to review South Africa's preferential trade status (AGOA) due to close Beijing-Moscow alignments."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "CHOKE_MOZAMBIQUE",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_CN_GEO_EG": {
+          "dyad_id": "REL_GEO_CN_GEO_EG",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_EG",
+          "common_reference": "China ↔ Arab Republic of Egypt",
+          "bilateral_stance": 0.5,
+          "stance_classification": "Comprehensive Strategic Partnership / Suez Maritime Silk Road",
+          "strategic_category": "Suez Canal Chokepoint Logistics & North African Manufacturing Hub",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "TEDA Suez Industrial Zone",
+              "description": "Massive manufacturing and logistics enclave at Ain Sokhna near the southern entrance to the Suez Canal."
+            },
+            {
+              "leverage_holder": "GEO_EG",
+              "domain": "Sovereign Control of the Suez Canal",
+              "description": "Control over maritime transit (CHOKE_SUEZ) linking Chinese export factories to European consumer markets."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Capital Financing & Sovereign Debt",
+              "description": "Chinese state loans financing Egypt's New Administrative Capital central business district and railway projects."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Houthi anti-ship ballistic missile attacks in the Bab el-Mandeb forcing container traffic to divert around the Cape of Good Hope, bypassing Suez.",
+            "Severe Egyptian foreign currency shortages impacting debt repayment to Chinese state policy banks."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "CHOKE_SUEZ",
+            "CHOKE_BAB_EL_MANDEB"
+          ]
+        },
+        "REL_GEO_CN_GEO_US": {
+          "dyad_id": "REL_GEO_CN_GEO_US",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_US",
+          "common_reference": "China ↔ United States of America",
+          "bilateral_stance": -0.65,
+          "stance_classification": "Constructive Strategic Stability & Managed Technological Rivalry",
+          "strategic_category": "Hegemonic Transition & High-Tech Decoupling Axis (Canonical Mirror: REL_GEO_US_GEO_CN)",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Advanced Technology Embargoes",
+              "description": "Severe semiconductor export bans, restriction of advanced GPU/AI accelerators, and extraterritorial EUV lithography tooling blockades."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Critical Mineral & Supply Chain Monopoly",
+              "description": "Export restrictions on gallium, germanium, antimony, and graphite, alongside absolute battery component dominance."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Nuclear & Economic Strategic Deterrence",
+              "description": "Mutual assured economic disruption via global supply chains and massive US Treasury holdings, alongside growing nuclear triad parity."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Cross-Strait military deterrence and grey-zone aerial/naval encirclement operations around Taiwan.",
+            "High-level summit diplomacy (Spring 2026 Beijing, Autumn 2026 Washington, and November 2026 Shenzhen APEC Trilateral) institutionalizing managed competition."
+          ],
+          "multilateral_cross_references": [
+            "ZONE_FIRST_ISLAND_CHAIN",
+            "CHOKE_TAIWAN",
+            "BLOC_AUKUS"
+          ]
+        },
+        "REL_GEO_CN_GEO_TW": {
+          "dyad_id": "REL_GEO_CN_GEO_TW",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_TW",
+          "common_reference": "China ↔ Taiwan",
+          "bilateral_stance": -0.9,
+          "stance_classification": "Sovereignty Redline & First Island Chain Semiconductor Flashpoint",
+          "strategic_category": "Existential Territorial Dispute & Chokepoint Blockade Theater",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "PLA Joint Firepower & Maritime Blockade",
+              "description": "Comprehensive air, missile, and naval encirclement capacity (Joint Sword exercises) capable of quarantining Taiwan."
+            },
+            {
+              "leverage_holder": "GEO_TW",
+              "domain": "Advanced Semiconductor Monopoly (Silicon Shield)",
+              "description": "TSMC's absolute dominance in cutting-edge microchips (<3nm), whose physical disruption would crash the global economy."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Cross-Strait Trade Dependency",
+              "description": "Deep bilateral economic coupling; Taiwanese electronics conglomerates (Foxconn) operating massive assembly facilities on the mainland."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Military blockade or quarantine scenarios cutting off Taiwan's liquefied natural gas imports and container shipping.",
+            "Incursions across the Taiwan Strait median line and comprehensive grey-zone drone circumnavigations."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_TAIWAN",
+            "ZONE_FIRST_ISLAND_CHAIN",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_CN_GEO_IN": {
+          "dyad_id": "REL_GEO_CN_GEO_IN",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_IN",
+          "common_reference": "China ↔ Republic of India",
+          "bilateral_stance": -0.3,
+          "stance_classification": "Controlled Himalayan Friction vs BRICS Multilateral Equilibrium",
+          "strategic_category": "Himalayan LAC Standoff & Global South Multipolar Leadership",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_IN",
+              "domain": "Indian Ocean Chokepoint Interdiction",
+              "description": "Strategic position along Chinese maritime energy lifelines transiting the Malacca Strait and Indian Ocean basin."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Trans-Himalayan Infrastructure Dominance",
+              "description": "Extensive militarized logistics, airbases, and dual-use border villages along the Line of Actual Control (LAC)."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Tactical BRICS/SCO Multilateral Alignment",
+              "description": "Pragmatic collaboration resisting Western unilateral financial hegemony despite acute bilateral geopolitical rivalry."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Troop disengagement modalities and militarization across Ladakh and Arunachal Pradesh sectors.",
+            "Indian restrictions on Chinese smartphone manufacturers, digital apps, and FDI inflows.",
+            "Chinese mega-dam construction on the Yarlung Tsangpo (Brahmaputra) raising acute downstream water security alarms in India."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "BLOC_SCO",
+            "BLOC_QUAD",
+            "CORRIDOR_CPEC"
+          ]
+        },
+        "REL_GEO_CN_GEO_JP": {
+          "dyad_id": "REL_GEO_CN_GEO_JP",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_JP",
+          "common_reference": "China ↔ Japan",
+          "bilateral_stance": -0.55,
+          "stance_classification": "Senkaku Islands Sovereignty Dispute & First Island Chain Fortification",
+          "strategic_category": "East China Sea Maritime Flashpoint & High-Tech Export Alignment",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_JP",
+              "domain": "Advanced Lithography & Semiconductor Materials",
+              "description": "Tokyo Electron and specialized chemical conglomerates supplying indispensable photoresists and silicon wafers."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Rare Earth Leverage & Japanese Automotive Dependency",
+              "description": "Control over heavy rare earth processing and massive market for Japanese corporate investments."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "First Island Chain Defense",
+              "description": "Japanese militarization of the Nansei/Ryukyu islands containing PLA Navy egress into the Western Pacific."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Regular coast guard confrontations and airspace incursions around the disputed Senkaku/Diaoyu Islands.",
+            "Japanese official declarations identifying peace in the Taiwan Strait as an existential national security interest."
+          ],
+          "multilateral_cross_references": [
+            "ZONE_FIRST_ISLAND_CHAIN",
+            "GEO_US",
+            "BLOC_RCEP"
+          ]
+        },
+        "REL_GEO_CN_GEO_PH": {
+          "dyad_id": "REL_GEO_CN_GEO_PH",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_PH",
+          "common_reference": "China ↔ Republic of the Philippines",
+          "bilateral_stance": -0.7,
+          "stance_classification": "Second Thomas Shoal Kinetic Clashes & US EDCA Base Expansion",
+          "strategic_category": "South China Sea Militarized Dispute & Maritime Entanglement",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Overwhelming Coast Guard & Maritime Militia",
+              "description": "Persistent physical interdiction, water cannon assaults, and ramming tactics isolating Philippine offshore outposts."
+            },
+            {
+              "leverage_holder": "GEO_PH",
+              "domain": "US Enhanced Defense Cooperation Agreement (EDCA)",
+              "description": "Granting the US military access to strategic northern Luzon bases directly facing the Taiwan Strait."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Trade Coercion Risk",
+              "description": "Potential weaponization of tropical fruit imports and critical mineral (nickel ore) off-take."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Violent encounters during Philippine resupply missions to the grounded BRP Sierra Madre at Second Thomas Shoal.",
+            "Chinese reclamation or permanent structure construction at Scarborough Shoal (Bajo de Masinloc)."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_LUZON",
+            "ZONE_FIRST_ISLAND_CHAIN",
+            "BLOC_RCEP",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_CN_GEO_AU": {
+          "dyad_id": "REL_GEO_CN_GEO_AU",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_AU",
+          "common_reference": "China ↔ Commonwealth of Australia",
+          "bilateral_stance": -0.4,
+          "stance_classification": "AUKUS Submarine Pakt vs Bulk Commodity Interdependence",
+          "strategic_category": "Indo-Pacific Strategic Containment & Critical Minerals Nexus",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_AU",
+              "domain": "Essential Iron Ore & Lithium Monopoly",
+              "description": "Australia provides over 60% of China's seaborne iron ore imports, which Chinese blast furnaces cannot readily substitute."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Trade Sanction Playbook",
+              "description": "Demonstrated ability to impose punitive duties on Australian agricultural, wine, timber, and coal exports."
+            },
+            {
+              "leverage_holder": "GEO_AU",
+              "domain": "AUKUS Nuclear Pillar",
+              "description": "Deployment of forward-operating US/UK nuclear attack submarines (SRF-West) and joint intelligence collection at Pine Gap."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Air and naval intercepts between Chinese jet fighters and Australian maritime surveillance planes over the South China Sea.",
+            "Australian regulatory blocking of Chinese state-backed investment in critical rare earth and lithium mining ventures."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_AUKUS",
+            "BLOC_QUAD",
+            "BLOC_RCEP",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_CN_GEO_KR": {
+          "dyad_id": "REL_GEO_CN_GEO_KR",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_KR",
+          "common_reference": "China ↔ Republic of Korea",
+          "bilateral_stance": -0.35,
+          "stance_classification": "Semiconductor Supply Chain Restrictions vs Bilateral Trade Coupling",
+          "strategic_category": "Northeast Asian High-Tech Balancer & Peninsular Security",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Memory Chip Symbiosis",
+              "description": "Samsung and SK Hynix operate massive NAND flash and DRAM fabrication plants in Xi'an and Wuxi, vital to Chinese consumer electronics."
+            },
+            {
+              "leverage_holder": "GEO_KR",
+              "domain": "US Technology Alliance (Chip 4)",
+              "description": "South Korean compliance with US export licensing controls limiting next-generation memory tools into Chinese fabs."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "North Korean Leverage & Supply Chain Vulnerability",
+              "description": "Chinese diplomatic leverage over Pyongyang and near-monopoly on raw battery materials imported by Seoul."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Expansion of US THAAD missile defense radar operations on South Korean territory.",
+            "Chinese maritime research and fishing fleet friction in the Yellow Sea (West Sea) exclusive economic zones."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_RCEP",
+            "GEO_KP",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_CN_GEO_DE": {
+          "dyad_id": "REL_GEO_CN_GEO_DE",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_DE",
+          "common_reference": "China ↔ Federal Republic of Germany",
+          "bilateral_stance": -0.35,
+          "stance_classification": "Systemic Rivalry & De-Risking vs Automotive Deep Entanglement",
+          "strategic_category": "European Industrial Engine & Strategic Trade Friction",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Automotive Sector Asymmetry",
+              "description": "German automakers (Volkswagen, BMW, Mercedes-Benz) derive up to 35% of global revenue from China, while facing fierce Chinese EV competition."
+            },
+            {
+              "leverage_holder": "GEO_DE",
+              "domain": "Precision Engineering & Industrial Machinery",
+              "description": "High-end machine tooling, chemical components, and EU market access regulatory standards."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Critical Raw Material Dominance",
+              "description": "Complete German industrial reliance on Chinese processed rare earths, permanent magnets, and solar wafers."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "EU anti-subsidy tariffs on Chinese battery electric vehicles (BEVs) and Chinese retaliatory probes on European pork and brandy.",
+            "German enforcement of supply chain due diligence laws restricting components from Xinjiang."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_EU",
+            "BLOC_NATO",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_CN_GEO_GB": {
+          "dyad_id": "REL_GEO_CN_GEO_GB",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_GB",
+          "common_reference": "China ↔ United Kingdom",
+          "bilateral_stance": -0.45,
+          "stance_classification": "Post-Golden Era Rupture & Tech/Critical Infrastructure Bans",
+          "strategic_category": "Global British Strategic Alignment & Hong Kong Governance Tensions",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_GB",
+              "domain": "Global Financial & Maritime Insurance",
+              "description": "City of London legal, financial, and maritime insurance services, alongside Tier-1 intelligence sharing (Five Eyes)."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Sovereign Wealth & Overseas Student Market",
+              "description": "Chinese institutional investment in UK property, infrastructure debt, and vital tuition revenues for British universities."
+            },
+            {
+              "leverage_holder": "GEO_GB",
+              "domain": "National Security Investment Restrictions",
+              "description": "Removal of Huawei hardware from UK 5G telecom grids and exclusion of CGN from civilian nuclear projects (Sizewell C)."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Diplomatic clashes over the enforcement of the National Security Law and Article 23 legislation in Hong Kong.",
+            "Royal Navy freedom of navigation deployments through the Taiwan Strait and South China Sea."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_AUKUS",
+            "BLOC_NATO",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_CN_GEO_DJ": {
+          "dyad_id": "REL_GEO_CN_GEO_DJ",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_DJ",
+          "common_reference": "China ↔ Republic of Djibouti",
+          "bilateral_stance": 0.65,
+          "stance_classification": "PLA Overseas Support Base & Bab el-Mandeb Naval Protection",
+          "strategic_category": "Horn of Africa Military Outpost & Maritime Chokepoint Oversight",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Sovereign Infrastructure Debt & Free Trade Zone",
+              "description": "Financing and operation of the Doraleh Multi-Purpose Port, Djibouti Free Trade Zone, and Addis Ababa-Djibouti railway."
+            },
+            {
+              "leverage_holder": "GEO_DJ",
+              "domain": "Bab el-Mandeb Strategic Sentinel",
+              "description": "Djibouti hosts China's sole official overseas military support base, fortified with deepwater berthing for PLA Navy destroyers."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Anti-Piracy & Commercial Escort",
+              "description": "Continuous deployments of PLA Navy task forces conducting counter-piracy operations and securing commercial tankers."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Dense co-location of Chinese military facilities alongside US (Camp Lemonnier), French, and Japanese bases in a single sovereign territory.",
+            "Heightened naval escort operations protecting Chinese commercial shipping amidst Red Sea maritime strikes."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_BAB_EL_MANDEB",
+            "GEO_US",
+            "GEO_FR"
+          ]
+        },
+        "REL_GEO_CN_GEO_CD": {
+          "dyad_id": "REL_GEO_CN_GEO_CD",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_CD",
+          "common_reference": "China ↔ Democratic Republic of the Congo",
+          "bilateral_stance": 0.5,
+          "stance_classification": "Sino-Congolese Minerals Infrastructure Pact & Global Cobalt Axis",
+          "strategic_category": "Critical EV Battery Minerals Hegemony & Infrastructure-for-Minerals",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Industrial Cobalt Refining Monopoly",
+              "description": "Chinese mining conglomerates (CMOC, Huayou Cobalt) control over 75% of DRC cobalt production, supplying domestic battery gigafactories."
+            },
+            {
+              "leverage_holder": "GEO_CD",
+              "domain": "Strategic Mineral Reserves",
+              "description": "The Katanga Copper-Cobalt Belt (ZONE_COPPER_COBALT_BELT) accounts for over 70% of total global cobalt output."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Sicomines Infrastructure Convention",
+              "description": "Renegotiated multi-billion-dollar framework trading mineral extraction rights for national road and hospital construction."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Congolese government renegotiations demanding larger state shares and auditing environmental/labor compliance in Chinese mining concessions.",
+            "Western diplomatic and financial initiatives (Lobito Atlantic Railway Corridor) designed to divert critical copper and cobalt away from Chinese supply chains."
+          ],
+          "multilateral_cross_references": [
+            "ZONE_COPPER_COBALT_BELT",
+            "GEO_US",
+            "BLOC_EU"
+          ]
+        },
+        "REL_GEO_CN_GEO_LK": {
+          "dyad_id": "REL_GEO_CN_GEO_LK",
+          "actor_1": "GEO_CN",
+          "actor_2": "GEO_LK",
+          "common_reference": "China ↔ Democratic Socialist Republic of Sri Lanka",
+          "bilateral_stance": 0.45,
+          "stance_classification": "99-Year Hambantota Port Concession & Indian Ocean Silk Road Hub",
+          "strategic_category": "Indian Ocean Maritime Crossroads & Debt Restructuring Axis",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "99-Year Sovereign Port Lease",
+              "description": "China Merchants Port holds an 85% stake and a 99-year operating lease over Hambantota Deepwater Port."
+            },
+            {
+              "leverage_holder": "GEO_LK",
+              "domain": "Indian Ocean Strategic Location",
+              "description": "Straddles the premier east-west container shipping highway between the Malacca Strait and the Suez Canal."
+            },
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Bilateral Debt Restructuring Leverage",
+              "description": "China Exim Bank is Sri Lanka's largest bilateral official creditor, exercising decisive leverage over debt restructuring terms."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Indian and US diplomatic alarms regarding potential Chinese naval intelligence and research vessel dockings in Colombo and Hambantota.",
+            "Colombo Port City special economic zone developing as a major offshore financial center under Chinese commercial administration."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_MALACCA",
+            "GEO_IN",
+            "GEO_US"
           ]
         }
       }

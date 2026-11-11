@@ -123,6 +123,10 @@ GEO_TW               | Aliases: Taiwan, Republic of China, ROC, Taipei
 GEO_SG               | Aliases: Singapore, Republic of Singapore
 GEO_AU               | Aliases: Australia, Commonwealth of Australia, Canberra
 GEO_NZ               | Aliases: New Zealand, Aotearoa, Wellington
+GEO_KH               | Aliases: Cambodia, Kingdom of Cambodia, Phnom Penh
+GEO_LA               | Aliases: Laos, Lao People's Democratic Republic, Vientiane
+GEO_LK               | Aliases: Sri Lanka, Democratic Socialist Republic of Sri Lanka, Colombo
+GEO_SB               | Aliases: Solomon Islands, Honiara
 GEO_ID               | Aliases: Indonesia, Republic of Indonesia, Jakarta
 GEO_MY               | Aliases: Malaysia, Kuala Lumpur
 GEO_TH               | Aliases: Thailand, Kingdom of Thailand, Bangkok
@@ -143,6 +147,8 @@ GEO_TJ               | Aliases: Tajikistan, Republic of Tajikistan, Dushanbe
 
 # [MIDDLE EAST & AFRICA]
 GEO_EG               | Aliases: Egypt, Arab Republic of Egypt, Cairo
+GEO_DJ               | Aliases: Djibouti, Republic of Djibouti
+GEO_CD               | Aliases: Democratic Republic of the Congo, DRC, Kinshasa
 GEO_ZA               | Aliases: South Africa, Republic of South Africa, RSA, Pretoria
 GEO_IQ               | Aliases: Iraq, Republic of Iraq, Baghdad
 GEO_SY               | Aliases: Syria, Syrian Arab Republic, Damascus
@@ -196,6 +202,7 @@ BLOC_BRICS           | Aliases: BRICS, BRICS Plus, BRICS Alliance
 BLOC_CSTO            | Aliases: CSTO, Collective Security Treaty Organization, Tashkent Pact
 BLOC_SCO             | Aliases: SCO, Shanghai Cooperation Organisation, Shanghai Pact
 BLOC_BRICS_MBRIDGE   | Aliases: BRICS & mBridge Settlement Axis, mBridge, BIS Innovation Hub mBridge, CIPS, SPFS
+BLOC_RCEP            | Aliases: RCEP, Regional Comprehensive Economic Partnership
 BLOC_AUKUS           | Aliases: AUKUS, Australia-United Kingdom-United States Security Partnership
 BLOC_QUAD            | Aliases: QUAD, Quadrilateral Security Dialogue
 BLOC_USMCA           | Aliases: USMCA, United States-Mexico-Canada Agreement, NAFTA
@@ -223,6 +230,7 @@ CHOKE_SUEZ_NORTH     | Aliases: Suez Canal Northern Approach, Port Said Node
 CORRIDOR_ZANGEZUR    | Aliases: Zangezur Corridor Node, Zangezur Corridor
 CORRIDOR_IMEC        | Aliases: India-Middle East-Europe Economic Corridor, IMEC
 CORRIDOR_INSTC       | Aliases: International North-South Transport Corridor, INSTC, Russia-Iran-India Transit Corridor
+CORRIDOR_CPEC        | Aliases: China-Pakistan Economic Corridor, CPEC, Gwadar-Kashgar Axis
 CORRIDOR_NORTHERN_SEA_ROUTE | Aliases: Northern Sea Route, NSR, Arctic Shipping Corridor, Polar Route
 BASIN_ESSEQUIBO      | Aliases: Essequibo Basin, Guayana Esequiba, Stabroek Block
 BASIN_EAST_MED       | Aliases: Eastern Mediterranean Deep-Sea Basin, East Med Basin
