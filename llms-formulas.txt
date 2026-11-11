@@ -2629,6 +2629,58 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - status == TREATY_ACTIVE_EQUILIBRIUM : Hydrocarbon revenues aligned with sovereign budgetary requirements (0.90 <= R_oil < 1.05); mutual defense treaty guarantees and defense co-production pipelines proceed on schedule.
   - status == TREATY_ACTIVE_FISCAL_RESTRAINT : Hydrocarbon revenues fall below sovereign breakeven threshold (R_oil < 0.90) or dollar funding stresses elevate; mutual security umbrella remains intact while non-essential discretionary capital deployments moderate.
 
+### 25.19. SOVEREIGN SYNTHETIC CDS & ACTUARIAL DEFAULT PROBABILITY ENGINE (SOVEREIGN_SYNTHETIC_CDS_PD)
+- Purpose: Quantifies sovereign credit default risk and calculates reduced-form actuarial default probabilities (Probability of Default - PD) from sovereign yield spreads against risk-free US Treasury benchmarks without requiring expensive proprietary OTC terminal feeds (IHS Markit/Bloomberg). Calibrated to standard ISDA emerging market credit derivative conventions with a 40% historical recovery rate (Loss Given Default LGD = 60%).
+- Target: llms-formulas.txt, llms-models.json, llms-models.txt -> MODEL_25.19_SOVEREIGN_SYNTHETIC_CDS_PD
+- Frequency: Daily (Business Day)
+- Canonical Input Series:
+  - FRED: DGS10 (10-Year Treasury Constant Maturity, Percent)
+  - FRED: DGS5 (5-Year Treasury Constant Maturity, Percent)
+  - FRED: BAMLH0A0HYM2 (ICE BofA US High Yield / Emerging Market Credit Spread Benchmark, Percent)
+  - Sovereign Instrument: Y_Eurobond (USD-denominated Sovereign Eurobond Yield, Percent)
+- Mathematical Formulation:
+  1. Synthetic CDS Yield Spread (Basis Points):
+     Spread_pct = max(0.0, Y_Eurobond - Y_Treasury)
+     Synthetic_CDS_bps = round(Spread_pct * 100.0, 1)
+  2. Loss Given Default (LGD) with Standard EM Recovery Rate:
+     R = 0.40  (Standard Emerging Market Recovery Rate under ISDA guidelines)
+     LGD = 1.0 - R = 0.60
+  3. Reduced-Form Actuarial Default Probability (Annualized Hazard Rate / PD):
+     PD_pct = round(Spread_pct / LGD, 2)
+  4. Regime Thresholds & Structural Interpretation:
+     - Synthetic CDS < 250.0 bps (PD < 4.17%) : "STABLE_INVESTMENT_GRADE" (Sovereign debt sustainability intact; minimal rollover friction).
+     - Synthetic CDS 250.0 - 450.0 bps (4.17% <= PD < 7.50%) : "MODERATE_SOVEREIGN_STRESS" (Elevated refinancing premium; macroeconomic adjustments or fiscal consolidation required).
+     - Synthetic CDS 450.0 - 700.0 bps (7.50% <= PD < 11.67%) : "HIGH_GEOPOLITICAL_RISK" (Severe capital flight and foreign exchange depreciation pressure; vulnerability to external sanctions or geopolitical shocks).
+     - Synthetic CDS >= 700.0 bps (PD >= 11.67%) : "ACUTE_DEFAULT_DISTRESS / CRISIS_REGIME" (Distressed debt trading; high probability of debt restructuring, IMF balance-of-payments bailout, or default).
+  5. Geopolitical Shock Transmission Delta (Dynamic Delta Integration):
+     Delta_macro = - round(min(0.60, max(0.0, (PD_pct - 4.0) / 10.0 * 0.50)), 2)
+     (Injected as negative dynamic delta into P_net = clamp(P_baseline + Delta_macro, -1.0, 1.0) during acute sovereign distress).
+- Machine-Executable Logic (Python):
+  def calculate_sovereign_synthetic_cds(eurobond_yield_pct, treasury_yield_pct, recovery_rate=0.40):
+      if eurobond_yield_pct is None or treasury_yield_pct is None:
+          return None
+      spread_pct = max(0.0, float(eurobond_yield_pct) - float(treasury_yield_pct))
+      spread_bps = round(spread_pct * 100.0, 1)
+      lgd = max(0.01, 1.0 - recovery_rate)
+      pd_pct = round(spread_pct / lgd, 2)
+      if spread_bps < 250.0:
+          regime = "STABLE_INVESTMENT_GRADE"
+      elif spread_bps < 450.0:
+          regime = "MODERATE_SOVEREIGN_STRESS"
+      elif spread_bps < 700.0:
+          regime = "HIGH_GEOPOLITICAL_RISK"
+      else:
+          regime = "ACUTE_DEFAULT_DISTRESS"
+      delta_macro = - round(min(0.60, max(0.0, (pd_pct - 4.0) / 10.0 * 0.50)), 2)
+      return {
+          "synthetic_cds_bps": spread_bps,
+          "recovery_rate": recovery_rate,
+          "loss_given_default": round(lgd, 2),
+          "annual_default_probability_pct": pd_pct,
+          "regime": regime,
+          "dynamic_transmission_delta": delta_macro
+      }
+
 ---
 ## 🏛️ TIER 3: INSTITUTIONAL DECISION, GEOPOLITICAL TENSION & CALIBRATION ENGINE
 
