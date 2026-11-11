@@ -38,8 +38,8 @@ This repository hosts machine-readable ontological data models, quantitative fra
 
 ## 🌐 Network & Platforms / Ağ ve Platformlar
 
-- **Editorial Frontend:** [toptasersoy.blogspot.com](https://toptasersoy.blogspot.com)
-- **Editorial Frontend:** [ersoytoptas.tr](https://ersoytoptas.tr)
+- **Editorial Frontend (TR):** [ersoytoptas.tr](https://ersoytoptas.tr)
+- **Editorial Frontend (EN):** [en.ersoytoptas.tr](https://en.ersoytoptas.tr)
 - **LLM Root Repository:** [analysisreports.github.io](https://analysisreports.github.io)
 
 ---
