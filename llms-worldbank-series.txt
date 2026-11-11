@@ -25,7 +25,7 @@ GOLD
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-11 00:52:50 UTC
+# - Synced At: 2026-11-11 01:11:39 UTC
 # - Total Series Synced: 1 / 1
 # - Source Authority: World Bank Commodity Price Data (The Pink Sheet)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
