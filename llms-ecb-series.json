@@ -4,9 +4,15 @@
     "title": "Canonical European Central Bank (ECB) Monitored Series & Official Transformations",
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
-    "sync_status": "SUCCESS",
+    "sync_status": "PARTIAL_SUCCESS",
     "last_successful_sync": "2026-11-11T01:46:59.035192+00:00",
     "total_series": 8,
+    "total_registered": 11,
+    "missing_series": [
+      "EXR/D.USD.EUR.SP00.A",
+      "ILM/W.U2.C.T000000.Z5.Z01",
+      "ICP/M.U2.N.XEF000.4.ANR"
+    ],
     "source_authority": "European Central Bank (ECB Data Portal)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.5",
     "root_index": "https://analysisreports.github.io/llms.txt"
