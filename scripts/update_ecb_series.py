@@ -227,6 +227,10 @@ def fetch_ecb_observations(series_ref: str, n_obs_per_yr: int) -> Optional[List[
                     if raw_obs:
                         return raw_obs
         except Exception as e:
+            err_str = str(e)
+            if "10013" in err_str or "Permission denied" in err_str:
+                print(f"Error fetching ECB series {series_ref}: {e}")
+                break
             if attempt < max_retries:
                 time.sleep(2 * attempt)
             else:
@@ -278,9 +282,71 @@ def parse_registry(txt_path: str) -> Tuple[Dict[str, List[str]], str]:
 
     return frequencies, config_header
 
-def build_outputs(frequencies: Dict[str, List[str]]) -> Tuple[str, Dict[str, Any]]:
-    now_utc = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-    now_iso = datetime.datetime.now(datetime.timezone.utc).isoformat()
+# ==============================================================================
+# 2.1. AKILLI FREKANS TTL & CACHE KONFİGÜRASYONU
+# ==============================================================================
+CACHE_TTL_DAYS = {
+    "DAILY": 3,        # Günlük seriler: 3 günde 1 kez çekilir (3 gün dolmadan API'ye istek atılmaz)
+    "WEEKLY": 8,       # Haftalık seriler: 8 günde 1 kez çekilir
+    "BIWEEKLY": 16,    # İki haftalık seriler: 16 günde 1 kez çekilir
+    "MONTHLY": 32,     # Aylık seriler: 32 günde 1 kez çekilir
+    "QUARTERLY": 95,   # Çeyreklik seriler: 95 günde 1 kez çekilir
+    "SEMIANNUAL": 185, # 6 aylık seriler: 185 günde 1 kez çekilir
+    "ANNUAL": 365      # Yıllık seriler: 365 günde 1 kez çekilir
+}
+
+def format_ecb_txt_block(entry: Dict[str, Any]) -> str:
+    s_ref = entry["series_ref"]
+    title = entry.get("title", "")
+    freq = entry.get("frequency", "")
+    n_obs_per_yr = entry["n_obs_per_yr"]
+    units = entry.get("units", "")
+    last_date = entry.get("last_date", "")
+    xt = entry.get("current_value")
+    xt_prev = entry.get("previous_value")
+    xt_year_ago = entry.get("year_ago_value")
+    t = entry.get("transformations", {})
+
+    is_rate = "Percent per Annum" in units or "%" in units
+
+    def fmt(v, suffix="%"):
+        return f"{v:+.4f}{suffix}" if v is not None else "N/A"
+
+    car_str = "N/A (Rate is already annualized)" if is_rate else fmt(t.get("compounded_annual_rate_of_change"), "%")
+    ccar_str = "N/A (Rate is already annualized)" if is_rate else fmt(t.get("continuously_compounded_annual_rate_of_change"), "%")
+
+    recent_5 = entry.get("recent_observations", [])
+    recent_lines = "\n".join([f"  {r['date']}: {r['value']:.4f}" for r in recent_5])
+
+    xt_str = f"{xt:.4f}" if xt is not None else "N/A"
+    xt_prev_str = f"{xt_prev:.4f}" if xt_prev is not None else "N/A"
+    xt_yr_str = f"{xt_year_ago:.4f}" if xt_year_ago is not None else "N/A"
+
+    return f"""--------------------------------------------------------------------------------
+Series Ref: {s_ref}
+Title: {title}
+Frequency: {freq} (n_obs_per_yr: {n_obs_per_yr}) | Units: {units}
+Last Date: {last_date} | Current Value: {xt_str} | Previous Value: {xt_prev_str} | Year Ago Value: {xt_yr_str}
+
+Transformations (Official ECB Formulation - Section 0.5):
+  1. Change: {fmt(t.get("change"), '')}
+  2. Change from Year Ago: {fmt(t.get("change_from_year_ago"), '')}
+  3. Percent Change: {fmt(t.get("percent_change"), '%')}
+  4. Percent Change from Year Ago: {fmt(t.get("percent_change_from_year_ago"), '%')}
+  5. Compounded Annual Rate of Change: {car_str}
+  6. Continuously Compounded Rate of Change: {fmt(t.get("continuously_compounded_rate_of_change"), '%')}
+  7. Continuously Compounded Annual Rate of Change: {ccar_str}
+
+Recent Observations (Last 5):
+{recent_lines}"""
+
+def build_outputs(frequencies: Dict[str, List[str]], existing_series: Optional[Dict[str, Any]] = None) -> Tuple[str, Dict[str, Any]]:
+    if existing_series is None:
+        existing_series = {}
+
+    now_dt = datetime.datetime.now(datetime.timezone.utc)
+    now_utc = now_dt.strftime("%Y-%m-%d %H:%M:%S UTC")
+    now_iso = now_dt.isoformat()
     
     txt_blocks = []
     json_series_dict = {}
@@ -290,15 +356,49 @@ def build_outputs(frequencies: Dict[str, List[str]]) -> Tuple[str, Dict[str, Any
         if not s_list:
             continue
         if freq not in FREQ_N_MAP:
-            raise ValueError(f"Unknown ECB frequency '{freq}' for series {code}")
+            raise ValueError(f"Unknown ECB frequency '{freq}'")
         n_obs_per_yr = FREQ_N_MAP[freq]
+        ttl_days = CACHE_TTL_DAYS[freq] if freq in CACHE_TTL_DAYS else 3
 
         for s_ref in s_list:
-            print(f"Processing ECB series: {s_ref} [{freq}]...")
-            obs = fetch_ecb_observations(s_ref, n_obs_per_yr)
-            if not obs:
-                print(f"  Warning: No observations returned for {s_ref}")
+            cached_entry = existing_series.get(s_ref)
+            is_cache_valid = False
+
+            if cached_entry and isinstance(cached_entry, dict):
+                last_sync_str = cached_entry.get("last_synced_utc")
+                if last_sync_str:
+                    try:
+                        clean_sync = last_sync_str.replace("Z", "+00:00")
+                        sync_dt = datetime.datetime.fromisoformat(clean_sync)
+                        elapsed_days = (now_dt - sync_dt).total_seconds() / 86400.0
+                        if elapsed_days < ttl_days:
+                            is_cache_valid = True
+                    except Exception:
+                        is_cache_valid = False
+
+            # 1. Cache HIT: Süresi dolmamışsa API'ye dokunma, mevcut doğrulanmış veriyi koru
+            if is_cache_valid:
+                print(f"  [CACHE HIT] {s_ref} [{freq}]: Son çekilmeden bu yana {elapsed_days:.1f} gün geçti (TTL: {ttl_days} gün). API isteği atlanıyor.")
+                json_series_dict[s_ref] = cached_entry
+                txt_blocks.append(format_ecb_txt_block(cached_entry))
                 continue
+
+            # 2. Süresi dolmuşsa API'den yeni veriyi çek
+            print(f"  [FETCHING] {s_ref} [{freq}] (TTL doldu veya yeni seri, ECB API'sine bağlanılıyor)...")
+            obs = fetch_ecb_observations(s_ref, n_obs_per_yr)
+            
+            # 3. API Hata / Timeout Koruma Sigortası: Asla eski veriyi silme!
+            if not obs:
+                if cached_entry and isinstance(cached_entry, dict):
+                    print(f"  [API TIMEOUT - RETAINED] {s_ref} [{freq}]: API yanıt vermedi veya zaman aşımı oldu. Mevcut resmi snapshot korundu!")
+                    if not cached_entry.get("last_synced_utc"):
+                        cached_entry["last_synced_utc"] = now_iso
+                    json_series_dict[s_ref] = cached_entry
+                    txt_blocks.append(format_ecb_txt_block(cached_entry))
+                    continue
+                else:
+                    print(f"  Warning: No observations returned and no cache for {s_ref}")
+                    continue
 
             t_curr = obs[-1]
             t_prev = obs[-2] if len(obs) >= 2 else None
@@ -315,7 +415,6 @@ def build_outputs(frequencies: Dict[str, List[str]]) -> Tuple[str, Dict[str, Any
             })
 
             # Central Bank Rate Guard: Interest rates and percentages are already annualized.
-            # Compounding an already annualized percentage is a category error and produces misleading distortions.
             is_rate = "Percent per Annum" in meta.get("units", "") or "%" in meta.get("units", "")
 
             # Compute transformations
@@ -329,7 +428,7 @@ def build_outputs(frequencies: Dict[str, List[str]]) -> Tuple[str, Dict[str, Any
 
             recent_5 = obs[-5:]
 
-            json_series_dict[s_ref] = {
+            entry_dict = {
                 "series_ref": s_ref,
                 "title": meta.get("title", ""),
                 "frequency": freq.capitalize(),
@@ -338,6 +437,7 @@ def build_outputs(frequencies: Dict[str, List[str]]) -> Tuple[str, Dict[str, Any
                 "category": meta.get("category", ""),
                 "source": "European Central Bank (ECB Data Portal)",
                 "last_date": t_curr["date"],
+                "last_synced_utc": now_iso,
                 "current_value": xt,
                 "previous_value": xt_prev,
                 "year_ago_value": xt_year_ago,
@@ -353,32 +453,8 @@ def build_outputs(frequencies: Dict[str, List[str]]) -> Tuple[str, Dict[str, Any
                 "recent_observations": recent_5
             }
 
-            def fmt(v, suffix="%"):
-                return f"{v:+.4f}{suffix}" if v is not None else "N/A"
-
-            car_str = "N/A (Rate is already annualized)" if is_rate else fmt(c_car, "%")
-            ccar_str = "N/A (Rate is already annualized)" if is_rate else fmt(c_ccar, "%")
-
-            recent_lines = "\n".join([f"  {r['date']}: {r['value']:.4f}" for r in recent_5])
-
-            block = f"""--------------------------------------------------------------------------------
-Series Ref: {s_ref}
-Title: {meta.get('title', '')}
-Frequency: {freq.capitalize()} (n_obs_per_yr: {n_obs_per_yr}) | Units: {meta.get('units', '')}
-Last Date: {t_curr['date']} | Current Value: {xt:.4f} | Previous Value: {f"{xt_prev:.4f}" if xt_prev is not None else "N/A"} | Year Ago Value: {f"{xt_year_ago:.4f}" if xt_year_ago is not None else "N/A"}
-
-Transformations (Official ECB Formulation - Section 0.5):
-  1. Change: {fmt(c_chg, '')}
-  2. Change from Year Ago: {fmt(c_chg_yr, '')}
-  3. Percent Change: {fmt(c_pct, '%')}
-  4. Percent Change from Year Ago: {fmt(c_pct_yr, '%')}
-  5. Compounded Annual Rate of Change: {car_str}
-  6. Continuously Compounded Rate of Change: {fmt(c_ccr, '%')}
-  7. Continuously Compounded Annual Rate of Change: {ccar_str}
-
-Recent Observations (Last 5):
-{recent_lines}"""
-            txt_blocks.append(block)
+            json_series_dict[s_ref] = entry_dict
+            txt_blocks.append(format_ecb_txt_block(entry_dict))
 
     txt_body = "\n\n".join(txt_blocks)
 
@@ -424,8 +500,17 @@ def main():
     print("Parsing monitored ECB series configuration from llms-ecb-series.txt...")
     frequencies, config_header = parse_registry(txt_path)
 
-    print("Fetching ECB series and computing official Section 0.5 transformations...")
-    auto_txt, auto_json = build_outputs(frequencies)
+    existing_series = {}
+    if os.path.exists(json_path):
+        try:
+            with open(json_path, "r", encoding="utf-8") as f:
+                d = json.load(f)
+                existing_series = d.get("series", {})
+        except Exception:
+            existing_series = {}
+
+    print("Fetching ECB series and computing official Section 0.5 transformations (Smart TTL Cache Active)...")
+    auto_txt, auto_json = build_outputs(frequencies, existing_series)
 
     full_txt_content = config_header + "\n\n" + auto_txt
 

@@ -55,6 +55,26 @@ FREQ_N_MAP = {
 }
 
 # ==============================================================================
+# SMART TTL CACHE SPECIFICATION (USER MANDATE & BEST PRACTICES)
+# - DAILY: 3 days TTL
+# - WEEKLY: 8 days TTL
+# - MONTHLY: 32 days TTL
+# - QUARTERLY: 95 days TTL
+# - SEMIANNUAL: 185 days TTL
+# - ANNUAL: 365 days TTL
+# Strict Zero-Loss Mandate: If TTL expires and API fails/times out, existing snapshot is 100% retained.
+# ==============================================================================
+CACHE_TTL_DAYS = {
+    "DAILY": 3,
+    "WEEKLY": 8,
+    "BIWEEKLY": 16,
+    "MONTHLY": 32,
+    "QUARTERLY": 95,
+    "SEMIANNUAL": 185,
+    "ANNUAL": 365
+}
+
+# ==============================================================================
 # CANONICAL TRANSFORMATION FUNCTIONS (ST. LOUIS FED / WB COMPLIANT)
 # ==============================================================================
 
@@ -130,16 +150,29 @@ def calc_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr: int = 12
     except (OverflowError, ValueError):
         return None
 
-def fetch_wb_series(key: str, meta: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+def fetch_wb_series(key: str, meta: Dict[str, Any], now_iso: Optional[str] = None) -> Optional[Dict[str, Any]]:
     """Fetches full historical time-series and calculates transformations."""
     url = meta["url"]
     req = urllib.request.Request(url, headers={"User-Agent": "AnalysisReports-WorldBank-Engine/1.0"})
     
-    try:
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            content = resp.read().decode("utf-8")
-    except Exception as e:
-        print(f"[HATA] {key} verisi çekilemedi: {e}")
+    content = None
+    for attempt in range(1, 3):
+        try:
+            with urllib.request.urlopen(req, timeout=25) as resp:
+                content = resp.read().decode("utf-8")
+                break
+        except Exception as e:
+            err_msg = str(e)
+            if "10013" in err_msg or "Permission denied" in err_msg:
+                print(f"  [NETWORK SANDBOX] {url}: {e}")
+                return None
+            if attempt < 2:
+                import time; time.sleep(2)
+            else:
+                print(f"[HATA] {key} verisi çekilemedi: {e}")
+                return None
+
+    if not content:
         return None
 
     reader = csv.reader(io.StringIO(content.strip()))
@@ -184,6 +217,9 @@ def fetch_wb_series(key: str, meta: Dict[str, Any]) -> Optional[Dict[str, Any]]:
 
     recent_5 = [{"date": d, "value": v} for d, v in observations[-5:]]
 
+    if not now_iso:
+        now_iso = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
     return {
         "series_id": f"IND_WB_{key}",
         "commodity_key": key,
@@ -194,6 +230,7 @@ def fetch_wb_series(key: str, meta: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         "n_obs_per_yr": n_obs_per_yr,
         "unit": meta["unit"],
         "observation_date": f"{curr_date}-01" if len(curr_date) == 7 else curr_date,
+        "last_synced_utc": now_iso,
         "current_value": curr_val,
         "previous_value": prev_val,
         "year_ago_value": year_ago_val,
@@ -243,6 +280,46 @@ def read_config_section() -> Tuple[List[str], str]:
 def fmt_val(v, suffix=""):
     return f"{v:+.4f}{suffix}" if v is not None else "N/A"
 
+def format_wb_txt_block(res: Dict[str, Any]) -> str:
+    s_id = res.get("series_id", "")
+    name = res.get("name", "")
+    freq = res.get("frequency", "")
+    n_obs_per_yr = res["n_obs_per_yr"]
+    unit = res.get("unit", "")
+    obs_date = res.get("observation_date", "")
+    xt = res.get("current_value")
+    xt_prev = res.get("previous_value")
+    xt_year_ago = res.get("year_ago_value")
+    t = res.get("transformations", {})
+
+    units_str = unit
+    is_rate = "Percent" in units_str or "%" in units_str
+    car_str = "N/A (Rate is already annualized)" if is_rate else fmt_val(t.get('compounded_annual_rate_of_change'), '%')
+    ccar_str = "N/A (Rate is already annualized)" if is_rate else fmt_val(t.get('continuously_compounded_annual_rate_of_change'), '%')
+    recent_lines = "\n".join([f"  {r['date']}: {r['value']:.4f}" for r in res.get("recent_observations", [])])
+
+    xt_str = f"{xt:.4f}" if xt is not None else "N/A"
+    xt_prev_str = f"{xt_prev:.4f}" if xt_prev is not None else "N/A"
+    xt_yr_str = f"{xt_year_ago:.4f}" if xt_year_ago is not None else "N/A"
+
+    return f"""--------------------------------------------------------------------------------
+Series ID: {s_id}
+Title: {name}
+Frequency: {freq} (n_obs_per_yr: {n_obs_per_yr}) | Units: {unit}
+Last Date: {obs_date} | Current Value: {xt_str} | Previous Value: {xt_prev_str} | Year Ago Value: {xt_yr_str}
+
+Transformations (Official World Bank / St. Louis Fed Formulas):
+  1. Change: {fmt_val(t.get('change'), '')}
+  2. Change from Year Ago: {fmt_val(t.get('change_from_year_ago'), '')}
+  3. Percent Change: {fmt_val(t.get('percent_change'), '%')}
+  4. Percent Change from Year Ago: {fmt_val(t.get('percent_change_from_year_ago'), '%')}
+  5. Compounded Annual Rate of Change: {car_str}
+  6. Continuously Compounded Rate of Change: {fmt_val(t.get('continuously_compounded_rate_of_change'), '%')}
+  7. Continuously Compounded Annual Rate of Change: {ccar_str}
+
+Recent Observations (Last 5):
+{recent_lines}"""
+
 def main():
     print("=" * 70)
     print("WORLD BANK COMMODITY TIME-SERIES SYNCHRONIZATION ENGINE")
@@ -253,43 +330,71 @@ def main():
     now_utc = now_dt.strftime("%Y-%m-%d %H:%M:%S UTC")
     now_iso = now_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
 
+    existing_series = {}
+    fallback_sync_str = None
+    if os.path.exists(OUTPUT_JSON):
+        try:
+            with open(OUTPUT_JSON, "r", encoding="utf-8") as f:
+                d = json.load(f)
+                existing_series = d.get("series", {})
+                fallback_sync_str = d.get("metadata", {}).get("last_successful_sync")
+        except Exception:
+            existing_series = {}
+
     synced_series = {}
     txt_blocks = []
 
     for key in monitored_keys:
-        if key in WB_DATA_SOURCES:
-            print(f"[*] Senkronize ediliyor: {key} ({WB_DATA_SOURCES[key]['name']})...")
-            res = fetch_wb_series(key, WB_DATA_SOURCES[key])
-            if res:
-                synced_series[f"IND_WB_{key}"] = res
-                print(f"[+] Başarılı: {res['observation_date']} -> {res['current_value']} {res['unit']}")
+        if key not in WB_DATA_SOURCES:
+            continue
+        meta = WB_DATA_SOURCES[key]
+        freq_upper = meta.get("frequency", "Monthly").upper()
+        ttl_days = CACHE_TTL_DAYS[freq_upper] if freq_upper in CACHE_TTL_DAYS else CACHE_TTL_DAYS["MONTHLY"]
+        s_id = f"IND_WB_{key}"
 
-                # Format Section 2 Text Block
-                t = res["transformations"]
-                units_str = res.get("unit", "")
-                is_rate = "Percent" in units_str or "%" in units_str
-                car_str = "N/A (Rate is already annualized)" if is_rate else fmt_val(t['compounded_annual_rate_of_change'], '%')
-                ccar_str = "N/A (Rate is already annualized)" if is_rate else fmt_val(t['continuously_compounded_annual_rate_of_change'], '%')
-                recent_lines = "\n".join([f"  {r['date']}: {r['value']:.4f}" for r in res["recent_observations"]])
-                
-                block = f"""--------------------------------------------------------------------------------
-Series ID: {res['series_id']}
-Title: {res['name']}
-Frequency: {res['frequency']} (n_obs_per_yr: {res['n_obs_per_yr']}) | Units: {res['unit']}
-Last Date: {res['observation_date']} | Current Value: {res['current_value']:.4f} | Previous Value: {f"{res['previous_value']:.4f}" if res['previous_value'] is not None else "N/A"} | Year Ago Value: {f"{res['year_ago_value']:.4f}" if res['year_ago_value'] is not None else "N/A"}
+        cached_entry = existing_series.get(s_id)
+        is_cache_valid = False
+        elapsed_days = 9999.0
 
-Transformations (Official World Bank / St. Louis Fed Formulas):
-  1. Change: {fmt_val(t['change'], '')}
-  2. Change from Year Ago: {fmt_val(t['change_from_year_ago'], '')}
-  3. Percent Change: {fmt_val(t['percent_change'], '%')}
-  4. Percent Change from Year Ago: {fmt_val(t['percent_change_from_year_ago'], '%')}
-  5. Compounded Annual Rate of Change: {car_str}
-  6. Continuously Compounded Rate of Change: {fmt_val(t['continuously_compounded_rate_of_change'], '%')}
-  7. Continuously Compounded Annual Rate of Change: {ccar_str}
+        if cached_entry and isinstance(cached_entry, dict):
+            last_sync_str = cached_entry.get("last_synced_utc") or fallback_sync_str
+            if last_sync_str:
+                try:
+                    clean_sync = last_sync_str.replace("Z", "+00:00")
+                    sync_dt = datetime.datetime.fromisoformat(clean_sync)
+                    elapsed_days = (now_dt - sync_dt).total_seconds() / 86400.0
+                    if elapsed_days < ttl_days:
+                        is_cache_valid = True
+                except Exception:
+                    is_cache_valid = False
 
-Recent Observations (Last 5):
-{recent_lines}"""
-                txt_blocks.append(block)
+        # 1. Cache HIT: Süresi dolmamışsa API'ye dokunma, mevcut doğrulanmış veriyi koru
+        if is_cache_valid:
+            print(f"  [CACHE HIT] {s_id} [{freq_upper}]: Son çekilmeden bu yana {elapsed_days:.1f} gün geçti (TTL: {ttl_days} gün). API isteği atlanıyor.")
+            synced_series[s_id] = cached_entry
+            txt_blocks.append(format_wb_txt_block(cached_entry))
+            continue
+
+        # 2. Süresi dolmuşsa yeni veriyi çek
+        print(f"[*] Senkronize ediliyor: {key} ({meta['name']})...")
+        res = fetch_wb_series(key, meta, now_iso)
+
+        # 3. API Hata / Zaman Aşımı Sigortası: Asla eski veriyi silme!
+        if not res:
+            if cached_entry and isinstance(cached_entry, dict):
+                print(f"  [API TIMEOUT - RETAINED] {s_id} [{freq_upper}]: Veri kaynağı yanıt vermedi. Mevcut resmi snapshot korundu!")
+                if not cached_entry.get("last_synced_utc"):
+                    cached_entry["last_synced_utc"] = fallback_sync_str or now_iso
+                synced_series[s_id] = cached_entry
+                txt_blocks.append(format_wb_txt_block(cached_entry))
+                continue
+            else:
+                print(f"[UYARI] {key} verisi çekilemedi ve önbellek mevcut değil.")
+                continue
+
+        synced_series[s_id] = res
+        print(f"[+] Başarılı: {res['observation_date']} -> {res['current_value']} {res['unit']}")
+        txt_blocks.append(format_wb_txt_block(res))
 
     # 1. Generate full llms-worldbank-series.txt (Section 1 + Section 2)
     txt_body = "\n\n".join(txt_blocks)

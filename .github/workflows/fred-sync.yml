@@ -26,10 +26,12 @@ jobs:
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: |
+          pip install xlrd
           python scripts/update_fred_series.py
           python scripts/update_ecb_series.py
           python scripts/update_worldbank_series.py
           python scripts/update_imf_series.py
+          python scripts/update_nyfed_series.py
           python scripts/update_relationships.py
           python scripts/calculate_models.py
 
@@ -37,6 +39,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add llms-fred-series.txt llms-fred-series.json llms-ecb-series.txt llms-ecb-series.json llms-worldbank-series.txt llms-worldbank-series.json llms-imf-series.txt llms-imf-series.json llms-relationships.txt llms-relationships.json llms-models.txt llms-models.json
-          git diff-index --quiet HEAD || git commit -m "Auto update FRED, ECB, World Bank, IMF series, relationships & quantitative models [skip ci]"
+          git add llms-fred-series.txt llms-fred-series.json llms-ecb-series.txt llms-ecb-series.json llms-worldbank-series.txt llms-worldbank-series.json llms-imf-series.txt llms-imf-series.json llms-nyfed-series.txt llms-nyfed-series.json llms-relationships.txt llms-relationships.json llms-models.txt llms-models.json
+          git diff-index --quiet HEAD || git commit -m "Auto update FRED, ECB, World Bank, IMF, NY Fed series, relationships & quantitative models [skip ci]"
           git push
