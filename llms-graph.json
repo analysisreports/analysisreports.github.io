@@ -688,7 +688,7 @@
       "label": "Enriched Uranium and Nuclear Fuel Supply",
       "category": "COMMODITY_STRATEGIC",
       "attributes": {
-        "dominant_supplier": "ACTOR_RU"
+        "dominant_supplier": "GEO_RU"
       }
     },
     {
@@ -737,7 +737,7 @@
       "category": "ACTOR",
       "type": "Sub-National Autonomous Entity",
       "attributes": {
-        "parent_authority": "ACTOR_RU",
+        "parent_authority": "GEO_RU",
         "polarity_baseline": 0.7,
         "structural_regime": "STRATEGIC_ALIGNMENT",
         "primary_exposure": "CASPIAN_SECURITY_ENERGY_CORRIDORS"
@@ -749,7 +749,7 @@
       "category": "ACTOR",
       "type": "Sub-National Autonomous Entity",
       "attributes": {
-        "parent_authority": "ACTOR_RU",
+        "parent_authority": "GEO_RU",
         "polarity_baseline": 0.8,
         "structural_regime": "STRATEGIC_ALIGNMENT",
         "primary_exposure": "FISCAL_FEDERALISM_RESOURCE_EXTRACTION"
@@ -761,7 +761,7 @@
       "category": "ACTOR",
       "type": "Sub-National Administrative Region",
       "attributes": {
-        "parent_authority": "ACTOR_RU",
+        "parent_authority": "GEO_RU",
         "polarity_baseline": 0.95,
         "structural_regime": "ALLIANCE",
         "primary_exposure": "BLACK_SEA_AGRO_PORT_LOGISTICS"
@@ -2064,9 +2064,9 @@
       "type": "Multilateral Bloc",
       "attributes": {
         "members": [
-          "ACTOR_EE",
-          "ACTOR_LV",
-          "ACTOR_LT"
+          "GEO_EE",
+          "GEO_LV",
+          "GEO_LT"
         ]
       }
     },

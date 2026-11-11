@@ -467,7 +467,8 @@ def main():
 
     relationships_output = []
     for a in actors:
-        raw_p = a['p_baseline'] + a['dynamic_delta']
+        dyn = 0.0 if abs(a['dynamic_delta']) < 1e-6 else a['dynamic_delta']
+        raw_p = a['p_baseline'] + dyn
         p_net = round(clamp(raw_p, -1.0, 1.0), 2)
         regime = get_regime(p_net)
         relationships_output.append({
@@ -476,7 +477,7 @@ def main():
             'target_entity': a['target_entity'],
             'label': a['label'],
             'p_baseline': a['p_baseline'],
-            'dynamic_delta': a['dynamic_delta'],
+            'dynamic_delta': dyn,
             'p_net': p_net,
             'regime_state': regime,
             'primary_driver': a['primary_driver'],
@@ -602,7 +603,7 @@ def main():
 
 CRITICAL_CHOKEPOINTS = [
     {
-        "id": "HORMUZ_STRAIT",
+        "id": "CHOKE_HORMUZ",
         "name": "Strait of Hormuz",
         "location": "26°34'N 56°15'E (Persian Gulf exit)",
         "primary_threat": "IR / IRGC Navy",
@@ -613,7 +614,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["DCOILWTICO", "CPIAUCSL", "BAMLH0A0HYM2", "OVXCLS", "GSCPI", "SOFR", "IND_WB_GOLD"]
     },
     {
-        "id": "BAB_EL_MANDEB",
+        "id": "CHOKE_BAB_EL_MANDEB",
         "name": "Bab el-Mandeb & Red Sea",
         "location": "12°35'N 43°20'E",
         "primary_threat": "YE-HOUTHI",
@@ -625,7 +626,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["ISRATIO", "RSAFS", "PCEPI", "GSCPI", "OVXCLS", "GASREGW"]
     },
     {
-        "id": "MALACCA_STRAIT",
+        "id": "CHOKE_MALACCA",
         "name": "Strait of Malacca",
         "location": "1°26'N 103°00'E",
         "primary_threat": "Malacca Dilemma / Asian Maritime Blockade",
@@ -636,7 +637,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["INDPRO", "GSCPI", "ISRATIO"]
     },
     {
-        "id": "TURKISH_STRAITS",
+        "id": "CHOKE_TURKISH_STRAITS",
         "name": "Turkish Straits (Bosphorus & Dardanelles)",
         "location": "41°07'N 29°04'E & 40°12'N 26°24'E",
         "primary_threat": "1936 Montreux Convention Enforcement / Black Sea Kinetic Spillover",
@@ -646,7 +647,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["DCOILBRENTEU", "WPU06", "IND_WB_GOLD"]
     },
     {
-        "id": "SUWALKI_GAP",
+        "id": "CHOKE_SUWALKI_GAP",
         "name": "Suwalki Gap",
         "location": "Poland - Lithuania border (Between Belarus and Kaliningrad)",
         "primary_threat": "Direct NATO-Russia land corridor kinetic friction (NATO Article 5 detonator)",
@@ -655,7 +656,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["DEXUSEU", "DGS10", "VIXCLS"]
     },
     {
-        "id": "TAIWAN_STRAIT",
+        "id": "CHOKE_TAIWAN",
         "name": "Taiwan Strait",
         "location": "24°00'N 119°00'E",
         "primary_threat": "PLA blockade, naval quarantine, or kinetic conflict",
@@ -664,7 +665,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["NASDAQSOX", "VIXCLS", "INDPRO"]
     },
     {
-        "id": "PANAMA_CANAL",
+        "id": "CHOKE_PANAMA",
         "name": "Panama Canal",
         "location": "09°04'N 79°40'W",
         "primary_threat": "Freshwater reservoir depletion / Draft restrictions",
@@ -674,7 +675,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["GSCPI", "ISRATIO", "PCEPI"]
     },
     {
-        "id": "DANISH_STRAITS",
+        "id": "CHOKE_DANISH_STRAITS",
         "name": "Danish Straits (Great Belt, Little Belt, The Sound)",
         "location": "55°30'N 11°00'E",
         "primary_threat": "RU Shadow Fleet navigation curbs / Western sanctions interdiction",
@@ -684,7 +685,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["DCOILBRENTEU", "OVXCLS"]
     },
     {
-        "id": "GIUK_GAP",
+        "id": "CHOKE_GIUK_GAP",
         "name": "GIUK Gap (Greenland-Iceland-UK Gap)",
         "location": "63°00'N 18°00'W",
         "primary_threat": "Subsea infrastructure sabotage (fiber-optic cables, energy interconnectors)",
@@ -693,7 +694,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["VIXCLS", "DEXUSEU"]
     },
     {
-        "id": "LOMBOK_AND_MAKASSAR_STRAITS",
+        "id": "CHOKE_LOMBOK_MAKASSAR",
         "name": "Lombok and Makassar Straits",
         "location": "08°30'S 115°45'E & 00°20'S 118°10'E",
         "primary_threat": "Deep-draft congestion and maritime choke risk",
@@ -702,7 +703,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["GSCPI", "INDPRO"]
     },
     {
-        "id": "STRAIT_OF_GIBRALTAR",
+        "id": "CHOKE_GIBRALTAR",
         "name": "Strait of Gibraltar",
         "location": "35°58'N 05°36'W",
         "primary_threat": "Western Mediterranean bottleneck / Naval surveillance chokepoint",
@@ -711,7 +712,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["DCOILBRENTEU", "DEXUSEU"]
     },
     {
-        "id": "BERING_STRAIT",
+        "id": "CHOKE_BERING",
         "name": "Bering Strait (Northern Sea Route Chokepoint)",
         "location": "66°00'N 169°00'W",
         "primary_threat": "US-RU / CN Arctic confrontation and Polar Silk Road friction",
@@ -720,7 +721,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["DHHNGSP", "DCOILWTICO"]
     },
     {
-        "id": "MOZAMBIQUE_CHANNEL",
+        "id": "CHOKE_MOZAMBIQUE",
         "name": "Mozambique Channel (Cape Route Bottleneck)",
         "location": "18°00'S 41°00'E",
         "primary_threat": "Red Sea bypass route bottleneck; asymmetric littoral security risks",
@@ -729,7 +730,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["GASREGW", "DCOILBRENTEU"]
     },
     {
-        "id": "SUEZ_CANAL_NORTHERN_APPROACH",
+        "id": "CHOKE_SUEZ_NORTH",
         "name": "Suez Canal Northern Approach (Port Said / Sinai Node)",
         "location": "31°15'N 32°18'E",
         "primary_threat": "Asymmetric littoral attacks, groundings / channel blockage",
