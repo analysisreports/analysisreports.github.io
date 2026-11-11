@@ -65,6 +65,8 @@ Core Manifests & System Engines:
 - Live FRED JSON Twin: https://analysisreports.github.io/llms-fred-series.json
 - Live ECB Time-Series Registry: https://analysisreports.github.io/llms-ecb-series.txt
 - Live ECB JSON Twin: https://analysisreports.github.io/llms-ecb-series.json
+- Live EIA Time-Series Registry: https://analysisreports.github.io/llms-eia-series.txt
+- Live EIA JSON Twin: https://analysisreports.github.io/llms-eia-series.json
 - Live New York Fed Research Series Registry: https://analysisreports.github.io/llms-nyfed-series.txt
 - Live New York Fed Research Series JSON Twin: https://analysisreports.github.io/llms-nyfed-series.json
 - World Bank Commodity Series Registry: https://analysisreports.github.io/llms-worldbank-series.txt

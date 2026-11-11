@@ -204,6 +204,18 @@
       "description": "Automated European Central Bank Data Portal time-series, observation snapshots, and official monetary metrics."
     },
     {
+      "id": "live-eia-series",
+      "name": "Canonical U.S. Energy Information Administration (EIA) Time-Series Registry",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-eia-series.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-eia-series.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Automated U.S. Department of Energy / EIA open data API v2 series, Strategic Petroleum Reserve (SPR) inventories, commercial crude stocks, and domestic field extraction."
+    },
+    {
       "id": "live-nyfed-series",
       "name": "Canonical New York Fed Time-Series Registry & Official Transformations",
       "type": "dataset",

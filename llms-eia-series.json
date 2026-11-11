@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "metadata": {
+    "title": "Canonical U.S. Energy Information Administration (EIA) Series Registry",
+    "author": "Ersoy Toptaş",
+    "license": "CC BY 4.0",
+    "sync_status": "PENDING_INITIAL_PULL",
+    "last_successful_sync": "2026-11-11T22:53:39Z",
+    "total_series": 0,
+    "total_registered": 5,
+    "missing_series": [
+      "PET.WCSSTUS1.W",
+      "PET.WCESTUS1.W",
+      "PET.WCRFPUS2.W",
+      "PET.WGTSTUS1.W",
+      "NG.NW2_EPG0_SWO_R48_BCF.W"
+    ],
+    "source_authority": "U.S. Energy Information Administration (EIA API v2)",
+    "root_index": "https://analysisreports.github.io/llms.txt"
+  },
+  "series": {}
+}
