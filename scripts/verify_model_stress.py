@@ -27,7 +27,7 @@ import os
 import sys
 import json
 import math
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Tuple
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 MODELS_JSON = os.path.join(ROOT_DIR, "llms-models.json")
@@ -78,12 +78,16 @@ def audit_production_models(models_data: List[Dict[str, Any]]) -> List[str]:
 
     return errors
 
-def audit_extreme_stress_regimes() -> List[str]:
+def audit_extreme_stress_regimes() -> Tuple[List[str], int, int]:
     errors = []
     if cm is None:
-        return ["Failed to import calculate_models.py for stress testing."]
+        return ["Failed to import calculate_models.py for stress testing."], 0, 7
+
+    total_regimes = 7
+    passed_regimes = 0
 
     # Regime 1: Severe Credit Crunch & Sovereign Stress
+    r1_ok = True
     try:
         # CDS default probability at 1500 bps (15.0%)
         res_cds = cm.calc_sovereign_synthetic_cds_pd(15.0, 0.40)
@@ -91,42 +95,106 @@ def audit_extreme_stress_regimes() -> List[str]:
             pd = res_cds["primary_value"]
             if not (math.isfinite(pd) and pd > 0):
                 errors.append(f"STRESS FAIL (Regime 1 - CDS): Invalid PD={pd}")
+                r1_ok = False
+        else:
+            errors.append("STRESS FAIL (Regime 1 - CDS): Returned None for valid 1500 bps.")
+            r1_ok = False
     except Exception as e:
         errors.append(f"CRASH in calc_sovereign_synthetic_cds_pd under 1500 bps: {e}")
+        r1_ok = False
+    if r1_ok: passed_regimes += 1
 
     # Regime 2: Hyperinflation & High Rate Regime
+    r2_ok = True
     try:
         res_real = cm.calc_real_policy_rate(80.0, 75.0)
         if not (res_real and math.isfinite(res_real["primary_value"])):
             errors.append("STRESS FAIL (Regime 2 - Real Rate): Invalid result.")
+            r2_ok = False
     except Exception as e:
         errors.append(f"CRASH in calc_real_policy_rate under extreme inputs: {e}")
+        r2_ok = False
+    if r2_ok: passed_regimes += 1
 
     # Regime 3: Severe Stagflation (CPI 25%, Fed 9%)
+    r3_ok = True
     try:
         res_fed = cm.calc_fed_policy_stance(9.8, 9.0)
         if not (res_fed and math.isfinite(res_fed["primary_value"])):
             errors.append("STRESS FAIL (Regime 3 - Fed Stance): Invalid result.")
+            r3_ok = False
     except Exception as e:
         errors.append(f"CRASH in calc_fed_policy_stance: {e}")
+        r3_ok = False
+    if r3_ok: passed_regimes += 1
 
     # Regime 4: Taylor Rule under extreme recession
+    r4_ok = True
     try:
         res_taylor = cm.calc_taylor_policy_gap(8.5, 12.0, 20000.0, 23000.0)
         if not (res_taylor and math.isfinite(res_taylor["primary_value"])):
             errors.append("STRESS FAIL (Regime 4 - Taylor Policy Gap): Invalid result.")
+            r4_ok = False
     except Exception as e:
         errors.append(f"CRASH in calc_taylor_policy_gap: {e}")
+        r4_ok = False
+    if r4_ok: passed_regimes += 1
 
     # Regime 5: Extreme Yield Inversion (-350 bps)
+    r5_ok = True
     try:
         res_yield = cm.calc_yield_spread_bps(-3.50)
         if not (res_yield and math.isfinite(res_yield["primary_value"])):
             errors.append("STRESS FAIL (Regime 5 - Yield Curve): Invalid result.")
+            r5_ok = False
     except Exception as e:
         errors.append(f"CRASH in calc_yield_spread_bps: {e}")
+        r5_ok = False
+    if r5_ok: passed_regimes += 1
 
-    return errors
+    # Regime 6: CDS Mathematical Singularity & Edge Cases Guard (inf, nan, recovery>=1.0)
+    r6_ok = True
+    try:
+        # 1. Infinite spread must return None (not Infinity)
+        if cm.calc_sovereign_synthetic_cds_pd(float('inf'), 0.40) is not None:
+            errors.append("VULNERABILITY FAIL (Regime 6 - CDS): Infinite spread did not return None.")
+            r6_ok = False
+        # 2. NaN spread must return None
+        if cm.calc_sovereign_synthetic_cds_pd(float('nan'), 0.40) is not None:
+            errors.append("VULNERABILITY FAIL (Regime 6 - CDS): NaN spread did not return None.")
+            r6_ok = False
+        # 3. Recovery rate >= 1.0 must return None (prevents division by zero or invalid LGD)
+        if cm.calc_sovereign_synthetic_cds_pd(5.0, recovery_rate=1.0) is not None:
+            errors.append("VULNERABILITY FAIL (Regime 6 - CDS): recovery_rate=1.0 did not return None.")
+            r6_ok = False
+        if cm.calc_sovereign_synthetic_cds_pd(5.0, recovery_rate=1.5) is not None:
+            errors.append("VULNERABILITY FAIL (Regime 6 - CDS): recovery_rate=1.5 did not return None.")
+            r6_ok = False
+        # 4. Negative recovery rate must return None
+        if cm.calc_sovereign_synthetic_cds_pd(5.0, recovery_rate=-0.2) is not None:
+            errors.append("VULNERABILITY FAIL (Regime 6 - CDS): negative recovery_rate did not return None.")
+            r6_ok = False
+    except Exception as e:
+        errors.append(f"CRASH in Regime 6 CDS Edge Cases: {e}")
+        r6_ok = False
+    if r6_ok: passed_regimes += 1
+
+    # Regime 7: Committee Dispersion Discrete Integer Voting Integrity
+    r7_ok = True
+    try:
+        # Fractional votes (1.5 hawkish) must return None (voting members cannot be fractional)
+        if cm.calc_committee_dispersion(n_hawkish=1.5, n_dovish=2, n_neutral=6) is not None:
+            errors.append("VULNERABILITY FAIL (Regime 7 - Dispersion): Fractional vote 1.5 did not return None.")
+            r7_ok = False
+        if cm.calc_committee_dispersion(n_hawkish=-1, n_dovish=2, n_neutral=6) is not None:
+            errors.append("VULNERABILITY FAIL (Regime 7 - Dispersion): Negative vote did not return None.")
+            r7_ok = False
+    except Exception as e:
+        errors.append(f"CRASH in Regime 7 Committee Dispersion: {e}")
+        r7_ok = False
+    if r7_ok: passed_regimes += 1
+
+    return errors, passed_regimes, total_regimes
 
 def main():
     print("=" * 70)
@@ -149,8 +217,8 @@ def main():
     print(f"[*] Production Model Health   : {len(models_list) - len(prod_errors)} / {len(models_list)} Passed")
 
     # 2. Audit Stress Regimes
-    stress_errors = audit_extreme_stress_regimes()
-    print(f"[*] Extreme Stress Regimes    : 5 / 5 Stress Regimes Passed")
+    stress_errors, passed_regimes, total_regimes = audit_extreme_stress_regimes()
+    print(f"[*] Extreme Stress Regimes    : {passed_regimes} / {total_regimes} Stress Regimes Passed")
 
     all_errors = prod_errors + stress_errors
 

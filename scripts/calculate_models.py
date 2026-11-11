@@ -2030,12 +2030,22 @@ def calc_sovereign_synthetic_cds_pd(spread_input_pct, recovery_rate=0.40):
         return None
     try:
         spread_pct = float(spread_input_pct)
-        if spread_pct <= 0:
+        if not math.isfinite(spread_pct) or spread_pct <= 0.0 or spread_pct > 100.0:
             return None
-        spread_bps = round(spread_pct * 100.0, 1)
+
         rec = float(recovery_rate)
-        lgd = max(0.01, 1.0 - rec)
-        pd_pct = round(spread_pct / lgd, 2)
+        if not math.isfinite(rec) or rec < 0.0 or rec >= 1.0:
+            return None
+
+        spread_bps = round(spread_pct * 100.0, 1)
+        lgd = 1.0 - rec
+        if lgd <= 0.0:
+            return None
+
+        raw_pd = spread_pct / lgd
+        if not math.isfinite(raw_pd):
+            return None
+        pd_pct = round(min(100.0, max(0.0, raw_pd)), 2)
 
         if spread_bps < 250.0:
             status = "STABLE_INVESTMENT_GRADE"
@@ -2165,21 +2175,32 @@ def calc_committee_dispersion(n_hawkish=4, n_dovish=2, n_neutral=6, n_total=12):
     if any(v is None or isinstance(v, bool) for v in (n_hawkish, n_dovish, n_neutral)):
         return None
     try:
-        h = float(n_hawkish)
-        d = float(n_dovish)
-        neu = float(n_neutral)
-        if not (math.isfinite(h) and math.isfinite(d) and math.isfinite(neu)):
-            return None
-        if h < 0.0 or d < 0.0 or neu < 0.0:
-            return None
+        # Enforce discrete integer counts for voting committee members
+        for val in (n_hawkish, n_dovish, n_neutral):
+            if isinstance(val, float) and not val.is_integer():
+                return None
+            if not isinstance(val, (int, float)):
+                return None
+            if not math.isfinite(val) or val < 0:
+                return None
+
+        h = int(n_hawkish)
+        d = int(n_dovish)
+        neu = int(n_neutral)
 
         tot = h + d + neu
-        if n_total is not None and not isinstance(n_total, bool) and math.isfinite(float(n_total)):
-            f_tot = float(n_total)
-            if f_tot >= tot and f_tot > 0.0:
+        if n_total is not None and not isinstance(n_total, bool):
+            if isinstance(n_total, float) and not n_total.is_integer():
+                return None
+            if not isinstance(n_total, (int, float)) or not math.isfinite(n_total):
+                return None
+            f_tot = int(n_total)
+            if f_tot >= tot and f_tot > 0:
                 tot = f_tot
+            elif f_tot < tot:
+                return None
 
-        if tot <= 0.0:
+        if tot <= 0:
             return None
 
         p_h = h / tot
@@ -2245,6 +2266,8 @@ def main():
     out_json_path = "llms-models.json"
     out_txt_path = "llms-models.txt"
 
+    ingestion_warnings = []
+
     if not os.path.exists(fred_json_path):
         print(f"Error: {fred_json_path} not found. Run update_fred_series.py first.")
         return
@@ -2253,6 +2276,8 @@ def main():
         fred_data = json.load(f)
 
     series = fred_data.get("series", {})
+    if not series:
+        ingestion_warnings.append("FRED series dictionary is empty.")
 
     # Extract Series Inputs
     dgs1mo = series.get("DGS1MO", {}).get("current_value")
@@ -2278,8 +2303,11 @@ def main():
             with open(nyfed_json_path, "r", encoding="utf-8") as f:
                 nyfed_json = json.load(f)
                 gscpi = nyfed_json.get("series", {}).get("GSCPI", {}).get("current_value")
-        except Exception:
+        except Exception as e:
             gscpi = None
+            ingestion_warnings.append(f"NY Fed GSCPI read error: {e}")
+    else:
+        ingestion_warnings.append("NY Fed series file missing: llms-nyfed-series.json")
 
     # Labor Market Series
     payems_curr = series.get("PAYEMS", {}).get("current_value")
@@ -2413,9 +2441,14 @@ def main():
                 wb_json = json.load(f)
                 gold_price = wb_json.get("series", {}).get("IND_WB_GOLD", {}).get("current_value")
                 gold_prev = wb_json.get("series", {}).get("IND_WB_GOLD", {}).get("previous_value")
-        except Exception:
+                if gold_price is None:
+                    ingestion_warnings.append("World Bank Pink Sheet IND_WB_GOLD is missing/null.")
+        except Exception as e:
             gold_price = None
             gold_prev = None
+            ingestion_warnings.append(f"World Bank Pink Sheet read error: {e}")
+    else:
+        ingestion_warnings.append("World Bank Pink Sheet file missing: llms-worldbank-series.json")
 
     # Model 20: Copper to Gold Macro Sentiment Ratio
     copper_val = series.get("PCOPPUSDM", {}).get("current_value")
@@ -2587,9 +2620,14 @@ def main():
                 imf_series_data = imf_json.get("series", {})
                 breakeven_oil = imf_series_data.get("SAUPZPIOILBEGUSD", {}).get("current_value")
                 boj_rate = imf_series_data.get("JP_FPOLM_PA", {}).get("current_value")
-        except Exception:
+                if breakeven_oil is None:
+                    ingestion_warnings.append("IMF SAUPZPIOILBEGUSD is missing/null.")
+        except Exception as e:
             breakeven_oil = None
             boj_rate = None
+            ingestion_warnings.append(f"IMF IFS read error: {e}")
+    else:
+        ingestion_warnings.append("IMF series file missing: llms-imf-series.json")
 
     # Model 25.16: Yen Carry Trade Dissolution (BoJ Policy Rate via IMF / FED DFF)
     dff_val = series.get('DFF', {}).get('current_value')
@@ -2617,13 +2655,18 @@ def main():
     now_utc_str = now_dt.strftime("%Y-%m-%d %H:%M UTC")
 
     # A) BUILD llms-models.json
+    is_success = (len(ingestion_warnings) == 0 and len(models_calculated) >= 42)
+    sync_status = "SUCCESS" if is_success else "DEGRADED"
+
     payload = {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "metadata": {
             "engine": "Autonomous Quantitative Macroeconomic Model Engine",
             "author": "Ersoy Toptaş",
             "license": "CC BY 4.0",
-            "sync_status": "SUCCESS",
+            "sync_status": sync_status,
+            "ingestion_health": "OPTIMAL" if not ingestion_warnings else "WARNING",
+            "ingestion_warnings": ingestion_warnings,
             "last_successful_sync": now_iso,
             "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
             "monitored_data_sources": [
