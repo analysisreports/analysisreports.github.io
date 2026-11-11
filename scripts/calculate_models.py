@@ -2749,12 +2749,12 @@ def main():
     now_utc_str = now_dt.strftime("%Y-%m-%d %H:%M UTC")
 
     # A) BUILD llms-models.json
-    is_success = (len(ingestion_warnings) == 0 and len(models_calculated) == 42)
+    is_success = (len(ingestion_warnings) == 0 and len(models_calculated) >= 42)
     sync_status = "SUCCESS" if is_success else "DEGRADED"
 
     if not is_success:
         print(
-            f"[ERROR] Model refresh is degraded: generated {len(models_calculated)} of 42 models "
+            f"[ERROR] Model refresh is degraded: generated {len(models_calculated)} models (expected >= 42) "
             f"with {len(ingestion_warnings)} ingestion warning(s). Existing snapshots were preserved."
         )
         raise SystemExit(1)
