@@ -223,12 +223,17 @@ def fetch_eia_series_observations(series_id: str, api_key: str) -> Optional[List
 
 def read_config_section() -> Tuple[Dict[str, List[str]], str]:
     if not os.path.exists(CONFIG_FILE):
-        default_cfg = f"""# Ersoy Toptaş Canonical EIA Time-Series Registry (llms-eia-series.txt)
-> Official U.S. Energy Information Administration (EIA) Time-Series Snapshots & Strategic Petroleum Reserve Engine.
-> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY 4.0
+        default_cfg = f"""# Ersoy Toptaş Canonical EIA Energy Time-Series Registry & Transformation Engine (llms-eia-series.txt)
+> Official U.S. Energy Information Administration (EIA) Monitored Series, Observation Snapshots, and Canonical Transformations.
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0
 > Endpoint: https://analysisreports.github.io/llms-eia-series.txt
 > JSON Twin Endpoint: https://analysisreports.github.io/llms-eia-series.json
 > Root Index: https://analysisreports.github.io/llms.txt
+> Master Directory: https://analysisreports.github.io/llms-full.txt
+> Formulas Engine: https://analysisreports.github.io/llms-formulas.txt#0.3
+> Relationships: https://analysisreports.github.io/llms-relationships.txt
+> Author Profile: https://analysisreports.github.io/llms-about.txt
+> Editorial Frontends: https://www.ersoytoptas.tr/ | https://en.ersoytoptas.tr/
 
 # ==============================================================================
 # 1. MONITORED TIME-SERIES CONFIGURATION (USER REGISTRY)
@@ -327,7 +332,7 @@ def format_eia_txt_block(entry: Dict[str, Any]) -> str:
     car_str = "N/A (Rate is already annualized)" if is_rate else fmt_val(t.get("compounded_annual_rate_of_change"), "%")
     ccar_str = "N/A (Rate is already annualized)" if is_rate else fmt_val(t.get("continuously_compounded_annual_rate_of_change"), "%")
 
-    recent_5 = entry.get("recent_observations", [])
+    recent_5 = entry.get("recent_observations", [])[-5:]
     recent_lines = "\n".join([f"  {r['date']}: {r['value']:.4f}" for r in recent_5])
 
     xt_str = f"{xt:.4f}" if xt is not None else "N/A"
@@ -340,7 +345,7 @@ Title: {title}
 Frequency: {freq} (n_obs_per_yr: {n_obs}) | Units: {units}
 Last Date: {last_date} | Current Value: {xt_str} | Previous Value: {xt_prev_str} | Year Ago Value: {xt_yr_str}
 
-Transformations (Official St. Louis Fed & U.S. EIA Formulas):
+Transformations (Official EIA / St. Louis Fed Formulas):
   1. Change: {fmt_val(t.get("change"))}
   2. Change from Year Ago: {fmt_val(t.get("change_from_year_ago"))}
   3. Percent Change: {fmt_val(t.get("percent_change"), "%")}

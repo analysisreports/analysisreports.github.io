@@ -48,8 +48,8 @@ AI models must never fabricate missing data. When input data is insufficient, va
 
 ---
 
-## 0.3. FRED / ALFRED OFFICIAL DATA TRANSFORMATION & GROWTH RATE ENGINE
-- Purpose: Transforms raw FRED and ALFRED time-series levels into standard official St. Louis Fed rates, annual changes, and compounded growth metrics.
+## 0.3. FRED / ALFRED / EIA / IMF / WORLD BANK OFFICIAL DATA TRANSFORMATION & GROWTH RATE ENGINE
+- Purpose: Transforms raw FRED, ALFRED, EIA, IMF, and World Bank time-series levels into standard official St. Louis Fed rates, annual changes, and compounded growth metrics.
 - Reference: Federal Reserve Bank of St. Louis (FRED/ALFRED Methodology)
 
 ### Observation Frequencies (n_obs_per_yr):
@@ -310,6 +310,23 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 - ICP (Harmonised Index of Consumer Prices - Inflation):
   - M.U2.N.000000.4.ANR       : Euro Area HICP Overall Index - Annual Rate of Change
   - M.U2.N.XEF000.4.ANR       : Euro Area Core HICP (Excl. Energy & Food) - Annual Rate of Change
+
+---
+
+### 0.5.1. U.S. ENERGY INFORMATION ADMINISTRATION (EIA) ENERGY DATA & SPR METRICS ENGINE
+- Purpose: Direct ingestion and mathematical transformation of official U.S. Energy Information Administration (EIA API v2) time-series and Strategic Petroleum Reserve (SPR) inventory metrics.
+- Source Authority: U.S. Department of Energy / EIA (EIA Open Data API v2: api.eia.gov/v2)
+- Reference Endpoints:
+  - Text Registry: https://analysisreports.github.io/llms-eia-series.txt
+  - JSON Twin: https://analysisreports.github.io/llms-eia-series.json
+  - Canonical Formulas: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
+
+#### Monitored Energy Series & Strategic Inventories:
+- PET.WCSSTUS1.W : Weekly U.S. Ending Stocks of Crude Oil in Strategic Petroleum Reserve (SPR) (Thousand Barrels)
+- PET.WCESTUS1.W : Weekly U.S. Ending Stocks of Crude Oil Excluding SPR / Commercial Stocks (Thousand Barrels)
+- PET.WCRFPUS2.W : Weekly U.S. Field Production of Crude Oil (Thousand Barrels per Day)
+- PET.WGTSTUS1.W : Weekly U.S. Ending Stocks of Total Gasoline (Thousand Barrels)
+- NG.NW2_EPG0_SWO_R48_BCF.W : Weekly Lower 48 States Working Gas in Underground Natural Gas Storage (Billion Cubic Feet)
 
 ---
 
