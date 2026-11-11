@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-11T03:32:07.805988+00:00",
+    "last_successful_sync": "2026-11-11T09:25:24.249666+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -108,10 +108,10 @@
       "source_entity": "GEO_RU",
       "target_entity": "GEO_CN",
       "label": "RU - CN (Russian Federation - People's Republic of China)",
-      "p_baseline": 0.75,
+      "p_baseline": 0.85,
       "dynamic_delta": 0.0,
-      "p_net": 0.75,
-      "regime_state": "STRATEGIC_ALIGNMENT",
+      "p_net": 0.85,
+      "regime_state": "ALLIANCE",
       "primary_driver": "MBRIDGE_BILATERAL_SETTLEMENT",
       "friction_nodes": [
         "CENTRAL_ASIA",

@@ -1202,7 +1202,7 @@
       }
     },
     {
-      "id": "INST_TCMB_TR",
+      "id": "INST_CBRT_TR",
       "label": "Central Bank of the Republic of TÃ¼rkiye",
       "category": "ACTOR",
       "type": "Central Bank",
@@ -2106,6 +2106,126 @@
         "disruption_severity": "HIGH",
         "severity_weight": 0.7
       }
+    },
+    {
+      "id": "GOV_TREASURY_US",
+      "label": "U.S. Department of the Treasury",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_US",
+        "role": "Fiscal Authority & Debt Issuance"
+      }
+    },
+    {
+      "id": "GOV_STATE_US",
+      "label": "U.S. Department of State",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_US",
+        "role": "Foreign Policy & Diplomatic Alignment"
+      }
+    },
+    {
+      "id": "GOV_DOD_US",
+      "label": "U.S. Department of Defense",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_US",
+        "role": "Defense & Maritime Chokepoint Security"
+      }
+    },
+    {
+      "id": "GOV_TREASURY_TR",
+      "label": "Ministry of Treasury and Finance of Türkiye",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_TR",
+        "role": "Fiscal Authority & Debt Management"
+      }
+    },
+    {
+      "id": "GOV_MOD_TR",
+      "label": "Ministry of National Defence of Türkiye",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_TR",
+        "role": "Straits & Regional Security Projection"
+      }
+    },
+    {
+      "id": "GOV_MOF_CN",
+      "label": "Ministry of Finance of the People's Republic of China",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_CN",
+        "role": "Fiscal Policy & Sovereign Bonds"
+      }
+    },
+    {
+      "id": "GOV_MOFCOM_CN",
+      "label": "Ministry of Commerce of the People's Republic of China",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_CN",
+        "role": "Trade Policy & Strategic Export Controls"
+      }
+    },
+    {
+      "id": "GOV_MOF_RU",
+      "label": "Ministry of Finance of the Russian Federation",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_RU",
+        "role": "Fiscal & Sovereign Wealth Fund (NWF) Management"
+      }
+    },
+    {
+      "id": "GOV_MFA_RU",
+      "label": "Ministry of Foreign Affairs of the Russian Federation",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_RU",
+        "role": "Geopolitical Strategy & Multilateral Blocs"
+      }
+    },
+    {
+      "id": "GOV_MOF_DE",
+      "label": "Federal Ministry of Finance of Germany",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_DE",
+        "role": "European Fiscal Anchor & Debt Brake Enforcement"
+      }
+    },
+    {
+      "id": "GOV_HMT_GB",
+      "label": "His Majesty's Treasury",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_GB",
+        "role": "UK Fiscal Policy & Gilt Issuance"
+      }
+    },
+    {
+      "id": "GOV_MOF_JP",
+      "label": "Ministry of Finance of Japan",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_JP",
+        "role": "Currency Intervention & JGB Management"
+      }
     }
   ],
   "edges": [
@@ -2812,7 +2932,7 @@
       "role": "Monetary Authority"
     },
     {
-      "source": "INST_TCMB_TR",
+      "source": "INST_CBRT_TR",
       "target": "ACTOR_TR",
       "type": "PATRON_COUPLING",
       "coupling_factor": 1,
@@ -2872,7 +2992,7 @@
       "passes": "liquidity_steering_policy"
     },
     {
-      "source": "INST_TCMB_TR",
+      "source": "INST_CBRT_TR",
       "target": "MODEL_25.2",
       "type": "BRIDGES_TO_MODEL",
       "passes": "inflation_target_transmission"
@@ -3368,6 +3488,118 @@
       "source": "CORRIDOR_KALININGRAD_TRANSIT",
       "target": "CHOKE_SUWALKI_GAP",
       "type": "PROXIMATE_TO"
+    },
+    {
+      "source": "GOV_TREASURY_US",
+      "target": "ACTOR_US",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Fiscal & Debt Management Authority"
+    },
+    {
+      "source": "GOV_STATE_US",
+      "target": "ACTOR_US",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Diplomatic & Sanctions Enforcement"
+    },
+    {
+      "source": "GOV_DOD_US",
+      "target": "ACTOR_US",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Global Security & Chokepoint Defense"
+    },
+    {
+      "source": "GOV_TREASURY_TR",
+      "target": "ACTOR_TR",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Fiscal Authority"
+    },
+    {
+      "source": "GOV_MOD_TR",
+      "target": "ACTOR_TR",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Montreux Maritime Security"
+    },
+    {
+      "source": "GOV_MOF_CN",
+      "target": "ACTOR_CN",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Fiscal Authority"
+    },
+    {
+      "source": "GOV_MOF_RU",
+      "target": "ACTOR_RU",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Fiscal Authority & Sovereign Wealth Fund"
+    },
+    {
+      "source": "GOV_MOF_DE",
+      "target": "ACTOR_DE",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Fiscal Anchor"
+    },
+    {
+      "source": "GOV_HMT_GB",
+      "target": "ACTOR_GB",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Fiscal Authority"
+    },
+    {
+      "source": "GOV_MOF_JP",
+      "target": "ACTOR_JP",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Fiscal & FX Intervention Authority"
+    },
+    {
+      "source": "GOV_TREASURY_US",
+      "target": "IND_WTREGEN",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "TGA_CASH_BALANCE_MANAGEMENT"
+    },
+    {
+      "source": "GOV_TREASURY_US",
+      "target": "MODEL_5",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "tga_liquidity_drain_or_injection"
+    },
+    {
+      "source": "GOV_TREASURY_US",
+      "target": "MODEL_9",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "debt_sustainability_and_issuance_pressure"
+    },
+    {
+      "source": "GOV_MOF_DE",
+      "target": "MODEL_9",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "european_debt_brake_constraint"
+    },
+    {
+      "source": "GOV_MOFCOM_CN",
+      "target": "CHOKE_TAIWAN",
+      "type": "CONTROLS_LEVERAGE",
+      "description": "Trade restrictions and strategic critical mineral export controls."
+    },
+    {
+      "source": "GOV_DOD_US",
+      "target": "CHOKE_HORMUZ",
+      "type": "CONTROLS_LEVERAGE",
+      "description": "Maritime escort, free navigation enforcement, and deterrence."
+    },
+    {
+      "source": "GOV_MOD_TR",
+      "target": "BASIN_EAST_MED_DEEPSEA",
+      "type": "CONTROLS_LEVERAGE",
+      "description": "Naval patrol, EEZ protection, and maritime security projection."
     }
   ]
 }

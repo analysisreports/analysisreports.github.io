@@ -5,9 +5,9 @@
     "author": "Ersoy Toptaş",
     "version": "2026-Q4",
     "license": "CC BY-NC-ND 4.0",
-    "last_successful_sync": "2026-11-11T03:40:09Z",
-    "total_hubs": 1,
-    "total_dyads": 73,
+    "last_successful_sync": "2026-11-11T09:25:00Z",
+    "total_hubs": 2,
+    "total_dyads": 106,
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "multilateral_relationships": "https://analysisreports.github.io/llms-relationships.txt",
     "canonical_endpoint": "https://analysisreports.github.io/llms-country-relationships.txt"
@@ -2588,7 +2588,13 @@
             "GEO_AF",
             "ORG_IMF"
           ]
-        },
+        }
+      }
+    },
+    "GEO_RU": {
+      "hub_id": "GEO_RU",
+      "hub_name": "RUSSIAN FEDERATION",
+      "dyads": {
         "REL_GEO_US_GEO_MM": {
           "dyad_id": "REL_GEO_US_GEO_MM",
           "actor_1": "GEO_US",
@@ -2624,6 +2630,1158 @@
             "GEO_TH",
             "GEO_IN",
             "CHOKE_MALACCA"
+          ]
+        },
+        "REL_GEO_RU_GEO_BY": {
+          "dyad_id": "REL_GEO_RU_GEO_BY",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_BY",
+          "common_reference": "Russia ↔ Republic of Belarus",
+          "bilateral_stance": 0.95,
+          "stance_classification": "Union State Military Integration & Nuclear Forward Basing",
+          "strategic_category": "Existential Treaty Alliance & Western Buffer Shield",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Defense Umbrella & Nuclear Basing",
+              "description": "Permanent deployment of Russian tactical nuclear warheads, Iskander missile systems, and joint regional troop groupings."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Energy & Financial Subsidies",
+              "description": "Heavily discounted domestic natural gas pricing and continuous sovereign credit refinancing."
+            },
+            {
+              "leverage_holder": "GEO_BY",
+              "domain": "Strategic Transit Corridor",
+              "description": "Land transit link to Kaliningrad exclave (CORRIDOR_KALININGRAD_TRANSIT) and direct pressure flank on NATO eastern borders."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Suwalki Gap (CHOKE_SUWALKI_GAP) closure scenarios cutting off Baltic States from continental NATO.",
+            "Integrated air and missile defense command posturing against Polish and Baltic deployments."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_CSTO",
+            "CHOKE_SUWALKI_GAP",
+            "ZONE_KALININGRAD_EXCLAVE",
+            "CORRIDOR_KALININGRAD_TRANSIT"
+          ]
+        },
+        "REL_GEO_RU_GEO_CN": {
+          "dyad_id": "REL_GEO_RU_GEO_CN",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_CN",
+          "common_reference": "Russia ↔ People's Republic of China",
+          "bilateral_stance": 0.85,
+          "stance_classification": "Comprehensive Strategic Partnership & Anti-Hegemonic Axis",
+          "strategic_category": "Eurasian Geoeconomic & Multipolar Core Alignment",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_CN",
+              "domain": "Industrial Machinery & Dual-Use Technology",
+              "description": "Critical supplier of electronics, vehicle fleets, tooling, and consumer industrial inputs replacing Western trade."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Hydrocarbon & Commodity Security",
+              "description": "Long-term discounted pipeline crude (ESPO), natural gas (Power of Siberia), and enriched uranium exports."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Dedollarization & Non-Western Clearing",
+              "description": "Complete transition to Ruble and Yuan bilateral trade clearing through CIPS and SPFS networks."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Western secondary sanctions targeting Chinese financial institutions facilitating cross-border settlements.",
+            "Arctic commercial coordination along the Northern Sea Route (CORRIDOR_NORTHERN_SEA_ROUTE) and joint Pacific air patrols."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "BLOC_SCO",
+            "CORRIDOR_NORTHERN_SEA_ROUTE"
+          ]
+        },
+        "REL_GEO_RU_GEO_KP": {
+          "dyad_id": "REL_GEO_RU_GEO_KP",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_KP",
+          "common_reference": "Russia ↔ Democratic People's Republic of Korea",
+          "bilateral_stance": 0.85,
+          "stance_classification": "Comprehensive Strategic Partnership & Mutual Defense Pact",
+          "strategic_category": "Kinetic Armaments Supply & East Asian Nuclear Deterrence",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_KP",
+              "domain": "Massive Artillery & Missile Transfer",
+              "description": "Large-scale delivery of heavy artillery ammunition and ballistic missile systems for frontline combat."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Space Launch & Defense Technology",
+              "description": "Technical assistance for satellite reconnaissance, nuclear submarine engineering, and refined petroleum shipments."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Mutual Defense Clause",
+              "description": "Binding Article 4 commitment providing immediate military assistance in the event of external armed aggression."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Direct deployment of North Korean military engineering and combat personnel in western Russian border sectors.",
+            "Escalating deterrence posturing on the Korean Peninsula triggering reciprocal defense obligations."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_SCO",
+            "GEO_KR",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_RU_GEO_IR": {
+          "dyad_id": "REL_GEO_RU_GEO_IR",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_IR",
+          "common_reference": "Russia ↔ Islamic Republic of Iran",
+          "bilateral_stance": 0.75,
+          "stance_classification": "Strategic Defense Industrial & Logistics Axis",
+          "strategic_category": "Drone Technology Integration & INSTC Chokepoint Bypassing",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_IR",
+              "domain": "Asymmetric Strike Platforms",
+              "description": "Transfer of Shahed-type loitering munitions, ballistic missile components, and licensed domestic manufacturing facilities."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Advanced Aerospace & Air Defense",
+              "description": "Delivery of modern fighter aircraft, advanced radar units, and technical assistance on the Bushehr nuclear complex."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "INSTC Trade Corridor",
+              "description": "Multimodal trade integration across the Caspian Sea (BASIN_CASPIAN_SEA) and Iranian railways bypassing European waters."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Escalation with Israel and Western strikes on Iranian defense infrastructure impacting joint munitions supply chains.",
+            "Naval and maritime security exercises in the Persian Gulf and Caspian Sea basin."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "BLOC_SCO",
+            "CORRIDOR_INSTC",
+            "BASIN_CASPIAN_SEA"
+          ]
+        },
+        "REL_GEO_RU_GEO_SY": {
+          "dyad_id": "REL_GEO_RU_GEO_SY",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_SY",
+          "common_reference": "Russia ↔ Syrian Arab Republic",
+          "bilateral_stance": 0.8,
+          "stance_classification": "Warm-Water Mediterranean Naval & Air Base Sovereignty",
+          "strategic_category": "Eastern Mediterranean Forward Security Bastion",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Military Presence & Air Dominance",
+              "description": "Permanent military garrison at Hmeymim Air Base and naval base at Tartus maintaining regime stability."
+            },
+            {
+              "leverage_holder": "GEO_SY",
+              "domain": "Strategic Maritime Outpost",
+              "description": "Sovereign basing concessions granting Russia its sole military logistics hub on the Mediterranean Sea (BASIN_EAST_MED_DEEPSEA)."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Grain & Energy Subsidies",
+              "description": "Maritime grain shipments and hydrocarbon supplies mitigating chronic economic vulnerability."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Israeli airstrikes on Iranian proxy logistics in proximity to Russian-manned Syrian military facilities.",
+            "Russian-Turkish deconfliction protocols across northern Syrian border provinces."
+          ],
+          "multilateral_cross_references": [
+            "BASIN_EAST_MED_DEEPSEA",
+            "GEO_TR",
+            "GEO_IL"
+          ]
+        },
+        "REL_GEO_RU_GEO_KZ": {
+          "dyad_id": "REL_GEO_RU_GEO_KZ",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_KZ",
+          "common_reference": "Russia ↔ Republic of Kazakhstan",
+          "bilateral_stance": 0.65,
+          "stance_classification": "CSTO Collective Security & Central Asian Energy Transit Axis",
+          "strategic_category": "Eurasian Economic Union & Caspian Oil Transit Conduit",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Caspian Pipeline Chokepoint",
+              "description": "Control over the Caspian Pipeline Consortium (CPC) marine terminal at Novorossiysk carrying the majority of Kazakh crude."
+            },
+            {
+              "leverage_holder": "GEO_KZ",
+              "domain": "Geoeconomic Transit & Sanctions Buffer",
+              "description": "Critical trade bridge linking Russia with Chinese Belt and Road infrastructure and Central Asian markets."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Baikonur & Border Security",
+              "description": "Shared 7,500 km land frontier, Russian lease of Baikonur Cosmodrome, and joint CSTO rapid deployment protocols."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Temporary operational interruptions at the CPC crude terminal impacting international energy consortiums.",
+            "Diplomatic balancing between Russian security guarantees and Western secondary sanctions compliance."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_CSTO",
+            "BLOC_SCO",
+            "BASIN_CASPIAN_SEA"
+          ]
+        },
+        "REL_GEO_RU_GEO_AM": {
+          "dyad_id": "REL_GEO_RU_GEO_AM",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_AM",
+          "common_reference": "Russia ↔ Republic of Armenia",
+          "bilateral_stance": 0.4,
+          "stance_classification": "Strained CSTO Dependency & South Caucasus Disengagement",
+          "strategic_category": "Historical Security Patronage vs Western Strategic Pivot",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Energy Grid Monopoly & 102nd Military Base",
+              "description": "Russian state ownership of the natural gas distribution network and garrison in Gyumri."
+            },
+            {
+              "leverage_holder": "GEO_AM",
+              "domain": "Western Diplomatic Realignment",
+              "description": "Armenian freeze on CSTO participation, EU monitoring mission deployment, and joint Western military drills."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Border Guard Controls",
+              "description": "Russian FSB border guards stationed along frontiers with Iran and Turkey."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Transit control modalities over the Zangezur Corridor (CORRIDOR_ZANGEZUR) between Azerbaijan and Nakhchivan.",
+            "Potential full withdrawal of Russian military base amidst accelerating Armenian integration with European institutions."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_CSTO",
+            "CORRIDOR_ZANGEZUR",
+            "GEO_AZ",
+            "GEO_TR"
+          ]
+        },
+        "REL_GEO_RU_GEO_TR": {
+          "dyad_id": "REL_GEO_RU_GEO_TR",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_TR",
+          "common_reference": "Russia ↔ Republic of Türkiye",
+          "bilateral_stance": 0.35,
+          "stance_classification": "Pragmatic Multivector Partnership & Energy Interdependence",
+          "strategic_category": "Black Sea Montreux Equilibrium & Autonomous Strategic Bridge",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_TR",
+              "domain": "Montreux Convention & Straits Hegemony",
+              "description": "Complete Turkish control over Russian naval transit between the Black Sea and Mediterranean (CHOKE_TURKISH_STRAITS)."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Natural Gas Transit & Nuclear Infrastructure",
+              "description": "Akkuyu Nuclear Power Plant construction and gas flows via TurkStream and Blue Stream."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Bilateral Trade & Tourism",
+              "description": "Massive trade volumes in agricultural produce, metallurgy, construction, and Russian tourist flows."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Enforcement of Montreux restrictions preventing naval reinforcements into the Black Sea theater.",
+            "Conflicting proxy interests in Syria, Libya, and the South Caucasus mediated via transactional diplomacy."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_TURKISH_STRAITS",
+            "CORRIDOR_BLACK_SEA",
+            "BLOC_NATO"
+          ]
+        },
+        "REL_GEO_RU_GEO_IN": {
+          "dyad_id": "REL_GEO_RU_GEO_IN",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_IN",
+          "common_reference": "Russia ↔ Republic of India",
+          "bilateral_stance": 0.6,
+          "stance_classification": "Special & Privileged Strategic Partnership & Energy Absorbance",
+          "strategic_category": "Multipolar Autonomy & Defense-Energy Interlocking Axis",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_IN",
+              "domain": "Massive Crude Oil Absorption",
+              "description": "India acts as a primary importer of Russian seaborne Urals crude, refining and re-exporting products globally."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Defense Hardware & Technology Transfer",
+              "description": "Historical supply of major defense platforms (S-400, Su-30MKI, BrahMos joint venture, leased nuclear submarines)."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "INSTC Corridor Logistics",
+              "description": "Development of the multimodal transit corridor linking Mumbai through Iran to Saint Petersburg."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Currency settlement frictions regarding trapped Rupee balances in Indian accounts.",
+            "Balancing Indian ties with the Quad against Russian strategic coordination with China."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "BLOC_SCO",
+            "CORRIDOR_INSTC"
+          ]
+        },
+        "REL_GEO_RU_GEO_SA": {
+          "dyad_id": "REL_GEO_RU_GEO_SA",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_SA",
+          "common_reference": "Russia ↔ Kingdom of Saudi Arabia",
+          "bilateral_stance": 0.55,
+          "stance_classification": "OPEC+ Crude Production Quotas & Global Energy Governance",
+          "strategic_category": "Bilateral Energy Cartel Hegemony & Hydrocarbon Price Stability",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "OPEC+ Output Calibration",
+              "description": "Coordinated crude oil production cuts to defend fiscal breakeven prices and prevent global crude surpluses."
+            },
+            {
+              "leverage_holder": "GEO_SA",
+              "domain": "Swing Producer Dominance",
+              "description": "Capacity to flood global markets with low-cost crude, serving as an ultimate structural pricing leverage card."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Geopolitical Counter-Weight",
+              "description": "Alternative security and technological dialogue outside traditional Western security guarantees."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Adherence to OPEC+ individual production quotas amidst Russian crude output adjustments.",
+            "Coordination on non-USD crude oil pricing frameworks within the expanded BRICS ecosystem."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_OPEC",
+            "BLOC_BRICS",
+            "CHOKE_HORMUZ"
+          ]
+        },
+        "REL_GEO_RU_GEO_AE": {
+          "dyad_id": "REL_GEO_RU_GEO_AE",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_AE",
+          "common_reference": "Russia ↔ United Arab Emirates",
+          "bilateral_stance": 0.5,
+          "stance_classification": "Global Financial Clearing, Capital Hub & Commodity Transit",
+          "strategic_category": "Neutral Financial Haven & Cross-Border Logistics Node",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_AE",
+              "domain": "Sovereign Financial & Re-export Hub",
+              "description": "Dubai acts as a premier global hub for Russian corporate operations, gold trading, and trade finance."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Energy Cartel Alignment & Tourism",
+              "description": "Coordinated policy under OPEC+ frameworks and massive Russian high-net-worth real estate capital inflows."
+            },
+            {
+              "leverage_holder": "GEO_AE",
+              "domain": "Western Sanctions Pressure",
+              "description": "Vulnerability to Western financial scrutiny regarding secondary sanctions enforcement on dual-use re-exports."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Regulatory tightening on banking compliance and foreign exchange clearing operations in the Gulf.",
+            "Coordination of maritime oil tanker fleets and international trade credit facilities."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_OPEC",
+            "BLOC_BRICS",
+            "CHOKE_HORMUZ"
+          ]
+        },
+        "REL_GEO_RU_GEO_EG": {
+          "dyad_id": "REL_GEO_RU_GEO_EG",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_EG",
+          "common_reference": "Russia ↔ Arab Republic of Egypt",
+          "bilateral_stance": 0.45,
+          "stance_classification": "Nuclear Energy Infrastructure & Food Security Interdependence",
+          "strategic_category": "North African Megaproject Hub & Wheat Supply Chain",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Grain Supply & El Dabaa Nuclear Plant",
+              "description": "Rosatom construction of Egypt's first commercial nuclear power facility and critical wheat export supply."
+            },
+            {
+              "leverage_holder": "GEO_EG",
+              "domain": "Suez Canal Maritime Access",
+              "description": "Control over the Suez Canal (CHOKE_SUEZ) providing transit for Russian tanker traffic between the Black Sea and Asia."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Russian Industrial Zone",
+              "description": "Planned special manufacturing zone in the Suez Canal Economic Zone."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Red Sea shipping security disruptions impacting Russian maritime trade routes.",
+            "Egyptian currency shortages affecting import financing for essential grains and engineering capital."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "CHOKE_SUEZ",
+            "BASIN_EAST_MED_DEEPSEA"
+          ]
+        },
+        "REL_GEO_RU_GEO_RS": {
+          "dyad_id": "REL_GEO_RU_GEO_RS",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_RS",
+          "common_reference": "Russia ↔ Republic of Serbia",
+          "bilateral_stance": 0.6,
+          "stance_classification": "Pan-Slavic Strategic Alignment & Balkan Energy Corridor",
+          "strategic_category": "Non-Sanctioning European Island & Natural Gas Transit",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Natural Gas Supply & Diplomatic Veto",
+              "description": "Subsidized gas deliveries via Balkan Stream and Russian UN Security Council veto backing on Kosovo."
+            },
+            {
+              "leverage_holder": "GEO_RS",
+              "domain": "Geostrategic Neutrality",
+              "description": "Sole candidate country in Southeast Europe refusing to align with EU sanctions regimes."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Cultural & Historical Kinship",
+              "description": "Deep bilateral affinity and security coordination between intelligence and defense agencies."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Northern Kosovo security flare-ups and potential hybrid conflict escalation in the Western Balkans.",
+            "European Union conditionality demanding full foreign policy alignment as an accession prerequisite."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_EU",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_RU_GEO_VN": {
+          "dyad_id": "REL_GEO_RU_GEO_VN",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_VN",
+          "common_reference": "Russia ↔ Socialist Republic of Vietnam",
+          "bilateral_stance": 0.5,
+          "stance_classification": "Historical Defense Logistics & Offshore Energy Concessions",
+          "strategic_category": "Southeast Asian Non-Aligned Anchor & Maritime Energy Cooperation",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Military Hardware Legacy",
+              "description": "Historical inventory of Vietnamese naval, air, and ground systems reliant on Russian spare parts and maintenance."
+            },
+            {
+              "leverage_holder": "GEO_VN",
+              "domain": "South China Sea Energy Blocks",
+              "description": "Joint exploration ventures (Vietsovpetro) in Vietnam's offshore exclusive economic zone."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Independent Foreign Policy",
+              "description": "Vietnamese 'bamboo diplomacy' maintaining cordial relations across Moscow, Washington, and Beijing."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Chinese maritime coast guard pressure on joint Russian-Vietnamese offshore drilling rigs.",
+            "Payment clearance hurdles under US secondary sanctions regimes (CAATSA)."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_SCO",
+            "GEO_CN",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_RU_GEO_BR": {
+          "dyad_id": "REL_GEO_RU_GEO_BR",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_BR",
+          "common_reference": "Russia ↔ Federative Republic of Brazil",
+          "bilateral_stance": 0.45,
+          "stance_classification": "BRICS Agricultural Fertilizer Interdependence & Agribusiness Axis",
+          "strategic_category": "Global Food Security & Southern Hemisphere Multipolar Diplomacy",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Mineral Fertilizer Supply",
+              "description": "Vital supplier of potassium and nitrogen fertilizers sustaining Brazilian agro-industrial soybean and corn output."
+            },
+            {
+              "leverage_holder": "GEO_BR",
+              "domain": "Diplomatic Neutrality in BRICS",
+              "description": "Brazil's diplomatic resistance to economic isolation of Russia and advocacy for non-USD trade mechanisms."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Food-Energy Nexus",
+              "description": "Complementary resource-rich economies coordinating multilateral positions in the Global South."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Maritime logistics disruptions affecting fertilizer cargo deliveries to South American ports.",
+            "Debates over local currency settlement mechanisms and BRICS common payment architectures."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_RU_GEO_ZA": {
+          "dyad_id": "REL_GEO_RU_GEO_ZA",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_ZA",
+          "common_reference": "Russia ↔ Republic of South Africa",
+          "bilateral_stance": 0.45,
+          "stance_classification": "BRICS Diplomatic Solidarity & Strategic Mineral Cooperation",
+          "strategic_category": "African Multilateral Anchor & Anti-Colonial Historical Legacy",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Critical Mineral Dominance",
+              "description": "Joint dominance in platinum group metals (PGM), vanadium, and manganese markets."
+            },
+            {
+              "leverage_holder": "GEO_ZA",
+              "domain": "Continental Diplomatic Platform",
+              "description": "South African diplomatic leadership resisting Western pressure for sanctions alignment across the African Union."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Nuclear & Security Cooperation",
+              "description": "Rosatom engagement and joint trilateral naval exercises (Exercise Mosi)."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Domestic judicial and political polarization in South Africa regarding International Criminal Court obligations.",
+            "Western diplomatic and trade pressure threatening South Africa's AGOA trade preferences."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_BRICS",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_RU_GEO_AZ": {
+          "dyad_id": "REL_GEO_RU_GEO_AZ",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_AZ",
+          "common_reference": "Russia ↔ Republic of Azerbaijan",
+          "bilateral_stance": 0.4,
+          "stance_classification": "Declaration on Allied Interaction & INSTC Rail Transit Hub",
+          "strategic_category": "Caspian Maritime Equilibrium & South Caucasus Power Balance",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_AZ",
+              "domain": "Western INSTC Transit Gateway",
+              "description": "Azerbaijan controls the crucial rail and highway corridor connecting Russia to Iran and the Persian Gulf."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Regional Power Broker",
+              "description": "Historical mediation and troop presence post-2020, balanced against Baku's complete restoration of sovereignty in Karabakh."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Caspian Security & Energy Coordination",
+              "description": "Shared commitment to preventing foreign military naval presence in the Caspian basin."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Construction and sovereignty arrangements along the Zangezur Corridor (CORRIDOR_ZANGEZUR).",
+            "Balancing relations between Azerbaijan's alliance with Turkey and Russia's regional security doctrine."
+          ],
+          "multilateral_cross_references": [
+            "BASIN_CASPIAN_SEA",
+            "CORRIDOR_INSTC",
+            "CORRIDOR_ZANGEZUR",
+            "GEO_TR"
+          ]
+        },
+        "REL_GEO_RU_GEO_UZ": {
+          "dyad_id": "REL_GEO_RU_GEO_UZ",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_UZ",
+          "common_reference": "Russia ↔ Republic of Uzbekistan",
+          "bilateral_stance": 0.55,
+          "stance_classification": "Eurasian Gas Reverse Flow & Labor Remittance Corridor",
+          "strategic_category": "Central Asian Demographic & Industrial Integration",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Natural Gas Reverse Flows & Nuclear Projects",
+              "description": "Supply of Russian gas to meet domestic Uzbek shortfalls and planned small modular reactor (SMR) nuclear plants."
+            },
+            {
+              "leverage_holder": "GEO_UZ",
+              "domain": "Critical Labor Force & Remittance Conduit",
+              "description": "Millions of Uzbek citizens working in Russia supporting domestic labor demand and generating vital home remittances."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Non-Bloc Geopolitical Posture",
+              "description": "Uzbekistan engages deeply in CIS and SCO while maintaining strict statutory non-alignment with CSTO."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Energy security shocks during severe winter demand peaks in Central Asian cities.",
+            "Border stability and counter-terror coordination regarding northern Afghan border security."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_SCO",
+            "GEO_AF"
+          ]
+        },
+        "REL_GEO_RU_GEO_MN": {
+          "dyad_id": "REL_GEO_RU_GEO_MN",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_MN",
+          "common_reference": "Russia ↔ Mongolia",
+          "bilateral_stance": 0.5,
+          "stance_classification": "Power of Siberia 2 Transit Conduit & Strategic Buffer",
+          "strategic_category": "Landlocked Buffer State & Energy Transit Corridor",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Fuel & Power Interconnection",
+              "description": "Total Mongolian reliance on Russian refined fuel imports and cross-border electricity grid supplies."
+            },
+            {
+              "leverage_holder": "GEO_MN",
+              "domain": "Natural Gas Pipeline Right-of-Way",
+              "description": "Geographic host of the planned 'Power of Siberia 2' (Soyuz Vostok) gas pipeline to China."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Third-Neighbor Policy",
+              "description": "Mongolian diplomatic pursuit of ties with the West while maintaining institutional harmony with its two giant neighbors."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Delays in commercial negotiations with Beijing regarding pipeline transit tariffs and construction timelines.",
+            "Geopolitical balancing between ICC statutory commitments and practical diplomatic necessity."
+          ],
+          "multilateral_cross_references": [
+            "GEO_CN",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_RU_GEO_UA": {
+          "dyad_id": "REL_GEO_RU_GEO_UA",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_UA",
+          "common_reference": "Russia ↔ Ukraine",
+          "bilateral_stance": -0.95,
+          "stance_classification": "Active Kinetic Warfare & Total Territorial Confrontation",
+          "strategic_category": "High-Intensity Conventional War & Existential Geopolitical Rupture",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Industrial Military Mass & Missile Strikes",
+              "description": "Massive conventional firepower, deep-strike cruise/ballistic missile barrages, and air superiority along frontline axes."
+            },
+            {
+              "leverage_holder": "GEO_UA",
+              "domain": "Asymmetric Drone Strikes & Western Support",
+              "description": "Long-range indigenous drone strikes on Russian oil refineries and deep ammunition depots backed by NATO intelligence."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Total War Mobilization",
+              "description": "Zero-sum geopolitical conflict with complete severing of diplomatic, transit, and trade mechanisms."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Territorial control along Donbas, Zaporizhzhia, and Kherson frontlines.",
+            "Security of the Zaporizhzhia Nuclear Power Plant and Black Sea maritime drone operations.",
+            "Ukrainian long-range strikes against strategic Russian defense infrastructure."
+          ],
+          "multilateral_cross_references": [
+            "CORRIDOR_BLACK_SEA",
+            "BLOC_NATO",
+            "BLOC_EU"
+          ]
+        },
+        "REL_GEO_RU_GEO_US": {
+          "dyad_id": "REL_GEO_RU_GEO_US",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_US",
+          "common_reference": "Russia ↔ United States of America",
+          "bilateral_stance": -0.85,
+          "stance_classification": "Direct Strategic & Nuclear Proxy Conflict",
+          "strategic_category": "Nuclear Deterrence & Post-Cold War Containment (Canonical Mirror: REL_GEO_US_GEO_RU)",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Strategic Nuclear Parity",
+              "description": "Symmetrical mutual assured destruction (MAD) capacity under residual arms control frameworks."
+            },
+            {
+              "leverage_holder": "GEO_US",
+              "domain": "Extraterritorial Sanctions & Tech Blockade",
+              "description": "Comprehensive freeze of Russian sovereign reserves and global secondary banking sanctions."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Escalation Dominance & Critical Materials",
+              "description": "Asymmetric deterrence posture, enriched uranium, titanium, and space collaboration levers."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Conventional proxy conflict in Eastern Europe and risk of direct NATO-Russia escalation.",
+            "Intercepts between strategic bombers and reconnaissance platforms over international airspace."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "CHOKE_BERING",
+            "CORRIDOR_NORTHERN_SEA_ROUTE"
+          ]
+        },
+        "REL_GEO_RU_GEO_GB": {
+          "dyad_id": "REL_GEO_RU_GEO_GB",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_GB",
+          "common_reference": "Russia ↔ United Kingdom",
+          "bilateral_stance": -0.8,
+          "stance_classification": "Aggressive Defense Support & Long-Range Strike Enabler",
+          "strategic_category": "Core Western Hawk & Intelligence War Theater",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_GB",
+              "domain": "Deep Strike Capabilities & Maritime Training",
+              "description": "Supply of Storm Shadow air-launched cruise missiles, intelligence targeting, and naval commando training."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Asymmetric Maritime Counter-Leverage",
+              "description": "Threat of undersea infrastructure interdiction and nuclear posturing targeting the British Isles."
+            },
+            {
+              "leverage_holder": "GEO_GB",
+              "domain": "Financial Sequestration",
+              "description": "Legal and financial mechanisms aimed at seizing immobilized Russian state assets in London."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Deployment of British-supplied precision weapons against targets within internationally recognized Russian territory.",
+            "Air and naval reconnaissance missions in the Black Sea and North Atlantic."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "CHOKE_GIUK_GAP"
+          ]
+        },
+        "REL_GEO_RU_GEO_DE": {
+          "dyad_id": "REL_GEO_RU_GEO_DE",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_DE",
+          "common_reference": "Russia ↔ Federal Republic of Germany",
+          "bilateral_stance": -0.7,
+          "stance_classification": "Post-Nord Stream Rupture & Zeitenwende Rearmament",
+          "strategic_category": "European Geoeconomic Severance & Heavy Armor Supplier",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_DE",
+              "domain": "Heavy Armor & Financial Underwriting",
+              "description": "Supply of Leopard 2 main battle tanks, IRIS-T air defense systems, and major financial aid to Ukraine."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Residual Industrial Pressure",
+              "description": "Long-term energy price shocks impacting energy-intensive German chemical and manufacturing conglomerates."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Total Energy Disengagement",
+              "description": "Complete termination of direct pipeline gas flows following the destruction of Nord Stream."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Permanent stationing of a German brigade in Lithuania on the border with Belarus.",
+            "Legal debates regarding the confiscation and utilization of frozen Russian sovereign assets."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_EU",
+            "BLOC_NATO",
+            "CHOKE_DANISH_STRAITS"
+          ]
+        },
+        "REL_GEO_RU_GEO_FR": {
+          "dyad_id": "REL_GEO_RU_GEO_FR",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_FR",
+          "common_reference": "Russia ↔ French Republic",
+          "bilateral_stance": -0.65,
+          "stance_classification": "African Sphere of Influence Clashes & Strategic Ambiguity",
+          "strategic_category": "European Strategic Autonomy Contender & Sahel Rivalry",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Sahel Expulsion of French Influence",
+              "description": "Russian military security partnerships (Africa Corps) displacing French military missions in Mali, Niger, and Burkina Faso."
+            },
+            {
+              "leverage_holder": "GEO_FR",
+              "domain": "SCALP-EG Cruise Missiles & Strategic Ambiguity",
+              "description": "Supply of deep-strike cruise missiles and high-level rhetoric contemplating Western ground deployments."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Nuclear Deterrence Posturing",
+              "description": "Direct dialogue and mutual nuclear signaling between European nuclear powers."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Potential introduction of French specialized trainers or combat engineering units in Ukraine.",
+            "Hybrid information and proxy operations across Francophone West Africa."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_EU",
+            "BLOC_NATO",
+            "BASIN_EAST_MED_DEEPSEA"
+          ]
+        },
+        "REL_GEO_RU_GEO_PL": {
+          "dyad_id": "REL_GEO_RU_GEO_PL",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_PL",
+          "common_reference": "Russia ↔ Republic of Poland",
+          "bilateral_stance": -0.8,
+          "stance_classification": "Frontline NATO Bastion & Suwalki Gap Military Fortification",
+          "strategic_category": "NATO Eastern Flank Logistics Hub & Historic Strategic Adversary",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_PL",
+              "domain": "Primary Logistics Hub",
+              "description": "Rzeszow-Jasionka logistics hub handling the vast majority of Western heavy arms transfers into Ukraine."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Kaliningrad Missile Bastion",
+              "description": "Heavy concentration of nuclear-capable Iskander missiles and naval assets flanking northeastern Poland (ZONE_KALININGRAD_EXCLAVE)."
+            },
+            {
+              "leverage_holder": "GEO_PL",
+              "domain": "Rapid Conventional Rearmament",
+              "description": "Massive procurement of modern armor, artillery, and Patriot missile defense systems."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Suwalki Gap (CHOKE_SUWALKI_GAP) border tensions and electronic warfare jamming over the Baltic Sea.",
+            "Cross-border missile and drone incursions during Russian deep-strike operations in western Ukraine."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_SUWALKI_GAP",
+            "ZONE_KALININGRAD_EXCLAVE",
+            "BLOC_NATO"
+          ]
+        },
+        "REL_GEO_RU_GEO_GE": {
+          "dyad_id": "REL_GEO_RU_GEO_GE",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_GE",
+          "common_reference": "Russia ↔ Georgia",
+          "bilateral_stance": -0.45,
+          "stance_classification": "Frozen Conflict Boundaries vs Pragmatic Trade Normalization",
+          "strategic_category": "South Caucasus Buffer Zone & Disputed Territorial Sovereignty",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Military Basing in Breakaway Regions",
+              "description": "Russian military bases stationed in Abkhazia and South Ossetia within close proximity to Tbilisi."
+            },
+            {
+              "leverage_holder": "GEO_GE",
+              "domain": "South Caucasus Transit & Sanctions Bypassing",
+              "description": "Critical highway and border transit corridor for Russian cargo vehicles via the Upper Lars checkpoint."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Economic & Tourism Leverage",
+              "description": "Major market for Georgian wine, mineral water, and substantial Russian tourist capital inflows."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Creeping borderization along the South Ossetian administrative boundary line.",
+            "Domestic Georgian legislative battles balancing pragmatic Russian normalization against Euro-Atlantic constitutional aspirations."
+          ],
+          "multilateral_cross_references": [
+            "GEO_TR",
+            "GEO_AM",
+            "GEO_AZ"
+          ]
+        },
+        "REL_GEO_RU_GEO_JP": {
+          "dyad_id": "REL_GEO_RU_GEO_JP",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_JP",
+          "common_reference": "Russia ↔ Japan",
+          "bilateral_stance": -0.6,
+          "stance_classification": "Kuril Islands Territorial Dispute & Pacific Air-Naval Intercepts",
+          "strategic_category": "Far Eastern Maritime Containment & G7 Sanction Alignment",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_JP",
+              "domain": "G7 Technology Sanctions & Asset Freezes",
+              "description": "Full alignment with Western export controls and freezing of Russian financial assets."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Kuril Bastion & Sakhalin LNG",
+              "description": "Complete suspension of World War II peace treaty negotiations and control over Sakhalin-2 energy stakes vital to Japan."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Pacific Military Demonstrations",
+              "description": "Joint Sino-Russian naval circumnavigations and air patrols around Japanese home islands."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Sovereignty claims over the Southern Kurils (Northern Territories).",
+            "Japanese naval surveillance of Russian Pacific Fleet movements through La Perouse and Tsugaru straits."
+          ],
+          "multilateral_cross_references": [
+            "GEO_US",
+            "GEO_CN",
+            "CHOKE_BERING"
+          ]
+        },
+        "REL_GEO_RU_GEO_FI": {
+          "dyad_id": "REL_GEO_RU_GEO_FI",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_FI",
+          "common_reference": "Russia ↔ Republic of Finland",
+          "bilateral_stance": -0.75,
+          "stance_classification": "1,340 km NATO Frontier & Arctic-Baltic Security Fortification",
+          "strategic_category": "Direct NATO Border Expansion & Complete Border Closure",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_FI",
+              "domain": "Extensive Direct NATO Border",
+              "description": "1,340 km militarized frontier placing NATO surveillance and strike infrastructure within direct range of Saint Petersburg."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Electronic Warfare & Hybrid Migration",
+              "description": "Widespread GPS jamming affecting commercial aviation across the Gulf of Finland and weaponized migration pressure."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Complete Land Border Severance",
+              "description": "Total closure of all passenger vehicle border checkpoints."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Re-establishment of the Leningrad Military District and forward deployment of Russian missile units.",
+            "Protection of critical subsea power and telecom cables in the Gulf of Finland."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_NATO",
+            "CHOKE_DANISH_STRAITS"
+          ]
+        },
+        "REL_GEO_RU_GEO_MD": {
+          "dyad_id": "REL_GEO_RU_GEO_MD",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_MD",
+          "common_reference": "Russia ↔ Republic of Moldova",
+          "bilateral_stance": -0.55,
+          "stance_classification": "Transnistria Garrison & Pro-EU Sovereignty Struggle",
+          "strategic_category": "Eastern European Buffer & Energy Asymmetry Theater",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Transnistria Peacekeeping Contingent & Cobasna Depot",
+              "description": "Russian military garrison stationed in breakaway Transnistria guarding massive Soviet-era ammunition reserves."
+            },
+            {
+              "leverage_holder": "GEO_MD",
+              "domain": "Pro-European Political Alignment",
+              "description": "Active pursuit of EU accession and gradual diversification away from Russian gas dependency."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Hybrid Political Influence",
+              "description": "Support for pro-Russian political factions in Gagauzia and Transnistrian authorities."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Security incidents or blockades involving the unrecognized Transnistrian administration.",
+            "Overflight of Russian cruise missiles through Moldovan airspace during strikes on southern Ukrainian ports."
+          ],
+          "multilateral_cross_references": [
+            "BLOC_EU",
+            "GEO_UA",
+            "GEO_RO"
+          ]
+        },
+        "REL_GEO_RU_GEO_LY": {
+          "dyad_id": "REL_GEO_RU_GEO_LY",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_LY",
+          "common_reference": "Russia ↔ State of Libya",
+          "bilateral_stance": 0.25,
+          "stance_classification": "Africa Corps Basing & Eastern Maritime Logistics Outpost",
+          "strategic_category": "North African Power Projection & Mediterranean Transit Node",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Military Patronage & Air Defense",
+              "description": "Deployment of Russian Africa Corps personnel, air defense systems, and fighter aircraft supporting eastern authorities (LNA)."
+            },
+            {
+              "leverage_holder": "GEO_LY",
+              "domain": "Deepwater Maritime Access",
+              "description": "Sovereign access to Tobruk and Sirte ports providing potential naval replenishment hubs in the central Mediterranean."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Trans-Sahelian Logistics Pipeline",
+              "description": "Libyan airbases serve as essential transit nodes for Russian operations in Mali, Burkina Faso, and Niger."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Expansion of Russian naval facilities on the central Mediterranean coast alarming Southern European NATO states.",
+            "Periodic clashes over control of central oil crescent export terminals."
+          ],
+          "multilateral_cross_references": [
+            "BASIN_EAST_MED_DEEPSEA",
+            "GEO_TR",
+            "GEO_EG"
+          ]
+        },
+        "REL_GEO_RU_GEO_SD": {
+          "dyad_id": "REL_GEO_RU_GEO_SD",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_SD",
+          "common_reference": "Russia ↔ Republic of the Sudan",
+          "bilateral_stance": 0.2,
+          "stance_classification": "Red Sea Port Sudan Logistics Pact & Gold Concessions",
+          "strategic_category": "Red Sea Naval Basing Ambition & Strategic Resource Extraction",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Arms & Ammunition Supply",
+              "description": "Supply of military hardware and technical maintenance to Sudanese Armed Forces (SAF) in ongoing civil conflict."
+            },
+            {
+              "leverage_holder": "GEO_SD",
+              "domain": "Red Sea Naval Outpost Agreement",
+              "description": "Framework agreement for a Russian naval logistics base at Port Sudan accommodating nuclear-powered vessels."
+            },
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Gold Extraction & Logistics Networks",
+              "description": "Access to artisanal and industrial gold mining concessions providing foreign currency reserves."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Western and regional diplomatic pressure on Port Sudan authorities to stall the naval base ratification.",
+            "Complex civil war dynamics involving regional sponsors across the Red Sea littoral."
+          ],
+          "multilateral_cross_references": [
+            "CHOKE_BAB_EL_MANDEB",
+            "GEO_SA",
+            "GEO_EG"
+          ]
+        },
+        "REL_GEO_RU_GEO_VE": {
+          "dyad_id": "REL_GEO_RU_GEO_VE",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_VE",
+          "common_reference": "Russia ↔ Bolivarian Republic of Venezuela",
+          "bilateral_stance": 0.7,
+          "stance_classification": "Caribbean Strategic Outpost & Petrochemical Cooperation",
+          "strategic_category": "Latin American Anti-Hegemonic Outpost & Defense Tech Hub",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Military Equipment & Radar Support",
+              "description": "Maintenance of Venezuelan Sukhoi Su-30MK2 fighters, S-300VM air defense systems, and intelligence sharing."
+            },
+            {
+              "leverage_holder": "GEO_VE",
+              "domain": "Caribbean Military Access",
+              "description": "Port calls for Russian naval task groups and strategic bombers within close proximity to US territorial waters."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Heavy Crude Extraction Joint Ventures",
+              "description": "Roszarubezhneft joint ventures in the Orinoco Petroleum Belt (ZONE_ORINOCO_PETROLEUM)."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Escalation of Venezuelan territorial claims over the Essequibo region (BASIN_ESSEQUIBO).",
+            "US naval deployments and sanctions enforcement in the Caribbean Sea."
+          ],
+          "multilateral_cross_references": [
+            "ZONE_ORINOCO_PETROLEUM",
+            "BASIN_ESSEQUIBO",
+            "GEO_US"
+          ]
+        },
+        "REL_GEO_RU_GEO_CU": {
+          "dyad_id": "REL_GEO_RU_GEO_CU",
+          "actor_1": "GEO_RU",
+          "actor_2": "GEO_CU",
+          "common_reference": "Russia ↔ Republic of Cuba",
+          "bilateral_stance": 0.65,
+          "stance_classification": "Atlantic Forward Outpost & Signals Intelligence Legacy",
+          "strategic_category": "Historic Anti-Imperialist Bastion & Maritime Replenishment",
+          "asymmetric_power_vectors": [
+            {
+              "leverage_holder": "GEO_RU",
+              "domain": "Fuel & Food Shipments",
+              "description": "Critical deliveries of crude oil, diesel, and agricultural grains to ease acute domestic economic distress."
+            },
+            {
+              "leverage_holder": "GEO_CU",
+              "domain": "Geographic Proximity to US",
+              "description": "Strategic island geography allowing naval port visits by Russian nuclear submarines and intelligence collection operations."
+            },
+            {
+              "leverage_holder": "Mutual/Structural",
+              "domain": "Multilateral Alignment",
+              "description": "Mutual diplomatic support resisting unilateral economic embargoes and coercive sanctions."
+            }
+          ],
+          "core_strategic_flashpoints": [
+            "Port calls of Russian advanced warships and nuclear-powered submarines in Havana harbor.",
+            "Revitalization of signals intelligence cooperation within 90 miles of the Florida coast."
+          ],
+          "multilateral_cross_references": [
+            "GEO_US",
+            "CHOKE_PANAMA"
           ]
         }
       }

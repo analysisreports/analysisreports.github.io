@@ -25,7 +25,7 @@
 
 # [CENTRAL BANKS & MONETARY AUTHORITIES] (Prefix: INST_)
 INST_FED_US          | Aliases: FED, Federal Reserve, Federal Reserve System, FOMC, Board of Governors, Federal Open Market Committee
-INST_TCMB_TR         | Aliases: TCMB, Central Bank of the Republic of Türkiye, CBRT, Monetary Policy Committee, MPC
+INST_CBRT_TR         | Aliases: CBRT, Central Bank of the Republic of Türkiye, TCMB, Monetary Policy Committee, MPC
 INST_ECB_EU          | Aliases: ECB, European Central Bank, Governing Council
 INST_BOJ_JP          | Aliases: BOJ, Bank of Japan, Policy Board
 INST_PBOC_CN         | Aliases: PBoC, People's Bank of China, PBC
@@ -64,6 +64,15 @@ GOV_TREASURY_US      | Aliases: US Treasury, U.S. Department of the Treasury, De
 GOV_TREASURY_TR      | Aliases: Ministry of Treasury and Finance, Turkish Treasury, TR Treasury
 GOV_MOF_JP           | Aliases: MoF Japan, Ministry of Finance Japan
 GOV_MOF_CN           | Aliases: MoF China, Ministry of Finance China
+GOV_STATE_US         | Aliases: US Department of State, State Department
+GOV_DOD_US           | Aliases: US Department of Defense, Pentagon, DoD
+GOV_MOD_TR           | Aliases: Ministry of National Defence of Türkiye, Turkish MoD, MSB
+GOV_MOFCOM_CN        | Aliases: Ministry of Commerce of China, MOFCOM
+GOV_MOF_RU           | Aliases: Ministry of Finance of Russia, MinFin Russia
+GOV_MFA_RU           | Aliases: Ministry of Foreign Affairs of Russia, MID Russia
+GOV_MOF_DE           | Aliases: Federal Ministry of Finance Germany, BMF
+GOV_HMT_GB           | Aliases: His Majesty's Treasury, HM Treasury
+
 
 # [SOVEREIGN STATES & GEOPOLITICAL ACTORS] (Prefix: GEO_)
 GEO_US               | Aliases: United States, United States of America, USA, US
@@ -86,6 +95,8 @@ GEO_FR               | Aliases: France, French Republic, Paris
 GEO_GB               | Aliases: United Kingdom, UK, Great Britain, Britain, London
 GEO_IT               | Aliases: Italy, Italian Republic, Rome
 GEO_UA               | Aliases: Ukraine, Kyiv
+GEO_RS               | Aliases: Serbia, Republic of Serbia, Belgrade
+GEO_MD               | Aliases: Moldova, Republic of Moldova, Chisinau
 GEO_PL               | Aliases: Poland, Republic of Poland, Warsaw
 GEO_LT               | Aliases: Republic of Lithuania, Lithuania, Vilnius
 GEO_EE               | Aliases: Republic of Estonia, Estonia, Tallinn
@@ -123,6 +134,8 @@ GEO_MM               | Aliases: Myanmar, Burma, Naypyidaw
 GEO_KZ               | Aliases: Kazakhstan, Republic of Kazakhstan, Astana
 GEO_AZ               | Aliases: Azerbaijan, Republic of Azerbaijan, Baku
 GEO_AM               | Aliases: Armenia, Republic of Armenia, Yerevan
+GEO_GE               | Aliases: Georgia, Sakartvelo, Tbilisi
+GEO_MN               | Aliases: Mongolia, Ulaanbaatar
 GEO_UZ               | Aliases: Uzbekistan, Republic of Uzbekistan, Tashkent
 GEO_TM               | Aliases: Turkmenistan, Ashgabat
 GEO_KG               | Aliases: Kyrgyzstan, Kyrgyz Republic, Bishkek
@@ -180,6 +193,8 @@ BLOC_NATO            | Aliases: NATO, North Atlantic Treaty Organization, North 
 BLOC_EU              | Aliases: European Union, EU, EU27, Brussels
 BLOC_OPEC            | Aliases: OPEC, Organization of the Petroleum Exporting Countries, OPEC+
 BLOC_BRICS           | Aliases: BRICS, BRICS Plus, BRICS Alliance
+BLOC_CSTO            | Aliases: CSTO, Collective Security Treaty Organization, Tashkent Pact
+BLOC_SCO             | Aliases: SCO, Shanghai Cooperation Organisation, Shanghai Pact
 BLOC_BRICS_MBRIDGE   | Aliases: BRICS & mBridge Settlement Axis, mBridge, BIS Innovation Hub mBridge, CIPS, SPFS
 BLOC_AUKUS           | Aliases: AUKUS, Australia-United Kingdom-United States Security Partnership
 BLOC_QUAD            | Aliases: QUAD, Quadrilateral Security Dialogue
@@ -207,6 +222,8 @@ CHOKE_SUEZ           | Aliases: Suez Canal, Suez Canal Transit
 CHOKE_SUEZ_NORTH     | Aliases: Suez Canal Northern Approach, Port Said Node
 CORRIDOR_ZANGEZUR    | Aliases: Zangezur Corridor Node, Zangezur Corridor
 CORRIDOR_IMEC        | Aliases: India-Middle East-Europe Economic Corridor, IMEC
+CORRIDOR_INSTC       | Aliases: International North-South Transport Corridor, INSTC, Russia-Iran-India Transit Corridor
+CORRIDOR_NORTHERN_SEA_ROUTE | Aliases: Northern Sea Route, NSR, Arctic Shipping Corridor, Polar Route
 BASIN_ESSEQUIBO      | Aliases: Essequibo Basin, Guayana Esequiba, Stabroek Block
 BASIN_EAST_MED       | Aliases: Eastern Mediterranean Deep-Sea Basin, East Med Basin
 BASIN_EAST_MED_DEEPSEA| Aliases: Eastern Mediterranean Deep-Sea Basin Node, East Med Deep Sea
