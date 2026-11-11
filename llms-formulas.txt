@@ -132,8 +132,15 @@ def _is_pos(val):
        if not all(_is_pos(v) for v in (xt, xt_prev, n_obs_per_yr)):
            return None
        try:
-           res = (((xt / xt_prev) ** n_obs_per_yr) - 1.0) * 100.0
-           return round(res, 4) if math.isfinite(res) else None
+           ratio = xt / xt_prev
+           # Economic Boundary Guard: Prevents asymptotic exponential explosion on extreme daily volatility jumps
+           if n_obs_per_yr >= 52 and (ratio > 1.40 or ratio < 0.60):
+               return None
+           res = (((ratio) ** n_obs_per_yr) - 1.0) * 100.0
+           # Strict Plausibility Filter: Cap between -100% and +10,000%
+           if not math.isfinite(res) or res > 10000.0 or res < -100.0:
+               return None
+           return round(res, 4)
        except (OverflowError, ValueError, ZeroDivisionError):
            return None
 

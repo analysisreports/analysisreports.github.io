@@ -4,9 +4,16 @@
     "title": "Canonical FRED Monitored Series & Official Transformations",
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
-    "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-11T01:46:56Z",
+    "sync_status": "PARTIAL_SUCCESS",
+    "last_successful_sync": "2026-11-11T18:07:24Z",
     "total_series": 60,
+    "total_registered": 64,
+    "missing_series": [
+      "NCBEILQ027S",
+      "GDP",
+      "DRCCLACBS",
+      "DRTSCIS"
+    ],
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -1101,8 +1108,8 @@
       "transformations": {
         "change": 0.008,
         "change_from_year_ago": 0.052,
-        "percent_change": -1.7131,
-        "percent_change_from_year_ago": -10.1761,
+        "percent_change": null,
+        "percent_change_from_year_ago": null,
         "compounded_annual_rate_of_change": null,
         "continuously_compounded_rate_of_change": null,
         "continuously_compounded_annual_rate_of_change": null
@@ -1144,8 +1151,8 @@
       "transformations": {
         "change": 0.008,
         "change_from_year_ago": 0.123,
-        "percent_change": -1.8059,
-        "percent_change_from_year_ago": -22.043,
+        "percent_change": null,
+        "percent_change_from_year_ago": null,
         "compounded_annual_rate_of_change": null,
         "continuously_compounded_rate_of_change": null,
         "continuously_compounded_annual_rate_of_change": null
@@ -2176,8 +2183,8 @@
       "transformations": {
         "change": 690.0,
         "change_from_year_ago": -45655.0,
-        "percent_change": -0.6526,
-        "percent_change_from_year_ago": 76.8706,
+        "percent_change": null,
+        "percent_change_from_year_ago": null,
         "compounded_annual_rate_of_change": null,
         "continuously_compounded_rate_of_change": null,
         "continuously_compounded_annual_rate_of_change": null
@@ -2477,8 +2484,8 @@
       "transformations": {
         "change": 0.5486,
         "change_from_year_ago": 3.8134,
-        "percent_change": -114.7506,
-        "percent_change_from_year_ago": -101.8841,
+        "percent_change": null,
+        "percent_change_from_year_ago": null,
         "compounded_annual_rate_of_change": null,
         "continuously_compounded_rate_of_change": null,
         "continuously_compounded_annual_rate_of_change": null

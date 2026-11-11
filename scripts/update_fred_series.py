@@ -282,6 +282,22 @@ Transformations (Official St. Louis Fed Formulas):
 Recent Observations (Last 5):
 {recent_lines}"""
 
+def recompute_entry_transformations(entry: Dict[str, Any], n_obs_per_yr: int):
+    units_str = entry.get("units", "")
+    is_rate = "Percent" in units_str or "%" in units_str
+    xt = entry.get("current_value")
+    xt_prev = entry.get("previous_value")
+    xt_year_ago = entry.get("year_ago_value")
+    entry["transformations"] = {
+        "change": fred_change(xt, xt_prev),
+        "change_from_year_ago": fred_change_year_ago(xt, xt_year_ago) if xt_year_ago is not None else None,
+        "percent_change": fred_percent_change(xt, xt_prev),
+        "percent_change_from_year_ago": fred_percent_change_year_ago(xt, xt_year_ago) if xt_year_ago is not None else None,
+        "compounded_annual_rate_of_change": None if is_rate else fred_compounded_annual_rate(xt, xt_prev, n_obs_per_yr),
+        "continuously_compounded_rate_of_change": fred_continuously_compounded_rate(xt, xt_prev),
+        "continuously_compounded_annual_rate_of_change": None if is_rate else fred_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr)
+    }
+
 def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_series: Optional[Dict[str, Any]] = None, fallback_sync_str: Optional[str] = None) -> Tuple[str, Dict[str, Any]]:
     if existing_series is None:
         existing_series = {}
@@ -320,6 +336,7 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
             # 1. Cache HIT: Süresi dolmamışsa API'ye dokunma, mevcut doğrulanmış veriyi koru
             if is_cache_valid:
                 print(f"  [CACHE HIT] {s_id} [{freq}]: Son çekilmeden bu yana {elapsed_days:.1f} gün geçti (TTL: {ttl_days} gün). API isteği atlanıyor.")
+                recompute_entry_transformations(cached_entry, n_obs_per_yr)
                 json_series_dict[s_id] = cached_entry
                 txt_blocks.append(format_fred_txt_block(cached_entry))
                 continue
@@ -338,6 +355,7 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
                     print(f"  [API TIMEOUT - RETAINED] {s_id} [{freq}]: API yanıt vermedi veya anahtar yok. Mevcut resmi snapshot korundu!")
                     if not cached_entry.get("last_synced_utc"):
                         cached_entry["last_synced_utc"] = fallback_sync_str or now_iso
+                    recompute_entry_transformations(cached_entry, n_obs_per_yr)
                     json_series_dict[s_id] = cached_entry
                     txt_blocks.append(format_fred_txt_block(cached_entry))
                     continue
@@ -399,6 +417,11 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
             json_series_dict[s_id] = entry_dict
             txt_blocks.append(format_fred_txt_block(entry_dict))
 
+    synced_count = len(json_series_dict)
+    all_sids = [s for s_list in frequencies.values() for s in s_list]
+    missing_sids = [s for s in all_sids if s not in json_series_dict]
+    sync_status = "SUCCESS" if synced_count == total_series else ("PARTIAL_SUCCESS" if synced_count > 0 else "FAILED")
+
     txt_body = "\n\n".join(txt_blocks)
 
     full_txt = f"""# ==============================================================================
@@ -406,7 +429,8 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
 # - Synced At: {now_utc}
-# - Total Series Synced: {len(json_series_dict)} / {total_series}
+# - Sync Status: {sync_status} ({synced_count} / {total_series} series active)
+# - Total Series Synced: {synced_count} / {total_series}
 # - Source Authority: Federal Reserve Bank of St. Louis (FRED API)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
@@ -420,9 +444,11 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
             "title": "Canonical FRED Monitored Series & Official Transformations",
             "author": "Ersoy Toptaş",
             "license": "CC BY 4.0",
-            "sync_status": "SUCCESS",
+            "sync_status": sync_status,
             "last_successful_sync": now_iso,
-            "total_series": len(json_series_dict),
+            "total_series": synced_count,
+            "total_registered": total_series,
+            "missing_series": missing_sids,
             "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
             "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
             "root_index": "https://analysisreports.github.io/llms.txt"
