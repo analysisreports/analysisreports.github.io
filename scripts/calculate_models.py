@@ -436,7 +436,28 @@ def calc_triffin_external_balance(dtwexbgs_val, bopgstb_val) -> Optional[Dict[st
         if dxy <= 0.0 or trade == 0.0:
             return None
 
-        deficit_bil = abs(trade) / 1000.0
+        if trade > 0.0:
+            surplus_bil = trade / 1000.0
+            tension = round(dxy / surplus_bil, 4)
+            return {
+                "model_id": "MODEL_10",
+                "model_name": "Triffin External Balance",
+                "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#10",
+                "primary_value": tension,
+                "unit": "Surplus Tension Ratio",
+                "status": "OFFSHORE_DOLLAR_DRAIN_SURPLUS",
+                "inputs": {
+                    "broad_dollar_index_dtwexbgs": round(dxy, 4),
+                    "trade_balance_bopgstb_mil": round(trade, 2)
+                },
+                "metrics": {
+                    "monthly_trade_surplus_bil": round(surplus_bil, 2),
+                    "broad_dollar_index": round(dxy, 4)
+                },
+                "interpretation": "US trade surplus drains global offshore dollar reserves, reversing Triffin deficit expansion."
+            }
+
+        deficit_bil = -trade / 1000.0
         raw_tension = dxy / deficit_bil
         if not math.isfinite(raw_tension):
             return None
@@ -2106,7 +2127,7 @@ def calc_sovereign_synthetic_cds_pd(spread_input_pct, recovery_rate=0.40):
 
 
 # --- Model 25.15: Domestic Governance Gridlock & External Tariff Friction Engine ---
-def calc_governance_gridlock_friction(country_code="GEO_US", majority_seat_margin=-15.0, executive_decree_power=0.85):
+def calc_governance_gridlock_friction(country_code, majority_seat_margin, executive_decree_power):
     if not isinstance(country_code, str):
         return None
 
@@ -2195,7 +2216,7 @@ def calc_governance_gridlock_friction(country_code="GEO_US", majority_seat_margi
 
 
 # --- Model 26: Central Bank Committee Dispersion & Hawkishness Index ---
-def calc_committee_dispersion(n_hawkish=4, n_dovish=2, n_neutral=6, n_total=12):
+def calc_committee_dispersion(n_hawkish, n_dovish, n_neutral, n_total=None):
     if any(v is None or isinstance(v, bool) for v in (n_hawkish, n_dovish, n_neutral)):
         return None
     try:

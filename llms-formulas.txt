@@ -420,14 +420,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - Delta_Absolute = V_current - V_baseline
   - Delta_Percent = ((V_current - V_baseline) / abs(V_baseline)) * 100.0
 - Machine-Executable Logic (Python):
-  def forecast_scale_validator(v_baseline, v_current, target_direction, tolerance_pct=2.0):
-      if any(v is None or isinstance(v, bool) for v in (v_baseline, v_current)):
+  def forecast_scale_validator(v_baseline, v_current, target_direction, tolerance_pct):
+      if any(v is None or isinstance(v, bool) for v in (v_baseline, v_current, tolerance_pct)):
           return None
       try:
           v0 = float(v_baseline)
           vt = float(v_current)
-          tol = abs(float(tolerance_pct)) if _is_num(tolerance_pct) else 2.0
-          if not (math.isfinite(v0) and math.isfinite(vt)) or v0 == 0.0:
+          tol = abs(float(tolerance_pct))
+          if not (math.isfinite(v0) and math.isfinite(vt) and math.isfinite(tol)) or v0 == 0.0:
               return None
 
           delta_abs = round(vt - v0, 4)
@@ -860,33 +860,47 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 
 ### 10. TRIFFIN EXTERNAL BALANCE
 - Theoretical Foundation: Operationalizes Robert Triffin's (1960) Dilemma ("Gold and the Dollar Crisis"). As the global reserve currency issuer, the United States must supply international liquidity by running structural trade deficits; however, sustained deficits erode systemic confidence while an appreciating dollar strains offshore debtor balance sheets.
-- Purpose: Measures the ratio between nominal broad dollar valuation pressure (DTWEXBGS) and monthly US goods/services trade deficit creation (abs(BOPGSTB)/1000 in Billions USD) to quantify offshore dollar shortage and systemic funding friction.
+- Purpose: Measures the ratio between nominal broad dollar valuation pressure (DTWEXBGS) and monthly US goods/services trade deficit creation (-BOPGSTB/1000 in Billions USD) to quantify offshore dollar shortage and systemic funding friction. Distinguishes structural external deficits (which supply offshore dollar liquidity) from trade surpluses (which drain global dollar liquidity).
 - Data Series Keys:
   - FRED: DTWEXBGS (Nominal Broad U.S. Dollar Index)
   - BEA / FRED: BOPGSTB (U.S. Trade Balance: Goods and Services, Balance of Payments - Millions USD)
 - Formula:
-  DXY_Deficit_Tension = DTWEXBGS / (abs(BOPGSTB) / 1000)
+  If BOPGSTB < 0 (Trade Deficit):
+    Trade_Deficit_Bil = -BOPGSTB / 1000.0
+    DXY_Deficit_Tension = DTWEXBGS / Trade_Deficit_Bil
+  Else If BOPGSTB > 0 (Trade Surplus):
+    Trade_Surplus_Bil = BOPGSTB / 1000.0
+    Status = "OFFSHORE_DOLLAR_DRAIN_SURPLUS"
 - Machine-Executable Logic (Python):
   def triffin_external_balance(dtwexbgs, bopgstb):
       if any(v is None or isinstance(v, bool) for v in (dtwexbgs, bopgstb)):
           return None
       try:
-          if not (math.isfinite(dtwexbgs) and math.isfinite(bopgstb)):
+          dxy = float(dtwexbgs)
+          trade = float(bopgstb)
+          if not (math.isfinite(dxy) and math.isfinite(trade)):
               return None
-          # Dollar index must be strictly positive (zero and negative guard)
-          if min(dtwexbgs, 0) == dtwexbgs:
-              return None
-          # Trade balance absolute value cannot be zero (denominator guard)
-          if bopgstb == 0 or abs(bopgstb) == 0:
+          if dxy <= 0.0 or trade == 0.0:
               return None
 
-          tension = dtwexbgs / (abs(bopgstb) / 1000.0)
-          return round(tension, 4) if math.isfinite(tension) else None
+          if trade > 0.0:
+              surplus_bil = trade / 1000.0
+              tension = round(dxy / surplus_bil, 4)
+              return {"tension": tension, "status": "OFFSHORE_DOLLAR_DRAIN_SURPLUS"}
+
+          deficit_bil = -trade / 1000.0
+          raw_tension = dxy / deficit_bil
+          if not math.isfinite(raw_tension):
+              return None
+          tension = round(raw_tension, 4)
+          status = "RESERVE_CURRENCY_STRAIN" if tension > 1.25 else ("ABUNDANT_OFFSHORE_LIQUIDITY" if tension < 1.00 else "BALANCED_TRIFFIN_EQUILIBRIUM")
+          return {"tension": tension, "status": status}
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - Rising Index : Strong Dollar & External Deficit Fragility (Offshore dollar shortage and funding stress)
-  - Falling Index : Global Financial Conditions Easing
+  - Rising Index (> 1.25) : Strong Dollar & External Deficit Fragility (Offshore dollar shortage and funding stress)
+  - Falling Index (< 1.00) : Global Financial Conditions Easing
+  - Surplus Regime : Global Dollar Drain (US net drain on world dollar liquidity)
 
 ---
 
@@ -1534,7 +1548,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 
 
 ### 23.4. EARLY LAYOFF AND RECESSION SIGNAL
-- Purpose: Detects latent employment losses and early recessionary inflection before official unemployment rises by measuring declining average weekly manufacturing hours alongside industrial production contraction.
+- Purpose: Detects latent employment losses and early recessionary inflection before official unemployment rises by measuring declining average weekly work hours (Total Private AWHAETP, with historical manufacturing series AWHMAN) alongside industrial production contraction.
 - Data Series Keys:
   - FRED: INDPRO (Industrial Production: Total Index - YoY Percent Change)
   - BLS / FRED: AWHAETP (Average Weekly Hours of All Employees, Total Private - YoY Percent Change)
@@ -2063,7 +2077,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ---
 
 ### 25.9. GASOLINE / CRUDE CRACK SPREAD IMPULSE ENGINE
-- Purpose: Measures refinery processing margins (Crack Spread) between retail gasoline and crude oil to detect refining bottlenecks and direct consumer energy cost burdens.
+- Purpose: Measures a retail-to-crude margin proxy (Retail Crack Spread Proxy) between retail regular gasoline (GASREGW) and crude oil (WTI) to detect refining bottlenecks, downstream consumer energy cost passthrough, and distribution margins (note: retail gasoline includes distribution markup and fuel taxes, distinguishing it from wholesale refinery gate 3:2:1 crack spreads).
 - Data Series Keys:
   - FRED: GASREGW (US Regular All Formulations Retail Gasoline Prices - Dollars per Gallon)
   - FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - Dollars per Barrel)
@@ -2578,13 +2592,11 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - EIA / FRED: DCOILBRENTEU (Crude Oil Prices: Brent - Europe, USD per Barrel)
   - FRED: SOFR (Secured Overnight Financing Rate, Percent)
   - IMF: SAUPZPIOILBEGUSD (Fiscal Breakeven Oil Price for Saudi Arabia, USD per Barrel)
-  - SAMA / FRED: TRESEGSAM052N (Saudi Arabia Total Reserves excluding Gold, USD)
-  - OECD / FRED: TURB6BLTT02STSAQ (Türkiye Current Account Balance % of GDP, Quarterly SA)
 - Mathematical Formulation:
   1. Treaty Activation Uplift:
      Delta_treaty = +0.10 (Institutional mutual collective defense commitment upon pact ratification)
   2. Hydrocarbon Fiscal Breakeven Ratio:
-     R_oil = Brent / Breakeven_oil (Where Breakeven_oil is dynamically ingested from IMF SAUPZPIOILBEGUSD; defaults to calibrated baseline $86.20/bbl if offline)
+     R_oil = Brent / Breakeven_oil (Where Breakeven_oil is dynamically ingested from IMF SAUPZPIOILBEGUSD. If unavailable or non-positive, calculation halts and evaluates strictly to None; zero synthetic fallbacks permitted.)
      If R_oil >= 1.05: S_energy = +0.05 (Fiscal surplus enables expanded defense procurement and bilateral sovereign liquidity deposits)
      Else If R_oil < 0.90: S_energy = -0.05 (Fiscal consolidation pressure)
      Else: S_energy = 0.00 (Fiscal equilibrium)
@@ -2596,14 +2608,16 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
      dynamic_delta(SA_PK) = round(clamp(Delta_treaty + S_energy + delta_dollar, -0.30, 0.30), 2)
      dynamic_delta(TR_PK) = round(clamp(Delta_treaty + min(0.0, delta_dollar), -0.30, 0.30), 2)
 - Machine-Executable Logic (Python):
-  def calculate_mecca_pact_transmission(brent, sofr, breakeven_oil=86.2, sa_reserves=None, tr_current_account=None):
-      if brent is None or sofr is None:
+  def calculate_mecca_pact_transmission(brent, sofr, breakeven_oil):
+      if any(v is None or isinstance(v, bool) for v in (brent, sofr, breakeven_oil)):
           return None
       try:
           f_brent = float(brent)
           f_sofr = float(sofr)
-          f_be = float(breakeven_oil) if (breakeven_oil is not None and float(breakeven_oil) > 0) else 86.2
+          f_be = float(breakeven_oil)
           if not (math.isfinite(f_brent) and math.isfinite(f_sofr) and math.isfinite(f_be)):
+              return None
+          if f_be <= 0.0 or f_brent < 0.0:
               return None
 
           delta_treaty = 0.10
@@ -2670,29 +2684,40 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
      (Injected as negative dynamic delta into P_net = clamp(P_baseline + Delta_macro, -1.0, 1.0) during acute sovereign distress).
 - Machine-Executable Logic (Python):
   def calculate_sovereign_synthetic_cds(eurobond_yield_pct, treasury_yield_pct, recovery_rate=0.40):
-      if eurobond_yield_pct is None or treasury_yield_pct is None:
+      if any(v is None or isinstance(v, bool) for v in (eurobond_yield_pct, treasury_yield_pct, recovery_rate)):
           return None
-      spread_pct = max(0.0, float(eurobond_yield_pct) - float(treasury_yield_pct))
-      spread_bps = round(spread_pct * 100.0, 1)
-      lgd = max(0.01, 1.0 - recovery_rate)
-      pd_pct = round(spread_pct / lgd, 2)
-      if spread_bps < 250.0:
-          regime = "STABLE_INVESTMENT_GRADE"
-      elif spread_bps < 450.0:
-          regime = "MODERATE_SOVEREIGN_STRESS"
-      elif spread_bps < 700.0:
-          regime = "HIGH_GEOPOLITICAL_RISK"
-      else:
-          regime = "ACUTE_DEFAULT_DISTRESS"
-      delta_macro = - round(min(0.60, max(0.0, (pd_pct - 4.0) / 10.0 * 0.50)), 2)
-      return {
-          "synthetic_cds_bps": spread_bps,
-          "recovery_rate": recovery_rate,
-          "loss_given_default": round(lgd, 2),
-          "annual_default_probability_pct": pd_pct,
-          "regime": regime,
-          "dynamic_transmission_delta": delta_macro
-      }
+      try:
+          y_eb = float(eurobond_yield_pct)
+          y_tr = float(treasury_yield_pct)
+          rec = float(recovery_rate)
+          if not (math.isfinite(y_eb) and math.isfinite(y_tr) and math.isfinite(rec)):
+              return None
+          if rec < 0.0 or rec >= 1.0:
+              return None
+
+          spread_pct = max(0.0, y_eb - y_tr)
+          spread_bps = round(spread_pct * 100.0, 1)
+          lgd = 1.0 - rec
+          pd_pct = round(min(100.0, spread_pct / lgd), 2)
+          if spread_bps < 250.0:
+              regime = "STABLE_INVESTMENT_GRADE"
+          elif spread_bps < 450.0:
+              regime = "MODERATE_SOVEREIGN_STRESS"
+          elif spread_bps < 700.0:
+              regime = "HIGH_GEOPOLITICAL_RISK"
+          else:
+              regime = "ACUTE_DEFAULT_DISTRESS"
+          delta_macro = - round(min(0.60, max(0.0, (pd_pct - 4.0) / 10.0 * 0.50)), 2)
+          return {
+              "synthetic_cds_bps": spread_bps,
+              "recovery_rate": rec,
+              "loss_given_default": round(lgd, 2),
+              "annual_default_probability_pct": pd_pct,
+              "regime": regime,
+              "dynamic_transmission_delta": delta_macro
+          }
+      except (TypeError, ValueError):
+          return None
 
 ---
 ## 🏛️ TIER 3: INSTITUTIONAL DECISION, GEOPOLITICAL TENSION & CALIBRATION ENGINE
@@ -2701,13 +2726,13 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 - Purpose: Quantifies monetary policy committee (FOMC, ECB, BOE, TCMB) voting distributions across hawkish, dovish, and neutral members to compute directional policy stance (Hawkish/Dovish H-Index) and internal committee fracture (Blau-Simpson Dispersion Index).
 - Target: economy.json, llms-models.json -> MODEL_26_COMMITTEE_DISPERSION
 - Inputs:
-  - n_hawkish : Number of voting members favoring rate hikes or tighter policy stance
-  - n_dovish  : Number of voting members favoring rate cuts or looser policy stance
-  - n_neutral : Number of voting members favoring rate pause, hold, or baseline consensus
-  - n_total   : Total voting member count (optional; defaults to n_hawkish + n_dovish + n_neutral)
+  - n_hawkish : Number of voting members favoring rate hikes or tighter policy stance (non-negative integer)
+  - n_dovish  : Number of voting members favoring rate cuts or looser policy stance (non-negative integer)
+  - n_neutral : Number of voting members favoring rate pause, hold, or baseline consensus (non-negative integer)
+  - n_total   : Total voting member count (optional integer; if provided, must be >= n_hawkish + n_dovish + n_neutral)
 - Mathematical Formulation:
   1. Total Committee Votes:
-     N_total = n_hawkish + n_dovish + n_neutral
+     N_total = n_hawkish + n_dovish + n_neutral (or explicit n_total if verified >= vote sum)
   2. Policy Balance Index (H-Index):
      H_Index = (n_hawkish - n_dovish) / N_total
   3. Voting Member Shares:
@@ -2717,25 +2742,36 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   4. Internal Committee Diversity / Fracture (Blau-Simpson Dispersion):
      Dispersion = 1.0 - (p_hawkish^2 + p_dovish^2 + p_neutral^2)
 - Machine-Executable Logic (Python):
-  def committee_dispersion(n_hawkish, n_dovish, n_neutral=0, n_total=None):
+  def committee_dispersion(n_hawkish, n_dovish, n_neutral, n_total=None):
       if any(v is None or isinstance(v, bool) for v in (n_hawkish, n_dovish, n_neutral)):
           return None
       try:
-          h = float(n_hawkish)
-          d = float(n_dovish)
-          neu = float(n_neutral)
-          if not (math.isfinite(h) and math.isfinite(d) and math.isfinite(neu)):
-              return None
-          if h < 0.0 or d < 0.0 or neu < 0.0:
-              return None
+          # Enforce discrete integer counts for voting committee members
+          for val in (n_hawkish, n_dovish, n_neutral):
+              if isinstance(val, float) and not val.is_integer():
+                  return None
+              if not isinstance(val, (int, float)):
+                  return None
+              if not math.isfinite(val) or val < 0:
+                  return None
+
+          h = int(n_hawkish)
+          d = int(n_dovish)
+          neu = int(n_neutral)
 
           tot = h + d + neu
-          if n_total is not None and not isinstance(n_total, bool) and math.isfinite(float(n_total)):
-              f_tot = float(n_total)
-              if f_tot >= tot and f_tot > 0.0:
+          if n_total is not None and not isinstance(n_total, bool):
+              if isinstance(n_total, float) and not n_total.is_integer():
+                  return None
+              if not isinstance(n_total, (int, float)) or not math.isfinite(n_total):
+                  return None
+              f_tot = int(n_total)
+              if f_tot >= tot and f_tot > 0:
                   tot = f_tot
+              elif f_tot < tot:
+                  return None
 
-          if tot <= 0.0:
+          if tot <= 0:
               return None
 
           p_h = h / tot
@@ -2957,10 +2993,8 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   Friction_Factor = max(0.0, -P_net)
   Spillover_Score = min(100.0, (Disruption_Weight * 70.0) + (Friction_Factor * 30.0))
 - Machine-Executable Logic (Python):
-  def chokepoint_transmission_bridge(severity_enum, p_net=0.0):
-      if severity_enum is None or isinstance(severity_enum, bool):
-          return None
-      if isinstance(p_net, bool):
+  def chokepoint_transmission_bridge(severity_enum, p_net):
+      if any(v is None or isinstance(v, bool) for v in (severity_enum, p_net)):
           return None
       try:
           # Resolve severity weight via Model 28.3
@@ -2969,8 +3003,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
               return None
           w_sev = float(sev_data["weight"])
 
-          # Polarity check (None defaults to neutral 0.0)
-          p_val = 0.0 if p_net is None else float(p_net)
+          p_val = float(p_net)
           if not math.isfinite(p_val):
               return None
 
@@ -3016,12 +3049,12 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 - Machine-Executable Logic (Python):
   def macro_regime_impact_multiplier(real_rate, nfci_val):
       if any(v is None or isinstance(v, bool) for v in (real_rate, nfci_val)):
-          return 1.0
+          return None
       try:
           rr = float(real_rate)
           nf = float(nfci_val)
           if not (math.isfinite(rr) and math.isfinite(nf)):
-              return 1.0
+              return None
           if rr > 1.50 or nf > 0.0:
               return 1.25
           elif rr < 0.0 and nf < 0.0:
@@ -3029,16 +3062,18 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           else:
               return 1.00
       except (TypeError, ValueError):
-          return 1.0
+          return None
 
   def adjusted_market_impact(market_impact_score_val, real_rate, nfci_val):
-      if market_impact_score_val is None or isinstance(market_impact_score_val, bool):
+      if any(v is None or isinstance(v, bool) for v in (market_impact_score_val, real_rate, nfci_val)):
           return None
       try:
           base_score = float(market_impact_score_val)
           if not math.isfinite(base_score):
               return None
           multiplier = macro_regime_impact_multiplier(real_rate, nfci_val)
+          if multiplier is None:
+              return None
           final_score = int(round(min(100.0, max(0.0, base_score * multiplier))))
           return {
               "base_market_impact": int(round(base_score)),
@@ -3055,16 +3090,36 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ---
 
 ### 29. EVIDENCE & SOURCE CONFIDENCE SCORE
-- Purpose: Evaluates authority, corroboration, and recency of intelligence supporting analytical assertions on a 0-100 scale.
-- Input Normalization: Inputs can be supplied in 0.0-1.0 or 0-100 scale; function automatically normalizes both.
+- Purpose: Evaluates authority, corroboration, and recency of intelligence supporting analytical assertions on a deterministic 0-100 scale.
+- Input Standards: Explicitly accepts inputs on standard normalized [0.0, 1.0] unit scale (or percentage [0.0, 100.0] via explicit scale="pct"). Eliminates scale guessing heuristics.
 - Machine-Executable Logic (Python):
-  def confidence_score(authority, confirmation, recency):
-      if not all(_is_num(v) for v in (authority, confirmation, recency)): return None
-      def _norm(val):
-          v_clamped = min(100.0, max(0.0, float(val)))
-          return v_clamped / 100.0 if (max(v_clamped, 1.0) == v_clamped and v_clamped != 1.0) else v_clamped
-      a, c, r = _norm(authority), _norm(confirmation), _norm(recency)
-      return int(round((a * 0.40 + c * 0.35 + r * 0.25) * 100))
+  def confidence_score(authority, confirmation, recency, scale="unit"):
+      if any(v is None or isinstance(v, bool) for v in (authority, confirmation, recency)):
+          return None
+      try:
+          a = float(authority)
+          c = float(confirmation)
+          r = float(recency)
+          if not (math.isfinite(a) and math.isfinite(c) and math.isfinite(r)):
+              return None
+          if scale == "pct":
+              if any(x < 0.0 or x > 100.0 for x in (a, c, r)):
+                  return None
+              a, c, r = a / 100.0, c / 100.0, r / 100.0
+          elif scale == "unit":
+              if any(x < 0.0 or x > 1.0 for x in (a, c, r)):
+                  return None
+          else:
+              return None
+          score = int(round((a * 0.40 + c * 0.35 + r * 0.25) * 100.0))
+          return {
+              "confidence_score": score,
+              "authority_weight": 0.40,
+              "corroboration_weight": 0.35,
+              "recency_weight": 0.25
+          }
+      except (TypeError, ValueError):
+          return None
 
 ---
 
