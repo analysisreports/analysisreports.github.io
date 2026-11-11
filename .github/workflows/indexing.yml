@@ -24,10 +24,10 @@ jobs:
       # 1. BÖLÜM: Google & Gemini İçin WebSub (PubSubHubbub) Sinyali
       - name: Ping WebSub / PubSubHubbub (Google & Gemini)
         run: |
-          curl -s -X POST https://pubsubhubbub.appspot.com/ \
+          curl --silent --show-error --fail-with-body -X POST https://pubsubhubbub.appspot.com/ \
             -d "hub.mode=publish" \
             -d "hub.url=https://www.ersoytoptas.tr/feeds/posts/default?alt=rss"
-          curl -s -X POST https://pubsubhubbub.appspot.com/ \
+          curl --silent --show-error --fail-with-body -X POST https://pubsubhubbub.appspot.com/ \
             -d "hub.mode=publish" \
             -d "hub.url=https://en.ersoytoptas.tr/feeds/posts/default?alt=rss"
           echo "Google ve Gemini botları için WebSub üzerinden RSS anonsu geçildi."
@@ -35,7 +35,7 @@ jobs:
       # 2. BÖLÜM: Bing, ChatGPT ve Perplexity İçin IndexNow Sinyali
       - name: Ping Bing & AI Engines via IndexNow
         run: |
-          curl -s -X POST "https://api.indexnow.org/indexnow" \
+          curl --silent --show-error --fail-with-body -X POST "https://api.indexnow.org/indexnow" \
             -H "Content-Type: application/json; charset=utf-8" \
             -d '{
               "host": "www.ersoytoptas.tr",

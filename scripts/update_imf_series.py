@@ -321,6 +321,7 @@ def main():
 
     json_series_dict: Dict[str, Any] = {}
     txt_blocks: List[str] = []
+    stale_series: List[str] = []
 
     for freq, series_ids in registry.items():
         if not series_ids:
@@ -366,8 +367,9 @@ def main():
             if not data or len(data.get("observations", [])) < 2:
                 if cached_entry and isinstance(cached_entry, dict):
                     print(f"  [API TIMEOUT - RETAINED] {s_id} [{freq.upper()}]: API yanıt vermedi veya anahtar yok. Mevcut resmi snapshot korundu!")
-                    if not cached_entry.get("last_synced_utc"):
-                        cached_entry["last_synced_utc"] = fallback_sync_str or now_iso
+                    stale_series.append(s_id)
+                    if not cached_entry.get("last_synced_utc") and fallback_sync_str:
+                        cached_entry["last_synced_utc"] = fallback_sync_str
                     json_series_dict[s_id] = cached_entry
                     txt_blocks.append(format_imf_txt_block(cached_entry))
                     continue
@@ -429,6 +431,18 @@ def main():
             json_series_dict[s_id] = entry_dict
             txt_blocks.append(format_imf_txt_block(entry_dict))
 
+    total_registered = sum(len(v) for v in registry.values())
+    missing_series = [
+        s_id for series_ids in registry.values() for s_id in series_ids
+        if s_id not in json_series_dict
+    ]
+    if not missing_series and not stale_series:
+        sync_status = "SUCCESS"
+    elif json_series_dict:
+        sync_status = "PARTIAL_SUCCESS"
+    else:
+        sync_status = "FAILED"
+
     txt_body = "\n\n".join(txt_blocks)
 
     full_txt = f"""{header_part}
@@ -438,7 +452,10 @@ def main():
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
 # - Synced At: {now_display}
-# - Total Series Synced: {len(json_series_dict)} / {sum(len(v) for v in registry.values())}
+# - Sync Status: {sync_status}
+# - Total Series Synced: {len(json_series_dict)} / {total_registered}
+# - Missing Series: {", ".join(missing_series) if missing_series else "None"}
+# - Retained Stale Series: {", ".join(stale_series) if stale_series else "None"}
 # - Source Authority: International Monetary Fund (IMF)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
@@ -455,9 +472,12 @@ def main():
             "title": "Canonical IMF Monitored Series & Official Transformations",
             "author": "Ersoy Toptaş",
             "license": "CC BY 4.0",
-            "sync_status": "SUCCESS",
-            "last_successful_sync": now_iso,
+            "sync_status": sync_status,
+            "last_successful_sync": now_iso if sync_status == "SUCCESS" else fallback_sync_str,
             "total_series": len(json_series_dict),
+            "total_registered_series": total_registered,
+            "missing_series": missing_series,
+            "stale_series": stale_series,
             "source_authority": "International Monetary Fund (IMF)",
             "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
             "root_index": "https://analysisreports.github.io/llms.txt"

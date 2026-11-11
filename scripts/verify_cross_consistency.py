@@ -17,6 +17,7 @@ License: CC BY-NC-ND 4.0
 Endpoint: https://analysisreports.github.io/llms-country-relationships.txt
 """
 
+import argparse
 import os
 import re
 import sys
@@ -51,7 +52,11 @@ def load_master_country_polarities(txt_path: str) -> Dict[Tuple[str, str], float
 
     return country_map
 
-def sync_relationships_txt(rel_txt_path: str, country_map: Dict[Tuple[str, str], float]) -> int:
+def sync_relationships_txt(
+    rel_txt_path: str,
+    country_map: Dict[Tuple[str, str], float],
+    write_changes: bool = True
+) -> int:
     if not os.path.exists(rel_txt_path):
         return 0
 
@@ -86,13 +91,17 @@ def sync_relationships_txt(rel_txt_path: str, country_map: Dict[Tuple[str, str],
     )
 
     new_content = pattern.sub(replace_callback, rel_content)
-    if updated_count > 0:
+    if updated_count > 0 and write_changes:
         with open(rel_txt_path, "w", encoding="utf-8") as f:
             f.write(new_content)
 
     return updated_count
 
-def sync_graph_json(graph_path: str, country_map: Dict[Tuple[str, str], float]) -> int:
+def sync_graph_json(
+    graph_path: str,
+    country_map: Dict[Tuple[str, str], float],
+    write_changes: bool = True
+) -> int:
     if not os.path.exists(graph_path):
         return 0
 
@@ -111,13 +120,17 @@ def sync_graph_json(graph_path: str, country_map: Dict[Tuple[str, str], float]) 
                 edge["p_baseline"] = master_val
                 updated_count += 1
 
-    if updated_count > 0:
+    if updated_count > 0 and write_changes:
         with open(graph_path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
 
     return updated_count
 
-def sync_relationships_json(rel_json_path: str, country_map: Dict[Tuple[str, str], float]) -> int:
+def sync_relationships_json(
+    rel_json_path: str,
+    country_map: Dict[Tuple[str, str], float],
+    write_changes: bool = True
+) -> int:
     if not os.path.exists(rel_json_path):
         return 0
 
@@ -136,17 +149,32 @@ def sync_relationships_json(rel_json_path: str, country_map: Dict[Tuple[str, str
                 rel["polarity"] = master_val
                 updated_count += 1
 
-    if updated_count > 0:
+    if updated_count > 0 and write_changes:
         with open(rel_json_path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
 
     return updated_count
 
 def main():
+    parser = argparse.ArgumentParser(description="Check or synchronize relationship polarity against the master SSOT.")
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="Report mismatches without modifying any files."
+    )
+    args = parser.parse_args()
+
     print("=" * 70)
-    print("ENTERPRISE CROSS-FILE POLARITY AUTO-SYNC & SSOT EQUALIZER")
+    print("ENTERPRISE CROSS-FILE POLARITY CHECK" if args.check else "ENTERPRISE CROSS-FILE POLARITY AUTO-SYNC & SSOT EQUALIZER")
     print("Master Source of Truth (SSOT): llms-country-relationships.txt")
     print("=" * 70)
+
+    missing_files = [path for path in (COUNTRY_TXT, REL_TXT, GRAPH_JSON, REL_JSON) if not os.path.exists(path)]
+    if missing_files:
+        print("[FAIL] Required cross-consistency files are missing:")
+        for path in missing_files:
+            print(f"  - {path}")
+        sys.exit(1)
 
     if not os.path.exists(COUNTRY_TXT):
         print(f"[FAIL] Master SSOT file not found at {COUNTRY_TXT}")
@@ -156,25 +184,34 @@ def main():
     print(f"[*] Loaded {len(country_map)//4} sovereign dyads from Master SSOT.")
 
     # 1. Sync llms-relationships.txt
-    txt_sync = sync_relationships_txt(REL_TXT, country_map)
-    print(f"[*] llms-relationships.txt       : {txt_sync} baselines equalized")
+    write_changes = not args.check
+    txt_sync = sync_relationships_txt(REL_TXT, country_map, write_changes)
+    txt_label = "mismatches found" if args.check else "baselines equalized"
+    print(f"[*] llms-relationships.txt       : {txt_sync} {txt_label}")
 
     # 2. Sync llms-graph.json
-    graph_sync = sync_graph_json(GRAPH_JSON, country_map)
-    print(f"[*] llms-graph.json               : {graph_sync} edge polarities equalized")
+    graph_sync = sync_graph_json(GRAPH_JSON, country_map, write_changes)
+    graph_label = "mismatches found" if args.check else "edge polarities equalized"
+    print(f"[*] llms-graph.json               : {graph_sync} {graph_label}")
 
     # 3. Sync llms-relationships.json
-    json_sync = sync_relationships_json(REL_JSON, country_map)
-    print(f"[*] llms-relationships.json      : {json_sync} relationships equalized")
+    json_sync = sync_relationships_json(REL_JSON, country_map, write_changes)
+    json_label = "mismatches found" if args.check else "relationships equalized"
+    print(f"[*] llms-relationships.json      : {json_sync} {json_label}")
 
     total_synced = txt_sync + graph_sync + json_sync
     print("-" * 70)
-    if total_synced > 0:
+    if args.check and total_synced > 0:
+        print(f"[FAIL] Found {total_synced} cross-file discrepancies; no files were modified.")
+        exit_code = 1
+    elif total_synced > 0:
         print(f"[AUTO-HEALED] Successfully equalized {total_synced} discrepancies across secondary files!")
+        exit_code = 0
     else:
         print("[SUCCESS] 100% Invariance: All secondary files are perfectly synchronized with Master SSOT.")
+        exit_code = 0
     print("=" * 70)
-    sys.exit(0)
+    sys.exit(exit_code)
 
 if __name__ == "__main__":
     main()

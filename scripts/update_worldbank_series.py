@@ -343,9 +343,12 @@ def main():
 
     synced_series = {}
     txt_blocks = []
+    stale_series = []
+    unsupported_series = []
 
     for key in monitored_keys:
         if key not in WB_DATA_SOURCES:
+            unsupported_series.append(key)
             continue
         meta = WB_DATA_SOURCES[key]
         freq_upper = meta.get("frequency", "Monthly").upper()
@@ -383,8 +386,9 @@ def main():
         if not res:
             if cached_entry and isinstance(cached_entry, dict):
                 print(f"  [API TIMEOUT - RETAINED] {s_id} [{freq_upper}]: Veri kaynağı yanıt vermedi. Mevcut resmi snapshot korundu!")
-                if not cached_entry.get("last_synced_utc"):
-                    cached_entry["last_synced_utc"] = fallback_sync_str or now_iso
+                stale_series.append(s_id)
+                if not cached_entry.get("last_synced_utc") and fallback_sync_str:
+                    cached_entry["last_synced_utc"] = fallback_sync_str
                 synced_series[s_id] = cached_entry
                 txt_blocks.append(format_wb_txt_block(cached_entry))
                 continue
@@ -396,6 +400,17 @@ def main():
         print(f"[+] Başarılı: {res['observation_date']} -> {res['current_value']} {res['unit']}")
         txt_blocks.append(format_wb_txt_block(res))
 
+    missing_series = [
+        f"IND_WB_{key}" for key in monitored_keys
+        if key not in WB_DATA_SOURCES or f"IND_WB_{key}" not in synced_series
+    ]
+    if not missing_series and not stale_series:
+        sync_status = "SUCCESS"
+    elif synced_series:
+        sync_status = "PARTIAL_SUCCESS"
+    else:
+        sync_status = "FAILED"
+
     # 1. Generate full llms-worldbank-series.txt (Section 1 + Section 2)
     txt_body = "\n\n".join(txt_blocks)
     full_txt = f"""{config_header}
@@ -405,7 +420,10 @@ def main():
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
 # - Synced At: {now_utc}
+# - Sync Status: {sync_status}
 # - Total Series Synced: {len(synced_series)} / {len(monitored_keys)}
+# - Missing Series: {", ".join(missing_series) if missing_series else "None"}
+# - Retained Stale Series: {", ".join(stale_series) if stale_series else "None"}
 # - Source Authority: World Bank Commodity Price Data (The Pink Sheet)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
@@ -423,10 +441,14 @@ def main():
             "engine": "Autonomous World Bank Commodity Time-Series Engine",
             "author": "Ersoy Toptaş",
             "license": "CC BY 4.0",
-            "sync_status": "SUCCESS",
-            "last_successful_sync": now_iso,
+            "sync_status": sync_status,
+            "last_successful_sync": now_iso if sync_status == "SUCCESS" else fallback_sync_str,
             "data_source": "World Bank Commodity Price Data (The Pink Sheet)",
             "monitored_series_count": len(synced_series),
+            "total_registered_series": len(monitored_keys),
+            "missing_series": missing_series,
+            "stale_series": stale_series,
+            "unsupported_series": unsupported_series,
             "canonical_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt"
         },
         "series": synced_series

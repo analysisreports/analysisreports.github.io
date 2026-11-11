@@ -29,18 +29,18 @@ from typing import List, Tuple
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 SCRIPTS_DIR = os.path.join(ROOT_DIR, "scripts")
 
-TEST_SUITE: List[Tuple[str, str, str]] = [
-    ("Entity Dictionary Compliance", "verify_entities.py", "388 Valid Entities across 40 Dynamic Files"),
-    ("Zero-Synthetic-Data & Fallback Guard", "verify_zero_fallbacks.py", "100% Real API Ingestion, Zero Mocks"),
-    ("Cross-File Polarity Auto-Sync (SSOT)", "verify_cross_consistency.py", "Single Source of Truth Invariance"),
-    ("Dyad Symmetry & Hub Isolation Guard", "verify_dyad_integrity.py", "165 Dyads, 0 Leaks, 100% Symmetric Mirrors"),
-    ("Chronological & Treaty Temporal Sanity", "verify_temporal_sanity.py", "Sequence (Sign<=Enact), Watersheds, 2026 Horizon"),
-    ("Knowledge Graph Topology & Edge Integrity", "verify_graph_topology.py", "Topological Health, Zero Broken Edges, SSOT Polarity Invariance"),
-    ("Quantitative Models Stress & Stability", "verify_model_stress.py", "42 Active Models, Zero NaN/Inf under Crisis Shocks"),
-    ("LLM Tool Specification & Schema Integrity", "verify_tools_schema.py", "63 Active Tools, Zero Schema Defects, 100% Parameter Coverage")
+TEST_SUITE: List[Tuple[str, str, str, Tuple[str, ...]]] = [
+    ("Entity Dictionary Compliance", "verify_entities.py", "388 Valid Entities across 40 Dynamic Files", ()),
+    ("Zero-Synthetic-Data & Fallback Guard", "verify_zero_fallbacks.py", "100% Real API Ingestion, Zero Mocks", ()),
+    ("Cross-File Polarity Consistency (SSOT)", "verify_cross_consistency.py", "Read-only Single Source of Truth check", ("--check",)),
+    ("Dyad Symmetry & Hub Isolation Guard", "verify_dyad_integrity.py", "165 Dyads, 0 Leaks, 100% Symmetric Mirrors", ()),
+    ("Chronological & Treaty Temporal Sanity", "verify_temporal_sanity.py", "Sequence (Sign<=Enact), Watersheds, 2026 Horizon", ()),
+    ("Knowledge Graph Topology & Edge Integrity", "verify_graph_topology.py", "Topological Health, Zero Broken Edges, SSOT Polarity Invariance", ()),
+    ("Quantitative Models Stress & Stability", "verify_model_stress.py", "42 Active Models, Zero NaN/Inf under Crisis Shocks", ()),
+    ("LLM Tool Specification & Schema Integrity", "verify_tools_schema.py", "63 Active Tools, Zero Schema Defects, 100% Parameter Coverage", ())
 ]
 
-def run_step(title: str, script_name: str, desc: str) -> Tuple[bool, float, str]:
+def run_step(title: str, script_name: str, desc: str, args: Tuple[str, ...]) -> Tuple[bool, float, str]:
     script_path = os.path.join(SCRIPTS_DIR, script_name)
     if not os.path.exists(script_path):
         return False, 0.0, f"Script not found: {script_path}"
@@ -48,7 +48,7 @@ def run_step(title: str, script_name: str, desc: str) -> Tuple[bool, float, str]
     start = time.perf_counter()
     try:
         proc = subprocess.run(
-            [sys.executable, script_path],
+            [sys.executable, script_path, *args],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
@@ -71,9 +71,9 @@ def main():
     results = []
     total_start = time.perf_counter()
 
-    for idx, (title, script_name, desc) in enumerate(TEST_SUITE, 1):
+    for idx, (title, script_name, desc, args) in enumerate(TEST_SUITE, 1):
         print(f"[*] Step {idx}/{len(TEST_SUITE)}: Running {title} ...", end="", flush=True)
-        success, duration, out = run_step(title, script_name, desc)
+        success, duration, out = run_step(title, script_name, desc, args)
         status_str = "[ PASS ]" if success else "[ FAIL ]"
         print(f"\r  {status_str} Step {idx}/{len(TEST_SUITE)}: {title:<40} ({duration:.2f}s)")
         results.append((title, script_name, desc, success, duration, out))

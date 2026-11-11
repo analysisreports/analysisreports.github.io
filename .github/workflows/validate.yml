@@ -41,3 +41,7 @@ jobs:
       - name: Verify Strict Zero Synthetic Data & Zero Fallbacks
         run: |
           python scripts/verify_zero_fallbacks.py
+
+      - name: Run Read-Only Verification Suite
+        run: |
+          python scripts/verify_all.py
