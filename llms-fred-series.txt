@@ -19,6 +19,7 @@
 # - Daily: 260 obs/yr | Weekly: 52 obs/yr | Monthly: 12 obs/yr | Quarterly: 4 obs/yr | Semiannual: 2 obs/yr | Annual: 1 obs/yr
 
 [DAILY]
+THREEFYTP10
 DCOILBRENTEU
 BAMLH0A0HYM2
 DTWEXBGS
@@ -42,6 +43,7 @@ OVXCLS
 IUDSOIA
 
 [WEEKLY]
+STLFSI4
 WALCL
 WTREGEN
 IC4WSA
@@ -51,6 +53,8 @@ ANFCI
 GASREGW
 
 [MONTHLY]
+PNGASEUUSDM
+PNGASJPUSDM
 PAYEMS
 PSAVERT
 CIVPART
