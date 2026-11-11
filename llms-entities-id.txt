@@ -25,7 +25,7 @@
 
 # [CENTRAL BANKS & MONETARY AUTHORITIES] (Prefix: INST_)
 INST_FED_US          | Aliases: FED, Federal Reserve, Federal Reserve System, FOMC, Board of Governors, Federal Open Market Committee
-INST_CBRT_TR         | Aliases: CBRT, Central Bank of the Republic of Türkiye, TCMB, Monetary Policy Committee, MPC
+INST_CBRT_TR         | Aliases: CBRT, Central Bank of the Republic of Türkiye, TCMB, PPK, Para Politikası Kurulu, CBRT MPC
 INST_ECB_EU          | Aliases: ECB, European Central Bank, Governing Council
 INST_BOJ_JP          | Aliases: BOJ, Bank of Japan, Policy Board
 INST_PBOC_CN         | Aliases: PBoC, People's Bank of China, PBC
@@ -87,7 +87,6 @@ GEO_PK               | Aliases: Islamic Republic of Pakistan, Pakistan, Islamaba
 GEO_SA               | Aliases: Kingdom of Saudi Arabia, Saudi Arabia, KSA
 GEO_AE               | Aliases: United Arab Emirates, UAE
 GEO_VE               | Aliases: Bolivarian Republic of Venezuela, Venezuela
-GEO_YE               | Aliases: Republic of Yemen, Yemen, Sanaa
 
 # [EUROPE & EURASIA]
 GEO_DE               | Aliases: Germany, Federal Republic of Germany, FRG, Berlin
@@ -195,8 +194,8 @@ ORG_IMF              | Aliases: IMF, International Monetary Fund
 ORG_BIS              | Aliases: BIS, Bank for International Settlements
 ORG_WORLD_BANK       | Aliases: World Bank, IBRD, International Bank for Reconstruction and Development
 ORG_OECD             | Aliases: OECD, Organisation for Economic Co-operation and Development
-BLOC_NATO            | Aliases: NATO, North Atlantic Treaty Organization, North Atlantic Alliance, Brussels
-BLOC_EU              | Aliases: European Union, EU, EU27, Brussels
+BLOC_NATO            | Aliases: NATO, North Atlantic Treaty Organization, North Atlantic Alliance
+BLOC_EU              | Aliases: European Union, EU, EU27
 BLOC_OPEC            | Aliases: OPEC, Organization of the Petroleum Exporting Countries, OPEC+
 BLOC_BRICS           | Aliases: BRICS, BRICS Plus, BRICS Alliance
 BLOC_CSTO            | Aliases: CSTO, Collective Security Treaty Organization, Tashkent Pact
@@ -250,7 +249,7 @@ CORRIDOR_KALININGRAD_TRANSIT | Aliases: Kaliningrad Transit Corridor, Vilnius-Ka
 STAT_BLS_US          | Aliases: BLS, Bureau of Labor Statistics, U.S. Bureau of Labor Statistics
 STAT_BEA_US          | Aliases: BEA, Bureau of Economic Analysis, U.S. Bureau of Economic Analysis
 STAT_FRED_US         | Aliases: FRED, St. Louis Fed Economic Data
-STAT_TURKSTAT_TR     | Aliases: TURKSTAT, TurkStat, Turkish Statistical Institute
+STAT_TURKSTAT_TR     | Aliases: TURKSTAT, Turkish Statistical Institute, TÜİK, TUIK
 REG_AGENCY_SEC_US    | Aliases: SEC, Securities and Exchange Commission, U.S. SEC
 REG_AGENCY_OFAC_US   | Aliases: OFAC, Office of Foreign Assets Control, U.S. Department of the Treasury OFAC
 STAT_EIA_US          | Aliases: EIA, U.S. Energy Information Administration
