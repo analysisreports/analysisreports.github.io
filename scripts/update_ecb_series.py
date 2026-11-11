@@ -20,6 +20,7 @@ import ssl
 import json
 import math
 import io
+import time
 import datetime
 import urllib.request
 from typing import Dict, List, Optional, Any, Tuple
@@ -193,37 +194,44 @@ def fetch_ecb_observations(series_ref: str, n_obs_per_yr: int) -> Optional[List[
     """
     Fetches raw CSV observations directly from the ECB Data Portal REST API.
     Syntax: DATAFLOW/KEY
+    Features multi-attempt retries and extended timeouts for robust transmission.
     """
     parts = series_ref.strip().split('/')
     if len(parts) != 2:
         return None
     
     flow, key = parts[0], parts[1]
-    limit = max(35, n_obs_per_yr + 15)
+    limit = max(50, n_obs_per_yr + 25)
     url = f"https://data-api.ecb.europa.eu/service/data/{flow}/{key}?lastNObservations={limit}&format=csvdata&detail=dataonly"
     
     req = urllib.request.Request(url, headers={"User-Agent": "AnalysisReports-ECB-Engine/1.0"})
     ctx = get_ssl_context()
     
-    try:
-        with urllib.request.urlopen(req, context=ctx, timeout=15) as resp:
-            if resp.status == 200:
-                csv_text = resp.read().decode('utf-8')
-                reader = csv.DictReader(io.StringIO(csv_text))
-                raw_obs = []
-                for row in reader:
-                    tp = row.get("TIME_PERIOD", "").strip()
-                    val_str = row.get("OBS_VALUE", "").strip()
-                    if tp and val_str and val_str != ".":
-                        try:
-                            f_val = float(val_str)
-                            raw_obs.append({"date": tp, "value": f_val})
-                        except ValueError:
-                            continue
-                return raw_obs
-    except Exception as e:
-        print(f"Error fetching ECB series {series_ref}: {e}")
-        return None
+    max_retries = 3
+    for attempt in range(1, max_retries + 1):
+        try:
+            with urllib.request.urlopen(req, context=ctx, timeout=35) as resp:
+                if resp.status == 200:
+                    csv_text = resp.read().decode('utf-8')
+                    reader = csv.DictReader(io.StringIO(csv_text))
+                    raw_obs = []
+                    for row in reader:
+                        tp = row.get("TIME_PERIOD", "").strip()
+                        val_str = row.get("OBS_VALUE", "").strip()
+                        if tp and val_str and val_str != ".":
+                            try:
+                                f_val = float(val_str)
+                                raw_obs.append({"date": tp, "value": f_val})
+                            except ValueError:
+                                continue
+                    if raw_obs:
+                        return raw_obs
+        except Exception as e:
+            if attempt < max_retries:
+                time.sleep(2 * attempt)
+            else:
+                print(f"Error fetching ECB series {series_ref} (attempt {attempt}/{max_retries}): {e}")
+    return None
 
 # ==============================================================================
 # 3. REGISTRY PARSING & OUTPUT BUILDER
