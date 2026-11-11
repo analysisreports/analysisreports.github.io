@@ -65,8 +65,12 @@ Core Manifests & System Engines:
 - Live FRED JSON Twin: https://analysisreports.github.io/llms-fred-series.json
 - Live ECB Time-Series Registry: https://analysisreports.github.io/llms-ecb-series.txt
 - Live ECB JSON Twin: https://analysisreports.github.io/llms-ecb-series.json
-   - llms-worldbank-series.txt: Monitored World Bank Pink Sheet commodity time-series registry.
-   - llms-worldbank-series.json: Structured JSON twin for World Bank Commodity Pink Sheet transformations.
+- Live New York Fed Research Series Registry: https://analysisreports.github.io/llms-nyfed-series.txt
+- Live New York Fed Research Series JSON Twin: https://analysisreports.github.io/llms-nyfed-series.json
+- World Bank Commodity Series Registry: https://analysisreports.github.io/llms-worldbank-series.txt
+- World Bank Commodity Series JSON Twin: https://analysisreports.github.io/llms-worldbank-series.json
+- IMF Time-Series Registry: https://analysisreports.github.io/llms-imf-series.txt
+- IMF Time-Series JSON Twin: https://analysisreports.github.io/llms-imf-series.json
 - Dynamic Relationships JSON Twin: https://analysisreports.github.io/llms-relationships.json
 - Live Quantitative Models Engine: https://analysisreports.github.io/llms-models.txt
 - Live Quantitative Models JSON Twin: https://analysisreports.github.io/llms-models.json

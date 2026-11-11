@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY-NC-ND 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-11T01:49:01Z",
+    "last_successful_sync": "2026-11-11T18:41:27Z",
     "total_series": 1,
     "source_authority": "Federal Reserve Bank of New York (AMEC)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
@@ -29,7 +29,7 @@
         "change": -0.0993,
         "change_from_year_ago": 1.3461,
         "percent_change": -7.295,
-        "percent_change_from_year_ago": -1598.6936,
+        "percent_change_from_year_ago": null,
         "compounded_annual_rate_of_change": -59.7064,
         "continuously_compounded_rate_of_change": -7.5748,
         "continuously_compounded_annual_rate_of_change": -90.8976

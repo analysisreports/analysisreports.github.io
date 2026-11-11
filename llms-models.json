@@ -7,7 +7,7 @@
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-11T15:39:55.161400+00:00",
+    "last_successful_sync": "2026-11-11T18:39:57.852036+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -28,7 +28,7 @@
       "status": "BALANCED_POLICY_EQUILIBRIUM",
       "inputs": {
         "treasury_1m_yield_dgs1mo": 4.04,
-        "fed_policy_rate_dff": 4.0
+        "fed_policy_rate": 4.0
       },
       "metrics": {
         "spread_basis_points": 4.0,
@@ -64,6 +64,9 @@
       "status": "NORMAL_LABOR_MARKET",
       "inputs": {
         "sahm_realtime_val": 0.0
+      },
+      "metrics": {
+        "sahm_indicator": 0.0
       },
       "interpretation": "Real-time recession detection triggered when 3-month unemployment average rises >= 0.50 ppt above prior 12-month low."
     },
@@ -111,6 +114,10 @@
       "unit": "Basis Points (bps)",
       "status": "FLATTENING_TRANSITION_PHASE",
       "inputs": {
+        "t10y2y_spread_pct": 0.25
+      },
+      "metrics": {
+        "yield_spread_bps": 25.0,
         "t10y2y_spread_pct": 0.25
       },
       "interpretation": "Leading cyclical economic barometer. Inversions (bps < 0) historically precede sovereign US business cycle recessions."
@@ -291,6 +298,11 @@
       "inputs": {
         "vix_close": 19.92
       },
+      "metrics": {
+        "vix_level": 19.92,
+        "regime": "NORMAL_VOLATILITY",
+        "market_bias": "BALANCED"
+      },
       "interpretation": "30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime."
     },
     {
@@ -342,6 +354,10 @@
       },
       "components": {
         "ratio": 41.2,
+        "historical_equilibrium_band": "12.0 - 25.0"
+      },
+      "metrics": {
+        "gold_oil_ratio": 41.2,
         "historical_equilibrium_band": "12.0 - 25.0"
       },
       "interpretation": "Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks."
@@ -417,6 +433,11 @@
         "effective_unrate_delta": 0.0,
         "crack_threshold": 15.0
       },
+      "metrics": {
+        "early_employment_crack_index": -13.64,
+        "effective_unrate_delta": 0.0,
+        "crack_threshold": 15.0
+      },
       "interpretation": "Identifies early labor cracks by comparing weekly jobless claims spikes against delayed headline unemployment shifts."
     },
     {
@@ -428,6 +449,9 @@
       "status": "BALANCED_SUPPLY_CHAIN",
       "inputs": {
         "total_business_isratio": 1.33
+      },
+      "metrics": {
+        "inventory_to_sales_ratio": 1.33
       },
       "interpretation": "Measures total business inventories relative to monthly sales. Values > 1.45 indicate severe inventory glut and recessionary production cuts."
     },
@@ -497,6 +521,11 @@
         "brent_usd": 107.03,
         "wti_usd": 99.64
       },
+      "metrics": {
+        "brent_wti_spread_usd": 7.39,
+        "brent_usd": 107.03,
+        "wti_usd": 99.64
+      },
       "interpretation": "Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI."
     },
     {
@@ -545,6 +574,9 @@
       "unit": "Standard Deviations (Z-Score)",
       "status": "NORMALIZED_GLOBAL_TRADE",
       "inputs": {
+        "gscpi_zscore": 1.26
+      },
+      "metrics": {
         "gscpi_zscore": 1.26
       },
       "interpretation": "Tracks standard deviations of global freight rates, shipping costs, and delivery times from historical mean. Values > 1.5 indicate supply chain shocks."
@@ -687,6 +719,12 @@
         "sox_weight": -0.28,
         "vix_weight": 0.249
       },
+      "metrics": {
+        "hardware_stress_score": 0.474,
+        "gscpi_weight": 0.505,
+        "sox_weight": -0.28,
+        "vix_weight": 0.249
+      },
       "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation."
     },
     {
@@ -702,6 +740,10 @@
         "jpy_30d_momentum_pct": 3.61
       },
       "components": {
+        "rate_spread": 2.63,
+        "net_buffer": 6.2379
+      },
+      "metrics": {
         "rate_spread": 2.63,
         "net_buffer": 6.2379
       },

@@ -125,9 +125,18 @@ def extract_gscpi_series(file_path: str = CACHE_FILE) -> Optional[Dict[str, Any]
     change = round(curr_val - prev_val, 4) if prev_val is not None else None
     change_yr = round(curr_val - yr_val, 4) if yr_val is not None else None
 
-    # Percent change (only if denominator is non-zero)
-    pct_change = round(((curr_val / prev_val) - 1.0) * 100.0, 4) if (prev_val and prev_val != 0.0) else None
-    pct_change_yr = round(((curr_val / yr_val) - 1.0) * 100.0, 4) if (yr_val and yr_val != 0.0) else None
+    # Percent change: strictly positive denominator required (non-positive bases yield undefined / misleading signs)
+    pct_change = None
+    if prev_val is not None and prev_val > 0.0:
+        raw_pct = ((curr_val / prev_val) - 1.0) * 100.0
+        if -100.0 <= raw_pct <= 10000.0:
+            pct_change = round(raw_pct, 4)
+
+    pct_change_yr = None
+    if yr_val is not None and yr_val > 0.0:
+        raw_pct_yr = ((curr_val / yr_val) - 1.0) * 100.0
+        if -100.0 <= raw_pct_yr <= 10000.0:
+            pct_change_yr = round(raw_pct_yr, 4)
 
     # Compounded rates (per Section 0.3 of llms-formulas.txt when positive)
     car = None
@@ -169,11 +178,62 @@ def extract_gscpi_series(file_path: str = CACHE_FILE) -> Optional[Dict[str, Any]
 
     return series_data
 
+def recompute_nyfed_transformations(series_data: Dict[str, Any]) -> None:
+    curr_val = series_data.get("current_value")
+    prev_val = series_data.get("previous_value")
+    yr_val = series_data.get("year_ago_value")
+
+    if curr_val is None:
+        return
+
+    change = round(curr_val - prev_val, 4) if prev_val is not None else None
+    change_yr = round(curr_val - yr_val, 4) if yr_val is not None else None
+
+    # Percent change: strictly positive denominator required (non-positive bases yield undefined / misleading signs)
+    pct_change = None
+    if prev_val is not None and prev_val > 0.0:
+        raw_pct = ((curr_val / prev_val) - 1.0) * 100.0
+        if -100.0 <= raw_pct <= 10000.0:
+            pct_change = round(raw_pct, 4)
+
+    pct_change_yr = None
+    if yr_val is not None and yr_val > 0.0:
+        raw_pct_yr = ((curr_val / yr_val) - 1.0) * 100.0
+        if -100.0 <= raw_pct_yr <= 10000.0:
+            pct_change_yr = round(raw_pct_yr, 4)
+
+    # Compounded rates (per Section 0.3 of llms-formulas.txt when positive)
+    car = None
+    ccr = None
+    ccar = None
+    if prev_val is not None and curr_val > 0 and prev_val > 0:
+        ratio = curr_val / prev_val
+        car = round((((ratio) ** 12) - 1.0) * 100.0, 4)
+        ccr = round((math.log(curr_val) - math.log(prev_val)) * 100.0, 4)
+        ccar = round(ccr * 12.0, 4)
+
+    series_data["transformations"] = {
+        "change": change,
+        "change_from_year_ago": change_yr,
+        "percent_change": pct_change,
+        "percent_change_from_year_ago": pct_change_yr,
+        "compounded_annual_rate_of_change": car,
+        "continuously_compounded_rate_of_change": ccr,
+        "continuously_compounded_annual_rate_of_change": ccar
+    }
+
 def format_nyfed_txt_block(series: Dict[str, Any]) -> str:
     t = series["transformations"]
     display_obs = series.get("recent_observations", [])[-5:]
     recent_lines = "\n".join([f"  {r['date']}: {r['value']:.4f}" for r in display_obs])
     n_obs = series["n_obs_per_yr"]
+
+    def fmt_num(v):
+        return f"{v:+.4f}" if v is not None else "N/A"
+
+    def fmt_pct(v):
+        return f"{v:+.4f}%" if v is not None else "N/A"
+
     return f"""--------------------------------------------------------------------------------
 Series ID: {series.get('series_id', 'GSCPI')}
 Entity ID: {series.get('entity_id', 'IND_GSCPI')}
@@ -183,13 +243,13 @@ Source: {series.get('source', 'Federal Reserve Bank of New York (AMEC)')}
 Last Date: {series['last_date']} | Current Value: {series['current_value']:.4f} | Previous Value: {series['previous_value']:.4f} | Year Ago Value: {series['year_ago_value']:.4f}
 
 Transformations (Official New York Fed / St. Louis Fed Formulas):
-  1. Change: {t['change']:+.4f}
-  2. Change from Year Ago: {t['change_from_year_ago']:+.4f}
-  3. Percent Change: {t['percent_change']:+.4f}%
-  4. Percent Change from Year Ago: {t['percent_change_from_year_ago']:+.4f}%
-  5. Compounded Annual Rate of Change: {t['compounded_annual_rate_of_change']:+.4f}%
-  6. Continuously Compounded Rate of Change: {t['continuously_compounded_rate_of_change']:+.4f}%
-  7. Continuously Compounded Annual Rate of Change: {t['continuously_compounded_annual_rate_of_change']:+.4f}%
+  1. Change: {fmt_num(t.get('change'))}
+  2. Change from Year Ago: {fmt_num(t.get('change_from_year_ago'))}
+  3. Percent Change: {fmt_pct(t.get('percent_change'))}
+  4. Percent Change from Year Ago: {fmt_pct(t.get('percent_change_from_year_ago'))}
+  5. Compounded Annual Rate of Change: {fmt_pct(t.get('compounded_annual_rate_of_change'))}
+  6. Continuously Compounded Rate of Change: {fmt_pct(t.get('continuously_compounded_rate_of_change'))}
+  7. Continuously Compounded Annual Rate of Change: {fmt_pct(t.get('continuously_compounded_annual_rate_of_change'))}
 
 Recent Observations (Last 5):
 {recent_lines}"""
@@ -248,6 +308,9 @@ def main():
                 sys.exit(1)
         else:
             series["last_synced_utc"] = now_iso
+
+    # Strictly recompute transformations to ensure negative-base guardrails and standard formats
+    recompute_nyfed_transformations(series)
 
     output = {
         "$schema": "https://json-schema.org/draft/2020-12/schema",

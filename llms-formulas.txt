@@ -483,24 +483,24 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ## 🏛️ TIER 1: CORE MACROECONOMIC MODELS
 
 ### 1. FED POLICY STANCE & MARKET PRESSURE GAUGE
-- Purpose: Measures the spread between the 1-month Treasury yield and the Federal Funds target upper limit (DGS1MO - DFEDTARU) to evaluate market-implied rate cut pressure or funding-driven hawkish stress.
+- Purpose: Measures the spread between the 1-month Treasury yield and the Federal Funds policy rate / upper limit (DGS1MO - Fed_Policy_Rate) to evaluate market-implied rate cut pressure or funding-driven hawkish stress.
 - Data Series Keys:
   - FRED: DGS1MO (Market Yield on U.S. Treasury Securities at 1-Month Constant Maturity)
-  - FRED: DFEDTARU (Federal Funds Target Range - Upper Limit)
+  - FRED: DFEDTARU (Federal Funds Target Range - Upper Limit) or DFF (Federal Funds Effective Rate)
 - Formula:
-  Fed_Policy_Spread_bps = (DGS1MO - DFEDTARU) * 100
+  Fed_Policy_Spread_bps = (DGS1MO - Fed_Policy_Rate) * 100
 - Machine-Executable Logic (Python):
-  def fed_policy_spread(dgs1mo, dfedtaru):
-      if any(v is None or isinstance(v, bool) for v in (dgs1mo, dfedtaru)):
+  def fed_policy_spread(dgs1mo, fed_policy_rate):
+      if any(v is None or isinstance(v, bool) for v in (dgs1mo, fed_policy_rate)):
           return None
       try:
-          if not (math.isfinite(dgs1mo) and math.isfinite(dfedtaru)):
+          if not (math.isfinite(dgs1mo) and math.isfinite(fed_policy_rate)):
               return None
           # Nominal yield and policy target cannot be negative
-          if min(dgs1mo, 0) != 0 or min(dfedtaru, 0) != 0:
+          if min(dgs1mo, 0) != 0 or min(fed_policy_rate, 0) != 0:
               return None
 
-          raw_spread = (float(dgs1mo) - float(dfedtaru)) * 100.0
+          raw_spread = (float(dgs1mo) - float(fed_policy_rate)) * 100.0
           if not math.isfinite(raw_spread):
               return None
           spread = round(raw_spread, 2)
@@ -722,20 +722,23 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
               return None
           spread = round(raw_spread, 2)
 
-          if spread == 0.0:
-              status = "FLAT"
-          elif min(spread, 0.0) == spread:
-              status = "INVERTED"
+          if spread < 0.0:
+              status = "INVERTED_CURVE_RECESSION_SIGNAL"
+          elif spread <= 25.0:
+              status = "FLATTENING_TRANSITION_PHASE"
+          elif spread <= 100.0:
+              status = "NORMAL_CURVE_EXPANSION"
           else:
-              status = "NORMAL"
+              status = "STEEPENING_GROWTH_REFLATION"
 
           return {"yield_spread_bps": spread, "status": status}
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Yield_Spread_bps < 0 : INVERTED (Inverted yield curve / Recessionary pricing)
-  - Yield_Spread_bps == 0 : FLAT (Flattening yield curve / Cyclical turning point)
-  - Yield_Spread_bps > 0 : NORMAL (Positive yield curve slope / Economic expansion)
+  - Yield_Spread_bps < 0 : INVERTED_CURVE_RECESSION_SIGNAL (Inverted yield curve / Recessionary pricing)
+  - 0 <= Yield_Spread_bps <= 25.0 : FLATTENING_TRANSITION_PHASE (Flattening yield curve / Cyclical transition)
+  - 25.0 < Yield_Spread_bps <= 100.0 : NORMAL_CURVE_EXPANSION (Positive yield curve slope / Economic expansion)
+  - Yield_Spread_bps > 100.0 : STEEPENING_GROWTH_REFLATION (Steepening yield curve / Growth reflation)
 
 ---
 
@@ -806,14 +809,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           elif min(ratio, 1.00) == ratio and ratio != 1.00:
               status = "COOLING_LABOR"
           else:
-              status = "SOFT_LANDING_BALANCE"
+              status = "BALANCED_LABOR_TIGHTNESS"
 
           return {"beveridge_ratio": ratio, "status": status}
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
   - Ratio > 1.50 : OVERHEATED_LABOR (Overheated labor market / Wage inflation risk)
-  - 1.00 to 1.50 : SOFT_LANDING_BALANCE (Soft landing trajectory / Balanced employment)
+  - 1.00 to 1.50 : BALANCED_LABOR_TIGHTNESS (Soft landing trajectory / Balanced employment)
   - Ratio < 1.00 : COOLING_LABOR (Weakening labor demand / Rising unemployment pressure)
 
 ---
@@ -998,20 +1001,20 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           if not math.isfinite(div):
               return None
 
-          if n == 0.0:
-              regime = "BALANCED"
-          elif max(n, 0.0) == n:
-              regime = "TIGHT"
+          if n > 0.0:
+              regime = "TIGHT_FINANCIAL_CONDITIONS"
+          elif n == 0.0:
+              regime = "BALANCED_FINANCIAL_CONDITIONS"
           else:
-              regime = "LOOSE"
+              regime = "LOOSE_FINANCIAL_CONDITIONS"
 
           return {"nfci": n, "anfci": a, "regime": regime, "macro_div": div}
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - NFCI > 0.00 : TIGHT (Tight financial conditions / Tighter than historical average / Financial stress)
-  - NFCI == 0.00 : BALANCED (Historically balanced financial conditions)
-  - NFCI < 0.00 : LOOSE (Loose financial conditions / Abundant liquidity / Risk-on support)
+  - NFCI > 0.00 : TIGHT_FINANCIAL_CONDITIONS (Tight financial conditions / Tighter than historical average / Financial stress)
+  - NFCI == 0.00 : BALANCED_FINANCIAL_CONDITIONS (Historically balanced financial conditions)
+  - NFCI < 0.00 : LOOSE_FINANCIAL_CONDITIONS (Loose financial conditions / Abundant liquidity / Risk-on support)
 
 ---
 
@@ -1576,20 +1579,20 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
               return None
           index = round(raw_index, 2)
 
-          if min(index, -2.5) == index and index != -2.5:
-              status = "SEVERE_RECESSION_WARNING"
-          elif min(index, 0.0) == index and index != 0.0:
-              status = "PRE_RECESSION_CRACK"
+          if index < -2.50:
+              status = "ACUTE_LAYOFF_CONTRACTION"
+          elif index < 0.0:
+              status = "EARLY_RECESSION_SIGNAL"
           else:
-              status = "HEALTHY_PRODUCTION_CYCLE"
+              status = "EXPANSION_EMPLOYMENT_MOMENTUM"
 
           return {"early_layoff_index": index, "status": status}
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - status == SEVERE_RECESSION_WARNING : Overtime cuts paired with industrial contraction (Early layoff wave & deep recession risk / Index < -2.5)
-  - status == PRE_RECESSION_CRACK : Production losing momentum and work hours softening (Latent unemployment onset / -2.5 to 0.0)
-  - status == HEALTHY_PRODUCTION_CYCLE : Resilient industrial activity and robust work hours (Index >= 0.0)
+  - status == ACUTE_LAYOFF_CONTRACTION : Overtime cuts paired with industrial contraction (Early layoff wave & deep recession risk / Index < -2.50)
+  - status == EARLY_RECESSION_SIGNAL : Production losing momentum and work hours softening (Latent unemployment onset / -2.50 to 0.0)
+  - status == EXPANSION_EMPLOYMENT_MOMENTUM : Resilient industrial activity and robust work hours (Index >= 0.0)
 
 
 ### 23.5. REAL CONSUMPTION COLLAPSE RADAR

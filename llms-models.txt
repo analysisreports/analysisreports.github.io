@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-11 15:39 UTC
+> **Last Calibrated Sync:** 2026-11-11 18:39 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -63,7 +63,7 @@
 #### [MODEL_1] Fed Policy Stance & Market Pressure Gauge
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#1
 - **Evaluated Status:** `BALANCED_POLICY_EQUILIBRIUM` (Primary Value: 4.0 Basis Points (bps))
-- **Inputs Evaluated:** `{"treasury_1m_yield_dgs1mo": 4.04, "fed_policy_rate_dff": 4.0}`
+- **Inputs Evaluated:** `{"treasury_1m_yield_dgs1mo": 4.04, "fed_policy_rate": 4.0}`
 - **Secondary Metrics:** `{"spread_basis_points": 4.0, "dgs1mo_yield": 4.04, "fed_funds_rate": 4.0}`
 - **Economic Synthesis:** Spread between 1-Month Treasury yield and Fed Funds Rate. Measures market-implied rate cut pressure (<= -15 bps) or liquidity-driven hawkish stress (> +4 bps).
 
@@ -78,6 +78,7 @@
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#3
 - **Evaluated Status:** `NORMAL_LABOR_MARKET` (Primary Value: 0.0 Percentage Points)
 - **Inputs Evaluated:** `{"sahm_realtime_val": 0.0}`
+- **Secondary Metrics:** `{"sahm_indicator": 0.0}`
 - **Economic Synthesis:** Real-time recession detection triggered when 3-month unemployment average rises >= 0.50 ppt above prior 12-month low.
 
 #### [MODEL_4] Front-End T-Bill Slope & Liquidity Spread
@@ -98,6 +99,7 @@
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#6
 - **Evaluated Status:** `FLATTENING_TRANSITION_PHASE` (Primary Value: 25.0 Basis Points (bps))
 - **Inputs Evaluated:** `{"t10y2y_spread_pct": 0.25}`
+- **Secondary Metrics:** `{"yield_spread_bps": 25.0, "t10y2y_spread_pct": 0.25}`
 - **Economic Synthesis:** Leading cyclical economic barometer. Inversions (bps < 0) historically precede sovereign US business cycle recessions.
 
 #### [MODEL_7] 10-Year Breakeven Inflation Rate
@@ -167,6 +169,7 @@
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#16
 - **Evaluated Status:** `NORMAL_VOLATILITY` (Primary Value: 19.92 Points)
 - **Inputs Evaluated:** `{"vix_close": 19.92}`
+- **Secondary Metrics:** `{"vix_level": 19.92, "regime": "NORMAL_VOLATILITY", "market_bias": "BALANCED"}`
 - **Economic Synthesis:** 30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime.
 
 #### [MODEL_18] Okun Misery Index
@@ -187,6 +190,7 @@
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#21
 - **Evaluated Status:** `MACRO_CRISIS_RECESSION` (Primary Value: 41.2 Barrels per Ounce)
 - **Inputs Evaluated:** `{"gold_price_usd_oz": 4105.0, "oil_price_usd_bbl": 99.64}`
+- **Secondary Metrics:** `{"gold_oil_ratio": 41.2, "historical_equilibrium_band": "12.0 - 25.0"}`
 - **Component Weights:** `{"ratio": 41.2, "historical_equilibrium_band": "12.0 - 25.0"}`
 - **Economic Synthesis:** Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks.
 
@@ -215,6 +219,7 @@
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23.6
 - **Evaluated Status:** `LABOR_MARKET_ALIGNED` (Primary Value: -13.64 Index Points)
 - **Inputs Evaluated:** `{"ic4wsa_yoy_pct": -13.64, "unrate_delta_ppt": -0.3}`
+- **Secondary Metrics:** `{"early_employment_crack_index": -13.64, "effective_unrate_delta": 0.0, "crack_threshold": 15.0}`
 - **Component Weights:** `{"effective_unrate_delta": 0.0, "crack_threshold": 15.0}`
 - **Economic Synthesis:** Identifies early labor cracks by comparing weekly jobless claims spikes against delayed headline unemployment shifts.
 
@@ -222,6 +227,7 @@
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23.7
 - **Evaluated Status:** `BALANCED_SUPPLY_CHAIN` (Primary Value: 1.33 Ratio)
 - **Inputs Evaluated:** `{"total_business_isratio": 1.33}`
+- **Secondary Metrics:** `{"inventory_to_sales_ratio": 1.33}`
 - **Economic Synthesis:** Measures total business inventories relative to monthly sales. Values > 1.45 indicate severe inventory glut and recessionary production cuts.
 
 #### [MODEL_23.8] Mortgage and Permit Divergence (Housing Freeze Index)
@@ -249,6 +255,7 @@
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.12
 - **Evaluated Status:** `NORMAL_TRANSATLANTIC_ARBITRAGE` (Primary Value: 7.39 USD)
 - **Inputs Evaluated:** `{"brent_usd": 107.03, "wti_usd": 99.64}`
+- **Secondary Metrics:** `{"brent_wti_spread_usd": 7.39, "brent_usd": 107.03, "wti_usd": 99.64}`
 - **Economic Synthesis:** Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI.
 
 #### [MODEL_25.13] Labor Market Momentum Index (LMMI)
@@ -269,6 +276,7 @@
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.3
 - **Evaluated Status:** `NORMALIZED_GLOBAL_TRADE` (Primary Value: 1.26 Standard Deviations (Z-Score))
 - **Inputs Evaluated:** `{"gscpi_zscore": 1.26}`
+- **Secondary Metrics:** `{"gscpi_zscore": 1.26}`
 - **Economic Synthesis:** Tracks standard deviations of global freight rates, shipping costs, and delivery times from historical mean. Values > 1.5 indicate supply chain shocks.
 
 #### [MODEL_25.5] Repo Liquidity Friction Spread Engine
@@ -324,6 +332,7 @@
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.14
 - **Evaluated Status:** `BALANCED_HARDWARE_FLOW` (Primary Value: 0.474 Score (Normalized))
 - **Inputs Evaluated:** `{"gscpi_std_dev": 1.262, "sox_yoy_pct": 39.98, "vix_level": 19.92}`
+- **Secondary Metrics:** `{"hardware_stress_score": 0.474, "gscpi_weight": 0.505, "sox_weight": -0.28, "vix_weight": 0.249}`
 - **Component Weights:** `{"gscpi_weight": 0.505, "sox_weight": -0.28, "vix_weight": 0.249}`
 - **Economic Synthesis:** Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation.
 
@@ -331,6 +340,7 @@
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.16
 - **Evaluated Status:** `CALM_ACCUMULATION` (Primary Value: 6.2379 % (Net Carry Buffer))
 - **Inputs Evaluated:** `{"rate_us_dff": 3.88, "rate_jp_boj": 1.25, "jpy_30d_momentum_pct": 3.61}`
+- **Secondary Metrics:** `{"rate_spread": 2.63, "net_buffer": 6.2379}`
 - **Component Weights:** `{"rate_spread": 2.63, "net_buffer": 6.2379}`
 - **Economic Synthesis:** Monitors cross-currency Yen Carry Trade buffer, unwinding risk, and global leverage liquidation shocks.
 

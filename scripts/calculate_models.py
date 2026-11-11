@@ -63,7 +63,7 @@ def calc_fed_policy_stance(dgs1mo_val, fed_rate_val):
             "status": status,
             "inputs": {
                 "treasury_1m_yield_dgs1mo": round(dgs1mo, 2),
-                "fed_policy_rate_dff": round(fed_rate, 2)
+                "fed_policy_rate": round(fed_rate, 2)
             },
             "metrics": {
                 "spread_basis_points": spread,
@@ -150,6 +150,9 @@ def calc_sahm_rule(sahm_val):
             "unit": "Percentage Points",
             "status": status,
             "inputs": {"sahm_realtime_val": diff},
+            "metrics": {
+                "sahm_indicator": diff
+            },
             "interpretation": "Real-time recession detection triggered when 3-month unemployment average rises >= 0.50 ppt above prior 12-month low."
         }
     except (TypeError, ValueError):
@@ -277,6 +280,10 @@ def calc_yield_spread_bps(t10y2y_val):
             "unit": "Basis Points (bps)",
             "status": status,
             "inputs": {"t10y2y_spread_pct": spread},
+            "metrics": {
+                "yield_spread_bps": bps,
+                "t10y2y_spread_pct": spread
+            },
             "interpretation": "Leading cyclical economic barometer. Inversions (bps < 0) historically precede sovereign US business cycle recessions."
         }
     except (TypeError, ValueError):
@@ -776,6 +783,11 @@ def calc_vix_market_regime(vix):
             "status": regime,
             "market_bias": bias,
             "inputs": {"vix_close": val},
+            "metrics": {
+                "vix_level": val,
+                "regime": regime,
+                "market_bias": bias
+            },
             "interpretation": "30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime."
         }
     except (TypeError, ValueError):
@@ -814,6 +826,11 @@ def calc_brent_wti_spread(brent_price, wti_price):
             "unit": "USD",
             "status": status,
             "inputs": {"brent_usd": f_brent, "wti_usd": f_wti},
+            "metrics": {
+                "brent_wti_spread_usd": spread,
+                "brent_usd": f_brent,
+                "wti_usd": f_wti
+            },
             "interpretation": "Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI."
         }
     except (TypeError, ValueError):
@@ -945,6 +962,9 @@ def calc_supply_chain_pressure(gscpi_val):
             "unit": "Standard Deviations (Z-Score)",
             "status": status,
             "inputs": {
+                "gscpi_zscore": z_score
+            },
+            "metrics": {
                 "gscpi_zscore": z_score
             },
             "interpretation": "Tracks standard deviations of global freight rates, shipping costs, and delivery times from historical mean. Values > 1.5 indicate supply chain shocks."
@@ -1369,6 +1389,12 @@ def calc_ai_chip_stress_gauge(gscpi_val, sox_yoy_pct, vix_val):
                 "sox_weight": round(sox_comp, 3),
                 "vix_weight": round(vix_comp, 3)
             },
+            "metrics": {
+                "hardware_stress_score": stress_score,
+                "gscpi_weight": round(gscpi_comp, 3),
+                "sox_weight": round(sox_comp, 3),
+                "vix_weight": round(vix_comp, 3)
+            },
             "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation."
         }
     except (TypeError, ValueError):
@@ -1408,6 +1434,10 @@ def calc_jpy_carry_crack(dff_val, boj_rate_val, jpy_fx_mom) -> Optional[Dict[str
                 'jpy_30d_momentum_pct': round(fx_mom, 2)
             },
             'components': {
+                'rate_spread': rate_spread,
+                'net_buffer': net_buffer
+            },
+            'metrics': {
                 'rate_spread': rate_spread,
                 'net_buffer': net_buffer
             },
@@ -1596,6 +1626,10 @@ def calc_gold_oil_ratio(gold_price, oil_price) -> Optional[Dict[str, Any]]:
             },
             "components": {
                 "ratio": ratio,
+                "historical_equilibrium_band": "12.0 - 25.0"
+            },
+            "metrics": {
+                "gold_oil_ratio": ratio,
                 "historical_equilibrium_band": "12.0 - 25.0"
             },
             "interpretation": "Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks."
@@ -1819,6 +1853,11 @@ def calc_early_employment_crack(ic4wsa_yoy, unrate_delta) -> Optional[Dict[str, 
                 "effective_unrate_delta": round(effective_u_delta, 2),
                 "crack_threshold": 15.0
             },
+            "metrics": {
+                "early_employment_crack_index": index,
+                "effective_unrate_delta": round(effective_u_delta, 2),
+                "crack_threshold": 15.0
+            },
             "interpretation": "Identifies early labor cracks by comparing weekly jobless claims spikes against delayed headline unemployment shifts."
         }
     except (TypeError, ValueError):
@@ -1851,6 +1890,9 @@ def calc_inventory_to_sales_glut(isratio_val):
             "status": status,
             "inputs": {
                 "total_business_isratio": ratio
+            },
+            "metrics": {
+                "inventory_to_sales_ratio": ratio
             },
             "interpretation": "Measures total business inventories relative to monthly sales. Values > 1.45 indicate severe inventory glut and recessionary production cuts."
         }
