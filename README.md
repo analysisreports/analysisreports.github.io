@@ -29,6 +29,7 @@ This repository hosts machine-readable ontological data models, quantitative fra
 - **[llms-models.txt](https://analysisreports.github.io/llms-models.txt)**: Core macroeconomic models, state vectors, and structural framework logic.
 - **[llms-formulas.txt](https://analysisreports.github.io/llms-formulas.txt)**: Quantitative models, macroeconomic scoring mechanisms, and VIX formulas.
 - **[llms-relationships.txt](https://analysisreports.github.io/llms-relationships.txt)**: Geopolitical Relationship Matrix.
+- **[llms-country-relationships.txt](https://analysisreports.github.io/llms-country-relationships.txt)**: Geopolitical Bilateral Relations Matrix.
 - **[llms-indicators.txt](https://analysisreports.github.io/llms-indicators.txt)**: Technical formula indicators and definitions.
 - **[llms-tools.json](https://analysisreports.github.io/llms-tools.json)**: Agentic function schemas and API tool specifications.
 - **[ai-catalog.json](https://analysisreports.github.io/ai-catalog.json)**: Catalog of autonomous agent capabilities, data schemas, and ingestion endpoints.
