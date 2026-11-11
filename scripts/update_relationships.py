@@ -169,40 +169,71 @@ def main():
         }
     ]
 
-    r_oil = (brent / breakeven_oil) if (brent is not None and brent > 0 and breakeven_oil > 0) else 1.0
-    if r_oil >= 1.05:
-        s_energy = 0.05
-    elif r_oil < 0.90:
-        s_energy = -0.05
-    else:
-        s_energy = 0.00
+    # Model 25.18: Mecca Pact Dynamic Transmission Engine
+    # Zero synthetic fallback: strictly evaluate only when all required macro inputs exist and are positive
+    mecca_calculated = False
+    if (
+        brent is not None
+        and sofr is not None
+        and breakeven_oil is not None
+        and isinstance(brent, (int, float))
+        and isinstance(sofr, (int, float))
+        and isinstance(breakeven_oil, (int, float))
+    ):
+        try:
+            b_val = float(brent)
+            s_val = float(sofr)
+            be_val = float(breakeven_oil)
+            if math.isfinite(b_val) and math.isfinite(s_val) and math.isfinite(be_val) and b_val > 0.0 and be_val > 0.0:
+                r_oil = b_val / be_val
+                if r_oil >= 1.05:
+                    s_energy = 0.05
+                elif r_oil < 0.90:
+                    s_energy = -0.05
+                else:
+                    s_energy = 0.00
 
-    delta_dollar = -0.03 if (sofr is not None and sofr >= 5.25) else 0.00
-    mecca_delta_tr_sa = round(min(0.30, max(-0.30, delta_treaty + s_energy + delta_dollar)), 2)
-    mecca_delta_sa_pk = round(min(0.30, max(-0.30, delta_treaty + s_energy + delta_dollar)), 2)
-    mecca_delta_tr_pk = round(min(0.30, max(-0.30, delta_treaty + min(0.0, delta_dollar))), 2)
+                delta_dollar = -0.03 if s_val >= 5.25 else 0.00
+                mecca_delta_tr_sa = round(min(0.30, max(-0.30, delta_treaty + s_energy + delta_dollar)), 2)
+                mecca_delta_sa_pk = round(min(0.30, max(-0.30, delta_treaty + s_energy + delta_dollar)), 2)
+                mecca_delta_tr_pk = round(min(0.30, max(-0.30, delta_treaty + min(0.0, delta_dollar))), 2)
+                mecca_calculated = True
+        except (TypeError, ValueError):
+            mecca_calculated = False
 
-    # 3. Dynamic Deltas for Bilateral Corridors
+    if not mecca_calculated:
+        # Zero synthetic fallback: Without complete verified live inputs, zero dynamic energy shock is injected.
+        # Only the ratified treaty baseline uplift (delta_treaty = +0.10) is preserved.
+        mecca_delta_tr_sa = delta_treaty
+        mecca_delta_sa_pk = delta_treaty
+        mecca_delta_tr_pk = delta_treaty
+
+    # 3. Dynamic Deltas for Bilateral Corridors (Zero-Crash Guardrails on Missing Inputs)
     # Oil Shock (Middle East, Red Sea & Latin America)
-    if brent_wti_spread > 12.0:
-        oil_delta = -0.15
-    elif brent_wti_spread > 8.0:
-        oil_delta = -0.10
-    else:
-        oil_delta = 0.0
+    oil_delta = 0.0
+    if brent_wti_spread is not None and isinstance(brent_wti_spread, (int, float)) and math.isfinite(brent_wti_spread):
+        if brent_wti_spread > 12.0:
+            oil_delta = -0.15
+        elif brent_wti_spread > 8.0:
+            oil_delta = -0.10
 
     # Tech & Taiwan Strait Shock (US - CN)
-    if chip_stress >= 1.20:
-        chip_delta = -0.15
-    elif chip_stress >= 0.50:
-        chip_delta = -0.08
-    elif chip_stress <= -0.40:
-        chip_delta = +0.05
-    else:
-        chip_delta = 0.0
+    chip_delta = 0.0
+    if chip_stress is not None and isinstance(chip_stress, (int, float)) and math.isfinite(chip_stress):
+        if chip_stress >= 1.20:
+            chip_delta = -0.15
+        elif chip_stress >= 0.50:
+            chip_delta = -0.08
+        elif chip_stress <= -0.40:
+            chip_delta = +0.05
 
     # General Financial Stress Delta
-    vix_delta = -0.05 if vix >= 32.0 else (+0.03 if vix <= 15.0 else 0.0)
+    vix_delta = 0.0
+    if vix is not None and isinstance(vix, (int, float)) and math.isfinite(vix):
+        if vix >= 32.0:
+            vix_delta = -0.05
+        elif vix <= 15.0:
+            vix_delta = +0.03
 
     # Ingest Canonical Sovereign Baselines from llms-country-relationships.json (SSOT)
     country_json_path = 'llms-country-relationships.json'
