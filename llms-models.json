@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-11T00:52:51.826149+00:00",
+    "last_successful_sync": "2026-11-11T01:11:41.156824+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -14,7 +14,7 @@
       "International Monetary Fund (IMF)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 44
+    "total_models_active": 41
   },
   "models": [
     {
@@ -310,24 +310,6 @@
       "interpretation": "Measures household welfare loss and stagflationary stress by summing civilian unemployment and annual inflation. Values > 12 indicate acute crisis."
     },
     {
-      "model_id": "MODEL_19",
-      "model_name": "Buffett Indicator (Corporate Equities to GDP)",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#19",
-      "primary_value": 251.59,
-      "unit": "Percent (%)",
-      "status": "SEVERELY_OVERVALUED",
-      "inputs": {
-        "corporate_equities_liability_ncbeilq027s_mil": 83050847.0,
-        "nominal_gdp_bil": 33010.04
-      },
-      "metrics": {
-        "buffett_ratio_pct": 251.59,
-        "total_equities_market_val_bil": 83050.85,
-        "nominal_gdp_bil": 33010.04
-      },
-      "interpretation": "Measures total equity valuation froth against national economic output using official Fed Z.1 accounts. Ratios >= 180% signal speculative bubble territory; < 100% reflect attractive valuation."
-    },
-    {
       "model_id": "MODEL_20",
       "model_name": "Copper to Gold Macro Sentiment Ratio",
       "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#20",
@@ -361,24 +343,6 @@
         "historical_equilibrium_band": "12.0 - 25.0"
       },
       "interpretation": "Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks."
-    },
-    {
-      "model_id": "MODEL_22",
-      "model_name": "Household Credit Stress Gauge",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#22",
-      "primary_value": 0.75,
-      "unit": "Stress Ratio",
-      "status": "ELEVATED_PRESSURE",
-      "inputs": {
-        "credit_card_delinquency_rate_drcclacbs_pct": 2.85,
-        "personal_saving_rate_psavert_pct": 3.8
-      },
-      "metrics": {
-        "household_stress_ratio": 0.75,
-        "delinquency_rate_pct": 2.85,
-        "saving_rate_pct": 3.8
-      },
-      "interpretation": "Measures consumer debt service vulnerability by evaluating credit card delinquency rates against the personal saving rate cushion. Ratios > 1.00 reflect severe consumer distress and spending contraction risk."
     },
     {
       "model_id": "MODEL_23",
@@ -667,21 +631,6 @@
         "wti_crude_usd": 99.64
       },
       "interpretation": "Measures refinery processing margins between retail gasoline and crude oil. Spreads > $40/bbl signal refinery capacity bottlenecks and consumer fuel cost shocks; < $5 indicate refining margin collapse."
-    },
-    {
-      "model_id": "MODEL_25.10",
-      "model_name": "SLOOS Lending Standards Recession Gauge",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.10",
-      "primary_value": 5.1,
-      "unit": "Net Percent (%)",
-      "status": "NEUTRAL_CREDIT_CONDITIONS",
-      "inputs": {
-        "drtscis_net_pct": 5.1
-      },
-      "metrics": {
-        "credit_tightening_net_pct": 5.1
-      },
-      "interpretation": "Tracks the net percentage of domestic US banks tightening lending standards on commercial and industrial (C&I) loans. Values > 40% signal an acute credit channel freeze and recession."
     },
     {
       "model_id": "MODEL_25.11",

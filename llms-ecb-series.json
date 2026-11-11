@@ -5,57 +5,13 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-11T00:52:28.957018+00:00",
-    "total_series": 10,
+    "last_successful_sync": "2026-11-11T01:10:48.870031+00:00",
+    "total_series": 8,
     "source_authority": "European Central Bank (ECB Data Portal)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.5",
     "root_index": "https://analysisreports.github.io/llms.txt"
   },
   "series": {
-    "EXR/D.USD.EUR.SP00.A": {
-      "series_ref": "EXR/D.USD.EUR.SP00.A",
-      "title": "Euro / US Dollar Spot Exchange Rate",
-      "frequency": "Daily",
-      "n_obs_per_yr": 260,
-      "units": "USD per 1 EUR",
-      "category": "Foreign Exchange",
-      "source": "European Central Bank (ECB Data Portal)",
-      "last_date": "2026-11-10",
-      "current_value": 1.1214,
-      "previous_value": 1.1193,
-      "year_ago_value": 1.1514,
-      "transformations": {
-        "change": 0.0021,
-        "change_from_year_ago": -0.03,
-        "percent_change": 0.1876,
-        "percent_change_from_year_ago": -2.6055,
-        "compounded_annual_rate_of_change": 62.7993,
-        "continuously_compounded_rate_of_change": 0.1874,
-        "continuously_compounded_annual_rate_of_change": 48.7348
-      },
-      "recent_observations": [
-        {
-          "date": "2026-11-04",
-          "value": 1.1267
-        },
-        {
-          "date": "2026-11-05",
-          "value": 1.1224
-        },
-        {
-          "date": "2026-11-06",
-          "value": 1.1165
-        },
-        {
-          "date": "2026-11-09",
-          "value": 1.1193
-        },
-        {
-          "date": "2026-11-10",
-          "value": 1.1214
-        }
-      ]
-    },
     "EXR/D.GBP.EUR.SP00.A": {
       "series_ref": "EXR/D.GBP.EUR.SP00.A",
       "title": "Euro / UK Pound Sterling Spot Exchange Rate",
@@ -232,50 +188,6 @@
         }
       ]
     },
-    "ILM/W.U2.C.T000000.Z5.Z01": {
-      "series_ref": "ILM/W.U2.C.T000000.Z5.Z01",
-      "title": "Eurosystem Consolidated Balance Sheet - Total Assets",
-      "frequency": "Weekly",
-      "n_obs_per_yr": 52,
-      "units": "Millions of EUR",
-      "category": "Central Bank Liquidity",
-      "source": "European Central Bank (ECB Data Portal)",
-      "last_date": "2026-W45",
-      "current_value": 5913173.0,
-      "previous_value": 5945410.0,
-      "year_ago_value": 6156666.0,
-      "transformations": {
-        "change": -32237.0,
-        "change_from_year_ago": -243493.0,
-        "percent_change": -0.5422,
-        "percent_change_from_year_ago": -3.9549,
-        "compounded_annual_rate_of_change": -24.6269,
-        "continuously_compounded_rate_of_change": -0.5437,
-        "continuously_compounded_annual_rate_of_change": -28.272
-      },
-      "recent_observations": [
-        {
-          "date": "2026-W41",
-          "value": 5943911.0
-        },
-        {
-          "date": "2026-W42",
-          "value": 5935346.0
-        },
-        {
-          "date": "2026-W43",
-          "value": 5934983.0
-        },
-        {
-          "date": "2026-W44",
-          "value": 5945410.0
-        },
-        {
-          "date": "2026-W45",
-          "value": 5913173.0
-        }
-      ]
-    },
     "FM/B.U2.EUR.4F.KR.MRR_FR.LEV": {
       "series_ref": "FM/B.U2.EUR.4F.KR.MRR_FR.LEV",
       "title": "ECB Main Refinancing Operations (MRO) Fixed Rate",
@@ -364,6 +276,50 @@
         }
       ]
     },
+    "FM/B.U2.EUR.4F.KR.MLFR.LEV": {
+      "series_ref": "FM/B.U2.EUR.4F.KR.MLFR.LEV",
+      "title": "ECB Marginal Lending Facility Rate (MLFR)",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Percent per Annum",
+      "category": "Policy Benchmark Rate",
+      "source": "European Central Bank (ECB Data Portal)",
+      "last_date": "2026-09-16",
+      "current_value": 2.9,
+      "previous_value": 2.65,
+      "year_ago_value": 4.25,
+      "transformations": {
+        "change": 0.25,
+        "change_from_year_ago": -1.35,
+        "percent_change": 9.434,
+        "percent_change_from_year_ago": -31.7647,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 9.0151,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2025-03-12",
+          "value": 2.9
+        },
+        {
+          "date": "2025-04-23",
+          "value": 2.65
+        },
+        {
+          "date": "2025-06-11",
+          "value": 2.4
+        },
+        {
+          "date": "2026-06-17",
+          "value": 2.65
+        },
+        {
+          "date": "2026-09-16",
+          "value": 2.9
+        }
+      ]
+    },
     "ICP/M.U2.N.000000.4.ANR": {
       "series_ref": "ICP/M.U2.N.000000.4.ANR",
       "title": "Euro Area HICP Headline Inflation Rate",
@@ -405,50 +361,6 @@
         {
           "date": "2025-12",
           "value": 1.9
-        }
-      ]
-    },
-    "ICP/M.U2.N.XEF000.4.ANR": {
-      "series_ref": "ICP/M.U2.N.XEF000.4.ANR",
-      "title": "Euro Area Core HICP Inflation Rate (Excl. Energy & Food)",
-      "frequency": "Monthly",
-      "n_obs_per_yr": 12,
-      "units": "Annual Rate of Change (%)",
-      "category": "Consumer Prices",
-      "source": "European Central Bank (ECB Data Portal)",
-      "last_date": "2025-12",
-      "current_value": 2.3,
-      "previous_value": 2.4,
-      "year_ago_value": 2.7,
-      "transformations": {
-        "change": -0.1,
-        "change_from_year_ago": -0.4,
-        "percent_change": -4.1667,
-        "percent_change_from_year_ago": -14.8148,
-        "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": -4.256,
-        "continuously_compounded_annual_rate_of_change": null
-      },
-      "recent_observations": [
-        {
-          "date": "2025-08",
-          "value": 2.3
-        },
-        {
-          "date": "2025-09",
-          "value": 2.4
-        },
-        {
-          "date": "2025-10",
-          "value": 2.4
-        },
-        {
-          "date": "2025-11",
-          "value": 2.4
-        },
-        {
-          "date": "2025-12",
-          "value": 2.3
         }
       ]
     }

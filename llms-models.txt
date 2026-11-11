@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-11 00:52 UTC
+> **Last Calibrated Sync:** 2026-11-11 01:11 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -31,10 +31,8 @@
 | **MODEL_15** | NY Fed ACM 10-Year Term Premium | **0.87** | Percent (%) | `FISCAL_SUPPLY_PRESSURE` | Decomposes the 10-year Treasury yield into expected sho... |
 | **MODEL_16** | CBOE Volatility & Market Fear Regime | **19.92** | Points | `NORMAL_VOLATILITY` | 30-day forward S&P 500 implied volatility fear gauge an... |
 | **MODEL_18** | Okun Misery Index | **8.18** | Index Points | `MODERATE` | Measures household welfare loss and stagflationary stre... |
-| **MODEL_19** | Buffett Indicator (Corporate Equities to GDP) | **251.59** | Percent (%) | `SEVERELY_OVERVALUED` | Measures total equity valuation froth against national ... |
 | **MODEL_20** | Copper to Gold Macro Sentiment Ratio | **3.5257** | Ratio (USD/MT to USD/oz) | `CYCLICAL_EXPANSION` | Pits industrial cyclical momentum (Doctor Copper) again... |
 | **MODEL_21** | Gold to Oil Crisis & Recession Ratio | **41.2** | Barrels per Ounce | `MACRO_CRISIS_RECESSION` | Calculates ounces of gold per barrel of crude oil to cl... |
-| **MODEL_22** | Household Credit Stress Gauge | **0.75** | Stress Ratio | `ELEVATED_PRESSURE` | Measures consumer debt service vulnerability by evaluat... |
 | **MODEL_23** | Okun Gap (Growth-Employment Divergence) | **-0.27** | Percentage Points (ppt) | `BALANCED_OKUN_EQUILIBRIUM` | Evaluates the historical elasticity between real GDP gr... |
 | **MODEL_23.1** | Labor Market Dual-Track Dynamics | **165.0** | Thousands (k) | `BALANCED_LABOR_MARKET` | Cross-evaluates payroll gains against unemployment rate... |
 | **MODEL_23.4** | Early Layoff and Recession Signal | **3.41** | Index Points | `EXPANSION_EMPLOYMENT_MOMENTUM` | Detects latent employment losses and early recessionary... |
@@ -52,7 +50,6 @@
 | **MODEL_25.7** | OVX / VIX Geopolitical Energy Shock Engine | **2.87** | Ratio | `ENERGY_SUPPLY_SHOCK_ALARM` | Evaluates the ratio between crude oil volatility (OVX) ... |
 | **MODEL_25.8** | Natgas / Crude Oil BTU Disconnect Engine | **37.89** | WTI/NatGas Ratio | `NATGAS_GLUT_ENERGY_CHEAP` | Measures physical energy parity between WTI crude oil a... |
 | **MODEL_25.9** | Gasoline / Crude Crack Spread Impulse Engine | **68.15** | USD per Barrel | `REFINERY_BOTTLENECK_CRUNCH` | Measures refinery processing margins between retail gas... |
-| **MODEL_25.10** | SLOOS Lending Standards Recession Gauge | **5.1** | Net Percent (%) | `NEUTRAL_CREDIT_CONDITIONS` | Tracks the net percentage of domestic US banks tighteni... |
 | **MODEL_25.11** | Full-Time vs. Involuntary Part-Time Crack Gauge | **5.4** | Percentage Points (ppt) | `STABLE_EMPLOYMENT_COMPOSITION` | Detects hidden labor market fragility by comparing the ... |
 | **MODEL_25.17** | Liquidity & Commodity Macro Regime Matrix | **20.0** | Basis Points (bps) | `REFLATIONARY_EXPANSION` | Evaluates front-end money market liquidity (3M-1M T-Bil... |
 | **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.474** | Score (Normalized) | `BALANCED_HARDWARE_FLOW` | Normalized composite metric monitoring semiconductor ph... |
@@ -178,13 +175,6 @@
 - **Secondary Metrics:** `{"misery_score": 8.18, "unemployment_component": 4.1, "inflation_component": 4.08}`
 - **Economic Synthesis:** Measures household welfare loss and stagflationary stress by summing civilian unemployment and annual inflation. Values > 12 indicate acute crisis.
 
-#### [MODEL_19] Buffett Indicator (Corporate Equities to GDP)
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#19
-- **Evaluated Status:** `SEVERELY_OVERVALUED` (Primary Value: 251.59 Percent (%))
-- **Inputs Evaluated:** `{"corporate_equities_liability_ncbeilq027s_mil": 83050847.0, "nominal_gdp_bil": 33010.04}`
-- **Secondary Metrics:** `{"buffett_ratio_pct": 251.59, "total_equities_market_val_bil": 83050.85, "nominal_gdp_bil": 33010.04}`
-- **Economic Synthesis:** Measures total equity valuation froth against national economic output using official Fed Z.1 accounts. Ratios >= 180% signal speculative bubble territory; < 100% reflect attractive valuation.
-
 #### [MODEL_20] Copper to Gold Macro Sentiment Ratio
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#20
 - **Evaluated Status:** `CYCLICAL_EXPANSION` (Primary Value: 3.5257 Ratio (USD/MT to USD/oz))
@@ -198,13 +188,6 @@
 - **Inputs Evaluated:** `{"gold_price_usd_oz": 4105.0, "oil_price_usd_bbl": 99.64}`
 - **Component Weights:** `{"ratio": 41.2, "historical_equilibrium_band": "12.0 - 25.0"}`
 - **Economic Synthesis:** Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks.
-
-#### [MODEL_22] Household Credit Stress Gauge
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#22
-- **Evaluated Status:** `ELEVATED_PRESSURE` (Primary Value: 0.75 Stress Ratio)
-- **Inputs Evaluated:** `{"credit_card_delinquency_rate_drcclacbs_pct": 2.85, "personal_saving_rate_psavert_pct": 3.8}`
-- **Secondary Metrics:** `{"household_stress_ratio": 0.75, "delinquency_rate_pct": 2.85, "saving_rate_pct": 3.8}`
-- **Economic Synthesis:** Measures consumer debt service vulnerability by evaluating credit card delinquency rates against the personal saving rate cushion. Ratios > 1.00 reflect severe consumer distress and spending contraction risk.
 
 #### [MODEL_23] Okun Gap (Growth-Employment Divergence)
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23
@@ -321,13 +304,6 @@
 - **Inputs Evaluated:** `{"gasoline_retail_usd_gal": 3.995, "wti_crude_usd_bbl": 99.64}`
 - **Secondary Metrics:** `{"crack_spread_usd": 68.15, "gasoline_barrel_equiv_usd": 167.79, "wti_crude_usd": 99.64}`
 - **Economic Synthesis:** Measures refinery processing margins between retail gasoline and crude oil. Spreads > $40/bbl signal refinery capacity bottlenecks and consumer fuel cost shocks; < $5 indicate refining margin collapse.
-
-#### [MODEL_25.10] SLOOS Lending Standards Recession Gauge
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.10
-- **Evaluated Status:** `NEUTRAL_CREDIT_CONDITIONS` (Primary Value: 5.1 Net Percent (%))
-- **Inputs Evaluated:** `{"drtscis_net_pct": 5.1}`
-- **Secondary Metrics:** `{"credit_tightening_net_pct": 5.1}`
-- **Economic Synthesis:** Tracks the net percentage of domestic US banks tightening lending standards on commercial and industrial (C&I) loans. Values > 40% signal an acute credit channel freeze and recession.
 
 #### [MODEL_25.11] Full-Time vs. Involuntary Part-Time Crack Gauge
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.11
