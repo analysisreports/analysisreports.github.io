@@ -128,13 +128,12 @@ def process_block(blk_lines: List[str], start_line: int, current_hub: str, seen_
                     "description": desc
                 })
             else:
-                parts = l_str[1:].split(":", 1)
-                if len(parts) == 2:
-                    vectors.append({
-                        "leverage_holder": "Unspecified",
-                        "domain": parts[0].strip(),
-                        "description": parts[1].strip()
-                    })
+                idx = blk_lines.index(l) if l in blk_lines else 0
+                err_line = start_line + idx
+                raise ValueError(
+                    f"[Line {err_line}] Malformed asymmetric power vector in {dyad_id}: '{l_str}'. "
+                    f"Must strictly match '- [Holder Leverage] Domain: Description'"
+                )
         elif in_flashpoints and re.match(r"^\d+\.", l_str):
             flashpoints.append(re.sub(r"^\d+\.\s*", "", l_str))
 

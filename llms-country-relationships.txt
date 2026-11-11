@@ -53,9 +53,9 @@
 #    held by the designated state, calculating escalation paths based on who can credibly deploy their leverage.
 #
 # 5. NUMERICAL SCORING STANDARDS:
-#    [+0.70 to +1.00] : Formal Mutual Defense Treaty Allies / Deep Geostrategic Integration
-#    [+0.30 to +0.69] : Strategic Alignment / Economic Interdependence / Cooperative Diplomacy
-#    [-0.29 to +0.29] : Transactional Pragmatism / Competitive Neutrality / Fluid Multivector Stance
+#    [+0.70 to +1.00] : Formal Mutual Defense Treaty Allies / Deep Geostrategic Integration (Core unhedged alliance posture)
+#    [+0.30 to +0.69] : Strategic Alignment / Economic Interdependence / Cooperative Diplomacy (including treaty allies with geoeconomic hedging e.g. GEO_TH)
+#    [-0.29 to +0.29] : Transactional Pragmatism / Competitive Neutrality / Fluid Multivector Stance (including transactional treaty allies e.g. GEO_TR)
 #    [-0.69 to -0.30] : Structural Geoeconomic Rivalry / Proxy Confrontation / Coercive Sanction Regimes
 #    [-1.00 to -0.70] : Acute Existential Adversaries / Full Embargoes / Direct Military Confrontation Axis
 #
