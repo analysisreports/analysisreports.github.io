@@ -46,6 +46,7 @@ ICP/M.U2.N.XEF000.4.ANR
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
 # - Synced At: 2026-11-11 01:46:59 UTC
+# - Sync Status: PARTIAL_SUCCESS (8 / 11 series active)
 # - Total Series Synced: 8 / 11
 # - Source Authority: European Central Bank (ECB Data Portal REST API)
 # - Canonical Formulas Reference: Section 0.5 of https://analysisreports.github.io/llms-formulas.txt
