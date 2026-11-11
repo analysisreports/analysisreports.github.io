@@ -99,20 +99,24 @@ def calc_change(xt, xt_prev) -> Optional[float]:
         return None
 
 def calc_percent_change(xt, xt_prev) -> Optional[float]:
-    if not (_is_num(xt) and _is_num(xt_prev)) or xt_prev == 0:
+    if not (_is_num(xt) and _is_num(xt_prev)) or xt_prev <= 0:
         return None
     try:
         res = ((xt / xt_prev) - 1.0) * 100.0
-        return round(res, 4) if math.isfinite(res) else None
+        if not math.isfinite(res) or res > 10000.0 or res < -100.0:
+            return None
+        return round(res, 4)
     except (OverflowError, ValueError, ZeroDivisionError):
         return None
 
 def calc_percent_change_year_ago(xt, xt_year_ago) -> Optional[float]:
-    if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago == 0:
+    if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago <= 0:
         return None
     try:
         res = ((xt / xt_year_ago) - 1.0) * 100.0
-        return round(res, 4) if math.isfinite(res) else None
+        if not math.isfinite(res) or res > 10000.0 or res < -100.0:
+            return None
+        return round(res, 4)
     except (OverflowError, ValueError, ZeroDivisionError):
         return None
 

@@ -204,6 +204,54 @@
       "description": "Automated European Central Bank Data Portal time-series, observation snapshots, and official monetary metrics."
     },
     {
+      "id": "live-nyfed-series",
+      "name": "Canonical New York Fed Time-Series Registry & Official Transformations",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-nyfed-series.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-nyfed-series.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Automated Federal Reserve Bank of New York time-series, Global Supply Chain Pressure Index (GSCPI), observation snapshots, and official metrics."
+    },
+    {
+      "id": "live-imf-series",
+      "name": "Canonical IMF World Economic Outlook (WEO) Time-Series Registry",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-imf-series.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-imf-series.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Automated International Monetary Fund (IMF) cross-country macroeconomic projections, debt-to-GDP, current account, and inflation time-series."
+    },
+    {
+      "id": "live-worldbank-series",
+      "name": "Canonical World Bank Pink Sheet Commodity Price Registry",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-worldbank-series.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-worldbank-series.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Automated World Bank official monthly commodity prices (energy, precious metals, agriculture, fertilizers) and growth transformations."
+    },
+    {
+      "id": "country-relationships",
+      "name": "Geopolitical Bilateral Dyad Stances & Strategic Flashpoint Matrix",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-country-relationships.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-country-relationships.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Comprehensive 165-dyad master geopolitical matrix defining bilateral stance polarities, asymmetric leverage vectors, and multilateral cross-references."
+    },
+    {
       "id": "dynamic-geopolitical-matrix",
       "name": "Dynamic Geopolitical Polarity & Sovereign Governance Engine",
       "type": "dataset",

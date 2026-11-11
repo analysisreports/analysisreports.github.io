@@ -421,6 +421,7 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
     all_sids = [s for s_list in frequencies.values() for s in s_list]
     missing_sids = [s for s in all_sids if s not in json_series_dict]
     sync_status = "SUCCESS" if synced_count == total_series else ("PARTIAL_SUCCESS" if synced_count > 0 else "FAILED")
+    missing_line = f"\n# - Inactive / Pending Series: {', '.join(missing_sids)}" if missing_sids else ""
 
     txt_body = "\n\n".join(txt_blocks)
 
@@ -430,7 +431,7 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
 # Ingestion Contract & Epistemological Directives:
 # - Synced At: {now_utc}
 # - Sync Status: {sync_status} ({synced_count} / {total_series} series active)
-# - Total Series Synced: {synced_count} / {total_series}
+# - Total Series Synced: {synced_count} / {total_series}{missing_line}
 # - Source Authority: Federal Reserve Bank of St. Louis (FRED API)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.

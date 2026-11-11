@@ -61,20 +61,24 @@ def ecb_change_year_ago(xt, xt_year_ago):
         return None
 
 def ecb_percent_change(xt, xt_prev):
-    if not (_is_num(xt) and _is_num(xt_prev)) or xt_prev == 0:
+    if not (_is_num(xt) and _is_num(xt_prev)) or xt_prev <= 0:
         return None
     try:
         res = ((xt / xt_prev) - 1.0) * 100.0
-        return round(res, 4) if math.isfinite(res) else None
+        if not math.isfinite(res) or res > 10000.0 or res < -100.0:
+            return None
+        return round(res, 4)
     except (OverflowError, ValueError, ZeroDivisionError):
         return None
 
 def ecb_percent_change_year_ago(xt, xt_year_ago):
-    if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago == 0:
+    if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago <= 0:
         return None
     try:
         res = ((xt / xt_year_ago) - 1.0) * 100.0
-        return round(res, 4) if math.isfinite(res) else None
+        if not math.isfinite(res) or res > 10000.0 or res < -100.0:
+            return None
+        return round(res, 4)
     except (OverflowError, ValueError, ZeroDivisionError):
         return None
 
@@ -457,6 +461,7 @@ def build_outputs(frequencies: Dict[str, List[str]], existing_series: Optional[D
     all_refs = [ref for refs in frequencies.values() for ref in refs]
     missing_refs = [ref for ref in all_refs if ref not in json_series_dict]
     sync_status = "SUCCESS" if synced_count == total_series else ("PARTIAL_SUCCESS" if synced_count > 0 else "FAILED")
+    missing_line = f"\n# - Inactive / Pending Series: {', '.join(missing_refs)}" if missing_refs else ""
 
     txt_body = "\n\n".join(txt_blocks)
 
@@ -466,7 +471,7 @@ def build_outputs(frequencies: Dict[str, List[str]], existing_series: Optional[D
 # Ingestion Contract & Epistemological Directives:
 # - Synced At: {now_utc}
 # - Sync Status: {sync_status} ({synced_count} / {total_series} series active)
-# - Total Series Synced: {synced_count} / {total_series}
+# - Total Series Synced: {synced_count} / {total_series}{missing_line}
 # - Source Authority: European Central Bank (ECB Data Portal REST API)
 # - Canonical Formulas Reference: Section 0.5 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
