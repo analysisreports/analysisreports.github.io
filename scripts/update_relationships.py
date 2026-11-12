@@ -31,6 +31,23 @@ def get_regime(p_net):
     else: return 'PROXY_WAR'
 
 
+def calc_brent_wti_spread(brent_price, wti_price):
+    if any(v is None or isinstance(v, bool) for v in (brent_price, wti_price)):
+        return None
+    try:
+        brent_value = float(brent_price)
+        wti_value = float(wti_price)
+        if not (math.isfinite(brent_value) and math.isfinite(wti_value)):
+            return None
+        if brent_value <= 0.0 or wti_value <= 0.0:
+            return None
+
+        spread = brent_value - wti_value
+        return round(spread, 2) if math.isfinite(spread) else None
+    except (TypeError, ValueError, OverflowError):
+        return None
+
+
 def main():
     fred_json_path = 'llms-fred-series.json'
     out_json_path = 'llms-relationships.json'
@@ -47,7 +64,7 @@ def main():
 
     brent = series.get('DCOILBRENTEU', {}).get('current_value')
     wti = series.get('DCOILWTICO', {}).get('current_value')
-    brent_wti_spread = round(brent - wti, 2) if (brent is not None and wti is not None) else None
+    brent_wti_spread = calc_brent_wti_spread(brent, wti)
 
     vix = series.get('VIXCLS', {}).get('current_value')
     sox_yoy = series.get('NASDAQSOX', {}).get('transformations', {}).get('percent_change_from_year_ago')

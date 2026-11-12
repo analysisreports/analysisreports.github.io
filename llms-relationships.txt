@@ -860,7 +860,7 @@ Regime States (Discrete Mapping):
 - Status Enums: WIDE_BRENT_WTI_SPREAD | NARROW_BRENT_WTI_SPREAD | TYPICAL_BRENT_WTI_SPREAD
 - Purpose: Measures Brent's relative premium or discount to WTI and the degree of price divergence between the international and U.S. benchmarks.
 - Actor Coupling: Model 25.12 transmission coefficients apply to IL-IR, YE-IL, SA-IR, US-VE, TR-SY, EG-IL, and SA-YE. OPEC+ supply quotas provide broader market context.
-- Transmission Rule: Spread > $12.00 sets oil_delta = -0.15; spread > $8.00 sets oil_delta = -0.10. Pair coefficients are IL-IR (1.0), YE-IL (1.0), SA-IR (0.5), US-VE (0.5), TR-SY (0.3), EG-IL (-0.5), and SA-YE (0.4).
+- Transmission Rule: Spread > $12.00 sets oil_delta = -0.15; $8.00 < spread <= $12.00 sets oil_delta = -0.10; spread <= $8.00 sets oil_delta = 0.00. Pair coefficients are IL-IR (1.0), YE-IL (1.0), SA-IR (0.5), US-VE (0.5), TR-SY (0.3), EG-IL (-0.5), and SA-YE (0.4).
 - Analyst Hypothesis — Egypt-Israel Energy-Security Coordination: A wide Brent-WTI spread is treated as an energy-market stress signal. Energy and maritime disruption can increase Egypt's exposure through Suez transit-revenue pressure and domestic fuel and power needs, while increasing the strategic value of Israeli gas flows. These shared pressures may strengthen pragmatic Egypt-Israel energy and security coordination. EG-IL dynamic_delta = -0.5 * oil_delta, representing this hypothesized positive coordination response.
 - Empirical Validation Indicators: Suez transit volume and revenue, Israeli gas flows to Egypt, Egypt's domestic energy conditions, and documented bilateral energy and security coordination.
 
