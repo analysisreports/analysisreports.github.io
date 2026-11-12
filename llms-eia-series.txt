@@ -39,7 +39,7 @@ NG.NW2_EPG0_SWO_R48_BCF.W
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-12 00:47:36 UTC
+# - Synced At: 2026-11-12 18:48:33 UTC
 # - Sync Status: SUCCESS (5 / 5 series active)
 # - Total Series Synced: 5 / 5
 # - Source Authority: U.S. Energy Information Administration (EIA Open Data API v2)

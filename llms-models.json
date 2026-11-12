@@ -7,7 +7,7 @@
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-12T15:43:38.539581+00:00",
+    "last_successful_sync": "2026-11-12T18:48:33.920173+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -99,7 +99,8 @@
       "inputs": {
         "fed_total_assets_walcl_mil": 6748145.0,
         "treasury_general_account_tga_mil": 957175.0,
-        "overnight_reverse_repo_rrp_bil": 0.152
+        "overnight_reverse_repo_rrp_bil": 0.152,
+        "overnight_reverse_repo_rrp_mil": 152.0
       },
       "metrics": {
         "net_liquidity_millions_usd": 5790818.0,
