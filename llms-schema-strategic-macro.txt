@@ -57,8 +57,7 @@ Every strategic-macro entry embeds a clean, machine-readable JSON object inside 
           "current_numeric_value": "number (Mevcut dönem net sayısal değeri)",
           "previous_period_value": "string (Önceki dönem metin değeri)",
           "previous_numeric_value": "number (Önceki dönem net sayısal değeri)",
-          "nominal_change": "string (Nominal değişim miktarı)",
-          "target_deviation_bps": "number (Baz puan cinsinden hedef sapması)"
+          "nominal_change": "string (Nominal değişim miktarı)"
         },
         "change_rates_percentage": {
           "change_rate_compared_to_previous_month": "string (Aylık yüzde değişim)",
