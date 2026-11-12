@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-11 23:49 UTC
+> **Last Calibrated Sync:** 2026-11-12 00:47 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -51,7 +51,7 @@
 | **MODEL_25.6** | Gold / Real Yield Debasement Gauge | **2.66** | Percent (%) | `TRADITIONAL_REAL_RATE_DOMINANCE` | Detects de-dollarization trends and fiat debasement by ... |
 | **MODEL_25.7** | OVX / VIX Geopolitical Energy Shock Engine | **2.87** | Ratio | `ENERGY_SUPPLY_SHOCK_ALARM` | Evaluates the ratio between crude oil volatility (OVX) ... |
 | **MODEL_25.8** | Natgas / Crude Oil BTU Disconnect Engine | **37.89** | WTI/NatGas Ratio | `NATGAS_GLUT_ENERGY_CHEAP` | Measures physical energy parity between WTI crude oil a... |
-| **MODEL_25.9** | Gasoline / Crude Crack Spread Impulse Engine | **68.15** | USD per Barrel | `REFINERY_BOTTLENECK_CRUNCH` | Measures refinery processing margins between retail gas... |
+| **MODEL_25.9** | Gasoline / Distillate / Crude 3:2:1 Crack Spread | **44.27** | USD per Barrel | `UNCLASSIFIED` | Calculates the 3:2:1 spot crack spread from same-date N... |
 | **MODEL_25.10** | SLOOS Lending Standards Recession Gauge | **5.1** | Net Percent (%) | `NEUTRAL_CREDIT_CONDITIONS` | Tracks the net percentage of domestic US banks tighteni... |
 | **MODEL_25.11** | Full-Time vs. Involuntary Part-Time Crack Gauge | **5.4** | Percentage Points (ppt) | `STABLE_EMPLOYMENT_COMPOSITION` | Detects hidden labor market fragility by comparing the ... |
 | **MODEL_25.17** | Liquidity & Commodity Macro Regime Matrix | **20.0** | Basis Points (bps) | `REFLATIONARY_EXPANSION` | Evaluates front-end money market liquidity (3M-1M T-Bil... |
@@ -325,12 +325,12 @@
 - **Secondary Metrics:** `{"btu_disconnect_ratio": 37.89, "wti_price": 99.64, "natgas_price": 2.63, "lower48_natgas_storage_bcf": 3801.0, "natgas_storage_yoy_pct": -2.66}`
 - **Economic Synthesis:** Measures physical energy parity between WTI crude oil and Henry Hub natural gas. Live EIA underground gas storage: 3801.0 Bcf. Ratios > 35 indicate natural gas supply glut and cheap domestic fuel; < 6 signal acute gas deficit and power shock.
 
-#### [MODEL_25.9] Gasoline / Crude Crack Spread Impulse Engine
+#### [MODEL_25.9] Gasoline / Distillate / Crude 3:2:1 Crack Spread
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.9
-- **Evaluated Status:** `REFINERY_BOTTLENECK_CRUNCH` (Primary Value: 68.15 USD per Barrel)
-- **Inputs Evaluated:** `{"gasoline_retail_usd_gal": 3.995, "wti_crude_usd_bbl": 99.64, "gasoline_stocks_kbbl": 208958.0, "gasoline_stocks_yoy_pct": 1.43}`
-- **Secondary Metrics:** `{"crack_spread_usd": 68.15, "gasoline_barrel_equiv_usd": 167.79, "wti_crude_usd": 99.64, "gasoline_stocks_kbbl": 208958.0, "gasoline_days_of_supply": 23.2, "inventory_cover_status": "BALANCED_INVENTORY_COVER", "gasoline_stocks_yoy_pct": 1.43}`
-- **Economic Synthesis:** Measures refinery processing margins between retail gasoline and crude oil. Live EIA gasoline inventories (208,958 kbbl) provide 23.2 days of supply (BALANCED_INVENTORY_COVER). Spreads > $40/bbl signal refinery capacity bottlenecks and consumer fuel cost shocks; < $5 indicate refining margin collapse.
+- **Evaluated Status:** `UNCLASSIFIED` (Primary Value: 44.27 USD per Barrel)
+- **Inputs Evaluated:** `{"gasoline_spot_usd_gal": 2.728, "ulsd_spot_usd_gal": 4.823, "wti_crude_usd_bbl": 99.64, "matched_observation_date": "2026-11-03", "gasoline_stocks_kbbl": 208958.0, "gasoline_stocks_yoy_pct": 1.43}`
+- **Secondary Metrics:** `{"crack_spread_321_usd_bbl": 44.27, "gasoline_2_barrel_equiv_usd": 229.15, "ulsd_1_barrel_equiv_usd": 202.57, "wti_crude_usd_bbl": 99.64, "gasoline_stocks_kbbl": 208958.0, "gasoline_stocks_yoy_pct": 1.43}`
+- **Economic Synthesis:** Calculates the 3:2:1 spot crack spread from same-date New York Harbor conventional gasoline, ULSD, and WTI prices. Regime thresholds have not been calibrated; gasoline inventory is contextual only.
 
 #### [MODEL_25.10] SLOOS Lending Standards Recession Gauge
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.10
