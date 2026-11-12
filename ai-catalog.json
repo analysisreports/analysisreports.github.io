@@ -81,6 +81,18 @@
       "description": "Machine-validatable JSON schema merging political and country-level structural metrics."
     },
     {
+      "id": "schema-strategic-macro",
+      "name": "Strategic Macro & Geopolitical Economy JSON Schema",
+      "type": "specification",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/strategic-macro.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-schema-strategic-macro.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Unified machine-validatable JSON schema merging sovereign defense postures, maritime chokepoints, bilateral tension vectors, and quantitative macroeconomic models."
+    },
+    {
       "id": "schema-editorial",
       "name": "Editorial Stance and Macro Expectation JSON Schema",
       "type": "specification",
