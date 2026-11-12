@@ -46,8 +46,7 @@
           "current_numeric_value": 0.0,
           "previous_period_value": "",
           "previous_numeric_value": 0.0,
-          "nominal_change": "",
-          "target_deviation_bps": 0
+          "nominal_change": ""
         },
         "change_rates_percentage": {
           "change_rate_compared_to_previous_month": "",
