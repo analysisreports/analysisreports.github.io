@@ -7,7 +7,7 @@
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-12T00:47:36.442985+00:00",
+    "last_successful_sync": "2026-11-12T01:25:55.200918+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -673,7 +673,7 @@
     },
     {
       "model_id": "MODEL_25.8",
-      "model_name": "Natgas / Crude Oil BTU Disconnect Engine",
+      "model_name": "Natgas / Crude Oil Price-Ratio Disconnect Engine",
       "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.8",
       "primary_value": 37.89,
       "unit": "WTI/NatGas Ratio",
@@ -691,7 +691,7 @@
         "lower48_natgas_storage_bcf": 3801.0,
         "natgas_storage_yoy_pct": -2.66
       },
-      "interpretation": "Measures physical energy parity between WTI crude oil and Henry Hub natural gas. Live EIA underground gas storage: 3801.0 Bcf. Ratios > 35 indicate natural gas supply glut and cheap domestic fuel; < 6 signal acute gas deficit and power shock."
+      "interpretation": "Measures the unnormalized WTI-to-Henry Hub price ratio; it is not a BTU-normalized parity measure. Live EIA underground gas storage: 3801.0 Bcf. Ratios > 35 indicate a high crude-to-gas price ratio; < 6 indicate a low ratio. Neither alone proves a physical supply glut or deficit."
     },
     {
       "model_id": "MODEL_25.9",

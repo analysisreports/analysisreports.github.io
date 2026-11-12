@@ -444,11 +444,12 @@
     },
     {
       "id": "MODEL_25.8",
-      "label": "NatGas / Crude Oil BTU Disconnect Engine",
+      "label": "NatGas / Crude Oil Price-Ratio Disconnect Engine",
       "category": "MODEL",
       "attributes": {
         "function": "natgas_crude_btu_disconnect",
-        "formula": "BTU_Disconnect_Ratio = WTI_Price / NatGas_Price",
+        "formula": "Crude_NatGas_Price_Ratio = WTI_Price / NatGas_Price",
+        "storage_context": "Current EIA storage level and year-over-year change are context metrics only; they do not enter the price ratio or status.",
         "status_enums": [
           "NATGAS_CRISIS_BLACKOUT_RISK",
           "NATGAS_GLUT_ENERGY_CHEAP",
@@ -3704,7 +3705,7 @@
       "source": "IND_NG_NW2_EPG0_SWO_R48_BCF_W",
       "target": "MODEL_25.8",
       "type": "INGESTS_SERIES",
-      "role": "natgas_storage_bcf"
+      "role": "natgas_storage_context_bcf"
     },
     {
       "source": "IND_PET_WCESTUS1_W",

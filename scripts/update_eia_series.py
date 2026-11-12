@@ -412,7 +412,6 @@ def main():
                         is_cache_valid = True
                 except Exception:
                     is_cache_valid = False
-
             if is_cache_valid:
                 print(f"  [CACHE HIT] {s_id} [{freq}]: Snapshot fresh. Using cached entry.")
                 recompute_eia_transformations(cached_entry, n_obs)

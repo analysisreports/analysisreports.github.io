@@ -1130,7 +1130,7 @@ def calc_ovx_vix_risk_premium(ovx_val, vix_val):
         return None
 
 
-# --- Model 25.8: Natgas / Crude Oil BTU Disconnect Engine ---
+# --- Model 25.8: Natgas / Crude Oil Price-Ratio Disconnect Engine ---
 def calc_natgas_crude_btu_disconnect(
     wti_price_val,
     natgas_price_val,
@@ -1167,12 +1167,12 @@ def calc_natgas_crude_btu_disconnect(
             "natgas_price": round(f_gas, 2)
         }
 
-        interp = "Measures physical energy parity between WTI crude oil and Henry Hub natural gas."
+        interp = "Measures the unnormalized WTI-to-Henry Hub price ratio; it is not a BTU-normalized parity measure."
 
         if natgas_storage_bcf_val is not None and not isinstance(natgas_storage_bcf_val, bool):
             try:
                 f_storage = float(natgas_storage_bcf_val)
-                if math.isfinite(f_storage):
+                if math.isfinite(f_storage) and f_storage > 0.0:
                     inputs_dict["lower48_natgas_storage_bcf"] = round(f_storage, 1)
                     metrics_dict["lower48_natgas_storage_bcf"] = round(f_storage, 1)
                     if natgas_storage_yoy_val is not None and not isinstance(natgas_storage_yoy_val, bool):
@@ -1184,11 +1184,11 @@ def calc_natgas_crude_btu_disconnect(
             except (ValueError, TypeError):
                 pass
 
-        interp += " Ratios > 35 indicate natural gas supply glut and cheap domestic fuel; < 6 signal acute gas deficit and power shock."
+        interp += " Ratios > 35 indicate a high crude-to-gas price ratio; < 6 indicate a low ratio. Neither alone proves a physical supply glut or deficit."
 
         return {
             "model_id": "MODEL_25.8",
-            "model_name": "Natgas / Crude Oil BTU Disconnect Engine",
+            "model_name": "Natgas / Crude Oil Price-Ratio Disconnect Engine",
             "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.8",
             "primary_value": ratio,
             "unit": "WTI/NatGas Ratio",
@@ -2908,7 +2908,7 @@ def main():
     if m_ovx_vix:
         models_calculated.append(m_ovx_vix)
 
-    # Model 25.8: Natgas / Crude Oil BTU Disconnect Engine
+    # Model 25.8: Natgas / Crude Oil Price-Ratio Disconnect Engine
     natgas_price = series.get("DHHNGSP", {}).get("current_value")
     m_btu = calc_natgas_crude_btu_disconnect(wti, natgas_price, natgas_storage, natgas_storage_yoy)
     if m_btu:

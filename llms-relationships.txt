@@ -800,9 +800,10 @@ Regime States (Discrete Mapping):
 - Status Enums: ENERGY_SUPPLY_SHOCK_ALARM | EQUITY_PANIC_OVER_ENERGY | BALANCED_ENERGY_VOLATILITY
 - Primary Geopolitical Vector: Middle East fault lines (IL-IR 2.2.1, YE-HOUTHI 3.1) and maritime oil chokepoints Hormuz (4.1) & Bab el-Mandeb (4.2).
 
-8.4.2. MODEL_25.8_NATGAS_CRUDE_BTU_DISCONNECT
+8.4.2. MODEL_25.8_NATGAS_CRUDE_PRICE_RATIO_DISCONNECT
 - Target Formula: llms-formulas.txt -> Model 25.8 (natgas_crude_btu_disconnect)
 - Data Series Triggered: DCOILWTICO, DHHNGSP
+- Context Series: NG.NW2_EPG0_SWO_R48_BCF.W current storage level and year-over-year change; context only, not part of the formula or status
 - Status Enums: NATGAS_CRISIS_BLACKOUT_RISK | NATGAS_GLUT_ENERGY_CHEAP | ENERGY_PARITY_EQUILIBRIUM
 - Primary Geopolitical Vector: Nord Stream cessation, Russian Arctic LNG-2 sanctions (2.3.2, 4.12), Caspian Sea Transit Basin (7.3.1), Zangezur Gas Hub (7.2.1).
 

@@ -152,7 +152,7 @@ TIER 2: ADVANCED INSTITUTIONAL MACRO MODELS
    - 25.5. Repo Liquidity Friction Spread Engine (SOFR, EFFR)
    - 25.6. Gold / Real Yield Debasement Gauge (DFII10, IND_WB_GOLD)
    - 25.7. OVX / VIX Geopolitical Energy Shock Engine (OVXCLS, VIXCLS)
-   - 25.8. NatGas / Crude Oil BTU Disconnect Engine (DCOILWTICO, DHHNGSP)
+   - 25.8. NatGas / Crude Oil Price-Ratio Disconnect Engine (DCOILWTICO, DHHNGSP; NG.NW2_EPG0_SWO_R48_BCF.W storage context)
    - 25.9. Gasoline / Distillate / Crude 3:2:1 Crack Spread (DGASNYH, DDFUELNYH, DCOILWTICO; PET.WGTSTUS1.W inventory context)
    - 25.10. SLOOS Lending Standards Recession Gauge (DRTSCIS)
    - 25.11. Full-Time vs. Involuntary Part-Time Crack Gauge (LNS12500000, LNS12032194)

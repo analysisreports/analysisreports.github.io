@@ -2074,15 +2074,15 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 
 ---
 
-### 25.8. NATGAS / CRUDE OIL BTU DISCONNECT ENGINE
+### 25.8. NATGAS / CRUDE OIL PRICE-RATIO DISCONNECT ENGINE
 - Purpose: Measures the WTI-to-Henry Hub price ratio as a crude/natural-gas disconnect proxy. This ratio is not normalized for the fuels' different energy content and is not a BTU-parity ratio.
 - Data Series Keys:
   - FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - Dollars per Barrel)
   - FRED: DHHNGSP (Henry Hub Natural Gas Spot Price - Dollars per Million BTU)
-  - EIA context metric: NG.NW2_EPG0_SWO_R48_BCF.W (Lower 48 Working Gas Storage - Billion Cubic Feet)
+  - EIA context metrics: NG.NW2_EPG0_SWO_R48_BCF.W current storage level and year-over-year change
 - Formula: Crude_NatGas_Price_Ratio = WTI_Price / NatGas_Price
 - Machine-Executable Logic (Python):
-  def natgas_crude_btu_disconnect(wti_price, natgas_price):
+  def natgas_crude_btu_disconnect(wti_price, natgas_price, storage_bcf=None, storage_yoy_pct=None):
       if any(v is None or isinstance(v, bool) for v in (wti_price, natgas_price)):
           return None
       try:
@@ -2103,7 +2103,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           return {"btu_disconnect_ratio": ratio, "status": status}
       except (TypeError, ValueError, ZeroDivisionError):
           return None
-- Live EIA storage and year-over-year change are reported as context metrics by the model runner; they do not enter this ratio or determine its status. Missing storage data must remain missing rather than be inferred from the ratio.
+- Live EIA storage and year-over-year change are reported as context metrics by the model runner; they do not enter the crude/natgas price ratio or determine its status. Missing storage values must remain missing rather than be inferred from the ratio.
 - The existing output field `btu_disconnect_ratio` is a legacy key for this unnormalized price ratio; it does not represent a BTU-normalized measure.
 - Interpretation:
   - Crude_NatGas_Price_Ratio < 6.0 : NATGAS_CRISIS_BLACKOUT_RISK (Low crude-to-gas price ratio; not, by itself, proof of a physical gas deficit)

@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-12 00:47 UTC
+> **Last Calibrated Sync:** 2026-11-12 01:25 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -50,7 +50,7 @@
 | **MODEL_25.5** | Repo Liquidity Friction Spread Engine | **0.0** | Basis Points (bps) | `HEALTHY_MONETARY_TRANSMISSION` | Measures funding market friction tracking the spread be... |
 | **MODEL_25.6** | Gold / Real Yield Debasement Gauge | **2.66** | Percent (%) | `TRADITIONAL_REAL_RATE_DOMINANCE` | Detects de-dollarization trends and fiat debasement by ... |
 | **MODEL_25.7** | OVX / VIX Geopolitical Energy Shock Engine | **2.87** | Ratio | `ENERGY_SUPPLY_SHOCK_ALARM` | Evaluates the ratio between crude oil volatility (OVX) ... |
-| **MODEL_25.8** | Natgas / Crude Oil BTU Disconnect Engine | **37.89** | WTI/NatGas Ratio | `NATGAS_GLUT_ENERGY_CHEAP` | Measures physical energy parity between WTI crude oil a... |
+| **MODEL_25.8** | Natgas / Crude Oil Price-Ratio Disconnect Engine | **37.89** | WTI/NatGas Ratio | `NATGAS_GLUT_ENERGY_CHEAP` | Measures the unnormalized WTI-to-Henry Hub price ratio;... |
 | **MODEL_25.9** | Gasoline / Distillate / Crude 3:2:1 Crack Spread | **44.27** | USD per Barrel | `UNCLASSIFIED` | Calculates the 3:2:1 spot crack spread from same-date N... |
 | **MODEL_25.10** | SLOOS Lending Standards Recession Gauge | **5.1** | Net Percent (%) | `NEUTRAL_CREDIT_CONDITIONS` | Tracks the net percentage of domestic US banks tighteni... |
 | **MODEL_25.11** | Full-Time vs. Involuntary Part-Time Crack Gauge | **5.4** | Percentage Points (ppt) | `STABLE_EMPLOYMENT_COMPOSITION` | Detects hidden labor market fragility by comparing the ... |
@@ -318,12 +318,12 @@
 - **Secondary Metrics:** `{"ovx_vix_ratio": 2.87}`
 - **Economic Synthesis:** Evaluates the ratio between crude oil volatility (OVX) and equity volatility (VIX). Ratios > 2.2 signal severe geopolitical oil supply shocks and stagflationary headwinds.
 
-#### [MODEL_25.8] Natgas / Crude Oil BTU Disconnect Engine
+#### [MODEL_25.8] Natgas / Crude Oil Price-Ratio Disconnect Engine
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.8
 - **Evaluated Status:** `NATGAS_GLUT_ENERGY_CHEAP` (Primary Value: 37.89 WTI/NatGas Ratio)
 - **Inputs Evaluated:** `{"wti_crude_usd_bbl": 99.64, "henry_hub_natgas_usd_mmbtu": 2.63, "lower48_natgas_storage_bcf": 3801.0, "natgas_storage_yoy_pct": -2.66}`
 - **Secondary Metrics:** `{"btu_disconnect_ratio": 37.89, "wti_price": 99.64, "natgas_price": 2.63, "lower48_natgas_storage_bcf": 3801.0, "natgas_storage_yoy_pct": -2.66}`
-- **Economic Synthesis:** Measures physical energy parity between WTI crude oil and Henry Hub natural gas. Live EIA underground gas storage: 3801.0 Bcf. Ratios > 35 indicate natural gas supply glut and cheap domestic fuel; < 6 signal acute gas deficit and power shock.
+- **Economic Synthesis:** Measures the unnormalized WTI-to-Henry Hub price ratio; it is not a BTU-normalized parity measure. Live EIA underground gas storage: 3801.0 Bcf. Ratios > 35 indicate a high crude-to-gas price ratio; < 6 indicate a low ratio. Neither alone proves a physical supply glut or deficit.
 
 #### [MODEL_25.9] Gasoline / Distillate / Crude 3:2:1 Crack Spread
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.9

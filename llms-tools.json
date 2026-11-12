@@ -1310,7 +1310,7 @@
             "type": "function",
             "function": {
                 "name": "calculate_natgas_crude_btu_disconnect",
-                "description": "Calculates the physical energy parity ratio between WTI Crude Oil and Henry Hub Natural Gas to detect regional gas gluts or acute supply crises.",
+                "description": "Calculates the unnormalized WTI-to-Henry Hub price ratio. Optional current EIA storage and year-over-year change are returned as context metrics only.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -1321,6 +1321,14 @@
                         "natgas_price": {
                             "type": "number",
                             "description": "Henry Hub Natural Gas Spot Price in dollars per million BTU (FRED: DHHNGSP)."
+                        },
+                        "natgas_storage_bcf_val": {
+                            "type": "number",
+                            "description": "Optional current Lower 48 working gas storage in Bcf (EIA: NG.NW2_EPG0_SWO_R48_BCF.W)."
+                        },
+                        "natgas_storage_yoy_val": {
+                            "type": "number",
+                            "description": "Optional year-over-year storage change in percent; context only."
                         }
                     },
                     "required": [
