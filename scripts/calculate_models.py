@@ -3000,19 +3000,35 @@ def main():
     if m_cds_pd:
         models_calculated.append(m_cds_pd)
 
-    # Model 28.4: Chokepoint Macro Spillover Bridge (Hormuz - Live EIA SPR & US Field Production)
-    hormuz_p_net = -0.95  # IL-IR standoff polarity (llms-relationships.txt #2.2.1)
-    m_hormuz_bridge = calc_chokepoint_transmission_bridge(
-        severity_enum="CATASTROPHIC",
-        p_net=hormuz_p_net,
-        duration_days=14,
-        bypass_capacity_mbpd=4.0,
-        spr_stocks_kbbl=spr_stocks,
-        gross_flow_mbpd=20.5,
-        us_crude_prod_kbpd=us_crude_prod
-    )
-    if m_hormuz_bridge:
-        models_calculated.append(m_hormuz_bridge)
+    # Model 28.4: use the generated relationship snapshot for current polarity and chokepoint metadata.
+    relationships_json_path = "llms-relationships.json"
+    try:
+        with open(relationships_json_path, "r", encoding="utf-8") as f:
+            relationship_data = json.load(f)
+        relationship_rows = relationship_data.get("relationships", [])
+        chokepoint_rows = relationship_data.get("chokepoints", [])
+        il_ir = next((row for row in relationship_rows if row.get("id") == "IL_IR"), None)
+        hormuz = next((row for row in chokepoint_rows if row.get("id") == "CHOKE_HORMUZ"), None)
+        if il_ir is None or hormuz is None:
+            raise ValueError("IL_IR relationship or CHOKE_HORMUZ metadata is missing.")
+        if il_ir.get("p_net") is None or hormuz.get("disruption_severity") is None or hormuz.get("daily_oil_volume_mbpd") is None:
+            raise ValueError("IL_IR polarity or required CHOKE_HORMUZ fields are missing.")
+
+        m_hormuz_bridge = calc_chokepoint_transmission_bridge(
+            severity_enum=hormuz["disruption_severity"],
+            p_net=il_ir["p_net"],
+            duration_days=14,
+            bypass_capacity_mbpd=4.0,
+            spr_stocks_kbbl=spr_stocks,
+            gross_flow_mbpd=hormuz["daily_oil_volume_mbpd"],
+            us_crude_prod_kbpd=us_crude_prod
+        )
+        if m_hormuz_bridge:
+            models_calculated.append(m_hormuz_bridge)
+        else:
+            ingestion_warnings.append("Model 28.4 could not be calculated from relationship and EIA inputs.")
+    except (OSError, json.JSONDecodeError, TypeError, ValueError) as e:
+        ingestion_warnings.append(f"Model 28.4 relationship input error: {e}")
 
     now_dt = datetime.datetime.now(datetime.timezone.utc)
     now_iso = now_dt.isoformat()

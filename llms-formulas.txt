@@ -2075,11 +2075,12 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ---
 
 ### 25.8. NATGAS / CRUDE OIL BTU DISCONNECT ENGINE
-- Purpose: Identifies regional gas gluts or acute natural gas shortages by measuring the physical energy parity ratio (BTU Parity) between WTI Crude Oil and Henry Hub Natural Gas.
+- Purpose: Measures the WTI-to-Henry Hub price ratio as a crude/natural-gas disconnect proxy. This ratio is not normalized for the fuels' different energy content and is not a BTU-parity ratio.
 - Data Series Keys:
   - FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - Dollars per Barrel)
   - FRED: DHHNGSP (Henry Hub Natural Gas Spot Price - Dollars per Million BTU)
-- Formula: BTU_Disconnect_Ratio = WTI_Price / NatGas_Price
+  - EIA context metric: NG.NW2_EPG0_SWO_R48_BCF.W (Lower 48 Working Gas Storage - Billion Cubic Feet)
+- Formula: Crude_NatGas_Price_Ratio = WTI_Price / NatGas_Price
 - Machine-Executable Logic (Python):
   def natgas_crude_btu_disconnect(wti_price, natgas_price):
       if any(v is None or isinstance(v, bool) for v in (wti_price, natgas_price)):
@@ -2102,15 +2103,17 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           return {"btu_disconnect_ratio": ratio, "status": status}
       except (TypeError, ValueError, ZeroDivisionError):
           return None
+- Live EIA storage and year-over-year change are reported as context metrics by the model runner; they do not enter this ratio or determine its status. Missing storage data must remain missing rather than be inferred from the ratio.
+- The existing output field `btu_disconnect_ratio` is a legacy key for this unnormalized price ratio; it does not represent a BTU-normalized measure.
 - Interpretation:
-  - BTU_Disconnect_Ratio < 6.0 : NATGAS_CRISIS_BLACKOUT_RISK (Acute natural gas deficit / Gas extraordinarily expensive vs oil / Heating & power cost shock)
-  - BTU_Disconnect_Ratio > 35.0 : NATGAS_GLUT_ENERGY_CHEAP (Natural gas supply glut / Inexpensive industrial and residential fuel)
-  - 6.0 to 35.0 : ENERGY_PARITY_EQUILIBRIUM (Healthy and balanced energy substitution ratio)
+  - Crude_NatGas_Price_Ratio < 6.0 : NATGAS_CRISIS_BLACKOUT_RISK (Low crude-to-gas price ratio; not, by itself, proof of a physical gas deficit)
+  - Crude_NatGas_Price_Ratio > 35.0 : NATGAS_GLUT_ENERGY_CHEAP (High crude-to-gas price ratio; not, by itself, proof of a physical gas glut)
+  - 6.0 to 35.0 : ENERGY_PARITY_EQUILIBRIUM (Intermediate price-ratio band; not an energy-equivalence finding)
 
 ---
 
 ### 25.9. GASOLINE / CRUDE CRACK SPREAD IMPULSE ENGINE
-- Purpose: Measures a retail-to-crude margin proxy (Retail Crack Spread Proxy) between retail regular gasoline (GASREGW) and crude oil (WTI) to detect refining bottlenecks, downstream consumer energy cost passthrough, and distribution margins, integrated with live EIA total gasoline inventory cover days (PET.WGTSTUS1.W) to confirm physical supply stress.
+- Purpose: Measures a retail-to-crude price proxy between retail regular gasoline (GASREGW) and WTI. Because GASREGW is a retail price, this is not a wholesale refinery crack spread. EIA gasoline stocks provide a separate inventory-cover metric.
 - Data Series Keys:
   - FRED: GASREGW (US Regular All Formulations Retail Gasoline Prices - Dollars per Gallon)
   - FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - Dollars per Barrel)
@@ -2118,6 +2121,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 - Formula:
   Crack_Spread_USD = (Gasoline_Gallon_Price * 42) - WTI_Barrel_Price
   Gasoline_Days_Of_Supply = Total_Gasoline_Stocks_kbbl / 9000.0
+  (9000 kbbl/day is a fixed reference-consumption assumption, not a live consumption series.)
 - Machine-Executable Logic (Python):
   def gasoline_crude_crack_spread(gas_gal_price, wti_barrel_price, gasoline_stocks_kbbl=None, gasoline_stocks_yoy=None):
       if any(v is None or isinstance(v, bool) for v in (gas_gal_price, wti_barrel_price)):
@@ -2151,10 +2155,10 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - Crack_Spread_USD > $40.0 : REFINERY_BOTTLENECK_CRUNCH (Refinery capacity bottleneck / Gasoline price shock to consumer budgets / Elevated processing margin)
-  - Crack_Spread_USD < $5.0 : REFINING_MARGIN_COLLAPSE (Refinery margin collapse / Weak fuel demand / Depressed consumption)
-  - $5.0 to $40.0 : NORMAL_REFINING_MARGIN (Healthy and standard refinery processing margin)
-  - Gasoline_Days_Of_Supply < 22.0 days signals critical buffer depletion amplifying refinery bottleneck crunch.
+  - Crack_Spread_USD > $40.0 : REFINERY_BOTTLENECK_CRUNCH (High retail-to-crude proxy; not an isolated measure of refinery margin)
+  - Crack_Spread_USD < $5.0 : REFINING_MARGIN_COLLAPSE (Low retail-to-crude proxy; not an isolated measure of refinery margin)
+  - $5.0 to $40.0 : NORMAL_REFINING_MARGIN (Intermediate retail-to-crude proxy band)
+  - Gasoline_Days_Of_Supply < 22.0 days signals low inventory cover under the fixed 9000 kbbl/day reference. Inventory status is reported separately and does not change the primary spread status.
 
 ---
 
@@ -2246,10 +2250,11 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ---
 
 ### 25.12. BRENT-WTI SEABORNE SPREAD ENGINE
-- Purpose: Evaluates geopolitical maritime risk premiums, chokepoint transit disruptions (Hormuz, Red Sea/Suez), and tanker freight bottlenecks versus US domestic pipeline tightness by measuring the Brent-WTI spread.
+- Purpose: Uses the Brent-WTI price spread as a seaborne-versus-domestic market proxy. The spread alone does not establish a geopolitical cause or measure tanker freight.
 - Data Series Keys:
   - EIA / FRED: DCOILBRENTEU (Crude Oil Prices: Brent - Europe, USD per Barrel)
   - EIA / FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - USD per Barrel)
+  - EIA context metrics: PET.WCESTUS1.W (Commercial Crude Stocks - Thousand Barrels); PET.WCRFPUS2.W (U.S. Field Production - Thousand Barrels per Day)
 - Formula:
   Brent_WTI_Spread = DCOILBRENTEU - DCOILWTICO
 - Machine-Executable Logic (Python):
@@ -2283,6 +2288,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - Spread > $8.00 : SEABORNE_GEOPOLITICAL_PREMIUM (Maritime chokepoint security premium / Red Sea or Hormuz shock / Soaring tanker freight & insurance)
   - $1.50 to $8.00 : NORMAL_TRANSATLANTIC_ARBITRAGE (Standard transatlantic arbitrage / Balanced shipping logistics)
   - Spread < $1.50 : US_DOMESTIC_TIGHTNESS (US domestic physical tightness / Cushing inventory drawdown / Constrained export arbitrage)
+  - Commercial crude stocks and U.S. field production are included as context metrics by the model runner; they do not affect the spread or status. No tanker-freight series is currently part of this calculation.
 
 ---
 
@@ -3031,10 +3037,11 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 
 
 ### 28.4. CHOKEPOINT MACRO SPILLOVER BRIDGE
-- Purpose: Dynamically couples chokepoint Disruption Severity weight from llms-relationships.txt with actor bilateral net polarity tension (P_net), engineering pipeline bypass buffers, live EIA Strategic Petroleum Reserve (SPR) emergency releases (PET.WCSSTUS1.W), live EIA US crude production cushion (PET.WCRFPUS2.W), and an S-curve crisis duration multiplier. Generates deterministic 0-100 inputs for Model 28.1 (disruption_risk) and Model 28.2 (macro_spillover).
+- Purpose: Combines the Hormuz severity, bilateral net polarity, transit-flow exposure, bypass-capacity assumption, live EIA SPR inventory, and crisis-duration assumption into a 0-100 spillover score. U.S. field production is reported as a context metric only; it is not part of the score formula.
 - Data Links:
   - EIA: PET.WCSSTUS1.W (Weekly U.S. Ending Stocks of Crude Oil in SPR - Thousand Barrels)
-  - EIA: PET.WCRFPUS2.W (Weekly U.S. Field Production of Crude Oil - Thousand Barrels per Day)
+  - EIA context metric: PET.WCRFPUS2.W (Weekly U.S. Field Production of Crude Oil - Thousand Barrels per Day)
+  - llms-relationships.json -> IL_IR relationship (P_net) and CHOKE_HORMUZ (severity and baseline transit flow)
   - llms-relationships.txt -> Section 1 (P_net) & Section 4/7 (Disruption Severity)
   - llms-formulas.txt -> Model 25.1 (dynamic_polarity_engine), 28.1 (conflict_heat_score), 28.2 (market_impact_score), 28.3 (chokepoint_severity_multiplier)
 - Mathematical Formulation:
@@ -3046,6 +3053,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
      Effective_SPR = SPR_Sustainable_mbpd * (1.0 if t <= 60 else (0.50 if t <= 90 else 0.25))
      Total_Buffer = min(Gross_Flow, Bypass_Capacity + Effective_SPR)
      Net_Deficit_Ratio = max(0.0, (Gross_Flow - Total_Buffer) / Gross_Flow)
+     U.S. field production is not added to Total_Buffer; no validated substitution rule is defined here.
   3. Sigmoid Crisis Duration Multiplier (S-Curve):
      M_duration(t) = 1.0 / (1.0 + exp(-0.15 * (t - 14.0)))
      Duration_Scale = 0.40 + 0.60 * M_duration(t)
@@ -3148,6 +3156,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - 60 <= bridge_score < 85 : HIGH_SPILLOVER (High pass-through pressure on global commodity/freight prices)
   - 30 <= bridge_score < 60 : MODERATE_FRICTION (Regional supply chain congestion and localized cost increases)
   - bridge_score < 30 : LOCALIZED_IMPACT (Market-absorbable limited operational delays)
+  - Duration (14 days in the current runner) and bypass capacity (4.0 mbpd) are scenario assumptions, not live observations. The runner must source P_net, chokepoint severity, and baseline flow from the generated relationship data; absent required values must not be replaced with fixed observations.
 
 ### 28.5. REGIME-ADJUSTED MARKET IMPACT
 - Purpose: Scales raw Market Impact Score from Model 28.2 with a deterministic multiplier based on monetary policy stance (Model 2) and financial conditions (Model 12).
