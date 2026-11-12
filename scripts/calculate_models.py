@@ -1201,86 +1201,73 @@ def calc_natgas_crude_btu_disconnect(
         return None
 
 
-# --- Model 25.9: Gasoline / Crude Crack Spread Impulse Engine ---
-def calc_gasoline_crude_crack_spread(
-    gas_gal_price_val,
+# --- Model 25.9: Gasoline / Distillate / Crude 3:2:1 Crack Spread ---
+def calc_gasoline_321_crack_spread(
+    gasoline_spot_price_val,
+    ulsd_spot_price_val,
     wti_barrel_price_val,
+    gasoline_date,
+    ulsd_date,
+    wti_date,
     gasoline_stocks_kbbl_val=None,
     gasoline_stocks_yoy_val=None
 ) -> Optional[Dict[str, Any]]:
-    if any(v is None or isinstance(v, bool) for v in (gas_gal_price_val, wti_barrel_price_val)):
+    prices = (gasoline_spot_price_val, ulsd_spot_price_val, wti_barrel_price_val)
+    dates = (gasoline_date, ulsd_date, wti_date)
+    if any(v is None or isinstance(v, bool) for v in prices):
+        return None
+    if any(not isinstance(value, str) or not value for value in dates) or len(set(dates)) != 1:
         return None
     try:
-        f_gas = float(gas_gal_price_val)
+        f_gasoline = float(gasoline_spot_price_val)
+        f_ulsd = float(ulsd_spot_price_val)
         f_wti = float(wti_barrel_price_val)
-        if not (math.isfinite(f_gas) and math.isfinite(f_wti)) or f_wti <= 0.0 or f_gas <= 0.0:
+        if not all(math.isfinite(value) and value > 0.0 for value in (f_gasoline, f_ulsd, f_wti)):
             return None
 
-        gas_barrel_equiv = f_gas * 42.0
-        raw_spread = gas_barrel_equiv - f_wti
+        gasoline_equiv = f_gasoline * 42.0
+        ulsd_equiv = f_ulsd * 42.0
+        raw_spread = ((2.0 * gasoline_equiv) + ulsd_equiv) / 3.0 - f_wti
         if not math.isfinite(raw_spread):
             return None
         spread = round(raw_spread, 2)
 
-        if spread > 40.0:
-            status = "REFINERY_BOTTLENECK_CRUNCH"
-        elif spread < 5.0:
-            status = "REFINING_MARGIN_COLLAPSE"
-        else:
-            status = "NORMAL_REFINING_MARGIN"
-
         inputs_dict: Dict[str, Any] = {
-            "gasoline_retail_usd_gal": round(f_gas, 3),
-            "wti_crude_usd_bbl": round(f_wti, 2)
+            "gasoline_spot_usd_gal": round(f_gasoline, 3),
+            "ulsd_spot_usd_gal": round(f_ulsd, 3),
+            "wti_crude_usd_bbl": round(f_wti, 2),
+            "matched_observation_date": gasoline_date
         }
         metrics_dict: Dict[str, Any] = {
-            "crack_spread_usd": spread,
-            "gasoline_barrel_equiv_usd": round(gas_barrel_equiv, 2),
-            "wti_crude_usd": round(f_wti, 2)
+            "crack_spread_321_usd_bbl": spread,
+            "gasoline_2_barrel_equiv_usd": round(2.0 * gasoline_equiv, 2),
+            "ulsd_1_barrel_equiv_usd": round(ulsd_equiv, 2),
+            "wti_crude_usd_bbl": round(f_wti, 2)
         }
 
-        interp = "Measures refinery processing margins between retail gasoline and crude oil."
-
         if gasoline_stocks_kbbl_val is not None and not isinstance(gasoline_stocks_kbbl_val, bool):
-            try:
-                f_stocks = float(gasoline_stocks_kbbl_val)
-                if math.isfinite(f_stocks) and f_stocks > 0:
-                    # Standard EIA US motor gasoline supplied consumption baseline: 9,000 kbpd (~8.9-9.0 mbpd)
-                    days_of_supply = round(f_stocks / 9000.0, 1)
-                    inputs_dict["gasoline_stocks_kbbl"] = round(f_stocks, 0)
-                    metrics_dict["gasoline_stocks_kbbl"] = round(f_stocks, 0)
-                    metrics_dict["gasoline_days_of_supply"] = days_of_supply
-
-                    if days_of_supply < 22.0:
-                        inv_status = "CRITICAL_INVENTORY_DEPLETION"
-                    elif days_of_supply > 26.0:
-                        inv_status = "INVENTORY_GLUT"
-                    else:
-                        inv_status = "BALANCED_INVENTORY_COVER"
-                    metrics_dict["inventory_cover_status"] = inv_status
-
-                    if gasoline_stocks_yoy_val is not None and not isinstance(gasoline_stocks_yoy_val, bool):
-                        f_yoy = float(gasoline_stocks_yoy_val)
-                        if math.isfinite(f_yoy):
-                            inputs_dict["gasoline_stocks_yoy_pct"] = round(f_yoy, 2)
-                            metrics_dict["gasoline_stocks_yoy_pct"] = round(f_yoy, 2)
-
-                    interp += f" Live EIA gasoline inventories ({int(f_stocks):,} kbbl) provide {days_of_supply} days of supply ({inv_status})."
-            except (ValueError, TypeError):
-                pass
-
-        interp += " Spreads > $40/bbl signal refinery capacity bottlenecks and consumer fuel cost shocks; < $5 indicate refining margin collapse."
+            f_stocks = float(gasoline_stocks_kbbl_val)
+            if not math.isfinite(f_stocks) or f_stocks <= 0.0:
+                return None
+            inputs_dict["gasoline_stocks_kbbl"] = round(f_stocks, 0)
+            metrics_dict["gasoline_stocks_kbbl"] = round(f_stocks, 0)
+            if gasoline_stocks_yoy_val is not None and not isinstance(gasoline_stocks_yoy_val, bool):
+                f_yoy = float(gasoline_stocks_yoy_val)
+                if not math.isfinite(f_yoy):
+                    return None
+                inputs_dict["gasoline_stocks_yoy_pct"] = round(f_yoy, 2)
+                metrics_dict["gasoline_stocks_yoy_pct"] = round(f_yoy, 2)
 
         return {
             "model_id": "MODEL_25.9",
-            "model_name": "Gasoline / Crude Crack Spread Impulse Engine",
+            "model_name": "Gasoline / Distillate / Crude 3:2:1 Crack Spread",
             "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.9",
             "primary_value": spread,
             "unit": "USD per Barrel",
-            "status": status,
+            "status": "UNCLASSIFIED",
             "inputs": inputs_dict,
             "metrics": metrics_dict,
-            "interpretation": interp
+            "interpretation": "Calculates the 3:2:1 spot crack spread from same-date New York Harbor conventional gasoline, ULSD, and WTI prices. Regime thresholds have not been calibrated; gasoline inventory is contextual only."
         }
     except (TypeError, ValueError, ZeroDivisionError):
         return None
@@ -2927,11 +2914,36 @@ def main():
     if m_btu:
         models_calculated.append(m_btu)
 
-    # Model 25.9: Gasoline / Crude Crack Spread Impulse Engine
-    gas_price = series.get("GASREGW", {}).get("current_value")
-    m_crack_spread = calc_gasoline_crude_crack_spread(gas_price, wti, gasoline_stocks, gasoline_stocks_yoy)
-    if m_crack_spread:
-        models_calculated.append(m_crack_spread)
+    # Model 25.9: same-date spot products and WTI; fail closed on missing or stale inputs.
+    gasoline_spot = series.get("DGASNYH", {})
+    ulsd_spot = series.get("DDFUELNYH", {})
+    wti_spot = series.get("DCOILWTICO", {})
+    crack_spot_entries = (gasoline_spot, ulsd_spot, wti_spot)
+    if any(not entry for entry in crack_spot_entries):
+        ingestion_warnings.append("Model 25.9 requires DGASNYH, DDFUELNYH, and DCOILWTICO spot observations.")
+    elif (
+        gasoline_spot.get("units") != "Dollars per Gallon"
+        or ulsd_spot.get("units") != "Dollars per Gallon"
+        or wti_spot.get("units") != "Dollars per Barrel"
+    ):
+        ingestion_warnings.append("Model 25.9 spot-price units are missing or incompatible.")
+    elif len({entry.get("last_date") for entry in crack_spot_entries}) != 1 or not gasoline_spot.get("last_date"):
+        ingestion_warnings.append("Model 25.9 spot prices have no common observation date.")
+    else:
+        m_crack_spread = calc_gasoline_321_crack_spread(
+            gasoline_spot.get("current_value"),
+            ulsd_spot.get("current_value"),
+            wti_spot.get("current_value"),
+            gasoline_spot.get("last_date"),
+            ulsd_spot.get("last_date"),
+            wti_spot.get("last_date"),
+            gasoline_stocks,
+            gasoline_stocks_yoy
+        )
+        if m_crack_spread:
+            models_calculated.append(m_crack_spread)
+        else:
+            ingestion_warnings.append("Model 25.9 could not calculate the same-date 3:2:1 spread.")
 
     # Model 25.10: SLOOS Lending Standards Recession Gauge
     drtscis_val = series.get("DRTSCIS", {}).get("current_value")

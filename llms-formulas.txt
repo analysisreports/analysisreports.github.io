@@ -2112,53 +2112,40 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 
 ---
 
-### 25.9. GASOLINE / CRUDE CRACK SPREAD IMPULSE ENGINE
-- Purpose: Measures a retail-to-crude price proxy between retail regular gasoline (GASREGW) and WTI. Because GASREGW is a retail price, this is not a wholesale refinery crack spread. EIA gasoline stocks provide a separate inventory-cover metric.
+### 25.9. GASOLINE / DISTILLATE / CRUDE 3:2:1 CRACK SPREAD
+- Purpose: Measures a New York Harbor spot-product 3:2:1 crack spread against WTI. This is a market benchmark proxy; it is not a plant-specific realized refining margin.
 - Data Series Keys:
-  - FRED: GASREGW (US Regular All Formulations Retail Gasoline Prices - Dollars per Gallon)
+  - FRED: DGASNYH (Conventional Gasoline Prices: New York Harbor, Regular - Dollars per Gallon)
+  - FRED: DDFUELNYH (Ultra-Low-Sulfur No. 2 Diesel Fuel Prices: New York Harbor - Dollars per Gallon)
   - FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - Dollars per Barrel)
   - EIA: PET.WGTSTUS1.W (Weekly U.S. Ending Stocks of Total Gasoline - Thousand Barrels)
 - Formula:
-  Crack_Spread_USD = (Gasoline_Gallon_Price * 42) - WTI_Barrel_Price
-  Gasoline_Days_Of_Supply = Total_Gasoline_Stocks_kbbl / 9000.0
-  (9000 kbbl/day is a fixed reference-consumption assumption, not a live consumption series.)
+  Crack_Spread_321_USD_per_bbl = ((2 * DGASNYH_USD_per_gal * 42) + (DDFUELNYH_USD_per_gal * 42)) / 3 - DCOILWTICO_USD_per_bbl
+  Calculate only when DGASNYH, DDFUELNYH, and DCOILWTICO share the exact same observation date.
+  Gasoline stocks and YoY change are context metrics only; days of supply is not calculated without a live gasoline-consumption series.
+  Status = UNCLASSIFIED until thresholds are calibrated from historical, same-date 3:2:1 observations.
 - Machine-Executable Logic (Python):
-  def gasoline_crude_crack_spread(gas_gal_price, wti_barrel_price, gasoline_stocks_kbbl=None, gasoline_stocks_yoy=None):
-      if any(v is None or isinstance(v, bool) for v in (gas_gal_price, wti_barrel_price)):
+  def gasoline_321_crack_spread(gasoline_usd_gal, ulsd_usd_gal, wti_usd_bbl, gasoline_date, ulsd_date, wti_date):
+      prices = (gasoline_usd_gal, ulsd_usd_gal, wti_usd_bbl)
+      dates = (gasoline_date, ulsd_date, wti_date)
+      if any(v is None or isinstance(v, bool) for v in prices):
           return None
       try:
-          f_gas = float(gas_gal_price)
-          f_wti = float(wti_barrel_price)
-          if not (math.isfinite(f_gas) and math.isfinite(f_wti)) or f_wti <= 0 or f_gas <= 0:
+          if any(not isinstance(d, str) or not d for d in dates) or len(set(dates)) != 1:
               return None
-          gas_barrel_equiv = f_gas * 42.0
-          raw_spread = gas_barrel_equiv - f_wti
+          f_gasoline, f_ulsd, f_wti = map(float, prices)
+          if not all(math.isfinite(v) and v > 0 for v in (f_gasoline, f_ulsd, f_wti)):
+              return None
+          raw_spread = ((2 * f_gasoline * 42.0) + (f_ulsd * 42.0)) / 3.0 - f_wti
           if not math.isfinite(raw_spread):
               return None
           spread = round(raw_spread, 2)
-          if spread > 40.0:
-              status = "REFINERY_BOTTLENECK_CRUNCH"
-          elif spread < 5.0:
-              status = "REFINING_MARGIN_COLLAPSE"
-          else:
-              status = "NORMAL_REFINING_MARGIN"
-
-          metrics = {"crack_spread_usd": spread, "gasoline_barrel_equiv_usd": round(gas_barrel_equiv, 2), "wti_crude_usd": round(f_wti, 2)}
-          if gasoline_stocks_kbbl is not None and not isinstance(gasoline_stocks_kbbl, bool):
-              f_stocks = float(gasoline_stocks_kbbl)
-              days_supply = round(f_stocks / 9000.0, 1)
-              metrics["gasoline_stocks_kbbl"] = f_stocks
-              metrics["gasoline_days_of_supply"] = days_supply
-              metrics["inventory_cover_status"] = "CRITICAL_INVENTORY_DEPLETION" if days_supply < 22.0 else ("INVENTORY_GLUT" if days_supply > 26.0 else "BALANCED_INVENTORY_COVER")
-
-          return {"crack_spread_usd": spread, "status": status, "metrics": metrics}
+          return {"crack_spread_321_usd_bbl": spread, "status": "UNCLASSIFIED", "observation_date": gasoline_date}
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - Crack_Spread_USD > $40.0 : REFINERY_BOTTLENECK_CRUNCH (High retail-to-crude proxy; not an isolated measure of refinery margin)
-  - Crack_Spread_USD < $5.0 : REFINING_MARGIN_COLLAPSE (Low retail-to-crude proxy; not an isolated measure of refinery margin)
-  - $5.0 to $40.0 : NORMAL_REFINING_MARGIN (Intermediate retail-to-crude proxy band)
-  - Gasoline_Days_Of_Supply < 22.0 days signals low inventory cover under the fixed 9000 kbbl/day reference. Inventory status is reported separately and does not change the primary spread status.
+  - The 3:2:1 value is emitted without a regime label until historical thresholds are calibrated.
+  - EIA gasoline stocks remain a separate context metric; no fixed consumption value is substituted for missing demand data.
 
 ---
 
