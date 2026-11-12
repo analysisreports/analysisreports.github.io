@@ -63,7 +63,7 @@ def calc_fed_policy_stance(dgs1mo_val, fed_rate_val):
             "status": status,
             "inputs": {
                 "treasury_1m_yield_dgs1mo": round(dgs1mo, 2),
-                "fed_policy_rate_dff": round(fed_rate, 2)
+                "fed_policy_rate": round(fed_rate, 2)
             },
             "metrics": {
                 "spread_basis_points": spread,
@@ -150,6 +150,9 @@ def calc_sahm_rule(sahm_val):
             "unit": "Percentage Points",
             "status": status,
             "inputs": {"sahm_realtime_val": diff},
+            "metrics": {
+                "sahm_indicator": diff
+            },
             "interpretation": "Real-time recession detection triggered when 3-month unemployment average rises >= 0.50 ppt above prior 12-month low."
         }
     except (TypeError, ValueError):
@@ -277,6 +280,10 @@ def calc_yield_spread_bps(t10y2y_val):
             "unit": "Basis Points (bps)",
             "status": status,
             "inputs": {"t10y2y_spread_pct": spread},
+            "metrics": {
+                "yield_spread_bps": bps,
+                "t10y2y_spread_pct": spread
+            },
             "interpretation": "Leading cyclical economic barometer. Inversions (bps < 0) historically precede sovereign US business cycle recessions."
         }
     except (TypeError, ValueError):
@@ -436,7 +443,28 @@ def calc_triffin_external_balance(dtwexbgs_val, bopgstb_val) -> Optional[Dict[st
         if dxy <= 0.0 or trade == 0.0:
             return None
 
-        deficit_bil = abs(trade) / 1000.0
+        if trade > 0.0:
+            surplus_bil = trade / 1000.0
+            tension = round(dxy / surplus_bil, 4)
+            return {
+                "model_id": "MODEL_10",
+                "model_name": "Triffin External Balance",
+                "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#10",
+                "primary_value": tension,
+                "unit": "Surplus Tension Ratio",
+                "status": "OFFSHORE_DOLLAR_DRAIN_SURPLUS",
+                "inputs": {
+                    "broad_dollar_index_dtwexbgs": round(dxy, 4),
+                    "trade_balance_bopgstb_mil": round(trade, 2)
+                },
+                "metrics": {
+                    "monthly_trade_surplus_bil": round(surplus_bil, 2),
+                    "broad_dollar_index": round(dxy, 4)
+                },
+                "interpretation": "US trade surplus drains global offshore dollar reserves, reversing Triffin deficit expansion."
+            }
+
+        deficit_bil = -trade / 1000.0
         raw_tension = dxy / deficit_bil
         if not math.isfinite(raw_tension):
             return None
@@ -472,7 +500,14 @@ def calc_triffin_external_balance(dtwexbgs_val, bopgstb_val) -> Optional[Dict[st
 
 
 # --- Model 11: Taylor Rule Policy Gap ---
-def calc_taylor_policy_gap(dff_val, cpi_yoy_val, gdpc1_val, gdppot_val) -> Optional[Dict[str, Any]]:
+def calc_taylor_policy_gap(
+    dff_val,
+    cpi_yoy_val,
+    gdpc1_val,
+    gdppot_val,
+    gdpc1_units=None,
+    gdppot_units=None
+) -> Optional[Dict[str, Any]]:
     if any(v is None or isinstance(v, bool) for v in (dff_val, cpi_yoy_val, gdpc1_val, gdppot_val)):
         return None
     try:
@@ -482,10 +517,23 @@ def calc_taylor_policy_gap(dff_val, cpi_yoy_val, gdpc1_val, gdppot_val) -> Optio
         pot = float(gdppot_val)
         if not (math.isfinite(dff) and math.isfinite(cpi) and math.isfinite(gdp) and math.isfinite(pot)):
             return None
-        if dff < 0.0 or gdp <= 0.0 or pot <= 0.0:
+        if dff < 0.0 or gdp <= 0.0 or pot <= 1.0:
             return None
 
-        output_gap = round(((gdp - pot) / pot) * 100.0, 2)
+        expected_units = "billions of chained 2017 dollars"
+        normalize_units = lambda value: " ".join(str(value).casefold().split())
+        if (
+            gdpc1_units is None
+            or gdppot_units is None
+            or normalize_units(gdpc1_units) != expected_units
+            or normalize_units(gdppot_units) != expected_units
+        ):
+            return None
+
+        output_gap_raw = ((gdp / pot) - 1.0) * 100.0
+        if not math.isfinite(output_gap_raw) or abs(output_gap_raw) > 50.0:
+            return None
+        output_gap = round(output_gap_raw, 2)
         optimal_rate = round(2.0 + cpi + 0.5 * (cpi - 2.0) + 0.5 * output_gap, 2)
         raw_gap = dff - optimal_rate
         if not math.isfinite(raw_gap):
@@ -661,21 +709,25 @@ def calc_acm_term_premium(dgs10_val, threefytp10_val) -> Optional[Dict[str, Any]
         tp = float(threefytp10_val)
         if not (math.isfinite(nom) and math.isfinite(tp)):
             return None
-        # Nominal 10Y yield cannot be negative
-        if nom < 0.0:
+        # Nominal 10Y yield sanity bounds [0.0%, 25.0%]
+        if nom < 0.0 or nom > 25.0:
             return None
+        # Term premium quality & unit guard: reject bps vs pct confusion (must be within [-5.0%, +5.0%])
+        if tp < -5.0 or tp > 5.0:
+            return None
+
+        # Harmonize with llms-formulas.txt threshold rules: >= 0.50 and <= -0.50
+        if tp >= 0.50:
+            status = "FISCAL_SUPPLY_PRESSURE"
+        elif tp <= -0.50:
+            status = "FLIGHT_TO_SAFETY"
+        else:
+            status = "BALANCED_PREMIUM"
 
         term_prem = round(tp, 2)
         exp_rate = round(nom - term_prem, 2)
         if not math.isfinite(exp_rate):
             return None
-
-        if term_prem > 0.50:
-            status = "FISCAL_SUPPLY_PRESSURE"
-        elif term_prem < -0.50:
-            status = "FLIGHT_TO_SAFETY"
-        else:
-            status = "BALANCED_PREMIUM"
 
         return {
             "model_id": "MODEL_15",
@@ -693,7 +745,7 @@ def calc_acm_term_premium(dgs10_val, threefytp10_val) -> Optional[Dict[str, Any]
                 "expected_average_short_rate_pct": exp_rate,
                 "nominal_10y_yield_pct": round(nom, 2)
             },
-            "interpretation": "Decomposes the 10-year Treasury yield into expected short-term interest rate path and the pure term premium risk compensation (ACM model). Values > +0.50% reflect elevated Treasury supply and fiscal issuance risk."
+            "interpretation": "Decomposes 10-year Treasury yields via the Adrian, Crump & Moench (ACM) model. Term premium >= +0.50% reflects duration risk, fiscal supply pressure, or inflation uncertainty; <= -0.50% reflects safe-haven duration demand or central bank asset purchases."
         }
     except (TypeError, ValueError):
         return None
@@ -731,6 +783,11 @@ def calc_vix_market_regime(vix):
             "status": regime,
             "market_bias": bias,
             "inputs": {"vix_close": val},
+            "metrics": {
+                "vix_level": val,
+                "regime": regime,
+                "market_bias": bias
+            },
             "interpretation": "30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime."
         }
     except (TypeError, ValueError):
@@ -738,7 +795,12 @@ def calc_vix_market_regime(vix):
 
 
 # --- Model 25.12: Brent - WTI Seaborne Spread Engine ---
-def calc_brent_wti_spread(brent_price, wti_price):
+def calc_brent_wti_spread(
+    brent_price,
+    wti_price,
+    commercial_crude_stocks_kbbl=None,
+    us_crude_prod_kbpd=None
+):
     if any(v is None or isinstance(v, bool) for v in (brent_price, wti_price)):
         return None
     try:
@@ -761,6 +823,37 @@ def calc_brent_wti_spread(brent_price, wti_price):
         else:
             status = "NORMAL_TRANSATLANTIC_ARBITRAGE"
 
+        inputs_dict: Dict[str, Any] = {"brent_usd": f_brent, "wti_usd": f_wti}
+        metrics_dict: Dict[str, Any] = {
+            "brent_wti_spread_usd": spread,
+            "brent_usd": f_brent,
+            "wti_usd": f_wti
+        }
+
+        interp = "Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI."
+
+        if commercial_crude_stocks_kbbl is not None and not isinstance(commercial_crude_stocks_kbbl, bool):
+            try:
+                f_comm = float(commercial_crude_stocks_kbbl)
+                if math.isfinite(f_comm):
+                    comm_mbbl = round(f_comm / 1000.0, 2)
+                    inputs_dict["commercial_crude_stocks_mbbl"] = comm_mbbl
+                    metrics_dict["commercial_crude_stocks_mbbl"] = comm_mbbl
+                    interp += f" Live EIA commercial crude stocks: {comm_mbbl} mbbl."
+            except (ValueError, TypeError):
+                pass
+
+        if us_crude_prod_kbpd is not None and not isinstance(us_crude_prod_kbpd, bool):
+            try:
+                f_prod = float(us_crude_prod_kbpd)
+                if math.isfinite(f_prod):
+                    prod_mbpd = round(f_prod / 1000.0, 2)
+                    inputs_dict["us_crude_production_mbpd"] = prod_mbpd
+                    metrics_dict["us_crude_production_mbpd"] = prod_mbpd
+                    interp += f" Live EIA US crude field production: {prod_mbpd} mbpd."
+            except (ValueError, TypeError):
+                pass
+
         return {
             "model_id": "MODEL_25.12",
             "model_name": "Brent - WTI Seaborne Risk Spread",
@@ -768,8 +861,9 @@ def calc_brent_wti_spread(brent_price, wti_price):
             "primary_value": spread,
             "unit": "USD",
             "status": status,
-            "inputs": {"brent_usd": f_brent, "wti_usd": f_wti},
-            "interpretation": "Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI."
+            "inputs": inputs_dict,
+            "metrics": metrics_dict,
+            "interpretation": interp
         }
     except (TypeError, ValueError):
         return None
@@ -900,6 +994,9 @@ def calc_supply_chain_pressure(gscpi_val):
             "unit": "Standard Deviations (Z-Score)",
             "status": status,
             "inputs": {
+                "gscpi_zscore": z_score
+            },
+            "metrics": {
                 "gscpi_zscore": z_score
             },
             "interpretation": "Tracks standard deviations of global freight rates, shipping costs, and delivery times from historical mean. Values > 1.5 indicate supply chain shocks."
@@ -1033,8 +1130,13 @@ def calc_ovx_vix_risk_premium(ovx_val, vix_val):
         return None
 
 
-# --- Model 25.8: Natgas / Crude Oil BTU Disconnect Engine ---
-def calc_natgas_crude_btu_disconnect(wti_price_val, natgas_price_val) -> Optional[Dict[str, Any]]:
+# --- Model 25.8: Natgas / Crude Oil Price-Ratio Disconnect Engine ---
+def calc_natgas_crude_btu_disconnect(
+    wti_price_val,
+    natgas_price_val,
+    natgas_storage_bcf_val=None,
+    natgas_storage_yoy_val=None
+) -> Optional[Dict[str, Any]]:
     if any(v is None or isinstance(v, bool) for v in (wti_price_val, natgas_price_val)):
         return None
     try:
@@ -1055,68 +1157,192 @@ def calc_natgas_crude_btu_disconnect(wti_price_val, natgas_price_val) -> Optiona
         else:
             status = "ENERGY_PARITY_EQUILIBRIUM"
 
+        inputs_dict: Dict[str, Any] = {
+            "wti_crude_usd_bbl": round(f_wti, 2),
+            "henry_hub_natgas_usd_mmbtu": round(f_gas, 2)
+        }
+        metrics_dict: Dict[str, Any] = {
+            "btu_disconnect_ratio": ratio,
+            "wti_price": round(f_wti, 2),
+            "natgas_price": round(f_gas, 2)
+        }
+
+        interp = (
+            f"Tracks relative purchasing power: at current quotes, the price of one WTI barrel buys {ratio:.2f} MMBtu of Henry Hub gas. "
+            "Ratios below 6 mark the near-thermal-equivalence band around 5.8 MMBtu per barrel; ratios above 35 flag the empirical high-ratio tail of the matched post-2009 daily series. "
+            "EIA underground gas storage is supplied as context alongside the price ratio."
+        )
+
+        if natgas_storage_bcf_val is not None and not isinstance(natgas_storage_bcf_val, bool):
+            try:
+                f_storage = float(natgas_storage_bcf_val)
+                if math.isfinite(f_storage) and f_storage > 0.0:
+                    inputs_dict["lower48_natgas_storage_bcf"] = round(f_storage, 1)
+                    metrics_dict["lower48_natgas_storage_bcf"] = round(f_storage, 1)
+                    if natgas_storage_yoy_val is not None and not isinstance(natgas_storage_yoy_val, bool):
+                        f_syoy = float(natgas_storage_yoy_val)
+                        if math.isfinite(f_syoy):
+                            inputs_dict["natgas_storage_yoy_pct"] = round(f_syoy, 2)
+                            metrics_dict["natgas_storage_yoy_pct"] = round(f_syoy, 2)
+                    interp += f" Current Lower 48 underground gas storage: {round(f_storage, 1)} Bcf."
+            except (ValueError, TypeError):
+                pass
+
         return {
             "model_id": "MODEL_25.8",
-            "model_name": "Natgas / Crude Oil BTU Disconnect Engine",
+            "model_name": "Natgas / Crude Oil Price-Ratio Disconnect Engine",
             "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.8",
             "primary_value": ratio,
             "unit": "WTI/NatGas Ratio",
             "status": status,
-            "inputs": {
-                "wti_crude_usd_bbl": round(f_wti, 2),
-                "henry_hub_natgas_usd_mmbtu": round(f_gas, 2)
-            },
-            "metrics": {
-                "btu_disconnect_ratio": ratio,
-                "wti_price": round(f_wti, 2),
-                "natgas_price": round(f_gas, 2)
-            },
-            "interpretation": "Measures physical energy parity between WTI crude oil and Henry Hub natural gas. Ratios > 35 indicate natural gas supply glut and cheap domestic fuel; < 6 signal acute gas deficit and power shock."
+            "inputs": inputs_dict,
+            "metrics": metrics_dict,
+            "interpretation": interp
         }
     except (TypeError, ValueError, ZeroDivisionError):
         return None
 
 
-# --- Model 25.9: Gasoline / Crude Crack Spread Impulse Engine ---
-def calc_gasoline_crude_crack_spread(gas_gal_price_val, wti_barrel_price_val) -> Optional[Dict[str, Any]]:
-    if any(v is None or isinstance(v, bool) for v in (gas_gal_price_val, wti_barrel_price_val)):
+# --- Model 25.9: Gasoline / Distillate / Crude 3:2:1 Crack Spread ---
+def calc_gasoline_321_crack_spread(
+    gasoline_spot_price_val,
+    ulsd_spot_price_val,
+    wti_barrel_price_val,
+    gasoline_date,
+    ulsd_date,
+    wti_date,
+    gasoline_stocks_kbbl_val=None,
+    gasoline_stocks_yoy_val=None,
+    gasoline_spot_price_year_ago_val=None,
+    ulsd_spot_price_year_ago_val=None,
+    wti_barrel_price_year_ago_val=None
+) -> Optional[Dict[str, Any]]:
+    prices = (gasoline_spot_price_val, ulsd_spot_price_val, wti_barrel_price_val)
+    dates = (gasoline_date, ulsd_date, wti_date)
+    if any(v is None or isinstance(v, bool) for v in prices):
+        return None
+    if any(not isinstance(value, str) or not value for value in dates) or len(set(dates)) != 1:
         return None
     try:
-        f_gas = float(gas_gal_price_val)
+        f_gasoline = float(gasoline_spot_price_val)
+        f_ulsd = float(ulsd_spot_price_val)
         f_wti = float(wti_barrel_price_val)
-        if not (math.isfinite(f_gas) and math.isfinite(f_wti)) or f_wti <= 0.0 or f_gas <= 0.0:
+        if not all(math.isfinite(value) and value > 0.0 for value in (f_gasoline, f_ulsd, f_wti)):
             return None
 
-        gas_barrel_equiv = f_gas * 42.0
-        raw_spread = gas_barrel_equiv - f_wti
+        gasoline_equiv = f_gasoline * 42.0
+        ulsd_equiv = f_ulsd * 42.0
+        raw_spread = ((2.0 * gasoline_equiv) + ulsd_equiv) / 3.0 - f_wti
         if not math.isfinite(raw_spread):
             return None
         spread = round(raw_spread, 2)
 
-        if spread > 40.0:
-            status = "REFINERY_BOTTLENECK_CRUNCH"
-        elif spread < 5.0:
-            status = "REFINING_MARGIN_COLLAPSE"
-        else:
-            status = "NORMAL_REFINING_MARGIN"
+        inputs_dict: Dict[str, Any] = {
+            "gasoline_spot_usd_gal": round(f_gasoline, 3),
+            "ulsd_spot_usd_gal": round(f_ulsd, 3),
+            "wti_crude_usd_bbl": round(f_wti, 2),
+            "matched_observation_date": gasoline_date
+        }
+        metrics_dict: Dict[str, Any] = {
+            "crack_spread_321_usd_bbl": spread,
+            "gasoline_2_barrel_equiv_usd": round(2.0 * gasoline_equiv, 2),
+            "ulsd_1_barrel_equiv_usd": round(ulsd_equiv, 2),
+            "wti_crude_usd_bbl": round(f_wti, 2)
+        }
+
+        if gasoline_stocks_kbbl_val is not None and not isinstance(gasoline_stocks_kbbl_val, bool):
+            f_stocks = float(gasoline_stocks_kbbl_val)
+            if not math.isfinite(f_stocks) or f_stocks <= 0.0:
+                return None
+            inputs_dict["gasoline_stocks_kbbl"] = round(f_stocks, 0)
+            metrics_dict["gasoline_stocks_kbbl"] = round(f_stocks, 0)
+            if gasoline_stocks_yoy_val is not None and not isinstance(gasoline_stocks_yoy_val, bool):
+                f_yoy = float(gasoline_stocks_yoy_val)
+                if not math.isfinite(f_yoy):
+                    return None
+                inputs_dict["gasoline_stocks_yoy_pct"] = round(f_yoy, 2)
+                metrics_dict["gasoline_stocks_yoy_pct"] = round(f_yoy, 2)
+
+        year_ago_values = (
+            gasoline_spot_price_year_ago_val,
+            ulsd_spot_price_year_ago_val,
+            wti_barrel_price_year_ago_val
+        )
+        if any(isinstance(value, bool) for value in year_ago_values):
+            return None
+
+        status = "UNCLASSIFIED"
+        interpretation = (
+            "Calculates the same-date New York Harbor 3:2:1 spot crack spread. "
+            "A year-over-year classification requires all three prior-year prices; "
+            "gasoline inventory is contextual only."
+        )
+        if all(value is not None for value in year_ago_values):
+            f_gasoline_year_ago, f_ulsd_year_ago, f_wti_year_ago = (
+                float(value) for value in year_ago_values
+            )
+            if not all(
+                math.isfinite(value) and value > 0.0
+                for value in (f_gasoline_year_ago, f_ulsd_year_ago, f_wti_year_ago)
+            ):
+                return None
+
+            prior_year_spread = round(
+                (
+                    (2.0 * f_gasoline_year_ago * 42.0)
+                    + (f_ulsd_year_ago * 42.0)
+                ) / 3.0 - f_wti_year_ago,
+                2
+            )
+            yoy_change = round(spread - prior_year_spread, 2)
+            status = (
+                "CRACK_SPREAD_EXPANDING" if yoy_change > 0.0
+                else "CRACK_SPREAD_CONTRACTING" if yoy_change < 0.0
+                else "CRACK_SPREAD_UNCHANGED"
+            )
+            inputs_dict.update({
+                "gasoline_spot_usd_gal_year_ago": round(f_gasoline_year_ago, 3),
+                "ulsd_spot_usd_gal_year_ago": round(f_ulsd_year_ago, 3),
+                "wti_crude_usd_bbl_year_ago": round(f_wti_year_ago, 2)
+            })
+            metrics_dict["crack_spread_321_year_ago_usd_bbl"] = prior_year_spread
+            metrics_dict["crack_spread_321_yoy_change_usd_bbl"] = yoy_change
+
+            change_text = f"{abs(yoy_change):.2f} USD/bbl"
+            if prior_year_spread > 0.0:
+                yoy_pct = round((yoy_change / prior_year_spread) * 100.0, 2)
+                metrics_dict["crack_spread_321_yoy_pct"] = yoy_pct
+                change_text += f" ({abs(yoy_pct):.2f}%)"
+
+            direction = (
+                "up" if yoy_change > 0.0
+                else "down" if yoy_change < 0.0
+                else "unchanged"
+            )
+            interpretation = (
+                f"The same-date 3:2:1 crack spread is {spread:.2f} USD/bbl, "
+                f"{direction} {change_text} from {prior_year_spread:.2f} USD/bbl "
+                "one year earlier. Status describes the year-over-year direction, "
+                "not whether the absolute spread is high or low. Gasoline inventory "
+                "is contextual only."
+            )
+        elif any(value is not None for value in year_ago_values):
+            interpretation = (
+                "Calculates the same-date New York Harbor 3:2:1 spot crack spread. "
+                "Year-over-year classification is unavailable because all three "
+                "prior-year prices are required; gasoline inventory is contextual only."
+            )
 
         return {
             "model_id": "MODEL_25.9",
-            "model_name": "Gasoline / Crude Crack Spread Impulse Engine",
+            "model_name": "Gasoline / Distillate / Crude 3:2:1 Crack Spread",
             "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.9",
             "primary_value": spread,
             "unit": "USD per Barrel",
             "status": status,
-            "inputs": {
-                "gasoline_retail_usd_gal": round(f_gas, 3),
-                "wti_crude_usd_bbl": round(f_wti, 2)
-            },
-            "metrics": {
-                "crack_spread_usd": spread,
-                "gasoline_barrel_equiv_usd": round(gas_barrel_equiv, 2),
-                "wti_crude_usd": round(f_wti, 2)
-            },
-            "interpretation": "Measures refinery processing margins between retail gasoline and crude oil. Spreads > $40/bbl signal refinery capacity bottlenecks and consumer fuel cost shocks; < $5 indicate refining margin collapse."
+            "inputs": inputs_dict,
+            "metrics": metrics_dict,
+            "interpretation": interpretation
         }
     except (TypeError, ValueError, ZeroDivisionError):
         return None
@@ -1324,6 +1550,12 @@ def calc_ai_chip_stress_gauge(gscpi_val, sox_yoy_pct, vix_val):
                 "sox_weight": round(sox_comp, 3),
                 "vix_weight": round(vix_comp, 3)
             },
+            "metrics": {
+                "hardware_stress_score": stress_score,
+                "gscpi_weight": round(gscpi_comp, 3),
+                "sox_weight": round(sox_comp, 3),
+                "vix_weight": round(vix_comp, 3)
+            },
             "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation."
         }
     except (TypeError, ValueError):
@@ -1363,6 +1595,10 @@ def calc_jpy_carry_crack(dff_val, boj_rate_val, jpy_fx_mom) -> Optional[Dict[str
                 'jpy_30d_momentum_pct': round(fx_mom, 2)
             },
             'components': {
+                'rate_spread': rate_spread,
+                'net_buffer': net_buffer
+            },
+            'metrics': {
                 'rate_spread': rate_spread,
                 'net_buffer': net_buffer
             },
@@ -1551,6 +1787,10 @@ def calc_gold_oil_ratio(gold_price, oil_price) -> Optional[Dict[str, Any]]:
             },
             "components": {
                 "ratio": ratio,
+                "historical_equilibrium_band": "12.0 - 25.0"
+            },
+            "metrics": {
+                "gold_oil_ratio": ratio,
                 "historical_equilibrium_band": "12.0 - 25.0"
             },
             "interpretation": "Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks."
@@ -1774,6 +2014,11 @@ def calc_early_employment_crack(ic4wsa_yoy, unrate_delta) -> Optional[Dict[str, 
                 "effective_unrate_delta": round(effective_u_delta, 2),
                 "crack_threshold": 15.0
             },
+            "metrics": {
+                "early_employment_crack_index": index,
+                "effective_unrate_delta": round(effective_u_delta, 2),
+                "crack_threshold": 15.0
+            },
             "interpretation": "Identifies early labor cracks by comparing weekly jobless claims spikes against delayed headline unemployment shifts."
         }
     except (TypeError, ValueError):
@@ -1806,6 +2051,9 @@ def calc_inventory_to_sales_glut(isratio_val):
             "status": status,
             "inputs": {
                 "total_business_isratio": ratio
+            },
+            "metrics": {
+                "inventory_to_sales_ratio": ratio
             },
             "interpretation": "Measures total business inventories relative to monthly sales. Values > 1.45 indicate severe inventory glut and recessionary production cuts."
         }
@@ -2024,8 +2272,65 @@ def calc_mecca_pact_transmission(brent_val, sofr_val, breakeven_oil=None):
         return None
 
 
+# --- Model 25.19: Sovereign Synthetic CDS & Actuarial Default Probability Engine ---
+def calc_sovereign_synthetic_cds_pd(spread_input_pct, recovery_rate=0.40):
+    if spread_input_pct is None or isinstance(spread_input_pct, bool):
+        return None
+    try:
+        spread_pct = float(spread_input_pct)
+        if not math.isfinite(spread_pct) or spread_pct <= 0.0 or spread_pct > 100.0:
+            return None
+
+        rec = float(recovery_rate)
+        if not math.isfinite(rec) or rec < 0.0 or rec >= 1.0:
+            return None
+
+        spread_bps = round(spread_pct * 100.0, 1)
+        lgd = 1.0 - rec
+        if lgd <= 0.0:
+            return None
+
+        raw_pd = spread_pct / lgd
+        if not math.isfinite(raw_pd):
+            return None
+        pd_pct = round(min(100.0, max(0.0, raw_pd)), 2)
+
+        if spread_bps < 250.0:
+            status = "STABLE_INVESTMENT_GRADE"
+        elif spread_bps < 450.0:
+            status = "MODERATE_SOVEREIGN_STRESS"
+        elif spread_bps < 700.0:
+            status = "HIGH_GEOPOLITICAL_RISK"
+        else:
+            status = "ACUTE_DEFAULT_DISTRESS"
+
+        delta_macro = - round(min(0.60, max(0.0, (pd_pct - 4.0) / 10.0 * 0.50)), 2)
+
+        return {
+            "model_id": "MODEL_25.19",
+            "model_name": "Sovereign Synthetic CDS & Actuarial Default Probability Engine",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.19",
+            "primary_value": pd_pct,
+            "unit": "Annual Default Probability Percent (% PD)",
+            "status": status,
+            "inputs": {
+                "credit_spread_benchmark_bamlh0a0hym2": round(spread_pct, 2),
+                "isda_standard_recovery_rate": rec
+            },
+            "metrics": {
+                "synthetic_cds_bps": spread_bps,
+                "loss_given_default_pct": round(lgd * 100.0, 1),
+                "annual_default_probability_pct": pd_pct,
+                "dynamic_transmission_delta": delta_macro
+            },
+            "interpretation": f"Actuarial credit risk model computing synthetic sovereign CDS and default probability using ISDA emerging market {int(rec*100)}% recovery rate assumptions."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
 # --- Model 25.15: Domestic Governance Gridlock & External Tariff Friction Engine ---
-def calc_governance_gridlock_friction(country_code="GEO_US", majority_seat_margin=-15.0, executive_decree_power=0.85):
+def calc_governance_gridlock_friction(country_code, majority_seat_margin, executive_decree_power):
     if not isinstance(country_code, str):
         return None
 
@@ -2114,25 +2419,36 @@ def calc_governance_gridlock_friction(country_code="GEO_US", majority_seat_margi
 
 
 # --- Model 26: Central Bank Committee Dispersion & Hawkishness Index ---
-def calc_committee_dispersion(n_hawkish=4, n_dovish=2, n_neutral=6, n_total=12):
+def calc_committee_dispersion(n_hawkish, n_dovish, n_neutral, n_total=None):
     if any(v is None or isinstance(v, bool) for v in (n_hawkish, n_dovish, n_neutral)):
         return None
     try:
-        h = float(n_hawkish)
-        d = float(n_dovish)
-        neu = float(n_neutral)
-        if not (math.isfinite(h) and math.isfinite(d) and math.isfinite(neu)):
-            return None
-        if h < 0.0 or d < 0.0 or neu < 0.0:
-            return None
+        # Enforce discrete integer counts for voting committee members
+        for val in (n_hawkish, n_dovish, n_neutral):
+            if isinstance(val, float) and not val.is_integer():
+                return None
+            if not isinstance(val, (int, float)):
+                return None
+            if not math.isfinite(val) or val < 0:
+                return None
+
+        h = int(n_hawkish)
+        d = int(n_dovish)
+        neu = int(n_neutral)
 
         tot = h + d + neu
-        if n_total is not None and not isinstance(n_total, bool) and math.isfinite(float(n_total)):
-            f_tot = float(n_total)
-            if f_tot >= tot and f_tot > 0.0:
+        if n_total is not None and not isinstance(n_total, bool):
+            if isinstance(n_total, float) and not n_total.is_integer():
+                return None
+            if not isinstance(n_total, (int, float)) or not math.isfinite(n_total):
+                return None
+            f_tot = int(n_total)
+            if f_tot >= tot and f_tot > 0:
                 tot = f_tot
+            elif f_tot < tot:
+                return None
 
-        if tot <= 0.0:
+        if tot <= 0:
             return None
 
         p_h = h / tot
@@ -2189,6 +2505,126 @@ def calc_committee_dispersion(n_hawkish=4, n_dovish=2, n_neutral=6, n_total=12):
     except (TypeError, ValueError, OverflowError):
         return None
 
+
+# --- Model 28.4: Chokepoint Macro Spillover Bridge ---
+def calc_chokepoint_transmission_bridge(
+    severity_enum: str,
+    p_net: float,
+    duration_days: int = 14,
+    bypass_capacity_mbpd: float = 4.0,
+    spr_stocks_kbbl: Optional[float] = None,
+    spr_release_mbpd: Optional[float] = None,
+    gross_flow_mbpd: float = 20.5,
+    us_crude_prod_kbpd: Optional[float] = None
+) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (severity_enum, p_net)):
+        return None
+    try:
+        sev_weights = {
+            "CATASTROPHIC": 1.00,
+            "HIGH": 0.70,
+            "MODERATE-HIGH": 0.45,
+            "MODERATE": 0.20
+        }
+        w_sev = sev_weights.get(severity_enum)
+        if w_sev is None:
+            return None
+
+        p_val = float(p_net)
+        if not math.isfinite(p_val):
+            return None
+
+        pol_clamped = min(1.0, max(-1.0, p_val))
+        friction = max(0.0, -pol_clamped)
+
+        t = max(1, int(duration_days)) if duration_days is not None else 14
+        f_gross = max(0.1, float(gross_flow_mbpd)) if gross_flow_mbpd is not None else 20.5
+        f_bypass = max(0.0, float(bypass_capacity_mbpd)) if bypass_capacity_mbpd is not None else 4.0
+
+        # Dynamic SPR drawdown calculation from live EIA inventory (PET.WCSSTUS1.W)
+        if spr_stocks_kbbl is not None and not isinstance(spr_stocks_kbbl, bool):
+            f_spr_kbbl = float(spr_stocks_kbbl)
+            spr_mbbl = f_spr_kbbl / 1000.0
+            # 4.4 mbpd max mechanical drawdown capacity, 90-day crisis sustainable drawdown rate
+            raw_spr = round(min(4.4, max(0.0, spr_mbbl / 90.0)), 2)
+        elif spr_release_mbpd is not None and not isinstance(spr_release_mbpd, bool):
+            raw_spr = max(0.0, float(spr_release_mbpd))
+        else:
+            return None  # Zero-synthetic-fallback: requires live data or explicit rate
+
+        # SPR Depletion Decay Rule:
+        # <= 60d: 100% capacity | 61-90d: 50% capacity | >90d: 25% emergency reserve
+        if t <= 60:
+            spr_decay = 1.0
+        elif t <= 90:
+            spr_decay = 0.50
+        else:
+            spr_decay = 0.25
+        effective_spr = round(raw_spr * spr_decay, 2)
+
+        # Net Unmet Deficit with Clamping Guard
+        total_buffer = round(min(f_gross, f_bypass + effective_spr), 2)
+        net_deficit_ratio = round(max(0.0, (f_gross - total_buffer) / f_gross), 4)
+
+        # Sigmoid Crisis Duration Scaling (Centered at t0=14 with k=0.15)
+        sigmoid_val = 1.0 / (1.0 + math.exp(-0.15 * (t - 14.0)))
+        duration_scale = round(0.40 + 0.60 * sigmoid_val, 4)
+
+        # Weighted Transmission: 70% physical disruption + 30% geopolitical polarity friction
+        base_shock = (w_sev * net_deficit_ratio * 70.0) + (friction * 30.0)
+        score = int(round(min(100.0, max(0.0, base_shock * duration_scale))))
+
+        if score >= 85:
+            transmission_regime = "CRITICAL_SYSTEMIC_SHOCK"
+        elif score >= 60:
+            transmission_regime = "HIGH_SPILLOVER"
+        elif score >= 30:
+            transmission_regime = "MODERATE_FRICTION"
+        else:
+            transmission_regime = "LOCALIZED_IMPACT"
+
+        metrics: Dict[str, Any] = {
+            "severity_weight": w_sev,
+            "polarity_friction_factor": round(friction, 2),
+            "spr_sustainable_drawdown_mbpd": raw_spr,
+            "effective_spr_release_mbpd": effective_spr,
+            "total_buffer_capacity_mbpd": total_buffer,
+            "net_unmet_deficit_mbpd": round(f_gross - total_buffer, 2),
+            "net_deficit_ratio": net_deficit_ratio,
+            "duration_scale_factor": duration_scale,
+            "unscaled_base_shock": round(base_shock, 2)
+        }
+
+        inputs: Dict[str, Any] = {
+            "chokepoint_id": "CHOKE_HORMUZ",
+            "severity_enum": severity_enum,
+            "p_net": round(p_val, 2),
+            "crisis_duration_days": t,
+            "gross_flow_mbpd": round(f_gross, 2),
+            "regional_bypass_capacity_mbpd": round(f_bypass, 2)
+        }
+
+        if spr_stocks_kbbl is not None:
+            inputs["eia_spr_stocks_mbbl"] = round(float(spr_stocks_kbbl) / 1000.0, 2)
+        if us_crude_prod_kbpd is not None:
+            f_prod_mbpd = round(float(us_crude_prod_kbpd) / 1000.0, 2)
+            inputs["eia_us_crude_prod_mbpd"] = f_prod_mbpd
+            metrics["us_crude_field_production_mbpd"] = f_prod_mbpd
+
+        return {
+            "model_id": "MODEL_28.4",
+            "model_name": "Chokepoint Macro Spillover Bridge (Hormuz - Live EIA SPR)",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#28.4",
+            "primary_value": score,
+            "unit": "Index (0-100)",
+            "status": transmission_regime,
+            "inputs": inputs,
+            "metrics": metrics,
+            "interpretation": f"Couples maritime chokepoint severity ({severity_enum}) with live EIA SPR inventory ({metrics.get('spr_sustainable_drawdown_mbpd')} mbpd sustainable release) and regional pipeline bypass to evaluate macroeconomic spillover under acute crisis."
+        }
+    except (TypeError, ValueError, ZeroDivisionError, OverflowError):
+        return None
+
 # ==============================================================================
 # 3. MAIN EXECUTION ENGINE
 # ==============================================================================
@@ -2198,6 +2634,8 @@ def main():
     out_json_path = "llms-models.json"
     out_txt_path = "llms-models.txt"
 
+    ingestion_warnings = []
+
     if not os.path.exists(fred_json_path):
         print(f"Error: {fred_json_path} not found. Run update_fred_series.py first.")
         return
@@ -2206,6 +2644,8 @@ def main():
         fred_data = json.load(f)
 
     series = fred_data.get("series", {})
+    if not series:
+        ingestion_warnings.append("FRED series dictionary is empty.")
 
     # Extract Series Inputs
     dgs1mo = series.get("DGS1MO", {}).get("current_value")
@@ -2231,8 +2671,11 @@ def main():
             with open(nyfed_json_path, "r", encoding="utf-8") as f:
                 nyfed_json = json.load(f)
                 gscpi = nyfed_json.get("series", {}).get("GSCPI", {}).get("current_value")
-        except Exception:
+        except Exception as e:
             gscpi = None
+            ingestion_warnings.append(f"NY Fed GSCPI read error: {e}")
+    else:
+        ingestion_warnings.append("NY Fed series file missing: llms-nyfed-series.json")
 
     # Labor Market Series
     payems_curr = series.get("PAYEMS", {}).get("current_value")
@@ -2308,9 +2751,16 @@ def main():
         models_calculated.append(m_triffin)
 
     # Model 11: Taylor Rule Policy Gap
-    gdpc1_val = series.get("GDPC1", {}).get("current_value")
-    gdppot_val = series.get("GDPPOT", {}).get("current_value")
-    m_taylor = calc_taylor_policy_gap(dff_curr, cpi_yoy, gdpc1_val, gdppot_val)
+    gdpc1_series = series.get("GDPC1", {})
+    gdppot_series = series.get("GDPPOT", {})
+    m_taylor = calc_taylor_policy_gap(
+        dff_curr,
+        cpi_yoy,
+        gdpc1_series.get("current_value"),
+        gdppot_series.get("current_value"),
+        gdpc1_series.get("units"),
+        gdppot_series.get("units")
+    )
     if m_taylor:
         models_calculated.append(m_taylor)
 
@@ -2366,9 +2816,14 @@ def main():
                 wb_json = json.load(f)
                 gold_price = wb_json.get("series", {}).get("IND_WB_GOLD", {}).get("current_value")
                 gold_prev = wb_json.get("series", {}).get("IND_WB_GOLD", {}).get("previous_value")
-        except Exception:
+                if gold_price is None:
+                    ingestion_warnings.append("World Bank Pink Sheet IND_WB_GOLD is missing/null.")
+        except Exception as e:
             gold_price = None
             gold_prev = None
+            ingestion_warnings.append(f"World Bank Pink Sheet read error: {e}")
+    else:
+        ingestion_warnings.append("World Bank Pink Sheet file missing: llms-worldbank-series.json")
 
     # Model 20: Copper to Gold Macro Sentiment Ratio
     copper_val = series.get("PCOPPUSDM", {}).get("current_value")
@@ -2444,8 +2899,45 @@ def main():
     if m_tot:
         models_calculated.append(m_tot)
 
+    # Load dynamic EIA series (SPR Stocks, Commercial Crude, US Crude Production, Gasoline Stocks, NatGas Storage)
+    eia_json_path = "llms-eia-series.json"
+    spr_stocks = None
+    commercial_crude_stocks = None
+    us_crude_prod = None
+    gasoline_stocks = None
+    gasoline_stocks_yoy = None
+    natgas_storage = None
+    natgas_storage_yoy = None
+    if os.path.exists(eia_json_path):
+        try:
+            with open(eia_json_path, "r", encoding="utf-8") as f:
+                eia_json = json.load(f)
+                eia_series_data = eia_json.get("series", {})
+                spr_stocks = eia_series_data.get("PET.WCSSTUS1.W", {}).get("current_value")
+                commercial_crude_stocks = eia_series_data.get("PET.WCESTUS1.W", {}).get("current_value")
+                us_crude_prod = eia_series_data.get("PET.WCRFPUS2.W", {}).get("current_value")
+
+                gas_entry = eia_series_data.get("PET.WGTSTUS1.W", {})
+                gasoline_stocks = gas_entry.get("current_value")
+                gasoline_stocks_yoy = gas_entry.get("transformations", {}).get("percent_change_from_year_ago")
+
+                ng_entry = eia_series_data.get("NG.NW2_EPG0_SWO_R48_BCF.W", {})
+                natgas_storage = ng_entry.get("current_value")
+                natgas_storage_yoy = ng_entry.get("transformations", {}).get("percent_change_from_year_ago")
+
+                if spr_stocks is None:
+                    ingestion_warnings.append("EIA PET.WCSSTUS1.W (SPR Stocks) is missing/null.")
+                if us_crude_prod is None:
+                    ingestion_warnings.append("EIA PET.WCRFPUS2.W (US Crude Production) is missing/null.")
+                if gasoline_stocks is None:
+                    ingestion_warnings.append("EIA PET.WGTSTUS1.W (Gasoline Stocks) is missing/null.")
+        except Exception as e:
+            ingestion_warnings.append(f"EIA series read error: {e}")
+    else:
+        ingestion_warnings.append("EIA series file missing: llms-eia-series.json")
+
     # Model 25.12: Brent - WTI Spread
-    m_spread = calc_brent_wti_spread(brent, wti)
+    m_spread = calc_brent_wti_spread(brent, wti, commercial_crude_stocks, us_crude_prod)
     if m_spread:
         models_calculated.append(m_spread)
 
@@ -2491,17 +2983,45 @@ def main():
     if m_ovx_vix:
         models_calculated.append(m_ovx_vix)
 
-    # Model 25.8: Natgas / Crude Oil BTU Disconnect Engine
+    # Model 25.8: Natgas / Crude Oil Price-Ratio Disconnect Engine
     natgas_price = series.get("DHHNGSP", {}).get("current_value")
-    m_btu = calc_natgas_crude_btu_disconnect(wti, natgas_price)
+    m_btu = calc_natgas_crude_btu_disconnect(wti, natgas_price, natgas_storage, natgas_storage_yoy)
     if m_btu:
         models_calculated.append(m_btu)
 
-    # Model 25.9: Gasoline / Crude Crack Spread Impulse Engine
-    gas_price = series.get("GASREGW", {}).get("current_value")
-    m_crack_spread = calc_gasoline_crude_crack_spread(gas_price, wti)
-    if m_crack_spread:
-        models_calculated.append(m_crack_spread)
+    # Model 25.9: same-date spot products and WTI; fail closed on missing or stale inputs.
+    gasoline_spot = series.get("DGASNYH", {})
+    ulsd_spot = series.get("DDFUELNYH", {})
+    wti_spot = series.get("DCOILWTICO", {})
+    crack_spot_entries = (gasoline_spot, ulsd_spot, wti_spot)
+    if any(not entry for entry in crack_spot_entries):
+        ingestion_warnings.append("Model 25.9 requires DGASNYH, DDFUELNYH, and DCOILWTICO spot observations.")
+    elif (
+        gasoline_spot.get("units") != "Dollars per Gallon"
+        or ulsd_spot.get("units") != "Dollars per Gallon"
+        or wti_spot.get("units") != "Dollars per Barrel"
+    ):
+        ingestion_warnings.append("Model 25.9 spot-price units are missing or incompatible.")
+    elif len({entry.get("last_date") for entry in crack_spot_entries}) != 1 or not gasoline_spot.get("last_date"):
+        ingestion_warnings.append("Model 25.9 spot prices have no common observation date.")
+    else:
+        m_crack_spread = calc_gasoline_321_crack_spread(
+            gasoline_spot.get("current_value"),
+            ulsd_spot.get("current_value"),
+            wti_spot.get("current_value"),
+            gasoline_spot.get("last_date"),
+            ulsd_spot.get("last_date"),
+            wti_spot.get("last_date"),
+            gasoline_stocks,
+            gasoline_stocks_yoy,
+            gasoline_spot.get("year_ago_value"),
+            ulsd_spot.get("year_ago_value"),
+            wti_spot.get("year_ago_value")
+        )
+        if m_crack_spread:
+            models_calculated.append(m_crack_spread)
+        else:
+            ingestion_warnings.append("Model 25.9 could not calculate the same-date 3:2:1 spread.")
 
     # Model 25.10: SLOOS Lending Standards Recession Gauge
     drtscis_val = series.get("DRTSCIS", {}).get("current_value")
@@ -2540,9 +3060,14 @@ def main():
                 imf_series_data = imf_json.get("series", {})
                 breakeven_oil = imf_series_data.get("SAUPZPIOILBEGUSD", {}).get("current_value")
                 boj_rate = imf_series_data.get("JP_FPOLM_PA", {}).get("current_value")
-        except Exception:
+                if breakeven_oil is None:
+                    ingestion_warnings.append("IMF SAUPZPIOILBEGUSD is missing/null.")
+        except Exception as e:
             breakeven_oil = None
             boj_rate = None
+            ingestion_warnings.append(f"IMF IFS read error: {e}")
+    else:
+        ingestion_warnings.append("IMF series file missing: llms-imf-series.json")
 
     # Model 25.16: Yen Carry Trade Dissolution (BoJ Policy Rate via IMF / FED DFF)
     dff_val = series.get('DFF', {}).get('current_value')
@@ -2559,25 +3084,74 @@ def main():
     if m_mecca:
         models_calculated.append(m_mecca)
 
+    # Model 25.19: Sovereign Synthetic CDS & Actuarial Default Probability Engine
+    hy_spread = series.get("BAMLH0A0HYM2", {}).get("current_value")
+    m_cds_pd = calc_sovereign_synthetic_cds_pd(hy_spread)
+    if m_cds_pd:
+        models_calculated.append(m_cds_pd)
+
+    # Model 28.4: use the generated relationship snapshot for current polarity and chokepoint metadata.
+    relationships_json_path = "llms-relationships.json"
+    try:
+        with open(relationships_json_path, "r", encoding="utf-8") as f:
+            relationship_data = json.load(f)
+        relationship_rows = relationship_data.get("relationships", [])
+        chokepoint_rows = relationship_data.get("chokepoints", [])
+        il_ir = next((row for row in relationship_rows if row.get("id") == "IL_IR"), None)
+        hormuz = next((row for row in chokepoint_rows if row.get("id") == "CHOKE_HORMUZ"), None)
+        if il_ir is None or hormuz is None:
+            raise ValueError("IL_IR relationship or CHOKE_HORMUZ metadata is missing.")
+        if il_ir.get("p_net") is None or hormuz.get("disruption_severity") is None or hormuz.get("daily_oil_volume_mbpd") is None:
+            raise ValueError("IL_IR polarity or required CHOKE_HORMUZ fields are missing.")
+
+        m_hormuz_bridge = calc_chokepoint_transmission_bridge(
+            severity_enum=hormuz["disruption_severity"],
+            p_net=il_ir["p_net"],
+            duration_days=14,
+            bypass_capacity_mbpd=4.0,
+            spr_stocks_kbbl=spr_stocks,
+            gross_flow_mbpd=hormuz["daily_oil_volume_mbpd"],
+            us_crude_prod_kbpd=us_crude_prod
+        )
+        if m_hormuz_bridge:
+            models_calculated.append(m_hormuz_bridge)
+        else:
+            ingestion_warnings.append("Model 28.4 could not be calculated from relationship and EIA inputs.")
+    except (OSError, json.JSONDecodeError, TypeError, ValueError) as e:
+        ingestion_warnings.append(f"Model 28.4 relationship input error: {e}")
+
     now_dt = datetime.datetime.now(datetime.timezone.utc)
     now_iso = now_dt.isoformat()
     now_utc_str = now_dt.strftime("%Y-%m-%d %H:%M UTC")
 
     # A) BUILD llms-models.json
+    is_success = (len(ingestion_warnings) == 0 and len(models_calculated) >= 42)
+    sync_status = "SUCCESS" if is_success else "DEGRADED"
+
+    if not is_success:
+        print(
+            f"[ERROR] Model refresh is degraded: generated {len(models_calculated)} models (expected >= 42) "
+            f"with {len(ingestion_warnings)} ingestion warning(s). Existing snapshots were preserved."
+        )
+        raise SystemExit(1)
+
     payload = {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "metadata": {
             "engine": "Autonomous Quantitative Macroeconomic Model Engine",
             "author": "Ersoy Toptaş",
             "license": "CC BY 4.0",
-            "sync_status": "SUCCESS",
+            "sync_status": sync_status,
+            "ingestion_health": "OPTIMAL" if not ingestion_warnings else "WARNING",
+            "ingestion_warnings": ingestion_warnings,
             "last_successful_sync": now_iso,
             "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
             "monitored_data_sources": [
                 "Federal Reserve Bank of St. Louis (FRED)",
                 "European Central Bank (ECB)",
                 "World Bank (The Pink Sheet)",
-                "International Monetary Fund (IMF)"
+                "International Monetary Fund (IMF)",
+                "U.S. Energy Information Administration (EIA)"
             ],
             "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
             "total_models_active": len(models_calculated)
@@ -2597,7 +3171,7 @@ def main():
         "> Endpoint: https://analysisreports.github.io/llms-models.txt",
         "> JSON Twin Endpoint: https://analysisreports.github.io/llms-models.json",
         "> Master Formulas Engine: https://analysisreports.github.io/llms-formulas.txt",
-        "> Ingested Live Time-Series: FRED, ECB, World Bank & IMF Canonical APIs",
+        "> Ingested Live Time-Series: FRED, ECB, World Bank, IMF & EIA Canonical APIs",
         "> Root Index: https://analysisreports.github.io/llms.txt",
         "",
         "# ==============================================================================",

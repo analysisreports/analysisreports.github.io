@@ -16,6 +16,7 @@ import os
 import re
 import json
 import math
+import time
 import datetime
 import urllib.request
 import urllib.parse
@@ -57,7 +58,7 @@ def fred_change_year_ago(xt, xt_year_ago):
         return None
 
 def fred_percent_change(xt, xt_prev):
-    if not (_is_num(xt) and _is_num(xt_prev)) or xt_prev == 0:
+    if not (_is_num(xt) and _is_num(xt_prev)) or xt_prev <= 0:
         return None
     try:
         res = ((xt / xt_prev) - 1.0) * 100.0
@@ -66,7 +67,7 @@ def fred_percent_change(xt, xt_prev):
         return None
 
 def fred_percent_change_year_ago(xt, xt_year_ago):
-    if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago == 0:
+    if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago <= 0:
         return None
     try:
         res = ((xt / xt_year_ago) - 1.0) * 100.0
@@ -119,17 +120,46 @@ FREQ_N_MAP = {
 }
 
 # ==============================================================================
+# SMART TTL CACHE SPECIFICATION (USER MANDATE & BEST PRACTICES)
+# - DAILY: 3 days TTL (avoids noisy redundant daily pulls)
+# - WEEKLY: 8 days TTL
+# - MONTHLY: 32 days TTL
+# - QUARTERLY: 95 days TTL
+# - SEMIANNUAL: 185 days TTL
+# - ANNUAL: 365 days TTL
+# Strict Zero-Loss Mandate: If TTL expires and API fails/times out, existing snapshot is 100% retained.
+# ==============================================================================
+CACHE_TTL_DAYS = {
+    "DAILY": 3,
+    "WEEKLY": 8,
+    "BIWEEKLY": 16,
+    "MONTHLY": 32,
+    "QUARTERLY": 95,
+    "SEMIANNUAL": 185,
+    "ANNUAL": 365
+}
+
+# ==============================================================================
 # 2. FRED API FETCHING UTILITIES
 # ==============================================================================
 
 def fetch_json(url: str) -> Optional[Dict[str, Any]]:
     req = urllib.request.Request(url, headers={"User-Agent": "AnalysisReports-FRED-Engine/1.0"})
-    try:
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            if resp.status == 200:
-                return json.loads(resp.read().decode('utf-8'))
-    except Exception as e:
-        print(f"Error fetching {url}: {e}")
+    for attempt in range(1, 3):
+        try:
+            with urllib.request.urlopen(req, timeout=25) as resp:
+                if resp.status == 200:
+                    return json.loads(resp.read().decode('utf-8'))
+        except Exception as e:
+            err_msg = str(e)
+            if "10013" in err_msg or "Permission denied" in err_msg:
+                # Sandbox network restriction, break immediately without useless retries
+                print(f"  [NETWORK SANDBOX] {url}: {e}")
+                return None
+            if attempt < 2:
+                time.sleep(2)
+            else:
+                print(f"Error fetching {url}: {e}")
     return None
 
 def get_series_data_api(series_id: str, api_key: str, n_obs_per_yr: int) -> Optional[Dict[str, Any]]:
@@ -207,11 +237,74 @@ def parse_registry(txt_path: str) -> Tuple[Dict[str, List[str]], str]:
 
     return frequencies, config_part.rstrip()
 
-def build_outputs(frequencies: Dict[str, List[str]], api_key: str) -> Tuple[str, Dict[str, Any]]:
+def format_fred_txt_block(entry: Dict[str, Any]) -> str:
+    s_id = entry.get("series_id", "")
+    title = entry.get("title", "")
+    freq = entry.get("frequency", "")
+    n_obs_per_yr = entry["n_obs_per_yr"]
+    units = entry.get("units", "")
+    last_date = entry.get("last_date", "")
+    xt = entry.get("current_value")
+    xt_prev = entry.get("previous_value")
+    xt_year_ago = entry.get("year_ago_value")
+    t = entry.get("transformations", {})
+
+    is_rate = "Percent" in units or "%" in units
+
+    def fmt(v, suffix="%"):
+        return f"{v:+.4f}{suffix}" if v is not None else "N/A"
+
+    car_str = "N/A (Rate is already annualized)" if is_rate else fmt(t.get("compounded_annual_rate_of_change"), "%")
+    ccar_str = "N/A (Rate is already annualized)" if is_rate else fmt(t.get("continuously_compounded_annual_rate_of_change"), "%")
+
+    recent_5 = entry.get("recent_observations", [])
+    recent_lines = "\n".join([f"  {r['date']}: {r['value']:.4f}" for r in recent_5])
+
+    xt_str = f"{xt:.4f}" if xt is not None else "N/A"
+    xt_prev_str = f"{xt_prev:.4f}" if xt_prev is not None else "N/A"
+    xt_yr_str = f"{xt_year_ago:.4f}" if xt_year_ago is not None else "N/A"
+
+    return f"""--------------------------------------------------------------------------------
+Series ID: {s_id}
+Title: {title}
+Frequency: {freq} (n_obs_per_yr: {n_obs_per_yr}) | Units: {units}
+Last Date: {last_date} | Current Value: {xt_str} | Previous Value: {xt_prev_str} | Year Ago Value: {xt_yr_str}
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: {fmt(t.get("change"), '')}
+  2. Change from Year Ago: {fmt(t.get("change_from_year_ago"), '')}
+  3. Percent Change: {fmt(t.get("percent_change"), '%')}
+  4. Percent Change from Year Ago: {fmt(t.get("percent_change_from_year_ago"), '%')}
+  5. Compounded Annual Rate of Change: {car_str}
+  6. Continuously Compounded Rate of Change: {fmt(t.get("continuously_compounded_rate_of_change"), '%')}
+  7. Continuously Compounded Annual Rate of Change: {ccar_str}
+
+Recent Observations (Last 5):
+{recent_lines}"""
+
+def recompute_entry_transformations(entry: Dict[str, Any], n_obs_per_yr: int):
+    units_str = entry.get("units", "")
+    is_rate = "Percent" in units_str or "%" in units_str
+    xt = entry.get("current_value")
+    xt_prev = entry.get("previous_value")
+    xt_year_ago = entry.get("year_ago_value")
+    entry["transformations"] = {
+        "change": fred_change(xt, xt_prev),
+        "change_from_year_ago": fred_change_year_ago(xt, xt_year_ago) if xt_year_ago is not None else None,
+        "percent_change": fred_percent_change(xt, xt_prev),
+        "percent_change_from_year_ago": fred_percent_change_year_ago(xt, xt_year_ago) if xt_year_ago is not None else None,
+        "compounded_annual_rate_of_change": None if is_rate else fred_compounded_annual_rate(xt, xt_prev, n_obs_per_yr),
+        "continuously_compounded_rate_of_change": fred_continuously_compounded_rate(xt, xt_prev),
+        "continuously_compounded_annual_rate_of_change": None if is_rate else fred_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr)
+    }
+
+def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_series: Optional[Dict[str, Any]] = None, fallback_sync_str: Optional[str] = None) -> Tuple[str, Dict[str, Any]]:
+    if existing_series is None:
+        existing_series = {}
+
     now_dt = datetime.datetime.now(datetime.timezone.utc)
     now_utc = now_dt.strftime("%Y-%m-%d %H:%M:%S UTC")
     now_iso = now_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
-    today_date = now_dt.strftime("%Y-%m-%d")
 
     txt_blocks = []
     json_series_dict = {}
@@ -221,12 +314,54 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str) -> Tuple[str,
         if freq not in FREQ_N_MAP:
             raise ValueError(f"Unknown FRED frequency '{freq}'")
         n_obs_per_yr = FREQ_N_MAP[freq]
+        ttl_days = CACHE_TTL_DAYS[freq] if freq in CACHE_TTL_DAYS else 3
+
         for s_id in s_list:
-            print(f"Fetching: {s_id} ({freq})...")
-            data = get_series_data_api(s_id, api_key, n_obs_per_yr)
-            if not data:
-                print(f"Warning: Could not fetch data for {s_id}")
+            cached_entry = existing_series.get(s_id)
+            is_cache_valid = False
+            elapsed_days = 9999.0
+
+            if cached_entry and isinstance(cached_entry, dict):
+                last_sync_str = cached_entry.get("last_synced_utc") or fallback_sync_str
+                if last_sync_str:
+                    try:
+                        clean_sync = last_sync_str.replace("Z", "+00:00")
+                        sync_dt = datetime.datetime.fromisoformat(clean_sync)
+                        elapsed_days = (now_dt - sync_dt).total_seconds() / 86400.0
+                        if elapsed_days < ttl_days:
+                            is_cache_valid = True
+                    except Exception:
+                        is_cache_valid = False
+
+            # 1. Cache HIT: Süresi dolmamışsa API'ye dokunma, mevcut doğrulanmış veriyi koru
+            if is_cache_valid:
+                print(f"  [CACHE HIT] {s_id} [{freq}]: Son çekilmeden bu yana {elapsed_days:.1f} gün geçti (TTL: {ttl_days} gün). API isteği atlanıyor.")
+                recompute_entry_transformations(cached_entry, n_obs_per_yr)
+                json_series_dict[s_id] = cached_entry
+                txt_blocks.append(format_fred_txt_block(cached_entry))
                 continue
+
+            # 2. Süresi dolmuşsa veya yeni seriyse FRED API'den çek
+            print(f"  [FETCHING] {s_id} [{freq}] (TTL doldu veya yeni seri, FRED API'sine bağlanılıyor)...")
+            data = None
+            if api_key:
+                data = get_series_data_api(s_id, api_key, n_obs_per_yr)
+            else:
+                print(f"  [WARNING] FRED_API_KEY bulunamadı, API isteği yapılamıyor.")
+
+            # 3. API Hata / Zaman Aşımı Koruma Sigortası: Asla eski veriyi silme!
+            if not data:
+                if cached_entry and isinstance(cached_entry, dict):
+                    print(f"  [API TIMEOUT - RETAINED] {s_id} [{freq}]: API yanıt vermedi veya anahtar yok. Mevcut resmi snapshot korundu!")
+                    if not cached_entry.get("last_synced_utc"):
+                        cached_entry["last_synced_utc"] = fallback_sync_str or now_iso
+                    recompute_entry_transformations(cached_entry, n_obs_per_yr)
+                    json_series_dict[s_id] = cached_entry
+                    txt_blocks.append(format_fred_txt_block(cached_entry))
+                    continue
+                else:
+                    print(f"  Warning: Could not fetch data for {s_id} and no cached snapshot exists.")
+                    continue
 
             meta = data["metadata"]
             obs = data["observations"]
@@ -243,7 +378,6 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str) -> Tuple[str,
 
             units_str = meta.get("units", "")
             # Rate & Yield Financial Guard: Percentage rates are already annualized.
-            # Compounding an already annualized rate is a category error and produces misleading exponential distortions.
             is_rate = "Percent" in units_str or "%" in units_str
 
             c_chg = fred_change(xt, xt_prev)
@@ -256,7 +390,7 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str) -> Tuple[str,
 
             recent_5 = obs[-5:]
 
-            json_series_dict[s_id] = {
+            entry_dict = {
                 "series_id": s_id,
                 "title": meta.get("title", ""),
                 "frequency": freq.capitalize(),
@@ -264,6 +398,7 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str) -> Tuple[str,
                 "units": meta.get("units", ""),
                 "source": meta.get("source_institution", meta.get("units", "FRED")),
                 "last_date": t_curr["date"],
+                "last_synced_utc": now_iso,
                 "current_value": xt,
                 "previous_value": xt_prev,
                 "year_ago_value": xt_year_ago,
@@ -279,32 +414,14 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str) -> Tuple[str,
                 "recent_observations": recent_5
             }
 
-            def fmt(v, suffix="%"):
-                return f"{v:+.4f}{suffix}" if v is not None else "N/A"
+            json_series_dict[s_id] = entry_dict
+            txt_blocks.append(format_fred_txt_block(entry_dict))
 
-            car_str = "N/A (Rate is already annualized)" if is_rate else fmt(c_car, "%")
-            ccar_str = "N/A (Rate is already annualized)" if is_rate else fmt(c_ccar, "%")
-
-            recent_lines = "\n".join([f"  {r['date']}: {r['value']:.4f}" for r in recent_5])
-
-            block = f"""--------------------------------------------------------------------------------
-Series ID: {s_id}
-Title: {meta.get('title', '')}
-Frequency: {freq.capitalize()} (n_obs_per_yr: {n_obs_per_yr}) | Units: {meta.get('units', '')}
-Last Date: {t_curr['date']} | Current Value: {xt:.4f} | Previous Value: {xt_prev:.4f} | Year Ago Value: {f"{xt_year_ago:.4f}" if xt_year_ago is not None else "N/A"}
-
-Transformations (Official St. Louis Fed Formulas):
-  1. Change: {fmt(c_chg, '')}
-  2. Change from Year Ago: {fmt(c_chg_yr, '')}
-  3. Percent Change: {fmt(c_pct, '%')}
-  4. Percent Change from Year Ago: {fmt(c_pct_yr, '%')}
-  5. Compounded Annual Rate of Change: {car_str}
-  6. Continuously Compounded Rate of Change: {fmt(c_ccr, '%')}
-  7. Continuously Compounded Annual Rate of Change: {ccar_str}
-
-Recent Observations (Last 5):
-{recent_lines}"""
-            txt_blocks.append(block)
+    synced_count = len(json_series_dict)
+    all_sids = [s for s_list in frequencies.values() for s in s_list]
+    missing_sids = [s for s in all_sids if s not in json_series_dict]
+    sync_status = "SUCCESS" if synced_count == total_series else ("PARTIAL_SUCCESS" if synced_count > 0 else "FAILED")
+    missing_line = f"\n# - Inactive / Pending Series: {', '.join(missing_sids)}" if missing_sids else ""
 
     txt_body = "\n\n".join(txt_blocks)
 
@@ -313,7 +430,8 @@ Recent Observations (Last 5):
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
 # - Synced At: {now_utc}
-# - Total Series Synced: {len(json_series_dict)} / {total_series}
+# - Sync Status: {sync_status} ({synced_count} / {total_series} series active)
+# - Total Series Synced: {synced_count} / {total_series}{missing_line}
 # - Source Authority: Federal Reserve Bank of St. Louis (FRED API)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
@@ -327,9 +445,11 @@ Recent Observations (Last 5):
             "title": "Canonical FRED Monitored Series & Official Transformations",
             "author": "Ersoy Toptaş",
             "license": "CC BY 4.0",
-            "sync_status": "SUCCESS",
+            "sync_status": sync_status,
             "last_successful_sync": now_iso,
-            "total_series": len(json_series_dict),
+            "total_series": synced_count,
+            "total_registered": total_series,
+            "missing_series": missing_sids,
             "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
             "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
             "root_index": "https://analysisreports.github.io/llms.txt"
@@ -346,8 +466,7 @@ Recent Observations (Last 5):
 def main():
     api_key = os.environ.get("FRED_API_KEY", "").strip()
     if not api_key:
-        print("Error: FRED_API_KEY environment variable is missing.")
-        return
+        print("[NOTICE] FRED_API_KEY environment variable is not set. Cache retrieval & retention will operate.")
 
     txt_path = "llms-fred-series.txt"
     json_path = "llms-fred-series.json"
@@ -355,8 +474,19 @@ def main():
     print("Parsing monitored series configuration...")
     frequencies, config_header = parse_registry(txt_path)
 
-    print("Fetching FRED series and computing official transformations...")
-    auto_txt, auto_json = build_outputs(frequencies, api_key)
+    existing_series = {}
+    fallback_sync_str = None
+    if os.path.exists(json_path):
+        try:
+            with open(json_path, "r", encoding="utf-8") as f:
+                d = json.load(f)
+                existing_series = d.get("series", {})
+                fallback_sync_str = d.get("metadata", {}).get("last_successful_sync")
+        except Exception:
+            existing_series = {}
+
+    print("Processing FRED series with Smart TTL Cache & Non-Destructive Retention...")
+    auto_txt, auto_json = build_outputs(frequencies, api_key, existing_series, fallback_sync_str)
 
     full_txt_content = config_header + "\n\n" + auto_txt
 

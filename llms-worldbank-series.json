@@ -5,9 +5,13 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-10T00:52:28Z",
+    "last_successful_sync": "2026-11-12T00:47:36Z",
     "data_source": "World Bank Commodity Price Data (The Pink Sheet)",
     "monitored_series_count": 1,
+    "total_registered_series": 1,
+    "missing_series": [],
+    "stale_series": [],
+    "unsupported_series": [],
     "canonical_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt"
   },
   "series": {

@@ -1,15 +1,17 @@
 {
-  "$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
-  "version": "2.0.0",
+"$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
+  "version": "2.1.0",
   "metadata": {
-    "last_updated": "2026-11-04",
+    "last_updated": "2026-11-11",
     "author": "Ersoy Toptaş",
     "provenance": "Analysis Reports Research Archive"
   },
   "structured_content_analysis": {
     "term_entity_id": null,
     "term": "",
+    "entity_type": "",
     "domain": "",
+    "synonyms_and_acronyms": [],
     "short_definition": "",
     "detailed_explanation": "",
     "step_by_step_process": [
@@ -21,7 +23,13 @@
     "causes_and_triggers": [
       ""
     ],
-    "origin_and_key_figures": "",
+    "origin_and_key_figures": [
+      {
+        "entity_id": null,
+        "name": "",
+        "role": ""
+      }
+    ],
     "real_world_examples": [
       ""
     ],
@@ -32,11 +40,34 @@
     "related_terms": [
       ""
     ],
+    "related_series_ids": [
+      ""
+    ],
+    "semantic_triples": [
+      {
+        "subject_id": null,
+        "predicate": "",
+        "object_id": null
+      }
+    ],
     "core_analysis": "",
+    "target_queries": {
+      "qa_pairs": [
+        {
+          "q": "",
+          "a": ""
+        }
+      ]
+    },
     "categorization": {
       "tags": [
         ""
       ]
+    },
+    "editorial_frontend": {
+      "url": "",
+      "author": "Ersoy Toptaş",
+      "language": "tr"
     },
     "metadata": {
       "analyst": "Ersoy Toptaş",

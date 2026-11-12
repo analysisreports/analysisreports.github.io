@@ -1,0 +1,267 @@
+{
+  "$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
+  "version": "2.1.0",
+  "metadata": {
+    "last_updated": "2026-11-11",
+    "author": "Ersoy Toptaş",
+    "provenance": "Analysis Reports Research Archive"
+  },
+  "structured_content_analysis": {
+    "focus_areas": [
+      ""
+    ],
+    "summary": {
+      "headline": "",
+      "one_sentence_summary": ""
+    },
+    "5N1K_analysis": {
+      "headline": "",
+      "what": "",
+      "where": "",
+      "when": "",
+      "event_date": "",
+      "why": "",
+      "how": "",
+      "who_entity_id": [
+        ""
+      ],
+      "who": "",
+      "heat": 0
+    },
+    "quantitative_data_summary": {
+      "primary_indicator_tracking": {
+        "series_entity_id": null,
+        "indicator_name": "",
+        "reference_period": "",
+        "value_comparison": {
+          "current_period_value": "",
+          "current_numeric_value": 0,
+          "previous_period_value": "",
+          "previous_numeric_value": 0,
+          "nominal_change": "",
+          "target_deviation_bps": 0
+        },
+        "change_rates_percentage": {
+          "change_rate_compared_to_previous_month": "",
+          "change_rate_compared_to_december_of_the_previous_year": "",
+          "change_rate_compared_to_the_same_month_of_the_previous_year": "",
+          "change_rate_according_to_twelve_month_averages": ""
+        },
+        "macro_stance": "NEUTRAL",
+        "yield_spread_bps": 0
+      },
+      "other_supporting_data": [
+        {
+          "indicator_id": null,
+          "indicator_name": "",
+          "indicator_value": "",
+          "change_rate": null
+        }
+      ],
+      "quantitative_models_evaluated": [
+        {
+          "model_id": null,
+          "model_name": "",
+          "computed_value": 0,
+          "threshold_critical": 0,
+          "active_regime": ""
+        }
+      ]
+    },
+    "political_dynamics_assessment": {
+      "discourse_and_narrative": {
+        "main_narrative": "",
+        "tone_and_rhetoric": "",
+        "counter_argument_target": "",
+        "rhetoric_intensity_score": 0
+      },
+      "power_and_alliance_balance": {
+        "alliance_cohesion": "",
+        "electoral_base_dynamics": "",
+        "institutional_friction": "",
+        "alliance_friction_score": 0
+      },
+      "composite_tension_score": 0,
+      "severity_level": "MODERATE"
+    },
+    "country_strategic_assessment": {
+      "country_entity_id": null,
+      "country_name": "",
+      "country_code": "",
+      "internal_political_dynamics": {
+        "leadership_and_regime_stability": "",
+        "institutional_power_balance": "",
+        "opposition_and_social_cohesion": "",
+        "severity_score": 0
+      },
+      "security_and_defense_posture": {
+        "military_doctrine": "",
+        "force_capacity_and_readiness": "",
+        "critical_frontline_status": "",
+        "severity_score": 0
+      },
+      "geopolitical_alignment": {
+        "bloc_alignment": "",
+        "strategic_dependencies": "",
+        "regional_influence_and_rivalries": "",
+        "severity_score": 0
+      },
+      "strategic_vulnerabilities": {
+        "sanctions_and_economic_warfare": "",
+        "critical_infrastructure_risk": "",
+        "demographic_and_humanitarian_pressure": "",
+        "severity_score": 0
+      },
+      "resilience_score": 50,
+      "composite_strategic_score": 50,
+      "severity_level": "MODERATE"
+    },
+    "actors_and_dynamics": {
+      "key_players": [
+        {
+          "entity_id": null,
+          "name": "",
+          "affiliation": "",
+          "role_in_event": "",
+          "influence_score": 0
+        }
+      ],
+      "relationship_map": [
+        {
+          "source_entity_id": null,
+          "source": "",
+          "relation": "Conflict",
+          "target_entity_id": null,
+          "target": "",
+          "directed": true,
+          "severity": "MODERATE",
+          "baseline_polarity": 0,
+          "dynamic_delta": 0,
+          "net_polarity": 0,
+          "regime_state": "DIPLOMATIC_CONTACT",
+          "heat": 0
+        }
+      ]
+    },
+    "core_analysis": {
+      "central_conflict_or_goal": "",
+      "strategic_implication": "",
+      "underlying_message": "",
+      "market_dynamics": "",
+      "transmission_and_micro_impact": {
+        "affected_domains": [
+          ""
+        ],
+        "impact_mechanism": "",
+        "pressure_severity": "MODERATE"
+      },
+      "conflict_heat": 0,
+      "market_impact_direction": "NEUTRAL",
+      "market_impact_score": 0,
+      "key_quotes": [
+        {
+          "speaker_entity_id": null,
+          "speaker": "",
+          "quote": "",
+          "significance_level": "MEDIUM",
+          "significance_analysis": ""
+        }
+      ]
+    },
+    "strategic_geography_and_assets": [
+      {
+        "asset_entity_id": null,
+        "asset_name": "",
+        "strategic_importance": "",
+        "control_status": "",
+        "logistics_capacity_metrics": {
+          "daily_transit_volume_mbpd": 0,
+          "global_consumption_share_pct": 0,
+          "pipeline_bypass_capacity_mbpd": 0,
+          "unmitigated_supply_deficit_mbpd": 0,
+          "alternate_route_name": "",
+          "delay_days": 0
+        }
+      }
+    ],
+    "geopolitical_state_vector": {
+      "actor_pair_entity_id": null,
+      "actor_pair": "",
+      "regime_state": "DIPLOMATIC_CONTACT",
+      "dynamic_delta": 0,
+      "active_friction_nodes_entity_id": [
+        null
+      ],
+      "active_friction_nodes": [
+        ""
+      ],
+      "effective_date": ""
+    },
+    "future_outlook": {
+      "strategic_actions": [
+        {
+          "action_type": "",
+          "description": "",
+          "target_stakeholder": {
+            "entity_id": null,
+            "entity_name": "",
+            "jurisdiction": "",
+            "sector": ""
+          }
+        }
+      ],
+      "potential_consequences": {
+        "short_term": "",
+        "short_term_days": 30,
+        "long_term": "",
+        "long_term_days": 365
+      },
+      "next_key_event": null,
+      "target_date": null,
+      "status": "ACTIVE",
+      "probability_percent": 50,
+      "impact_score": 50,
+      "direction": "Neutral",
+      "confidence_score": 80
+    },
+    "target_queries": [
+      {
+        "q": "",
+        "a": ""
+      }
+    ],
+    "cross_references": {
+      "relations": [
+        {
+          "target_url": "",
+          "predicate": "",
+          "impact_start_date": "",
+          "impact_end_date": "",
+          "description": ""
+        }
+      ]
+    },
+    "editorial_frontend": {
+      "url": "",
+      "format": "Human-Readable Narrative",
+      "author": "Ersoy Toptaş",
+      "published_date": "",
+      "language": "tr",
+      "description": ""
+    },
+    "categorization": {
+      "tags": [
+        ""
+      ]
+    },
+    "metadata": {
+      "analyst": "Ersoy Toptaş",
+      "methodology": "https://analysisreports.github.io/llms.txt",
+      "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
+      "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
+      "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
+      "canonical_source": "https://analysisreports.github.io",
+      "license": "CC BY-NC-ND 4.0"
+    }
+  }
+}

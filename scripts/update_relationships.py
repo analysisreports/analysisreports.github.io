@@ -169,40 +169,92 @@ def main():
         }
     ]
 
-    r_oil = (brent / breakeven_oil) if (brent is not None and brent > 0 and breakeven_oil > 0) else 1.0
-    if r_oil >= 1.05:
-        s_energy = 0.05
-    elif r_oil < 0.90:
-        s_energy = -0.05
-    else:
-        s_energy = 0.00
+    # Model 25.18: Mecca Pact Dynamic Transmission Engine
+    # Zero synthetic fallback: strictly evaluate only when all required macro inputs exist and are positive
+    mecca_calculated = False
+    if (
+        brent is not None
+        and sofr is not None
+        and breakeven_oil is not None
+        and isinstance(brent, (int, float))
+        and isinstance(sofr, (int, float))
+        and isinstance(breakeven_oil, (int, float))
+    ):
+        try:
+            b_val = float(brent)
+            s_val = float(sofr)
+            be_val = float(breakeven_oil)
+            if math.isfinite(b_val) and math.isfinite(s_val) and math.isfinite(be_val) and b_val > 0.0 and be_val > 0.0:
+                r_oil = b_val / be_val
+                if r_oil >= 1.05:
+                    s_energy = 0.05
+                elif r_oil < 0.90:
+                    s_energy = -0.05
+                else:
+                    s_energy = 0.00
 
-    delta_dollar = -0.03 if (sofr is not None and sofr >= 5.25) else 0.00
-    mecca_delta_tr_sa = round(min(0.30, max(-0.30, delta_treaty + s_energy + delta_dollar)), 2)
-    mecca_delta_sa_pk = round(min(0.30, max(-0.30, delta_treaty + s_energy + delta_dollar)), 2)
-    mecca_delta_tr_pk = round(min(0.30, max(-0.30, delta_treaty + min(0.0, delta_dollar))), 2)
+                delta_dollar = -0.03 if s_val >= 5.25 else 0.00
+                mecca_delta_tr_sa = round(min(0.30, max(-0.30, delta_treaty + s_energy + delta_dollar)), 2)
+                mecca_delta_sa_pk = round(min(0.30, max(-0.30, delta_treaty + s_energy + delta_dollar)), 2)
+                mecca_delta_tr_pk = round(min(0.30, max(-0.30, delta_treaty + min(0.0, delta_dollar))), 2)
+                mecca_calculated = True
+        except (TypeError, ValueError):
+            mecca_calculated = False
 
-    # 3. Dynamic Deltas for Bilateral Corridors
+    if not mecca_calculated:
+        # Zero synthetic fallback: Without complete verified live inputs, zero dynamic energy shock is injected.
+        # Only the ratified treaty baseline uplift (delta_treaty = +0.10) is preserved.
+        mecca_delta_tr_sa = delta_treaty
+        mecca_delta_sa_pk = delta_treaty
+        mecca_delta_tr_pk = delta_treaty
+
+    # 3. Dynamic Deltas for Bilateral Corridors (Zero-Crash Guardrails on Missing Inputs)
     # Oil Shock (Middle East, Red Sea & Latin America)
-    if brent_wti_spread > 12.0:
-        oil_delta = -0.15
-    elif brent_wti_spread > 8.0:
-        oil_delta = -0.10
-    else:
-        oil_delta = 0.0
+    oil_delta = 0.0
+    if brent_wti_spread is not None and isinstance(brent_wti_spread, (int, float)) and math.isfinite(brent_wti_spread):
+        if brent_wti_spread > 12.0:
+            oil_delta = -0.15
+        elif brent_wti_spread > 8.0:
+            oil_delta = -0.10
 
     # Tech & Taiwan Strait Shock (US - CN)
-    if chip_stress >= 1.20:
-        chip_delta = -0.15
-    elif chip_stress >= 0.50:
-        chip_delta = -0.08
-    elif chip_stress <= -0.40:
-        chip_delta = +0.05
-    else:
-        chip_delta = 0.0
+    chip_delta = 0.0
+    if chip_stress is not None and isinstance(chip_stress, (int, float)) and math.isfinite(chip_stress):
+        if chip_stress >= 1.20:
+            chip_delta = -0.15
+        elif chip_stress >= 0.50:
+            chip_delta = -0.08
+        elif chip_stress <= -0.40:
+            chip_delta = +0.05
 
     # General Financial Stress Delta
-    vix_delta = -0.05 if vix >= 32.0 else (+0.03 if vix <= 15.0 else 0.0)
+    vix_delta = 0.0
+    if vix is not None and isinstance(vix, (int, float)) and math.isfinite(vix):
+        if vix >= 32.0:
+            vix_delta = -0.05
+        elif vix <= 15.0:
+            vix_delta = +0.03
+
+    # Ingest Canonical Sovereign Baselines from llms-country-relationships.json (SSOT)
+    country_json_path = 'llms-country-relationships.json'
+    if not os.path.exists(country_json_path):
+        country_json_path = os.path.join(os.path.dirname(__file__), '..', 'llms-country-relationships.json')
+    
+    country_baselines = {}
+    if os.path.exists(country_json_path):
+        try:
+            with open(country_json_path, 'r', encoding='utf-8') as f:
+                c_json = json.load(f)
+                for h_id, hub in c_json.get('sovereign_hubs', {}).items():
+                    for dyad_id, dyad in hub.get('dyads', {}).items():
+                        a1 = dyad.get('actor_1')
+                        a2 = dyad.get('actor_2')
+                        b_val = dyad.get('bilateral_stance')
+                        if a1 and a2 and b_val is not None:
+                            country_baselines[(a1, a2)] = float(b_val)
+                            country_baselines[(a2, a1)] = float(b_val)
+        except Exception as e:
+            print(f"[WARN] Error reading country baselines: {e}")
 
     # 4. Bilateral Actor Matrix (llms-relationships.txt Section 2)
     actors = [
@@ -251,7 +303,7 @@ def main():
             'source_entity': 'GEO_SA',
             'target_entity': 'GEO_IR',
             'label': 'SA - IR (Kingdom of Saudi Arabia vs. Islamic Republic of Iran)',
-            'p_baseline': -0.20,
+            'p_baseline': -0.50,
             'dynamic_delta': round(oil_delta * 0.5, 2),
             'friction_nodes': ['YEMEN_BORDER', 'PERSIAN_GULF_SHIPPING'],
             'primary_driver': 'BEIJING_ACCORD_AND_OIL_FLOWS'
@@ -438,9 +490,16 @@ def main():
         }
     ]
 
+    # Auto-synchronize actors with sovereign baseline SSOT (llms-country-relationships)
+    for a in actors:
+        pair_key = (a['source_entity'], a['target_entity'])
+        if pair_key in country_baselines:
+            a['p_baseline'] = country_baselines[pair_key]
+
     relationships_output = []
     for a in actors:
-        raw_p = a['p_baseline'] + a['dynamic_delta']
+        dyn = 0.0 if abs(a['dynamic_delta']) < 1e-6 else a['dynamic_delta']
+        raw_p = a['p_baseline'] + dyn
         p_net = round(clamp(raw_p, -1.0, 1.0), 2)
         regime = get_regime(p_net)
         relationships_output.append({
@@ -449,7 +508,7 @@ def main():
             'target_entity': a['target_entity'],
             'label': a['label'],
             'p_baseline': a['p_baseline'],
-            'dynamic_delta': a['dynamic_delta'],
+            'dynamic_delta': dyn,
             'p_net': p_net,
             'regime_state': regime,
             'primary_driver': a['primary_driver'],
@@ -575,7 +634,7 @@ def main():
 
 CRITICAL_CHOKEPOINTS = [
     {
-        "id": "HORMUZ_STRAIT",
+        "id": "CHOKE_HORMUZ",
         "name": "Strait of Hormuz",
         "location": "26°34'N 56°15'E (Persian Gulf exit)",
         "primary_threat": "IR / IRGC Navy",
@@ -586,7 +645,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["DCOILWTICO", "CPIAUCSL", "BAMLH0A0HYM2", "OVXCLS", "GSCPI", "SOFR", "IND_WB_GOLD"]
     },
     {
-        "id": "BAB_EL_MANDEB",
+        "id": "CHOKE_BAB_EL_MANDEB",
         "name": "Bab el-Mandeb & Red Sea",
         "location": "12°35'N 43°20'E",
         "primary_threat": "YE-HOUTHI",
@@ -598,7 +657,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["ISRATIO", "RSAFS", "PCEPI", "GSCPI", "OVXCLS", "GASREGW"]
     },
     {
-        "id": "MALACCA_STRAIT",
+        "id": "CHOKE_MALACCA",
         "name": "Strait of Malacca",
         "location": "1°26'N 103°00'E",
         "primary_threat": "Malacca Dilemma / Asian Maritime Blockade",
@@ -609,7 +668,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["INDPRO", "GSCPI", "ISRATIO"]
     },
     {
-        "id": "TURKISH_STRAITS",
+        "id": "CHOKE_TURKISH_STRAITS",
         "name": "Turkish Straits (Bosphorus & Dardanelles)",
         "location": "41°07'N 29°04'E & 40°12'N 26°24'E",
         "primary_threat": "1936 Montreux Convention Enforcement / Black Sea Kinetic Spillover",
@@ -619,7 +678,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["DCOILBRENTEU", "WPU06", "IND_WB_GOLD"]
     },
     {
-        "id": "SUWALKI_GAP",
+        "id": "CHOKE_SUWALKI_GAP",
         "name": "Suwalki Gap",
         "location": "Poland - Lithuania border (Between Belarus and Kaliningrad)",
         "primary_threat": "Direct NATO-Russia land corridor kinetic friction (NATO Article 5 detonator)",
@@ -628,7 +687,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["DEXUSEU", "DGS10", "VIXCLS"]
     },
     {
-        "id": "TAIWAN_STRAIT",
+        "id": "CHOKE_TAIWAN",
         "name": "Taiwan Strait",
         "location": "24°00'N 119°00'E",
         "primary_threat": "PLA blockade, naval quarantine, or kinetic conflict",
@@ -637,7 +696,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["NASDAQSOX", "VIXCLS", "INDPRO"]
     },
     {
-        "id": "PANAMA_CANAL",
+        "id": "CHOKE_PANAMA",
         "name": "Panama Canal",
         "location": "09°04'N 79°40'W",
         "primary_threat": "Freshwater reservoir depletion / Draft restrictions",
@@ -647,7 +706,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["GSCPI", "ISRATIO", "PCEPI"]
     },
     {
-        "id": "DANISH_STRAITS",
+        "id": "CHOKE_DANISH_STRAITS",
         "name": "Danish Straits (Great Belt, Little Belt, The Sound)",
         "location": "55°30'N 11°00'E",
         "primary_threat": "RU Shadow Fleet navigation curbs / Western sanctions interdiction",
@@ -657,7 +716,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["DCOILBRENTEU", "OVXCLS"]
     },
     {
-        "id": "GIUK_GAP",
+        "id": "CHOKE_GIUK_GAP",
         "name": "GIUK Gap (Greenland-Iceland-UK Gap)",
         "location": "63°00'N 18°00'W",
         "primary_threat": "Subsea infrastructure sabotage (fiber-optic cables, energy interconnectors)",
@@ -666,7 +725,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["VIXCLS", "DEXUSEU"]
     },
     {
-        "id": "LOMBOK_AND_MAKASSAR_STRAITS",
+        "id": "CHOKE_LOMBOK_MAKASSAR",
         "name": "Lombok and Makassar Straits",
         "location": "08°30'S 115°45'E & 00°20'S 118°10'E",
         "primary_threat": "Deep-draft congestion and maritime choke risk",
@@ -675,7 +734,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["GSCPI", "INDPRO"]
     },
     {
-        "id": "STRAIT_OF_GIBRALTAR",
+        "id": "CHOKE_GIBRALTAR",
         "name": "Strait of Gibraltar",
         "location": "35°58'N 05°36'W",
         "primary_threat": "Western Mediterranean bottleneck / Naval surveillance chokepoint",
@@ -684,7 +743,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["DCOILBRENTEU", "DEXUSEU"]
     },
     {
-        "id": "BERING_STRAIT",
+        "id": "CHOKE_BERING",
         "name": "Bering Strait (Northern Sea Route Chokepoint)",
         "location": "66°00'N 169°00'W",
         "primary_threat": "US-RU / CN Arctic confrontation and Polar Silk Road friction",
@@ -693,7 +752,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["DHHNGSP", "DCOILWTICO"]
     },
     {
-        "id": "MOZAMBIQUE_CHANNEL",
+        "id": "CHOKE_MOZAMBIQUE",
         "name": "Mozambique Channel (Cape Route Bottleneck)",
         "location": "18°00'S 41°00'E",
         "primary_threat": "Red Sea bypass route bottleneck; asymmetric littoral security risks",
@@ -702,7 +761,7 @@ CRITICAL_CHOKEPOINTS = [
         "direct_macro_indicators": ["GASREGW", "DCOILBRENTEU"]
     },
     {
-        "id": "SUEZ_CANAL_NORTHERN_APPROACH",
+        "id": "CHOKE_SUEZ_NORTH",
         "name": "Suez Canal Northern Approach (Port Said / Sinai Node)",
         "location": "31°15'N 32°18'E",
         "primary_threat": "Asymmetric littoral attacks, groundings / channel blockage",

@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: scheduled-content-write-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   update-status:
     runs-on: ubuntu-latest
@@ -19,11 +23,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests
 
       - name: Run Update Script
         run: |
@@ -38,42 +37,40 @@ jobs:
               else:
                   data = {}
 
-              categories = ['economy', 'country', 'political', 'glossary', 'concept', 'editorial', 'political-country']
+              categories = ['economy', 'country', 'political', 'glossary']
               monitored = {}
 
               for cat in categories:
-                  if os.path.exists(cat):
-                      files = glob.glob(f"{cat}/*.json")
-                      latest_date = None
-                      for fpath in files:
-                          try:
-                              with open(fpath, 'r', encoding='utf-8') as jf:
-                                  raw = jf.read()
-                                  jdata = json.loads(raw)
+                  if not os.path.isdir(cat):
+                      raise FileNotFoundError(f"Expected catalog directory does not exist: {cat}")
+                  files = glob.glob(os.path.join(cat, "*.json"))
+                  latest_date = None
+                  for fpath in files:
+                      with open(fpath, 'r', encoding='utf-8') as jf:
+                          raw = jf.read()
+                          jdata = json.loads(raw)
 
-                              root = jdata.get('structured_content_analysis', jdata)
-                              pdate = (
-                                  root.get('editorial_frontend', {}).get('published_date')
-                                  or root.get('metadata', {}).get('published_date')
-                                  or jdata.get('editorial_frontend', {}).get('published_date')
-                                  or jdata.get('metadata', {}).get('published_date')
-                              )
+                      root = jdata.get('structured_content_analysis', jdata)
+                      pdate = (
+                          root.get('editorial_frontend', {}).get('published_date')
+                          or root.get('metadata', {}).get('published_date')
+                          or jdata.get('editorial_frontend', {}).get('published_date')
+                          or jdata.get('metadata', {}).get('published_date')
+                      )
 
-                              if not pdate:
-                                  found_dates = re.findall(r'202\d-\d{2}-\d{2}', raw)
-                                  if found_dates:
-                                      pdate = max(found_dates)
+                      if not pdate:
+                          found_dates = re.findall(r'202\d-\d{2}-\d{2}', raw)
+                          if found_dates:
+                              pdate = max(found_dates)
 
-                              if pdate and (latest_date is None or pdate > latest_date):
-                                  latest_date = pdate
-                          except Exception:
-                              pass
+                      if pdate and (latest_date is None or pdate > latest_date):
+                          latest_date = pdate
 
-                      monitored[cat] = {
-                          "total_payloads": len(files),
-                          "last_updated": latest_date,
-                          "endpoint": f"https://analysisreports.github.io/{cat}/"
-                      }
+                  monitored[cat] = {
+                      "total_payloads": len(files),
+                      "last_updated": latest_date,
+                      "endpoint": f"https://analysisreports.github.io/{cat}/"
+                  }
 
               data['last_updated'] = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d')
               data['monitored_directories'] = monitored
@@ -83,7 +80,7 @@ jobs:
               print('ai-catalog.json güncellendi.')
           except Exception as e:
               print('Hata:', e)
-              raise e
+              raise
           EOF
 
       - name: Commit and Push changes

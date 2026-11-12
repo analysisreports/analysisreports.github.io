@@ -32,7 +32,7 @@ Every economy entry embeds a clean JSON object inside its post content:
       "event_date": "string (Format: YYYY-MM-DD. Olayın gerçekleştiği somut tarih. Metinde kesin gün yoksa haber tarihi veya YYYY-MM)",
       "why": "string (Olayı tetikleyen nedenler ve motivasyonlar)",
       "how": "string (Olayın nasıl gerçekleştiği ve etkisi)",
-      "who_entity_id": "string (Kanonik varlık kodu. Örn: INST_FED_US, INST_TCMB_TR. Detaylar için llms-entities-id.txt referans alınır)",
+      "who_entity_id": "string (Kanonik varlık kodu. Örn: INST_FED_US, INST_CBRT_TR. Detaylar için llms-entities-id.txt referans alınır)",
       "who": "string (Olaydaki somut kurumlar ve karar vericiler: Örn: FED, TCMB, Hazine)",
       "heat": "number (0 ile 100 arası olay harareti / risk şiddeti)"
     },
@@ -96,7 +96,7 @@ Every economy entry embeds a clean JSON object inside its post content:
           "change_or_spread": "string (Örn: 10Y-1Y makası 47 bps, aylık +%4,0)"
         }
       ],
-      "monetary_authority_entity_id": "string (Kanonik kurum kodu. Örn: INST_FED_US, INST_TCMB_TR. Metinde yoksa null)",
+      "monetary_authority_entity_id": "string (Kanonik kurum kodu. Örn: INST_FED_US, INST_CBRT_TR. Metinde yoksa null)",
       "monetary_authority": "string (İlgili merkez bankası/komite adı. Örn: FOMC, TCMB PPK, ECB Yönetim Konseyi. Metinde yoksa null)",
       "voting_and_consensus_dynamics": "string (Komite içi oy dağılımı, oybirliği/bölünme ve noktasal grafik kümelenmesi)",
       "voting_split": "string (Örn: 10-2)",

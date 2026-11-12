@@ -5,15 +5,15 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-10T03:40:28.131560+00:00",
+    "last_successful_sync": "2026-11-12T00:47:36.415141+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
       "brent_wti_spread_usd": 7.39,
-      "vix_index": 25.64,
-      "sox_yoy_pct": 34.5898,
+      "vix_index": 19.92,
+      "sox_yoy_pct": 39.9827,
       "gscpi_std_dev": 1.2619,
-      "ai_chip_stress_score": 0.583
+      "ai_chip_stress_score": 0.474
     }
   },
   "central_bank_policy_benchmark": {
@@ -33,7 +33,7 @@
         "institution_id": "INST_FED_US",
         "benchmark": "Federal Funds Effective Rate (DFF)",
         "rate": 3.88,
-        "effective_date": "2026-11-06",
+        "effective_date": "2026-11-09",
         "spread_vs_dff_ppt": 0.0,
         "spread_str": "Benchmark (0.00)"
       },
@@ -93,8 +93,8 @@
       "target_entity": "GEO_CN",
       "label": "US - CN (United States vs. People's Republic of China)",
       "p_baseline": -0.65,
-      "dynamic_delta": -0.08,
-      "p_net": -0.73,
+      "dynamic_delta": 0.0,
+      "p_net": -0.65,
       "regime_state": "STRATEGIC_COMPETITION",
       "primary_driver": "MODEL_25_14_AI_CHIP_STRESS",
       "friction_nodes": [
@@ -108,10 +108,10 @@
       "source_entity": "GEO_RU",
       "target_entity": "GEO_CN",
       "label": "RU - CN (Russian Federation - People's Republic of China)",
-      "p_baseline": 0.75,
+      "p_baseline": 0.85,
       "dynamic_delta": 0.0,
-      "p_net": 0.75,
-      "regime_state": "STRATEGIC_ALIGNMENT",
+      "p_net": 0.85,
+      "regime_state": "ALLIANCE",
       "primary_driver": "MBRIDGE_BILATERAL_SETTLEMENT",
       "friction_nodes": [
         "CENTRAL_ASIA",
@@ -140,10 +140,10 @@
       "source_entity": "GEO_SA",
       "target_entity": "GEO_IR",
       "label": "SA - IR (Kingdom of Saudi Arabia vs. Islamic Republic of Iran)",
-      "p_baseline": -0.2,
+      "p_baseline": 0.15,
       "dynamic_delta": 0.0,
-      "p_net": -0.2,
-      "regime_state": "STRATEGIC_FRICTION",
+      "p_net": 0.15,
+      "regime_state": "TACTICAL_COOPERATION",
       "primary_driver": "BEIJING_ACCORD_AND_OIL_FLOWS",
       "friction_nodes": [
         "YEMEN_BORDER",
@@ -346,7 +346,7 @@
       "target_entity": "GEO_IL",
       "label": "EG - IL (Arab Republic of Egypt vs. State of Israel)",
       "p_baseline": 0.3,
-      "dynamic_delta": -0.0,
+      "dynamic_delta": 0.0,
       "p_net": 0.3,
       "regime_state": "TACTICAL_COOPERATION",
       "primary_driver": "PHILADELPHI_CORRIDOR_AND_SUEZ_MARITIME_STABILITY",
@@ -379,10 +379,10 @@
       "source_entity": "GEO_IR",
       "target_entity": "GEO_IQ",
       "label": "IR - IQ (Islamic Republic of Iran vs. Republic of Iraq)",
-      "p_baseline": 0.45,
+      "p_baseline": 0.75,
       "dynamic_delta": 0.0,
-      "p_net": 0.45,
-      "regime_state": "TACTICAL_COOPERATION",
+      "p_net": 0.75,
+      "regime_state": "STRATEGIC_ALIGNMENT",
       "primary_driver": "CROSS_BORDER_HYDROCARBON_AND_TRANSIT_INTEGRATION",
       "friction_nodes": [
         "SHATT_AL_ARAB",
@@ -444,7 +444,7 @@
   ],
   "chokepoints": [
     {
-      "id": "HORMUZ_STRAIT",
+      "id": "CHOKE_HORMUZ",
       "name": "Strait of Hormuz",
       "location": "26°34'N 56°15'E (Persian Gulf exit)",
       "primary_threat": "IR / IRGC Navy",
@@ -463,7 +463,7 @@
       ]
     },
     {
-      "id": "BAB_EL_MANDEB",
+      "id": "CHOKE_BAB_EL_MANDEB",
       "name": "Bab el-Mandeb & Red Sea",
       "location": "12°35'N 43°20'E",
       "primary_threat": "YE-HOUTHI",
@@ -482,7 +482,7 @@
       ]
     },
     {
-      "id": "MALACCA_STRAIT",
+      "id": "CHOKE_MALACCA",
       "name": "Strait of Malacca",
       "location": "1°26'N 103°00'E",
       "primary_threat": "Malacca Dilemma / Asian Maritime Blockade",
@@ -497,7 +497,7 @@
       ]
     },
     {
-      "id": "TURKISH_STRAITS",
+      "id": "CHOKE_TURKISH_STRAITS",
       "name": "Turkish Straits (Bosphorus & Dardanelles)",
       "location": "41°07'N 29°04'E & 40°12'N 26°24'E",
       "primary_threat": "1936 Montreux Convention Enforcement / Black Sea Kinetic Spillover",
@@ -511,7 +511,7 @@
       ]
     },
     {
-      "id": "SUWALKI_GAP",
+      "id": "CHOKE_SUWALKI_GAP",
       "name": "Suwalki Gap",
       "location": "Poland - Lithuania border (Between Belarus and Kaliningrad)",
       "primary_threat": "Direct NATO-Russia land corridor kinetic friction (NATO Article 5 detonator)",
@@ -524,7 +524,7 @@
       ]
     },
     {
-      "id": "TAIWAN_STRAIT",
+      "id": "CHOKE_TAIWAN",
       "name": "Taiwan Strait",
       "location": "24°00'N 119°00'E",
       "primary_threat": "PLA blockade, naval quarantine, or kinetic conflict",
@@ -537,7 +537,7 @@
       ]
     },
     {
-      "id": "PANAMA_CANAL",
+      "id": "CHOKE_PANAMA",
       "name": "Panama Canal",
       "location": "09°04'N 79°40'W",
       "primary_threat": "Freshwater reservoir depletion / Draft restrictions",
@@ -551,7 +551,7 @@
       ]
     },
     {
-      "id": "DANISH_STRAITS",
+      "id": "CHOKE_DANISH_STRAITS",
       "name": "Danish Straits (Great Belt, Little Belt, The Sound)",
       "location": "55°30'N 11°00'E",
       "primary_threat": "RU Shadow Fleet navigation curbs / Western sanctions interdiction",
@@ -564,7 +564,7 @@
       ]
     },
     {
-      "id": "GIUK_GAP",
+      "id": "CHOKE_GIUK_GAP",
       "name": "GIUK Gap (Greenland-Iceland-UK Gap)",
       "location": "63°00'N 18°00'W",
       "primary_threat": "Subsea infrastructure sabotage (fiber-optic cables, energy interconnectors)",
@@ -576,7 +576,7 @@
       ]
     },
     {
-      "id": "LOMBOK_AND_MAKASSAR_STRAITS",
+      "id": "CHOKE_LOMBOK_MAKASSAR",
       "name": "Lombok and Makassar Straits",
       "location": "08°30'S 115°45'E & 00°20'S 118°10'E",
       "primary_threat": "Deep-draft congestion and maritime choke risk",
@@ -588,7 +588,7 @@
       ]
     },
     {
-      "id": "STRAIT_OF_GIBRALTAR",
+      "id": "CHOKE_GIBRALTAR",
       "name": "Strait of Gibraltar",
       "location": "35°58'N 05°36'W",
       "primary_threat": "Western Mediterranean bottleneck / Naval surveillance chokepoint",
@@ -600,7 +600,7 @@
       ]
     },
     {
-      "id": "BERING_STRAIT",
+      "id": "CHOKE_BERING",
       "name": "Bering Strait (Northern Sea Route Chokepoint)",
       "location": "66°00'N 169°00'W",
       "primary_threat": "US-RU / CN Arctic confrontation and Polar Silk Road friction",
@@ -612,7 +612,7 @@
       ]
     },
     {
-      "id": "MOZAMBIQUE_CHANNEL",
+      "id": "CHOKE_MOZAMBIQUE",
       "name": "Mozambique Channel (Cape Route Bottleneck)",
       "location": "18°00'S 41°00'E",
       "primary_threat": "Red Sea bypass route bottleneck; asymmetric littoral security risks",
@@ -624,7 +624,7 @@
       ]
     },
     {
-      "id": "SUEZ_CANAL_NORTHERN_APPROACH",
+      "id": "CHOKE_SUEZ_NORTH",
       "name": "Suez Canal Northern Approach (Port Said / Sinai Node)",
       "location": "31°15'N 32°18'E",
       "primary_threat": "Asymmetric littoral attacks, groundings / channel blockage",

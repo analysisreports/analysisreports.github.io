@@ -61,20 +61,24 @@ def imf_change_year_ago(xt, xt_year_ago):
         return None
 
 def imf_percent_change(xt, xt_prev):
-    if not (_is_num(xt) and _is_num(xt_prev)) or xt_prev == 0:
+    if not (_is_num(xt) and _is_num(xt_prev)) or xt_prev <= 0:
         return None
     try:
         res = ((xt / xt_prev) - 1.0) * 100.0
-        return round(res, 4) if math.isfinite(res) else None
+        if not math.isfinite(res) or res > 10000.0 or res < -100.0:
+            return None
+        return round(res, 4)
     except (OverflowError, ValueError, ZeroDivisionError):
         return None
 
 def imf_percent_change_year_ago(xt, xt_year_ago):
-    if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago == 0:
+    if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago <= 0:
         return None
     try:
         res = ((xt / xt_year_ago) - 1.0) * 100.0
-        return round(res, 4) if math.isfinite(res) else None
+        if not math.isfinite(res) or res > 10000.0 or res < -100.0:
+            return None
+        return round(res, 4)
     except (OverflowError, ValueError, ZeroDivisionError):
         return None
 
@@ -120,14 +124,50 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 TXT_FILE = os.path.join(ROOT_DIR, "llms-imf-series.txt")
 JSON_FILE = os.path.join(ROOT_DIR, "llms-imf-series.json")
 
+# ==============================================================================
+# SMART TTL CACHE SPECIFICATION (USER MANDATE & BEST PRACTICES)
+# - DAILY: 3 days TTL
+# - WEEKLY: 8 days TTL
+# - MONTHLY: 32 days TTL
+# - QUARTERLY: 95 days TTL
+# - SEMIANNUAL: 185 days TTL
+# - ANNUAL: 365 days TTL
+# Strict Zero-Loss Mandate: If TTL expires and API fails/times out, existing snapshot is 100% retained.
+# ==============================================================================
+CACHE_TTL_DAYS = {
+    "daily": 3,
+    "weekly": 8,
+    "biweekly": 16,
+    "monthly": 32,
+    "quarterly": 95,
+    "semiannual": 185,
+    "annual": 365,
+    "DAILY": 3,
+    "WEEKLY": 8,
+    "BIWEEKLY": 16,
+    "MONTHLY": 32,
+    "QUARTERLY": 95,
+    "SEMIANNUAL": 185,
+    "ANNUAL": 365
+}
+
 def fetch_json(url: str) -> Optional[Dict[str, Any]]:
     req = urllib.request.Request(url, headers={"User-Agent": "AnalysisReports-IMF-Engine/1.0"})
-    try:
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            if resp.status == 200:
-                return json.loads(resp.read().decode('utf-8'))
-    except Exception as e:
-        pass
+    for attempt in range(1, 3):
+        try:
+            with urllib.request.urlopen(req, timeout=25) as resp:
+                if resp.status == 200:
+                    return json.loads(resp.read().decode('utf-8'))
+        except Exception as e:
+            err_msg = str(e)
+            if "10013" in err_msg or "Permission denied" in err_msg:
+                # Sandbox network restriction, break immediately without useless retries
+                print(f"  [NETWORK SANDBOX] {url}: {e}")
+                return None
+            if attempt < 2:
+                import time; time.sleep(2)
+            else:
+                pass
     return None
 
 def get_series_data_live(series_id: str, api_key: Optional[str], n_obs_per_yr: int) -> Optional[Dict[str, Any]]:
@@ -161,26 +201,6 @@ def get_series_data_live(series_id: str, api_key: Optional[str], n_obs_per_yr: i
                         },
                         "observations": cleaned_obs
                     }
-
-    # Strategy 3: If offline or API fails, read existing JSON cache
-    if os.path.exists(JSON_FILE):
-        try:
-            with open(JSON_FILE, "r", encoding="utf-8") as f:
-                cached_data = json.load(f)
-                if series_id in cached_data.get("series", {}):
-                    cached_entry = cached_data["series"][series_id]
-                    obs = [{"date": r["date"], "value": r["value"]} for r in cached_entry.get("recent_observations", [])]
-                    if len(obs) >= 2:
-                        return {
-                            "metadata": {
-                                "title": cached_entry.get("title", ""),
-                                "units": cached_entry.get("units", ""),
-                                "source_institution": cached_entry.get("source", "International Monetary Fund (IMF)")
-                            },
-                            "observations": obs
-                        }
-        except Exception:
-            pass
 
     return None
 
@@ -226,8 +246,56 @@ def parse_registry(txt_path: str) -> Tuple[Dict[str, List[str]], str]:
 
     return frequencies, config_part
 
+def format_imf_txt_block(entry: Dict[str, Any]) -> str:
+    s_id = entry.get("series_id", "")
+    title = entry.get("title", "")
+    freq = entry.get("frequency", "")
+    n_obs_per_yr = entry["n_obs_per_yr"]
+    units = entry.get("units", "")
+    last_date = entry.get("last_date", "")
+    xt = entry.get("current_value")
+    xt_prev = entry.get("previous_value")
+    xt_year_ago = entry.get("year_ago_value")
+    t = entry.get("transformations", {})
+
+    is_rate = "Percent" in units or "%" in units
+
+    def fmt(v, suffix="%"):
+        return f"{v:+.4f}{suffix}" if v is not None else "N/A"
+
+    car_str = "N/A (Rate is already annualized)" if is_rate else fmt(t.get("compounded_annual_rate_of_change"), "%")
+    ccar_str = "N/A (Rate is already annualized)" if is_rate else fmt(t.get("continuously_compounded_annual_rate_of_change"), "%")
+
+    recent_5 = entry.get("recent_observations", [])
+    recent_lines = "\n".join([f"  {r['date']}: {r['value']:.4f}" for r in recent_5])
+
+    xt_str = f"{xt:.4f}" if xt is not None else "N/A"
+    xt_prev_str = f"{xt_prev:.4f}" if xt_prev is not None else "N/A"
+    xt_yr_str = f"{xt_year_ago:.4f}" if xt_year_ago is not None else "N/A"
+
+    return f"""--------------------------------------------------------------------------------
+Series ID: {s_id}
+Title: {title}
+Frequency: {freq} (n_obs_per_yr: {n_obs_per_yr}) | Units: {units}
+Last Date: {last_date} | Current Value: {xt_str} | Previous Value: {xt_prev_str} | Year Ago Value: {xt_yr_str}
+
+Transformations (Official IMF / St. Louis Fed Formulas):
+  1. Change: {fmt(t.get("change"), '')}
+  2. Change from Year Ago: {fmt(t.get("change_from_year_ago"), '')}
+  3. Percent Change: {fmt(t.get("percent_change"), '%')}
+  4. Percent Change from Year Ago: {fmt(t.get("percent_change_from_year_ago"), '%')}
+  5. Compounded Annual Rate of Change: {car_str}
+  6. Continuously Compounded Rate of Change: {fmt(t.get("continuously_compounded_rate_of_change"), '%')}
+  7. Continuously Compounded Annual Rate of Change: {ccar_str}
+
+Recent Observations (Last 5):
+{recent_lines}"""
+
 def main():
     api_key = os.environ.get("FRED_API_KEY")
+    if not api_key:
+        print("[NOTICE] FRED_API_KEY environment variable is not set. Cache retrieval & retention will operate.")
+
     registry, header_part = parse_registry(TXT_FILE)
 
     freq_n_map = {
@@ -244,22 +312,75 @@ def main():
     now_iso = utc_now.strftime("%Y-%m-%dT%H:%M:%SZ")
     now_display = utc_now.strftime("%Y-%m-%d %H:%M:%S UTC")
 
+    existing_series = {}
+    fallback_sync_str = None
+    if os.path.exists(JSON_FILE):
+        try:
+            with open(JSON_FILE, "r", encoding="utf-8") as f:
+                d = json.load(f)
+                existing_series = d.get("series", {})
+                fallback_sync_str = d.get("metadata", {}).get("last_successful_sync")
+        except Exception:
+            existing_series = {}
+
     json_series_dict: Dict[str, Any] = {}
     txt_blocks: List[str] = []
-    total_synced = 0
+    stale_series: List[str] = []
 
     for freq, series_ids in registry.items():
+        if not series_ids:
+            continue
         if freq not in freq_n_map:
             raise ValueError(f"Unknown IMF frequency '{freq}'")
         n_obs_per_yr = freq_n_map[freq]
+        ttl_days = CACHE_TTL_DAYS[freq] if freq in CACHE_TTL_DAYS else 3
 
         for s_id in series_ids:
-            data = get_series_data_live(s_id, api_key, n_obs_per_yr)
-            if not data or len(data.get("observations", [])) < 2:
-                print(f"[UYARI] {s_id} için yeterli veri alınamadı.")
+            cached_entry = existing_series.get(s_id)
+            is_cache_valid = False
+            elapsed_days = 9999.0
+
+            if cached_entry and isinstance(cached_entry, dict):
+                last_sync_str = cached_entry.get("last_synced_utc") or fallback_sync_str
+                if last_sync_str:
+                    try:
+                        clean_sync = last_sync_str.replace("Z", "+00:00")
+                        sync_dt = datetime.datetime.fromisoformat(clean_sync)
+                        elapsed_days = (utc_now - sync_dt).total_seconds() / 86400.0
+                        if elapsed_days < ttl_days:
+                            is_cache_valid = True
+                    except Exception:
+                        is_cache_valid = False
+
+            # 1. Cache HIT: Süresi dolmamışsa API'ye dokunma, mevcut doğrulanmış veriyi koru
+            if is_cache_valid:
+                print(f"  [CACHE HIT] {s_id} [{freq.upper()}]: Son çekilmeden bu yana {elapsed_days:.1f} gün geçti (TTL: {ttl_days} gün). API isteği atlanıyor.")
+                json_series_dict[s_id] = cached_entry
+                txt_blocks.append(format_imf_txt_block(cached_entry))
                 continue
 
-            total_synced += 1
+            # 2. Süresi dolmuşsa API'den yeni veriyi çek
+            print(f"  [FETCHING] {s_id} [{freq.upper()}] (TTL doldu veya yeni seri, IMF/FRED mirror'a bağlanılıyor)...")
+            data = None
+            if api_key:
+                data = get_series_data_live(s_id, api_key, n_obs_per_yr)
+            else:
+                print(f"  [WARNING] FRED_API_KEY bulunamadı, API isteği yapılamıyor.")
+
+            # 3. API Hata / Zaman Aşımı Sigortası: Asla eski veriyi silme!
+            if not data or len(data.get("observations", [])) < 2:
+                if cached_entry and isinstance(cached_entry, dict):
+                    print(f"  [API TIMEOUT - RETAINED] {s_id} [{freq.upper()}]: API yanıt vermedi veya anahtar yok. Mevcut resmi snapshot korundu!")
+                    stale_series.append(s_id)
+                    if not cached_entry.get("last_synced_utc") and fallback_sync_str:
+                        cached_entry["last_synced_utc"] = fallback_sync_str
+                    json_series_dict[s_id] = cached_entry
+                    txt_blocks.append(format_imf_txt_block(cached_entry))
+                    continue
+                else:
+                    print(f"[UYARI] {s_id} için yeterli veri alınamadı ve önbellek mevcut değil.")
+                    continue
+
             meta = data["metadata"]
             obs = data["observations"]
 
@@ -287,7 +408,7 @@ def main():
 
             recent_5 = obs[-5:]
 
-            json_series_dict[s_id] = {
+            entry_dict = {
                 "series_id": s_id,
                 "title": meta.get("title", ""),
                 "frequency": freq.capitalize(),
@@ -295,6 +416,7 @@ def main():
                 "units": meta.get("units", ""),
                 "source": meta.get("source_institution", "International Monetary Fund (IMF)"),
                 "last_date": t_curr["date"],
+                "last_synced_utc": now_iso,
                 "current_value": xt,
                 "previous_value": xt_prev,
                 "year_ago_value": xt_year_ago,
@@ -310,32 +432,20 @@ def main():
                 "recent_observations": recent_5
             }
 
-            def fmt(v, suffix="%"):
-                return f"{v:+.4f}{suffix}" if v is not None else "N/A"
+            json_series_dict[s_id] = entry_dict
+            txt_blocks.append(format_imf_txt_block(entry_dict))
 
-            car_str = "N/A (Rate is already annualized)" if is_rate else fmt(c_car, "%")
-            ccar_str = "N/A (Rate is already annualized)" if is_rate else fmt(c_ccar, "%")
-
-            recent_lines = "\n".join([f"  {r['date']}: {r['value']:.4f}" for r in recent_5])
-
-            block = f"""--------------------------------------------------------------------------------
-Series ID: {s_id}
-Title: {meta.get('title', '')}
-Frequency: {freq.capitalize()} (n_obs_per_yr: {n_obs_per_yr}) | Units: {meta.get('units', '')}
-Last Date: {t_curr['date']} | Current Value: {xt:.4f} | Previous Value: {xt_prev:.4f} | Year Ago Value: {f"{xt_year_ago:.4f}" if xt_year_ago is not None else "N/A"}
-
-Transformations (Official IMF / St. Louis Fed Formulas):
-  1. Change: {fmt(c_chg, '')}
-  2. Change from Year Ago: {fmt(c_chg_yr, '')}
-  3. Percent Change: {fmt(c_pct, '%')}
-  4. Percent Change from Year Ago: {fmt(c_pct_yr, '%')}
-  5. Compounded Annual Rate of Change: {car_str}
-  6. Continuously Compounded Rate of Change: {fmt(c_ccr, '%')}
-  7. Continuously Compounded Annual Rate of Change: {ccar_str}
-
-Recent Observations (Last 5):
-{recent_lines}"""
-            txt_blocks.append(block)
+    total_registered = sum(len(v) for v in registry.values())
+    missing_series = [
+        s_id for series_ids in registry.values() for s_id in series_ids
+        if s_id not in json_series_dict
+    ]
+    if not missing_series and not stale_series:
+        sync_status = "SUCCESS"
+    elif json_series_dict:
+        sync_status = "PARTIAL_SUCCESS"
+    else:
+        sync_status = "FAILED"
 
     txt_body = "\n\n".join(txt_blocks)
 
@@ -346,7 +456,10 @@ Recent Observations (Last 5):
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
 # - Synced At: {now_display}
-# - Total Series Synced: {total_synced} / {sum(len(v) for v in registry.values())}
+# - Sync Status: {sync_status}
+# - Total Series Synced: {len(json_series_dict)} / {total_registered}
+# - Missing Series: {", ".join(missing_series) if missing_series else "None"}
+# - Retained Stale Series: {", ".join(stale_series) if stale_series else "None"}
 # - Source Authority: International Monetary Fund (IMF)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
@@ -363,9 +476,12 @@ Recent Observations (Last 5):
             "title": "Canonical IMF Monitored Series & Official Transformations",
             "author": "Ersoy Toptaş",
             "license": "CC BY 4.0",
-            "sync_status": "SUCCESS",
-            "last_successful_sync": now_iso,
-            "total_series": total_synced,
+            "sync_status": sync_status,
+            "last_successful_sync": now_iso if sync_status == "SUCCESS" else fallback_sync_str,
+            "total_series": len(json_series_dict),
+            "total_registered_series": total_registered,
+            "missing_series": missing_series,
+            "stale_series": stale_series,
             "source_authority": "International Monetary Fund (IMF)",
             "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
             "root_index": "https://analysisreports.github.io/llms.txt"
@@ -376,7 +492,7 @@ Recent Observations (Last 5):
     with open(JSON_FILE, "w", encoding="utf-8") as f:
         json.dump(output_json, f, indent=2, ensure_ascii=False)
 
-    print(f"Successfully synchronized {total_synced} IMF series to {TXT_FILE} and {JSON_FILE}")
+    print(f"Successfully synchronized {len(json_series_dict)} IMF series to {TXT_FILE} and {JSON_FILE}")
 
 if __name__ == "__main__":
     main()

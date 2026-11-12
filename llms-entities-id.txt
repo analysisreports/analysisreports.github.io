@@ -25,7 +25,7 @@
 
 # [CENTRAL BANKS & MONETARY AUTHORITIES] (Prefix: INST_)
 INST_FED_US          | Aliases: FED, Federal Reserve, Federal Reserve System, FOMC, Board of Governors, Federal Open Market Committee
-INST_TCMB_TR         | Aliases: TCMB, Central Bank of the Republic of Türkiye, CBRT, Monetary Policy Committee, MPC
+INST_CBRT_TR         | Aliases: CBRT, Central Bank of the Republic of Türkiye, TCMB, PPK, Para Politikası Kurulu, CBRT MPC
 INST_ECB_EU          | Aliases: ECB, European Central Bank, Governing Council
 INST_BOJ_JP          | Aliases: BOJ, Bank of Japan, Policy Board
 INST_PBOC_CN         | Aliases: PBoC, People's Bank of China, PBC
@@ -64,6 +64,15 @@ GOV_TREASURY_US      | Aliases: US Treasury, U.S. Department of the Treasury, De
 GOV_TREASURY_TR      | Aliases: Ministry of Treasury and Finance, Turkish Treasury, TR Treasury
 GOV_MOF_JP           | Aliases: MoF Japan, Ministry of Finance Japan
 GOV_MOF_CN           | Aliases: MoF China, Ministry of Finance China
+GOV_STATE_US         | Aliases: US Department of State, State Department
+GOV_DOD_US           | Aliases: US Department of Defense, Pentagon, DoD
+GOV_MOD_TR           | Aliases: Ministry of National Defence of Türkiye, Turkish MoD, MSB
+GOV_MOFCOM_CN        | Aliases: Ministry of Commerce of China, MOFCOM
+GOV_MOF_RU           | Aliases: Ministry of Finance of Russia, MinFin Russia
+GOV_MFA_RU           | Aliases: Ministry of Foreign Affairs of Russia, MID Russia
+GOV_MOF_DE           | Aliases: Federal Ministry of Finance Germany, BMF
+GOV_HMT_GB           | Aliases: His Majesty's Treasury, HM Treasury
+
 
 # [SOVEREIGN STATES & GEOPOLITICAL ACTORS] (Prefix: GEO_)
 GEO_US               | Aliases: United States, United States of America, USA, US
@@ -78,24 +87,33 @@ GEO_PK               | Aliases: Islamic Republic of Pakistan, Pakistan, Islamaba
 GEO_SA               | Aliases: Kingdom of Saudi Arabia, Saudi Arabia, KSA
 GEO_AE               | Aliases: United Arab Emirates, UAE
 GEO_VE               | Aliases: Bolivarian Republic of Venezuela, Venezuela
-GEO_YE               | Aliases: Republic of Yemen, Yemen, Sanaa
 
 # [EUROPE & EURASIA]
 GEO_DE               | Aliases: Germany, Federal Republic of Germany, FRG, Berlin
 GEO_FR               | Aliases: France, French Republic, Paris
 GEO_GB               | Aliases: United Kingdom, UK, Great Britain, Britain, London
+GEO_IT               | Aliases: Italy, Italian Republic, Rome
 GEO_UA               | Aliases: Ukraine, Kyiv
+GEO_RS               | Aliases: Serbia, Republic of Serbia, Belgrade
+GEO_MD               | Aliases: Moldova, Republic of Moldova, Chisinau
 GEO_PL               | Aliases: Poland, Republic of Poland, Warsaw
 GEO_LT               | Aliases: Republic of Lithuania, Lithuania, Vilnius
 GEO_EE               | Aliases: Republic of Estonia, Estonia, Tallinn
 GEO_LV               | Aliases: Republic of Latvia, Latvia, Riga
+GEO_NL               | Aliases: Netherlands, Kingdom of the Netherlands, Holland, Amsterdam, The Hague
+GEO_BE               | Aliases: Belgium, Kingdom of Belgium, Brussels
+GEO_ES               | Aliases: Spain, Kingdom of Spain, Madrid
 GEO_SE               | Aliases: Sweden, Kingdom of Sweden, Stockholm
 GEO_NO               | Aliases: Norway, Kingdom of Norway, Oslo
+GEO_FI               | Aliases: Finland, Republic of Finland, Helsinki
+GEO_DK               | Aliases: Denmark, Kingdom of Denmark, Copenhagen
+GEO_RO               | Aliases: Romania, Bucharest
 GEO_CZ               | Aliases: Czech Republic, Czechia, Prague
 GEO_HU               | Aliases: Hungary, Budapest
 GEO_GR               | Aliases: Greece, Hellenic Republic, Athens
 GEO_CY               | Aliases: Cyprus, Republic of Cyprus, Nicosia
 GEO_CH               | Aliases: Switzerland, Swiss Confederation, Bern, Swiss
+GEO_BY               | Aliases: Belarus, Republic of Belarus, Minsk
 
 # [EAST ASIA & INDO-PACIFIC]
 GEO_JP               | Aliases: Japan, Tokyo
@@ -103,15 +121,24 @@ GEO_KR               | Aliases: South Korea, Republic of Korea, ROK, Seoul
 GEO_TW               | Aliases: Taiwan, Republic of China, ROC, Taipei
 GEO_SG               | Aliases: Singapore, Republic of Singapore
 GEO_AU               | Aliases: Australia, Commonwealth of Australia, Canberra
+GEO_NZ               | Aliases: New Zealand, Aotearoa, Wellington
+GEO_KH               | Aliases: Cambodia, Kingdom of Cambodia, Phnom Penh
+GEO_LA               | Aliases: Laos, Lao People's Democratic Republic, Vientiane
+GEO_LK               | Aliases: Sri Lanka, Democratic Socialist Republic of Sri Lanka, Colombo
+GEO_SB               | Aliases: Solomon Islands, Honiara
 GEO_ID               | Aliases: Indonesia, Republic of Indonesia, Jakarta
 GEO_MY               | Aliases: Malaysia, Kuala Lumpur
 GEO_TH               | Aliases: Thailand, Kingdom of Thailand, Bangkok
 GEO_PH               | Aliases: Philippines, Republic of the Philippines, Manila
+GEO_VN               | Aliases: Socialist Republic of Vietnam, Vietnam, Hanoi
+GEO_MM               | Aliases: Myanmar, Burma, Naypyidaw
 
 # [CENTRAL ASIA & CAUCASUS]
 GEO_KZ               | Aliases: Kazakhstan, Republic of Kazakhstan, Astana
 GEO_AZ               | Aliases: Azerbaijan, Republic of Azerbaijan, Baku
 GEO_AM               | Aliases: Armenia, Republic of Armenia, Yerevan
+GEO_GE               | Aliases: Georgia, Sakartvelo, Tbilisi
+GEO_MN               | Aliases: Mongolia, Ulaanbaatar
 GEO_UZ               | Aliases: Uzbekistan, Republic of Uzbekistan, Tashkent
 GEO_TM               | Aliases: Turkmenistan, Ashgabat
 GEO_KG               | Aliases: Kyrgyzstan, Kyrgyz Republic, Bishkek
@@ -119,11 +146,25 @@ GEO_TJ               | Aliases: Tajikistan, Republic of Tajikistan, Dushanbe
 
 # [MIDDLE EAST & AFRICA]
 GEO_EG               | Aliases: Egypt, Arab Republic of Egypt, Cairo
+GEO_DJ               | Aliases: Djibouti, Republic of Djibouti
+GEO_CD               | Aliases: Democratic Republic of the Congo, DRC, Kinshasa
 GEO_ZA               | Aliases: South Africa, Republic of South Africa, RSA, Pretoria
 GEO_IQ               | Aliases: Iraq, Republic of Iraq, Baghdad
 GEO_SY               | Aliases: Syria, Syrian Arab Republic, Damascus
 GEO_LY               | Aliases: Libya, State of Libya, Tripoli
 GEO_MA               | Aliases: Morocco, Kingdom of Morocco, Rabat
+GEO_QA               | Aliases: State of Qatar, Qatar, Doha
+GEO_JO               | Aliases: Jordan, Hashemite Kingdom of Jordan, Amman
+GEO_KW               | Aliases: Kuwait, State of Kuwait, Kuwait City
+GEO_BH               | Aliases: Bahrain, Kingdom of Bahrain, Manama
+GEO_OM               | Aliases: Oman, Sultanate of Oman, Muscat
+GEO_LB               | Aliases: Lebanon, Lebanese Republic, Beirut
+GEO_YE               | Aliases: Republic of Yemen, Yemen, Sanaa
+GEO_AF               | Aliases: Afghanistan, Islamic Emirate of Afghanistan, Kabul
+GEO_NG               | Aliases: Nigeria, Federal Republic of Nigeria, Abuja
+GEO_KE               | Aliases: Kenya, Republic of Kenya, Nairobi
+GEO_SD               | Aliases: Sudan, Republic of the Sudan, Khartoum
+GEO_SO               | Aliases: Somalia, Federal Republic of Somalia, Mogadishu
 
 # [AMERICAS]
 GEO_CA               | Aliases: Canada, Ottawa
@@ -131,7 +172,12 @@ GEO_MX               | Aliases: Mexico, United Mexican States, Mexico City
 GEO_BR               | Aliases: Brazil, Federative Republic of Brazil, Brasilia
 GEO_AR               | Aliases: Argentina, Argentine Republic, Buenos Aires
 GEO_CL               | Aliases: Chile, Republic of Chile, Santiago
+GEO_CO               | Aliases: Republic of Colombia, Colombia, Bogota
+GEO_PA               | Aliases: Panama, Republic of Panama, Panama City
 GEO_BO               | Aliases: Bolivia, Plurinational State of Bolivia, La Paz
+GEO_CU               | Aliases: Republic of Cuba, Cuba, Havana
+GEO_NI               | Aliases: Nicaragua, Republic of Nicaragua, Managua
+GEO_HT               | Aliases: Haiti, Republic of Haiti, Port-au-Prince
 
 # [SUB-NATIONAL & AUTONOMOUS REGIONAL ACTORS] (Prefix: REG_)
 REG_RF_CAUCASUS_ARC  | Aliases: North Caucasus Autonomous Line, Karachay-Cherkessia, Kabardino-Balkaria, Dagestan
@@ -142,16 +188,23 @@ REG_RF_SOUTHERN_KRAIS| Aliases: Southern Administrative Krais, Stavropol Krai, K
 PROXY_YE_HOUTHI      | Aliases: Ansarullah, Yemen Houthis, Houthis, YE-HOUTHI
 PROXY_LB_HEZB        | Aliases: Hezbollah, Lebanon Hezbollah, LB-HEZB
 PROXY_RU_AFRICA      | Aliases: Wagner Group, Africa Corps, RU-AFRICA
-PROXY_SY_SDF         | Aliases: Syrian Democratic Forces, SDF, YPG, SY-SDF
 
 # [INTERNATIONAL ORGANIZATIONS & MULTILATERAL BLOCS] (Prefix: ORG_ / BLOC_)
 ORG_IMF              | Aliases: IMF, International Monetary Fund
 ORG_BIS              | Aliases: BIS, Bank for International Settlements
 ORG_WORLD_BANK       | Aliases: World Bank, IBRD, International Bank for Reconstruction and Development
 ORG_OECD             | Aliases: OECD, Organisation for Economic Co-operation and Development
-BLOC_EU              | Aliases: European Union, EU, EU27, Brussels
+BLOC_NATO            | Aliases: NATO, North Atlantic Treaty Organization, North Atlantic Alliance
+BLOC_EU              | Aliases: European Union, EU, EU27
 BLOC_OPEC            | Aliases: OPEC, Organization of the Petroleum Exporting Countries, OPEC+
+BLOC_BRICS           | Aliases: BRICS, BRICS Plus, BRICS Alliance
+BLOC_CSTO            | Aliases: CSTO, Collective Security Treaty Organization, Tashkent Pact
+BLOC_SCO             | Aliases: SCO, Shanghai Cooperation Organisation, Shanghai Pact
 BLOC_BRICS_MBRIDGE   | Aliases: BRICS & mBridge Settlement Axis, mBridge, BIS Innovation Hub mBridge, CIPS, SPFS
+BLOC_RCEP            | Aliases: RCEP, Regional Comprehensive Economic Partnership
+BLOC_AUKUS           | Aliases: AUKUS, Australia-United Kingdom-United States Security Partnership
+BLOC_QUAD            | Aliases: QUAD, Quadrilateral Security Dialogue
+BLOC_USMCA           | Aliases: USMCA, United States-Mexico-Canada Agreement, NAFTA
 BLOC_C6              | Aliases: Central Asia & Azerbaijan Strategic Alignment Axis, C6 Consultative Format, C6 Bloc
 BLOC_MECCA_DEFENSE   | Aliases: Mecca Joint Defense Agreement, Mecca Defence Alliance, Mecca Pact, TR-SA-PK Alliance
 BLOC_BALTIC_ASSEMBLY | Aliases: Baltic Assembly, Baltic States Trio, Estonia Latvia Lithuania Alliance
@@ -161,6 +214,7 @@ CHOKE_HORMUZ         | Aliases: Hormuz Strait, Strait of Hormuz
 CHOKE_BAB_EL_MANDEB  | Aliases: Bab el-Mandeb, Bab el-Mandeb & Red Sea
 CHOKE_MALACCA        | Aliases: Malacca Strait, Strait of Malacca
 CHOKE_TAIWAN         | Aliases: Taiwan Strait
+CHOKE_LUZON          | Aliases: Luzon Strait, Bashi Channel
 CHOKE_TURKISH_STRAITS| Aliases: Turkish Straits, Bosphorus, Dardanelles, Montreux Transit
 CHOKE_SUWALKI_GAP    | Aliases: Suwalki Gap
 CHOKE_PANAMA         | Aliases: Panama Canal
@@ -170,8 +224,14 @@ CHOKE_LOMBOK_MAKASSAR| Aliases: Lombok & Makassar Straits, Lombok Strait, Makass
 CHOKE_GIBRALTAR      | Aliases: Strait of Gibraltar, Gibraltar
 CHOKE_BERING         | Aliases: Bering Strait, Polar Silk Road Corridor
 CHOKE_MOZAMBIQUE     | Aliases: Mozambique Channel
+CHOKE_SUEZ           | Aliases: Suez Canal, Suez Canal Transit
 CHOKE_SUEZ_NORTH     | Aliases: Suez Canal Northern Approach, Port Said Node
 CORRIDOR_ZANGEZUR    | Aliases: Zangezur Corridor Node, Zangezur Corridor
+CORRIDOR_IMEC        | Aliases: India-Middle East-Europe Economic Corridor, IMEC
+CORRIDOR_INSTC       | Aliases: International North-South Transport Corridor, INSTC, Russia-Iran-India Transit Corridor
+CORRIDOR_CPEC        | Aliases: China-Pakistan Economic Corridor, CPEC, Gwadar-Kashgar Axis
+CORRIDOR_NORTHERN_SEA_ROUTE | Aliases: Northern Sea Route, NSR, Arctic Shipping Corridor, Polar Route
+BASIN_ESSEQUIBO      | Aliases: Essequibo Basin, Guayana Esequiba, Stabroek Block
 BASIN_EAST_MED       | Aliases: Eastern Mediterranean Deep-Sea Basin, East Med Basin
 BASIN_EAST_MED_DEEPSEA| Aliases: Eastern Mediterranean Deep-Sea Basin Node, East Med Deep Sea
 BASIN_CASPIAN_SEA    | Aliases: Caspian Sea Transit Basin, Caspian Basin
@@ -189,7 +249,7 @@ CORRIDOR_KALININGRAD_TRANSIT | Aliases: Kaliningrad Transit Corridor, Vilnius-Ka
 STAT_BLS_US          | Aliases: BLS, Bureau of Labor Statistics, U.S. Bureau of Labor Statistics
 STAT_BEA_US          | Aliases: BEA, Bureau of Economic Analysis, U.S. Bureau of Economic Analysis
 STAT_FRED_US         | Aliases: FRED, St. Louis Fed Economic Data
-STAT_TURKSTAT_TR     | Aliases: TURKSTAT, TurkStat, Turkish Statistical Institute
+STAT_TURKSTAT_TR     | Aliases: TURKSTAT, Turkish Statistical Institute, TÜİK, TUIK
 REG_AGENCY_SEC_US    | Aliases: SEC, Securities and Exchange Commission, U.S. SEC
 REG_AGENCY_OFAC_US   | Aliases: OFAC, Office of Foreign Assets Control, U.S. Department of the Treasury OFAC
 STAT_EIA_US          | Aliases: EIA, U.S. Energy Information Administration
@@ -268,6 +328,8 @@ IND_DCOILWTICO       | Source: EIA / FRED | Name: Crude Oil WTI Spot Price (USD/
 IND_DCOILBRENTEU     | Source: EIA / FRED | Name: Crude Oil Brent Europe Spot Price (USD/Barrel)
 IND_DHHNGSP          | Source: EIA / FRED | Name: Henry Hub Natural Gas Spot Price (USD/MMBtu)
 IND_GASREGW          | Source: EIA / FRED | Name: US Regular Retail Gasoline Price (USD/Gallon)
+IND_DGASNYH          | Source: FRED | Name: New York Harbor Conventional Gasoline Spot Price (USD/Gallon)
+IND_DDFUELNYH        | Source: FRED | Name: New York Harbor ULSD Spot Price (USD/Gallon)
 IND_PCOPPUSDM        | Source: IMF / FRED | Name: Global Price of Copper (USD/Metric Ton)
 IND_PWHEAMTUSDM      | Source: IMF / FRED | Name: Global Price of Wheat (USD/Metric Ton)
 IND_SP500            | Source: S&P / FRED | Name: S&P 500 Index (SP500)
@@ -291,3 +353,8 @@ IND_NASDAQSOX        | Source: NASDAQ / FRED | Name: PHLX Semiconductor Sector I
 IND_SAUPZPIOILBEGUSD  | Source: IMF / FRED | Name: Fiscal Breakeven Oil Price for Saudi Arabia (SAUPZPIOILBEGUSD USD/Barrel)
 IND_JP_FPOLM_PA       | Source: IMF IFS | Name: Central Bank Policy Rate for Japan (JP_FPOLM_PA %)
 IND_GB_FPOLM_PA       | Source: IMF IFS | Name: Central Bank Policy Rate for United Kingdom (GB_FPOLM_PA %)
+IND_PET_WCSSTUS1_W    | Source: EIA | Name: Weekly U.S. Ending Stocks of Crude Oil in SPR (Thousand Barrels)
+IND_PET_WCESTUS1_W    | Source: EIA | Name: Weekly U.S. Commercial Crude Oil Ending Stocks Excluding SPR (Thousand Barrels)
+IND_PET_WCRFPUS2_W    | Source: EIA | Name: Weekly U.S. Field Production of Crude Oil (Thousand Barrels per Day)
+IND_PET_WGTSTUS1_W    | Source: EIA | Name: Weekly U.S. Ending Stocks of Total Gasoline (Thousand Barrels)
+IND_NG_NW2_EPG0_SWO_R48_BCF_W | Source: EIA | Name: Weekly Lower 48 Natural Gas In Underground Storage (Billion Cubic Feet)

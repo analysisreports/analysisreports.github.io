@@ -833,10 +833,14 @@
                     "properties": {
                         "p_baseline": {
                             "type": "number",
+                            "minimum": -1.0,
+                            "maximum": 1.0,
                             "description": "Baseline relationship polarity (-1.0 to 1.0) from llms-relationships.txt."
                         },
                         "dynamic_delta": {
                             "type": "number",
+                            "minimum": -2.0,
+                            "maximum": 2.0,
                             "description": "Event-driven tension or alignment shock (-2.0 to 2.0)."
                         }
                     },
@@ -857,18 +861,26 @@
                     "properties": {
                         "direct_target": {
                             "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
                             "description": "Direct targeting severity (0-100)."
                         },
                         "delegitimize": {
                             "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
                             "description": "Institutional delegitimization intensity (0-100)."
                         },
                         "threat": {
                             "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
                             "description": "Sanction or retaliatory threat level (0-100)."
                         },
                         "norm_breach": {
                             "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
                             "description": "Diplomatic/legal norm breach score (0-100)."
                         }
                     },
@@ -891,10 +903,14 @@
                     "properties": {
                         "rhetoric": {
                             "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
                             "description": "Rhetoric intensity score (0-100)."
                         },
                         "alliance_friction": {
                             "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
                             "description": "Institutional/alliance friction score (0-100)."
                         }
                     },
@@ -915,18 +931,26 @@
                     "properties": {
                         "pol": {
                             "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
                             "description": "Domestic political instability score (0-100)."
                         },
                         "defense": {
                             "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
                             "description": "Defense doctrine and military posture score (0-100)."
                         },
                         "geo": {
                             "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
                             "description": "Geopolitical alignment pressure score (0-100)."
                         },
                         "vuln": {
                             "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
                             "description": "Socioeconomic and fiscal vulnerability score (0-100)."
                         }
                     },
@@ -949,14 +973,20 @@
                     "properties": {
                         "kinetic_military": {
                             "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
                             "description": "Kinetic military clash level (0-100)."
                         },
                         "geo_tension": {
                             "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
                             "description": "Diplomatic and alliance tension (0-100)."
                         },
                         "disruption_risk": {
                             "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
                             "description": "Supply corridor or chokepoint disruption risk (0-100)."
                         }
                     },
@@ -978,14 +1008,20 @@
                     "properties": {
                         "asset_volatility": {
                             "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
                             "description": "Asset class implied/realized volatility shock (0-100)."
                         },
                         "liquidity_spread": {
                             "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
                             "description": "Funding and credit spread widening (0-100)."
                         },
                         "macro_spillover": {
                             "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
                             "description": "Macroeconomic pass-through spillover (0-100)."
                         }
                     },
@@ -1037,15 +1073,51 @@
                                 "HIGH",
                                 "MODERATE-HIGH",
                                 "MODERATE"
-                            ]
+                            ],
+                            "description": "Standardized maritime disruption rating ('CATASTROPHIC', 'HIGH', 'MODERATE-HIGH', 'MODERATE')."
                         },
                         "p_net": {
                             "type": "number",
+                            "minimum": -1.0,
+                            "maximum": 1.0,
                             "description": "Net polarity score (-1.0 to 1.0) between primary regional actors."
+                        },
+                        "duration_days": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 180,
+                            "description": "Crisis duration in days (default: 14). t0=14 represents the critical maritime logistics inflection point where in-transit waterborne tankers dock and refinery working inventories (10-14 days) are exhausted."
+                        },
+                        "bypass_capacity_mbpd": {
+                            "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 50.0,
+                            "description": "Alternative pipeline bypass capacity in million barrels per day (e.g., 4.0 for Petroline + Habshan)."
+                        },
+                        "spr_release_mbpd": {
+                            "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 10.0,
+                            "description": "Emergency Strategic Petroleum Reserve release capacity in million barrels per day (default: 2.0)."
+                        },
+                        "gross_flow_mbpd": {
+                            "type": "number",
+                            "minimum": 0.1,
+                            "maximum": 100.0,
+                            "description": "Total unconstrained daily hydrocarbon flow through chokepoint in million barrels per day (default: 20.5 for Hormuz)."
+                        },
+                        "spr_stocks_kbbl": {
+                            "type": "number",
+                            "description": "Weekly U.S. Ending Stocks of Crude Oil in Strategic Petroleum Reserve in thousand barrels (EIA: PET.WCSSTUS1.W). When provided, overrides spr_release_mbpd with dynamic 90-day sustainable drawdown rate."
+                        },
+                        "us_crude_prod_kbpd": {
+                            "type": "number",
+                            "description": "Weekly U.S. Field Production of Crude Oil in thousand barrels per day (EIA: PET.WCRFPUS2.W) providing domestic buffer capacity."
                         }
                     },
                     "required": [
-                        "severity_enum"
+                        "severity_enum",
+                        "p_net"
                     ]
                 }
             }
@@ -1060,15 +1132,27 @@
                     "properties": {
                         "authority": {
                             "type": "number",
-                            "description": "Institutional authority score (0-100 or 0.0-1.0)."
+                            "minimum": 0.0,
+                            "description": "Institutional authority score (0-100 on pct scale, or 0.0-1.0 on unit scale)."
                         },
                         "confirmation": {
                             "type": "number",
-                            "description": "Cross-verification score (0-100 or 0.0-1.0)."
+                            "minimum": 0.0,
+                            "description": "Cross-verification score (0-100 on pct scale, or 0.0-1.0 on unit scale)."
                         },
                         "recency": {
                             "type": "number",
-                            "description": "Data freshness score (0-100 or 0.0-1.0)."
+                            "minimum": 0.0,
+                            "description": "Data freshness score (0-100 on pct scale, or 0.0-1.0 on unit scale)."
+                        },
+                        "scale": {
+                            "type": "string",
+                            "enum": [
+                                "unit",
+                                "pct"
+                            ],
+                            "default": "unit",
+                            "description": "Measurement scale: 'unit' for normalized [0.0, 1.0] (default) or 'pct' for percentage [0.0, 100.0]. Eliminates heuristic guessing."
                         }
                     },
                     "required": [
@@ -1089,10 +1173,14 @@
                     "properties": {
                         "target_date_str": {
                             "type": "string",
+                            "format": "date",
+                            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
                             "description": "Official scheduled release date in YYYY-MM-DD format."
                         },
                         "current_date_str": {
                             "type": "string",
+                            "format": "date",
+                            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
                             "description": "Reference or current execution date in YYYY-MM-DD format."
                         }
                     },
@@ -1222,7 +1310,7 @@
             "type": "function",
             "function": {
                 "name": "calculate_natgas_crude_btu_disconnect",
-                "description": "Calculates the physical energy parity ratio between WTI Crude Oil and Henry Hub Natural Gas to detect regional gas gluts or acute supply crises.",
+                "description": "Calculates the unnormalized WTI-to-Henry Hub price ratio. Optional current EIA storage and year-over-year change are returned as context metrics only.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -1233,6 +1321,14 @@
                         "natgas_price": {
                             "type": "number",
                             "description": "Henry Hub Natural Gas Spot Price in dollars per million BTU (FRED: DHHNGSP)."
+                        },
+                        "natgas_storage_bcf_val": {
+                            "type": "number",
+                            "description": "Optional current Lower 48 working gas storage in Bcf (EIA: NG.NW2_EPG0_SWO_R48_BCF.W)."
+                        },
+                        "natgas_storage_yoy_val": {
+                            "type": "number",
+                            "description": "Optional year-over-year storage change in percent; context only."
                         }
                     },
                     "required": [
@@ -1246,22 +1342,62 @@
             "type": "function",
             "function": {
                 "name": "calculate_gasoline_crude_crack_spread",
-                "description": "Calculates the retail gasoline crack spread per barrel equivalent ((Gasoline * 42) - WTI) to detect refinery bottlenecks or margin collapses.",
+                "description": "Calculates the New York Harbor conventional gasoline / ULSD / WTI 3:2:1 spot crack spread and compares it with the same spread using year-ago FRED prices. Status describes year-over-year direction, not an absolute high/low regime.",
                 "parameters": {
                     "type": "object",
                     "properties": {
-                        "gas_gal_price": {
+                        "gasoline_spot_price_val": {
                             "type": "number",
-                            "description": "US Regular All Formulations Retail Gasoline Price in dollars per gallon (FRED: GASREGW)."
+                            "description": "New York Harbor conventional gasoline spot price in dollars per gallon (FRED: DGASNYH)."
                         },
-                        "wti_barrel_price": {
+                        "ulsd_spot_price_val": {
+                            "type": "number",
+                            "description": "New York Harbor ULSD spot price in dollars per gallon (FRED: DDFUELNYH)."
+                        },
+                        "wti_barrel_price_val": {
                             "type": "number",
                             "description": "Crude Oil Prices: West Texas Intermediate in dollars per barrel (FRED: DCOILWTICO)."
+                        },
+                        "gasoline_date": {
+                            "type": "string",
+                            "description": "DGASNYH observation date; must exactly match the ULSD and WTI dates."
+                        },
+                        "ulsd_date": {
+                            "type": "string",
+                            "description": "DDFUELNYH observation date; must exactly match the gasoline and WTI dates."
+                        },
+                        "wti_date": {
+                            "type": "string",
+                            "description": "DCOILWTICO observation date; must exactly match the gasoline and ULSD dates."
+                        },
+                        "gasoline_spot_price_year_ago_val": {
+                            "type": "number",
+                            "description": "FRED year_ago_value for DGASNYH, used only for the year-over-year spread comparison."
+                        },
+                        "ulsd_spot_price_year_ago_val": {
+                            "type": "number",
+                            "description": "FRED year_ago_value for DDFUELNYH, used only for the year-over-year spread comparison."
+                        },
+                        "wti_barrel_price_year_ago_val": {
+                            "type": "number",
+                            "description": "FRED year_ago_value for DCOILWTICO, used only for the year-over-year spread comparison."
+                        },
+                        "gasoline_stocks_kbbl": {
+                            "type": "number",
+                            "description": "Optional weekly U.S. ending gasoline stocks in thousand barrels for context only (EIA: PET.WGTSTUS1.W); not used to calculate days of supply."
+                        },
+                        "gasoline_stocks_yoy_val": {
+                            "type": "number",
+                            "description": "Optional year-over-year change in gasoline stocks, as a context metric only."
                         }
                     },
                     "required": [
-                        "gas_gal_price",
-                        "wti_barrel_price"
+                        "gasoline_spot_price_val",
+                        "ulsd_spot_price_val",
+                        "wti_barrel_price_val",
+                        "gasoline_date",
+                        "ulsd_date",
+                        "wti_date"
                     ]
                 }
             }
@@ -1498,25 +1634,89 @@
         {
             "type": "function",
             "function": {
+                "name": "calculate_mecca_pact_transmission",
+                "description": "Calculates dynamic polarity shifts, alliance friction, and mutual defense uplift for the 2026 Mecca Defense Pact (Model 25.18) across Türkiye, Saudi Arabia, and Pakistan from crude oil, SOFR, and fiscal breakeven levels.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "brent": {
+                            "type": "number",
+                            "minimum": 0.0,
+                            "description": "Crude oil Brent price in USD per barrel (EIA/FRED DCOILBRENTEU)."
+                        },
+                        "sofr": {
+                            "type": "number",
+                            "minimum": 0.0,
+                            "description": "Secured Overnight Financing Rate percentage (FRED SOFR)."
+                        },
+                        "breakeven_oil": {
+                            "type": "number",
+                            "minimum": 0.01,
+                            "description": "Saudi Arabia hydrocarbon fiscal breakeven oil price in USD per barrel (IMF SAUPZPIOILBEGUSD)."
+                        }
+                    },
+                    "required": [
+                        "brent",
+                        "sofr",
+                        "breakeven_oil"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "function",
+            "function": {
+                "name": "calculate_sovereign_synthetic_cds_pd",
+                "description": "Quantifies sovereign credit default risk and calculates reduced-form actuarial default probability (Model 25.19) from sovereign yield spread against risk-free benchmarks under ISDA emerging market recovery conventions.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "spread_input_pct": {
+                            "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 100.0,
+                            "description": "Sovereign credit spread over risk-free rate in percentage points (e.g., 2.85 for 285 bps, or BAMLH0A0HYM2)."
+                        },
+                        "recovery_rate": {
+                            "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 0.99,
+                            "default": 0.40,
+                            "description": "Standard emerging market ISDA bond recovery rate (default 0.40 for 40% recovery / 60% LGD)."
+                        }
+                    },
+                    "required": [
+                        "spread_input_pct"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "function",
+            "function": {
                 "name": "calculate_committee_dispersion",
                 "description": "Calculates Central Bank Committee Dispersion & Hawkishness Index (Model 26) measuring monetary policy voting distribution across hawkish, dovish, and neutral members to compute directional stance (H-Index) and internal committee fracture (Blau-Simpson Dispersion).",
                 "parameters": {
                     "type": "object",
                     "properties": {
                         "n_hawkish": {
-                            "type": "number",
+                            "type": "integer",
+                            "minimum": 0,
                             "description": "Number of committee members voting for rate hikes or hawkish tightening (e.g., 10)"
                         },
                         "n_dovish": {
-                            "type": "number",
+                            "type": "integer",
+                            "minimum": 0,
                             "description": "Number of committee members voting for rate cuts or dovish easing (e.g., 2)"
                         },
                         "n_neutral": {
-                            "type": "number",
+                            "type": "integer",
+                            "minimum": 0,
                             "description": "Number of committee members voting for pause, hold, or neutral stance (default 0)"
                         },
                         "n_total": {
-                            "type": "number",
+                            "type": "integer",
+                            "minimum": 0,
                             "description": "Optional total voting member count. If omitted, computed as sum of hawkish + dovish + neutral (e.g., 12)"
                         }
                     },
@@ -1567,6 +1767,11 @@
                         },
                         "target_direction": {
                             "type": "string",
+                            "enum": [
+                                "HIGHER",
+                                "LOWER",
+                                "RANGE_BOUND"
+                            ],
                             "description": "Expected thesis direction: 'HIGHER', 'LOWER', or 'RANGE_BOUND'."
                         },
                         "tolerance_pct": {

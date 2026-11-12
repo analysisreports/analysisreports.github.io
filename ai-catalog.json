@@ -81,6 +81,18 @@
       "description": "Machine-validatable JSON schema merging political and country-level structural metrics."
     },
     {
+      "id": "schema-strategic-macro",
+      "name": "Strategic Macro & Geopolitical Economy JSON Schema",
+      "type": "specification",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/strategic-macro.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-schema-strategic-macro.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Unified machine-validatable JSON schema merging sovereign defense postures, maritime chokepoints, bilateral tension vectors, and quantitative macroeconomic models."
+    },
+    {
       "id": "schema-editorial",
       "name": "Editorial Stance and Macro Expectation JSON Schema",
       "type": "specification",
@@ -204,6 +216,66 @@
       "description": "Automated European Central Bank Data Portal time-series, observation snapshots, and official monetary metrics."
     },
     {
+      "id": "live-eia-series",
+      "name": "Canonical U.S. Energy Information Administration (EIA) Time-Series Registry",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-eia-series.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-eia-series.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Automated U.S. Department of Energy / EIA open data API v2 series, Strategic Petroleum Reserve (SPR) inventories, commercial crude stocks, and domestic field extraction."
+    },
+    {
+      "id": "live-nyfed-series",
+      "name": "Canonical New York Fed Time-Series Registry & Official Transformations",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-nyfed-series.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-nyfed-series.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Automated Federal Reserve Bank of New York time-series, Global Supply Chain Pressure Index (GSCPI), observation snapshots, and official metrics."
+    },
+    {
+      "id": "live-imf-series",
+      "name": "Canonical IMF World Economic Outlook (WEO) Time-Series Registry",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-imf-series.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-imf-series.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Automated International Monetary Fund (IMF) cross-country macroeconomic projections, debt-to-GDP, current account, and inflation time-series."
+    },
+    {
+      "id": "live-worldbank-series",
+      "name": "Canonical World Bank Pink Sheet Commodity Price Registry",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-worldbank-series.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-worldbank-series.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Automated World Bank official monthly commodity prices (energy, precious metals, agriculture, fertilizers) and growth transformations."
+    },
+    {
+      "id": "country-relationships",
+      "name": "Geopolitical Bilateral Dyad Stances & Strategic Flashpoint Matrix",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-country-relationships.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-country-relationships.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Comprehensive 165-dyad master geopolitical matrix defining bilateral stance polarities, asymmetric leverage vectors, and multilateral cross-references."
+    },
+    {
       "id": "dynamic-geopolitical-matrix",
       "name": "Dynamic Geopolitical Polarity & Sovereign Governance Engine",
       "type": "dataset",
@@ -234,7 +306,7 @@
     "tool_calling": true,
     "structured_data_payload": "structured_content_analysis"
   },
-  "last_updated": "2026-11-10",
+  "last_updated": "2026-11-12",
   "monitored_directories": {
     "economy": {
       "total_payloads": 2,

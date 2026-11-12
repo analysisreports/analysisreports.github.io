@@ -18,22 +18,30 @@
       "ENERGY_BENCHMARK"
     ],
     "edge_types": [
-      "POLARITY_COUPLING",
-      "PATRON_COUPLING",
-      "TRIGGERS_INDICATOR",
-      "EXECUTES_MODEL",
       "BRIDGES_TO_MODEL",
-      "INGESTS_SERIES",
-      "INDEXES",
       "CONTROLS_LEVERAGE",
-      "TRANSMITS_RISK",
+      "CONTROLS_TERRITORY",
+      "EXECUTES_MODEL",
+      "FLANKS_CHOKEPOINT",
+      "INCLUDES_MEMBER",
+      "INDEXES",
       "INFLATION_IMPACT",
-      "SUPPLY_DISRUPTION"
+      "INGESTS_SERIES",
+      "MONETARY_AUTHORITY",
+      "PATRON_COUPLING",
+      "POLARITY_COUPLING",
+      "PROXIMATE_TO",
+      "REGULATES_TRANSIT",
+      "SETS_POLICY_RATE",
+      "SUPPLY_DISRUPTION",
+      "TERMINATES_AT",
+      "TRANSMITS_RISK",
+      "TRIGGERS_INDICATOR"
     ]
   },
   "nodes": [
     {
-      "id": "ACTOR_US",
+      "id": "GEO_US",
       "label": "United States",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -44,7 +52,7 @@
       }
     },
     {
-      "id": "ACTOR_RU",
+      "id": "GEO_RU",
       "label": "Russian Federation",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -54,7 +62,7 @@
       }
     },
     {
-      "id": "ACTOR_CN",
+      "id": "GEO_CN",
       "label": "People's Republic of China",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -64,7 +72,7 @@
       }
     },
     {
-      "id": "ACTOR_IL",
+      "id": "GEO_IL",
       "label": "State of Israel",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -73,7 +81,7 @@
       }
     },
     {
-      "id": "ACTOR_IR",
+      "id": "GEO_IR",
       "label": "Islamic Republic of Iran",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -86,7 +94,7 @@
       }
     },
     {
-      "id": "ACTOR_TR",
+      "id": "GEO_TR",
       "label": "Republic of Türkiye",
       "category": "ACTOR",
       "type": "Strategic Transit Hub",
@@ -96,7 +104,7 @@
       }
     },
     {
-      "id": "ACTOR_SA",
+      "id": "GEO_SA",
       "label": "Kingdom of Saudi Arabia",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -106,7 +114,7 @@
       }
     },
     {
-      "id": "ACTOR_YE_HOUTHI",
+      "id": "PROXY_YE_HOUTHI",
       "label": "Ansarullah / Yemen Houthis",
       "category": "ACTOR",
       "type": "Non-State Proxy",
@@ -267,26 +275,6 @@
       }
     },
     {
-      "id": "IND_STICKY_CPI",
-      "label": "Sticky CPI Less Food & Energy (STICKYCPIM157SFRBATL)",
-      "category": "INDICATOR",
-      "attributes": {
-        "source": "Atlanta Fed / FRED",
-        "units": "Percent (%)",
-        "trans": "pc1"
-      }
-    },
-    {
-      "id": "IND_FLEX_CPI",
-      "label": "Flexible CPI Less Food & Energy (FLEXCPIM157SFRBATL)",
-      "category": "INDICATOR",
-      "attributes": {
-        "source": "Atlanta Fed / FRED",
-        "units": "Percent (%)",
-        "trans": "pc1"
-      }
-    },
-    {
       "id": "IND_OVXCLS",
       "label": "CBOE Crude Oil Volatility Index (OVXCLS)",
       "category": "INDICATOR",
@@ -303,6 +291,26 @@
       "attributes": {
         "source": "EIA / FRED",
         "units": "USD per Barrel",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_DGASNYH",
+      "label": "New York Harbor Conventional Gasoline Spot Price (DGASNYH)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "USD per Gallon",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_DDFUELNYH",
+      "label": "New York Harbor ULSD Spot Price (DDFUELNYH)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "USD per Gallon",
         "trans": "lin"
       }
     },
@@ -436,11 +444,12 @@
     },
     {
       "id": "MODEL_25.8",
-      "label": "NatGas / Crude Oil BTU Disconnect Engine",
+      "label": "NatGas / Crude Oil Price-Ratio Disconnect Engine",
       "category": "MODEL",
       "attributes": {
         "function": "natgas_crude_btu_disconnect",
-        "formula": "BTU_Disconnect_Ratio = WTI_Price / NatGas_Price",
+        "formula": "Crude_NatGas_Price_Ratio = WTI_Price / NatGas_Price",
+        "storage_context": "Current EIA storage level and year-over-year change are context metrics only; they do not enter the price ratio or status.",
         "status_enums": [
           "NATGAS_CRISIS_BLACKOUT_RISK",
           "NATGAS_GLUT_ENERGY_CHEAP",
@@ -450,15 +459,18 @@
     },
     {
       "id": "MODEL_25.9",
-      "label": "Gasoline / Crude Crack Spread Impulse Engine",
+      "label": "Gasoline / Distillate / Crude 3:2:1 Crack Spread",
       "category": "MODEL",
       "attributes": {
-        "function": "gasoline_crude_crack_spread",
-        "formula": "Crack_Spread_USD = (Gasoline_Gallon_Price * 42) - WTI_Barrel_Price",
+        "function": "calc_gasoline_321_crack_spread",
+        "formula": "((2 * DGASNYH_USD_per_gal * 42) + (DDFUELNYH_USD_per_gal * 42)) / 3 - DCOILWTICO_USD_per_bbl",
+        "input_alignment": "DGASNYH, DDFUELNYH, and DCOILWTICO must share the exact observation date.",
+        "year_over_year_comparison": "Apply the same formula to the three FRED year_ago_value inputs; status describes direction, not absolute high/low.",
         "status_enums": [
-          "REFINERY_BOTTLENECK_CRUNCH",
-          "REFINING_MARGIN_COLLAPSE",
-          "NORMAL_REFINING_MARGIN"
+          "CRACK_SPREAD_EXPANDING",
+          "CRACK_SPREAD_CONTRACTING",
+          "CRACK_SPREAD_UNCHANGED",
+          "UNCLASSIFIED"
         ]
       }
     },
@@ -483,7 +495,7 @@
       "category": "MODEL",
       "attributes": {
         "function": "chokepoint_transmission_bridge",
-        "formula": "Spillover_Score = min(100.0, (Disruption_Weight * 70.0) + (Friction_Factor * 30.0))",
+        "formula": "Base_Shock = (Severity_Weight * Net_Deficit_Ratio * 70.0) + (Friction_Factor * 30.0); Spillover_Score = round(min(100.0, max(0.0, Base_Shock * Duration_Scale)))",
         "status_enums": [
           "CRITICAL_SYSTEMIC_SHOCK",
           "HIGH_SPILLOVER",
@@ -569,7 +581,7 @@
       }
     },
     {
-      "id": "ACTOR_KP",
+      "id": "GEO_KP",
       "label": "Democratic People's Republic of Korea",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -580,7 +592,7 @@
       }
     },
     {
-      "id": "ACTOR_BRICS_MBRIDGE",
+      "id": "BLOC_BRICS_MBRIDGE",
       "label": "BRICS & mBridge Settlement Axis",
       "category": "ACTOR",
       "type": "Multilateral Clearing Bloc",
@@ -594,8 +606,8 @@
       }
     },
     {
-      "id": "ACTOR_C6_BLOC",
-      "label": "Orta Asya - Azerbaycan Ä°stiÅŸare MekanizmasÄ± (C6)",
+      "id": "BLOC_C6",
+      "label": "Central Asia - Azerbaijan Consultative Mechanism (C6)",
       "category": "ACTOR",
       "type": "Regional Multilateral Bloc",
       "attributes": {
@@ -697,10 +709,10 @@
     },
     {
       "id": "ENERGY_URANIUM",
-      "label": "ZenginleÅŸtirilmiÅŸ Uranyum ve NÃ¼kleer YakÄ±t",
+      "label": "Enriched Uranium and Nuclear Fuel Supply",
       "category": "COMMODITY_STRATEGIC",
       "attributes": {
-        "dominant_supplier": "ACTOR_RU"
+        "dominant_supplier": "GEO_RU"
       }
     },
     {
@@ -713,7 +725,7 @@
     },
     {
       "id": "COMMODITY_CRUDE_OIL",
-      "label": "Brent & WTI Ham Petrol ArzÄ±",
+      "label": "Brent and WTI Crude Oil Supply Benchmark",
       "category": "ENERGY_BENCHMARK",
       "attributes": {
         "chokepoint_sensitivity": "CHOKE_HORMUZ"
@@ -744,36 +756,36 @@
       }
     },
     {
-      "id": "ACTOR_RF_CAUCASUS_ARC",
+      "id": "REG_RF_CAUCASUS_ARC",
       "label": "North Caucasus Autonomous Line (Karachay-Cherkessia, Kabardino-Balkaria, Dagestan)",
       "category": "ACTOR",
       "type": "Sub-National Autonomous Entity",
       "attributes": {
-        "parent_authority": "ACTOR_RU",
+        "parent_authority": "GEO_RU",
         "polarity_baseline": 0.7,
         "structural_regime": "STRATEGIC_ALIGNMENT",
         "primary_exposure": "CASPIAN_SECURITY_ENERGY_CORRIDORS"
       }
     },
     {
-      "id": "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
+      "id": "REG_RF_VOLGA_SIBERIAN",
       "label": "Volga-Ural & Siberian Arc (Tatarstan, Bashkortostan, Sakha, Altai, etc.)",
       "category": "ACTOR",
       "type": "Sub-National Autonomous Entity",
       "attributes": {
-        "parent_authority": "ACTOR_RU",
+        "parent_authority": "GEO_RU",
         "polarity_baseline": 0.8,
         "structural_regime": "STRATEGIC_ALIGNMENT",
         "primary_exposure": "FISCAL_FEDERALISM_RESOURCE_EXTRACTION"
       }
     },
     {
-      "id": "ACTOR_RF_SOUTHERN_KRAIS",
+      "id": "REG_RF_SOUTHERN_KRAIS",
       "label": "Southern Administrative Krais (Stavropol, Krasnodar)",
       "category": "ACTOR",
       "type": "Sub-National Administrative Region",
       "attributes": {
-        "parent_authority": "ACTOR_RU",
+        "parent_authority": "GEO_RU",
         "polarity_baseline": 0.95,
         "structural_regime": "ALLIANCE",
         "primary_exposure": "BLACK_SEA_AGRO_PORT_LOGISTICS"
@@ -841,7 +853,7 @@
       }
     },
     {
-      "id": "ACTOR_DE",
+      "id": "GEO_DE",
       "label": "Federal Republic of Germany",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -850,7 +862,7 @@
       }
     },
     {
-      "id": "ACTOR_FR",
+      "id": "GEO_FR",
       "label": "French Republic",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -859,7 +871,7 @@
       }
     },
     {
-      "id": "ACTOR_GB",
+      "id": "GEO_GB",
       "label": "United Kingdom",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -868,7 +880,7 @@
       }
     },
     {
-      "id": "ACTOR_UA",
+      "id": "GEO_UA",
       "label": "Ukraine",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -877,7 +889,7 @@
       }
     },
     {
-      "id": "ACTOR_PL",
+      "id": "GEO_PL",
       "label": "Republic of Poland",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -886,7 +898,7 @@
       }
     },
     {
-      "id": "ACTOR_SE",
+      "id": "GEO_SE",
       "label": "Kingdom of Sweden",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -895,7 +907,7 @@
       }
     },
     {
-      "id": "ACTOR_NO",
+      "id": "GEO_NO",
       "label": "Kingdom of Norway",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -904,7 +916,7 @@
       }
     },
     {
-      "id": "ACTOR_CZ",
+      "id": "GEO_CZ",
       "label": "Czech Republic",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -913,7 +925,7 @@
       }
     },
     {
-      "id": "ACTOR_HU",
+      "id": "GEO_HU",
       "label": "Hungary",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -922,7 +934,7 @@
       }
     },
     {
-      "id": "ACTOR_GR",
+      "id": "GEO_GR",
       "label": "Hellenic Republic",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -931,7 +943,7 @@
       }
     },
     {
-      "id": "ACTOR_CY",
+      "id": "GEO_CY",
       "label": "Republic of Cyprus",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -940,7 +952,7 @@
       }
     },
     {
-      "id": "ACTOR_JP",
+      "id": "GEO_JP",
       "label": "Japan",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -949,7 +961,7 @@
       }
     },
     {
-      "id": "ACTOR_KR",
+      "id": "GEO_KR",
       "label": "Republic of Korea",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -958,7 +970,7 @@
       }
     },
     {
-      "id": "ACTOR_TW",
+      "id": "GEO_TW",
       "label": "Taiwan (Republic of China)",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -967,7 +979,7 @@
       }
     },
     {
-      "id": "ACTOR_SG",
+      "id": "GEO_SG",
       "label": "Republic of Singapore",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -976,7 +988,7 @@
       }
     },
     {
-      "id": "ACTOR_AU",
+      "id": "GEO_AU",
       "label": "Commonwealth of Australia",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -985,7 +997,7 @@
       }
     },
     {
-      "id": "ACTOR_ID",
+      "id": "GEO_ID",
       "label": "Republic of Indonesia",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -994,7 +1006,7 @@
       }
     },
     {
-      "id": "ACTOR_MY",
+      "id": "GEO_MY",
       "label": "Malaysia",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1003,7 +1015,7 @@
       }
     },
     {
-      "id": "ACTOR_TH",
+      "id": "GEO_TH",
       "label": "Kingdom of Thailand",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1012,7 +1024,7 @@
       }
     },
     {
-      "id": "ACTOR_PH",
+      "id": "GEO_PH",
       "label": "Republic of the Philippines",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1021,7 +1033,7 @@
       }
     },
     {
-      "id": "ACTOR_KZ",
+      "id": "GEO_KZ",
       "label": "Republic of Kazakhstan",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1030,7 +1042,7 @@
       }
     },
     {
-      "id": "ACTOR_AZ",
+      "id": "GEO_AZ",
       "label": "Republic of Azerbaijan",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1039,7 +1051,7 @@
       }
     },
     {
-      "id": "ACTOR_AM",
+      "id": "GEO_AM",
       "label": "Republic of Armenia",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1048,7 +1060,7 @@
       }
     },
     {
-      "id": "ACTOR_UZ",
+      "id": "GEO_UZ",
       "label": "Republic of Uzbekistan",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1057,7 +1069,7 @@
       }
     },
     {
-      "id": "ACTOR_TM",
+      "id": "GEO_TM",
       "label": "Turkmenistan",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1066,7 +1078,7 @@
       }
     },
     {
-      "id": "ACTOR_KG",
+      "id": "GEO_KG",
       "label": "Kyrgyz Republic",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1075,7 +1087,7 @@
       }
     },
     {
-      "id": "ACTOR_TJ",
+      "id": "GEO_TJ",
       "label": "Republic of Tajikistan",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1084,7 +1096,7 @@
       }
     },
     {
-      "id": "ACTOR_EG",
+      "id": "GEO_EG",
       "label": "Arab Republic of Egypt",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1093,7 +1105,7 @@
       }
     },
     {
-      "id": "ACTOR_ZA",
+      "id": "GEO_ZA",
       "label": "Republic of South Africa",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1102,7 +1114,7 @@
       }
     },
     {
-      "id": "ACTOR_IQ",
+      "id": "GEO_IQ",
       "label": "Republic of Iraq",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1111,7 +1123,7 @@
       }
     },
     {
-      "id": "ACTOR_SY",
+      "id": "GEO_SY",
       "label": "Syrian Arab Republic",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1120,7 +1132,7 @@
       }
     },
     {
-      "id": "ACTOR_LY",
+      "id": "GEO_LY",
       "label": "State of Libya",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1129,7 +1141,7 @@
       }
     },
     {
-      "id": "ACTOR_MA",
+      "id": "GEO_MA",
       "label": "Kingdom of Morocco",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1138,7 +1150,7 @@
       }
     },
     {
-      "id": "ACTOR_CA",
+      "id": "GEO_CA",
       "label": "Canada",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1147,7 +1159,7 @@
       }
     },
     {
-      "id": "ACTOR_MX",
+      "id": "GEO_MX",
       "label": "United Mexican States",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1156,7 +1168,7 @@
       }
     },
     {
-      "id": "ACTOR_BR",
+      "id": "GEO_BR",
       "label": "Federative Republic of Brazil",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1165,7 +1177,7 @@
       }
     },
     {
-      "id": "ACTOR_AR",
+      "id": "GEO_AR",
       "label": "Argentine Republic",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1174,7 +1186,7 @@
       }
     },
     {
-      "id": "ACTOR_CL",
+      "id": "GEO_CL",
       "label": "Republic of Chile",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1183,7 +1195,7 @@
       }
     },
     {
-      "id": "ACTOR_BO",
+      "id": "GEO_BO",
       "label": "Plurinational State of Bolivia",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -1202,8 +1214,8 @@
       }
     },
     {
-      "id": "INST_TCMB_TR",
-      "label": "Central Bank of the Republic of TÃ¼rkiye",
+      "id": "INST_CBRT_TR",
+      "label": "Central Bank of the Republic of Türkiye",
       "category": "ACTOR",
       "type": "Central Bank",
       "attributes": {
@@ -1460,6 +1472,22 @@
           "TREATY_ACTIVE_FISCAL_RESTRAINT"
         ],
         "jurisdiction": "BLOC_MECCA_DEFENSE"
+      }
+    },
+    {
+      "id": "MODEL_25.19",
+      "label": "Sovereign Synthetic CDS & Actuarial Default Probability Engine",
+      "category": "MODEL",
+      "type": "Credit Risk & Actuarial Solvency Model",
+      "attributes": {
+        "function": "calc_sovereign_synthetic_cds_pd",
+        "formula": "hazard_rate = spread_dec / (1.0 - recovery_rate); pd_1y = round(1.0 - math.exp(-hazard_rate), 4)",
+        "target_regimes": [
+          "DISTRESSED_DEBT_CRISIS",
+          "HIGH_DEFAULT_VULNERABILITY",
+          "ELEVATED_CREDIT_RISK",
+          "BENIGN_SOVEREIGN_SOLVENCY"
+        ]
       }
     },
     {
@@ -2021,18 +2049,26 @@
     },
     {
       "id": "IND_STICKCPIM157SFRBATL",
-      "label": "Sticky Price Consumer Price Index",
+      "label": "Sticky Price Consumer Price Index (Atlanta Fed)",
       "category": "INDICATOR",
-      "source": "Atlanta Fed / FRED"
+      "attributes": {
+        "source": "Federal Reserve Bank of Atlanta / FRED",
+        "units": "Percent Change from Year Ago",
+        "trans": "pc1"
+      }
     },
     {
       "id": "IND_FLEXCPIM157SFRBATL",
-      "label": "Flexible Price Consumer Price Index",
+      "label": "Flexible Price Consumer Price Index (Atlanta Fed)",
       "category": "INDICATOR",
-      "source": "Atlanta Fed / FRED"
+      "attributes": {
+        "source": "Federal Reserve Bank of Atlanta / FRED",
+        "units": "Percent Change from Year Ago",
+        "trans": "pc1"
+      }
     },
     {
-      "id": "ACTOR_LT",
+      "id": "GEO_LT",
       "label": "Republic of Lithuania",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -2042,7 +2078,7 @@
       }
     },
     {
-      "id": "ACTOR_EE",
+      "id": "GEO_EE",
       "label": "Republic of Estonia",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -2052,7 +2088,7 @@
       }
     },
     {
-      "id": "ACTOR_LV",
+      "id": "GEO_LV",
       "label": "Republic of Latvia",
       "category": "ACTOR",
       "type": "Sovereign State",
@@ -2068,9 +2104,9 @@
       "type": "Multilateral Bloc",
       "attributes": {
         "members": [
-          "ACTOR_EE",
-          "ACTOR_LV",
-          "ACTOR_LT"
+          "GEO_EE",
+          "GEO_LV",
+          "GEO_LT"
         ]
       }
     },
@@ -2106,54 +2142,224 @@
         "disruption_severity": "HIGH",
         "severity_weight": 0.7
       }
+    },
+    {
+      "id": "GOV_TREASURY_US",
+      "label": "U.S. Department of the Treasury",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_US",
+        "role": "Fiscal Authority & Debt Issuance"
+      }
+    },
+    {
+      "id": "GOV_STATE_US",
+      "label": "U.S. Department of State",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_US",
+        "role": "Foreign Policy & Diplomatic Alignment"
+      }
+    },
+    {
+      "id": "GOV_DOD_US",
+      "label": "U.S. Department of Defense",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_US",
+        "role": "Defense & Maritime Chokepoint Security"
+      }
+    },
+    {
+      "id": "GOV_TREASURY_TR",
+      "label": "Ministry of Treasury and Finance of Türkiye",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_TR",
+        "role": "Fiscal Authority & Debt Management"
+      }
+    },
+    {
+      "id": "GOV_MOD_TR",
+      "label": "Ministry of National Defence of Türkiye",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_TR",
+        "role": "Straits & Regional Security Projection"
+      }
+    },
+    {
+      "id": "GOV_MOF_CN",
+      "label": "Ministry of Finance of the People's Republic of China",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_CN",
+        "role": "Fiscal Policy & Sovereign Bonds"
+      }
+    },
+    {
+      "id": "GOV_MOFCOM_CN",
+      "label": "Ministry of Commerce of the People's Republic of China",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_CN",
+        "role": "Trade Policy & Strategic Export Controls"
+      }
+    },
+    {
+      "id": "GOV_MOF_RU",
+      "label": "Ministry of Finance of the Russian Federation",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_RU",
+        "role": "Fiscal & Sovereign Wealth Fund (NWF) Management"
+      }
+    },
+    {
+      "id": "GOV_MFA_RU",
+      "label": "Ministry of Foreign Affairs of the Russian Federation",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_RU",
+        "role": "Geopolitical Strategy & Multilateral Blocs"
+      }
+    },
+    {
+      "id": "GOV_MOF_DE",
+      "label": "Federal Ministry of Finance of Germany",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_DE",
+        "role": "European Fiscal Anchor & Debt Brake Enforcement"
+      }
+    },
+    {
+      "id": "GOV_HMT_GB",
+      "label": "His Majesty's Treasury",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_GB",
+        "role": "UK Fiscal Policy & Gilt Issuance"
+      }
+    },
+    {
+      "id": "GOV_MOF_JP",
+      "label": "Ministry of Finance of Japan",
+      "category": "ACTOR",
+      "type": "Government Ministry",
+      "attributes": {
+        "jurisdiction": "GEO_JP",
+        "role": "Currency Intervention & JGB Management"
+      }
+    },
+    {
+      "id": "IND_PET_WCSSTUS1_W",
+      "label": "Weekly U.S. Ending Stocks of Crude Oil in SPR (PET.WCSSTUS1.W)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Thousand Barrels",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_PET_WCESTUS1_W",
+      "label": "Weekly U.S. Commercial Crude Oil Ending Stocks Excluding SPR (PET.WCESTUS1.W)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Thousand Barrels",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_PET_WCRFPUS2_W",
+      "label": "Weekly U.S. Field Production of Crude Oil (PET.WCRFPUS2.W)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Thousand Barrels per Day",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_PET_WGTSTUS1_W",
+      "label": "Weekly U.S. Ending Stocks of Total Gasoline (PET.WGTSTUS1.W)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Thousand Barrels",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_NG_NW2_EPG0_SWO_R48_BCF_W",
+      "label": "Weekly Lower 48 Natural Gas In Underground Storage (NG.NW2_EPG0_SWO_R48_BCF.W)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Billion Cubic Feet",
+        "trans": "lin"
+      }
     }
   ],
   "edges": [
     {
-      "source": "ACTOR_US",
-      "target": "ACTOR_RU",
+      "source": "GEO_US",
+      "target": "GEO_RU",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.85,
       "regime": "PROXY_WAR"
     },
     {
-      "source": "ACTOR_US",
-      "target": "ACTOR_CN",
+      "source": "GEO_US",
+      "target": "GEO_CN",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.65,
       "regime": "STRATEGIC_COMPETITION"
     },
     {
-      "source": "ACTOR_RU",
-      "target": "ACTOR_CN",
+      "source": "GEO_RU",
+      "target": "GEO_CN",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.75,
+      "p_baseline": 0.85,
       "regime": "STRATEGIC_ALIGNMENT"
     },
     {
-      "source": "ACTOR_IL",
-      "target": "ACTOR_IR",
+      "source": "GEO_IL",
+      "target": "GEO_IR",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.95,
       "regime": "PROXY_WAR / KINETIC_STANDOFF"
     },
     {
-      "source": "ACTOR_IR",
-      "target": "ACTOR_YE_HOUTHI",
+      "source": "GEO_IR",
+      "target": "PROXY_YE_HOUTHI",
       "type": "PATRON_COUPLING",
       "coupling_factor": 0.85,
       "role": "Proxy Supply & Targeting"
     },
     {
-      "source": "ACTOR_TR",
-      "target": "ACTOR_RU",
+      "source": "GEO_TR",
+      "target": "GEO_RU",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.15,
+      "p_baseline": 0.35,
       "regime": "TACTICAL_COOPERATION"
     },
     {
-      "source": "ACTOR_TR",
-      "target": "ACTOR_US",
+      "source": "GEO_TR",
+      "target": "GEO_US",
       "type": "POLARITY_COUPLING",
       "p_baseline": 0.25,
       "regime": "STRATEGIC_ALIGNMENT"
@@ -2225,18 +2431,6 @@
       "impact": "CASPIAN_GAS_FLOW_FRICTION"
     },
     {
-      "source": "IND_STICKY_CPI",
-      "target": "MODEL_25.2",
-      "type": "INGESTS_SERIES",
-      "role": "sticky_val"
-    },
-    {
-      "source": "IND_FLEX_CPI",
-      "target": "MODEL_25.2",
-      "type": "INGESTS_SERIES",
-      "role": "flex_val"
-    },
-    {
       "source": "IND_SOFR",
       "target": "MODEL_25.5",
       "type": "INGESTS_SERIES",
@@ -2291,16 +2485,22 @@
       "role": "natgas_price"
     },
     {
-      "source": "IND_GASREGW",
+      "source": "IND_DGASNYH",
       "target": "MODEL_25.9",
       "type": "INGESTS_SERIES",
-      "role": "gas_gal_price"
+      "role": "gasoline_spot_usd_gal"
+    },
+    {
+      "source": "IND_DDFUELNYH",
+      "target": "MODEL_25.9",
+      "type": "INGESTS_SERIES",
+      "role": "ulsd_spot_usd_gal"
     },
     {
       "source": "IND_DCOILWTICO",
       "target": "MODEL_25.9",
       "type": "INGESTS_SERIES",
-      "role": "wti_barrel_price"
+      "role": "wti_crude_usd_bbl"
     },
     {
       "source": "CHOKE_HORMUZ",
@@ -2356,15 +2556,15 @@
       "type": "INDEXES"
     },
     {
-      "source": "ACTOR_US",
-      "target": "ACTOR_KP",
+      "source": "GEO_US",
+      "target": "GEO_KP",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.9,
       "regime": "KINETIC_STANDOFF"
     },
     {
-      "source": "ACTOR_BRICS_MBRIDGE",
-      "target": "ACTOR_US",
+      "source": "BLOC_BRICS_MBRIDGE",
+      "target": "GEO_US",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.7,
       "regime": "MONETARY_DECOUPLING"
@@ -2388,7 +2588,7 @@
       "role": "part_time_econ_level"
     },
     {
-      "source": "ACTOR_BRICS_MBRIDGE",
+      "source": "BLOC_BRICS_MBRIDGE",
       "target": "MODEL_25.10",
       "type": "BRIDGES_TO_MODEL",
       "passes": "capital_fragmentation_drain"
@@ -2400,7 +2600,7 @@
       "passes": "hardware_labor_shock"
     },
     {
-      "source": "ACTOR_BRICS_MBRIDGE",
+      "source": "BLOC_BRICS_MBRIDGE",
       "target": "MODEL_25.6",
       "type": "BRIDGES_TO_MODEL",
       "passes": "sovereign_gold_accumulation"
@@ -2424,10 +2624,10 @@
       "passes": "seaborne_risk_premium"
     },
     {
-      "source": "ACTOR_RU",
+      "source": "GEO_RU",
       "target": "ENERGY_URANIUM",
       "type": "CONTROLS_LEVERAGE",
-      "description": "NÃ¼kleer yakÄ±t tedarik zinciri Ã¼zerinden asimetrik jeopolitik baskÄ±."
+      "description": "Asymmetric geopolitical pressure via nuclear fuel supply chain vulnerabilities."
     },
     {
       "source": "ENERGY_URANIUM",
@@ -2439,43 +2639,43 @@
       "source": "ENERGY_LITHIUM",
       "target": "IND_WPU06",
       "type": "INFLATION_IMPACT",
-      "description": "Batarya ve kimyasal sanayi maliyetleri Ã¼zerinden Ã¼retici fiyat baskÄ±sÄ±."
+      "description": "Producer price cost pressures transmitted via industrial battery and chemical mineral chains."
     },
     {
       "source": "CHOKE_HORMUZ",
       "target": "COMMODITY_CRUDE_OIL",
       "type": "SUPPLY_DISRUPTION",
-      "description": "HÃ¼rmÃ¼z BoÄŸazÄ± risk priminin ham petrol fiyatlarÄ±na doÄŸrudan aktarÄ±mÄ±."
+      "description": "Direct risk premium transmission to crude oil prices driven by Strait of Hormuz chokepoint escalations."
     },
     {
-      "source": "ACTOR_C6_BLOC",
-      "target": "ACTOR_TR",
+      "source": "BLOC_C6",
+      "target": "GEO_TR",
       "type": "POLARITY_COUPLING",
       "p_baseline": 0.8,
       "regime": "STRATEGIC_ALIGNMENT"
     },
     {
-      "source": "ACTOR_C6_BLOC",
-      "target": "ACTOR_RU",
+      "source": "BLOC_C6",
+      "target": "GEO_RU",
       "type": "POLARITY_COUPLING",
       "p_baseline": 0.2,
       "regime": "TACTICAL_COOPERATION"
     },
     {
-      "source": "ACTOR_C6_BLOC",
-      "target": "ACTOR_CN",
+      "source": "BLOC_C6",
+      "target": "GEO_CN",
       "type": "POLARITY_COUPLING",
       "p_baseline": 0.65,
       "regime": "STRATEGIC_ALIGNMENT"
     },
     {
-      "source": "ACTOR_C6_BLOC",
+      "source": "BLOC_C6",
       "target": "CORRIDOR_ZANGEZUR",
       "type": "BRIDGES_TO_MODEL",
       "passes": "middle_corridor_freight_volume"
     },
     {
-      "source": "ACTOR_TR",
+      "source": "GEO_TR",
       "target": "BASIN_EAST_MED_DEEPSEA",
       "type": "BRIDGES_TO_MODEL",
       "passes": "maritime_eez_projection"
@@ -2499,58 +2699,58 @@
       "severity_enum": "HIGH"
     },
     {
-      "source": "ACTOR_RU",
-      "target": "ACTOR_RF_CAUCASUS_ARC",
+      "source": "GEO_RU",
+      "target": "REG_RF_CAUCASUS_ARC",
       "type": "PATRON_COUPLING",
       "coupling_factor": 0.7,
       "role": "Federal Administrative & Security Control"
     },
     {
-      "source": "ACTOR_RU",
-      "target": "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
+      "source": "GEO_RU",
+      "target": "REG_RF_VOLGA_SIBERIAN",
       "type": "PATRON_COUPLING",
       "coupling_factor": 0.8,
       "role": "Fiscal Revenue & Extraction Oversight"
     },
     {
-      "source": "ACTOR_RU",
-      "target": "ACTOR_RF_SOUTHERN_KRAIS",
+      "source": "GEO_RU",
+      "target": "REG_RF_SOUTHERN_KRAIS",
       "type": "PATRON_COUPLING",
       "coupling_factor": 0.95,
       "role": "Logistics & Maritime Terminal Command"
     },
     {
-      "source": "ACTOR_RF_CAUCASUS_ARC",
+      "source": "REG_RF_CAUCASUS_ARC",
       "target": "IND_DCOILBRENTEU",
       "type": "TRIGGERS_INDICATOR",
       "impact": "CASPIAN_BYPASS_FLOW_SECURITY"
     },
     {
-      "source": "ACTOR_RF_CAUCASUS_ARC",
+      "source": "REG_RF_CAUCASUS_ARC",
       "target": "IND_PWHEAMTUSDM",
       "type": "TRIGGERS_INDICATOR",
       "impact": "NORTH_CAUCASUS_TRANSIT_FRICTION"
     },
     {
-      "source": "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
+      "source": "REG_RF_VOLGA_SIBERIAN",
       "target": "IND_DCOILWTICO",
       "type": "TRIGGERS_INDICATOR",
       "impact": "GLOBAL_REFINERY_CRUDE_COMPENSATION"
     },
     {
-      "source": "ACTOR_RF_VOLGA_URAL_SIBERIAN_ARC",
+      "source": "REG_RF_VOLGA_SIBERIAN",
       "target": "IND_PCOPPUSDM",
       "type": "TRIGGERS_INDICATOR",
       "impact": "SIBERIAN_MINERAL_EXTRACTION_PRESSURE"
     },
     {
-      "source": "ACTOR_RF_SOUTHERN_KRAIS",
+      "source": "REG_RF_SOUTHERN_KRAIS",
       "target": "IND_DCOILBRENTEU",
       "type": "TRIGGERS_INDICATOR",
       "impact": "NOVOROSSIYSK_TANKER_FREIGHT_SURCHARGE"
     },
     {
-      "source": "ACTOR_RF_SOUTHERN_KRAIS",
+      "source": "REG_RF_SOUTHERN_KRAIS",
       "target": "IND_PWHEAMTUSDM",
       "type": "TRIGGERS_INDICATOR",
       "impact": "BLACK_SEA_AGRO_EXPORT_BOTTLENECK"
@@ -2598,257 +2798,257 @@
       "role": "rrpontsyd_val"
     },
     {
-      "source": "ACTOR_US",
-      "target": "ACTOR_DE",
+      "source": "GEO_US",
+      "target": "GEO_DE",
       "type": "POLARITY_COUPLING",
       "p_baseline": 0.85,
       "regime": "ALLIANCE"
     },
     {
-      "source": "ACTOR_US",
-      "target": "ACTOR_FR",
+      "source": "GEO_US",
+      "target": "GEO_FR",
       "type": "POLARITY_COUPLING",
       "p_baseline": 0.8,
       "regime": "ALLIANCE"
     },
     {
-      "source": "ACTOR_US",
-      "target": "ACTOR_GB",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": 0.9,
-      "regime": "ALLIANCE"
-    },
-    {
-      "source": "ACTOR_US",
-      "target": "ACTOR_UA",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": 0.85,
-      "regime": "STRATEGIC_ALIGNMENT"
-    },
-    {
-      "source": "ACTOR_RU",
-      "target": "ACTOR_UA",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": -1,
-      "regime": "KINETIC_WAR"
-    },
-    {
-      "source": "ACTOR_RU",
-      "target": "ACTOR_DE",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": -0.75,
-      "regime": "ECONOMIC_WARFARE"
-    },
-    {
-      "source": "ACTOR_DE",
-      "target": "ACTOR_FR",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": 0.9,
-      "regime": "ALLIANCE"
-    },
-    {
-      "source": "ACTOR_US",
-      "target": "ACTOR_PL",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": 0.85,
-      "regime": "ALLIANCE"
-    },
-    {
-      "source": "ACTOR_RU",
-      "target": "ACTOR_PL",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": -0.85,
-      "regime": "STRATEGIC_FRICTION"
-    },
-    {
-      "source": "ACTOR_US",
-      "target": "ACTOR_JP",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": 0.9,
-      "regime": "ALLIANCE"
-    },
-    {
-      "source": "ACTOR_US",
-      "target": "ACTOR_KR",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": 0.85,
-      "regime": "ALLIANCE"
-    },
-    {
-      "source": "ACTOR_US",
-      "target": "ACTOR_TW",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": 0.85,
-      "regime": "STRATEGIC_ALIGNMENT"
-    },
-    {
-      "source": "ACTOR_CN",
-      "target": "ACTOR_TW",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": -0.9,
-      "regime": "KINETIC_STANDOFF"
-    },
-    {
-      "source": "ACTOR_CN",
-      "target": "ACTOR_JP",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": -0.6,
-      "regime": "STRATEGIC_COMPETITION"
-    },
-    {
-      "source": "ACTOR_US",
-      "target": "ACTOR_AU",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": 0.9,
-      "regime": "ALLIANCE"
-    },
-    {
-      "source": "ACTOR_US",
-      "target": "ACTOR_SG",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": 0.75,
-      "regime": "TACTICAL_COOPERATION"
-    },
-    {
-      "source": "ACTOR_CN",
-      "target": "ACTOR_PH",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": -0.7,
-      "regime": "STRATEGIC_FRICTION"
-    },
-    {
-      "source": "ACTOR_AZ",
-      "target": "ACTOR_AM",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": -0.8,
-      "regime": "STRATEGIC_FRICTION"
-    },
-    {
-      "source": "ACTOR_TR",
-      "target": "ACTOR_AZ",
+      "source": "GEO_US",
+      "target": "GEO_GB",
       "type": "POLARITY_COUPLING",
       "p_baseline": 0.95,
       "regime": "ALLIANCE"
     },
     {
-      "source": "ACTOR_KZ",
-      "target": "ACTOR_RU",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": 0.6,
-      "regime": "TACTICAL_COOPERATION"
-    },
-    {
-      "source": "ACTOR_EG",
-      "target": "ACTOR_US",
-      "type": "POLARITY_COUPLING",
-      "p_baseline": 0.65,
-      "regime": "TACTICAL_COOPERATION"
-    },
-    {
-      "source": "ACTOR_SA",
-      "target": "ACTOR_US",
+      "source": "GEO_US",
+      "target": "GEO_UA",
       "type": "POLARITY_COUPLING",
       "p_baseline": 0.7,
       "regime": "STRATEGIC_ALIGNMENT"
     },
     {
-      "source": "ACTOR_IQ",
-      "target": "ACTOR_IR",
+      "source": "GEO_RU",
+      "target": "GEO_UA",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.6,
-      "regime": "TACTICAL_COOPERATION"
+      "p_baseline": -0.95,
+      "regime": "KINETIC_WAR"
     },
     {
-      "source": "ACTOR_SY",
-      "target": "ACTOR_RU",
+      "source": "GEO_RU",
+      "target": "GEO_DE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.7,
+      "regime": "ECONOMIC_WARFARE"
+    },
+    {
+      "source": "GEO_DE",
+      "target": "GEO_FR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.9,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_PL",
       "type": "POLARITY_COUPLING",
       "p_baseline": 0.85,
       "regime": "ALLIANCE"
     },
     {
-      "source": "ACTOR_US",
-      "target": "ACTOR_CA",
+      "source": "GEO_RU",
+      "target": "GEO_PL",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.8,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_JP",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.9,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_KR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_TW",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.75,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_TW",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.9,
+      "regime": "KINETIC_STANDOFF"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_JP",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.55,
+      "regime": "STRATEGIC_COMPETITION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_AU",
       "type": "POLARITY_COUPLING",
       "p_baseline": 0.95,
       "regime": "ALLIANCE"
     },
     {
-      "source": "ACTOR_US",
-      "target": "ACTOR_MX",
+      "source": "GEO_US",
+      "target": "GEO_SG",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.8,
+      "p_baseline": 0.7,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_PH",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.7,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_AZ",
+      "target": "GEO_AM",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.8,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_TR",
+      "target": "GEO_AZ",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.95,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_KZ",
+      "target": "GEO_RU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.65,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_EG",
+      "target": "GEO_US",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.4,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_SA",
+      "target": "GEO_US",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.5,
       "regime": "STRATEGIC_ALIGNMENT"
     },
     {
-      "source": "ACTOR_US",
-      "target": "ACTOR_BR",
+      "source": "GEO_IQ",
+      "target": "GEO_IR",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.5,
+      "p_baseline": 0.75,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_SY",
+      "target": "GEO_RU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.8,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_CA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.95,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_MX",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.6,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_BR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.3,
       "regime": "NEUTRAL"
     },
     {
-      "source": "ACTOR_SG",
+      "source": "GEO_SG",
       "target": "CHOKE_MALACCA",
       "type": "BRIDGES_TO_MODEL",
       "passes": "strait_security_monitoring"
     },
     {
-      "source": "ACTOR_TW",
+      "source": "GEO_TW",
       "target": "CHOKE_TAIWAN",
       "type": "BRIDGES_TO_MODEL",
       "passes": "semiconductor_supply_chain"
     },
     {
-      "source": "ACTOR_EG",
+      "source": "GEO_EG",
       "target": "CHOKE_BAB_EL_MANDEB",
       "type": "BRIDGES_TO_MODEL",
       "passes": "suez_canal_transit_flow"
     },
     {
       "source": "INST_FED_US",
-      "target": "ACTOR_US",
+      "target": "GEO_US",
       "type": "PATRON_COUPLING",
       "coupling_factor": 1,
       "role": "Monetary Authority"
     },
     {
-      "source": "INST_TCMB_TR",
-      "target": "ACTOR_TR",
+      "source": "INST_CBRT_TR",
+      "target": "GEO_TR",
       "type": "PATRON_COUPLING",
       "coupling_factor": 1,
       "role": "Monetary Authority"
     },
     {
       "source": "INST_ECB_EU",
-      "target": "ACTOR_DE",
+      "target": "GEO_DE",
       "type": "PATRON_COUPLING",
       "coupling_factor": 0.9,
       "role": "Supranational Monetary Authority"
     },
     {
       "source": "INST_BOJ_JP",
-      "target": "ACTOR_JP",
+      "target": "GEO_JP",
       "type": "PATRON_COUPLING",
       "coupling_factor": 1,
       "role": "Monetary Authority"
     },
     {
       "source": "INST_PBOC_CN",
-      "target": "ACTOR_CN",
+      "target": "GEO_CN",
       "type": "PATRON_COUPLING",
       "coupling_factor": 1,
       "role": "Monetary Authority"
     },
     {
       "source": "INST_BOE_GB",
-      "target": "ACTOR_GB",
+      "target": "GEO_GB",
       "type": "PATRON_COUPLING",
       "coupling_factor": 1,
       "role": "Monetary Authority"
     },
     {
       "source": "INST_CBR_RU",
-      "target": "ACTOR_RU",
+      "target": "GEO_RU",
       "type": "PATRON_COUPLING",
       "coupling_factor": 1,
       "role": "Monetary Authority"
@@ -2872,7 +3072,7 @@
       "passes": "liquidity_steering_policy"
     },
     {
-      "source": "INST_TCMB_TR",
+      "source": "INST_CBRT_TR",
       "target": "MODEL_25.2",
       "type": "BRIDGES_TO_MODEL",
       "passes": "inflation_target_transmission"
@@ -2954,6 +3154,12 @@
       "target": "MODEL_25.18",
       "type": "INGESTS_SERIES",
       "role": "Global Dollar Liquidity Benchmark"
+    },
+    {
+      "source": "IND_BAMLH0A0HYM2",
+      "target": "MODEL_25.19",
+      "type": "INGESTS_SERIES",
+      "role": "High Yield Option-Adjusted Spread"
     },
     {
       "source": "IND_UNRATE",
@@ -3295,67 +3501,67 @@
       "source": "IND_STICKCPIM157SFRBATL",
       "target": "MODEL_25.2",
       "type": "INGESTS_SERIES",
-      "role": "Sticky CPI Rate"
+      "role": "sticky_val"
     },
     {
       "source": "IND_FLEXCPIM157SFRBATL",
       "target": "MODEL_25.2",
       "type": "INGESTS_SERIES",
-      "role": "Flexible CPI Rate"
+      "role": "flex_val"
     },
     {
-      "source": "ACTOR_LT",
-      "target": "ACTOR_RU",
+      "source": "GEO_LT",
+      "target": "GEO_RU",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.85,
       "regime": "PROXY_WAR"
     },
     {
-      "source": "ACTOR_EE",
-      "target": "ACTOR_RU",
+      "source": "GEO_EE",
+      "target": "GEO_RU",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.85,
       "regime": "PROXY_WAR"
     },
     {
-      "source": "ACTOR_LV",
-      "target": "ACTOR_RU",
+      "source": "GEO_LV",
+      "target": "GEO_RU",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.85,
       "regime": "PROXY_WAR"
     },
     {
-      "source": "ACTOR_LT",
+      "source": "GEO_LT",
       "target": "CHOKE_SUWALKI_GAP",
       "type": "FLANKS_CHOKEPOINT"
     },
     {
-      "source": "ACTOR_PL",
+      "source": "GEO_PL",
       "target": "CHOKE_SUWALKI_GAP",
       "type": "FLANKS_CHOKEPOINT"
     },
     {
       "source": "BLOC_BALTIC_ASSEMBLY",
-      "target": "ACTOR_EE",
+      "target": "GEO_EE",
       "type": "INCLUDES_MEMBER"
     },
     {
       "source": "BLOC_BALTIC_ASSEMBLY",
-      "target": "ACTOR_LV",
+      "target": "GEO_LV",
       "type": "INCLUDES_MEMBER"
     },
     {
       "source": "BLOC_BALTIC_ASSEMBLY",
-      "target": "ACTOR_LT",
+      "target": "GEO_LT",
       "type": "INCLUDES_MEMBER"
     },
     {
-      "source": "ACTOR_RU",
+      "source": "GEO_RU",
       "target": "ZONE_KALININGRAD_EXCLAVE",
       "type": "CONTROLS_TERRITORY"
     },
     {
-      "source": "ACTOR_LT",
+      "source": "GEO_LT",
       "target": "CORRIDOR_KALININGRAD_TRANSIT",
       "type": "REGULATES_TRANSIT"
     },
@@ -3368,6 +3574,148 @@
       "source": "CORRIDOR_KALININGRAD_TRANSIT",
       "target": "CHOKE_SUWALKI_GAP",
       "type": "PROXIMATE_TO"
+    },
+    {
+      "source": "GOV_TREASURY_US",
+      "target": "GEO_US",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Fiscal & Debt Management Authority"
+    },
+    {
+      "source": "GOV_STATE_US",
+      "target": "GEO_US",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Diplomatic & Sanctions Enforcement"
+    },
+    {
+      "source": "GOV_DOD_US",
+      "target": "GEO_US",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Global Security & Chokepoint Defense"
+    },
+    {
+      "source": "GOV_TREASURY_TR",
+      "target": "GEO_TR",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Fiscal Authority"
+    },
+    {
+      "source": "GOV_MOD_TR",
+      "target": "GEO_TR",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Montreux Maritime Security"
+    },
+    {
+      "source": "GOV_MOF_CN",
+      "target": "GEO_CN",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Fiscal Authority"
+    },
+    {
+      "source": "GOV_MOF_RU",
+      "target": "GEO_RU",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Fiscal Authority & Sovereign Wealth Fund"
+    },
+    {
+      "source": "GOV_MOF_DE",
+      "target": "GEO_DE",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Fiscal Anchor"
+    },
+    {
+      "source": "GOV_HMT_GB",
+      "target": "GEO_GB",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Fiscal Authority"
+    },
+    {
+      "source": "GOV_MOF_JP",
+      "target": "GEO_JP",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Fiscal & FX Intervention Authority"
+    },
+    {
+      "source": "GOV_TREASURY_US",
+      "target": "IND_WTREGEN",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "TGA_CASH_BALANCE_MANAGEMENT"
+    },
+    {
+      "source": "GOV_TREASURY_US",
+      "target": "MODEL_5",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "tga_liquidity_drain_or_injection"
+    },
+    {
+      "source": "GOV_TREASURY_US",
+      "target": "MODEL_9",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "debt_sustainability_and_issuance_pressure"
+    },
+    {
+      "source": "GOV_MOF_DE",
+      "target": "MODEL_9",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "european_debt_brake_constraint"
+    },
+    {
+      "source": "GOV_MOFCOM_CN",
+      "target": "CHOKE_TAIWAN",
+      "type": "CONTROLS_LEVERAGE",
+      "description": "Trade restrictions and strategic critical mineral export controls."
+    },
+    {
+      "source": "GOV_DOD_US",
+      "target": "CHOKE_HORMUZ",
+      "type": "CONTROLS_LEVERAGE",
+      "description": "Maritime escort, free navigation enforcement, and deterrence."
+    },
+    {
+      "source": "GOV_MOD_TR",
+      "target": "BASIN_EAST_MED_DEEPSEA",
+      "type": "CONTROLS_LEVERAGE",
+      "description": "Naval patrol, EEZ protection, and maritime security projection."
+    },
+    {
+      "source": "IND_PET_WCSSTUS1_W",
+      "target": "MODEL_28.4",
+      "type": "INGESTS_SERIES",
+      "role": "spr_stocks_kbbl"
+    },
+    {
+      "source": "IND_PET_WCRFPUS2_W",
+      "target": "MODEL_28.4",
+      "type": "INGESTS_SERIES",
+      "role": "us_crude_prod_kbpd"
+    },
+    {
+      "source": "IND_PET_WGTSTUS1_W",
+      "target": "MODEL_25.9",
+      "type": "INGESTS_SERIES",
+      "role": "gasoline_inventory_context_kbbl"
+    },
+    {
+      "source": "IND_NG_NW2_EPG0_SWO_R48_BCF_W",
+      "target": "MODEL_25.8",
+      "type": "INGESTS_SERIES",
+      "role": "natgas_storage_context_bcf"
+    },
+    {
+      "source": "IND_PET_WCESTUS1_W",
+      "target": "MODEL_25.12",
+      "type": "INGESTS_SERIES",
+      "role": "commercial_crude_stocks_kbbl"
     }
   ]
 }

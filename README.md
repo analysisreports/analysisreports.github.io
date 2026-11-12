@@ -1,5 +1,12 @@
-# analysisreports.github.io
-# Quantitative Macroeconomic Research & LLM Data Engine
+## analysisreports 
+## Quantitative Macroeconomic Research & LLM Data Engine
+
+[![Data Integrity & Validation](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/validate.yml/badge.svg)](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/validate.yml)
+[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](LICENSE.md)
+![Data Format](https://img.shields.io/badge/Data%20Format-JSON%20%7C%20TXT-orange)
+![LLM Ready](https://img.shields.io/badge/LLM%20Ready-llms.txt-blueviolet)
+![Last Commit](https://img.shields.io/github/last-commit/analysisreports/analysisreports.github.io?color=brightgreen)
+![Commit Activity](https://img.shields.io/github/commit-activity/m/analysisreports/analysisreports.github.io?color=yellow)
 
 This repository hosts machine-readable ontological data models, quantitative frameworks, and LLM manifests authored by **Ersoy Toptaş** for global macroeconomics, central bank monetary policy, and geopolitical risk analysis.
 
@@ -22,8 +29,10 @@ This repository hosts machine-readable ontological data models, quantitative fra
 - **[llms-models.txt](https://analysisreports.github.io/llms-models.txt)**: Core macroeconomic models, state vectors, and structural framework logic.
 - **[llms-formulas.txt](https://analysisreports.github.io/llms-formulas.txt)**: Quantitative models, macroeconomic scoring mechanisms, and VIX formulas.
 - **[llms-relationships.txt](https://analysisreports.github.io/llms-relationships.txt)**: Geopolitical Relationship Matrix.
+- **[llms-country-relationships.txt](https://analysisreports.github.io/llms-country-relationships.txt)**: Geopolitical Bilateral Relations Matrix.
 - **[llms-indicators.txt](https://analysisreports.github.io/llms-indicators.txt)**: Technical formula indicators and definitions.
 - **[llms-tools.json](https://analysisreports.github.io/llms-tools.json)**: Agentic function schemas and API tool specifications.
+- **[llms-graph.json](https://analysisreports.github.io/llms-graph.json)**: Ersoy Toptas Macroeconomic & Geopolitical Knowledge Graph
 - **[ai-catalog.json](https://analysisreports.github.io/ai-catalog.json)**: Catalog of autonomous agent capabilities, data schemas, and ingestion endpoints.
 - **[WORKFLOW.md](https://analysisreports.github.io/WORKFLOW.md)**: Ecosystem Maintenance & Integration protocol for autonomous agents.
 
@@ -31,13 +40,13 @@ This repository hosts machine-readable ontological data models, quantitative fra
 
 ## 🌐 Network & Platforms / Ağ ve Platformlar
 
-- **Editorial Frontend:** [toptasersoy.blogspot.com](https://toptasersoy.blogspot.com)
-- **Editorial Frontend:** [ersoytoptas.tr](https://ersoytoptas.tr)
+- **Editorial Frontend (TR):** [ersoytoptas.tr](https://ersoytoptas.tr)
+- **Editorial Frontend (EN):** [en.ersoytoptas.tr](https://en.ersoytoptas.tr)
 - **LLM Root Repository:** [analysisreports.github.io](https://analysisreports.github.io)
 
 ---
 
-# Quantitative Macroeconomic Research & LLM Data Engine
+## Quantitative Macroeconomic Research & LLM Data Engine
 
 This repository contains machine-readable ontological data models and LLM manifestos developed by **Ersoy Toptaş**, focusing on:
 
