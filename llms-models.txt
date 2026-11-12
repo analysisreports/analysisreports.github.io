@@ -323,7 +323,7 @@
 - **Evaluated Status:** `NATGAS_GLUT_ENERGY_CHEAP` (Primary Value: 37.89 WTI/NatGas Ratio)
 - **Inputs Evaluated:** `{"wti_crude_usd_bbl": 99.64, "henry_hub_natgas_usd_mmbtu": 2.63, "lower48_natgas_storage_bcf": 3801.0, "natgas_storage_yoy_pct": -2.66}`
 - **Secondary Metrics:** `{"btu_disconnect_ratio": 37.89, "wti_price": 99.64, "natgas_price": 2.63, "lower48_natgas_storage_bcf": 3801.0, "natgas_storage_yoy_pct": -2.66}`
-- **Economic Synthesis:** Measures the unnormalized WTI-to-Henry Hub price ratio; it is not a BTU-normalized parity measure. Live EIA underground gas storage: 3801.0 Bcf. Ratios > 35 indicate a high crude-to-gas price ratio; < 6 indicate a low ratio. Neither alone proves a physical supply glut or deficit.
+- **Economic Synthesis:** Tracks relative purchasing power: at current quotes, the price of one WTI barrel buys 37.89 MMBtu of Henry Hub gas. Ratios below 6 mark the near-thermal-equivalence band around 5.8 MMBtu per barrel; ratios above 35 flag the empirical high-ratio tail of the matched post-2009 daily series. EIA underground gas storage is supplied as context alongside the price ratio. Current Lower 48 underground gas storage: 3801.0 Bcf.
 
 #### [MODEL_25.9] Gasoline / Distillate / Crude 3:2:1 Crack Spread
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.9

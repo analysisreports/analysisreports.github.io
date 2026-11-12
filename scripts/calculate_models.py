@@ -1167,7 +1167,11 @@ def calc_natgas_crude_btu_disconnect(
             "natgas_price": round(f_gas, 2)
         }
 
-        interp = "Measures the unnormalized WTI-to-Henry Hub price ratio; it is not a BTU-normalized parity measure."
+        interp = (
+            f"Tracks relative purchasing power: at current quotes, the price of one WTI barrel buys {ratio:.2f} MMBtu of Henry Hub gas. "
+            "Ratios below 6 mark the near-thermal-equivalence band around 5.8 MMBtu per barrel; ratios above 35 flag the empirical high-ratio tail of the matched post-2009 daily series. "
+            "EIA underground gas storage is supplied as context alongside the price ratio."
+        )
 
         if natgas_storage_bcf_val is not None and not isinstance(natgas_storage_bcf_val, bool):
             try:
@@ -1180,11 +1184,9 @@ def calc_natgas_crude_btu_disconnect(
                         if math.isfinite(f_syoy):
                             inputs_dict["natgas_storage_yoy_pct"] = round(f_syoy, 2)
                             metrics_dict["natgas_storage_yoy_pct"] = round(f_syoy, 2)
-                    interp += f" Live EIA underground gas storage: {round(f_storage, 1)} Bcf."
+                    interp += f" Current Lower 48 underground gas storage: {round(f_storage, 1)} Bcf."
             except (ValueError, TypeError):
                 pass
-
-        interp += " Ratios > 35 indicate a high crude-to-gas price ratio; < 6 indicate a low ratio. Neither alone proves a physical supply glut or deficit."
 
         return {
             "model_id": "MODEL_25.8",

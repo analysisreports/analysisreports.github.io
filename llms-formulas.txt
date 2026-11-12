@@ -2075,12 +2075,13 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ---
 
 ### 25.8. NATGAS / CRUDE OIL PRICE-RATIO DISCONNECT ENGINE
-- Purpose: Measures the WTI-to-Henry Hub price ratio as a crude/natural-gas disconnect proxy. This ratio is not normalized for the fuels' different energy content and is not a BTU-parity ratio.
+- Purpose: Tracks relative purchasing power between two benchmark quotes. The WTI price per barrel divided by the Henry Hub price per MMBtu indicates how many MMBtu of Henry Hub gas can be bought for an amount equal to the price of one WTI barrel. A rising ratio means WTI is strengthening relative to Henry Hub; a falling ratio means Henry Hub is strengthening relative to WTI.
 - Data Series Keys:
   - FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - Dollars per Barrel)
   - FRED: DHHNGSP (Henry Hub Natural Gas Spot Price - Dollars per Million BTU)
   - EIA context metrics: NG.NW2_EPG0_SWO_R48_BCF.W current storage level and year-over-year change
-- Formula: Crude_NatGas_Price_Ratio = WTI_Price / NatGas_Price
+- Formula: WTI_HH_Purchasing_Power_Ratio = WTI_Price_USD_per_bbl / Henry_Hub_Price_USD_per_MMBtu
+  - Interpreted as MMBtu of Henry Hub gas purchasable for cash equal to one WTI barrel's price.
 - Machine-Executable Logic (Python):
   def natgas_crude_btu_disconnect(wti_price, natgas_price, storage_bcf=None, storage_yoy_pct=None):
       if any(v is None or isinstance(v, bool) for v in (wti_price, natgas_price)):
@@ -2105,9 +2106,12 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           return None
 - Live EIA storage and year-over-year change are reported as context metrics by the model runner; they do not enter the crude/natgas price ratio or determine its status. Missing storage values must remain missing rather than be inferred from the ratio.
 - The existing output field `btu_disconnect_ratio` is a legacy key for this unnormalized price ratio; it does not represent a BTU-normalized measure.
+- Threshold Calibration & Rationale:
+  - Lower bound (< 6.0): The approximate heat content of a crude barrel is about 5.8 MMBtu. A ratio near 5.8 therefore marks approximate thermal-price equivalence; below about 5.8, Henry Hub gas costs more per MMBtu than the WTI barrel's heat-equivalent price. The < 6.0 cutoff is a near-parity screening band, so values from about 5.8 to 6.0 are near parity rather than necessarily beyond it.
+  - Upper bound (> 35.0): This is an empirical high-ratio flag in exact-date-matched daily FRED observations for DCOILWTICO and DHHNGSP. From 1997-01-07 through 2008-12-31 (n=1,088), the median ratio was 8.68 and the 95th percentile was 13.62. From 2009-01-01 through 2026-11-03 (n=4,409), the median was 21.65, the 95th percentile was 37.87, and 7.4% of observations exceeded 35.0. In 2012, 45.2% of matched observations exceeded 35.0; in 2020, none did (maximum 30.58). Thus, 35.0 flags a high-tail price separation in this sample, including the 2012 episode, but not the 2020 episode.
 - Interpretation:
-  - Crude_NatGas_Price_Ratio < 6.0 : NATGAS_CRISIS_BLACKOUT_RISK (Low crude-to-gas price ratio; not, by itself, proof of a physical gas deficit)
-  - Crude_NatGas_Price_Ratio > 35.0 : NATGAS_GLUT_ENERGY_CHEAP (High crude-to-gas price ratio; not, by itself, proof of a physical gas glut)
+  - WTI_HH_Purchasing_Power_Ratio < 6.0 : NATGAS_CRISIS_BLACKOUT_RISK (Near-thermal-parity / high relative Henry Hub price band)
+  - WTI_HH_Purchasing_Power_Ratio > 35.0 : NATGAS_GLUT_ENERGY_CHEAP (High WTI-to-Henry Hub purchasing-power band)
   - 6.0 to 35.0 : ENERGY_PARITY_EQUILIBRIUM (Intermediate price-ratio band; not an energy-equivalence finding)
 
 ---
