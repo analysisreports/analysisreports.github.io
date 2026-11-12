@@ -15,6 +15,8 @@ Endpoint json: https://analysisreports.github.io/llms-fred-series.json
 import os
 import re
 import json
+import csv
+import io
 import math
 import time
 import datetime
@@ -200,6 +202,30 @@ def get_series_data_api(series_id: str, api_key: str, n_obs_per_yr: int) -> Opti
         "observations": cleaned_obs
     }
 
+def fetch_gdppot_for_quarter(observation_date: str) -> Optional[Dict[str, Any]]:
+    try:
+        quarter = datetime.date.fromisoformat(observation_date)
+        if quarter.isoformat() != observation_date or quarter.day != 1 or quarter.month not in (1, 4, 7, 10):
+            raise ValueError("GDPC1 observation date is not a quarterly period start")
+        query = urllib.parse.urlencode({
+            "id": "GDPPOT",
+            "cosd": observation_date,
+            "coed": observation_date,
+        })
+        url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?{query}"
+        req = urllib.request.Request(url, headers={"User-Agent": "AnalysisReports-FRED-Engine/1.0"})
+        with urllib.request.urlopen(req, timeout=25) as response:
+            rows = list(csv.DictReader(io.StringIO(response.read().decode("utf-8-sig"))))
+        if len(rows) != 1 or rows[0].get("observation_date") != observation_date:
+            raise ValueError("FRED did not return exactly the requested GDPPOT quarter")
+        value = float(rows[0]["GDPPOT"])
+        if not math.isfinite(value) or value <= 1.0:
+            raise ValueError("FRED returned an invalid GDPPOT value")
+        return {"date": observation_date, "value": value, "source": url}
+    except (OSError, UnicodeError, KeyError, TypeError, ValueError, csv.Error) as e:
+        print(f"  [ERROR] Could not fetch GDPPOT for GDPC1 quarter {observation_date!r}: {e}")
+        return None
+
 # ==============================================================================
 # 3. REGISTRY PARSER & OUTPUT BUILDER
 # ==============================================================================
@@ -264,11 +290,15 @@ def format_fred_txt_block(entry: Dict[str, Any]) -> str:
     xt_prev_str = f"{xt_prev:.4f}" if xt_prev is not None else "N/A"
     xt_yr_str = f"{xt_year_ago:.4f}" if xt_year_ago is not None else "N/A"
 
+    observation_line = f"Last Date: {last_date} | Current Value: {xt_str}"
+    if s_id == "GDPPOT":
+        observation_line = f"Latest Observation Date (may be a projection): {last_date} | Latest Observation Value: {xt_str}"
+
     return f"""--------------------------------------------------------------------------------
 Series ID: {s_id}
 Title: {title}
 Frequency: {freq} (n_obs_per_yr: {n_obs_per_yr}) | Units: {units}
-Last Date: {last_date} | Current Value: {xt_str} | Previous Value: {xt_prev_str} | Year Ago Value: {xt_yr_str}
+{observation_line} | Previous Value: {xt_prev_str} | Year Ago Value: {xt_yr_str}
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: {fmt(t.get("change"), '')}
@@ -416,6 +446,19 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
 
             json_series_dict[s_id] = entry_dict
             txt_blocks.append(format_fred_txt_block(entry_dict))
+
+    gdpc1 = json_series_dict.get("GDPC1")
+    gdppot = json_series_dict.get("GDPPOT")
+    if gdpc1 is not None and gdppot is not None:
+        gdppot["gdpc1_quarter_observation"] = fetch_gdppot_for_quarter(gdpc1.get("last_date"))
+        matched = gdppot["gdpc1_quarter_observation"]
+        if matched is not None:
+            txt_blocks.append(
+                f"GDPPOT observation matched to GDPC1 quarter: {matched['date']} | "
+                f"Value: {matched['value']:.4f} | Source: {matched['source']}"
+            )
+        else:
+            txt_blocks.append("GDPPOT observation matched to GDPC1 quarter: N/A (fetch failed)")
 
     synced_count = len(json_series_dict)
     all_sids = [s for s_list in frequencies.values() for s in s_list]

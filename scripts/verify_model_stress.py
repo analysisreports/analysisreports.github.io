@@ -146,28 +146,31 @@ def audit_extreme_stress_regimes() -> Tuple[List[str], int, int]:
     r4_ok = True
     try:
         canonical_units = "Billions of Chained 2017 Dollars"
+        same_quarter = ("2026-07-01", "2026-07-01")
         res_taylor = cm.calc_taylor_policy_gap(
-            8.5, 12.0, 20000.0, 23000.0, canonical_units, canonical_units
+            8.5, 12.0, 20000.0, 23000.0, canonical_units, canonical_units, *same_quarter
         )
         if not (res_taylor and math.isfinite(res_taylor["primary_value"])):
             errors.append("STRESS FAIL (Regime 4 - Taylor Policy Gap): Invalid result.")
             r4_ok = False
         if cm.calc_taylor_policy_gap(
-            8.5, 2.0, 20000.0, 1e-12, canonical_units, canonical_units
+            8.5, 2.0, 20000.0, 1e-12, canonical_units, canonical_units, *same_quarter
         ) is not None:
             errors.append("STRESS FAIL (Regime 4 - Taylor Policy Gap): Tiny potential GDP was accepted.")
             r4_ok = False
         if cm.calc_taylor_policy_gap(
             8.5, 2.0, 24.0, 23000.0,
             "Trillions of Chained 2017 Dollars",
-            "Billions of Chained 2017 Dollars"
+            "Billions of Chained 2017 Dollars",
+            *same_quarter
         ) is not None:
             errors.append("STRESS FAIL (Regime 4 - Taylor Policy Gap): Mixed GDP units were accepted.")
             r4_ok = False
         if cm.calc_taylor_policy_gap(
             8.5, 2.0, 20000.0, 23000.0,
             canonical_units,
-            canonical_units
+            canonical_units,
+            *same_quarter
         ) is None:
             errors.append("STRESS FAIL (Regime 4 - Taylor Policy Gap): Canonical GDP units were rejected.")
             r4_ok = False

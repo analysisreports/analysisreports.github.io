@@ -285,13 +285,33 @@
                         "gdppot": {
                             "type": "number",
                             "description": "Real Potential GDP in Billions USD (CBO: GDPPOT)."
+                        },
+                        "gdpc1_units": {
+                            "type": "string",
+                            "description": "GDPC1 units; must be Billions of Chained 2017 Dollars."
+                        },
+                        "gdppot_units": {
+                            "type": "string",
+                            "description": "GDPPOT units; must be Billions of Chained 2017 Dollars."
+                        },
+                        "gdpc1_date": {
+                            "type": "string",
+                            "description": "GDPC1 quarterly observation date, YYYY-MM-DD."
+                        },
+                        "gdppot_date": {
+                            "type": "string",
+                            "description": "GDPPOT quarterly observation date, YYYY-MM-DD; must equal gdpc1_date."
                         }
                     },
                     "required": [
                         "dff",
                         "cpi_yoy",
                         "gdpc1",
-                        "gdppot"
+                        "gdppot",
+                        "gdpc1_units",
+                        "gdppot_units",
+                        "gdpc1_date",
+                        "gdppot_date"
                     ]
                 }
             }

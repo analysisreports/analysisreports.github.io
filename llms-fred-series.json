@@ -2778,6 +2778,11 @@
       "n_obs_per_yr": 4,
       "units": "Billions of Chained 2017 Dollars",
       "source": "Billions of Chained 2017 Dollars",
+      "gdpc1_quarter_observation": {
+        "date": "2026-07-01",
+        "value": 24200.4446936,
+        "source": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=GDPPOT&cosd=2026-07-01&coed=2026-07-01"
+      },
       "last_date": "2036-10-01",
       "current_value": 29443.0227307,
       "previous_value": 29315.4330726,

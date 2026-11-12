@@ -45,3 +45,7 @@ jobs:
       - name: Run Read-Only Verification Suite
         run: |
           python scripts/verify_all.py
+
+      - name: Verify Taylor GDP period alignment
+        run: |
+          python -m unittest discover -s scripts -p test_taylor_alignment.py

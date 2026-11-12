@@ -506,7 +506,9 @@ def calc_taylor_policy_gap(
     gdpc1_val,
     gdppot_val,
     gdpc1_units=None,
-    gdppot_units=None
+    gdppot_units=None,
+    gdpc1_date=None,
+    gdppot_date=None
 ) -> Optional[Dict[str, Any]]:
     if any(v is None or isinstance(v, bool) for v in (dff_val, cpi_yoy_val, gdpc1_val, gdppot_val)):
         return None
@@ -528,6 +530,12 @@ def calc_taylor_policy_gap(
             or normalize_units(gdpc1_units) != expected_units
             or normalize_units(gdppot_units) != expected_units
         ):
+            return None
+
+        if not isinstance(gdpc1_date, str) or gdpc1_date != gdppot_date:
+            return None
+        quarter = datetime.date.fromisoformat(gdpc1_date)
+        if quarter.isoformat() != gdpc1_date or quarter.day != 1 or quarter.month not in (1, 4, 7, 10):
             return None
 
         output_gap_raw = ((gdp / pot) - 1.0) * 100.0
@@ -558,7 +566,9 @@ def calc_taylor_policy_gap(
                 "fed_policy_rate_dff": round(dff, 2),
                 "headline_cpi_yoy_pct": round(cpi, 2),
                 "real_gdp_gdpc1_bil": round(gdp, 2),
-                "real_potential_gdp_gdppot_bil": round(pot, 2)
+                "real_potential_gdp_gdppot_bil": round(pot, 2),
+                "gdpc1_observation_date": gdpc1_date,
+                "gdppot_observation_date": gdppot_date
             },
             "metrics": {
                 "policy_gap_ppt": gap,
@@ -567,7 +577,7 @@ def calc_taylor_policy_gap(
                 "equilibrium_real_neutral_rate_pct": 2.0,
                 "target_inflation_pct": 2.0
             },
-            "interpretation": "Computes the Federal Reserve optimal policy rate prescribed by the standard Taylor (1993) rule and quantifies policy divergence. Gaps < -1.0 ppt reflect an accommodative central bank behind the curve; > +1.0 ppt reflect excessive restrictiveness."
+            "interpretation": "Computes a Taylor-style policy benchmark using headline CPI inflation, a 2% neutral real rate and 0.5 weights, and compares it with the effective Fed funds rate. Gaps < -1.0 ppt are classified as behind the curve; gaps > +1.0 ppt as over-restrictive."
         }
     except (TypeError, ValueError, ZeroDivisionError):
         return None
@@ -2638,7 +2648,7 @@ def main():
 
     if not os.path.exists(fred_json_path):
         print(f"Error: {fred_json_path} not found. Run update_fred_series.py first.")
-        return
+        raise SystemExit(1)
 
     with open(fred_json_path, "r", encoding="utf-8") as f:
         fred_data = json.load(f)
@@ -2753,16 +2763,21 @@ def main():
     # Model 11: Taylor Rule Policy Gap
     gdpc1_series = series.get("GDPC1", {})
     gdppot_series = series.get("GDPPOT", {})
+    gdppot_matched = gdppot_series.get("gdpc1_quarter_observation") or {}
     m_taylor = calc_taylor_policy_gap(
         dff_curr,
         cpi_yoy,
         gdpc1_series.get("current_value"),
-        gdppot_series.get("current_value"),
+        gdppot_matched.get("value"),
         gdpc1_series.get("units"),
-        gdppot_series.get("units")
+        gdppot_series.get("units"),
+        gdpc1_series.get("last_date"),
+        gdppot_matched.get("date")
     )
     if m_taylor:
         models_calculated.append(m_taylor)
+    else:
+        ingestion_warnings.append("Model 11 requires valid GDPC1 and GDPPOT values for the same quarter.")
 
     # Model 12: Financial Conditions Tightness (Chicago Fed NFCI)
     nfci_val = series.get("NFCI", {}).get("current_value")
@@ -3133,6 +3148,8 @@ def main():
             f"[ERROR] Model refresh is degraded: generated {len(models_calculated)} models (expected >= 42) "
             f"with {len(ingestion_warnings)} ingestion warning(s). Existing snapshots were preserved."
         )
+        for warning in ingestion_warnings:
+            print(f"[ERROR] {warning}")
         raise SystemExit(1)
 
     payload = {

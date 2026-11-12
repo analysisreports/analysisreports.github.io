@@ -7,7 +7,7 @@
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-12T02:44:42.168857+00:00",
+    "last_successful_sync": "2026-11-12T15:43:38.539581+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -200,23 +200,25 @@
       "model_id": "MODEL_11",
       "model_name": "Taylor Rule Policy Gap",
       "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#11",
-      "primary_value": 4.96,
+      "primary_value": -4.09,
       "unit": "Percentage Points (ppt)",
-      "status": "OVER_RESTRICTIVE",
+      "status": "BEHIND_THE_CURVE",
       "inputs": {
         "fed_policy_rate_dff": 3.88,
         "headline_cpi_yoy_pct": 4.08,
         "real_gdp_gdpc1_bil": 24611.08,
-        "real_potential_gdp_gdppot_bil": 29443.02
+        "real_potential_gdp_gdppot_bil": 24200.44,
+        "gdpc1_observation_date": "2026-07-01",
+        "gdppot_observation_date": "2026-07-01"
       },
       "metrics": {
-        "policy_gap_ppt": 4.96,
-        "taylor_optimal_rate_pct": -1.08,
-        "output_gap_pct": -16.41,
+        "policy_gap_ppt": -4.09,
+        "taylor_optimal_rate_pct": 7.97,
+        "output_gap_pct": 1.7,
         "equilibrium_real_neutral_rate_pct": 2.0,
         "target_inflation_pct": 2.0
       },
-      "interpretation": "Computes the Federal Reserve optimal policy rate prescribed by the standard Taylor (1993) rule and quantifies policy divergence. Gaps < -1.0 ppt reflect an accommodative central bank behind the curve; > +1.0 ppt reflect excessive restrictiveness."
+      "interpretation": "Computes a Taylor-style policy benchmark using headline CPI inflation, a 2% neutral real rate and 0.5 weights, and compares it with the effective Fed funds rate. Gaps < -1.0 ppt are classified as behind the curve; gaps > +1.0 ppt as over-restrictive."
     },
     {
       "model_id": "MODEL_12",

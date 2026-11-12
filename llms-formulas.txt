@@ -944,16 +944,22 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - BEA / FRED: GDPC1 (Real Gross Domestic Product - Billions USD)
   - CBO / FRED: GDPPOT (Real Potential Gross Domestic Product - Billions USD)
   - Unit requirement: Both series must be labeled "Billions of Chained 2017 Dollars"; unlabeled or different units are rejected rather than implicitly converted.
+  - Period requirement: GDPC1 and GDPPOT must refer to the same quarterly observation date (YYYY-MM-DD, first day of the quarter). GDPPOT's latest observation may be a future projection and must not be used for a different GDP quarter.
   - Input guards: GDPPOT must exceed 1.0 (in billions), and the computed output gap must be within +/-50%; invalid or implausible inputs return no model result.
 - Baseline Assumptions:
   - Equilibrium Real Neutral Rate (r*): 2.0%
   - Target Inflation (pi*): 2.0%
+  - Inflation and output-gap coefficients (alpha and beta): 0.5 each
+  - This is a Taylor-style benchmark using headline CPI YoY, not an official Fed policy rate.
 - Formula:
+  General form: Policy_Rate = r* + inflation + alpha * (inflation - inflation_target) + beta * output_gap_pct
   Output_Gap_Pct = ((GDPC1 - GDPPOT) / GDPPOT) * 100
   Taylor_Optimal_Rate = 2.0 + CPI_YoY + 0.5 * (CPI_YoY - 2.0) + 0.5 * Output_Gap_Pct
   Taylor_Policy_Gap = DFF - Taylor_Optimal_Rate
 - Machine-Executable Logic (Python):
-  def taylor_policy_gap(dff, cpi_yoy, gdpc1, gdppot, gdpc1_units, gdppot_units):
+  import datetime
+
+  def taylor_policy_gap(dff, cpi_yoy, gdpc1, gdppot, gdpc1_units, gdppot_units, gdpc1_date, gdppot_date):
       if any(v is None or isinstance(v, bool) for v in (dff, cpi_yoy, gdpc1, gdppot)):
           return None
       try:
@@ -969,6 +975,12 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           expected_units = "billions of chained 2017 dollars"
           normalize_units = lambda value: " ".join(str(value).casefold().split())
           if normalize_units(gdpc1_units) != expected_units or normalize_units(gdppot_units) != expected_units:
+              return None
+
+          if not isinstance(gdpc1_date, str) or gdpc1_date != gdppot_date:
+              return None
+          quarter = datetime.date.fromisoformat(gdpc1_date)
+          if quarter.isoformat() != gdpc1_date or quarter.day != 1 or quarter.month not in (1, 4, 7, 10):
               return None
 
           output_gap_raw = ((gdpc1 / gdppot) - 1.0) * 100.0
