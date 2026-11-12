@@ -7,7 +7,7 @@
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-11T23:49:20.013308+00:00",
+    "last_successful_sync": "2026-11-12T00:47:36.442985+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -695,27 +695,28 @@
     },
     {
       "model_id": "MODEL_25.9",
-      "model_name": "Gasoline / Crude Crack Spread Impulse Engine",
+      "model_name": "Gasoline / Distillate / Crude 3:2:1 Crack Spread",
       "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.9",
-      "primary_value": 68.15,
+      "primary_value": 44.27,
       "unit": "USD per Barrel",
-      "status": "REFINERY_BOTTLENECK_CRUNCH",
+      "status": "UNCLASSIFIED",
       "inputs": {
-        "gasoline_retail_usd_gal": 3.995,
+        "gasoline_spot_usd_gal": 2.728,
+        "ulsd_spot_usd_gal": 4.823,
         "wti_crude_usd_bbl": 99.64,
+        "matched_observation_date": "2026-11-03",
         "gasoline_stocks_kbbl": 208958.0,
         "gasoline_stocks_yoy_pct": 1.43
       },
       "metrics": {
-        "crack_spread_usd": 68.15,
-        "gasoline_barrel_equiv_usd": 167.79,
-        "wti_crude_usd": 99.64,
+        "crack_spread_321_usd_bbl": 44.27,
+        "gasoline_2_barrel_equiv_usd": 229.15,
+        "ulsd_1_barrel_equiv_usd": 202.57,
+        "wti_crude_usd_bbl": 99.64,
         "gasoline_stocks_kbbl": 208958.0,
-        "gasoline_days_of_supply": 23.2,
-        "inventory_cover_status": "BALANCED_INVENTORY_COVER",
         "gasoline_stocks_yoy_pct": 1.43
       },
-      "interpretation": "Measures refinery processing margins between retail gasoline and crude oil. Live EIA gasoline inventories (208,958 kbbl) provide 23.2 days of supply (BALANCED_INVENTORY_COVER). Spreads > $40/bbl signal refinery capacity bottlenecks and consumer fuel cost shocks; < $5 indicate refining margin collapse."
+      "interpretation": "Calculates the 3:2:1 spot crack spread from same-date New York Harbor conventional gasoline, ULSD, and WTI prices. Regime thresholds have not been calibrated; gasoline inventory is contextual only."
     },
     {
       "model_id": "MODEL_25.10",

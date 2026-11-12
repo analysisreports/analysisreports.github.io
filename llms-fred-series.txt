@@ -106,9 +106,9 @@ DRTSCIS
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-11 23:06:21 UTC
-# - Sync Status: SUCCESS (67 / 67 series active)
-# - Total Series Synced: 67 / 67
+# - Synced At: 2026-11-12 00:47:34 UTC
+# - Sync Status: SUCCESS (69 / 69 series active)
+# - Total Series Synced: 69 / 69
 # - Source Authority: Federal Reserve Bank of St. Louis (FRED API)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
@@ -222,6 +222,50 @@ Recent Observations (Last 5):
   2026-10-30: 107.5600
   2026-11-02: 100.0600
   2026-11-03: 99.6400
+
+--------------------------------------------------------------------------------
+Series ID: DGASNYH
+Title: Conventional Gasoline Prices: New York Harbor, Regular
+Frequency: Daily (n_obs_per_yr: 260) | Units: Dollars per Gallon
+Last Date: 2026-11-03 | Current Value: 2.7280 | Previous Value: 2.6490 | Year Ago Value: 1.8370
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.0790
+  2. Change from Year Ago: +0.8910
+  3. Percent Change: +2.9823%
+  4. Percent Change from Year Ago: +48.5030%
+  5. Compounded Annual Rate of Change: N/A
+  6. Continuously Compounded Rate of Change: +2.9387%
+  7. Continuously Compounded Annual Rate of Change: +764.0498%
+
+Recent Observations (Last 5):
+  2026-10-28: 2.8660
+  2026-10-29: 2.9630
+  2026-10-30: 2.9680
+  2026-11-02: 2.6490
+  2026-11-03: 2.7280
+
+--------------------------------------------------------------------------------
+Series ID: DDFUELNYH
+Title: Ultra-Low-Sulfur No. 2 Diesel Fuel Prices: New York Harbor
+Frequency: Daily (n_obs_per_yr: 260) | Units: Dollars per Gallon
+Last Date: 2026-11-03 | Current Value: 4.8230 | Previous Value: 4.6770 | Year Ago Value: 2.2380
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.1460
+  2. Change from Year Ago: +2.5850
+  3. Percent Change: +3.1217%
+  4. Percent Change from Year Ago: +115.5049%
+  5. Compounded Annual Rate of Change: N/A
+  6. Continuously Compounded Rate of Change: +3.0739%
+  7. Continuously Compounded Annual Rate of Change: +799.2208%
+
+Recent Observations (Last 5):
+  2026-10-28: 4.7140
+  2026-10-29: 4.6750
+  2026-10-30: 4.8760
+  2026-11-02: 4.6770
+  2026-11-03: 4.8230
 
 --------------------------------------------------------------------------------
 Series ID: VIXCLS

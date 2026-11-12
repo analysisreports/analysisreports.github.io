@@ -5,9 +5,9 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-11T23:06:21Z",
-    "total_series": 67,
-    "total_registered": 67,
+    "last_successful_sync": "2026-11-12T00:47:34Z",
+    "total_series": 69,
+    "total_registered": 69,
     "missing_series": [],
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
@@ -226,6 +226,94 @@
         {
           "date": "2026-11-03",
           "value": 99.64
+        }
+      ]
+    },
+    "DGASNYH": {
+      "series_id": "DGASNYH",
+      "title": "Conventional Gasoline Prices: New York Harbor, Regular",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Dollars per Gallon",
+      "source": "Dollars per Gallon",
+      "last_date": "2026-11-03",
+      "last_synced_utc": "2026-11-12T00:47:34Z",
+      "current_value": 2.728,
+      "previous_value": 2.649,
+      "year_ago_value": 1.837,
+      "transformations": {
+        "change": 0.079,
+        "change_from_year_ago": 0.891,
+        "percent_change": 2.9823,
+        "percent_change_from_year_ago": 48.503,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 2.9387,
+        "continuously_compounded_annual_rate_of_change": 764.0498
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-28",
+          "value": 2.866
+        },
+        {
+          "date": "2026-10-29",
+          "value": 2.963
+        },
+        {
+          "date": "2026-10-30",
+          "value": 2.968
+        },
+        {
+          "date": "2026-11-02",
+          "value": 2.649
+        },
+        {
+          "date": "2026-11-03",
+          "value": 2.728
+        }
+      ]
+    },
+    "DDFUELNYH": {
+      "series_id": "DDFUELNYH",
+      "title": "Ultra-Low-Sulfur No. 2 Diesel Fuel Prices: New York Harbor",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Dollars per Gallon",
+      "source": "Dollars per Gallon",
+      "last_date": "2026-11-03",
+      "last_synced_utc": "2026-11-12T00:47:34Z",
+      "current_value": 4.823,
+      "previous_value": 4.677,
+      "year_ago_value": 2.238,
+      "transformations": {
+        "change": 0.146,
+        "change_from_year_ago": 2.585,
+        "percent_change": 3.1217,
+        "percent_change_from_year_ago": 115.5049,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": 3.0739,
+        "continuously_compounded_annual_rate_of_change": 799.2208
+      },
+      "recent_observations": [
+        {
+          "date": "2026-10-28",
+          "value": 4.714
+        },
+        {
+          "date": "2026-10-29",
+          "value": 4.675
+        },
+        {
+          "date": "2026-10-30",
+          "value": 4.876
+        },
+        {
+          "date": "2026-11-02",
+          "value": 4.677
+        },
+        {
+          "date": "2026-11-03",
+          "value": 4.823
         }
       ]
     },
