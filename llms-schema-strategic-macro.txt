@@ -51,6 +51,7 @@ Every strategic-macro entry embeds a clean, machine-readable JSON object inside 
         "series_entity_id": "string (Kanonik gösterge kodu. Örn: IND_DCOILBRENTEU, IND_FEDFUNDS)",
         "indicator_name": "string (Göstergenin tam adı. Örn: Brent Ham Petrol Fiyatı)",
         "reference_period": "string (Referans dönemi. Örn: Kasım 2026)",
+        "observation_date": "string (Format: YYYY-MM-DD. Verinin resmi kaynaktaki son gözlem tarihi. Örn: FRED last_date)",
         "value_comparison": {
           "current_period_value": "string (Mevcut dönem metin değeri)",
           "current_numeric_value": "number (Mevcut dönem net sayısal değeri)",
@@ -73,7 +74,8 @@ Every strategic-macro entry embeds a clean, machine-readable JSON object inside 
           "indicator_id": "string (Kanonik gösterge ID. Örn: IND_DCOILWTICO, IND_OVXCLS. Detaylar llms-entities-id.txt)",
           "indicator_name": "string (Göstergenin tam adı)",
           "indicator_value": "string (Mevcut seviye değeri, örn: $99.64 / bbl)",
-          "change_rate": "string (Dönemsel/yıllık yüzde değişim, örn: +%70.79. Yoksa null)"
+          "change_rate": "string (Dönemsel/yıllık yüzde değişim, örn: +%70.79. Yoksa null)",
+          "observation_date": "string (Format: YYYY-MM-DD. Verinin resmi kaynaktaki son gözlem tarihi. Örn: FRED last_date)",
         }
       ],
       "quantitative_models_evaluated": [
@@ -82,7 +84,8 @@ Every strategic-macro entry embeds a clean, machine-readable JSON object inside 
           "model_name": "string (Modelin resmi adı. Detaylar llms-formulas.txt içinde)",
           "computed_value": "number (Modelin matematiksel formülle hesaplanmış net sayısal değeri)",
           "threshold_critical": "number (Modelin rejim değiştiren kritik eşik değeri)",
-          "active_regime": "string (Resmi enum durumu. Örn: ENERGY_SUPPLY_SHOCK_ALARM, REFINERY_BOTTLENECK_CRUNCH)"
+          "active_regime": "string (Resmi enum durumu. Örn: ENERGY_SUPPLY_SHOCK_ALARM, REFINERY_BOTTLENECK_CRUNCH)",
+          "input_data_date": "string (Format: YYYY-MM-DD. Modelin girdi serilerinin en eski gözlem tarihi)"
         }
       ]
     },
