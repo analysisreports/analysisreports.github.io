@@ -31,8 +31,9 @@
     "quantitative_data_summary": {
       "primary_indicator_tracking": {
         "series_entity_id": null,
-        "indicator_name": "",
+        "indicator_name": "",       
         "reference_period": "",
+         "observation_date": "",
         "value_comparison": {
           "current_period_value": "",
           "current_numeric_value": 0,
@@ -51,12 +52,13 @@
         "yield_spread_bps": 0
       },
       "other_supporting_data": [
-        {
-          "indicator_id": null,
-          "indicator_name": "",
-          "indicator_value": "",
-          "change_rate": null
-        }
+{
+  "indicator_id": null,
+  "indicator_name": "",
+  "indicator_value": "",
+  "change_rate": null,
+  "observation_date": ""
+}
       ],
       "quantitative_models_evaluated": [
         {
@@ -64,7 +66,8 @@
           "model_name": "",
           "computed_value": 0,
           "threshold_critical": 0,
-          "active_regime": ""
+          "active_regime": "",
+          "input_data_date": ""
         }
       ]
     },
