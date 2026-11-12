@@ -22,7 +22,9 @@
       "event_date": "",
       "why": "",
       "how": "",
-      "who_entity_id": null,
+      "who_entity_id": [
+        ""
+      ],
       "who": "",
       "heat": 0
     },
@@ -33,9 +35,9 @@
         "reference_period": "",
         "value_comparison": {
           "current_period_value": "",
-          "current_numeric_value": 0.0,
+          "current_numeric_value": 0,
           "previous_period_value": "",
-          "previous_numeric_value": 0.0,
+          "previous_numeric_value": 0,
           "nominal_change": "",
           "target_deviation_bps": 0
         },
@@ -50,16 +52,18 @@
       },
       "other_supporting_data": [
         {
+          "indicator_id": null,
           "indicator_name": "",
-          "indicator_value": ""
+          "indicator_value": "",
+          "change_rate": null
         }
       ],
       "quantitative_models_evaluated": [
         {
           "model_id": null,
           "model_name": "",
-          "computed_value": 0.0,
-          "threshold_critical": 0.0,
+          "computed_value": 0,
+          "threshold_critical": 0,
           "active_regime": ""
         }
       ]
@@ -131,9 +135,9 @@
           "target": "",
           "directed": true,
           "severity": "MODERATE",
-          "baseline_polarity": 0.0,
-          "dynamic_delta": 0.0,
-          "net_polarity": 0.0,
+          "baseline_polarity": 0,
+          "dynamic_delta": 0,
+          "net_polarity": 0,
           "regime_state": "DIPLOMATIC_CONTACT",
           "heat": 0
         }
@@ -171,11 +175,12 @@
         "strategic_importance": "",
         "control_status": "",
         "logistics_capacity_metrics": {
-          "daily_transit_volume_mbpd": 0.0,
-          "global_consumption_share_pct": 0.0,
-          "pipeline_bypass_capacity_mbpd": 0.0,
-          "unmitigated_supply_deficit_mbpd": 0.0,
-          "alternate_route_delay_days": ""
+          "daily_transit_volume_mbpd": 0,
+          "global_consumption_share_pct": 0,
+          "pipeline_bypass_capacity_mbpd": 0,
+          "unmitigated_supply_deficit_mbpd": 0,
+          "alternate_route_name": "",
+          "delay_days": 0
         }
       }
     ],
@@ -183,7 +188,7 @@
       "actor_pair_entity_id": null,
       "actor_pair": "",
       "regime_state": "DIPLOMATIC_CONTACT",
-      "dynamic_delta": 0.0,
+      "dynamic_delta": 0,
       "active_friction_nodes_entity_id": [
         null
       ],
@@ -200,7 +205,8 @@
           "target_stakeholder": {
             "entity_id": null,
             "entity_name": "",
-            "jurisdiction_or_sector": ""
+            "jurisdiction": "",
+            "sector": ""
           }
         }
       ],
@@ -229,7 +235,8 @@
         {
           "target_url": "",
           "predicate": "",
-          "impact_window": "",
+          "impact_start_date": "",
+          "impact_end_date": "",
           "description": ""
         }
       ]
