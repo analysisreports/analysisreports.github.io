@@ -1475,22 +1475,6 @@
       }
     },
     {
-      "id": "MODEL_25.19",
-      "label": "Sovereign Synthetic CDS & Actuarial Default Probability Engine",
-      "category": "MODEL",
-      "type": "Credit Risk & Actuarial Solvency Model",
-      "attributes": {
-        "function": "calc_sovereign_synthetic_cds_pd",
-        "formula": "hazard_rate = spread_dec / (1.0 - recovery_rate); pd_1y = round(1.0 - math.exp(-hazard_rate), 4)",
-        "target_regimes": [
-          "DISTRESSED_DEBT_CRISIS",
-          "HIGH_DEFAULT_VULNERABILITY",
-          "ELEVATED_CREDIT_RISK",
-          "BENIGN_SOVEREIGN_SOLVENCY"
-        ]
-      }
-    },
-    {
       "id": "MODEL_18",
       "label": "Okun Misery Index",
       "category": "MODEL",
@@ -3154,12 +3138,6 @@
       "target": "MODEL_25.18",
       "type": "INGESTS_SERIES",
       "role": "Global Dollar Liquidity Benchmark"
-    },
-    {
-      "source": "IND_BAMLH0A0HYM2",
-      "target": "MODEL_25.19",
-      "type": "INGESTS_SERIES",
-      "role": "High Yield Option-Adjusted Spread"
     },
     {
       "source": "IND_UNRATE",

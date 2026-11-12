@@ -17,7 +17,7 @@
       "U.S. Energy Information Administration (EIA)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 46
+    "total_models_active": 45
   },
   "models": [
     {
@@ -848,25 +848,6 @@
         }
       },
       "interpretation": "Non-contiguous trilateral defense integration linking Turkish aerospace/defense co-production, Saudi sovereign liquidity, and Pakistani strategic deterrence under dynamic oil and dollar regimes."
-    },
-    {
-      "model_id": "MODEL_25.19",
-      "model_name": "Sovereign Synthetic CDS & Actuarial Default Probability Engine",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.19",
-      "primary_value": 5.57,
-      "unit": "Annual Default Probability Percent (% PD)",
-      "status": "MODERATE_SOVEREIGN_STRESS",
-      "inputs": {
-        "credit_spread_benchmark_bamlh0a0hym2": 3.34,
-        "isda_standard_recovery_rate": 0.4
-      },
-      "metrics": {
-        "synthetic_cds_bps": 334.0,
-        "loss_given_default_pct": 60.0,
-        "annual_default_probability_pct": 5.57,
-        "dynamic_transmission_delta": -0.08
-      },
-      "interpretation": "Actuarial credit risk model computing synthetic sovereign CDS and default probability using ISDA emerging market 40% recovery rate assumptions."
     },
     {
       "model_id": "MODEL_28.4",

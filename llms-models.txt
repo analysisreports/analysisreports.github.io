@@ -58,7 +58,6 @@
 | **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.474** | Score (Normalized) | `BALANCED_HARDWARE_FLOW` | Normalized composite metric monitoring semiconductor ph... |
 | **MODEL_25.16** | Yen Carry Trade Dissolution and Stress Gauge | **6.2379** | % (Net Carry Buffer) | `CALM_ACCUMULATION` | Monitors cross-currency Yen Carry Trade buffer, unwindi... |
 | **MODEL_25.18** | Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact) | **0.133** | Dynamic Delta Index (Avg) | `TREATY_ACTIVE_SURPLUS_EXPANSION` | Non-contiguous trilateral defense integration linking T... |
-| **MODEL_25.19** | Sovereign Synthetic CDS & Actuarial Default Probability Engine | **5.57** | Annual Default Probability Percent (% PD) | `MODERATE_SOVEREIGN_STRESS` | Actuarial credit risk model computing synthetic soverei... |
 | **MODEL_28.4** | Chokepoint Macro Spillover Bridge (Hormuz - Live EIA SPR) | **52** | Index (0-100) | `MODERATE_FRICTION` | Couples maritime chokepoint severity (CATASTROPHIC) wit... |
 
 ---
@@ -375,13 +374,6 @@
 - **Inputs Evaluated:** `{"brent_usd_bbl": 107.03, "sofr_percent": 3.88, "imf_breakeven_usd_bbl": 90.94}`
 - **Secondary Metrics:** `{"oil_breakeven_ratio": 1.1769, "delta_treaty_baseline": 0.1, "energy_fiscal_component": 0.05, "dollar_liquidity_friction": 0.0, "bilateral_deltas": {"TR_SA": 0.15, "SA_PK": 0.15, "TR_PK": 0.1}}`
 - **Economic Synthesis:** Non-contiguous trilateral defense integration linking Turkish aerospace/defense co-production, Saudi sovereign liquidity, and Pakistani strategic deterrence under dynamic oil and dollar regimes.
-
-#### [MODEL_25.19] Sovereign Synthetic CDS & Actuarial Default Probability Engine
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.19
-- **Evaluated Status:** `MODERATE_SOVEREIGN_STRESS` (Primary Value: 5.57 Annual Default Probability Percent (% PD))
-- **Inputs Evaluated:** `{"credit_spread_benchmark_bamlh0a0hym2": 3.34, "isda_standard_recovery_rate": 0.4}`
-- **Secondary Metrics:** `{"synthetic_cds_bps": 334.0, "loss_given_default_pct": 60.0, "annual_default_probability_pct": 5.57, "dynamic_transmission_delta": -0.08}`
-- **Economic Synthesis:** Actuarial credit risk model computing synthetic sovereign CDS and default probability using ISDA emerging market 40% recovery rate assumptions.
 
 #### [MODEL_28.4] Chokepoint Macro Spillover Bridge (Hormuz - Live EIA SPR)
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#28.4

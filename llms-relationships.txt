@@ -934,16 +934,6 @@ Regime States (Discrete Mapping):
 - Actor Coupling: US-Saudi bilateral pact (2.4.3), OPEC+ quota discipline, Petro-dollar liquidity absorption.
 - Transmission Linkage: Brent oil price exceeding Saudi fiscal breakeven (IMF SAUPZPIOILBEGUSD) alongside moderate funding rates generates surplus petrodollar liquidity reinvested in US Treasuries and strategic bilateral defense assets.
 
-### 8.16. Sovereign Synthetic CDS & Actuarial Default Probability Engine (Model 25.19)
-
-8.16.1. MODEL_25.19_SOVEREIGN_SYNTHETIC_CDS_PD
-- Target Formula: llms-formulas.txt -> Model 25.19 (calc_sovereign_synthetic_cds_pd)
-- Data Series Triggered: BAMLH0A0HYM2
-- Status Enums: DISTRESSED_DEBT_CRISIS | HIGH_DEFAULT_VULNERABILITY | ELEVATED_CREDIT_RISK | BENIGN_SOVEREIGN_SOLVENCY
-- Primary Geopolitical Vector: Global debt refinancing stress and credit contagion across vulnerable emerging and sovereign issuers.
-- Actor Coupling: High-yield credit OAS widening transmitting to sovereign refinancing spreads and debt default probabilities.
-- Transmission Linkage: HY credit spread widening beyond 650 bps pushes cumulative 1-year default probability above 6.5%, triggering sovereign debt rollover distress and flight-to-quality duration inflows.
-
 ### 8.17. Chokepoint Macro Spillover Bridge (Model 28.4)
 
 8.17.1. MODEL_28.4_CHOKEPOINT_MACRO_SPILLOVER_BRIDGE

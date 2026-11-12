@@ -2282,63 +2282,6 @@ def calc_mecca_pact_transmission(brent_val, sofr_val, breakeven_oil=None):
         return None
 
 
-# --- Model 25.19: Sovereign Synthetic CDS & Actuarial Default Probability Engine ---
-def calc_sovereign_synthetic_cds_pd(spread_input_pct, recovery_rate=0.40):
-    if spread_input_pct is None or isinstance(spread_input_pct, bool):
-        return None
-    try:
-        spread_pct = float(spread_input_pct)
-        if not math.isfinite(spread_pct) or spread_pct <= 0.0 or spread_pct > 100.0:
-            return None
-
-        rec = float(recovery_rate)
-        if not math.isfinite(rec) or rec < 0.0 or rec >= 1.0:
-            return None
-
-        spread_bps = round(spread_pct * 100.0, 1)
-        lgd = 1.0 - rec
-        if lgd <= 0.0:
-            return None
-
-        raw_pd = spread_pct / lgd
-        if not math.isfinite(raw_pd):
-            return None
-        pd_pct = round(min(100.0, max(0.0, raw_pd)), 2)
-
-        if spread_bps < 250.0:
-            status = "STABLE_INVESTMENT_GRADE"
-        elif spread_bps < 450.0:
-            status = "MODERATE_SOVEREIGN_STRESS"
-        elif spread_bps < 700.0:
-            status = "HIGH_GEOPOLITICAL_RISK"
-        else:
-            status = "ACUTE_DEFAULT_DISTRESS"
-
-        delta_macro = - round(min(0.60, max(0.0, (pd_pct - 4.0) / 10.0 * 0.50)), 2)
-
-        return {
-            "model_id": "MODEL_25.19",
-            "model_name": "Sovereign Synthetic CDS & Actuarial Default Probability Engine",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.19",
-            "primary_value": pd_pct,
-            "unit": "Annual Default Probability Percent (% PD)",
-            "status": status,
-            "inputs": {
-                "credit_spread_benchmark_bamlh0a0hym2": round(spread_pct, 2),
-                "isda_standard_recovery_rate": rec
-            },
-            "metrics": {
-                "synthetic_cds_bps": spread_bps,
-                "loss_given_default_pct": round(lgd * 100.0, 1),
-                "annual_default_probability_pct": pd_pct,
-                "dynamic_transmission_delta": delta_macro
-            },
-            "interpretation": f"Actuarial credit risk model computing synthetic sovereign CDS and default probability using ISDA emerging market {int(rec*100)}% recovery rate assumptions."
-        }
-    except (TypeError, ValueError):
-        return None
-
-
 # --- Model 25.15: Domestic Governance Gridlock & External Tariff Friction Engine ---
 def calc_governance_gridlock_friction(country_code, majority_seat_margin, executive_decree_power):
     if not isinstance(country_code, str):
@@ -3098,12 +3041,6 @@ def main():
     m_mecca = calc_mecca_pact_transmission(brent, sofr, breakeven_oil)
     if m_mecca:
         models_calculated.append(m_mecca)
-
-    # Model 25.19: Sovereign Synthetic CDS & Actuarial Default Probability Engine
-    hy_spread = series.get("BAMLH0A0HYM2", {}).get("current_value")
-    m_cds_pd = calc_sovereign_synthetic_cds_pd(hy_spread)
-    if m_cds_pd:
-        models_calculated.append(m_cds_pd)
 
     # Model 28.4: use the generated relationship snapshot for current polarity and chokepoint metadata.
     relationships_json_path = "llms-relationships.json"

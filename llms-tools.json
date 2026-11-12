@@ -1686,34 +1686,6 @@
         {
             "type": "function",
             "function": {
-                "name": "calculate_sovereign_synthetic_cds_pd",
-                "description": "Quantifies sovereign credit default risk and calculates reduced-form actuarial default probability (Model 25.19) from sovereign yield spread against risk-free benchmarks under ISDA emerging market recovery conventions.",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "spread_input_pct": {
-                            "type": "number",
-                            "minimum": 0.0,
-                            "maximum": 100.0,
-                            "description": "Sovereign credit spread over risk-free rate in percentage points (e.g., 2.85 for 285 bps, or BAMLH0A0HYM2)."
-                        },
-                        "recovery_rate": {
-                            "type": "number",
-                            "minimum": 0.0,
-                            "maximum": 0.99,
-                            "default": 0.40,
-                            "description": "Standard emerging market ISDA bond recovery rate (default 0.40 for 40% recovery / 60% LGD)."
-                        }
-                    },
-                    "required": [
-                        "spread_input_pct"
-                    ]
-                }
-            }
-        },
-        {
-            "type": "function",
-            "function": {
                 "name": "calculate_committee_dispersion",
                 "description": "Calculates Central Bank Committee Dispersion & Hawkishness Index (Model 26) measuring monetary policy voting distribution across hawkish, dovish, and neutral members to compute directional stance (H-Index) and internal committee fracture (Blau-Simpson Dispersion).",
                 "parameters": {

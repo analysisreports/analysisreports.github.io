@@ -13,7 +13,6 @@ Audits:
 2. Macroeconomic Stress Regime Testing:
    - Tests core model calculator algorithms against extreme geopolitical and macro shocks:
      * Stagflation Spike: CPI YoY = 25.0%, Fed Funds = 9.5%, Oil = $140/bbl
-     * Liquidity Freeze / Severe Recession: CDS = 1500 bps, High Yield Spread = 1200 bps, 10Y Yield = 0.50%
      * Hyperinflation & Extreme Rate Hikes: CBRT Policy Rate = 80%, Inflation = 85%
      * Oil Chokepoint Shock: Hormuz Blockade proxy (Brent = $180, Gold = $3500)
 3. Year-over-Year Crack Spread Classification: Tests expanding, contracting, unchanged, and missing-history cases.
@@ -95,28 +94,10 @@ def audit_production_models(models_data: List[Dict[str, Any]]) -> List[str]:
 def audit_extreme_stress_regimes() -> Tuple[List[str], int, int]:
     errors = []
     if cm is None:
-        return ["Failed to import calculate_models.py for stress testing."], 0, 10
+        return ["Failed to import calculate_models.py for stress testing."], 0, 8
 
-    total_regimes = 10
+    total_regimes = 8
     passed_regimes = 0
-
-    # Regime 1: Severe Credit Crunch & Sovereign Stress
-    r1_ok = True
-    try:
-        # CDS default probability at 1500 bps (15.0%)
-        res_cds = cm.calc_sovereign_synthetic_cds_pd(15.0, 0.40)
-        if res_cds:
-            pd = res_cds["primary_value"]
-            if not (math.isfinite(pd) and pd > 0):
-                errors.append(f"STRESS FAIL (Regime 1 - CDS): Invalid PD={pd}")
-                r1_ok = False
-        else:
-            errors.append("STRESS FAIL (Regime 1 - CDS): Returned None for valid 1500 bps.")
-            r1_ok = False
-    except Exception as e:
-        errors.append(f"CRASH in calc_sovereign_synthetic_cds_pd under 1500 bps: {e}")
-        r1_ok = False
-    if r1_ok: passed_regimes += 1
 
     # Regime 2: Hyperinflation & High Rate Regime
     r2_ok = True
@@ -193,33 +174,6 @@ def audit_extreme_stress_regimes() -> Tuple[List[str], int, int]:
         errors.append(f"CRASH in calc_yield_spread_bps: {e}")
         r5_ok = False
     if r5_ok: passed_regimes += 1
-
-    # Regime 6: CDS Mathematical Singularity & Edge Cases Guard (inf, nan, recovery>=1.0)
-    r6_ok = True
-    try:
-        # 1. Infinite spread must return None (not Infinity)
-        if cm.calc_sovereign_synthetic_cds_pd(float('inf'), 0.40) is not None:
-            errors.append("VULNERABILITY FAIL (Regime 6 - CDS): Infinite spread did not return None.")
-            r6_ok = False
-        # 2. NaN spread must return None
-        if cm.calc_sovereign_synthetic_cds_pd(float('nan'), 0.40) is not None:
-            errors.append("VULNERABILITY FAIL (Regime 6 - CDS): NaN spread did not return None.")
-            r6_ok = False
-        # 3. Recovery rate >= 1.0 must return None (prevents division by zero or invalid LGD)
-        if cm.calc_sovereign_synthetic_cds_pd(5.0, recovery_rate=1.0) is not None:
-            errors.append("VULNERABILITY FAIL (Regime 6 - CDS): recovery_rate=1.0 did not return None.")
-            r6_ok = False
-        if cm.calc_sovereign_synthetic_cds_pd(5.0, recovery_rate=1.5) is not None:
-            errors.append("VULNERABILITY FAIL (Regime 6 - CDS): recovery_rate=1.5 did not return None.")
-            r6_ok = False
-        # 4. Negative recovery rate must return None
-        if cm.calc_sovereign_synthetic_cds_pd(5.0, recovery_rate=-0.2) is not None:
-            errors.append("VULNERABILITY FAIL (Regime 6 - CDS): negative recovery_rate did not return None.")
-            r6_ok = False
-    except Exception as e:
-        errors.append(f"CRASH in Regime 6 CDS Edge Cases: {e}")
-        r6_ok = False
-    if r6_ok: passed_regimes += 1
 
     # Regime 7: Committee Dispersion Discrete Integer Voting Integrity
     r7_ok = True
