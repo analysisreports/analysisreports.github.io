@@ -1,5 +1,5 @@
-# analysisreports.github.io
-# Quantitative Macroeconomic Research & LLM Data Engine
+## analysisreports 
+## Quantitative Macroeconomic Research & LLM Data Engine
 
 [![Data Integrity & Validation](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/validate.yml/badge.svg)](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/validate.yml)
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](LICENSE.md)
@@ -46,7 +46,7 @@ This repository hosts machine-readable ontological data models, quantitative fra
 
 ---
 
-# Quantitative Macroeconomic Research & LLM Data Engine
+## Quantitative Macroeconomic Research & LLM Data Engine
 
 This repository contains machine-readable ontological data models and LLM manifestos developed by **Ersoy Toptaş**, focusing on:
 
