@@ -20,6 +20,8 @@ For a new model or a material change to an existing model, synchronize the follo
 
 For Model 11, the FRED sync requests GDPPOT for the exact GDPC1 quarter through the FRED API when a key is available, then the FRED CSV endpoint if needed. Network failures are retried; neither endpoint may supply a different quarter or a cached substitute. If both fail, model refresh fails and existing model snapshots remain unchanged and may be stale.
 
+`IMF_REP_USD_ILS` is a local registry identifier for the IMF's daily representative Israeli shekel per US dollar rate, not an IMF SDMX series code. The sync reads IMF monthly archives with the same observation limit, five-observation output, and three-day daily cache used by the existing IMF pipeline. Failed refreshes retain and mark the existing snapshot as stale.
+
 ---
 
 ## 2. Adding a Geopolitical Actor, Chokepoint, or Corridor

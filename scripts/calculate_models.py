@@ -805,7 +805,7 @@ def calc_vix_market_regime(vix):
         return None
 
 
-# --- Model 25.12: Brent - WTI Seaborne Spread Engine ---
+# --- Model 25.12: Brent - WTI Benchmark Price Spread ---
 def calc_brent_wti_spread(
     brent_price,
     wti_price,
@@ -828,11 +828,11 @@ def calc_brent_wti_spread(
         spread = round(raw_spread, 2)
 
         if spread > 8.0:
-            status = "SEABORNE_GEOPOLITICAL_PREMIUM"
+            status = "WIDE_BRENT_WTI_SPREAD"
         elif spread < 1.5:
-            status = "US_DOMESTIC_TIGHTNESS"
+            status = "NARROW_BRENT_WTI_SPREAD"
         else:
-            status = "NORMAL_TRANSATLANTIC_ARBITRAGE"
+            status = "TYPICAL_BRENT_WTI_SPREAD"
 
         inputs_dict: Dict[str, Any] = {"brent_usd": f_brent, "wti_usd": f_wti}
         metrics_dict: Dict[str, Any] = {
@@ -841,7 +841,10 @@ def calc_brent_wti_spread(
             "wti_usd": f_wti
         }
 
-        interp = "Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI."
+        interp = (
+            "Measures the Brent-WTI benchmark price difference, indicating Brent's relative premium or "
+            "discount and the degree of price divergence between the two markets."
+        )
 
         if commercial_crude_stocks_kbbl is not None and not isinstance(commercial_crude_stocks_kbbl, bool):
             try:
@@ -867,7 +870,7 @@ def calc_brent_wti_spread(
 
         return {
             "model_id": "MODEL_25.12",
-            "model_name": "Brent - WTI Seaborne Risk Spread",
+            "model_name": "Brent-WTI Benchmark Price Spread",
             "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.12",
             "primary_value": spread,
             "unit": "USD",

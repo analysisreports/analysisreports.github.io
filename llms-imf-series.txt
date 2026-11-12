@@ -19,7 +19,7 @@
 # - Daily: 260 obs/yr | Weekly: 52 obs/yr | Monthly: 12 obs/yr | Quarterly: 4 obs/yr | Semiannual: 2 obs/yr | Annual: 1 obs/yr
 
 [DAILY]
-
+IMF_REP_USD_ILS
 [WEEKLY]
 
 [MONTHLY]
@@ -37,14 +37,36 @@ SAUPZPIOILBEGUSD
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-12 18:48:33 UTC
+# - Synced At: 2026-11-12 22:11:50 UTC
 # - Sync Status: SUCCESS
-# - Total Series Synced: 3 / 3
+# - Total Series Synced: 4 / 4
 # - Missing Series: None
 # - Retained Stale Series: None
 # - Source Authority: International Monetary Fund (IMF)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
+
+--------------------------------------------------------------------------------
+Series ID: IMF_REP_USD_ILS
+Title: IMF Representative Exchange Rate: Israeli New Shekel per US Dollar
+Frequency: Daily (n_obs_per_yr: 260) | Units: Israeli New Shekels per US Dollar
+Last Date: 2026-11-12 | Current Value: 3.1910 | Previous Value: 3.1720 | Year Ago Value: N/A
+
+Transformations (Official IMF / St. Louis Fed Formulas):
+  1. Change: +0.0190
+  2. Change from Year Ago: N/A
+  3. Percent Change: +0.5990%
+  4. Percent Change from Year Ago: N/A
+  5. Compounded Annual Rate of Change: +372.4356%
+  6. Continuously Compounded Rate of Change: +0.5972%
+  7. Continuously Compounded Annual Rate of Change: +155.2731%
+
+Recent Observations (Last 5):
+  2026-11-06: 3.1940
+  2026-11-09: 3.1710
+  2026-11-10: 3.1610
+  2026-11-11: 3.1720
+  2026-11-12: 3.1910
 
 --------------------------------------------------------------------------------
 Series ID: JP_FPOLM_PA

@@ -5,9 +5,9 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-12T18:48:33Z",
-    "total_series": 3,
-    "total_registered_series": 3,
+    "last_successful_sync": "2026-11-12T22:11:50Z",
+    "total_series": 4,
+    "total_registered_series": 4,
     "missing_series": [],
     "stale_series": [],
     "source_authority": "International Monetary Fund (IMF)",
@@ -15,6 +15,50 @@
     "root_index": "https://analysisreports.github.io/llms.txt"
   },
   "series": {
+    "IMF_REP_USD_ILS": {
+      "series_id": "IMF_REP_USD_ILS",
+      "title": "IMF Representative Exchange Rate: Israeli New Shekel per US Dollar",
+      "frequency": "Daily",
+      "n_obs_per_yr": 260,
+      "units": "Israeli New Shekels per US Dollar",
+      "source": "International Monetary Fund (IMF) Representative Exchange Rates",
+      "last_date": "2026-11-12",
+      "last_synced_utc": "2026-11-12T21:39:04Z",
+      "current_value": 3.191,
+      "previous_value": 3.172,
+      "year_ago_value": null,
+      "transformations": {
+        "change": 0.019,
+        "change_from_year_ago": null,
+        "percent_change": 0.599,
+        "percent_change_from_year_ago": null,
+        "compounded_annual_rate_of_change": 372.4356,
+        "continuously_compounded_rate_of_change": 0.5972,
+        "continuously_compounded_annual_rate_of_change": 155.2731
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-06",
+          "value": 3.194
+        },
+        {
+          "date": "2026-11-09",
+          "value": 3.171
+        },
+        {
+          "date": "2026-11-10",
+          "value": 3.161
+        },
+        {
+          "date": "2026-11-11",
+          "value": 3.172
+        },
+        {
+          "date": "2026-11-12",
+          "value": 3.191
+        }
+      ]
+    },
     "JP_FPOLM_PA": {
       "series_id": "JP_FPOLM_PA",
       "title": "Central Bank Policy Rate for Japan",

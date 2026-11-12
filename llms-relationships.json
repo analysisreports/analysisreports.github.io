@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-12T18:48:33.872230+00:00",
+    "last_successful_sync": "2026-11-12T20:17:10.110784+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -127,7 +127,7 @@
       "dynamic_delta": 0.0,
       "p_net": -0.95,
       "regime_state": "PROXY_WAR",
-      "primary_driver": "MODEL_25_12_BRENT_WTI_SEABORNE_SPREAD",
+      "primary_driver": "MODEL_25_12_BRENT_WTI_BENCHMARK_SPREAD",
       "friction_nodes": [
         "LEVANT",
         "PERSIAN_GULF",
@@ -283,7 +283,7 @@
       "dynamic_delta": 0.0,
       "p_net": -0.95,
       "regime_state": "PROXY_WAR",
-      "primary_driver": "MODEL_25_12_SEABORNE_SHIPPING_CHOKEPOINT",
+      "primary_driver": "MODEL_25_12_BRENT_WTI_BENCHMARK_SPREAD",
       "friction_nodes": [
         "BAB_EL_MANDEB",
         "RED_SEA",

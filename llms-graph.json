@@ -695,15 +695,15 @@
     },
     {
       "id": "MODEL_25.12",
-      "label": "Brent-WTI Seaborne Spread Engine",
+      "label": "Brent-WTI Benchmark Price Spread",
       "category": "MODEL",
       "attributes": {
         "function": "brent_wti_spread",
         "formula": "Brent_WTI_Spread = DCOILBRENTEU - DCOILWTICO",
         "status_enums": [
-          "SEABORNE_GEOPOLITICAL_PREMIUM",
-          "US_DOMESTIC_TIGHTNESS",
-          "NORMAL_TRANSATLANTIC_ARBITRAGE"
+          "WIDE_BRENT_WTI_SPREAD",
+          "NARROW_BRENT_WTI_SPREAD",
+          "TYPICAL_BRENT_WTI_SPREAD"
         ]
       }
     },

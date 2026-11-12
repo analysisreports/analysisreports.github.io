@@ -7,7 +7,7 @@
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-12T18:48:33.920173+00:00",
+    "last_successful_sync": "2026-11-12T20:17:10.154821+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -552,11 +552,11 @@
     },
     {
       "model_id": "MODEL_25.12",
-      "model_name": "Brent - WTI Seaborne Risk Spread",
+      "model_name": "Brent-WTI Benchmark Price Spread",
       "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.12",
       "primary_value": 7.39,
       "unit": "USD",
-      "status": "NORMAL_TRANSATLANTIC_ARBITRAGE",
+      "status": "TYPICAL_BRENT_WTI_SPREAD",
       "inputs": {
         "brent_usd": 107.03,
         "wti_usd": 99.64,
@@ -570,7 +570,7 @@
         "commercial_crude_stocks_mbbl": 409.76,
         "us_crude_production_mbpd": 14.0
       },
-      "interpretation": "Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI. Live EIA commercial crude stocks: 409.76 mbbl. Live EIA US crude field production: 14.0 mbpd."
+      "interpretation": "Measures the Brent-WTI benchmark price difference, indicating Brent's relative premium or discount and the degree of price divergence between the two markets. Live EIA commercial crude stocks: 409.76 mbbl. Live EIA US crude field production: 14.0 mbpd."
     },
     {
       "model_id": "MODEL_25.13",

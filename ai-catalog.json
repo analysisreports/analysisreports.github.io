@@ -297,7 +297,7 @@
       "authentication": {
         "type": "none"
       },
-      "description": "Real-time evaluated macroeconomic models including Brent-WTI Seaborne Spread (Model 25.12), VIX Fear Regime (Model 16), AI Hardware Stress (Model 25.14), and Labor Momentum Index (Model 25.13)."
+      "description": "Real-time evaluated macroeconomic models including the Brent-WTI Benchmark Price Spread (Model 25.12), VIX Fear Regime (Model 16), AI Hardware Stress (Model 25.14), and Labor Momentum Index (Model 25.13)."
     }
   ],
   "capabilities": {

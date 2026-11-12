@@ -2266,8 +2266,8 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 
 ---
 
-### 25.12. BRENT-WTI SEABORNE SPREAD ENGINE
-- Purpose: Uses the Brent-WTI price spread as a seaborne-versus-domestic market proxy. The spread alone does not establish a geopolitical cause or measure tanker freight.
+### 25.12. BRENT-WTI BENCHMARK PRICE SPREAD
+- Purpose: Measures the price difference between the international Brent and U.S. WTI crude oil benchmarks to assess Brent's relative premium or discount and the degree of price divergence between the two markets.
 - Data Series Keys:
   - EIA / FRED: DCOILBRENTEU (Crude Oil Prices: Brent - Europe, USD per Barrel)
   - EIA / FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - USD per Barrel)
@@ -2292,20 +2292,24 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           spread = round(raw_spread, 2)
 
           if spread > 8.0:
-              status = "SEABORNE_GEOPOLITICAL_PREMIUM"
+              status = "WIDE_BRENT_WTI_SPREAD"
           elif spread < 1.5:
-              status = "US_DOMESTIC_TIGHTNESS"
+              status = "NARROW_BRENT_WTI_SPREAD"
           else:
-              status = "NORMAL_TRANSATLANTIC_ARBITRAGE"
+              status = "TYPICAL_BRENT_WTI_SPREAD"
 
           return {"brent_wti_spread_usd": spread, "status": status}
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - Spread > $8.00 : SEABORNE_GEOPOLITICAL_PREMIUM (Maritime chokepoint security premium / Red Sea or Hormuz shock / Soaring tanker freight & insurance)
-  - $1.50 to $8.00 : NORMAL_TRANSATLANTIC_ARBITRAGE (Standard transatlantic arbitrage / Balanced shipping logistics)
-  - Spread < $1.50 : US_DOMESTIC_TIGHTNESS (US domestic physical tightness / Cushing inventory drawdown / Constrained export arbitrage)
-  - Commercial crude stocks and U.S. field production are included as context metrics by the model runner; they do not affect the spread or status. No tanker-freight series is currently part of this calculation.
+  - Spread > $8.00 : WIDE_BRENT_WTI_SPREAD (Brent is priced at a wide premium to WTI)
+  - $1.50 to $8.00 : TYPICAL_BRENT_WTI_SPREAD (The benchmark price difference is within the model's middle band)
+  - Spread < $1.50 : NARROW_BRENT_WTI_SPREAD (The benchmark price difference is narrow or WTI is priced above Brent)
+  - These are descriptive bands using the model's existing thresholds; the spread indicates relative benchmark pricing, not the cause of the difference. Commercial crude stocks and U.S. field production are context metrics only and do not affect the spread or status.
+- Relationship Transmission (separate from the model status):
+  - oil_delta = -0.15 when Spread > $12.00; -0.10 when $8.00 < Spread <= $12.00; otherwise 0.00.
+  - Bilateral dynamic delta = oil_delta * pair coefficient: IL-IR (1.0), YE-IL (1.0), SA-IR (0.5), US-VE (0.5), TR-SY (0.3), EG-IL (-0.5), and SA-YE (0.4).
+  - This transmission overlay does not change Brent_WTI_Spread or its descriptive status. The spread is an absolute USD/barrel measure; no percentage normalization or rolling Z-score is applied.
 
 ---
 

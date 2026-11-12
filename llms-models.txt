@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-12 18:48 UTC
+> **Last Calibrated Sync:** 2026-11-12 20:17 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -43,7 +43,7 @@
 | **MODEL_23.8** | Mortgage and Permit Divergence (Housing Freeze Index) | **7.5** | Index Points | `SUPPLY_CONTRACTION` | Measures divergence between surging mortgage borrowing ... |
 | **MODEL_24** | Safe Haven Flight Index | **0.834** | Flight Ratio | `NORMAL_MARKET_REGIME` | Measures capital flight into safe-haven USD and flight-... |
 | **MODEL_25** | Terms of Trade (TOT) | **112.22** | Index Points | `FAVORABLE_TRADE` | Evaluates sovereign purchasing power and current accoun... |
-| **MODEL_25.12** | Brent - WTI Seaborne Risk Spread | **7.39** | USD | `NORMAL_TRANSATLANTIC_ARBITRAGE` | Seaborne geopolitical friction and maritime risk spread... |
+| **MODEL_25.12** | Brent-WTI Benchmark Price Spread | **7.39** | USD | `TYPICAL_BRENT_WTI_SPREAD` | Measures the Brent-WTI benchmark price difference, indi... |
 | **MODEL_25.13** | Labor Market Momentum Index (LMMI) | **0.86** | Net Momentum Pts | `MODERATE_LABOR_EXPANSION` | Couples nonfarm payroll expansion with unemployment cha... |
 | **MODEL_25.2** | Sticky vs. Flexible CPI Spread | **0.14** | Percentage Points (ppt) | `BALANCED_DISINFLATION_PATH` | Evaluates core inflation persistence versus transient p... |
 | **MODEL_25.3** | Global Supply Chain Pressure Logistics Engine (NY Fed GSCPI) | **1.26** | Standard Deviations (Z-Score) | `NORMALIZED_GLOBAL_TRADE` | Tracks standard deviations of global freight rates, shi... |
@@ -268,12 +268,12 @@
 - **Secondary Metrics:** `{"terms_of_trade_ratio": 112.22, "export_index": 170.8, "import_index": 152.2}`
 - **Economic Synthesis:** Evaluates sovereign purchasing power and current account terms-of-trade transfers by measuring the relative price of exported commodities against imported goods.
 
-#### [MODEL_25.12] Brent - WTI Seaborne Risk Spread
+#### [MODEL_25.12] Brent-WTI Benchmark Price Spread
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.12
-- **Evaluated Status:** `NORMAL_TRANSATLANTIC_ARBITRAGE` (Primary Value: 7.39 USD)
+- **Evaluated Status:** `TYPICAL_BRENT_WTI_SPREAD` (Primary Value: 7.39 USD)
 - **Inputs Evaluated:** `{"brent_usd": 107.03, "wti_usd": 99.64, "commercial_crude_stocks_mbbl": 409.76, "us_crude_production_mbpd": 14.0}`
 - **Secondary Metrics:** `{"brent_wti_spread_usd": 7.39, "brent_usd": 107.03, "wti_usd": 99.64, "commercial_crude_stocks_mbbl": 409.76, "us_crude_production_mbpd": 14.0}`
-- **Economic Synthesis:** Seaborne geopolitical friction and maritime risk spread between North Sea Brent and Cushing WTI. Live EIA commercial crude stocks: 409.76 mbbl. Live EIA US crude field production: 14.0 mbpd.
+- **Economic Synthesis:** Measures the Brent-WTI benchmark price difference, indicating Brent's relative premium or discount and the degree of price divergence between the two markets. Live EIA commercial crude stocks: 409.76 mbbl. Live EIA US crude field production: 14.0 mbpd.
 
 #### [MODEL_25.13] Labor Market Momentum Index (LMMI)
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.13

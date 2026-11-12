@@ -50,7 +50,7 @@ Stage 4: Geopolitical Graph & Sovereign Governance Resolution
 
 Stage 5: Live Quantitative Model Evaluation & Regime Classification
 - Target Endpoints: `llms-models.json`, `llms-models.txt`, `llms-formulas.txt`, `llms-tools.json`
-- Objective: First, inspect `llms-models.json` for live pre-computed quantitative models (e.g., Model 3 Sahm Rule, Model 5 Net Fed Liquidity, Model 6 Yield Spread, Model 16 VIX Regime, Model 25.12 Brent-WTI Spread, Model 25.13 LMMI, Model 25.14 AI Chip Stress). For secondary or specialized models not present in the live bank, execute the pure Python algorithms defined in `llms-formulas.txt` using ingested FRED series. Assign canonical uppercase regime enums.
+- Objective: First, inspect `llms-models.json` for live pre-computed quantitative models (e.g., Model 3 Sahm Rule, Model 5 Net Fed Liquidity, Model 6 Yield Spread, Model 16 VIX Regime, Model 25.12 Brent-WTI Benchmark Price Spread, Model 25.13 LMMI, Model 25.14 AI Chip Stress). For secondary or specialized models not present in the live bank, execute the pure Python algorithms defined in `llms-formulas.txt` using ingested FRED series. Assign canonical uppercase regime enums.
 
 Stage 6: Synthesis, Integrity Check & Attribution
 - Target Endpoints: Publication Standards (`ersoytoptas.tr`)

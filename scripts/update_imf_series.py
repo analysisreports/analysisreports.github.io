@@ -21,6 +21,7 @@ import ssl
 import json
 import math
 import datetime
+import subprocess
 import urllib.request
 import urllib.parse
 from typing import Dict, List, Optional, Any, Tuple
@@ -204,6 +205,68 @@ def get_series_data_live(series_id: str, api_key: Optional[str], n_obs_per_yr: i
 
     return None
 
+
+def fetch_imf_representative_month(month: datetime.date) -> List[Dict[str, Any]]:
+    url = (
+        "https://www.imf.org/external/np/fin/data/rms_mth.aspx?"
+        + urllib.parse.urlencode({
+            "SelectDate": month.isoformat(),
+            "reportType": "REP",
+            "tsvflag": "Y",
+        })
+    )
+    result = subprocess.run(
+        ["curl", "--fail", "--silent", "--show-error", "--location", "--max-time", "25",
+         "--retry", "2", "--retry-delay", "1", url],
+        capture_output=True, text=True, encoding="utf-8", timeout=80, check=True
+    )
+    rows = list(csv.reader(io.StringIO(result.stdout), delimiter="\t"))
+    observations = []
+    headers = [i for i, row in enumerate(rows) if row and row[0].strip() == "Currency"]
+    if not headers:
+        raise ValueError(f"Invalid IMF representative-rate table for {month:%Y-%m}")
+    for index, start in enumerate(headers):
+        end = headers[index + 1] if index + 1 < len(headers) else len(rows)
+        header = rows[start]
+        shekel_rows = [row for row in rows[start + 1:end] if row and row[0].strip() == "Israeli New Shekel"]
+        if len(shekel_rows) != 1 or len(header) != len(shekel_rows[0]):
+            raise ValueError(f"Invalid IMF representative-rate table for {month:%Y-%m}")
+        for date_text, value_text in zip(header[1:], shekel_rows[0][1:]):
+            date = datetime.datetime.strptime(date_text.strip(), "%B %d, %Y").date()
+            if date.year != month.year or date.month != month.month:
+                raise ValueError(f"Unexpected IMF observation date: {date}")
+            value_text = value_text.strip()
+            if value_text in ("", "NA", "---"):
+                continue
+            value = float(value_text.replace(",", ""))
+            if not math.isfinite(value) or value <= 0:
+                raise ValueError(f"Invalid IMF USD/ILS observation for {date}")
+            observations.append({"date": date.isoformat(), "value": value})
+    return observations
+
+
+def get_imf_usd_ils(today: datetime.date, n_obs_per_yr: int) -> Dict[str, Any]:
+    observations: Dict[str, Dict[str, Any]] = {}
+    limit = max(30, n_obs_per_yr + 15)
+    month = today.replace(day=1)
+
+    for _ in range(18):
+        for item in fetch_imf_representative_month(month):
+            observations[item["date"]] = item
+        if len(observations) >= limit:
+            break
+        month = (month - datetime.timedelta(days=1)).replace(day=1)
+
+    return {
+        "metadata": {
+            "title": "IMF Representative Exchange Rate: Israeli New Shekel per US Dollar",
+            "units": "Israeli New Shekels per US Dollar",
+            "source_institution": "International Monetary Fund (IMF) Representative Exchange Rates",
+        },
+        "observations": sorted(observations.values(), key=lambda item: item["date"])[-limit:],
+    }
+
+
 # ==============================================================================
 # 3. REGISTRY PARSER & PROCESSING PIPELINE
 # ==============================================================================
@@ -266,7 +329,7 @@ def format_imf_txt_block(entry: Dict[str, Any]) -> str:
     car_str = "N/A (Rate is already annualized)" if is_rate else fmt(t.get("compounded_annual_rate_of_change"), "%")
     ccar_str = "N/A (Rate is already annualized)" if is_rate else fmt(t.get("continuously_compounded_annual_rate_of_change"), "%")
 
-    recent_5 = entry.get("recent_observations", [])
+    recent_5 = entry.get("recent_observations", [])[-5:]
     recent_lines = "\n".join([f"  {r['date']}: {r['value']:.4f}" for r in recent_5])
 
     xt_str = f"{xt:.4f}" if xt is not None else "N/A"
@@ -337,6 +400,8 @@ def main():
 
         for s_id in series_ids:
             cached_entry = existing_series.get(s_id)
+            if s_id == "IMF_REP_USD_ILS" and isinstance(cached_entry, dict):
+                cached_entry["recent_observations"] = cached_entry.get("recent_observations", [])[-5:]
             is_cache_valid = False
             elapsed_days = 9999.0
 
@@ -362,7 +427,14 @@ def main():
             # 2. Süresi dolmuşsa API'den yeni veriyi çek
             print(f"  [FETCHING] {s_id} [{freq.upper()}] (TTL doldu veya yeni seri, IMF/FRED mirror'a bağlanılıyor)...")
             data = None
-            if api_key:
+            if s_id == "IMF_REP_USD_ILS":
+                if freq != "daily":
+                    raise ValueError("IMF_REP_USD_ILS must be registered as daily")
+                try:
+                    data = get_imf_usd_ils(utc_now.date(), n_obs_per_yr)
+                except (OSError, subprocess.SubprocessError, ValueError, UnicodeError) as exc:
+                    print(f"  [WARNING] IMF USD/ILS download failed: {exc}")
+            elif api_key:
                 data = get_series_data_live(s_id, api_key, n_obs_per_yr)
             else:
                 print(f"  [WARNING] FRED_API_KEY bulunamadı, API isteği yapılamıyor.")
@@ -370,7 +442,7 @@ def main():
             # 3. API Hata / Zaman Aşımı Sigortası: Asla eski veriyi silme!
             if not data or len(data.get("observations", [])) < 2:
                 if cached_entry and isinstance(cached_entry, dict):
-                    print(f"  [API TIMEOUT - RETAINED] {s_id} [{freq.upper()}]: API yanıt vermedi veya anahtar yok. Mevcut resmi snapshot korundu!")
+                    print(f"  [FETCH FAILED - RETAINED] {s_id} [{freq.upper()}]: Mevcut resmi snapshot korundu ve eski olarak işaretlendi.")
                     stale_series.append(s_id)
                     if not cached_entry.get("last_synced_utc") and fallback_sync_str:
                         cached_entry["last_synced_utc"] = fallback_sync_str
@@ -406,7 +478,7 @@ def main():
             c_ccr = imf_continuously_compounded_rate(xt, xt_prev)
             c_ccar = None if is_rate else imf_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr)
 
-            recent_5 = obs[-5:]
+            recent_observations = obs[-5:]
 
             entry_dict = {
                 "series_id": s_id,
@@ -429,7 +501,7 @@ def main():
                     "continuously_compounded_rate_of_change": c_ccr,
                     "continuously_compounded_annual_rate_of_change": c_ccar
                 },
-                "recent_observations": recent_5
+                "recent_observations": recent_observations
             }
 
             json_series_dict[s_id] = entry_dict
