@@ -46,8 +46,7 @@ Every economy entry embeds a clean JSON object inside its post content:
           "current_numeric_value": "number (Salt sayısal cari değer. Örn: 3.4 veya 12.0)",
           "previous_period_value": "string (Örn: %3,2, 10 Milyar $)",
           "previous_numeric_value": "number (Salt sayısal önceki değer. Örn: 3.2 veya 10.0)",
-          "nominal_change": "string (Örn: +0,2, +2 Milyar $)",
-          "target_deviation_bps": "number (Hedeflenen oran veya beklentiden sapma puanı. Örn: +50 veya -25)"
+          "nominal_change": "string (Örn: +0,2, +2 Milyar $)"
         },
         "change_rates_percentage": {
           "change_rate_compared_to_previous_month": "string (Örn: +0,5%, -1,2%)",
