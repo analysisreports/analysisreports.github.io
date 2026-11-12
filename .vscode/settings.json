@@ -1,0 +1,5 @@
+{
+    "github.copilot.chat.codesearch.enabled": true,
+    "github.copilot.chat.agent.autoFix": true,
+    "python.globalModuleInstallation": true
+}
