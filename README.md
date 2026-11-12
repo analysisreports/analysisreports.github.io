@@ -1,5 +1,5 @@
-## analysisreports 
-## Quantitative Macroeconomic Research & LLM Data Engine
+## analysis reports | Ersoy Toptaş
+## Quantitative Macroeconomic Research & LLM Data Engine | analysisreports 
 
 [![Data Integrity & Validation](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/validate.yml/badge.svg)](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/validate.yml)
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](LICENSE.md)
