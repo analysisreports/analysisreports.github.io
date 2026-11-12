@@ -204,13 +204,13 @@ def calc_front_end_t_bill_slope(dgs3mo_val, dgs1mo_val):
 
 
 # --- Model 5: Net Fed Likiditesi (Net Fed Liquidity Index) ---
-def calc_net_fed_liquidity(walcl_mil, tga_mil, rrp_bil):
-    if any(v is None or isinstance(v, bool) for v in (walcl_mil, tga_mil, rrp_bil)):
+def calc_net_fed_liquidity(walcl_mil, tga_mil, rrp_mil):
+    if any(v is None or isinstance(v, bool) for v in (walcl_mil, tga_mil, rrp_mil)):
         return None
     try:
         w = float(walcl_mil)
         t = float(tga_mil)
-        r = float(rrp_bil) * 1000.0  # RRP is in Billions USD; converted to Millions USD per Section 5 mandate
+        r = float(rrp_mil)
 
         if not all(math.isfinite(x) for x in (w, t, r)):
             return None
@@ -241,7 +241,8 @@ def calc_net_fed_liquidity(walcl_mil, tga_mil, rrp_bil):
             "inputs": {
                 "fed_total_assets_walcl_mil": w,
                 "treasury_general_account_tga_mil": t,
-                "overnight_reverse_repo_rrp_bil": round(float(rrp_bil), 3)
+                "overnight_reverse_repo_rrp_bil": round(r / 1000.0, 3),
+                "overnight_reverse_repo_rrp_mil": r
             },
             "metrics": {
                 "net_liquidity_millions_usd": net_liq_mil,
@@ -2640,7 +2641,6 @@ def main():
     sahm_val = series.get("SAHMREALTIME", {}).get("current_value")
     walcl = series.get("WALCL", {}).get("current_value")
     tga = series.get("WTREGEN", {}).get("current_value")
-    rrp = series.get("RRPONTSYD", {}).get("current_value")
     t10y2y = series.get("T10Y2Y", {}).get("current_value")
 
     # Evaluate Models in Canonical Order
@@ -2667,9 +2667,27 @@ def main():
         models_calculated.append(m_t_bill)
 
     # Model 5: Net Fed Liquidity
-    m_liq = calc_net_fed_liquidity(walcl, tga, rrp)
-    if m_liq:
-        models_calculated.append(m_liq)
+    liquidity_units = {
+        "WALCL": "Millions of U.S. Dollars",
+        "WTREGEN": "Millions of U.S. Dollars",
+        "RRPONTSYD": "Billions of US Dollars",
+    }
+    if any(series.get(key, {}).get("units") != unit for key, unit in liquidity_units.items()):
+        ingestion_warnings.append("Model 5 requires WALCL and WTREGEN in millions and RRPONTSYD in billions of USD.")
+    else:
+        rrp_bil = series.get("RRPONTSYD", {}).get("current_value")
+        try:
+            if rrp_bil is None or isinstance(rrp_bil, bool):
+                raise ValueError("RRPONTSYD value is missing or invalid")
+            rrp_mil = float(rrp_bil) * 1000.0
+            m_liq = calc_net_fed_liquidity(walcl, tga, rrp_mil)
+        except (TypeError, ValueError, OverflowError) as e:
+            ingestion_warnings.append(f"Model 5 RRPONTSYD conversion error: {e}")
+        else:
+            if m_liq:
+                models_calculated.append(m_liq)
+            else:
+                ingestion_warnings.append("Model 5 requires valid, non-negative liquidity inputs.")
 
     # Model 6: Yield Curve Slope (10Y - 2Y)
     m_slope = calc_yield_spread_bps(t10y2y)

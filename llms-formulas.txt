@@ -663,13 +663,14 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 
 ### 5. NET FED LIQUIDITY INDEX
 - Purpose: Calculates free dollar liquidity in the financial system with strict unit standardization by subtracting the Treasury General Account (TGA) and overnight reverse repo (ON RRP) balances from total Federal Reserve assets.
-- Unit Standard: All input series must be standardized in Millions of USD. If RRPONTSYD is ingested in Billions of USD, it must be multiplied by 1000 before being passed to the function.
+- Unit Standard: All three function inputs must be in millions of USD. FRED reports RRPONTSYD in billions of USD; the ingestion code multiplies it by 1,000 exactly once before calling the function. The function does not convert it again. For example, 0.152 billion USD is passed as 152 million USD. Tool callers must likewise convert the raw FRED value before calling.
 - Data Series Keys:
   - FRED: WALCL (Federal Reserve Total Assets - Millions USD)
   - FRED: WTREGEN (Treasury General Account / TGA - Millions USD)
-  - FRED: RRPONTSYD (Overnight Reverse Repurchase Agreements / ON RRP - Millions USD)
+  - FRED: RRPONTSYD (Overnight Reverse Repurchase Agreements / ON RRP - Billions USD at source; Millions USD as function input)
 - Formula:
-  Net_Liquidity_Millions = WALCL - (WTREGEN + RRPONTSYD)
+  RRP_Millions = RRPONTSYD_Billions * 1,000
+  Net_Liquidity_Millions = WALCL - (WTREGEN + RRP_Millions)
   Net_Liquidity_Trillions = Net_Liquidity_Millions / 1,000,000.0
 - Machine-Executable Logic (Python):
   def net_fed_liquidity(walcl, wtregen, rrpontsyd, prev_net_liquidity=None):

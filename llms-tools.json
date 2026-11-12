@@ -108,7 +108,7 @@
             "type": "function",
             "function": {
                 "name": "calculate_net_fed_liquidity",
-                "description": "Computes free dollar liquidity: WALCL - (WTREGEN + RRPONTSYD). Inputs must be normalized to Millions of USD.",
+                "description": "Computes net Fed liquidity: WALCL - (WTREGEN + RRPONTSYD). All inputs must be in millions of USD; convert raw FRED RRPONTSYD from billions to millions exactly once before calling.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -122,11 +122,11 @@
                         },
                         "rrpontsyd": {
                             "type": "number",
-                            "description": "Overnight Reverse Repo in Millions of USD (FRED: RRPONTSYD)."
+                            "description": "Overnight Reverse Repo in millions of USD. FRED RRPONTSYD is in billions of USD: multiply the raw FRED value by 1,000 before calling; do not convert it again."
                         },
                         "prev_net_liquidity": {
                             "type": "number",
-                            "description": "Optional prior period Net Fed Liquidity for delta/momentum calculation."
+                            "description": "Optional prior period Net Fed Liquidity in millions of USD for delta/momentum calculation."
                         }
                     },
                     "required": [

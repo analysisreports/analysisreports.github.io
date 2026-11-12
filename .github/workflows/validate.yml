@@ -49,3 +49,7 @@ jobs:
       - name: Verify Taylor GDP period alignment
         run: |
           python -m unittest discover -s scripts -p test_taylor_alignment.py
+
+      - name: Verify net Fed liquidity units
+        run: |
+          python -m unittest discover -s scripts -p test_net_fed_liquidity.py

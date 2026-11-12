@@ -844,7 +844,7 @@
       "category": "MODEL",
       "attributes": {
         "function": "net_fed_liquidity",
-        "formula": "Net_Liquidity_Millions = WALCL - (WTREGEN + RRPONTSYD)",
+        "formula": "RRP_Millions = RRPONTSYD_Billions * 1000; Net_Liquidity_Millions = WALCL_Millions - (WTREGEN_Millions + RRP_Millions)",
         "status_enums": [
           "LIQUIDITY_EXPANSION",
           "NEUTRAL",
