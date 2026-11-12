@@ -40,7 +40,9 @@ Every strategic-macro entry embeds a clean, machine-readable JSON object inside 
       "event_date": "string (Format: YYYY-MM-DD. Olayın gerçekleştiği somut tarih)",
       "why": "string (Gelişmenin arkasındaki jeopolitik veya makroekonomik gerekçe)",
       "how": "string (Gelişmenin uygulanış biçimi, askeri angajman veya diplomatik yöntem)",
-      "who_entity_id": "string (Kanonik aktör kodları: GEO_IR, GEO_US, GOV_PENTAGON_US. Detaylar llms-entities-id.txt)",
+      "who_entity_id": [
+        "string (Kanonik aktör kodları: GEO_IR, GEO_US, GOV_PENTAGON_US. Detaylar llms-entities-id.txt)"
+      ],
       "who": "string (Somut devletler, liderler ve kurumlar)",
       "heat": "number (0 ile 100 arası olay harareti / risk şiddeti)"
     },
@@ -68,8 +70,10 @@ Every strategic-macro entry embeds a clean, machine-readable JSON object inside 
       },
       "other_supporting_data": [
         {
-          "indicator_name": "string (Destekleyici gösterge adı)",
-          "indicator_value": "string (Değeri ve birimi)"
+          "indicator_id": "string (Kanonik gösterge ID. Örn: IND_DCOILWTICO, IND_OVXCLS. Detaylar llms-entities-id.txt)",
+          "indicator_name": "string (Göstergenin tam adı)",
+          "indicator_value": "string (Mevcut seviye değeri, örn: $99.64 / bbl)",
+          "change_rate": "string (Dönemsel/yıllık yüzde değişim, örn: +%70.79. Yoksa null)"
         }
       ],
       "quantitative_models_evaluated": [
@@ -193,7 +197,8 @@ Every strategic-macro entry embeds a clean, machine-readable JSON object inside 
           "global_consumption_share_pct": "number (Küresel tüketimdeki payı - yüzde)",
           "pipeline_bypass_capacity_mbpd": "number (Alternatif boru hatlarının maksimum bypass kapasitesi)",
           "unmitigated_supply_deficit_mbpd": "number (Bypass edilemeyen alternatifsiz net açık hacmi)",
-          "alternate_route_delay_days": "string (Alternatif rotanın yarattığı navlun gecikmesi, örn: +10-14 gün)"
+          "alternate_route_name": "string (Alternatif rota adı, örn: Ümit Burnu)",
+          "delay_days": "number (Alternatif rotanın yarattığı ilave navlun gecikme günü sayısı)"
         }
       }
     ],
@@ -218,7 +223,8 @@ Every strategic-macro entry embeds a clean, machine-readable JSON object inside 
           "target_stakeholder": {
             "entity_id": "string (Kanonik kurum kodu. Örn: GOV_PENTAGON_US, GOV_STATE_US)",
             "entity_name": "string (Aksiyonu alacak kurum adı)",
-            "jurisdiction_or_sector": "string (Bağlı olduğu ülke veya sektör)"
+            "jurisdiction": "string (Bağlı olduğu egemen ülke / yargı alanı)",
+            "sector": "string (Faaliyet gösterdiği alan / sektör)"
           }
         }
       ],
@@ -247,7 +253,8 @@ Every strategic-macro entry embeds a clean, machine-readable JSON object inside 
         {
           "target_url": "string (Ecosystem içindeki bağlantılı makalenin ersoytoptas.tr adresi)",
           "predicate": "string (İletim ilişkisi: ENERGY_SUPPLY_SHOCK_TRANSMISSION, GEOPOLITICAL_INFLATION_SPILLOVER)",
-          "impact_window": "string (Etki penceresi. Format: YYYY-MM/YYYY-MM)",
+          "impact_start_date": "string (Etki başlangıç tarihi/ayı: YYYY-MM)",
+          "impact_end_date": "string (Etki bitiş tarihi/ayı: YYYY-MM)",
           "description": "string (İki analiz arasındaki nedensellik ve makro geçişkenlik açıklaması)"
         }
       ]
