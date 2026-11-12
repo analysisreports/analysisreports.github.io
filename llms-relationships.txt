@@ -134,9 +134,7 @@ Regime States (Discrete Mapping):
 - NATGAS_CRISIS_BLACKOUT_RISK   : Crude-to-gas ratio falling below 6.0 reflecting acute natural gas deficit and power generation blackout risks.
 - NATGAS_GLUT_ENERGY_CHEAP      : Crude-to-gas ratio exceeding 35.0 indicating extreme regional natural gas oversupply and depressed fuel costs.
 - ENERGY_PARITY_EQUILIBRIUM     : Crude-to-gas ratio within historical BTU parity corridor of 6.0 to 35.0.
-- REFINERY_BOTTLENECK_CRUNCH    : Gasoline crack spread exceeding $40.0/bbl signaling refinery throughput bottlenecks and retail fuel price shocks.
-- REFINING_MARGIN_COLLAPSE      : Gasoline crack spread below $5.0/bbl indicating refinery margin collapse and weak fuel consumption demand.
-- NORMAL_REFINING_MARGIN        : Gasoline crack spread within healthy operating corridor of $5.0 to $40.0/bbl.
+- UNCLASSIFIED                  : Model 25.9 reports a same-date New York Harbor 3:2:1 spot crack spread; no refinery regime is assigned until historical thresholds are calibrated.
 - ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL : Net percentage of banks tightening C&I loan standards exceeding 40% signaling severe credit channel freeze and recession.
 - RESTRICTIVE_CREDIT_CONTRACTION : Net percentage of banks tightening C&I loan standards between 20% and 40% reflecting restrictive commercial bank lending.
 - AGGRESSIVE_CREDIT_EXPANSION   : Net percentage of banks loosening lending standards below -10% reflecting loose credit expansion.
@@ -808,10 +806,12 @@ Regime States (Discrete Mapping):
 - Status Enums: NATGAS_CRISIS_BLACKOUT_RISK | NATGAS_GLUT_ENERGY_CHEAP | ENERGY_PARITY_EQUILIBRIUM
 - Primary Geopolitical Vector: Nord Stream cessation, Russian Arctic LNG-2 sanctions (2.3.2, 4.12), Caspian Sea Transit Basin (7.3.1), Zangezur Gas Hub (7.2.1).
 
-8.4.3. MODEL_25.9_GASOLINE_CRUDE_CRACK_SPREAD_IMPULSE
-   - Target Formula: llms-formulas.txt -> Model 25.9 (gasoline_crude_crack_spread)
-   - Data Series Triggered: GASREGW, DCOILWTICO
-   - Status Enums: REFINERY_BOTTLENECK_CRUNCH | REFINING_MARGIN_COLLAPSE | NORMAL_REFINING_MARGIN
+8.4.3. MODEL_25.9_GASOLINE_DISTILLATE_CRUDE_321_CRACK_SPREAD
+   - Target Formula: llms-formulas.txt -> Model 25.9 (gasoline_321_crack_spread)
+   - Data Series: DGASNYH, DDFUELNYH, DCOILWTICO (exact same-date observations required)
+   - Context Series: PET.WGTSTUS1.W gasoline stocks; not a days-of-supply input
+   - Status: UNCLASSIFIED until historical same-date 3:2:1 thresholds are calibrated
+   - Interpretation: New York Harbor spot benchmark proxy; GASREGW is a retail price and is not a crack-spread input.
    - Primary Geopolitical Vector: Asymmetric maritime re-routing (6.2), Mediterranean (TR) & South Asian (IN) logistics and refining hubs (5.4), Black Sea and Danish Straits shipping curbs (4.4, 4.8).
 
 ### 8.5. Banking Credit Transmission & Systemic Tightening Engine (Model 25.10)

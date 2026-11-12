@@ -295,6 +295,26 @@
       }
     },
     {
+      "id": "IND_DGASNYH",
+      "label": "New York Harbor Conventional Gasoline Spot Price (DGASNYH)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "USD per Gallon",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_DDFUELNYH",
+      "label": "New York Harbor ULSD Spot Price (DDFUELNYH)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "USD per Gallon",
+        "trans": "lin"
+      }
+    },
+    {
       "id": "IND_DHHNGSP",
       "label": "Henry Hub Natural Gas Spot Price (DHHNGSP)",
       "category": "INDICATOR",
@@ -438,15 +458,14 @@
     },
     {
       "id": "MODEL_25.9",
-      "label": "Gasoline / Crude Crack Spread Impulse Engine",
+      "label": "Gasoline / Distillate / Crude 3:2:1 Crack Spread",
       "category": "MODEL",
       "attributes": {
-        "function": "gasoline_crude_crack_spread",
-        "formula": "Crack_Spread_USD = (Gasoline_Gallon_Price * 42) - WTI_Barrel_Price",
+        "function": "calc_gasoline_321_crack_spread",
+        "formula": "((2 * DGASNYH_USD_per_gal * 42) + (DDFUELNYH_USD_per_gal * 42)) / 3 - DCOILWTICO_USD_per_bbl",
+        "input_alignment": "DGASNYH, DDFUELNYH, and DCOILWTICO must share the exact observation date.",
         "status_enums": [
-          "REFINERY_BOTTLENECK_CRUNCH",
-          "REFINING_MARGIN_COLLAPSE",
-          "NORMAL_REFINING_MARGIN"
+          "UNCLASSIFIED"
         ]
       }
     },
@@ -2461,16 +2480,22 @@
       "role": "natgas_price"
     },
     {
-      "source": "IND_GASREGW",
+      "source": "IND_DGASNYH",
       "target": "MODEL_25.9",
       "type": "INGESTS_SERIES",
-      "role": "gas_gal_price"
+      "role": "gasoline_spot_usd_gal"
+    },
+    {
+      "source": "IND_DDFUELNYH",
+      "target": "MODEL_25.9",
+      "type": "INGESTS_SERIES",
+      "role": "ulsd_spot_usd_gal"
     },
     {
       "source": "IND_DCOILWTICO",
       "target": "MODEL_25.9",
       "type": "INGESTS_SERIES",
-      "role": "wti_barrel_price"
+      "role": "wti_crude_usd_bbl"
     },
     {
       "source": "CHOKE_HORMUZ",
@@ -3673,7 +3698,7 @@
       "source": "IND_PET_WGTSTUS1_W",
       "target": "MODEL_25.9",
       "type": "INGESTS_SERIES",
-      "role": "gasoline_stocks_kbbl"
+      "role": "gasoline_inventory_context_kbbl"
     },
     {
       "source": "IND_NG_NW2_EPG0_SWO_R48_BCF_W",

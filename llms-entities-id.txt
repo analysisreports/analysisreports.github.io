@@ -328,6 +328,8 @@ IND_DCOILWTICO       | Source: EIA / FRED | Name: Crude Oil WTI Spot Price (USD/
 IND_DCOILBRENTEU     | Source: EIA / FRED | Name: Crude Oil Brent Europe Spot Price (USD/Barrel)
 IND_DHHNGSP          | Source: EIA / FRED | Name: Henry Hub Natural Gas Spot Price (USD/MMBtu)
 IND_GASREGW          | Source: EIA / FRED | Name: US Regular Retail Gasoline Price (USD/Gallon)
+IND_DGASNYH          | Source: FRED | Name: New York Harbor Conventional Gasoline Spot Price (USD/Gallon)
+IND_DDFUELNYH        | Source: FRED | Name: New York Harbor ULSD Spot Price (USD/Gallon)
 IND_PCOPPUSDM        | Source: IMF / FRED | Name: Global Price of Copper (USD/Metric Ton)
 IND_PWHEAMTUSDM      | Source: IMF / FRED | Name: Global Price of Wheat (USD/Metric Ton)
 IND_SP500            | Source: S&P / FRED | Name: S&P 500 Index (SP500)

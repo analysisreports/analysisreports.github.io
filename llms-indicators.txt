@@ -102,6 +102,8 @@ Mathematical Guardrails:
 62. **VIXCLS** (CBOE Volatility Index: VIX) | Freq: Daily | Units: Index | Source: FRED
 63. **WALCL** (Assets: Total Assets: Total Assets (Less Eliminations from Consolidation): Wednesday Level) | Freq: Weekly | Units: Millions of U.S. Dollars | Source: FRED
 64. **WTREGEN** (Liabilities and Capital: Liabilities: Deposits with F.R. Banks, Other Than Reserve Balances: U.S. Treasury, General Account: Week Average) | Freq: Weekly | Units: Millions of U.S. Dollars | Source: FRED
+65. **DGASNYH** (Conventional Gasoline Prices: New York Harbor, Regular) | Freq: Daily | Units: Dollars per Gallon | Source: FRED
+66. **DDFUELNYH** (Ultra-Low-Sulfur No. 2 Diesel Fuel Prices: New York Harbor) | Freq: Daily | Units: Dollars per Gallon | Source: FRED
 
 ### 2.2. European Central Bank (ECB Data Portal) Official Series (11 Series)
 

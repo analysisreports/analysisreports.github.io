@@ -4,34 +4,19 @@ This operational guide enforces structural consistency, schema validity, and zer
 
 ---
 
-## 1. Adding a New Quantitative Model (e.g., Models 25.10 - 25.15)
+## 1. Adding or Revising a Quantitative Model
 
-When introducing a new mathematical, econometric, or macro friction model, update the following 6 files in sequential order:
+For a new model or a material change to an existing model, synchronize the following sources and derived outputs. Do not treat this as an add-only checklist:
 
-1. **`llms-formulas.txt`**
-   - Define model header (`### 25.X...`), core analytical purpose, FRED/BLS series keys, and mathematical formula.
-   - All state, central bank, and agency references must resolve to canonical IDs from `llms-entities-id.txt` (e.g., `GEO_US`, `INST_FED_US`).
-   - Implement type-safe Python function with strict guardrails (`bool` checks, `None` rejection, and `math.isfinite` validation).
-   - Document deterministic regime thresholds under `Interpretation` matching the Python `status` enums.
-
-2. **`llms-indicators.txt`**
-   - Register all underlying time series in numerical order.
-   - Standard Entry Format:  
-     `[Index]. [SERIES_ID] ([Description]) | Source: [Source] | Freq: [m/d/q/w] | Units: [Unit] | Trans: [lin/pc1]`
-   - Update category headers to include the new model reference in the cross-reference list.
-
-3. **`llms-tools.json`**
-   - Define callable function schema under the `tools` array following standard JSON Schema specifications (name, description, strictly typed properties, and required arguments) to allow autonomous AI function execution.
-
-4. **`llms-full.txt`**
-   - Append a single-line summary entry under `## 4. Quantitative Model Registry` documenting model ID, Turkish/English name, and ingested series keys.
-
-5. **`llms-graph.json`**
-   - Under `"nodes"`: Add the indicator nodes (`IND_...`) and the model node (`MODEL_...`).
-   - Under `"edges"`: Map input series to the model using `"type": "INGESTS_SERIES"` with explicit role descriptors.
-
-6. **`llms-relationships.txt`**
-   - If the model bridges to trade wars, sanctions, currency corridors, or kinetic supply shocks, add an operational trigger block under `## 8. ADVANCED MACROECONOMIC MODEL & GEOPOLITICAL TRIGGER LINKAGES`.
+1. **`llms-formulas.txt`** — Define the model purpose, exact series IDs, units, formula, date-alignment/missing-data rules, and interpretation. Use canonical entity IDs from `llms-entities-id.txt`. Only document calibrated thresholds; when thresholds are unavailable, use and document `UNCLASSIFIED` rather than inventing regimes.
+2. **Series and indicator catalogs** — Add each input to its provider registry (for example `llms-fred-series.txt`) and to `llms-indicators.txt`; add its `IND_...` identity to `llms-entities-id.txt` when the graph uses one. Let provider sync jobs produce observation JSON; never hand-write observations or use stale values as live inputs.
+3. **`scripts/calculate_models.py`** — Implement or revise the calculation with strict input, unit, finite-number, and date guards. Keep optional context metrics distinct from formula inputs and do not substitute fixed values for missing live data.
+4. **`llms-tools.json`** — If the model is exposed as a callable tool, keep its function description, parameter names, units, required arguments, and validation needs consistent with the implementation.
+5. **`llms-full.txt`** — Update the model registry entry and its series list.
+6. **`llms-graph.json`** — Ensure all input indicator nodes exist and model edges use `INGESTS_SERIES` with accurate roles. Remove obsolete model-input edges; retain an indicator node if other relationships still use it.
+7. **`llms-relationships.txt`** — If the model has geopolitical transmission linkages, update its section under `## 8. ADVANCED MACROECONOMIC MODEL & GEOPOLITICAL TRIGGER LINKAGES`, including exact inputs and emitted status values.
+8. **Generated model snapshots** — Regenerate `llms-models.json` and `llms-models.txt` only through the live-data pipeline after all required inputs are available. Never patch observed values or statuses into these outputs by hand; report the snapshot as stale when regeneration is blocked.
+9. **Verification** — Run the focused model tests and the repository's graph, entity, JSON, and cross-file consistency checks. Confirm every graph edge endpoint exists and every referenced series is registered.
 
 ---
 

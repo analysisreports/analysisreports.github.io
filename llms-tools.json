@@ -1334,26 +1334,50 @@
             "type": "function",
             "function": {
                 "name": "calculate_gasoline_crude_crack_spread",
-                "description": "Calculates the retail gasoline crack spread per barrel equivalent ((Gasoline * 42) - WTI) to detect refinery bottlenecks or margin collapses.",
+                "description": "Calculates the New York Harbor conventional gasoline / ULSD / WTI 3:2:1 spot crack spread. Exact observation-date matches are required; status remains UNCLASSIFIED until historical thresholds are calibrated.",
                 "parameters": {
                     "type": "object",
                     "properties": {
-                        "gas_gal_price": {
+                        "gasoline_spot_price_val": {
                             "type": "number",
-                            "description": "US Regular All Formulations Retail Gasoline Price in dollars per gallon (FRED: GASREGW)."
+                            "description": "New York Harbor conventional gasoline spot price in dollars per gallon (FRED: DGASNYH)."
                         },
-                        "wti_barrel_price": {
+                        "ulsd_spot_price_val": {
+                            "type": "number",
+                            "description": "New York Harbor ULSD spot price in dollars per gallon (FRED: DDFUELNYH)."
+                        },
+                        "wti_barrel_price_val": {
                             "type": "number",
                             "description": "Crude Oil Prices: West Texas Intermediate in dollars per barrel (FRED: DCOILWTICO)."
                         },
+                        "gasoline_date": {
+                            "type": "string",
+                            "description": "DGASNYH observation date; must exactly match the ULSD and WTI dates."
+                        },
+                        "ulsd_date": {
+                            "type": "string",
+                            "description": "DDFUELNYH observation date; must exactly match the gasoline and WTI dates."
+                        },
+                        "wti_date": {
+                            "type": "string",
+                            "description": "DCOILWTICO observation date; must exactly match the gasoline and ULSD dates."
+                        },
                         "gasoline_stocks_kbbl": {
                             "type": "number",
-                            "description": "Weekly U.S. Ending Stocks of Total Gasoline in thousand barrels (EIA: PET.WGTSTUS1.W) to compute dynamic days of supply inventory cover."
+                            "description": "Optional weekly U.S. ending gasoline stocks in thousand barrels for context only (EIA: PET.WGTSTUS1.W); not used to calculate days of supply."
+                        },
+                        "gasoline_stocks_yoy_val": {
+                            "type": "number",
+                            "description": "Optional year-over-year change in gasoline stocks, as a context metric only."
                         }
                     },
                     "required": [
-                        "gas_gal_price",
-                        "wti_barrel_price"
+                        "gasoline_spot_price_val",
+                        "ulsd_spot_price_val",
+                        "wti_barrel_price_val",
+                        "gasoline_date",
+                        "ulsd_date",
+                        "wti_date"
                     ]
                 }
             }
