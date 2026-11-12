@@ -18,6 +18,8 @@ For a new model or a material change to an existing model, synchronize the follo
 8. **Generated model snapshots** — Regenerate `llms-models.json` and `llms-models.txt` only through the live-data pipeline after all required inputs are available. Never patch observed values or statuses into these outputs by hand; report the snapshot as stale when regeneration is blocked.
 9. **Verification** — Run the focused model tests and the repository's graph, entity, JSON, and cross-file consistency checks. Confirm every graph edge endpoint exists and every referenced series is registered.
 
+For Model 11, the FRED sync requests GDPPOT for the exact GDPC1 quarter through the FRED API when a key is available, then the FRED CSV endpoint if needed. Network failures are retried; neither endpoint may supply a different quarter or a cached substitute. If both fail, model refresh fails and existing model snapshots remain unchanged and may be stale.
+
 ---
 
 ## 2. Adding a Geopolitical Actor, Chokepoint, or Corridor

@@ -1,4 +1,5 @@
 import datetime
+from contextlib import redirect_stdout
 import io
 import json
 import os
@@ -72,8 +73,65 @@ class TaylorAlignmentTests(unittest.TestCase):
                 fred.urllib.request, "urlopen", return_value=io.BytesIO(content)
             ):
                 self.assertIsNone(fred.fetch_gdppot_for_quarter("2026-07-01"))
-        with patch.object(fred.urllib.request, "urlopen", side_effect=OSError("offline")):
+        with patch.object(fred.urllib.request, "urlopen", side_effect=OSError("offline")), patch.object(fred.time, "sleep"):
             self.assertIsNone(fred.fetch_gdppot_for_quarter("2026-07-01"))
+
+    def test_api_exact_quarter_retry_and_source_does_not_expose_key(self):
+        response = io.BytesIO(
+            b'{"observations":[{"date":"2026-07-01","value":"24200.4446936"}]}'
+        )
+        output = io.StringIO()
+        with patch.object(
+            fred.urllib.request, "urlopen", side_effect=[OSError("secret-key"), response]
+        ) as urlopen, patch.object(fred.time, "sleep"), redirect_stdout(output):
+            result = fred.fetch_gdppot_for_quarter("2026-07-01", "secret-key")
+        self.assertEqual(urlopen.call_count, 2)
+        self.assertEqual(result["date"], "2026-07-01")
+        self.assertEqual(result["value"], 24200.4446936)
+        self.assertIn("observation_start=2026-07-01", result["source"])
+        self.assertNotIn("secret-key", result["source"])
+        self.assertNotIn("secret-key", output.getvalue())
+
+    def test_csv_after_api_failure_still_requires_exact_quarter(self):
+        api_response = io.BytesIO(
+            b'{"observations":[{"date":"2036-10-01","value":"29443.0"}]}'
+        )
+        csv_response = io.BytesIO(b"observation_date,GDPPOT\n2026-07-01,24200.4446936\n")
+        with patch.object(
+            fred.urllib.request, "urlopen", side_effect=[api_response, csv_response]
+        ):
+            result = fred.fetch_gdppot_for_quarter("2026-07-01", "secret-key")
+        self.assertEqual(result["date"], "2026-07-01")
+        self.assertIn("fredgraph.csv", result["source"])
+
+    def test_csv_succeeds_after_api_timeouts(self):
+        response = io.BytesIO(b"observation_date,GDPPOT\n2026-07-01,24200.4446936\n")
+        with patch.object(
+            fred.urllib.request, "urlopen", side_effect=[OSError("timeout"), OSError("timeout"), response]
+        ) as urlopen, patch.object(fred.time, "sleep"):
+            result = fred.fetch_gdppot_for_quarter("2026-07-01", "secret-key")
+        self.assertEqual(urlopen.call_count, 3)
+        self.assertEqual(result["value"], 24200.4446936)
+        self.assertIn("fredgraph.csv", result["source"])
+
+    def test_both_endpoints_fail_without_reusing_cached_matched_observation(self):
+        now = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        cached = {
+            "GDPC1": {
+                "series_id": "GDPC1", "last_date": "2026-07-01", "current_value": 24611.077,
+                "units": "Billions of Chained 2017 Dollars", "last_synced_utc": now, "n_obs_per_yr": 4,
+            },
+            "GDPPOT": {
+                "series_id": "GDPPOT", "last_date": "2036-10-01", "current_value": 29443.0,
+                "units": "Billions of Chained 2017 Dollars", "last_synced_utc": now, "n_obs_per_yr": 4,
+                "gdpc1_quarter_observation": {"date": "2026-07-01", "value": 24200.4446936},
+            },
+        }
+        with patch.object(fred.urllib.request, "urlopen", side_effect=OSError("timeout")) as urlopen, \
+                patch.object(fred.time, "sleep"):
+            _, result = fred.build_outputs({"QUARTERLY": ["GDPC1", "GDPPOT"]}, "secret-key", cached)
+        self.assertEqual(urlopen.call_count, 4)
+        self.assertIsNone(result["series"]["GDPPOT"]["gdpc1_quarter_observation"])
 
     def test_missing_matching_quarter_fails_without_overwriting_snapshots(self):
         root = Path(__file__).resolve().parent.parent

@@ -202,29 +202,62 @@ def get_series_data_api(series_id: str, api_key: str, n_obs_per_yr: int) -> Opti
         "observations": cleaned_obs
     }
 
-def fetch_gdppot_for_quarter(observation_date: str) -> Optional[Dict[str, Any]]:
+def fetch_gdppot_for_quarter(observation_date: str, api_key: str = "") -> Optional[Dict[str, Any]]:
     try:
         quarter = datetime.date.fromisoformat(observation_date)
         if quarter.isoformat() != observation_date or quarter.day != 1 or quarter.month not in (1, 4, 7, 10):
             raise ValueError("GDPC1 observation date is not a quarterly period start")
-        query = urllib.parse.urlencode({
-            "id": "GDPPOT",
-            "cosd": observation_date,
-            "coed": observation_date,
-        })
-        url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?{query}"
-        req = urllib.request.Request(url, headers={"User-Agent": "AnalysisReports-FRED-Engine/1.0"})
-        with urllib.request.urlopen(req, timeout=25) as response:
-            rows = list(csv.DictReader(io.StringIO(response.read().decode("utf-8-sig"))))
-        if len(rows) != 1 or rows[0].get("observation_date") != observation_date:
-            raise ValueError("FRED did not return exactly the requested GDPPOT quarter")
-        value = float(rows[0]["GDPPOT"])
-        if not math.isfinite(value) or value <= 1.0:
-            raise ValueError("FRED returned an invalid GDPPOT value")
-        return {"date": observation_date, "value": value, "source": url}
-    except (OSError, UnicodeError, KeyError, TypeError, ValueError, csv.Error) as e:
-        print(f"  [ERROR] Could not fetch GDPPOT for GDPC1 quarter {observation_date!r}: {e}")
+    except (TypeError, ValueError) as e:
+        print(f"  [ERROR] Invalid GDPC1 quarter {observation_date!r}: {e}")
         return None
+
+    endpoints = []
+    if api_key:
+        api_query = urllib.parse.urlencode({
+            "series_id": "GDPPOT",
+            "observation_start": observation_date,
+            "observation_end": observation_date,
+            "file_type": "json",
+        })
+        api_url = f"https://api.stlouisfed.org/fred/series/observations?{api_query}"
+        endpoints.append(("API", api_url, f"{api_url}&{urllib.parse.urlencode({'api_key': api_key})}"))
+    csv_query = urllib.parse.urlencode({
+        "id": "GDPPOT",
+        "cosd": observation_date,
+        "coed": observation_date,
+    })
+    csv_url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?{csv_query}"
+    endpoints.append(("CSV", csv_url, csv_url))
+
+    for kind, source_url, request_url in endpoints:
+        for attempt in range(1, 3):
+            try:
+                req = urllib.request.Request(request_url, headers={"User-Agent": "AnalysisReports-FRED-Engine/1.0"})
+                with urllib.request.urlopen(req, timeout=25) as response:
+                    content = response.read().decode("utf-8-sig")
+                if kind == "API":
+                    rows = json.loads(content)["observations"]
+                    date_key, value_key = "date", "value"
+                else:
+                    rows = list(csv.DictReader(io.StringIO(content)))
+                    date_key, value_key = "observation_date", "GDPPOT"
+                if not isinstance(rows, list) or len(rows) != 1 or rows[0].get(date_key) != observation_date:
+                    raise ValueError("FRED did not return exactly the requested GDPPOT quarter")
+                value = float(rows[0][value_key])
+                if not math.isfinite(value) or value <= 1.0:
+                    raise ValueError("FRED returned an invalid GDPPOT value")
+                return {"date": observation_date, "value": value, "source": source_url}
+            except OSError as e:
+                error = type(e).__name__ if kind == "API" else str(e)
+                print(f"  [WARNING] GDPPOT {kind} attempt {attempt}/2 failed: {error}")
+                if attempt < 2:
+                    time.sleep(2)
+            except (UnicodeError, KeyError, TypeError, ValueError, AttributeError, csv.Error) as e:
+                error = type(e).__name__ if kind == "API" else str(e)
+                print(f"  [WARNING] GDPPOT {kind} response invalid: {error}")
+                break
+    print(f"  [ERROR] Could not fetch GDPPOT for GDPC1 quarter {observation_date!r} from FRED.")
+    return None
 
 # ==============================================================================
 # 3. REGISTRY PARSER & OUTPUT BUILDER
@@ -450,7 +483,7 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
     gdpc1 = json_series_dict.get("GDPC1")
     gdppot = json_series_dict.get("GDPPOT")
     if gdpc1 is not None and gdppot is not None:
-        gdppot["gdpc1_quarter_observation"] = fetch_gdppot_for_quarter(gdpc1.get("last_date"))
+        gdppot["gdpc1_quarter_observation"] = fetch_gdppot_for_quarter(gdpc1.get("last_date"), api_key)
         matched = gdppot["gdpc1_quarter_observation"]
         if matched is not None:
             txt_blocks.append(
