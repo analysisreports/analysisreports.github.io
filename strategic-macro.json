@@ -60,6 +60,15 @@
           "observation_date": ""
         }
       ],
+      "futures_market_reference": {
+        "source": null,
+        "contract": null,
+        "price": null,
+        "price_unit": null,
+        "change_pct": null,
+        "quote_timestamp": null,
+        "note": "İsteğe bağlı ek piyasa referansıdır. Vadeli kontrat fiyatı FRED spot fiyatından farklıdır ve resmî spot veri veya model girdisi yerine kullanılmaz. Anlık ya da gecikmeli olduğu yalnızca kaynak doğruluyorsa belirtilir; fiyat hareketinin nedeni kanıt olmadan kesin olarak açıklanmaz."
+      },
       "quantitative_models_evaluated": [
         {
           "model_id": null,

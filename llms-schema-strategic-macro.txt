@@ -75,9 +75,18 @@ Every strategic-macro entry embeds a clean, machine-readable JSON object inside 
           "indicator_name": "string (Göstergenin tam adı)",
           "indicator_value": "string (Mevcut seviye değeri, örn: $99.64 / bbl)",
           "change_rate": "string (Dönemsel/yıllık yüzde değişim, örn: +%70.79. Yoksa null)",
-          "observation_date": "string (Format: YYYY-MM-DD. Verinin resmi kaynaktaki son gözlem tarihi. Örn: FRED last_date)",
+          "observation_date": "string (Format: YYYY-MM-DD. Verinin resmi kaynaktaki son gözlem tarihi. Örn: FRED last_date)"
         }
       ],
+      "futures_market_reference": {
+        "source": "string (Vadeli fiyatın doğrulanabilir kaynak adı veya bağlantısı)",
+        "contract": "string (Vadeli kontratın sembolü ve vadesi)",
+        "price": "number (Kontratın kaynakta belirtilen fiyatı)",
+        "price_unit": "string (Fiyatın para birimi ve ölçü birimi, örn: USD/barrel)",
+        "change_pct": "number (Kaynağın belirttiği karşılaştırma dönemine göre yüzde değişim; bilinmiyorsa null)",
+        "quote_timestamp": "string (Fiyatın kaynakta belirtilen zamanı; ISO 8601 ve saat dilimiyle, bilinmiyorsa null)",
+        "note": "string (İsteğe bağlı ek piyasa referansıdır. Vadeli kontrat fiyatı FRED spot fiyatından farklıdır ve resmî spot veri veya model girdisi yerine kullanılmaz. Anlık ya da gecikmeli olduğu yalnızca kaynak doğruluyorsa belirtilir; fiyat hareketinin nedeni kanıt olmadan kesin olarak açıklanmaz.)"
+      },
       "quantitative_models_evaluated": [
         {
           "model_id": "string (Kanonik model ID. Örn: MODEL_25.7, MODEL_25.9, MODEL_25.12, MODEL_28.4)",
