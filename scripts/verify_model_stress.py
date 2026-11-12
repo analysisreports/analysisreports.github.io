@@ -16,7 +16,8 @@ Audits:
      * Liquidity Freeze / Severe Recession: CDS = 1500 bps, High Yield Spread = 1200 bps, 10Y Yield = 0.50%
      * Hyperinflation & Extreme Rate Hikes: CBRT Policy Rate = 80%, Inflation = 85%
      * Oil Chokepoint Shock: Hormuz Blockade proxy (Brent = $180, Gold = $3500)
-3. Zero Crash Assurance: Proves zero Unhandled Exceptions (DivisionByZero, OverflowError, ValueError).
+3. Year-over-Year Crack Spread Classification: Tests expanding, contracting, unchanged, and missing-history cases.
+4. Zero Crash Assurance: Proves zero Unhandled Exceptions (DivisionByZero, OverflowError, ValueError).
 
 Author: Ersoy Toptaş
 License: CC BY 4.0
@@ -94,9 +95,9 @@ def audit_production_models(models_data: List[Dict[str, Any]]) -> List[str]:
 def audit_extreme_stress_regimes() -> Tuple[List[str], int, int]:
     errors = []
     if cm is None:
-        return ["Failed to import calculate_models.py for stress testing."], 0, 7
+        return ["Failed to import calculate_models.py for stress testing."], 0, 10
 
-    total_regimes = 9
+    total_regimes = 10
     passed_regimes = 0
 
     # Regime 1: Severe Credit Crunch & Sovereign Stress
@@ -289,6 +290,59 @@ def audit_extreme_stress_regimes() -> Tuple[List[str], int, int]:
         errors.append(f"CRASH in Regime 9 Chokepoint Spillover Bridge: {e}")
         r9_ok = False
     if r9_ok: passed_regimes += 1
+
+    # Regime 10: 3:2:1 Crack Spread Year-over-Year Classification
+    r10_ok = True
+    try:
+        expanding = cm.calc_gasoline_321_crack_spread(
+            2.728, 4.823, 99.64,
+            "2026-11-03", "2026-11-03", "2026-11-03",
+            gasoline_spot_price_year_ago_val=1.837,
+            ulsd_spot_price_year_ago_val=2.238,
+            wti_barrel_price_year_ago_val=58.34
+        )
+        if (
+            not expanding
+            or expanding.get("status") != "CRACK_SPREAD_EXPANDING"
+            or expanding["metrics"].get("crack_spread_321_year_ago_usd_bbl") != 24.43
+            or expanding["metrics"].get("crack_spread_321_yoy_change_usd_bbl") != 19.84
+        ):
+            errors.append("CLASSIFICATION FAIL (Regime 10 - Crack Spread): Expanding spread was not classified correctly.")
+            r10_ok = False
+
+        contracting = cm.calc_gasoline_321_crack_spread(
+            1.837, 2.238, 58.34,
+            "2026-11-03", "2026-11-03", "2026-11-03",
+            gasoline_spot_price_year_ago_val=2.728,
+            ulsd_spot_price_year_ago_val=4.823,
+            wti_barrel_price_year_ago_val=99.64
+        )
+        if not contracting or contracting.get("status") != "CRACK_SPREAD_CONTRACTING":
+            errors.append("CLASSIFICATION FAIL (Regime 10 - Crack Spread): Contracting spread was not classified correctly.")
+            r10_ok = False
+
+        unchanged = cm.calc_gasoline_321_crack_spread(
+            2.728, 4.823, 99.64,
+            "2026-11-03", "2026-11-03", "2026-11-03",
+            gasoline_spot_price_year_ago_val=2.728,
+            ulsd_spot_price_year_ago_val=4.823,
+            wti_barrel_price_year_ago_val=99.64
+        )
+        if not unchanged or unchanged.get("status") != "CRACK_SPREAD_UNCHANGED":
+            errors.append("CLASSIFICATION FAIL (Regime 10 - Crack Spread): Unchanged spread was not classified correctly.")
+            r10_ok = False
+
+        no_history = cm.calc_gasoline_321_crack_spread(
+            2.728, 4.823, 99.64,
+            "2026-11-03", "2026-11-03", "2026-11-03"
+        )
+        if not no_history or no_history.get("status") != "UNCLASSIFIED":
+            errors.append("CLASSIFICATION FAIL (Regime 10 - Crack Spread): Missing prior-year data did not remain UNCLASSIFIED.")
+            r10_ok = False
+    except Exception as e:
+        errors.append(f"CRASH in 3:2:1 crack spread year-over-year classification: {e}")
+        r10_ok = False
+    if r10_ok: passed_regimes += 1
 
     return errors, passed_regimes, total_regimes
 

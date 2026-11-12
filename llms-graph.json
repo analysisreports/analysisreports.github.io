@@ -465,7 +465,11 @@
         "function": "calc_gasoline_321_crack_spread",
         "formula": "((2 * DGASNYH_USD_per_gal * 42) + (DDFUELNYH_USD_per_gal * 42)) / 3 - DCOILWTICO_USD_per_bbl",
         "input_alignment": "DGASNYH, DDFUELNYH, and DCOILWTICO must share the exact observation date.",
+        "year_over_year_comparison": "Apply the same formula to the three FRED year_ago_value inputs; status describes direction, not absolute high/low.",
         "status_enums": [
+          "CRACK_SPREAD_EXPANDING",
+          "CRACK_SPREAD_CONTRACTING",
+          "CRACK_SPREAD_UNCHANGED",
           "UNCLASSIFIED"
         ]
       }

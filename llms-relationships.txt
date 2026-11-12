@@ -134,7 +134,10 @@ Regime States (Discrete Mapping):
 - NATGAS_CRISIS_BLACKOUT_RISK   : Crude-to-gas ratio falling below 6.0 reflecting acute natural gas deficit and power generation blackout risks.
 - NATGAS_GLUT_ENERGY_CHEAP      : Crude-to-gas ratio exceeding 35.0 indicating extreme regional natural gas oversupply and depressed fuel costs.
 - ENERGY_PARITY_EQUILIBRIUM     : Crude-to-gas ratio within historical BTU parity corridor of 6.0 to 35.0.
-- UNCLASSIFIED                  : Model 25.9 reports a same-date New York Harbor 3:2:1 spot crack spread; no refinery regime is assigned until historical thresholds are calibrated.
+- CRACK_SPREAD_EXPANDING       : Model 25.9 3:2:1 spot crack spread is higher than its year-ago comparison.
+- CRACK_SPREAD_CONTRACTING     : Model 25.9 3:2:1 spot crack spread is lower than its year-ago comparison.
+- CRACK_SPREAD_UNCHANGED       : Model 25.9 3:2:1 spot crack spread equals its year-ago comparison.
+- UNCLASSIFIED                  : Model 25.9 cannot classify year-over-year direction when any prior-year spot price is unavailable.
 - ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL : Net percentage of banks tightening C&I loan standards exceeding 40% signaling severe credit channel freeze and recession.
 - RESTRICTIVE_CREDIT_CONTRACTION : Net percentage of banks tightening C&I loan standards between 20% and 40% reflecting restrictive commercial bank lending.
 - AGGRESSIVE_CREDIT_EXPANSION   : Net percentage of banks loosening lending standards below -10% reflecting loose credit expansion.
@@ -811,7 +814,7 @@ Regime States (Discrete Mapping):
    - Target Formula: llms-formulas.txt -> Model 25.9 (gasoline_321_crack_spread)
    - Data Series: DGASNYH, DDFUELNYH, DCOILWTICO (exact same-date observations required)
    - Context Series: PET.WGTSTUS1.W gasoline stocks; not a days-of-supply input
-   - Status: UNCLASSIFIED until historical same-date 3:2:1 thresholds are calibrated
+   - Status: CRACK_SPREAD_EXPANDING, CRACK_SPREAD_CONTRACTING, or CRACK_SPREAD_UNCHANGED based on the 3:2:1 spread versus the same formula applied to year-ago prices; UNCLASSIFIED if prior-year inputs are incomplete
    - Interpretation: New York Harbor spot benchmark proxy; GASREGW is a retail price and is not a crack-spread input.
    - Primary Geopolitical Vector: Asymmetric maritime re-routing (6.2), Mediterranean (TR) & South Asian (IN) logistics and refining hubs (5.4), Black Sea and Danish Straits shipping curbs (4.4, 4.8).
 

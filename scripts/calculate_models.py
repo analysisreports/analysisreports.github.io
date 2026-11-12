@@ -1212,7 +1212,10 @@ def calc_gasoline_321_crack_spread(
     ulsd_date,
     wti_date,
     gasoline_stocks_kbbl_val=None,
-    gasoline_stocks_yoy_val=None
+    gasoline_stocks_yoy_val=None,
+    gasoline_spot_price_year_ago_val=None,
+    ulsd_spot_price_year_ago_val=None,
+    wti_barrel_price_year_ago_val=None
 ) -> Optional[Dict[str, Any]]:
     prices = (gasoline_spot_price_val, ulsd_spot_price_val, wti_barrel_price_val)
     dates = (gasoline_date, ulsd_date, wti_date)
@@ -1260,16 +1263,86 @@ def calc_gasoline_321_crack_spread(
                 inputs_dict["gasoline_stocks_yoy_pct"] = round(f_yoy, 2)
                 metrics_dict["gasoline_stocks_yoy_pct"] = round(f_yoy, 2)
 
+        year_ago_values = (
+            gasoline_spot_price_year_ago_val,
+            ulsd_spot_price_year_ago_val,
+            wti_barrel_price_year_ago_val
+        )
+        if any(isinstance(value, bool) for value in year_ago_values):
+            return None
+
+        status = "UNCLASSIFIED"
+        interpretation = (
+            "Calculates the same-date New York Harbor 3:2:1 spot crack spread. "
+            "A year-over-year classification requires all three prior-year prices; "
+            "gasoline inventory is contextual only."
+        )
+        if all(value is not None for value in year_ago_values):
+            f_gasoline_year_ago, f_ulsd_year_ago, f_wti_year_ago = (
+                float(value) for value in year_ago_values
+            )
+            if not all(
+                math.isfinite(value) and value > 0.0
+                for value in (f_gasoline_year_ago, f_ulsd_year_ago, f_wti_year_ago)
+            ):
+                return None
+
+            prior_year_spread = round(
+                (
+                    (2.0 * f_gasoline_year_ago * 42.0)
+                    + (f_ulsd_year_ago * 42.0)
+                ) / 3.0 - f_wti_year_ago,
+                2
+            )
+            yoy_change = round(spread - prior_year_spread, 2)
+            status = (
+                "CRACK_SPREAD_EXPANDING" if yoy_change > 0.0
+                else "CRACK_SPREAD_CONTRACTING" if yoy_change < 0.0
+                else "CRACK_SPREAD_UNCHANGED"
+            )
+            inputs_dict.update({
+                "gasoline_spot_usd_gal_year_ago": round(f_gasoline_year_ago, 3),
+                "ulsd_spot_usd_gal_year_ago": round(f_ulsd_year_ago, 3),
+                "wti_crude_usd_bbl_year_ago": round(f_wti_year_ago, 2)
+            })
+            metrics_dict["crack_spread_321_year_ago_usd_bbl"] = prior_year_spread
+            metrics_dict["crack_spread_321_yoy_change_usd_bbl"] = yoy_change
+
+            change_text = f"{abs(yoy_change):.2f} USD/bbl"
+            if prior_year_spread > 0.0:
+                yoy_pct = round((yoy_change / prior_year_spread) * 100.0, 2)
+                metrics_dict["crack_spread_321_yoy_pct"] = yoy_pct
+                change_text += f" ({abs(yoy_pct):.2f}%)"
+
+            direction = (
+                "up" if yoy_change > 0.0
+                else "down" if yoy_change < 0.0
+                else "unchanged"
+            )
+            interpretation = (
+                f"The same-date 3:2:1 crack spread is {spread:.2f} USD/bbl, "
+                f"{direction} {change_text} from {prior_year_spread:.2f} USD/bbl "
+                "one year earlier. Status describes the year-over-year direction, "
+                "not whether the absolute spread is high or low. Gasoline inventory "
+                "is contextual only."
+            )
+        elif any(value is not None for value in year_ago_values):
+            interpretation = (
+                "Calculates the same-date New York Harbor 3:2:1 spot crack spread. "
+                "Year-over-year classification is unavailable because all three "
+                "prior-year prices are required; gasoline inventory is contextual only."
+            )
+
         return {
             "model_id": "MODEL_25.9",
             "model_name": "Gasoline / Distillate / Crude 3:2:1 Crack Spread",
             "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.9",
             "primary_value": spread,
             "unit": "USD per Barrel",
-            "status": "UNCLASSIFIED",
+            "status": status,
             "inputs": inputs_dict,
             "metrics": metrics_dict,
-            "interpretation": "Calculates the 3:2:1 spot crack spread from same-date New York Harbor conventional gasoline, ULSD, and WTI prices. Regime thresholds have not been calibrated; gasoline inventory is contextual only."
+            "interpretation": interpretation
         }
     except (TypeError, ValueError, ZeroDivisionError):
         return None
@@ -2940,7 +3013,10 @@ def main():
             ulsd_spot.get("last_date"),
             wti_spot.get("last_date"),
             gasoline_stocks,
-            gasoline_stocks_yoy
+            gasoline_stocks_yoy,
+            gasoline_spot.get("year_ago_value"),
+            ulsd_spot.get("year_ago_value"),
+            wti_spot.get("year_ago_value")
         )
         if m_crack_spread:
             models_calculated.append(m_crack_spread)

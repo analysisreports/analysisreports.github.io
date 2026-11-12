@@ -1342,7 +1342,7 @@
             "type": "function",
             "function": {
                 "name": "calculate_gasoline_crude_crack_spread",
-                "description": "Calculates the New York Harbor conventional gasoline / ULSD / WTI 3:2:1 spot crack spread. Exact observation-date matches are required; status remains UNCLASSIFIED until historical thresholds are calibrated.",
+                "description": "Calculates the New York Harbor conventional gasoline / ULSD / WTI 3:2:1 spot crack spread and compares it with the same spread using year-ago FRED prices. Status describes year-over-year direction, not an absolute high/low regime.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -1369,6 +1369,18 @@
                         "wti_date": {
                             "type": "string",
                             "description": "DCOILWTICO observation date; must exactly match the gasoline and ULSD dates."
+                        },
+                        "gasoline_spot_price_year_ago_val": {
+                            "type": "number",
+                            "description": "FRED year_ago_value for DGASNYH, used only for the year-over-year spread comparison."
+                        },
+                        "ulsd_spot_price_year_ago_val": {
+                            "type": "number",
+                            "description": "FRED year_ago_value for DDFUELNYH, used only for the year-over-year spread comparison."
+                        },
+                        "wti_barrel_price_year_ago_val": {
+                            "type": "number",
+                            "description": "FRED year_ago_value for DCOILWTICO, used only for the year-over-year spread comparison."
                         },
                         "gasoline_stocks_kbbl": {
                             "type": "number",

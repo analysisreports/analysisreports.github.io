@@ -2126,10 +2126,12 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 - Formula:
   Crack_Spread_321_USD_per_bbl = ((2 * DGASNYH_USD_per_gal * 42) + (DDFUELNYH_USD_per_gal * 42)) / 3 - DCOILWTICO_USD_per_bbl
   Calculate only when DGASNYH, DDFUELNYH, and DCOILWTICO share the exact same observation date.
+  Calculate the same formula using each series' FRED year_ago_value to get Prior_Year_Crack_Spread_321_USD_per_bbl.
+  Status = CRACK_SPREAD_EXPANDING if current spread > prior-year spread; CRACK_SPREAD_CONTRACTING if lower; CRACK_SPREAD_UNCHANGED if equal; UNCLASSIFIED if any prior-year price is unavailable.
+  This status describes year-over-year direction, not an absolute high/low regime; no historical percentile thresholds are used.
   Gasoline stocks and YoY change are context metrics only; days of supply is not calculated without a live gasoline-consumption series.
-  Status = UNCLASSIFIED until thresholds are calibrated from historical, same-date 3:2:1 observations.
 - Machine-Executable Logic (Python):
-  def gasoline_321_crack_spread(gasoline_usd_gal, ulsd_usd_gal, wti_usd_bbl, gasoline_date, ulsd_date, wti_date):
+  def gasoline_321_crack_spread(gasoline_usd_gal, ulsd_usd_gal, wti_usd_bbl, gasoline_date, ulsd_date, wti_date, gasoline_year_ago=None, ulsd_year_ago=None, wti_year_ago=None):
       prices = (gasoline_usd_gal, ulsd_usd_gal, wti_usd_bbl)
       dates = (gasoline_date, ulsd_date, wti_date)
       if any(v is None or isinstance(v, bool) for v in prices):
@@ -2144,11 +2146,22 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           if not math.isfinite(raw_spread):
               return None
           spread = round(raw_spread, 2)
-          return {"crack_spread_321_usd_bbl": spread, "status": "UNCLASSIFIED", "observation_date": gasoline_date}
+          prior_values = (gasoline_year_ago, ulsd_year_ago, wti_year_ago)
+          status = "UNCLASSIFIED"
+          prior_spread = None
+          if all(v is not None and not isinstance(v, bool) for v in prior_values):
+              f_gas, f_ulsd, f_wti = map(float, prior_values)
+              if not all(math.isfinite(v) and v > 0 for v in (f_gas, f_ulsd, f_wti)):
+                  return None
+              prior_spread = round(((2 * f_gas * 42.0) + (f_ulsd * 42.0)) / 3.0 - f_wti, 2)
+              status = ("CRACK_SPREAD_EXPANDING" if spread > prior_spread else
+                        "CRACK_SPREAD_CONTRACTING" if spread < prior_spread else
+                        "CRACK_SPREAD_UNCHANGED")
+          return {"crack_spread_321_usd_bbl": spread, "year_ago_spread_321_usd_bbl": prior_spread, "status": status, "observation_date": gasoline_date}
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - The 3:2:1 value is emitted without a regime label until historical thresholds are calibrated.
+  - The status says whether the spread expanded, contracted, or was unchanged versus the provider's year-ago values; it does not label the absolute spread high or low.
   - EIA gasoline stocks remain a separate context metric; no fixed consumption value is substituted for missing demand data.
 
 ---
