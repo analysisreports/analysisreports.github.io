@@ -135,7 +135,7 @@ CACHE_TTL_DAYS = {
     "DAILY": 3,
     "WEEKLY": 8,
     "BIWEEKLY": 16,
-    "MONTHLY": 0,
+    "MONTHLY": 14,
     "QUARTERLY": 95,
     "SEMIANNUAL": 185,
     "ANNUAL": 365
