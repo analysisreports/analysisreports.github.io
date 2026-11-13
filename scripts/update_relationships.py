@@ -19,7 +19,7 @@ import math
 import datetime
 
 MACRO_TRIGGER_MODEL = 'MODEL_25.19'
-ACTIVE_KINETIC_PAIRS = {'RU_UA', 'IL_IR', 'YE_IL'}
+ACTIVE_KINETIC_PAIRS = {'UA_RU', 'IL_IR', 'YE_IL'}
 BALTIC_RUSSIA_PAIRS = {'LT_RU', 'EE_RU', 'LV_RU'}
 
 RELATIONSHIP_TRIGGERS = {
@@ -46,6 +46,7 @@ RELATIONSHIP_TRIGGERS = {
     'TR_SA': [('SOFR_DOLLAR_DRAIN', 1), ('OVX_ENERGY_PANIC', 1)],
     'SA_PK': [('SOFR_DOLLAR_DRAIN', 1)],
     'TR_PK': [('CHIP_CONTAINMENT', 1), ('SOFR_DOLLAR_DRAIN', -1)],
+    'UA_RU': [('WHEAT_PRICE', -1), ('CORN_PRICE', -1), ('GSCPI_LOGISTICS', -1)],
 }
 
 def clamp(val, low=-1.0, high=1.0):
@@ -405,6 +406,14 @@ def main():
         calc_annual_trigger(
             'IND_TRIGGER_GSCPI_LOGISTICS', MACRO_TRIGGER_MODEL, {'GSCPI': gscpi_entry},
             ('GSCPI',), lambda values: values['GSCPI'], use_difference=True,
+        ),
+        calc_annual_trigger(
+            'IND_TRIGGER_WHEAT_PRICE', MACRO_TRIGGER_MODEL, series,
+            ('PWHEAMTUSDM',), lambda values: values['PWHEAMTUSDM'], ('PWHEAMTUSDM',),
+        ),
+        calc_annual_trigger(
+            'IND_TRIGGER_CORN_PRICE', MACRO_TRIGGER_MODEL, series,
+            ('PMAIZMTUSDM',), lambda values: values['PMAIZMTUSDM'], ('PMAIZMTUSDM',),
         ),
     ]
     for trigger in macro_triggers:
@@ -832,6 +841,16 @@ def main():
             'dynamic_delta': mecca_delta_tr_pk,
             'friction_nodes': ['DEFENSE_AEROSPACE_CO_PRODUCTION', 'KASHMIR_CYPRUS_DIPLOMATIC_AXIS', 'MIDDLE_CORRIDOR_ECO_RAIL', 'MILGEM_MARITIME_INTEGRATION'],
             'primary_driver': 'MECCA_DEFENSE_PACT_TR_PK_AEROSPACE_DEFENSE_ALLIANCE'
+        },
+        {
+            'id': 'UA_RU',
+            'source_entity': 'GEO_UA',
+            'target_entity': 'GEO_RU',
+            'label': 'UA - RU (Ukraine vs. Russian Federation)',
+            'p_baseline': -0.95,
+            'dynamic_delta': 0.0,
+            'friction_nodes': ['BLACK_SEA', 'DONBAS', 'ZAPORIZHZHIA', 'KHERSON'],
+            'primary_driver': 'TERRITORIAL_CONFRONTATION'
         }
     ]
 
@@ -856,7 +875,7 @@ def main():
         else:
             p_net = round(clamp(a['p_baseline'] + dyn + mecca_delta), 2)
             regime = get_regime(p_net, a['id'])
-        relationships_output.append({
+        relationship = {
             'id': a['id'],
             'source_entity': a['source_entity'],
             'target_entity': a['target_entity'],
@@ -872,7 +891,8 @@ def main():
             'kinetic_contact_configured': a['id'] in ACTIVE_KINETIC_PAIRS,
             'primary_driver': a['primary_driver'],
             'friction_nodes': a['friction_nodes']
-        })
+        }
+        relationships_output.append(relationship)
 
     
     sync_time = datetime.datetime.now(datetime.timezone.utc).isoformat()

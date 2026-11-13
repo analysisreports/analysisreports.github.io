@@ -55,6 +55,24 @@ class MacroTriggerTests(unittest.TestCase):
         self.assertEqual(relationships.get_regime(-0.96, "IL_IR"), "KINETIC_WAR")
         self.assertEqual(relationships.get_regime(-1.0, "US_KP"), "PROXY_WAR")
 
+    def test_ua_ru_grain_and_logistics_transmission(self):
+        triggers = {
+            "IND_TRIGGER_WHEAT_PRICE": {"value": 0.8, "status": "OK"},
+            "IND_TRIGGER_CORN_PRICE": {"value": 0.5, "status": "OK"},
+            "IND_TRIGGER_GSCPI_LOGISTICS": {"value": -0.2, "status": "OK"},
+        }
+        delta, contributions, dominant = relationships.calc_relationship_trigger_delta("UA_RU", triggers)
+        self.assertEqual(delta, -0.172)
+        self.assertEqual([item["contribution"] for item in contributions], [-0.8, -0.5, 0.2])
+        self.assertEqual(dominant, "IND_TRIGGER_WHEAT_PRICE")
+        self.assertEqual(relationships.get_regime(-0.96, "UA_RU"), "KINETIC_WAR")
+        self.assertEqual(relationships.get_regime(-0.95, "UA_RU"), "PROXY_WAR")
+        triggers["IND_TRIGGER_CORN_PRICE"].update(value=None, status="MISSING_DATA")
+        delta, contributions, dominant = relationships.calc_relationship_trigger_delta("UA_RU", triggers)
+        self.assertIsNone(delta)
+        self.assertIsNone(contributions[1]["contribution"])
+        self.assertIsNone(dominant)
+
     def test_baltic_negative_delta_floor(self):
         triggers = {
             "IND_TRIGGER_GSCPI_LOGISTICS": {"value": 1.0, "status": "OK"},

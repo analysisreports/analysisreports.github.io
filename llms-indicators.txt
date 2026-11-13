@@ -36,7 +36,7 @@ Mathematical Guardrails:
 
 ## 2. OFFICIAL LIVE-INGESTED TIME-SERIES REGISTRY (100% API MONITORED)
 
-### 2.1. Federal Reserve Bank of St. Louis (FRED) Official Series (64 Series)
+### 2.1. Federal Reserve Bank of St. Louis (FRED) Official Series (68 Series)
 
 1. **ANFCI** (Chicago Fed Adjusted National Financial Conditions Index) | Freq: Weekly | Units: Index | Source: FRED
 2. **AWHAETP** (Average Weekly Hours of All Employees, Total Private) | Freq: Monthly | Units: Hours | Source: FRED
@@ -104,6 +104,8 @@ Mathematical Guardrails:
 64. **WTREGEN** (Liabilities and Capital: Liabilities: Deposits with F.R. Banks, Other Than Reserve Balances: U.S. Treasury, General Account: Week Average) | Freq: Weekly | Units: Millions of U.S. Dollars | Source: FRED
 65. **DGASNYH** (Conventional Gasoline Prices: New York Harbor, Regular) | Freq: Daily | Units: Dollars per Gallon | Source: FRED
 66. **DDFUELNYH** (Ultra-Low-Sulfur No. 2 Diesel Fuel Prices: New York Harbor) | Freq: Daily | Units: Dollars per Gallon | Source: FRED
+67. **PWHEAMTUSDM** (Global price of Wheat) | Freq: Monthly | Units: U.S. Dollars per Metric Ton | Source: IMF / FRED
+68. **PMAIZMTUSDM** (Global price of Corn) | Freq: Monthly | Units: U.S. Dollars per Metric Ton | Source: IMF / FRED
 
 ### 2.2. European Central Bank (ECB Data Portal) Official Series (11 Series)
 

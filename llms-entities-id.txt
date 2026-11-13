@@ -366,3 +366,5 @@ IND_TRIGGER_NATGAS_CRACK     | Aliases: WTI and Henry Hub Price Ratio Change, Mo
 IND_TRIGGER_CHIP_CONTAINMENT | Aliases: SOX Semiconductor Export Choke Factor, Model 25.19 Chip Trigger
 IND_TRIGGER_SOFR_DOLLAR_DRAIN | Aliases: SOFR Rate Annual Change, Model 25.19 SOFR Trigger
 IND_TRIGGER_GSCPI_LOGISTICS  | Aliases: Global Supply Chain Pressure Change, Model 25.19 Logistics Trigger
+IND_TRIGGER_WHEAT_PRICE      | Aliases: Global Wheat Price Annual Change, Model 25.19 Wheat Trigger
+IND_TRIGGER_CORN_PRICE       | Aliases: Global Corn Price Annual Change, Model 25.19 Corn Trigger

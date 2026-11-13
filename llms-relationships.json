@@ -5,8 +5,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-13T15:15:53.014472+00:00",
-    "last_attempted_sync": "2026-11-13T15:15:53.014472+00:00",
+    "last_successful_sync": "2026-11-13T15:28:10.741013+00:00",
+    "last_attempted_sync": "2026-11-13T15:28:10.741013+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -129,6 +129,36 @@
       },
       "current_model_value": 1.2619,
       "year_ago_model_value": -0.0842
+    },
+    {
+      "entity_id": "IND_TRIGGER_WHEAT_PRICE",
+      "model": "MODEL_25.19",
+      "value": 0.5914,
+      "status": "OK",
+      "warning": null,
+      "inputs": {
+        "PWHEAMTUSDM.current_value": 246.85180245,
+        "PWHEAMTUSDM.year_ago_value": 155.1151385317461,
+        "PWHEAMTUSDM.last_date": "2026-09-01",
+        "PWHEAMTUSDM.year_ago_date": "2025-09-01"
+      },
+      "current_model_value": 246.8518,
+      "year_ago_model_value": 155.1151
+    },
+    {
+      "entity_id": "IND_TRIGGER_CORN_PRICE",
+      "model": "MODEL_25.19",
+      "value": 0.2079,
+      "status": "OK",
+      "warning": null,
+      "inputs": {
+        "PMAIZMTUSDM.current_value": 236.9161241071429,
+        "PMAIZMTUSDM.year_ago_value": 196.1459412448979,
+        "PMAIZMTUSDM.last_date": "2026-09-01",
+        "PMAIZMTUSDM.year_ago_date": "2025-09-01"
+      },
+      "current_model_value": 236.9161,
+      "year_ago_model_value": 196.1459
     }
   ],
   "central_bank_policy_benchmark": {
@@ -986,6 +1016,50 @@
         "KASHMIR_CYPRUS_DIPLOMATIC_AXIS",
         "MIDDLE_CORRIDOR_ECO_RAIL",
         "MILGEM_MARITIME_INTEGRATION"
+      ]
+    },
+    {
+      "id": "UA_RU",
+      "source_entity": "GEO_UA",
+      "target_entity": "GEO_RU",
+      "label": "UA - RU (Ukraine vs. Russian Federation)",
+      "p_baseline": -0.95,
+      "dynamic_delta": -0.2,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_WHEAT_PRICE",
+          "direction": -1,
+          "value": 0.5914,
+          "contribution": -0.5914,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_CORN_PRICE",
+          "direction": -1,
+          "value": 0.2079,
+          "contribution": -0.2079,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_GSCPI_LOGISTICS",
+          "direction": -1,
+          "value": 1.0,
+          "contribution": -1.0,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
+      "p_net": -1.0,
+      "regime_state": "KINETIC_WAR",
+      "kinetic_contact_configured": true,
+      "primary_driver": "TERRITORIAL_CONFRONTATION",
+      "friction_nodes": [
+        "BLACK_SEA",
+        "DONBAS",
+        "ZAPORIZHZHIA",
+        "KHERSON"
       ]
     }
   ],

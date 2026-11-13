@@ -6,6 +6,7 @@ from pathlib import Path
 import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import update_relationships as relationships
 
@@ -89,6 +90,11 @@ class OvxEnergyTriggerTests(unittest.TestCase):
             fred_data = json.loads(fred_path.read_text(encoding="utf-8"))
             for key, entry in sample_series().items():
                 fred_data["series"][key].update(entry)
+            for key, current in (("PWHEAMTUSDM", 120), ("PMAIZMTUSDM", 110)):
+                fred_data["series"][key].update(
+                    current_value=current, year_ago_value=100,
+                    last_date="2026-09-01", year_ago_date="2025-09-01",
+                )
             fred_data["series"]["NASDAQSOX"]["last_date"] = sample_series()["VIXCLS"]["last_date"]
             fred_path.write_text(json.dumps(fred_data), encoding="utf-8")
             old_cwd = os.getcwd()
@@ -100,7 +106,7 @@ class OvxEnergyTriggerTests(unittest.TestCase):
                 os.chdir(old_cwd)
             output = json.loads((temp / "llms-relationships.json").read_text(encoding="utf-8"))
             triggers = {item["entity_id"]: item for item in output["macro_triggers"]}
-            self.assertEqual(len(triggers), 6)
+            self.assertEqual(len(triggers), 8)
             self.assertTrue(all(item["model"] == "MODEL_25.19" for item in triggers.values()))
             self.assertEqual(triggers["IND_TRIGGER_OVX_ENERGY_PANIC"]["value"], 0.3274)
             output_text = (temp / "llms-relationships.txt").read_text(encoding="utf-8")
@@ -134,7 +140,19 @@ class OvxEnergyTriggerTests(unittest.TestCase):
                 self.assertEqual(pairs[pair_id]["regime_state"],
                                  relationships.get_regime(pairs[pair_id]["p_net"], pair_id))
             self.assertEqual(pairs["YE_IL"]["regime_state"], "KINETIC_WAR")
-            self.assertEqual(len(output["relationships"]), 23)
+            self.assertEqual(len(output["relationships"]), 24)
+            ua_ru = pairs["UA_RU"]
+            self.assertEqual((ua_ru["source_entity"], ua_ru["target_entity"]), ("GEO_UA", "GEO_RU"))
+            self.assertEqual(ua_ru["p_baseline"], -0.95)
+            self.assertEqual(ua_ru["dynamic_delta"], -0.2)
+            self.assertEqual(ua_ru["p_net"], -1.0)
+            self.assertEqual([item["trigger_id"] for item in ua_ru["macro_trigger_contributions"]],
+                             ["IND_TRIGGER_WHEAT_PRICE", "IND_TRIGGER_CORN_PRICE", "IND_TRIGGER_GSCPI_LOGISTICS"])
+            self.assertEqual(ua_ru["dominant_trigger"], "IND_TRIGGER_GSCPI_LOGISTICS")
+            self.assertTrue(ua_ru["kinetic_contact_configured"])
+            self.assertEqual(ua_ru["regime_state"], "KINETIC_WAR")
+            self.assertIn("IND_TRIGGER_WHEAT_PRICE: -1 × +0.2000 = -0.2000 (OK)", output_text)
+            fred_data["series"]["PWHEAMTUSDM"]["year_ago_date"] = None
             for entry in ("OVXCLS", "VIXCLS"):
                 fred_data["series"][entry]["year_ago_date"] = None
             fred_path.write_text(json.dumps(fred_data), encoding="utf-8")
@@ -157,6 +175,27 @@ class OvxEnergyTriggerTests(unittest.TestCase):
             self.assertIsNone(pair["p_net"])
             self.assertEqual(pair["regime_state"], "UNAVAILABLE")
             self.assertIn("SA_IR: relationship delta unavailable", log.getvalue())
+            ua_ru = next(item for item in output["relationships"] if item["id"] == "UA_RU")
+            self.assertIsNone(ua_ru["dynamic_delta"])
+            self.assertIsNone(ua_ru["p_net"])
+            self.assertEqual(ua_ru["regime_state"], "UNAVAILABLE")
+            self.assertIn("UA_RU: relationship delta unavailable", log.getvalue())
+            original_delta = relationships.calc_relationship_trigger_delta
+            def positive_ua_ru_delta(pair_id, trigger_values):
+                if pair_id == "UA_RU":
+                    return 0.2, [], None
+                return original_delta(pair_id, trigger_values)
+            try:
+                os.chdir(temp)
+                with patch.object(relationships, "calc_relationship_trigger_delta", side_effect=positive_ua_ru_delta):
+                    with contextlib.redirect_stdout(io.StringIO()):
+                        relationships.main()
+            finally:
+                os.chdir(old_cwd)
+            output = json.loads((temp / "llms-relationships.json").read_text(encoding="utf-8"))
+            ua_ru = next(item for item in output["relationships"] if item["id"] == "UA_RU")
+            self.assertEqual(ua_ru["p_net"], -0.75)
+            self.assertEqual(ua_ru["regime_state"], "PROXY_WAR")
 
 
 if __name__ == "__main__":
