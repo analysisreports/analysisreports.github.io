@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-13 03:51 UTC
+> **Last Calibrated Sync:** 2026-11-13 15:15 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -58,7 +58,7 @@
 | **MODEL_25.14** | AI Hardware & Semiconductor Supply Chain Stress Gauge | **0.414** | Score (Normalized) | `BALANCED_HARDWARE_FLOW` | Normalized composite metric monitoring semiconductor ph... |
 | **MODEL_25.16** | Yen Carry Trade Dissolution and Stress Gauge | **6.2379** | % (Net Carry Buffer) | `CALM_ACCUMULATION` | Monitors cross-currency Yen Carry Trade buffer, unwindi... |
 | **MODEL_25.18** | Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact) | **0.1** | Dynamic Delta Index (Avg) | `TREATY_ACTIVE_EQUILIBRIUM` | Non-contiguous trilateral defense integration linking T... |
-| **MODEL_28.4** | Chokepoint Macro Spillover Bridge (Hormuz - Live EIA SPR) | **52** | Index (0-100) | `MODERATE_FRICTION` | Couples maritime chokepoint severity (CATASTROPHIC) wit... |
+| **MODEL_28.4** | Chokepoint Macro Spillover Bridge (Hormuz - Live EIA SPR) | **53** | Index (0-100) | `MODERATE_FRICTION` | Couples maritime chokepoint severity (CATASTROPHIC) wit... |
 
 ---
 ### Detailed Model Breakdowns
@@ -377,7 +377,7 @@
 
 #### [MODEL_28.4] Chokepoint Macro Spillover Bridge (Hormuz - Live EIA SPR)
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#28.4
-- **Evaluated Status:** `MODERATE_FRICTION` (Primary Value: 52 Index (0-100))
-- **Inputs Evaluated:** `{"chokepoint_id": "CHOKE_HORMUZ", "severity_enum": "CATASTROPHIC", "p_net": -0.95, "crisis_duration_days": 14, "gross_flow_mbpd": 20.5, "regional_bypass_capacity_mbpd": 4.0, "eia_spr_stocks_mbbl": 282.18, "eia_us_crude_prod_mbpd": 14.0}`
-- **Secondary Metrics:** `{"severity_weight": 1.0, "polarity_friction_factor": 0.95, "spr_sustainable_drawdown_mbpd": 3.14, "effective_spr_release_mbpd": 3.14, "total_buffer_capacity_mbpd": 7.14, "net_unmet_deficit_mbpd": 13.36, "net_deficit_ratio": 0.6517, "duration_scale_factor": 0.7, "unscaled_base_shock": 74.12, "us_crude_field_production_mbpd": 14.0}`
+- **Evaluated Status:** `MODERATE_FRICTION` (Primary Value: 53 Index (0-100))
+- **Inputs Evaluated:** `{"chokepoint_id": "CHOKE_HORMUZ", "severity_enum": "CATASTROPHIC", "p_net": -1.0, "crisis_duration_days": 14, "gross_flow_mbpd": 20.5, "regional_bypass_capacity_mbpd": 4.0, "eia_spr_stocks_mbbl": 282.18, "eia_us_crude_prod_mbpd": 14.0}`
+- **Secondary Metrics:** `{"severity_weight": 1.0, "polarity_friction_factor": 1.0, "spr_sustainable_drawdown_mbpd": 3.14, "effective_spr_release_mbpd": 3.14, "total_buffer_capacity_mbpd": 7.14, "net_unmet_deficit_mbpd": 13.36, "net_deficit_ratio": 0.6517, "duration_scale_factor": 0.7, "unscaled_base_shock": 75.62, "us_crude_field_production_mbpd": 14.0}`
 - **Economic Synthesis:** Couples maritime chokepoint severity (CATASTROPHIC) with live EIA SPR inventory (3.14 mbpd sustainable release) and regional pipeline bypass to evaluate macroeconomic spillover under acute crisis.

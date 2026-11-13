@@ -109,9 +109,9 @@ DRTSCIS
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-13 03:50:52 UTC
-# - Sync Status: SUCCESS (69 / 69 series active)
-# - Total Series Synced: 69 / 69
+# - Synced At: 2026-11-13 15:15:30 UTC
+# - Sync Status: SUCCESS (72 / 72 series active)
+# - Total Series Synced: 72 / 72
 # - Source Authority: Federal Reserve Bank of St. Louis (FRED API)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
@@ -830,11 +830,80 @@ Recent Observations (Last 5):
   2026-11-09: 3.9950
 
 --------------------------------------------------------------------------------
+Series ID: PBARLUSDM
+Title: Global price of Barley
+Frequency: Monthly (n_obs_per_yr: 12) | Units: U.S. Dollars per Metric Ton
+Last Date: 2026-09-01 | Current Value: 125.1052 | Previous Value: 124.1710
+Year Ago Date: 2025-09-01 | Year Ago Value: 115.1576
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.9342
+  2. Change from Year Ago: +9.9476
+  3. Percent Change: +0.7523%
+  4. Percent Change from Year Ago: +8.6383%
+  5. Compounded Annual Rate of Change: +9.4109%
+  6. Continuously Compounded Rate of Change: +0.7495%
+  7. Continuously Compounded Annual Rate of Change: +8.9940%
+
+Recent Observations (Last 5):
+  2026-05-01: 124.9655
+  2026-06-01: 121.0900
+  2026-07-01: 121.9044
+  2026-08-01: 124.1710
+  2026-09-01: 125.1052
+
+--------------------------------------------------------------------------------
+Series ID: PWHEAMTUSDM
+Title: Global price of Wheat
+Frequency: Monthly (n_obs_per_yr: 12) | Units: U.S. Dollars per Metric Ton
+Last Date: 2026-09-01 | Current Value: 246.8518 | Previous Value: 237.8554
+Year Ago Date: 2025-09-01 | Year Ago Value: 155.1151
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +8.9964
+  2. Change from Year Ago: +91.7367
+  3. Percent Change: +3.7823%
+  4. Percent Change from Year Ago: +59.1410%
+  5. Compounded Annual Rate of Change: +56.1275%
+  6. Continuously Compounded Rate of Change: +3.7125%
+  7. Continuously Compounded Annual Rate of Change: +44.5503%
+
+Recent Observations (Last 5):
+  2026-05-01: 220.8846
+  2026-06-01: 199.6483
+  2026-07-01: 228.7388
+  2026-08-01: 237.8554
+  2026-09-01: 246.8518
+
+--------------------------------------------------------------------------------
+Series ID: PMAIZMTUSDM
+Title: Global price of Corn
+Frequency: Monthly (n_obs_per_yr: 12) | Units: U.S. Dollars per Metric Ton
+Last Date: 2026-09-01 | Current Value: 236.9161 | Previous Value: 221.3035
+Year Ago Date: 2025-09-01 | Year Ago Value: 196.1459
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +15.6126
+  2. Change from Year Ago: +40.7702
+  3. Percent Change: +7.0548%
+  4. Percent Change from Year Ago: +20.7856%
+  5. Compounded Annual Rate of Change: +126.6085%
+  6. Continuously Compounded Rate of Change: +6.8171%
+  7. Continuously Compounded Annual Rate of Change: +81.8054%
+
+Recent Observations (Last 5):
+  2026-05-01: 215.6206
+  2026-06-01: 195.7819
+  2026-07-01: 213.1902
+  2026-08-01: 221.3035
+  2026-09-01: 236.9161
+
+--------------------------------------------------------------------------------
 Series ID: PNGASEUUSDM
 Title: Global price of Natural gas, EU
 Frequency: Monthly (n_obs_per_yr: 12) | Units: U.S. Dollars per Million Metric British Thermal Unit
 Last Date: 2026-09-01 | Current Value: 25.4940 | Previous Value: 20.9220
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 11.0030
+Year Ago Date: 2025-09-01 | Year Ago Value: 11.0030
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +4.5720
@@ -857,7 +926,7 @@ Series ID: PNGASJPUSDM
 Title: Global price of LNG, Asia
 Frequency: Monthly (n_obs_per_yr: 12) | Units: U.S. Dollars per Million Metric British Thermal Unit
 Last Date: 2026-09-01 | Current Value: 26.6370 | Previous Value: 22.0380
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 11.2770
+Year Ago Date: 2025-09-01 | Year Ago Value: 11.2770
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +4.5990
@@ -880,7 +949,7 @@ Series ID: PAYEMS
 Title: All Employees, Total Nonfarm
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Thousands of Persons
 Last Date: 2026-10-01 | Current Value: 159293.0000 | Previous Value: 159128.0000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 158408.0000
+Year Ago Date: 2025-10-01 | Year Ago Value: 158408.0000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +165.0000
@@ -903,7 +972,7 @@ Series ID: PSAVERT
 Title: Personal Saving Rate
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent
 Last Date: 2026-09-01 | Current Value: 3.8000 | Previous Value: 4.0000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 5.1000
+Year Ago Date: 2025-09-01 | Year Ago Value: 5.1000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: -0.2000
@@ -926,7 +995,7 @@ Series ID: CIVPART
 Title: Labor Force Participation Rate
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent
 Last Date: 2026-10-01 | Current Value: 61.9000 | Previous Value: 61.8000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 62.5000
+Year Ago Date: 2025-09-01 | Year Ago Value: 62.5000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +0.1000
@@ -949,7 +1018,7 @@ Series ID: TOTALSL
 Title: Total Consumer Credit Owned and Securitized
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Millions of U.S. Dollars
 Last Date: 2026-09-01 | Current Value: 5224415.9900 | Previous Value: 5196577.3600
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 5071963.4300
+Year Ago Date: 2025-09-01 | Year Ago Value: 5071963.4300
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +27838.6300
@@ -972,7 +1041,7 @@ Series ID: BOGMBASE
 Title: Monetary Base: Total
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Billions of Dollars
 Last Date: 2026-09-01 | Current Value: 5449.8000 | Previous Value: 5411.6000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 5478.0000
+Year Ago Date: 2025-09-01 | Year Ago Value: 5478.0000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +38.2000
@@ -995,7 +1064,7 @@ Series ID: PERMIT
 Title: New Privately-Owned Housing Units Authorized in Permit-Issuing Places: Total Units
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Thousands of Units
 Last Date: 2026-09-01 | Current Value: 1398.0000 | Previous Value: 1403.0000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 1444.0000
+Year Ago Date: 2025-09-01 | Year Ago Value: 1444.0000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: -5.0000
@@ -1018,7 +1087,7 @@ Series ID: UMCSENT
 Title: University of Michigan: Consumer Sentiment
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Index 1966:Q1=100
 Last Date: 2026-09-01 | Current Value: 48.1000 | Previous Value: 51.7000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 55.1000
+Year Ago Date: 2025-09-01 | Year Ago Value: 55.1000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: -3.6000
@@ -1041,7 +1110,7 @@ Series ID: UNRATE
 Title: Unemployment Rate
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent
 Last Date: 2026-10-01 | Current Value: 4.1000 | Previous Value: 4.2000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 4.4000
+Year Ago Date: 2025-09-01 | Year Ago Value: 4.4000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: -0.1000
@@ -1064,7 +1133,7 @@ Series ID: UNEMPLOY
 Title: Unemployment Level
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Thousands of Persons
 Last Date: 2026-10-01 | Current Value: 7068.0000 | Previous Value: 7109.0000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 7605.0000
+Year Ago Date: 2025-09-01 | Year Ago Value: 7605.0000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: -41.0000
@@ -1087,7 +1156,7 @@ Series ID: JTSJOL
 Title: Job Openings: Total Nonfarm
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Level in Thousands
 Last Date: 2026-09-01 | Current Value: 7523.0000 | Previous Value: 7190.0000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 7169.0000
+Year Ago Date: 2025-09-01 | Year Ago Value: 7169.0000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +333.0000
@@ -1110,7 +1179,7 @@ Series ID: AWHAETP
 Title: Average Weekly Hours of All Employees, Total Private
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Hours
 Last Date: 2026-10-01 | Current Value: 34.4000 | Previous Value: 34.4000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 34.2000
+Year Ago Date: 2025-10-01 | Year Ago Value: 34.2000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +0.0000
@@ -1133,7 +1202,7 @@ Series ID: FEDFUNDS
 Title: Federal Funds Effective Rate
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent
 Last Date: 2026-10-01 | Current Value: 3.8800 | Previous Value: 3.7500
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 4.0900
+Year Ago Date: 2025-10-01 | Year Ago Value: 4.0900
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +0.1300
@@ -1156,7 +1225,7 @@ Series ID: INDPRO
 Title: Industrial Production: Total Index
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Index 2017=100
 Last Date: 2026-09-01 | Current Value: 103.9506 | Previous Value: 103.2664
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 101.6680
+Year Ago Date: 2025-09-01 | Year Ago Value: 101.6680
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +0.6842
@@ -1179,7 +1248,7 @@ Series ID: SAHMREALTIME
 Title: Real-time Sahm Rule Recession Indicator
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Percentage Points
 Last Date: 2026-10-01 | Current Value: 0.0000 | Previous Value: 0.0000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 0.2300
+Year Ago Date: 2025-09-01 | Year Ago Value: 0.2300
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +0.0000
@@ -1202,7 +1271,7 @@ Series ID: CPIAUCSL
 Title: Consumer Price Index for All Urban Consumers: All Items in U.S. City Average
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Index 1982-1984=100
 Last Date: 2026-10-01 | Current Value: 337.4760 | Previous Value: 336.2980
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 324.2450
+Year Ago Date: 2025-09-01 | Year Ago Value: 324.2450
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +1.1780
@@ -1225,7 +1294,7 @@ Series ID: CORESTICKM159SFRBATL
 Title: Sticky Price Consumer Price Index less Food and Energy
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent Change from Year Ago
 Last Date: 2026-10-01 | Current Value: 3.0595 | Previous Value: 2.7765
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 3.0778
+Year Ago Date: 2025-10-01 | Year Ago Value: 3.0778
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +0.2829
@@ -1248,7 +1317,7 @@ Series ID: ISRATIO
 Title: Total Business: Inventories to Sales Ratio
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Ratio
 Last Date: 2026-08-01 | Current Value: 1.3300 | Previous Value: 1.3400
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 1.4000
+Year Ago Date: 2025-08-01 | Year Ago Value: 1.4000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: -0.0100
@@ -1271,7 +1340,7 @@ Series ID: M2SL
 Title: M2
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Billions of Dollars
 Last Date: 2026-09-01 | Current Value: 23413.9000 | Previous Value: 23300.9000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 22149.2000
+Year Ago Date: 2025-09-01 | Year Ago Value: 22149.2000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +113.0000
@@ -1294,7 +1363,7 @@ Series ID: PCE
 Title: Personal Consumption Expenditures
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Billions of Dollars
 Last Date: 2026-09-01 | Current Value: 22452.8000 | Previous Value: 22339.7000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 21126.5000
+Year Ago Date: 2025-09-01 | Year Ago Value: 21126.5000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +113.1000
@@ -1317,7 +1386,7 @@ Series ID: IR
 Title: Import Price Index (End Use): All Commodities
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Index 2000=100
 Last Date: 2026-09-01 | Current Value: 152.2000 | Previous Value: 150.5000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 141.0000
+Year Ago Date: 2025-08-01 | Year Ago Value: 141.0000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +1.7000
@@ -1340,7 +1409,7 @@ Series ID: IQ
 Title: Export Price Index (End Use): All Commodities
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Index 2000=100
 Last Date: 2026-09-01 | Current Value: 170.8000 | Previous Value: 167.2000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 153.0000
+Year Ago Date: 2025-08-01 | Year Ago Value: 153.0000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +3.6000
@@ -1363,7 +1432,7 @@ Series ID: TRESEGSAM052N
 Title: Reserves Excluding Gold for Saudi Arabia
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Millions of Dollars
 Last Date: 2026-08-01 | Current Value: 486875.6561 | Previous Value: 488250.5489
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 456207.1399
+Year Ago Date: 2025-08-01 | Year Ago Value: 456207.1399
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: -1374.8928
@@ -1386,7 +1455,7 @@ Series ID: BOPGSTB
 Title: Trade Balance: Goods and Services, Balance of Payments Basis
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Millions of Dollars
 Last Date: 2026-09-01 | Current Value: -105047.0000 | Previous Value: -105737.0000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: -59392.0000
+Year Ago Date: 2025-09-01 | Year Ago Value: -59392.0000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +690.0000
@@ -1409,7 +1478,7 @@ Series ID: PCOPPUSDM
 Title: Global price of Copper
 Frequency: Monthly (n_obs_per_yr: 12) | Units: U.S. Dollars per Metric Ton
 Last Date: 2026-09-01 | Current Value: 14473.0559 | Previous Value: 14331.2648
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 9994.7732
+Year Ago Date: 2025-09-01 | Year Ago Value: 9994.7732
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +141.7911
@@ -1432,7 +1501,7 @@ Series ID: STICKCPIM157SFRBATL
 Title: Sticky Price Consumer Price Index
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent Change
 Last Date: 2026-10-01 | Current Value: 0.3871 | Previous Value: 0.2791
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 0.1155
+Year Ago Date: 2025-10-01 | Year Ago Value: 0.1155
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +0.1080
@@ -1455,7 +1524,7 @@ Series ID: FLEXCPIM157SFRBATL
 Title: Flexible Price Consumer Price Index
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent Change
 Last Date: 2026-10-01 | Current Value: 0.2478 | Previous Value: 1.6862
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 0.1744
+Year Ago Date: 2025-10-01 | Year Ago Value: 0.1744
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: -1.4384
@@ -1478,7 +1547,7 @@ Series ID: LNS12500000
 Title: Employed, Usually Work Full Time
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Thousands of Persons
 Last Date: 2026-10-01 | Current Value: 135090.0000 | Previous Value: 134376.0000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 135157.0000
+Year Ago Date: 2025-09-01 | Year Ago Value: 135157.0000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +714.0000
@@ -1501,7 +1570,7 @@ Series ID: LNS12032194
 Title: Employment Level - Part-Time for Economic Reasons, All Industries
 Frequency: Monthly (n_obs_per_yr: 12) | Units: Thousands of Persons
 Last Date: 2026-10-01 | Current Value: 4840.0000 | Previous Value: 4501.0000
-Year Ago Date: N/A (observation date unavailable) | Year Ago Value: 4594.0000
+Year Ago Date: 2025-09-01 | Year Ago Value: 4594.0000
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: +339.0000

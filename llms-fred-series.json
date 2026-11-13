@@ -5,9 +5,9 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-13T03:50:52Z",
-    "total_series": 69,
-    "total_registered": 69,
+    "last_successful_sync": "2026-11-13T15:15:30Z",
+    "total_series": 72,
+    "total_registered": 72,
     "missing_series": [],
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
@@ -1404,6 +1404,141 @@
         }
       ]
     },
+    "PBARLUSDM": {
+      "series_id": "PBARLUSDM",
+      "title": "Global price of Barley",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "U.S. Dollars per Metric Ton",
+      "source": "U.S. Dollars per Metric Ton",
+      "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
+      "current_value": 125.1051854735405,
+      "previous_value": 124.1710257387747,
+      "year_ago_value": 115.1575613576706,
+      "year_ago_date": "2025-09-01",
+      "transformations": {
+        "change": 0.9342,
+        "change_from_year_ago": 9.9476,
+        "percent_change": 0.7523,
+        "percent_change_from_year_ago": 8.6383,
+        "compounded_annual_rate_of_change": 9.4109,
+        "continuously_compounded_rate_of_change": 0.7495,
+        "continuously_compounded_annual_rate_of_change": 8.994
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 124.9654568970523
+        },
+        {
+          "date": "2026-06-01",
+          "value": 121.0900080253843
+        },
+        {
+          "date": "2026-07-01",
+          "value": 121.9043696921157
+        },
+        {
+          "date": "2026-08-01",
+          "value": 124.1710257387747
+        },
+        {
+          "date": "2026-09-01",
+          "value": 125.1051854735405
+        }
+      ]
+    },
+    "PWHEAMTUSDM": {
+      "series_id": "PWHEAMTUSDM",
+      "title": "Global price of Wheat",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "U.S. Dollars per Metric Ton",
+      "source": "U.S. Dollars per Metric Ton",
+      "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
+      "current_value": 246.85180245,
+      "previous_value": 237.8554019809524,
+      "year_ago_value": 155.1151385317461,
+      "year_ago_date": "2025-09-01",
+      "transformations": {
+        "change": 8.9964,
+        "change_from_year_ago": 91.7367,
+        "percent_change": 3.7823,
+        "percent_change_from_year_ago": 59.141,
+        "compounded_annual_rate_of_change": 56.1275,
+        "continuously_compounded_rate_of_change": 3.7125,
+        "continuously_compounded_annual_rate_of_change": 44.5503
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 220.8845521666666
+        },
+        {
+          "date": "2026-06-01",
+          "value": 199.6482875619048
+        },
+        {
+          "date": "2026-07-01",
+          "value": 228.73884495
+        },
+        {
+          "date": "2026-08-01",
+          "value": 237.8554019809524
+        },
+        {
+          "date": "2026-09-01",
+          "value": 246.85180245
+        }
+      ]
+    },
+    "PMAIZMTUSDM": {
+      "series_id": "PMAIZMTUSDM",
+      "title": "Global price of Corn",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "U.S. Dollars per Metric Ton",
+      "source": "U.S. Dollars per Metric Ton",
+      "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
+      "current_value": 236.9161241071429,
+      "previous_value": 221.3034955803572,
+      "year_ago_value": 196.1459412448979,
+      "year_ago_date": "2025-09-01",
+      "transformations": {
+        "change": 15.6126,
+        "change_from_year_ago": 40.7702,
+        "percent_change": 7.0548,
+        "percent_change_from_year_ago": 20.7856,
+        "compounded_annual_rate_of_change": 126.6085,
+        "continuously_compounded_rate_of_change": 6.8171,
+        "continuously_compounded_annual_rate_of_change": 81.8054
+      },
+      "recent_observations": [
+        {
+          "date": "2026-05-01",
+          "value": 215.6206469812925
+        },
+        {
+          "date": "2026-06-01",
+          "value": 195.7818789965986
+        },
+        {
+          "date": "2026-07-01",
+          "value": 213.1901539821428
+        },
+        {
+          "date": "2026-08-01",
+          "value": 221.3034955803572
+        },
+        {
+          "date": "2026-09-01",
+          "value": 236.9161241071429
+        }
+      ]
+    },
     "PNGASEUUSDM": {
       "series_id": "PNGASEUUSDM",
       "title": "Global price of Natural gas, EU",
@@ -1412,11 +1547,11 @@
       "units": "U.S. Dollars per Million Metric British Thermal Unit",
       "source": "U.S. Dollars per Million Metric British Thermal Unit",
       "last_date": "2026-09-01",
-      "last_synced_utc": "2026-11-11T23:06:21Z",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 25.494,
       "previous_value": 20.922,
       "year_ago_value": 11.003,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": 4.572,
         "change_from_year_ago": 14.491,
@@ -1457,11 +1592,11 @@
       "units": "U.S. Dollars per Million Metric British Thermal Unit",
       "source": "U.S. Dollars per Million Metric British Thermal Unit",
       "last_date": "2026-09-01",
-      "last_synced_utc": "2026-11-11T23:06:21Z",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 26.637,
       "previous_value": 22.038,
       "year_ago_value": 11.277,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": 4.599,
         "change_from_year_ago": 15.36,
@@ -1502,10 +1637,11 @@
       "units": "Thousands of Persons",
       "source": "Thousands of Persons",
       "last_date": "2026-10-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 159293.0,
       "previous_value": 159128.0,
       "year_ago_value": 158408.0,
-      "year_ago_date": null,
+      "year_ago_date": "2025-10-01",
       "transformations": {
         "change": 165.0,
         "change_from_year_ago": 885.0,
@@ -1546,10 +1682,11 @@
       "units": "Percent",
       "source": "Percent",
       "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 3.8,
       "previous_value": 4.0,
       "year_ago_value": 5.1,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": -0.2,
         "change_from_year_ago": -1.3,
@@ -1590,10 +1727,11 @@
       "units": "Percent",
       "source": "Percent",
       "last_date": "2026-10-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 61.9,
       "previous_value": 61.8,
       "year_ago_value": 62.5,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": 0.1,
         "change_from_year_ago": -0.6,
@@ -1634,10 +1772,11 @@
       "units": "Millions of U.S. Dollars",
       "source": "Millions of U.S. Dollars",
       "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 5224415.99,
       "previous_value": 5196577.36,
       "year_ago_value": 5071963.43,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": 27838.63,
         "change_from_year_ago": 152452.56,
@@ -1678,10 +1817,11 @@
       "units": "Billions of Dollars",
       "source": "Billions of Dollars",
       "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 5449.8,
       "previous_value": 5411.6,
       "year_ago_value": 5478.0,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": 38.2,
         "change_from_year_ago": -28.2,
@@ -1722,10 +1862,11 @@
       "units": "Thousands of Units",
       "source": "Thousands of Units",
       "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 1398.0,
       "previous_value": 1403.0,
       "year_ago_value": 1444.0,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": -5.0,
         "change_from_year_ago": -46.0,
@@ -1766,10 +1907,11 @@
       "units": "Index 1966:Q1=100",
       "source": "Index 1966:Q1=100",
       "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 48.1,
       "previous_value": 51.7,
       "year_ago_value": 55.1,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": -3.6,
         "change_from_year_ago": -7.0,
@@ -1810,10 +1952,11 @@
       "units": "Percent",
       "source": "Percent",
       "last_date": "2026-10-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 4.1,
       "previous_value": 4.2,
       "year_ago_value": 4.4,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": -0.1,
         "change_from_year_ago": -0.3,
@@ -1854,10 +1997,11 @@
       "units": "Thousands of Persons",
       "source": "Thousands of Persons",
       "last_date": "2026-10-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 7068.0,
       "previous_value": 7109.0,
       "year_ago_value": 7605.0,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": -41.0,
         "change_from_year_ago": -537.0,
@@ -1898,10 +2042,11 @@
       "units": "Level in Thousands",
       "source": "Level in Thousands",
       "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 7523.0,
       "previous_value": 7190.0,
       "year_ago_value": 7169.0,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": 333.0,
         "change_from_year_ago": 354.0,
@@ -1942,10 +2087,11 @@
       "units": "Hours",
       "source": "Hours",
       "last_date": "2026-10-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 34.4,
       "previous_value": 34.4,
       "year_ago_value": 34.2,
-      "year_ago_date": null,
+      "year_ago_date": "2025-10-01",
       "transformations": {
         "change": 0.0,
         "change_from_year_ago": 0.2,
@@ -1986,10 +2132,11 @@
       "units": "Percent",
       "source": "Percent",
       "last_date": "2026-10-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 3.88,
       "previous_value": 3.75,
       "year_ago_value": 4.09,
-      "year_ago_date": null,
+      "year_ago_date": "2025-10-01",
       "transformations": {
         "change": 0.13,
         "change_from_year_ago": -0.21,
@@ -2030,10 +2177,11 @@
       "units": "Index 2017=100",
       "source": "Index 2017=100",
       "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 103.9506,
       "previous_value": 103.2664,
       "year_ago_value": 101.668,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": 0.6842,
         "change_from_year_ago": 2.2826,
@@ -2074,10 +2222,11 @@
       "units": "Percentage Points",
       "source": "Percentage Points",
       "last_date": "2026-10-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 0.0,
       "previous_value": 0.0,
       "year_ago_value": 0.23,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": 0.0,
         "change_from_year_ago": -0.23,
@@ -2118,10 +2267,11 @@
       "units": "Index 1982-1984=100",
       "source": "Index 1982-1984=100",
       "last_date": "2026-10-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 337.476,
       "previous_value": 336.298,
       "year_ago_value": 324.245,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": 1.178,
         "change_from_year_ago": 13.231,
@@ -2162,10 +2312,11 @@
       "units": "Percent Change from Year Ago",
       "source": "Percent Change from Year Ago",
       "last_date": "2026-10-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 3.059467681,
       "previous_value": 2.776528554,
       "year_ago_value": 3.077827,
-      "year_ago_date": null,
+      "year_ago_date": "2025-10-01",
       "transformations": {
         "change": 0.2829,
         "change_from_year_ago": -0.0184,
@@ -2206,10 +2357,11 @@
       "units": "Ratio",
       "source": "Ratio",
       "last_date": "2026-08-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 1.33,
       "previous_value": 1.34,
       "year_ago_value": 1.4,
-      "year_ago_date": null,
+      "year_ago_date": "2025-08-01",
       "transformations": {
         "change": -0.01,
         "change_from_year_ago": -0.07,
@@ -2250,10 +2402,11 @@
       "units": "Billions of Dollars",
       "source": "Billions of Dollars",
       "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 23413.9,
       "previous_value": 23300.9,
       "year_ago_value": 22149.2,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": 113.0,
         "change_from_year_ago": 1264.7,
@@ -2294,10 +2447,11 @@
       "units": "Billions of Dollars",
       "source": "Billions of Dollars",
       "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 22452.8,
       "previous_value": 22339.7,
       "year_ago_value": 21126.5,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": 113.1,
         "change_from_year_ago": 1326.3,
@@ -2338,10 +2492,11 @@
       "units": "Index 2000=100",
       "source": "Index 2000=100",
       "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 152.2,
       "previous_value": 150.5,
       "year_ago_value": 141.0,
-      "year_ago_date": null,
+      "year_ago_date": "2025-08-01",
       "transformations": {
         "change": 1.7,
         "change_from_year_ago": 11.2,
@@ -2382,10 +2537,11 @@
       "units": "Index 2000=100",
       "source": "Index 2000=100",
       "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 170.8,
       "previous_value": 167.2,
       "year_ago_value": 153.0,
-      "year_ago_date": null,
+      "year_ago_date": "2025-08-01",
       "transformations": {
         "change": 3.6,
         "change_from_year_ago": 17.8,
@@ -2426,10 +2582,11 @@
       "units": "Millions of Dollars",
       "source": "Millions of Dollars",
       "last_date": "2026-08-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 486875.6560709552,
       "previous_value": 488250.5489133492,
       "year_ago_value": 456207.1398723231,
-      "year_ago_date": null,
+      "year_ago_date": "2025-08-01",
       "transformations": {
         "change": -1374.8928,
         "change_from_year_ago": 30668.5162,
@@ -2470,10 +2627,11 @@
       "units": "Millions of Dollars",
       "source": "Millions of Dollars",
       "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": -105047.0,
       "previous_value": -105737.0,
       "year_ago_value": -59392.0,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": 690.0,
         "change_from_year_ago": -45655.0,
@@ -2514,10 +2672,11 @@
       "units": "U.S. Dollars per Metric Ton",
       "source": "U.S. Dollars per Metric Ton",
       "last_date": "2026-09-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 14473.05590909091,
       "previous_value": 14331.26476190476,
       "year_ago_value": 9994.773181818182,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": 141.7911,
         "change_from_year_ago": 4478.2827,
@@ -2558,10 +2717,11 @@
       "units": "Percent Change",
       "source": "Percent Change",
       "last_date": "2026-10-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 0.387074575,
       "previous_value": 0.279114413,
       "year_ago_value": 0.115536778,
-      "year_ago_date": null,
+      "year_ago_date": "2025-10-01",
       "transformations": {
         "change": 0.108,
         "change_from_year_ago": 0.2715,
@@ -2602,10 +2762,11 @@
       "units": "Percent Change",
       "source": "Percent Change",
       "last_date": "2026-10-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 0.247823658,
       "previous_value": 1.686174531,
       "year_ago_value": 0.174390387,
-      "year_ago_date": null,
+      "year_ago_date": "2025-10-01",
       "transformations": {
         "change": -1.4384,
         "change_from_year_ago": 0.0734,
@@ -2646,10 +2807,11 @@
       "units": "Thousands of Persons",
       "source": "Thousands of Persons",
       "last_date": "2026-10-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 135090.0,
       "previous_value": 134376.0,
       "year_ago_value": 135157.0,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": 714.0,
         "change_from_year_ago": -67.0,
@@ -2690,10 +2852,11 @@
       "units": "Thousands of Persons",
       "source": "Thousands of Persons",
       "last_date": "2026-10-01",
+      "last_synced_utc": "2026-11-13T15:15:30Z",
       "current_value": 4840.0,
       "previous_value": 4501.0,
       "year_ago_value": 4594.0,
-      "year_ago_date": null,
+      "year_ago_date": "2025-09-01",
       "transformations": {
         "change": 339.0,
         "change_from_year_ago": 246.0,

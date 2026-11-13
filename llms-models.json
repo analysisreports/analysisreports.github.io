@@ -7,7 +7,7 @@
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-13T03:51:05.912124+00:00",
+    "last_successful_sync": "2026-11-13T15:15:53.048234+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -854,13 +854,13 @@
       "model_id": "MODEL_28.4",
       "model_name": "Chokepoint Macro Spillover Bridge (Hormuz - Live EIA SPR)",
       "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#28.4",
-      "primary_value": 52,
+      "primary_value": 53,
       "unit": "Index (0-100)",
       "status": "MODERATE_FRICTION",
       "inputs": {
         "chokepoint_id": "CHOKE_HORMUZ",
         "severity_enum": "CATASTROPHIC",
-        "p_net": -0.95,
+        "p_net": -1.0,
         "crisis_duration_days": 14,
         "gross_flow_mbpd": 20.5,
         "regional_bypass_capacity_mbpd": 4.0,
@@ -869,14 +869,14 @@
       },
       "metrics": {
         "severity_weight": 1.0,
-        "polarity_friction_factor": 0.95,
+        "polarity_friction_factor": 1.0,
         "spr_sustainable_drawdown_mbpd": 3.14,
         "effective_spr_release_mbpd": 3.14,
         "total_buffer_capacity_mbpd": 7.14,
         "net_unmet_deficit_mbpd": 13.36,
         "net_deficit_ratio": 0.6517,
         "duration_scale_factor": 0.7,
-        "unscaled_base_shock": 74.12,
+        "unscaled_base_shock": 75.62,
         "us_crude_field_production_mbpd": 14.0
       },
       "interpretation": "Couples maritime chokepoint severity (CATASTROPHIC) with live EIA SPR inventory (3.14 mbpd sustainable release) and regional pipeline bypass to evaluate macroeconomic spillover under acute crisis."
