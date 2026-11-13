@@ -20,7 +20,7 @@
   "macro_triggers": [
     {
       "entity_id": "IND_TRIGGER_HORMUZ_SPREAD",
-      "model": "MODEL_25.12",
+      "model": "MODEL_25.19",
       "value": -0.4362,
       "status": "OK",
       "warning": null,
@@ -39,7 +39,7 @@
     },
     {
       "entity_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
-      "model": "MODEL_25.7",
+      "model": "MODEL_25.19",
       "value": 0.5057,
       "status": "OK",
       "warning": null,
@@ -58,7 +58,7 @@
     },
     {
       "entity_id": "IND_TRIGGER_NATGAS_CRACK",
-      "model": "MODEL_25.8",
+      "model": "MODEL_25.19",
       "value": 0.6365,
       "status": "OK",
       "warning": null,
@@ -77,7 +77,7 @@
     },
     {
       "entity_id": "IND_TRIGGER_CHIP_CONTAINMENT",
-      "model": "MODEL_25.14",
+      "model": "MODEL_25.19",
       "value": 0.5064,
       "status": "OK",
       "warning": null,
@@ -102,7 +102,7 @@
     },
     {
       "entity_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
-      "model": "IND_SOFR",
+      "model": "MODEL_25.19",
       "value": -0.0825,
       "status": "OK",
       "warning": null,
@@ -117,7 +117,7 @@
     },
     {
       "entity_id": "IND_TRIGGER_GSCPI_LOGISTICS",
-      "model": "IND_GSCPI",
+      "model": "MODEL_25.19",
       "value": 1.0,
       "status": "OK",
       "warning": null,

@@ -19,11 +19,11 @@ class MacroTriggerTests(unittest.TestCase):
             "SOFR": entry(5, 4),
         }
         cases = [
-            ("IND_TRIGGER_HORMUZ_SPREAD", "MODEL_25.12", ("DCOILBRENTEU", "DCOILWTICO"),
+            ("IND_TRIGGER_HORMUZ_SPREAD", "MODEL_25.19", ("DCOILBRENTEU", "DCOILWTICO"),
              lambda v: v["DCOILBRENTEU"] - v["DCOILWTICO"], ("DCOILBRENTEU", "DCOILWTICO"), 1.0),
-            ("IND_TRIGGER_NATGAS_CRACK", "MODEL_25.8", ("DCOILWTICO", "DHHNGSP"),
+            ("IND_TRIGGER_NATGAS_CRACK", "MODEL_25.19", ("DCOILWTICO", "DHHNGSP"),
              lambda v: v["DCOILWTICO"] / v["DHHNGSP"], ("DCOILWTICO", "DHHNGSP"), 0.0),
-            ("IND_TRIGGER_SOFR_DOLLAR_DRAIN", "IND_SOFR", ("SOFR",),
+            ("IND_TRIGGER_SOFR_DOLLAR_DRAIN", "MODEL_25.19", ("SOFR",),
              lambda v: v["SOFR"], (), 0.25),
         ]
         for entity_id, model, ids, metric, positive, expected in cases:
@@ -35,14 +35,14 @@ class MacroTriggerTests(unittest.TestCase):
     def test_signed_gscpi_and_missing_dates(self):
         series = {"GSCPI": entry(1.2619, -0.0842)}
         result = relationships.calc_annual_trigger(
-            "IND_TRIGGER_GSCPI_LOGISTICS", "IND_GSCPI", series, ("GSCPI",),
+            "IND_TRIGGER_GSCPI_LOGISTICS", "MODEL_25.19", series, ("GSCPI",),
             lambda v: v["GSCPI"], use_difference=True,
         )
         self.assertEqual(result["value"], 1.0)
         self.assertEqual(result["status"], "OK")
         series["GSCPI"]["year_ago_date"] = None
         result = relationships.calc_annual_trigger(
-            "IND_TRIGGER_GSCPI_LOGISTICS", "IND_GSCPI", series, ("GSCPI",),
+            "IND_TRIGGER_GSCPI_LOGISTICS", "MODEL_25.19", series, ("GSCPI",),
             lambda v: v["GSCPI"], use_difference=True,
         )
         self.assertIsNone(result["value"])
@@ -51,7 +51,7 @@ class MacroTriggerTests(unittest.TestCase):
 
     def test_nonpositive_prior_is_not_used_for_percentage_change(self):
         result = relationships.calc_annual_trigger(
-            "IND_TRIGGER_SOFR_DOLLAR_DRAIN", "IND_SOFR", {"SOFR": entry(1.0, 0.0)},
+            "IND_TRIGGER_SOFR_DOLLAR_DRAIN", "MODEL_25.19", {"SOFR": entry(1.0, 0.0)},
             ("SOFR",), lambda v: v["SOFR"],
         )
         self.assertIsNone(result["value"])
@@ -63,7 +63,7 @@ class MacroTriggerTests(unittest.TestCase):
             "DCOILWTICO": entry(89.62, 60.97, prior_date="2025-10-28"),
         }
         args = (
-            "IND_TRIGGER_HORMUZ_SPREAD", "MODEL_25.12", series,
+            "IND_TRIGGER_HORMUZ_SPREAD", "MODEL_25.19", series,
             ("DCOILBRENTEU", "DCOILWTICO"),
             lambda v: v["DCOILBRENTEU"] - v["DCOILWTICO"],
             ("DCOILBRENTEU", "DCOILWTICO"),

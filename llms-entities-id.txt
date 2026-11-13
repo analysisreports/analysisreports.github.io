@@ -360,9 +360,9 @@ IND_PET_WGTSTUS1_W    | Source: EIA | Name: Weekly U.S. Ending Stocks of Total G
 IND_NG_NW2_EPG0_SWO_R48_BCF_W | Source: EIA | Name: Weekly Lower 48 Natural Gas In Underground Storage (Billion Cubic Feet)
 
 # [GEOPOLITICAL MACRO TRIGGERS & SHOCK VECTORS] (Prefix: IND_TRIGGER_)
-IND_TRIGGER_HORMUZ_SPREAD    | Aliases: Hormuz Brent-WTI Divergence Shock, Model 25.12 Chokepoint Trigger
-IND_TRIGGER_OVX_ENERGY_PANIC  | Aliases: Oil Volatility vs VIX Geopolitical Risk Premium, Model 25.7 Shock
-IND_TRIGGER_NATGAS_CRACK     | Aliases: European & Global Gas Disconnect Factor, Model 25.8 Shock
-IND_TRIGGER_CHIP_CONTAINMENT | Aliases: SOX Semiconductor Export Choke Factor, Model 25.14 Shock
-IND_TRIGGER_SOFR_DOLLAR_DRAIN | Aliases: Offshore Dollar Liquidity Drain Stress, SOFR Rate Transmission
-IND_TRIGGER_GSCPI_LOGISTICS  | Aliases: Global Supply Chain Pressure Chokepoint, NY Fed Logistics Shock
+IND_TRIGGER_HORMUZ_SPREAD    | Aliases: Hormuz Brent-WTI Divergence Shock, Model 25.19 Brent-WTI Trigger
+IND_TRIGGER_OVX_ENERGY_PANIC  | Aliases: Oil Volatility vs VIX Geopolitical Risk Premium, Model 25.19 OVX-VIX Trigger
+IND_TRIGGER_NATGAS_CRACK     | Aliases: WTI and Henry Hub Price Ratio Change, Model 25.19 Natural Gas Trigger
+IND_TRIGGER_CHIP_CONTAINMENT | Aliases: SOX Semiconductor Export Choke Factor, Model 25.19 Chip Trigger
+IND_TRIGGER_SOFR_DOLLAR_DRAIN | Aliases: SOFR Rate Annual Change, Model 25.19 SOFR Trigger
+IND_TRIGGER_GSCPI_LOGISTICS  | Aliases: Global Supply Chain Pressure Change, Model 25.19 Logistics Trigger

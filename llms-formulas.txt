@@ -2087,24 +2087,6 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - Vol_Ratio < 1.0 : EQUITY_PANIC_OVER_ENERGY (Equity panic dominates / Oil market calm)
   - 1.0 to 2.2 : BALANCED_ENERGY_VOLATILITY (Normalized energy volatility equilibrium)
 
-#### IND_TRIGGER_OVX_ENERGY_PANIC: Annual Ratio Change
-- Purpose: Convert the annual change in Model 25.7's OVX/VIX ratio to a bounded trigger score. This is a market indicator, not an observed geopolitical event.
-- Inputs: FRED `OVXCLS` and `VIXCLS` current and year-ago values, together with their `last_date` and `year_ago_date`.
-- Formula: `current_ratio = OVX_current / VIX_current`; `prior_ratio = OVX_year_ago / VIX_year_ago`; `trigger = round(clamp(current_ratio / prior_ratio - 1, -1, 1), 4)`. Ratios are computed from unrounded source values.
-- Rationale: A 32.74% increase becomes +0.3274; decreases are negative. Clamping keeps the score within [-1, 1]. This normalization does not itself specify the size or direction of an effect on an individual bilateral relationship.
-- Integrity: All four values must be finite and positive. The current dates must match, and each series' year-ago date must precede its own current date. Year-ago dates may differ because each series uses its own observation count; both dates are retained in the output, and their combined ratio is not a same-day historical observation. Missing, invalid, or mismatched current inputs produce a null score and an explicit warning; no dates or values are inferred.
-- Output: `IND_TRIGGER_OVX_ENERGY_PANIC` is published with its inputs and status in `llms-relationships.json` and summarized in `llms-relationships.txt`. It does not modify existing relationship deltas.
-
-#### Other Macro Trigger Annual Changes
-- Percentage normalization: `score = round(clamp(current_model_value / year_ago_model_value - 1, -1, 1), 4)`. A positive prior model value is required; a zero or negative prior value makes percentage change unavailable.
-- Signed-index normalization: `score = round(clamp(current_model_value - year_ago_model_value, -1, 1), 4)`. This uses the annual change in native index points for signed indices, for which a percentage relative to a zero or negative baseline is not meaningful. Both scores are bounded to [-1, 1] and are not automatically assigned bilateral effects.
-- `IND_TRIGGER_HORMUZ_SPREAD` (Model 25.12): calculate Brent minus WTI for both periods, then apply percentage normalization. The spread measures benchmark divergence; it is not a direct observation of a chokepoint.
-- `IND_TRIGGER_NATGAS_CRACK` (Model 25.8): calculate WTI divided by Henry Hub for both periods, then apply percentage normalization. The gas benchmark is Henry Hub, not a European gas price.
-- `IND_TRIGGER_SOFR_DOLLAR_DRAIN`: apply percentage normalization to the FRED SOFR values. This measures the annual proportional change in the rate, not a direct observation of offshore dollar flows.
-- `IND_TRIGGER_GSCPI_LOGISTICS`: apply signed-index normalization to the NY Fed GSCPI values. The previous observation date is taken from the retained NY Fed observations only if its value and the latest observation match the published series.
-- `IND_TRIGGER_CHIP_CONTAINMENT` (Model 25.14): calculate the current and year-ago composite from GSCPI, NASDAQSOX year-over-year growth, and VIX using Model 25.14's coefficients, then apply signed-index normalization. Reconstructing the earlier semiconductor growth requires the NASDAQSOX observation two observation-years ago; it is saved from the normal FRED fetch without a separate API request. Current financial-series dates must match, and monthly GSCPI must not be later than them.
-- Integrity and output: Required values and their observation dates are shown with each trigger. Current dates must match for same-frequency series, while year-ago dates may differ; a prior model value assembled from different dates is not a same-day historical observation. Each prior date must precede its own current date. Missing or invalid inputs, mismatched current dates, and non-positive prior values for percentage normalization yield null and an explicit status and warning; a valid current model value remains visible when prior data is unavailable. These scores are published in `llms-relationships.json` and summarized in `llms-relationships.txt`; they do not themselves alter existing relationship deltas.
-
 ---
 
 ### 25.8. NATGAS / CRUDE OIL PRICE-RATIO DISCONNECT ENGINE
@@ -2330,6 +2312,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - oil_delta = -0.15 when Spread > $12.00; -0.10 when $8.00 < Spread <= $12.00; otherwise 0.00.
   - Bilateral dynamic delta = oil_delta * pair coefficient: IL-IR (1.0), YE-IL (1.0), SA-IR (0.5), US-VE (0.5), TR-SY (0.3), EG-IL (-0.5), and SA-YE (0.4).
   - This transmission overlay does not change Brent_WTI_Spread or its descriptive status. The spread is an absolute USD/barrel measure; no percentage normalization or rolling Z-score is applied.
+- Related trigger: Model 25.19 separately calculates the annual Brent-WTI spread change.
 
 ---
 
@@ -2748,6 +2731,51 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - status == TREATY_ACTIVE_SURPLUS_EXPANSION : High hydrocarbon revenues (Brent >= 1.05 * Breakeven) combined with benign global interest rates; sovereign wealth investments, bilateral defense procurement, and liquidity deposits operate at peak velocity.
   - status == TREATY_ACTIVE_EQUILIBRIUM : Hydrocarbon revenues aligned with sovereign budgetary requirements (0.90 <= R_oil < 1.05); mutual defense treaty guarantees and defense co-production pipelines proceed on schedule.
   - status == TREATY_ACTIVE_FISCAL_RESTRAINT : Hydrocarbon revenues fall below sovereign breakeven threshold (R_oil < 0.90) or dollar funding stresses elevate; mutual security umbrella remains intact while non-essential discretionary capital deployments moderate.
+
+---
+### 25.19. GEOPOLITICAL MACRO TRIGGER ENGINE
+- Purpose: Calculate six bounded trigger scores from changes in market and macroeconomic data. These are indicators, not confirmation of geopolitical events or bilateral relationship changes.
+- Notation: `current` and `prior` mean the latest and year-ago observations retained for each series.
+- Percentage change: `P(current, prior) = round(clamp(current / prior - 1, -1, 1), 4)`. The prior value must be positive. For example, an increase of 32.74% produces +0.3274.
+- Signed-index change: `D(current, prior) = round(clamp(current - prior, -1, 1), 4)`. This measures a difference in index points rather than a percentage, so it remains meaningful when the prior index is zero or negative.
+- A positive score means the measured indicator increased; a negative score means it decreased. Clamping limits both methods to [-1, 1]. Neither method determines the direction or size of an effect on a country relationship.
+
+#### Trigger Formulas
+- `IND_TRIGGER_HORMUZ_SPREAD`
+  - Inputs: FRED `DCOILBRENTEU` (Brent) and `DCOILWTICO` (WTI), current and year-ago prices.
+  - `spread_current = Brent_current - WTI_current`; `spread_prior = Brent_prior - WTI_prior`.
+  - `trigger = P(spread_current, spread_prior)`.
+  - Measures change in the benchmark price difference; it does not directly observe a Hormuz disruption.
+- `IND_TRIGGER_OVX_ENERGY_PANIC`
+  - Inputs: FRED `OVXCLS` and `VIXCLS`, current and year-ago index values.
+  - `ratio_current = OVX_current / VIX_current`; `ratio_prior = OVX_prior / VIX_prior`.
+  - `trigger = P(ratio_current, ratio_prior)`.
+  - Measures change in oil volatility relative to equity volatility, not an observed geopolitical event.
+- `IND_TRIGGER_NATGAS_CRACK`
+  - Inputs: FRED `DCOILWTICO` (WTI) and `DHHNGSP` (Henry Hub), current and year-ago prices.
+  - `ratio_current = WTI_current / Henry_Hub_current`; `ratio_prior = WTI_prior / Henry_Hub_prior`.
+  - `trigger = P(ratio_current, ratio_prior)`.
+  - Measures change in the WTI-to-Henry-Hub price ratio; Henry Hub is not a European gas benchmark.
+- `IND_TRIGGER_CHIP_CONTAINMENT`
+  - Inputs: FRED `NASDAQSOX` at current, year-ago and two-observation-years-ago dates; FRED `VIXCLS` and NY Fed `GSCPI` at current and year-ago dates.
+  - `sox_yoy_current = round((SOX_current / SOX_prior - 1) * 100, 4)`.
+  - `sox_yoy_prior = round((SOX_prior / SOX_two_years_ago - 1) * 100, 4)`.
+  - For each period, `chip_index = 0.40 * GSCPI - 0.35 * (sox_yoy / 50) + 0.25 * (VIX / 20)`.
+  - `trigger = D(chip_index_current, chip_index_prior)`.
+  - The weights are model assumptions: supply-chain pressure and volatility increase the index, while semiconductor equity growth reduces it. The score does not directly observe export controls or physical chip shortages.
+- `IND_TRIGGER_SOFR_DOLLAR_DRAIN`
+  - Inputs: FRED `SOFR`, current and year-ago rates.
+  - `trigger = P(SOFR_current, SOFR_prior)`.
+  - Measures proportional change in the rate, not a direct observation of offshore dollar flows.
+- `IND_TRIGGER_GSCPI_LOGISTICS`
+  - Inputs: NY Fed `GSCPI`, current and year-ago index values.
+  - `trigger = D(GSCPI_current, GSCPI_prior)`.
+  - Measures the change in global supply-chain pressure in index points, not a directly observed disruption at a particular chokepoint.
+
+- Data integrity: Inputs must be finite; Brent, WTI, Henry Hub, OVX, VIX and NASDAQSOX prices or index values must be positive when used. Current dates must match for same-frequency combined series. For the chip trigger, current NASDAQSOX and VIX dates must match, and the monthly GSCPI date must not be later than them. Each year-ago date must precede its current date, and the SOX two-year-ago date must precede its year-ago date.
+- Historical dates: Year-ago dates may differ because series use their own retained observations. A historical ratio or composite assembled from different dates is not a same-day observation. The GSCPI prior date is used only when retained observations match the published current and year-ago values.
+- Missing or invalid inputs, mismatched current dates, or a non-positive prior value for percentage change produce `null`, an explicit status and a warning; a valid current value remains visible where available. Calculations use unrounded inputs and intermediate ratios, except for the SOX year-over-year values rounded as specified above.
+- Output: All six IDs are published with `model: MODEL_25.19`, their inputs, dates and status in `llms-relationships.json`, and summarized in `llms-relationships.txt`.
 
 ---
 ## 🏛️ TIER 3: INSTITUTIONAL DECISION, GEOPOLITICAL TENSION & CALIBRATION ENGINE
