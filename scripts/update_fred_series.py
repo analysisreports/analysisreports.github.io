@@ -132,10 +132,10 @@ FREQ_N_MAP = {
 # Strict Zero-Loss Mandate: If TTL expires and API fails/times out, existing snapshot is 100% retained.
 # ==============================================================================
 CACHE_TTL_DAYS = {
-    "DAILY": 0,
+    "DAILY": 3,
     "WEEKLY": 8,
     "BIWEEKLY": 16,
-    "MONTHLY": 32,
+    "MONTHLY": 0,
     "QUARTERLY": 95,
     "SEMIANNUAL": 185,
     "ANNUAL": 365
