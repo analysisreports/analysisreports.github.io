@@ -2114,7 +2114,7 @@
         "location": "54deg 43min N 20deg 30min E",
         "type": "Militarized Exclave & Naval Bastion",
         "disruption_severity": "CATASTROPHIC",
-        "severity_weight": 1.0
+        "severity_weight": 1
       }
     },
     {
@@ -2295,6 +2295,119 @@
         "source": "EIA",
         "units": "Billion Cubic Feet",
         "trans": "lin"
+      }
+    },
+    {
+      "id": "BLOC_KENSINGTON",
+      "label": "Kensington Bilateral Defense Agreement (UK-Germany)",
+      "category": "ACTOR",
+      "type": "Bilateral Defense Bloc",
+      "attributes": {
+        "members": [
+          "GEO_GB",
+          "GEO_DE"
+        ],
+        "effective_date": "2024-10-23",
+        "status": "ACTIVE",
+        "p_baseline": 0.9,
+        "dissolution_fallback": 0.8,
+        "treaty_architecture": "Bilateral Strategic Defense Partnership & Industrial Co-Development Treaty",
+        "primary_friction_nodes": [
+          "CHOKE_GIUK_GAP",
+          "ZONE_KALININGRAD_EXCLAVE",
+          "BALTIC_SEA"
+        ],
+        "strategic_focus": "European NATO pillar, deep precision strike weapons, Boxer AFV production, Rheinmetall UK artillery barrel facility",
+        "transmission_series": [
+          "IND_VIXCLS",
+          "IND_INDPRO"
+        ]
+      }
+    },
+    {
+      "id": "BLOC_OCEAN_OF_PEACE",
+      "label": "Ocean of Peace Framework (Australia-Fiji Security Agreement)",
+      "category": "ACTOR",
+      "type": "Bilateral Security Accord",
+      "attributes": {
+        "members": [
+          "GEO_AU",
+          "GEO_FJ"
+        ],
+        "effective_date": "2026-02-15",
+        "status": "ACTIVE",
+        "p_baseline": 0.75,
+        "dissolution_fallback": 0.5,
+        "treaty_architecture": "Maritime Domain Awareness, Humanitarian Logistics & Bilateral Security Accord",
+        "primary_friction_nodes": [
+          "SOUTH_PACIFIC_MARITIME_LANES",
+          "CHOKE_LOMBOK_MAKASSAR",
+          "PACIFIC_SLOC"
+        ],
+        "strategic_focus": "Central Melanesian basin maritime denial perimeter, Guardian-class patrol boats, Blackrock Camp",
+        "transmission_series": [
+          "IND_GSCPI",
+          "IND_VIXCLS"
+        ]
+      }
+    },
+    {
+      "id": "BLOC_PUKPUK",
+      "label": "Pukpuk Defense Treaty (Australia-Papua New Guinea)",
+      "category": "ACTOR",
+      "type": "Bilateral Defense Treaty",
+      "attributes": {
+        "members": [
+          "GEO_AU",
+          "GEO_PG"
+        ],
+        "effective_date": "2025-05-10",
+        "status": "ACTIVE",
+        "p_baseline": 0.8,
+        "dissolution_fallback": 0.55,
+        "treaty_architecture": "Bilateral Security & Combined Defense Capability Agreement",
+        "primary_friction_nodes": [
+          "CHOKE_TORRES",
+          "CHOKE_LOMBOK_MAKASSAR",
+          "ZONE_SECOND_ISLAND_CHAIN"
+        ],
+        "strategic_focus": "Shielding northern maritime approaches, Lombrum Naval Base (Manus Island), Torres Strait combined border surveillance",
+        "transmission_series": [
+          "IND_GSCPI",
+          "IND_INDPRO"
+        ]
+      }
+    },
+    {
+      "id": "CHOKE_TORRES",
+      "label": "Torres Strait Chokepoint",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "10°25'S 142°10'E",
+        "type": "Strategic Maritime Chokepoint",
+        "strategic_significance": "Primary maritime interface between Southeast Asia and South Pacific / Arafura and Coral Seas",
+        "disruption_severity": "HIGH",
+        "severity_weight": 0.7
+      }
+    },
+    {
+      "id": "GEO_FJ",
+      "label": "Republic of Fiji",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "FJD",
+        "region": "MELANESIA_SOUTH_PACIFIC"
+      }
+    },
+    {
+      "id": "GEO_PG",
+      "label": "Independent State of Papua New Guinea",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "PGK",
+        "region": "MELANESIA_OCEANIA"
       }
     }
   ],
@@ -3557,70 +3670,70 @@
       "source": "GOV_TREASURY_US",
       "target": "GEO_US",
       "type": "PATRON_COUPLING",
-      "coupling_factor": 1.0,
+      "coupling_factor": 1,
       "role": "Fiscal & Debt Management Authority"
     },
     {
       "source": "GOV_STATE_US",
       "target": "GEO_US",
       "type": "PATRON_COUPLING",
-      "coupling_factor": 1.0,
+      "coupling_factor": 1,
       "role": "Diplomatic & Sanctions Enforcement"
     },
     {
       "source": "GOV_DOD_US",
       "target": "GEO_US",
       "type": "PATRON_COUPLING",
-      "coupling_factor": 1.0,
+      "coupling_factor": 1,
       "role": "Global Security & Chokepoint Defense"
     },
     {
       "source": "GOV_TREASURY_TR",
       "target": "GEO_TR",
       "type": "PATRON_COUPLING",
-      "coupling_factor": 1.0,
+      "coupling_factor": 1,
       "role": "Fiscal Authority"
     },
     {
       "source": "GOV_MOD_TR",
       "target": "GEO_TR",
       "type": "PATRON_COUPLING",
-      "coupling_factor": 1.0,
+      "coupling_factor": 1,
       "role": "Montreux Maritime Security"
     },
     {
       "source": "GOV_MOF_CN",
       "target": "GEO_CN",
       "type": "PATRON_COUPLING",
-      "coupling_factor": 1.0,
+      "coupling_factor": 1,
       "role": "Fiscal Authority"
     },
     {
       "source": "GOV_MOF_RU",
       "target": "GEO_RU",
       "type": "PATRON_COUPLING",
-      "coupling_factor": 1.0,
+      "coupling_factor": 1,
       "role": "Fiscal Authority & Sovereign Wealth Fund"
     },
     {
       "source": "GOV_MOF_DE",
       "target": "GEO_DE",
       "type": "PATRON_COUPLING",
-      "coupling_factor": 1.0,
+      "coupling_factor": 1,
       "role": "Fiscal Anchor"
     },
     {
       "source": "GOV_HMT_GB",
       "target": "GEO_GB",
       "type": "PATRON_COUPLING",
-      "coupling_factor": 1.0,
+      "coupling_factor": 1,
       "role": "Fiscal Authority"
     },
     {
       "source": "GOV_MOF_JP",
       "target": "GEO_JP",
       "type": "PATRON_COUPLING",
-      "coupling_factor": 1.0,
+      "coupling_factor": 1,
       "role": "Fiscal & FX Intervention Authority"
     },
     {
@@ -3694,6 +3807,109 @@
       "target": "MODEL_25.12",
       "type": "INGESTS_SERIES",
       "role": "commercial_crude_stocks_kbbl"
+    },
+    {
+      "source": "BLOC_KENSINGTON",
+      "target": "GEO_GB",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_KENSINGTON",
+      "target": "GEO_DE",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "GEO_GB",
+      "target": "GEO_DE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.9,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "BLOC_KENSINGTON",
+      "target": "IND_VIXCLS",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "EUROPEAN_DEFENSE_STABILITY"
+    },
+    {
+      "source": "BLOC_KENSINGTON",
+      "target": "IND_INDPRO",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "DEFENSE_INDUSTRIAL_CO_PRODUCTION"
+    },
+    {
+      "source": "BLOC_OCEAN_OF_PEACE",
+      "target": "GEO_AU",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_OCEAN_OF_PEACE",
+      "target": "GEO_FJ",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "GEO_AU",
+      "target": "GEO_FJ",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.75,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "BLOC_OCEAN_OF_PEACE",
+      "target": "IND_GSCPI",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "SOUTH_PACIFIC_LOGISTICS_STABILITY"
+    },
+    {
+      "source": "BLOC_PUKPUK",
+      "target": "GEO_AU",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_PUKPUK",
+      "target": "GEO_PG",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "GEO_AU",
+      "target": "GEO_PG",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.8,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "BLOC_PUKPUK",
+      "target": "CHOKE_TORRES",
+      "type": "REGULATES_TRANSIT",
+      "description": "Torres Strait combined border surveillance and naval security"
+    },
+    {
+      "source": "BLOC_PUKPUK",
+      "target": "IND_GSCPI",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "NORTHERN_APPROACHES_TRANSIT_SECURITY"
+    },
+    {
+      "source": "GEO_AU",
+      "target": "CHOKE_TORRES",
+      "type": "FLANKS_CHOKEPOINT"
+    },
+    {
+      "source": "GEO_PG",
+      "target": "CHOKE_TORRES",
+      "type": "FLANKS_CHOKEPOINT"
+    },
+    {
+      "source": "CHOKE_TORRES",
+      "target": "IND_GSCPI",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "SOUTHERN_PACIFIC_LOGISTICS_FRICTION"
+    },
+    {
+      "source": "CHOKE_TORRES",
+      "target": "MODEL_28.3",
+      "type": "EXECUTES_MODEL",
+      "severity_enum": "HIGH"
     }
   ]
 }
