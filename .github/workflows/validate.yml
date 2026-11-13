@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -41,6 +43,16 @@ jobs:
       - name: Verify Strict Zero Synthetic Data & Zero Fallbacks
         run: |
           python scripts/verify_zero_fallbacks.py
+
+      - name: Verify WORKFLOW.md requirements for new items
+        run: |
+          python scripts/verify_workflow.py
+        env:
+          WORKFLOW_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before || github.sha }}
+
+      - name: Test WORKFLOW.md compliance checks
+        run: |
+          python -m unittest discover -s scripts -p test_workflow.py
 
       - name: Run Read-Only Verification Suite
         run: |

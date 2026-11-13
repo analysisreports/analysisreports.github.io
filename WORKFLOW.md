@@ -72,3 +72,9 @@ The following manifest files must remain stable to prevent semantic cache invali
 - [ ] **Series Identity:** Does every FRED/BLS/ECB/WB/IMF series key in `llms-formulas.txt` match the exact string key in `llms-indicators.txt` and corresponding series registries?
 - [ ] **Graph Integrity:** Does every source and target in `llms-graph.json` `"edges"` correspond to an existing `"id"` in `"nodes"`?
 - [ ] **Dual-Twin Parity:** Are the dynamic tables in `llms-relationships.txt` and `llms-relationships.json` perfectly synchronized?
+
+### Automated Change-Completeness Gate
+
+The `scripts/verify_workflow.py` CI check compares the pull request with its base revision. It checks newly added dynamic relationship pairs for matching TXT/JSON rows, registered entity IDs, and graph nodes and coupling edges. New geopolitical entities require graph nodes and edges. Newly published model snapshots require formula and registry entries, a graph node and an input edge; newly published provider series require provider TXT and indicator entries. Existing verification checks continue to run across the repository.
+
+This gate cannot establish that an implementation or test is correct, detect every model before a snapshot is published, or verify conditional requirements such as tool exposure. Reviewers must still follow the full checklist above, including material revisions, focused tests and stale snapshots. Existing gaps are not silently treated as fixed: the new change gate checks additions rather than blocking unrelated changes for older gaps.
