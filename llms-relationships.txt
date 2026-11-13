@@ -350,7 +350,7 @@ Regime States (Discrete Mapping):
    - Economic Coupling: 0.01 (Tam yaptırım ambargosu, sıfır ekonomik entegrasyon)
    - Asymmetric Threat Vector: Taktik nükleer kapasite, balistik füze denemeleri, Rusya ile mühimmat/askeri teknoloji takası
    - Primary Market Transmission: Bellek çipi/yarı iletken lojistiği (Samsung, SK Hynix tesisleri), Pasifik deniz ticareti rotaları
-   - Transmission Series: DEXKOUS, DEXJPUS, SOX, VIXCLS
+   - Transmission Series: IND_DEXKOUS, DEXJPUS, SOX, VIXCLS
 
 ### 2.6. Geoeconomic Dedollarization Blocs (mBridge ve Çok Kutuplu Takas Ekseni)
 2.6.1. BRICS_MBRIDGE_CONSORTIUM - SOVEREIGN CBDC SETTLEMENT AXIS
@@ -462,7 +462,7 @@ Regime States (Discrete Mapping):
    - Strategic Impact: Securing an alternative sovereign western terrestrial and maritime transit bypass countering China's Belt and Road Initiative (BRI), while buffering critical supply chains against Red Sea and Persian Gulf asymmetric proxy interdictions.
    - Transmission Series: DCOILBRENTEU, GSCPI, INDPRO
 
-2.7.8. PACT_KENSINGTON - UK / DE (Kensington Bilateral Defense Agreement)
+2.7.8. BLOC_KENSINGTON - UK / DE (Kensington Bilateral Defense Agreement)
    - Core Entities: GEO_GB, GEO_DE
    - Lifecycle Metadata:
      * Status: ACTIVE
@@ -476,7 +476,7 @@ Regime States (Discrete Mapping):
    - Strategic Impact: Institutionalized Anglo-German deterrence perimeter across the North Sea and Baltic approaches, synchronizing joint anti-submarine warfare (ASW) with the forward-deployed German brigade in Lithuania.
    - Transmission Series: VIXCLS, INDPRO
 
-2.7.9. PACT_OCEAN_OF_PEACE - AU / FJ (Australia-Fiji Bilateral Security & Maritime Agreement)
+2.7.9. BLOC_OCEAN_OF_PEACE - AU / FJ (Australia-Fiji Bilateral Security & Maritime Agreement)
    - Core Entities: GEO_AU, GEO_FJ
    - Lifecycle Metadata:
      * Status: ACTIVE
@@ -490,7 +490,7 @@ Regime States (Discrete Mapping):
    - Strategic Impact: Preserving the South Pacific as an autonomous "Ocean of Peace," effectively neutralizing Chinese (GEO_CN) bilateral policing and dual-use naval staging penetration across neighboring island chains.
    - Transmission Series: GSCPI, VIXCLS
 
-2.7.10. PACT_PUKPUK - AU / PG (Australia-Papua New Guinea Comprehensive Defense Treaty)
+2.7.10. BLOC_PUKPUK - AU / PG (Australia-Papua New Guinea Comprehensive Defense Treaty)
    - Core Entities: GEO_AU, GEO_PG
    - Lifecycle Metadata:
      * Status: ACTIVE
@@ -500,7 +500,7 @@ Regime States (Discrete Mapping):
    - Baseline Polarity (P_baseline): +0.80 (Torres Strait & Northern Maritime Approach Defense Alignment)
    - Treaty Architecture: Bilateral Security & Combined Defense Capability Agreement
    - Structural Role: Strategic forward buffer shielding Australia's northern maritime approaches; joint naval operations from Lombrum Naval Base (Manus Island), combined border surveillance across the Torres Strait, and Papua New Guinea Defense Force training integration.
-   - Primary Friction Nodes: TORRES_STRAIT, CHOKE_LOMBOK_MAKASSAR, SECOND_ISLAND_CHAIN
+   - Primary Friction Nodes: CHOKE_TORRES, CHOKE_LOMBOK_MAKASSAR, ZONE_SECOND_ISLAND_CHAIN
    - Strategic Impact: Securing the primary maritime interface between Southeast Asia and the South Pacific, denying foreign adversaries naval interdiction corridors along the Second Island Chain.
    - Transmission Series: GSCPI, INDPRO
 

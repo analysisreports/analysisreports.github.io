@@ -218,6 +218,9 @@ BLOC_AES             | Aliases: Alliance of Sahel States, AES, Liptako-Gourma Ch
 BLOC_TDT             | Aliases: Organization of Turkic States, Türk Devletleri Teşkilatı, OTS, Turkic Council
 BLOC_JAROKUS         | Aliases: Camp David Trilateral Security Framework, US-Japan-ROK Trilateral Alliance, JAROKUS
 BLOC_I2U2            | Aliases: I2U2 Group, West Asian Quad, India-Israel-UAE-USA Strategic Alignment, IMEC Core Corridor
+BLOC_KENSINGTON      | Aliases: Kensington Bilateral Defense Agreement, UK-Germany Defense Treaty, Kensington Pact
+BLOC_OCEAN_OF_PEACE  | Aliases: Ocean of Peace Framework, Australia-Fiji Bilateral Security Agreement, Fiji Security Treaty
+BLOC_PUKPUK          | Aliases: Pukpuk Defense Treaty, Australia-Papua New Guinea Security Agreement, Lombrum Naval Accord
 
 # [MARITIME CHOKEPOINTS, CANALS & STRATEGIC CORRIDORS] (Prefix: CHOKE_ / CORRIDOR_ / BASIN_ / ZONE_)
 CHOKE_HORMUZ         | Aliases: Hormuz Strait, Strait of Hormuz
@@ -254,6 +257,8 @@ CORRIDOR_RAIL_BALTICA| Aliases: Rail Baltica Strategic Corridor, Rail Baltica Eu
 ZONE_BRELL_GRID      | Aliases: BRELL Grid Ring, Belarus-Russia-Estonia-Latvia-Lithuania Power Ring
 ZONE_KALININGRAD_EXCLAVE | Aliases: Kaliningrad Oblast Exclave, Kaliningrad Special Military District, Baltiysk Node
 CORRIDOR_KALININGRAD_TRANSIT | Aliases: Kaliningrad Transit Corridor, Vilnius-Kaliningrad Rail Transit Axis, Suwalki-Kaliningrad Vector
+CHOKE_TORRES         | Aliases: Torres Strait Chokepoint, Torres Strait, Australia-PNG Maritime Boundary Corridor
+ZONE_SECOND_ISLAND_CHAIN | Aliases: Second Island Chain, Second Island Defense Perimeter, Western Pacific Maritime Bastion
 
 # [STATISTICAL, REGULATORY & ENFORCEMENT AGENCIES] (Prefix: STAT_ / REG_AGENCY_)
 STAT_BLS_US          | Aliases: BLS, Bureau of Labor Statistics, U.S. Bureau of Labor Statistics
@@ -342,6 +347,7 @@ IND_DGASNYH          | Source: FRED | Name: New York Harbor Conventional Gasolin
 IND_DDFUELNYH        | Source: FRED | Name: New York Harbor ULSD Spot Price (USD/Gallon)
 IND_PCOPPUSDM        | Source: IMF / FRED | Name: Global Price of Copper (USD/Metric Ton)
 IND_PWHEAMTUSDM      | Source: IMF / FRED | Name: Global Price of Wheat (USD/Metric Ton)
+IND_PMAIZMTUSDM      | Source: IMF / FRED | Name: Global Price of Corn (PMAIZMTUSDM USD/Metric Ton)
 IND_SP500            | Source: S&P / FRED | Name: S&P 500 Index (SP500)
 IND_CBBTCUSD         | Source: Coinbase / FRED | Name: Coinbase Bitcoin Spot Rate (CBBTCUSD USD)
 IND_DJTA             | Source: S&P Dow Jones / FRED | Name: Dow Jones Transportation Average (DJTA)
@@ -368,6 +374,7 @@ IND_PET_WCESTUS1_W    | Source: EIA | Name: Weekly U.S. Commercial Crude Oil End
 IND_PET_WCRFPUS2_W    | Source: EIA | Name: Weekly U.S. Field Production of Crude Oil (Thousand Barrels per Day)
 IND_PET_WGTSTUS1_W    | Source: EIA | Name: Weekly U.S. Ending Stocks of Total Gasoline (Thousand Barrels)
 IND_NG_NW2_EPG0_SWO_R48_BCF_W | Source: EIA | Name: Weekly Lower 48 Natural Gas In Underground Storage (Billion Cubic Feet)
+IND_DEXKOUS          | Source: FRED | Name: Spot Exchange Rate South Korean Won to US Dollars (DEXKOUS)
 
 # [GEOPOLITICAL MACRO TRIGGERS & SHOCK VECTORS] (Prefix: IND_TRIGGER_)
 IND_TRIGGER_HORMUZ_SPREAD    | Aliases: Hormuz Brent-WTI Divergence Shock, Model 25.19 Brent-WTI Trigger
