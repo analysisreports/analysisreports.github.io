@@ -171,7 +171,7 @@ def get_series_data_api(series_id: str, api_key: str, n_obs_per_yr: int) -> Opti
         return None
     s_meta = meta_json["seriess"][0]
 
-    limit = max(30, n_obs_per_yr + 15)
+    limit = max(30, 2 * n_obs_per_yr + 60) if series_id == "NASDAQSOX" else max(30, n_obs_per_yr + 15)
     obs_url = f"https://api.stlouisfed.org/fred/series/observations?series_id={series_id}&api_key={api_key}&file_type=json&sort_order=desc&limit={limit}"
     obs_json = fetch_json(obs_url)
     if not obs_json or "observations" not in obs_json:
@@ -306,6 +306,7 @@ def format_fred_txt_block(entry: Dict[str, Any]) -> str:
     xt = entry.get("current_value")
     xt_prev = entry.get("previous_value")
     xt_year_ago = entry.get("year_ago_value")
+    year_ago_date = entry.get("year_ago_date")
     t = entry.get("transformations", {})
 
     is_rate = "Percent" in units or "%" in units
@@ -331,7 +332,8 @@ def format_fred_txt_block(entry: Dict[str, Any]) -> str:
 Series ID: {s_id}
 Title: {title}
 Frequency: {freq} (n_obs_per_yr: {n_obs_per_yr}) | Units: {units}
-{observation_line} | Previous Value: {xt_prev_str} | Year Ago Value: {xt_yr_str}
+{observation_line} | Previous Value: {xt_prev_str}
+Year Ago Date: {year_ago_date if year_ago_date is not None else "N/A (observation date unavailable)"} | Year Ago Value: {xt_yr_str}
 
 Transformations (Official St. Louis Fed Formulas):
   1. Change: {fmt(t.get("change"), '')}
@@ -399,6 +401,7 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
             # 1. Cache HIT: Süresi dolmamışsa API'ye dokunma, mevcut doğrulanmış veriyi koru
             if is_cache_valid:
                 print(f"  [CACHE HIT] {s_id} [{freq}]: Son çekilmeden bu yana {elapsed_days:.1f} gün geçti (TTL: {ttl_days} gün). API isteği atlanıyor.")
+                cached_entry.setdefault("year_ago_date", None)
                 recompute_entry_transformations(cached_entry, n_obs_per_yr)
                 json_series_dict[s_id] = cached_entry
                 txt_blocks.append(format_fred_txt_block(cached_entry))
@@ -418,6 +421,7 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
                     print(f"  [API TIMEOUT - RETAINED] {s_id} [{freq}]: API yanıt vermedi veya anahtar yok. Mevcut resmi snapshot korundu!")
                     if not cached_entry.get("last_synced_utc"):
                         cached_entry["last_synced_utc"] = fallback_sync_str or now_iso
+                    cached_entry.setdefault("year_ago_date", None)
                     recompute_entry_transformations(cached_entry, n_obs_per_yr)
                     json_series_dict[s_id] = cached_entry
                     txt_blocks.append(format_fred_txt_block(cached_entry))
@@ -434,6 +438,8 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
             
             year_ago_idx = len(obs) - 1 - n_obs_per_yr
             t_year_ago = obs[year_ago_idx] if year_ago_idx >= 0 else None
+            two_years_ago_idx = len(obs) - 1 - 2 * n_obs_per_yr
+            t_two_years_ago = obs[two_years_ago_idx] if s_id == "NASDAQSOX" and two_years_ago_idx >= 0 else None
 
             xt = t_curr["value"]
             xt_prev = t_prev["value"]
@@ -465,6 +471,7 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
                 "current_value": xt,
                 "previous_value": xt_prev,
                 "year_ago_value": xt_year_ago,
+                "year_ago_date": t_year_ago["date"] if t_year_ago else None,
                 "transformations": {
                     "change": c_chg,
                     "change_from_year_ago": c_chg_yr,
@@ -476,6 +483,9 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
                 },
                 "recent_observations": recent_5
             }
+            if s_id == "NASDAQSOX":
+                entry_dict["two_years_ago_value"] = t_two_years_ago["value"] if t_two_years_ago else None
+                entry_dict["two_years_ago_date"] = t_two_years_ago["date"] if t_two_years_ago else None
 
             json_series_dict[s_id] = entry_dict
             txt_blocks.append(format_fred_txt_block(entry_dict))

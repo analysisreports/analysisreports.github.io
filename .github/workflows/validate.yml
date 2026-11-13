@@ -50,6 +50,11 @@ jobs:
         run: |
           python -m unittest discover -s scripts -p test_taylor_alignment.py
 
+      - name: Verify macro triggers and FRED observation dates
+        run: |
+          python -m unittest discover -s scripts -p 'test_*trigger*.py'
+          python -m unittest discover -s scripts -p test_fred_year_ago_date.py
+
       - name: Verify net Fed liquidity units
         run: |
           python -m unittest discover -s scripts -p test_net_fed_liquidity.py

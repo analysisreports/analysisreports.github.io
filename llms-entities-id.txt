@@ -358,3 +358,11 @@ IND_PET_WCESTUS1_W    | Source: EIA | Name: Weekly U.S. Commercial Crude Oil End
 IND_PET_WCRFPUS2_W    | Source: EIA | Name: Weekly U.S. Field Production of Crude Oil (Thousand Barrels per Day)
 IND_PET_WGTSTUS1_W    | Source: EIA | Name: Weekly U.S. Ending Stocks of Total Gasoline (Thousand Barrels)
 IND_NG_NW2_EPG0_SWO_R48_BCF_W | Source: EIA | Name: Weekly Lower 48 Natural Gas In Underground Storage (Billion Cubic Feet)
+
+# [GEOPOLITICAL MACRO TRIGGERS & SHOCK VECTORS] (Prefix: IND_TRIGGER_)
+IND_TRIGGER_HORMUZ_SPREAD    | Aliases: Hormuz Brent-WTI Divergence Shock, Model 25.12 Chokepoint Trigger
+IND_TRIGGER_OVX_ENERGY_PANIC  | Aliases: Oil Volatility vs VIX Geopolitical Risk Premium, Model 25.7 Shock
+IND_TRIGGER_NATGAS_CRACK     | Aliases: European & Global Gas Disconnect Factor, Model 25.8 Shock
+IND_TRIGGER_CHIP_CONTAINMENT | Aliases: SOX Semiconductor Export Choke Factor, Model 25.14 Shock
+IND_TRIGGER_SOFR_DOLLAR_DRAIN | Aliases: Offshore Dollar Liquidity Drain Stress, SOFR Rate Transmission
+IND_TRIGGER_GSCPI_LOGISTICS  | Aliases: Global Supply Chain Pressure Chokepoint, NY Fed Logistics Shock

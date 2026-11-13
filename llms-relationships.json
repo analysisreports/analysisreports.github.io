@@ -4,8 +4,9 @@
     "engine": "Dynamic Geopolitical Polarity & Sovereign Governance Engine",
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
-    "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-13T00:39:25.039560+00:00",
+    "sync_status": "PARTIAL_SUCCESS",
+    "last_successful_sync": null,
+    "last_attempted_sync": "2026-11-13T03:29:25.320414+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -16,6 +17,118 @@
       "ai_chip_stress_score": 0.474
     }
   },
+  "macro_triggers": [
+    {
+      "entity_id": "IND_TRIGGER_HORMUZ_SPREAD",
+      "model": "MODEL_25.12",
+      "value": null,
+      "status": "MISSING_DATA",
+      "warning": "Missing data: DCOILBRENTEU.year_ago_date, DCOILWTICO.year_ago_date",
+      "inputs": {
+        "DCOILBRENTEU.current_value": 107.03,
+        "DCOILWTICO.current_value": 99.64,
+        "DCOILBRENTEU.year_ago_value": 66.32,
+        "DCOILWTICO.year_ago_value": 58.34,
+        "DCOILBRENTEU.last_date": "2026-11-03",
+        "DCOILWTICO.last_date": "2026-11-03",
+        "DCOILBRENTEU.year_ago_date": null,
+        "DCOILWTICO.year_ago_date": null
+      },
+      "current_model_value": null,
+      "year_ago_model_value": null
+    },
+    {
+      "entity_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
+      "model": "MODEL_25.7",
+      "value": null,
+      "status": "MISSING_DATA",
+      "warning": "Missing data: OVXCLS.year_ago_date, VIXCLS.year_ago_date",
+      "inputs": {
+        "OVXCLS.current_value": 57.2,
+        "VIXCLS.current_value": 19.92,
+        "OVXCLS.year_ago_value": 38.96,
+        "VIXCLS.year_ago_value": 18.01,
+        "OVXCLS.last_date": "2026-11-09",
+        "VIXCLS.last_date": "2026-11-09",
+        "OVXCLS.year_ago_date": null,
+        "VIXCLS.year_ago_date": null
+      }
+    },
+    {
+      "entity_id": "IND_TRIGGER_NATGAS_CRACK",
+      "model": "MODEL_25.8",
+      "value": null,
+      "status": "MISSING_DATA",
+      "warning": "Missing data: DCOILWTICO.year_ago_date, DHHNGSP.year_ago_date",
+      "inputs": {
+        "DCOILWTICO.current_value": 99.64,
+        "DHHNGSP.current_value": 2.63,
+        "DCOILWTICO.year_ago_value": 58.34,
+        "DHHNGSP.year_ago_value": 2.79,
+        "DCOILWTICO.last_date": "2026-11-03",
+        "DHHNGSP.last_date": "2026-11-03",
+        "DCOILWTICO.year_ago_date": null,
+        "DHHNGSP.year_ago_date": null
+      },
+      "current_model_value": null,
+      "year_ago_model_value": null
+    },
+    {
+      "entity_id": "IND_TRIGGER_CHIP_CONTAINMENT",
+      "model": "MODEL_25.14",
+      "value": null,
+      "status": "MISSING_DATA",
+      "warning": "Missing data: NASDAQSOX.two_years_ago_value, NASDAQSOX.year_ago_date, NASDAQSOX.two_years_ago_date, VIXCLS.year_ago_date",
+      "inputs": {
+        "NASDAQSOX.current_value": 10033.93,
+        "NASDAQSOX.year_ago_value": 7167.98,
+        "NASDAQSOX.two_years_ago_value": null,
+        "NASDAQSOX.last_date": "2026-11-09",
+        "NASDAQSOX.year_ago_date": null,
+        "NASDAQSOX.two_years_ago_date": null,
+        "VIXCLS.current_value": 19.92,
+        "VIXCLS.year_ago_value": 18.01,
+        "VIXCLS.last_date": "2026-11-09",
+        "VIXCLS.year_ago_date": null,
+        "GSCPI.current_value": 1.2619,
+        "GSCPI.year_ago_value": -0.0842,
+        "GSCPI.last_date": "2026-10-31",
+        "GSCPI.year_ago_date": "2025-10-31"
+      },
+      "current_model_value": null,
+      "year_ago_model_value": null
+    },
+    {
+      "entity_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
+      "model": "IND_SOFR",
+      "value": null,
+      "status": "MISSING_DATA",
+      "warning": "Missing data: SOFR.year_ago_date",
+      "inputs": {
+        "SOFR.current_value": 3.88,
+        "SOFR.year_ago_value": 4.24,
+        "SOFR.last_date": "2026-11-09",
+        "SOFR.year_ago_date": null
+      },
+      "current_model_value": null,
+      "year_ago_model_value": null
+    },
+    {
+      "entity_id": "IND_TRIGGER_GSCPI_LOGISTICS",
+      "model": "IND_GSCPI",
+      "value": 1.0,
+      "status": "OK",
+      "warning": null,
+      "inputs": {
+        "GSCPI.current_value": 1.2619,
+        "GSCPI.year_ago_value": -0.0842,
+        "GSCPI.last_date": "2026-10-31",
+        "GSCPI.year_ago_date": "2025-10-31"
+      },
+      "current_model_value": 1.2619,
+      "year_ago_model_value": -0.0842
+    }
+  ],
   "central_bank_policy_benchmark": {
     "us_fed_funds_dff": 3.88,
     "ecb_deposit_facility": 2.5,

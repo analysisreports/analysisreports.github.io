@@ -60,6 +60,8 @@ AI models must never fabricate missing data. When input data is insufficient, va
 - Quarterly (Quarters) : 4
 - Annual (Years) : 1
 
+For FRED series, `year_ago_value` uses the observation `n_obs_per_yr` valid observations before the current one. `year_ago_date` records that observation's actual date; it is not inferred by subtracting a calendar year. When the observation date is unavailable, the JSON field is null and the text output reports it as unavailable. This date lets consumers verify that observations from different series refer to the same period.
+
 ### Core Transformation Formulas & Python Executables:
 
 import math
@@ -2084,6 +2086,24 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - Vol_Ratio > 2.2 : ENERGY_SUPPLY_SHOCK_ALARM (Geopolitical energy supply shock / Stagflation risk / Energy price spike)
   - Vol_Ratio < 1.0 : EQUITY_PANIC_OVER_ENERGY (Equity panic dominates / Oil market calm)
   - 1.0 to 2.2 : BALANCED_ENERGY_VOLATILITY (Normalized energy volatility equilibrium)
+
+#### IND_TRIGGER_OVX_ENERGY_PANIC: Annual Ratio Change
+- Purpose: Convert the annual change in Model 25.7's OVX/VIX ratio to a bounded trigger score. This is a market indicator, not an observed geopolitical event.
+- Inputs: FRED `OVXCLS` and `VIXCLS` current and year-ago values, together with their `last_date` and `year_ago_date`.
+- Formula: `current_ratio = OVX_current / VIX_current`; `prior_ratio = OVX_year_ago / VIX_year_ago`; `trigger = round(clamp(current_ratio / prior_ratio - 1, -1, 1), 4)`. Ratios are computed from unrounded source values.
+- Rationale: A 32.74% increase becomes +0.3274; decreases are negative. Clamping keeps the score within [-1, 1]. This normalization does not itself specify the size or direction of an effect on an individual bilateral relationship.
+- Integrity: All four values must be finite and positive. The current dates must match, the year-ago dates must match, and the year-ago date must precede the current date. Missing, invalid, or mismatched inputs produce a null score and an explicit warning; no dates or values are inferred.
+- Output: `IND_TRIGGER_OVX_ENERGY_PANIC` is published with its inputs and status in `llms-relationships.json` and summarized in `llms-relationships.txt`. It does not modify existing relationship deltas.
+
+#### Other Macro Trigger Annual Changes
+- Percentage normalization: `score = round(clamp(current_model_value / year_ago_model_value - 1, -1, 1), 4)`. A positive prior model value is required; a zero or negative prior value makes percentage change unavailable.
+- Signed-index normalization: `score = round(clamp(current_model_value - year_ago_model_value, -1, 1), 4)`. This uses the annual change in native index points for signed indices, for which a percentage relative to a zero or negative baseline is not meaningful. Both scores are bounded to [-1, 1] and are not automatically assigned bilateral effects.
+- `IND_TRIGGER_HORMUZ_SPREAD` (Model 25.12): calculate Brent minus WTI for both periods, then apply percentage normalization. The spread measures benchmark divergence; it is not a direct observation of a chokepoint.
+- `IND_TRIGGER_NATGAS_CRACK` (Model 25.8): calculate WTI divided by Henry Hub for both periods, then apply percentage normalization. The gas benchmark is Henry Hub, not a European gas price.
+- `IND_TRIGGER_SOFR_DOLLAR_DRAIN`: apply percentage normalization to the FRED SOFR values. This measures the annual proportional change in the rate, not a direct observation of offshore dollar flows.
+- `IND_TRIGGER_GSCPI_LOGISTICS`: apply signed-index normalization to the NY Fed GSCPI values. The previous observation date is taken from the retained NY Fed observations only if its value and the latest observation match the published series.
+- `IND_TRIGGER_CHIP_CONTAINMENT` (Model 25.14): calculate the current and year-ago composite from GSCPI, NASDAQSOX year-over-year growth, and VIX using Model 25.14's coefficients, then apply signed-index normalization. Reconstructing the earlier semiconductor growth requires the NASDAQSOX observation two observation-years ago; it is saved from the normal FRED fetch without a separate API request. Financial-series dates must match; monthly GSCPI observations must precede the corresponding financial observations.
+- Integrity and output: Required values and their observation dates are shown with each trigger. Missing or unavailable inputs, mismatched dates, invalid values, and non-positive prior values for percentage normalization yield null and an explicit status and warning. These scores are published in `llms-relationships.json` and summarized in `llms-relationships.txt`; they do not themselves alter existing relationship deltas.
 
 ---
 
