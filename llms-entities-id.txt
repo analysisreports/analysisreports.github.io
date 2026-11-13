@@ -114,6 +114,7 @@ GEO_GR               | Aliases: Greece, Hellenic Republic, Athens
 GEO_CY               | Aliases: Cyprus, Republic of Cyprus, Nicosia
 GEO_CH               | Aliases: Switzerland, Swiss Confederation, Bern, Swiss
 GEO_BY               | Aliases: Belarus, Republic of Belarus, Minsk
+GEO_CY_TR            | Aliases: Turkish Republic of Northern Cyprus, TRNC, Kuzey Kıbrıs Türk Cumhuriyeti, KKTC, Lefkosa
 
 # [EAST ASIA & INDO-PACIFIC]
 GEO_JP               | Aliases: Japan, Tokyo
@@ -132,6 +133,8 @@ GEO_TH               | Aliases: Thailand, Kingdom of Thailand, Bangkok
 GEO_PH               | Aliases: Philippines, Republic of the Philippines, Manila
 GEO_VN               | Aliases: Socialist Republic of Vietnam, Vietnam, Hanoi
 GEO_MM               | Aliases: Myanmar, Burma, Naypyidaw
+GEO_FJ               | Aliases: Republic of Fiji, Fiji, Suva
+GEO_PG               | Aliases: Independent State of Papua New Guinea, Papua New Guinea, PNG, Port Moresby
 
 # [CENTRAL ASIA & CAUCASUS]
 GEO_KZ               | Aliases: Kazakhstan, Republic of Kazakhstan, Astana
@@ -165,6 +168,9 @@ GEO_NG               | Aliases: Nigeria, Federal Republic of Nigeria, Abuja
 GEO_KE               | Aliases: Kenya, Republic of Kenya, Nairobi
 GEO_SD               | Aliases: Sudan, Republic of the Sudan, Khartoum
 GEO_SO               | Aliases: Somalia, Federal Republic of Somalia, Mogadishu
+GEO_ML               | Aliases: Republic of Mali, Mali, Bamako
+GEO_BF               | Aliases: Burkina Faso, Ouagadougou
+GEO_NE               | Aliases: Republic of Niger, Niger, Niamey
 
 # [AMERICAS]
 GEO_CA               | Aliases: Canada, Ottawa
@@ -208,6 +214,10 @@ BLOC_USMCA           | Aliases: USMCA, United States-Mexico-Canada Agreement, NA
 BLOC_C6              | Aliases: Central Asia & Azerbaijan Strategic Alignment Axis, C6 Consultative Format, C6 Bloc
 BLOC_MECCA_DEFENSE   | Aliases: Mecca Joint Defense Agreement, Mecca Defence Alliance, Mecca Pact, TR-SA-PK Alliance
 BLOC_BALTIC_ASSEMBLY | Aliases: Baltic Assembly, Baltic States Trio, Estonia Latvia Lithuania Alliance
+BLOC_AES             | Aliases: Alliance of Sahel States, AES, Liptako-Gourma Charter, Sahel Defense Alliance
+BLOC_TDT             | Aliases: Organization of Turkic States, Türk Devletleri Teşkilatı, OTS, Turkic Council
+BLOC_JAROKUS         | Aliases: Camp David Trilateral Security Framework, US-Japan-ROK Trilateral Alliance, JAROKUS
+BLOC_I2U2            | Aliases: I2U2 Group, West Asian Quad, India-Israel-UAE-USA Strategic Alignment, IMEC Core Corridor
 
 # [MARITIME CHOKEPOINTS, CANALS & STRATEGIC CORRIDORS] (Prefix: CHOKE_ / CORRIDOR_ / BASIN_ / ZONE_)
 CHOKE_HORMUZ         | Aliases: Hormuz Strait, Strait of Hormuz

@@ -390,6 +390,7 @@ Regime States (Discrete Mapping):
    - Primary Friction Nodes: RED_SEA_SECURITY, PERSIAN_GULF_SHIPPING, ARABIAN_SEA_LITTORAL
    - Strategic Impact: Fundamental transformation of Middle Eastern security architecture; structural deterrence enhancement across Saudi airspace and maritime hydrocarbon arteries.
    - Transmission Series: DCOILBRENTEU, VIXCLS, SOFR
+
 2.7.3. BLOC_AES - ALLIANCE OF SAHEL STATES (Mali, Burkina Faso, Niger)
    - Core Entities: GEO_ML, GEO_BF, GEO_NE
    - Lifecycle Metadata:
@@ -1096,6 +1097,24 @@ Regime States (Discrete Mapping):
 - Primary Geopolitical Vector: U.S.-Saudi strategic security guarantee and dollar recycling corridor linked to live hydrocarbon fiscal breakeven parity.
 - Actor Coupling: US-Saudi bilateral pact (2.4.3), OPEC+ quota discipline, Petro-dollar liquidity absorption.
 - Transmission Linkage: Brent oil price exceeding Saudi fiscal breakeven (IMF SAUPZPIOILBEGUSD) alongside moderate funding rates generates surplus petrodollar liquidity reinvested in US Treasuries and strategic bilateral defense assets.
+
+### 8.16. Macro Triggers Dynamic Delta Transmission Engine (Model 25.19)
+
+8.16.1. MODEL_25.19_MACRO_TRIGGERS_DYNAMIC_DELTA_ENGINE
+- Target Formula: llms-formulas.txt -> Model 25.19 (calc_dynamic_macro_triggers)
+- Entities Coupled: ALL_ACTIVE_DYADS (llms-relationships.txt Section 1.1)
+- Data Series Triggered: 
+  * Energy / Chokepoint: IND_TRIGGER_HORMUZ_SPREAD, IND_TRIGGER_OVX_ENERGY_PANIC, IND_TRIGGER_NATGAS_CRACK
+  * Technology / Supply Chain: IND_TRIGGER_CHIP_CONTAINMENT, IND_TRIGGER_GSCPI_LOGISTICS
+  * Liquidity / Monetary: IND_TRIGGER_SOFR_DOLLAR_DRAIN
+  * Agricultural Commodities: IND_TRIGGER_WHEAT_PRICE, IND_TRIGGER_CORN_PRICE
+- Status Enums: MACRO_SHOCK_CEILING_MAX | MACRO_SHOCK_ELEVATED | MACRO_SHOCK_MODERATE | MACRO_EQUILIBRIUM_NEUTRAL
+- Primary Geopolitical Vector: Multi-domain transmission of real-time macro, liquidity, and logistical friction into bilateral sovereign polarities.
+- Transmission Rule: 
+  * Composite shock evaluates as: dynamic_delta = clamp(0.20 * (dominant_signed_contribution + 0.20 * sum(other_contributions)), -0.20, +0.20).
+  * Enforces asymmetric caps where configured (e.g., Baltic triad lower limit of -0.09).
+- Transmission Linkage: Operates as the core dynamic transmission layer for Model 25.1; converts live FRED and commodities time-series into instantaneous polarity shifts (dynamic_delta) to compute real-time P_net.
+
 
 ### 8.17. Chokepoint Macro Spillover Bridge (Model 28.4)
 
