@@ -108,6 +108,7 @@ class OvxEnergyTriggerTests(unittest.TestCase):
             self.assertIn("IND_TRIGGER_OVX_ENERGY_PANIC:** 0.3274", output_text)
             self.assertIn("Model 25.19 relationship contributions:", output_text)
             pair = next(item for item in output["relationships"] if item["id"] == "SA_IR")
+            self.assertEqual(pair["mecca_pact_delta"], 0.0)
             spread = output["metadata"]["macro_inputs"]["brent_wti_spread_usd"]
             expected_oil = -0.15 if spread > 12 else (-0.10 if spread > 8 else 0.0)
             self.assertEqual(pair["legacy_dynamic_delta"], round(expected_oil * 0.5, 2))

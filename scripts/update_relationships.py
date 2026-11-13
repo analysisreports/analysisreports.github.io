@@ -846,7 +846,7 @@ def main():
     relationships_output = []
     for a in actors:
         dyn, contributions, dominant_trigger = calc_relationship_trigger_delta(a['id'], trigger_by_id)
-        mecca_delta = mecca_deltas.get(a['id'], 0.0)
+        mecca_delta = mecca_deltas[a['id']] if a['id'] in mecca_deltas else 0.0
         legacy_delta = None if a['id'] in mecca_deltas else a['dynamic_delta']
         if dyn is None:
             missing = [item['trigger_id'] for item in contributions if item['contribution'] is None]
