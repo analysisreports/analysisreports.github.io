@@ -4,9 +4,9 @@
     "engine": "Dynamic Geopolitical Polarity & Sovereign Governance Engine",
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
-    "sync_status": "PARTIAL_SUCCESS",
-    "last_successful_sync": null,
-    "last_attempted_sync": "2026-11-13T03:51:05.878115+00:00",
+    "sync_status": "SUCCESS",
+    "last_successful_sync": "2026-11-13T04:00:18.581942+00:00",
+    "last_attempted_sync": "2026-11-13T04:00:18.581942+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -21,9 +21,9 @@
     {
       "entity_id": "IND_TRIGGER_HORMUZ_SPREAD",
       "model": "MODEL_25.12",
-      "value": null,
-      "status": "DATE_MISMATCH",
-      "warning": "Observation dates do not match: year_ago_date.",
+      "value": -0.4362,
+      "status": "OK",
+      "warning": null,
       "inputs": {
         "DCOILBRENTEU.current_value": 92.14,
         "DCOILWTICO.current_value": 89.62,
@@ -34,15 +34,15 @@
         "DCOILBRENTEU.year_ago_date": "2025-10-31",
         "DCOILWTICO.year_ago_date": "2025-10-28"
       },
-      "current_model_value": null,
-      "year_ago_model_value": null
+      "current_model_value": 2.52,
+      "year_ago_model_value": 4.47
     },
     {
       "entity_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
       "model": "MODEL_25.7",
-      "value": null,
-      "status": "DATE_MISMATCH",
-      "warning": "OVX and VIX observation dates do not match.",
+      "value": 0.5057,
+      "status": "OK",
+      "warning": null,
       "inputs": {
         "OVXCLS.current_value": 51.26,
         "VIXCLS.current_value": 17.49,
@@ -52,14 +52,16 @@
         "VIXCLS.last_date": "2026-11-11",
         "OVXCLS.year_ago_date": "2025-10-29",
         "VIXCLS.year_ago_date": "2025-11-07"
-      }
+      },
+      "current_model_value": 2.9308,
+      "year_ago_model_value": 1.9465
     },
     {
       "entity_id": "IND_TRIGGER_NATGAS_CRACK",
       "model": "MODEL_25.8",
-      "value": null,
-      "status": "DATE_MISMATCH",
-      "warning": "Observation dates do not match: year_ago_date.",
+      "value": 0.6365,
+      "status": "OK",
+      "warning": null,
       "inputs": {
         "DCOILWTICO.current_value": 89.62,
         "DHHNGSP.current_value": 3.0,
@@ -70,15 +72,15 @@
         "DCOILWTICO.year_ago_date": "2025-10-28",
         "DHHNGSP.year_ago_date": "2025-10-23"
       },
-      "current_model_value": null,
-      "year_ago_model_value": null
+      "current_model_value": 29.8733,
+      "year_ago_model_value": 18.2545
     },
     {
       "entity_id": "IND_TRIGGER_CHIP_CONTAINMENT",
       "model": "MODEL_25.14",
-      "value": null,
-      "status": "DATE_MISMATCH",
-      "warning": "NASDAQSOX and VIX observation dates do not match.",
+      "value": 0.5064,
+      "status": "OK",
+      "warning": null,
       "inputs": {
         "NASDAQSOX.current_value": 10564.11,
         "NASDAQSOX.year_ago_value": 7327.93,
@@ -95,8 +97,8 @@
         "GSCPI.last_date": "2026-10-31",
         "GSCPI.year_ago_date": "2025-10-31"
       },
-      "current_model_value": null,
-      "year_ago_model_value": null
+      "current_model_value": 0.4142488999999999,
+      "year_ago_model_value": -0.09213680000000002
     },
     {
       "entity_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",

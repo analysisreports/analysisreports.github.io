@@ -48,6 +48,29 @@ def calc_brent_wti_spread(brent_price, wti_price):
         return None
 
 
+def calc_current_trigger_metric(series, series_ids, metric, positive_ids=()):
+    values = {}
+    dates = []
+    for series_id in series_ids:
+        entry = series.get(series_id, {})
+        value = entry.get('current_value')
+        try:
+            if (isinstance(value, bool) or not isinstance(value, (int, float)) or
+                    not math.isfinite(value) or (series_id in positive_ids and value <= 0)):
+                return None
+            dates.append(datetime.date.fromisoformat(entry.get('last_date')))
+            values[series_id] = value
+        except (TypeError, ValueError, OverflowError):
+            return None
+    if len(set(dates)) != 1:
+        return None
+    try:
+        current = metric(values)
+        return round(current, 4) if math.isfinite(current) else None
+    except (ArithmeticError, ValueError):
+        return None
+
+
 def calc_ovx_energy_trigger(series):
     fields = {
         'OVXCLS.current_value': series.get('OVXCLS', {}).get('current_value'),
@@ -66,6 +89,11 @@ def calc_ovx_energy_trigger(series):
         'status': None,
         'warning': None,
         'inputs': fields,
+        'current_model_value': calc_current_trigger_metric(
+            series, ('OVXCLS', 'VIXCLS'),
+            lambda values: values['OVXCLS'] / values['VIXCLS'], ('OVXCLS', 'VIXCLS'),
+        ),
+        'year_ago_model_value': None,
     }
     values = list(fields.values())
     if all(value is None for value in values):
@@ -95,19 +123,20 @@ def calc_ovx_energy_trigger(series):
         except (TypeError, ValueError):
             result.update(status='INVALID_DATA', warning='Invalid observation date: ' + name)
             return result
-    if (dates['OVXCLS.last_date'] != dates['VIXCLS.last_date'] or
-            dates['OVXCLS.year_ago_date'] != dates['VIXCLS.year_ago_date']):
-        result.update(status='DATE_MISMATCH', warning='OVX and VIX observation dates do not match.')
+    if dates['OVXCLS.last_date'] != dates['VIXCLS.last_date']:
+        result.update(status='DATE_MISMATCH', warning='Current OVX and VIX observation dates do not match.')
         return result
-    if dates['OVXCLS.year_ago_date'] >= dates['OVXCLS.last_date']:
-        result.update(status='INVALID_DATA', warning='Year-ago date must precede the current date.')
-        return result
+    for series_id in ('OVXCLS', 'VIXCLS'):
+        if dates[f'{series_id}.year_ago_date'] >= dates[f'{series_id}.last_date']:
+            result.update(status='INVALID_DATA', warning=f'{series_id} year-ago date must precede its current date.')
+            return result
 
     current_ratio = fields['OVXCLS.current_value'] / fields['VIXCLS.current_value']
     prior_ratio = fields['OVXCLS.year_ago_value'] / fields['VIXCLS.year_ago_value']
     if not math.isfinite(current_ratio) or not math.isfinite(prior_ratio) or prior_ratio <= 0:
         result.update(status='INVALID_DATA', warning='OVX/VIX ratio is invalid.')
         return result
+    result['year_ago_model_value'] = round(prior_ratio, 4)
     change = current_ratio / prior_ratio - 1.0
     if not math.isfinite(change):
         result.update(status='INVALID_DATA', warning='OVX/VIX ratio change is invalid.')
@@ -125,7 +154,8 @@ def calc_annual_trigger(entity_id, model, series, series_ids, metric, positive_i
     result = {
         'entity_id': entity_id, 'model': model, 'value': None,
         'status': None, 'warning': None, 'inputs': fields,
-        'current_model_value': None, 'year_ago_model_value': None,
+        'current_model_value': calc_current_trigger_metric(series, series_ids, metric, positive_ids),
+        'year_ago_model_value': None,
     }
     if all(value is None for value in fields.values()):
         result.update(status='NO_DATA', warning='Required data are unavailable.')
@@ -156,13 +186,13 @@ def calc_annual_trigger(entity_id, model, series, series_ids, metric, positive_i
             except (TypeError, ValueError):
                 result.update(status='INVALID_DATA', warning='Invalid observation date: ' + name)
                 return result
-    for field in ('last_date', 'year_ago_date'):
-        if len({dates[f'{series_id}.{field}'] for series_id in series_ids}) != 1:
-            result.update(status='DATE_MISMATCH', warning=f'Observation dates do not match: {field}.')
-            return result
-    if dates[f'{series_ids[0]}.year_ago_date'] >= dates[f'{series_ids[0]}.last_date']:
-        result.update(status='INVALID_DATA', warning='Year-ago date must precede the current date.')
+    if len({dates[f'{series_id}.last_date'] for series_id in series_ids}) != 1:
+        result.update(status='DATE_MISMATCH', warning='Current observation dates do not match.')
         return result
+    for series_id in series_ids:
+        if dates[f'{series_id}.year_ago_date'] >= dates[f'{series_id}.last_date']:
+            result.update(status='INVALID_DATA', warning=f'{series_id} year-ago date must precede its current date.')
+            return result
 
     current = {key: fields[f'{key}.current_value'] for key in series_ids}
     prior = {key: fields[f'{key}.year_ago_value'] for key in series_ids}
@@ -171,7 +201,7 @@ def calc_annual_trigger(entity_id, model, series, series_ids, metric, positive_i
         prior_metric = metric(prior)
         if not math.isfinite(current_metric) or not math.isfinite(prior_metric):
             raise ValueError('Non-finite model value')
-        result.update(current_model_value=current_metric, year_ago_model_value=prior_metric)
+        result.update(current_model_value=round(current_metric, 4), year_ago_model_value=round(prior_metric, 4))
         if not use_difference and prior_metric <= 0:
             result.update(status='INVALID_DATA', warning='Annual percentage change requires a positive prior model value.')
             return result
@@ -238,12 +268,12 @@ def calc_chip_trigger(series, gscpi_entry):
             if not valid or (name.startswith(('NASDAQSOX.', 'VIXCLS.')) and value <= 0):
                 result.update(status='INVALID_DATA', warning='Invalid value: ' + name)
                 return result
-    if (sox['last_date'] != vix['last_date'] or sox['year_ago_date'] != vix['year_ago_date']):
-        result.update(status='DATE_MISMATCH', warning='NASDAQSOX and VIX observation dates do not match.')
+    if sox['last_date'] != vix['last_date']:
+        result.update(status='DATE_MISMATCH', warning='Current NASDAQSOX and VIX observation dates do not match.')
         return result
     if not (dates['NASDAQSOX.two_years_ago_date'] < dates['NASDAQSOX.year_ago_date'] < dates['NASDAQSOX.last_date'] and
-            dates['GSCPI.year_ago_date'] < dates['GSCPI.last_date'] <= dates['NASDAQSOX.last_date'] and
-            dates['GSCPI.year_ago_date'] <= dates['NASDAQSOX.year_ago_date']):
+            dates['VIXCLS.year_ago_date'] < dates['VIXCLS.last_date'] and
+            dates['GSCPI.year_ago_date'] < dates['GSCPI.last_date'] <= dates['NASDAQSOX.last_date']):
         result.update(status='DATE_MISMATCH', warning='Model observation dates are not chronologically aligned.')
         return result
     try:
