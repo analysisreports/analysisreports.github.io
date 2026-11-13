@@ -72,7 +72,7 @@ class OvxEnergyTriggerTests(unittest.TestCase):
         self.assertIsNone(result["value"])
         self.assertEqual(result["status"], "INVALID_DATA")
 
-    def test_trigger_is_published_without_changing_relationships(self):
+    def test_trigger_is_transmitted_to_relationships(self):
         root = Path(__file__).resolve().parent.parent
         with tempfile.TemporaryDirectory() as temp_dir:
             temp = Path(temp_dir)
@@ -89,6 +89,7 @@ class OvxEnergyTriggerTests(unittest.TestCase):
             fred_data = json.loads(fred_path.read_text(encoding="utf-8"))
             for key, entry in sample_series().items():
                 fred_data["series"][key].update(entry)
+            fred_data["series"]["NASDAQSOX"]["last_date"] = sample_series()["VIXCLS"]["last_date"]
             fred_path.write_text(json.dumps(fred_data), encoding="utf-8")
             old_cwd = os.getcwd()
             try:
@@ -105,10 +106,34 @@ class OvxEnergyTriggerTests(unittest.TestCase):
             output_text = (temp / "llms-relationships.txt").read_text(encoding="utf-8")
             self.assertIn("Model 25.19 Macro Triggers:**", output_text)
             self.assertIn("IND_TRIGGER_OVX_ENERGY_PANIC:** 0.3274", output_text)
+            self.assertIn("Model 25.19 relationship contributions:", output_text)
             pair = next(item for item in output["relationships"] if item["id"] == "SA_IR")
             spread = output["metadata"]["macro_inputs"]["brent_wti_spread_usd"]
             expected_oil = -0.15 if spread > 12 else (-0.10 if spread > 8 else 0.0)
-            self.assertEqual(pair["dynamic_delta"], round(expected_oil * 0.5, 2))
+            self.assertEqual(pair["legacy_dynamic_delta"], round(expected_oil * 0.5, 2))
+            hormuz = triggers["IND_TRIGGER_HORMUZ_SPREAD"]["value"]
+            self.assertEqual(pair["dynamic_delta"], 0.074144)
+            self.assertEqual(pair["p_net"], round(relationships.clamp(pair["p_baseline"] + pair["dynamic_delta"]), 2))
+            self.assertEqual(pair["macro_trigger_contributions"][0]["contribution"], -hormuz)
+            for pair_id in ("TR_SA", "SA_PK", "TR_PK"):
+                mecca_pair = next(item for item in output["relationships"] if item["id"] == pair_id)
+                self.assertEqual(mecca_pair["mecca_pact_delta"], 0.1)
+                self.assertIsNone(mecca_pair["legacy_dynamic_delta"])
+                self.assertEqual(mecca_pair["p_net"], round(relationships.clamp(
+                    mecca_pair["p_baseline"] + mecca_pair["dynamic_delta"] + mecca_pair["mecca_pact_delta"]), 2))
+            pairs = {item["id"]: item for item in output["relationships"]}
+            for pair_id in ("LT_RU", "EE_RU", "LV_RU"):
+                self.assertEqual(pairs[pair_id]["dynamic_delta"], -0.09)
+                self.assertEqual(pairs[pair_id]["p_net"], -0.94)
+                self.assertEqual(pairs[pair_id]["regime_state"], "PROXY_WAR")
+            self.assertEqual(pairs["US_KP"]["regime_state"], "PROXY_WAR")
+            self.assertFalse(pairs["US_KP"]["kinetic_contact_configured"])
+            for pair_id in ("IL_IR", "YE_IL"):
+                self.assertTrue(pairs[pair_id]["kinetic_contact_configured"])
+                self.assertEqual(pairs[pair_id]["regime_state"],
+                                 relationships.get_regime(pairs[pair_id]["p_net"], pair_id))
+            self.assertEqual(pairs["YE_IL"]["regime_state"], "KINETIC_WAR")
+            self.assertEqual(len(output["relationships"]), 23)
             for entry in ("OVXCLS", "VIXCLS"):
                 fred_data["series"][entry]["year_ago_date"] = None
             fred_path.write_text(json.dumps(fred_data), encoding="utf-8")
@@ -126,6 +151,11 @@ class OvxEnergyTriggerTests(unittest.TestCase):
             self.assertIsNone(output["metadata"]["last_successful_sync"])
             self.assertIn("OVXCLS.year_ago_date", log.getvalue())
             self.assertIn("IND_TRIGGER_OVX_ENERGY_PANIC:** null", (temp / "llms-relationships.txt").read_text(encoding="utf-8"))
+            pair = next(item for item in output["relationships"] if item["id"] == "SA_IR")
+            self.assertIsNone(pair["dynamic_delta"])
+            self.assertIsNone(pair["p_net"])
+            self.assertEqual(pair["regime_state"], "UNAVAILABLE")
+            self.assertIn("SA_IR: relationship delta unavailable", log.getvalue())
 
 
 if __name__ == "__main__":

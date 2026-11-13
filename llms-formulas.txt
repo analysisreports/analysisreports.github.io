@@ -1869,19 +1869,21 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ---
 
 ### 25.1. DYNAMIC POLARITY & REGIME ENGINE
-- Purpose: Calculates bilateral geopolitical affinity by combining baseline polarity (P_baseline) from llms-relationships.txt with dynamic event friction (dynamic_delta) clamped to [-1.0, 1.0]. Returns deterministic bilateral regime states.
+- Purpose: Calculates bilateral geopolitical affinity by combining baseline polarity (P_baseline) with the Model 25.19 dynamic delta clamped to [-0.20, 0.20] and the Model 25.18 Mecca Pact delta where applicable. Returns deterministic bilateral regime states.
 - Data Link: llms-relationships.txt -> Section 1 (DYNAMIC POLARITY & TRANSMISSION ENGINE)
 - Formula:
-  P_net = min(1.0, max(-1.0, P_baseline + dynamic_delta))
+  P_net = min(1.0, max(-1.0, P_baseline + dynamic_delta + mecca_pact_delta))
+  dynamic_delta is the Model 25.19 relationship transmission; mecca_pact_delta is the Model 25.18 delta for TR_SA, SA_PK and TR_PK, and zero otherwise. Legacy petrol, chip and VIX deltas are reported separately and are not added.
+- KINETIC_WAR additionally requires the pair to belong to the manually maintained `ACTIVE_KINETIC_PAIRS = {"RU_UA", "IL_IR", "YE_IL"}`. This configuration is not an automatically updated event feed. Unlisted pairs below -0.95 remain PROXY_WAR.
 - Machine-Executable Logic (Python):
-  def dynamic_polarity_engine(p_baseline, dynamic_delta):
-      if any(v is None or isinstance(v, bool) for v in (p_baseline, dynamic_delta)):
+  def dynamic_polarity_engine(p_baseline, dynamic_delta, pair_id, mecca_pact_delta=0.0):
+      if any(v is None or isinstance(v, bool) for v in (p_baseline, dynamic_delta, mecca_pact_delta)):
           return None
       try:
-          if not (math.isfinite(p_baseline) and math.isfinite(dynamic_delta)):
+          if not all(math.isfinite(v) for v in (p_baseline, dynamic_delta, mecca_pact_delta)):
               return None
 
-          raw_p = float(p_baseline) + float(dynamic_delta)
+          raw_p = float(p_baseline) + float(dynamic_delta) + float(mecca_pact_delta)
           # [-1.0, 1.0] araligina kenetleme (clamping)
           p_net = round(min(1.0, max(-1.0, raw_p)), 2)
           if not math.isfinite(p_net):
@@ -1897,7 +1899,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
               regime = "NEUTRAL"
           elif p_net >= -0.40:
               regime = "STRATEGIC_FRICTION"
-          elif p_net >= -0.80:
+          elif p_net >= -0.95 or pair_id not in ACTIVE_KINETIC_PAIRS:
               regime = "PROXY_WAR"
           else:
               regime = "KINETIC_WAR"
@@ -1906,13 +1908,13 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError):
           return None
 - Interpretation:
-  - p_net > 0.85 : ALLIANCE (Joint Defense / Integrated Military Command)
-  - 0.50 to 0.85 : STRATEGIC_ALIGNMENT (Strategic Partnership / Institutional Alignment)
-  - 0.10 to 0.50 : TACTICAL_COOPERATION (Tactical Cooperation / Economic Interdependence)
-  - -0.10 to 0.10 : NEUTRAL (Strict Non-Alignment / Strategic Neutrality)
-  - -0.40 to -0.10 : STRATEGIC_FRICTION (Strategic Friction / Managed Divergence)
-  - -0.80 to -0.40 : PROXY_WAR (Proxy Warfare / Sanctions Regime / Asymmetric Conflict)
-  - p_net < -0.80 : KINETIC_WAR (Active Kinetic Warfare / Total Diplomatic Breakdown)
+  - p_net >= 0.85 : ALLIANCE (Joint Defense / Integrated Military Command)
+  - 0.50 <= p_net < 0.85 : STRATEGIC_ALIGNMENT (Strategic Partnership / Institutional Alignment)
+  - 0.10 <= p_net < 0.50 : TACTICAL_COOPERATION (Tactical Cooperation / Economic Interdependence)
+  - -0.10 <= p_net < 0.10 : NEUTRAL (Strict Non-Alignment / Strategic Neutrality)
+  - -0.40 <= p_net < -0.10 : STRATEGIC_FRICTION (Strategic Friction / Managed Divergence)
+  - -0.95 to below -0.40, or below -0.95 without configured active contact: PROXY_WAR (Proxy Warfare / Sanctions Regime / Asymmetric Conflict)
+  - p_net < -0.95 with configured active contact: KINETIC_WAR (Active Kinetic Warfare / Total Diplomatic Breakdown)
 
 ---
 
@@ -2733,8 +2735,8 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - status == TREATY_ACTIVE_FISCAL_RESTRAINT : Hydrocarbon revenues fall below sovereign breakeven threshold (R_oil < 0.90) or dollar funding stresses elevate; mutual security umbrella remains intact while non-essential discretionary capital deployments moderate.
 
 ---
-### 25.19. GEOPOLITICAL MACRO TRIGGER ENGINE
-- Purpose: Calculate six bounded trigger scores from changes in market and macroeconomic data. These are indicators, not confirmation of geopolitical events or bilateral relationship changes.
+### 25.19. MULTI-LAYER MACROECONOMIC TRANSMISSION ENGINE
+- Purpose: Calculate six bounded macroeconomic trigger scores and transmit their signed contributions to bilateral relationship deltas. Model 25.18 calculates the separate Mecca Pact delta; Model 25.1 combines the deltas with the structural baseline and classifies the resulting net polarity.
 - Notation: `current` and `prior` mean the latest and year-ago observations retained for each series.
 - Percentage change: `P(current, prior) = round(clamp(current / prior - 1, -1, 1), 4)`. The prior value must be positive. For example, an increase of 32.74% produces +0.3274.
 - Signed-index change: `D(current, prior) = round(clamp(current - prior, -1, 1), 4)`. This measures a difference in index points rather than a percentage, so it remains meaningful when the prior index is zero or negative.
@@ -2776,6 +2778,26 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 - Historical dates: Year-ago dates may differ because series use their own retained observations. A historical ratio or composite assembled from different dates is not a same-day observation. The GSCPI prior date is used only when retained observations match the published current and year-ago values.
 - Missing or invalid inputs, mismatched current dates, or a non-positive prior value for percentage change produce `null`, an explicit status and a warning; a valid current value remains visible where available. Calculations use unrounded inputs and intermediate ratios, except for the SOX year-over-year values rounded as specified above.
 - Output: All six IDs are published with `model: MODEL_25.19`, their inputs, dates and status in `llms-relationships.json`, and summarized in `llms-relationships.txt`.
+
+#### Relationship Transmission Pipeline
+1. **Contribution and dominant selection:** For each trigger mapped to a pair, `contribution_i = trigger_value_i * impact_direction_i`, where the direction is +1 or -1. Select the signed contribution with the largest absolute value as `dominant`. If magnitudes tie, select the first trigger in the pair's mapping.
+2. **Secondary damping and macro transmission:** `raw_delta = dominant + 0.20 * sum(other signed contributions)`. Then calculate `dynamic_delta = round(clamp(0.20 * raw_delta, -0.20, 0.20), 6)`. Six decimal places preserve the result of applying both weights to four-decimal trigger scores.
+3. **Baltic floor:** For LT_RU, EE_RU and LV_RU, apply `dynamic_delta = max(dynamic_delta, -0.09)`. Positive deltas remain unchanged; no separate land-border multiplier is applied.
+
+- All triggers mapped to a relationship are required. If any is unavailable, the relationship's dynamic_delta and P_net are null and its regime is UNAVAILABLE. Contributions, directions, statuses and the dominant trigger are published in `llms-relationships.json` and `llms-relationships.txt`.
+- Legacy petrol, chip and VIX deltas remain visible separately and are not added to P_net.
+
+#### Integration with Models 25.18 and 25.1
+- **Model 25.18:** For TR_SA, SA_PK and TR_PK, the Mecca Pact delta is calculated separately using the +0.10 treaty uplift, Brent relative to Saudi fiscal breakeven oil, and SOFR. TR_SA and SA_PK include the energy and dollar adjustments; TR_PK includes the dollar adjustment but not the energy adjustment. Each is clamped to [-0.30, +0.30] and rounded to two decimals. In the relationship generator, when the required macro inputs are unavailable or invalid, only the +0.10 treaty uplift is retained. For all other pairs, the Mecca Pact delta is zero.
+- **Model 25.1:** `P_net = round(clamp(P_baseline + dynamic_delta + mecca_pact_delta, -1.00, +1.00), 2)`. Classification uses this rounded P_net:
+  - `P_net >= 0.85`: ALLIANCE.
+  - `0.50 <= P_net < 0.85`: STRATEGIC_ALIGNMENT.
+  - `0.10 <= P_net < 0.50`: TACTICAL_COOPERATION.
+  - `-0.10 <= P_net < 0.10`: NEUTRAL.
+  - `-0.40 <= P_net < -0.10`: STRATEGIC_FRICTION.
+  - `-0.95 <= P_net < -0.40`: PROXY_WAR.
+  - `P_net < -0.95`: KINETIC_WAR only when the pair is in `ACTIVE_KINETIC_PAIRS`; otherwise PROXY_WAR.
+- **Kinetic contact configuration:** `ACTIVE_KINETIC_PAIRS = {"RU_UA", "IL_IR", "YE_IL"}` is maintained manually, not verified or updated by an automated event feed. RU_UA is in this configuration but is not one of the 23 pairs in the current relationship matrix.
 
 ---
 ## 🏛️ TIER 3: INSTITUTIONAL DECISION, GEOPOLITICAL TENSION & CALIBRATION ENGINE

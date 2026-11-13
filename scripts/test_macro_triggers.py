@@ -11,6 +11,61 @@ def entry(current, prior, current_date="2026-11-09", prior_date="2025-11-10"):
 
 
 class MacroTriggerTests(unittest.TestCase):
+    def test_relationship_delta_dominant_opposing_and_clamp(self):
+        triggers = {
+            "IND_TRIGGER_HORMUZ_SPREAD": {"value": -0.4362, "status": "OK"},
+            "IND_TRIGGER_OVX_ENERGY_PANIC": {"value": 0.5057, "status": "OK"},
+            "IND_TRIGGER_GSCPI_LOGISTICS": {"value": 1.0, "status": "OK"},
+        }
+        delta, contributions, dominant = relationships.calc_relationship_trigger_delta("YE_IL", triggers)
+        self.assertEqual([item["contribution"] for item in contributions], [0.4362, -0.5057, -1.0])
+        self.assertEqual(dominant, "IND_TRIGGER_GSCPI_LOGISTICS")
+        self.assertEqual(delta, -0.2)
+        triggers["IND_TRIGGER_GSCPI_LOGISTICS"]["value"] = 0.8
+        delta, _, _ = relationships.calc_relationship_trigger_delta("YE_IL", triggers)
+        self.assertEqual(delta, -0.16278)
+        triggers["IND_TRIGGER_GSCPI_LOGISTICS"]["value"] = 1.0
+        triggers["IND_TRIGGER_HORMUZ_SPREAD"]["value"] = 1.0
+        triggers["IND_TRIGGER_OVX_ENERGY_PANIC"]["value"] = 1.0
+        delta, _, _ = relationships.calc_relationship_trigger_delta("YE_IL", triggers)
+        self.assertEqual(delta, -0.2)
+        for trigger in triggers.values():
+            trigger["value"] = -1.0
+        delta, _, _ = relationships.calc_relationship_trigger_delta("YE_IL", triggers)
+        self.assertEqual(delta, 0.2)
+
+    def test_relationship_delta_missing_trigger_and_tie(self):
+        triggers = {
+            "IND_TRIGGER_HORMUZ_SPREAD": {"value": 0.5, "status": "OK"},
+            "IND_TRIGGER_GSCPI_LOGISTICS": {"value": 0.5, "status": "OK"},
+        }
+        delta, _, dominant = relationships.calc_relationship_trigger_delta("EG_IL", triggers)
+        self.assertEqual(delta, 0.08)
+        self.assertEqual(dominant, "IND_TRIGGER_HORMUZ_SPREAD")
+        triggers["IND_TRIGGER_GSCPI_LOGISTICS"].update(value=None, status="MISSING_DATA")
+        delta, contributions, dominant = relationships.calc_relationship_trigger_delta("EG_IL", triggers)
+        self.assertIsNone(delta)
+        self.assertIsNone(dominant)
+        self.assertEqual(contributions[1]["status"], "MISSING_DATA")
+
+    def test_relationship_regime_boundaries(self):
+        self.assertEqual(relationships.get_regime(-0.4, "IL_IR"), "STRATEGIC_FRICTION")
+        self.assertEqual(relationships.get_regime(-0.41, "IL_IR"), "PROXY_WAR")
+        self.assertEqual(relationships.get_regime(-0.95, "IL_IR"), "PROXY_WAR")
+        self.assertEqual(relationships.get_regime(-0.96, "IL_IR"), "KINETIC_WAR")
+        self.assertEqual(relationships.get_regime(-1.0, "US_KP"), "PROXY_WAR")
+
+    def test_baltic_negative_delta_floor(self):
+        triggers = {
+            "IND_TRIGGER_GSCPI_LOGISTICS": {"value": 1.0, "status": "OK"},
+            "IND_TRIGGER_SOFR_DOLLAR_DRAIN": {"value": 0.0, "status": "OK"},
+        }
+        delta, _, _ = relationships.calc_relationship_trigger_delta("LT_RU", triggers)
+        self.assertEqual(delta, -0.09)
+        triggers["IND_TRIGGER_GSCPI_LOGISTICS"]["value"] = -1.0
+        delta, _, _ = relationships.calc_relationship_trigger_delta("LT_RU", triggers)
+        self.assertEqual(delta, 0.2)
+
     def test_brent_spread_natural_gas_and_sofr_annual_changes(self):
         series = {
             "DCOILBRENTEU": entry(120, 90),

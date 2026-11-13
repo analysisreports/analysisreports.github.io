@@ -5,8 +5,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-13T04:00:18.581942+00:00",
-    "last_attempted_sync": "2026-11-13T04:00:18.581942+00:00",
+    "last_successful_sync": "2026-11-13T07:03:55.243760+00:00",
+    "last_attempted_sync": "2026-11-13T07:03:55.243760+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -191,9 +191,29 @@
       "target_entity": "GEO_RU",
       "label": "US - RU (United States vs. Russian Federation)",
       "p_baseline": -0.85,
-      "dynamic_delta": 0.0,
-      "p_net": -0.85,
+      "dynamic_delta": -0.09784,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
+          "direction": -1,
+          "value": 0.5057,
+          "contribution": -0.5057,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
+          "direction": -1,
+          "value": -0.0825,
+          "contribution": 0.0825,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_OVX_ENERGY_PANIC",
+      "p_net": -0.95,
       "regime_state": "PROXY_WAR",
+      "kinetic_contact_configured": false,
       "primary_driver": "VIX_AND_SANCTIONS",
       "friction_nodes": [
         "EASTERN_EUROPE",
@@ -208,9 +228,29 @@
       "target_entity": "GEO_CN",
       "label": "US - CN (United States vs. People's Republic of China)",
       "p_baseline": -0.65,
-      "dynamic_delta": 0.0,
-      "p_net": -0.65,
-      "regime_state": "STRATEGIC_COMPETITION",
+      "dynamic_delta": -0.2,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_CHIP_CONTAINMENT",
+          "direction": -1,
+          "value": 0.5064,
+          "contribution": -0.5064,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_GSCPI_LOGISTICS",
+          "direction": -1,
+          "value": 1.0,
+          "contribution": -1.0,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
+      "p_net": -0.85,
+      "regime_state": "PROXY_WAR",
+      "kinetic_contact_configured": false,
       "primary_driver": "MODEL_25_14_AI_CHIP_STRESS",
       "friction_nodes": [
         "TAIWAN_STRAIT",
@@ -224,9 +264,29 @@
       "target_entity": "GEO_CN",
       "label": "RU - CN (Russian Federation - People's Republic of China)",
       "p_baseline": 0.85,
-      "dynamic_delta": 0.0,
-      "p_net": 0.85,
+      "dynamic_delta": 0.09798,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
+          "direction": 1,
+          "value": -0.0825,
+          "contribution": -0.0825,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_CHIP_CONTAINMENT",
+          "direction": 1,
+          "value": 0.5064,
+          "contribution": 0.5064,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_CHIP_CONTAINMENT",
+      "p_net": 0.95,
       "regime_state": "ALLIANCE",
+      "kinetic_contact_configured": false,
       "primary_driver": "MBRIDGE_BILATERAL_SETTLEMENT",
       "friction_nodes": [
         "CENTRAL_ASIA",
@@ -239,9 +299,29 @@
       "target_entity": "GEO_IR",
       "label": "IL - IR (Israel vs. Islamic Republic of Iran)",
       "p_baseline": -0.95,
-      "dynamic_delta": 0.0,
-      "p_net": -0.95,
-      "regime_state": "PROXY_WAR",
+      "dynamic_delta": -0.083692,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
+          "direction": -1,
+          "value": -0.4362,
+          "contribution": 0.4362,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
+          "direction": -1,
+          "value": 0.5057,
+          "contribution": -0.5057,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_OVX_ENERGY_PANIC",
+      "p_net": -1.0,
+      "regime_state": "KINETIC_WAR",
+      "kinetic_contact_configured": true,
       "primary_driver": "MODEL_25_12_BRENT_WTI_BENCHMARK_SPREAD",
       "friction_nodes": [
         "LEVANT",
@@ -256,9 +336,29 @@
       "target_entity": "GEO_IR",
       "label": "SA - IR (Kingdom of Saudi Arabia vs. Islamic Republic of Iran)",
       "p_baseline": 0.15,
-      "dynamic_delta": 0.0,
-      "p_net": 0.15,
-      "regime_state": "TACTICAL_COOPERATION",
+      "dynamic_delta": -0.083692,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
+          "direction": -1,
+          "value": -0.4362,
+          "contribution": 0.4362,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
+          "direction": -1,
+          "value": 0.5057,
+          "contribution": -0.5057,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_OVX_ENERGY_PANIC",
+      "p_net": 0.07,
+      "regime_state": "NEUTRAL",
+      "kinetic_contact_configured": false,
       "primary_driver": "BEIJING_ACCORD_AND_OIL_FLOWS",
       "friction_nodes": [
         "YEMEN_BORDER",
@@ -271,9 +371,29 @@
       "target_entity": "GEO_IL",
       "label": "US - IL (United States - Israel)",
       "p_baseline": 0.9,
-      "dynamic_delta": 0.0,
-      "p_net": 0.9,
-      "regime_state": "ALLIANCE",
+      "dynamic_delta": -0.083692,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
+          "direction": -1,
+          "value": 0.5057,
+          "contribution": -0.5057,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
+          "direction": -1,
+          "value": -0.4362,
+          "contribution": 0.4362,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_OVX_ENERGY_PANIC",
+      "p_net": 0.82,
+      "regime_state": "STRATEGIC_ALIGNMENT",
+      "kinetic_contact_configured": false,
       "primary_driver": "STRATEGIC_DEFENSE_TREATY",
       "friction_nodes": [
         "REGIONAL_ESCALATION_SCALE"
@@ -285,9 +405,29 @@
       "target_entity": "BLOC_EU",
       "label": "US - EU / NATO Core",
       "p_baseline": 0.85,
-      "dynamic_delta": 0.0,
-      "p_net": 0.85,
-      "regime_state": "ALLIANCE",
+      "dynamic_delta": -0.124,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
+          "direction": -1,
+          "value": 0.6365,
+          "contribution": -0.6365,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
+          "direction": -1,
+          "value": -0.0825,
+          "contribution": 0.0825,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
+      "p_net": 0.73,
+      "regime_state": "STRATEGIC_ALIGNMENT",
+      "kinetic_contact_configured": false,
       "primary_driver": "TRANSATLANTIC_SECURITY",
       "friction_nodes": [
         "BURDEN_SHARING",
@@ -300,9 +440,29 @@
       "target_entity": "BLOC_EU",
       "label": "RU - EU Core",
       "p_baseline": -0.8,
-      "dynamic_delta": 0.0,
-      "p_net": -0.8,
-      "regime_state": "STRATEGIC_COMPETITION",
+      "dynamic_delta": -0.147528,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
+          "direction": -1,
+          "value": 0.6365,
+          "contribution": -0.6365,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
+          "direction": -1,
+          "value": 0.5057,
+          "contribution": -0.5057,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
+      "p_net": -0.95,
+      "regime_state": "PROXY_WAR",
+      "kinetic_contact_configured": false,
       "primary_driver": "ECONOMIC_WARFARE_STANDOFF",
       "friction_nodes": [
         "NORD_STREAM",
@@ -315,9 +475,22 @@
       "target_entity": "GEO_KP",
       "label": "US - KP (United States vs. North Korea)",
       "p_baseline": -0.9,
-      "dynamic_delta": 0.0,
-      "p_net": -0.9,
+      "dynamic_delta": -0.10128,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_CHIP_CONTAINMENT",
+          "direction": -1,
+          "value": 0.5064,
+          "contribution": -0.5064,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_CHIP_CONTAINMENT",
+      "p_net": -1.0,
       "regime_state": "PROXY_WAR",
+      "kinetic_contact_configured": false,
       "primary_driver": "NUCLEAR_PROLIFERATION",
       "friction_nodes": [
         "KOREAN_PENINSULA",
@@ -330,9 +503,22 @@
       "target_entity": "GEO_AM",
       "label": "AZ - AM (Republic of Azerbaijan vs. Republic of Armenia)",
       "p_baseline": -0.7,
-      "dynamic_delta": 0.0,
-      "p_net": -0.7,
-      "regime_state": "STRATEGIC_COMPETITION",
+      "dynamic_delta": -0.1273,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
+          "direction": -1,
+          "value": 0.6365,
+          "contribution": -0.6365,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
+      "p_net": -0.83,
+      "regime_state": "PROXY_WAR",
+      "kinetic_contact_configured": false,
       "primary_driver": "ZANGEZUR_CORRIDOR_AND_BORDER_DELIMITATION",
       "friction_nodes": [
         "ZANGEZUR_CORRIDOR",
@@ -346,9 +532,29 @@
       "target_entity": "GEO_RU",
       "label": "LT - RU (Republic of Lithuania vs. Russian Federation)",
       "p_baseline": -0.85,
-      "dynamic_delta": 0.0,
-      "p_net": -0.85,
+      "dynamic_delta": -0.09,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_GSCPI_LOGISTICS",
+          "direction": -1,
+          "value": 1.0,
+          "contribution": -1.0,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
+          "direction": -1,
+          "value": -0.0825,
+          "contribution": 0.0825,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
+      "p_net": -0.94,
       "regime_state": "PROXY_WAR",
+      "kinetic_contact_configured": false,
       "primary_driver": "SUWALKI_GAP_NATO_BORDER_FRICTION",
       "friction_nodes": [
         "SUWALKI_GAP",
@@ -363,9 +569,29 @@
       "target_entity": "GEO_RU",
       "label": "EE - RU (Republic of Estonia vs. Russian Federation)",
       "p_baseline": -0.85,
-      "dynamic_delta": 0.0,
-      "p_net": -0.85,
+      "dynamic_delta": -0.09,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
+          "direction": -1,
+          "value": 0.6365,
+          "contribution": -0.6365,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
+          "direction": -1,
+          "value": 0.5057,
+          "contribution": -0.5057,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
+      "p_net": -0.94,
       "regime_state": "PROXY_WAR",
+      "kinetic_contact_configured": false,
       "primary_driver": "BALTIC_DEFENCE_LINE_AND_CYBER_FRICTION",
       "friction_nodes": [
         "NARVA_BORDER",
@@ -379,9 +605,29 @@
       "target_entity": "GEO_RU",
       "label": "LV - RU (Republic of Latvia vs. Russian Federation)",
       "p_baseline": -0.85,
-      "dynamic_delta": 0.0,
-      "p_net": -0.85,
+      "dynamic_delta": -0.09,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
+          "direction": -1,
+          "value": 0.6365,
+          "contribution": -0.6365,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
+          "direction": -1,
+          "value": 0.5057,
+          "contribution": -0.5057,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
+      "p_net": -0.94,
       "regime_state": "PROXY_WAR",
+      "kinetic_contact_configured": false,
       "primary_driver": "BRELL_ENERGY_GRID_DESYNCHRONIZATION",
       "friction_nodes": [
         "LATGALE_BORDER",
@@ -395,9 +641,36 @@
       "target_entity": "GEO_IL",
       "label": "YE - IL (Yemen Houthis / Ansarullah vs. State of Israel)",
       "p_baseline": -0.95,
-      "dynamic_delta": 0.0,
-      "p_net": -0.95,
-      "regime_state": "PROXY_WAR",
+      "dynamic_delta": -0.2,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
+          "direction": -1,
+          "value": -0.4362,
+          "contribution": 0.4362,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
+          "direction": -1,
+          "value": 0.5057,
+          "contribution": -0.5057,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_GSCPI_LOGISTICS",
+          "direction": -1,
+          "value": 1.0,
+          "contribution": -1.0,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
+      "p_net": -1.0,
+      "regime_state": "KINETIC_WAR",
+      "kinetic_contact_configured": true,
       "primary_driver": "MODEL_25_12_BRENT_WTI_BENCHMARK_SPREAD",
       "friction_nodes": [
         "BAB_EL_MANDEB",
@@ -412,9 +685,29 @@
       "target_entity": "GEO_VE",
       "label": "US - VE (United States vs. Bolivarian Republic of Venezuela)",
       "p_baseline": -0.75,
-      "dynamic_delta": 0.0,
-      "p_net": -0.75,
-      "regime_state": "STRATEGIC_COMPETITION",
+      "dynamic_delta": 0.09054,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
+          "direction": -1,
+          "value": -0.4362,
+          "contribution": 0.4362,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
+          "direction": -1,
+          "value": -0.0825,
+          "contribution": 0.0825,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
+      "p_net": -0.66,
+      "regime_state": "PROXY_WAR",
+      "kinetic_contact_configured": false,
       "primary_driver": "HEAVY_CRUDE_OIL_SANCTIONS_AND_LICENSING",
       "friction_nodes": [
         "ORINOCO_BELT",
@@ -428,9 +721,22 @@
       "target_entity": "GEO_SY",
       "label": "TR - SY (Republic of Türkiye vs. Syrian Arab Republic)",
       "p_baseline": -0.6,
-      "dynamic_delta": 0.0,
-      "p_net": -0.6,
-      "regime_state": "STRATEGIC_COMPETITION",
+      "dynamic_delta": 0.08724,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
+          "direction": -1,
+          "value": -0.4362,
+          "contribution": 0.4362,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
+      "p_net": -0.51,
+      "regime_state": "PROXY_WAR",
+      "kinetic_contact_configured": false,
       "primary_driver": "BORDER_SECURITY_AND_SOVEREIGN_BUFFER_ARCHITECTURE",
       "friction_nodes": [
         "NORTHERN_SYRIA_BUFFER",
@@ -445,9 +751,22 @@
       "target_entity": "GEO_GR",
       "label": "TR - GR (Republic of Türkiye vs. Hellenic Republic)",
       "p_baseline": -0.35,
-      "dynamic_delta": 0.0,
-      "p_net": -0.35,
-      "regime_state": "STRATEGIC_FRICTION",
+      "dynamic_delta": -0.1273,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
+          "direction": -1,
+          "value": 0.6365,
+          "contribution": -0.6365,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
+      "p_net": -0.48,
+      "regime_state": "PROXY_WAR",
+      "kinetic_contact_configured": false,
       "primary_driver": "EAST_MED_CONTINENTAL_SHELF_AND_AEGEAN_SOVEREIGNTY",
       "friction_nodes": [
         "AEGEAN_AIRSPACE",
@@ -461,9 +780,29 @@
       "target_entity": "GEO_IL",
       "label": "EG - IL (Arab Republic of Egypt vs. State of Israel)",
       "p_baseline": 0.3,
-      "dynamic_delta": 0.0,
-      "p_net": 0.3,
+      "dynamic_delta": -0.2,
+      "legacy_dynamic_delta": -0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
+          "direction": 1,
+          "value": -0.4362,
+          "contribution": -0.4362,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_GSCPI_LOGISTICS",
+          "direction": -1,
+          "value": 1.0,
+          "contribution": -1.0,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
+      "p_net": 0.1,
       "regime_state": "TACTICAL_COOPERATION",
+      "kinetic_contact_configured": false,
       "primary_driver": "PHILADELPHI_CORRIDOR_AND_SUEZ_MARITIME_STABILITY",
       "friction_nodes": [
         "PHILADELPHI_CORRIDOR",
@@ -478,9 +817,29 @@
       "target_entity": "GEO_YE",
       "label": "SA - YE (Kingdom of Saudi Arabia vs. Republic of Yemen)",
       "p_baseline": -0.4,
-      "dynamic_delta": 0.0,
-      "p_net": -0.4,
-      "regime_state": "STRATEGIC_FRICTION",
+      "dynamic_delta": -0.182552,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
+          "direction": -1,
+          "value": -0.4362,
+          "contribution": 0.4362,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_GSCPI_LOGISTICS",
+          "direction": -1,
+          "value": 1.0,
+          "contribution": -1.0,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
+      "p_net": -0.58,
+      "regime_state": "PROXY_WAR",
+      "kinetic_contact_configured": false,
       "primary_driver": "CROSS_BORDER_AIRSPACE_AND_BAB_EL_MANDEB_STABILIZATION",
       "friction_nodes": [
         "YEMEN_SOUTHERN_BORDER",
@@ -495,9 +854,29 @@
       "target_entity": "GEO_IQ",
       "label": "IR - IQ (Islamic Republic of Iran vs. Republic of Iraq)",
       "p_baseline": 0.75,
-      "dynamic_delta": 0.0,
-      "p_net": 0.75,
-      "regime_state": "STRATEGIC_ALIGNMENT",
+      "dynamic_delta": 0.1306,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
+          "direction": 1,
+          "value": 0.6365,
+          "contribution": 0.6365,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
+          "direction": -1,
+          "value": -0.0825,
+          "contribution": 0.0825,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
+      "p_net": 0.88,
+      "regime_state": "ALLIANCE",
+      "kinetic_contact_configured": false,
       "primary_driver": "CROSS_BORDER_HYDROCARBON_AND_TRANSIT_INTEGRATION",
       "friction_nodes": [
         "SHATT_AL_ARAB",
@@ -512,9 +891,29 @@
       "target_entity": "GEO_SA",
       "label": "TR - SA (Republic of Türkiye - Kingdom of Saudi Arabia)",
       "p_baseline": 0.35,
-      "dynamic_delta": 0.1,
-      "p_net": 0.45,
-      "regime_state": "TACTICAL_COOPERATION",
+      "dynamic_delta": 0.09784,
+      "legacy_dynamic_delta": null,
+      "mecca_pact_delta": 0.1,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
+          "direction": 1,
+          "value": -0.0825,
+          "contribution": -0.0825,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
+          "direction": 1,
+          "value": 0.5057,
+          "contribution": 0.5057,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_OVX_ENERGY_PANIC",
+      "p_net": 0.55,
+      "regime_state": "STRATEGIC_ALIGNMENT",
+      "kinetic_contact_configured": false,
       "primary_driver": "MECCA_DEFENSE_PACT_TR_SA_AIR_NAVAL_SECURITY",
       "friction_nodes": [
         "RED_SEA_SECURITY",
@@ -528,9 +927,22 @@
       "target_entity": "GEO_PK",
       "label": "SA - PK (Kingdom of Saudi Arabia - Islamic Republic of Pakistan)",
       "p_baseline": 0.65,
-      "dynamic_delta": 0.1,
-      "p_net": 0.75,
+      "dynamic_delta": -0.0165,
+      "legacy_dynamic_delta": null,
+      "mecca_pact_delta": 0.1,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
+          "direction": 1,
+          "value": -0.0825,
+          "contribution": -0.0825,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
+      "p_net": 0.73,
       "regime_state": "STRATEGIC_ALIGNMENT",
+      "kinetic_contact_configured": false,
       "primary_driver": "MECCA_DEFENSE_PACT_SA_PK_NUCLEAR_FINANCIAL_SECURITY",
       "friction_nodes": [
         "ARABIAN_SEA_LITTORAL",
@@ -545,9 +957,29 @@
       "target_entity": "GEO_PK",
       "label": "TR - PK (Republic of Türkiye - Islamic Republic of Pakistan)",
       "p_baseline": 0.8,
-      "dynamic_delta": 0.1,
-      "p_net": 0.9,
+      "dynamic_delta": 0.10458,
+      "legacy_dynamic_delta": null,
+      "mecca_pact_delta": 0.1,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_CHIP_CONTAINMENT",
+          "direction": 1,
+          "value": 0.5064,
+          "contribution": 0.5064,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
+          "direction": -1,
+          "value": -0.0825,
+          "contribution": 0.0825,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_CHIP_CONTAINMENT",
+      "p_net": 1.0,
       "regime_state": "ALLIANCE",
+      "kinetic_contact_configured": false,
       "primary_driver": "MECCA_DEFENSE_PACT_TR_PK_AEROSPACE_DEFENSE_ALLIANCE",
       "friction_nodes": [
         "DEFENSE_AEROSPACE_CO_PRODUCTION",
