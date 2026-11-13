@@ -371,14 +371,7 @@ Regime States (Discrete Mapping):
    - Economic Coupling to USD: 0.50 (Direct interface with emerging market trade finance)
    - Transmission Series: DTWEXBGS, SOFR, EFFR
 
-### 2.7. Eurasian Integration & Caspian Transit Blocs (C6 İstişare Formatı)
-2.7.2. BLOC_MECCA_DEFENSE - TR / SA / PK (Mecca Joint Defense Alliance)
-   - Core Entities: GEO_TR, GEO_SA, GEO_PK
-   - Treaty Architecture: Mecca Joint Defense Agreement (Article 5 equivalent mutual defense pact: an armed attack on one is deemed an attack on all)
-   - Structural Role: Trilateral sovereign defense umbrella integrating Turkish advanced aerospace/defense industrial technology, Saudi capital and hydrocarbon depth, and Pakistani strategic nuclear deterrence.
-   - Primary Friction Nodes: RED_SEA_SECURITY, PERSIAN_GULF_SHIPPING, ARABIAN_SEA_LITTORAL
-   - Strategic Impact: Fundamental transformation of Middle Eastern security architecture; structural deterrence enhancement across Saudi airspace and maritime hydrocarbon arteries.
-   - Transmission Series: DCOILBRENTEU, VIXCLS
+### 2.7. Eurasian Integration, Maritime Pacts & Strategic Blocs
 
 2.7.1. C6_CONSULTATIVE - TR / RU / CN (Central Asia & Azerbaijan Strategic Alignment Axis)
    - Baseline with TR: +0.80 (Structural alignment, Trans-Caspian Middle Corridor)
@@ -387,7 +380,128 @@ Regime States (Discrete Mapping):
    - Member States: KZ, UZ, KG, TM, TJ, AZ
    - Economic Integration Formula: "SIX_ECONOMIES_ONE_PRODUCT"
    - Critical Transit Infrastructure: Trans-Caspian Pipeline, Baku-Tbilisi-Kars, Zangezur Corridor Node (7.2.1)
-   - Macro Indicators Triggered: DHHNGSP, INDPRO
+   - Transmission Series: DHHNGSP, INDPRO
+
+2.7.2. BLOC_MECCA_DEFENSE - TR / SA / PK (Mecca Joint Defense Alliance)
+   - Core Entities: GEO_TR, GEO_SA, GEO_PK
+   - Baseline Polarity (P_baseline): +0.85 (Trilateral Mutual Defense Cohesion)
+   - Treaty Architecture: Mecca Joint Defense Agreement (Article 5 equivalent mutual defense pact: an armed attack on one is deemed an attack on all)
+   - Structural Role: Trilateral sovereign defense umbrella integrating Turkish advanced aerospace/defense industrial technology, Saudi capital and hydrocarbon depth, and Pakistani strategic nuclear deterrence.
+   - Primary Friction Nodes: RED_SEA_SECURITY, PERSIAN_GULF_SHIPPING, ARABIAN_SEA_LITTORAL
+   - Strategic Impact: Fundamental transformation of Middle Eastern security architecture; structural deterrence enhancement across Saudi airspace and maritime hydrocarbon arteries.
+   - Transmission Series: DCOILBRENTEU, VIXCLS, SOFR
+2.7.3. BLOC_AES - ALLIANCE OF SAHEL STATES (Mali, Burkina Faso, Niger)
+   - Core Entities: GEO_ML, GEO_BF, GEO_NE
+   - Lifecycle Metadata:
+     * Status: ACTIVE
+     * Effective Date: 2023-09-16 (Liptako-Gourma Charter)
+     * Sunset Date: INDEFINITE
+     * Dissolution Fallback: SOVEREIGN_BASELINE
+   - Baseline Polarity (P_baseline): +0.85 (Anti-Western Mutual Defense Integration)
+   - Treaty Architecture: Liptako-Gourma Charter (Mutual defense pact: an armed attack on one is deemed an attack on all)
+   - Structural Role: Sovereign anti-colonial security bloc aligned with Russian Africa Corps (RU_AFRICA), commanding critical Sahelian uranium deposits and artisanal/industrial gold corridors.
+   - Primary Friction Nodes: SAHEL_SECURITY_CORRIDOR, ECOWAS_BORDER_FRICTION, GULF_OF_GUINEA_TRANSIT
+   - Strategic Impact: Total strategic expulsion of French/Western military garrisons, alternative sovereign gold reserves clearing, and raw material export interdiction.
+   - Transmission Series: IND_WB_GOLD, VIXCLS
+
+2.7.4. BLOC_AUKUS - TRILATERAL INDO-PACIFIC ALLIANCE (US, UK, Australia)
+   - Core Entities: GEO_US, GEO_GB, GEO_AU
+   - Lifecycle Metadata:
+     * Status: ACTIVE
+     * Effective Date: 2021-09-15 (AUKUS Joint Leaders Declaration)
+     * Sunset Date: INDEFINITE
+     * Dissolution Fallback: SOVEREIGN_BASELINE
+   - Baseline Polarity (P_baseline): +0.95 (Deep Anglo-Saxon Strategic Integration)
+   - Treaty Architecture: AUKUS Pillar I (SSN conventionally armed nuclear attack submarines) & Pillar II (hypersonic, AI, quantum, and undersea counter-drone tech sharing)
+   - Structural Role: Anglo-Saxon maritime forward containment perimeter defending the Second Island Chain and containing Chinese naval breakout into the Southern Pacific/Indian Ocean.
+   - Primary Friction Nodes: CHOKE_LOMBOK_MAKASSAR, CHOKE_MALACCA, PACIFIC_SLOC
+   - Strategic Impact: Transforming Australian northern territory (Darwin/Stirling) into heavy allied strike launching nodes; long-term decoupling of critical defense supply chains.
+   - Transmission Series: NASDAQSOX, VIXCLS, INDPRO
+
+2.7.5. BLOC_TDT - ORGANIZATION OF TURKIC STATES (Türk Devletleri Teşkilatı)
+   - Core Entities: GEO_TR, GEO_AZ, GEO_KZ, GEO_UZ, GEO_KG
+   - Observers: GEO_HU, GEO_TM, GEO_CY_TR (TRNC - Kuzey Kıbrıs Türk Cumhuriyeti)
+   - Lifecycle Metadata:
+     * Status: ACTIVE
+     * Effective Date: 2009-10-03 (Nakhchivan Agreement / Rebranded 2021 Istanbul Summit)
+     * Sunset Date: INDEFINITE
+     * Dissolution Fallback: SOVEREIGN_BASELINE
+   - Baseline Polarity (P_baseline): +0.75 (Geoeconomic & Institutional Integration)
+   - Structural Role: Institutionalized political, economic, transport, and defense industrial synergy spanning from the Balkans and Anatolia across the Caspian Sea to Central Asia.
+   - Critical Transit Infrastructure: Trans-Caspian International Transport Route (TITR / Middle Corridor), Baku-Tbilisi-Kars rail spine, Zangezur Corridor (CORRIDOR_ZANGEZUR).
+   - Primary Friction Nodes: CASPIAN_TRANSIT_BOTTLENECK, ZANGEZUR_CORRIDOR_SOVEREIGNTY
+   - Strategic Impact: Securing an uninterrupted terrestrial trade and hydrocarbon bypass independent of both northern Russian transit and southern Iranian corridors.
+   - Transmission Series: DCOILBRENTEU, DHHNGSP, INDPRO
+
+2.7.6. BLOC_JAROKUS - US / JP / KR (Camp David Trilateral Security Framework)
+   - Core Entities: GEO_US, GEO_JP, GEO_KR
+   - Lifecycle Metadata:
+     * Status: ACTIVE
+     * Effective Date: 2023-08-18 (Camp David Summit Declaration)
+     * Sunset Date: INDEFINITE
+     * Dissolution Fallback: SOVEREIGN_BASELINE
+   - Baseline Polarity (P_baseline): +0.90 (Trilateral Extended Deterrence & Indo-Pacific Security Core)
+   - Treaty Architecture: Trilateral Multi-Domain Defense Consultation & Real-Time Missile Data Sharing Pact
+   - Structural Role: Integrated trilateral ballistic missile defense, real-time radar telemetry synchronization across the First Island Chain, and advanced semiconductor supply chain security shield (Chip 4 Alliance).
+   - Primary Friction Nodes: CHOKE_TAIWAN, SEA_OF_JAPAN, ZONE_FIRST_ISLAND_CHAIN, DMZ_SURFACE_CORRIDOR
+   - Strategic Impact: Institutionalized Washington-Tokyo-Seoul trilateral deterrence architecture countering North Korean (GEO_KP) nuclear-ballistic escalation and Chinese naval/air anti-access and blockade contingencies around Taiwan.
+   - Transmission Series: NASDAQSOX, VIXCLS, DEXJPUS, DEXKOUS
+
+2.7.7. BLOC_I2U2 - IN / IL / AE / US (West Asian Quad & IMEC Strategic Alignment)
+   - Core Entities: GEO_IN, GEO_IL, GEO_AE, GEO_US
+   - Lifecycle Metadata:
+     * Status: ACTIVE
+     * Effective Date: 2022-07-14 (Jerusalem Virtual Summit Declaration)
+     * Sunset Date: INDEFINITE
+     * Dissolution Fallback: SOVEREIGN_BASELINE
+   - Baseline Polarity (P_baseline): +0.65 (Trans-Regional Geoeconomic & Infrastructure Integration)
+   - Treaty Architecture: Trans-Regional Geoeconomic, Clean Energy Grid & Maritime Transit Partnership
+   - Structural Role: Foundational geoeconomic backbone of the India-Middle East-Europe Economic Corridor (IMEC), integrating clean hydrogen infrastructure, advanced AI/quantum logistics, semiconductor supply chains, and food corridor corridors.
+   - Primary Friction Nodes: CORRIDOR_IMEC, CHOKE_BAB_EL_MANDEB, CHOKE_HORMUZ, BASIN_EAST_MED_DEEPSEA
+   - Strategic Impact: Securing an alternative sovereign western terrestrial and maritime transit bypass countering China's Belt and Road Initiative (BRI), while buffering critical supply chains against Red Sea and Persian Gulf asymmetric proxy interdictions.
+   - Transmission Series: DCOILBRENTEU, GSCPI, INDPRO
+
+2.7.8. PACT_KENSINGTON - UK / DE (Kensington Bilateral Defense Agreement)
+   - Core Entities: GEO_GB, GEO_DE
+   - Lifecycle Metadata:
+     * Status: ACTIVE
+     * Effective Date: 2024-10-23 (Ratified & Operational 2025)
+     * Sunset Date: INDEFINITE
+     * Dissolution Fallback: SOVEREIGN_BASELINE (+0.80)
+   - Baseline Polarity (P_baseline): +0.90 (Comprehensive Post-Brexit Mutual Defense Integration)
+   - Treaty Architecture: Bilateral Strategic Defense Partnership & Industrial Co-Development Treaty
+   - Structural Role: Deep defense-industrial synergy anchoring NATO's European pillar; joint development of deep precision strike weapons exceeding current cruise missile ranges, Boxer armored vehicle production, and a dedicated Rheinmetall artillery barrel facility in the UK.
+   - Primary Friction Nodes: CHOKE_GIUK_GAP, ZONE_KALININGRAD_EXCLAVE, BALTIC_SEA
+   - Strategic Impact: Institutionalized Anglo-German deterrence perimeter across the North Sea and Baltic approaches, synchronizing joint anti-submarine warfare (ASW) with the forward-deployed German brigade in Lithuania.
+   - Transmission Series: VIXCLS, INDPRO
+
+2.7.9. PACT_OCEAN_OF_PEACE - AU / FJ (Australia-Fiji Bilateral Security & Maritime Agreement)
+   - Core Entities: GEO_AU, GEO_FJ
+   - Lifecycle Metadata:
+     * Status: ACTIVE
+     * Effective Date: 2026-02-15
+     * Sunset Date: INDEFINITE
+     * Dissolution Fallback: SOVEREIGN_BASELINE (+0.50)
+   - Baseline Polarity (P_baseline): +0.75 (South Pacific Security Perimeter & Exclusive Economic Zone Stewardship)
+   - Treaty Architecture: Maritime Domain Awareness, Humanitarian Logistics & Bilateral Security Accord
+   - Structural Role: Strategic maritime denial perimeter across the central Melanesian basin; joint aerial surveillance, deployment of Guardian-class patrol boats, and defense infrastructure co-funding (Blackrock Camp).
+   - Primary Friction Nodes: SOUTH_PACIFIC_MARITIME_LANES, CHOKE_LOMBOK_MAKASSAR, PACIFIC_SLOC
+   - Strategic Impact: Preserving the South Pacific as an autonomous "Ocean of Peace," effectively neutralizing Chinese (GEO_CN) bilateral policing and dual-use naval staging penetration across neighboring island chains.
+   - Transmission Series: GSCPI, VIXCLS
+
+2.7.10. PACT_PUKPUK - AU / PG (Australia-Papua New Guinea Comprehensive Defense Treaty)
+   - Core Entities: GEO_AU, GEO_PG
+   - Lifecycle Metadata:
+     * Status: ACTIVE
+     * Effective Date: 2025-05-10
+     * Sunset Date: INDEFINITE
+     * Dissolution Fallback: SOVEREIGN_BASELINE (+0.55)
+   - Baseline Polarity (P_baseline): +0.80 (Torres Strait & Northern Maritime Approach Defense Alignment)
+   - Treaty Architecture: Bilateral Security & Combined Defense Capability Agreement
+   - Structural Role: Strategic forward buffer shielding Australia's northern maritime approaches; joint naval operations from Lombrum Naval Base (Manus Island), combined border surveillance across the Torres Strait, and Papua New Guinea Defense Force training integration.
+   - Primary Friction Nodes: TORRES_STRAIT, CHOKE_LOMBOK_MAKASSAR, SECOND_ISLAND_CHAIN
+   - Strategic Impact: Securing the primary maritime interface between Southeast Asia and the South Pacific, denying foreign adversaries naval interdiction corridors along the Second Island Chain.
+   - Transmission Series: GSCPI, INDPRO
 
 ### 2.8. Russian Federation Sub-National & Autonomous Entities (RF_INTERNAL_REPUBLICS)
 - Description: Internal ethnic-republic and administrative transit grid of the Russian Federation across the Caucasus, Volga-Ural, and Siberian theaters.
