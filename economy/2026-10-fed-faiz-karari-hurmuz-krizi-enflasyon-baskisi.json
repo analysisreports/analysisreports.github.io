@@ -26,6 +26,7 @@
       "where": "Amerika Birleşik Devletleri",
       "when": "16 Eylül 2026",
       "event_date": "2026-09-16",
+      "decision_status": "REALIZED_PAST_EVENT",
       "why": "Enflasyonun %2,0 hedefinin üzerinde seyretmesi, PCE ve alt kalemlerdeki yapışkanlık ile orta vadeli enflasyonist trendlerin dizginlenmesi hedefi.",
       "how": "Komite üyelerinin 12-0 oybirliği ile faiz artırımı kararı alması ve kısıtlayıcı iletişimin benimsenmesi yoluyla.",
       "who": "Federal Açık Piyasa Komitesi (FOMC), FOMC Başkanı Warsh, ABD Çalışma İstatistikleri Bürosu (BLS)",
@@ -55,43 +56,73 @@
       "other_supporting_data": [
         {
           "indicator_name": "Federal Fonlama Faiz Oranı Hedef Aralığı",
-          "indicator_value": "%3,75 - %4,00"
+          "indicator_value": "%3,75 - %4,00",
+          "effective_date": "2026-09-16",
+          "fred_series_id": "DFEDTARU / DFEDTARL"
         },
         {
-          "indicator_name": "Manşet PCE Enflasyonu (Ağustos)",
-          "indicator_value": "%3,4"
+          "indicator_name": "Manşet PCE Enflasyonu",
+          "indicator_value": "%3,4",
+          "reference_period": "2026-08",
+          "fred_series_id": "PCEPI"
         },
         {
-          "indicator_name": "Çekirdek PCE Enflasyonu (Ağustos)",
-          "indicator_value": "%3,0"
+          "indicator_name": "Çekirdek PCE Enflasyonu",
+          "indicator_value": "%3,0",
+          "reference_period": "2026-08",
+          "fred_series_id": "PCEPILFE"
         },
         {
-          "indicator_name": "Tüketici Fiyat Endeksi (CPI - Ağustos)",
-          "indicator_value": "%2,4"
+          "indicator_name": "Tüketici Fiyat Endeksi (CPI)",
+          "indicator_value": "%2,4",
+          "reference_period": "2026-08",
+          "fred_series_id": "CPIAUCSL"
         },
         {
-          "indicator_name": "Tarım Dışı İstihdam Değişimi (Eylül)",
-          "indicator_value": "+29"
+          "indicator_name": "Tarım Dışı İstihdam Toplamı",
+          "indicator_value": "159.044",
+          "unit": "Thousands of Persons",
+          "measurement_type": "Toplam istihdam seviyesi",
+          "reference_period": "2026-09",
+          "fred_series_id": "PAYEMS"
         },
         {
-          "indicator_name": "İşsizlik Oranı (Eylül)",
-          "indicator_value": "%4,2"
+          "indicator_name": "Tarım Dışı İstihdamda Aylık Net Değişim",
+          "indicator_value": "+29",
+          "unit": "Thousands of Persons",
+          "measurement_type": "Önceki aya göre net değişim",
+          "reference_period": "2026-09",
+          "fred_series_id": "PAYEMS"
         },
         {
-          "indicator_name": "İstihdam Verisi Net Aşağı Yönlü Revizyonu (Temmuz-Ağustos)",
-          "indicator_value": "-60"
+          "indicator_name": "İşsizlik Oranı",
+          "indicator_value": "%4,2",
+          "reference_period": "2026-09",
+          "fred_series_id": "UNRATE"
+        },
+        {
+          "indicator_name": "İstihdam Verisi Net Aşağı Yönlü Revizyonu",
+          "indicator_value": "-60",
+          "unit": "Thousands of Persons",
+          "reference_period": "2026-07 / 2026-08"
         },
         {
           "indicator_name": "Ortalama Saatlik Kazançlar Yıllık Değişim",
-          "indicator_value": "%3,0"
+          "indicator_value": "%3,0",
+          "reference_period": "2026-09",
+          "fred_series_id": "CES0500000003"
         },
         {
           "indicator_name": "İş Gücüne Katılım Oranı",
-          "indicator_value": "%61,8"
+          "indicator_value": "%61,8",
+          "reference_period": "2026-09",
+          "fred_series_id": "CIVPART"
         },
         {
-          "indicator_name": "Çekirdek Enflasyon",
-          "indicator_value": "%0,29"
+          "indicator_name": "Çekirdek Enflasyon (Aylık)",
+          "indicator_value": "%0,29",
+          "reference_period": "2026-08",
+          "fred_series_id": "CPILFESL"
         }
       ],
       "monetary_authority": "Federal Reserve | FED",
@@ -175,6 +206,12 @@
       ]
     },
     "future_outlook": {
+      "upcoming_rate_decision": {
+        "event_name": "Sonraki FOMC Faiz Kararı Toplantısı",
+        "expected_decision_date": "2026-10-28",
+        "decision_status": "PENDING_EXPECTATION",
+        "market_expectation": "Kısıtlayıcı duruşun korunması / faiz patikası değerlendirmesi"
+      },
       "potential_consequences": {
         "short_term": "Kurumsal borçlanma maliyetlerinin artması, hurdle rate oranlarının yukarı revize edilmesi ve likidite tamponlarının güçlendirilmesi.",
         "short_term_days": 90,
@@ -247,28 +284,30 @@
     },
     "metadata": {
       "analyst": "Ersoy Toptaş",
+      "canonical_url": "https://www.ersoytoptas.tr/2026/10/fed-faiz-karari-hurmuz-krizi-enflasyon-baskisi.html",
+      "canonical_source": "https://analysisreports.github.io/economy/2026-10-fed-faiz-karari-hurmuz-krizi-enflasyon-baskisi.json",
       "methodology": "https://analysisreports.github.io/llms.txt",
       "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
       "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
-      "canonical_source": "https://analysisreports.github.io",
-      "license": "CC BY-NC-ND 4.0"
+      "license": "CC BY 4.0"
     },
     "editorial_frontend": {
       "url": "https://www.ersoytoptas.tr/2026/10/fed-faiz-karari-hurmuz-krizi-enflasyon-baskisi.html",
       "format": "Human-Readable Narrative",
       "author": "Ersoy Toptaş",
       "published_date": "2026-10-18",
+      "analysis_as_of_date": "2026-10-18",
       "language": "tr",
       "description": "Bu makroekonomik ve jeopolitik veri setinin, okuyucular için anlatı (narrative) formatında hazırlanmış, okunabilir editoryal makale versiyonu."
     },
-"cross_references": {
+    "cross_references": {
       "relations": [
         {
           "target_url": "https://www.ersoytoptas.tr/2026/10/fed-faizi-hurmuz-reel-sektor-finansman.html",
           "target_published_date": "2026-10-30",
           "predicate": "MONETARY_TIGHTENING_TRANSMISSION",
           "impact_window": "2026-10/2026-12",
-          "description": "Yapışkan PCE enflasyonu ve Hürmüz Boğazı petrol sıçraması nedeniyle alınan faiz sabitleme kararı, 10 yıllık Hazine tahvil faizlerinin yüzde 5,05 seviyesine tırmanmasına ve şirketlerin borçlanma maliyetlerinin artmasına zemin hazırlamıştır."
+          "description": "Yapışkan PCE enflasyonu ve Hürmüz Boğazı petrol sıçraması nedeniyle alınan 25 baz puanlık faiz artırımı kararı, 10 yıllık Hazine tahvil faizlerinin yüzde 5,05 seviyesine tırmanmasına ve şirketlerin borçlanma maliyetlerinin artmasına zemin hazırlamıştır."
         },
         {
           "target_url": "https://www.ersoytoptas.tr/2026/10/abd-rusya-baris-trafigi-starshield-krizi-cephede-neler-oluyor.html",
