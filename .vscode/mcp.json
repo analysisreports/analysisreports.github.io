@@ -1,8 +1,0 @@
-{
-    "servers": {
-        "analysisreports.github.io Docs": {
-            "type": "sse",
-            "url": "https://gitmcp.io/analysisreports/analysisreports.github.io"
-        }
-    }
-}
