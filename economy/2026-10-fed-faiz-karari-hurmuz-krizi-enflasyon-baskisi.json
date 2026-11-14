@@ -44,7 +44,7 @@
           "target_deviation_bps": -50
         },
         "change_rates_percentage": {
-          "change_rate_compared_to_previous_month": "+%1,2",
+          "change_rate_compared_to_previous_month": "-%6,55",
           "change_rate_compared_to_december_of_the_previous_year": "+%28,5",
           "change_rate_compared_to_the_same_month_of_the_previous_year": "+%38,5",
           "change_rate_according_to_twelve_month_averages": "+%45,0"
@@ -71,7 +71,7 @@
         },
         {
           "indicator_name": "Tarım Dışı İstihdam Değişimi (Eylül)",
-          "indicator_value": "+29.000"
+          "indicator_value": "+29"
         },
         {
           "indicator_name": "İşsizlik Oranı (Eylül)",
@@ -79,7 +79,7 @@
         },
         {
           "indicator_name": "İstihdam Verisi Net Aşağı Yönlü Revizyonu (Temmuz-Ağustos)",
-          "indicator_value": "-60.000"
+          "indicator_value": "-60"
         },
         {
           "indicator_name": "Ortalama Saatlik Kazançlar Yıllık Değişim",
