@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.11'
 
       - name: Install Kaggle API
         run: pip install kaggle
@@ -29,28 +29,41 @@ jobs:
           echo "$KAGGLE_API_TOKEN" > ~/.kaggle/access_token
           chmod 600 ~/.kaggle/access_token
 
-      - name: Prepare Clean Dataset Folder (HF İle Birebir Aynı Filtre)
+      - name: Upload Clean Dataset to Kaggle (Hugging Face Mantığıyla)
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
         run: |
-          mkdir -p kaggle_export
-          rsync -av --exclude='.git' \
-                    --exclude='.github' \
-                    --exclude='.vscode' \
-                    --exclude='_includes' \
-                    --exclude='.gitignore' \
-                    --exclude='_config.yml' \
-                    --exclude='README.md' \
-                    --exclude='kaggle_export' \
-                    ./ kaggle_export/
+          python -c "
+          import os
+          import json
+          from kaggle.api.kaggle_api_extended import KaggleApi
 
-      - name: Create Kaggle Metadata
-        run: |
-          echo '{
-            "title": "Analysis Reports Data",
-            "id": "analysisreports/analysisreports",
-            "licenses": [{"name": "CC0-1.0"}]
-          }' > kaggle_export/dataset-metadata.json
+          # Kaggle API'yi başlat
+          api = KaggleApi()
+          api.authenticate()
 
-      - name: Upload Clean Dataset to Kaggle
-        run: |
-          cd kaggle_export
-          kaggle datasets create -p . || kaggle datasets version -p . -m "Auto-sync from GitHub"
+          # Kaggle metadata dosyasını oluştur (Zorunlu kimlik kartı)
+          metadata = {
+              'title': 'Analysis Reports Data',
+              'id': 'analysisreports/analysisreports',
+              'licenses': [{'name': 'CC0-1.0'}]
+          }
+          with open('dataset-metadata.json', 'w') as f:
+              json.dump(metadata, f)
+
+          # Hugging Face'teki ignore mantığının birebiri: Bu dosyalar dışarıda kalacak
+          ignore_patterns = [
+              '.git', '.github', '.vscode', 
+              '_includes', '.gitignore', 
+              '_config.yml', 'README.md',
+              'dataset-metadata.json'
+          ]
+
+          # Temiz klasör yapısını hazırla ve Kaggle'a bas
+          # Hugging Face ile birebir aynı pythonic mantıkla dataset versiyonla/oluştur
+          try:
+              api.dataset_create_version('.', 'Auto-sync dataset structure from GitHub', convert_to_csv=False, delete_old_versions=True)
+          except Exception as e:
+              print(f'Create deneniyor... Hata: {e}')
+              api.dataset_create_new('.', public=False, convert_to_csv=False)
+          "
