@@ -1,0 +1,57 @@
+name: Sync Data & Ontologies to Kaggle
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  sync_to_kaggle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout GitHub Repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Kaggle API
+        run: pip sim install kaggle # veya pip install kaggle
+
+      - name: Configure Kaggle API Token
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: |
+          mkdir -p ~/.kaggle
+          echo "$KAGGLE_API_TOKEN" > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+
+      - name: Prepare Clean Dataset Folder (HF İle Birebir Aynı Filtre)
+        run: |
+          mkdir -p kaggle_export
+          # Hugging Face'teki ignore_patterns listesinin aynısı uygulandı:
+          rsync -av --exclude='.git' \
+                    --exclude='.github' \
+                    --exclude='.vscode' \
+                    --exclude='_includes' \
+                    --exclude='.gitignore' \
+                    --exclude='_config.yml' \
+                    --exclude='README.md' \
+                    --exclude='kaggle_export' \
+                    ./ kaggle_export/
+
+      - name: Create Kaggle Metadata
+        run: |
+          echo '{
+            "title": "Analysis Reports Data",
+            "id": "analysisreports/analysisreports",
+            "licenses": [{"name": "CC0-1.0"}]
+          }' > kaggle_export/dataset-metadata.json
+
+      - name: Upload Clean Dataset to Kaggle
+        run: |
+          cd kaggle_export
+          kaggle datasets create -p . || kaggle datasets version -p . -m "Auto-sync from GitHub"
