@@ -19,7 +19,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install Kaggle API
-        run: pip sim install kaggle # veya pip install kaggle
+        run: pip install kaggle
 
       - name: Configure Kaggle API Token
         env:
@@ -32,7 +32,6 @@ jobs:
       - name: Prepare Clean Dataset Folder (HF İle Birebir Aynı Filtre)
         run: |
           mkdir -p kaggle_export
-          # Hugging Face'teki ignore_patterns listesinin aynısı uygulandı:
           rsync -av --exclude='.git' \
                     --exclude='.github' \
                     --exclude='.vscode' \
