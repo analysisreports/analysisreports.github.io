@@ -5,8 +5,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-13T15:28:10.741013+00:00",
-    "last_attempted_sync": "2026-11-13T15:28:10.741013+00:00",
+    "last_successful_sync": "2026-11-14T04:17:11.524270+00:00",
+    "last_attempted_sync": "2026-11-14T04:17:11.524270+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {

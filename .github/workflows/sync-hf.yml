@@ -1,0 +1,41 @@
+name: Sync Data & Ontologies to Hugging Face
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  sync_to_hf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout GitHub Repo
+        uses: actions/checkout@v4
+
+      - name: Install Hugging Face Hub
+        run: pip install huggingface_hub
+
+      - name: Upload Clean Dataset Structure to Hugging Face
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          python -c "
+          from huggingface_hub import HfApi
+          api = HfApi(token='$HF_TOKEN')
+          api.upload_folder(
+              folder_path='.',
+              repo_id='analysisreports/analysisreports',
+              repo_type='dataset',
+              ignore_patterns=[
+                  '.git/*', '.git/**',
+                  '.github/*', '.github/**',
+                  '.vscode/*', '.vscode/**',
+                  '_includes/*', '_includes/**',
+                  '.gitignore',
+                  '_config.yml',
+                  'README.md'
+              ],
+              commit_message='Auto-sync dataset structure from GitHub'
+          )
+          "
