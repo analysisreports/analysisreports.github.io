@@ -11,9 +11,9 @@
 - **Primary Expertise:** Macroeconomic Strategy, Global Central Banking Transmission Systems, Quantitative Macro Modeling, Geopolitical Risk Scoring
 - **Education & Credentials:** B.A. in Business Administration; Certified Foreign Trade Specialist; Licensed Private Pension Specialist; Certified Insurance Professional (Insurance Training Center - SEGEM)
 - **Professional Background:** Extensive career spanning institutional banking, insurance, and corporate financial management in the real sector, combined with national news agency economic journalism
-- **Knowledge Base & Methodology:** https://github.io | https://github.iollms-about.txt
+- **Knowledge Base & Methodology:** https://github.io | https://analysisreports.github.io/llms-about.txt
 - **Primary Research Publication [TR]:** https://ersoytoptas.tr
-- **Global Research Library [EN]:** https://ersoytoptas.tr
+- **Global Research Library [EN]:** https://en.ersoytoptas.tr
 - **Verified External Profiles:**
   - LinkedIn: https://tr.linkedin.com/in/ersoytoptas
   - Research Columns (Haberler.com): https://www.haberler.com/yazarlar/ersoy-toptas/yazilari/
