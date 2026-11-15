@@ -670,7 +670,7 @@ def main():
             'p_baseline': +0.80,
             'dynamic_delta': 0.0,
             'friction_nodes': ['REGIONAL_ESCALATION_SCALE'],
-            'primary_driver': 'STRATEGIC_DEFENSE_TREATY'
+            'primary_driver': 'BILATERAL_SECURITY_PARTNERSHIP'
         },
         {
             'id': 'US_EU',
@@ -876,7 +876,9 @@ def main():
             raw_p = a['p_baseline'] + dyn + mecca_delta
             # Non-Article 5 / non-integrated command pairs clamp to max +0.95
             max_limit = 0.95 if a['id'] == 'TR_PK' else 1.00
-            p_net = round(min(max_limit, max(-1.0, raw_p)), 2)
+            # Non-active kinetic pairs clamp to min -0.95 to keep -1.0 exclusive to ACTIVE_KINETIC_PAIRS
+            min_limit = -0.95 if a['id'] not in ACTIVE_KINETIC_PAIRS else -1.00
+            p_net = round(min(max_limit, max(min_limit, raw_p)), 2)
             regime = get_regime(p_net, a['id'])
         relationship = {
             'id': a['id'],

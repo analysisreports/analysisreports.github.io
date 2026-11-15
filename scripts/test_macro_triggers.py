@@ -49,8 +49,8 @@ class MacroTriggerTests(unittest.TestCase):
         self.assertEqual(contributions[1]["status"], "MISSING_DATA")
 
     def test_relationship_regime_boundaries(self):
-        self.assertEqual(relationships.get_regime(-0.4, "IL_IR"), "STRATEGIC_FRICTION")
-        self.assertEqual(relationships.get_regime(-0.41, "IL_IR"), "PROXY_WAR")
+        self.assertEqual(relationships.get_regime(-0.5, "IL_IR"), "STRATEGIC_FRICTION")
+        self.assertEqual(relationships.get_regime(-0.51, "IL_IR"), "PROXY_WAR")
         self.assertEqual(relationships.get_regime(-0.95, "IL_IR"), "PROXY_WAR")
         self.assertEqual(relationships.get_regime(-0.96, "IL_IR"), "KINETIC_WAR")
         self.assertEqual(relationships.get_regime(-1.0, "US_KP"), "PROXY_WAR")

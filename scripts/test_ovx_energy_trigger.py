@@ -126,8 +126,9 @@ class OvxEnergyTriggerTests(unittest.TestCase):
                 mecca_pair = next(item for item in output["relationships"] if item["id"] == pair_id)
                 self.assertEqual(mecca_pair["mecca_pact_delta"], 0.1)
                 self.assertIsNone(mecca_pair["legacy_dynamic_delta"])
-                self.assertEqual(mecca_pair["p_net"], round(relationships.clamp(
-                    mecca_pair["p_baseline"] + mecca_pair["dynamic_delta"] + mecca_pair["mecca_pact_delta"]), 2))
+                max_lim = 0.95 if pair_id == "TR_PK" else 1.00
+                self.assertEqual(mecca_pair["p_net"], round(min(max_lim, relationships.clamp(
+                    mecca_pair["p_baseline"] + mecca_pair["dynamic_delta"] + mecca_pair["mecca_pact_delta"])), 2))
             pairs = {item["id"]: item for item in output["relationships"]}
             for pair_id in ("LT_RU", "EE_RU", "LV_RU"):
                 self.assertEqual(pairs[pair_id]["dynamic_delta"], -0.09)

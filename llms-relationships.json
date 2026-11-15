@@ -5,8 +5,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-15T07:46:26.338289+00:00",
-    "last_attempted_sync": "2026-11-15T07:46:26.338289+00:00",
+    "last_successful_sync": "2026-11-15T07:57:21.196504+00:00",
+    "last_attempted_sync": "2026-11-15T07:57:21.196504+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -424,7 +424,7 @@
       "p_net": 0.72,
       "regime_state": "STRATEGIC_ALIGNMENT",
       "kinetic_contact_configured": false,
-      "primary_driver": "STRATEGIC_DEFENSE_TREATY",
+      "primary_driver": "BILATERAL_SECURITY_PARTNERSHIP",
       "friction_nodes": [
         "REGIONAL_ESCALATION_SCALE"
       ]
@@ -518,7 +518,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_CHIP_CONTAINMENT",
-      "p_net": -1.0,
+      "p_net": -0.95,
       "regime_state": "PROXY_WAR",
       "kinetic_contact_configured": false,
       "primary_driver": "NUCLEAR_PROLIFERATION",
