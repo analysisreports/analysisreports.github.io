@@ -113,8 +113,7 @@ def audit(base_files, current_files):
                 continue
             value = relation[field]
             expected.append(
-                ("N/A (Mecca Pact)" if field == "legacy_dynamic_delta" else "null")
-                if value is None else f"{value:+.{precision}f}"
+                "null" if value is None else f"{value:+.{precision}f}"
             )
         expected.extend([relation.get("regime_state"), relation.get("primary_driver")])
         if current_rows[pair_id] != expected:

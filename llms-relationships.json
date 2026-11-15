@@ -5,8 +5,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-15T08:09:57.852473+00:00",
-    "last_attempted_sync": "2026-11-15T08:09:57.852473+00:00",
+    "last_successful_sync": "2026-11-15T08:34:34.589590+00:00",
+    "last_attempted_sync": "2026-11-15T08:34:34.589590+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -922,7 +922,7 @@
       "label": "TR - SA (Republic of Türkiye - Kingdom of Saudi Arabia)",
       "p_baseline": 0.35,
       "dynamic_delta": 0.09784,
-      "legacy_dynamic_delta": null,
+      "legacy_dynamic_delta": 0.0,
       "mecca_pact_delta": 0.1,
       "macro_trigger_contributions": [
         {
@@ -958,7 +958,7 @@
       "label": "SA - PK (Kingdom of Saudi Arabia - Islamic Republic of Pakistan)",
       "p_baseline": 0.65,
       "dynamic_delta": -0.0165,
-      "legacy_dynamic_delta": null,
+      "legacy_dynamic_delta": 0.0,
       "mecca_pact_delta": 0.1,
       "macro_trigger_contributions": [
         {
@@ -988,7 +988,7 @@
       "label": "TR - PK (Republic of Türkiye - Islamic Republic of Pakistan)",
       "p_baseline": 0.8,
       "dynamic_delta": 0.10458,
-      "legacy_dynamic_delta": null,
+      "legacy_dynamic_delta": 0.0,
       "mecca_pact_delta": 0.1,
       "macro_trigger_contributions": [
         {

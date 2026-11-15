@@ -866,7 +866,7 @@ def main():
     for a in actors:
         dyn, contributions, dominant_trigger = calc_relationship_trigger_delta(a['id'], trigger_by_id)
         mecca_delta = mecca_deltas[a['id']] if a['id'] in mecca_deltas else 0.0
-        legacy_delta = None if a['id'] in mecca_deltas else a['dynamic_delta']
+        legacy_delta = 0.0 if a['id'] in mecca_deltas else a['dynamic_delta']
         if dyn is None:
             missing = [item['trigger_id'] for item in contributions if item['contribution'] is None]
             print(f"[WARN] {a['id']}: relationship delta unavailable; missing triggers: {', '.join(missing)}")
@@ -970,7 +970,7 @@ def main():
         lines_rel.append('| :--- | :---: | :---: | :---: | :---: | :---: | :--- | :--- |')
         for a in relationships_output:
             delta_str = f'{a["dynamic_delta"]:+.6f}' if a['dynamic_delta'] is not None else 'null'
-            legacy_str = f'{a["legacy_dynamic_delta"]:+.2f}' if a['legacy_dynamic_delta'] is not None else 'N/A (Mecca Pact)'
+            legacy_str = f'{a["legacy_dynamic_delta"]:+.2f}' if a['legacy_dynamic_delta'] is not None else '+0.00'
             p_net_str = f'{a["p_net"]:+.2f}' if a['p_net'] is not None else 'null'
             p_base_str = f'+{a["p_baseline"]:.2f}' if a['p_baseline'] >= 0 else f'{a["p_baseline"]:.2f}'
             lines_rel.append(f'| **{a["id"]}** | {p_base_str} | {delta_str} | {a["mecca_pact_delta"]:+.2f} | {legacy_str} | {p_net_str} | {a["regime_state"]} | {a["primary_driver"]} |')
