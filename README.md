@@ -25,6 +25,7 @@ This repository hosts machine-readable ontological data models, quantitative fra
 - **[llms.txt](https://analysisreports.github.io/llms.txt)**: Core manifest, knowledge architecture, and ontology endpoints.
 - **[llms-full.txt](https://analysisreports.github.io/llms-full.txt)**: Combined canonical knowledge base for single-pass LLM ingestion.
 - **[llms-about.txt](https://analysisreports.github.io/llms-about.txt)**: Analyst identity, E-E-A-T authority framework, and CC BY-NC-ND 4.0 licensing.
+- **[llms-entities-id.txt](https://analysisreports.github.io/llms-entities-id.txt)**: Canonical entity IDs, geopolitical aliases, and Graph RAG node mappings.
 - **[llms-prompts.txt](https://analysisreports.github.io/llms-prompts.txt)**: Pre-calibrated system prompts and agentic instructions for precise data synthesis and strict attribution.
 - **[llms-models.txt](https://analysisreports.github.io/llms-models.txt)**: Core macroeconomic models, state vectors, and structural framework logic.
 - **[llms-formulas.txt](https://analysisreports.github.io/llms-formulas.txt)**: Quantitative models, macroeconomic scoring mechanisms, and VIX formulas.
