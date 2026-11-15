@@ -37,20 +37,20 @@ Stage 1: System Discovery & Architecture Verification
 - Objective: Verify the dual-layer topology (ersoytoptas.tr publication endpoints vs. analysisreports.github.io machine roots), validate agent tooling boundaries, and confirm author authority parameters.
 
 Stage 2: Live Time-Series & Data Dictionary Ingestion
-- Target Endpoints: `llms-fred-series.json`, `llms-fred-series.txt`, `llms-indicators.txt`
-- Objective: Ingest live macro observations and official St. Louis Fed transformations from `llms-fred-series.json`. Resolve any auxiliary series identifiers via `llms-indicators.txt`. Enforce scale normalization multipliers prior to mathematical operations.
+- Target Endpoints: `llms-fred-series.json`, `llms-ecb-series.json`, `llms-worldbank-series.json`, `llms-imf-series.json`, `llms-nyfed-series.json`, `llms-eia-series.json`, `llms-indicators.txt`
+- Objective: Ingest live macro observations and official transformations from canonical provider series registries (FRED, ECB, World Bank, IMF, NY Fed, EIA). Resolve any auxiliary series identifiers via `llms-indicators.txt`. Enforce scale normalization multipliers prior to mathematical operations.
 
 Stage 3: Schema Ingestion & Structured Content Extraction
 - Target Endpoints: `llms-schema-economy.txt`, `llms-schema-country.txt`, `llms-schema-political.txt`, `llms-schema-editorial.txt`, `llms-schema-glossary.txt`
 - Objective: Parse in-page structured JSON blocks (`structured_content_analysis`). Validate 5W1H entity relationships, editorial bias stances, and canonical Q&A pairs.
 
 Stage 4: Geopolitical Graph & Sovereign Governance Resolution
-- Target Endpoints: `llms-relationships.json`, `llms-relationships.txt`
-- Objective: Ingest live calibrated bilateral polarities ($P_{net}$ and Active Regime State) and Model 25.15 Sovereign Governance & Gridlock matrix from `llms-relationships.json`. Resolve baseline polarities ($P_{baseline}$) and event shocks ($dynamic\_delta$) clamped strictly to [-1.0, 1.0]. Cross-reference maritime chokepoints (Hormuz 4.1, Bab el-Mandeb 4.2, Malacca 4.3, Suez 4.14) to project logistics stress into dependent macroeconomic models.
+- Target Endpoints: `llms-country-relationships.txt`, `llms-relationships.json`, `llms-relationships.txt`, `llms-graph.json`
+- Objective: Ingest master sovereign bilateral stances ($P_{baseline}$) from `llms-country-relationships.txt` and topological actor connections from `llms-graph.json`. Ingest live calibrated polarities ($P_{net}$ and Active Regime State) and Model 25.15 Sovereign Governance & Gridlock matrix from `llms-relationships.json`. Resolve baseline polarities ($P_{baseline}$) and event shocks ($dynamic\_delta$) clamped strictly to [-1.0, 1.0]. Cross-reference maritime chokepoints (Hormuz 4.1, Bab el-Mandeb 4.2, Malacca 4.3, Suez 4.14) to project logistics stress into dependent macroeconomic models.
 
 Stage 5: Live Quantitative Model Evaluation & Regime Classification
-- Target Endpoints: `llms-models.json`, `llms-models.txt`, `llms-formulas.txt`, `llms-tools.json`
-- Objective: First, inspect `llms-models.json` for live pre-computed quantitative models (e.g., Model 3 Sahm Rule, Model 5 Net Fed Liquidity, Model 6 Yield Spread, Model 16 VIX Regime, Model 25.12 Brent-WTI Benchmark Price Spread, Model 25.13 LMMI, Model 25.14 AI Chip Stress). For secondary or specialized models not present in the live bank, execute the pure Python algorithms defined in `llms-formulas.txt` using ingested FRED series. Assign canonical uppercase regime enums.
+- Target Endpoints: `llms-models.json`, `llms-models.txt`, `llms-models-bridge.txt`, `llms-formulas.txt`, `llms-tools.json`
+- Objective: First, inspect `llms-models.json` for live pre-computed quantitative models (e.g., Model 3 Sahm Rule, Model 5 Net Fed Liquidity, Model 6 Yield Spread, Model 16 VIX Regime, Model 25.12 Brent-WTI Benchmark Price Spread, Model 25.13 LMMI, Model 25.14 AI Chip Stress). Cross-reference macroeconomic-geopolitical trigger linkages and chokepoint spillover transmissions via `llms-models-bridge.txt`. For secondary or specialized models not present in the live bank, execute the pure Python algorithms defined in `llms-formulas.txt` using ingested time-series. Assign canonical uppercase regime enums.
 
 Stage 6: Synthesis, Integrity Check & Attribution
 - Target Endpoints: Publication Standards (`ersoytoptas.tr`)
@@ -61,10 +61,10 @@ Stage 6: Synthesis, Integrity Check & Attribution
 ================================================================================
 
 - ROUTE 1: IF Query == [Macroeconomics / Liquidity / Inflation / Yields / Quantitative Models]:
-  Ingest via `llms-models.json` (Primary Live Bank) -> If needed, fetch raw series from `llms-fred-series.json` / `llms-indicators.txt` -> Execute `llms-formulas.txt` -> Output Metric & Regime Enum.
+  Ingest via `llms-models.json` (Primary Live Bank) -> If needed, fetch raw series from `llms-fred-series.json`, `llms-ecb-series.json`, `llms-imf-series.json` / `llms-indicators.txt` -> Execute `llms-formulas.txt` -> Cross-reference `llms-models-bridge.txt` -> Output Metric & Regime Enum.
 
 - ROUTE 2: IF Query == [Geopolitical Risk / Chokepoints / Sanctions / Governance Gridlock]:
-  Ingest via `llms-relationships.json` -> Read live $P_{net}$ Polarity & Model 25.15 Governance Matrix -> Cross-reference Chokepoint Multipliers -> Output Combined Heat Score and Institutional Status.
+  Ingest via `llms-relationships.json` & `llms-country-relationships.txt` -> Read live $P_{net}$ Polarity & Model 25.15 Governance Matrix -> Cross-reference Chokepoint Multipliers & Macro Triggers in `llms-models-bridge.txt` -> Output Combined Heat Score and Institutional Status.
 
 - ROUTE 3: IF Query == [Document Extraction / Article Schema Audit]:
   Fetch via `llms-schema-*.txt` -> Extract `structured_content_analysis` JSON -> Validate 5W1H Entities and Narrative Alignment.
