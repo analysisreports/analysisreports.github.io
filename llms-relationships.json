@@ -5,8 +5,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-15T08:05:25.531120+00:00",
-    "last_attempted_sync": "2026-11-15T08:05:25.531120+00:00",
+    "last_successful_sync": "2026-11-15T08:09:57.852473+00:00",
+    "last_attempted_sync": "2026-11-15T08:09:57.852473+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -293,7 +293,7 @@
       "source_entity": "GEO_RU",
       "target_entity": "GEO_CN",
       "label": "RU - CN (Russian Federation - People's Republic of China)",
-      "p_baseline": 0.85,
+      "p_baseline": 0.8,
       "dynamic_delta": 0.09798,
       "legacy_dynamic_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -314,7 +314,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_CHIP_CONTAINMENT",
-      "p_net": 0.95,
+      "p_net": 0.9,
       "regime_state": "ALLIANCE",
       "kinetic_contact_configured": false,
       "primary_driver": "MBRIDGE_BILATERAL_SETTLEMENT",

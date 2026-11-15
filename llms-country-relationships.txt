@@ -1848,7 +1848,7 @@ Cross-Reference Multilateral Nodes: GEO_US, CHOKE_PANAMA
 Bilateral Dyad: GEO_CN ↔ GEO_RU
 Common Reference: China ↔ Russian Federation
 Dyad ID: REL_GEO_CN_GEO_RU
-Bilateral Stance: +0.85 (No-Limits Comprehensive Strategic Partnership & Anti-Hegemonic Axis)
+Bilateral Stance: +0.80 (No-Limits Comprehensive Strategic Partnership & Anti-Hegemonic Axis)
 Strategic Category: Eurasian Geoeconomic Core Alignment (Canonical Mirror: REL_GEO_RU_GEO_CN)
 Asymmetric Power Vectors:
   - [GEO_CN Leverage] Industrial Machinery & Dual-Use Technology: Critical supplier of electronics, vehicle fleets, tooling, and consumer industrial inputs replacing Western trade.

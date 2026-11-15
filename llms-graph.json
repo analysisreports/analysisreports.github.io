@@ -2430,7 +2430,7 @@
       "source": "GEO_RU",
       "target": "GEO_CN",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.85,
+      "p_baseline": 0.8,
       "regime": "STRATEGIC_ALIGNMENT"
     },
     {
@@ -3052,7 +3052,7 @@
       "source": "GEO_IQ",
       "target": "GEO_IR",
       "type": "POLARITY_COUPLING",
-      "p_baseline": 0.75,
+      "p_baseline": 0.65,
       "regime": "TACTICAL_COOPERATION"
     },
     {
