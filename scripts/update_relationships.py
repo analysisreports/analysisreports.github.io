@@ -589,26 +589,39 @@ def main():
         elif vix <= 15.0:
             vix_delta = +0.03
 
-    # Ingest Canonical Sovereign Baselines from llms-country-relationships.json (SSOT)
-    country_json_path = 'llms-country-relationships.json'
-    if not os.path.exists(country_json_path):
-        country_json_path = os.path.join(os.path.dirname(__file__), '..', 'llms-country-relationships.json')
-    
-    country_baselines = {}
-    if os.path.exists(country_json_path):
+    # Ingest Canonical Sovereign Baselines directly from llms-relationships.txt Section 2
+    rel_txt_path = 'llms-relationships.txt'
+    if not os.path.exists(rel_txt_path):
+        rel_txt_path = os.path.join(os.path.dirname(__file__), '..', 'llms-relationships.txt')
+
+    section2_baselines = {}
+    if os.path.exists(rel_txt_path):
         try:
-            with open(country_json_path, 'r', encoding='utf-8') as f:
-                c_json = json.load(f)
-                for h_id, hub in c_json.get('sovereign_hubs', {}).items():
-                    for dyad_id, dyad in hub.get('dyads', {}).items():
-                        a1 = dyad.get('actor_1')
-                        a2 = dyad.get('actor_2')
-                        b_val = dyad.get('bilateral_stance')
-                        if a1 and a2 and b_val is not None:
-                            country_baselines[(a1, a2)] = float(b_val)
-                            country_baselines[(a2, a1)] = float(b_val)
+            with open(rel_txt_path, 'r', encoding='utf-8') as f:
+                rel_text = f.read()
+
+            import re
+            entries = re.findall(r'(?:###?\s*2\.[0-9]+[^\n]*|\d+\.\d+(?:\.\d+)*\.\s+[^\n]+)\n((?:\s+-[^\n]*\n)+)', rel_text)
+            for body in entries:
+                ent_match = re.search(r'(?:Canonical Entities|Entities):\s*([A-Z0-9_]+)\s*(?:vs\.?|-)\s*([A-Z0-9_]+)', body)
+                p_base_match = re.search(r'Baseline Polarity \(P_baseline\):\s*([+-]?\d+\.?\d*)', body)
+                umbrella_match = re.search(r'Multilateral Alliance Umbrella:\s*([A-Z0-9_]+)', body)
+                if ent_match and p_base_match:
+                    e1, e2 = ent_match.group(1), ent_match.group(2)
+                    p_val = float(p_base_match.group(1))
+                    umb = umbrella_match.group(1) if umbrella_match else None
+                    section2_baselines[(e1, e2)] = {'p_baseline': p_val, 'umbrella': umb}
+                    section2_baselines[(e2, e1)] = {'p_baseline': p_val, 'umbrella': umb}
+
+            # Baltics sub-sections handling (2.9.2.1, 2.9.2.2, 2.9.2.3)
+            baltics = {'LT_RU': ('GEO_LT', 'GEO_RU'), 'EE_RU': ('GEO_EE', 'GEO_RU'), 'LV_RU': ('GEO_LV', 'GEO_RU')}
+            for bid, (e1, e2) in baltics.items():
+                m = re.search(bid.replace('_', ' - ') + r'[^\n]*\n\s+- Baseline Polarity \(P_baseline\):\s*([+-]?\d+\.?\d*)', rel_text)
+                if m:
+                    section2_baselines[(e1, e2)] = {'p_baseline': float(m.group(1)), 'umbrella': None}
+                    section2_baselines[(e2, e1)] = {'p_baseline': float(m.group(1)), 'umbrella': None}
         except Exception as e:
-            print(f"[WARN] Error reading country baselines: {e}")
+            print(f"[WARN] Error reading section 2 baselines: {e}")
 
     # 4. Bilateral Actor Matrix (llms-relationships.txt Section 2)
     actors = [
@@ -854,11 +867,11 @@ def main():
         }
     ]
 
-    # Auto-synchronize actors with sovereign baseline SSOT (llms-country-relationships)
+    # Auto-synchronize actors directly from llms-relationships.txt Section 2
     for a in actors:
         pair_key = (a['source_entity'], a['target_entity'])
-        if pair_key in country_baselines:
-            a['p_baseline'] = country_baselines[pair_key]
+        if pair_key in section2_baselines:
+            a['p_baseline'] = section2_baselines[pair_key]['p_baseline']
 
     trigger_by_id = {trigger['entity_id']: trigger for trigger in macro_triggers}
     mecca_deltas = {'TR_SA': mecca_delta_tr_sa, 'SA_PK': mecca_delta_sa_pk, 'TR_PK': mecca_delta_tr_pk}
