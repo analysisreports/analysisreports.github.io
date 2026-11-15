@@ -284,6 +284,8 @@ MKT_BIST             | Aliases: BIST, Borsa Istanbul
 MKT_LBMA             | Aliases: LBMA, London Bullion Market Association
 MKT_BALTIC_EXCHANGE  | Aliases: Baltic Exchange
 SEC_BANKING_SECTOR   | Aliases: Banking Sector, Commercial Banks, Financial Institutions
+SEC_SPACE_STARLINK   | Aliases: Starlink, SpaceX Starlink, Starlink Constellation, LEO Satellite Internet, Commercial SATCOM
+SEC_DEF_STARSHIELD   | Aliases: Starshield, SpaceX Starshield, US Military Starshield, National Security Space Constellation, DoD SATCOM
 
 # [MACRO INDICATORS & DATA SERIES] (Prefix: IND_)
 IND_WALCL            | Source: FRED | Name: Fed Total Assets / Balance Sheet (Millions USD)

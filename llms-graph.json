@@ -2589,6 +2589,32 @@
         "status": "ACTIVE",
         "treaty_architecture": "Nakhchivan Agreement"
       }
+    },
+    {
+      "id": "SEC_SPACE_STARLINK",
+      "label": "SpaceX Starlink LEO Constellation",
+      "category": "ACTOR",
+      "type": "Commercial SATCOM & LEO Internet Infrastructure",
+      "attributes": {
+        "operator": "SpaceX",
+        "jurisdiction": "GEO_US",
+        "primary_domain": "CIVILIAN_COMMERCIAL_SATCOM",
+        "dual_use_capability": true,
+        "resilience_profile": "HIGH_DISTRIBUTED_LEO"
+      }
+    },
+    {
+      "id": "SEC_DEF_STARSHIELD",
+      "label": "Starshield National Security Constellation",
+      "category": "ACTOR",
+      "type": "Military Space & Intelligence Constellation",
+      "attributes": {
+        "operator": "SpaceX / US Space Force / NRO",
+        "jurisdiction": "GEO_US",
+        "parent_authority": "GOV_DOD_US",
+        "primary_domain": "TACTICAL_COMM_ISR_MISSILE_TRACKING",
+        "security_classification": "SPECIAL_ACCESS_PROGRAM"
+      }
     }
   ],
   "edges": [
@@ -4453,6 +4479,31 @@
       "type": "POLARITY_COUPLING",
       "p_baseline": 0.55,
       "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "SEC_SPACE_STARLINK",
+      "type": "REGULATES_TRANSIT",
+      "role": "Regulatory & Export Licensing Authority (FCC/ITAR)"
+    },
+    {
+      "source": "GOV_DOD_US",
+      "target": "SEC_DEF_STARSHIELD",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Primary Military Procurement & Tactical Command"
+    },
+    {
+      "source": "SEC_SPACE_STARLINK",
+      "target": "SEC_DEF_STARSHIELD",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "leo_bus_architecture_and_launch_cadence"
+    },
+    {
+      "source": "SEC_DEF_STARSHIELD",
+      "target": "MODEL_25.14",
+      "type": "TRANSMITS_RISK",
+      "vector": "SPACE_DOMAIN_AEROSPACE_DEFENSE_SUPPLY"
     }
   ]
 }
