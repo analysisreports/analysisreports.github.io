@@ -11,7 +11,7 @@
     ],
     "summary": {
       "headline": "Fed Expected to Hold Policy Rate Steady at 4.00% Amid Strait of Hormuz Crisis",
-      "one_sentence_summary": "The Federal Reserve / is expected to hold / its policy rate steady / at 3.75–4.00% / on October 28 / amid inflation and energy pressures.",
+      "one_sentence_summary": "The Federal Reserve is expected to hold its policy rate steady at 3.75–4.00% on October 28 amid inflation and energy pressures.",
       "main_topic_keywords": [
         "Interest Rate Decision",
         "Inflation",
@@ -21,14 +21,14 @@
       ]
     },
     "5N1K_analysis": {
-      "headline": "Fed Expected Rate Hold / at 4.00 percent / and Restrictive Stance",
-      "what": "Holding the federal funds rate / at 3.75 to 4.00 percent / and maintaining / a restrictive stance.",
+      "headline": "Fed Expected Rate Hold at 4.00 percent and Restrictive Stance",
+      "what": "Holding the federal funds rate at 3.75 to 4.00 percent and maintaining a restrictive stance.",
       "where": "United States of America",
       "when": "October 28, 2026",
       "event_date": "2026-10-28",
-      "decision_status": "REALIZED_PAST_EVENT",
-      "why": "By pausing rate cuts / and pushing back / against easing expectations.",
-      "how": "Through committee members unanimously voting 12-0 in favor of the rate hike and adopting restrictive communication.",
+      "decision_status": "PENDING_EXPECTATION",
+      "why": " Sticky PCE inflation above 3 percent and energy price shocks from the Strait of Hormuz crisis.",
+      "how": "By pausing rate cuts and pushing back against easing expectations.",
       "who": "Federal Open Market Committee (FOMC), FOMC Chair Warsh, U.S. Bureau of Labor Statistics (BLS)",
       "heat": 70
     },
@@ -210,7 +210,7 @@
         "event_name": "Next FOMC Rate Decision Meeting",
         "expected_decision_date": "2026-10-28",
         "decision_status": "PENDING_EXPECTATION",
-        "market_expectation": "Maintenance of restrictive stance / interest rate path assessment"
+        "market_expectation": "Maintenance of restrictive stance interest rate path assessment"
       },
       "potential_consequences": {
         "short_term": "Increase in corporate borrowing costs, upward revision of hurdle rates, and strengthening of liquidity buffers.",
@@ -241,12 +241,12 @@
     "target_queries": {
       "qa_pairs": [
         {
-          "q": "What interest rate decision / is the Federal Reserve / expected to make / on October 28, 2026?",
-          "a": "The Federal Reserve / is expected to hold / its policy rate steady / at 3.75 to 4.00 percent."
+          "q": "What interest rate decision is the Federal Reserve expected to make on October 28, 2026?",
+          "a": "The Federal Reserve is expected to hold its policy rate steady  at 3.75 to 4.00 percent."
         },
         {
-          "q": "How is the Strait of Hormuz crisis / impacting oil prices / and US inflation?",
-          "a": "Geopolitical escalations / in the Strait of Hormuz / have driven Brent crude / to 109.69 dollars / and gasoline to 4.33 dollars per gallon."
+          "q": "How is the Strait of Hormuz crisis impacting oil prices and US inflation?",
+          "a": "Geopolitical escalations in the Strait of Hormuz have driven Brent crude to 109.69 dollars and gasoline to 4.33 dollars per gallon."
         },
         {
           "q": "What were the headline and core PCE inflation rates for August 2026 in percentage terms?",
