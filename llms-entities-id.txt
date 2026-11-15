@@ -72,10 +72,11 @@ GOV_MOF_RU           | Aliases: Ministry of Finance of Russia, MinFin Russia
 GOV_MFA_RU           | Aliases: Ministry of Foreign Affairs of Russia, MID Russia
 GOV_MOF_DE           | Aliases: Federal Ministry of Finance Germany, BMF
 GOV_HMT_GB           | Aliases: His Majesty's Treasury, HM Treasury
-GOV_CONGRESS_US | Aliases: US Congress, Congress, Capitol Hill
-GOV_HOUSE_US | Aliases: US House, House of Representatives, House Majority
-GOV_SENATE_US | Aliases: US Senate, Senate
-GOV_WHITE_HOUSE_US | Aliases: White House, US Presidency, Administration, Executive Branch
+GOV_CONGRESS_US      | Aliases: US Congress, Congress, Capitol Hill
+GOV_HOUSE_US         | Aliases: US House of Representatives, House Majority, Congressional Opposition Majority
+GOV_SENATE_US        | Aliases: US Senate, Senate, Senate Majority
+GOV_WHITE_HOUSE_US   | Aliases: White House, US Presidency, Administration, Executive Branch
+GOV_USTR_US          | Aliases: Office of the United States Trade Representative, USTR, US Trade Representative
 
 
 # [SOVEREIGN STATES & GEOPOLITICAL ACTORS] (Prefix: GEO_)
