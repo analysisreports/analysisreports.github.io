@@ -2409,6 +2409,186 @@
         "currency": "PGK",
         "region": "MELANESIA_OCEANIA"
       }
+    },
+    {
+      "id": "GEO_IN",
+      "label": "Republic of India",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "INR",
+        "economic_coupling_us": 0.55,
+        "economic_coupling_cn": 0.3
+      }
+    },
+    {
+      "id": "GEO_PK",
+      "label": "Islamic Republic of Pakistan",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "PKR",
+        "strategic_alliance": "BLOC_MECCA_DEFENSE",
+        "economic_coupling_cn": 0.85
+      }
+    },
+    {
+      "id": "GEO_AE",
+      "label": "United Arab Emirates",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "AED",
+        "strategic_alignment": "BLOC_I2U2"
+      }
+    },
+    {
+      "id": "GEO_VE",
+      "label": "Bolivarian Republic of Venezuela",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "VES",
+        "strategic_commodity": "HEAVY_CRUDE"
+      }
+    },
+    {
+      "id": "GEO_YE",
+      "label": "Republic of Yemen",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "YER",
+        "chokepoint_flank": "CHOKE_BAB_EL_MANDEB"
+      }
+    },
+    {
+      "id": "GEO_ML",
+      "label": "Republic of Mali",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "XOF",
+        "bloc": "BLOC_AES"
+      }
+    },
+    {
+      "id": "GEO_BF",
+      "label": "Burkina Faso",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "XOF",
+        "bloc": "BLOC_AES"
+      }
+    },
+    {
+      "id": "GEO_NE",
+      "label": "Republic of Niger",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {
+        "currency": "XOF",
+        "bloc": "BLOC_AES"
+      }
+    },
+    {
+      "id": "GEO_CY_TR",
+      "label": "Turkish Republic of Northern Cyprus",
+      "category": "ACTOR",
+      "type": "Sub-National Autonomous Entity",
+      "attributes": {
+        "currency": "TRY",
+        "observer_bloc": "BLOC_TDT"
+      }
+    },
+    {
+      "id": "BLOC_MECCA_DEFENSE",
+      "label": "Mecca Joint Defense Agreement (TR-SA-PK)",
+      "category": "ACTOR",
+      "type": "Multilateral Defense Alliance",
+      "attributes": {
+        "members": [
+          "GEO_TR",
+          "GEO_SA",
+          "GEO_PK"
+        ],
+        "effective_date": "2026-01-01",
+        "status": "ACTIVE",
+        "p_baseline": 0.85,
+        "treaty_architecture": "Article 5 equivalent mutual defense pact: an armed attack on one is deemed an attack on all",
+        "transmission_series": [
+          "IND_DCOILBRENTEU",
+          "IND_VIXCLS",
+          "IND_SOFR"
+        ]
+      }
+    },
+    {
+      "id": "BLOC_AES",
+      "label": "Alliance of Sahel States (AES)",
+      "category": "ACTOR",
+      "type": "Multilateral Defense Alliance",
+      "attributes": {
+        "members": [
+          "GEO_ML",
+          "GEO_BF",
+          "GEO_NE"
+        ],
+        "effective_date": "2023-09-16",
+        "status": "ACTIVE",
+        "p_baseline": 0.85,
+        "treaty_architecture": "Liptako-Gourma Charter: mutual defense integration",
+        "transmission_series": [
+          "IND_VIXCLS"
+        ]
+      }
+    },
+    {
+      "id": "BLOC_I2U2",
+      "label": "I2U2 Strategic Alignment (India, Israel, UAE, USA)",
+      "category": "ACTOR",
+      "type": "Multilateral Strategic Bloc",
+      "attributes": {
+        "members": [
+          "GEO_IN",
+          "GEO_IL",
+          "GEO_AE",
+          "GEO_US"
+        ],
+        "effective_date": "2022-07-14",
+        "status": "ACTIVE",
+        "p_baseline": 0.65,
+        "treaty_architecture": "Trans-Regional Geoeconomic, Clean Energy Grid & Maritime Transit Partnership",
+        "transmission_series": [
+          "IND_DCOILBRENTEU",
+          "IND_GSCPI",
+          "IND_INDPRO"
+        ]
+      }
+    },
+    {
+      "id": "BLOC_TDT",
+      "label": "Organization of Turkic States (TDT)",
+      "category": "ACTOR",
+      "type": "Regional Multilateral Bloc",
+      "attributes": {
+        "members": [
+          "GEO_TR",
+          "GEO_AZ",
+          "GEO_KZ",
+          "GEO_UZ",
+          "GEO_KG"
+        ],
+        "observers": [
+          "GEO_HU",
+          "GEO_TM",
+          "GEO_CY_TR"
+        ],
+        "effective_date": "2009-10-03",
+        "status": "ACTIVE",
+        "treaty_architecture": "Nakhchivan Agreement"
+      }
     }
   ],
   "edges": [
@@ -3910,6 +4090,369 @@
       "target": "MODEL_28.3",
       "type": "EXECUTES_MODEL",
       "severity_enum": "HIGH"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_IN",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.55,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_IN",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.6,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_IN",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.3,
+      "regime": "STRATEGIC_COMPETITION"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_IN",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.45,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_PK",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_PK",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.15,
+      "regime": "TRANSACTIONAL"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_PK",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.3,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_AE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.45,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_AE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.5,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_AE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.55,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_AE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.2,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_VE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.75,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_VE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.7,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_VE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.7,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_YE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.6,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_YE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.75,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_YE",
+      "target": "GEO_IL",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.95,
+      "regime": "PROXY_WAR / KINETIC_BLOCKADE"
+    },
+    {
+      "source": "GEO_SA",
+      "target": "GEO_YE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.55,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_TR",
+      "target": "GEO_PK",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.8,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_SA",
+      "target": "GEO_PK",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.65,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "BLOC_MECCA_DEFENSE",
+      "target": "GEO_TR",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_MECCA_DEFENSE",
+      "target": "GEO_SA",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_MECCA_DEFENSE",
+      "target": "GEO_PK",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_AES",
+      "target": "GEO_ML",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_AES",
+      "target": "GEO_BF",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_AES",
+      "target": "GEO_NE",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_I2U2",
+      "target": "GEO_IN",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_I2U2",
+      "target": "GEO_IL",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_I2U2",
+      "target": "GEO_AE",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_I2U2",
+      "target": "GEO_US",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_TDT",
+      "target": "GEO_TR",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_TDT",
+      "target": "GEO_AZ",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_TDT",
+      "target": "GEO_KZ",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_TDT",
+      "target": "GEO_UZ",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_TDT",
+      "target": "GEO_KG",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "BLOC_TDT",
+      "target": "GEO_CY_TR",
+      "type": "INCLUDES_MEMBER"
+    },
+    {
+      "source": "GEO_YE",
+      "target": "CHOKE_BAB_EL_MANDEB",
+      "type": "FLANKS_CHOKEPOINT"
+    },
+    {
+      "source": "GEO_AE",
+      "target": "CHOKE_HORMUZ",
+      "type": "FLANKS_CHOKEPOINT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_SE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_NO",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_GR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.75,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_HU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.6,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_ID",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.4,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_ID",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.55,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_MY",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.35,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_MY",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.5,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_TH",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.55,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_TH",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.5,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_UZ",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.55,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_TM",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.4,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_ZA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.1,
+      "regime": "TRANSACTIONAL"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_ZA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.45,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_LY",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.25,
+      "regime": "FRICTION"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_LY",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.25,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_MA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.6,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_AR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.45,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_CL",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.55,
+      "regime": "STRATEGIC_ALIGNMENT"
     }
   ]
 }
