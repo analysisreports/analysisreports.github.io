@@ -717,6 +717,97 @@ Regime States (Discrete Mapping):
 
 
 
+### 2.10. Strategic SATCOM & Space Constellations (SEC_SPACE_STARLINK & SEC_DEF_STARSHIELD)
+
+2.10.1. US - STARLINK (United States - Starlink SATCOM Network)
+   - Canonical Entities: GEO_US vs. SEC_SPACE_STARLINK
+   - Baseline Polarity (P_baseline): +0.75
+   - Structural Regime: STRATEGIC_ALIGNMENT
+   - Primary Friction Nodes: REGULATORY_FCC_ITAR, CRITICAL_COMM_INFRASTRUCTURE
+   - Economic Coupling: 0.85
+   - Transmission Channels: REGULATORY_FCC_ITAR, CRITICAL_COMM_INFRASTRUCTURE
+
+2.10.2. DOD - STARSHIELD (US Dept of Defense - Starshield Defense Constellation)
+   - Canonical Entities: GOV_DOD_US vs. SEC_DEF_STARSHIELD
+   - Baseline Polarity (P_baseline): +0.95
+   - Structural Regime: ALLIANCE
+   - Primary Friction Nodes: SPECIAL_ACCESS_PROGRAM, SPACE_FORCE_C2
+   - Economic Coupling: 1.00
+   - Transmission Channels: MILITARY_PROCUREMENT, ISR_TACTICAL_DATA_LINK
+
+2.10.3. UA - STARLINK (Ukraine - Starlink SATCOM Network)
+   - Canonical Entities: GEO_UA vs. SEC_SPACE_STARLINK
+   - Baseline Polarity (P_baseline): +0.70
+   - Structural Regime: STRATEGIC_ALIGNMENT
+   - Primary Friction Nodes: FRONT_LINE_GEOLOCATION_RESTRICTIONS
+   - Economic Coupling: 0.40
+   - Transmission Channels: BATTLEFIELD_C2_NETWORK, ASYMMETRIC_RESILIENCE
+
+2.10.4. IL - STARLINK (Israel - Starlink SATCOM Network)
+   - Canonical Entities: GEO_IL vs. SEC_SPACE_STARLINK
+   - Baseline Polarity (P_baseline): +0.60
+   - Structural Regime: STRATEGIC_ALIGNMENT
+   - Primary Friction Nodes: GAZA_BORDER_SECURITY_RESTRICTIONS
+   - Economic Coupling: 0.30
+   - Transmission Channels: SECURED_CIVIL_DEFENSE, STATE_AUTHORIZED_GATEWAYS
+
+2.10.5. TW - STARLINK (Taiwan - Starlink SATCOM Network)
+   - Canonical Entities: GEO_TW vs. SEC_SPACE_STARLINK
+   - Baseline Polarity (P_baseline): +0.35
+   - Structural Regime: TACTICAL_COOPERATION
+   - Primary Friction Nodes: CROSS_STRAIT_POLITICAL_RISK, COMMERCIAL_CONFLICT
+   - Economic Coupling: 0.25
+   - Transmission Channels: MARITIME_ISLAND_BACKBONE, BACKUP_SATCOM
+
+2.10.6. TR - STARLINK (Turkey - Starlink SATCOM Network)
+   - Canonical Entities: GEO_TR vs. SEC_SPACE_STARLINK
+   - Baseline Polarity (P_baseline): +0.15
+   - Structural Regime: TACTICAL_COOPERATION
+   - Primary Friction Nodes: BTK_REGULATORY_APPROVAL, TURKSAT_COMPETITION
+   - Economic Coupling: 0.15
+   - Transmission Channels: REGULATORY_INSPECTION, LOCAL_DATA_SOVEREIGNTY
+
+2.10.7. IR - STARLINK (Iran - Starlink SATCOM Network)
+   - Canonical Entities: GEO_IR vs. SEC_SPACE_STARLINK
+   - Baseline Polarity (P_baseline): -0.75
+   - Structural Regime: PROXY_WAR
+   - Primary Friction Nodes: CONTRABAND_TERMINALS, DOMESTIC_CENSORSHIP
+   - Economic Coupling: 0.00
+   - Transmission Channels: ELECTRONIC_WARFARE_JAMMING, SANCTION_REGIME
+
+2.10.8. GB - STARSHIELD (United Kingdom - Starshield Defense Constellation)
+   - Canonical Entities: GEO_GB vs. SEC_DEF_STARSHIELD
+   - Baseline Polarity (P_baseline): +0.85
+   - Structural Regime: ALLIANCE
+   - Primary Friction Nodes: SOVEREIGN_GROUND_SEGMENT_ACCESS
+   - Economic Coupling: 0.70
+   - Transmission Channels: FIVE_EYES_SOVEREIGN_GATEWAY, TACTICAL_MILITARY_SATCOM
+
+2.10.9. NZ - STARSHIELD (New Zealand - Starshield Defense Constellation)
+   - Canonical Entities: GEO_NZ vs. SEC_DEF_STARSHIELD
+   - Baseline Polarity (P_baseline): +0.65
+   - Structural Regime: STRATEGIC_ALIGNMENT
+   - Primary Friction Nodes: REGIONAL_PACIFIC_COVERAGE
+   - Economic Coupling: 0.35
+   - Transmission Channels: FIVE_EYES_DEFENSE_TRIAL, INTEROPERABILITY_LINK
+
+2.10.10. RU - STARSHIELD (Russia - Starshield Defense Constellation)
+   - Canonical Entities: GEO_RU vs. SEC_DEF_STARSHIELD
+   - Baseline Polarity (P_baseline): -0.85
+   - Structural Regime: PROXY_WAR
+   - Primary Friction Nodes: ORBITAL_TARGETING_DOCTRINE, DUAL_USE_DISPUTE
+   - Economic Coupling: 0.00
+   - Transmission Channels: COUNTER_SPACE_TARGETING, ELECTRONIC_WARFARE_JAMMING
+
+2.10.11. CN - STARSHIELD (China - Starshield Defense Constellation)
+   - Canonical Entities: GEO_CN vs. SEC_DEF_STARSHIELD
+   - Baseline Polarity (P_baseline): -0.85
+   - Structural Regime: PROXY_WAR
+   - Primary Friction Nodes: TAIWAN_STRAIT_ISR_COVERAGE, SPACE_MILITARIZATION
+   - Economic Coupling: 0.00
+   - Transmission Channels: ORBITAL_SURVEILLANCE_FRICTION, ASAT_DETERRENCE
+
+
 ## 3. PROXY & ASYMMETRIC NON-STATE ACTOR REGISTRY
 
 1. YE-HOUTHI (Ansarullah / Yemen Houthis)
