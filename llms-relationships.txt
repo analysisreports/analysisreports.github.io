@@ -159,6 +159,9 @@ Regime States (Discrete Mapping):
 - STRONG_CONSENSUS               : Committee voting dispersion below 0.30 reflecting robust unity.
 - MODERATE_DISSENT               : Committee voting dispersion between 0.30 and 0.48 reflecting emerging division.
 - HIGH_DISPERSION                : Committee voting dispersion exceeding 0.48 reflecting elevated internal fracture.
+- FOREIGN_AID_CONDITIONALITY     : Legislative or administrative conditioning, restriction, or suspension of sovereign foreign assistance and bilateral security financing.
+- CHOKEPOINT_INTERDICTION        : Asymmetric disruption, naval interdiction, or closure threats targeting strategic maritime transit corridors and global energy passages.
+- EXECUTIVE_TRADE_AGGRESSION     : Executive deployment of unilateral administrative tariffs, emergency sanctions, and import surcharges bypassing divided legislative bodies.
 
 ---
 
@@ -309,7 +312,16 @@ Regime States (Discrete Mapping):
    - Canonical Entities: GEO_US vs. GEO_IL
    - Baseline Polarity (P_baseline): +0.90
    - Structural Regime: ALLIANCE
-   - Tactical Divergence Window: Regional escalation scale vs. US election/inflation cycles
+   - Tactical Divergence Window: Regional security autonomy vs. US global strategic bandwidth and domestic political cycles
+   - Primary Friction Nodes:
+     * Legislative oversight and conditionality on defense aid vs. Executive foreign policy discretion
+     * Unilateral regional military actions vs. US global alliances and energy market stability
+     * Divergence on long-term regional diplomacy, territorial status, and multilateral frameworks
+   - Transmission Series:
+     * IND_FDEFX (US Defense & Security Spending Vectors)
+     * IND_USEPUINDXD (Economic Policy Uncertainty Index)
+     * IND_SOFR (Secured Overnight Financing Rate / Global Dollar Liquidity)
+     * IND_DCOILBRENTEU (Brent Crude Global Energy Risk Premium)
 
 ### 2.3. Transatlantic & European Architecture
 2.3.1. US - EU / NATO Core (DE, FR, GB)
