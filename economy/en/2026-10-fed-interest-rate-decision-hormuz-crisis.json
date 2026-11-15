@@ -10,8 +10,8 @@
       "FOMC"
     ],
     "summary": {
-      "headline": "FOMC Rate Hike and Gradual Rebalancing in the Labor Market",
-      "one_sentence_summary": "The Federal Open Market Committee (FOMC) raised the policy rate by 25 basis points to the 3.75% - 4.00% range to combat sticky inflation, while a moderate cooling was recorded in the labor market.",
+      "headline": "Fed Expected to Hold Policy Rate Steady at 4.00% Amid Strait of Hormuz Crisis",
+      "one_sentence_summary": "The Federal Reserve / is expected to hold / its policy rate steady / at 3.75–4.00% / on October 28 / amid inflation and energy pressures.",
       "main_topic_keywords": [
         "Interest Rate Decision",
         "Inflation",
@@ -21,13 +21,13 @@
       ]
     },
     "5N1K_analysis": {
-      "headline": "FOMC's 25 Basis Point Rate Hike and Restrictive Stance",
-      "what": "Raising the federal funds rate target range by 25 basis points to 3.75% - 4.00% and maintaining a restrictive monetary policy stance.",
+      "headline": "Fed Expected Rate Hold / at 4.00 percent / and Restrictive Stance",
+      "what": "Holding the federal funds rate / at 3.75 to 4.00 percent / and maintaining / a restrictive stance.",
       "where": "United States of America",
-      "when": "September 16, 2026",
-      "event_date": "2026-09-16",
+      "when": "October 28, 2026",
+      "event_date": "2026-10-28",
       "decision_status": "REALIZED_PAST_EVENT",
-      "why": "The persistence of inflation above the 2.0% target, stickiness in PCE and sub-components, and the objective of curbing medium-term inflationary trends.",
+      "why": "By pausing rate cuts / and pushing back / against easing expectations.",
       "how": "Through committee members unanimously voting 12-0 in favor of the rate hike and adopting restrictive communication.",
       "who": "Federal Open Market Committee (FOMC), FOMC Chair Warsh, U.S. Bureau of Labor Statistics (BLS)",
       "heat": 70
@@ -241,12 +241,12 @@
     "target_queries": {
       "qa_pairs": [
         {
-          "q": "To which range did the Federal Open Market Committee (FOMC) raise the policy interest rate on September 16, 2026?",
-          "a": "The FOMC raised the federal funds rate target range by 25 basis points to 3.75% - 4.00% on September 16, 2026."
+          "q": "What interest rate decision / is the Federal Reserve / expected to make / on October 28, 2026?",
+          "a": "The Federal Reserve / is expected to hold / its policy rate steady / at 3.75 to 4.00 percent."
         },
         {
-          "q": "With what voting distribution was the Federal Reserve's (Fed) rate hike decision on September 16, 2026, adopted within the committee?",
-          "a": "The decision was adopted with a 12-0 unanimous vote by FOMC members, achieving full consensus within the committee."
+          "q": "How is the Strait of Hormuz crisis / impacting oil prices / and US inflation?",
+          "a": "Geopolitical escalations / in the Strait of Hormuz / have driven Brent crude / to 109.69 dollars / and gasoline to 4.33 dollars per gallon."
         },
         {
           "q": "What were the headline and core PCE inflation rates for August 2026 in percentage terms?",
