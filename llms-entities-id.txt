@@ -72,6 +72,10 @@ GOV_MOF_RU           | Aliases: Ministry of Finance of Russia, MinFin Russia
 GOV_MFA_RU           | Aliases: Ministry of Foreign Affairs of Russia, MID Russia
 GOV_MOF_DE           | Aliases: Federal Ministry of Finance Germany, BMF
 GOV_HMT_GB           | Aliases: His Majesty's Treasury, HM Treasury
+GOV_CONGRESS_US | Aliases: US Congress, Congress, Capitol Hill
+GOV_HOUSE_US | Aliases: US House, House of Representatives, House Majority
+GOV_SENATE_US | Aliases: US Senate, Senate
+GOV_WHITE_HOUSE_US | Aliases: White House, US Presidency, Administration, Executive Branch
 
 
 # [SOVEREIGN STATES & GEOPOLITICAL ACTORS] (Prefix: GEO_)
@@ -221,6 +225,7 @@ BLOC_I2U2            | Aliases: I2U2 Group, West Asian Quad, India-Israel-UAE-US
 BLOC_KENSINGTON      | Aliases: Kensington Bilateral Defense Agreement, UK-Germany Defense Treaty, Kensington Pact
 BLOC_OCEAN_OF_PEACE  | Aliases: Ocean of Peace Framework, Australia-Fiji Bilateral Security Agreement, Fiji Security Treaty
 BLOC_PUKPUK          | Aliases: Pukpuk Defense Treaty, Australia-Papua New Guinea Security Agreement, Lombrum Naval Accord
+BLOC_ABRAHAM_ACCORDS | Aliases: Abraham Accords, Middle East Normalization Bloc
 
 # [MARITIME CHOKEPOINTS, CANALS & STRATEGIC CORRIDORS] (Prefix: CHOKE_ / CORRIDOR_ / BASIN_ / ZONE_)
 CHOKE_HORMUZ         | Aliases: Hormuz Strait, Strait of Hormuz
@@ -374,7 +379,12 @@ IND_PET_WCESTUS1_W    | Source: EIA | Name: Weekly U.S. Commercial Crude Oil End
 IND_PET_WCRFPUS2_W    | Source: EIA | Name: Weekly U.S. Field Production of Crude Oil (Thousand Barrels per Day)
 IND_PET_WGTSTUS1_W    | Source: EIA | Name: Weekly U.S. Ending Stocks of Total Gasoline (Thousand Barrels)
 IND_NG_NW2_EPG0_SWO_R48_BCF_W | Source: EIA | Name: Weekly Lower 48 Natural Gas In Underground Storage (Billion Cubic Feet)
-IND_DEXKOUS          | Source: FRED | Name: Spot Exchange Rate South Korean Won to US Dollars (DEXKOUS)
+IND_DEXKOUS           | Source: FRED | Name: Spot Exchange Rate South Korean Won to US Dollars (DEXKOUS)
+IND_USEPUINDXD        | Source: FRED | Name: Economic Policy Uncertainty Index for United States
+IND_FYFRG             | Source: FRED | Name: Federal Receipts: Customs Duties (Millions USD)
+IND_IR                | Source: BLS / FRED | Name: U.S. Import Price Index All Commodities (IR)
+IND_FDEFX             | Source: BEA / FRED | Name: Federal National Defense Consumption Expenditures (Billions USD)
+
 
 # [GEOPOLITICAL MACRO TRIGGERS & SHOCK VECTORS] (Prefix: IND_TRIGGER_)
 IND_TRIGGER_HORMUZ_SPREAD    | Aliases: Hormuz Brent-WTI Divergence Shock, Model 25.19 Brent-WTI Trigger
