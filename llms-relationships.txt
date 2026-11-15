@@ -810,19 +810,19 @@ Regime States (Discrete Mapping):
 
 ## 3. PROXY & ASYMMETRIC NON-STATE ACTOR REGISTRY
 
-1. YE-HOUTHI (Ansarullah / Yemen Houthis)
+3.1. YE-HOUTHI (Ansarullah / Yemen Houthis)
    - Primary Patron: IR (Coupling Factor: 0.85)
    - Operative Theater: Southern Red Sea, Gulf of Aden, Bab el-Mandeb
    - Asymmetric Tools: Anti-ship ballistic missiles, UAV swarms, naval drones
    - Primary Market Transmission: Freight shipping rates, Global Supply Chain Delays
 
-2. LB-HEZB (Hezbollah / Lebanon)
+3.2. LB-HEZB (Hezbollah / Lebanon)
    - Primary Patron: IR (Coupling Factor: 0.90)
    - Operative Theater: Northern Israel, Southern Lebanon, Golan
    - Asymmetric Tools: Precision guided munitions, rocket artillery
    - Primary Market Transmission: Crude risk premiums, Safe-haven flight (Gold/Treasuries)
 
-3. RU_AFRICA - AFRICA CORPS EXPEDITIONARY FRAMEWORK
+3.3. RU_AFRICA - AFRICA CORPS EXPEDITIONARY FRAMEWORK
    - Parent Command Architecture: Russian Federation Ministry of Defense (MoD) / Main Directorate of the General Staff (GRU)
    - Coupling Factor (Patron Subordination): 1.00 [State-integrated command, replacing Wagner's legacy private autonomy]
    - Primary Operational Hubs: Libya (Brak al-Shati & Al-Jufra Airbases - Strategic Logistical Spine), Central African Republic (CAR)
@@ -940,20 +940,20 @@ Regime States (Discrete Mapping):
 
 ## 5. ASYMMETRIC COMMODITY & TECHNOLOGICAL LEVERAGE
 
-1. ADVANCED_SEMICONDUCTORS
+5.1. ADVANCED_SEMICONDUCTORS
    - Primary Hubs: Taiwan (TW - TSMC), Netherlands (NL - ASML), United States (US - EDA/IP)
    - Bottleneck: Sub-3nm and 2nm node fabrication
    - Economic Target: Artificial intelligence compute, automotive, aerospace
 
-2. RARE_EARTH_ELEMENTS (REE) & CRITICAL MINERALS
+5.2. RARE_EARTH_ELEMENTS (REE) & CRITICAL MINERALS
    - Dominant Producer: China (CN) controls >70% extraction, >90% processing/refining
    - Leverage Points: Dysprosium, Neodymium, Gallium, Germanium export restrictions
 
-3. ENRICHED_URANIUM & NUCLEAR FUEL
+5.3. ENRICHED_URANIUM & NUCLEAR FUEL
    - Dominant Exporter: Russia (RU - Rosatom) supplies ~24% of US commercial nuclear fuel
    - Market Impact: Nuclear utility operational stability, baseload power generation
 
-4. REFINED_DIESEL & DISTILLATES
+5.4. REFINED_DIESEL & DISTILLATES
    - Structural Flow: Regional crude processed in Mediterranean (TR) and South Asian (IN) refining hubs for global market stabilization
    - Vulnerability: Supply chain constraints, regulatory compliance shifts, and Baltic/Black Sea transit friction
 
@@ -961,17 +961,17 @@ Regime States (Discrete Mapping):
 
 ## 6. GLOBAL TRADE ROUTING & TRANSIT CHANNELS
 
-1. PRIMARY ENFORCEMENT & COMPLIANCE
+6.1. PRIMARY ENFORCEMENT & COMPLIANCE
    - OFAC SDN (US Department of the Treasury)
    - EU Restrictive Measures Framework
    - Market Impact: US Dollar clearing friction, supply chain cost inflation and rotation
 
-2. ALTERNATIVE MARITIME & ASYMMETRIC LOGISTICS
+6.2. ALTERNATIVE MARITIME & ASYMMETRIC LOGISTICS
    - Mechanism: Open-sea STS (Ship-to-Ship) transfers, independent fleet operations, flexible flag registries
    - Logistics Nodes: Gulf of Oman, Laconian Gulf (Greece), Russian Arctic routes
    - Alternative Clearing: UAE Dirham (AED), Chinese Yuan (CNY), commodity-based local settlements
 
-3. GLOBAL TRANSIT & LOGISTICS HUBS
+6.3. GLOBAL TRANSIT & LOGISTICS HUBS
    - Strategic Nodes: Dubai (AE), Istanbul (TR), Hong Kong (HK)
    - Supply Chain Optimization: Blended crude varieties, refined product transfers, and regional distribution networks
 

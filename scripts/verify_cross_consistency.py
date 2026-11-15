@@ -30,6 +30,7 @@ COUNTRY_JSON = os.path.join(ROOT_DIR, "llms-country-relationships.json")
 REL_TXT = os.path.join(ROOT_DIR, "llms-relationships.txt")
 REL_JSON = os.path.join(ROOT_DIR, "llms-relationships.json")
 GRAPH_JSON = os.path.join(ROOT_DIR, "llms-graph.json")
+BRIDGE_TXT = os.path.join(ROOT_DIR, "llms-models-bridge.txt")
 
 def load_master_country_polarities(txt_path: str) -> Dict[Tuple[str, str], float]:
     with open(txt_path, "r", encoding="utf-8") as f:
@@ -155,6 +156,48 @@ def sync_relationships_json(
 
     return updated_count
 
+def verify_bridge_cross_references(
+    bridge_path: str,
+    rel_path: str
+) -> int:
+    """
+    Audits section cross-references in llms-models-bridge.txt (e.g. (2.10.2), (4.6))
+    against declared sections and actor pairs in llms-relationships.txt.
+    Returns count of unresolved references.
+    """
+    if not os.path.exists(bridge_path) or not os.path.exists(rel_path):
+        return 0
+
+    with open(rel_path, "r", encoding="utf-8") as f:
+        rel_text = f.read()
+
+    declared_sections = set()
+    for line in rel_text.split("\n"):
+        line = line.strip()
+        m = re.match(r"^(?:###?\s*)?([0-9]+\.[0-9]+(?:\.[0-9]+)?)\.?\s+(.+)", line)
+        if m:
+            declared_sections.add(m.group(1))
+
+    with open(bridge_path, "r", encoding="utf-8") as f:
+        bridge_text = f.read()
+
+    unresolved = []
+    for i, line in enumerate(bridge_text.split("\n"), 1):
+        found = re.findall(r"\(([1-9]\.[0-9]+(?:\.[0-9]+)?)\)", line)
+        for ref in found:
+            # Skip numeric calculation weights/multipliers like (1.0)
+            if ref in ("1.0", "0.0"):
+                continue
+            if ref not in declared_sections:
+                unresolved.append((i, ref, line.strip()))
+
+    if unresolved:
+        print(f"[FAIL] Found {len(unresolved)} unresolved section references in llms-models-bridge.txt:")
+        for line_num, ref, ltxt in unresolved:
+            print(f"  - Line {line_num}: ({ref}) not declared in llms-relationships.txt -> '{ltxt}'")
+
+    return len(unresolved)
+
 def main():
     parser = argparse.ArgumentParser(description="Check or synchronize relationship polarity against the master SSOT.")
     parser.add_argument(
@@ -199,10 +242,18 @@ def main():
     json_label = "mismatches found" if args.check else "relationships equalized"
     print(f"[*] llms-relationships.json      : {json_sync} {json_label}")
 
-    total_synced = txt_sync + graph_sync + json_sync
+    # 4. Audit Bridge Cross-References against llms-relationships.txt
+    bridge_mismatches = verify_bridge_cross_references(BRIDGE_TXT, REL_TXT)
+    bridge_label = "broken cross-references found" if bridge_mismatches > 0 else "cross-references verified"
+    print(f"[*] llms-models-bridge.txt        : {bridge_mismatches} {bridge_label}")
+
+    total_synced = txt_sync + graph_sync + json_sync + bridge_mismatches
     print("-" * 70)
     if args.check and total_synced > 0:
-        print(f"[FAIL] Found {total_synced} cross-file discrepancies; no files were modified.")
+        print(f"[FAIL] Found {total_synced} cross-file discrepancies or unresolved references; no files were modified.")
+        exit_code = 1
+    elif bridge_mismatches > 0:
+        print(f"[FAIL] Found {bridge_mismatches} unresolved cross-references in llms-models-bridge.txt!")
         exit_code = 1
     elif total_synced > 0:
         print(f"[AUTO-HEALED] Successfully equalized {total_synced} discrepancies across secondary files!")

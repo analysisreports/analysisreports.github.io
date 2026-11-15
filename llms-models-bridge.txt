@@ -144,8 +144,8 @@
 - Data Series Triggered: GSCPI, NASDAQSOX, VIXCLS
 - Status Enums: ACUTE_CHIP_SUPPLY_CRUNCH | ELEVATED_SEMICONDUCTOR_BOTTLENECK | BALANCED_HARDWARE_FLOW | CHIP_SUPPLY_ABUNDANCE_EXPANSION
 - Primary Geopolitical Vector: Taiwan Strait (4.6) maritime blockade, East Asian advanced node export controls (2.5.1), and Malacca (4.3) specialized cargo choke.
-- Actor Coupling: US-CN technological containment axis (2.1.2), TW advanced fab concentration (TSMC), and JP/KR lithography-chemical supply friction.
-- Transmission Linkage: AI_CHIP_STRESS crossing above +1.20 confirms physical or geopolitical disruption in advanced packaging/wafers, instantly compressing tech margins, triggering hardware Capex delays, and amplifying global tech equity volatility.
+- Actor Coupling: US-CN technological containment axis (2.1.2), TW advanced fab concentration (TSMC), JP/KR lithography-chemical supply friction, and SEC_DEF_STARSHIELD space-grade semiconductor procurement demand (2.10.2).
+- Transmission Linkage: AI_CHIP_STRESS crossing above +1.20 confirms physical or geopolitical disruption in advanced packaging/wafers, instantly compressing tech margins, triggering hardware Capex delays, amplifying global tech equity volatility, and choking radiation-hardened space-grade processor supply to tactical defense constellations (SEC_DEF_STARSHIELD).
 
 ### 8.11. Domestic Governance Gridlock & Trade War Friction Engine (Model 25.15)
 

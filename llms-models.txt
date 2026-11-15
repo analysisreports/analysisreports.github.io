@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-15 04:00 UTC
+> **Last Calibrated Sync:** 2026-11-15 23:26 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -358,7 +358,7 @@
 - **Inputs Evaluated:** `{"gscpi_std_dev": 1.262, "sox_yoy_pct": 44.16, "vix_level": 17.49}`
 - **Secondary Metrics:** `{"hardware_stress_score": 0.414, "gscpi_weight": 0.505, "sox_weight": -0.309, "vix_weight": 0.219}`
 - **Component Weights:** `{"gscpi_weight": 0.505, "sox_weight": -0.309, "vix_weight": 0.219}`
-- **Economic Synthesis:** Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation.
+- **Economic Synthesis:** Normalized composite metric monitoring semiconductor physical supply bottlenecks, hardware inflation, and space-grade tactical defense processor conduits (SEC_DEF_STARSHIELD).
 
 #### [MODEL_25.16] Yen Carry Trade Dissolution and Stress Gauge
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.16

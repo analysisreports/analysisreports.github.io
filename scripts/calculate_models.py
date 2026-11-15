@@ -1570,7 +1570,7 @@ def calc_ai_chip_stress_gauge(gscpi_val, sox_yoy_pct, vix_val):
                 "sox_weight": round(sox_comp, 3),
                 "vix_weight": round(vix_comp, 3)
             },
-            "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation."
+            "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks, hardware inflation, and space-grade tactical defense processor conduits (SEC_DEF_STARSHIELD)."
         }
     except (TypeError, ValueError):
         return None

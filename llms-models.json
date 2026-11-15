@@ -7,7 +7,7 @@
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-15T04:00:58.001355+00:00",
+    "last_successful_sync": "2026-11-15T23:26:39.410700+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -801,7 +801,7 @@
         "sox_weight": -0.309,
         "vix_weight": 0.219
       },
-      "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks and hardware inflation."
+      "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks, hardware inflation, and space-grade tactical defense processor conduits (SEC_DEF_STARSHIELD)."
     },
     {
       "model_id": "MODEL_25.16",

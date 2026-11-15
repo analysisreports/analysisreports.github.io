@@ -2395,7 +2395,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ---
 
 ### 25.14. AI HARDWARE & SEMICONDUCTOR SUPPLY CHAIN STRESS GAUGE (AI_CHIP_STRESS)
-- Purpose: Quantifies global hardware bottlenecks and geopolitical semiconductor supply chain frictions (e.g., Taiwan Strait risk, export controls) by synthesizing physical supply chain stress (GSCPI), semiconductor equity momentum (NASDAQSOX), and financial risk aversion (VIXCLS) into a normalized composite index.
+- Purpose: Quantifies global hardware bottlenecks, geopolitical semiconductor supply chain frictions (e.g., Taiwan Strait risk, export controls), and space-grade tactical defense processor conduits (SEC_DEF_STARSHIELD) by synthesizing physical supply chain stress (GSCPI), semiconductor equity momentum (NASDAQSOX), and financial risk aversion (VIXCLS) into a normalized composite index.
 - Data Series Keys:
   - NY Fed / FRED: GSCPI (Global Supply Chain Pressure Index - Standard Deviations)
   - NASDAQ / FRED: NASDAQSOX (PHLX Semiconductor Sector Index - YoY % Change, pc1)
