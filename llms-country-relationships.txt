@@ -1306,7 +1306,7 @@ Cross-Reference Multilateral Nodes: BLOC_CSTO, CHOKE_SUWALKI_GAP, ZONE_KALININGR
 Bilateral Dyad: GEO_RU ↔ GEO_CN
 Common Reference: Russia ↔ People's Republic of China
 Dyad ID: REL_GEO_RU_GEO_CN
-Bilateral Stance: +0.85 (Comprehensive Strategic Partnership & Anti-Hegemonic Axis)
+Bilateral Stance: +0.80 (Comprehensive Strategic Partnership & Anti-Hegemonic Axis)
 Strategic Category: Eurasian Geoeconomic & Multipolar Core Alignment
 Asymmetric Power Vectors:
   - [GEO_CN Leverage] Industrial Machinery & Dual-Use Technology: Critical supplier of electronics, vehicle fleets, tooling, and consumer industrial inputs replacing Western trade.
@@ -2465,7 +2465,7 @@ Cross-Reference Multilateral Nodes: GEO_TR, GEO_IL, BASIN_EAST_MED_DEEPSEA
 Bilateral Dyad: GEO_IR ↔ GEO_IQ
 Common Reference: Iran ↔ Republic of Iraq
 Dyad ID: REL_GEO_IR_GEO_IQ
-Bilateral Stance: +0.75 (Popular Mobilization Forces Integration & Deep Strategic Depth)
+Bilateral Stance: +0.65 (Popular Mobilization Forces Integration & Deep Strategic Depth)
 Strategic Category: Bilateral Security Pact & Western Asymmetric Power Bastion
 Asymmetric Power Vectors:
   - [GEO_IR Leverage] Paramilitary & Political Penetration: Deep ideological, logistical, and command influence over core Hashd al-Shaabi factions (Kata'ib Hezbollah, Asa'ib Ahl al-Haq).

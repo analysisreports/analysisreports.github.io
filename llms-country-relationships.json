@@ -2673,7 +2673,7 @@
           "actor_1": "GEO_RU",
           "actor_2": "GEO_CN",
           "common_reference": "Russia ↔ People's Republic of China",
-          "bilateral_stance": 0.85,
+          "bilateral_stance": 0.8,
           "stance_classification": "Comprehensive Strategic Partnership & Anti-Hegemonic Axis",
           "strategic_category": "Eurasian Geoeconomic & Multipolar Core Alignment",
           "asymmetric_power_vectors": [
@@ -5105,7 +5105,7 @@
           "actor_1": "GEO_IR",
           "actor_2": "GEO_IQ",
           "common_reference": "Iran ↔ Republic of Iraq",
-          "bilateral_stance": 0.75,
+          "bilateral_stance": 0.65,
           "stance_classification": "Popular Mobilization Forces Integration & Deep Strategic Depth",
           "strategic_category": "Bilateral Security Pact & Western Asymmetric Power Bastion",
           "asymmetric_power_vectors": [

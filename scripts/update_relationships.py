@@ -637,7 +637,7 @@ def main():
             'source_entity': 'GEO_RU',
             'target_entity': 'GEO_CN',
             'label': "RU - CN (Russian Federation - People's Republic of China)",
-            'p_baseline': +0.75,
+            'p_baseline': +0.80,
             'dynamic_delta': 0.0,
             'friction_nodes': ['CENTRAL_ASIA', 'ARCTIC_SEA_ROUTE'],
             'primary_driver': 'MBRIDGE_BILATERAL_SETTLEMENT'
@@ -797,7 +797,7 @@ def main():
             'source_entity': 'GEO_SA',
             'target_entity': 'GEO_YE',
             'label': 'SA - YE (Kingdom of Saudi Arabia vs. Republic of Yemen)',
-            'p_baseline': -0.40,
+            'p_baseline': -0.55,
             'dynamic_delta': round(oil_delta * 0.4, 2),
             'friction_nodes': ['YEMEN_SOUTHERN_BORDER', 'RED_SEA_LITTORAL', 'BAB_EL_MANDEB_CORRIDOR', 'ASIR_NAJRAN_SECURITY'],
             'primary_driver': 'CROSS_BORDER_AIRSPACE_AND_BAB_EL_MANDEB_STABILIZATION'
@@ -807,7 +807,7 @@ def main():
             'source_entity': 'GEO_IR',
             'target_entity': 'GEO_IQ',
             'label': 'IR - IQ (Islamic Republic of Iran vs. Republic of Iraq)',
-            'p_baseline': +0.45,
+            'p_baseline': +0.65,
             'dynamic_delta': 0.0,
             'friction_nodes': ['SHATT_AL_ARAB', 'BASRA_ENERGY_GRID', 'BILATERAL_CURRENCY_CLEARING', 'NORTHERN_BORDER_TRANSIT'],
             'primary_driver': 'CROSS_BORDER_HYDROCARBON_AND_TRANSIT_INTEGRATION'

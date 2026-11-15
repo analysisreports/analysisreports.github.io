@@ -5,8 +5,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-15T07:57:21.196504+00:00",
-    "last_attempted_sync": "2026-11-15T07:57:21.196504+00:00",
+    "last_successful_sync": "2026-11-15T08:05:25.531120+00:00",
+    "last_attempted_sync": "2026-11-15T08:05:25.531120+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -846,7 +846,7 @@
       "source_entity": "GEO_SA",
       "target_entity": "GEO_YE",
       "label": "SA - YE (Kingdom of Saudi Arabia vs. Republic of Yemen)",
-      "p_baseline": -0.4,
+      "p_baseline": -0.55,
       "dynamic_delta": -0.182552,
       "legacy_dynamic_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -867,7 +867,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
-      "p_net": -0.58,
+      "p_net": -0.73,
       "regime_state": "PROXY_WAR",
       "kinetic_contact_configured": false,
       "primary_driver": "CROSS_BORDER_AIRSPACE_AND_BAB_EL_MANDEB_STABILIZATION",
@@ -883,7 +883,7 @@
       "source_entity": "GEO_IR",
       "target_entity": "GEO_IQ",
       "label": "IR - IQ (Islamic Republic of Iran vs. Republic of Iraq)",
-      "p_baseline": 0.75,
+      "p_baseline": 0.65,
       "dynamic_delta": 0.1306,
       "legacy_dynamic_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -904,8 +904,8 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
-      "p_net": 0.88,
-      "regime_state": "ALLIANCE",
+      "p_net": 0.78,
+      "regime_state": "STRATEGIC_ALIGNMENT",
       "kinetic_contact_configured": false,
       "primary_driver": "CROSS_BORDER_HYDROCARBON_AND_TRANSIT_INTEGRATION",
       "friction_nodes": [
