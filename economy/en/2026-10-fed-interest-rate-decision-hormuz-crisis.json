@@ -303,18 +303,16 @@
     "cross_references": {
       "relations": [
         {
-          "target_url": "https://www.ersoytoptas.tr/2026/10/fed-faizi-hurmuz-reel-sektor-finansman.html",
-          "target_published_date": "2026-10-30",
-          "predicate": "MONETARY_TIGHTENING_TRANSMISSION",
+          "target_url": "https://en.ersoytoptas.tr/2026/11/strait-of-hormuz-and-iran-oil.html",
+          "predicate": "MONETARY_POLICY_CONSTRAINED_BY_ENERGY_SHOCK",
           "impact_window": "2026-10/2026-12",
-          "description": "The 25 bps rate hike decision taken due to sticky PCE inflation and the Strait of Hormuz oil spike, which pushed 10-year Treasury yields up to 5.05% and increased corporate borrowing costs, is detailed in the subsequent analysis."
+          "description": "Geopolitical escalation and navigation threats in the Strait of Hormuz drive energy prices higher, sustaining sticky PCE inflation above targets and compelling the Federal Reserve to hold policy interest rates restrictive at 4.00%."
         },
         {
-          "target_url": "https://www.ersoytoptas.tr/2026/10/abd-rusya-baris-trafigi-starshield-krizi-cephede-neler-oluyor.html",
-          "target_published_date": "2026-10-22",
-          "predicate": "GEOPOLITICAL_STAGFLATION_RISK",
-          "impact_window": "2026-10/2026-11",
-          "description": "The conflict environment along the Ukraine and Eastern Europe line and geopolitical navigation constraints complicate the disinflation process via global energy prices, making it imperative for central banks to remain restrictive."
+          "target_url": "https://en.ersoytoptas.tr/2026/10/israel-elections-majority-crisis-gridlock-knesset.html",
+          "predicate": "GEOPOLITICAL_RISK_SPILLOVER",
+          "impact_window": "2026-10/2026-12",
+          "description": "Governance vacuum and prolonged political deadlock in the Knesset amplify broader Middle Eastern instability, sustaining risk premiums in energy corridors that complicate the central bank's disinflation trajectory."
         }
       ]
     }
