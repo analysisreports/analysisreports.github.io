@@ -14,7 +14,7 @@ For a new model or a material change to an existing model, synchronize the follo
 4. **`llms-tools.json`** — If the model is exposed as a callable tool, keep its function description, parameter names, units, required arguments, and validation needs consistent with the implementation.
 5. **`llms-full.txt`** — Update the model registry entry and its series list.
 6. **`llms-graph.json`** — Ensure all input indicator nodes exist and model edges use `INGESTS_SERIES` with accurate roles. Remove obsolete model-input edges; retain an indicator node if other relationships still use it.
-7. **`llms-relationships.txt`** — If the model has geopolitical transmission linkages, update its section under `## 8. ADVANCED MACROECONOMIC MODEL & GEOPOLITICAL TRIGGER LINKAGES`, including exact inputs and emitted status values.
+7. **`llms-models-bridge.txt` & `llms-relationships.txt`** — If the model has geopolitical transmission linkages, document its linkage under `llms-models-bridge.txt` (including exact inputs, status enums, primary geopolitical vector, and actor coupling). Maintain the canonical bridge reference in `llms-relationships.txt`.
 8. **Generated model snapshots** — Regenerate `llms-models.json` and `llms-models.txt` only through the live-data pipeline after all required inputs are available. Never patch observed values or statuses into these outputs by hand; report the snapshot as stale when regeneration is blocked.
 9. **Verification** — Run the focused model tests and the repository's graph, entity, JSON, and cross-file consistency checks. Confirm every graph edge endpoint exists and every referenced series is registered.
 
@@ -58,6 +58,7 @@ The following manifest files must remain stable to prevent semantic cache invali
 - `llms-ecb-series.txt` & `llms-ecb-series.json`: Monitored European Central Bank time-series and automated transformation engine.
 - `llms-worldbank-series.txt` & `llms-worldbank-series.json`: Monitored World Bank Commodity time-series registry and automated transformation engine.
 - `llms-imf-series.txt` & `llms-imf-series.json`: Monitored International Monetary Fund time-series registry and automated transformation engine.
+- `llms-models-bridge.txt`: Advanced macroeconomic model linkages, chokepoint spillovers, and geopolitical shock transmissions.
 - `llms-relationships.json`: Dynamic geopolitical polarity and active regime state machine twin.
 - `llms-models.json`: Real-time evaluated macroeconomic models and quantitative regime twin.
 - `ai-catalog.json`: Dataset discovery registry; updated automatically via the daily GitHub Actions heartbeat workflow.
