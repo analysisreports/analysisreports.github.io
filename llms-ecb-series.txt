@@ -45,7 +45,7 @@ ICP/M.U2.N.XEF000.4.ANR
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-14 04:16:46 UTC
+# - Synced At: 2026-11-15 04:00:30 UTC
 # - Sync Status: SUCCESS (11 / 11 series active)
 # - Total Series Synced: 11 / 11
 # - Source Authority: European Central Bank (ECB Data Portal REST API)
@@ -56,23 +56,23 @@ ICP/M.U2.N.XEF000.4.ANR
 Series Ref: EXR/D.USD.EUR.SP00.A
 Title: Euro / US Dollar Spot Exchange Rate
 Frequency: Daily (n_obs_per_yr: 260) | Units: USD per 1 EUR
-Last Date: 2026-11-11 | Current Value: 1.1127 | Previous Value: 1.1214 | Year Ago Value: 1.1491
+Last Date: 2026-11-13 | Current Value: 1.1052 | Previous Value: 1.1081 | Year Ago Value: 1.1533
 
 Transformations (Official ECB Formulation - Section 0.5):
-  1. Change: -0.0087
-  2. Change from Year Ago: -0.0364
-  3. Percent Change: -0.7758%
-  4. Percent Change from Year Ago: -3.1677%
-  5. Compounded Annual Rate of Change: -86.8004%
-  6. Continuously Compounded Rate of Change: -0.7788%
-  7. Continuously Compounded Annual Rate of Change: -202.4987%
+  1. Change: -0.0029
+  2. Change from Year Ago: -0.0481
+  3. Percent Change: -0.2617%
+  4. Percent Change from Year Ago: -4.1706%
+  5. Compounded Annual Rate of Change: -49.4059%
+  6. Continuously Compounded Rate of Change: -0.2621%
+  7. Continuously Compounded Annual Rate of Change: -68.1336%
 
 Recent Observations (Last 5):
-  2026-11-05: 1.1224
-  2026-11-06: 1.1165
   2026-11-09: 1.1193
   2026-11-10: 1.1214
   2026-11-11: 1.1127
+  2026-11-12: 1.1081
+  2026-11-13: 1.1052
 
 --------------------------------------------------------------------------------
 Series Ref: EXR/D.GBP.EUR.SP00.A
