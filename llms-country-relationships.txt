@@ -145,7 +145,7 @@ Cross-Reference Multilateral Nodes: BLOC_AUKUS, GEO_AU
 Bilateral Dyad: GEO_US ↔ GEO_IL
 Common Reference: United States ↔ State of Israel
 Dyad ID: REL_GEO_US_GEO_IL
-Bilateral Stance: +0.90 (Ironclad Strategic & Qualitative Military Edge (QME))
+Bilateral Stance: +0.80 (Ironclad Strategic & Qualitative Military Edge (QME))
 Strategic Category: Middle Eastern Security Architecture & Tactical Intelligence Axis
 Asymmetric Power Vectors:
   - [GEO_US Leverage] Foreign Military Financing (FMF): Annual multibillion-dollar military aid and diplomatic veto shield at the UN Security Council.

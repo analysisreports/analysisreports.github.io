@@ -5,8 +5,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-15T04:00:57.967060+00:00",
-    "last_attempted_sync": "2026-11-15T04:00:57.967060+00:00",
+    "last_successful_sync": "2026-11-15T07:46:26.338289+00:00",
+    "last_attempted_sync": "2026-11-15T07:46:26.338289+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -400,7 +400,7 @@
       "source_entity": "GEO_US",
       "target_entity": "GEO_IL",
       "label": "US - IL (United States - Israel)",
-      "p_baseline": 0.9,
+      "p_baseline": 0.8,
       "dynamic_delta": -0.083692,
       "legacy_dynamic_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -421,7 +421,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_OVX_ENERGY_PANIC",
-      "p_net": 0.82,
+      "p_net": 0.72,
       "regime_state": "STRATEGIC_ALIGNMENT",
       "kinetic_contact_configured": false,
       "primary_driver": "STRATEGIC_DEFENSE_TREATY",
@@ -795,7 +795,7 @@
       ],
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
       "p_net": -0.48,
-      "regime_state": "PROXY_WAR",
+      "regime_state": "STRATEGIC_FRICTION",
       "kinetic_contact_configured": false,
       "primary_driver": "EAST_MED_CONTINENTAL_SHELF_AND_AEGEAN_SOVEREIGNTY",
       "friction_nodes": [
@@ -1007,7 +1007,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_CHIP_CONTAINMENT",
-      "p_net": 1.0,
+      "p_net": 0.95,
       "regime_state": "ALLIANCE",
       "kinetic_contact_configured": false,
       "primary_driver": "MECCA_DEFENSE_PACT_TR_PK_AEROSPACE_DEFENSE_ALLIANCE",

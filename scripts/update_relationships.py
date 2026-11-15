@@ -80,7 +80,7 @@ def get_regime(p_net, pair_id):
     elif p_net >= 0.50: return 'STRATEGIC_ALIGNMENT'
     elif p_net >= 0.10: return 'TACTICAL_COOPERATION'
     elif p_net >= -0.10: return 'NEUTRAL'
-    elif p_net >= -0.40: return 'STRATEGIC_FRICTION'
+    elif p_net >= -0.50: return 'STRATEGIC_FRICTION'
     elif p_net >= -0.95 or pair_id not in ACTIVE_KINETIC_PAIRS: return 'PROXY_WAR'
     else: return 'KINETIC_WAR'
 
@@ -667,7 +667,7 @@ def main():
             'source_entity': 'GEO_US',
             'target_entity': 'GEO_IL',
             'label': 'US - IL (United States - Israel)',
-            'p_baseline': +0.90,
+            'p_baseline': +0.80,
             'dynamic_delta': 0.0,
             'friction_nodes': ['REGIONAL_ESCALATION_SCALE'],
             'primary_driver': 'STRATEGIC_DEFENSE_TREATY'
@@ -873,7 +873,10 @@ def main():
             p_net = None
             regime = 'UNAVAILABLE'
         else:
-            p_net = round(clamp(a['p_baseline'] + dyn + mecca_delta), 2)
+            raw_p = a['p_baseline'] + dyn + mecca_delta
+            # Non-Article 5 / non-integrated command pairs clamp to max +0.95
+            max_limit = 0.95 if a['id'] == 'TR_PK' else 1.00
+            p_net = round(min(max_limit, max(-1.0, raw_p)), 2)
             regime = get_regime(p_net, a['id'])
         relationship = {
             'id': a['id'],

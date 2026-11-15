@@ -1897,7 +1897,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
               regime = "TACTICAL_COOPERATION"
           elif p_net >= -0.10:
               regime = "NEUTRAL"
-          elif p_net >= -0.40:
+          elif p_net >= -0.50:
               regime = "STRATEGIC_FRICTION"
           elif p_net >= -0.95 or pair_id not in ACTIVE_KINETIC_PAIRS:
               regime = "PROXY_WAR"
@@ -1912,8 +1912,8 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - 0.50 <= p_net < 0.85 : STRATEGIC_ALIGNMENT (Strategic Partnership / Institutional Alignment)
   - 0.10 <= p_net < 0.50 : TACTICAL_COOPERATION (Tactical Cooperation / Economic Interdependence)
   - -0.10 <= p_net < 0.10 : NEUTRAL (Strict Non-Alignment / Strategic Neutrality)
-  - -0.40 <= p_net < -0.10 : STRATEGIC_FRICTION (Strategic Friction / Managed Divergence)
-  - -0.95 to below -0.40, or below -0.95 without configured active contact: PROXY_WAR (Proxy Warfare / Sanctions Regime / Asymmetric Conflict)
+  - -0.50 <= p_net < -0.10 : STRATEGIC_FRICTION (Strategic Friction / Managed Divergence)
+  - -0.95 to below -0.50, or below -0.95 without configured active contact: PROXY_WAR (Proxy Warfare / Sanctions Regime / Asymmetric Conflict)
   - p_net < -0.95 with configured active contact: KINETIC_WAR (Active Kinetic Warfare / Total Diplomatic Breakdown)
 
 ---
@@ -2799,8 +2799,8 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
   - `0.50 <= P_net < 0.85`: STRATEGIC_ALIGNMENT.
   - `0.10 <= P_net < 0.50`: TACTICAL_COOPERATION.
   - `-0.10 <= P_net < 0.10`: NEUTRAL.
-  - `-0.40 <= P_net < -0.10`: STRATEGIC_FRICTION.
-  - `-0.95 <= P_net < -0.40`: PROXY_WAR.
+  - `-0.50 <= P_net < -0.10`: STRATEGIC_FRICTION.
+  - `-0.95 <= P_net < -0.50`: PROXY_WAR.
   - `P_net < -0.95`: KINETIC_WAR only when the pair is in `ACTIVE_KINETIC_PAIRS`; otherwise PROXY_WAR.
 - **Kinetic contact configuration:** `ACTIVE_KINETIC_PAIRS = {"UA_RU", "IL_IR", "YE_IL"}` is maintained manually, not verified or updated by an automated event feed. UA_RU is in this configuration and uses the same polarity thresholds as other pairs.
 

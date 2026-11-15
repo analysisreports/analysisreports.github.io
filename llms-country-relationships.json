@@ -164,7 +164,7 @@
           "actor_1": "GEO_US",
           "actor_2": "GEO_IL",
           "common_reference": "United States ↔ State of Israel",
-          "bilateral_stance": 0.9,
+          "bilateral_stance": 0.8,
           "stance_classification": "Ironclad Strategic & Qualitative Military Edge (QME",
           "strategic_category": "Middle Eastern Security Architecture & Tactical Intelligence Axis",
           "asymmetric_power_vectors": [
