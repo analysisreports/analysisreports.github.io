@@ -566,6 +566,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ### 10. TRIFFIN EXTERNAL BALANCE
 - Domain Shelf: [`llms-formulas-rates-liquidity.txt#10`](https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#10)
 - Shelf Category: Rates, Yield Curves, Liquidity & Monetary Transmission
+  - Purpose: Measures the ratio between nominal broad dollar valuation pressure and monthly US trade deficit creation to quantify offshore dollar shortage and systemic funding friction.
 
 ### 11. TAYLOR RULE POLICY GAP
 - Domain Shelf: [`llms-formulas-rates-liquidity.txt#11`](https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#11)
@@ -595,6 +596,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ### 16. CBOE VOLATILITY INDEX & MARKET FEAR REGIME (VIX REGIME THRESHOLDS)
 - Domain Shelf: [`llms-formulas-commodities-shock.txt#16`](https://analysisreports.github.io/llms-formulas-commodities-shock.txt#16)
 - Shelf Category: Commodities, Energy Shocks, Supply Chains & Asset Stress
+  - Purpose: Classifies 30-day market volatility expectations and institutional risk appetite regimes derived from S&P 500 option pricing.
 
 ### 17. MACRO EQUITY RISK PREMIUM (ERP)
 - Domain Shelf: [`llms-formulas-macro-labor.txt#17`](https://analysisreports.github.io/llms-formulas-macro-labor.txt#17)
@@ -806,6 +808,8 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ### 28.2. MARKET IMPACT SCORE
 - Domain Shelf: [`llms-formulas-geopolitics.txt#28.2`](https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.2)
 - Shelf Category: Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence
+  - Purpose: Synthesizes asset volatility, credit/liquidity spreads, and macro transmission linkages to calculate financial shock severity on a 0-100 scale.
+  - Target: core_analysis -> market_impact_score
 
 ### 28.3. CHOKEPOINT DISRUPTION SEVERITY ENGINE
 - Domain Shelf: [`llms-formulas-geopolitics.txt#28.3`](https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.3)

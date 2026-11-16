@@ -14,6 +14,10 @@
 > Zero-Fallback Directive: Strict deterministic execution. Missing or non-finite inputs strictly return None (null).
 > Models Contained: 16 Domain Models (1, 2, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 25.5, 25.16, 26)
 
+```python
+import math
+```
+
 ---
 
 ### 1. FED POLICY STANCE & MARKET PRESSURE GAUGE
@@ -135,7 +139,7 @@
 - Interpretation:
   - Spread < 0 : INVERTED_FRONT_END (Inverted front-end slope / Collateral & liquidity squeeze)
   - Spread >= 0 : NORMAL_SLOPE (Healthy front-end liquidity distribution)
-  ---
+---
 
 ### 5. NET FED LIQUIDITY INDEX
 - Purpose: Calculates free dollar liquidity in the financial system with strict unit standardization by subtracting the Treasury General Account (TGA) and overnight reverse repo (ON RRP) balances from total Federal Reserve assets.
