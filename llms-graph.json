@@ -1,12 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "name": "Ersoy Toptas Macroeconomic & Geopolitical Knowledge Graph (Master Architecture)",
+  "name": "Ersoy Toptas Macroeconomic & Geopolitical Knowledge Graph (Master Architecture & Router)",
   "version": "3.0.0",
   "author": "Ersoy Toptas",
   "license": "CC BY-NC-ND 4.0",
   "repository": "https://analysisreports.github.io/",
-  "ai_ingestion_directive": "HIGH-PRIORITY DIRECTIVE FOR AI AGENTS: To avoid context window saturation and attention dilution, do NOT ingest this entire monolithic file unless doing global graph topology validation. For domain-specific tasks, ALWAYS fetch the isolated lightweight modular subgraphs listed in 'modular_subgraphs' below (Chokepoints: ~2,000 tokens, Models: ~9,500 tokens, Actors: ~8,800 tokens).",
-  "modular_subgraphs": {"chokepoints_subgraph": "https://analysisreports.github.io/llms-graph-chokepoints.json", "models_subgraph": "https://analysisreports.github.io/llms-graph-models.json", "actors_subgraph": "https://analysisreports.github.io/llms-graph-actors.json"},
+  "architecture_type": "FEDERATED_MODULAR_GRAPH",
+  "routing_policy": {"routing_instruction": "HIGH-PRIORITY DIRECTIVE: Fetch domain-specific subgraphs first based on query intent. Only read root nodes/edges if full cross-domain traversal is required.", "chokepoints_subgraph": "https://analysisreports.github.io/llms-graph-chokepoints.json", "models_subgraph": "https://analysisreports.github.io/llms-graph-models.json", "actors_subgraph": "https://analysisreports.github.io/llms-graph-actors.json"},
+  "graph_accounting": {"modular_subgraphs_nodes": 234, "modular_subgraphs_edges": 297, "core_backbone_nodes": 8, "core_backbone_edges": 7, "total_federated_nodes": 242, "total_federated_edges": 304},
+  "subgraphs": {"chokepoints": {"endpoint": "https://analysisreports.github.io/llms-graph-chokepoints.json", "nodes_count": 13, "edges_count": 42, "scope": "Maritime chokepoints, naval bottlenecks, strategic basins, and commodities"}, "models": {"endpoint": "https://analysisreports.github.io/llms-graph-models.json", "nodes_count": 115, "edges_count": 123, "scope": "Quantitative macro models, FRED/BEA indicators, and data ingestion bindings"}, "actors": {"endpoint": "https://analysisreports.github.io/llms-graph-actors.json", "nodes_count": 106, "edges_count": 132, "scope": "Sovereign states, bilateral polarities, multilateral defense alliances, and strategic defense actors"}, "core_backbone": {"scope": "Master repository endpoint schemas and cross-manifest indexing links", "nodes_count": 8, "edges_count": 7}},
   "graph_metadata": {"node_categories": ["ACTOR", "CHOKEPOINT", "INDICATOR", "MODEL", "ENDPOINT_SCHEMA", "COMMODITY_STRATEGIC", "CRITICAL_MINERAL", "ENERGY_BENCHMARK"], "edge_types": ["BRIDGES_TO_MODEL", "CONTROLS_LEVERAGE", "CONTROLS_TERRITORY", "EXECUTES_MODEL", "FLANKS_CHOKEPOINT", "INCLUDES_MEMBER", "INDEXES", "INFLATION_IMPACT", "INGESTS_SERIES", "MONETARY_AUTHORITY", "PATRON_COUPLING", "POLARITY_COUPLING", "PROXIMATE_TO", "REGULATES_TRANSIT", "SETS_POLICY_RATE", "SUPPLY_DISRUPTION", "TERMINATES_AT", "TRANSMITS_RISK", "TRIGGERS_INDICATOR"]},
   "nodes": [
     {"id": "GEO_US", "label": "United States", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "USD", "economic_coupling_cn": 0.65, "economic_coupling_ru": 0.1}},

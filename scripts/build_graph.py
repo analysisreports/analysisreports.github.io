@@ -147,16 +147,50 @@ def build_modular_graphs():
     # along with manifest pointers to the 3 subgraphs for granular LLM ingestion.
     master_compiled = {
         "$schema": master.get("$schema", "https://json-schema.org/draft/2020-12/schema"),
-        "name": "Ersoy Toptas Macroeconomic & Geopolitical Knowledge Graph (Master Architecture)",
+        "name": "Ersoy Toptas Macroeconomic & Geopolitical Knowledge Graph (Master Architecture & Router)",
         "version": "3.0.0",
         "author": master.get("author", "Ersoy Toptas"),
         "license": master.get("license", "CC BY-NC-ND 4.0"),
         "repository": master.get("repository", "https://analysisreports.github.io/"),
-        "ai_ingestion_directive": "HIGH-PRIORITY DIRECTIVE FOR AI AGENTS: To avoid context window saturation and attention dilution, do NOT ingest this entire monolithic file unless doing global graph topology validation. For domain-specific tasks, ALWAYS fetch the isolated lightweight modular subgraphs listed in 'modular_subgraphs' below (Chokepoints: ~2,000 tokens, Models: ~9,500 tokens, Actors: ~8,800 tokens).",
-        "modular_subgraphs": {
+        "architecture_type": "FEDERATED_MODULAR_GRAPH",
+        "routing_policy": {
+            "routing_instruction": "HIGH-PRIORITY DIRECTIVE: Fetch domain-specific subgraphs first based on query intent. Only read root nodes/edges if full cross-domain traversal is required.",
             "chokepoints_subgraph": "https://analysisreports.github.io/llms-graph-chokepoints.json",
             "models_subgraph": "https://analysisreports.github.io/llms-graph-models.json",
             "actors_subgraph": "https://analysisreports.github.io/llms-graph-actors.json"
+        },
+        "graph_accounting": {
+            "modular_subgraphs_nodes": len(choke_nodes) + len(model_nodes) + len(actor_nodes),
+            "modular_subgraphs_edges": len(choke_edges) + len(model_edges) + len(actor_edges),
+            "core_backbone_nodes": len(endpoint_nodes),
+            "core_backbone_edges": len(backbone_edges),
+            "total_federated_nodes": len(cleaned_nodes),
+            "total_federated_edges": len(edges)
+        },
+        "subgraphs": {
+            "chokepoints": {
+                "endpoint": "https://analysisreports.github.io/llms-graph-chokepoints.json",
+                "nodes_count": len(choke_nodes),
+                "edges_count": len(choke_edges),
+                "scope": "Maritime chokepoints, naval bottlenecks, strategic basins, and commodities"
+            },
+            "models": {
+                "endpoint": "https://analysisreports.github.io/llms-graph-models.json",
+                "nodes_count": len(model_nodes),
+                "edges_count": len(model_edges),
+                "scope": "Quantitative macro models, FRED/BEA indicators, and data ingestion bindings"
+            },
+            "actors": {
+                "endpoint": "https://analysisreports.github.io/llms-graph-actors.json",
+                "nodes_count": len(actor_nodes),
+                "edges_count": len(actor_edges),
+                "scope": "Sovereign states, bilateral polarities, multilateral defense alliances, and strategic defense actors"
+            },
+            "core_backbone": {
+                "scope": "Master repository endpoint schemas and cross-manifest indexing links",
+                "nodes_count": len(endpoint_nodes),
+                "edges_count": len(backbone_edges)
+            }
         },
         "graph_metadata": master.get("graph_metadata", {}),
         "nodes": cleaned_nodes,
