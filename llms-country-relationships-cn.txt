@@ -79,7 +79,7 @@
 #   * 2021-Pres: Project mBridge Multi-CBDC Platform (BLOC_BRICS_MBRIDGE / Non-SWIFT Cross-Border Clearing)
 # ------------------------------------------------------------------------------
 # 3.1. CATEGORY 1: COMPREHENSIVE STRATEGIC PARTNERS, TREATY ALLIES & IRONCLAD CORRIDORS
-# Scope: Mutual Defense Treaties / "Iron Brotherhood" Alliances / Sovereign Deepwater Basing (+0.60 to +0.85)
+# Scope: Mutual Defense Treaties / "Iron Brotherhood" Alliances / Sovereign Deepwater Basing (+0.60 to +0.85, core allies >=+0.65; MM corridor at +0.60)
 # Total Vectors in Tier: 8 Dyads
 # ------------------------------------------------------------------------------
 
@@ -155,7 +155,7 @@ Asymmetric Power Vectors:
   - [GEO_CN Leverage] Power Grid Control: Majority Chinese state utility ownership (CSG) of Laos' national electricity transmission grid (EDL-T).
 Core Strategic Flashpoints:
   1. Severe sovereign debt distress and foreign exchange reserves depletion requiring Chinese debt restructuring.
-  2. Cascade of mega-dams along the Upper Mekong (Lancan) altering hydrological cycles across downstream Southeast Asia.
+  2. Cascade of mega-dams along the Upper Mekong (Lancang) altering hydrological cycles across downstream Southeast Asia.
 Cross-Reference Multilateral Nodes: BLOC_RCEP, GEO_TH, GEO_VN
 
 --------------------------------------------------------------------------------
@@ -178,7 +178,7 @@ Bilateral Dyad: GEO_CN ↔ GEO_IR
 Common Reference: China ↔ Islamic Republic of Iran
 Dyad ID: REL_GEO_CN_GEO_IR
 Bilateral Stance: +0.65 (25-Year Comprehensive Strategic Agreement & Discounted Crude Flow)
-Strategic Category: Persian Gulf Energy Security & Anti-Hegemonic Eurasian Alignment
+Strategic Category: Persian Gulf Energy Security & Anti-Hegemonic Eurasian Alignment (Canonical Mirror: REL_GEO_IR_GEO_CN)
 Asymmetric Power Vectors:
   - [GEO_CN Leverage] Sole Major Seaborne Crude Offtaker: Chinese independent "teapot" refineries absorb over 85% of Iranian crude exports settled in Renminbi via non-SWIFT networks.
   - [GEO_IR Leverage] Hormuz Chokepoint & Basra Influence: Iranian control over the Strait of Hormuz (CHOKE_HORMUZ) where substantial Chinese oil imports transit daily.

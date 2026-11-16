@@ -9,7 +9,7 @@
 # Total Registered Sovereign Hubs: 4 Hubs
 # Total Registered Bilateral Dyads: 165 Dyads (100% Invariant Zero-Loss Architecture)
 # Architecture: Top-Down Master Router + Bottom-Up Sovereign Hub Shelves (SSOT)
-# Last Compiled: 2026-11-16T15:17:34Z
+# Last Compiled: 2026-11-16T15:22:23Z
 # Language: English (Machine-Readable Dual-Layer Geopolitical Matrix)
 # License: Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 # ==============================================================================
@@ -666,7 +666,7 @@
 
 - Dyad: GEO_CN ↔ GEO_IR | ID: REL_GEO_CN_GEO_IR
   Ref: China ↔ Islamic Republic of Iran
-  P_baseline: +0.65 (25-Year Comprehensive Strategic Agreement & Discounted Crude Flow) | Category: Persian Gulf Energy Security & Anti-Hegemonic Eurasian Alignment
+  P_baseline: +0.65 (25-Year Comprehensive Strategic Agreement & Discounted Crude Flow) | Category: Persian Gulf Energy Security & Anti-Hegemonic Eurasian Alignment (Canonical Mirror: REL_GEO_IR_GEO_CN)
   Shelf Pointer: https://analysisreports.github.io/llms-country-relationships-cn.txt#REL_GEO_CN_GEO_IR
 
 - Dyad: GEO_CN ↔ GEO_SB | ID: REL_GEO_CN_GEO_SB

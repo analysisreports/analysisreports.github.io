@@ -238,7 +238,7 @@
         "common_reference": "China ↔ Islamic Republic of Iran",
         "bilateral_stance": 0.65,
         "stance_classification": "25-Year Comprehensive Strategic Agreement & Discounted Crude Flow",
-        "strategic_category": "Persian Gulf Energy Security & Anti-Hegemonic Eurasian Alignment",
+        "strategic_category": "Persian Gulf Energy Security & Anti-Hegemonic Eurasian Alignment (Canonical Mirror: REL_GEO_IR_GEO_CN)",
         "asymmetric_power_vectors": [
           {
             "leverage_holder": "GEO_CN",
