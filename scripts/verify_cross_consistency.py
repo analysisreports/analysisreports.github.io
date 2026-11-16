@@ -34,16 +34,46 @@ BRIDGE_TXT = os.path.join(ROOT_DIR, "llms-models-bridge.txt")
 FORMULAS_TXT = os.path.join(ROOT_DIR, "llms-formulas.txt")
 
 def load_master_country_polarities(txt_path: str) -> Dict[Tuple[str, str], float]:
-    with open(txt_path, "r", encoding="utf-8") as f:
-        content = f.read()
-
-    country_dyads = re.findall(
-        r"Bilateral Dyad:\s*GEO_([A-Z0-9_]+)\s*↔\s*GEO_([A-Z0-9_]+).*?Bilateral Stance:\s*([+\-0-9\.]+)",
-        content,
-        re.S
-    )
-
     country_map = {}
+    country_dyads = []
+
+    # 1. Try reading from specialized shelves if available (SSOT)
+    shelf_files = [
+        os.path.join(ROOT_DIR, f"llms-country-relationships-{slug}.txt")
+        for slug in ("us", "ru", "cn", "ir")
+    ]
+    all_shelves_exist = all(os.path.exists(sf) for sf in shelf_files)
+
+    if all_shelves_exist:
+        for sf in shelf_files:
+            with open(sf, "r", encoding="utf-8") as f:
+                content = f.read()
+            found = re.findall(
+                r"Bilateral Dyad:\s*GEO_([A-Z0-9_]+)\s*↔\s*GEO_([A-Z0-9_]+).*?Bilateral Stance:\s*([+\-0-9\.]+)",
+                content,
+                re.S
+            )
+            country_dyads.extend(found)
+    else:
+        # Fallback to single TXT (either Master Router format or legacy monolith format)
+        with open(txt_path, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        country_dyads = re.findall(
+            r"Bilateral Dyad:\s*GEO_([A-Z0-9_]+)\s*↔\s*GEO_([A-Z0-9_]+).*?Bilateral Stance:\s*([+\-0-9\.]+)",
+            content,
+            re.S
+        )
+        if not country_dyads:
+            # Match Master Router fast-lookup format:
+            # - Dyad: GEO_US ↔ GEO_GB | ID: REL_GEO_US_GEO_GB
+            #   Ref: United States ↔ United Kingdom
+            #   P_baseline: +0.95 (Special Relationship...
+            country_dyads = re.findall(
+                r"- Dyad:\s*GEO_([A-Z0-9_]+)\s*↔\s*GEO_([A-Z0-9_]+)[^\n]*\n\s*Ref:[^\n]*\n\s*P_baseline:\s*([+\-0-9\.]+)",
+                content
+            )
+
     for a1, a2, score in country_dyads:
         s_val = float(score)
         # Symmetric mappings for GEO and ACTOR formats

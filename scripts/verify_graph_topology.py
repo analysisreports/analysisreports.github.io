@@ -47,13 +47,37 @@ def audit_polarity_synchronization(graph_edges: List[Dict[str, Any]]) -> Tuple[L
     with open(COUNTRY_TXT, "r", encoding="utf-8") as f:
         c_txt = f.read()
 
-    # Extract master polarities from SSOT
+    # Extract master polarities from SSOT (Shelves or Master TXT)
     country_polarities = {}
-    dyad_matches = re.findall(
-        r"Dyad ID:\s*REL_GEO_([A-Z0-9_]+)_GEO_([A-Z0-9_]+).*?Bilateral Stance:\s*([+\-0-9\.]+)",
-        c_txt,
-        re.S
-    )
+    shelf_files = [
+        os.path.join(ROOT_DIR, f"llms-country-relationships-{slug}.txt")
+        for slug in ("us", "ru", "cn", "ir")
+    ]
+    all_shelves_exist = all(os.path.exists(sf) for sf in shelf_files)
+
+    dyad_matches = []
+    if all_shelves_exist:
+        for sf in shelf_files:
+            with open(sf, "r", encoding="utf-8") as f:
+                content = f.read()
+            found = re.findall(
+                r"Dyad ID:\s*REL_GEO_([A-Z0-9_]+)_GEO_([A-Z0-9_]+).*?Bilateral Stance:\s*([+\-0-9\.]+)",
+                content,
+                re.S
+            )
+            dyad_matches.extend(found)
+    else:
+        dyad_matches = re.findall(
+            r"Dyad ID:\s*REL_GEO_([A-Z0-9_]+)_GEO_([A-Z0-9_]+).*?Bilateral Stance:\s*([+\-0-9\.]+)",
+            c_txt,
+            re.S
+        )
+        if not dyad_matches:
+            dyad_matches = re.findall(
+                r"ID:\s*REL_GEO_([A-Z0-9_]+)_GEO_([A-Z0-9_]+)[^\n]*\n\s*Ref:[^\n]*\n\s*P_baseline:\s*([+\-0-9\.]+)",
+                c_txt
+            )
+
     for a1, a2, score in dyad_matches:
         val = float(score)
         country_polarities[(f"ACTOR_{a1}", f"ACTOR_{a2}")] = val

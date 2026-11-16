@@ -35,7 +35,11 @@ This repository hosts machine-readable ontological data models, quantitative fra
   - `llms-formulas-commodities-shock.txt`: **[Commodities & Supply Shocks](https://analysisreports.github.io/llms-formulas-commodities-shock.txt)** (12 Models: Oil Shocks, Strategic Reserves, Agricultural Stress, Shipping Costs)
   - `llms-formulas-geopolitics.txt`: **[Geopolitics & Sanctions](https://analysisreports.github.io/llms-formulas-geopolitics.txt)** (13 Models: Defense Spreads, Sanction Transmission, Chokepoints, Swift Vulnerability)
 - **[llms-relationships.txt](https://analysisreports.github.io/llms-relationships.txt)**: Geopolitical Relationship Matrix.
-- **[llms-country-relationships.txt](https://analysisreports.github.io/llms-country-relationships.txt)**: Geopolitical Bilateral Relations Matrix.
+- **[llms-country-relationships.txt](https://analysisreports.github.io/llms-country-relationships.txt)**: Geopolitical Bilateral Relations Matrix & Master Router.
+  - `llms-country-relationships-us.txt`: **[United States & Western Alliance](https://analysisreports.github.io/llms-country-relationships-us.txt)** (73 Dyads: NATO, Five Eyes, Indo-Pacific, Transatlantic Hubs)
+  - `llms-country-relationships-ru.txt`: **[Russian Federation & Eurasian Axis](https://analysisreports.github.io/llms-country-relationships-ru.txt)** (33 Dyads: Post-Soviet, Eurasian, Caucasus, Black Sea & Central Asia)
+  - `llms-country-relationships-cn.txt`: **[People's Republic of China & Belt and Road](https://analysisreports.github.io/llms-country-relationships-cn.txt)** (34 Dyads: Indo-Pacific, BRI, ASEAN, East Asia & Global South)
+  - `llms-country-relationships-ir.txt`: **[Islamic Republic of Iran & Regional Security](https://analysisreports.github.io/llms-country-relationships-ir.txt)** (25 Dyads: Middle East, Levant, Persian Gulf & Regional Security)
 - **[llms-indicators.txt](https://analysisreports.github.io/llms-indicators.txt)**: Technical formula indicators and definitions.
 - **[llms-tools.json](https://analysisreports.github.io/llms-tools.json)**: Agentic function schemas and API tool specifications.
 - **[llms-graph.json](https://analysisreports.github.io/llms-graph.json)**: Ersoy Toptas Macroeconomic & Geopolitical Knowledge Graph (Master Architecture & Router)

@@ -30,17 +30,145 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 TXT_PATH = os.path.join(ROOT_DIR, "llms-country-relationships.txt")
 JSON_PATH = os.path.join(ROOT_DIR, "llms-country-relationships.json")
 
+SHELVES = [
+    {"slug": "us", "hub": "GEO_US", "expected": 73},
+    {"slug": "ru", "hub": "GEO_RU", "expected": 33},
+    {"slug": "cn", "hub": "GEO_CN", "expected": 34},
+    {"slug": "ir", "hub": "GEO_IR", "expected": 25},
+]
+
+def audit_shelf_txt(shelf_path: str, expected_hub: str) -> Tuple[List[str], Dict[str, Dict[str, Any]]]:
+    errors = []
+    dyads = {}
+
+    if not os.path.exists(shelf_path):
+        return [f"CRITICAL: Shelf TXT file not found at {shelf_path}"], dyads
+
+    with open(shelf_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    blocks = content.split("--------------------------------------------------------------------------------")
+    for b_idx, block in enumerate(blocks):
+        if "Bilateral Dyad:" not in block:
+            continue
+
+        dyad_m = re.search(r"Bilateral Dyad:\s*(GEO_[A-Z0-9_]+)\s*↔\s*(GEO_[A-Z0-9_]+)", block)
+        id_m = re.search(r"Dyad ID:\s*(REL_GEO_[A-Z0-9_]+_GEO_[A-Z0-9_]+)", block)
+        stance_m = re.search(r"Bilateral Stance:\s*([+\-0-9\.]+)\s*\((.+?)\)", block)
+        ref_m = re.search(r"Common Reference:\s*(.+)", block)
+        cat_m = re.search(r"Strategic Category:\s*(.+)", block)
+        cross_m = re.search(r"Cross-Reference Multilateral Nodes:\s*(.+)", block)
+
+        if not (dyad_m and id_m and stance_m):
+            errors.append(f"Shelf {expected_hub}: Malformed dyad block #{b_idx} (missing ID, Dyad or Stance).")
+            continue
+
+        a1, a2 = dyad_m.group(1), dyad_m.group(2)
+        d_id = id_m.group(1)
+        stance = float(stance_m.group(1))
+        stance_desc = stance_m.group(2).strip()
+
+        # Boundary Leak Check
+        if a1 != expected_hub:
+            errors.append(f"BOUNDARY LEAK in {shelf_path}: Dyad {d_id} with Actor 1 '{a1}' is placed under Hub '{expected_hub}'.")
+
+        if d_id != f"REL_{a1}_{a2}":
+            errors.append(f"ID MISMATCH in {shelf_path}: Dyad ID '{d_id}' does not match Actor pair 'REL_{a1}_{a2}'.")
+
+        # Clamping check
+        if not (-1.0 <= stance <= 1.0):
+            errors.append(f"OUT-OF-BOUNDS POLARITY in {shelf_path}: {d_id} has stance {stance} outside [-1.0, 1.0].")
+
+        # Schema presence
+        if not ref_m:
+            errors.append(f"MISSING FIELD: {d_id} lacks 'Common Reference'.")
+        if not cat_m:
+            errors.append(f"MISSING FIELD: {d_id} lacks 'Strategic Category'.")
+        if not cross_m:
+            errors.append(f"MISSING FIELD: {d_id} lacks 'Cross-Reference Multilateral Nodes'.")
+
+        # Asymmetric vectors count
+        vectors = re.findall(r"-\s*\[([^\]]+)\]\s*([^:]+):\s*(.*)", block)
+        if len(vectors) < 2:
+            errors.append(f"INSUFFICIENT VECTORS: {d_id} has {len(vectors)} asymmetric vectors (minimum 2 required).")
+
+        # Flashpoints count
+        flashpoints = re.findall(r"^\s*\d+\.\s*(.+)", block, re.M)
+        if len(flashpoints) < 1:
+            errors.append(f"MISSING FLASHPOINTS: {d_id} has 0 strategic flashpoints (minimum 1 required).")
+
+        dyads[d_id] = {
+            "hub": expected_hub,
+            "actor_1": a1,
+            "actor_2": a2,
+            "stance": stance,
+            "stance_desc": stance_desc
+        }
+
+    return errors, dyads
+
+def audit_shelf_json(shelf_path: str, expected_hub: str, txt_dyads: Dict[str, Dict[str, Any]]) -> List[str]:
+    errors = []
+    if not os.path.exists(shelf_path):
+        return [f"CRITICAL: Shelf JSON file not found at {shelf_path}"]
+
+    with open(shelf_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    hub_data = data.get("sovereign_hub", {})
+    hub_id = hub_data.get("hub_id")
+    if hub_id != expected_hub:
+        errors.append(f"Shelf {shelf_path} has hub_id '{hub_id}', expected '{expected_hub}'.")
+
+    dyads = hub_data.get("dyads", {})
+    for dyad_id, dyad in dyads.items():
+        if dyad.get("actor_1") != expected_hub:
+            errors.append(f"BOUNDARY LEAK in JSON: Dyad {dyad_id} actor_1 '{dyad.get('actor_1')}' != hub '{expected_hub}'.")
+
+        if not dyad_id.startswith(f"REL_{expected_hub}_"):
+            errors.append(f"KEY MISMATCH in JSON: Dyad ID '{dyad_id}' does not match hub prefix 'REL_{expected_hub}_'.")
+
+        st = dyad.get("bilateral_stance")
+        if st is None or not (-1.0 <= st <= 1.0):
+            errors.append(f"INVALID POLARITY in JSON: {dyad_id} has stance {st}.")
+
+        if dyad_id not in txt_dyads:
+            errors.append(f"DESYNC: Dyad '{dyad_id}' found in JSON but missing in TXT.")
+        else:
+            txt_st = txt_dyads[dyad_id]["stance"]
+            if abs(st - txt_st) > 0.001:
+                errors.append(f"DESYNC: Polarity mismatch for {dyad_id} (TXT: {txt_st:+.2f}, JSON: {st:+.2f}).")
+
+    for txt_id in txt_dyads:
+        if txt_id not in dyads:
+            errors.append(f"DESYNC: Dyad '{txt_id}' found in TXT but missing in JSON.")
+
+    return errors
+
 def audit_txt_integrity(content: str) -> Tuple[List[str], Dict[str, Dict[str, Any]]]:
     errors = []
     dyads = {}
     
-    # Check hubs
+    # 1. Audit shelves directly if present
+    shelves_exist = all(
+        os.path.exists(os.path.join(ROOT_DIR, f"llms-country-relationships-{s['slug']}.txt"))
+        for s in SHELVES
+    )
+    if shelves_exist:
+        for s in SHELVES:
+            s_path = os.path.join(ROOT_DIR, f"llms-country-relationships-{s['slug']}.txt")
+            s_errs, s_dyads = audit_shelf_txt(s_path, s["hub"])
+            errors.extend(s_errs)
+            if len(s_dyads) != s["expected"]:
+                errors.append(f"Shelf {s['hub']} dyad count mismatch: expected {s['expected']}, got {len(s_dyads)}")
+            dyads.update(s_dyads)
+        return errors, dyads
+
+    # 2. Legacy fallback
     hubs = re.split(r"# =+\n# \d+\.\s*SOVEREIGN HUB:\s*", content)
     if len(hubs) < 2:
         errors.append("CRITICAL: No Sovereign Hubs detected in TXT.")
         return errors, dyads
-
-    total_txt_dyads = 0
 
     for idx, hub_txt in enumerate(hubs[1:], 1):
         lines = hub_txt.splitlines()
@@ -56,7 +184,6 @@ def audit_txt_integrity(content: str) -> Tuple[List[str], Dict[str, Dict[str, An
             if "Bilateral Dyad:" not in block:
                 continue
 
-            total_txt_dyads += 1
             dyad_m = re.search(r"Bilateral Dyad:\s*(GEO_[A-Z0-9_]+)\s*↔\s*(GEO_[A-Z0-9_]+)", block)
             id_m = re.search(r"Dyad ID:\s*(REL_GEO_[A-Z0-9_]+_GEO_[A-Z0-9_]+)", block)
             stance_m = re.search(r"Bilateral Stance:\s*([+\-0-9\.]+)\s*\((.+?)\)", block)
@@ -64,7 +191,6 @@ def audit_txt_integrity(content: str) -> Tuple[List[str], Dict[str, Dict[str, An
             cat_m = re.search(r"Strategic Category:\s*(.+)", block)
             cross_m = re.search(r"Cross-Reference Multilateral Nodes:\s*(.+)", block)
 
-            # Check ID & actor extraction
             if not (dyad_m and id_m and stance_m):
                 errors.append(f"Hub {hub_geo}: Malformed dyad block #{b_idx} (missing ID, Dyad or Stance).")
                 continue
@@ -74,18 +200,15 @@ def audit_txt_integrity(content: str) -> Tuple[List[str], Dict[str, Dict[str, An
             stance = float(stance_m.group(1))
             stance_desc = stance_m.group(2).strip()
 
-            # Boundary Leak Check
             if a1 != hub_geo:
                 errors.append(f"BOUNDARY LEAK in TXT: Dyad {d_id} with Actor 1 '{a1}' is placed under Hub '{hub_geo}'.")
 
             if d_id != f"REL_{a1}_{a2}":
                 errors.append(f"ID MISMATCH in TXT: Dyad ID '{d_id}' does not match Actor pair 'REL_{a1}_{a2}'.")
 
-            # Clamping check
             if not (-1.0 <= stance <= 1.0):
                 errors.append(f"OUT-OF-BOUNDS POLARITY in TXT: {d_id} has stance {stance} outside [-1.0, 1.0].")
 
-            # Schema presence
             if not ref_m:
                 errors.append(f"MISSING FIELD: {d_id} lacks 'Common Reference'.")
             if not cat_m:
@@ -93,12 +216,10 @@ def audit_txt_integrity(content: str) -> Tuple[List[str], Dict[str, Dict[str, An
             if not cross_m:
                 errors.append(f"MISSING FIELD: {d_id} lacks 'Cross-Reference Multilateral Nodes'.")
 
-            # Asymmetric vectors count
             vectors = re.findall(r"-\s*\[([^\]]+)\]\s*([^:]+):\s*(.*)", block)
             if len(vectors) < 2:
                 errors.append(f"INSUFFICIENT VECTORS: {d_id} has {len(vectors)} asymmetric vectors (minimum 2 required).")
 
-            # Flashpoints count
             flashpoints = re.findall(r"^\s*\d+\.\s*(.+)", block, re.M)
             if len(flashpoints) < 1:
                 errors.append(f"MISSING FLASHPOINTS: {d_id} has 0 strategic flashpoints (minimum 1 required).")
@@ -115,6 +236,20 @@ def audit_txt_integrity(content: str) -> Tuple[List[str], Dict[str, Dict[str, An
 
 def audit_json_integrity(json_path: str, txt_dyads: Dict[str, Dict[str, Any]]) -> List[str]:
     errors = []
+    
+    # 1. Audit shelves directly if present
+    shelves_exist = all(
+        os.path.exists(os.path.join(ROOT_DIR, f"llms-country-relationships-{s['slug']}.json"))
+        for s in SHELVES
+    )
+    if shelves_exist:
+        for s in SHELVES:
+            s_path = os.path.join(ROOT_DIR, f"llms-country-relationships-{s['slug']}.json")
+            shelf_txt_dyads = {k: v for k, v in txt_dyads.items() if v.get("hub") == s["hub"]}
+            errors.extend(audit_shelf_json(s_path, s["hub"], shelf_txt_dyads))
+        return errors
+
+    # 2. Legacy fallback
     if not os.path.exists(json_path):
         return ["CRITICAL: JSON Twin not found."]
 
@@ -129,14 +264,12 @@ def audit_json_integrity(json_path: str, txt_dyads: Dict[str, Dict[str, Any]]) -
         for dyad_id, dyad in dyads.items():
             json_dyads[dyad_id] = dyad
 
-            # Boundary Leak Check
             if dyad.get("actor_1") != hub_id:
                 errors.append(f"BOUNDARY LEAK in JSON: Dyad {dyad_id} actor_1 '{dyad.get('actor_1')}' != hub '{hub_id}'.")
 
             if not dyad_id.startswith(f"REL_{hub_id}_"):
                 errors.append(f"KEY MISMATCH in JSON: Dyad ID '{dyad_id}' does not match hub prefix 'REL_{hub_id}_'.")
 
-            # Polarity Check
             st = dyad.get("bilateral_stance")
             if st is None or not (-1.0 <= st <= 1.0):
                 errors.append(f"OUT-OF-BOUNDS POLARITY in JSON: {dyad_id} has stance {st}.")
