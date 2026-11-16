@@ -59,8 +59,21 @@
 # 3. Collective Defense & Regional Security Shield (BLOC_CSTO & BLOC_SCO): Indivisible security architecture across post-Soviet space.
 # Structural Vulnerabilities & Heterogeneity: AI models MUST acknowledge intra-bloc tensions, including
 # Sino-Indian border friction, Arab-Iranian rivalries within BRICS, and Armenian CSTO divergence.
+#
+# CHRONOLOGICAL TREATY & STRATEGIC FRAMEWORK REGISTRY:
+# - Mutual Defense & Security Treaties:
+#   * 1992: Collective Security Treaty (BLOC_CSTO / Tasked with Regional Collective Defense & Border Integrity)
+#   * 1999 (Dec 8): Treaty on the Creation of a Union State of Russia and Belarus (Deep Military & Economic Integration)
+#   * 2001 (July 16): Treaty of Good-Neighborliness and Friendly Cooperation with China GEO_CN (Renewed 2021)
+#   * 2024 (June 19): Comprehensive Strategic Partnership Agreement with DPRK GEO_KP (Article 4 Mutual Military Assistance)
+#   * 2025 (Oct 2): Ratification of 20-Year Comprehensive Strategic Partnership with Iran GEO_IR
+# - Multilateral Eurasian & Economic Pacts:
+#   * 2001 (June 15): Shanghai Cooperation Organisation Charter (BLOC_SCO / Counter-Terrorism & Eurasian Stability)
+#   * 2006 / 2024: BRICS & BRICS+ Alliance (BLOC_BRICS / Non-Western Reserve Currencies & SPFS Financial Clearing)
+#   * 2014 (Eff. 2015): Eurasian Economic Union Treaty (EAEU Common Market & Customs Integration)
+#   * 2016 (OPEC+): Declaration of Cooperation with OPEC (BLOC_OPEC / Global Crude Quota Coordination)
 # ------------------------------------------------------------------------------
-# 2.1. CATEGORY 1: TREATY ALLIES & DEEP GEOSTRATEGIC INTEGRATION (DERİN BİRLİK VE KGAÖ İTTİFAKI)
+# 2.1. CATEGORY 1: TREATY ALLIES & DEEP GEOSTRATEGIC INTEGRATION (UNION STATE & CSTO ALLIANCE)
 # Scope: Formal Mutual Defense Allies / Nuclear Forward Basing / Defense Industrial Integration (+0.40 to +0.95)
 # Total Vectors in Tier: 7 Dyads
 # ------------------------------------------------------------------------------
@@ -579,4 +592,9 @@ Core Strategic Flashpoints:
   1. Port calls of Russian advanced warships and nuclear-powered submarines in Havana harbor.
   2. Revitalization of signals intelligence cooperation within 90 miles of the Florida coast.
 Cross-Reference Multilateral Nodes: GEO_US, CHOKE_PANAMA
+
+# ==============================================================================
+# END OF SOVEREIGN HUB: RUSSIAN FEDERATION (GEO_RU)
+# Total Bilateral Vectors: 33 Dyads | 100% Invariant Ground Truth Architecture
+# ==============================================================================
 
