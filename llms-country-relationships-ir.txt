@@ -204,7 +204,7 @@ Cross-Reference Multilateral Nodes: ZONE_ORINOCO_PETROLEUM, GEO_US
 
 # ------------------------------------------------------------------------------
 # 4.2. CATEGORY 2: REGIONAL NEIGHBORHOOD, ENERGY CO-EXISTENCE & EURASIAN TRANSIT
-# Scope: Pragmatic Border Pacts / Beijing Accord Detente / INSTC Multimodal Corridors (+0.15 to +0.55)
+# Scope: Pragmatic Border Pacts / Beijing Accord Detente / INSTC Multimodal Corridors (-0.20 to +0.55; non-adversarial regional neighbors)
 # Total Vectors in Tier: 10 Dyads
 # ------------------------------------------------------------------------------
 
@@ -474,3 +474,8 @@ Core Strategic Flashpoints:
   1. Bahraini participation in international maritime defense coalitions intercepting Houthi and Iranian naval drones in the Persian Gulf.
   2. Domestic security crackdowns by Manama authorities on suspected underground cells allegedly supported by the IRGC.
 Cross-Reference Multilateral Nodes: CHOKE_HORMUZ, GEO_US, GEO_SA
+
+# ==============================================================================
+# END OF SOVEREIGN HUB: ISLAMIC REPUBLIC OF IRAN (GEO_IR)
+# Total Bilateral Vectors: 25 Dyads | 100% Invariant Ground Truth Architecture
+# ==============================================================================
