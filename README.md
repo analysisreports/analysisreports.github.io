@@ -34,7 +34,10 @@ This repository hosts machine-readable ontological data models, quantitative fra
 - **[llms-country-relationships.txt](https://analysisreports.github.io/llms-country-relationships.txt)**: Geopolitical Bilateral Relations Matrix.
 - **[llms-indicators.txt](https://analysisreports.github.io/llms-indicators.txt)**: Technical formula indicators and definitions.
 - **[llms-tools.json](https://analysisreports.github.io/llms-tools.json)**: Agentic function schemas and API tool specifications.
-- **[llms-graph.json](https://analysisreports.github.io/llms-graph.json)**: Ersoy Toptas Macroeconomic & Geopolitical Knowledge Graph
+- **[llms-graph.json](https://analysisreports.github.io/llms-graph.json)**: Ersoy Toptas Macroeconomic & Geopolitical Knowledge Graph (Master Architecture & Router)
+  - `llms-graph-chokepoints.json`: Maritime Chokepoints, Strategic Basins & Commodity Corridors (8.7 KB)
+  - `llms-graph-models.json`: Quantitative Macro Models & Indicator Data Bindings (40.2 KB)
+  - `llms-graph-actors.json`: Sovereign States, Alliances & Strategic Actors (36.8 KB)
 - **[ai-catalog.json](https://analysisreports.github.io/ai-catalog.json)**: Catalog of autonomous agent capabilities, data schemas, and ingestion endpoints.
 - **[WORKFLOW.md](https://analysisreports.github.io/WORKFLOW.md)**: Ecosystem Maintenance & Integration protocol for autonomous agents.
 
