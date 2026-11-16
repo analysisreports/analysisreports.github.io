@@ -1,5 +1,5 @@
 {
-  "": "https://analysisreports.github.io/schemas/strategic-macro.schema.json",
+  "$schema": "https://analysisreports.github.io/schemas/strategic-macro.schema.json",
   "metadata": {
     "title": "Strategic Macroeconomic Synthesis & Global Liquidity Data Contract",
     "domain": "economy",

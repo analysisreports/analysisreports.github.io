@@ -1,5 +1,5 @@
 {
-  "": "https://analysisreports.github.io/schemas/political-country.schema.json",
+  "$schema": "https://analysisreports.github.io/schemas/political-country.schema.json",
   "metadata": {
     "title": "Sovereign State Geopolitical & Strategic Alignment Data Contract",
     "domain": "political",

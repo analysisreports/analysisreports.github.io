@@ -1,5 +1,5 @@
 {
-  "": "https://analysisreports.github.io/schemas/concept.schema.json",
+  "$schema": "https://analysisreports.github.io/schemas/concept.schema.json",
   "metadata": {
     "title": "Quantitative Macroeconomics Concept Data Contract",
     "domain": "glossary",

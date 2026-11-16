@@ -1,5 +1,5 @@
 {
-  "": "https://analysisreports.github.io/schemas/editorial.schema.json",
+  "$schema": "https://analysisreports.github.io/schemas/editorial.schema.json",
   "metadata": {
     "title": "Editorial Narrative & Geopolitical Essay Data Contract",
     "domain": "editorial",

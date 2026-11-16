@@ -1,5 +1,5 @@
 {
-  "": "https://analysisreports.github.io/schemas/political.schema.json",
+  "$schema": "https://analysisreports.github.io/schemas/political.schema.json",
   "metadata": {
     "title": "Geopolitical Conflict & Dynamic Risk Analysis Data Contract",
     "domain": "political",
