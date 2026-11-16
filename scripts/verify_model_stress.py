@@ -27,6 +27,7 @@ import os
 import sys
 import json
 import math
+import re
 from typing import List, Dict, Any, Tuple
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -73,7 +74,7 @@ def audit_production_models(models_data: List[Dict[str, Any]]) -> List[str]:
         # Required meta
         if not status:
             errors.append(f"{mid} lacks status classification.")
-        if not f_ref or not f_ref.startswith("https://analysisreports.github.io/llms-formulas.txt"):
+        if not f_ref or not re.match(r"^https://analysisreports\.github\.io/llms-formulas(-[a-z\-]+)?\.txt#[0-9]+(?:\.[0-9]+)*$", f_ref):
             errors.append(f"{mid} has invalid formula_ref: {f_ref}")
         if not m.get("unit"):
             errors.append(f"{mid} lacks unit specification.")

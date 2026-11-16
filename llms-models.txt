@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-16 11:27 UTC
+> **Last Calibrated Sync:** 2026-11-16 11:32 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -64,140 +64,140 @@
 ### Detailed Model Breakdowns
 
 #### [MODEL_1] Fed Policy Stance & Market Pressure Gauge
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#1
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#1
 - **Evaluated Status:** `HAWKISH_MARKET_PRESSURE` (Primary Value: 12.0 Basis Points (bps))
 - **Inputs Evaluated:** `{"treasury_1m_yield_dgs1mo": 4.12, "fed_policy_rate": 4.0}`
 - **Secondary Metrics:** `{"spread_basis_points": 12.0, "dgs1mo_yield": 4.12, "fed_funds_rate": 4.0}`
 - **Economic Synthesis:** Spread between 1-Month Treasury yield and Fed Funds Rate. Measures market-implied rate cut pressure (<= -15 bps) or liquidity-driven hawkish stress (> +4 bps).
 
 #### [MODEL_2] Real Policy Rate & Restrictiveness
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#2
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#2
 - **Evaluated Status:** `ACCOMMODATIVE` (Primary Value: -0.2 Percent (%))
 - **Inputs Evaluated:** `{"fed_policy_rate_dff": 3.88, "headline_cpi_yoy_pct": 4.08}`
 - **Secondary Metrics:** `{"real_interest_rate_pct": -0.2, "dff_nominal_rate": 3.88, "inflation_cpi_yoy": 4.08}`
 - **Economic Synthesis:** Measures the real stance of effective borrowing costs adjusted for headline inflation. Values > 1.5% reflect restrictive policy, < 0.0% accommodative.
 
 #### [MODEL_3] Official Sahm Rule Recession Indicator
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#3
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#3
 - **Evaluated Status:** `NORMAL_LABOR_MARKET` (Primary Value: 0.0 Percentage Points)
 - **Inputs Evaluated:** `{"sahm_realtime_val": 0.0}`
 - **Secondary Metrics:** `{"sahm_indicator": 0.0}`
 - **Economic Synthesis:** Real-time recession detection triggered when 3-month unemployment average rises >= 0.50 ppt above prior 12-month low.
 
 #### [MODEL_4] Front-End T-Bill Slope & Liquidity Spread
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#4
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#4
 - **Evaluated Status:** `NORMAL_SLOPE` (Primary Value: 20.0 Basis Points (bps))
 - **Inputs Evaluated:** `{"treasury_3m_yield_dgs3mo": 4.32, "treasury_1m_yield_dgs1mo": 4.12}`
 - **Secondary Metrics:** `{"spread_basis_points": 20.0, "dgs3mo_yield": 4.32, "dgs1mo_yield": 4.12}`
 - **Economic Synthesis:** Tracks the slope between 3-month and 1-month Treasury bills. Negative values indicate acute front-end cash collateral squeeze and inverted money market slope.
 
 #### [MODEL_5] Net Fed Liquidity Index
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#5
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#5
 - **Evaluated Status:** `NEUTRAL_LIQUIDITY_EQUILIBRIUM` (Primary Value: 5.791 Trillion USD)
 - **Inputs Evaluated:** `{"fed_total_assets_walcl_mil": 6748145.0, "treasury_general_account_tga_mil": 957175.0, "overnight_reverse_repo_rrp_bil": 0.325, "overnight_reverse_repo_rrp_mil": 325.0}`
 - **Secondary Metrics:** `{"net_liquidity_millions_usd": 5790645.0, "net_liquidity_trillions_usd": 5.791}`
 - **Economic Synthesis:** Unencumbered commercial bank liquidity: WALCL - (TGA + ON_RRP). Direct fuel for equity asset valuations.
 
 #### [MODEL_6] Treasury Yield Curve Slope (10Y - 2Y)
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#6
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#6
 - **Evaluated Status:** `NORMAL_CURVE_EXPANSION` (Primary Value: 27.0 Basis Points (bps))
 - **Inputs Evaluated:** `{"t10y2y_spread_pct": 0.27}`
 - **Secondary Metrics:** `{"yield_spread_bps": 27.0, "t10y2y_spread_pct": 0.27}`
 - **Economic Synthesis:** Leading cyclical economic barometer. Inversions (bps < 0) historically precede sovereign US business cycle recessions.
 
 #### [MODEL_7] 10-Year Breakeven Inflation Rate
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#7
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#7
 - **Evaluated Status:** `FED_ALIGNED_EQUILIBRIUM` (Primary Value: 2.24 Percent (%))
 - **Inputs Evaluated:** `{"nominal_10y_yield_dgs10": 5.1, "tips_10y_real_yield_dfii10": 2.86}`
 - **Secondary Metrics:** `{"breakeven_inflation_rate_pct": 2.24, "dgs10_nominal": 5.1, "dfii10_tips_real": 2.86}`
 - **Economic Synthesis:** Reflects the bond market's expected average annual inflation rate over the next 10 years by subtracting 10-year TIPS real yields from 10-year nominal Treasury yields.
 
 #### [MODEL_8] Beveridge Curve Labor Tightness
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#8
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#8
 - **Evaluated Status:** `BALANCED_LABOR_TIGHTNESS` (Primary Value: 1.06 Ratio)
 - **Inputs Evaluated:** `{"job_openings_jtsjol_k": 7523.0, "unemployed_persons_unemploy_k": 7068.0}`
 - **Secondary Metrics:** `{"beveridge_ratio": 1.06, "job_openings_k": 7523.0, "unemployed_k": 7068.0}`
 - **Economic Synthesis:** Evaluates the ratio of job openings to unemployed job seekers. Ratios > 1.50 signal overheated wage pressure, < 1.00 signal loosening labor demand.
 
 #### [MODEL_9] Financial Repression Index
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#9
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#9
 - **Evaluated Status:** `SUSTAINABLE_CYCLE` (Primary Value: 1.236 Index Score)
 - **Inputs Evaluated:** `{"nominal_10y_yield_dgs10": 5.1, "headline_cpi_yoy_pct": 4.08, "federal_debt_pct_gdp": 121.19}`
 - **Secondary Metrics:** `{"debt_pressure_index": 1.236, "real_10y_yield_pct": 1.02, "federal_debt_gdp_ratio": 121.19}`
 - **Economic Synthesis:** Scores the risk of eroding public debt in real terms under negative real yields versus triggering an explosive debt service crisis under high real yields and high sovereign debt ratios.
 
 #### [MODEL_10] Triffin External Balance
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#10
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#10
 - **Evaluated Status:** `BALANCED_TRIFFIN_EQUILIBRIUM` (Primary Value: 1.1602 Tension Ratio)
 - **Inputs Evaluated:** `{"broad_dollar_index_dtwexbgs": 121.8803, "trade_balance_bopgstb_mil": -105047.0}`
 - **Secondary Metrics:** `{"dxy_deficit_tension": 1.1602, "monthly_trade_deficit_bil": 105.05, "broad_dollar_index": 121.8803}`
 - **Economic Synthesis:** Tracks global liquidity imbalances between the US dollar's reserve currency status and the US external trade deficit. Rising ratios signal offshore dollar shortage and structural funding stress.
 
 #### [MODEL_11] Taylor Rule Policy Gap
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#11
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#11
 - **Evaluated Status:** `BEHIND_THE_CURVE` (Primary Value: -4.09 Percentage Points (ppt))
 - **Inputs Evaluated:** `{"fed_policy_rate_dff": 3.88, "headline_cpi_yoy_pct": 4.08, "real_gdp_gdpc1_bil": 24611.08, "real_potential_gdp_gdppot_bil": 24200.44, "gdpc1_observation_date": "2026-07-01", "gdppot_observation_date": "2026-07-01"}`
 - **Secondary Metrics:** `{"policy_gap_ppt": -4.09, "taylor_optimal_rate_pct": 7.97, "output_gap_pct": 1.7, "equilibrium_real_neutral_rate_pct": 2.0, "target_inflation_pct": 2.0}`
 - **Economic Synthesis:** Computes a Taylor-style policy benchmark using headline CPI inflation, a 2% neutral real rate and 0.5 weights, and compares it with the effective Fed funds rate. Gaps < -1.0 ppt are classified as behind the curve; gaps > +1.0 ppt as over-restrictive.
 
 #### [MODEL_12] Financial Conditions Tightness (Chicago Fed NFCI)
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#12
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#12
 - **Evaluated Status:** `LOOSE_FINANCIAL_CONDITIONS` (Primary Value: -0.459 Index Points)
 - **Inputs Evaluated:** `{"chicago_fed_nfci": -0.459, "adjusted_anfci": -0.435}`
 - **Secondary Metrics:** `{"nfci_stress_level": -0.459, "adjusted_anfci": -0.435, "macroeconomic_divergence": -0.024}`
 - **Economic Synthesis:** Monitors monetary policy transmission into financial markets across debt, equity, and leverage risk premiums. Values < 0 indicate looser than average financial conditions; > 0 indicates restrictive financial conditions.
 
 #### [MODEL_13] High Yield Credit Spread / OAS
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#13
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#13
 - **Evaluated Status:** `RISK_APPETITE_HEALTHY` (Primary Value: 320 Basis Points (bps))
 - **Inputs Evaluated:** `{"high_yield_oas_bamlh0a0hym2": 3.2}`
 - **Secondary Metrics:** `{"spread_bps": 320, "bamlh0a0hym2_pct": 3.2}`
 - **Economic Synthesis:** Measures corporate credit default risk and risk appetite contraction. Spreads above 500 bps signal acute default and refinancing distress; below 350 bps reflect healthy risk appetite.
 
 #### [MODEL_14] Real M2 Money Momentum
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#14
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#14
 - **Evaluated Status:** `MONETARY_EXPANSION` (Primary Value: 1.63 Percentage Points (ppt))
 - **Inputs Evaluated:** `{"m2_money_growth_yoy_pct": 5.71, "headline_cpi_yoy_pct": 4.08}`
 - **Secondary Metrics:** `{"real_m2_growth_ppt": 1.63, "m2_yoy_pct": 5.71, "cpi_yoy_pct": 4.08}`
 - **Economic Synthesis:** Detects aggregate demand and monetary impulse by calculating the real expansion or contraction rate of broad money supply (M2) relative to headline CPI inflation. Values < 0 indicate monetary contraction; > 0 indicate broad liquidity expansion.
 
 #### [MODEL_15] NY Fed ACM 10-Year Term Premium
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#15
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#15
 - **Evaluated Status:** `FISCAL_SUPPLY_PRESSURE` (Primary Value: 0.87 Percent (%))
 - **Inputs Evaluated:** `{"nominal_10y_yield_dgs10": 5.1, "acm_10y_term_premium_threefytp10": 0.87}`
 - **Secondary Metrics:** `{"term_premium_pct": 0.87, "expected_average_short_rate_pct": 4.23, "nominal_10y_yield_pct": 5.1}`
 - **Economic Synthesis:** Decomposes 10-year Treasury yields via the Adrian, Crump & Moench (ACM) model. Term premium >= +0.50% reflects duration risk, fiscal supply pressure, or inflation uncertainty; <= -0.50% reflects safe-haven duration demand or central bank asset purchases.
 
 #### [MODEL_16] CBOE Volatility & Market Fear Regime
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#16
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#16
 - **Evaluated Status:** `NORMAL_VOLATILITY` (Primary Value: 18.7 Points)
 - **Inputs Evaluated:** `{"vix_close": 18.7}`
 - **Secondary Metrics:** `{"vix_level": 18.7, "regime": "NORMAL_VOLATILITY", "market_bias": "BALANCED"}`
 - **Economic Synthesis:** 30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime.
 
 #### [MODEL_18] Okun Misery Index
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#18
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#18
 - **Evaluated Status:** `MODERATE` (Primary Value: 8.18 Index Points)
 - **Inputs Evaluated:** `{"civilian_unemployment_unrate": 4.1, "headline_cpi_yoy_pct": 4.08}`
 - **Secondary Metrics:** `{"misery_score": 8.18, "unemployment_component": 4.1, "inflation_component": 4.08}`
 - **Economic Synthesis:** Measures household welfare loss and stagflationary stress by summing civilian unemployment and annual inflation. Values > 12 indicate acute crisis.
 
 #### [MODEL_19] Buffett Indicator (Corporate Equities to GDP)
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#19
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#19
 - **Evaluated Status:** `SEVERELY_OVERVALUED` (Primary Value: 251.59 Percent (%))
 - **Inputs Evaluated:** `{"corporate_equities_liability_ncbeilq027s_mil": 83050847.0, "nominal_gdp_bil": 33010.04}`
 - **Secondary Metrics:** `{"buffett_ratio_pct": 251.59, "total_equities_market_val_bil": 83050.85, "nominal_gdp_bil": 33010.04}`
 - **Economic Synthesis:** Measures total equity valuation froth against national economic output using official Fed Z.1 accounts. Ratios >= 180% signal speculative bubble territory; < 100% reflect attractive valuation.
 
 #### [MODEL_20] Copper to Gold Macro Sentiment Ratio
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#20
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#20
 - **Evaluated Status:** `CYCLICAL_EXPANSION` (Primary Value: 3.5257 Ratio (USD/MT to USD/oz))
 - **Inputs Evaluated:** `{"copper_price_pcoppusdm_usd_mt": 14473.06, "gold_price_ind_wb_gold_usd_oz": 4105.0}`
 - **Secondary Metrics:** `{"copper_gold_ratio": 3.5257, "copper_price_usd_mt": 14473.06, "gold_price_usd_oz": 4105.0}`
 - **Economic Synthesis:** Pits industrial cyclical momentum (Doctor Copper) against safe-haven store of value (Gold). A rising ratio signals robust global industrial demand and cyclical growth acceleration.
 
 #### [MODEL_21] Gold to Oil Crisis & Recession Ratio
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#21
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#21
 - **Evaluated Status:** `MACRO_CRISIS_RECESSION` (Primary Value: 45.8 Barrels per Ounce)
 - **Inputs Evaluated:** `{"gold_price_usd_oz": 4105.0, "oil_price_usd_bbl": 89.62}`
 - **Secondary Metrics:** `{"gold_oil_ratio": 45.8, "historical_equilibrium_band": "12.0 - 25.0"}`
@@ -205,35 +205,35 @@
 - **Economic Synthesis:** Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks.
 
 #### [MODEL_22] Household Credit Stress Gauge
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#22
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#22
 - **Evaluated Status:** `ELEVATED_PRESSURE` (Primary Value: 0.75 Stress Ratio)
 - **Inputs Evaluated:** `{"credit_card_delinquency_rate_drcclacbs_pct": 2.85, "personal_saving_rate_psavert_pct": 3.8}`
 - **Secondary Metrics:** `{"household_stress_ratio": 0.75, "delinquency_rate_pct": 2.85, "saving_rate_pct": 3.8}`
 - **Economic Synthesis:** Measures consumer debt service vulnerability by evaluating credit card delinquency rates against the personal saving rate cushion. Ratios > 1.00 reflect severe consumer distress and spending contraction risk.
 
 #### [MODEL_23] Okun Gap (Growth-Employment Divergence)
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#23
 - **Evaluated Status:** `BALANCED_OKUN_EQUILIBRIUM` (Primary Value: -0.27 Percentage Points (ppt))
 - **Inputs Evaluated:** `{"actual_unrate_delta_yoy": -0.3, "real_gdp_yoy_pct": 2.07}`
 - **Secondary Metrics:** `{"okun_gap_ppt": -0.27, "expected_unrate_delta": -0.03, "actual_unrate_delta": -0.3, "real_gdp_growth_yoy": 2.07}`
 - **Economic Synthesis:** Evaluates the historical elasticity between real GDP growth and changes in unemployment to detect jobless growth or labor hoarding.
 
 #### [MODEL_23.1] Labor Market Dual-Track Dynamics
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23.1
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.1
 - **Evaluated Status:** `BALANCED_LABOR_MARKET` (Primary Value: 165.0 Thousands (k))
 - **Inputs Evaluated:** `{"payems_change_mom_k": 165.0, "unrate_change_mom_ppt": -0.1, "civpart_change_mom_ppt": 0.1}`
 - **Secondary Metrics:** `{"payems_change_k": 165.0, "unrate_change_ppt": -0.1, "civpart_change_ppt": 0.1}`
 - **Economic Synthesis:** Cross-evaluates payroll gains against unemployment rate and participation rate shifts to determine whether employment growth is organically absorbing new entrants or masking structural deterioration.
 
 #### [MODEL_23.4] Early Layoff and Recession Signal
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23.4
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.4
 - **Evaluated Status:** `EXPANSION_EMPLOYMENT_MOMENTUM` (Primary Value: 3.41 Index Points)
 - **Inputs Evaluated:** `{"industrial_production_yoy_pct": 2.25, "weekly_hours_yoy_pct": 0.58}`
 - **Secondary Metrics:** `{"early_layoff_index": 3.41, "indpro_yoy_pct": 2.25, "awhaetp_yoy_pct": 0.58}`
 - **Economic Synthesis:** Detects latent employment losses and early recessionary inflection before headline unemployment rises by synthesizing weekly hours worked against industrial production momentum.
 
 #### [MODEL_23.6] Early Employment Crack Signal
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23.6
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.6
 - **Evaluated Status:** `LABOR_MARKET_ALIGNED` (Primary Value: -13.64 Index Points)
 - **Inputs Evaluated:** `{"ic4wsa_yoy_pct": -13.64, "unrate_delta_ppt": -0.3}`
 - **Secondary Metrics:** `{"early_employment_crack_index": -13.64, "effective_unrate_delta": 0.0, "crack_threshold": 15.0}`
@@ -241,119 +241,119 @@
 - **Economic Synthesis:** Identifies early labor cracks by comparing weekly jobless claims spikes against delayed headline unemployment shifts.
 
 #### [MODEL_23.7] Inventory to Sales Glut Ratio
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23.7
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.7
 - **Evaluated Status:** `BALANCED_SUPPLY_CHAIN` (Primary Value: 1.33 Ratio)
 - **Inputs Evaluated:** `{"total_business_isratio": 1.33}`
 - **Secondary Metrics:** `{"inventory_to_sales_ratio": 1.33}`
 - **Economic Synthesis:** Measures total business inventories relative to monthly sales. Values > 1.45 indicate severe inventory glut and recessionary production cuts.
 
 #### [MODEL_23.8] Mortgage and Permit Divergence (Housing Freeze Index)
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#23.8
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.8
 - **Evaluated Status:** `SUPPLY_CONTRACTION` (Primary Value: 7.5 Index Points)
 - **Inputs Evaluated:** `{"mortgage_30y_rate_pct": 7.18, "building_permits_yoy_pct": -3.19}`
 - **Secondary Metrics:** `{"housing_freeze_index": 7.5, "mortgage_rate": 7.18, "permits_yoy_pct": -3.19}`
 - **Economic Synthesis:** Measures divergence between surging mortgage borrowing costs and residential building permit momentum to model lock-in supply bottlenecks and housing transaction freezes.
 
 #### [MODEL_24] Safe Haven Flight Index
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#24
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#24
 - **Evaluated Status:** `NORMAL_MARKET_REGIME` (Primary Value: 0.765 Flight Ratio)
 - **Inputs Evaluated:** `{"nominal_broad_dollar_index_dtwexbgs": 121.8803, "high_yield_oas_bamlh0a0hym2": 3.2, "nominal_10y_treasury_dgs10": 5.1}`
 - **Secondary Metrics:** `{"flight_ratio": 0.765, "safe_haven_score": 76.47, "dollar_bond_ratio": 23.9}`
 - **Economic Synthesis:** Measures capital flight into safe-haven USD and flight-to-safety dynamics by evaluating dollar strength and credit spreads against Treasury yields. Values > 1.80 indicate acute flight to safety.
 
 #### [MODEL_25] Terms of Trade (TOT)
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#25
 - **Evaluated Status:** `FAVORABLE_TRADE` (Primary Value: 112.22 Index Points)
 - **Inputs Evaluated:** `{"export_price_index_iq": 170.8, "import_price_index_ir": 152.2}`
 - **Secondary Metrics:** `{"terms_of_trade_ratio": 112.22, "export_index": 170.8, "import_index": 152.2}`
 - **Economic Synthesis:** Evaluates sovereign purchasing power and current account terms-of-trade transfers by measuring the relative price of exported commodities against imported goods.
 
 #### [MODEL_25.12] Brent-WTI Benchmark Price Spread
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.12
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.12
 - **Evaluated Status:** `TYPICAL_BRENT_WTI_SPREAD` (Primary Value: 2.52 USD)
 - **Inputs Evaluated:** `{"brent_usd": 92.14, "wti_usd": 89.62, "commercial_crude_stocks_mbbl": 409.76, "us_crude_production_mbpd": 14.0}`
 - **Secondary Metrics:** `{"brent_wti_spread_usd": 2.52, "brent_usd": 92.14, "wti_usd": 89.62, "commercial_crude_stocks_mbbl": 409.76, "us_crude_production_mbpd": 14.0}`
 - **Economic Synthesis:** Measures the Brent-WTI benchmark price difference, indicating Brent's relative premium or discount and the degree of price divergence between the two markets. Live EIA commercial crude stocks: 409.76 mbbl. Live EIA US crude field production: 14.0 mbpd.
 
 #### [MODEL_25.13] Labor Market Momentum Index (LMMI)
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.13
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#25.13
 - **Evaluated Status:** `MODERATE_LABOR_EXPANSION` (Primary Value: 0.86 Net Momentum Pts)
 - **Inputs Evaluated:** `{"payems_current": 159293.0, "payems_year_ago": 158408.0, "unrate_current": 4.1, "unrate_year_ago": 4.4}`
 - **Secondary Metrics:** `{"payroll_growth_yoy_pct": 0.56, "unemployment_rate_diff_yoy": -0.3, "employment_strength_ratio": 0.14}`
 - **Economic Synthesis:** Couples nonfarm payroll expansion with unemployment change to gauge labor slack and wage inflation momentum.
 
 #### [MODEL_25.2] Sticky vs. Flexible CPI Spread
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.2
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#25.2
 - **Evaluated Status:** `BALANCED_DISINFLATION_PATH` (Primary Value: 0.14 Percentage Points (ppt))
 - **Inputs Evaluated:** `{"sticky_cpi_val": 0.39, "flexible_cpi_val": 0.25}`
 - **Secondary Metrics:** `{"sticky_impulse_ppt": 0.14, "sticky_cpi_rate": 0.39, "flexible_cpi_rate": 0.25}`
 - **Economic Synthesis:** Evaluates core inflation persistence versus transient price shocks by measuring the spread between sticky CPI (services, shelter) and flexible CPI (fuel, food). Spreads > 2.0 ppt reflect structural service-shelter inflation entrapment.
 
 #### [MODEL_25.3] Global Supply Chain Pressure Logistics Engine (NY Fed GSCPI)
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.3
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.3
 - **Evaluated Status:** `NORMALIZED_GLOBAL_TRADE` (Primary Value: 1.26 Standard Deviations (Z-Score))
 - **Inputs Evaluated:** `{"gscpi_zscore": 1.26}`
 - **Secondary Metrics:** `{"gscpi_zscore": 1.26}`
 - **Economic Synthesis:** Tracks standard deviations of global freight rates, shipping costs, and delivery times from historical mean. Values > 1.5 indicate supply chain shocks.
 
 #### [MODEL_25.5] Repo Liquidity Friction Spread Engine
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.5
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#25.5
 - **Evaluated Status:** `HEALTHY_MONETARY_TRANSMISSION` (Primary Value: 2.0 Basis Points (bps))
 - **Inputs Evaluated:** `{"sofr_rate": 3.9, "effr_rate": 3.88}`
 - **Secondary Metrics:** `{"spread_bps": 2.0}`
 - **Economic Synthesis:** Measures funding market friction tracking the spread between secured repo financing (SOFR) and unsecured Fed funds (EFFR). Spreads between -5.0 and +5.0 bps indicate healthy monetary transmission.
 
 #### [MODEL_25.6] Gold / Real Yield Debasement Gauge
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.6
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.6
 - **Evaluated Status:** `TRADITIONAL_REAL_RATE_DOMINANCE` (Primary Value: 2.86 Percent (%))
 - **Inputs Evaluated:** `{"tips_10y_real_yield_dfii10": 2.86, "gold_price_yoy_pct_ind_wb_gold": 1.16}`
 - **Secondary Metrics:** `{"real_yield_10y_pct": 2.86, "gold_yoy_pct": 1.16}`
 - **Economic Synthesis:** Detects de-dollarization trends and fiat debasement by measuring breakdowns in the traditional inverse correlation between 10-year TIPS real yields and gold prices. Gold rallying above 15% alongside real yields > 1.5% signals systemic de-dollarization.
 
 #### [MODEL_25.7] OVX / VIX Geopolitical Energy Shock Engine
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.7
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.7
 - **Evaluated Status:** `ENERGY_SUPPLY_SHOCK_ALARM` (Primary Value: 2.77 Ratio)
 - **Inputs Evaluated:** `{"ovx_close": 51.72, "vix_close": 18.7}`
 - **Secondary Metrics:** `{"ovx_vix_ratio": 2.77}`
 - **Economic Synthesis:** Evaluates the ratio between crude oil volatility (OVX) and equity volatility (VIX). Ratios > 2.2 signal severe geopolitical oil supply shocks and stagflationary headwinds.
 
 #### [MODEL_25.8] Natgas / Crude Oil Price-Ratio Disconnect Engine
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.8
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.8
 - **Evaluated Status:** `ENERGY_PARITY_EQUILIBRIUM` (Primary Value: 29.87 WTI/NatGas Ratio)
 - **Inputs Evaluated:** `{"wti_crude_usd_bbl": 89.62, "henry_hub_natgas_usd_mmbtu": 3.0, "lower48_natgas_storage_bcf": 3801.0, "natgas_storage_yoy_pct": -2.66}`
 - **Secondary Metrics:** `{"btu_disconnect_ratio": 29.87, "wti_price": 89.62, "natgas_price": 3.0, "lower48_natgas_storage_bcf": 3801.0, "natgas_storage_yoy_pct": -2.66}`
 - **Economic Synthesis:** Tracks relative purchasing power: at current quotes, the price of one WTI barrel buys 29.87 MMBtu of Henry Hub gas. Ratios below 6 mark the near-thermal-equivalence band around 5.8 MMBtu per barrel; ratios above 35 flag the empirical high-ratio tail of the matched post-2009 daily series. EIA underground gas storage is supplied as context alongside the price ratio. Current Lower 48 underground gas storage: 3801.0 Bcf.
 
 #### [MODEL_25.9] Gasoline / Distillate / Crude 3:2:1 Crack Spread
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.9
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.9
 - **Evaluated Status:** `CRACK_SPREAD_EXPANDING` (Primary Value: 36.86 USD per Barrel)
 - **Inputs Evaluated:** `{"gasoline_spot_usd_gal": 2.415, "ulsd_spot_usd_gal": 4.204, "wti_crude_usd_bbl": 89.62, "matched_observation_date": "2026-11-11", "gasoline_stocks_kbbl": 208958.0, "gasoline_stocks_yoy_pct": 1.43, "gasoline_spot_usd_gal_year_ago": 1.926, "ulsd_spot_usd_gal_year_ago": 2.418, "wti_crude_usd_bbl_year_ago": 60.97}`
 - **Secondary Metrics:** `{"crack_spread_321_usd_bbl": 36.86, "gasoline_2_barrel_equiv_usd": 202.86, "ulsd_1_barrel_equiv_usd": 176.57, "wti_crude_usd_bbl": 89.62, "gasoline_stocks_kbbl": 208958.0, "gasoline_stocks_yoy_pct": 1.43, "crack_spread_321_year_ago_usd_bbl": 26.81, "crack_spread_321_yoy_change_usd_bbl": 10.05, "crack_spread_321_yoy_pct": 37.49}`
 - **Economic Synthesis:** The same-date 3:2:1 crack spread is 36.86 USD/bbl, up 10.05 USD/bbl (37.49%) from 26.81 USD/bbl one year earlier. Status describes the year-over-year direction, not whether the absolute spread is high or low. Gasoline inventory is contextual only.
 
 #### [MODEL_25.10] SLOOS Lending Standards Recession Gauge
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.10
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#25.10
 - **Evaluated Status:** `NEUTRAL_CREDIT_CONDITIONS` (Primary Value: 5.1 Net Percent (%))
 - **Inputs Evaluated:** `{"drtscis_net_pct": 5.1}`
 - **Secondary Metrics:** `{"credit_tightening_net_pct": 5.1}`
 - **Economic Synthesis:** Tracks the net percentage of domestic US banks tightening lending standards on commercial and industrial (C&I) loans. Values > 40% signal an acute credit channel freeze and recession.
 
 #### [MODEL_25.11] Full-Time vs. Involuntary Part-Time Crack Gauge
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.11
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#25.11
 - **Evaluated Status:** `STABLE_EMPLOYMENT_COMPOSITION` (Primary Value: 5.4 Percentage Points (ppt))
 - **Inputs Evaluated:** `{"involuntary_part_time_lns12032194_k": 4840.0, "full_time_employed_lns12500000_k": 135090.0}`
 - **Secondary Metrics:** `{"crack_spread_pct": 5.4, "part_time_econ_yoy_pct": 5.35, "full_time_yoy_pct": -0.05}`
 - **Economic Synthesis:** Detects hidden labor market fragility by comparing the annual surge in involuntary part-time workers against changes in full-time employment. Spreads > 18.0 ppt signal structural weakening obscured by headline data.
 
 #### [MODEL_25.17] Liquidity & Commodity Macro Regime Matrix
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.17
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.17
 - **Evaluated Status:** `REFLATIONARY_EXPANSION` (Primary Value: 20.0 Basis Points (bps))
 - **Inputs Evaluated:** `{"treasury_3m_yield_dgs3mo": 4.32, "treasury_1m_yield_dgs1mo": 4.12, "brent_crude_yoy_pct": 40.8}`
 - **Secondary Metrics:** `{"slope_bps": 20.0, "brent_yoy_pct": 40.8}`
 - **Economic Synthesis:** Evaluates front-end money market liquidity (3M-1M T-Bill spread) against crude oil cost inflation (Brent YoY %) in a 2x2 macro matrix to identify systemic liquidity and cost shock regimes.
 
 #### [MODEL_25.14] AI Hardware & Semiconductor Supply Chain Stress Gauge
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.14
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.14
 - **Evaluated Status:** `BALANCED_HARDWARE_FLOW` (Primary Value: 0.456 Score (Normalized))
 - **Inputs Evaluated:** `{"gscpi_std_dev": 1.262, "sox_yoy_pct": 40.36, "vix_level": 18.7}`
 - **Secondary Metrics:** `{"hardware_stress_score": 0.456, "gscpi_weight": 0.505, "sox_weight": -0.283, "vix_weight": 0.234}`
@@ -361,7 +361,7 @@
 - **Economic Synthesis:** Normalized composite metric monitoring semiconductor physical supply bottlenecks, hardware inflation, and space-grade tactical defense processor conduits (SEC_DEF_STARSHIELD).
 
 #### [MODEL_25.16] Yen Carry Trade Dissolution and Stress Gauge
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.16
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#25.16
 - **Evaluated Status:** `CALM_ACCUMULATION` (Primary Value: 6.2379 % (Net Carry Buffer))
 - **Inputs Evaluated:** `{"rate_us_dff": 3.88, "rate_jp_boj": 1.25, "jpy_30d_momentum_pct": 3.61}`
 - **Secondary Metrics:** `{"rate_spread": 2.63, "net_buffer": 6.2379}`
@@ -369,14 +369,14 @@
 - **Economic Synthesis:** Monitors cross-currency Yen Carry Trade buffer, unwinding risk, and global leverage liquidation shocks.
 
 #### [MODEL_25.18] Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact)
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#25.18
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-geopolitics.txt#25.18
 - **Evaluated Status:** `TREATY_ACTIVE_EQUILIBRIUM` (Primary Value: 0.1 Dynamic Delta Index (Avg))
 - **Inputs Evaluated:** `{"brent_usd_bbl": 92.14, "sofr_percent": 3.9, "imf_breakeven_usd_bbl": 90.94}`
 - **Secondary Metrics:** `{"oil_breakeven_ratio": 1.0132, "delta_treaty_baseline": 0.1, "energy_fiscal_component": 0.0, "dollar_liquidity_friction": 0.0, "bilateral_deltas": {"TR_SA": 0.1, "SA_PK": 0.1, "TR_PK": 0.1}}`
 - **Economic Synthesis:** Non-contiguous trilateral defense integration linking Turkish aerospace/defense co-production, Saudi sovereign liquidity, and Pakistani strategic deterrence under dynamic oil and dollar regimes.
 
 #### [MODEL_28.4] Chokepoint Macro Spillover Bridge (Hormuz - Live EIA SPR)
-- **Reference Formula:** https://analysisreports.github.io/llms-formulas.txt#28.4
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.4
 - **Evaluated Status:** `MODERATE_FRICTION` (Primary Value: 50 Index (0-100))
 - **Inputs Evaluated:** `{"chokepoint_id": "CHOKE_HORMUZ", "severity_enum": "CATASTROPHIC", "p_net": -0.88, "crisis_duration_days": 14, "gross_flow_mbpd": 20.5, "regional_bypass_capacity_mbpd": 4.0, "eia_spr_stocks_mbbl": 282.18, "eia_us_crude_prod_mbpd": 14.0}`
 - **Secondary Metrics:** `{"severity_weight": 1.0, "polarity_friction_factor": 0.88, "spr_sustainable_drawdown_mbpd": 3.14, "effective_spr_release_mbpd": 3.14, "total_buffer_capacity_mbpd": 7.14, "net_unmet_deficit_mbpd": 13.36, "net_deficit_ratio": 0.6517, "duration_scale_factor": 0.7, "unscaled_base_shock": 72.02, "us_crude_field_production_mbpd": 14.0}`

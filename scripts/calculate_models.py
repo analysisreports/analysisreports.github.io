@@ -57,7 +57,7 @@ def calc_fed_policy_stance(dgs1mo_val, fed_rate_val):
         return {
             "model_id": "MODEL_1",
             "model_name": "Fed Policy Stance & Market Pressure Gauge",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#1",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#1",
             "primary_value": spread,
             "unit": "Basis Points (bps)",
             "status": status,
@@ -106,7 +106,7 @@ def calc_real_policy_rate(dff_val, cpi_yoy_val):
         return {
             "model_id": "MODEL_2",
             "model_name": "Real Policy Rate & Restrictiveness",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#2",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#2",
             "primary_value": rate,
             "unit": "Percent (%)",
             "status": status,
@@ -145,7 +145,7 @@ def calc_sahm_rule(sahm_val):
         return {
             "model_id": "MODEL_3",
             "model_name": "Official Sahm Rule Recession Indicator",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#3",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#3",
             "primary_value": diff,
             "unit": "Percentage Points",
             "status": status,
@@ -184,7 +184,7 @@ def calc_front_end_t_bill_slope(dgs3mo_val, dgs1mo_val):
         return {
             "model_id": "MODEL_4",
             "model_name": "Front-End T-Bill Slope & Liquidity Spread",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#4",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#4",
             "primary_value": spread,
             "unit": "Basis Points (bps)",
             "status": status,
@@ -234,7 +234,7 @@ def calc_net_fed_liquidity(walcl_mil, tga_mil, rrp_mil):
         return {
             "model_id": "MODEL_5",
             "model_name": "Net Fed Liquidity Index",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#5",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#5",
             "primary_value": net_liq_tril,
             "unit": "Trillion USD",
             "status": status,
@@ -276,7 +276,7 @@ def calc_yield_spread_bps(t10y2y_val):
         return {
             "model_id": "MODEL_6",
             "model_name": "Treasury Yield Curve Slope (10Y - 2Y)",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#6",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#6",
             "primary_value": bps,
             "unit": "Basis Points (bps)",
             "status": status,
@@ -318,7 +318,7 @@ def calc_breakeven_inflation(dgs10_val, dfii10_val) -> Optional[Dict[str, Any]]:
         return {
             "model_id": "MODEL_7",
             "model_name": "10-Year Breakeven Inflation Rate",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#7",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#7",
             "primary_value": rate,
             "unit": "Percent (%)",
             "status": status,
@@ -364,7 +364,7 @@ def calc_beveridge_labor_tightness(jtsjol_val, unemploy_val) -> Optional[Dict[st
         return {
             "model_id": "MODEL_8",
             "model_name": "Beveridge Curve Labor Tightness",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#8",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#8",
             "primary_value": ratio,
             "unit": "Ratio",
             "status": status,
@@ -412,7 +412,7 @@ def calc_financial_repression_index(dgs10_val, cpi_yoy_val, debt_gdp_val) -> Opt
         return {
             "model_id": "MODEL_9",
             "model_name": "Financial Repression Index",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#9",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#9",
             "primary_value": index,
             "unit": "Index Score",
             "status": status,
@@ -450,7 +450,7 @@ def calc_triffin_external_balance(dtwexbgs_val, bopgstb_val) -> Optional[Dict[st
             return {
                 "model_id": "MODEL_10",
                 "model_name": "Triffin External Balance",
-                "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#10",
+                "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#10",
                 "primary_value": tension,
                 "unit": "Surplus Tension Ratio",
                 "status": "OFFSHORE_DOLLAR_DRAIN_SURPLUS",
@@ -481,7 +481,7 @@ def calc_triffin_external_balance(dtwexbgs_val, bopgstb_val) -> Optional[Dict[st
         return {
             "model_id": "MODEL_10",
             "model_name": "Triffin External Balance",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#10",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#10",
             "primary_value": tension,
             "unit": "Tension Ratio",
             "status": status,
@@ -559,7 +559,7 @@ def calc_taylor_policy_gap(
         return {
             "model_id": "MODEL_11",
             "model_name": "Taylor Rule Policy Gap",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#11",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#11",
             "primary_value": gap,
             "unit": "Percentage Points (ppt)",
             "status": status,
@@ -608,7 +608,7 @@ def calc_financial_conditions_tightness(nfci_val, anfci_val) -> Optional[Dict[st
         return {
             "model_id": "MODEL_12",
             "model_name": "Financial Conditions Tightness (Chicago Fed NFCI)",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#12",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#12",
             "primary_value": nfci,
             "unit": "Index Points",
             "status": status,
@@ -651,7 +651,7 @@ def calc_high_yield_credit_stress(hy_spread_val) -> Optional[Dict[str, Any]]:
         return {
             "model_id": "MODEL_13",
             "model_name": "High Yield Credit Spread / OAS",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#13",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#13",
             "primary_value": bps,
             "unit": "Basis Points (bps)",
             "status": status,
@@ -692,7 +692,7 @@ def calc_real_m2_momentum(m2_yoy_val, cpi_yoy_val) -> Optional[Dict[str, Any]]:
         return {
             "model_id": "MODEL_14",
             "model_name": "Real M2 Money Momentum",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#14",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#14",
             "primary_value": diff,
             "unit": "Percentage Points (ppt)",
             "status": status,
@@ -743,7 +743,7 @@ def calc_acm_term_premium(dgs10_val, threefytp10_val) -> Optional[Dict[str, Any]
         return {
             "model_id": "MODEL_15",
             "model_name": "NY Fed ACM 10-Year Term Premium",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#15",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#15",
             "primary_value": term_prem,
             "unit": "Percent (%)",
             "status": status,
@@ -788,7 +788,7 @@ def calc_vix_market_regime(vix):
         return {
             "model_id": "MODEL_16",
             "model_name": "CBOE Volatility & Market Fear Regime",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#16",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#16",
             "primary_value": val,
             "unit": "Points",
             "status": regime,
@@ -871,7 +871,7 @@ def calc_brent_wti_spread(
         return {
             "model_id": "MODEL_25.12",
             "model_name": "Brent-WTI Benchmark Price Spread",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.12",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.12",
             "primary_value": spread,
             "unit": "USD",
             "status": status,
@@ -920,7 +920,7 @@ def calc_labor_market_momentum_index(payems_curr, payems_yr_ago, unrate_curr, un
         return {
             "model_id": "MODEL_25.13",
             "model_name": "Labor Market Momentum Index (LMMI)",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.13",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#25.13",
             "primary_value": lmmi,
             "unit": "Net Momentum Pts",
             "status": status,
@@ -966,7 +966,7 @@ def calc_sticky_flexible_cpi_spread(sticky_val, flex_val) -> Optional[Dict[str, 
         return {
             "model_id": "MODEL_25.2",
             "model_name": "Sticky vs. Flexible CPI Spread",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.2",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#25.2",
             "primary_value": impulse,
             "unit": "Percentage Points (ppt)",
             "status": status,
@@ -1003,7 +1003,7 @@ def calc_supply_chain_pressure(gscpi_val):
         return {
             "model_id": "MODEL_25.3",
             "model_name": "Global Supply Chain Pressure Logistics Engine (NY Fed GSCPI)",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.3",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.3",
             "primary_value": z_score,
             "unit": "Standard Deviations (Z-Score)",
             "status": status,
@@ -1046,7 +1046,7 @@ def calc_repo_liquidity_friction_spread(sofr_val, effr_val):
         return {
             "model_id": "MODEL_25.5",
             "model_name": "Repo Liquidity Friction Spread Engine",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.5",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#25.5",
             "primary_value": spread,
             "unit": "Basis Points (bps)",
             "status": status,
@@ -1086,7 +1086,7 @@ def calc_gold_real_yield_debasement(real_yield_10y_val, gold_yoy_pct_val) -> Opt
         return {
             "model_id": "MODEL_25.6",
             "model_name": "Gold / Real Yield Debasement Gauge",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.6",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.6",
             "primary_value": ry_val,
             "unit": "Percent (%)",
             "status": status,
@@ -1127,7 +1127,7 @@ def calc_ovx_vix_risk_premium(ovx_val, vix_val):
         return {
             "model_id": "MODEL_25.7",
             "model_name": "OVX / VIX Geopolitical Energy Shock Engine",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.7",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.7",
             "primary_value": ratio,
             "unit": "Ratio",
             "status": status,
@@ -1205,7 +1205,7 @@ def calc_natgas_crude_btu_disconnect(
         return {
             "model_id": "MODEL_25.8",
             "model_name": "Natgas / Crude Oil Price-Ratio Disconnect Engine",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.8",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.8",
             "primary_value": ratio,
             "unit": "WTI/NatGas Ratio",
             "status": status,
@@ -1350,7 +1350,7 @@ def calc_gasoline_321_crack_spread(
         return {
             "model_id": "MODEL_25.9",
             "model_name": "Gasoline / Distillate / Crude 3:2:1 Crack Spread",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.9",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.9",
             "primary_value": spread,
             "unit": "USD per Barrel",
             "status": status,
@@ -1384,7 +1384,7 @@ def calc_sloos_lending_tightness_gauge(drtscis_val) -> Optional[Dict[str, Any]]:
         return {
             "model_id": "MODEL_25.10",
             "model_name": "SLOOS Lending Standards Recession Gauge",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.10",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#25.10",
             "primary_value": tightness,
             "unit": "Net Percent (%)",
             "status": status,
@@ -1438,7 +1438,7 @@ def calc_hidden_employment_crack_gauge(part_time_econ_level_current, part_time_e
         return {
             "model_id": "MODEL_25.11",
             "model_name": "Full-Time vs. Involuntary Part-Time Crack Gauge",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.11",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#25.11",
             "primary_value": spread,
             "unit": "Percentage Points (ppt)",
             "status": status,
@@ -1497,7 +1497,7 @@ def calc_liquidity_commodity_matrix(dgs3mo, dgs1mo, brent_yoy_pct):
         return {
             "model_id": "MODEL_25.17",
             "model_name": "Liquidity & Commodity Macro Regime Matrix",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.17",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.17",
             "primary_value": slope_bps,
             "unit": "Basis Points (bps)",
             "status": status,
@@ -1550,7 +1550,7 @@ def calc_ai_chip_stress_gauge(gscpi_val, sox_yoy_pct, vix_val):
         return {
             "model_id": "MODEL_25.14",
             "model_name": "AI Hardware & Semiconductor Supply Chain Stress Gauge",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.14",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.14",
             "primary_value": stress_score,
             "unit": "Score (Normalized)",
             "status": status,
@@ -1599,7 +1599,7 @@ def calc_jpy_carry_crack(dff_val, boj_rate_val, jpy_fx_mom) -> Optional[Dict[str
         return {
             'model_id': 'MODEL_25.16',
             'model_name': 'Yen Carry Trade Dissolution and Stress Gauge',
-            'formula_ref': 'https://analysisreports.github.io/llms-formulas.txt#25.16',
+            'formula_ref': 'https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#25.16',
             'primary_value': net_buffer,
             'unit': '% (Net Carry Buffer)',
             'status': status,
@@ -1650,7 +1650,7 @@ def calc_misery_index(unrate_val, cpi_yoy_val):
         return {
             "model_id": "MODEL_18",
             "model_name": "Okun Misery Index",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#18",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#18",
             "primary_value": score,
             "unit": "Index Points",
             "status": status,
@@ -1700,7 +1700,7 @@ def calc_buffett_indicator(market_val_mil, gdp_val_bil) -> Optional[Dict[str, An
         return {
             "model_id": "MODEL_19",
             "model_name": "Buffett Indicator (Corporate Equities to GDP)",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#19",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#19",
             "primary_value": ratio,
             "unit": "Percent (%)",
             "status": status,
@@ -1751,7 +1751,7 @@ def calc_copper_gold_ratio(copper_price_val, gold_price_val, copper_prev_val=Non
         return {
             "model_id": "MODEL_20",
             "model_name": "Copper to Gold Macro Sentiment Ratio",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#20",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#20",
             "primary_value": ratio,
             "unit": "Ratio (USD/MT to USD/oz)",
             "status": status,
@@ -1791,7 +1791,7 @@ def calc_gold_oil_ratio(gold_price, oil_price) -> Optional[Dict[str, Any]]:
         return {
             "model_id": "MODEL_21",
             "model_name": "Gold to Oil Crisis & Recession Ratio",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#21",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#21",
             "primary_value": ratio,
             "unit": "Barrels per Ounce",
             "status": status,
@@ -1842,7 +1842,7 @@ def calc_household_credit_stress(delinquency_rate_val, saving_rate_val) -> Optio
         return {
             "model_id": "MODEL_22",
             "model_name": "Household Credit Stress Gauge",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#22",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#22",
             "primary_value": ratio,
             "unit": "Stress Ratio",
             "status": status,
@@ -1884,7 +1884,7 @@ def calc_okun_labor_gap(actual_unrate_delta, real_gdp_yoy) -> Optional[Dict[str,
         return {
             "model_id": "MODEL_23",
             "model_name": "Okun Gap (Growth-Employment Divergence)",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23",
             "primary_value": gap,
             "unit": "Percentage Points (ppt)",
             "status": status,
@@ -1926,7 +1926,7 @@ def calc_labor_dual_track_matrix(payems_mom, unrate_delta, civpart_delta) -> Opt
         return {
             "model_id": "MODEL_23.1",
             "model_name": "Labor Market Dual-Track Dynamics",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.1",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.1",
             "primary_value": round(p_mom, 2),
             "unit": "Thousands (k)",
             "status": status,
@@ -1971,7 +1971,7 @@ def calc_early_layoff_signal(indpro_yoy_pct, awhaetp_yoy_pct) -> Optional[Dict[s
         return {
             "model_id": "MODEL_23.4",
             "model_name": "Early Layoff and Recession Signal",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.4",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.4",
             "primary_value": index,
             "unit": "Index Points",
             "status": status,
@@ -2016,7 +2016,7 @@ def calc_early_employment_crack(ic4wsa_yoy, unrate_delta) -> Optional[Dict[str, 
         return {
             "model_id": "MODEL_23.6",
             "model_name": "Early Employment Crack Signal",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.6",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.6",
             "primary_value": index,
             "unit": "Index Points",
             "status": status,
@@ -2059,7 +2059,7 @@ def calc_inventory_to_sales_glut(isratio_val):
         return {
             "model_id": "MODEL_23.7",
             "model_name": "Inventory to Sales Glut Ratio",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.7",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.7",
             "primary_value": ratio,
             "unit": "Ratio",
             "status": status,
@@ -2102,7 +2102,7 @@ def calc_housing_freeze_index(mortgage_rate, permit_yoy) -> Optional[Dict[str, A
         return {
             "model_id": "MODEL_23.8",
             "model_name": "Mortgage and Permit Divergence (Housing Freeze Index)",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.8",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.8",
             "primary_value": index,
             "unit": "Index Points",
             "status": status,
@@ -2157,7 +2157,7 @@ def calc_safe_haven_flight_index(dxy_val, hy_spread_val, dgs10_val) -> Optional[
         return {
             "model_id": "MODEL_24",
             "model_name": "Safe Haven Flight Index",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#24",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#24",
             "primary_value": ratio,
             "unit": "Flight Ratio",
             "status": status,
@@ -2204,7 +2204,7 @@ def calc_terms_of_trade(export_idx, import_idx) -> Optional[Dict[str, Any]]:
         return {
             "model_id": "MODEL_25",
             "model_name": "Terms of Trade (TOT)",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#25",
             "primary_value": tot,
             "unit": "Index Points",
             "status": status,
@@ -2260,7 +2260,7 @@ def calc_mecca_pact_transmission(brent_val, sofr_val, breakeven_oil=None):
         return {
             "model_id": "MODEL_25.18",
             "model_name": "Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact)",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.18",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#25.18",
             "primary_value": avg_uplift,
             "unit": "Dynamic Delta Index (Avg)",
             "status": status,
@@ -2314,7 +2314,7 @@ def calc_governance_gridlock_friction(country_code, majority_seat_margin, execut
         return {
             "model_id": "MODEL_25.15",
             "model_name": "Domestic Governance Gridlock & External Tariff Friction Engine",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.15",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#25.15",
             "primary_value": ext_friction,
             "unit": "Friction Bias",
             "status": status,
@@ -2356,7 +2356,7 @@ def calc_governance_gridlock_friction(country_code, majority_seat_margin, execut
         return {
             "model_id": "MODEL_25.15",
             "model_name": "Domestic Governance Gridlock & External Tariff Friction Engine",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.15",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#25.15",
             "primary_value": ext_friction,
             "unit": "Friction Bias",
             "status": status,
@@ -2439,7 +2439,7 @@ def calc_committee_dispersion(n_hawkish, n_dovish, n_neutral, n_total=None):
         return {
             "model_id": "MODEL_26",
             "model_name": "Central Bank Committee Dispersion & Hawkishness Index",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#26",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#26",
             "primary_value": h_index,
             "unit": "H-Index",
             "status": directional_stance,
@@ -2571,7 +2571,7 @@ def calc_chokepoint_transmission_bridge(
         return {
             "model_id": "MODEL_28.4",
             "model_name": "Chokepoint Macro Spillover Bridge (Hormuz - Live EIA SPR)",
-            "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#28.4",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.4",
             "primary_value": score,
             "unit": "Index (0-100)",
             "status": transmission_regime,

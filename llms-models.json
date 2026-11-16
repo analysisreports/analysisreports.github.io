@@ -7,7 +7,7 @@
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-16T11:27:57.083132+00:00",
+    "last_successful_sync": "2026-11-16T11:32:21.907202+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -23,7 +23,7 @@
     {
       "model_id": "MODEL_1",
       "model_name": "Fed Policy Stance & Market Pressure Gauge",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#1",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#1",
       "primary_value": 12.0,
       "unit": "Basis Points (bps)",
       "status": "HAWKISH_MARKET_PRESSURE",
@@ -41,7 +41,7 @@
     {
       "model_id": "MODEL_2",
       "model_name": "Real Policy Rate & Restrictiveness",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#2",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#2",
       "primary_value": -0.2,
       "unit": "Percent (%)",
       "status": "ACCOMMODATIVE",
@@ -59,7 +59,7 @@
     {
       "model_id": "MODEL_3",
       "model_name": "Official Sahm Rule Recession Indicator",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#3",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#3",
       "primary_value": 0.0,
       "unit": "Percentage Points",
       "status": "NORMAL_LABOR_MARKET",
@@ -74,7 +74,7 @@
     {
       "model_id": "MODEL_4",
       "model_name": "Front-End T-Bill Slope & Liquidity Spread",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#4",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#4",
       "primary_value": 20.0,
       "unit": "Basis Points (bps)",
       "status": "NORMAL_SLOPE",
@@ -92,7 +92,7 @@
     {
       "model_id": "MODEL_5",
       "model_name": "Net Fed Liquidity Index",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#5",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#5",
       "primary_value": 5.791,
       "unit": "Trillion USD",
       "status": "NEUTRAL_LIQUIDITY_EQUILIBRIUM",
@@ -111,7 +111,7 @@
     {
       "model_id": "MODEL_6",
       "model_name": "Treasury Yield Curve Slope (10Y - 2Y)",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#6",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#6",
       "primary_value": 27.0,
       "unit": "Basis Points (bps)",
       "status": "NORMAL_CURVE_EXPANSION",
@@ -127,7 +127,7 @@
     {
       "model_id": "MODEL_7",
       "model_name": "10-Year Breakeven Inflation Rate",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#7",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#7",
       "primary_value": 2.24,
       "unit": "Percent (%)",
       "status": "FED_ALIGNED_EQUILIBRIUM",
@@ -145,7 +145,7 @@
     {
       "model_id": "MODEL_8",
       "model_name": "Beveridge Curve Labor Tightness",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#8",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#8",
       "primary_value": 1.06,
       "unit": "Ratio",
       "status": "BALANCED_LABOR_TIGHTNESS",
@@ -163,7 +163,7 @@
     {
       "model_id": "MODEL_9",
       "model_name": "Financial Repression Index",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#9",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#9",
       "primary_value": 1.236,
       "unit": "Index Score",
       "status": "SUSTAINABLE_CYCLE",
@@ -182,7 +182,7 @@
     {
       "model_id": "MODEL_10",
       "model_name": "Triffin External Balance",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#10",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#10",
       "primary_value": 1.1602,
       "unit": "Tension Ratio",
       "status": "BALANCED_TRIFFIN_EQUILIBRIUM",
@@ -200,7 +200,7 @@
     {
       "model_id": "MODEL_11",
       "model_name": "Taylor Rule Policy Gap",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#11",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#11",
       "primary_value": -4.09,
       "unit": "Percentage Points (ppt)",
       "status": "BEHIND_THE_CURVE",
@@ -224,7 +224,7 @@
     {
       "model_id": "MODEL_12",
       "model_name": "Financial Conditions Tightness (Chicago Fed NFCI)",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#12",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#12",
       "primary_value": -0.459,
       "unit": "Index Points",
       "status": "LOOSE_FINANCIAL_CONDITIONS",
@@ -242,7 +242,7 @@
     {
       "model_id": "MODEL_13",
       "model_name": "High Yield Credit Spread / OAS",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#13",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#13",
       "primary_value": 320,
       "unit": "Basis Points (bps)",
       "status": "RISK_APPETITE_HEALTHY",
@@ -258,7 +258,7 @@
     {
       "model_id": "MODEL_14",
       "model_name": "Real M2 Money Momentum",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#14",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#14",
       "primary_value": 1.63,
       "unit": "Percentage Points (ppt)",
       "status": "MONETARY_EXPANSION",
@@ -276,7 +276,7 @@
     {
       "model_id": "MODEL_15",
       "model_name": "NY Fed ACM 10-Year Term Premium",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#15",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#15",
       "primary_value": 0.87,
       "unit": "Percent (%)",
       "status": "FISCAL_SUPPLY_PRESSURE",
@@ -294,7 +294,7 @@
     {
       "model_id": "MODEL_16",
       "model_name": "CBOE Volatility & Market Fear Regime",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#16",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#16",
       "primary_value": 18.7,
       "unit": "Points",
       "status": "NORMAL_VOLATILITY",
@@ -312,7 +312,7 @@
     {
       "model_id": "MODEL_18",
       "model_name": "Okun Misery Index",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#18",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#18",
       "primary_value": 8.18,
       "unit": "Index Points",
       "status": "MODERATE",
@@ -330,7 +330,7 @@
     {
       "model_id": "MODEL_19",
       "model_name": "Buffett Indicator (Corporate Equities to GDP)",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#19",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#19",
       "primary_value": 251.59,
       "unit": "Percent (%)",
       "status": "SEVERELY_OVERVALUED",
@@ -348,7 +348,7 @@
     {
       "model_id": "MODEL_20",
       "model_name": "Copper to Gold Macro Sentiment Ratio",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#20",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#20",
       "primary_value": 3.5257,
       "unit": "Ratio (USD/MT to USD/oz)",
       "status": "CYCLICAL_EXPANSION",
@@ -366,7 +366,7 @@
     {
       "model_id": "MODEL_21",
       "model_name": "Gold to Oil Crisis & Recession Ratio",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#21",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#21",
       "primary_value": 45.8,
       "unit": "Barrels per Ounce",
       "status": "MACRO_CRISIS_RECESSION",
@@ -387,7 +387,7 @@
     {
       "model_id": "MODEL_22",
       "model_name": "Household Credit Stress Gauge",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#22",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#22",
       "primary_value": 0.75,
       "unit": "Stress Ratio",
       "status": "ELEVATED_PRESSURE",
@@ -405,7 +405,7 @@
     {
       "model_id": "MODEL_23",
       "model_name": "Okun Gap (Growth-Employment Divergence)",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23",
       "primary_value": -0.27,
       "unit": "Percentage Points (ppt)",
       "status": "BALANCED_OKUN_EQUILIBRIUM",
@@ -424,7 +424,7 @@
     {
       "model_id": "MODEL_23.1",
       "model_name": "Labor Market Dual-Track Dynamics",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.1",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.1",
       "primary_value": 165.0,
       "unit": "Thousands (k)",
       "status": "BALANCED_LABOR_MARKET",
@@ -443,7 +443,7 @@
     {
       "model_id": "MODEL_23.4",
       "model_name": "Early Layoff and Recession Signal",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.4",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.4",
       "primary_value": 3.41,
       "unit": "Index Points",
       "status": "EXPANSION_EMPLOYMENT_MOMENTUM",
@@ -461,7 +461,7 @@
     {
       "model_id": "MODEL_23.6",
       "model_name": "Early Employment Crack Signal",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.6",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.6",
       "primary_value": -13.64,
       "unit": "Index Points",
       "status": "LABOR_MARKET_ALIGNED",
@@ -483,7 +483,7 @@
     {
       "model_id": "MODEL_23.7",
       "model_name": "Inventory to Sales Glut Ratio",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.7",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.7",
       "primary_value": 1.33,
       "unit": "Ratio",
       "status": "BALANCED_SUPPLY_CHAIN",
@@ -498,7 +498,7 @@
     {
       "model_id": "MODEL_23.8",
       "model_name": "Mortgage and Permit Divergence (Housing Freeze Index)",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#23.8",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.8",
       "primary_value": 7.5,
       "unit": "Index Points",
       "status": "SUPPLY_CONTRACTION",
@@ -516,7 +516,7 @@
     {
       "model_id": "MODEL_24",
       "model_name": "Safe Haven Flight Index",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#24",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#24",
       "primary_value": 0.765,
       "unit": "Flight Ratio",
       "status": "NORMAL_MARKET_REGIME",
@@ -535,7 +535,7 @@
     {
       "model_id": "MODEL_25",
       "model_name": "Terms of Trade (TOT)",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#25",
       "primary_value": 112.22,
       "unit": "Index Points",
       "status": "FAVORABLE_TRADE",
@@ -553,7 +553,7 @@
     {
       "model_id": "MODEL_25.12",
       "model_name": "Brent-WTI Benchmark Price Spread",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.12",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.12",
       "primary_value": 2.52,
       "unit": "USD",
       "status": "TYPICAL_BRENT_WTI_SPREAD",
@@ -575,7 +575,7 @@
     {
       "model_id": "MODEL_25.13",
       "model_name": "Labor Market Momentum Index (LMMI)",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.13",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#25.13",
       "primary_value": 0.86,
       "unit": "Net Momentum Pts",
       "status": "MODERATE_LABOR_EXPANSION",
@@ -595,7 +595,7 @@
     {
       "model_id": "MODEL_25.2",
       "model_name": "Sticky vs. Flexible CPI Spread",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.2",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#25.2",
       "primary_value": 0.14,
       "unit": "Percentage Points (ppt)",
       "status": "BALANCED_DISINFLATION_PATH",
@@ -613,7 +613,7 @@
     {
       "model_id": "MODEL_25.3",
       "model_name": "Global Supply Chain Pressure Logistics Engine (NY Fed GSCPI)",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.3",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.3",
       "primary_value": 1.26,
       "unit": "Standard Deviations (Z-Score)",
       "status": "NORMALIZED_GLOBAL_TRADE",
@@ -628,7 +628,7 @@
     {
       "model_id": "MODEL_25.5",
       "model_name": "Repo Liquidity Friction Spread Engine",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.5",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#25.5",
       "primary_value": 2.0,
       "unit": "Basis Points (bps)",
       "status": "HEALTHY_MONETARY_TRANSMISSION",
@@ -644,7 +644,7 @@
     {
       "model_id": "MODEL_25.6",
       "model_name": "Gold / Real Yield Debasement Gauge",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.6",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.6",
       "primary_value": 2.86,
       "unit": "Percent (%)",
       "status": "TRADITIONAL_REAL_RATE_DOMINANCE",
@@ -661,7 +661,7 @@
     {
       "model_id": "MODEL_25.7",
       "model_name": "OVX / VIX Geopolitical Energy Shock Engine",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.7",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.7",
       "primary_value": 2.77,
       "unit": "Ratio",
       "status": "ENERGY_SUPPLY_SHOCK_ALARM",
@@ -677,7 +677,7 @@
     {
       "model_id": "MODEL_25.8",
       "model_name": "Natgas / Crude Oil Price-Ratio Disconnect Engine",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.8",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.8",
       "primary_value": 29.87,
       "unit": "WTI/NatGas Ratio",
       "status": "ENERGY_PARITY_EQUILIBRIUM",
@@ -699,7 +699,7 @@
     {
       "model_id": "MODEL_25.9",
       "model_name": "Gasoline / Distillate / Crude 3:2:1 Crack Spread",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.9",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.9",
       "primary_value": 36.86,
       "unit": "USD per Barrel",
       "status": "CRACK_SPREAD_EXPANDING",
@@ -730,7 +730,7 @@
     {
       "model_id": "MODEL_25.10",
       "model_name": "SLOOS Lending Standards Recession Gauge",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.10",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#25.10",
       "primary_value": 5.1,
       "unit": "Net Percent (%)",
       "status": "NEUTRAL_CREDIT_CONDITIONS",
@@ -745,7 +745,7 @@
     {
       "model_id": "MODEL_25.11",
       "model_name": "Full-Time vs. Involuntary Part-Time Crack Gauge",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.11",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#25.11",
       "primary_value": 5.4,
       "unit": "Percentage Points (ppt)",
       "status": "STABLE_EMPLOYMENT_COMPOSITION",
@@ -763,7 +763,7 @@
     {
       "model_id": "MODEL_25.17",
       "model_name": "Liquidity & Commodity Macro Regime Matrix",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.17",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.17",
       "primary_value": 20.0,
       "unit": "Basis Points (bps)",
       "status": "REFLATIONARY_EXPANSION",
@@ -781,7 +781,7 @@
     {
       "model_id": "MODEL_25.14",
       "model_name": "AI Hardware & Semiconductor Supply Chain Stress Gauge",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.14",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.14",
       "primary_value": 0.456,
       "unit": "Score (Normalized)",
       "status": "BALANCED_HARDWARE_FLOW",
@@ -806,7 +806,7 @@
     {
       "model_id": "MODEL_25.16",
       "model_name": "Yen Carry Trade Dissolution and Stress Gauge",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.16",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#25.16",
       "primary_value": 6.2379,
       "unit": "% (Net Carry Buffer)",
       "status": "CALM_ACCUMULATION",
@@ -828,7 +828,7 @@
     {
       "model_id": "MODEL_25.18",
       "model_name": "Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact)",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#25.18",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#25.18",
       "primary_value": 0.1,
       "unit": "Dynamic Delta Index (Avg)",
       "status": "TREATY_ACTIVE_EQUILIBRIUM",
@@ -853,7 +853,7 @@
     {
       "model_id": "MODEL_28.4",
       "model_name": "Chokepoint Macro Spillover Bridge (Hormuz - Live EIA SPR)",
-      "formula_ref": "https://analysisreports.github.io/llms-formulas.txt#28.4",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.4",
       "primary_value": 50,
       "unit": "Index (0-100)",
       "status": "MODERATE_FRICTION",
