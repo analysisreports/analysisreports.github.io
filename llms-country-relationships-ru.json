@@ -63,7 +63,7 @@
         "common_reference": "Russia ↔ People's Republic of China",
         "bilateral_stance": 0.8,
         "stance_classification": "Comprehensive Strategic Partnership & Anti-Hegemonic Axis",
-        "strategic_category": "Eurasian Geoeconomic & Multipolar Core Alignment",
+        "strategic_category": "Eurasian Geoeconomic & Multipolar Core Alignment (Canonical Mirror: REL_GEO_CN_GEO_RU)",
         "asymmetric_power_vectors": [
           {
             "leverage_holder": "GEO_CN",
@@ -133,7 +133,7 @@
         "common_reference": "Russia ↔ Islamic Republic of Iran",
         "bilateral_stance": 0.75,
         "stance_classification": "Strategic Defense Industrial & Logistics Axis",
-        "strategic_category": "Drone Technology Integration & INSTC Chokepoint Bypassing",
+        "strategic_category": "Drone Technology Integration & INSTC Chokepoint Bypassing (Canonical Mirror: REL_GEO_IR_GEO_RU)",
         "asymmetric_power_vectors": [
           {
             "leverage_holder": "GEO_IR",

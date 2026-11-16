@@ -1981,7 +1981,7 @@
         "common_reference": "United States ↔ People's Republic of China",
         "bilateral_stance": -0.65,
         "stance_classification": "Structural Geoeconomic & Technological Rivalry",
-        "strategic_category": "Hegemonic Transition & High-Tech Decoupling Axis",
+        "strategic_category": "Hegemonic Transition & High-Tech Decoupling Axis (Canonical Mirror: REL_GEO_CN_GEO_US)",
         "asymmetric_power_vectors": [
           {
             "leverage_holder": "GEO_US",
@@ -2018,7 +2018,7 @@
         "common_reference": "United States ↔ Russian Federation",
         "bilateral_stance": -0.85,
         "stance_classification": "Direct Strategic & Nuclear Proxy Conflict",
-        "strategic_category": "Nuclear Deterrence & Post-Cold War Containment",
+        "strategic_category": "Nuclear Deterrence & Post-Cold War Containment (Canonical Mirror: REL_GEO_RU_GEO_US)",
         "asymmetric_power_vectors": [
           {
             "leverage_holder": "Mutual/Structural",
@@ -2056,7 +2056,7 @@
         "common_reference": "United States ↔ Islamic Republic of Iran",
         "bilateral_stance": -0.85,
         "stance_classification": "Direct Kinetic Stand-Off & Asymmetric Proxy War",
-        "strategic_category": "Persian Gulf Regional Containment & Non-Proliferation",
+        "strategic_category": "Persian Gulf Regional Containment & Non-Proliferation (Canonical Mirror: REL_GEO_IR_GEO_US)",
         "asymmetric_power_vectors": [
           {
             "leverage_holder": "GEO_IR",

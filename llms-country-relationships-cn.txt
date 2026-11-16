@@ -506,7 +506,7 @@ Cross-Reference Multilateral Nodes: CHOKE_LUZON, ZONE_FIRST_ISLAND_CHAIN, BLOC_R
 Bilateral Dyad: GEO_CN ↔ GEO_AU
 Common Reference: China ↔ Commonwealth of Australia
 Dyad ID: REL_GEO_CN_GEO_AU
-Bilateral Stance: -0.40 (AUKUS Submarine Pakt vs Bulk Commodity Interdependence)
+Bilateral Stance: -0.40 (AUKUS Submarine Pact vs Bulk Commodity Interdependence)
 Strategic Category: Indo-Pacific Strategic Containment & Critical Minerals Nexus
 Asymmetric Power Vectors:
   - [GEO_AU Leverage] Essential Iron Ore & Lithium Monopoly: Australia provides over 60% of China's seaborne iron ore imports, which Chinese blast furnaces cannot readily substitute.

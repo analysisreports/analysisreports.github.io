@@ -954,7 +954,7 @@ Bilateral Dyad: GEO_US ↔ GEO_CN
 Common Reference: United States ↔ People's Republic of China
 Dyad ID: REL_GEO_US_GEO_CN
 Bilateral Stance: -0.65 (Structural Geoeconomic & Technological Rivalry)
-Strategic Category: Hegemonic Transition & High-Tech Decoupling Axis
+Strategic Category: Hegemonic Transition & High-Tech Decoupling Axis (Canonical Mirror: REL_GEO_CN_GEO_US)
 Asymmetric Power Vectors:
   - [GEO_US Leverage] Technology: Advanced semiconductor export controls (CHIPS Act, EUV lithography embargoes, AI processor bans).
   - [GEO_CN Leverage] Supply Chain & Raw Materials: Rare earth element refining monopoly (gallium, germanium, antimony) and battery supply chains.
@@ -970,7 +970,7 @@ Bilateral Dyad: GEO_US ↔ GEO_RU
 Common Reference: United States ↔ Russian Federation
 Dyad ID: REL_GEO_US_GEO_RU
 Bilateral Stance: -0.85 (Direct Strategic & Nuclear Proxy Conflict)
-Strategic Category: Nuclear Deterrence & Post-Cold War Containment
+Strategic Category: Nuclear Deterrence & Post-Cold War Containment (Canonical Mirror: REL_GEO_RU_GEO_US)
 Asymmetric Power Vectors:
   - [Mutual/Structural] Nuclear Strategic Force: Symmetric mutual assured destruction (MAD) parity under New START framework limitations.
   - [GEO_US Leverage] Financial & Sanctions: Overwhelming asymmetric leverage; full Russian Central Bank (INST_CBR_RU) reserve freeze and secondary banking sanctions.
@@ -986,7 +986,7 @@ Bilateral Dyad: GEO_US ↔ GEO_IR
 Common Reference: United States ↔ Islamic Republic of Iran
 Dyad ID: REL_GEO_US_GEO_IR
 Bilateral Stance: -0.85 (Direct Kinetic Stand-Off & Asymmetric Proxy War)
-Strategic Category: Persian Gulf Regional Containment & Non-Proliferation
+Strategic Category: Persian Gulf Regional Containment & Non-Proliferation (Canonical Mirror: REL_GEO_IR_GEO_US)
 Asymmetric Power Vectors:
   - [GEO_IR Leverage] Chokepoint Interdiction: Threat of closing the Strait of Hormuz (CHOKE_HORMUZ) via naval mines, anti-ship missiles, and drone swarms.
   - [GEO_US Leverage] Economic Embargo: Maximum pressure sanctions, primary and secondary oil export boycotts, and targeted strikes on high-value commanders.
@@ -1243,5 +1243,3 @@ Core Strategic Flashpoints:
   3. Severe humanitarian crisis, displacement of Rohingya populations, and regional refugee spillover into Thailand/India.
 Cross-Reference Multilateral Nodes: GEO_CN, GEO_TH, GEO_IN, CHOKE_MALACCA
 
-
-# ==============================================================================

@@ -85,7 +85,7 @@ Bilateral Dyad: GEO_RU ↔ GEO_CN
 Common Reference: Russia ↔ People's Republic of China
 Dyad ID: REL_GEO_RU_GEO_CN
 Bilateral Stance: +0.80 (Comprehensive Strategic Partnership & Anti-Hegemonic Axis)
-Strategic Category: Eurasian Geoeconomic & Multipolar Core Alignment
+Strategic Category: Eurasian Geoeconomic & Multipolar Core Alignment (Canonical Mirror: REL_GEO_CN_GEO_RU)
 Asymmetric Power Vectors:
   - [GEO_CN Leverage] Industrial Machinery & Dual-Use Technology: Critical supplier of electronics, vehicle fleets, tooling, and consumer industrial inputs replacing Western trade.
   - [GEO_RU Leverage] Hydrocarbon & Commodity Security: Long-term discounted pipeline crude (ESPO), natural gas (Power of Siberia), and enriched uranium exports.
@@ -115,7 +115,7 @@ Bilateral Dyad: GEO_RU ↔ GEO_IR
 Common Reference: Russia ↔ Islamic Republic of Iran
 Dyad ID: REL_GEO_RU_GEO_IR
 Bilateral Stance: +0.75 (Strategic Defense Industrial & Logistics Axis)
-Strategic Category: Drone Technology Integration & INSTC Chokepoint Bypassing
+Strategic Category: Drone Technology Integration & INSTC Chokepoint Bypassing (Canonical Mirror: REL_GEO_IR_GEO_RU)
 Asymmetric Power Vectors:
   - [GEO_IR Leverage] Asymmetric Strike Platforms: Transfer of Shahed-type loitering munitions, ballistic missile components, and licensed domestic manufacturing facilities.
   - [GEO_RU Leverage] Advanced Aerospace & Air Defense: Delivery of modern fighter aircraft, advanced radar units, and technical assistance on the Bushehr nuclear complex.
@@ -579,6 +579,3 @@ Core Strategic Flashpoints:
   2. Revitalization of signals intelligence cooperation within 90 miles of the Florida coast.
 Cross-Reference Multilateral Nodes: GEO_US, CHOKE_PANAMA
 
-
-
-# ==============================================================================

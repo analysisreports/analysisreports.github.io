@@ -9,7 +9,7 @@
 # Total Registered Sovereign Hubs: 4 Hubs
 # Total Registered Bilateral Dyads: 165 Dyads (100% Invariant Zero-Loss Architecture)
 # Architecture: Top-Down Master Router + Bottom-Up Sovereign Hub Shelves (SSOT)
-# Last Compiled: 2026-11-16T15:22:23Z
+# Last Compiled: 2026-11-16T15:28:48Z
 # Language: English (Machine-Readable Dual-Layer Geopolitical Matrix)
 # License: Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 # ==============================================================================
@@ -371,17 +371,17 @@
 
 - Dyad: GEO_US ↔ GEO_CN | ID: REL_GEO_US_GEO_CN
   Ref: United States ↔ People's Republic of China
-  P_baseline: -0.65 (Structural Geoeconomic & Technological Rivalry) | Category: Hegemonic Transition & High-Tech Decoupling Axis
+  P_baseline: -0.65 (Structural Geoeconomic & Technological Rivalry) | Category: Hegemonic Transition & High-Tech Decoupling Axis (Canonical Mirror: REL_GEO_CN_GEO_US)
   Shelf Pointer: https://analysisreports.github.io/llms-country-relationships-us.txt#REL_GEO_US_GEO_CN
 
 - Dyad: GEO_US ↔ GEO_RU | ID: REL_GEO_US_GEO_RU
   Ref: United States ↔ Russian Federation
-  P_baseline: -0.85 (Direct Strategic & Nuclear Proxy Conflict) | Category: Nuclear Deterrence & Post-Cold War Containment
+  P_baseline: -0.85 (Direct Strategic & Nuclear Proxy Conflict) | Category: Nuclear Deterrence & Post-Cold War Containment (Canonical Mirror: REL_GEO_RU_GEO_US)
   Shelf Pointer: https://analysisreports.github.io/llms-country-relationships-us.txt#REL_GEO_US_GEO_RU
 
 - Dyad: GEO_US ↔ GEO_IR | ID: REL_GEO_US_GEO_IR
   Ref: United States ↔ Islamic Republic of Iran
-  P_baseline: -0.85 (Direct Kinetic Stand-Off & Asymmetric Proxy War) | Category: Persian Gulf Regional Containment & Non-Proliferation
+  P_baseline: -0.85 (Direct Kinetic Stand-Off & Asymmetric Proxy War) | Category: Persian Gulf Regional Containment & Non-Proliferation (Canonical Mirror: REL_GEO_IR_GEO_US)
   Shelf Pointer: https://analysisreports.github.io/llms-country-relationships-us.txt#REL_GEO_US_GEO_IR
 
 - Dyad: GEO_US ↔ GEO_KP | ID: REL_GEO_US_GEO_KP
@@ -471,7 +471,7 @@
 
 - Dyad: GEO_RU ↔ GEO_CN | ID: REL_GEO_RU_GEO_CN
   Ref: Russia ↔ People's Republic of China
-  P_baseline: +0.80 (Comprehensive Strategic Partnership & Anti-Hegemonic Axis) | Category: Eurasian Geoeconomic & Multipolar Core Alignment
+  P_baseline: +0.80 (Comprehensive Strategic Partnership & Anti-Hegemonic Axis) | Category: Eurasian Geoeconomic & Multipolar Core Alignment (Canonical Mirror: REL_GEO_CN_GEO_RU)
   Shelf Pointer: https://analysisreports.github.io/llms-country-relationships-ru.txt#REL_GEO_RU_GEO_CN
 
 - Dyad: GEO_RU ↔ GEO_KP | ID: REL_GEO_RU_GEO_KP
@@ -481,7 +481,7 @@
 
 - Dyad: GEO_RU ↔ GEO_IR | ID: REL_GEO_RU_GEO_IR
   Ref: Russia ↔ Islamic Republic of Iran
-  P_baseline: +0.75 (Strategic Defense Industrial & Logistics Axis) | Category: Drone Technology Integration & INSTC Chokepoint Bypassing
+  P_baseline: +0.75 (Strategic Defense Industrial & Logistics Axis) | Category: Drone Technology Integration & INSTC Chokepoint Bypassing (Canonical Mirror: REL_GEO_IR_GEO_RU)
   Shelf Pointer: https://analysisreports.github.io/llms-country-relationships-ru.txt#REL_GEO_RU_GEO_IR
 
 - Dyad: GEO_RU ↔ GEO_SY | ID: REL_GEO_RU_GEO_SY
@@ -771,7 +771,7 @@
 
 - Dyad: GEO_CN ↔ GEO_AU | ID: REL_GEO_CN_GEO_AU
   Ref: China ↔ Commonwealth of Australia
-  P_baseline: -0.40 (AUKUS Submarine Pakt vs Bulk Commodity Interdependence) | Category: Indo-Pacific Strategic Containment & Critical Minerals Nexus
+  P_baseline: -0.40 (AUKUS Submarine Pact vs Bulk Commodity Interdependence) | Category: Indo-Pacific Strategic Containment & Critical Minerals Nexus
   Shelf Pointer: https://analysisreports.github.io/llms-country-relationships-cn.txt#REL_GEO_CN_GEO_AU
 
 - Dyad: GEO_CN ↔ GEO_KR | ID: REL_GEO_CN_GEO_KR
