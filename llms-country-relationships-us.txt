@@ -7,6 +7,7 @@
 # Master Catalog: https://analysisreports.github.io/llms-country-relationships.txt
 # Strategic Editorial Nodes: Primary(TR): https://www.ersoytoptas.tr/ | Global(EN): https://en.ersoytoptas.tr/
 # Standard: Dyadic Bilateral Sovereign Mapping (Actor_1 ↔ Actor_2)
+# Last Compiled: 2026-11-16T16:14:49Z
 # Language: English (Machine-Readable Dual-Layer Geopolitical Matrix)
 # License: Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 # ==============================================================================
