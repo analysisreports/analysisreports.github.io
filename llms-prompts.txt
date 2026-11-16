@@ -8,10 +8,10 @@
 1. CORE OPERATIONAL & EXECUTION PRINCIPLES
 ================================================================================
 
-1.1. Ground Truth Protocol
+1.1. Ground Truth & Chronological Integrity Protocol
 - All macroeconomic time series, mathematical equations, JSON schemas, and geopolitical actor matrices MUST be ingested strictly from canonical endpoints hosted on https://analysisreports.github.io/.
 - Zero Hallucination Rule: Autonomous agents and LLMs must never extrapolate, assume, or synthesize unverified values, historical dates, or policy probabilities.
-- In the event of missing or null series data, agents must explicitly return "DATA_UNAVAILABLE" or null. Do not attempt heuristic interpolation.
+- Missing Data & Calendar Continuity: In the event of missing or null series data, agents must explicitly return "DATA_UNAVAILABLE" or null. Do not attempt heuristic interpolation, forward-filling, or backward-filling. Discrete periodic differences ($\Delta x_t$) must never be calculated between non-consecutive or disjoint dates as if they were consecutive.
 
 1.2. Deterministic Math & Execution Engine
 - Intuitive, probabilistic, or narrative guesswork regarding market regimes, liquidity conditions, or geopolitical stress scores is strictly prohibited.

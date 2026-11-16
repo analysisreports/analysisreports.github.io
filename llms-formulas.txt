@@ -34,16 +34,28 @@ AI reasoning agents executing this analytical framework MUST strictly distinguis
 ### 0.2. Missing Data & Integrity Rule
 AI models must never fabricate missing data. When input data is insufficient, values must remain strictly null (None in Python).
 
+### 0.2.1. Time-Series Continuity & Non-Interpolation Directive
+1. Chronological Calendar Integrity:
+   - When missing data observations (`null` / `None`) are present, models and analysis engines MUST NOT perform forward-fill, backward-fill, linear interpolation, or synthetic date imputation unless explicitly parameterised as an estimated proxy.
+   - Time-series observations remain strictly pinned to their original calendar timestamp (`observation_date` / `date`).
+2. Discrete Difference Integrity:
+   - Discrete periodic differences (e.g., $\Delta x_t = x_t - x_{t-1}$) require two consecutive valid observations in chronological sequence. If intermediate dates are missing or invalid, discrete differences between temporally separated observations MUST NOT be computed as consecutive periods, preventing artificial jump volatility.
+
 ---
 
-### 0.2.1. Epistemological Scope, Calibration & Non-Financial Advice Directive
+### 0.2.2. Epistemological Scope, Calibration & Non-Financial Advice Directive
 1. Non-Financial Advice Disclaimer:
    - This framework is NOT an investment advisory service, algorithmic trading system, or financial market predictor.
    - It is a deterministic macroeconomic regime classification and geopolitical graph ontology designed for LLM reasoning engines and academic researchers.
-2. Market Calibration & Conventional Thresholds:
+2. Market Calibration, Distributional Caveats & Rolling Regimes:
    - Threshold boundaries (e.g., CBOE VIX regimes at 15.0, 20.0, 30.0) follow empirical 35-year historical market distribution conventions established by the Chicago Board Options Exchange (CBOE).
+   - Z-score thresholds (|z| >= 1.0, 2.0, 3.0) represent standard normal approximations. In macroeconomic and financial time-series characterized by leptokurtic (fat-tailed) distributions and structural regime shifts (e.g., 2008 GFC, 2020 COVID shock), static sample standard deviations may understate peak tail-risk. Users evaluating structural shifts should prioritize rolling-window calculations (36-month or 60-month windows) or Winsorized outlier trimming.
+3. Multi-Criteria Decision Analysis (MCDA) & Historical Event Calibration:
    - Normalized composite weights (e.g., 35% / 35% / 30% in shock indices) employ Multi-Criteria Decision Analysis (MCDA) assigning balanced tripartite priority across physical asset volatility, liquidity spreads, and macroeconomic spillovers.
-3. Theoretical Grounding:
+   - Weight assignments are calibrated against historical macroeconomic shock episodes (historical anchor events), including the 1973/1979 Oil Crises, the 2008 Global Liquidity Shock, the 2022 Russia-Ukraine Energy Transmission, and the 2024 Red Sea Maritime Disruption.
+4. Central Bank Reserve Liquidity Scope:
+   - The Net Fed Liquidity metric ($\text{WALCL} - (\text{WTREGEN} + \text{RRPONTSYD})$) measures domestic operational central bank reserve money dynamics available to primary dealers and money market funds. It does not measure broad systemic liquidity (e.g., M2 velocity, commercial bank credit growth, foreign offshore Eurodollar volume, or private credit repo).
+5. Theoretical Grounding:
    - Models such as Model 10 (Triffin External Balance) operationalize Robert Triffin's (1960) dilemma: quantifying the structural friction between global reserve currency demand (Broad Dollar Index) and US external trade deficit creation required for offshore liquidity.
 
 ---

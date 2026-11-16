@@ -155,6 +155,9 @@ def _is_num(val):
 
 ### 5. NET FED LIQUIDITY INDEX
 - Purpose: Calculates free dollar liquidity in the financial system with strict unit standardization by subtracting the Treasury General Account (TGA) and overnight reverse repo (ON RRP) balances from total Federal Reserve assets.
+- Scope & Economic Boundary:
+  - This index quantifies domestic central bank operational reserve liquidity directly available to money markets and primary dealers.
+  - It does NOT encompass broad liquidity measures (e.g., broad money supply M2, commercial bank loan origination, offshore Eurodollar shadow banking liquidity, or collateralized private repo).
 - Unit Standard: All three function inputs must be in millions of USD. FRED reports RRPONTSYD in billions of USD; the ingestion code multiplies it by 1,000 exactly once before calling the function. The function does not convert it again. For example, 0.152 billion USD is passed as 152 million USD. Tool callers must likewise convert the raw FRED value before calling.
 - Data Series Keys:
   - FRED: WALCL (Federal Reserve Total Assets - Millions USD)
@@ -397,6 +400,11 @@ def _is_num(val):
 
 ### 11. TAYLOR RULE POLICY GAP
 - Purpose: Computes the Fed's optimal policy rate and deviation gap based on headline inflation and the output gap.
+- Unit Convention & Scaling Standard:
+  - All rates and percentage gaps are expressed strictly in **percentage points** (e.g., `2.50` denotes 2.50%, NOT `0.025`).
+  - `CPI_YoY` is in percentage points (e.g., `3.2` for 3.2% YoY).
+  - `Output_Gap_Pct` is in percentage points (e.g., `-1.2` for a -1.2% output gap relative to potential GDP).
+  - Target neutral rate `r*` (`2.0`) and inflation target `pi*` (`2.0`) are in percentage points.
 - Data Series Keys:
   - FRED: DFF (Federal Funds Effective Rate - Actual Policy Rate)
   - BLS / FRED: CPIAUCSL (Must be transformed to YoY % Change)
