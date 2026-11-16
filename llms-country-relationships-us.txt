@@ -50,9 +50,22 @@
 #              Commander of Global Naval Chokepoints, Leader of BLOC_NATO & Indo-Pacific Alliance Hubs.
 # Total Bilateral Vectors Registered: 73 Dyads
 # Strategic Architecture: 4 Sovereign Tiers (Treaty Allies, Strategic Partners, Direct Adversaries, Crisis Zones)
-
+#
+# CHRONOLOGICAL TREATY & STRATEGIC FRAMEWORK REGISTRY:
+# - Mutual Defense & Security Treaties:
+#   * 1949: North Atlantic Treaty (BLOC_NATO / Article 5 Collective Defense Commitment)
+#   * 1951: ANZUS Security Treaty (Pacific Mutual Security Pact with Australia GEO_AU and New Zealand GEO_NZ)
+#   * 1951: US-Philippines Mutual Defense Treaty (MDT / First Island Chain Naval & Basing Access)
+#   * 1951 / 1960: US-Japan Treaty of Mutual Cooperation and Security (Far East Forward Naval & Nuclear Umbrella)
+#   * 1953: US-Republic of Korea Mutual Defense Treaty (Combined Forces Command & DMZ Deterrence Shield)
+#   * 1979: Taiwan Relations Act (TRA / Statutory Arms Sales & Non-Statutory Strategic Ambiguity Architecture)
+#   * 2021: AUKUS Partnership (BLOC_AUKUS / Pillar I SSN-AUKUS Submarine Propulsion & Pillar II Quantum/Hypersonic Fusion)
+# - Trade, Economic & Regional Normalization Pacts:
+#   * 2020: United States-Mexico-Canada Agreement (USMCA / North American Continental Trade Integration)
+#   * 2020: Abraham Accords (Diplomatic Normalization Architecture between Israel GEO_IL and Arab Partners)
+#   * 2022: Indo-Pacific Economic Framework for Prosperity (IPEF / Resilient Semiconductor & Critical Supply Chains)
 # ------------------------------------------------------------------------------
-# 1.1. CATEGORY 1: TREATY ALLIES & DEEP GEOSTRATEGIC INTEGRATION (YAKIN MÜTTEFİKLER)
+# 1.1. CATEGORY 1: TREATY ALLIES & DEEP GEOSTRATEGIC INTEGRATION
 # Scope: Formal Mutual Defense Treaty Allies / Five Eyes / Core NATO & Indo-Pacific Anchors (+0.70 to +1.00)
 # Total Vectors in Tier: 23 Dyads
 # ------------------------------------------------------------------------------
@@ -135,7 +148,7 @@ Core Strategic Flashpoints:
   1. Direct military strikes on Iranian nuclear enrichment sites and regional proxy networks.
   2. Escalation dynamics along the northern border with GEO_LB and Gaza stabilization architecture.
   3. Preservation of US qualitative military edge (QME) across Middle Eastern arms transfer deals.
-Cross-Reference Multilateral Nodes: GEO_IR, GEO_LB, BASIN_EAST_MED
+Cross-Reference Multilateral Nodes: GEO_IR, GEO_LB, BASIN_EAST_MED_DEEPSEA
 
 --------------------------------------------------------------------------------
 Bilateral Dyad: GEO_US ↔ GEO_JP
@@ -391,7 +404,7 @@ Core Strategic Flashpoints:
   1. Aegean Sea maritime boundary, airspace disputes, and militarization of islands with GEO_TR.
   2. Eastern Mediterranean energy exploration rights and exclusive economic zone (EEZ) demarcations.
   3. Logistical throughput of military material through Alexandroupoli bypassing Turkish Straits.
-Cross-Reference Multilateral Nodes: BLOC_NATO, GEO_TR, BASIN_EAST_MED
+Cross-Reference Multilateral Nodes: BLOC_NATO, GEO_TR, BASIN_EAST_MED_DEEPSEA
 
 --------------------------------------------------------------------------------
 Bilateral Dyad: GEO_US ↔ GEO_ES
@@ -426,7 +439,7 @@ Core Strategic Flashpoints:
 Cross-Reference Multilateral Nodes: BLOC_NATO, BLOC_EU
 
 # ------------------------------------------------------------------------------
-# 1.2. CATEGORY 2: STRATEGIC INTEREST & TRANSACTIONAL INTERDEPENDENCE (STRATEJİK ÇIKAR & YOĞUN İŞ BİRLİĞİ)
+# 1.2. CATEGORY 2: STRATEGIC INTEREST & TRANSACTIONAL INTERDEPENDENCE
 # Scope: Autonomous Regional Powers / Critical Resource & Logistics Partners / Multipolar Pivots (+0.10 to +0.75)
 # Total Vectors in Tier: 32 Dyads
 # ------------------------------------------------------------------------------
@@ -944,7 +957,7 @@ Core Strategic Flashpoints:
 Cross-Reference Multilateral Nodes: CORRIDOR_ZANGEZUR, GEO_AZ, GEO_RU
 
 # ------------------------------------------------------------------------------
-# 1.3. CATEGORY 3: EXISTENTIAL ADVERSARIES & COERCIVE CONTAINMENT (DOĞRUDAN RAKİPLER VE HASIMLAR)
+# 1.3. CATEGORY 3: EXISTENTIAL ADVERSARIES & COERCIVE CONTAINMENT
 # Scope: Structural Geoeconomic & Nuclear Rivals / Total Sanction Regimes / Revisionist Hegemons (-0.65 to -0.90)
 # Total Vectors in Tier: 8 Dyads
 # ------------------------------------------------------------------------------
@@ -1078,7 +1091,7 @@ Core Strategic Flashpoints:
 Cross-Reference Multilateral Nodes: GEO_RU, GEO_CN, GEO_CU
 
 # ------------------------------------------------------------------------------
-# 1.4. CATEGORY 4: FLASHPOINT CRISES, ASYMMETRIC THREATS & SPECIAL DIPLOMACY (KRİZ, ÇATIŞMA VE ÖZEL DİPLOMASİ)
+# 1.4. CATEGORY 4: FLASHPOINT CRISES, ASYMMETRIC THREATS & SPECIAL DIPLOMACY
 # Scope: Active Conflict Theaters / Chokepoint Kinetic Warfare / Fractured Sovereignties (-0.70 to +0.15)
 # Total Vectors in Tier: 10 Dyads
 # ------------------------------------------------------------------------------
@@ -1087,17 +1100,17 @@ Cross-Reference Multilateral Nodes: GEO_RU, GEO_CN, GEO_CU
 Bilateral Dyad: GEO_US ↔ GEO_SY
 Common Reference: United States ↔ Syrian Arab Republic
 Dyad ID: REL_GEO_US_GEO_SY
-Bilateral Stance: -0.70 (Direct Kinetic Military Presence & Regime Boycott)
-Strategic Category: Levantine Conflict Zone & Counter-Terrorism Mission
+Bilateral Stance: -0.20 (Post-Assad Transitional Normalization & Counter-ISIS Presence)
+Strategic Category: Levantine Transitional Authority & Counter-Terrorism Mission
 Asymmetric Power Vectors:
-  - [GEO_US Leverage] Caesar Sanctions & Military Outposts: Caesar Act economic embargo, military outpost at Al-Tanf garrison, and footprint in eastern energy fields.
-  - [GEO_SY Leverage] Russian & Iranian Staging Base: Hosts Russian naval facility in Tartus and Khmeimim Air Base; primary overland logistical corridor for Iranian arms to Hezbollah.
-  - [Mutual/Structural] Counter-Terrorism Realities: Residual shared operational necessity to prevent Islamic State (ISIS) territorial resurgence.
+  - [GEO_US Leverage] Sanctions Relief & Military Footprint: Calibration of Caesar Act restrictions tied to transitional governance benchmarks, alongside Al-Tanf garrison and eastern counter-ISIS positions.
+  - [GEO_SY Leverage] Expulsion of Iranian Proxies: Post-Assad transitional administration cut Iranian weapons corridors, expelled IRGC networks, and re-opened diplomatic channels with the West and Arab League.
+  - [Mutual/Structural] Counter-Terrorism Alignment: Mutual strategic interest in permanently suppressing Islamic State (ISIS) resurgence and securing chemical/conventional arms depots.
 Core Strategic Flashpoints:
-  1. Direct drone and rocket strikes on US garrisons by Iranian-aligned paramilitary factions.
-  2. De-confliction channel friction with Russian Aerospace Forces in Syrian airspace.
-  3. Enforcement of sovereign border controls and illicit Captagon amphetamine trafficking routes.
-Cross-Reference Multilateral Nodes: GEO_RU, GEO_IR, GEO_IL, GEO_TR
+  1. De-escalation arrangements and security coordination along northern borders involving Turkish, Kurdish (SDF), and transitional armed factions.
+  2. Residual friction regarding long-term US troop presence at Al-Tanf and eastern hydrocarbon extraction zones.
+  3. Controlled humanitarian and financial rehabilitation access conditioned on inclusive transitional constitutional governance.
+Cross-Reference Multilateral Nodes: GEO_TR, GEO_IL, GEO_RU, GEO_IR
 
 --------------------------------------------------------------------------------
 Bilateral Dyad: GEO_US ↔ GEO_YE
@@ -1129,7 +1142,7 @@ Core Strategic Flashpoints:
   1. Large-scale war between Israel and Hezbollah devastating southern Lebanon and northern Israel.
   2. Complete banking collapse, hyperinflation, and protracted presidential power vacuum.
   3. Enforcement of UN Security Council Resolution 1701 and disarmament south of the Litani River.
-Cross-Reference Multilateral Nodes: GEO_IL, GEO_IR, BASIN_EAST_MED
+Cross-Reference Multilateral Nodes: GEO_IL, GEO_IR, BASIN_EAST_MED_DEEPSEA
 
 --------------------------------------------------------------------------------
 Bilateral Dyad: GEO_US ↔ GEO_AF
@@ -1242,4 +1255,9 @@ Core Strategic Flashpoints:
   2. Protection of Chinese oil/gas pipeline transit corridors and Kyaukphyu deepwater port.
   3. Severe humanitarian crisis, displacement of Rohingya populations, and regional refugee spillover into Thailand/India.
 Cross-Reference Multilateral Nodes: GEO_CN, GEO_TH, GEO_IN, CHOKE_MALACCA
+
+# ==============================================================================
+# END OF SOVEREIGN HUB: UNITED STATES OF AMERICA (GEO_US)
+# Total Bilateral Vectors: 73 Dyads | 100% Invariant Ground Truth Architecture
+# ==============================================================================
 

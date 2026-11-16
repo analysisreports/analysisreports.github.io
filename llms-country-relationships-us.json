@@ -195,7 +195,7 @@
         "multilateral_cross_references": [
           "GEO_IR",
           "GEO_LB",
-          "BASIN_EAST_MED"
+          "BASIN_EAST_MED_DEEPSEA"
         ]
       },
       "REL_GEO_US_GEO_JP": {
@@ -767,7 +767,7 @@
         "multilateral_cross_references": [
           "BLOC_NATO",
           "GEO_TR",
-          "BASIN_EAST_MED"
+          "BASIN_EAST_MED_DEEPSEA"
         ]
       },
       "REL_GEO_US_GEO_ES": {
@@ -2272,36 +2272,36 @@
         "actor_1": "GEO_US",
         "actor_2": "GEO_SY",
         "common_reference": "United States ↔ Syrian Arab Republic",
-        "bilateral_stance": -0.7,
-        "stance_classification": "Direct Kinetic Military Presence & Regime Boycott",
-        "strategic_category": "Levantine Conflict Zone & Counter-Terrorism Mission",
+        "bilateral_stance": -0.2,
+        "stance_classification": "Post-Assad Transitional Normalization & Counter-ISIS Presence",
+        "strategic_category": "Levantine Transitional Authority & Counter-Terrorism Mission",
         "asymmetric_power_vectors": [
           {
             "leverage_holder": "GEO_US",
-            "domain": "Caesar Sanctions & Military Outposts",
-            "description": "Caesar Act economic embargo, military outpost at Al-Tanf garrison, and footprint in eastern energy fields."
+            "domain": "Sanctions Relief & Military Footprint",
+            "description": "Calibration of Caesar Act restrictions tied to transitional governance benchmarks, alongside Al-Tanf garrison and eastern counter-ISIS positions."
           },
           {
             "leverage_holder": "GEO_SY",
-            "domain": "Russian & Iranian Staging Base",
-            "description": "Hosts Russian naval facility in Tartus and Khmeimim Air Base; primary overland logistical corridor for Iranian arms to Hezbollah."
+            "domain": "Expulsion of Iranian Proxies",
+            "description": "Post-Assad transitional administration cut Iranian weapons corridors, expelled IRGC networks, and re-opened diplomatic channels with the West and Arab League."
           },
           {
             "leverage_holder": "Mutual/Structural",
-            "domain": "Counter-Terrorism Realities",
-            "description": "Residual shared operational necessity to prevent Islamic State (ISIS) territorial resurgence."
+            "domain": "Counter-Terrorism Alignment",
+            "description": "Mutual strategic interest in permanently suppressing Islamic State (ISIS) resurgence and securing chemical/conventional arms depots."
           }
         ],
         "core_strategic_flashpoints": [
-          "Direct drone and rocket strikes on US garrisons by Iranian-aligned paramilitary factions.",
-          "De-confliction channel friction with Russian Aerospace Forces in Syrian airspace.",
-          "Enforcement of sovereign border controls and illicit Captagon amphetamine trafficking routes."
+          "De-escalation arrangements and security coordination along northern borders involving Turkish, Kurdish (SDF), and transitional armed factions.",
+          "Residual friction regarding long-term US troop presence at Al-Tanf and eastern hydrocarbon extraction zones.",
+          "Controlled humanitarian and financial rehabilitation access conditioned on inclusive transitional constitutional governance."
         ],
         "multilateral_cross_references": [
-          "GEO_RU",
-          "GEO_IR",
+          "GEO_TR",
           "GEO_IL",
-          "GEO_TR"
+          "GEO_RU",
+          "GEO_IR"
         ]
       },
       "REL_GEO_US_GEO_YE": {
@@ -2374,7 +2374,7 @@
         "multilateral_cross_references": [
           "GEO_IL",
           "GEO_IR",
-          "BASIN_EAST_MED"
+          "BASIN_EAST_MED_DEEPSEA"
         ]
       },
       "REL_GEO_US_GEO_AF": {
