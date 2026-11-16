@@ -412,24 +412,46 @@ def verify_structural_duplicates(
 
 def verify_corporate_metadata_headers() -> int:
     """Verifies that all primary JSON files contain institutional provenance metadata:
-    endpoint, author, license, version, repository."""
+    title, domain, version, author, license, endpoint, documentation, last_updated."""
+    canonical_core_keys = ["title", "domain", "version", "author", "license", "endpoint", "documentation", "last_updated"]
+    
     files_to_check = [
-        ("llms-graph.json", GRAPH_JSON, ["name", "version", "author", "license", "repository", "architecture_type"]),
-        ("llms-graph-actors.json", GRAPH_ACTORS_JSON, ["name", "version", "author", "license", "repository", "endpoint", "master_graph", "subgraph_domain"]),
-        ("llms-graph-chokepoints.json", GRAPH_CHOKEPOINTS_JSON, ["name", "version", "author", "license", "repository", "endpoint", "master_graph", "subgraph_domain"]),
-        ("llms-graph-models.json", GRAPH_MODELS_JSON, ["name", "version", "author", "license", "repository", "endpoint", "master_graph", "subgraph_domain"]),
-        ("llms-tools.json", TOOLS_JSON, ["name", "version", "author", "license", "repository", "endpoint", "master_graph", "documentation"]),
+        "llms-graph.json",
+        "llms-graph-actors.json",
+        "llms-graph-chokepoints.json",
+        "llms-graph-models.json",
+        "llms-tools.json",
+        "llms-country-relationships.json",
+        "llms-country-relationships-cn.json",
+        "llms-country-relationships-ir.json",
+        "llms-country-relationships-ru.json",
+        "llms-country-relationships-us.json",
+        "llms-fred-series.json",
+        "llms-ecb-series.json",
+        "llms-imf-series.json",
+        "llms-worldbank-series.json",
+        "llms-nyfed-series.json",
+        "llms-eia-series.json",
+        "llms-models.json",
+        "llms-relationships.json",
+        "country.json",
+        "glossary.json"
     ]
     header_errors = []
-    for fname, fpath, required_fields in files_to_check:
+    for fname in files_to_check:
+        fpath = os.path.join(ROOT_DIR, fname)
         if not os.path.exists(fpath):
             continue
         try:
             with open(fpath, "r", encoding="utf-8") as f:
                 data = json.load(f)
-            for rf in required_fields:
-                if rf not in data or not data[rf]:
-                    header_errors.append(f"{fname} missing corporate header field: '{rf}'")
+            meta = data.get("metadata")
+            if not isinstance(meta, dict):
+                header_errors.append(f"{fname} missing root 'metadata' object.")
+                continue
+            for k in canonical_core_keys:
+                if k not in meta or not str(meta[k]).strip():
+                    header_errors.append(f"{fname} metadata missing mandatory core key: '{k}'")
         except Exception as e:
             header_errors.append(f"{fname} JSON load error during corporate header check: {e}")
 

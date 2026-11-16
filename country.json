@@ -1,9 +1,15 @@
 {
-"$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
+  "$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
   "version": "2.1.0",
   "metadata": {
-    "last_updated": "2026-11-11",
+    "title": "Country Strategic Assessment Data Contract",
+    "domain": "country",
+    "version": "2.1.0",
     "author": "Ersoy Toptaş",
+    "license": "CC BY-NC-ND 4.0",
+    "endpoint": "https://analysisreports.github.io/country.json",
+    "documentation": "https://analysisreports.github.io/llms-about.txt",
+    "last_updated": "2026-11-11",
     "provenance": "Analysis Reports Research Archive"
   },
   "structured_content_analysis": {

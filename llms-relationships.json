@@ -1,9 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "metadata": {
-    "engine": "Dynamic Geopolitical Polarity & Sovereign Governance Engine",
+    "title": "Dynamic Geopolitical Polarity & Sovereign Governance Engine",
+    "domain": "political",
+    "version": "3.0.0",
     "author": "Ersoy Toptaş",
-    "license": "CC BY 4.0",
+    "license": "CC BY-NC-ND 4.0",
+    "endpoint": "https://analysisreports.github.io/llms-relationships.json",
+    "documentation": "https://analysisreports.github.io/llms-about.txt",
+    "last_updated": "2026-11-16T23:15:00Z",
     "sync_status": "PARTIAL_SUCCESS",
     "last_successful_sync": null,
     "last_attempted_sync": "2026-11-16T12:40:43.350541+00:00",

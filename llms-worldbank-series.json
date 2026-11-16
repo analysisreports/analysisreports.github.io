@@ -1,9 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "metadata": {
-    "engine": "Autonomous World Bank Commodity Time-Series Engine",
+    "title": "Autonomous World Bank Commodity Time-Series Engine",
+    "domain": "economy",
+    "version": "3.0.0",
     "author": "Ersoy Toptaş",
-    "license": "CC BY 4.0",
+    "license": "CC BY-NC-ND 4.0",
+    "endpoint": "https://analysisreports.github.io/llms-worldbank-series.json",
+    "documentation": "https://analysisreports.github.io/llms-about.txt",
+    "last_updated": "2026-11-16T10:26:48Z",
     "sync_status": "SUCCESS",
     "last_successful_sync": "2026-11-16T10:26:48Z",
     "data_source": "World Bank Commodity Price Data (The Pink Sheet)",

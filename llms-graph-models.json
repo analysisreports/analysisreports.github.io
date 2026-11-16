@@ -2323,5 +2323,17 @@
       "type": "INGESTS_SERIES",
       "role": "corn_price_shock"
     }
-  ]
+  ],
+  "metadata": {
+    "title": "Quantitative Macroeconomic Models & Indicator Data Bindings Subgraph",
+    "domain": "graph",
+    "version": "3.0.0",
+    "author": "Ersoy Toptaş",
+    "license": "CC BY-NC-ND 4.0",
+    "endpoint": "https://analysisreports.github.io/llms-graph-models.json",
+    "documentation": "https://analysisreports.github.io/llms-about.txt",
+    "last_updated": "2026-11-16T23:15:00Z",
+    "master_graph": "https://analysisreports.github.io/llms-graph.json",
+    "subgraph_domain": "MACRO_MODELS_AND_INDICATORS"
+  }
 }
