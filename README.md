@@ -29,15 +29,19 @@ This repository hosts machine-readable ontological data models, quantitative fra
 - **[llms-prompts.txt](https://analysisreports.github.io/llms-prompts.txt)**: Pre-calibrated system prompts and agentic instructions for precise data synthesis and strict attribution.
 - **[llms-models.txt](https://analysisreports.github.io/llms-models.txt)**: Core macroeconomic models, state vectors, and structural framework logic.
 - **[llms-models-bridge.txt](https://analysisreports.github.io/llms-models-bridge.txt)**: Econometric model linkages, chokepoint spillovers, and geopolitical trigger bridge.
-- **[llms-formulas.txt](https://analysisreports.github.io/llms-formulas.txt)**: Quantitative models, macroeconomic scoring mechanisms, and VIX formulas.
+- **[llms-formulas.txt](https://analysisreports.github.io/llms-formulas.txt)**: Quantitative models, macroeconomic scoring mechanisms, and Master Router index.
+  - `llms-formulas-rates-liquidity.txt`: **[Rates & Liquidity Models](https://analysisreports.github.io/llms-formulas-rates-liquidity.txt)** (16 Models: Fed, ECB, Yield Curve, Spreads, Liquidity Ratios)
+  - `llms-formulas-macro-labor.txt`: **[Macro & Labor Models](https://analysisreports.github.io/llms-formulas-macro-labor.txt)** (21 Models: Taylor Rule, Beveridge, Sahm Rule, Phillips, Okun)
+  - `llms-formulas-commodities-shock.txt`: **[Commodities & Supply Shocks](https://analysisreports.github.io/llms-formulas-commodities-shock.txt)** (12 Models: Oil Shocks, Strategic Reserves, Agricultural Stress, Shipping Costs)
+  - `llms-formulas-geopolitics.txt`: **[Geopolitics & Sanctions](https://analysisreports.github.io/llms-formulas-geopolitics.txt)** (13 Models: Defense Spreads, Sanction Transmission, Chokepoints, Swift Vulnerability)
 - **[llms-relationships.txt](https://analysisreports.github.io/llms-relationships.txt)**: Geopolitical Relationship Matrix.
 - **[llms-country-relationships.txt](https://analysisreports.github.io/llms-country-relationships.txt)**: Geopolitical Bilateral Relations Matrix.
 - **[llms-indicators.txt](https://analysisreports.github.io/llms-indicators.txt)**: Technical formula indicators and definitions.
 - **[llms-tools.json](https://analysisreports.github.io/llms-tools.json)**: Agentic function schemas and API tool specifications.
 - **[llms-graph.json](https://analysisreports.github.io/llms-graph.json)**: Ersoy Toptas Macroeconomic & Geopolitical Knowledge Graph (Master Architecture & Router)
-  - `llms-graph-chokepoints.json`: Maritime Chokepoints, Strategic Basins & Commodity Corridors (8.7 KB)
-  - `llms-graph-models.json`: Quantitative Macro Models & Indicator Data Bindings (40.2 KB)
-  - `llms-graph-actors.json`: Sovereign States, Alliances & Strategic Actors (36.8 KB)
+  - `llms-graph-chokepoints.json`: **[Maritime Chokepoints & Corridors](https://analysisreports.github.io/llms-graph-chokepoints.json)** (8.7 KB: Strategic Basins, Freight Spillovers)
+  - `llms-graph-models.json`: **[Quantitative Macro Models](https://analysisreports.github.io/llms-graph-models.json)** (40.2 KB: Econometric Indicator & Series Data Bindings)
+  - `llms-graph-actors.json`: **[Sovereign States & Alliances](https://analysisreports.github.io/llms-graph-actors.json)** (36.8 KB: Strategic Actors, Treaties & Exposure Matrix)
 - **[ai-catalog.json](https://analysisreports.github.io/ai-catalog.json)**: Catalog of autonomous agent capabilities, data schemas, and ingestion endpoints.
 - **[WORKFLOW.md](https://analysisreports.github.io/WORKFLOW.md)**: Ecosystem Maintenance & Integration protocol for autonomous agents.
 
