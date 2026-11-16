@@ -79,10 +79,12 @@
       ""
     ],
     "editorial_frontend": {
-      "url": "",
+      "canonical_url": "",
+      "canonical_source": "https://analysisreports.github.io/glossary.json",
       "format": "Human-Readable Narrative",
       "author": "Ersoy Toptaş",
       "published_date": "",
+      "analysis_as_of_date": "",
       "language": "tr",
       "description": ""
     },
