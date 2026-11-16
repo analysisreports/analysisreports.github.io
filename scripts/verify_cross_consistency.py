@@ -104,10 +104,14 @@ def sync_graph_json(
     country_map: Dict[Tuple[str, str], float],
     write_changes: bool = True
 ) -> int:
-    if not os.path.exists(graph_path):
+    # In federated architecture, bilateral polarities live in llms-graph-actors.json
+    actors_path = os.path.join(os.path.dirname(graph_path), "llms-graph-actors.json")
+    target_path = actors_path if os.path.exists(actors_path) else graph_path
+
+    if not os.path.exists(target_path):
         return 0
 
-    with open(graph_path, "r", encoding="utf-8") as f:
+    with open(target_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     updated_count = 0
@@ -123,8 +127,22 @@ def sync_graph_json(
                 updated_count += 1
 
     if updated_count > 0 and write_changes:
-        with open(graph_path, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
+        # Save back in line_per_object_json format if it's the actors layer
+        with open(target_path, "w", encoding="utf-8") as f:
+            lines = ["{"]
+            keys = list(data.keys())
+            for idx, (k, v) in enumerate(data.items()):
+                comma_outer = "," if idx < len(keys) - 1 else ""
+                if k in ("nodes", "edges"):
+                    lines.append(f'  "{k}": [')
+                    for i, item in enumerate(v):
+                        comma = "," if i < len(v) - 1 else ""
+                        lines.append("    " + json.dumps(item, ensure_ascii=False) + comma)
+                    lines.append(f"  ]{comma_outer}")
+                else:
+                    lines.append(f'  "{k}": ' + json.dumps(v, ensure_ascii=False) + comma_outer)
+            lines.append("}")
+            f.write("\n".join(lines))
 
     return updated_count
 

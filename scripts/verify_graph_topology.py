@@ -97,7 +97,7 @@ def main():
     data = json.loads(raw_content)
 
     # 1.1 Strict Schema & Metadata Guard
-    required_root_keys = ["$schema", "name", "version", "author", "license", "repository", "graph_metadata", "nodes", "edges"]
+    required_root_keys = ["$schema", "name", "version", "author", "license", "repository", "architecture_type", "routing_policy", "graph_accounting", "subgraphs", "graph_metadata", "nodes", "edges"]
     missing_root_keys = [k for k in required_root_keys if k not in data]
     if missing_root_keys:
         errors.append(f"MISSING GRAPH METADATA KEYS: {missing_root_keys}")
@@ -106,11 +106,28 @@ def main():
     if not isinstance(graph_meta, dict) or "node_categories" not in graph_meta or "edge_types" not in graph_meta:
         errors.append("INVALID 'graph_metadata': must contain 'node_categories' and 'edge_types' lists.")
 
-    nodes = data.get("nodes", [])
-    edges = data.get("edges", [])
+    # In federated architecture, also load all modular subgraphs for complete topological auditing
+    subgraphs_manifest = data.get("subgraphs", {})
+    subgraph_files = [
+        os.path.join(ROOT_DIR, "llms-graph-chokepoints.json"),
+        os.path.join(ROOT_DIR, "llms-graph-models.json"),
+        os.path.join(ROOT_DIR, "llms-graph-actors.json")
+    ]
 
-    print(f"[*] Total Nodes Registered : {len(nodes)}")
-    print(f"[*] Total Edges Registered : {len(edges)}")
+    nodes = list(data.get("nodes", []))
+    edges = list(data.get("edges", []))
+
+    for sg_path in subgraph_files:
+        if os.path.exists(sg_path):
+            with open(sg_path, "r", encoding="utf-8") as sg_f:
+                sg_data = json.load(sg_f)
+                nodes.extend(sg_data.get("nodes", []))
+                edges.extend(sg_data.get("edges", []))
+        else:
+            errors.append(f"MISSING SUBGRAPH FILE: {sg_path}")
+
+    print(f"[*] Federated Nodes Audited : {len(nodes)} (8 Master Backbone + 234 Modular Subgraphs)")
+    print(f"[*] Federated Edges Audited : {len(edges)} (7 Master Backbone + 297 Modular Subgraphs)")
 
     errors = enc_errors
     warnings = []

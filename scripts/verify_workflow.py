@@ -87,7 +87,16 @@ def audit(base_files, current_files):
         node.get("id") for node in current_graph.get("nodes", [])
         if isinstance(node, dict)
     }
-    graph_edges = current_graph.get("edges", [])
+    graph_edges = list(current_graph.get("edges", []))
+
+    # In federated graph architecture, also aggregate nodes and edges from subgraphs
+    for sg_key in ("llms-graph-chokepoints.json", "llms-graph-models.json", "llms-graph-actors.json"):
+        if sg_key in current_files:
+            sg_json = parse_json(current_files[sg_key], sg_key)
+            for node in sg_json.get("nodes", []):
+                if isinstance(node, dict) and "id" in node:
+                    graph_nodes.add(node["id"])
+            graph_edges.extend(sg_json.get("edges", []))
     base_rel_data = parse_json(base_files[RELATIONSHIP_JSON], RELATIONSHIP_JSON)
     current_rel_data = parse_json(current_files[RELATIONSHIP_JSON], RELATIONSHIP_JSON)
     base_rels = {item["id"]: item for item in base_rel_data.get("relationships", [])}
