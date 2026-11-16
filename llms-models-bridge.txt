@@ -68,18 +68,18 @@
 
 8.4.2. MODEL_25.8_NATGAS_CRUDE_PRICE_RATIO_DISCONNECT
 - Target Formula: llms-formulas.txt -> Model 25.8 (natgas_crude_btu_disconnect)
-- Data Series Triggered: DCOILWTICO, DHHNGSP
-- Context Series: NG.NW2_EPG0_SWO_R48_BCF.W current storage level and year-over-year change; context only, not part of the formula or status
+- Data Series Triggered: IND_DCOILWTICO, IND_DHHNGSP
+- Context Series: IND_NG_NW2_EPG0_SWO_R48_BCF_W current storage level and year-over-year change; context only, not part of the formula or status
 - Status Enums: NATGAS_CRISIS_BLACKOUT_RISK | NATGAS_GLUT_ENERGY_CHEAP | ENERGY_PARITY_EQUILIBRIUM
 - Primary Geopolitical Vector: Nord Stream cessation, Russian Arctic LNG-2 sanctions (2.3.2, 4.12), Caspian Sea Transit Basin (7.3.1), Zangezur Gas Hub (7.2.1).
 
 8.4.3. MODEL_25.9_GASOLINE_DISTILLATE_CRUDE_321_CRACK_SPREAD
-   - Target Formula: llms-formulas.txt -> Model 25.9 (gasoline_321_crack_spread)
-   - Data Series: DGASNYH, DDFUELNYH, DCOILWTICO (exact same-date observations required)
-   - Context Series: PET.WGTSTUS1.W gasoline stocks; not a days-of-supply input
-   - Status: CRACK_SPREAD_EXPANDING, CRACK_SPREAD_CONTRACTING, or CRACK_SPREAD_UNCHANGED based on the 3:2:1 spread versus the same formula applied to year-ago prices; UNCLASSIFIED if prior-year inputs are incomplete
-   - Interpretation: New York Harbor spot benchmark proxy; GASREGW is a retail price and is not a crack-spread input.
-   - Primary Geopolitical Vector: Asymmetric maritime re-routing (6.2), Mediterranean (TR) & South Asian (IN) logistics and refining hubs (5.4), Black Sea and Danish Straits shipping curbs (4.4, 4.8).
+- Target Formula: llms-formulas.txt -> Model 25.9 (gasoline_321_crack_spread)
+- Data Series Triggered: IND_DGASNYH, IND_DDFUELNYH, IND_DCOILWTICO (exact same-date observations required)
+- Context Series: IND_PET_WGTSTUS1_W gasoline stocks; not a days-of-supply input
+- Status Enums: CRACK_SPREAD_EXPANDING, CRACK_SPREAD_CONTRACTING, or CRACK_SPREAD_UNCHANGED based on the 3:2:1 spread versus the same formula applied to year-ago prices; UNCLASSIFIED if prior-year inputs are incomplete
+- Interpretation: New York Harbor spot benchmark proxy; GASREGW is a retail price and is not a crack-spread input.
+- Primary Geopolitical Vector: Asymmetric maritime re-routing (6.2), Mediterranean (TR) & South Asian (IN) logistics and refining hubs (5.4), Black Sea and Danish Straits shipping curbs (4.4, 4.8).
 
 ### 8.5. Banking Credit Transmission & Systemic Tightening Engine (Model 25.10)
 8.5.1. MODEL_25.10_SLOOS_LENDING_TIGHTNESS_GAUGE
@@ -101,7 +101,7 @@
 
 8.6.2. MODEL_25.13_LABOR_MARKET_MOMENTUM_INDEX
 - Target Formula: llms-formulas.txt -> Model 25.13 (labor_market_momentum_index)
-- Data Series Triggered: PAYEMS, UNRATE
+- Data Series Triggered: IND_PAYEMS, IND_UNRATE
 - Status Enums: STRONG_LABOR_EXPANSION | MODERATE_LABOR_EXPANSION | DECELERATING_LABOR_MOMENTUM | BALANCED_LABOR_MARKET | LABOR_MARKET_DETERIORATION_RISK
 - Primary Geopolitical Vector: Geoeconomic fragmentation, tariff shocks, and supply chain reshoring pressures impacting corporate hiring velocity and aggregate labor absorption.
 - Actor Coupling: Federal Reserve monetary reaction function (Model 1 & Model 5), US Treasury fiscal transmission.
@@ -119,7 +119,7 @@
 ### 8.8. Brent-WTI Benchmark Price Spread (Model 25.12)
 8.8.1. MODEL_25.12_BRENT_WTI_BENCHMARK_PRICE_SPREAD
 - Target Formula: llms-formulas.txt -> Model 25.12 (brent_wti_spread)
-- Data Series Triggered: DCOILBRENTEU, DCOILWTICO
+- Data Series Triggered: IND_DCOILBRENTEU, IND_DCOILWTICO
 - Status Enums: WIDE_BRENT_WTI_SPREAD | NARROW_BRENT_WTI_SPREAD | TYPICAL_BRENT_WTI_SPREAD
 - Purpose: Measures Brent's relative premium or discount to WTI and the degree of price divergence between the international and U.S. benchmarks.
 - Actor Coupling: Model 25.12 transmission coefficients apply to IL-IR, YE-IL, SA-IR, US-VE, TR-SY, EG-IL, and SA-YE. OPEC+ supply quotas provide broader market context.
@@ -141,7 +141,7 @@
 
 8.10.1. MODEL_25.14_AI_CHIP_STRESS_GAUGE
 - Target Formula: llms-formulas.txt -> Model 25.14 (ai_chip_stress_gauge)
-- Data Series Triggered: GSCPI, NASDAQSOX, VIXCLS
+- Data Series Triggered: IND_GSCPI, IND_NASDAQSOX, IND_VIXCLS
 - Status Enums: ACUTE_CHIP_SUPPLY_CRUNCH | ELEVATED_SEMICONDUCTOR_BOTTLENECK | BALANCED_HARDWARE_FLOW | CHIP_SUPPLY_ABUNDANCE_EXPANSION
 - Primary Geopolitical Vector: Taiwan Strait (4.6) maritime blockade, East Asian advanced node export controls (2.5.1), and Malacca (4.3) specialized cargo choke.
 - Actor Coupling: US-CN technological containment axis (2.1.2), TW advanced fab concentration (TSMC), JP/KR lithography-chemical supply friction, and SEC_DEF_STARSHIELD space-grade semiconductor procurement demand (2.10.2).
@@ -191,9 +191,9 @@
 ### 8.15. Non-Contiguous Alliance Dynamic Transmission Engine (Model 25.18)
 
 8.15.1. MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE
-- Target Formula: llms-formulas.txt -> Model 25.18 (calc_mecca_pact_transmission)
+- Target Formula: llms-formulas.txt -> Model 25.18 (calculate_mecca_pact_transmission)
 - Entities Coupled: GEO_US, GEO_SA, BLOC_MECCA_DEFENSE (llms-entities-id.txt)
-- Data Series Triggered: DCOILBRENTEU, SOFR, SAUPZPIOILBEGUSD
+- Data Series Triggered: IND_DCOILBRENTEU, IND_SOFR, IND_SAUPZPIOILBEGUSD
 - Status Enums: TREATY_ACTIVE_SURPLUS_EXPANSION | TREATY_ACTIVE_EQUILIBRIUM | TREATY_ACTIVE_FISCAL_RESTRAINT
 - Primary Geopolitical Vector: U.S.-Saudi strategic security guarantee and dollar recycling corridor linked to live hydrocarbon fiscal breakeven parity.
 - Actor Coupling: US-Saudi bilateral pact (2.4.3), OPEC+ quota discipline, Petro-dollar liquidity absorption.

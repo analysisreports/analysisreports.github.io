@@ -13,12 +13,12 @@
     "actors_subgraph": "https://analysisreports.github.io/llms-graph-actors.json"
   },
   "graph_accounting": {
-    "modular_subgraphs_nodes": 236,
-    "modular_subgraphs_edges": 315,
+    "modular_subgraphs_nodes": 241,
+    "modular_subgraphs_edges": 318,
     "core_backbone_nodes": 9,
     "core_backbone_edges": 8,
-    "total_federated_nodes": 245,
-    "total_federated_edges": 323
+    "total_federated_nodes": 250,
+    "total_federated_edges": 326
   },
   "subgraphs": {
     "chokepoints": {
@@ -30,8 +30,8 @@
     },
     "models": {
       "endpoint": "https://analysisreports.github.io/llms-graph-models.json",
-      "nodes_count": 115,
-      "edges_count": 123,
+      "nodes_count": 120,
+      "edges_count": 126,
       "token_size": "~9,500",
       "scope": "Quantitative macro models, FRED/BEA indicators, and data ingestion bindings"
     },
