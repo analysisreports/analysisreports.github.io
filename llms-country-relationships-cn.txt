@@ -43,7 +43,7 @@
 #    All sovereign actors strictly map to their registered canonical entity identifiers in llms-entities-id.txt (GEO_*).
 # ==============================================================================
 
-# 3. SOVEREIGN HUB: PEOPLE'S REPUBLIC OF CHINA (GEO_CN)
+# 1. SOVEREIGN HUB: PEOPLE'S REPUBLIC OF CHINA (GEO_CN)
 # ==============================================================================
 # Anchor State: GEO_CN (People's Republic of China)
 # Global Role: Global Manufacturing & Industrial Superpower, Architect of Belt and Road Initiative (BRI),
@@ -78,7 +78,7 @@
 #   * 2015-Pres: Digital Silk Road Frameworks (Huawei 5G, BeiDou Satellite Navigation, Subsea Fiber Grid)
 #   * 2021-Pres: Project mBridge Multi-CBDC Platform (BLOC_BRICS_MBRIDGE / Non-SWIFT Cross-Border Clearing)
 # ------------------------------------------------------------------------------
-# 3.1. CATEGORY 1: COMPREHENSIVE STRATEGIC PARTNERS, TREATY ALLIES & IRONCLAD CORRIDORS
+# 1.1. CATEGORY 1: COMPREHENSIVE STRATEGIC PARTNERS, TREATY ALLIES & IRONCLAD CORRIDORS
 # Scope: Mutual Defense Treaties / "Iron Brotherhood" Alliances / Sovereign Deepwater Basing (+0.60 to +0.85, core allies >=+0.65; MM corridor at +0.60)
 # Total Vectors in Tier: 8 Dyads
 # ------------------------------------------------------------------------------
@@ -205,7 +205,7 @@ Core Strategic Flashpoints:
 Cross-Reference Multilateral Nodes: GEO_AU, GEO_US, GEO_NZ
 
 # ------------------------------------------------------------------------------
-# 3.2. CATEGORY 2: STRATEGIC RESOURCE PARTNERS, PETRO-YUAN NETWORKS & EURASIAN CORRIDORS
+# 1.2. CATEGORY 2: STRATEGIC RESOURCE PARTNERS, PETRO-YUAN NETWORKS & EURASIAN CORRIDORS
 # Scope: Major Trade Partners / Petro-Yuan Energy Agreements / RCEP & BRICS Architecture (+0.40 to +0.65)
 # Total Vectors in Tier: 14 Dyads
 # ------------------------------------------------------------------------------
@@ -421,7 +421,7 @@ Core Strategic Flashpoints:
 Cross-Reference Multilateral Nodes: BLOC_BRICS, CHOKE_SUEZ, CHOKE_BAB_EL_MANDEB
 
 # ------------------------------------------------------------------------------
-# 3.3. CATEGORY 3: EXISTENTIAL GEOPOLITICAL RIVALS, TECH WARS & FIRST ISLAND CHAIN
+# 1.3. CATEGORY 3: EXISTENTIAL GEOPOLITICAL RIVALS, TECH WARS & FIRST ISLAND CHAIN
 # Scope: Sovereign Redlines / High-Tech Export Embargoes / Maritime Encirclement Fronts (-0.30 to -0.90)
 # Total Vectors in Tier: 9 Dyads
 # ------------------------------------------------------------------------------
@@ -563,7 +563,7 @@ Core Strategic Flashpoints:
 Cross-Reference Multilateral Nodes: BLOC_AUKUS, BLOC_NATO, GEO_US
 
 # ------------------------------------------------------------------------------
-# 3.4. CATEGORY 4: ASYMMETRIC RESOURCE MONOPOLIES, NAVAL BASING & CHOKEPOINTS
+# 1.4. CATEGORY 4: ASYMMETRIC RESOURCE MONOPOLIES, NAVAL BASING & CHOKEPOINTS
 # Scope: Overseas Military Support Bases / Strategic Cobalt Monopolies / Maritime Silk Road (+0.45 to +0.65)
 # Total Vectors in Tier: 3 Dyads
 # ------------------------------------------------------------------------------

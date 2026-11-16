@@ -43,7 +43,7 @@
 #    All sovereign actors strictly map to their registered canonical entity identifiers in llms-entities-id.txt (GEO_*).
 # ==============================================================================
 
-# 2. SOVEREIGN HUB: RUSSIAN FEDERATION (GEO_RU)
+# 1. SOVEREIGN HUB: RUSSIAN FEDERATION (GEO_RU)
 # ==============================================================================
 # Anchor State: GEO_RU (Russian Federation)
 # Global Role: Nuclear Parity Superpower, Eurasian Landmass Hegemon, Primary Hydrocarbon,
@@ -73,7 +73,7 @@
 #   * 2014 (Eff. 2015): Eurasian Economic Union Treaty (EAEU Common Market & Customs Integration)
 #   * 2016 (OPEC+): Declaration of Cooperation with OPEC (BLOC_OPEC / Global Crude Quota Coordination)
 # ------------------------------------------------------------------------------
-# 2.1. CATEGORY 1: TREATY ALLIES & DEEP GEOSTRATEGIC INTEGRATION (UNION STATE & CSTO ALLIANCE)
+# 1.1. CATEGORY 1: TREATY ALLIES & DEEP GEOSTRATEGIC INTEGRATION (UNION STATE & CSTO ALLIANCE)
 # Scope: Formal Mutual Defense Allies / Nuclear Forward Basing / Defense Industrial Integration (+0.40 to +0.95)
 # Total Vectors in Tier: 7 Dyads
 # ------------------------------------------------------------------------------
@@ -185,7 +185,7 @@ Core Strategic Flashpoints:
 Cross-Reference Multilateral Nodes: BLOC_CSTO, CORRIDOR_ZANGEZUR, GEO_AZ, GEO_TR
 
 # ------------------------------------------------------------------------------
-# 2.2. CATEGORY 2: STRATEGIC MULTI-ALIGNMENT, OPEC+, ENERGY & EURASIAN TRADE
+# 1.2. CATEGORY 2: STRATEGIC MULTI-ALIGNMENT, OPEC+, ENERGY & EURASIAN TRADE
 # Scope: Major Autonomous Economies / OPEC+ Energy Coordination / Non-Western Corridors (+0.35 to +0.60)
 # Total Vectors in Tier: 12 Dyads
 # ------------------------------------------------------------------------------
@@ -371,7 +371,7 @@ Core Strategic Flashpoints:
 Cross-Reference Multilateral Nodes: GEO_CN, GEO_US
 
 # ------------------------------------------------------------------------------
-# 2.3. CATEGORY 3: EXISTENTIAL ADVERSARIES, SANCTION REGIMES & COERCIVE CONTAINMENT
+# 1.3. CATEGORY 3: EXISTENTIAL ADVERSARIES, SANCTION REGIMES & COERCIVE CONTAINMENT
 # Scope: Active Kinetic Battlefield / Direct Nuclear Peers / Aggressive NATO Flanks (-0.45 to -0.95)
 # Total Vectors in Tier: 10 Dyads
 # ------------------------------------------------------------------------------
@@ -528,7 +528,7 @@ Core Strategic Flashpoints:
 Cross-Reference Multilateral Nodes: BLOC_EU, GEO_UA, GEO_RO
 
 # ------------------------------------------------------------------------------
-# 2.4. CATEGORY 4: ASYMMETRIC POWER PROJECTIONS, PROXY FRONTS & SPECIAL MISSIONS
+# 1.4. CATEGORY 4: ASYMMETRIC POWER PROJECTIONS, PROXY FRONTS & SPECIAL MISSIONS
 # Scope: Expeditionary Military Footprint / Maritime Outposts / Counter-Hegemonic Hubs (+0.20 to +0.70)
 # Total Vectors in Tier: 4 Dyads
 # ------------------------------------------------------------------------------
