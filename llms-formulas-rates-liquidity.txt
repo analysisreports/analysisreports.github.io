@@ -139,6 +139,8 @@ import math
 - Interpretation:
   - Spread < 0 : INVERTED_FRONT_END (Inverted front-end slope / Collateral & liquidity squeeze)
   - Spread >= 0 : NORMAL_SLOPE (Healthy front-end liquidity distribution)
+
+
 ---
 
 ### 5. NET FED LIQUIDITY INDEX
