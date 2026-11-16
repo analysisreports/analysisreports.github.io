@@ -3,14 +3,18 @@
 """
 build_formulas.py
 -----------------
-Master Quantitative Formulas Compiler & Sharding Engine.
+Master Quantitative Formulas Compiler & Federated Router Engine.
 
-Compiles modular formula shelves from the canonical mathematical logic:
-1. llms-formulas-rates-liquidity.txt (Rates, yield curves, Fed/ECB liquidity, credit spreads, carry trades)
-2. llms-formulas-macro-labor.txt (Inflation, labor, housing, growth, consumption, valuation, release calendars)
-3. llms-formulas-commodities-shock.txt (Energy benchmarks, 3:2:1 crack spread, supply chain stress, chips, safe havens)
-4. llms-formulas-geopolitics.txt (Dynamic polarity, Mecca Pact, chokepoint severity, strategic tension & confidence)
-5. llms-formulas.txt (Master Router & Methodological Guide - Section 0.1-0.7 rules + Routing Index)
+Architecture: Bottom-Up Compilation (Shelves -> Master Router SSOT)
+Tıpkı build_graph.py gibi:
+1. 4 Uzmanlık Rafını (SSOT) okur:
+   - llms-formulas-rates-liquidity.txt
+   - llms-formulas-macro-labor.txt
+   - llms-formulas-commodities-shock.txt
+   - llms-formulas-geopolitics.txt
+2. Bölüm 0.1–0.7 Genel Metodoloji çekirdeğini korur.
+3. Master Router Tablosu ve 62 Modelin Fihristini derler.
+4. llms-formulas.txt dosyasını hafif Master Router & Fihrist (~28 KB) olarak üretir.
 
 Author: Ersoy Toptaş
 License: CC BY-NC-ND 4.0
@@ -21,111 +25,169 @@ import os
 import re
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC_FORMULAS = os.path.join(ROOT_DIR, "llms-formulas.txt")
+MASTER_FILE = os.path.join(ROOT_DIR, "llms-formulas.txt")
 
-# Target Shelves
-SHELVES = {
-    "rates-liquidity": {
+SHELVES = [
+    {
+        "id": "rates-liquidity",
         "file": os.path.join(ROOT_DIR, "llms-formulas-rates-liquidity.txt"),
+        "filename": "llms-formulas-rates-liquidity.txt",
         "title": "Rates, Yield Curves, Liquidity & Monetary Transmission",
-        "scope": "Central bank policy stances, yield curve slopes, repo liquidity, credit spreads, carry trade, and committee dispersion",
-        "models": ["1", "2", "4", "5", "6", "7", "9", "10", "11", "12", "13", "14", "15", "25.5", "25.16", "26"]
+        "scope": "Central bank policy stance, yield curves, repo friction, Fed/ECB liquidity, credit spreads, carry trades",
+        "tier": "TIER 1 & 2: RATES, LIQUIDITY & POLICY"
     },
-    "macro-labor": {
+    {
+        "id": "macro-labor",
         "file": os.path.join(ROOT_DIR, "llms-formulas-macro-labor.txt"),
+        "filename": "llms-formulas-macro-labor.txt",
         "title": "Macroeconomic Fundamentals, Labor Dynamics, Valuation & Cycles",
-        "scope": "Inflation persistence, labor market momentum, housing affordability, consumption collapse, valuation metrics, and release calendars",
-        "models": ["3", "8", "17", "18", "19", "22", "23", "23.1", "23.2", "23.3", "23.4", "23.5", "23.6", "23.7", "23.8", "25", "25.2", "25.10", "25.11", "25.13", "30"]
+        "scope": "Inflation persistence, labor momentum, housing bubble, consumption collapse, equity valuation, release countdown",
+        "tier": "TIER 1, 2 & 4: MACRO, LABOR & VALUATION"
     },
-    "commodities-shock": {
+    {
+        "id": "commodities-shock",
         "file": os.path.join(ROOT_DIR, "llms-formulas-commodities-shock.txt"),
+        "filename": "llms-formulas-commodities-shock.txt",
         "title": "Commodities, Energy Shocks, Supply Chains & Asset Stress",
-        "scope": "Crude oil benchmarks, crack spreads, natural gas ratios, semiconductor supply chain stress, and safe haven flight indices",
-        "models": ["16", "20", "21", "24", "25.3", "25.6", "25.7", "25.8", "25.9", "25.12", "25.14", "25.17"]
+        "scope": "Crude benchmarks, 3:2:1 crack spread, natgas disconnect, chip stress, supply chain logistics, safe haven flight",
+        "tier": "TIER 2: COMMODITIES, ENERGY & SUPPLY CHAIN"
     },
-    "geopolitics": {
+    {
+        "id": "geopolitics",
         "file": os.path.join(ROOT_DIR, "llms-formulas-geopolitics.txt"),
+        "filename": "llms-formulas-geopolitics.txt",
         "title": "Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence",
-        "scope": "Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, and evidence confidence scoring",
-        "models": ["25.1", "25.15", "25.18", "25.19", "27", "27.1", "28", "28.1", "28.2", "28.3", "28.4", "28.5", "29"]
+        "scope": "Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, intelligence confidence",
+        "tier": "TIER 3: GEOPOLITICAL DYNAMICS, ALLIANCES & RISK"
     }
-}
+]
 
-def extract_model_blocks(lines):
-    pattern = re.compile(r'^###\s+([0-9]+(?:\.[0-9]+)*)\.\s*(.*)')
-    model_indices = []
-    for idx, line in enumerate(lines):
-        m = pattern.match(line)
-        if m:
-            num = m.group(1)
-            if not num.startswith("0."):
-                model_indices.append((idx, num, m.group(2).strip()))
-    
-    blocks = {}
-    for i, (start_idx, num, title) in enumerate(model_indices):
-        # Scan backward for divider
-        actual_start = start_idx
-        if actual_start > 0 and lines[actual_start - 1].strip() == "":
-            if actual_start > 1 and lines[actual_start - 2].strip() == "---":
-                actual_start -= 2
-        
-        # End is next model's start or end of tier
-        if i < len(model_indices) - 1:
-            next_start = model_indices[i + 1][0]
-            if next_start > 0 and lines[next_start - 1].strip() == "":
-                if next_start > 1 and lines[next_start - 2].strip() == "---":
-                    next_start -= 2
-            end_idx = next_start
-        else:
-            end_idx = len(lines)
-        
-        raw_block = "".join(lines[actual_start:end_idx]).strip()
-        blocks[num] = {
+def extract_models_from_shelf(shelf):
+    with open(shelf["file"], "r", encoding="utf-8") as f:
+        content = f.read()
+
+    # Pattern to match:
+    # ### <num>. <title>
+    # followed by optional fields: Purpose, Data Series Keys, Target
+    pattern = re.compile(
+        r'(?m)^###\s+([0-9]+(?:\.[0-9]+)*)\.\s*(.*?)\n'
+        r'(?:-\s*Purpose:\s*(.*?)\n)?'
+        r'(?:-\s*Target:\s*(.*?)\n)?'
+    )
+
+    models = []
+    for m in pattern.finditer(content):
+        num = m.group(1)
+        title = m.group(2).strip()
+        purpose = m.group(3).strip() if m.group(3) else ""
+        target = m.group(4).strip() if m.group(4) else ""
+        models.append({
+            "number": num,
             "title": title,
-            "content": raw_block
-        }
-    return blocks
+            "purpose": purpose,
+            "target": target,
+            "shelf": shelf
+        })
+    return models
 
-def generate_shelf_file(shelf_key, shelf_info, blocks):
-    header = f"""# Ersoy Toptaş Quantitative Models: {shelf_info['title']}
-> Canonical Domain Sub-Engine | Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0
-> Master Router & Methodology (0.1–0.7): https://analysisreports.github.io/llms-formulas.txt
-> Shelf Scope: {shelf_info['scope']}
-> Zero-Fallback Rule: Missing or non-finite inputs strictly return None (null).
-> Models Contained: {len(shelf_info['models'])} Domain Models ({', '.join(shelf_info['models'])})
+def build_master_router():
+    # 1. Read existing Section 0.1-0.7 from llms-formulas.txt (or scratch backup if already truncated)
+    sec0_content = ""
+    with open(MASTER_FILE, "r", encoding="utf-8") as f:
+        current_master = f.read()
 
----
-"""
-    body_parts = [header]
-    for num in shelf_info["models"]:
-        block = blocks.get(num)
-        if not block:
-            raise ValueError(f"Model {num} not found in extracted blocks!")
-        # Ensure standard divider
-        content = block["content"]
-        if content.startswith("---"):
-            content = content[3:].strip()
-        body_parts.append(f"\n---\n\n{content}\n")
-    
-    full_text = "\n".join(body_parts).strip() + "\n"
-    with open(shelf_info["file"], "w", encoding="utf-8") as f:
-        f.write(full_text)
-    print(f"[*] Compiled {os.path.basename(shelf_info['file'])} ({len(shelf_info['models'])} models, {len(full_text.encode('utf-8')) / 1024:.1f} KB)")
+    if "## 🏛️ TIER 1" in current_master:
+        tier1_idx = current_master.find("## 🏛️ TIER 1")
+        sec0_content = current_master[:tier1_idx].strip()
+    else:
+        backup_path = os.path.join(ROOT_DIR, "scratch", "sec0_backup.txt")
+        if os.path.exists(backup_path):
+            with open(backup_path, "r", encoding="utf-8") as bf:
+                sec0_content = bf.read().strip()
+        else:
+            raise RuntimeError("Cannot locate Section 0.1-0.7 methodology core!")
 
-def main():
-    if not os.path.exists(SRC_FORMULAS):
-        raise FileNotFoundError(f"Source file {SRC_FORMULAS} not found.")
-    
-    with open(SRC_FORMULAS, "r", encoding="utf-8") as f:
-        lines = f.readlines()
-    
-    blocks = extract_model_blocks(lines)
-    print(f"[*] Extracted {len(blocks)} canonical model blocks from {os.path.basename(SRC_FORMULAS)}.")
-    
-    for shelf_key, shelf_info in SHELVES.items():
-        generate_shelf_file(shelf_key, shelf_info, blocks)
-    
-    print("[SUCCESS] All 4 formula shelves generated successfully.")
+    # 2. Extract models from all 4 shelves
+    all_models = []
+    shelf_stats = {}
+    for shelf in SHELVES:
+        m_list = extract_models_from_shelf(shelf)
+        shelf_stats[shelf["id"]] = len(m_list)
+        all_models.extend(m_list)
+
+    total_models = len(all_models)
+    print(f"[*] Extracted {total_models} models across 4 domain shelves: {shelf_stats}")
+
+    # 3. Sort models naturally (numerical order)
+    def model_sort_key(m):
+        parts = m["number"].split(".")
+        return [int(p) for p in parts]
+
+    all_models.sort(key=model_sort_key)
+
+    # 4. Generate Master Router Header & Guidance
+    router_table = [
+        "## 🗂️ MASTER ROUTING DIRECTIVE & FEDERATED SHELF MAP",
+        "> HIGH-PRIORITY LLM REASONING DIRECTIVE: Fetch domain-specific formula shelves directly.",
+        "> Do NOT traverse deprecated monolithic representations. Query target shelf endpoints below.",
+        "",
+        "| Shelf Domain | Target Endpoint | Scope | Models | Size |",
+        "| :--- | :--- | :--- | :---: | :---: |"
+    ]
+
+    for shelf in SHELVES:
+        f_size_kb = os.path.getsize(shelf["file"]) / 1024.0
+        m_count = shelf_stats[shelf["id"]]
+        endpoint_url = f"https://analysisreports.github.io/{shelf['filename']}"
+        router_table.append(
+            f"| **{shelf['title']}** | [`{shelf['filename']}`]({endpoint_url}) | {shelf['scope']} | **{m_count}** | ~{f_size_kb:.1f} KB |"
+        )
+
+    router_table_str = "\n".join(router_table)
+
+    # 5. Generate Compact Index Entries for each Model
+    index_entries = [
+        "---",
+        "",
+        "## 🧭 CANONICAL MODEL INDEX (ROUTER & ENDPOINT CROSS-REFERENCE)",
+        "> All model implementations, mathematical formulas, and Python executable logic are hosted in the domain shelves.",
+        "> Use the exact anchors below to navigate to authoritative definitions.",
+        ""
+    ]
+
+    for m in all_models:
+        num = m["number"]
+        title = m["title"]
+        shelf = m["shelf"]
+        endpoint = f"https://analysisreports.github.io/{shelf['filename']}#{num}"
+        purpose_line = f"  - Purpose: {m['purpose']}" if m['purpose'] else ""
+        target_line = f"\n  - Target: {m['target']}" if m['target'] else ""
+        
+        entry = (
+            f"### {num}. {title}\n"
+            f"- Domain Shelf: [`{shelf['filename']}#{num}`]({endpoint})\n"
+            f"- Shelf Category: {shelf['title']}"
+        )
+        if purpose_line:
+            entry += f"\n{purpose_line}"
+        if target_line:
+            entry += f"{target_line}"
+        
+        index_entries.append(entry)
+        index_entries.append("")
+
+    full_master_text = (
+        sec0_content + "\n\n---\n\n" +
+        router_table_str + "\n\n" +
+        "\n".join(index_entries)
+    ).strip() + "\n"
+
+    # Write compiled master file
+    with open(MASTER_FILE, "w", encoding="utf-8") as f:
+        f.write(full_master_text)
+
+    new_size_kb = len(full_master_text.encode("utf-8")) / 1024.0
+    print(f"[SUCCESS] Compiled {os.path.basename(MASTER_FILE)} into Master Router ({total_models} models, {new_size_kb:.1f} KB)")
 
 if __name__ == "__main__":
-    main()
+    build_master_router()
