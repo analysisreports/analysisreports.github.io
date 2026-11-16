@@ -11,13 +11,13 @@
     {"id": "GEO_RU", "label": "Russian Federation", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "RUB", "primary_friction": "EASTERN_EUROPE_BLACK_SEA"}},
     {"id": "GEO_CN", "label": "People's Republic of China", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "CNY", "primary_friction": "TAIWAN_STRAIT_TECH_EXPORTS"}},
     {"id": "GEO_IL", "label": "State of Israel", "category": "ACTOR", "type": "Sovereign State", "attributes": {"primary_friction": "LEVANT_PERSIAN_GULF_NUCLEAR"}},
-    {"id": "GEO_IR", "label": "Islamic Republic of Iran", "category": "ACTOR", "type": "Sovereign State", "attributes": {"chokepoint_control": "HORMUZ_STRAIT", "proxy_network": ["YE-HOUTHI", "LB-HEZB"]}},
+    {"id": "GEO_IR", "label": "Islamic Republic of Iran", "category": "ACTOR", "type": "Sovereign State", "attributes": {"chokepoint_control": "HORMUZ_STRAIT", "proxy_network": ["PROXY_YE_HOUTHI", "PROXY_LB_HEZB"]}},
     {"id": "GEO_TR", "label": "Republic of Türkiye", "category": "ACTOR", "type": "Strategic Transit Hub", "attributes": {"chokepoint_control": "TURKISH_STRAITS", "montreux_enforcer": true}},
     {"id": "GEO_SA", "label": "Kingdom of Saudi Arabia", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "SAR", "jurisdiction": "GEO_SA"}},
     {"id": "PROXY_YE_HOUTHI", "label": "Ansarullah / Yemen Houthis", "category": "ACTOR", "type": "Non-State Proxy", "attributes": {"patron": "GEO_IR", "patron_coupling": 0.85, "theater": "BAB_EL_MANDEB_RED_SEA"}},
     {"id": "GEO_KP", "label": "Democratic People's Republic of Korea", "category": "ACTOR", "type": "Sovereign State", "attributes": {"structural_regime": "KINETIC_STANDOFF", "asymmetric_threat": "NUCLEAR_BALLISTIC_PROLIFERATION", "economic_coupling": 0.01}},
     {"id": "BLOC_BRICS_MBRIDGE", "label": "BRICS & mBridge Settlement Axis", "category": "ACTOR", "type": "Multilateral Clearing Bloc", "attributes": {"structural_regime": "MONETARY_DECOUPLING", "core_nodes": ["mBridge", "CIPS", "SPFS"]}},
-    {"id": "BLOC_C6", "label": "Central Asia - Azerbaijan Consultative Mechanism (C6)", "category": "ACTOR", "type": "Regional Multilateral Bloc", "attributes": {"members": ["KZ", "UZ", "KG", "TM", "TJ", "AZ"], "economic_formula": "SIX_ECONOMIES_ONE_PRODUCT", "key_infrastructure": "TRANS_CASPIAN_PIPELINE_AND_RAIL"}},
+    {"id": "BLOC_C6", "label": "Central Asia - Azerbaijan Consultative Mechanism (C6)", "category": "ACTOR", "type": "Regional Multilateral Bloc", "attributes": {"members": ["GEO_KZ", "GEO_UZ", "GEO_KG", "GEO_TM", "GEO_TJ", "GEO_AZ"], "economic_formula": "SIX_ECONOMIES_ONE_PRODUCT", "key_infrastructure": "TRANS_CASPIAN_PIPELINE_AND_RAIL"}},
     {"id": "REG_RF_CAUCASUS_ARC", "label": "North Caucasus Autonomous Line (Karachay-Cherkessia, Kabardino-Balkaria, Dagestan)", "category": "ACTOR", "type": "Sub-National Autonomous Entity", "attributes": {"parent_authority": "GEO_RU", "polarity_baseline": 0.7, "structural_regime": "STRATEGIC_ALIGNMENT", "primary_exposure": "CASPIAN_SECURITY_ENERGY_CORRIDORS"}},
     {"id": "REG_RF_VOLGA_SIBERIAN", "label": "Volga-Ural & Siberian Arc (Tatarstan, Bashkortostan, Sakha, Altai, etc.)", "category": "ACTOR", "type": "Sub-National Autonomous Entity", "attributes": {"parent_authority": "GEO_RU", "polarity_baseline": 0.8, "structural_regime": "STRATEGIC_ALIGNMENT", "primary_exposure": "FISCAL_FEDERALISM_RESOURCE_EXTRACTION"}},
     {"id": "REG_RF_SOUTHERN_KRAIS", "label": "Southern Administrative Krais (Stavropol, Krasnodar)", "category": "ACTOR", "type": "Sub-National Administrative Region", "attributes": {"parent_authority": "GEO_RU", "polarity_baseline": 0.95, "structural_regime": "ALLIANCE", "primary_exposure": "BLACK_SEA_AGRO_PORT_LOGISTICS"}},
@@ -112,7 +112,8 @@
     {"id": "BLOC_I2U2", "label": "I2U2 Strategic Alignment (India, Israel, UAE, USA)", "category": "ACTOR", "type": "Multilateral Strategic Bloc", "attributes": {"members": ["GEO_IN", "GEO_IL", "GEO_AE", "GEO_US"], "effective_date": "2022-07-14", "status": "ACTIVE", "p_baseline": 0.65, "treaty_architecture": "Trans-Regional Geoeconomic, Clean Energy Grid & Maritime Transit Partnership", "transmission_series": ["IND_DCOILBRENTEU", "IND_GSCPI", "IND_INDPRO"]}},
     {"id": "BLOC_TDT", "label": "Organization of Turkic States (TDT)", "category": "ACTOR", "type": "Regional Multilateral Bloc", "attributes": {"members": ["GEO_TR", "GEO_AZ", "GEO_KZ", "GEO_UZ", "GEO_KG"], "observers": ["GEO_HU", "GEO_TM", "GEO_CY_TR"], "effective_date": "2009-10-03", "status": "ACTIVE", "treaty_architecture": "Nakhchivan Agreement"}},
     {"id": "SEC_SPACE_STARLINK", "label": "SpaceX Starlink LEO Constellation", "category": "ACTOR", "type": "Commercial SATCOM & LEO Internet Infrastructure", "attributes": {"operator": "SpaceX", "jurisdiction": "GEO_US", "primary_domain": "CIVILIAN_COMMERCIAL_SATCOM", "dual_use_capability": true, "resilience_profile": "HIGH_DISTRIBUTED_LEO"}},
-    {"id": "SEC_DEF_STARSHIELD", "label": "Starshield National Security Constellation", "category": "ACTOR", "type": "Military Space & Intelligence Constellation", "attributes": {"operator": "SpaceX / US Space Force / NRO", "jurisdiction": "GEO_US", "parent_authority": "GOV_DOD_US", "primary_domain": "TACTICAL_COMM_ISR_MISSILE_TRACKING", "security_classification": "SPECIAL_ACCESS_PROGRAM"}}
+    {"id": "SEC_DEF_STARSHIELD", "label": "Starshield National Security Constellation", "category": "ACTOR", "type": "Military Space & Intelligence Constellation", "attributes": {"operator": "SpaceX / US Space Force / NRO", "jurisdiction": "GEO_US", "parent_authority": "GOV_DOD_US", "primary_domain": "TACTICAL_COMM_ISR_MISSILE_TRACKING", "security_classification": "SPECIAL_ACCESS_PROGRAM"}},
+    {"id": "GEO_CH", "label": "Switzerland", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "CHF", "geopolitical_status": "NEUTRAL_FINANCIAL_HUB"}}
   ],
   "edges": [
     {"source": "GEO_US", "target": "GEO_RU", "type": "POLARITY_COUPLING", "p_baseline": -0.85, "regime": "PROXY_WAR"},
@@ -246,6 +247,13 @@
     {"source": "GEO_US", "target": "GEO_CL", "type": "POLARITY_COUPLING", "p_baseline": 0.55, "regime": "STRATEGIC_ALIGNMENT"},
     {"source": "GEO_US", "target": "SEC_SPACE_STARLINK", "type": "REGULATES_TRANSIT", "role": "Regulatory & Export Licensing Authority (FCC/ITAR)"},
     {"source": "GOV_DOD_US", "target": "SEC_DEF_STARSHIELD", "type": "PATRON_COUPLING", "coupling_factor": 1.0, "role": "Primary Military Procurement & Tactical Command"},
-    {"source": "SEC_SPACE_STARLINK", "target": "SEC_DEF_STARSHIELD", "type": "BRIDGES_TO_MODEL", "passes": "leo_bus_architecture_and_launch_cadence"}
+    {"source": "SEC_SPACE_STARLINK", "target": "SEC_DEF_STARSHIELD", "type": "PATRON_COUPLING", "coupling_factor": 1.0, "role": "Commercial LEO Constellation Architecture & Defense Capability Transfer"},
+    {"source": "BLOC_C6", "target": "GEO_KZ", "type": "INCLUDES_MEMBER"},
+    {"source": "BLOC_C6", "target": "GEO_UZ", "type": "INCLUDES_MEMBER"},
+    {"source": "BLOC_C6", "target": "GEO_KG", "type": "INCLUDES_MEMBER"},
+    {"source": "BLOC_C6", "target": "GEO_TM", "type": "INCLUDES_MEMBER"},
+    {"source": "BLOC_C6", "target": "GEO_TJ", "type": "INCLUDES_MEMBER"},
+    {"source": "BLOC_C6", "target": "GEO_AZ", "type": "INCLUDES_MEMBER"},
+    {"source": "INST_SNB_CH", "target": "GEO_CH", "type": "PATRON_COUPLING", "coupling_factor": 1, "role": "Monetary Authority"}
   ]
 }
