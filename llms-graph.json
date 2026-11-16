@@ -15,10 +15,10 @@
   "graph_accounting": {
     "modular_subgraphs_nodes": 235,
     "modular_subgraphs_edges": 304,
-    "core_backbone_nodes": 8,
-    "core_backbone_edges": 7,
-    "total_federated_nodes": 243,
-    "total_federated_edges": 311
+    "core_backbone_nodes": 9,
+    "core_backbone_edges": 8,
+    "total_federated_nodes": 244,
+    "total_federated_edges": 312
   },
   "subgraphs": {
     "chokepoints": {
@@ -44,8 +44,8 @@
     },
     "core_backbone": {
       "scope": "Master repository endpoint schemas and cross-manifest indexing links",
-      "nodes_count": 8,
-      "edges_count": 7
+      "nodes_count": 9,
+      "edges_count": 8
     }
   },
   "graph_metadata": {
@@ -157,6 +157,17 @@
         "format": "application/json",
         "description": "Master AI Resource Discovery Directory."
       }
+    },
+    {
+      "id": "EP_ENTITIES_ID",
+      "label": "Canonical Entity Dictionary (llms-entities-id.txt)",
+      "category": "ENDPOINT_SCHEMA",
+      "type": "entity_dictionary_manifest",
+      "attributes": {
+        "url": "https://analysisreports.github.io/llms-entities-id.txt",
+        "format": "text/plain",
+        "role": "Single Source of Truth for Entity IDs and Aliases"
+      }
     }
   ],
   "edges": [
@@ -193,6 +204,11 @@
     {
       "source": "EP_LLMS_TXT",
       "target": "EP_AI_CATALOG",
+      "type": "INDEXES"
+    },
+    {
+      "source": "EP_LLMS_TXT",
+      "target": "EP_ENTITIES_ID",
       "type": "INDEXES"
     }
   ]
