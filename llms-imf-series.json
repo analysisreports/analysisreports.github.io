@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY 4.0",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-15T04:00:57Z",
+    "last_successful_sync": "2026-11-16T10:26:48Z",
     "total_series": 4,
     "total_registered_series": 4,
     "missing_series": [],
@@ -22,25 +22,21 @@
       "n_obs_per_yr": 260,
       "units": "Israeli New Shekels per US Dollar",
       "source": "International Monetary Fund (IMF) Representative Exchange Rates",
-      "last_date": "2026-11-12",
-      "last_synced_utc": "2026-11-12T21:39:04Z",
-      "current_value": 3.191,
-      "previous_value": 3.172,
-      "year_ago_value": null,
+      "last_date": "2026-11-13",
+      "last_synced_utc": "2026-11-16T10:26:48Z",
+      "current_value": 3.199,
+      "previous_value": 3.191,
+      "year_ago_value": 3.306,
       "transformations": {
-        "change": 0.019,
-        "change_from_year_ago": null,
-        "percent_change": 0.599,
-        "percent_change_from_year_ago": null,
-        "compounded_annual_rate_of_change": 372.4356,
-        "continuously_compounded_rate_of_change": 0.5972,
-        "continuously_compounded_annual_rate_of_change": 155.2731
+        "change": 0.008,
+        "change_from_year_ago": -0.107,
+        "percent_change": 0.2507,
+        "percent_change_from_year_ago": -3.2365,
+        "compounded_annual_rate_of_change": 91.7491,
+        "continuously_compounded_rate_of_change": 0.2504,
+        "continuously_compounded_annual_rate_of_change": 65.1018
       },
       "recent_observations": [
-        {
-          "date": "2026-11-06",
-          "value": 3.194
-        },
         {
           "date": "2026-11-09",
           "value": 3.171
@@ -56,6 +52,10 @@
         {
           "date": "2026-11-12",
           "value": 3.191
+        },
+        {
+          "date": "2026-11-13",
+          "value": 3.199
         }
       ]
     },
