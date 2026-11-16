@@ -30,6 +30,10 @@ Allow: /
 # Technical Indicators: https://analysisreports.github.io/llms-indicators.txt
 # Agent Tool Schemas: https://analysisreports.github.io/llms-tools.json
 # Agent Capability Catalog: https://analysisreports.github.io/ai-catalog.json
+# Agent Discovery Manifest: https://analysisreports.github.io/.well-known/agent.json
+# OpenAI Plugin Manifest: https://analysisreports.github.io/.well-known/ai-plugin.json
+# Security Policy: https://analysisreports.github.io/.well-known/security.txt
+# Formal JSON Schemas: https://analysisreports.github.io/schemas/
 # Integration Workflow: https://analysisreports.github.io/WORKFLOW.md
 
 # OFFICIAL SITEMAPS

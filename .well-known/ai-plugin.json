@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_model": "ersoy_toptas_macro_research",
+  "name_for_human": "Ersoy Toptaş Strategic Macro Library",
+  "description_for_model": "Deterministic macro quantitative modeling, central bank transmission, sovereign geopolitical risk scoring, bilateral dyads, and maritime chokepoints by Ersoy Toptas.",
+  "description_for_human": "Access deterministic macroeconomic models, geopolitical risk scoring, and research library by Ersoy Toptaş.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://analysisreports.github.io/openapi.json"
+  },
+  "logo_url": "https://www.ersoytoptas.tr/favicon.ico",
+  "contact_email": "contact@ersoytoptas.tr",
+  "legal_info_url": "https://analysisreports.github.io/LICENSE.md"
+}

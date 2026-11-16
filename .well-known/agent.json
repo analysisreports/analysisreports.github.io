@@ -1,0 +1,26 @@
+{
+  "": "https://agenticresourcediscovery.org/spec/v1/schema.json",
+  "agent_protocol_version": "1.0.0",
+  "name": "Ersoy Toptaş Strategic Macro & Geopolitical Research Agent Node",
+  "description": "Autonomous A2A agent interface and structured knowledge base modeling global macroeconomics, monetary policies, geopolitical risk, and bilateral dyads.",
+  "provider": {
+    "name": "Ersoy Toptaş",
+    "url": "https://www.ersoytoptas.tr",
+    "orcid": "https://orcid.org/0009-0005-6130-8003"
+  },
+  "documentation": "https://analysisreports.github.io/llms.txt",
+  "catalog": "https://analysisreports.github.io/ai-catalog.json",
+  "tools": "https://analysisreports.github.io/llms-tools.json",
+  "knowledge_graph": "https://analysisreports.github.io/llms-graph.json",
+  "capabilities": [
+    "deterministic_quantitative_macro_modeling",
+    "central_bank_liquidity_tracking",
+    "bilateral_geopolitical_dyads",
+    "maritime_chokepoints_risk_scoring",
+    "graph_rag_ontological_reasoning"
+  ],
+  "authentication": {
+    "type": "none"
+  },
+  "last_updated": "2026-11-17"
+}
