@@ -6,7 +6,10 @@
   "author": "Ersoy Toptas",
   "license": "CC BY-NC-ND 4.0",
   "repository": "https://analysisreports.github.io/",
+  "endpoint": "https://analysisreports.github.io/llms-tools.json",
+  "master_graph": "https://analysisreports.github.io/llms-graph.json",
   "documentation": "https://analysisreports.github.io/llms-formulas.txt",
+  "last_updated": "2026-11-16T23:15:00Z",
   "tools": [
     {
       "type": "function",

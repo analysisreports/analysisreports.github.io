@@ -1,11 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Sovereign States, Alliances & Strategic Actors Subgraph",
+  "version": "3.0.0",
   "author": "Ersoy Toptas",
   "license": "CC BY-NC-ND 4.0",
   "repository": "https://analysisreports.github.io/",
-  "name": "Sovereign States, Alliances & Strategic Actors Subgraph",
-  "version": "3.0.0",
+  "endpoint": "https://analysisreports.github.io/llms-graph-actors.json",
+  "master_graph": "https://analysisreports.github.io/llms-graph.json",
   "subgraph_domain": "SOVEREIGN_ACTORS_AND_BLOCS",
+  "last_updated": "2026-11-16T23:15:00Z",
   "nodes": [
     {"id": "GEO_US", "label": "United States", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "USD", "economic_coupling_cn": 0.65, "economic_coupling_ru": 0.1}},
     {"id": "GEO_RU", "label": "Russian Federation", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "RUB", "primary_friction": "EASTERN_EUROPE_BLACK_SEA"}},

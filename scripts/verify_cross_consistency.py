@@ -410,6 +410,35 @@ def verify_structural_duplicates(
 
     return len(duplicate_errors)
 
+def verify_corporate_metadata_headers() -> int:
+    """Verifies that all primary JSON files contain institutional provenance metadata:
+    endpoint, author, license, version, repository."""
+    files_to_check = [
+        ("llms-graph.json", GRAPH_JSON, ["name", "version", "author", "license", "repository", "architecture_type"]),
+        ("llms-graph-actors.json", GRAPH_ACTORS_JSON, ["name", "version", "author", "license", "repository", "endpoint", "master_graph", "subgraph_domain"]),
+        ("llms-graph-chokepoints.json", GRAPH_CHOKEPOINTS_JSON, ["name", "version", "author", "license", "repository", "endpoint", "master_graph", "subgraph_domain"]),
+        ("llms-graph-models.json", GRAPH_MODELS_JSON, ["name", "version", "author", "license", "repository", "endpoint", "master_graph", "subgraph_domain"]),
+        ("llms-tools.json", TOOLS_JSON, ["name", "version", "author", "license", "repository", "endpoint", "master_graph", "documentation"]),
+    ]
+    header_errors = []
+    for fname, fpath, required_fields in files_to_check:
+        if not os.path.exists(fpath):
+            continue
+        try:
+            with open(fpath, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            for rf in required_fields:
+                if rf not in data or not data[rf]:
+                    header_errors.append(f"{fname} missing corporate header field: '{rf}'")
+        except Exception as e:
+            header_errors.append(f"{fname} JSON load error during corporate header check: {e}")
+
+    if header_errors:
+        print(f"[FAIL] Corporate Metadata Header check detected {len(header_errors)} defects:")
+        for err in header_errors:
+            print(f"  - {err}")
+    return len(header_errors)
+
 def main():
     parser = argparse.ArgumentParser(description="Check or synchronize relationship polarity against the master SSOT.")
     parser.add_argument(
@@ -469,13 +498,18 @@ def main():
     tgs_label = "function/enum mismatches found" if tools_graph_sync > 0 else "function/enum sync verified (0 mismatches)"
     print(f"[*] Tools-Graph-Bridge Sync       : {tools_graph_sync} {tgs_label}")
 
-    total_synced = txt_sync + graph_sync + json_sync + bridge_mismatches + structural_duplicates + tools_graph_sync
+    # 7. Audit Corporate Metadata Headers
+    corp_header_errors = verify_corporate_metadata_headers()
+    ch_label = "header defects found" if corp_header_errors > 0 else "corporate provenance verified (0 defects)"
+    print(f"[*] Corporate Header Compliance   : {corp_header_errors} {ch_label}")
+
+    total_synced = txt_sync + graph_sync + json_sync + bridge_mismatches + structural_duplicates + tools_graph_sync + corp_header_errors
     print("-" * 70)
     if args.check and total_synced > 0:
         print(f"[FAIL] Found {total_synced} cross-file discrepancies, duplicates or unresolved references; no files were modified.")
         exit_code = 1
-    elif bridge_mismatches > 0 or structural_duplicates > 0 or tools_graph_sync > 0:
-        print(f"[FAIL] Found {bridge_mismatches} unresolved cross-references, {structural_duplicates} duplicates, or {tools_graph_sync} function/enum mismatches!")
+    elif bridge_mismatches > 0 or structural_duplicates > 0 or tools_graph_sync > 0 or corp_header_errors > 0:
+        print(f"[FAIL] Found {bridge_mismatches} unresolved cross-references, {structural_duplicates} duplicates, {tools_graph_sync} mismatches, or {corp_header_errors} header defects!")
         exit_code = 1
     elif total_synced > 0:
         print(f"[AUTO-HEALED] Successfully equalized {total_synced} discrepancies across secondary files!")

@@ -1,11 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Quantitative Macroeconomic Models & Indicator Data Bindings Subgraph",
+  "version": "3.0.0",
   "author": "Ersoy Toptas",
   "license": "CC BY-NC-ND 4.0",
   "repository": "https://analysisreports.github.io/",
-  "name": "Quantitative Macroeconomic Models & Indicator Data Bindings Subgraph",
-  "version": "3.0.0",
+  "endpoint": "https://analysisreports.github.io/llms-graph-models.json",
+  "master_graph": "https://analysisreports.github.io/llms-graph.json",
   "subgraph_domain": "MACRO_MODELS_AND_INDICATORS",
+  "last_updated": "2026-11-16T23:15:00Z",
   "nodes": [
     {
       "id": "IND_WALCL",
