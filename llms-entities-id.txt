@@ -1,8 +1,9 @@
 # ==============================================================================
-# CANONICAL ENTITY & INDICATOR DICTIONARY (LLM OPTIMIZED ONTOLOGY v2.0)
+# CANONICAL ENTITY & INDICATOR DICTIONARY (LLM OPTIMIZED ONTOLOGY v3.0)
 # Identifier: llms-entities-id.txt
 # Ecosystem: Ersoy Toptaş Quantitative Macro Research & Graph RAG Architecture
 # Canonical Endpoint: https://analysisreports.github.io/llms-entities-id.txt
+# Version: 2026-Q4.v3.0 | Last Updated: 2026-11-16 | License: CC BY-NC-ND 4.0
 # Strategic Editorial Nodes: Primary(TR): https://www.ersoytoptas.tr/ | Global(EN): https://en.ersoytoptas.tr/
 # Standard: Strict Domain-Prefixed Identifiers (No Ambiguous ACTOR Tags)
 # Language: English (Machine-Readable Ontology)
@@ -252,8 +253,7 @@ CORRIDOR_INSTC       | Aliases: International North-South Transport Corridor, IN
 CORRIDOR_CPEC        | Aliases: China-Pakistan Economic Corridor, CPEC, Gwadar-Kashgar Axis
 CORRIDOR_NORTHERN_SEA_ROUTE | Aliases: Northern Sea Route, NSR, Arctic Shipping Corridor, Polar Route
 BASIN_ESSEQUIBO      | Aliases: Essequibo Basin, Guayana Esequiba, Stabroek Block
-BASIN_EAST_MED       | Aliases: Eastern Mediterranean Deep-Sea Basin, East Med Basin
-BASIN_EAST_MED_DEEPSEA| Aliases: Eastern Mediterranean Deep-Sea Basin Node, East Med Deep Sea
+BASIN_EAST_MED_DEEPSEA| Aliases: Eastern Mediterranean Deep-Sea Basin Node, East Med Deep Sea, BASIN_EAST_MED
 BASIN_CASPIAN_SEA    | Aliases: Caspian Sea Transit Basin, Caspian Basin
 CORRIDOR_BLACK_SEA   | Aliases: Black Sea Grain Corridor, Black Sea Grain and Mineral Corridor, Odesa Transit Node
 ZONE_FIRST_ISLAND_CHAIN| Aliases: First Island Chain Core, Okinawa-Luzon Corridor
@@ -318,10 +318,8 @@ IND_LNS12500000      | Source: BLS / FRED | Name: Employed Usually Work Full Tim
 IND_LNS12032194      | Source: BLS / FRED | Name: Employed Part-Time for Economic Reasons (Thousands)
 IND_AWHAETP          | Source: BLS / FRED | Name: Average Weekly Hours Total Private
 IND_CPIAUCSL         | Source: BLS / FRED | Name: Consumer Price Index for All Urban Consumers (CPI YoY %)
-IND_STICKY_CPI       | Source: Atlanta Fed / FRED | Name: Sticky CPI Less Food & Energy (STICKYCPIM157SFRBATL)
-IND_FLEX_CPI         | Source: Atlanta Fed / FRED | Name: Flexible CPI Less Food & Energy (FLEXCPIM157SFRBATL)
-IND_STICKCPIM157SFRBATL | Source: Atlanta Fed / FRED | Name: Sticky Price Consumer Price Index (STICKCPIM157SFRBATL)
-IND_FLEXCPIM157SFRBATL  | Source: Atlanta Fed / FRED | Name: Flexible Price Consumer Price Index (FLEXCPIM157SFRBATL)
+IND_STICKCPIM157SFRBATL | Source: Atlanta Fed / FRED | Name: Sticky Price Consumer Price Index (STICKCPIM157SFRBATL, IND_STICKY_CPI)
+IND_FLEXCPIM157SFRBATL  | Source: Atlanta Fed / FRED | Name: Flexible Price Consumer Price Index (FLEXCPIM157SFRBATL, IND_FLEX_CPI)
 IND_PCEPI            | Source: BEA / FRED | Name: Personal Consumption Expenditures Price Index
 IND_WPU06            | Source: BLS / FRED | Name: PPI Chemicals and Allied Products
 IND_IQ               | Source: BLS / FRED | Name: U.S. Export Price Index All Commodities (IQ)
