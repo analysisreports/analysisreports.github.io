@@ -19,9 +19,10 @@ from typing import Set, List, Tuple
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 ENTITIES_FILE = os.path.join(ROOT_DIR, "llms-entities-id.txt")
 RELATIONSHIPS_FILE = os.path.join(ROOT_DIR, "llms-relationships.txt")
+GRAPH_FILE = os.path.join(ROOT_DIR, "llms-graph.json")
 
 # Hariç tutulacak sistem ve versiyon kontrol klasörleri
-EXCLUDE_DIRS = {".git", ".github", "__pycache__", "scripts"}
+EXCLUDE_DIRS = {".git", ".github", "__pycache__", "scripts", "scratch"}
 
 
 def get_allowed_vocabularies() -> Tuple[Set[str], re.Pattern]:
@@ -68,6 +69,17 @@ def get_allowed_vocabularies() -> Tuple[Set[str], re.Pattern]:
                     m = re.match(r"^\s*-\s*([A-Z0-9_]+)\s*:", line)
                     if m:
                         valid_tokens.add(m.group(1))
+
+    # 3. llms-graph.json içindeki node_categories tanımlarını ekle (COMMODITY_STRATEGIC, ENERGY_BENCHMARK vb.)
+    if os.path.exists(GRAPH_FILE):
+        try:
+            import json
+            with open(GRAPH_FILE, "r", encoding="utf-8") as gf:
+                gd = json.load(gf)
+                for cat in gd.get("graph_metadata", {}).get("node_categories", []):
+                    valid_tokens.add(cat)
+        except Exception:
+            pass
 
     # Dinamik Regex oluştur
     sorted_prefixes = sorted(dynamic_prefixes, key=len, reverse=True)

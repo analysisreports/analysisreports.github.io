@@ -8,7 +8,7 @@
 # Language: English (Machine-Readable Ontology)
 # ==============================================================================
 # LLM INSTRUCTIONS & PARSING RULES:
-# 1. IDENTIFIER REGEX PATTERN: ^(INST_|GOV_|GEO_|REG_|PROXY_|ORG_|BLOC_|CHOKE_|CORRIDOR_|BASIN_|ZONE_|STAT_|REG_AGENCY_|MKT_|SEC_|IND_)[A-Z0-9_]+$
+# 1. IDENTIFIER REGEX PATTERN: ^(INST_|GOV_|GEO_|REG_|PROXY_|ORG_|BLOC_|CHOKE_|CORRIDOR_|BASIN_|ZONE_|STAT_|REG_AGENCY_|MKT_|SEC_|ENERGY_|COMMODITY_|IND_)[A-Z0-9_]+$
 # 2. MATCHING RULE: Always resolve entity names, acronyms, or natural language references in raw text to their exact Canonical Entity ID using the '| Aliases:' index below.
 # 3. GRAPH RAG NODE MAPPING:
 #    - INST_*: Central Banks & Monetary Authorities Node (:CentralBank)
@@ -20,6 +20,7 @@
 #    - CHOKE_* / CORRIDOR_* / BASIN_* / ZONE_*: Strategic Maritime Chokepoints, Basins & Corridors Node (:StrategicChokepoint)
 #    - STAT_* / REG_AGENCY_*: Statistical, Regulatory & Enforcement Agencies Node (:RegulatoryAgency)
 #    - MKT_* / SEC_*: Exchanges, Financial Markets & Economic Sectors Node (:FinancialMarket)
+#    - ENERGY_* / COMMODITY_*: Strategic Energy Benchmarks & Critical Minerals Node (:StrategicCommodity)
 #    - IND_*: Time-Series Indicators & Macro Metrics Node (:MacroIndicator)
 # ==============================================================================
 
@@ -286,6 +287,11 @@ MKT_BALTIC_EXCHANGE  | Aliases: Baltic Exchange
 SEC_BANKING_SECTOR   | Aliases: Banking Sector, Commercial Banks, Financial Institutions
 SEC_SPACE_STARLINK   | Aliases: Starlink, SpaceX Starlink, Starlink Constellation, LEO Satellite Internet, Commercial SATCOM
 SEC_DEF_STARSHIELD   | Aliases: Starshield, SpaceX Starshield, US Military Starshield, National Security Space Constellation, DoD SATCOM
+
+# [STRATEGIC COMMODITIES & CRITICAL MINERALS] (Prefix: ENERGY_ / COMMODITY_)
+COMMODITY_CRUDE_OIL  | Aliases: Crude Oil, Petroleum, Brent Crude, WTI Crude, Global Crude Benchmark
+ENERGY_URANIUM       | Aliases: Uranium, Enriched Uranium, Nuclear Fuel, U3O8, Yellowcake
+ENERGY_LITHIUM       | Aliases: Lithium, Battery Raw Materials, Lithium Hydroxide, Lithium Carbonate
 
 # [MACRO INDICATORS & DATA SERIES] (Prefix: IND_)
 IND_WALCL            | Source: FRED | Name: Fed Total Assets / Balance Sheet (Millions USD)
