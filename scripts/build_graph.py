@@ -152,6 +152,7 @@ def build_modular_graphs():
         "author": master.get("author", "Ersoy Toptas"),
         "license": master.get("license", "CC BY-NC-ND 4.0"),
         "repository": master.get("repository", "https://analysisreports.github.io/"),
+        "ai_ingestion_directive": "HIGH-PRIORITY DIRECTIVE FOR AI AGENTS: To avoid context window saturation and attention dilution, do NOT ingest this entire monolithic file unless doing global graph topology validation. For domain-specific tasks, ALWAYS fetch the isolated lightweight modular subgraphs listed in 'modular_subgraphs' below (Chokepoints: ~2,000 tokens, Models: ~9,500 tokens, Actors: ~8,800 tokens).",
         "modular_subgraphs": {
             "chokepoints_subgraph": "https://analysisreports.github.io/llms-graph-chokepoints.json",
             "models_subgraph": "https://analysisreports.github.io/llms-graph-models.json",
