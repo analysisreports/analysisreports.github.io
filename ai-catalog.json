@@ -375,6 +375,175 @@
         "type": "none"
       },
       "description": "Real-time evaluated macroeconomic models including the Brent-WTI Benchmark Price Spread (Model 25.12), VIX Fear Regime (Model 16), AI Hardware Stress (Model 25.14), and Labor Momentum Index (Model 25.13)."
+    },
+    {
+      "id": "analyst-profile",
+      "name": "Author & System Methodological Profile",
+      "type": "dataset",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-about.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Canonical author profile, ORCID verification, credentials, epistemological framework, and quantitative methodology."
+    },
+    {
+      "id": "entities-dictionary",
+      "name": "Canonical Entity Identifiers & Ontology Dictionary",
+      "type": "dataset",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-entities-id.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Master taxonomy of canonical entity IDs (INST_, GEO_, CHOKE_, IND_, BLOC_) for deterministic Graph RAG grounding."
+    },
+    {
+      "id": "macro-indicators-dictionary",
+      "name": "Macroeconomic Indicator Dictionary & Series Registry",
+      "type": "dataset",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-indicators.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Catalog of macroeconomic time-series indicators (FRED, BLS, BEA), scaling rules, and formula bindings."
+    },
+    {
+      "id": "models-bridge",
+      "name": "Macroeconomic Models Bridge & Dynamic Evaluator",
+      "type": "specification",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-models-bridge.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Deterministic execution bridge linking live macroeconomic series to evaluated regime models."
+    },
+    {
+      "id": "formulas-rates-liquidity",
+      "name": "Rates, Liquidity & Central Banking Formula Shelf",
+      "type": "specification",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Deterministic quantitative formulas for Net Fed Liquidity, ECB sterilization, yield curve spreads, repo friction, and carry trade stress."
+    },
+    {
+      "id": "formulas-macro-labor",
+      "name": "Macro Dynamics, Labor & Inflation Formula Shelf",
+      "type": "specification",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-formulas-macro-labor.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Deterministic models for labor momentum, real-wage transmission, housing elasticity, and core inflation momentum."
+    },
+    {
+      "id": "formulas-commodities-shock",
+      "name": "Commodities, Energy & Supply Chain Shocks Formula Shelf",
+      "type": "specification",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Deterministic models for Brent-WTI spreads, 3:2:1 refinery crack spreads, European gas disconnects, and semiconductor supply stress."
+    },
+    {
+      "id": "formulas-geopolitics",
+      "name": "Geopolitical Polarities & Chokepoint Formulas Shelf",
+      "type": "specification",
+      "format": "text/plain",
+      "url": "https://analysisreports.github.io/llms-formulas-geopolitics.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Deterministic mathematical models for maritime chokepoint vulnerability, bilateral stance vectors, and alliance cohesion."
+    },
+    {
+      "id": "graph-actors",
+      "name": "Graph RAG Sovereign Actors & Blocs Subgraph",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-graph-actors.json",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Lightweight subgraph (~8.8k tokens) modeling sovereign states, bilateral polarities, and diplomatic alliance couplings."
+    },
+    {
+      "id": "graph-chokepoints",
+      "name": "Graph RAG Maritime Chokepoints & Corridors Subgraph",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-graph-chokepoints.json",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Lightweight subgraph (~2k tokens) modeling global maritime choke points, strategic transit straits, and commodity transit corridors."
+    },
+    {
+      "id": "graph-models",
+      "name": "Graph RAG Quantitative Models & Series Subgraph",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-graph-models.json",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Lightweight subgraph (~9.5k tokens) linking evaluated macroeconomic models directly to source FRED/BEA time-series."
+    },
+    {
+      "id": "country-relationships-us",
+      "name": "Bilateral Dyad Stances: United States Hub Shelf",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-country-relationships-us.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-country-relationships-us.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Focused 73-dyad matrix for Transatlantic, NATO, Indo-Pacific, Five Eyes, and Western alliance stances."
+    },
+    {
+      "id": "country-relationships-ru",
+      "name": "Bilateral Dyad Stances: Russian Federation Hub Shelf",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-country-relationships-ru.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-country-relationships-ru.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Focused 33-dyad matrix for Post-Soviet, Eurasian, Caucasus, Black Sea, and Central Asian stances."
+    },
+    {
+      "id": "country-relationships-cn",
+      "name": "Bilateral Dyad Stances: China Hub Shelf",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-country-relationships-cn.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-country-relationships-cn.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Focused 34-dyad matrix for Belt & Road (BRI), Indo-Pacific, ASEAN, East Asia, and Global South stances."
+    },
+    {
+      "id": "country-relationships-ir",
+      "name": "Bilateral Dyad Stances: Iran Hub Shelf",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-country-relationships-ir.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-country-relationships-ir.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Focused 25-dyad matrix for Middle East, Persian Gulf, Levant, Eastern Mediterranean, and Regional Security stances."
     }
   ],
   "capabilities": {
