@@ -26,6 +26,23 @@ import datetime
 from typing import Dict, Any, Optional
 
 # ==============================================================================
+# 0. CANONICAL NUMERICAL SANITIZERS (FROM llms-formulas.txt Section 0.3)
+# ==============================================================================
+
+def _is_num(val):
+    if val is None or isinstance(val, bool) or not isinstance(val, (int, float)):
+        return False
+    try:
+        return math.isfinite(val)
+    except (OverflowError, ValueError, TypeError):
+        return False
+
+def _is_pos(val):
+    if not _is_num(val):
+        return False
+    return min(val, 0) != val
+
+# ==============================================================================
 # 1. MODEL 1: FED POLICY STANCE & MARKET PRESSURE GAUGE
 # ==============================================================================
 

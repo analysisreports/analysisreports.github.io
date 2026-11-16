@@ -45,6 +45,23 @@ CACHE_TTL_DAYS = {
     "ANNUAL": 365
 }
 
+# ==============================================================================
+# 1. CORE CANONICAL FORMULAS & NUMERICAL SANITIZERS (FROM llms-formulas.txt)
+# ==============================================================================
+
+def _is_num(val: Any) -> bool:
+    if val is None or isinstance(val, bool) or not isinstance(val, (int, float)):
+        return False
+    try:
+        return math.isfinite(val)
+    except (OverflowError, ValueError, TypeError):
+        return False
+
+def _is_pos(val: Any) -> bool:
+    if not _is_num(val):
+        return False
+    return min(val, 0) != val
+
 def download_official_gscpi(dest_path: str = CACHE_FILE) -> bool:
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) MacroResearchBot/2.0"}
     req = urllib.request.Request(OFFICIAL_URL, headers=headers)
@@ -122,18 +139,18 @@ def extract_gscpi_series(file_path: str = CACHE_FILE) -> Optional[Dict[str, Any]
     prev_val = prev_obs["value"] if prev_obs else None
     yr_val = year_ago_obs["value"] if year_ago_obs else None
 
-    change = round(curr_val - prev_val, 4) if prev_val is not None else None
-    change_yr = round(curr_val - yr_val, 4) if yr_val is not None else None
+    change = round(curr_val - prev_val, 4) if (_is_num(curr_val) and _is_num(prev_val)) else None
+    change_yr = round(curr_val - yr_val, 4) if (_is_num(curr_val) and _is_num(yr_val)) else None
 
     # Percent change: strictly positive denominator required (non-positive bases yield undefined / misleading signs)
     pct_change = None
-    if prev_val is not None and prev_val > 0.0:
+    if _is_num(curr_val) and _is_pos(prev_val):
         raw_pct = ((curr_val / prev_val) - 1.0) * 100.0
         if -100.0 <= raw_pct <= 10000.0:
             pct_change = round(raw_pct, 4)
 
     pct_change_yr = None
-    if yr_val is not None and yr_val > 0.0:
+    if _is_num(curr_val) and _is_pos(yr_val):
         raw_pct_yr = ((curr_val / yr_val) - 1.0) * 100.0
         if -100.0 <= raw_pct_yr <= 10000.0:
             pct_change_yr = round(raw_pct_yr, 4)
@@ -142,7 +159,7 @@ def extract_gscpi_series(file_path: str = CACHE_FILE) -> Optional[Dict[str, Any]
     car = None
     ccr = None
     ccar = None
-    if prev_val and curr_val > 0 and prev_val > 0:
+    if _is_pos(curr_val) and _is_pos(prev_val):
         ratio = curr_val / prev_val
         car = round((((ratio) ** 12) - 1.0) * 100.0, 4)
         ccr = round((math.log(curr_val) - math.log(prev_val)) * 100.0, 4)
