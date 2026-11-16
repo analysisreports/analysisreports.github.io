@@ -5,7 +5,7 @@
     "author": "Ersoy Toptaş",
     "version": "2026-Q4",
     "license": "CC BY-NC-ND 4.0",
-    "last_successful_sync": "2026-11-16T15:03:23Z",
+    "last_successful_sync": "2026-11-16T16:14:49Z",
     "hub_id": "GEO_RU",
     "hub_name": "RUSSIAN FEDERATION",
     "description": "Russian Federation Post-Soviet, Eurasian, Caucasus, Black Sea, and Central Asian Sovereign Dyads",
@@ -174,7 +174,7 @@
           {
             "leverage_holder": "GEO_RU",
             "domain": "Military Presence & Air Dominance",
-            "description": "Permanent military garrison at Hmeymim Air Base and naval base at Tartus maintaining regime stability."
+            "description": "Permanent military garrison at Hmeymim Air Base and naval base at Tartus maintaining coastal air-naval deterrence and transitional basing accords."
           },
           {
             "leverage_holder": "GEO_SY",

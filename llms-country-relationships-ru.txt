@@ -156,7 +156,7 @@ Dyad ID: REL_GEO_RU_GEO_SY
 Bilateral Stance: +0.80 (Warm-Water Mediterranean Naval & Air Base Sovereignty)
 Strategic Category: Eastern Mediterranean Forward Security Bastion
 Asymmetric Power Vectors:
-  - [GEO_RU Leverage] Military Presence & Air Dominance: Permanent military garrison at Hmeymim Air Base and naval base at Tartus maintaining regime stability.
+  - [GEO_RU Leverage] Military Presence & Air Dominance: Permanent military garrison at Hmeymim Air Base and naval base at Tartus maintaining coastal air-naval deterrence and transitional basing accords.
   - [GEO_SY Leverage] Strategic Maritime Outpost: Sovereign basing concessions granting Russia its sole military logistics hub on the Mediterranean Sea (BASIN_EAST_MED_DEEPSEA).
   - [GEO_RU Leverage] Grain & Energy Subsidies: Maritime grain shipments and hydrocarbon supplies mitigating chronic economic vulnerability.
 Core Strategic Flashpoints:
