@@ -26,6 +26,7 @@ from typing import Dict, List, Set, Any, Tuple
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 GRAPH_PATH = os.path.join(ROOT_DIR, "llms-graph.json")
 COUNTRY_TXT = os.path.join(ROOT_DIR, "llms-country-relationships.txt")
+ENTITIES_PATH = os.path.join(ROOT_DIR, "llms-entities-id.txt")
 
 MOJIBAKE_PATTERNS = ["ÅŸ", "Ã¼", "BoÄŸaz", "Ã§", "Ä±", "Ã¶", "Ã", "â€", "Åž", "Ä°", "Ã‡", "Ã–", "Ãœ"]
 
@@ -94,6 +95,17 @@ def main():
     enc_errors = audit_encoding(raw_content)
 
     data = json.loads(raw_content)
+
+    # 1.1 Strict Schema & Metadata Guard
+    required_root_keys = ["$schema", "name", "version", "author", "license", "repository", "graph_metadata", "nodes", "edges"]
+    missing_root_keys = [k for k in required_root_keys if k not in data]
+    if missing_root_keys:
+        errors.append(f"MISSING GRAPH METADATA KEYS: {missing_root_keys}")
+
+    graph_meta = data.get("graph_metadata", {})
+    if not isinstance(graph_meta, dict) or "node_categories" not in graph_meta or "edge_types" not in graph_meta:
+        errors.append("INVALID 'graph_metadata': must contain 'node_categories' and 'edge_types' lists.")
+
     nodes = data.get("nodes", [])
     edges = data.get("edges", [])
 
@@ -162,6 +174,33 @@ def main():
 
     if self_loops:
         warnings.extend(self_loops)
+
+    # 3.1 Strict Attribute Entity & Whitelist Guard
+    valid_entity_tokens = set()
+    if os.path.exists(ENTITIES_PATH):
+        with open(ENTITIES_PATH, "r", encoding="utf-8") as ef:
+            for eline in ef:
+                eline = eline.strip()
+                if eline and not eline.startswith("#"):
+                    token = eline.split("|")[0].strip()
+                    if token:
+                        valid_entity_tokens.add(token)
+
+    entity_attribute_keys = {"patron", "jurisdiction", "parent_authority", "dominant_supplier", "bloc", "strategic_alliance", "observer_bloc"}
+    invalid_attribute_entities = []
+    for n in nodes:
+        nid = n.get("id", "UNKNOWN")
+        attrs = n.get("attributes", {})
+        if isinstance(attrs, dict):
+            for k, val in attrs.items():
+                if k in entity_attribute_keys and isinstance(val, str):
+                    if val not in valid_entity_tokens and val not in node_registry:
+                        invalid_attribute_entities.append(
+                            f"Node '{nid}' attribute '{k}': '{val}' is not a registered entity in llms-entities-id.txt!"
+                        )
+
+    if invalid_attribute_entities:
+        errors.extend(invalid_attribute_entities)
 
     # 4. Master SSOT Polarity Invariance
     pol_errors, synced_count = audit_polarity_synchronization(edges)
