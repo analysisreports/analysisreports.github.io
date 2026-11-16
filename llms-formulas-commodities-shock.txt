@@ -14,6 +14,18 @@
 > Zero-Fallback Directive: Strict deterministic execution. Missing or non-finite inputs strictly return None (null).
 > Models Contained: 12 Domain Models (16, 20, 21, 24, 25.3, 25.6, 25.7, 25.8, 25.9, 25.12, 25.14, 25.17)
 
+```python
+import math
+
+def _is_num(val):
+    if val is None or isinstance(val, bool) or not isinstance(val, (int, float)):
+        return False
+    try:
+        return math.isfinite(val)
+    except (OverflowError, ValueError, TypeError):
+        return False
+```
+
 ---
 
 ### 16. CBOE VOLATILITY INDEX & MARKET FEAR REGIME (VIX REGIME THRESHOLDS)

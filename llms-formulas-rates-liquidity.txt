@@ -16,6 +16,14 @@
 
 ```python
 import math
+
+def _is_num(val):
+    if val is None or isinstance(val, bool) or not isinstance(val, (int, float)):
+        return False
+    try:
+        return math.isfinite(val)
+    except (OverflowError, ValueError, TypeError):
+        return False
 ```
 
 ---
