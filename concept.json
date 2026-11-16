@@ -82,6 +82,16 @@
       "analysis_as_of_date": "",
       "language": "tr",
       "description": ""
+    },
+    "cross_references": {
+      "relations": [
+        {
+          "target_url": "",
+          "predicate": "",
+          "impact_window": "",
+          "description": ""
+        }
+      ]
     }
   }
 }

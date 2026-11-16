@@ -165,6 +165,26 @@
       "tags": [
         ""
       ]
+    },
+    "editorial_frontend": {
+      "canonical_url": "",
+      "canonical_source": "https://analysisreports.github.io/political-country.json",
+      "format": "Human-Readable Narrative",
+      "author": "Ersoy Toptaş",
+      "published_date": "",
+      "analysis_as_of_date": "",
+      "language": "tr",
+      "description": ""
+    },
+    "cross_references": {
+      "relations": [
+        {
+          "target_url": "",
+          "predicate": "",
+          "impact_window": "",
+          "description": ""
+        }
+      ]
     }
   }
 }
