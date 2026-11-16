@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://analysisreports.github.io/schemas/political-country.schema.json",
+  "title": "Political Country Strategic Assessment Schema",
+  "description": "Formal JSON Schema combining country assessments with deep bilateral political dynamics.",
+  "type": "object",
+  "required": [
+    "metadata",
+    "structured_content_analysis"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object",
+      "required": [
+        "title",
+        "domain",
+        "version",
+        "author",
+        "license",
+        "endpoint",
+        "documentation",
+        "last_updated"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        },
+        "endpoint": {
+          "type": "string",
+          "format": "uri"
+        },
+        "documentation": {
+          "type": "string",
+          "format": "uri"
+        },
+        "last_updated": {
+          "type": "string"
+        },
+        "provenance": {
+          "type": "string"
+        },
+        "methodology": {
+          "type": "string",
+          "format": "uri"
+        },
+        "ai_prompts": {
+          "type": "string",
+          "format": "uri"
+        },
+        "formulas_engine": {
+          "type": "string",
+          "format": "uri"
+        },
+        "entity_dictionary": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "structured_content_analysis": {
+      "type": "object",
+      "required": [
+        "editorial_frontend",
+        "cross_references"
+      ],
+      "properties": {
+        "focus_areas": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "summary": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "5N1K_analysis": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "political_dynamics_assessment": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "country_strategic_assessment": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "actors_and_dynamics": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "core_analysis": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "future_outlook": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "categorization": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "editorial_frontend": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "cross_references": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        }
+      }
+    }
+  }
+}

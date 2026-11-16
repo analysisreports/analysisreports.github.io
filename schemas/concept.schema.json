@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://analysisreports.github.io/schemas/concept.schema.json",
+  "title": "Concept Knowledge Graph Entity Schema",
+  "description": "Formal JSON Schema for structured concept nodes, semantic triples, and ontological definitions.",
+  "type": "object",
+  "required": [
+    "metadata",
+    "structured_content_analysis"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object",
+      "required": [
+        "title",
+        "domain",
+        "version",
+        "author",
+        "license",
+        "endpoint",
+        "documentation",
+        "last_updated"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        },
+        "endpoint": {
+          "type": "string",
+          "format": "uri"
+        },
+        "documentation": {
+          "type": "string",
+          "format": "uri"
+        },
+        "last_updated": {
+          "type": "string"
+        },
+        "provenance": {
+          "type": "string"
+        },
+        "methodology": {
+          "type": "string",
+          "format": "uri"
+        },
+        "ai_prompts": {
+          "type": "string",
+          "format": "uri"
+        },
+        "formulas_engine": {
+          "type": "string",
+          "format": "uri"
+        },
+        "entity_dictionary": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "structured_content_analysis": {
+      "type": "object",
+      "required": [
+        "editorial_frontend",
+        "cross_references"
+      ],
+      "properties": {
+        "term_entity_id": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "term": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "entity_type": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "domain": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "synonyms_and_acronyms": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "short_definition": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "detailed_explanation": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "step_by_step_process": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "key_rules_and_metrics": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "causes_and_triggers": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "origin_and_key_figures": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "real_world_examples": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "common_mistakes": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "related_term_entity_ids": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "related_terms": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "related_series_ids": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "semantic_triples": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "core_analysis": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "target_queries": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "categorization": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "editorial_frontend": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "cross_references": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://analysisreports.github.io/schemas/glossary-term.schema.json",
+  "title": "Glossary Term & Conceptual Analytics Schema",
+  "description": "Formal JSON Schema for deep-dive conceptual, electoral, and institutional glossary definitions.",
+  "type": "object",
+  "required": [
+    "metadata",
+    "structured_content_analysis"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object",
+      "required": [
+        "title",
+        "domain",
+        "version",
+        "author",
+        "license",
+        "endpoint",
+        "documentation",
+        "last_updated"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        },
+        "endpoint": {
+          "type": "string",
+          "format": "uri"
+        },
+        "documentation": {
+          "type": "string",
+          "format": "uri"
+        },
+        "last_updated": {
+          "type": "string"
+        },
+        "provenance": {
+          "type": "string"
+        },
+        "methodology": {
+          "type": "string",
+          "format": "uri"
+        },
+        "ai_prompts": {
+          "type": "string",
+          "format": "uri"
+        },
+        "formulas_engine": {
+          "type": "string",
+          "format": "uri"
+        },
+        "entity_dictionary": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "structured_content_analysis": {
+      "type": "object",
+      "required": [
+        "editorial_frontend",
+        "cross_references"
+      ],
+      "properties": {
+        "briefing_title": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "domain": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "sub_domain": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "executive_summary": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "core_mechanisms_and_concepts": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "quantitative_metrics_and_data": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "breakdown_and_case_dynamics": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "key_actors_and_roles": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "expert_guidance_and_takeaways": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "future_outlook_and_scenarios": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "core_analysis": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "target_queries": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "tags": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "editorial_frontend": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "cross_references": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        }
+      }
+    }
+  }
+}
