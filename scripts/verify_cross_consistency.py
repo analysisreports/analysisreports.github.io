@@ -31,6 +31,7 @@ REL_TXT = os.path.join(ROOT_DIR, "llms-relationships.txt")
 REL_JSON = os.path.join(ROOT_DIR, "llms-relationships.json")
 GRAPH_JSON = os.path.join(ROOT_DIR, "llms-graph.json")
 BRIDGE_TXT = os.path.join(ROOT_DIR, "llms-models-bridge.txt")
+FORMULAS_TXT = os.path.join(ROOT_DIR, "llms-formulas.txt")
 
 def load_master_country_polarities(txt_path: str) -> Dict[Tuple[str, str], float]:
     with open(txt_path, "r", encoding="utf-8") as f:
@@ -198,6 +199,104 @@ def verify_bridge_cross_references(
 
     return len(unresolved)
 
+def verify_structural_duplicates(
+    rel_path: str,
+    formulas_path: str,
+    bridge_path: str
+) -> int:
+    """
+    Automated Structural Duplicate Guard:
+    1. Duplicate Section Numbers (e.g. two '2.1.1.' headers).
+    2. Duplicate Actor Dyads in Section 2 (e.g. 'US - RU' declared twice, or 'RU - US' duplicate).
+    3. Duplicate Formula IDs in llms-formulas.txt (e.g. two '### 25.14.' models).
+    4. Duplicate Bridge Model IDs in llms-models-bridge.txt (e.g. two '8.10.1.' models).
+    Returns total count of structural duplicates.
+    """
+    duplicate_errors = []
+
+    # 1. Audit llms-relationships.txt
+    if os.path.exists(rel_path):
+        with open(rel_path, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+
+        sec_numbers = {}
+        actor_dyads = {}
+
+        for idx, line in enumerate(lines, 1):
+            sline = line.strip()
+            # Match numbered headers like '2.1.1. US - RU' or '### 1.2. RATIFIED...'
+            m_sec = re.match(r"^(?:#{1,4}\s+)?([0-9]+\.[0-9]+(?:\.[0-9]+)?)\.?\s+(.+)", sline)
+            if m_sec:
+                sec_id = m_sec.group(1)
+                sec_title = m_sec.group(2)
+                if sec_id in sec_numbers:
+                    prev_idx, prev_title = sec_numbers[sec_id]
+                    duplicate_errors.append(
+                        f"llms-relationships.txt: Duplicate Section ID '{sec_id}' at line {idx} ('{sec_title}') previously declared at line {prev_idx} ('{prev_title}')"
+                    )
+                else:
+                    sec_numbers[sec_id] = (idx, sec_title)
+
+            # Match Section 2 actor headers: '2.1.1. US - RU ...'
+            m_dyad = re.match(r"^2\.[0-9]+\.[0-9]+\.\s+([A-Z0-9_]+)\s*-\s*([A-Z0-9_]+)", sline)
+            if m_dyad:
+                a1, a2 = m_dyad.groups()
+                canonical_pair = tuple(sorted([a1, a2]))
+                if canonical_pair in actor_dyads:
+                    prev_idx, prev_text = actor_dyads[canonical_pair]
+                    duplicate_errors.append(
+                        f"llms-relationships.txt: Duplicate Actor Dyad '{a1}_{a2}' at line {idx} clashes with existing dyad at line {prev_idx} ('{prev_text}')"
+                    )
+                else:
+                    actor_dyads[canonical_pair] = (idx, sline)
+
+    # 2. Audit llms-formulas.txt
+    if os.path.exists(formulas_path):
+        with open(formulas_path, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+
+        formula_ids = {}
+        for idx, line in enumerate(lines, 1):
+            sline = line.strip()
+            m_form = re.match(r"^###\s+([0-9]+(?:\.[0-9]+)?)\.\s+(.+)", sline)
+            if m_form:
+                fid = m_form.group(1)
+                ftitle = m_form.group(2)
+                if fid in formula_ids:
+                    prev_idx, prev_title = formula_ids[fid]
+                    duplicate_errors.append(
+                        f"llms-formulas.txt: Duplicate Formula ID '{fid}' at line {idx} ('{ftitle}') previously declared at line {prev_idx} ('{prev_title}')"
+                    )
+                else:
+                    formula_ids[fid] = (idx, ftitle)
+
+    # 3. Audit llms-models-bridge.txt
+    if os.path.exists(bridge_path):
+        with open(bridge_path, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+
+        bridge_ids = {}
+        for idx, line in enumerate(lines, 1):
+            sline = line.strip()
+            m_b = re.match(r"^(8\.[0-9]+(?:\.[0-9]+)?)\.\s+(.+)", sline)
+            if m_b:
+                bid = m_b.group(1)
+                btitle = m_b.group(2)
+                if bid in bridge_ids:
+                    prev_idx, prev_title = bridge_ids[bid]
+                    duplicate_errors.append(
+                        f"llms-models-bridge.txt: Duplicate Bridge ID '{bid}' at line {idx} ('{btitle}') previously declared at line {prev_idx} ('{prev_title}')"
+                    )
+                else:
+                    bridge_ids[bid] = (idx, btitle)
+
+    if duplicate_errors:
+        print(f"[FAIL] Structural Duplicate Guard detected {len(duplicate_errors)} duplicate entries:")
+        for err in duplicate_errors:
+            print(f"  - {err}")
+
+    return len(duplicate_errors)
+
 def main():
     parser = argparse.ArgumentParser(description="Check or synchronize relationship polarity against the master SSOT.")
     parser.add_argument(
@@ -247,13 +346,18 @@ def main():
     bridge_label = "broken cross-references found" if bridge_mismatches > 0 else "cross-references verified"
     print(f"[*] llms-models-bridge.txt        : {bridge_mismatches} {bridge_label}")
 
-    total_synced = txt_sync + graph_sync + json_sync + bridge_mismatches
+    # 5. Audit Structural Duplicates (Section IDs, Dyads, Formula IDs)
+    structural_duplicates = verify_structural_duplicates(REL_TXT, FORMULAS_TXT, BRIDGE_TXT)
+    dup_label = "structural duplicates found" if structural_duplicates > 0 else "structural duplicates verified (0 duplicates)"
+    print(f"[*] Structural Duplicate Guard    : {structural_duplicates} {dup_label}")
+
+    total_synced = txt_sync + graph_sync + json_sync + bridge_mismatches + structural_duplicates
     print("-" * 70)
     if args.check and total_synced > 0:
-        print(f"[FAIL] Found {total_synced} cross-file discrepancies or unresolved references; no files were modified.")
+        print(f"[FAIL] Found {total_synced} cross-file discrepancies, duplicates or unresolved references; no files were modified.")
         exit_code = 1
-    elif bridge_mismatches > 0:
-        print(f"[FAIL] Found {bridge_mismatches} unresolved cross-references in llms-models-bridge.txt!")
+    elif bridge_mismatches > 0 or structural_duplicates > 0:
+        print(f"[FAIL] Found {bridge_mismatches} unresolved cross-references or {structural_duplicates} duplicates!")
         exit_code = 1
     elif total_synced > 0:
         print(f"[AUTO-HEALED] Successfully equalized {total_synced} discrepancies across secondary files!")
