@@ -135,13 +135,7 @@
 - Interpretation:
   - Spread < 0 : INVERTED_FRONT_END (Inverted front-end slope / Collateral & liquidity squeeze)
   - Spread >= 0 : NORMAL_SLOPE (Healthy front-end liquidity distribution)
-  
----
-
-## 📊 TIER 2: ADVANCED INSTITUTIONAL MACRO MODELS
-
-
----
+  ---
 
 ### 5. NET FED LIQUIDITY INDEX
 - Purpose: Calculates free dollar liquidity in the financial system with strict unit standardization by subtracting the Treasury General Account (TGA) and overnight reverse repo (ON RRP) balances from total Federal Reserve assets.

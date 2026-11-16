@@ -155,10 +155,6 @@
   - status == FRAGILE_COALITION_PARALYSIS : Parliamentary coalition held hostage by fringe parties; fiscal austerity or structural indecision reigns; elevated early election risk (Primary shock: Currency weakness, bond spread volatility).
   - status == UNIFIED_DOMESTIC_EXPANSION : Strong legislative majority enables aggressive domestic tax/spending reform; subdued executive need for diversionary trade conflict.
   - status == CENTRALIZED_STRATEGIC_COMMAND : Zero domestic legislative gridlock; rapid mobilization of state resources, export quotas, and counter-sanctions.
-
----
-
-
 ---
 
 ### 25.18. NON-CONTIGUOUS ALLIANCE TRANSMISSION ENGINE (MECCA_PACT_DYNAMIC_ENGINE)
@@ -232,10 +228,6 @@
   - status == TREATY_ACTIVE_SURPLUS_EXPANSION : High hydrocarbon revenues (Brent >= 1.05 * Breakeven) combined with benign global interest rates; sovereign wealth investments, bilateral defense procurement, and liquidity deposits operate at peak velocity.
   - status == TREATY_ACTIVE_EQUILIBRIUM : Hydrocarbon revenues aligned with sovereign budgetary requirements (0.90 <= R_oil < 1.05); mutual defense treaty guarantees and defense co-production pipelines proceed on schedule.
   - status == TREATY_ACTIVE_FISCAL_RESTRAINT : Hydrocarbon revenues fall below sovereign breakeven threshold (R_oil < 0.90) or dollar funding stresses elevate; mutual security umbrella remains intact while non-essential discretionary capital deployments moderate.
-
----
-
-
 ---
 
 ### 25.19. MULTI-LAYER MACROECONOMIC TRANSMISSION ENGINE
@@ -306,11 +298,6 @@
   - `-0.95 <= P_net < -0.50`: PROXY_WAR.
   - `P_net < -0.95`: KINETIC_WAR only when the pair is in `ACTIVE_KINETIC_PAIRS`; otherwise PROXY_WAR.
 - **Kinetic contact configuration:** `ACTIVE_KINETIC_PAIRS = {"UA_RU", "IL_IR", "YE_IL"}` is maintained manually, not verified or updated by an automated event feed. UA_RU is in this configuration and uses the same polarity thresholds as other pairs.
-
----
-## 🏛️ TIER 3: INSTITUTIONAL DECISION, GEOPOLITICAL TENSION & CALIBRATION ENGINE
-
-
 ---
 
 ### 27. RHETORIC INTENSITY SCORE
@@ -691,7 +678,3 @@
           }
       except (TypeError, ValueError):
           return None
-
----
-
-## ⏱️ TIER 4: OFFICIAL MACROECONOMIC RELEASE CALENDARS & COUNTDOWN ENGINE

@@ -92,6 +92,11 @@ def extract_models_and_body_from_shelf(shelf):
     first_m = re.search(r'(?m)^###\s+[0-9]', content)
     body = content[first_m.start():] if first_m else ""
 
+    # Sanitize legacy monolithic TIER headers and trailing dividers
+    body = re.sub(r'(?m)^##\s+.*TIER\s+[1-4]:.*(?:\n|$)', '', body)
+    body = re.sub(r'(?m)\n---\s*\n(?=\s*---)', '', body)  # Clean consecutive dividers
+    body = re.sub(r'\n---\s*$', '', body.strip())          # Clean trailing divider
+
     pattern = re.compile(
         r'(?m)^###\s+([0-9]+(?:\.[0-9]+)*)\.\s*(.*?)\n'
         r'(?:-\s*Purpose:\s*(.*?)\n)?'
