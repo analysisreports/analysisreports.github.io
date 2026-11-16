@@ -12,9 +12,10 @@ Tıpkı build_graph.py gibi:
    - llms-formulas-macro-labor.txt
    - llms-formulas-commodities-shock.txt
    - llms-formulas-geopolitics.txt
-2. Bölüm 0.1–0.7 Genel Metodoloji çekirdeğini korur.
-3. Master Router Tablosu ve 62 Modelin Fihristini derler.
-4. llms-formulas.txt dosyasını hafif Master Router & Fihrist (~28 KB) olarak üretir.
+2. Rafların Enterprise Metadata başlıklarını standartlaştırır / zenginleştirir.
+3. Bölüm 0.1–0.7 Genel Metodoloji çekirdeğini korur.
+4. Master Router Tablosu ve 62 Modelin Fihristini derler.
+5. llms-formulas.txt dosyasını hafif Master Router & Fihrist (~53 KB) olarak üretir.
 
 Author: Ersoy Toptaş
 License: CC BY-NC-ND 4.0
@@ -33,7 +34,7 @@ SHELVES = [
         "file": os.path.join(ROOT_DIR, "llms-formulas-rates-liquidity.txt"),
         "filename": "llms-formulas-rates-liquidity.txt",
         "title": "Rates, Yield Curves, Liquidity & Monetary Transmission",
-        "scope": "Central bank policy stance, yield curves, repo friction, Fed/ECB liquidity, credit spreads, carry trades",
+        "scope": "Central bank policy stances, yield curve slopes, repo liquidity friction, credit spreads, carry trades, and committee dispersion.",
         "tier": "TIER 1 & 2: RATES, LIQUIDITY & POLICY"
     },
     {
@@ -41,7 +42,7 @@ SHELVES = [
         "file": os.path.join(ROOT_DIR, "llms-formulas-macro-labor.txt"),
         "filename": "llms-formulas-macro-labor.txt",
         "title": "Macroeconomic Fundamentals, Labor Dynamics, Valuation & Cycles",
-        "scope": "Inflation persistence, labor momentum, housing bubble, consumption collapse, equity valuation, release countdown",
+        "scope": "Inflation persistence, labor market momentum, housing bubble risks, consumption collapse, equity valuation, and release countdowns.",
         "tier": "TIER 1, 2 & 4: MACRO, LABOR & VALUATION"
     },
     {
@@ -49,7 +50,7 @@ SHELVES = [
         "file": os.path.join(ROOT_DIR, "llms-formulas-commodities-shock.txt"),
         "filename": "llms-formulas-commodities-shock.txt",
         "title": "Commodities, Energy Shocks, Supply Chains & Asset Stress",
-        "scope": "Crude benchmarks, 3:2:1 crack spread, natgas disconnect, chip stress, supply chain logistics, safe haven flight",
+        "scope": "Crude benchmarks, 3:2:1 crack spread, natgas disconnect, chip stress, supply chain logistics, and safe haven flight.",
         "tier": "TIER 2: COMMODITIES, ENERGY & SUPPLY CHAIN"
     },
     {
@@ -57,18 +58,40 @@ SHELVES = [
         "file": os.path.join(ROOT_DIR, "llms-formulas-geopolitics.txt"),
         "filename": "llms-formulas-geopolitics.txt",
         "title": "Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence",
-        "scope": "Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, intelligence confidence",
+        "scope": "Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, and intelligence confidence.",
         "tier": "TIER 3: GEOPOLITICAL DYNAMICS, ALLIANCES & RISK"
     }
 ]
 
-def extract_models_from_shelf(shelf):
+def generate_shelf_header(shelf, model_numbers):
+    models_str = ", ".join(model_numbers)
+    return f"""# Ersoy Toptaş Quantitative Models: {shelf['title']} ({shelf['filename']})
+> Canonical Domain Sub-Engine for AI Agents & LLM Quantitative Reasoning.
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
+> Endpoint: https://analysisreports.github.io/{shelf['filename']}
+> Master Router & Methodology: https://analysisreports.github.io/llms-formulas.txt
+> Root Index: https://analysisreports.github.io/llms.txt
+> Master Directory: https://analysisreports.github.io/llms-full.txt
+> Indicators Dictionary: https://analysisreports.github.io/llms-indicators.txt
+> Dynamic Relationships: https://analysisreports.github.io/llms-relationships.txt
+> Knowledge Graph: https://analysisreports.github.io/llms-graph.json
+> Author Profile: https://analysisreports.github.io/llms-about.txt
+> Editorial Frontends: https://www.ersoytoptas.tr/ | https://en.ersoytoptas.tr/
+> Shelf Scope: {shelf['scope']}
+> Zero-Fallback Directive: Strict deterministic execution. Missing or non-finite inputs strictly return None (null).
+> Models Contained: {len(model_numbers)} Domain Models ({models_str})
+
+---
+"""
+
+def extract_models_and_body_from_shelf(shelf):
     with open(shelf["file"], "r", encoding="utf-8") as f:
         content = f.read()
 
-    # Pattern to match:
-    # ### <num>. <title>
-    # followed by optional fields: Purpose, Data Series Keys, Target
+    # Locate first model section
+    first_m = re.search(r'(?m)^###\s+[0-9]', content)
+    body = content[first_m.start():] if first_m else ""
+
     pattern = re.compile(
         r'(?m)^###\s+([0-9]+(?:\.[0-9]+)*)\.\s*(.*?)\n'
         r'(?:-\s*Purpose:\s*(.*?)\n)?'
@@ -76,7 +99,7 @@ def extract_models_from_shelf(shelf):
     )
 
     models = []
-    for m in pattern.finditer(content):
+    for m in pattern.finditer(body):
         num = m.group(1)
         title = m.group(2).strip()
         purpose = m.group(3).strip() if m.group(3) else ""
@@ -88,44 +111,50 @@ def extract_models_from_shelf(shelf):
             "target": target,
             "shelf": shelf
         })
-    return models
+    return models, body
+
+def update_shelf_headers(shelf, models, body):
+    model_numbers = [m["number"] for m in models]
+    new_header = generate_shelf_header(shelf, model_numbers)
+    new_content = new_header + "\n" + body.strip() + "\n"
+    with open(shelf["file"], "w", encoding="utf-8") as f:
+        f.write(new_content)
+    print(f"[*] Updated enterprise header for {shelf['filename']} ({len(models)} models)")
 
 def build_master_router():
-    # 1. Read existing Section 0.1-0.7 from llms-formulas.txt (or scratch backup if already truncated)
     sec0_content = ""
     with open(MASTER_FILE, "r", encoding="utf-8") as f:
         current_master = f.read()
 
-    if "## 🏛️ TIER 1" in current_master:
+    if "## 🗂️ MASTER ROUTING DIRECTIVE" in current_master:
+        router_idx = current_master.find("## 🗂️ MASTER ROUTING DIRECTIVE")
+        # Remove trailing divider
+        sec0_content = current_master[:router_idx].strip()
+        if sec0_content.endswith("---"):
+            sec0_content = sec0_content[:-3].strip()
+    elif "## 🏛️ TIER 1" in current_master:
         tier1_idx = current_master.find("## 🏛️ TIER 1")
         sec0_content = current_master[:tier1_idx].strip()
     else:
-        backup_path = os.path.join(ROOT_DIR, "scratch", "sec0_backup.txt")
-        if os.path.exists(backup_path):
-            with open(backup_path, "r", encoding="utf-8") as bf:
-                sec0_content = bf.read().strip()
-        else:
-            raise RuntimeError("Cannot locate Section 0.1-0.7 methodology core!")
+        raise RuntimeError("Cannot locate Section 0.1-0.7 methodology core!")
 
-    # 2. Extract models from all 4 shelves
     all_models = []
     shelf_stats = {}
     for shelf in SHELVES:
-        m_list = extract_models_from_shelf(shelf)
+        m_list, body = extract_models_and_body_from_shelf(shelf)
         shelf_stats[shelf["id"]] = len(m_list)
         all_models.extend(m_list)
+        update_shelf_headers(shelf, m_list, body)
 
     total_models = len(all_models)
-    print(f"[*] Extracted {total_models} models across 4 domain shelves: {shelf_stats}")
+    print(f"[*] Processed {total_models} models across 4 domain shelves: {shelf_stats}")
 
-    # 3. Sort models naturally (numerical order)
     def model_sort_key(m):
         parts = m["number"].split(".")
         return [int(p) for p in parts]
 
     all_models.sort(key=model_sort_key)
 
-    # 4. Generate Master Router Header & Guidance
     router_table = [
         "## 🗂️ MASTER ROUTING DIRECTIVE & FEDERATED SHELF MAP",
         "> HIGH-PRIORITY LLM REASONING DIRECTIVE: Fetch domain-specific formula shelves directly.",
@@ -145,7 +174,6 @@ def build_master_router():
 
     router_table_str = "\n".join(router_table)
 
-    # 5. Generate Compact Index Entries for each Model
     index_entries = [
         "---",
         "",
@@ -182,7 +210,6 @@ def build_master_router():
         "\n".join(index_entries)
     ).strip() + "\n"
 
-    # Write compiled master file
     with open(MASTER_FILE, "w", encoding="utf-8") as f:
         f.write(full_master_text)
 

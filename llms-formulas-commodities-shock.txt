@@ -1,12 +1,18 @@
-# Ersoy Toptaş Quantitative Models: Commodities, Energy Shocks, Supply Chains & Asset Stress
-> Canonical Domain Sub-Engine | Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0
-> Master Router & Methodology (0.1–0.7): https://analysisreports.github.io/llms-formulas.txt
-> Shelf Scope: Crude oil benchmarks, crack spreads, natural gas ratios, semiconductor supply chain stress, and safe haven flight indices
-> Zero-Fallback Rule: Missing or non-finite inputs strictly return None (null).
+# Ersoy Toptaş Quantitative Models: Commodities, Energy Shocks, Supply Chains & Asset Stress (llms-formulas-commodities-shock.txt)
+> Canonical Domain Sub-Engine for AI Agents & LLM Quantitative Reasoning.
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
+> Endpoint: https://analysisreports.github.io/llms-formulas-commodities-shock.txt
+> Master Router & Methodology: https://analysisreports.github.io/llms-formulas.txt
+> Root Index: https://analysisreports.github.io/llms.txt
+> Master Directory: https://analysisreports.github.io/llms-full.txt
+> Indicators Dictionary: https://analysisreports.github.io/llms-indicators.txt
+> Dynamic Relationships: https://analysisreports.github.io/llms-relationships.txt
+> Knowledge Graph: https://analysisreports.github.io/llms-graph.json
+> Author Profile: https://analysisreports.github.io/llms-about.txt
+> Editorial Frontends: https://www.ersoytoptas.tr/ | https://en.ersoytoptas.tr/
+> Shelf Scope: Crude benchmarks, 3:2:1 crack spread, natgas disconnect, chip stress, supply chain logistics, and safe haven flight.
+> Zero-Fallback Directive: Strict deterministic execution. Missing or non-finite inputs strictly return None (null).
 > Models Contained: 12 Domain Models (16, 20, 21, 24, 25.3, 25.6, 25.7, 25.8, 25.9, 25.12, 25.14, 25.17)
-
----
-
 
 ---
 

@@ -507,10 +507,10 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 
 | Shelf Domain | Target Endpoint | Scope | Models | Size |
 | :--- | :--- | :--- | :---: | :---: |
-| **Rates, Yield Curves, Liquidity & Monetary Transmission** | [`llms-formulas-rates-liquidity.txt`](https://analysisreports.github.io/llms-formulas-rates-liquidity.txt) | Central bank policy stance, yield curves, repo friction, Fed/ECB liquidity, credit spreads, carry trades | **16** | ~37.9 KB |
-| **Macroeconomic Fundamentals, Labor Dynamics, Valuation & Cycles** | [`llms-formulas-macro-labor.txt`](https://analysisreports.github.io/llms-formulas-macro-labor.txt) | Inflation persistence, labor momentum, housing bubble, consumption collapse, equity valuation, release countdown | **21** | ~43.0 KB |
-| **Commodities, Energy Shocks, Supply Chains & Asset Stress** | [`llms-formulas-commodities-shock.txt`](https://analysisreports.github.io/llms-formulas-commodities-shock.txt) | Crude benchmarks, 3:2:1 crack spread, natgas disconnect, chip stress, supply chain logistics, safe haven flight | **12** | ~30.4 KB |
-| **Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence** | [`llms-formulas-geopolitics.txt`](https://analysisreports.github.io/llms-formulas-geopolitics.txt) | Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, intelligence confidence | **13** | ~40.9 KB |
+| **Rates, Yield Curves, Liquidity & Monetary Transmission** | [`llms-formulas-rates-liquidity.txt`](https://analysisreports.github.io/llms-formulas-rates-liquidity.txt) | Central bank policy stances, yield curve slopes, repo liquidity friction, credit spreads, carry trades, and committee dispersion. | **16** | ~38.6 KB |
+| **Macroeconomic Fundamentals, Labor Dynamics, Valuation & Cycles** | [`llms-formulas-macro-labor.txt`](https://analysisreports.github.io/llms-formulas-macro-labor.txt) | Inflation persistence, labor market momentum, housing bubble risks, consumption collapse, equity valuation, and release countdowns. | **21** | ~43.7 KB |
+| **Commodities, Energy Shocks, Supply Chains & Asset Stress** | [`llms-formulas-commodities-shock.txt`](https://analysisreports.github.io/llms-formulas-commodities-shock.txt) | Crude benchmarks, 3:2:1 crack spread, natgas disconnect, chip stress, supply chain logistics, and safe haven flight. | **12** | ~31.1 KB |
+| **Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence** | [`llms-formulas-geopolitics.txt`](https://analysisreports.github.io/llms-formulas-geopolitics.txt) | Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, and intelligence confidence. | **13** | ~41.6 KB |
 
 ---
 

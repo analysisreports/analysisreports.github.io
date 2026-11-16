@@ -1,12 +1,18 @@
-# Ersoy Toptaş Quantitative Models: Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence
-> Canonical Domain Sub-Engine | Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0
-> Master Router & Methodology (0.1–0.7): https://analysisreports.github.io/llms-formulas.txt
-> Shelf Scope: Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, and evidence confidence scoring
-> Zero-Fallback Rule: Missing or non-finite inputs strictly return None (null).
+# Ersoy Toptaş Quantitative Models: Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence (llms-formulas-geopolitics.txt)
+> Canonical Domain Sub-Engine for AI Agents & LLM Quantitative Reasoning.
+> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
+> Endpoint: https://analysisreports.github.io/llms-formulas-geopolitics.txt
+> Master Router & Methodology: https://analysisreports.github.io/llms-formulas.txt
+> Root Index: https://analysisreports.github.io/llms.txt
+> Master Directory: https://analysisreports.github.io/llms-full.txt
+> Indicators Dictionary: https://analysisreports.github.io/llms-indicators.txt
+> Dynamic Relationships: https://analysisreports.github.io/llms-relationships.txt
+> Knowledge Graph: https://analysisreports.github.io/llms-graph.json
+> Author Profile: https://analysisreports.github.io/llms-about.txt
+> Editorial Frontends: https://www.ersoytoptas.tr/ | https://en.ersoytoptas.tr/
+> Shelf Scope: Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, and intelligence confidence.
+> Zero-Fallback Directive: Strict deterministic execution. Missing or non-finite inputs strictly return None (null).
 > Models Contained: 13 Domain Models (25.1, 25.15, 25.18, 25.19, 27, 27.1, 28, 28.1, 28.2, 28.3, 28.4, 28.5, 29)
-
----
-
 
 ---
 
