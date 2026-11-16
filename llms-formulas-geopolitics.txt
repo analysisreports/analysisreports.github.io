@@ -17,6 +17,8 @@
 ```python
 import math
 
+ACTIVE_KINETIC_PAIRS = {"UA_RU", "IL_IR", "YE_IL"}
+
 def _is_num(val):
     if val is None or isinstance(val, bool) or not isinstance(val, (int, float)):
         return False
