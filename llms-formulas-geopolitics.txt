@@ -14,6 +14,10 @@
 > Zero-Fallback Directive: Strict deterministic execution. Missing or non-finite inputs strictly return None (null).
 > Models Contained: 13 Domain Models (25.1, 25.15, 25.18, 25.19, 27, 27.1, 28, 28.1, 28.2, 28.3, 28.4, 28.5, 29)
 
+```python
+import math
+```
+
 ---
 
 ### 25.1. DYNAMIC POLARITY & REGIME ENGINE
@@ -24,6 +28,8 @@
   dynamic_delta is the Model 25.19 relationship transmission; mecca_pact_delta is the Model 25.18 delta for TR_SA, SA_PK and TR_PK, and zero otherwise. Legacy petrol, chip and VIX deltas are reported separately and are not added.
 - KINETIC_WAR additionally requires the pair to belong to the manually maintained `ACTIVE_KINETIC_PAIRS = {"UA_RU", "IL_IR", "YE_IL"}`. This configuration is not an automatically updated event feed. Unlisted pairs below -0.95 remain PROXY_WAR.
 - Machine-Executable Logic (Python):
+  ACTIVE_KINETIC_PAIRS = {"UA_RU", "IL_IR", "YE_IL"}
+
   def dynamic_polarity_engine(p_baseline, dynamic_delta, pair_id, mecca_pact_delta=0.0):
       if any(v is None or isinstance(v, bool) for v in (p_baseline, dynamic_delta, mecca_pact_delta)):
           return None
@@ -32,7 +38,7 @@
               return None
 
           raw_p = float(p_baseline) + float(dynamic_delta) + float(mecca_pact_delta)
-          # [-1.0, 1.0] araligina kenetleme (clamping)
+          # Clamp to [-1.0, 1.0] interval
           p_net = round(min(1.0, max(-1.0, raw_p)), 2)
           if not math.isfinite(p_net):
               return None
@@ -678,3 +684,7 @@
           }
       except (TypeError, ValueError):
           return None
+- Interpretation:
+  - confidence_score >= 80 : HIGH_CONFIDENCE (Triangulated intelligence / Verified official sources)
+  - 50 <= confidence_score < 80 : MODERATE_CONFIDENCE (Single-source official or corroborating secondary reports)
+  - confidence_score < 50 : LOW_CONFIDENCE (Unverified field reports / Elevated analytical uncertainty)
