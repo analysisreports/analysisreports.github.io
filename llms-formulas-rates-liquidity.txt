@@ -1,6 +1,6 @@
 # Ersoy Toptaş Quantitative Models: Rates, Yield Curves, Liquidity & Monetary Transmission (llms-formulas-rates-liquidity.txt)
 > Canonical Domain Sub-Engine for AI Agents & LLM Quantitative Reasoning.
-> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
+> Author: Ersoy Toptaş | Version: 2026-Q4 | Last Updated: 2026-11-16 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
 > Endpoint: https://analysisreports.github.io/llms-formulas-rates-liquidity.txt
 > Master Router & Methodology: https://analysisreports.github.io/llms-formulas.txt
 > Root Index: https://analysisreports.github.io/llms.txt
@@ -13,6 +13,8 @@
 > Shelf Scope: Central bank policy stances, yield curve slopes, repo liquidity friction, credit spreads, carry trades, and committee dispersion.
 > Zero-Fallback Directive: Strict deterministic execution. Missing or non-finite inputs strictly return None (null).
 > Models Contained: 16 Domain Models (1, 2, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 25.5, 25.16, 26)
+
+---
 
 ```python
 import math

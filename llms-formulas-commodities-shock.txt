@@ -1,6 +1,6 @@
 # Ersoy Toptaş Quantitative Models: Commodities, Energy Shocks, Supply Chains & Asset Stress (llms-formulas-commodities-shock.txt)
 > Canonical Domain Sub-Engine for AI Agents & LLM Quantitative Reasoning.
-> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
+> Author: Ersoy Toptaş | Version: 2026-Q4 | Last Updated: 2026-11-16 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
 > Endpoint: https://analysisreports.github.io/llms-formulas-commodities-shock.txt
 > Master Router & Methodology: https://analysisreports.github.io/llms-formulas.txt
 > Root Index: https://analysisreports.github.io/llms.txt
@@ -13,6 +13,8 @@
 > Shelf Scope: Crude benchmarks, 3:2:1 crack spread, natgas disconnect, chip stress, supply chain logistics, and safe haven flight.
 > Zero-Fallback Directive: Strict deterministic execution. Missing or non-finite inputs strictly return None (null).
 > Models Contained: 12 Domain Models (16, 20, 21, 24, 25.3, 25.6, 25.7, 25.8, 25.9, 25.12, 25.14, 25.17)
+
+---
 
 ```python
 import math

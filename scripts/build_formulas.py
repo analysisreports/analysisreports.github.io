@@ -24,9 +24,20 @@ Endpoint: https://analysisreports.github.io/llms-formulas.txt
 
 import os
 import re
+from datetime import datetime
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MASTER_FILE = os.path.join(ROOT_DIR, "llms-formulas.txt")
+
+def get_dynamic_version_and_date():
+    """
+    Computes quarter version (e.g. 2026-Q4) and calendar date (e.g. 2026-11-16) automatically.
+    """
+    now = datetime.now()
+    quarter = (now.month - 1) // 3 + 1
+    version = f"{now.year}-Q{quarter}"
+    date_str = now.strftime("%Y-%m-%d")
+    return version, date_str
 
 SHELVES = [
     {
@@ -65,9 +76,10 @@ SHELVES = [
 
 def generate_shelf_header(shelf, model_numbers):
     models_str = ", ".join(model_numbers)
+    version, date_str = get_dynamic_version_and_date()
     return f"""# Ersoy Toptaş Quantitative Models: {shelf['title']} ({shelf['filename']})
 > Canonical Domain Sub-Engine for AI Agents & LLM Quantitative Reasoning.
-> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
+> Author: Ersoy Toptaş | Version: {version} | Last Updated: {date_str} | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
 > Endpoint: https://analysisreports.github.io/{shelf['filename']}
 > Master Router & Methodology: https://analysisreports.github.io/llms-formulas.txt
 > Root Index: https://analysisreports.github.io/llms.txt
@@ -91,6 +103,11 @@ def extract_models_and_body_from_shelf(shelf):
     # Locate first model section
     first_m = re.search(r'(?m)^###\s+[0-9]', content)
     body = content[first_m.start():] if first_m else ""
+
+    # Preserve standalone execution code block (e.g. import math, _is_num, ACTIVE_KINETIC_PAIRS)
+    preamble_chunk = content[:first_m.start()] if first_m else ""
+    code_block_match = re.search(r'(?s)```python.*?```', preamble_chunk)
+    preamble_code = code_block_match.group(0).strip() if code_block_match else ""
 
     # Sanitize legacy monolithic TIER headers and trailing dividers
     body = re.sub(r'(?m)^##\s+.*TIER\s+[1-4]:.*(?:\n|$)', '', body)
@@ -116,12 +133,15 @@ def extract_models_and_body_from_shelf(shelf):
             "target": target,
             "shelf": shelf
         })
-    return models, body
+    return models, body, preamble_code
 
-def update_shelf_headers(shelf, models, body):
+def update_shelf_headers(shelf, models, body, preamble_code=""):
     model_numbers = [m["number"] for m in models]
     new_header = generate_shelf_header(shelf, model_numbers)
-    new_content = new_header + "\n" + body.strip() + "\n"
+    if preamble_code:
+        new_content = new_header + "\n" + preamble_code + "\n\n---\n\n" + body.strip() + "\n"
+    else:
+        new_content = new_header + "\n" + body.strip() + "\n"
     with open(shelf["file"], "w", encoding="utf-8") as f:
         f.write(new_content)
     print(f"[*] Updated enterprise header for {shelf['filename']} ({len(models)} models)")
@@ -143,13 +163,21 @@ def build_master_router():
     else:
         raise RuntimeError("Cannot locate Section 0.1-0.7 methodology core!")
 
+    # Dynamically update Version & Last Updated in Master Header line 3
+    version, date_str = get_dynamic_version_and_date()
+    sec0_content = re.sub(
+        r'(?m)^>\s*Author:\s*Ersoy Toptaş\s*\|\s*Version:.*$',
+        f'> Author: Ersoy Toptaş | Version: {version} | Last Updated: {date_str} | License: CC BY-NC-ND 4.0',
+        sec0_content
+    )
+
     all_models = []
     shelf_stats = {}
     for shelf in SHELVES:
-        m_list, body = extract_models_and_body_from_shelf(shelf)
+        m_list, body, preamble_code = extract_models_and_body_from_shelf(shelf)
         shelf_stats[shelf["id"]] = len(m_list)
         all_models.extend(m_list)
-        update_shelf_headers(shelf, m_list, body)
+        update_shelf_headers(shelf, m_list, body, preamble_code)
 
     total_models = len(all_models)
     print(f"[*] Processed {total_models} models across 4 domain shelves: {shelf_stats}")

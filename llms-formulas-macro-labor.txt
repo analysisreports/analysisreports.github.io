@@ -1,6 +1,6 @@
 # Ersoy Toptaş Quantitative Models: Macroeconomic Fundamentals, Labor Dynamics, Valuation & Cycles (llms-formulas-macro-labor.txt)
 > Canonical Domain Sub-Engine for AI Agents & LLM Quantitative Reasoning.
-> Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
+> Author: Ersoy Toptaş | Version: 2026-Q4 | Last Updated: 2026-11-16 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
 > Endpoint: https://analysisreports.github.io/llms-formulas-macro-labor.txt
 > Master Router & Methodology: https://analysisreports.github.io/llms-formulas.txt
 > Root Index: https://analysisreports.github.io/llms.txt
@@ -13,6 +13,8 @@
 > Shelf Scope: Inflation persistence, labor market momentum, housing bubble risks, consumption collapse, equity valuation, and release countdowns.
 > Zero-Fallback Directive: Strict deterministic execution. Missing or non-finite inputs strictly return None (null).
 > Models Contained: 21 Domain Models (3, 8, 17, 18, 19, 22, 23, 23.1, 23.2, 23.3, 23.4, 23.5, 23.6, 23.7, 23.8, 25, 25.2, 25.10, 25.11, 25.13, 30)
+
+---
 
 ```python
 import math
