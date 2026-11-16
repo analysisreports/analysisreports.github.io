@@ -1,0 +1,691 @@
+# Ersoy Toptaş Quantitative Models: Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence
+> Canonical Domain Sub-Engine | Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0
+> Master Router & Methodology (0.1–0.7): https://analysisreports.github.io/llms-formulas.txt
+> Shelf Scope: Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, and evidence confidence scoring
+> Zero-Fallback Rule: Missing or non-finite inputs strictly return None (null).
+> Models Contained: 13 Domain Models (25.1, 25.15, 25.18, 25.19, 27, 27.1, 28, 28.1, 28.2, 28.3, 28.4, 28.5, 29)
+
+---
+
+
+---
+
+### 25.1. DYNAMIC POLARITY & REGIME ENGINE
+- Purpose: Calculates bilateral geopolitical affinity by combining baseline polarity (P_baseline) with the Model 25.19 dynamic delta clamped to [-0.20, 0.20] and the Model 25.18 Mecca Pact delta where applicable. Returns deterministic bilateral regime states.
+- Data Link: llms-relationships.txt -> Section 1 (DYNAMIC POLARITY & TRANSMISSION ENGINE)
+- Formula:
+  P_net = min(1.0, max(-1.0, P_baseline + dynamic_delta + mecca_pact_delta))
+  dynamic_delta is the Model 25.19 relationship transmission; mecca_pact_delta is the Model 25.18 delta for TR_SA, SA_PK and TR_PK, and zero otherwise. Legacy petrol, chip and VIX deltas are reported separately and are not added.
+- KINETIC_WAR additionally requires the pair to belong to the manually maintained `ACTIVE_KINETIC_PAIRS = {"UA_RU", "IL_IR", "YE_IL"}`. This configuration is not an automatically updated event feed. Unlisted pairs below -0.95 remain PROXY_WAR.
+- Machine-Executable Logic (Python):
+  def dynamic_polarity_engine(p_baseline, dynamic_delta, pair_id, mecca_pact_delta=0.0):
+      if any(v is None or isinstance(v, bool) for v in (p_baseline, dynamic_delta, mecca_pact_delta)):
+          return None
+      try:
+          if not all(math.isfinite(v) for v in (p_baseline, dynamic_delta, mecca_pact_delta)):
+              return None
+
+          raw_p = float(p_baseline) + float(dynamic_delta) + float(mecca_pact_delta)
+          # [-1.0, 1.0] araligina kenetleme (clamping)
+          p_net = round(min(1.0, max(-1.0, raw_p)), 2)
+          if not math.isfinite(p_net):
+              return None
+
+          if p_net >= 0.85:
+              regime = "ALLIANCE"
+          elif p_net >= 0.50:
+              regime = "STRATEGIC_ALIGNMENT"
+          elif p_net >= 0.10:
+              regime = "TACTICAL_COOPERATION"
+          elif p_net >= -0.10:
+              regime = "NEUTRAL"
+          elif p_net >= -0.50:
+              regime = "STRATEGIC_FRICTION"
+          elif p_net >= -0.95 or pair_id not in ACTIVE_KINETIC_PAIRS:
+              regime = "PROXY_WAR"
+          else:
+              regime = "KINETIC_WAR"
+
+          return {"p_net": p_net, "regime": regime}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - p_net >= 0.85 : ALLIANCE (Joint Defense / Integrated Military Command)
+  - 0.50 <= p_net < 0.85 : STRATEGIC_ALIGNMENT (Strategic Partnership / Institutional Alignment)
+  - 0.10 <= p_net < 0.50 : TACTICAL_COOPERATION (Tactical Cooperation / Economic Interdependence)
+  - -0.10 <= p_net < 0.10 : NEUTRAL (Strict Non-Alignment / Strategic Neutrality)
+  - -0.50 <= p_net < -0.10 : STRATEGIC_FRICTION (Strategic Friction / Managed Divergence)
+  - -0.95 to below -0.50, or below -0.95 without configured active contact: PROXY_WAR (Proxy Warfare / Sanctions Regime / Asymmetric Conflict)
+  - p_net < -0.95 with configured active contact: KINETIC_WAR (Active Kinetic Warfare / Total Diplomatic Breakdown)
+
+
+---
+
+### 25.15. DOMESTIC GOVERNANCE GRIDLOCK & EXTERNAL TARIFF FRICTION ENGINE (GOVERNANCE_GRIDLOCK_FRICTION)
+- Purpose: Quantifies how sovereign executive-legislative power balances, parliamentary seat margins, and regime structures constrain domestic policy space and systematically force executive leadership to deploy unilateral external economic leverage (Section 232/301 tariffs, IEEPA sanctions, emergency trade restrictions).
+- Canonical Entity Mapping (llms-entities-id.txt):
+  - GEO_US: Presidential / Bicameral Congress (218 House threshold, 60 Senate Filibuster).
+  - GEO_DE: Parliamentary Coalition (Bundestag 316 majority threshold, Schuldenbremse fiscal brake).
+  - GEO_IL: Parliamentary Coalition (Knesset 61 majority threshold, small-party leverage).
+  - GEO_JP: Dominant Parliamentary (Diet 233 majority / 310 supermajority threshold).
+  - GEO_CN & GEO_RU: Centralized Single-Party / Vertical Authority (Zero domestic legislative gridlock).
+- Formula:
+  For Centralized Regimes (GEO_CN, GEO_RU):
+    Gridlock_Index = 0.0
+    External_Friction_Bias = Executive_Decree_Power * 0.75
+  For Democratic Regimes (GEO_US, GEO_DE, GEO_IL, GEO_JP):
+    If Majority_Seat_Margin < 0:
+      Gridlock_Index = min(1.0, 0.60 + abs(Majority_Seat_Margin) * 0.02)
+    Else:
+      Gridlock_Index = max(0.0, 0.40 - (Majority_Seat_Margin * 0.015))
+    External_Friction_Bias = Gridlock_Index * Executive_Decree_Power
+- Machine-Executable Logic (Python):
+  def governance_gridlock_friction_engine(country_code, majority_seat_margin=None, executive_decree_power=None):
+      if not isinstance(country_code, str):
+          return None
+      
+      country = country_code.upper().strip()
+      valid_countries = {"GEO_US", "GEO_CN", "GEO_RU", "GEO_DE", "GEO_IL", "GEO_JP"}
+      if country not in valid_countries:
+          return None
+          
+      if executive_decree_power is None:
+          return None
+      try:
+          decree = float(executive_decree_power)
+      except (TypeError, ValueError):
+          return None
+      if not math.isfinite(decree) or decree < 0.0 or decree > 1.0:
+          return None
+
+      if country in {"GEO_CN", "GEO_RU"}:
+          gridlock = 0.0
+          ext_friction = round(decree * 0.75, 3)
+          status = "CENTRALIZED_STRATEGIC_COMMAND"
+          return {
+              "country_code": country,
+              "gridlock_index": gridlock,
+              "executive_decree_power": decree,
+              "external_friction_bias": ext_friction,
+              "status": status
+          }
+          
+      if majority_seat_margin is None or isinstance(majority_seat_margin, bool):
+          return None
+          
+      try:
+          margin = float(majority_seat_margin)
+          if not math.isfinite(margin):
+              return None
+              
+          if margin < 0:
+              gridlock = round(min(1.0, 0.60 + abs(margin) * 0.02), 3)
+          else:
+              gridlock = round(max(0.0, 0.40 - (margin * 0.015)), 3)
+              
+          ext_friction = round(gridlock * decree, 3)
+          
+          if gridlock >= 0.60 and ext_friction >= 0.45:
+              status = "DIVIDED_GRIDLOCK_TARIFF_SURGE"
+          elif gridlock >= 0.35 and ext_friction < 0.45:
+              status = "FRAGILE_COALITION_PARALYSIS"
+          elif gridlock < 0.25 and margin >= 15:
+              status = "UNIFIED_DOMESTIC_EXPANSION"
+          else:
+              status = "BALANCED_INSTITUTIONAL_EQUILIBRIUM"
+              
+          return {
+              "country_code": country,
+              "majority_seat_margin": margin,
+              "gridlock_index": gridlock,
+              "executive_decree_power": decree,
+              "external_friction_bias": ext_friction,
+              "status": status
+          }
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - status == DIVIDED_GRIDLOCK_TARIFF_SURGE : Domestic legislation and fiscal budgets paralyzed by opposition-controlled legislature; Executive pivots power toward unilateral trade tariffs, protectionism, and foreign sanctions (Primary shock: DXY surge, global trade friction).
+  - status == FRAGILE_COALITION_PARALYSIS : Parliamentary coalition held hostage by fringe parties; fiscal austerity or structural indecision reigns; elevated early election risk (Primary shock: Currency weakness, bond spread volatility).
+  - status == UNIFIED_DOMESTIC_EXPANSION : Strong legislative majority enables aggressive domestic tax/spending reform; subdued executive need for diversionary trade conflict.
+  - status == CENTRALIZED_STRATEGIC_COMMAND : Zero domestic legislative gridlock; rapid mobilization of state resources, export quotas, and counter-sanctions.
+
+---
+
+
+---
+
+### 25.18. NON-CONTIGUOUS ALLIANCE TRANSMISSION ENGINE (MECCA_PACT_DYNAMIC_ENGINE)
+- Purpose: Computes dynamic polarity shifts, alliance friction, and mutual defense uplift for the non-contiguous 2026 Mecca Joint Defense Pact (BLOC_MECCA_DEFENSE) across Republic of Türkiye (GEO_TR), Kingdom of Saudi Arabia (GEO_SA), and Islamic Republic of Pakistan (GEO_PK). Synthesizes institutional mutual defense activation, sovereign hydrocarbon fiscal breakeven thresholds, global dollar liquidity (SOFR), and bilateral defense-industrial co-production.
+- Target: llms-models.json, llms-relationships.json, llms-relationships.txt -> MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE
+- Frequency: Daily (Business Day)
+- Canonical Input Series:
+  - EIA / FRED: DCOILBRENTEU (Crude Oil Prices: Brent - Europe, USD per Barrel)
+  - FRED: SOFR (Secured Overnight Financing Rate, Percent)
+  - IMF: SAUPZPIOILBEGUSD (Fiscal Breakeven Oil Price for Saudi Arabia, USD per Barrel)
+- Mathematical Formulation:
+  1. Treaty Activation Uplift:
+     Delta_treaty = +0.10 (Institutional mutual collective defense commitment upon pact ratification)
+  2. Hydrocarbon Fiscal Breakeven Ratio:
+     R_oil = Brent / Breakeven_oil (Where Breakeven_oil is dynamically ingested from IMF SAUPZPIOILBEGUSD. If unavailable or non-positive, calculation halts and evaluates strictly to None; zero synthetic fallbacks permitted.)
+     If R_oil >= 1.05: S_energy = +0.05 (Fiscal surplus enables expanded defense procurement and bilateral sovereign liquidity deposits)
+     Else If R_oil < 0.90: S_energy = -0.05 (Fiscal consolidation pressure)
+     Else: S_energy = 0.00 (Fiscal equilibrium)
+  3. Global Dollar Liquidity Transmission:
+     If SOFR >= 5.25%: delta_dollar = -0.03 (Elevated global dollar funding stress)
+     Else: delta_dollar = 0.00 (Benign funding conditions)
+  4. Pair-Specific Dynamic Deltas:
+     dynamic_delta(TR_SA) = round(clamp(Delta_treaty + S_energy + delta_dollar, -0.30, 0.30), 2)
+     dynamic_delta(SA_PK) = round(clamp(Delta_treaty + S_energy + delta_dollar, -0.30, 0.30), 2)
+     dynamic_delta(TR_PK) = round(clamp(Delta_treaty + min(0.0, delta_dollar), -0.30, 0.30), 2)
+- Machine-Executable Logic (Python):
+  def calculate_mecca_pact_transmission(brent, sofr, breakeven_oil):
+      if any(v is None or isinstance(v, bool) for v in (brent, sofr, breakeven_oil)):
+          return None
+      try:
+          f_brent = float(brent)
+          f_sofr = float(sofr)
+          f_be = float(breakeven_oil)
+          if not (math.isfinite(f_brent) and math.isfinite(f_sofr) and math.isfinite(f_be)):
+              return None
+          if f_be <= 0.0 or f_brent < 0.0:
+              return None
+
+          delta_treaty = 0.10
+          r_oil = f_brent / f_be
+          if r_oil >= 1.05:
+              s_energy = 0.05
+          elif r_oil < 0.90:
+              s_energy = -0.05
+          else:
+              s_energy = 0.00
+
+          delta_dollar = -0.03 if f_sofr >= 5.25 else 0.00
+
+          delta_tr_sa = round(min(0.30, max(-0.30, delta_treaty + s_energy + delta_dollar)), 2)
+          delta_sa_pk = round(min(0.30, max(-0.30, delta_treaty + s_energy + delta_dollar)), 2)
+          delta_tr_pk = round(min(0.30, max(-0.30, delta_treaty + min(0.0, delta_dollar))), 2)
+
+          return {
+              "model_id": "MODEL_25.18_MECCA_PACT_DYNAMIC_ENGINE",
+              "oil_breakeven_ratio": round(r_oil, 4),
+              "breakeven_oil_price": round(f_be, 2),
+              "delta_treaty": delta_treaty,
+              "s_energy": s_energy,
+              "delta_dollar": delta_dollar,
+              "deltas": {
+                  "TR_SA": delta_tr_sa,
+                  "SA_PK": delta_sa_pk,
+                  "TR_PK": delta_tr_pk
+              },
+              "status": "TREATY_ACTIVE_SURPLUS_EXPANSION" if s_energy > 0 else ("TREATY_ACTIVE_EQUILIBRIUM" if s_energy == 0 else "TREATY_ACTIVE_FISCAL_RESTRAINT")
+          }
+      except (TypeError, ValueError, OverflowError):
+          return None
+- Interpretation:
+  - status == TREATY_ACTIVE_SURPLUS_EXPANSION : High hydrocarbon revenues (Brent >= 1.05 * Breakeven) combined with benign global interest rates; sovereign wealth investments, bilateral defense procurement, and liquidity deposits operate at peak velocity.
+  - status == TREATY_ACTIVE_EQUILIBRIUM : Hydrocarbon revenues aligned with sovereign budgetary requirements (0.90 <= R_oil < 1.05); mutual defense treaty guarantees and defense co-production pipelines proceed on schedule.
+  - status == TREATY_ACTIVE_FISCAL_RESTRAINT : Hydrocarbon revenues fall below sovereign breakeven threshold (R_oil < 0.90) or dollar funding stresses elevate; mutual security umbrella remains intact while non-essential discretionary capital deployments moderate.
+
+---
+
+
+---
+
+### 25.19. MULTI-LAYER MACROECONOMIC TRANSMISSION ENGINE
+- Purpose: Calculate eight bounded macroeconomic trigger scores and transmit their signed contributions to bilateral relationship deltas. Model 25.18 calculates the separate Mecca Pact delta; Model 25.1 combines the deltas with the structural baseline and classifies the resulting net polarity.
+- Notation: `current` and `prior` mean the latest and year-ago observations retained for each series.
+- Percentage change: `P(current, prior) = round(clamp(current / prior - 1, -1, 1), 4)`. The prior value must be positive. For example, an increase of 32.74% produces +0.3274.
+- Signed-index change: `D(current, prior) = round(clamp(current - prior, -1, 1), 4)`. This measures a difference in index points rather than a percentage, so it remains meaningful when the prior index is zero or negative.
+- A positive score means the measured indicator increased; a negative score means it decreased. Clamping limits both methods to [-1, 1]. Neither method determines the direction or size of an effect on a country relationship.
+
+#### Trigger Formulas
+- `IND_TRIGGER_HORMUZ_SPREAD`
+  - Inputs: FRED `DCOILBRENTEU` (Brent) and `DCOILWTICO` (WTI), current and year-ago prices.
+  - `spread_current = Brent_current - WTI_current`; `spread_prior = Brent_prior - WTI_prior`.
+  - `trigger = P(spread_current, spread_prior)`.
+  - Measures change in the benchmark price difference; it does not directly observe a Hormuz disruption.
+- `IND_TRIGGER_OVX_ENERGY_PANIC`
+  - Inputs: FRED `OVXCLS` and `VIXCLS`, current and year-ago index values.
+  - `ratio_current = OVX_current / VIX_current`; `ratio_prior = OVX_prior / VIX_prior`.
+  - `trigger = P(ratio_current, ratio_prior)`.
+  - Measures change in oil volatility relative to equity volatility, not an observed geopolitical event.
+- `IND_TRIGGER_NATGAS_CRACK`
+  - Inputs: FRED `DCOILWTICO` (WTI) and `DHHNGSP` (Henry Hub), current and year-ago prices.
+  - `ratio_current = WTI_current / Henry_Hub_current`; `ratio_prior = WTI_prior / Henry_Hub_prior`.
+  - `trigger = P(ratio_current, ratio_prior)`.
+  - Measures change in the WTI-to-Henry-Hub price ratio; Henry Hub is not a European gas benchmark.
+- `IND_TRIGGER_CHIP_CONTAINMENT`
+  - Inputs: FRED `NASDAQSOX` at current, year-ago and two-observation-years-ago dates; FRED `VIXCLS` and NY Fed `GSCPI` at current and year-ago dates.
+  - `sox_yoy_current = round((SOX_current / SOX_prior - 1) * 100, 4)`.
+  - `sox_yoy_prior = round((SOX_prior / SOX_two_years_ago - 1) * 100, 4)`.
+  - For each period, `chip_index = 0.40 * GSCPI - 0.35 * (sox_yoy / 50) + 0.25 * (VIX / 20)`.
+  - `trigger = D(chip_index_current, chip_index_prior)`.
+  - The weights are model assumptions: supply-chain pressure and volatility increase the index, while semiconductor equity growth reduces it. The score does not directly observe export controls or physical chip shortages.
+- `IND_TRIGGER_SOFR_DOLLAR_DRAIN`
+  - Inputs: FRED `SOFR`, current and year-ago rates.
+  - `trigger = P(SOFR_current, SOFR_prior)`.
+  - Measures proportional change in the rate, not a direct observation of offshore dollar flows.
+- `IND_TRIGGER_GSCPI_LOGISTICS`
+  - Inputs: NY Fed `GSCPI`, current and year-ago index values.
+  - `trigger = D(GSCPI_current, GSCPI_prior)`.
+  - Measures the change in global supply-chain pressure in index points, not a directly observed disruption at a particular chokepoint.
+- `IND_TRIGGER_WHEAT_PRICE` and `IND_TRIGGER_CORN_PRICE`
+  - Inputs: FRED `PWHEAMTUSDM` (wheat) and `PMAIZMTUSDM` (corn), respectively, with current and year-ago monthly prices in USD per metric ton.
+  - Each trigger is `P(price_current, price_prior)`. Percentage changes put the two commodities on a comparable scale without combining their price levels.
+  - These are global market pressure indicators, not direct observations of the conflict or of Ukrainian export volumes. Harvests, weather and other global factors also affect prices.
+
+- Data integrity: Inputs must be finite; Brent, WTI, Henry Hub, OVX, VIX, NASDAQSOX, wheat and corn prices or index values must be positive when used. Current dates must match for same-frequency combined series. For the chip trigger, current NASDAQSOX and VIX dates must match, and the monthly GSCPI date must not be later than them. Each year-ago date must precede its current date, and the SOX two-year-ago date must precede its year-ago date.
+- Historical dates: Year-ago dates may differ because series use their own retained observations. A historical ratio or composite assembled from different dates is not a same-day observation. The GSCPI prior date is used only when retained observations match the published current and year-ago values.
+- Missing or invalid inputs, mismatched current dates, or a non-positive prior value for percentage change produce `null`, an explicit status and a warning; a valid current value remains visible where available. Calculations use unrounded inputs and intermediate ratios, except for the SOX year-over-year values rounded as specified above.
+- Output: All eight IDs are published with `model: MODEL_25.19`, their inputs, dates and status in `llms-relationships.json`, and summarized in `llms-relationships.txt`.
+
+#### Relationship Transmission Pipeline
+1. **Contribution and dominant selection:** For each trigger mapped to a pair, `contribution_i = trigger_value_i * impact_direction_i`, where the direction is +1 or -1. Select the signed contribution with the largest absolute value as `dominant`. If magnitudes tie, select the first trigger in the pair's mapping.
+2. **Secondary damping and macro transmission:** `raw_delta = dominant + 0.20 * sum(other signed contributions)`. Then calculate `dynamic_delta = round(clamp(0.20 * raw_delta, -0.20, 0.20), 6)`. Six decimal places preserve the result of applying both weights to four-decimal trigger scores.
+3. **Baltic floor:** For LT_RU, EE_RU and LV_RU, apply `dynamic_delta = max(dynamic_delta, -0.09)`. Positive deltas remain unchanged; no separate land-border multiplier is applied.
+
+- UA_RU maps wheat, corn and GSCPI to direction -1, a modeling assumption that rising global grain prices and supply-chain pressure worsen the modeled polarity. The same dominant-selection rule applies to all three, so GSCPI can also be dominant; the Baltic-only floor does not apply. Each trigger uses its own latest observation, which can be from a different month; the combined delta is not a same-month measurement. This is a market-pressure proxy, not evidence that the conflict has escalated or ended.
+- All triggers mapped to a relationship are required. If any is unavailable, the relationship's dynamic_delta and P_net are null and its regime is UNAVAILABLE. Contributions, directions, statuses and the dominant trigger are published in `llms-relationships.json` and `llms-relationships.txt`.
+- Legacy petrol, chip and VIX deltas remain visible separately and are not added to P_net.
+
+#### Integration with Models 25.18 and 25.1
+- **Model 25.18:** For TR_SA, SA_PK and TR_PK, the Mecca Pact delta is calculated separately using the +0.10 treaty uplift, Brent relative to Saudi fiscal breakeven oil, and SOFR. TR_SA and SA_PK include the energy and dollar adjustments; TR_PK includes the dollar adjustment but not the energy adjustment. Each is clamped to [-0.30, +0.30] and rounded to two decimals. In the relationship generator, when the required macro inputs are unavailable or invalid, only the +0.10 treaty uplift is retained. For all other pairs, the Mecca Pact delta is zero.
+- **Model 25.1:** `P_net = round(clamp(P_baseline + dynamic_delta + mecca_pact_delta, -1.00, +1.00), 2)`. Classification uses this rounded P_net:
+  - `P_net >= 0.85`: ALLIANCE.
+  - `0.50 <= P_net < 0.85`: STRATEGIC_ALIGNMENT.
+  - `0.10 <= P_net < 0.50`: TACTICAL_COOPERATION.
+  - `-0.10 <= P_net < 0.10`: NEUTRAL.
+  - `-0.50 <= P_net < -0.10`: STRATEGIC_FRICTION.
+  - `-0.95 <= P_net < -0.50`: PROXY_WAR.
+  - `P_net < -0.95`: KINETIC_WAR only when the pair is in `ACTIVE_KINETIC_PAIRS`; otherwise PROXY_WAR.
+- **Kinetic contact configuration:** `ACTIVE_KINETIC_PAIRS = {"UA_RU", "IL_IR", "YE_IL"}` is maintained manually, not verified or updated by an automated event feed. UA_RU is in this configuration and uses the same polarity thresholds as other pairs.
+
+---
+## 🏛️ TIER 3: INSTITUTIONAL DECISION, GEOPOLITICAL TENSION & CALIBRATION ENGINE
+
+
+---
+
+### 27. RHETORIC INTENSITY SCORE
+- Purpose: Scores hostile targeting, delegitimizing language, sanction threats, and diplomatic norm breaches in political statements on a 0-100 scale.
+- Target: political.json -> rhetoric_intensity_score
+- Formula:
+  Rhetoric_Score = (x1 * 0.30) + (x2 * 0.30) + (x3 * 0.20) + (x4 * 0.20)
+- Machine-Executable Logic (Python):
+  def rhetoric_intensity_score(direct_target, delegitimize, threat, norm_breach):
+      if not all(_is_num(v) for v in (direct_target, delegitimize, threat, norm_breach)):
+          return None
+      x1 = min(100.0, max(0.0, float(direct_target)))
+      x2 = min(100.0, max(0.0, float(delegitimize)))
+      x3 = min(100.0, max(0.0, float(threat)))
+      x4 = min(100.0, max(0.0, float(norm_breach)))
+      score = (x1 * 0.30) + (x2 * 0.30) + (x3 * 0.20) + (x4 * 0.20)
+      return int(round(min(100.0, score)))
+- Interpretation:
+  - Rhetoric_Score >= 80 : HOSTILE_TARGETING (Severe hostility / Existential targeting)
+  - 50 <= Rhetoric_Score < 80 : AGGRESSIVE_POLEMIC (Polarizing and aggressive political conflict)
+  - 25 <= Rhetoric_Score < 50 : MODERATE_CRITICISM (Firm but bounded political criticism)
+  - Rhetoric_Score < 25 : DIPLOMATIC_DISCOURSE (Measured / Routine diplomatic language)
+
+
+---
+
+### 27.1. COMPOSITE TENSION SCORE
+- Purpose: Synthesizes rhetoric intensity with institutional and alliance friction to determine balanced political tension on a 0-100 scale.
+- Formula:
+  Composite_Tension = (Rhetoric_Score * 0.50) + (Alliance_Friction * 0.50)
+- Machine-Executable Logic (Python):
+  def composite_tension(rhetoric, alliance_friction):
+      if not (_is_num(rhetoric) and _is_num(alliance_friction)):
+          return None
+      r = min(100.0, max(0.0, float(rhetoric)))
+      a = min(100.0, max(0.0, float(alliance_friction)))
+      return int(round((r * 0.50) + (a * 0.50)))
+- Interpretation:
+  - Tension >= 75 : CRITICAL_POLITICAL_CRISIS (Government/Alliance fracture, systemic gridlock)
+  - 50 <= Tension < 75 : HIGH_TENSION (Severe political polarization)
+  - 25 <= Tension < 50 : MODERATE_FRICTION (Routine political friction)
+  - Tension < 25 : STABLE_POLITICAL_CLIMATE (Robust alliance / Political stability)
+
+
+---
+
+### 28. COMPOSITE STRATEGIC SCORE
+- Purpose: Generates a holistic sovereign macro-strategic risk score on a 0-100 scale by synthesizing internal political stability, defense doctrine, geopolitical polarization, and economic/infrastructure vulnerability.
+- Target: country.json -> composite_strategic_score
+- Formula:
+  Composite_Strategic_Score = (pol * 0.25) + (defense * 0.35) + (geo * 0.20) + (vuln * 0.20)
+- Machine-Executable Logic (Python):
+  def composite_strategic_score(pol, defense, geo, vuln):
+      if not all(_is_num(v) for v in (pol, defense, geo, vuln)): return None
+      p = min(100.0, max(0.0, float(pol)))
+      d = min(100.0, max(0.0, float(defense)))
+      g = min(100.0, max(0.0, float(geo)))
+      v = min(100.0, max(0.0, float(vuln)))
+      
+      score = int(round(p * 0.25 + d * 0.35 + g * 0.20 + v * 0.20))
+      if score >= 80:
+          status = "CRITICAL_STRATEGIC_RISK"
+      elif score >= 60:
+          status = "HIGH_STRATEGIC_RISK"
+      elif score >= 40:
+          status = "MODERATE_STRATEGIC_RISK"
+      else:
+          status = "STABLE_SOVEREIGN"
+      return {"composite_strategic_score": score, "status": status}
+- Interpretation:
+  - Score >= 80 : CRITICAL_STRATEGIC_RISK (Severe geopolitical/domestic crisis; elevated war or sanction risk)
+  - 60 <= Score < 80 : HIGH_STRATEGIC_RISK (High vulnerability and potential conflict threshold)
+  - 40 <= Score < 60 : MODERATE_STRATEGIC_RISK (Manageable regional/domestic dynamic pressure)
+  - Score < 40 : STABLE_SOVEREIGN (Stable and resilient sovereign structure)
+
+
+---
+
+### 28.1. CONFLICT HEAT SCORE
+- Purpose: Scores kinetic military conflict, diplomatic friction, and critical infrastructure/trade transit disruption risks on a 0-100 scale.
+- Target: core_analysis -> conflict_heat
+- Formula:
+  Conflict_Heat = (c1 * 0.40) + (c2 * 0.35) + (c3 * 0.25)
+- Machine-Executable Logic (Python):
+  def conflict_heat_score(kinetic_military, geo_tension, disruption_risk):
+      if not all(_is_num(v) for v in (kinetic_military, geo_tension, disruption_risk)):
+          return None
+      c1 = min(100.0, max(0.0, float(kinetic_military)))
+      c2 = min(100.0, max(0.0, float(geo_tension)))
+      c3 = min(100.0, max(0.0, float(disruption_risk)))
+      score = (c1 * 0.40) + (c2 * 0.35) + (c3 * 0.25)
+      return int(round(min(100.0, score)))
+- Interpretation:
+  - Conflict_Heat >= 80 : CRITICAL_KINETIC_ESCALATION (Major war / Chokepoint closure / Acute kinetic escalation)
+  - 55 <= Conflict_Heat < 80 : HIGH_FRICTION (Direct conflict risk / Severe diplomatic crisis)
+  - 30 <= Conflict_Heat < 55 : MODERATE_TENSION (Proxy warfare / Managed regional tension)
+  - Conflict_Heat < 30 : LOW_RISK_ENVIRONMENT (Routine geopolitical baseline)
+
+
+---
+
+### 28.2. MARKET IMPACT SCORE
+- Calibration & Weighting Rationale: Multi-Criteria Decision Analysis (MCDA) assigning tripartite normalized weights (35% Asset Volatility, 35% Liquidity Spreads, 30% Macro Transmission). Asset volatility and credit liquidity capture high-frequency market repricing, while macro transmission integrates lower-frequency supply chain spillovers.
+- Purpose: Synthesizes asset volatility, credit/liquidity spreads, and macro transmission linkages to calculate financial shock severity on a 0-100 scale.
+- Target: core_analysis -> market_impact_score
+- Formula:
+  Market_Impact = (m1 * 0.35) + (m2 * 0.35) + (m3 * 0.30)
+- Machine-Executable Logic (Python):
+  def market_impact_score(asset_volatility, liquidity_spread, macro_spillover):
+      if not all(_is_num(v) for v in (asset_volatility, liquidity_spread, macro_spillover)):
+          return None
+      m1 = min(100.0, max(0.0, float(asset_volatility)))
+      m2 = min(100.0, max(0.0, float(liquidity_spread)))
+      m3 = min(100.0, max(0.0, float(macro_spillover)))
+      score = (m1 * 0.35) + (m2 * 0.35) + (m3 * 0.30)
+      return int(round(min(100.0, score)))
+- Interpretation:
+  - Market_Impact >= 75 : SEVERE_MARKET_SHOCK (Global sell-off / Liquidity crisis / Panic)
+  - 50 <= Market_Impact < 75 : ELEVATED_VOLATILITY (Elevated volatility / Rising risk premium)
+  - 25 <= Market_Impact < 50 : MODERATE_REPRICING (Bounded repricing / Localized impact)
+  - Market_Impact < 25 : MUTED_RESPONSE (Markets discount or absorb event / Fully priced in)
+
+
+---
+
+### 28.3. CHOKEPOINT DISRUPTION SEVERITY ENGINE
+- Purpose: Converts qualitative Disruption Severity enum values from llms-relationships.txt (Section 4 Chokepoints & Section 7 Strategic Corridors) into normalized numeric weights (0.0 to 1.0) and 0-100 scores. Directly feeds disruption_risk in Model 28.1 and macro_spillover in Model 28.2.
+- Data Link: llms-relationships.txt -> Section 4 & Section 7 (Disruption Severity Registries)
+- Input Schema:
+  - severity_enum: "CATASTROPHIC" | "HIGH" | "MODERATE-HIGH" | "MODERATE"
+- Weights Dictionary:
+  - CATASTROPHIC  : 1.00 (Complete dual-direction blockade, global supply shock)
+  - HIGH          : 0.70 (Severe disruption, mandatory route diversion)
+  - MODERATE-HIGH : 0.45 (Regional capacity constraint, added ton-mile freight costs)
+  - MODERATE      : 0.20 (Localized friction, manageable logistical delays)
+- Formula:
+  Disruption_Weight = SEVERITY_WEIGHT_MAP[severity_enum]
+  Disruption_Score_100 = Disruption_Weight * 100
+- Machine-Executable Logic (Python):
+  SEVERITY_WEIGHT_MAP = {
+      "CATASTROPHIC": 1.00,
+      "HIGH": 0.70,
+      "MODERATE-HIGH": 0.45,
+      "MODERATE": 0.20
+  }
+
+  def chokepoint_severity_multiplier(severity_enum):
+      if severity_enum is None or isinstance(severity_enum, bool):
+          return None
+      try:
+          clean_key = str(severity_enum).strip().upper().replace("_", "-")
+          if clean_key not in SEVERITY_WEIGHT_MAP:
+              return None
+
+          weight = SEVERITY_WEIGHT_MAP[clean_key]
+          score_100 = int(round(weight * 100.0))
+
+          return {
+              "severity": clean_key,
+              "weight": weight,
+              "score_100": score_100
+          }
+      except (TypeError, ValueError, AttributeError):
+          return None
+- Interpretation:
+  - severity == CATASTROPHIC : weight 1.00 / score 100 (Systemic global shock / Complete dual-direction chokepoint closure)
+  - severity == HIGH : weight 0.70 / score 70 (Severe supply disruption / Freight rates and transit days surge)
+  - severity == MODERATE-HIGH : weight 0.45 / score 45 (Regional logistics bottleneck / Partial capacity loss)
+  - severity == MODERATE : weight 0.20 / score 20 (Low-scale operational pressure / Localized distribution delay)
+
+
+---
+
+### 28.4. CHOKEPOINT MACRO SPILLOVER BRIDGE
+- Purpose: Combines the Hormuz severity, bilateral net polarity, transit-flow exposure, bypass-capacity assumption, live EIA SPR inventory, and crisis-duration assumption into a 0-100 spillover score. U.S. field production is reported as a context metric only; it is not part of the score formula.
+- Data Links:
+  - EIA: PET.WCSSTUS1.W (Weekly U.S. Ending Stocks of Crude Oil in SPR - Thousand Barrels)
+  - EIA context metric: PET.WCRFPUS2.W (Weekly U.S. Field Production of Crude Oil - Thousand Barrels per Day)
+  - llms-relationships.json -> IL_IR relationship (P_net) and CHOKE_HORMUZ (severity and baseline transit flow)
+  - llms-relationships.txt -> Section 1 (P_net) & Section 4/7 (Disruption Severity)
+  - llms-formulas.txt -> Model 25.1 (dynamic_polarity_engine), 28.1 (conflict_heat_score), 28.2 (market_impact_score), 28.3 (chokepoint_severity_multiplier)
+- Mathematical Formulation:
+  1. Geopolitical Polarity Friction:
+     Friction_Factor = max(0.0, -P_net)
+     (Where P_net in [-1.0, 1.0]; negative values indicate kinetic/diplomatic hostility, positive values indicate detente/alliance with zero friction)
+  2. Live Physical Buffer & Clamped Net Deficit Ratio:
+     SPR_Sustainable_mbpd = min(4.4, (spr_stocks_kbbl / 1000.0) / 90.0) if spr_stocks_kbbl is not None else spr_release_mbpd
+     Effective_SPR = SPR_Sustainable_mbpd * (1.0 if t <= 60 else (0.50 if t <= 90 else 0.25))
+     Total_Buffer = min(Gross_Flow, Bypass_Capacity + Effective_SPR)
+     Net_Deficit_Ratio = max(0.0, (Gross_Flow - Total_Buffer) / Gross_Flow)
+     U.S. field production is not added to Total_Buffer; no validated substitution rule is defined here.
+  3. Sigmoid Crisis Duration Multiplier (S-Curve):
+     M_duration(t) = 1.0 / (1.0 + exp(-0.15 * (t - 14.0)))
+     Duration_Scale = 0.40 + 0.60 * M_duration(t)
+     - Empirical Grounding for t0 = 14 Days: Represents the critical global maritime logistics inflection point. Average waterborne transit time for VLCC supertankers from the Persian Gulf to primary Asian/European hubs is 10 to 18 days. Concurrently, global refineries maintain an operational working inventory buffer of 10 to 14 days. Prior to Day 14, disruptions generate financial market panic pricing (OVX/VIX) while pre-loaded floating storage continues to dock; after Day 14, waterborne transit exhausts, refinery storage hits bottom, and acute physical rationing/industrial shutdowns commence.
+     - Day 1: ~0.48 panic pricing; Day 14: ~0.70 operational inventory depletion; Day 30: ~0.95 physical exhaustion; Day 60+: ~1.00 acute structural shock.
+  4. Final Spillover Score:
+     Base_Shock = (Severity_Weight * Net_Deficit_Ratio * 70.0) + (Friction_Factor * 30.0)
+     Spillover_Score = round(min(100.0, max(0.0, Base_Shock * Duration_Scale)))
+- Machine-Executable Logic (Python):
+  def chokepoint_transmission_bridge(
+      severity_enum,
+      p_net,
+      duration_days=14,
+      bypass_capacity_mbpd=4.0,
+      spr_stocks_kbbl=None,
+      spr_release_mbpd=None,
+      gross_flow_mbpd=20.5,
+      us_crude_prod_kbpd=None
+  ):
+      if any(v is None or isinstance(v, bool) for v in (severity_enum, p_net)):
+          return None
+      try:
+          # Resolve severity weight via Model 28.3
+          sev_data = chokepoint_severity_multiplier(severity_enum)
+          if not sev_data:
+              return None
+          w_sev = float(sev_data["weight"])
+
+          p_val = float(p_net)
+          if not math.isfinite(p_val):
+              return None
+
+          pol_clamped = min(1.0, max(-1.0, p_val))
+          friction = max(0.0, -pol_clamped)
+
+          # Duration & Physical Bounds
+          t = max(1, int(duration_days)) if duration_days is not None else 14
+          f_gross = max(0.1, float(gross_flow_mbpd)) if gross_flow_mbpd is not None else 20.5
+          f_bypass = max(0.0, float(bypass_capacity_mbpd)) if bypass_capacity_mbpd is not None else 4.0
+
+          # Dynamic SPR calculation from live EIA stocks (PET.WCSSTUS1.W)
+          if spr_stocks_kbbl is not None and not isinstance(spr_stocks_kbbl, bool):
+              f_spr_kbbl = float(spr_stocks_kbbl)
+              spr_mbbl = f_spr_kbbl / 1000.0
+              raw_spr = round(min(4.4, max(0.0, spr_mbbl / 90.0)), 2)
+          elif spr_release_mbpd is not None and not isinstance(spr_release_mbpd, bool):
+              raw_spr = max(0.0, float(spr_release_mbpd))
+          else:
+              return None
+
+          # SPR Depletion Decay Rule:
+          # <= 60d: 100% capacity | 61-90d: 50% capacity | >90d: 25% emergency reserve
+          if t <= 60:
+              spr_decay = 1.0
+          elif t <= 90:
+              spr_decay = 0.50
+          else:
+              spr_decay = 0.25
+          effective_spr = round(raw_spr * spr_decay, 2)
+
+          # Net Unmet Deficit with Clamping Guard
+          total_buffer = round(min(f_gross, f_bypass + effective_spr), 2)
+          net_deficit_ratio = round(max(0.0, (f_gross - total_buffer) / f_gross), 4)
+
+          # Sigmoid Crisis Duration Scaling (Centered at t0=14 with k=0.15)
+          sigmoid_val = 1.0 / (1.0 + math.exp(-0.15 * (t - 14.0)))
+          duration_scale = round(0.40 + 0.60 * sigmoid_val, 4)
+
+          # Weighted Transmission: 70% physical disruption + 30% geopolitical polarity friction
+          base_shock = (w_sev * net_deficit_ratio * 70.0) + (friction * 30.0)
+          score = int(round(min(100.0, max(0.0, base_shock * duration_scale))))
+
+          if score >= 85:
+              transmission_regime = "CRITICAL_SYSTEMIC_SHOCK"
+          elif score >= 60:
+              transmission_regime = "HIGH_SPILLOVER"
+          elif score >= 30:
+              transmission_regime = "MODERATE_FRICTION"
+          else:
+              transmission_regime = "LOCALIZED_IMPACT"
+
+          return {
+              "bridge_score": score,
+              "transmission_regime": transmission_regime,
+              "inputs": {
+                  "severity_weight": w_sev,
+                  "friction_factor": round(friction, 2),
+                  "duration_days": t,
+                  "gross_flow_mbpd": round(f_gross, 2),
+                  "bypass_capacity_mbpd": round(f_bypass, 2),
+                  "effective_spr_release_mbpd": effective_spr,
+                  "net_deficit_ratio": net_deficit_ratio,
+                  "duration_scale": duration_scale
+              }
+          }
+      except (TypeError, ValueError, OverflowError):
+          return None
+- Interpretation:
+  - bridge_score >= 85 : CRITICAL_SYSTEMIC_SHOCK (Full-capacity systemic shock input for 28.1 disruption_risk and 28.2 macro_spillover)
+  - 60 <= bridge_score < 85 : HIGH_SPILLOVER (High pass-through pressure on global commodity/freight prices)
+  - 30 <= bridge_score < 60 : MODERATE_FRICTION (Regional supply chain congestion and localized cost increases)
+  - bridge_score < 30 : LOCALIZED_IMPACT (Market-absorbable limited operational delays)
+  - Duration (14 days in the current runner) and bypass capacity (4.0 mbpd) are scenario assumptions, not live observations. The runner must source P_net, chokepoint severity, and baseline flow from the generated relationship data; absent required values must not be replaced with fixed observations.
+
+
+---
+
+### 28.5. REGIME-ADJUSTED MARKET IMPACT
+- Purpose: Scales raw Market Impact Score from Model 28.2 with a deterministic multiplier based on monetary policy stance (Model 2) and financial conditions (Model 12).
+- Data Links:
+  - llms-formulas.txt -> Model 2 (real_policy_rate), Model 12 (financial_conditions_regime), Model 28.2 (market_impact_score)
+- Formula:
+  Macro_Multiplier = 1.25 if (Real_Rate > 1.5 or NFCI > 0.0) else (0.75 if (Real_Rate < 0.0 and NFCI < 0.0) else 1.00)
+  Adjusted_Market_Impact = min(100, round(Market_Impact * Macro_Multiplier))
+- Machine-Executable Logic (Python):
+  def macro_regime_impact_multiplier(real_rate, nfci_val):
+      if any(v is None or isinstance(v, bool) for v in (real_rate, nfci_val)):
+          return None
+      try:
+          rr = float(real_rate)
+          nf = float(nfci_val)
+          if not (math.isfinite(rr) and math.isfinite(nf)):
+              return None
+          if rr > 1.50 or nf > 0.0:
+              return 1.25
+          elif rr < 0.0 and nf < 0.0:
+              return 0.75
+          else:
+              return 1.00
+      except (TypeError, ValueError):
+          return None
+
+  def adjusted_market_impact(market_impact_score_val, real_rate, nfci_val):
+      if any(v is None or isinstance(v, bool) for v in (market_impact_score_val, real_rate, nfci_val)):
+          return None
+      try:
+          base_score = float(market_impact_score_val)
+          if not math.isfinite(base_score):
+              return None
+          multiplier = macro_regime_impact_multiplier(real_rate, nfci_val)
+          if multiplier is None:
+              return None
+          final_score = int(round(min(100.0, max(0.0, base_score * multiplier))))
+          return {
+              "base_market_impact": int(round(base_score)),
+              "macro_multiplier": multiplier,
+              "adjusted_market_impact": final_score
+          }
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Multiplier == 1.25 : AMPLIFIED_SHOCK (Tight money / Financial stress / Liquidity constraints amplify crisis shock)
+  - Multiplier == 1.00 : NEUTRAL_PASS_THROUGH (Balanced macro regime / Standard transmission)
+  - Multiplier == 0.75 : DAMPED_LIQUIDITY_IMPACT (Loose liquidity / Excess reserves absorb and cushion shock)
+
+
+---
+
+### 29. EVIDENCE & SOURCE CONFIDENCE SCORE
+- Purpose: Evaluates authority, corroboration, and recency of intelligence supporting analytical assertions on a deterministic 0-100 scale.
+- Input Standards: Explicitly accepts inputs on standard normalized [0.0, 1.0] unit scale (or percentage [0.0, 100.0] via explicit scale="pct"). Eliminates scale guessing heuristics.
+- Machine-Executable Logic (Python):
+  def confidence_score(authority, confirmation, recency, scale="unit"):
+      if any(v is None or isinstance(v, bool) for v in (authority, confirmation, recency)):
+          return None
+      try:
+          a = float(authority)
+          c = float(confirmation)
+          r = float(recency)
+          if not (math.isfinite(a) and math.isfinite(c) and math.isfinite(r)):
+              return None
+          if scale == "pct":
+              if any(x < 0.0 or x > 100.0 for x in (a, c, r)):
+                  return None
+              a, c, r = a / 100.0, c / 100.0, r / 100.0
+          elif scale == "unit":
+              if any(x < 0.0 or x > 1.0 for x in (a, c, r)):
+                  return None
+          else:
+              return None
+          score = int(round((a * 0.40 + c * 0.35 + r * 0.25) * 100.0))
+          return {
+              "confidence_score": score,
+              "authority_weight": 0.40,
+              "corroboration_weight": 0.35,
+              "recency_weight": 0.25
+          }
+      except (TypeError, ValueError):
+          return None
+
+---
+
+## ⏱️ TIER 4: OFFICIAL MACROECONOMIC RELEASE CALENDARS & COUNTDOWN ENGINE

@@ -1,0 +1,546 @@
+# Ersoy Toptaş Quantitative Models: Commodities, Energy Shocks, Supply Chains & Asset Stress
+> Canonical Domain Sub-Engine | Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0
+> Master Router & Methodology (0.1–0.7): https://analysisreports.github.io/llms-formulas.txt
+> Shelf Scope: Crude oil benchmarks, crack spreads, natural gas ratios, semiconductor supply chain stress, and safe haven flight indices
+> Zero-Fallback Rule: Missing or non-finite inputs strictly return None (null).
+> Models Contained: 12 Domain Models (16, 20, 21, 24, 25.3, 25.6, 25.7, 25.8, 25.9, 25.12, 25.14, 25.17)
+
+---
+
+
+---
+
+### 16. CBOE VOLATILITY INDEX & MARKET FEAR REGIME (VIX REGIME THRESHOLDS)
+- Methodological Baseline & Calibration: Regime boundaries (<15, 15-20, 20-30, >30) reflect long-term empirical distribution conventions established by the Chicago Board Options Exchange (CBOE, 1990-2025). The 15.0 threshold marks historical 25th percentile complacency; 20.0 represents the long-term historical median volatility; 30.0 marks the 90th percentile tail risk (liquidity crisis/systemic shock).
+- Purpose: Classifies 30-day market volatility expectations and institutional risk appetite regimes derived from S&P 500 option pricing.
+- Data Series Keys:
+  - CBOE / FRED: VIXCLS (CBOE Volatility Index)
+- Formula:
+  VIX_Index_Level = VIXCLS
+- Machine-Executable Logic (Python):
+  def vix_market_regime(vix):
+      if vix is None or isinstance(vix, bool):
+          return None
+      try:
+          if not math.isfinite(vix):
+              return None
+          # VIX level must be strictly positive and greater than zero
+          if min(vix, 0) == vix:
+              return None
+
+          val = round(float(vix), 2)
+
+          if min(val, 15.0) == val:
+              return {"vix": val, "regime": "COMPLACENCY", "bias": "RISK_ON"}
+          elif min(val, 20.0) == val:
+              return {"vix": val, "regime": "NORMAL_VOLATILITY", "bias": "BALANCED"}
+          elif min(val, 30.0) == val:
+              return {"vix": val, "regime": "ELEVATED_STRESS", "bias": "RISK_OFF"}
+          else:
+              return {"vix": val, "regime": "CRISIS_SHOCK", "bias": "EXTREME_RISK_OFF"}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - VIX < 15.0 : COMPLACENCY (Complacency / Low volatility / Broad risk appetite / Risk-on)
+  - 15.0 to 20.0 : NORMAL_VOLATILITY (Historically balanced market volatility / Balanced)
+  - 20.0 to 30.0 : ELEVATED_STRESS (Elevated uncertainty / Portfolio hedging demand / Risk-off)
+  - VIX > 30.0 : CRISIS_SHOCK (Market shock / Liquidity crunch & panic selling alarm / Extreme risk-off)
+
+
+---
+
+### 20. COPPER TO GOLD MACRO SENTIMENT RATIO
+- Purpose: Models global cyclical growth momentum and bond yield direction by pitting industrial demand (Dr. Copper) against safe-haven store of value (Gold).
+- Data Series Keys:
+  - IMF / FRED: PCOPPUSDM (Global price of Copper - USD per Metric Ton)
+  - World Bank / FRED: IND_WB_GOLD (Gold Fixing Price in London Bullion Market - USD per Troy Ounce)
+- Formula:
+  Copper_Gold_Ratio = Copper_Price_Metric_Ton / Gold_Price_Ounce
+- Machine-Executable Logic (Python):
+  def copper_gold_ratio(copper_price, gold_price):
+      if any(v is None or isinstance(v, bool) for v in (copper_price, gold_price)):
+          return None
+      try:
+          if not (math.isfinite(copper_price) and math.isfinite(gold_price)):
+              return None
+          # Commodity prices must be strictly positive and finite numbers (zero and negative guard)
+          if min(copper_price, 0) == copper_price or min(gold_price, 0) == gold_price:
+              return None
+          res = copper_price / gold_price
+          return round(res, 4) if math.isfinite(res) else None
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - Rising Trend : CYCLICAL_EXPANSION (Robust industrial demand / Growth acceleration / Rising bond yields)
+  - Falling Trend : FLIGHT_TO_SAFETY (Safe-haven demand dominates / Growth cooling / Recessionary bond buying)
+
+
+---
+
+### 21. GOLD TO OIL CRISIS & RECESSION RATIO
+- Purpose: Identifies geopolitical crises, demand collapse, or energy supply shocks by calculating how many barrels of crude oil can be purchased with one troy ounce of gold.
+- Data Series Keys:
+  - World Bank / FRED: IND_WB_GOLD (Gold Price - USD per Troy Ounce)
+  - EIA / FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - USD per Barrel)
+- Formula:
+  Gold_Oil_Ratio = Gold_Price_Ounce / Oil_Price_Barrel
+- Machine-Executable Logic (Python):
+  def gold_oil_ratio(gold_price, oil_price):
+      if any(v is None or isinstance(v, bool) for v in (gold_price, oil_price)):
+          return None
+      try:
+          if not (math.isfinite(gold_price) and math.isfinite(oil_price)):
+              return None
+          # Commodity prices must be strictly positive and finite numbers (zero and negative guard)
+          if min(gold_price, 0) == gold_price or min(oil_price, 0) == oil_price:
+              return None
+
+          ratio = round(gold_price / oil_price, 2)
+
+          if max(ratio, 25.0) == ratio:
+              status = "MACRO_CRISIS_RECESSION"
+          elif min(ratio, 12.0) == ratio:
+              status = "SUPPLY_SHOCK_INFLATION"
+          else:
+              status = "HISTORICAL_EQUILIBRIUM"
+
+          return {"gold_oil_ratio": ratio, "status": status}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - Ratio > 25.0 : MACRO_CRISIS_RECESSION (Severe economic slowdown / Demand collapse or systemic crisis pricing)
+  - 15.0 to 25.0 : HISTORICAL_EQUILIBRIUM (Historical equilibrium band / 15-20 barrels range)
+  - Ratio < 12.0 : SUPPLY_SHOCK_INFLATION (Supply-driven oil shock / Cost-push inflation pressure)
+
+
+---
+
+### 24. SAFE HAVEN FLIGHT INDEX
+- Purpose: Measures capital flight into safe-haven assets and cash during military or geopolitical shocks by evaluating US dollar strength and high-yield credit spreads against falling Treasury yields.
+- Data Series Keys:
+  - FRED: DTWEXBGS (Nominal Broad U.S. Dollar Index)
+  - FRED: DGS10 (10-Year Treasury Constant Maturity Nominal Yield)
+  - ICE BofA / FRED: BAMLH0A0HYM2 (ICE BofA US High Yield Index Option-Adjusted Spread)
+- Formula:
+  Dollar_Bond_Ratio = DTWEXBGS / DGS10
+  Safe_Haven_Score = Dollar_Bond_Ratio * BAMLH0A0HYM2
+  Flight_To_Safety_Ratio = Safe_Haven_Score / 100.0
+- Machine-Executable Logic (Python):
+  def safe_haven_flight_index(dxy, hy_spread, dgs10):
+      if any(v is None or isinstance(v, bool) for v in (dxy, hy_spread, dgs10)):
+          return None
+      try:
+          if not (math.isfinite(dxy) and math.isfinite(hy_spread) and math.isfinite(dgs10)):
+              return None
+          if any(min(v, 0.0) == v or v == 0.0 for v in (dxy, hy_spread, dgs10)):
+              return None
+
+          raw_dollar_bond_ratio = float(dxy) / float(dgs10)
+          raw_score = raw_dollar_bond_ratio * float(hy_spread)
+          raw_ratio = raw_score / 100.0
+
+          if not (math.isfinite(raw_dollar_bond_ratio) and math.isfinite(raw_score) and math.isfinite(raw_ratio)):
+              return None
+
+          dollar_bond_ratio = round(raw_dollar_bond_ratio, 2)
+          score = round(raw_score, 2)
+          ratio = round(raw_ratio, 3)
+
+          if max(ratio, 2.50) == ratio and ratio != 2.50:
+              regime = "EXTREME_LIQUIDITY_PANIC"
+          elif max(ratio, 1.80) == ratio and ratio != 1.80:
+              regime = "HIGH_FLIGHT_TO_SAFETY"
+          elif max(ratio, 1.00) == ratio and ratio != 1.00:
+              regime = "MODERATE_HEDGING"
+          else:
+              regime = "NORMAL_MARKET_REGIME"
+
+          return {
+              "dollar_bond_ratio": dollar_bond_ratio,
+              "safe_haven_score": score,
+              "flight_ratio": ratio,
+              "regime": regime
+          }
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - regime == EXTREME_LIQUIDITY_PANIC : Systemic liquidity shock, aggressive dash for cash, and heavy asset liquidation (Score > 250.0 / Ratio > 2.50)
+  - regime == HIGH_FLIGHT_TO_SAFETY : Acute geopolitical tension and flight to safety (Score 180.0 to 250.0 / Ratio 1.80 to 2.50)
+  - regime == MODERATE_HEDGING : Moderate defensive portfolio posture and cautious stance (Score 100.0 to 180.0 / Ratio 1.00 to 1.80)
+  - regime == NORMAL_MARKET_REGIME : Routine risk appetite and balanced market pricing (Score < 100.0 / Ratio < 1.00)
+
+
+---
+
+### 25.3. GLOBAL SUPPLY CHAIN PRESSURE LOGISTICS ENGINE (NY FED GSCPI)
+- Purpose: Measures standard deviations (Z-score) of global freight rates, air cargo costs, and delivery times from their historical average to detect supply-side cost inflation shocks or logistics slack.
+- Data Series Keys:
+  - FRED: GSCPI (New York Fed Global Supply Chain Pressure Index - Standard Deviations from Historical Mean)
+- Formula: GSCPI_ZScore = GSCPI_Value
+- Machine-Executable Logic (Python):
+  def global_supply_chain_pressure(gscpi_val):
+      if gscpi_val is None or isinstance(gscpi_val, bool):
+          return None
+      try:
+          f_gscpi = float(gscpi_val)
+          if not math.isfinite(f_gscpi):
+              return None
+          z_score = round(f_gscpi, 2)
+          if z_score > 1.5:
+              status = "SUPPLY_CHAIN_SHOCK"
+          elif z_score < -1.0:
+              status = "LOGISTICS_DEFLATION_SLACK"
+          else:
+              status = "NORMALIZED_GLOBAL_TRADE"
+          return {"gscpi_zscore": z_score, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - GSCPI_ZScore > 1.5 : SUPPLY_CHAIN_SHOCK (Supply-side cost inflation shock / Logistics bottlenecks / Elevated freight and shipping delays)
+  - GSCPI_ZScore < -1.0 : LOGISTICS_DEFLATION_SLACK (Excess supply chain slack / Disinflationary goods pricing)
+  - -1.0 to 1.5 : NORMALIZED_GLOBAL_TRADE (Normalized global trade and logistics flows)
+
+
+---
+
+### 25.6. GOLD / REAL YIELD DEBASEMENT GAUGE
+- Purpose: Detects de-dollarization trends and institutional fiat debasement concerns by measuring breakdowns in the traditional inverse correlation between 10-year TIPS real yields and gold prices.
+- Data Series Keys:
+  - FRED: DFII10 (10-Year Treasury Inflation-Indexed Security, Constant Maturity - Real Rate Percent)
+  - World Bank (The Pink Sheet): IND_WB_GOLD (Official Gold Price USD/troy oz - YoY % Change: percent_change_from_year_ago)
+- Formula: Anomaly_Signal = f(Real_Yield_10Y, Gold_YoY_Pct)
+- Machine-Executable Logic (Python):
+  def gold_real_yield_debasement_gauge(real_yield_10y, gold_yoy_pct):
+      if any(v is None or isinstance(v, bool) for v in (real_yield_10y, gold_yoy_pct)):
+          return None
+      try:
+          f_ry = float(real_yield_10y)
+          f_gy = float(gold_yoy_pct)
+          if not (math.isfinite(f_ry) and math.isfinite(f_gy)):
+              return None
+          ry_val = round(f_ry, 2)
+          gy_val = round(f_gy, 2)
+          if ry_val > 1.5 and gy_val > 15.0:
+              status = "DEBALANCING_DEDOLLARIZATION_PANIC"
+          elif ry_val <= 0.0 and gy_val > 0.0:
+              status = "ACCOMMODATIVE_GOLD_BULL"
+          else:
+              status = "TRADITIONAL_REAL_RATE_DOMINANCE"
+          return {"real_yield_10y": ry_val, "gold_yoy_pct": gy_val, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Real_Yield > 1.5% and Gold_YoY > 15.0% : DEBALANCING_DEDOLLARIZATION_PANIC (Systemic fiat distrust / Geopolitical de-dollarization / Reserve diversification)
+  - Real_Yield <= 0.0% and Gold_YoY > 0.0% : ACCOMMODATIVE_GOLD_BULL (Classic negative real yield gold bull / Monetary expansion tailwind)
+  - Otherwise : TRADITIONAL_REAL_RATE_DOMINANCE (Traditional market equilibrium / Real yields exerting downward pressure on gold)
+
+
+---
+
+### 25.7. OVX / VIX GEOPOLITICAL ENERGY SHOCK ENGINE
+- Purpose: Detects geopolitical oil supply shocks and stagflationary risks by evaluating the ratio between crude oil volatility (OVX) and equity volatility (VIX).
+- Data Series Keys:
+  - FRED: OVXCLS (CBOE Crude Oil Volatility Index)
+  - FRED: VIXCLS (CBOE Volatility Index)
+- Formula: Vol_Ratio = OVX_Index / VIX_Index
+- Machine-Executable Logic (Python):
+  def ovx_vix_risk_premium(ovx_val, vix_val):
+      if any(v is None or isinstance(v, bool) for v in (ovx_val, vix_val)):
+          return None
+      try:
+          f_ovx = float(ovx_val)
+          f_vix = float(vix_val)
+          if not (math.isfinite(f_ovx) and math.isfinite(f_vix)) or f_vix <= 0:
+              return None
+          raw_ratio = f_ovx / f_vix
+          if not math.isfinite(raw_ratio):
+              return None
+          ratio = round(raw_ratio, 2)
+          if ratio > 2.2:
+              status = "ENERGY_SUPPLY_SHOCK_ALARM"
+          elif ratio < 1.0:
+              status = "EQUITY_PANIC_OVER_ENERGY"
+          else:
+              status = "BALANCED_ENERGY_VOLATILITY"
+          return {"ovx_vix_ratio": ratio, "status": status}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - Vol_Ratio > 2.2 : ENERGY_SUPPLY_SHOCK_ALARM (Geopolitical energy supply shock / Stagflation risk / Energy price spike)
+  - Vol_Ratio < 1.0 : EQUITY_PANIC_OVER_ENERGY (Equity panic dominates / Oil market calm)
+  - 1.0 to 2.2 : BALANCED_ENERGY_VOLATILITY (Normalized energy volatility equilibrium)
+
+
+---
+
+### 25.8. NATGAS / CRUDE OIL PRICE-RATIO DISCONNECT ENGINE
+- Purpose: Tracks relative purchasing power between two benchmark quotes. The WTI price per barrel divided by the Henry Hub price per MMBtu indicates how many MMBtu of Henry Hub gas can be bought for an amount equal to the price of one WTI barrel. A rising ratio means WTI is strengthening relative to Henry Hub; a falling ratio means Henry Hub is strengthening relative to WTI.
+- Data Series Keys:
+  - FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - Dollars per Barrel)
+  - FRED: DHHNGSP (Henry Hub Natural Gas Spot Price - Dollars per Million BTU)
+  - EIA context metrics: NG.NW2_EPG0_SWO_R48_BCF.W current storage level and year-over-year change
+- Formula: WTI_HH_Purchasing_Power_Ratio = WTI_Price_USD_per_bbl / Henry_Hub_Price_USD_per_MMBtu
+  - Interpreted as MMBtu of Henry Hub gas purchasable for cash equal to one WTI barrel's price.
+- Machine-Executable Logic (Python):
+  def natgas_crude_btu_disconnect(wti_price, natgas_price, storage_bcf=None, storage_yoy_pct=None):
+      if any(v is None or isinstance(v, bool) for v in (wti_price, natgas_price)):
+          return None
+      try:
+          f_wti = float(wti_price)
+          f_gas = float(natgas_price)
+          if not (math.isfinite(f_wti) and math.isfinite(f_gas)) or f_gas <= 0 or f_wti < 0:
+              return None
+          raw_ratio = f_wti / f_gas
+          if not math.isfinite(raw_ratio):
+              return None
+          ratio = round(raw_ratio, 2)
+          if ratio < 6.0:
+              status = "NATGAS_CRISIS_BLACKOUT_RISK"
+          elif ratio > 35.0:
+              status = "NATGAS_GLUT_ENERGY_CHEAP"
+          else:
+              status = "ENERGY_PARITY_EQUILIBRIUM"
+          return {"btu_disconnect_ratio": ratio, "status": status}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Live EIA storage and year-over-year change are reported as context metrics by the model runner; they do not enter the crude/natgas price ratio or determine its status. Missing storage values must remain missing rather than be inferred from the ratio.
+- The existing output field `btu_disconnect_ratio` is a legacy key for this unnormalized price ratio; it does not represent a BTU-normalized measure.
+- Threshold Calibration & Rationale:
+  - Lower bound (< 6.0): The approximate heat content of a crude barrel is about 5.8 MMBtu. A ratio near 5.8 therefore marks approximate thermal-price equivalence; below about 5.8, Henry Hub gas costs more per MMBtu than the WTI barrel's heat-equivalent price. The < 6.0 cutoff is a near-parity screening band, so values from about 5.8 to 6.0 are near parity rather than necessarily beyond it.
+  - Upper bound (> 35.0): This is an empirical high-ratio flag in exact-date-matched daily FRED observations for DCOILWTICO and DHHNGSP. From 1997-01-07 through 2008-12-31 (n=1,088), the median ratio was 8.68 and the 95th percentile was 13.62. From 2009-01-01 through 2026-11-03 (n=4,409), the median was 21.65, the 95th percentile was 37.87, and 7.4% of observations exceeded 35.0. In 2012, 45.2% of matched observations exceeded 35.0; in 2020, none did (maximum 30.58). Thus, 35.0 flags a high-tail price separation in this sample, including the 2012 episode, but not the 2020 episode.
+- Interpretation:
+  - WTI_HH_Purchasing_Power_Ratio < 6.0 : NATGAS_CRISIS_BLACKOUT_RISK (Near-thermal-parity / high relative Henry Hub price band)
+  - WTI_HH_Purchasing_Power_Ratio > 35.0 : NATGAS_GLUT_ENERGY_CHEAP (High WTI-to-Henry Hub purchasing-power band)
+  - 6.0 to 35.0 : ENERGY_PARITY_EQUILIBRIUM (Intermediate price-ratio band; not an energy-equivalence finding)
+
+
+---
+
+### 25.9. GASOLINE / DISTILLATE / CRUDE 3:2:1 CRACK SPREAD
+- Purpose: Measures a New York Harbor spot-product 3:2:1 crack spread against WTI. This is a market benchmark proxy; it is not a plant-specific realized refining margin.
+- Data Series Keys:
+  - FRED: DGASNYH (Conventional Gasoline Prices: New York Harbor, Regular - Dollars per Gallon)
+  - FRED: DDFUELNYH (Ultra-Low-Sulfur No. 2 Diesel Fuel Prices: New York Harbor - Dollars per Gallon)
+  - FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - Dollars per Barrel)
+  - EIA: PET.WGTSTUS1.W (Weekly U.S. Ending Stocks of Total Gasoline - Thousand Barrels)
+- Formula:
+  Crack_Spread_321_USD_per_bbl = ((2 * DGASNYH_USD_per_gal * 42) + (DDFUELNYH_USD_per_gal * 42)) / 3 - DCOILWTICO_USD_per_bbl
+  Calculate only when DGASNYH, DDFUELNYH, and DCOILWTICO share the exact same observation date.
+  Calculate the same formula using each series' FRED year_ago_value to get Prior_Year_Crack_Spread_321_USD_per_bbl.
+  Status = CRACK_SPREAD_EXPANDING if current spread > prior-year spread; CRACK_SPREAD_CONTRACTING if lower; CRACK_SPREAD_UNCHANGED if equal; UNCLASSIFIED if any prior-year price is unavailable.
+  This status describes year-over-year direction, not an absolute high/low regime; no historical percentile thresholds are used.
+  Gasoline stocks and YoY change are context metrics only; days of supply is not calculated without a live gasoline-consumption series.
+- Machine-Executable Logic (Python):
+  def gasoline_321_crack_spread(gasoline_usd_gal, ulsd_usd_gal, wti_usd_bbl, gasoline_date, ulsd_date, wti_date, gasoline_year_ago=None, ulsd_year_ago=None, wti_year_ago=None):
+      prices = (gasoline_usd_gal, ulsd_usd_gal, wti_usd_bbl)
+      dates = (gasoline_date, ulsd_date, wti_date)
+      if any(v is None or isinstance(v, bool) for v in prices):
+          return None
+      try:
+          if any(not isinstance(d, str) or not d for d in dates) or len(set(dates)) != 1:
+              return None
+          f_gasoline, f_ulsd, f_wti = map(float, prices)
+          if not all(math.isfinite(v) and v > 0 for v in (f_gasoline, f_ulsd, f_wti)):
+              return None
+          raw_spread = ((2 * f_gasoline * 42.0) + (f_ulsd * 42.0)) / 3.0 - f_wti
+          if not math.isfinite(raw_spread):
+              return None
+          spread = round(raw_spread, 2)
+          prior_values = (gasoline_year_ago, ulsd_year_ago, wti_year_ago)
+          status = "UNCLASSIFIED"
+          prior_spread = None
+          if all(v is not None and not isinstance(v, bool) for v in prior_values):
+              f_gas, f_ulsd, f_wti = map(float, prior_values)
+              if not all(math.isfinite(v) and v > 0 for v in (f_gas, f_ulsd, f_wti)):
+                  return None
+              prior_spread = round(((2 * f_gas * 42.0) + (f_ulsd * 42.0)) / 3.0 - f_wti, 2)
+              status = ("CRACK_SPREAD_EXPANDING" if spread > prior_spread else
+                        "CRACK_SPREAD_CONTRACTING" if spread < prior_spread else
+                        "CRACK_SPREAD_UNCHANGED")
+          return {"crack_spread_321_usd_bbl": spread, "year_ago_spread_321_usd_bbl": prior_spread, "status": status, "observation_date": gasoline_date}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - The status says whether the spread expanded, contracted, or was unchanged versus the provider's year-ago values; it does not label the absolute spread high or low.
+  - EIA gasoline stocks remain a separate context metric; no fixed consumption value is substituted for missing demand data.
+
+
+---
+
+### 25.12. BRENT-WTI BENCHMARK PRICE SPREAD
+- Purpose: Measures the price difference between the international Brent and U.S. WTI crude oil benchmarks to assess Brent's relative premium or discount and the degree of price divergence between the two markets.
+- Data Series Keys:
+  - EIA / FRED: DCOILBRENTEU (Crude Oil Prices: Brent - Europe, USD per Barrel)
+  - EIA / FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - USD per Barrel)
+  - EIA context metrics: PET.WCESTUS1.W (Commercial Crude Stocks - Thousand Barrels); PET.WCRFPUS2.W (U.S. Field Production - Thousand Barrels per Day)
+- Formula:
+  Brent_WTI_Spread = DCOILBRENTEU - DCOILWTICO
+- Machine-Executable Logic (Python):
+  def brent_wti_spread(brent_price, wti_price):
+      if any(v is None or isinstance(v, bool) for v in (brent_price, wti_price)):
+          return None
+      try:
+          f_brent = float(brent_price)
+          f_wti = float(wti_price)
+          if not (math.isfinite(f_brent) and math.isfinite(f_wti)):
+              return None
+          if f_brent <= 0.0 or f_wti <= 0.0:
+              return None
+
+          raw_spread = f_brent - f_wti
+          if not math.isfinite(raw_spread):
+              return None
+          spread = round(raw_spread, 2)
+
+          if spread > 8.0:
+              status = "WIDE_BRENT_WTI_SPREAD"
+          elif spread < 1.5:
+              status = "NARROW_BRENT_WTI_SPREAD"
+          else:
+              status = "TYPICAL_BRENT_WTI_SPREAD"
+
+          return {"brent_wti_spread_usd": spread, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Spread > $8.00 : WIDE_BRENT_WTI_SPREAD (Brent is priced at a wide premium to WTI)
+  - $1.50 to $8.00 : TYPICAL_BRENT_WTI_SPREAD (The benchmark price difference is within the model's middle band)
+  - Spread < $1.50 : NARROW_BRENT_WTI_SPREAD (The benchmark price difference is narrow or WTI is priced above Brent)
+  - These are descriptive bands using the model's existing thresholds; the spread indicates relative benchmark pricing, not the cause of the difference. Commercial crude stocks and U.S. field production are context metrics only and do not affect the spread or status.
+- Relationship Transmission (separate from the model status):
+  - oil_delta = -0.15 when Spread > $12.00; -0.10 when $8.00 < Spread <= $12.00; otherwise 0.00.
+  - Bilateral dynamic delta = oil_delta * pair coefficient: IL-IR (1.0), YE-IL (1.0), SA-IR (0.5), US-VE (0.5), TR-SY (0.3), EG-IL (-0.5), and SA-YE (0.4).
+  - This transmission overlay does not change Brent_WTI_Spread or its descriptive status. The spread is an absolute USD/barrel measure; no percentage normalization or rolling Z-score is applied.
+- Related trigger: Model 25.19 separately calculates the annual Brent-WTI spread change.
+
+
+---
+
+### 25.14. AI HARDWARE & SEMICONDUCTOR SUPPLY CHAIN STRESS GAUGE (AI_CHIP_STRESS)
+- Purpose: Quantifies global hardware bottlenecks, geopolitical semiconductor supply chain frictions (e.g., Taiwan Strait risk, export controls), and space-grade tactical defense processor conduits (SEC_DEF_STARSHIELD) by synthesizing physical supply chain stress (GSCPI), semiconductor equity momentum (NASDAQSOX), and financial risk aversion (VIXCLS) into a normalized composite index.
+- Data Series Keys:
+  - NY Fed / FRED: GSCPI (Global Supply Chain Pressure Index - Standard Deviations)
+  - NASDAQ / FRED: NASDAQSOX (PHLX Semiconductor Sector Index - YoY % Change, pc1)
+  - CBOE / FRED: VIXCLS (CBOE Volatility Index - Daily Close Index, Monthly Avg)
+- Scale Ingestion Contract:
+  - GSCPI: Native standard deviations (Centered at 0.0, shock threshold >= +1.5).
+  - NASDAQSOX: Scaled by historical ±50.0% cyclical volatility band: (NASDAQSOX_YoY / 50.0). Inverse coefficient (-0.35) applied as higher equity growth signals supply relief.
+  - VIXCLS: Scaled by historical median baseline of 20.0: (VIXCLS / 20.0). Higher volatility compounds financial risk premium (+0.25).
+- Formula:
+  AI_CHIP_STRESS = (GSCPI * 0.40) + ((NASDAQSOX_YoY / 50.0) * -0.35) + ((VIXCLS / 20.0) * 0.25)
+- Machine-Executable Logic (Python):
+  def ai_chip_stress_gauge(gscpi_val, sox_yoy_pct, vix_val):
+      if any(v is None or isinstance(v, bool) for v in (gscpi_val, sox_yoy_pct, vix_val)):
+          return None
+      try:
+          g = float(gscpi_val)
+          s = float(sox_yoy_pct)
+          v = float(vix_val)
+
+          if not all(math.isfinite(x) for x in (g, s, v)):
+              return None
+          if v <= 0.0:
+              return None
+
+          gscpi_comp = g * 0.40
+          sox_comp = (s / 50.0) * -0.35
+          vix_comp = (v / 20.0) * 0.25
+
+          raw_stress = gscpi_comp + sox_comp + vix_comp
+          if not math.isfinite(raw_stress):
+              return None
+
+          stress_score = round(raw_stress, 3)
+
+          if stress_score >= 1.20:
+              status = "ACUTE_CHIP_SUPPLY_CRUNCH"
+          elif stress_score >= 0.50:
+              status = "ELEVATED_SEMICONDUCTOR_BOTTLENECK"
+          elif stress_score <= -0.40:
+              status = "CHIP_SUPPLY_ABUNDANCE_EXPANSION"
+          else:
+              status = "BALANCED_HARDWARE_FLOW"
+
+          return {
+              "ai_chip_stress_index": stress_score,
+              "gscpi_component": round(gscpi_comp, 3),
+              "sox_component": round(sox_comp, 3),
+              "vix_component": round(vix_comp, 3),
+              "status": status
+          }
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Stress >= +1.20 : ACUTE_CHIP_SUPPLY_CRUNCH (Severe physical supply chain disruption, foundry shutdown or Taiwan maritime embargo risk; tech Capex delays)
+  - +0.50 <= Stress < +1.20 : ELEVATED_SEMICONDUCTOR_BOTTLENECK (Supply constraints outpacing delivery capacity; hardware inflation and extended lead times)
+  - -0.40 < Stress < +0.50 : BALANCED_HARDWARE_FLOW (Normal semiconductor cycle and functioning global logistics channels)
+  - Stress <= -0.40 : CHIP_SUPPLY_ABUNDANCE_EXPANSION (High fabrication throughput, robust capacity expansion, and subdued market volatility)
+
+
+---
+
+### 25.17. LIQUIDITY & COMMODITY MACRO REGIME MATRIX (LIQUIDITY_COMMODITY_MATRIX)
+- Purpose: Evaluates front-end money market liquidity conditions (Treasury 3M-1M T-Bill spread in bps) against crude oil cost inflation momentum (Brent YoY % change) in a 2x2 deterministic macro matrix to identify systemic liquidity and cost shock regimes.
+- Target: economy.json, llms-models.json -> MODEL_25.17_LIQUIDITY_COMMODITY_MATRIX
+- Frequency: Daily (Business Day)
+- Canonical Input Series:
+  - FRED: DGS3MO (3-Month Treasury Bill Secondary Market Rate, Percent)
+  - FRED: DGS1MO (1-Month Treasury Bill Secondary Market Rate, Percent)
+  - EIA / FRED: DCOILBRENTEU (Crude Oil Prices: Brent - Europe, USD per Barrel)
+- Mathematical Formulation:
+  1. Front-End Liquidity Slope (bps):
+     Slope_bps = (DGS3MO - DGS1MO) * 100.0
+  2. Commodity Inflation Momentum (YoY %):
+     Brent_YoY_pct = ((Brent_t / Brent_t_year_ago) - 1.0) * 100.0
+- Machine-Executable Logic (Python):
+  def calculate_liquidity_commodity_matrix(dgs3mo, dgs1mo, brent_yoy_pct):
+      if any(v is None or isinstance(v, bool) for v in (dgs3mo, dgs1mo, brent_yoy_pct)):
+          return None
+      try:
+          f_3m = float(dgs3mo)
+          f_1m = float(dgs1mo)
+          f_brent_yoy = float(brent_yoy_pct)
+          if not (math.isfinite(f_3m) and math.isfinite(f_1m) and math.isfinite(f_brent_yoy)):
+              return None
+          if f_3m < 0.0 or f_1m < 0.0:
+              return None
+
+          slope_bps = round((f_3m - f_1m) * 100.0, 2)
+          brent_yoy = round(f_brent_yoy, 2)
+
+          # 2x2 Macro Regime Decision Matrix
+          if brent_yoy > 15.0:
+              if slope_bps < 0.0:
+                  if slope_bps <= -25.0:
+                      status = "ACUTE_STAGFLATION_CRUNCH"
+                  else:
+                      status = "STAGFLATION_SHOCK"
+              else:
+                  status = "REFLATIONARY_EXPANSION"
+          elif brent_yoy < 0.0:
+              if slope_bps < 0.0:
+                  status = "DEFLATIONARY_RECESSION"
+              else:
+                  status = "GOLDILOCKS_EXPANSION"
+          else:
+              # Moderate / Neutral Cost Zone (0.0% <= brent_yoy <= 15.0%)
+              if slope_bps < 0.0:
+                  status = "RESTRICTIVE_SLOWDOWN"
+              else:
+                  status = "GOLDILOCKS_EXPANSION"
+
+          return {
+              "model_id": "MODEL_25.17_LIQUIDITY_COMMODITY_MATRIX",
+              "slope_bps": slope_bps,
+              "brent_yoy_pct": brent_yoy,
+              "status": status
+          }
+      except (TypeError, ValueError, OverflowError):
+          return None
+- Interpretation:
+  - status == ACUTE_STAGFLATION_CRUNCH : Severe cost-push inflation (Brent YoY > 15%) combined with deep funding liquidity drainage (Slope <= -25 bps). Acute systemic stagflation shock.
+  - status == STAGFLATION_SHOCK : Supply shock and stagflation (Brent YoY > 15%, Inverted Yield Curve < 0 bps). Elevating input costs while funding liquidity contracts; hostile environment for equities.
+  - status == REFLATIONARY_EXPANSION : Reflationary expansion (Brent YoY > 15%, Normal Slope >= 0 bps). Strong demand momentum lifting energy prices while financial liquidity supports economic growth.
+  - status == DEFLATIONARY_RECESSION : Deflationary recession (Brent YoY < 0%, Inverted Yield Curve < 0 bps). Severe demand destruction, collapsing commodity prices, and tight funding; pronounced recession risk.
+  - status == GOLDILOCKS_EXPANSION : Disinflationary expansion (Brent YoY <= 15%, Normal Slope >= 0 bps). Benign cost pressures accompanied by smooth money market liquidity; optimal macroeconomic backdrop for equities.
+  - status == RESTRICTIVE_SLOWDOWN : Restrictive monetary slowdown (Moderate energy cost, Inverted Yield Curve < 0 bps). Policy transmission cooling economic activity.

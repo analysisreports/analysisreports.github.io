@@ -1,0 +1,901 @@
+# Ersoy Toptaş Quantitative Models: Macroeconomic Fundamentals, Labor Dynamics, Valuation & Cycles
+> Canonical Domain Sub-Engine | Author: Ersoy Toptaş | Version: 2026-Q4 | License: CC BY-NC-ND 4.0
+> Master Router & Methodology (0.1–0.7): https://analysisreports.github.io/llms-formulas.txt
+> Shelf Scope: Inflation persistence, labor market momentum, housing affordability, consumption collapse, valuation metrics, and release calendars
+> Zero-Fallback Rule: Missing or non-finite inputs strictly return None (null).
+> Models Contained: 21 Domain Models (3, 8, 17, 18, 19, 22, 23, 23.1, 23.2, 23.3, 23.4, 23.5, 23.6, 23.7, 23.8, 25, 25.2, 25.10, 25.11, 25.13, 30)
+
+---
+
+
+---
+
+### 3. OFFICIAL SAHM RULE RECESSION INDICATOR
+- Purpose: Detects real-time recession onset by tracking whether the 3-month moving average of the unemployment rate exceeds its minimum 3-month average from the prior 12 months by 0.50 percentage points or more.
+- Data Series Keys:
+  - Official FRED Benchmark: SAHMREALTIME (Real-time Sahm Rule Recession Indicator)
+  - Component Series: UNRATE (Civilian Unemployment Rate - Monthly Seasonally Adjusted)
+- Formula:
+  Sahm_Indicator = Moving_Average_3M(UNRATE) - Min_3M_Average_Prior_12M(UNRATE)
+- Machine-Executable Logic (Python):
+  def sahm_rule_indicator(unrate_3m_avg, min_prior_3m_avg):
+      if any(v is None or isinstance(v, bool) for v in (unrate_3m_avg, min_prior_3m_avg)):
+          return None
+      try:
+          if not (math.isfinite(unrate_3m_avg) and math.isfinite(min_prior_3m_avg)):
+              return None
+          # Unemployment rate averages cannot be negative
+          if min(unrate_3m_avg, 0) != 0 or min(min_prior_3m_avg, 0) != 0:
+              return None
+
+          raw_diff = float(unrate_3m_avg) - float(min_prior_3m_avg)
+          if not math.isfinite(raw_diff):
+              return None
+          diff = round(raw_diff, 2)
+
+          if max(diff, 0.50) == diff:
+              status = "RECESSION_CONFIRMED"
+          elif max(diff, 0.30) == diff:
+              status = "PRE_RECESSION_WARNING"
+          else:
+              status = "NORMAL_LABOR_MARKET"
+
+          return {"sahm_value": diff, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Sahm_Indicator >= 0.50 : RECESSION_CONFIRMED (Official historical recession trigger)
+  - 0.30 to 0.50 : PRE_RECESSION_WARNING (Dangerous labor market cooling)
+  - Sahm_Indicator < 0.30 : NORMAL_LABOR_MARKET (Healthy employment path)
+
+
+---
+
+### 8. BEVERIDGE CURVE LABOR TIGHTNESS
+- Purpose: Measures whether job openings are normalizing without driving up unemployment (Job Openings to Unemployed ratio).
+- Data Series Keys:
+  - BLS / FRED: JTSJOL (Job Openings: Total Nonfarm - JOLTS)
+  - BLS / FRED: UNEMPLOY (Unemployed Persons - Thousands)
+- Formula:
+  Beveridge_Ratio = JTSJOL / UNEMPLOY
+- Machine-Executable Logic (Python):
+  def beveridge_labor_tightness(jtsjol, unemploy):
+      if any(v is None or isinstance(v, bool) for v in (jtsjol, unemploy)):
+          return None
+      try:
+          if not (math.isfinite(jtsjol) and math.isfinite(unemploy)):
+              return None
+          # Counts cannot be negative. Unemployed count cannot be zero (zero division guard).
+          if min(jtsjol, 0) != 0 or min(unemploy, 0) != 0 or unemploy == 0:
+              return None
+
+          ratio = round(float(jtsjol) / float(unemploy), 2)
+          if not math.isfinite(ratio):
+              return None
+
+          if max(ratio, 1.50) == ratio and ratio != 1.50:
+              status = "OVERHEATED_LABOR"
+          elif min(ratio, 1.00) == ratio and ratio != 1.00:
+              status = "COOLING_LABOR"
+          else:
+              status = "BALANCED_LABOR_TIGHTNESS"
+
+          return {"beveridge_ratio": ratio, "status": status}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - Ratio > 1.50 : OVERHEATED_LABOR (Overheated labor market / Wage inflation risk)
+  - 1.00 to 1.50 : BALANCED_LABOR_TIGHTNESS (Soft landing trajectory / Balanced employment)
+  - Ratio < 1.00 : COOLING_LABOR (Weakening labor demand / Rising unemployment pressure)
+
+
+---
+
+### 17. MACRO EQUITY RISK PREMIUM (ERP)
+- Purpose: Measures the excess yield premium offered by equities (S&P 500 earnings yield) relative to the risk-free 10-year US Treasury yield.
+- Data Series Keys:
+  - Multpl / FRED Proxy: SP500_EARNINGS_YIELD (S&P 500 Trailing/Forward Earnings Yield / 1/PE * 100)
+  - FRED: DGS10 (Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity)
+- Formula:
+  Equity_Risk_Premium_Pct = Earnings_Yield - DGS10
+- Machine-Executable Logic (Python):
+  def macro_equity_risk_premium(earnings_yield, dgs10):
+      if any(v is None or isinstance(v, bool) for v in (earnings_yield, dgs10)):
+          return None
+      try:
+          if not (math.isfinite(earnings_yield) and math.isfinite(dgs10)):
+              return None
+          # Nominal 10Y Treasury yield cannot be negative (min(v, 0) == 0 check: v >= 0)
+          if min(dgs10, 0) != 0:
+              return None
+
+          erp = round(earnings_yield - dgs10, 2)
+          if not math.isfinite(erp):
+              return None
+
+          if min(erp, 0.50) == erp:
+              status = "OVERVALUED_STOCKS"
+          elif max(erp, 2.50) == erp:
+              status = "ATTRACTIVE_STOCKS"
+          else:
+              status = "FAIR_VALUE"
+
+          return {"erp": erp, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - ERP < 0.50% : OVERVALUED_STOCKS (Equities severely overvalued / Bond yields significantly more attractive / Capital rotates to fixed income)
+  - 0.50% to 2.50% : FAIR_VALUE (Macro balanced equity valuation zone)
+  - ERP > 2.50% : ATTRACTIVE_STOCKS (Equities undervalued / Attractive risk premium / Supportive for equity allocations)
+
+
+---
+
+### 18. OKUN MISERY INDEX
+- Purpose: Measures household welfare loss and stagflationary economic stress by summing the unemployment rate and headline annual inflation.
+- Data Series Keys:
+  - BLS / FRED: UNRATE (Civilian Unemployment Rate)
+  - BLS / FRED: CPIAUCSL (Consumer Price Index - YoY % Change)
+- Formula:
+  Misery_Index = UNRATE + CPI_YoY
+- Machine-Executable Logic (Python):
+  def misery_index(unrate, cpi_yoy):
+      if any(v is None or isinstance(v, bool) for v in (unrate, cpi_yoy)):
+          return None
+      try:
+          if not (math.isfinite(unrate) and math.isfinite(cpi_yoy)):
+              return None
+          # Unemployment rate cannot be negative (min(v, 0) == 0 check: v >= 0)
+          if min(unrate, 0) != 0:
+              return None
+
+          score = round(unrate + cpi_yoy, 2)
+          if not math.isfinite(score):
+              return None
+
+          if max(score, 12.0) == score:
+              status = "ACUTE_CRISIS"
+          elif max(score, 10.0) == score:
+              status = "ELEVATED_STRESS"
+          elif max(score, 6.0) == score:
+              status = "MODERATE"
+          else:
+              status = "GOLDILOCKS"
+
+          return {"misery_index": score, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Misery_Index > 12.0% : ACUTE_CRISIS (Severe welfare loss / Stagflationary shock threshold)
+  - 10.0% to 12.0% : ELEVATED_STRESS (Elevated household and consumer pressure)
+  - 6.0% to 10.0% : MODERATE (Manageable macroeconomic equilibrium)
+  - Misery_Index < 6.0% : GOLDILOCKS (Low unemployment & stable prices)
+
+
+---
+
+### 19. BUFFETT INDICATOR (CORPORATE EQUITIES TO GDP)
+- Purpose: Measures asset valuation froth and overvaluation risk by comparing total corporate equity market value to nominal gross domestic product using official Fed Z.1 financial accounts.
+- Data Series Keys:
+  - Official FRED Series: DDLS01USA156NWDB (Stock Market Capitalization to GDP for United States - Percent)
+  - Component Benchmark: NCBEILQ027S (Nonfinancial Corporate Business: Corporate Equities; Liability - Level, Millions USD)
+  - BEA / FRED: GDP (Gross Domestic Product - Nominal Billions of USD)
+- Formula:
+  Buffett_Ratio_Pct = (Total_Equities_Market_Value_mil / (GDP_bil * 1000.0)) * 100
+- Machine-Executable Logic (Python):
+  def buffett_indicator(market_val, gdp_val):
+      if any(v is None or isinstance(v, bool) for v in (market_val, gdp_val)):
+          return None
+      try:
+          if not (math.isfinite(market_val) and math.isfinite(gdp_val)):
+              return None
+          # Market value and GDP must be strictly positive and finite numbers (zero and negative guard)
+          if min(market_val, 0) == market_val or min(gdp_val, 0) == gdp_val:
+              return None
+
+          gdp_mil = gdp_val * 1000.0
+          raw_ratio = (market_val / gdp_mil) * 100.0
+          if not math.isfinite(raw_ratio):
+              return None
+          ratio = round(raw_ratio, 2)
+
+          if max(ratio, 180.0) == ratio:
+              status = "SEVERELY_OVERVALUED"
+          elif max(ratio, 140.0) == ratio:
+              status = "OVERVALUED"
+          elif max(ratio, 100.0) == ratio:
+              status = "FAIR_VALUED"
+          else:
+              status = "UNDERVALUED"
+
+          return {"buffett_ratio_pct": ratio, "status": status}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - Ratio >= 180.0% : SEVERELY_OVERVALUED (Critical bubble threshold / Sharp correction risk)
+  - 140.0% to 180.0% : OVERVALUED (Market decoupled from real economy / Stretched valuation)
+  - 100.0% to 140.0% : FAIR_VALUED (Balanced market valuation)
+  - Ratio < 100.0% : UNDERVALUED (Equity market undervalued / Attractive entry territory)
+
+
+---
+
+### 22. HOUSEHOLD CREDIT STRESS GAUGE
+- Purpose: Measures consumer debt service vulnerability and consumption deceleration risk by evaluating credit card delinquency rates against the personal saving rate.
+- Data Series Keys:
+  - FRED: DRCCLACBS (Delinquency Rate on Credit Card Loans, All Commercial Banks)
+  - BEA / FRED: PSAVERT (Personal Saving Rate - % of Disposable Income)
+- Formula:
+  Household_Stress_Ratio = DRCCLACBS / PSAVERT
+- Machine-Executable Logic (Python):
+  def household_credit_stress(delinquency_rate, saving_rate):
+      if any(v is None or isinstance(v, bool) for v in (delinquency_rate, saving_rate)):
+          return None
+      try:
+          if not (math.isfinite(delinquency_rate) and math.isfinite(saving_rate)):
+              return None
+          # Delinquency rate cannot be negative (min(v, 0) == 0 check: v >= 0)
+          if min(delinquency_rate, 0) != 0:
+              return None
+          # If saving rate is 0 or negative, household buffer is exhausted
+          if min(saving_rate, 0) == saving_rate:
+              return {"stress_ratio": None, "status": "SEVERE_CONSUMER_STRESS"}
+
+          ratio = round(delinquency_rate / saving_rate, 3)
+
+          if max(ratio, 1.00) == ratio:
+              status = "SEVERE_CONSUMER_STRESS"
+          elif max(ratio, 0.50) == ratio:
+              status = "ELEVATED_PRESSURE"
+          else:
+              status = "HEALTHY_BALANCE_SHEET"
+
+          return {"stress_ratio": ratio, "status": status}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - Ratio > 1.00 : SEVERE_CONSUMER_STRESS (Delinquencies exceed savings / Sudden brake on consumer spending and recession risk)
+  - 0.50 to 1.00 : ELEVATED_PRESSURE (Depleting saving cushion / Rising debt repayment strain)
+  - Ratio < 0.50 : HEALTHY_BALANCE_SHEET (Robust savings / Healthy consumer balance sheets)
+
+
+---
+
+### 23. OKUN GAP (GROWTH-EMPLOYMENT DIVERGENCE)
+- Purpose: Tests historical elasticity between real GDP growth and changes in unemployment to detect 'jobless growth' or latent labor market deterioration.
+- Data Series Keys:
+  - BEA / FRED: GDPC1 (Real GDP - YoY % Change)
+  - BLS / FRED: UNRATE (Civilian Unemployment Rate - YoY Change in Percentage Points)
+- Baseline Assumptions:
+  - Potential Real GDP Growth: 2.0%
+  - Okun Beta Coefficient: -0.5
+- Formula:
+  Expected_Unemployment_Delta = -0.5 * (Real_GDP_YoY - 2.0)
+  Okun_Gap = Actual_Unemployment_Delta - Expected_Unemployment_Delta
+- Machine-Executable Logic (Python):
+  def okun_labor_gap(actual_unrate_delta, real_gdp_yoy):
+      if any(v is None or isinstance(v, bool) for v in (actual_unrate_delta, real_gdp_yoy)):
+          return None
+      try:
+          if not (math.isfinite(actual_unrate_delta) and math.isfinite(real_gdp_yoy)):
+              return None
+          expected_delta = -0.5 * (real_gdp_yoy - 2.0)
+          gap = round(actual_unrate_delta - expected_delta, 2)
+
+          if max(gap, 0.50) == gap:
+              status = "JOBLESS_GROWTH_WARNING"
+          elif min(gap, -0.50) == gap:
+              status = "LABOR_HOARDING"
+          else:
+              status = "BALANCED_OKUN_EQUILIBRIUM"
+
+          return {"okun_gap": gap, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Okun_Gap > +0.50 : JOBLESS_GROWTH_WARNING (Unemployment rising despite growth / Productivity or structural disruption)
+  - -0.50 to +0.50 : BALANCED_OKUN_EQUILIBRIUM (Growth and employment in historical balance)
+  - Okun_Gap < -0.50 : LABOR_HOARDING (Firms retaining employees despite sluggish growth / Resilient employment)
+
+
+---
+
+### 23.1. LABOR MARKET DUAL-TRACK DYNAMICS
+- Purpose: Cross-evaluates nonfarm payrolls (PAYEMS), the unemployment rate, and civilian labor force participation (CIVPART) to model whether job creation absorbs population growth or signals recession risk.
+- Data Series Keys:
+  - BLS / FRED: PAYEMS (All Employees, Total Nonfarm - Monthly Change in Thousands)
+  - BLS / FRED: UNRATE (Civilian Unemployment Rate - Percent)
+  - BLS / FRED: CIVPART (Labor Force Participation Rate - Percent)
+- Threshold Logic & Rules:
+  - Breakeven Growth Band: 100k - 150k
+- Machine-Executable Logic (Python):
+  def labor_dual_track_matrix(payems_mom, unrate_delta, civpart_delta):
+      if any(v is None or isinstance(v, bool) for v in (payems_mom, unrate_delta, civpart_delta)):
+          return None
+      try:
+          if not (math.isfinite(payems_mom) and math.isfinite(unrate_delta) and math.isfinite(civpart_delta)):
+              return None
+
+          p_mom = float(payems_mom)
+          u_diff = round(float(unrate_delta), 2)
+          c_diff = round(float(civpart_delta), 2)
+
+          if max(p_mom, 150.0) == p_mom and p_mom != 150.0 and u_diff >= 0.0 and c_diff > 0.0:
+              status = "BENIGN_SUPPLY_EXPANSION"
+          elif min(p_mom, 100.0) == p_mom and p_mom != 100.0 and u_diff > 0.10:
+              status = "RECESSION_EARLY_WARNING"
+          else:
+              status = "BALANCED_LABOR_MARKET"
+
+          return {"payems_k": round(p_mom, 2), "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - status == BENIGN_SUPPLY_EXPANSION : Unemployment steady/elevated due to rising participation (Healthy labor expansion)
+  - status == RECESSION_EARLY_WARNING : Job growth falls below population threshold while unemployment rises (Early recession warning)
+  - status == BALANCED_LABOR_MARKET : Balanced labor market dynamics
+
+
+---
+
+### 23.2. TOTAL FUNDS FLOW AND VELOCITY MOMENTUM (TOTAL FUNDS FLOW)
+- Purpose: Models real and financial transaction liquidity volume, effective monetary flow, and asset inflation pressure by multiplying broad money supply (M2) by the velocity of money (M2V). (Note: As M2V is quarterly, M2SL observations must be aligned to quarterly frequency).
+- Data Series Keys:
+  - FRED: M2SL (M2 Money Supply - Billions of USD, Seasonally Adjusted)
+  - FRED: M2V (Velocity of M2 Money Stock - Quarterly)
+- Formula:
+  Total_Funds_Flow = M2SL * M2V
+- Machine-Executable Logic (Python):
+  def total_funds_flow_model(m2_level, m2_velocity, prev_tff=None):
+      if any(v is None or isinstance(v, bool) for v in (m2_level, m2_velocity)):
+          return None
+      try:
+          if not (math.isfinite(m2_level) and math.isfinite(m2_velocity)):
+              return None
+          if min(m2_level, 0) == m2_level or min(m2_velocity, 0) == m2_velocity:
+              return None
+
+          raw_tff = float(m2_level) * float(m2_velocity)
+          if not math.isfinite(raw_tff):
+              return None
+          tff_val = round(raw_tff, 2)
+
+          mom_change = None
+          status = "BALANCED_LIQUIDITY_FLOW"
+          if prev_tff is not None and not isinstance(prev_tff, bool) and math.isfinite(prev_tff) and prev_tff > 0:
+              mom_change = round(((tff_val / float(prev_tff)) - 1.0) * 100.0, 2)
+              if max(mom_change, 2.0) == mom_change and mom_change != 2.0:
+                  status = "EXCESS_VELOCITY_INFLATION"
+              elif min(mom_change, 0.0) == mom_change and mom_change != 0.0:
+                  status = "LIQUIDITY_STAGNATION"
+
+          return {
+              "total_funds_flow": tff_val,
+              "tff_qoq_pct": mom_change,
+              "status": status
+          }
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - status == EXCESS_VELOCITY_INFLATION : Excessive Liquidity Acceleration & Asset Bubble Inflation Risk (TFF QoQ > 2.0%)
+  - status == BALANCED_LIQUIDITY_FLOW : Balanced Liquidity Flow (0.0% <= TFF QoQ <= 2.0%)
+  - status == LIQUIDITY_STAGNATION : Velocity Collapse, Liquidity Freeze & Deflationary Contraction Risk (TFF QoQ < 0.0%)
+
+
+---
+
+### 23.3. HOUSING AFFORDABILITY AND BUBBLE GAUGE
+- Purpose: Measures housing affordability and real estate bubble risks by dividing median home sales prices by average private hourly earnings to determine required labor hours per home. (Note: As MSPUS is quarterly, hourly earnings must be aligned to quarterly frequency).
+- Data Series Keys:
+  - FRED: MSPUS (Median Sales Price of Houses Sold for the United States - Quarterly, USD)
+  - BLS / FRED: CES0500000003 (Average Hourly Earnings of All Employees, Total Private - USD per Hour)
+- Formula:
+  Affordability_Ratio_Hours = MSPUS / CES0500000003
+- Machine-Executable Logic (Python):
+  def housing_bubble_gauge(mspus, ahe):
+      if any(v is None or isinstance(v, bool) for v in (mspus, ahe)):
+          return None
+      try:
+          if not (math.isfinite(mspus) and math.isfinite(ahe)):
+              return None
+          if min(mspus, 0) == mspus or min(ahe, 0) == ahe or ahe == 0:
+              return None
+
+          raw_ratio = float(mspus) / float(ahe)
+          if not math.isfinite(raw_ratio):
+              return None
+          ratio = round(raw_ratio, 2)
+
+          if max(ratio, 13500.0) == ratio and ratio != 13500.0:
+              status = "SEVERE_HOUSING_BUBBLE"
+          elif max(ratio, 11000.0) == ratio and ratio != 11000.0:
+              status = "ELEVATED_STRESS"
+          else:
+              status = "ACCESSIBLE_MARKET"
+
+          return {"affordability_hours": ratio, "status": status}
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - status == SEVERE_HOUSING_BUBBLE : Acute housing affordability crisis & bubble alarm (Ratio exceeds 13,500 hours)
+  - status == ELEVATED_STRESS : Stretched housing costs and consumer affordability pressure (11,000 to 13,500 hours)
+  - status == ACCESSIBLE_MARKET : Historical equilibrium and affordable housing market (Ratio below 11,000 hours)
+
+
+---
+
+### 23.4. EARLY LAYOFF AND RECESSION SIGNAL
+- Purpose: Detects latent employment losses and early recessionary inflection before official unemployment rises by measuring declining average weekly work hours (Total Private AWHAETP, with historical manufacturing series AWHMAN) alongside industrial production contraction.
+- Data Series Keys:
+  - FRED: INDPRO (Industrial Production: Total Index - YoY Percent Change)
+  - BLS / FRED: AWHAETP (Average Weekly Hours of All Employees, Total Private - YoY Percent Change)
+  - Historical Alternative: AWHMAN (Average Weekly Hours of Production and Nonsupervisory Employees, Manufacturing)
+- Formula:
+  Early_Layoff_Index = INDPRO_YoY + (AWHAETP_YoY * 2.0)
+- Machine-Executable Logic (Python):
+  def early_layoff_signal(indpro_yoy, awhaetp_yoy):
+      if any(v is None or isinstance(v, bool) for v in (indpro_yoy, awhaetp_yoy)):
+          return None
+      try:
+          if not (math.isfinite(indpro_yoy) and math.isfinite(awhaetp_yoy)):
+              return None
+
+          raw_index = float(indpro_yoy) + (float(awhaetp_yoy) * 2.0)
+          if not math.isfinite(raw_index):
+              return None
+          index = round(raw_index, 2)
+
+          if index < -2.50:
+              status = "ACUTE_LAYOFF_CONTRACTION"
+          elif index < 0.0:
+              status = "EARLY_RECESSION_SIGNAL"
+          else:
+              status = "EXPANSION_EMPLOYMENT_MOMENTUM"
+
+          return {"early_layoff_index": index, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - status == ACUTE_LAYOFF_CONTRACTION : Overtime cuts paired with industrial contraction (Early layoff wave & deep recession risk / Index < -2.50)
+  - status == EARLY_RECESSION_SIGNAL : Production losing momentum and work hours softening (Latent unemployment onset / -2.50 to 0.0)
+  - status == EXPANSION_EMPLOYMENT_MOMENTUM : Resilient industrial activity and robust work hours (Index >= 0.0)
+
+
+---
+
+### 23.5. REAL CONSUMPTION COLLAPSE RADAR
+- Purpose: Measures real household consumption volume by stripping inflation from nominal retail sales growth. A negative real print despite positive nominal sales exposes price illusion and underlying consumer demand contraction.
+- Data Series Keys:
+  - FRED: RSAFS (Advance Retail Sales: Retail and Food Services, Total - YoY Percent Change)
+  - FRED Alternative: RSXFS (Advance Retail Sales: Retail Trade Excluding Food Services)
+  - BLS / FRED: CPIAUCSL (Consumer Price Index for All Urban Consumers: All Items - YoY Percent Change)
+- Formula:
+  Real_Consumption_Growth = Retail_Sales_YoY - CPI_YoY
+- Machine-Executable Logic (Python):
+  def real_consumption_collapse_radar(retail_yoy, cpi_yoy):
+      if any(v is None or isinstance(v, bool) for v in (retail_yoy, cpi_yoy)):
+          return None
+      try:
+          if not (math.isfinite(retail_yoy) and math.isfinite(cpi_yoy)):
+              return None
+
+          raw_growth = float(retail_yoy) - float(cpi_yoy)
+          if not math.isfinite(raw_growth):
+              return None
+          growth = round(raw_growth, 2)
+
+          if min(growth, -2.0) == growth and growth != -2.0:
+              status = "SEVERE_REAL_CONTRACTION"
+          elif min(growth, 0.0) == growth and growth != 0.0:
+              status = "REAL_DEMAND_CONTRACTION"
+          elif max(growth, 2.0) == growth and growth != 2.0:
+              status = "STRONG_VOLUME_EXPANSION"
+          else:
+              status = "MODERATE_VOLUME_EXPANSION"
+
+          return {"real_consumption_growth": growth, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - status == SEVERE_REAL_CONTRACTION : Severe volume collapse & consumer stagnation (Real growth < -2.0%)
+  - status == REAL_DEMAND_CONTRACTION : Price illusion and contracting retail sales volume (-2.0% to 0.0%)
+  - status == MODERATE_VOLUME_EXPANSION : Balanced and healthy consumption growth (0.0% to 2.0%)
+  - status == STRONG_VOLUME_EXPANSION : Robust consumer demand and volumetric growth acceleration (> 2.0%)
+
+
+---
+
+### 23.6. EARLY EMPLOYMENT CRACK SIGNAL
+- Purpose: Detects leading employment cracks by tracking weekly initial claims spikes when the headline unemployment rate (a lagging metric) appears benign.
+- Data Series Keys:
+  - FRED Benchmark: IC4WSA (4-Week Moving Average of Initial Claims - YoY Percent Change)
+  - FRED Alternative: ICSA (Initial Claims - Weekly Level YoY Percent Change)
+  - BLS / FRED: UNRATE (Civilian Unemployment Rate - YoY Change in Percentage Points)
+- Formula:
+  Effective_Unrate_Delta = max(0.0, UNRATE_Delta)
+  Early_Crack_Index = ICSA_YoY - (Effective_Unrate_Delta * 10.0)
+- Machine-Executable Logic (Python):
+  def early_employment_crack(icsa_yoy, unrate_delta):
+      if any(v is None or isinstance(v, bool) for v in (icsa_yoy, unrate_delta)):
+          return None
+      try:
+          if not (math.isfinite(icsa_yoy) and math.isfinite(unrate_delta)):
+              return None
+
+          claims_yoy = float(icsa_yoy)
+          u_delta = float(unrate_delta)
+
+          # Issizlik oranindaki dususlerin sahte kriz sinyali uretmesini engelleme
+          effective_u_delta = max(0.0, u_delta)
+          raw_index = claims_yoy - (effective_u_delta * 10.0)
+          if not math.isfinite(raw_index):
+              return None
+          index = round(raw_index, 2)
+
+          if max(claims_yoy, 15.0) == claims_yoy and max(index, 15.0) == index and index != 15.0:
+              status = "HIDDEN_CRISIS_UNFOLDING"
+          elif max(claims_yoy, 8.0) == claims_yoy and max(index, 5.0) == index and index != 5.0:
+              status = "EARLY_WARNING_CRACK"
+          else:
+              status = "LABOR_MARKET_ALIGNED"
+
+          return {"crack_index": index, "claims_yoy": claims_yoy, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - status == HIDDEN_CRISIS_UNFOLDING : Weekly claims surging rapidly while official unemployment has not reacted (Latent recession onset / Claims growth > 15%)
+  - status == EARLY_WARNING_CRACK : Initial cracks emerging in the labor market (Leading crack signal / Claims growth > 8%)
+  - status == LABOR_MARKET_ALIGNED : Data balanced or official unemployment moving in lockstep with claims (Healthy employment path)
+
+
+---
+
+### 23.7. INVENTORY TO SALES GLUT RATIO
+- Purpose: Measures the ratio of total business inventories to monthly sales. When elevated, businesses curtail orders and cut production to liquidate stockpiles, precipitating an inventory-cycle recession.
+- Data Series Keys:
+  - FRED: ISRATIO (Total Business: Inventories to Sales Ratio - Monthly, Seasonally Adjusted)
+  - Component Inventories: BUSINV (Total Business Inventories - Millions USD)
+  - Component Sales: TOTBUSSALES (Total Business Sales - Millions USD)
+- Formula:
+  Inventory_Glut_Ratio = ISRATIO
+- Machine-Executable Logic (Python):
+  def inventory_to_sales_glut(isratio):
+      if isratio is None or isinstance(isratio, bool):
+          return None
+      try:
+          if not math.isfinite(isratio):
+              return None
+
+          if min(isratio, 0.0) == isratio or isratio == 0.0:
+              return None
+
+          ratio = round(float(isratio), 2)
+
+          if max(ratio, 1.45) == ratio and ratio != 1.45:
+              status = "SYSTEMIC_INVENTORY_GLUT"
+          elif min(ratio, 1.28) == ratio and ratio != 1.28:
+              status = "SUPPLY_SHOCK_SHORTAGE"
+          else:
+              status = "BALANCED_SUPPLY_CHAIN"
+
+          return {"isratio": ratio, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - status == SYSTEMIC_INVENTORY_GLUT : Excessive inventory stockpiling paired with demand deficiency; manufacturers will slash output and shifts (Inventory recession alarm / Ratio > 1.45)
+  - status == BALANCED_SUPPLY_CHAIN : Production and retail sales in equilibrium (Healthy inventory turnover / 1.28 to 1.45)
+  - status == SUPPLY_SHOCK_SHORTAGE : Inventory depletion and supply chain bottlenecking; empty shelves and cost-push inflation pressure (Ratio < 1.28)
+
+
+---
+
+### 23.8. MORTGAGE AND PERMIT DIVERGENCE (HOUSING FREEZE INDEX)
+- Purpose: Measures divergence between surging mortgage rates and builder permitting appetite to model housing supply constraints, market lock-in effects, and shelter inflation persistence. (Note: As MORTGAGE30US is weekly, monthly average must be aligned to PERMIT).
+- Data Series Keys:
+  - FRED: MORTGAGE30US (30-Year Fixed Rate Mortgage Average in the United States - Percent)
+  - FRED: PERMIT (New Privately-Owned Housing Units Authorized - YoY Percent Change)
+- Formula:
+  Housing_Freeze_Index = MORTGAGE30US - (PERMIT_YoY / 10.0)
+- Machine-Executable Logic (Python):
+  def housing_freeze_index(mortgage_rate, permit_yoy):
+      if any(v is None or isinstance(v, bool) for v in (mortgage_rate, permit_yoy)):
+          return None
+      try:
+          if not (math.isfinite(mortgage_rate) and math.isfinite(permit_yoy)):
+              return None
+
+          if min(mortgage_rate, 0.0) == mortgage_rate or mortgage_rate == 0.0:
+              return None
+
+          raw_index = float(mortgage_rate) - (float(permit_yoy) / 10.0)
+          if not math.isfinite(raw_index):
+              return None
+          index = round(raw_index, 2)
+
+          if max(index, 8.0) == index and index != 8.0:
+              status = "SEVERE_HOUSING_FREEZE"
+          elif max(index, 5.0) == index and index != 5.0:
+              status = "SUPPLY_CONTRACTION"
+          else:
+              status = "HEALTHY_EXPANSION"
+
+          return {"freeze_index": index, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - status == SEVERE_HOUSING_FREEZE : Severe mortgage rate shock causing permit collapse; home construction frozen, acute supply crisis (Index > 8.0)
+  - status == SUPPLY_CONTRACTION : High borrowing costs depressing builder activity; new housing supply contracting (Index 5.0 to 8.0)
+  - status == HEALTHY_EXPANSION : Supportive financing conditions; healthy expansion in residential supply (Index <= 5.0)
+
+
+---
+
+### 25. TERMS OF TRADE (TOT)
+- Purpose: Measures sovereign purchasing power, terms-of-trade welfare transfers, and current account fragility by evaluating the ratio of export prices to import prices.
+- Data Series Keys:
+  - BLS / FRED (Export Price Index): IQ (U.S. Export Price Index - All Commodities)
+  - BLS / FRED (Import Price Index): IR (U.S. Import Price Index - All Commodities)
+- Formula:
+  Terms_Of_Trade = (Export_Price_Index / Import_Price_Index) * 100
+- Machine-Executable Logic (Python):
+  def terms_of_trade_index(export_idx, import_idx):
+      if any(v is None or isinstance(v, bool) for v in (export_idx, import_idx)): return None
+      try:
+          if min(export_idx, 0) == export_idx or min(import_idx, 0) == import_idx:
+              return None
+          res = (export_idx / import_idx) * 100.0
+          return round(res, 2) if math.isfinite(res) else None
+      except (TypeError, ValueError, ZeroDivisionError):
+          return None
+- Interpretation:
+  - TOT > 100.0 : FAVORABLE_TRADE (Export revenue purchasing power expanding / Positive terms of trade)
+  - TOT == 100.0 : BASELINE_EQUILIBRIUM (Historical baseline equilibrium)
+  - TOT < 100.0 : DETERIORATING_TERMS (Imported goods relatively more expensive / Real income loss & current account pressure)
+
+
+---
+
+### 25.2. STICKY VS. FLEXIBLE CPI SPREAD
+- Purpose: Evaluates structural core inflation persistence versus commodity-driven transient price shocks by measuring the spread between sticky CPI (services, shelter) and flexible CPI (fuel, food).
+- Data Series Keys:
+  - FRED: STICKYCPIM157SFRBATL (Sticky Consumer Price Index less Food and Energy - YoY % Change)
+  - FRED: FLEXCPIM157SFRBATL (Flexible Consumer Price Index less Food and Energy - YoY % Change)
+- Formula: Sticky_Impulse = Sticky_CPI_YoY - Flexible_CPI_YoY
+- Machine-Executable Logic (Python):
+  def sticky_flexible_cpi_spread(sticky_cpi_yoy, flex_cpi_yoy):
+      if any(v is None or isinstance(v, bool) for v in (sticky_cpi_yoy, flex_cpi_yoy)):
+          return None
+      try:
+          f_sticky = float(sticky_cpi_yoy)
+          f_flex = float(flex_cpi_yoy)
+          if not (math.isfinite(f_sticky) and math.isfinite(f_flex)):
+              return None
+          raw_impulse = f_sticky - f_flex
+          if not math.isfinite(raw_impulse):
+              return None
+          impulse = round(raw_impulse, 2)
+          if impulse > 2.0:
+              status = "STRUCTURAL_INFLATION_TRAP"
+          elif impulse < -2.0:
+              status = "TRANSITORY_INFLATION_SURGE"
+          else:
+              status = "BALANCED_DISINFLATION_PATH"
+          return {"sticky_impulse": impulse, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Sticky_Impulse > 2.0% : STRUCTURAL_INFLATION_TRAP (Sticky inflation pressure / Shelter & services rigidity / Core inflation trap)
+  - Sticky_Impulse < -2.0% : TRANSITORY_INFLATION_SURGE (Transient commodity/energy price surge / Flexible price spike)
+  - -2.0% to 2.0% : BALANCED_DISINFLATION_PATH (Coherent and balanced disinflation trajectory)
+
+
+---
+
+### 25.10. SLOOS LENDING STANDARDS RECESSION GAUGE
+- Purpose: Tracks the net percentage of domestic US banks tightening lending standards on commercial and industrial (C&I) loans to detect credit channel freezing 6-9 months ahead of recessions.
+- Data Series Keys:
+  - FRED: DRTSCIS (Net Percentage of Domestic Banks Tightening Standards for Commercial and Industrial Loans to Small Firms - Quarterly Percent)
+- Formula: Credit_Tightening_Net_Pct = DRTSCIS
+- Machine-Executable Logic (Python):
+  def sloos_lending_tightness_gauge(drtscis_val):
+      if drtscis_val is None or isinstance(drtscis_val, bool):
+          return None
+      try:
+          val = float(drtscis_val)
+          if not math.isfinite(val):
+              return None
+          tightness = round(val, 2)
+          if tightness > 40.0:
+              status = "ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL"
+          elif tightness >= 20.0:
+              status = "RESTRICTIVE_CREDIT_CONTRACTION"
+          elif tightness <= -10.0:
+              status = "AGGRESSIVE_CREDIT_EXPANSION"
+          else:
+              status = "NEUTRAL_CREDIT_CONDITIONS"
+          return {"credit_tightening_net_pct": tightness, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Credit_Tightening_Net_Pct > 40.0% : ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL (Acute credit channel freeze / Historical recession benchmark / Liquidity crisis alarm)
+  - 20.0% to 40.0% : RESTRICTIVE_CREDIT_CONTRACTION (Noticeable lending standards tightening / Business investment and hiring headwinds)
+  - -10.0% to 20.0% : NEUTRAL_CREDIT_CONDITIONS (Balanced credit flow and standard bank lending appetite)
+  - Credit_Tightening_Net_Pct < -10.0% : AGGRESSIVE_CREDIT_EXPANSION (Loose credit standards / Aggressive credit expansion / Asset bubble risk)
+
+
+---
+
+### 25.11. FULL-TIME VS. INVOLUNTARY PART-TIME CRACK GAUGE
+- Purpose: Detects hidden labor market fragility by comparing the annual surge in involuntary part-time workers against changes in full-time employment, exposing structural deterioration obscured by headline NFP figures.
+- Data Series Keys:
+  - FRED: LNS12500000 (Employed, Usually Work Full Time - Monthly Level, in Thousands)
+  - FRED: LNS12032194 (Employed, Part-Time for Economic Reasons - Monthly Level, in Thousands)
+- Formula: 
+  Part_Time_Econ_YoY_Pct = ((LNS12032194(t) / LNS12032194(t-12)) - 1) * 100
+  Full_Time_YoY_Pct = ((LNS12500000(t) / LNS12500000(t-12)) - 1) * 100
+  Crack_Spread = Part_Time_Econ_YoY_Pct - Full_Time_YoY_Pct
+- Machine-Executable Logic (Python):
+  def hidden_employment_crack_gauge(part_time_econ_level_current, part_time_econ_level_yr_ago, full_time_level_current, full_time_level_yr_ago):
+      if any(v is None or isinstance(v, bool) for v in (part_time_econ_level_current, part_time_econ_level_yr_ago, full_time_level_current, full_time_level_yr_ago)):
+          return None
+      try:
+          pt_curr = float(part_time_econ_level_current)
+          pt_yr = float(part_time_econ_level_yr_ago)
+          ft_curr = float(full_time_level_current)
+          ft_yr = float(full_time_level_yr_ago)
+          
+          if not all(math.isfinite(x) for x in (pt_curr, pt_yr, ft_curr, ft_yr)):
+              return None
+          if pt_yr <= 0 or ft_yr <= 0 or pt_curr < 0 or ft_curr < 0:
+              return None
+              
+          pt_yoy = ((pt_curr / pt_yr) - 1.0) * 100.0
+          ft_yoy = ((ft_curr / ft_yr) - 1.0) * 100.0
+          raw_spread = pt_yoy - ft_yoy
+          
+          if not math.isfinite(raw_spread):
+              return None
+              
+          spread = round(raw_spread, 2)
+          pt_yoy_rounded = round(pt_yoy, 2)
+          
+          if spread > 30.0 and pt_yoy_rounded > 15.0:
+              status = "ACUTE_LABOR_MARKET_FRACTURE_RECESSION"
+          elif spread > 18.0:
+              status = "STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL"
+          elif spread < -10.0:
+              status = "ROBUST_FULL_TIME_EXPANSION"
+          else:
+              status = "STABLE_EMPLOYMENT_COMPOSITION"
+              
+          return {"crack_spread_pct": spread, "part_time_yoy_pct": pt_yoy_rounded, "status": status}
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - Crack_Spread > 30.0% and Part_Time_YoY > 15.0% : ACUTE_LABOR_MARKET_FRACTURE_RECESSION (Acute labor market fracture / Companies replacing full-time with part-time staff / High-conviction recession signal)
+  - Crack_Spread > 18.0% : STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL (Structural labor softening / Emerging cracks obscured by headline data)
+  - -10.0% to 18.0% : STABLE_EMPLOYMENT_COMPOSITION (Stable employment composition / No unusual labor market distortion)
+  - Crack_Spread < -10.0% : ROBUST_FULL_TIME_EXPANSION (Robust full-time job creation / Resilient labor market)
+
+
+---
+
+### 25.13. LABOR MARKET MOMENTUM INDEX (LMMI / EMME)
+- Purpose: Couples the annual percentage growth of Nonfarm Payrolls (PAYEMS) with the annual percentage point change in the Civilian Unemployment Rate (UNRATE) to measure net momentum, structural deceleration, and employment slack pressure on the Federal Reserve monetary policy reaction function.
+- Data Series Keys:
+  - BLS / FRED: PAYEMS (All Employees, Total Nonfarm - Monthly Level, in Thousands)
+  - BLS / FRED: UNRATE (Civilian Unemployment Rate - Monthly Percent, %)
+- Formula:
+  PAYEMS_YoY_Pct = ((PAYEMS(t) / PAYEMS(t-12)) - 1.0) * 100.0
+  UNRATE_YoY_Diff = UNRATE(t) - UNRATE(t-12)
+  LMMI = PAYEMS_YoY_Pct - UNRATE_YoY_Diff
+  Employment_Strength_Ratio = PAYEMS_YoY_Pct * (1.0 / UNRATE(t))
+- Machine-Executable Logic (Python):
+  def labor_market_momentum_index(payems_current, payems_yr_ago, unrate_current, unrate_yr_ago, prev_lmmi=None):
+      if any(v is None or isinstance(v, bool) for v in (payems_current, payems_yr_ago, unrate_current, unrate_yr_ago)):
+          return None
+      try:
+          p_curr = float(payems_current)
+          p_yr = float(payems_yr_ago)
+          u_curr = float(unrate_current)
+          u_yr = float(unrate_yr_ago)
+
+          if not all(math.isfinite(x) for x in (p_curr, p_yr, u_curr, u_yr)):
+              return None
+          if p_curr <= 0.0 or p_yr <= 0.0 or u_curr <= 0.0 or u_yr < 0.0:
+              return None
+
+          p_growth = ((p_curr / p_yr) - 1.0) * 100.0
+          u_diff = u_curr - u_yr
+          raw_lmmi = p_growth - u_diff
+
+          if not math.isfinite(raw_lmmi):
+              return None
+
+          lmmi = round(raw_lmmi, 2)
+          p_growth_r = round(p_growth, 2)
+          u_diff_r = round(u_diff, 2)
+          strength_ratio = round(p_growth * (1.0 / u_curr), 2) if u_curr > 0 else None
+
+          # Dynamic momentum direction check if historical LMMI benchmark is provided
+          if prev_lmmi is not None and not isinstance(prev_lmmi, bool):
+              p_lmmi = float(prev_lmmi)
+              if math.isfinite(p_lmmi):
+                  if lmmi > 0.20:
+                      status = "DECELERATING_LABOR_MOMENTUM" if lmmi < p_lmmi else "STRONG_LABOR_EXPANSION"
+                  elif lmmi < -0.20:
+                      status = "LABOR_MARKET_DETERIORATION_RISK"
+                  else:
+                      status = "BALANCED_LABOR_MARKET"
+              else:
+                  return None
+          else:
+              if lmmi > 1.0:
+                  status = "STRONG_LABOR_EXPANSION"
+              elif lmmi > 0.20:
+                  status = "MODERATE_LABOR_EXPANSION"
+              elif lmmi < -0.20:
+                  status = "LABOR_MARKET_DETERIORATION_RISK"
+              else:
+                  status = "BALANCED_LABOR_MARKET"
+
+          return {
+              "lmmi_score": lmmi,
+              "payems_yoy_pct": p_growth_r,
+              "unrate_yoy_diff": u_diff_r,
+              "employment_strength_ratio": strength_ratio,
+              "status": status
+          }
+      except (TypeError, ValueError):
+          return None
+- Interpretation:
+  - LMMI > +1.00 (or rising): STRONG_LABOR_EXPANSION (Robust payroll expansion and declining/stable unemployment; accelerating labor market strength; lowers dovish Fed cut urgency)
+  - +0.20 < LMMI <= +1.00 (or declining vs previous month): DECELERATING_LABOR_MOMENTUM / MODERATE_LABOR_EXPANSION (Employment expanding but losing velocity or unemployment ticking higher; late-cycle cooling)
+  - -0.20 <= LMMI <= +0.20: BALANCED_LABOR_MARKET (Neutral labor signals; payroll creation roughly in line with labor force demographics)
+  - LMMI < -0.20: LABOR_MARKET_DETERIORATION_RISK (Weakening payroll growth and rising unemployment; recessionary cracks widening)
+
+
+---
+
+### 30. OFFICIAL MACROECONOMIC RELEASE CALENDARS & COUNTDOWN ENGINE
+- Purpose: Deterministically resolves scheduled release dates and computes remaining days for Tier-1 economic releases including CPI, NFP, PPI, PCE Inflation, and GDP.
+- Canonical Calendar Sources:
+  - BLS Schedule (CPI, NFP, PPI): https://www.bls.gov/schedule/news_release/bls.ics
+  - BEA Schedule (PCE, GDP, Trade Balance): https://apps.bea.gov/API/signup/release_dates.json
+- Countdown Formula:
+  Days_Remaining = (Target_Date - Current_Date).days
+  (Both timestamps normalized to midnight 00:00:00 UTC to prevent time-of-day distortion.)
+- Status Mapping:
+  - Days_Remaining == 0 : "Today"
+  - Days_Remaining == 1 : "Tomorrow"
+  - Days_Remaining > 1 : str(Days_Remaining) + " days remaining"
+  - Days_Remaining < 0 : str(abs(Days_Remaining)) + " days ago"
+- Machine-Executable Logic (Python):
+  from datetime import datetime
+
+  def macro_release_countdown(target_date_str, current_date_str):
+      if not target_date_str or not current_date_str:
+          return None
+      try:
+          t_target = datetime.strptime(str(target_date_str).strip(), '%Y-%m-%d').date()
+          t_current = datetime.strptime(str(current_date_str).strip(), '%Y-%m-%d').date()
+      except (ValueError, TypeError):
+          return None
+
+      delta_days = (t_target - t_current).days
+
+      if delta_days == 0:
+          status = "Today"
+      elif delta_days == 1:
+          status = "Tomorrow"
+      elif delta_days > 1:
+          status = f"{delta_days} days remaining"
+      else:
+          status = f"{abs(delta_days)} days ago"
+
+      return {"days_remaining": delta_days, "status": status}
+- Execution Directive for AI Agents:
+  When querying scheduled release timing for forthcoming macroeconomic data:
+  1. Query BLS schedule for CPI, NFP, PPI; query BEA JSON calendar for PCE, GDP.
+  2. Identify nearest official scheduled release date (Target_Date).
+  3. Execute macro_release_countdown logic to determine exact remaining duration with unambiguous status tags.
