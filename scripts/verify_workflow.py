@@ -198,6 +198,7 @@ def main():
         required = {
             ENTITY_FILE, RELATIONSHIP_TEXT, RELATIONSHIP_JSON, GRAPH_FILE, MODEL_JSON,
             "llms-indicators.txt", "llms-formulas.txt", "llms-full.txt", "llms-models.txt",
+            "llms-graph-chokepoints.json", "llms-graph-models.json", "llms-graph-actors.json",
             *SERIES_PROVIDERS.keys(), *SERIES_PROVIDERS.values(),
         }
         base_files = {path: file_at(base, path) for path in required}
