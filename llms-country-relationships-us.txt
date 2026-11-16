@@ -440,7 +440,7 @@ Cross-Reference Multilateral Nodes: BLOC_NATO, BLOC_EU
 
 # ------------------------------------------------------------------------------
 # 1.2. CATEGORY 2: STRATEGIC INTEREST & TRANSACTIONAL INTERDEPENDENCE
-# Scope: Autonomous Regional Powers / Critical Resource & Logistics Partners / Multipolar Pivots (+0.10 to +0.75)
+# Scope: Autonomous Regional Powers / Critical Resource & Logistics Partners / Multipolar Pivots (+0.10 to +0.75; Non-Treaty Strategic Partners & Hedged Allies)
 # Total Vectors in Tier: 32 Dyads
 # ------------------------------------------------------------------------------
 
