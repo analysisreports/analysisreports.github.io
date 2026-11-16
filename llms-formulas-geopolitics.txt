@@ -16,6 +16,14 @@
 
 ```python
 import math
+
+def _is_num(val):
+    if val is None or isinstance(val, bool) or not isinstance(val, (int, float)):
+        return False
+    try:
+        return math.isfinite(val)
+    except (OverflowError, ValueError, TypeError):
+        return False
 ```
 
 ---
@@ -484,7 +492,7 @@ import math
   - EIA context metric: PET.WCRFPUS2.W (Weekly U.S. Field Production of Crude Oil - Thousand Barrels per Day)
   - llms-relationships.json -> IL_IR relationship (P_net) and CHOKE_HORMUZ (severity and baseline transit flow)
   - llms-relationships.txt -> Section 1 (P_net) & Section 4/7 (Disruption Severity)
-  - llms-formulas.txt -> Model 25.1 (dynamic_polarity_engine), 28.1 (conflict_heat_score), 28.2 (market_impact_score), 28.3 (chokepoint_severity_multiplier)
+  - Local Models -> Model 25.1 (dynamic_polarity_engine), Model 28.1 (conflict_heat_score), Model 28.2 (market_impact_score), Model 28.3 (chokepoint_severity_multiplier)
 - Mathematical Formulation:
   1. Geopolitical Polarity Friction:
      Friction_Factor = max(0.0, -P_net)
@@ -605,7 +613,8 @@ import math
 ### 28.5. REGIME-ADJUSTED MARKET IMPACT
 - Purpose: Scales raw Market Impact Score from Model 28.2 with a deterministic multiplier based on monetary policy stance (Model 2) and financial conditions (Model 12).
 - Data Links:
-  - llms-formulas.txt -> Model 2 (real_policy_rate), Model 12 (financial_conditions_regime), Model 28.2 (market_impact_score)
+  - llms-formulas-rates-liquidity.txt -> Model 2 (real_policy_rate), Model 12 (financial_conditions_regime)
+  - Local Models -> Model 28.2 (market_impact_score)
 - Formula:
   Macro_Multiplier = 1.25 if (Real_Rate > 1.5 or NFCI > 0.0) else (0.75 if (Real_Rate < 0.0 and NFCI < 0.0) else 1.00)
   Adjusted_Market_Impact = min(100, round(Market_Impact * Macro_Multiplier))
