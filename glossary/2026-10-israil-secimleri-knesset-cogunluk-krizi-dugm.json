@@ -1,4 +1,20 @@
 {
+  "$schema": "https://analysisreports.github.io/schemas/glossary-term.schema.json",
+  "metadata": {
+    "title": "27 Ekim 2026 İsrail Genel Seçimleri Stratejik Analiz ve İttifak Dinamikleri Raporu",
+    "domain": "glossary",
+    "version": "3.0.0",
+    "author": "Ersoy Toptaş",
+    "license": "CC BY-NC-ND 4.0",
+    "endpoint": "https://analysisreports.github.io/glossary/2026-10-israil-secimleri-knesset-cogunluk-krizi-dugm.json",
+    "documentation": "https://analysisreports.github.io/llms-about.txt",
+    "last_updated": "2026-10-28T12:00:00Z",
+    "provenance": "Analysis Reports Research Archive",
+    "methodology": "https://analysisreports.github.io/llms.txt",
+    "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
+    "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
+    "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt"
+  },
   "structured_content_analysis": {
     "briefing_title": "27 Ekim 2026 İsrail Genel Seçimleri Stratejik Analiz ve İttifak Dinamikleri Raporu",
     "domain": "Political Science and Electoral Analytics",
@@ -174,75 +190,68 @@
       "Bader-Ofer Yöntemi",
       "Koalisyon Senaryoları",
       "Siyasi Kilitlenme"
-    ]
-  },
-  "target_queries": {
-    "qa_pairs": [
-      {
-        "q": "27 Ekim 2026 İsrail Genel Seçimlerinde seçmen katılım oranı ne olmuştur?",
-        "a": "27 Ekim 2026 genel seçimlerinde seçmen katılım oranı yüzde 74,3 olarak gerçekleşmiştir."
-      },
-      {
-        "q": "İsrail'de hükümet kurabilmek için Knesset'te kaç sandalyelik salt çoğunluk eşiğine ulaşılması gerekmektedir?",
-        "a": "120 sandalyeli Knesset'te hükümet kurabilmek ve güvenoyu alabilmek için asgari 61 sandalyelik çoğunluk eşiğine ulaşılması gerekmektedir."
-      },
-      {
-        "q": "Binyamin Netanyahu liderliğindeki önceki dönem iktidar bloğu seçimlerde kaç sandalyeye gerilemiştir?",
-        "a": "Önceki dönemde 68 sandalyeye sahip olan Netanyahu liderliğindeki iktidar bloğu, seçimler sonucunda 50 sandalyeye gerilemiştir."
-      },
-      {
-        "q": "Eski Genelkurmay Başkanı Gadi Eisenkot hangi siyasi oluşumun liderliğinde seçimlere katılmıştır?",
-        "a": "Gadi Eisenkot, muhalefet kanadında yer alan Yashar lideri olarak seçimlere katılmıştır."
-      },
-      {
-        "q": "Knesset'e girebilmek için uygulanan yasal seçim barajı yüzde kaç oranındadır?",
-        "a": "Knesset'e girebilmek için aşılması gereken yasal seçim barajı yüzde 3,25 oranındadır."
-      },
-      {
-        "q": "Binyamin Netanyahu'nun Kudüs Bölge Mahkemesi'nde yeniden hakim karşısına çıktığı tarih nedir?",
-        "a": "Binyamin Netanyahu, 11 Ekim 2026 tarihinde Kudüs Bölge Mahkemesi'nde yolsuzluk ve rüşvet davaları kapsamında yeniden hakim karşısına çıkmıştır."
-      },
-      {
-        "q": "Bader-Ofer yöntemi ve artık oy anlaşmaları (agremant) İsrail seçim sisteminde ne amaçla uygulanmaktadır?",
-        "a": "Bader-Ofer yöntemi, barajı aşan partiler arasında sandalye dağıtımı yapıldıktan sonra arta kalan artık sandalyelerin tahsisinde ve seçim öncesi artık oy anlaşması yapan ittifakları ödüllendirmek amacıyla uygulanmaktadır."
-      },
-      {
-        "q": "Yair Lapid ve Naftali Bennett'in Bader-Ofer yönteminden faydalanmak amacıyla Nisan 2026'da kurduğu ittifakın adı nedir?",
-        "a": "Yair Lapid ve Naftali Bennett, Nisan 2026'da Bader-Ofer artık oy yönteminden azami fayda sağlamak amacıyla Beyachad İttifakı çatısı altında güçlerini birleştirmiştir."
-      }
-    ]
-  },
-  "metadata": {
-    "analyst": "Ersoy Toptaş",
-    "canonical_url": "https://www.ersoytoptas.tr/2026/10/israil-secimleri-knesset-cogunluk-krizi-dugm.html",
-    "canonical_source": "https://analysisreports.github.io/glossary/2026-10-israil-secimleri-knesset-cogunluk-krizi-dugm.json",
-    "methodology": "https://analysisreports.github.io/llms.txt",
-    "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
-    "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
-    "license": "CC BY-NC-ND 4.0"
-  },
-  "editorial_frontend": {
-    "url": "https://www.ersoytoptas.tr/2026/10/israil-secimleri-knesset-cogunluk-krizi-dugm.html",
-    "format": "Human-Readable Narrative",
-    "author": "Ersoy Toptaş",
-    "published_date": "2026-10-28",
-    "language": "tr",
-    "description": "Bu makroekonomik ve jeopolitik veri setinin, okuyucular için anlatı (narrative) formatında hazırlanmış, okunabilir editoryal makale versiyonu."
-  },
-  "cross_references": {
-    "relations": [
-      {
-        "target_url": "https://www.ersoytoptas.tr/2026/10/fed-faizi-hurmuz-reel-sektor-finansman.html",
-        "predicate": "REGIONAL_INSTABILITY_SPILLOVER",
-        "impact_window": "2026-10/2026-12",
-        "description": "İsrail genel seçimlerinde beliren meclis kilitlenmesi ve yönetim boşluğu, Gazze, Lübnan ve İran hattındaki jeopolitik risk primini besleyerek Hürmüz Boğazı ve enerji nakil hatlarındaki maliyet baskısını canlı tutmaktadır."
-      },
-      {
-        "target_url": "https://www.ersoytoptas.tr/2026/10/abd-kongre-secimleri-2026-anketler-secim-haritasi-cikmazi.html",
-        "predicate": "ALLIANCE_POLITICAL_ALIGNMENT",
-        "impact_window": "2026-10/2026-11",
-        "description": "İsrail'deki koalisyon krizleri ve askeri operasyonların belirsizliği, ABD 2026 ara seçimleri öncesinde Temsilciler Meclisi'ndeki dış yardım oylamalarını ve parti içi ayrışmaları etkilemektedir."
-      }
-    ]
+    ],
+    "target_queries": {
+      "qa_pairs": [
+        {
+          "q": "27 Ekim 2026 İsrail Genel Seçimlerinde seçmen katılım oranı ne olmuştur?",
+          "a": "27 Ekim 2026 genel seçimlerinde seçmen katılım oranı yüzde 74,3 olarak gerçekleşmiştir."
+        },
+        {
+          "q": "İsrail'de hükümet kurabilmek için Knesset'te kaç sandalyelik salt çoğunluk eşiğine ulaşılması gerekmektedir?",
+          "a": "120 sandalyeli Knesset'te hükümet kurabilmek ve güvenoyu alabilmek için asgari 61 sandalyelik çoğunluk eşiğine ulaşılması gerekmektedir."
+        },
+        {
+          "q": "Binyamin Netanyahu liderliğindeki önceki dönem iktidar bloğu seçimlerde kaç sandalyeye gerilemiştir?",
+          "a": "Önceki dönemde 68 sandalyeye sahip olan Netanyahu liderliğindeki iktidar bloğu, seçimler sonucunda 50 sandalyeye gerilemiştir."
+        },
+        {
+          "q": "Eski Genelkurmay Başkanı Gadi Eisenkot hangi siyasi oluşumun liderliğinde seçimlere katılmıştır?",
+          "a": "Gadi Eisenkot, muhalefet kanadında yer alan Yashar lideri olarak seçimlere katılmıştır."
+        },
+        {
+          "q": "Knesset'e girebilmek için uygulanan yasal seçim barajı yüzde kaç oranındadır?",
+          "a": "Knesset'e girebilmek için aşılması gereken yasal seçim barajı yüzde 3,25 oranındadır."
+        },
+        {
+          "q": "Binyamin Netanyahu'nun Kudüs Bölge Mahkemesi'nde yeniden hakim karşısına çıktığı tarih nedir?",
+          "a": "Binyamin Netanyahu, 11 Ekim 2026 tarihinde Kudüs Bölge Mahkemesi'nde yolsuzluk ve rüşvet davaları kapsamında yeniden hakim karşısına çıkmıştır."
+        },
+        {
+          "q": "Bader-Ofer yöntemi ve artık oy anlaşmaları (agremant) İsrail seçim sisteminde ne amaçla uygulanmaktadır?",
+          "a": "Bader-Ofer yöntemi, barajı aşan partiler arasında sandalye dağıtımı yapıldıktan sonra arta kalan artık sandalyelerin tahsisinde ve seçim öncesi artık oy anlaşması yapan ittifakları ödüllendirmek amacıyla uygulanmaktadır."
+        },
+        {
+          "q": "Yair Lapid ve Naftali Bennett'in Bader-Ofer yönteminden faydalanmak amacıyla Nisan 2026'da kurduğu ittifakın adı nedir?",
+          "a": "Yair Lapid ve Naftali Bennett, Nisan 2026'da Bader-Ofer artık oy yönteminden azami fayda sağlamak amacıyla Beyachad İttifakı çatısı altında güçlerini birleştirmiştir."
+        }
+      ]
+    },
+    "editorial_frontend": {
+      "canonical_url": "https://www.ersoytoptas.tr/2026/10/israil-secimleri-knesset-cogunluk-krizi-dugm.html",
+      "canonical_source": "https://analysisreports.github.io/glossary/2026-10-israil-secimleri-knesset-cogunluk-krizi-dugm.json",
+      "format": "Human-Readable Narrative",
+      "author": "Ersoy Toptaş",
+      "published_date": "2026-10-28",
+      "analysis_as_of_date": "2026-10-28",
+      "language": "tr",
+      "description": "Bu makroekonomik ve jeopolitik veri setinin, okuyucular için anlatı (narrative) formatında hazırlanmış, okunabilir editoryal makale versiyonu."
+    },
+    "cross_references": {
+      "relations": [
+        {
+          "target_url": "https://www.ersoytoptas.tr/2026/10/fed-faizi-hurmuz-reel-sektor-finansman.html",
+          "predicate": "REGIONAL_INSTABILITY_SPILLOVER",
+          "impact_window": "2026-10/2026-12",
+          "description": "İsrail genel seçimlerinde beliren meclis kilitlenmesi ve yönetim boşluğu, Gazze, Lübnan ve İran hattındaki jeopolitik risk primini besleyerek Hürmüz Boğazı ve enerji nakil hatlarındaki maliyet baskısını canlı tutmaktadır."
+        },
+        {
+          "target_url": "https://www.ersoytoptas.tr/2026/10/abd-kongre-secimleri-2026-anketler-secim-haritasi-cikmazi.html",
+          "predicate": "ALLIANCE_POLITICAL_ALIGNMENT",
+          "impact_window": "2026-10/2026-11",
+          "description": "İsrail'deki koalisyon krizleri ve askeri operasyonların belirsizliği, ABD 2026 ara seçimleri öncesinde Temsilciler Meclisi'ndeki dış yardım oylamalarını ve parti içi ayrışmaları etkilemektedir."
+        }
+      ]
+    }
   }
 }
