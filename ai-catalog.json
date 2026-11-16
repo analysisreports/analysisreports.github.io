@@ -1,7 +1,7 @@
 {
   "$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
   "name": "Ersoy Toptaş Strategic Macro Memory & Multi-Layered Analysis Library",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Ontological schemas and tool catalog optimized for AI systems, LLM agents, and researchers, modeling macroeconomics, monetary policies, geopolitical crises, and political dynamics.",
   "publisher": {
     "name": "Ersoy Toptaş",
@@ -124,6 +124,83 @@
         "type": "none"
       },
       "description": "Machine-validatable JSON schema modeling conceptual definitions, taxonomies, and framework indicators."
+    },
+    {
+      "id": "schema-country-spec",
+      "name": "Country Strategic Assessment JSON Schema Specification (Draft 2020-12)",
+      "type": "specification",
+      "format": "application/schema+json",
+      "url": "https://analysisreports.github.io/schemas/country-strategic-assessment.schema.json",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Formal JSON Schema Draft 2020-12 rulebook for country strategic assessments, military posture, risk indexes, and sovereign metrics."
+    },
+    {
+      "id": "schema-glossary-spec",
+      "name": "Glossary Term JSON Schema Specification (Draft 2020-12)",
+      "type": "specification",
+      "format": "application/schema+json",
+      "url": "https://analysisreports.github.io/schemas/glossary-term.schema.json",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Formal JSON Schema Draft 2020-12 rulebook for strategic glossary definitions, institutional mechanisms, and doctrines."
+    },
+    {
+      "id": "schema-concept-spec",
+      "name": "Macro and Geopolitical Concept JSON Schema Specification (Draft 2020-12)",
+      "type": "specification",
+      "format": "application/schema+json",
+      "url": "https://analysisreports.github.io/schemas/concept.schema.json",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Formal JSON Schema Draft 2020-12 rulebook for macroeconomic and geopolitical concepts, indicators, and frameworks."
+    },
+    {
+      "id": "schema-editorial-spec",
+      "name": "Editorial Stance JSON Schema Specification (Draft 2020-12)",
+      "type": "specification",
+      "format": "application/schema+json",
+      "url": "https://analysisreports.github.io/schemas/editorial.schema.json",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Formal JSON Schema Draft 2020-12 rulebook for editorial positions, consensus divergence, and qualitative assessments."
+    },
+    {
+      "id": "schema-political-spec",
+      "name": "Political Discourse & Dynamics JSON Schema Specification (Draft 2020-12)",
+      "type": "specification",
+      "format": "application/schema+json",
+      "url": "https://analysisreports.github.io/schemas/political.schema.json",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Formal JSON Schema Draft 2020-12 rulebook for political leadership narratives, rhetoric scoring, and parliamentary dynamics."
+    },
+    {
+      "id": "schema-political-country-spec",
+      "name": "Political Country Dynamics JSON Schema Specification (Draft 2020-12)",
+      "type": "specification",
+      "format": "application/schema+json",
+      "url": "https://analysisreports.github.io/schemas/political-country.schema.json",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Formal JSON Schema Draft 2020-12 rulebook merging political narratives with sovereign country metrics."
+    },
+    {
+      "id": "schema-strategic-macro-spec",
+      "name": "Strategic Macro & Geopolitical Economy JSON Schema Specification (Draft 2020-12)",
+      "type": "specification",
+      "format": "application/schema+json",
+      "url": "https://analysisreports.github.io/schemas/strategic-macro.schema.json",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Formal JSON Schema Draft 2020-12 unified rulebook covering sovereign postures, maritime chokepoints, and macro models."
     },
     {
       "id": "agent-tools",
@@ -304,28 +381,31 @@
     "deterministic_qa": true,
     "real_time_macro_tracking": true,
     "tool_calling": true,
-    "structured_data_payload": "structured_content_analysis"
+    "structured_data_payload": "structured_content_analysis",
+    "schema_validation": true,
+    "graph_rag": true,
+    "bilateral_dyads": true
   },
-  "last_updated": "2026-11-15",
+  "last_updated": "2026-11-17",
   "monitored_directories": {
     "economy": {
-      "total_payloads": 2,
-      "last_updated": "2026-10-18",
+      "total_payloads": 3,
+      "last_updated": "2026-11-17",
       "endpoint": "https://analysisreports.github.io/economy/"
     },
     "country": {
       "total_payloads": 2,
-      "last_updated": "2026-11-02",
+      "last_updated": "2026-11-17",
       "endpoint": "https://analysisreports.github.io/country/"
     },
     "political": {
       "total_payloads": 1,
-      "last_updated": "2026-10-22",
+      "last_updated": "2026-11-17",
       "endpoint": "https://analysisreports.github.io/political/"
     },
     "glossary": {
       "total_payloads": 2,
-      "last_updated": "2026-10-28",
+      "last_updated": "2026-11-17",
       "endpoint": "https://analysisreports.github.io/glossary/"
     }
   }
