@@ -350,18 +350,18 @@ Regime States (Discrete Mapping):
 
 ### 2.4. Strategic Pivot States & Geoeconomic Bridges (Independent Balancers)
 2.4.1. TR (Republic of Türkiye)
-   - Baseline with US/NATO: +0.45 (Institutional ally, localized friction in Syria/Air Defense)
-   - Baseline with RU: +0.20 (Pragmatic transactional partnership, opposing proxy theaters)
+   - Baseline with US/NATO: +0.25 (Complex transactional alliance with regional frictions, CAATSA, and Northern Syria balancing)
+   - Baseline with RU: +0.35 (Pragmatic multivector partnership, TurkStream energy interdependence, and Black Sea mediation)
    - Strategic Transit & Geoeconomic Assets: Montreux Convention (Straits), Black Sea Grain Corridor, Regional Energy Hub, Advanced UAV Defense Tech
 
 2.4.2. IN (Republic of India)
-   - Baseline with US: +0.60 (QUAD member, technological and defense integration)
-   - Baseline with RU: +0.50 (Primary buyer of discounted Urals crude, historical defense ties)
-   - Baseline with CN: -0.40 (Border friction in Himalayas, manufacturing competition)
+   - Baseline with US: +0.55 (QUAD member, technological and defense integration, counter-hegemonic partnership)
+   - Baseline with RU: +0.60 (Special & privileged strategic partnership, primary buyer of discounted Urals crude, historical defense ties)
+   - Baseline with CN: -0.30 (Controlled Himalayan border friction vs. BRICS multilateral equilibrium, manufacturing competition)
 
 2.4.3. SA & AE (Gulf Monarchies)
-   - Baseline with US: +0.40 (Security guarantor role intact, but structurally damaged by the official expiration of the 50-year Petrodollar exclusivity agreement)
-   - Baseline with CN: +0.55 (Primary hydrocarbon buyer, expanded via local currency swaps, but legacy systemic ties maintained after SA's official exit from the mBridge CBDC platform)
+   - Baseline with US: +0.50 (Petrodollar axis and emerging mutual defense pact, security guarantor role intact despite multi-currency trade balancing)
+   - Baseline with CN: +0.60 (Comprehensive strategic partnership, petro-yuan energy synergy, primary hydrocarbon buyer after SA's official exit from mBridge)
    - Coordination Axis: Independent "Petro-Multi-Currency" oil pricing architecture, OPEC+ compliance with Russia, and non-aligned bilateral trade settlement balancing
 
 ### 2.5. East Asian & Indo-Pacific Standoff (Kore Yarımadası ve Pasifik Hattı)

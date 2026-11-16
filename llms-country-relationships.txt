@@ -9,7 +9,7 @@
 # Total Registered Sovereign Hubs: 4 Hubs
 # Total Registered Bilateral Dyads: 165 Dyads (100% Invariant Zero-Loss Architecture)
 # Architecture: Top-Down Master Router + Bottom-Up Sovereign Hub Shelves (SSOT)
-# Last Compiled: 2026-11-16T15:04:39Z
+# Last Compiled: 2026-11-16T15:17:34Z
 # Language: English (Machine-Readable Dual-Layer Geopolitical Matrix)
 # License: Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 # ==============================================================================
@@ -116,7 +116,7 @@
 
 - Dyad: GEO_US ↔ GEO_IL | ID: REL_GEO_US_GEO_IL
   Ref: United States ↔ State of Israel
-  P_baseline: +0.80 (Ironclad Strategic & Qualitative Military Edge (QME) | Category: Middle Eastern Security Architecture & Tactical Intelligence Axis
+  P_baseline: +0.80 (Ironclad Strategic & Qualitative Military Edge (QME)) | Category: Middle Eastern Security Architecture & Tactical Intelligence Axis
   Shelf Pointer: https://analysisreports.github.io/llms-country-relationships-us.txt#REL_GEO_US_GEO_IL
 
 - Dyad: GEO_US ↔ GEO_JP | ID: REL_GEO_US_GEO_JP

@@ -613,6 +613,3 @@ Core Strategic Flashpoints:
   2. Colombo Port City special economic zone developing as a major offshore financial center under Chinese commercial administration.
 Cross-Reference Multilateral Nodes: CHOKE_MALACCA, GEO_IN, GEO_US
 
-
-
-# ==============================================================================
