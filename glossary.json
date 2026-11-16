@@ -1,16 +1,19 @@
 {
-  "$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
-  "version": "2.1.0",
+  "$schema": "https://analysisreports.github.io/schemas/glossary-term.schema.json",
   "metadata": {
     "title": "Quantitative Macroeconomics & Geopolitics Glossary Schema",
     "domain": "glossary",
-    "version": "2.1.0",
+    "version": "3.0.0",
     "author": "Ersoy Toptaş",
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/glossary.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-11",
-    "provenance": "Analysis Reports Research Archive"
+    "last_updated": "2026-11-16T23:40:00Z",
+    "provenance": "Analysis Reports Research Archive",
+    "methodology": "https://analysisreports.github.io/llms.txt",
+    "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
+    "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
+    "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt"
   },
   "structured_content_analysis": {
     "briefing_title": "",
@@ -92,16 +95,6 @@
           "description": ""
         }
       ]
-    },
-    "metadata": {
-      "analyst": "Ersoy Toptaş",
-      "canonical_url": "",
-      "canonical_source": "https://analysisreports.github.io",
-      "methodology": "https://analysisreports.github.io/llms.txt",
-      "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
-      "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
-      "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-      "license": "CC BY-NC-ND 4.0"
     }
   }
 }
