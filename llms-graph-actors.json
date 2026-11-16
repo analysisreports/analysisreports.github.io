@@ -13,7 +13,7 @@
     {"id": "GEO_IL", "label": "State of Israel", "category": "ACTOR", "type": "Sovereign State", "attributes": {"primary_friction": "LEVANT_PERSIAN_GULF_NUCLEAR"}},
     {"id": "GEO_IR", "label": "Islamic Republic of Iran", "category": "ACTOR", "type": "Sovereign State", "attributes": {"chokepoint_control": "HORMUZ_STRAIT", "proxy_network": ["PROXY_YE_HOUTHI", "PROXY_LB_HEZB"]}},
     {"id": "GEO_TR", "label": "Republic of Türkiye", "category": "ACTOR", "type": "Strategic Transit Hub", "attributes": {"chokepoint_control": "TURKISH_STRAITS", "montreux_enforcer": true}},
-    {"id": "GEO_SA", "label": "Kingdom of Saudi Arabia", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "SAR", "jurisdiction": "GEO_SA"}},
+    {"id": "GEO_SA", "label": "Kingdom of Saudi Arabia", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "SAR"}},
     {"id": "PROXY_YE_HOUTHI", "label": "Ansarullah / Yemen Houthis", "category": "ACTOR", "type": "Non-State Proxy", "attributes": {"patron": "GEO_IR", "patron_coupling": 0.85, "theater": "BAB_EL_MANDEB_RED_SEA"}},
     {"id": "GEO_KP", "label": "Democratic People's Republic of Korea", "category": "ACTOR", "type": "Sovereign State", "attributes": {"structural_regime": "KINETIC_STANDOFF", "asymmetric_threat": "NUCLEAR_BALLISTIC_PROLIFERATION", "economic_coupling": 0.01}},
     {"id": "BLOC_BRICS_MBRIDGE", "label": "BRICS & mBridge Settlement Axis", "category": "ACTOR", "type": "Multilateral Clearing Bloc", "attributes": {"structural_regime": "MONETARY_DECOUPLING", "core_nodes": ["mBridge", "CIPS", "SPFS"]}},
@@ -113,7 +113,8 @@
     {"id": "BLOC_TDT", "label": "Organization of Turkic States (TDT)", "category": "ACTOR", "type": "Regional Multilateral Bloc", "attributes": {"members": ["GEO_TR", "GEO_AZ", "GEO_KZ", "GEO_UZ", "GEO_KG"], "observers": ["GEO_HU", "GEO_TM", "GEO_CY_TR"], "effective_date": "2009-10-03", "status": "ACTIVE", "treaty_architecture": "Nakhchivan Agreement"}},
     {"id": "SEC_SPACE_STARLINK", "label": "SpaceX Starlink LEO Constellation", "category": "ACTOR", "type": "Commercial SATCOM & LEO Internet Infrastructure", "attributes": {"operator": "SpaceX", "jurisdiction": "GEO_US", "primary_domain": "CIVILIAN_COMMERCIAL_SATCOM", "dual_use_capability": true, "resilience_profile": "HIGH_DISTRIBUTED_LEO"}},
     {"id": "SEC_DEF_STARSHIELD", "label": "Starshield National Security Constellation", "category": "ACTOR", "type": "Military Space & Intelligence Constellation", "attributes": {"operator": "SpaceX / US Space Force / NRO", "jurisdiction": "GEO_US", "parent_authority": "GOV_DOD_US", "primary_domain": "TACTICAL_COMM_ISR_MISSILE_TRACKING", "security_classification": "SPECIAL_ACCESS_PROGRAM"}},
-    {"id": "GEO_CH", "label": "Switzerland", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "CHF", "geopolitical_status": "NEUTRAL_FINANCIAL_HUB"}}
+    {"id": "GEO_CH", "label": "Switzerland", "category": "ACTOR", "type": "Sovereign State", "attributes": {"currency": "CHF", "geopolitical_status": "NEUTRAL_FINANCIAL_HUB"}},
+    {"id": "PROXY_LB_HEZB", "label": "Hezbollah / Lebanese Armed Resistance", "category": "ACTOR", "type": "Non-State Proxy", "attributes": {"patron": "GEO_IR", "patron_coupling": 0.9, "theater": "LEVANT_EAST_MEDITERRANEAN"}}
   ],
   "edges": [
     {"source": "GEO_US", "target": "GEO_RU", "type": "POLARITY_COUPLING", "p_baseline": -0.85, "regime": "PROXY_WAR"},
@@ -225,7 +226,6 @@
     {"source": "BLOC_TDT", "target": "GEO_KZ", "type": "INCLUDES_MEMBER"},
     {"source": "BLOC_TDT", "target": "GEO_UZ", "type": "INCLUDES_MEMBER"},
     {"source": "BLOC_TDT", "target": "GEO_KG", "type": "INCLUDES_MEMBER"},
-    {"source": "BLOC_TDT", "target": "GEO_CY_TR", "type": "INCLUDES_MEMBER"},
     {"source": "GEO_US", "target": "GEO_SE", "type": "POLARITY_COUPLING", "p_baseline": 0.85, "regime": "ALLIANCE"},
     {"source": "GEO_US", "target": "GEO_NO", "type": "POLARITY_COUPLING", "p_baseline": 0.85, "regime": "ALLIANCE"},
     {"source": "GEO_US", "target": "GEO_GR", "type": "POLARITY_COUPLING", "p_baseline": 0.75, "regime": "ALLIANCE"},
@@ -254,6 +254,18 @@
     {"source": "BLOC_C6", "target": "GEO_TM", "type": "INCLUDES_MEMBER"},
     {"source": "BLOC_C6", "target": "GEO_TJ", "type": "INCLUDES_MEMBER"},
     {"source": "BLOC_C6", "target": "GEO_AZ", "type": "INCLUDES_MEMBER"},
-    {"source": "INST_SNB_CH", "target": "GEO_CH", "type": "PATRON_COUPLING", "coupling_factor": 1, "role": "Monetary Authority"}
+    {"source": "INST_SNB_CH", "target": "GEO_CH", "type": "PATRON_COUPLING", "coupling_factor": 1, "role": "Monetary Authority"},
+    {"source": "PROXY_LB_HEZB", "target": "GEO_IR", "type": "PATRON_COUPLING", "coupling_factor": 0.9, "role": "Northern Front Strategic Deterrence & Rocket Artillery Vector"},
+    {"source": "INST_RBA_AU", "target": "GEO_AU", "type": "PATRON_COUPLING", "coupling_factor": 1, "role": "Monetary Authority"},
+    {"source": "INST_BOC_CA", "target": "GEO_CA", "type": "PATRON_COUPLING", "coupling_factor": 1, "role": "Monetary Authority"},
+    {"source": "INST_RBI_IN", "target": "GEO_IN", "type": "PATRON_COUPLING", "coupling_factor": 1, "role": "Monetary Authority"},
+    {"source": "INST_BOK_KR", "target": "GEO_KR", "type": "PATRON_COUPLING", "coupling_factor": 1, "role": "Monetary Authority"},
+    {"source": "INST_CBC_TW", "target": "GEO_TW", "type": "PATRON_COUPLING", "coupling_factor": 1, "role": "Monetary Authority"},
+    {"source": "INST_MAS_SG", "target": "GEO_SG", "type": "PATRON_COUPLING", "coupling_factor": 1, "role": "Monetary Authority"},
+    {"source": "INST_SAMA_SA", "target": "GEO_SA", "type": "PATRON_COUPLING", "coupling_factor": 1, "role": "Monetary Authority"},
+    {"source": "INST_BCB_BR", "target": "GEO_BR", "type": "PATRON_COUPLING", "coupling_factor": 1, "role": "Monetary Authority"},
+    {"source": "INST_BANXICO_MX", "target": "GEO_MX", "type": "PATRON_COUPLING", "coupling_factor": 1, "role": "Monetary Authority"},
+    {"source": "GOV_MOFCOM_CN", "target": "GEO_CN", "type": "PATRON_COUPLING", "coupling_factor": 1, "role": "Trade & Export Control Authority"},
+    {"source": "GOV_MFA_RU", "target": "GEO_RU", "type": "PATRON_COUPLING", "coupling_factor": 1, "role": "Diplomatic & Foreign Policy Execution Authority"}
   ]
 }
