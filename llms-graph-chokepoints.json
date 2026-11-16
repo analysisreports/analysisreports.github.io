@@ -144,6 +144,53 @@
         "disruption_severity": "HIGH",
         "severity_weight": 0.7
       }
+    },
+    {
+      "id": "CHOKE_TURKISH_STRAITS",
+      "label": "Turkish Straits (Bosphorus & Dardanelles)",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "41°07'N 29°04'E & 40°12'N 26°24'E",
+        "regime_framework": "1936 Montreux Convention",
+        "sovereign_authority": "GEO_TR",
+        "disruption_severity": "HIGH",
+        "severity_weight": 0.8
+      }
+    },
+    {
+      "id": "CHOKE_GIUK_GAP",
+      "label": "GIUK Gap (Greenland-Iceland-UK)",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "63°00'N 18°00'W",
+        "strategic_domain": "Transatlantic Subsea Cables & ASW Chokepoint",
+        "disruption_severity": "CATASTROPHIC",
+        "severity_weight": 0.95
+      }
+    },
+    {
+      "id": "CHOKE_LOMBOK",
+      "label": "Lombok Strait",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "08°30'S 115°45'E",
+        "strategic_domain": "Deep-Draft Capesize & Submarine Transit",
+        "sovereign_authority": "GEO_ID",
+        "disruption_severity": "MODERATE_HIGH",
+        "severity_weight": 0.75
+      }
+    },
+    {
+      "id": "CHOKE_MAKASSAR",
+      "label": "Makassar Strait",
+      "category": "CHOKEPOINT",
+      "attributes": {
+        "location": "00°20'S 118°10'E",
+        "strategic_domain": "Archipelagic Deepwater Corridor",
+        "sovereign_authority": "GEO_ID",
+        "disruption_severity": "MODERATE_HIGH",
+        "severity_weight": 0.7
+      }
     }
   ],
   "edges": [
@@ -388,6 +435,54 @@
       "source": "GEO_AE",
       "target": "CHOKE_HORMUZ",
       "type": "FLANKS_CHOKEPOINT"
+    },
+    {
+      "source": "GEO_TR",
+      "target": "CHOKE_TURKISH_STRAITS",
+      "type": "REGULATES_TRANSIT",
+      "description": "Exclusive sovereign jurisdiction and transit enforcement under the 1936 Montreux Convention."
+    },
+    {
+      "source": "CHOKE_TURKISH_STRAITS",
+      "target": "COMMODITY_CRUDE_OIL",
+      "type": "SUPPLY_DISRUPTION",
+      "description": "Disruption of Black Sea seaborne crude and refined petroleum exports (~3.0M bpd)."
+    },
+    {
+      "source": "GEO_ID",
+      "target": "CHOKE_LOMBOK",
+      "type": "REGULATES_TRANSIT",
+      "description": "Archipelagic sea lanes passage (ALKI II) regulation."
+    },
+    {
+      "source": "GEO_ID",
+      "target": "CHOKE_MAKASSAR",
+      "type": "REGULATES_TRANSIT",
+      "description": "Internal deepwater corridor surveillance and navigation safety."
+    },
+    {
+      "source": "CHOKE_GIUK_GAP",
+      "target": "MODEL_25.11",
+      "type": "EXECUTES_MODEL",
+      "severity_enum": "CATASTROPHIC"
+    },
+    {
+      "source": "GEO_BO",
+      "target": "ENERGY_LITHIUM",
+      "type": "HAS_LITHIUM_RESOURCES",
+      "description": "Holds world's largest identified lithium resources (~23M tonnes, Salar de Uyuni) with no commercial-scale production."
+    },
+    {
+      "source": "GEO_CL",
+      "target": "ENERGY_LITHIUM",
+      "type": "EXPORTS_LITHIUM",
+      "description": "World's second-largest lithium producer and dominant brine exporter via Salar de Atacama."
+    },
+    {
+      "source": "GEO_AR",
+      "target": "ENERGY_LITHIUM",
+      "type": "PRODUCES_LITHIUM",
+      "description": "Rapidly expanding commercial lithium extraction projects across the Puna plateau."
     }
   ],
   "metadata": {

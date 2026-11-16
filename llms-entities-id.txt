@@ -241,7 +241,9 @@ CHOKE_SUWALKI_GAP    | Aliases: Suwalki Gap
 CHOKE_PANAMA         | Aliases: Panama Canal
 CHOKE_DANISH_STRAITS | Aliases: Danish Straits, Great Belt, The Sound
 CHOKE_GIUK_GAP       | Aliases: GIUK Gap, Greenland-Iceland-UK Gap
-CHOKE_LOMBOK_MAKASSAR| Aliases: Lombok & Makassar Straits, Lombok Strait, Makassar Strait
+CHOKE_LOMBOK_MAKASSAR| Aliases: Lombok & Makassar Straits, Indonesian Archipelagic Deep-Draft Corridor
+CHOKE_LOMBOK         | Aliases: Lombok Strait, Selat Lombok
+CHOKE_MAKASSAR       | Aliases: Makassar Strait, Selat Makassar
 CHOKE_GIBRALTAR      | Aliases: Strait of Gibraltar, Gibraltar
 CHOKE_BERING         | Aliases: Bering Strait, Polar Silk Road Corridor
 CHOKE_MOZAMBIQUE     | Aliases: Mozambique Channel
