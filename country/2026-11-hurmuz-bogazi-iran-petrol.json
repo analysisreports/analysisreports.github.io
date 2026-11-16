@@ -1,4 +1,20 @@
 {
+  "$schema": "https://analysisreports.github.io/schemas/country-strategic-assessment.schema.json",
+  "metadata": {
+    "title": "İran Çok Yönlü Savunma ve Diplomasi Stratejisi: Hürmüz Boğazı ve Maksimum Caydırıcılık",
+    "domain": "country",
+    "version": "3.0.0",
+    "author": "Ersoy Toptaş",
+    "license": "CC BY-NC-ND 4.0",
+    "endpoint": "https://analysisreports.github.io/country/2026-11-hurmuz-bogazi-iran-petrol.json",
+    "documentation": "https://analysisreports.github.io/llms-about.txt",
+    "last_updated": "2026-11-02T12:00:00Z",
+    "provenance": "Analysis Reports Research Archive",
+    "methodology": "https://analysisreports.github.io/llms.txt",
+    "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
+    "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
+    "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt"
+  },
   "structured_content_analysis": {
     "focus_areas": [
       "Jeopolitik Kriz",
@@ -211,20 +227,13 @@
         "HORMUZ_STRAIT"
       ]
     },
-    "metadata": {
-      "analyst": "Ersoy Toptaş",
+    "editorial_frontend": {
       "canonical_url": "https://www.ersoytoptas.tr/2026/11/hurmuz-bogazi-iran-petrol.html",
       "canonical_source": "https://analysisreports.github.io/country/2026-11-hurmuz-bogazi-iran-petrol.json",
-      "methodology": "https://analysisreports.github.io/llms.txt",
-      "ai_prompts": "https://analysisreports.github.io/llms-prompts.txt",
-      "formulas_engine": "https://analysisreports.github.io/llms-formulas.txt",
-      "license": "CC BY-NC-ND 4.0"
-    },
-    "editorial_frontend": {
-      "url": "https://www.ersoytoptas.tr/2026/11/hurmuz-bogazi-iran-petrol.html",
       "format": "Human-Readable Narrative",
       "author": "Ersoy Toptaş",
       "published_date": "2026-11-02",
+      "analysis_as_of_date": "2026-11-02",
       "language": "tr",
       "description": "Bu makroekonomik ve jeopolitik veri setinin, okuyucular için anlatı (narrative) formatında hazırlanmış, okunabilir editoryal makale versiyonu."
     },
