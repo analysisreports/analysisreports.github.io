@@ -1000,15 +1000,6 @@ def main():
                 parts.append(f'{item["trigger_id"]}: {item["direction"]:+d} × {value} = {contribution} ({item["status"]})')
             lines_rel.append(f'| **{a["id"]}** | {"; ".join(parts)} | {a["dominant_trigger"] or "UNAVAILABLE"} |')
         lines_rel.append('<!-- DYNAMIC_POLARITY_END -->')
-        lines_rel.append('')
-        lines_rel.append('### 1.2. RATIFIED BILATERAL & MULTILATERAL DEFENSE TREATIES (ACTIVE DELTAS)')
-        lines_rel.append('> **Deterministic Treaty Ledger:** Strictly lists ratified bilateral/multilateral security treaties conferring active parametric delta uplifts to P_net. Dyads without active treaty uplifts are excluded.')
-        lines_rel.append('')
-        lines_rel.append('| Actor Pair | Treaty / Bloc Entity | Framework Name | Ratification Status | Treaty Delta | Strategic Operational Scope |')
-        lines_rel.append('| :--- | :--- | :--- | :---: | :---: | :--- |')
-        lines_rel.append('| **TR_SA** | BLOC_MECCA_DEFENSE | Mecca Defense Pact | RATIFIED / ACTIVE | +0.10 | Integrated Air-Naval Security, Red Sea Chokepoint Defense |')
-        lines_rel.append('| **SA_PK** | BLOC_MECCA_DEFENSE | Mecca Defense Pact | RATIFIED / ACTIVE | +0.10 | Strategic Deterrence, Financial & Nuclear Security Architecture |')
-        lines_rel.append('| **TR_PK** | BLOC_MECCA_DEFENSE | Mecca Defense Pact | RATIFIED / ACTIVE | +0.10 | Advanced Aerospace Co-Production, 5th Gen Fighter Integration |')
         new_polarity_block = '\n'.join(lines_rel)
 
         
