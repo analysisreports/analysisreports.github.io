@@ -55,7 +55,11 @@ Core Manifests & System Engines:
 - Graph RAG Ontological Network (llms-graph.json): https://analysisreports.github.io/llms-graph.json
 - Agentic Resource Discovery Catalog (ai-catalog.json): https://analysisreports.github.io/ai-catalog.json
 - Agent Tool Calling & Function Manifest (llms-tools.json): https://analysisreports.github.io/llms-tools.json
-- Quantitative Formula Engine (llms-formulas.txt): https://analysisreports.github.io/llms-formulas.txt
+- Quantitative Formula Engine & Master Router (llms-formulas.txt): https://analysisreports.github.io/llms-formulas.txt
+  * Rates & Liquidity Domain Shelf: https://analysisreports.github.io/llms-formulas-rates-liquidity.txt
+  * Macro & Labor Dynamics Domain Shelf: https://analysisreports.github.io/llms-formulas-macro-labor.txt
+  * Commodities & Shocks Domain Shelf: https://analysisreports.github.io/llms-formulas-commodities-shock.txt
+  * Geopolitics & Alliances Domain Shelf: https://analysisreports.github.io/llms-formulas-geopolitics.txt
 - Canonical FRED/BLS Data Dictionary (llms-indicators.txt): https://analysisreports.github.io/llms-indicators.txt
 - Geopolitical Relationship Matrix (llms-relationships.txt): https://analysisreports.github.io/llms-relationships.txt
 - Bilateral Country Relationships (llms-country-relationships.txt): https://analysisreports.github.io/llms-country-relationships.txt
