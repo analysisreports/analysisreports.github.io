@@ -979,6 +979,8 @@ def main():
             trigger_value = trigger['value'] if trigger['value'] is not None else 'null'
             lines_rel.append(f'> **{trigger["entity_id"]}:** {trigger_value} | {trigger["status"]}' + (f' | {trigger["warning"]}' if trigger["warning"] else ''))
         lines_rel.append('')
+        lines_rel.append('> **AI Zero-Fallback & Integrity Protocol:** When any required input time-series is unobserved, delayed at the official source, or misaligned in observation dates, the dynamic delta strictly evaluates to `null` (`UNAVAILABLE`). In strict adherence to Rule 1 (No Hallucination) and Zero-Fallback standards, synthetic defaults, proxies, or mock numbers are NEVER fabricated.')
+        lines_rel.append('')
         lines_rel.append('| Actor Pair | P_baseline (Structural) | Dynamic Delta (Model 25.19) | Mecca Pact Delta | Legacy Delta (Not Added) | P_net (Active Polarity) | Active Regime State | Structural Primary Driver |')
         lines_rel.append('| :--- | :---: | :---: | :---: | :---: | :---: | :--- | :--- |')
         for a in relationships_output:
