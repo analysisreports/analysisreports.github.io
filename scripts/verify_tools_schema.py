@@ -49,8 +49,8 @@ def audit_tools_schema() -> List[str]:
     if not isinstance(tools, list):
         return ["CRITICAL: Root 'tools' element is not an array."]
 
-    if len(tools) < 62:
-        errors.append(f"INCOMPLETE TOOL SUITE: Expected at least 62 registered tools, found {len(tools)}.")
+    if len(tools) < 64:
+        errors.append(f"INCOMPLETE TOOL SUITE: Expected at least 64 registered tools, found {len(tools)}.")
 
     seen_names = set()
     for idx, tool in enumerate(tools):
@@ -122,6 +122,8 @@ def audit_tools_schema() -> List[str]:
         "calculate_confidence_score",
         "calculate_committee_dispersion",
         "calculate_mecca_pact_transmission",
+        "calculate_dynamic_macro_triggers",
+        "calculate_adjusted_market_impact",
         "validate_forecast_baseline"
     ]
     for m in must_have_tools:
@@ -146,7 +148,7 @@ def main():
         sys.exit(1)
     else:
         print("\n[SUCCESS] 100% VALIDATED TOOL SPECIFICATION SUITE:")
-        print("  - Total Active Tools Registered: 62 tools")
+        print("  - Total Active Tools Registered: 64 tools")
         print("  - Zero Duplicate Tool Names")
         print("  - Zero Missing or Empty Parameter Descriptions")
         print("  - 100% Required Parameter Integrity")

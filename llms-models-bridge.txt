@@ -77,7 +77,7 @@
 - Target Formula: llms-formulas.txt -> Model 25.9 (gasoline_321_crack_spread)
 - Data Series Triggered: IND_DGASNYH, IND_DDFUELNYH, IND_DCOILWTICO (exact same-date observations required)
 - Context Series: IND_PET_WGTSTUS1_W gasoline stocks; not a days-of-supply input
-- Status Enums: CRACK_SPREAD_EXPANDING, CRACK_SPREAD_CONTRACTING, or CRACK_SPREAD_UNCHANGED based on the 3:2:1 spread versus the same formula applied to year-ago prices; UNCLASSIFIED if prior-year inputs are incomplete
+- Status Enums: CRACK_SPREAD_EXPANDING | CRACK_SPREAD_CONTRACTING | CRACK_SPREAD_UNCHANGED | UNCLASSIFIED
 - Interpretation: New York Harbor spot benchmark proxy; GASREGW is a retail price and is not a crack-spread input.
 - Primary Geopolitical Vector: Asymmetric maritime re-routing (6.2), Mediterranean (TR) & South Asian (IN) logistics and refining hubs (5.4), Black Sea and Danish Straits shipping curbs (4.4, 4.8).
 

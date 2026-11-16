@@ -32,6 +32,71 @@ REL_JSON = os.path.join(ROOT_DIR, "llms-relationships.json")
 GRAPH_JSON = os.path.join(ROOT_DIR, "llms-graph.json")
 BRIDGE_TXT = os.path.join(ROOT_DIR, "llms-models-bridge.txt")
 FORMULAS_TXT = os.path.join(ROOT_DIR, "llms-formulas.txt")
+TOOLS_JSON = os.path.join(ROOT_DIR, "llms-tools.json")
+GRAPH_ACTORS_JSON = os.path.join(ROOT_DIR, "llms-graph-actors.json")
+GRAPH_CHOKEPOINTS_JSON = os.path.join(ROOT_DIR, "llms-graph-chokepoints.json")
+GRAPH_MODELS_JSON = os.path.join(ROOT_DIR, "llms-graph-models.json")
+ENTITIES_TXT = os.path.join(ROOT_DIR, "llms-entities-id.txt")
+
+FORMULA_TO_TOOL_OVERRIDE = {
+    "fed_policy_spread": "calculate_fed_policy_spread",
+    "financial_conditions_regime": "calculate_financial_conditions_regime",
+    "acm_term_premium_breakdown": "calculate_acm_term_premium_breakdown",
+    "gasoline_321_crack_spread": "calculate_gasoline_crude_crack_spread",
+    "governance_gridlock_friction_engine": "calculate_governance_gridlock_friction",
+    "calc_dynamic_macro_triggers": "calculate_dynamic_macro_triggers",
+    "committee_dispersion": "calculate_committee_dispersion",
+    "adjusted_market_impact": "calculate_adjusted_market_impact",
+}
+
+def verify_tools_graph_bridge_sync() -> int:
+    """Verifies 100% synchronization across llms-tools.json, llms-graph-models.json, and llms-models-bridge.txt."""
+    errors = []
+    if not (os.path.exists(TOOLS_JSON) and os.path.exists(GRAPH_MODELS_JSON) and os.path.exists(BRIDGE_TXT)):
+        return 0
+
+    with open(TOOLS_JSON, "r", encoding="utf-8") as f:
+        tools_data = json.load(f)
+    tool_names = {t["function"]["name"] for t in tools_data.get("tools", [])}
+
+    with open(GRAPH_MODELS_JSON, "r", encoding="utf-8") as f:
+        models_data = json.load(f)
+    model_nodes = {n["id"]: n for n in models_data.get("nodes", []) if n.get("category") == "MODEL"}
+
+    # 1. Every MODEL node function must exist in tools
+    for mid, node in model_nodes.items():
+        fn = node.get("attributes", {}).get("function")
+        if not fn or fn not in tool_names:
+            errors.append(f"{mid} function '{fn}' not found in llms-tools.json")
+
+    # 2. Bridge Target Formulas & Status Enums
+    with open(BRIDGE_TXT, "r", encoding="utf-8") as f:
+        bridge_txt = f.read()
+
+    bridge_blocks = re.split(r"\n(?=\d+\.\d+\.\d+\.\s+)", bridge_txt)
+    for block in bridge_blocks:
+        m_formula = re.search(r"Target Formula:\s*llms-formulas\.txt\s*->\s*Model\s+([\d.]+)\s*\(([^)]+)\)", block)
+        if not m_formula:
+            continue
+        model_id = f"MODEL_{m_formula.group(1)}"
+        raw_fn = m_formula.group(2).strip()
+        canonical_fn = FORMULA_TO_TOOL_OVERRIDE.get(raw_fn, raw_fn if raw_fn.startswith("calculate_") else f"calculate_{raw_fn}")
+        if canonical_fn not in tool_names:
+            errors.append(f"Bridge {model_id} formula '{raw_fn}' -> '{canonical_fn}' missing in llms-tools.json")
+
+        m_enums = re.search(r"Status Enums:\s*(.+)", block)
+        if m_enums and model_id in model_nodes and "status_enums" in model_nodes[model_id].get("attributes", {}):
+            bridge_enums = {e.strip() for e in m_enums.group(1).split("|")}
+            graph_enums = set(model_nodes[model_id]["attributes"]["status_enums"])
+            if bridge_enums != graph_enums:
+                errors.append(f"Enum mismatch on {model_id}: bridge={bridge_enums} vs graph={graph_enums}")
+
+    if errors:
+        print(f"[FAIL] Tools <-> Graph <-> Bridge synchronization detected {len(errors)} issues:")
+        for err in errors:
+            print(f"  - {err}")
+
+    return len(errors)
 
 def load_master_country_polarities(txt_path: str) -> Dict[Tuple[str, str], float]:
     country_map = {}
@@ -399,13 +464,18 @@ def main():
     dup_label = "structural duplicates found" if structural_duplicates > 0 else "structural duplicates verified (0 duplicates)"
     print(f"[*] Structural Duplicate Guard    : {structural_duplicates} {dup_label}")
 
-    total_synced = txt_sync + graph_sync + json_sync + bridge_mismatches + structural_duplicates
+    # 6. Audit Tools <-> Graph <-> Bridge Synchronization
+    tools_graph_sync = verify_tools_graph_bridge_sync()
+    tgs_label = "function/enum mismatches found" if tools_graph_sync > 0 else "function/enum sync verified (0 mismatches)"
+    print(f"[*] Tools-Graph-Bridge Sync       : {tools_graph_sync} {tgs_label}")
+
+    total_synced = txt_sync + graph_sync + json_sync + bridge_mismatches + structural_duplicates + tools_graph_sync
     print("-" * 70)
     if args.check and total_synced > 0:
         print(f"[FAIL] Found {total_synced} cross-file discrepancies, duplicates or unresolved references; no files were modified.")
         exit_code = 1
-    elif bridge_mismatches > 0 or structural_duplicates > 0:
-        print(f"[FAIL] Found {bridge_mismatches} unresolved cross-references or {structural_duplicates} duplicates!")
+    elif bridge_mismatches > 0 or structural_duplicates > 0 or tools_graph_sync > 0:
+        print(f"[FAIL] Found {bridge_mismatches} unresolved cross-references, {structural_duplicates} duplicates, or {tools_graph_sync} function/enum mismatches!")
         exit_code = 1
     elif total_synced > 0:
         print(f"[AUTO-HEALED] Successfully equalized {total_synced} discrepancies across secondary files!")

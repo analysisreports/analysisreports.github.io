@@ -7,253 +7,2318 @@
   "version": "3.0.0",
   "subgraph_domain": "MACRO_MODELS_AND_INDICATORS",
   "nodes": [
-    {"id": "IND_WALCL", "label": "Fed Total Assets (WALCL)", "category": "INDICATOR", "attributes": {"source": "FRED", "units": "Millions USD", "trans": "lin", "mult": 1}},
-    {"id": "IND_WTREGEN", "label": "Treasury General Account (WTREGEN)", "category": "INDICATOR", "attributes": {"source": "FRED", "units": "Millions USD", "trans": "lin", "mult": 1}},
-    {"id": "IND_RRPONTSYD", "label": "Overnight Reverse Repo (RRPONTSYD)", "category": "INDICATOR", "attributes": {"source": "NY Fed / FRED", "units": "Billions USD", "trans": "lin", "mult": 1000}},
-    {"id": "IND_DFF", "label": "Federal Funds Effective Rate (DFF)", "category": "INDICATOR", "type": "Benchmark Interest Rate", "attributes": {"source": "FRED", "units": "Percent (%)", "trans": "lin"}},
-    {"id": "IND_SOFR", "label": "Secured Overnight Financing Rate (SOFR)", "category": "INDICATOR", "attributes": {"source": "NY Fed / FRED", "units": "Percent (%)", "mult_for_bps": 100}},
-    {"id": "IND_EFFR", "label": "Effective Federal Funds Rate (EFFR)", "category": "INDICATOR", "attributes": {"source": "NY Fed / FRED", "units": "Percent (%)", "mult_for_bps": 100}},
-    {"id": "IND_VIXCLS", "label": "CBOE Volatility Index (VIXCLS)", "category": "INDICATOR", "attributes": {"source": "CBOE / FRED", "units": "Index", "trans": "lin"}},
-    {"id": "IND_GSCPI", "label": "NY Fed Global Supply Chain Pressure Index (GSCPI)", "category": "INDICATOR", "attributes": {"source": "Federal Reserve Bank of New York", "units": "Standard Deviations", "trans": "lin"}},
-    {"id": "IND_OVXCLS", "label": "CBOE Crude Oil Volatility Index (OVXCLS)", "category": "INDICATOR", "attributes": {"source": "CBOE / FRED", "units": "Index", "trans": "lin"}},
-    {"id": "IND_DCOILWTICO", "label": "Crude Oil WTI (DCOILWTICO)", "category": "INDICATOR", "attributes": {"source": "EIA / FRED", "units": "USD per Barrel", "trans": "lin"}},
-    {"id": "IND_DGASNYH", "label": "New York Harbor Conventional Gasoline Spot Price (DGASNYH)", "category": "INDICATOR", "attributes": {"source": "FRED", "units": "USD per Gallon", "trans": "lin"}},
-    {"id": "IND_DDFUELNYH", "label": "New York Harbor ULSD Spot Price (DDFUELNYH)", "category": "INDICATOR", "attributes": {"source": "FRED", "units": "USD per Gallon", "trans": "lin"}},
-    {"id": "IND_DHHNGSP", "label": "Henry Hub Natural Gas Spot Price (DHHNGSP)", "category": "INDICATOR", "attributes": {"source": "EIA / FRED", "units": "USD per MMBtu", "trans": "lin"}},
-    {"id": "IND_GASREGW", "label": "US Regular Retail Gasoline Price (GASREGW)", "category": "INDICATOR", "attributes": {"source": "EIA / FRED", "units": "USD per Gallon", "trans": "lin"}},
-    {"id": "IND_WB_GOLD", "label": "World Bank Official Gold Price (WB_GOLD)", "category": "INDICATOR", "attributes": {"source": "World Bank (The Pink Sheet)", "units": "USD per Troy Ounce", "trans": "pc1"}},
-    {"id": "IND_DFII10", "label": "10-Year TIPS Real Rate (DFII10)", "category": "INDICATOR", "attributes": {"source": "U.S. Treasury / FRED", "units": "Percent (%)"}},
-    {"id": "MODEL_25.1", "label": "Dynamic Polarity & Regime Engine", "category": "MODEL", "attributes": {"function": "dynamic_polarity_engine", "formula": "P_net = min(1.0, max(-1.0, P_baseline + dynamic_delta))", "regimes": ["ALLIANCE", "STRATEGIC_ALIGNMENT", "TACTICAL_COOPERATION", "NEUTRAL", "STRATEGIC_FRICTION", "PROXY_WAR", "KINETIC_WAR"]}},
-    {"id": "MODEL_25.2", "label": "Sticky vs. Flexible CPI Spread Engine", "category": "MODEL", "attributes": {"function": "sticky_flexible_cpi_spread", "formula": "Sticky_Impulse = Sticky_CPI_YoY - Flexible_CPI_YoY", "status_enums": ["STRUCTURAL_INFLATION_TRAP", "TRANSITORY_INFLATION_SURGE", "BALANCED_DISINFLATION_PATH"]}},
-    {"id": "MODEL_25.3", "label": "NY Fed GSCPI Logistics Engine", "category": "MODEL", "attributes": {"function": "global_supply_chain_pressure", "formula": "GSCPI_ZScore = GSCPI_Value", "status_enums": ["SUPPLY_CHAIN_SHOCK", "LOGISTICS_DEFLATION_SLACK", "NORMALIZED_GLOBAL_TRADE"]}},
-    {"id": "MODEL_25.5", "label": "Repo Liquidity Friction Spread Engine", "category": "MODEL", "attributes": {"function": "repo_liquidity_friction_spread", "formula": "Repo_Friction_bps = (SOFR - EFFR) * 100", "status_enums": ["REPO_MARKET_LIQUIDITY_CRUNCH", "SYSTEMIC_CASH_DRAIN_WARNING", "COLLATERAL_SCARCITY_GLUT", "HEALTHY_MONETARY_TRANSMISSION"]}},
-    {"id": "MODEL_25.6", "label": "Gold / Real Yield Debasement Gauge", "category": "MODEL", "attributes": {"function": "gold_real_yield_debasement_gauge", "formula": "f(Real_Yield_10Y, Gold_YoY_Pct)", "status_enums": ["DEBALANCING_DEDOLLARIZATION_PANIC", "ACCOMMODATIVE_GOLD_BULL", "TRADITIONAL_REAL_RATE_DOMINANCE"]}},
-    {"id": "MODEL_25.7", "label": "OVX / VIX Geopolitical Energy Shock Engine", "category": "MODEL", "attributes": {"function": "ovx_vix_risk_premium", "formula": "Vol_Ratio = OVX_Index / VIX_Index", "status_enums": ["ENERGY_SUPPLY_SHOCK_ALARM", "EQUITY_PANIC_OVER_ENERGY", "BALANCED_ENERGY_VOLATILITY"]}},
-    {"id": "MODEL_25.8", "label": "NatGas / Crude Oil Price-Ratio Disconnect Engine", "category": "MODEL", "attributes": {"function": "natgas_crude_btu_disconnect", "formula": "Crude_NatGas_Price_Ratio = WTI_Price / NatGas_Price", "storage_context": "Current EIA storage level and year-over-year change are context metrics only; they do not enter the price ratio or status.", "status_enums": ["NATGAS_CRISIS_BLACKOUT_RISK", "NATGAS_GLUT_ENERGY_CHEAP", "ENERGY_PARITY_EQUILIBRIUM"]}},
-    {"id": "MODEL_25.9", "label": "Gasoline / Distillate / Crude 3:2:1 Crack Spread", "category": "MODEL", "attributes": {"function": "gasoline_321_crack_spread", "formula": "((2 * DGASNYH_USD_per_gal * 42) + (DDFUELNYH_USD_per_gal * 42)) / 3 - DCOILWTICO_USD_per_bbl", "input_alignment": "DGASNYH, DDFUELNYH, and DCOILWTICO must share the exact observation date.", "year_over_year_comparison": "Apply the same formula to the three FRED year_ago_value inputs; status describes direction, not absolute high/low.", "status_enums": ["CRACK_SPREAD_EXPANDING", "CRACK_SPREAD_CONTRACTING", "CRACK_SPREAD_UNCHANGED", "UNCLASSIFIED"]}},
-    {"id": "MODEL_28.3", "label": "Chokepoint Severity Multiplier Engine", "category": "MODEL", "attributes": {"function": "chokepoint_severity_multiplier", "formula": "Disruption_Weight = SEVERITY_WEIGHT_MAP[severity_enum]", "weight_map": {"CATASTROPHIC": 1, "HIGH": 0.7, "MODERATE-HIGH": 0.45, "MODERATE": 0.2}}},
-    {"id": "MODEL_28.4", "label": "Chokepoint Macro Transmission Bridge", "category": "MODEL", "attributes": {"function": "chokepoint_transmission_bridge", "formula": "Base_Shock = (Severity_Weight * Net_Deficit_Ratio * 70.0) + (Friction_Factor * 30.0); Spillover_Score = round(min(100.0, max(0.0, Base_Shock * Duration_Scale)))", "status_enums": ["CRITICAL_SYSTEMIC_SHOCK", "HIGH_SPILLOVER", "MODERATE_FRICTION", "LOCALIZED_IMPACT"]}},
-    {"id": "IND_DRTSCIS", "label": "Net % Tightening C&I Loan Standards (DRTSCIS)", "category": "INDICATOR", "attributes": {"source": "Board of Governors / FRED", "units": "Percent (%)", "freq": "Quarterly"}},
-    {"id": "IND_LNS12500000", "label": "Employed, Usually Work Full Time (LNS12500000)", "category": "INDICATOR", "attributes": {"source": "BLS / FRED", "units": "Thousands", "freq": "Monthly"}},
-    {"id": "IND_LNS12032194", "label": "Employed, Part-Time for Economic Reasons (LNS12032194)", "category": "INDICATOR", "attributes": {"source": "BLS / FRED", "units": "Thousands", "freq": "Monthly"}},
-    {"id": "MODEL_25.10", "label": "SLOOS Lending Standards Recession Gauge", "category": "MODEL", "attributes": {"function": "sloos_lending_tightness_gauge", "formula": "Credit_Tightening_Net_Pct = DRTSCIS", "status_enums": ["ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL", "RESTRICTIVE_CREDIT_CONTRACTION", "NEUTRAL_CREDIT_CONDITIONS", "AGGRESSIVE_CREDIT_EXPANSION"]}},
-    {"id": "MODEL_25.11", "label": "Full-Time vs. Involuntary Part-Time Crack Gauge", "category": "MODEL", "attributes": {"function": "hidden_employment_crack_gauge", "formula": "Crack_Spread = Part_Time_Econ_YoY_Pct - Full_Time_YoY_Pct", "status_enums": ["ACUTE_LABOR_MARKET_FRACTURE_RECESSION", "STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL", "STABLE_EMPLOYMENT_COMPOSITION", "ROBUST_FULL_TIME_EXPANSION"]}},
-    {"id": "IND_DCOILBRENTEU", "label": "Crude Oil Prices: Brent - Europe (DCOILBRENTEU)", "category": "INDICATOR", "attributes": {"source": "EIA / FRED", "units": "USD per Barrel", "freq": "Daily"}},
-    {"id": "MODEL_25.12", "label": "Brent-WTI Benchmark Price Spread", "category": "MODEL", "attributes": {"function": "brent_wti_spread", "formula": "Brent_WTI_Spread = DCOILBRENTEU - DCOILWTICO", "status_enums": ["WIDE_BRENT_WTI_SPREAD", "NARROW_BRENT_WTI_SPREAD", "TYPICAL_BRENT_WTI_SPREAD"]}},
-    {"id": "IND_WPU06", "label": "PPI Chemicals and Allied Products (WPU06)", "category": "INDICATOR", "attributes": {"source": "BLS / FRED", "units": "Index", "trans": "pc1"}},
-    {"id": "MODEL_9", "label": "Financial Repression & Debt Sustainability Index", "category": "MODEL", "attributes": {"function": "financial_repression_index", "formula": "Debt_Pressure_Index = (DGS10 - CPI_YoY) * (GFDEGDQ188S / 100)", "status_enums": ["REPRESSION_REGIME", "SUSTAINABLE_CYCLE", "DEBT_CRISIS_ALARM"]}},
-    {"id": "IND_PWHEAMTUSDM", "label": "Global Price of Wheat (PWHEAMTUSDM)", "category": "INDICATOR", "attributes": {"source": "IMF / FRED", "units": "USD per Metric Ton", "trans": "lin"}},
-    {"id": "IND_PCOPPUSDM", "label": "Global Price of Copper (PCOPPUSDM)", "category": "INDICATOR", "attributes": {"source": "IMF / FRED", "units": "USD per Metric Ton", "trans": "lin"}},
-    {"id": "MODEL_2", "label": "Real Policy Rate & Restrictiveness", "category": "MODEL", "attributes": {"function": "real_policy_rate", "formula": "Real_Policy_Rate = DFF - CPI_YoY", "status_enums": ["RESTRICTIVE", "NEUTRAL", "ACCOMMODATIVE"]}},
-    {"id": "MODEL_4", "label": "Front-End T-Bill Slope & Liquidity Spread", "category": "MODEL", "attributes": {"function": "front_end_liquidity_spread", "formula": "Front_End_Slope_bps = (DGS3MO - DGS1MO) * 100", "status_enums": ["NORMAL_SLOPE", "INVERTED_FRONT_END"]}},
-    {"id": "MODEL_5", "label": "Net Fed Liquidity Index", "category": "MODEL", "attributes": {"function": "net_fed_liquidity", "formula": "RRP_Millions = RRPONTSYD_Billions * 1000; Net_Liquidity_Millions = WALCL_Millions - (WTREGEN_Millions + RRP_Millions)", "status_enums": ["LIQUIDITY_EXPANSION", "NEUTRAL", "LIQUIDITY_CONTRACTION"]}},
-    {"id": "IND_PAYEMS", "label": "All Employees: Total Nonfarm Payrolls", "category": "INDICATOR", "attributes": {"source": "BLS / FRED"}},
-    {"id": "IND_UNRATE", "label": "Civilian Unemployment Rate", "category": "INDICATOR", "attributes": {"source": "BLS / FRED"}},
-    {"id": "IND_NASDAQSOX", "label": "PHLX Semiconductor Index", "category": "INDICATOR", "attributes": {"source": "NASDAQ / FRED"}},
-    {"id": "MODEL_25.13", "label": "Labor Market Momentum Index Engine", "category": "MODEL", "attributes": {"function": "labor_market_momentum_index", "formula": "LMMI = PAYEMS_YoY_Pct - UNRATE_YoY_Diff", "status_enums": ["STRONG_LABOR_EXPANSION", "MODERATE_LABOR_EXPANSION", "DECELERATING_LABOR_MOMENTUM", "BALANCED_LABOR_MARKET", "LABOR_MARKET_DETERIORATION_RISK"]}},
-    {"id": "MODEL_25.14", "label": "AI Hardware & Chip Stress Engine", "category": "MODEL", "attributes": {"function": "ai_chip_stress_gauge", "formula": "AI_CHIP_STRESS = (GSCPI * 0.40) - ((NASDAQSOX_YoY / 50.0) * 0.35) + ((VIXCLS / 20.0) * 0.25)", "status_enums": ["ACUTE_CHIP_SUPPLY_CRUNCH", "ELEVATED_SEMICONDUCTOR_BOTTLENECK", "BALANCED_HARDWARE_FLOW", "CHIP_SUPPLY_ABUNDANCE_EXPANSION"]}},
-    {"id": "MODEL_25.16", "label": "Yen Carry Trade Dissolution & Stress Gauge", "category": "MODEL", "type": "Macroeconomic Friction Model", "attributes": {"target_regimes": ["CALM_ACCUMULATION", "MANAGED_TIGHTENING", "COMPRESSION_WARNING", "UNWIND_LIQUIDATION_CRASH"], "jurisdiction": "GEO_JP", "function": "calculate_jpy_carry_crack", "formula": "Buffer_Carry = (Rate_US - Rate_JP) + Ret_JPY_30d", "status_enums": ["CALM_ACCUMULATION", "MANAGED_TIGHTENING", "COMPRESSION_WARNING", "UNWIND_LIQUIDATION_CRASH"]}},
-    {"id": "IND_DEXJPUS", "label": "Spot Exchange Rate USD/JPY", "category": "INDICATOR", "type": "Exchange Rate", "attributes": {"source": "FRED"}},
-    {"id": "IND_SAUPZPIOILBEGUSD", "label": "Fiscal Breakeven Oil Price for Saudi Arabia", "category": "INDICATOR", "type": "Macroeconomic Commodity Benchmark", "attributes": {"source": "IMF", "units": "USD per Barrel", "trans": "lin"}},
-    {"id": "IND_JP_FPOLM_PA", "label": "Central Bank Policy Rate for Japan", "category": "INDICATOR", "type": "Monetary Policy Benchmark", "attributes": {"source": "IMF IFS", "units": "Percent per Annum", "trans": "lin"}},
-    {"id": "IND_GB_FPOLM_PA", "label": "Central Bank Policy Rate for United Kingdom", "category": "INDICATOR", "type": "Monetary Policy Benchmark", "attributes": {"source": "IMF IFS", "units": "Percent per Annum", "trans": "lin"}},
-    {"id": "MODEL_25.18", "label": "Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact)", "category": "MODEL", "type": "Geopolitical Alliance Transmission Model", "attributes": {"target_regimes": ["TREATY_ACTIVE_SURPLUS_EXPANSION", "TREATY_ACTIVE_EQUILIBRIUM", "TREATY_ACTIVE_FISCAL_RESTRAINT"], "jurisdiction": "BLOC_MECCA_DEFENSE", "function": "calculate_mecca_pact_transmission", "formula": "Delta_Mecca = (Delta_treaty + Delta_oil + Delta_liquidity) * (1.0 - Friction_coproduction)", "status_enums": ["TREATY_ACTIVE_SURPLUS_EXPANSION", "TREATY_ACTIVE_EQUILIBRIUM", "TREATY_ACTIVE_FISCAL_RESTRAINT"]}},
-    {"id": "MODEL_18", "label": "Okun Misery Index", "category": "MODEL", "attributes": {"function": "misery_index", "formula": "Misery_Index = UNRATE + CPI_YoY", "status_enums": ["GOLDILOCKS", "MODERATE", "ELEVATED_STRESS", "ACUTE_CRISIS"]}},
-    {"id": "MODEL_23.7", "label": "Inventory to Sales Glut Ratio", "category": "MODEL", "attributes": {"function": "inventory_to_sales_glut", "formula": "Inventory_Glut_Ratio = ISRATIO", "status_enums": ["BALANCED_SUPPLY_CHAIN", "SYSTEMIC_INVENTORY_GLUT", "SUPPLY_SHOCK_SHORTAGE"]}},
-    {"id": "IND_ISRATIO", "label": "Total Business Inventories to Sales Ratio", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "IND_DGS1MO", "label": "1-Month Treasury Rate", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "IND_DGS3MO", "label": "3-Month Treasury Rate", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "MODEL_25.17", "label": "Liquidity & Commodity Macro Regime Matrix", "category": "MODEL", "attributes": {"function": "calculate_liquidity_commodity_matrix", "formula": "Slope_bps = (DGS3MO - DGS1MO) * 100, Brent_YoY = pc1(DCOILBRENTEU)", "status_enums": ["ACUTE_STAGFLATION_CRUNCH", "STAGFLATION_SHOCK", "REFLATIONARY_EXPANSION", "DEFLATIONARY_RECESSION", "GOLDILOCKS_EXPANSION", "RESTRICTIVE_SLOWDOWN"]}},
-    {"id": "IND_CPIAUCSL", "label": "Consumer Price Index (CPI-U Headline)", "category": "INDICATOR", "attributes": {"source": "BLS / FRED"}},
-    {"id": "IND_SAHMREALTIME", "label": "Real-Time Sahm Rule Recession Indicator", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "IND_T10Y2Y", "label": "10Y - 2Y Treasury Yield Spread", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "IND_IC4WSA", "label": "Initial Jobless Claims (4-Week Moving Avg)", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "MODEL_1", "label": "Fed Policy Stance & Market Pressure Gauge", "category": "MODEL", "attributes": {"function": "calc_fed_policy_stance", "formula": "Policy_Stance_Spread_bps = (DGS1MO - Fed_Policy_Rate) * 100", "status_enums": ["HAWKISH_MARKET_PRESSURE", "AGGRESSIVE_EASING_PRESSURE", "MODERATE_EASING_BIAS", "BALANCED_POLICY_EQUILIBRIUM"]}},
-    {"id": "MODEL_3", "label": "Official Sahm Rule Recession Indicator", "category": "MODEL", "attributes": {"function": "calc_sahm_rule", "formula": "Sahm_Diff = SAHMREALTIME", "status_enums": ["RECESSION_CONFIRMED", "RECESSION_WARNING", "NORMAL_LABOR_MARKET"]}},
-    {"id": "MODEL_6", "label": "Treasury Yield Curve Slope (10Y - 2Y)", "category": "MODEL", "attributes": {"function": "calc_yield_spread_bps", "formula": "Slope_bps = T10Y2Y * 100", "status_enums": ["INVERTED_CURVE_RECESSION_SIGNAL", "FLAT_CURVE_WARNING", "NORMAL_CURVE_EXPANSION"]}},
-    {"id": "MODEL_16", "label": "CBOE Volatility & Market Fear Regime", "category": "MODEL", "attributes": {"function": "calc_vix_market_regime", "formula": "f(VIXCLS)", "status_enums": ["COMPLACENCY", "NORMAL_VOLATILITY", "ELEVATED_STRESS", "ACUTE_FEAR_PANIC"]}},
-    {"id": "MODEL_21", "label": "Gold to Oil Crisis & Recession Ratio", "category": "MODEL", "attributes": {"function": "calc_gold_oil_ratio", "formula": "Gold_Oil_Ratio = IND_WB_GOLD / DCOILWTICO", "status_enums": ["NORMAL_ECONOMIC_EXPANSION", "ELEVATED_MACRO_FRICTION", "MACRO_CRISIS_RECESSION"]}},
-    {"id": "MODEL_23.6", "label": "Early Employment Crack Signal", "category": "MODEL", "attributes": {"function": "calc_early_employment_crack", "formula": "Early_Crack = IC4WSA_YoY - (UNRATE_Delta * 10)", "status_enums": ["EARLY_EMPLOYMENT_FRACTURE", "LABOR_HOARDING_CRACK_WARNING", "LABOR_MARKET_ALIGNED"]}},
-    {"id": "IND_GDPC1", "label": "Real Gross Domestic Product", "category": "INDICATOR", "attributes": {"source": "BEA / FRED"}},
-    {"id": "IND_CIVPART", "label": "Civilian Labor Force Participation Rate", "category": "INDICATOR", "attributes": {"source": "BLS / FRED"}},
-    {"id": "MODEL_23", "label": "Okun Gap (Growth-Employment Divergence)", "category": "MODEL", "attributes": {"function": "calc_okun_labor_gap", "formula": "Okun_Gap = Actual_Unemployment_Delta - Expected_Unemployment_Delta", "status_enums": ["JOBLESS_GROWTH_WARNING", "BALANCED_OKUN_EQUILIBRIUM", "LABOR_HOARDING"]}},
-    {"id": "MODEL_23.1", "label": "Labor Market Dual-Track Dynamics", "category": "MODEL", "attributes": {"function": "calc_labor_dual_track_matrix", "formula": "labor_dual_track_matrix(PAYEMS_MoM, UNRATE_Delta, CIVPART_Delta)", "status_enums": ["BENIGN_SUPPLY_EXPANSION", "RECESSION_EARLY_WARNING", "BALANCED_LABOR_MARKET"]}},
-    {"id": "IND_MORTGAGE30US", "label": "30-Year Fixed Rate Mortgage Average", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "IND_PERMIT", "label": "New Privately-Owned Housing Units Authorized", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "IND_IQ", "label": "U.S. Export Price Index All Commodities", "category": "INDICATOR", "attributes": {"source": "BLS / FRED"}},
-    {"id": "IND_IR", "label": "U.S. Import Price Index All Commodities", "category": "INDICATOR", "attributes": {"source": "BLS / FRED"}},
-    {"id": "MODEL_23.8", "label": "Mortgage and Permit Divergence (Housing Freeze Index)", "category": "MODEL", "attributes": {"function": "calc_housing_freeze_index", "formula": "Housing_Freeze_Index = MORTGAGE30US - (PERMIT_YoY / 10.0)", "status_enums": ["SEVERE_HOUSING_FREEZE", "SUPPLY_CONTRACTION", "HEALTHY_EXPANSION"]}},
-    {"id": "MODEL_25", "label": "Terms of Trade (TOT)", "category": "MODEL", "attributes": {"function": "calc_terms_of_trade", "formula": "Terms_Of_Trade = (IQ / IR) * 100", "status_enums": ["FAVORABLE_TRADE", "BASELINE_EQUILIBRIUM", "DETERIORATING_TERMS"]}},
-    {"id": "IND_JTSJOL", "label": "Job Openings: Total Nonfarm", "category": "INDICATOR", "attributes": {"source": "BLS / FRED"}},
-    {"id": "IND_UNEMPLOY", "label": "Unemployed Persons", "category": "INDICATOR", "attributes": {"source": "BLS / FRED"}},
-    {"id": "IND_INDPRO", "label": "Industrial Production Total Index", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "IND_AWHAETP", "label": "Average Weekly Hours Total Private", "category": "INDICATOR", "attributes": {"source": "BLS / FRED"}},
-    {"id": "MODEL_8", "label": "Beveridge Curve Labor Tightness", "category": "MODEL", "attributes": {"function": "calc_beveridge_labor_tightness", "formula": "Beveridge_Ratio = JTSJOL / UNEMPLOY", "status_enums": ["OVERHEATED_LABOR", "COOLING_LABOR", "BALANCED_LABOR_TIGHTNESS"]}},
-    {"id": "MODEL_23.4", "label": "Early Layoff and Recession Signal", "category": "MODEL", "attributes": {"function": "calc_early_layoff_signal", "formula": "Early_Layoff_Index = INDPRO_YoY + (AWHAETP_YoY * 2.0)", "status_enums": ["ACUTE_LAYOFF_CONTRACTION", "EARLY_RECESSION_SIGNAL", "EXPANSION_EMPLOYMENT_MOMENTUM"]}},
-    {"id": "IND_DGS10", "label": "10-Year Treasury Constant Maturity Nominal Rate", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "MODEL_7", "label": "10-Year Breakeven Inflation Rate", "category": "MODEL", "attributes": {"function": "calc_breakeven_inflation", "formula": "Breakeven_Inflation_Rate = DGS10 - DFII10", "status_enums": ["DE_ANCHORING_RISK", "FED_ALIGNED_EQUILIBRIUM", "DEFLATION_RISK"]}},
-    {"id": "IND_GFDEGDQ188S", "label": "Federal Debt: Total Public Debt as Percent of GDP", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "IND_GDPPOT", "label": "Real Potential Gross Domestic Product", "category": "INDICATOR", "attributes": {"source": "CBO / FRED"}},
-    {"id": "MODEL_11", "label": "Taylor Rule Policy Gap", "category": "MODEL", "attributes": {"function": "calc_taylor_policy_gap", "formula": "Taylor_Policy_Gap = DFF - (2.0 + CPI_YoY + 0.5 * (CPI_YoY - 2.0) + 0.5 * Output_Gap)", "status_enums": ["BEHIND_THE_CURVE", "OPTIMAL_ALIGNMENT", "OVER_RESTRICTIVE"]}},
-    {"id": "IND_DTWEXBGS", "label": "Nominal Broad U.S. Dollar Index", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "IND_BOPGSTB", "label": "U.S. Trade Balance Goods and Services", "category": "INDICATOR", "attributes": {"source": "BEA / FRED"}},
-    {"id": "IND_NFCI", "label": "Chicago Fed National Financial Conditions Index", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "IND_ANFCI", "label": "Adjusted National Financial Conditions Index", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "MODEL_10", "label": "Triffin External Balance", "category": "MODEL", "attributes": {"function": "calc_triffin_external_balance", "formula": "DXY_Deficit_Tension = DTWEXBGS / (abs(BOPGSTB) / 1000)", "status_enums": ["RESERVE_CURRENCY_STRAIN", "BALANCED_TRIFFIN_EQUILIBRIUM", "ABUNDANT_OFFSHORE_LIQUIDITY"]}},
-    {"id": "MODEL_12", "label": "Financial Conditions Tightness (Chicago Fed NFCI)", "category": "MODEL", "attributes": {"function": "calc_financial_conditions_tightness", "formula": "NFCI_Stress_Level = NFCI", "status_enums": ["TIGHT_FINANCIAL_CONDITIONS", "BALANCED_FINANCIAL_CONDITIONS", "LOOSE_FINANCIAL_CONDITIONS"]}},
-    {"id": "IND_BAMLH0A0HYM2", "label": "ICE BofA US High Yield Index Option-Adjusted Spread", "category": "INDICATOR", "attributes": {"source": "ICE BofA / FRED"}},
-    {"id": "IND_M2SL", "label": "M2 Money Supply", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "MODEL_13", "label": "High Yield Credit Spread / OAS", "category": "MODEL", "attributes": {"function": "calc_high_yield_credit_stress", "formula": "HY_OAS_Spread_bps = BAMLH0A0HYM2 * 100", "status_enums": ["CREDIT_CRUNCH_ALARM", "ELEVATED_RISK", "RISK_APPETITE_HEALTHY"]}},
-    {"id": "MODEL_14", "label": "Real M2 Money Momentum", "category": "MODEL", "attributes": {"function": "calc_real_m2_momentum", "formula": "Real_M2_Growth = M2_YoY_Growth_Pct - CPI_YoY_Pct", "status_enums": ["LIQUIDITY_CONTRACTION", "NEUTRAL", "MONETARY_EXPANSION"]}},
-    {"id": "IND_THREEFYTP10", "label": "Adrian, Crump & Moench 10-Year Treasury Term Premium", "category": "INDICATOR", "attributes": {"source": "NY Fed / FRED"}},
-    {"id": "MODEL_15", "label": "NY Fed ACM 10-Year Term Premium", "category": "MODEL", "attributes": {"function": "calc_acm_term_premium", "formula": "Expected_Short_Rate_Component = DGS10 - THREEFYTP10", "status_enums": ["FISCAL_SUPPLY_PRESSURE", "BALANCED_PREMIUM", "FLIGHT_TO_SAFETY"]}},
-    {"id": "IND_NCBEILQ027S", "label": "Nonfinancial Corporate Business: Corporate Equities Liability", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "IND_GDP", "label": "Gross Domestic Product (Nominal)", "category": "INDICATOR", "attributes": {"source": "BEA / FRED"}},
-    {"id": "MODEL_19", "label": "Buffett Indicator (Corporate Equities to GDP)", "category": "MODEL", "attributes": {"function": "calc_buffett_indicator", "formula": "Buffett_Ratio_Pct = (Total_Equities_Market_Value / GDP) * 100", "status_enums": ["SEVERELY_OVERVALUED", "OVERVALUED", "FAIR_VALUED", "UNDERVALUED"]}},
-    {"id": "MODEL_20", "label": "Copper to Gold Macro Sentiment Ratio", "category": "MODEL", "attributes": {"function": "calc_copper_gold_ratio", "formula": "Copper_Gold_Ratio = Copper_Price_Metric_Ton / Gold_Price_Ounce", "status_enums": ["CYCLICAL_EXPANSION", "FLIGHT_TO_SAFETY"]}},
-    {"id": "IND_DRCCLACBS", "label": "Delinquency Rate on Credit Card Loans", "category": "INDICATOR", "attributes": {"source": "FRED"}},
-    {"id": "IND_PSAVERT", "label": "Personal Saving Rate", "category": "INDICATOR", "attributes": {"source": "BEA / FRED"}},
-    {"id": "MODEL_22", "label": "Household Credit Stress Gauge", "category": "MODEL", "attributes": {"function": "calc_household_credit_stress", "formula": "Household_Stress_Ratio = DRCCLACBS / PSAVERT", "status_enums": ["SEVERE_CONSUMER_STRESS", "ELEVATED_PRESSURE", "HEALTHY_BALANCE_SHEET"]}},
-    {"id": "MODEL_24", "label": "Safe Haven Flight Index", "category": "MODEL", "attributes": {"function": "calc_safe_haven_flight_index", "formula": "Flight_To_Safety_Ratio = ((DTWEXBGS / DGS10) * BAMLH0A0HYM2) / 100.0", "status_enums": ["EXTREME_LIQUIDITY_PANIC", "HIGH_FLIGHT_TO_SAFETY", "MODERATE_HEDGING", "NORMAL_MARKET_REGIME"]}},
-    {"id": "IND_STICKCPIM157SFRBATL", "label": "Sticky Price Consumer Price Index (Atlanta Fed)", "category": "INDICATOR", "attributes": {"source": "Federal Reserve Bank of Atlanta / FRED", "units": "Percent Change from Year Ago", "trans": "pc1"}},
-    {"id": "IND_FLEXCPIM157SFRBATL", "label": "Flexible Price Consumer Price Index (Atlanta Fed)", "category": "INDICATOR", "attributes": {"source": "Federal Reserve Bank of Atlanta / FRED", "units": "Percent Change from Year Ago", "trans": "pc1"}},
-    {"id": "IND_PET_WCSSTUS1_W", "label": "Weekly U.S. Ending Stocks of Crude Oil in SPR (PET.WCSSTUS1.W)", "category": "INDICATOR", "attributes": {"source": "EIA", "units": "Thousand Barrels", "trans": "lin"}},
-    {"id": "IND_PET_WCESTUS1_W", "label": "Weekly U.S. Commercial Crude Oil Ending Stocks Excluding SPR (PET.WCESTUS1.W)", "category": "INDICATOR", "attributes": {"source": "EIA", "units": "Thousand Barrels", "trans": "lin"}},
-    {"id": "IND_PET_WCRFPUS2_W", "label": "Weekly U.S. Field Production of Crude Oil (PET.WCRFPUS2.W)", "category": "INDICATOR", "attributes": {"source": "EIA", "units": "Thousand Barrels per Day", "trans": "lin"}},
-    {"id": "IND_PET_WGTSTUS1_W", "label": "Weekly U.S. Ending Stocks of Total Gasoline (PET.WGTSTUS1.W)", "category": "INDICATOR", "attributes": {"source": "EIA", "units": "Thousand Barrels", "trans": "lin"}},
-    {"id": "IND_NG_NW2_EPG0_SWO_R48_BCF_W", "label": "Weekly Lower 48 Natural Gas In Underground Storage (NG.NW2_EPG0_SWO_R48_BCF.W)", "category": "INDICATOR", "attributes": {"source": "EIA", "units": "Billion Cubic Feet", "trans": "lin"}},
-    {"id": "MODEL_25.15", "label": "Domestic Governance Gridlock and Trade War Friction Engine", "category": "MODEL", "attributes": {"function": "governance_gridlock_friction_engine", "formula": "F_gov = F_budget + F_shutdown + F_tariff", "status_enums": ["ACUTE_GOVERNANCE_GRIDLOCK", "ELEVATED_POLICY_UNCERTAINTY", "NORMALIZED_GOVERNANCE_EQUILIBRIUM"], "jurisdiction": "GEO_US"}},
-    {"id": "MODEL_25.19", "label": "Multi-Layer Macroeconomic Transmission Engine", "category": "MODEL", "attributes": {"function": "calc_dynamic_macro_triggers", "formula": "Delta_Macro_Triggers = Sum(W_i * Trigger_i)", "status_enums": ["MACRO_TRIGGERS_ACTIVE_TRANSMISSION", "MACRO_TRIGGERS_BASELINE_EQUILIBRIUM"]}},
-    {"id": "MODEL_28.5", "label": "Regime-Adjusted Market Impact Multiplier Engine", "category": "MODEL", "attributes": {"function": "adjusted_market_impact", "formula": "Adjusted_Impact = Market_Impact_Score * Multiplier(Real_Rate, NFCI)", "status_enums": ["ACUTE_MARKET_FRAGILITY_AMPLIFIED", "DAMPED_MARKET_RESILIENCE", "NEUTRAL_MARKET_TRANSMISSION"]}},
-    {"id": "IND_USEPUINDXD", "label": "Economic Policy Uncertainty Index for United States", "category": "INDICATOR", "attributes": {"source": "FRED", "units": "Index", "trans": "lin"}},
-    {"id": "MODEL_28.2", "label": "Geopolitical Market Impact Score Engine", "category": "MODEL", "attributes": {"function": "market_impact_score", "formula": "Market_Impact_Score = (V_asset * 0.35) + (S_liquidity * 0.35) + (T_macro * 0.30)", "status_enums": ["ACUTE_MARKET_IMPACT", "ELEVATED_VOLATILITY", "CONTAINED_IMPACT", "NEUTRAL_MARKET_IMPACT"]}}
+    {
+      "id": "IND_WALCL",
+      "label": "Fed Total Assets (WALCL)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "Millions USD",
+        "trans": "lin",
+        "mult": 1
+      }
+    },
+    {
+      "id": "IND_WTREGEN",
+      "label": "Treasury General Account (WTREGEN)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "Millions USD",
+        "trans": "lin",
+        "mult": 1
+      }
+    },
+    {
+      "id": "IND_RRPONTSYD",
+      "label": "Overnight Reverse Repo (RRPONTSYD)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "NY Fed / FRED",
+        "units": "Billions USD",
+        "trans": "lin",
+        "mult": 1000
+      }
+    },
+    {
+      "id": "IND_DFF",
+      "label": "Federal Funds Effective Rate (DFF)",
+      "category": "INDICATOR",
+      "type": "Benchmark Interest Rate",
+      "attributes": {
+        "source": "FRED",
+        "units": "Percent (%)",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_SOFR",
+      "label": "Secured Overnight Financing Rate (SOFR)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "NY Fed / FRED",
+        "units": "Percent (%)",
+        "mult_for_bps": 100
+      }
+    },
+    {
+      "id": "IND_EFFR",
+      "label": "Effective Federal Funds Rate (EFFR)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "NY Fed / FRED",
+        "units": "Percent (%)",
+        "mult_for_bps": 100
+      }
+    },
+    {
+      "id": "IND_VIXCLS",
+      "label": "CBOE Volatility Index (VIXCLS)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "CBOE / FRED",
+        "units": "Index",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_GSCPI",
+      "label": "NY Fed Global Supply Chain Pressure Index (GSCPI)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Federal Reserve Bank of New York",
+        "units": "Standard Deviations",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_OVXCLS",
+      "label": "CBOE Crude Oil Volatility Index (OVXCLS)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "CBOE / FRED",
+        "units": "Index",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_DCOILWTICO",
+      "label": "Crude Oil WTI (DCOILWTICO)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA / FRED",
+        "units": "USD per Barrel",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_DGASNYH",
+      "label": "New York Harbor Conventional Gasoline Spot Price (DGASNYH)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "USD per Gallon",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_DDFUELNYH",
+      "label": "New York Harbor ULSD Spot Price (DDFUELNYH)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "USD per Gallon",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_DHHNGSP",
+      "label": "Henry Hub Natural Gas Spot Price (DHHNGSP)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA / FRED",
+        "units": "USD per MMBtu",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_GASREGW",
+      "label": "US Regular Retail Gasoline Price (GASREGW)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA / FRED",
+        "units": "USD per Gallon",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_WB_GOLD",
+      "label": "World Bank Official Gold Price (WB_GOLD)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "World Bank (The Pink Sheet)",
+        "units": "USD per Troy Ounce",
+        "trans": "pc1"
+      }
+    },
+    {
+      "id": "IND_DFII10",
+      "label": "10-Year TIPS Real Rate (DFII10)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "U.S. Treasury / FRED",
+        "units": "Percent (%)"
+      }
+    },
+    {
+      "id": "MODEL_25.1",
+      "label": "Dynamic Polarity & Regime Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_dynamic_polarity_engine",
+        "formula": "P_net = min(1.0, max(-1.0, P_baseline + dynamic_delta))",
+        "regimes": [
+          "ALLIANCE",
+          "STRATEGIC_ALIGNMENT",
+          "TACTICAL_COOPERATION",
+          "NEUTRAL",
+          "STRATEGIC_FRICTION",
+          "PROXY_WAR",
+          "KINETIC_WAR"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.2",
+      "label": "Sticky vs. Flexible CPI Spread Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_sticky_flexible_cpi_spread",
+        "formula": "Sticky_Impulse = Sticky_CPI_YoY - Flexible_CPI_YoY",
+        "status_enums": [
+          "STRUCTURAL_INFLATION_TRAP",
+          "TRANSITORY_INFLATION_SURGE",
+          "BALANCED_DISINFLATION_PATH"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.3",
+      "label": "NY Fed GSCPI Logistics Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_global_supply_chain_pressure",
+        "formula": "GSCPI_ZScore = GSCPI_Value",
+        "status_enums": [
+          "SUPPLY_CHAIN_SHOCK",
+          "LOGISTICS_DEFLATION_SLACK",
+          "NORMALIZED_GLOBAL_TRADE"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.5",
+      "label": "Repo Liquidity Friction Spread Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_repo_liquidity_friction_spread",
+        "formula": "Repo_Friction_bps = (SOFR - EFFR) * 100",
+        "status_enums": [
+          "REPO_MARKET_LIQUIDITY_CRUNCH",
+          "SYSTEMIC_CASH_DRAIN_WARNING",
+          "COLLATERAL_SCARCITY_GLUT",
+          "HEALTHY_MONETARY_TRANSMISSION"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.6",
+      "label": "Gold / Real Yield Debasement Gauge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_gold_real_yield_debasement_gauge",
+        "formula": "f(Real_Yield_10Y, Gold_YoY_Pct)",
+        "status_enums": [
+          "DEBALANCING_DEDOLLARIZATION_PANIC",
+          "ACCOMMODATIVE_GOLD_BULL",
+          "TRADITIONAL_REAL_RATE_DOMINANCE"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.7",
+      "label": "OVX / VIX Geopolitical Energy Shock Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_ovx_vix_risk_premium",
+        "formula": "Vol_Ratio = OVX_Index / VIX_Index",
+        "status_enums": [
+          "ENERGY_SUPPLY_SHOCK_ALARM",
+          "EQUITY_PANIC_OVER_ENERGY",
+          "BALANCED_ENERGY_VOLATILITY"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.8",
+      "label": "NatGas / Crude Oil Price-Ratio Disconnect Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_natgas_crude_btu_disconnect",
+        "formula": "Crude_NatGas_Price_Ratio = WTI_Price / NatGas_Price",
+        "storage_context": "Current EIA storage level and year-over-year change are context metrics only; they do not enter the price ratio or status.",
+        "status_enums": [
+          "NATGAS_CRISIS_BLACKOUT_RISK",
+          "NATGAS_GLUT_ENERGY_CHEAP",
+          "ENERGY_PARITY_EQUILIBRIUM"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.9",
+      "label": "Gasoline / Distillate / Crude 3:2:1 Crack Spread",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_gasoline_crude_crack_spread",
+        "formula": "((2 * DGASNYH_USD_per_gal * 42) + (DDFUELNYH_USD_per_gal * 42)) / 3 - DCOILWTICO_USD_per_bbl",
+        "input_alignment": "DGASNYH, DDFUELNYH, and DCOILWTICO must share the exact observation date.",
+        "year_over_year_comparison": "Apply the same formula to the three FRED year_ago_value inputs; status describes direction, not absolute high/low.",
+        "status_enums": [
+          "CRACK_SPREAD_EXPANDING",
+          "CRACK_SPREAD_CONTRACTING",
+          "CRACK_SPREAD_UNCHANGED",
+          "UNCLASSIFIED"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_28.3",
+      "label": "Chokepoint Severity Multiplier Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_chokepoint_severity_multiplier",
+        "formula": "Disruption_Weight = SEVERITY_WEIGHT_MAP[severity_enum]",
+        "weight_map": {
+          "CATASTROPHIC": 1,
+          "HIGH": 0.7,
+          "MODERATE-HIGH": 0.45,
+          "MODERATE": 0.2
+        }
+      }
+    },
+    {
+      "id": "MODEL_28.4",
+      "label": "Chokepoint Macro Transmission Bridge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_chokepoint_transmission_bridge",
+        "formula": "Base_Shock = (Severity_Weight * Net_Deficit_Ratio * 70.0) + (Friction_Factor * 30.0); Spillover_Score = round(min(100.0, max(0.0, Base_Shock * Duration_Scale)))",
+        "status_enums": [
+          "CRITICAL_SYSTEMIC_SHOCK",
+          "HIGH_SPILLOVER",
+          "MODERATE_FRICTION",
+          "LOCALIZED_IMPACT"
+        ]
+      }
+    },
+    {
+      "id": "IND_DRTSCIS",
+      "label": "Net % Tightening C&I Loan Standards (DRTSCIS)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Board of Governors / FRED",
+        "units": "Percent (%)",
+        "freq": "Quarterly"
+      }
+    },
+    {
+      "id": "IND_LNS12500000",
+      "label": "Employed, Usually Work Full Time (LNS12500000)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED",
+        "units": "Thousands",
+        "freq": "Monthly"
+      }
+    },
+    {
+      "id": "IND_LNS12032194",
+      "label": "Employed, Part-Time for Economic Reasons (LNS12032194)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED",
+        "units": "Thousands",
+        "freq": "Monthly"
+      }
+    },
+    {
+      "id": "MODEL_25.10",
+      "label": "SLOOS Lending Standards Recession Gauge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_sloos_lending_tightness_gauge",
+        "formula": "Credit_Tightening_Net_Pct = DRTSCIS",
+        "status_enums": [
+          "ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL",
+          "RESTRICTIVE_CREDIT_CONTRACTION",
+          "NEUTRAL_CREDIT_CONDITIONS",
+          "AGGRESSIVE_CREDIT_EXPANSION"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.11",
+      "label": "Full-Time vs. Involuntary Part-Time Crack Gauge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_hidden_employment_crack_gauge",
+        "formula": "Crack_Spread = Part_Time_Econ_YoY_Pct - Full_Time_YoY_Pct",
+        "status_enums": [
+          "ACUTE_LABOR_MARKET_FRACTURE_RECESSION",
+          "STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL",
+          "STABLE_EMPLOYMENT_COMPOSITION",
+          "ROBUST_FULL_TIME_EXPANSION"
+        ]
+      }
+    },
+    {
+      "id": "IND_DCOILBRENTEU",
+      "label": "Crude Oil Prices: Brent - Europe (DCOILBRENTEU)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA / FRED",
+        "units": "USD per Barrel",
+        "freq": "Daily"
+      }
+    },
+    {
+      "id": "MODEL_25.12",
+      "label": "Brent-WTI Benchmark Price Spread",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_brent_wti_spread",
+        "formula": "Brent_WTI_Spread = DCOILBRENTEU - DCOILWTICO",
+        "status_enums": [
+          "WIDE_BRENT_WTI_SPREAD",
+          "NARROW_BRENT_WTI_SPREAD",
+          "TYPICAL_BRENT_WTI_SPREAD"
+        ]
+      }
+    },
+    {
+      "id": "IND_WPU06",
+      "label": "PPI Chemicals and Allied Products (WPU06)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED",
+        "units": "Index",
+        "trans": "pc1"
+      }
+    },
+    {
+      "id": "MODEL_9",
+      "label": "Financial Repression & Debt Sustainability Index",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_financial_repression_index",
+        "formula": "Debt_Pressure_Index = (DGS10 - CPI_YoY) * (GFDEGDQ188S / 100)",
+        "status_enums": [
+          "REPRESSION_REGIME",
+          "SUSTAINABLE_CYCLE",
+          "DEBT_CRISIS_ALARM"
+        ]
+      }
+    },
+    {
+      "id": "IND_PWHEAMTUSDM",
+      "label": "Global Price of Wheat (PWHEAMTUSDM)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "IMF / FRED",
+        "units": "USD per Metric Ton",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_PCOPPUSDM",
+      "label": "Global Price of Copper (PCOPPUSDM)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "IMF / FRED",
+        "units": "USD per Metric Ton",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "MODEL_2",
+      "label": "Real Policy Rate & Restrictiveness",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_real_policy_rate",
+        "formula": "Real_Policy_Rate = DFF - CPI_YoY",
+        "status_enums": [
+          "RESTRICTIVE",
+          "NEUTRAL",
+          "ACCOMMODATIVE"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_4",
+      "label": "Front-End T-Bill Slope & Liquidity Spread",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_front_end_liquidity_spread",
+        "formula": "Front_End_Slope_bps = (DGS3MO - DGS1MO) * 100",
+        "status_enums": [
+          "NORMAL_SLOPE",
+          "INVERTED_FRONT_END"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_5",
+      "label": "Net Fed Liquidity Index",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_net_fed_liquidity",
+        "formula": "RRP_Millions = RRPONTSYD_Billions * 1000; Net_Liquidity_Millions = WALCL_Millions - (WTREGEN_Millions + RRP_Millions)",
+        "status_enums": [
+          "LIQUIDITY_EXPANSION",
+          "NEUTRAL",
+          "LIQUIDITY_CONTRACTION"
+        ]
+      }
+    },
+    {
+      "id": "IND_PAYEMS",
+      "label": "All Employees: Total Nonfarm Payrolls",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED"
+      }
+    },
+    {
+      "id": "IND_UNRATE",
+      "label": "Civilian Unemployment Rate",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED"
+      }
+    },
+    {
+      "id": "IND_NASDAQSOX",
+      "label": "PHLX Semiconductor Index",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "NASDAQ / FRED"
+      }
+    },
+    {
+      "id": "MODEL_25.13",
+      "label": "Labor Market Momentum Index Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_labor_market_momentum_index",
+        "formula": "LMMI = PAYEMS_YoY_Pct - UNRATE_YoY_Diff",
+        "status_enums": [
+          "STRONG_LABOR_EXPANSION",
+          "MODERATE_LABOR_EXPANSION",
+          "DECELERATING_LABOR_MOMENTUM",
+          "BALANCED_LABOR_MARKET",
+          "LABOR_MARKET_DETERIORATION_RISK"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.14",
+      "label": "AI Hardware & Chip Stress Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_ai_chip_stress_gauge",
+        "formula": "AI_CHIP_STRESS = (GSCPI * 0.40) - ((NASDAQSOX_YoY / 50.0) * 0.35) + ((VIXCLS / 20.0) * 0.25)",
+        "status_enums": [
+          "ACUTE_CHIP_SUPPLY_CRUNCH",
+          "ELEVATED_SEMICONDUCTOR_BOTTLENECK",
+          "BALANCED_HARDWARE_FLOW",
+          "CHIP_SUPPLY_ABUNDANCE_EXPANSION"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25.16",
+      "label": "Yen Carry Trade Dissolution & Stress Gauge",
+      "category": "MODEL",
+      "type": "Macroeconomic Friction Model",
+      "attributes": {
+        "target_regimes": [
+          "CALM_ACCUMULATION",
+          "MANAGED_TIGHTENING",
+          "COMPRESSION_WARNING",
+          "UNWIND_LIQUIDATION_CRASH"
+        ],
+        "jurisdiction": "GEO_JP",
+        "function": "calculate_jpy_carry_crack",
+        "formula": "Buffer_Carry = (Rate_US - Rate_JP) + Ret_JPY_30d",
+        "status_enums": [
+          "CALM_ACCUMULATION",
+          "MANAGED_TIGHTENING",
+          "COMPRESSION_WARNING",
+          "UNWIND_LIQUIDATION_CRASH"
+        ]
+      }
+    },
+    {
+      "id": "IND_DEXJPUS",
+      "label": "Spot Exchange Rate USD/JPY",
+      "category": "INDICATOR",
+      "type": "Exchange Rate",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "IND_SAUPZPIOILBEGUSD",
+      "label": "Fiscal Breakeven Oil Price for Saudi Arabia",
+      "category": "INDICATOR",
+      "type": "Macroeconomic Commodity Benchmark",
+      "attributes": {
+        "source": "IMF",
+        "units": "USD per Barrel",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_JP_FPOLM_PA",
+      "label": "Central Bank Policy Rate for Japan",
+      "category": "INDICATOR",
+      "type": "Monetary Policy Benchmark",
+      "attributes": {
+        "source": "IMF IFS",
+        "units": "Percent per Annum",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_GB_FPOLM_PA",
+      "label": "Central Bank Policy Rate for United Kingdom",
+      "category": "INDICATOR",
+      "type": "Monetary Policy Benchmark",
+      "attributes": {
+        "source": "IMF IFS",
+        "units": "Percent per Annum",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "MODEL_25.18",
+      "label": "Non-Contiguous Alliance Dynamic Transmission Engine (Mecca Pact)",
+      "category": "MODEL",
+      "type": "Geopolitical Alliance Transmission Model",
+      "attributes": {
+        "target_regimes": [
+          "TREATY_ACTIVE_SURPLUS_EXPANSION",
+          "TREATY_ACTIVE_EQUILIBRIUM",
+          "TREATY_ACTIVE_FISCAL_RESTRAINT"
+        ],
+        "jurisdiction": "BLOC_MECCA_DEFENSE",
+        "function": "calculate_mecca_pact_transmission",
+        "formula": "Delta_Mecca = (Delta_treaty + Delta_oil + Delta_liquidity) * (1.0 - Friction_coproduction)",
+        "status_enums": [
+          "TREATY_ACTIVE_SURPLUS_EXPANSION",
+          "TREATY_ACTIVE_EQUILIBRIUM",
+          "TREATY_ACTIVE_FISCAL_RESTRAINT"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_18",
+      "label": "Okun Misery Index",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_misery_index",
+        "formula": "Misery_Index = UNRATE + CPI_YoY",
+        "status_enums": [
+          "GOLDILOCKS",
+          "MODERATE",
+          "ELEVATED_STRESS",
+          "ACUTE_CRISIS"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_23.7",
+      "label": "Inventory to Sales Glut Ratio",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_inventory_to_sales_glut",
+        "formula": "Inventory_Glut_Ratio = ISRATIO",
+        "status_enums": [
+          "BALANCED_SUPPLY_CHAIN",
+          "SYSTEMIC_INVENTORY_GLUT",
+          "SUPPLY_SHOCK_SHORTAGE"
+        ]
+      }
+    },
+    {
+      "id": "IND_ISRATIO",
+      "label": "Total Business Inventories to Sales Ratio",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "IND_DGS1MO",
+      "label": "1-Month Treasury Rate",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "IND_DGS3MO",
+      "label": "3-Month Treasury Rate",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "MODEL_25.17",
+      "label": "Liquidity & Commodity Macro Regime Matrix",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_liquidity_commodity_matrix",
+        "formula": "Slope_bps = (DGS3MO - DGS1MO) * 100, Brent_YoY = pc1(DCOILBRENTEU)",
+        "status_enums": [
+          "ACUTE_STAGFLATION_CRUNCH",
+          "STAGFLATION_SHOCK",
+          "REFLATIONARY_EXPANSION",
+          "DEFLATIONARY_RECESSION",
+          "GOLDILOCKS_EXPANSION",
+          "RESTRICTIVE_SLOWDOWN"
+        ]
+      }
+    },
+    {
+      "id": "IND_CPIAUCSL",
+      "label": "Consumer Price Index (CPI-U Headline)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED"
+      }
+    },
+    {
+      "id": "IND_SAHMREALTIME",
+      "label": "Real-Time Sahm Rule Recession Indicator",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "IND_T10Y2Y",
+      "label": "10Y - 2Y Treasury Yield Spread",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "IND_IC4WSA",
+      "label": "Initial Jobless Claims (4-Week Moving Avg)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "MODEL_1",
+      "label": "Fed Policy Stance & Market Pressure Gauge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_fed_policy_spread",
+        "formula": "Policy_Stance_Spread_bps = (DGS1MO - Fed_Policy_Rate) * 100",
+        "status_enums": [
+          "HAWKISH_MARKET_PRESSURE",
+          "AGGRESSIVE_EASING_PRESSURE",
+          "MODERATE_EASING_BIAS",
+          "BALANCED_POLICY_EQUILIBRIUM"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_3",
+      "label": "Official Sahm Rule Recession Indicator",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_sahm_rule",
+        "formula": "Sahm_Diff = SAHMREALTIME",
+        "status_enums": [
+          "RECESSION_CONFIRMED",
+          "RECESSION_WARNING",
+          "NORMAL_LABOR_MARKET"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_6",
+      "label": "Treasury Yield Curve Slope (10Y - 2Y)",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_yield_spread_bps",
+        "formula": "Slope_bps = T10Y2Y * 100",
+        "status_enums": [
+          "INVERTED_CURVE_RECESSION_SIGNAL",
+          "FLAT_CURVE_WARNING",
+          "NORMAL_CURVE_EXPANSION"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_16",
+      "label": "CBOE Volatility & Market Fear Regime",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_vix_market_regime",
+        "formula": "f(VIXCLS)",
+        "status_enums": [
+          "COMPLACENCY",
+          "NORMAL_VOLATILITY",
+          "ELEVATED_STRESS",
+          "ACUTE_FEAR_PANIC"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_21",
+      "label": "Gold to Oil Crisis & Recession Ratio",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_gold_oil_ratio",
+        "formula": "Gold_Oil_Ratio = IND_WB_GOLD / DCOILWTICO",
+        "status_enums": [
+          "NORMAL_ECONOMIC_EXPANSION",
+          "ELEVATED_MACRO_FRICTION",
+          "MACRO_CRISIS_RECESSION"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_23.6",
+      "label": "Early Employment Crack Signal",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_early_employment_crack",
+        "formula": "Early_Crack = IC4WSA_YoY - (UNRATE_Delta * 10)",
+        "status_enums": [
+          "EARLY_EMPLOYMENT_FRACTURE",
+          "LABOR_HOARDING_CRACK_WARNING",
+          "LABOR_MARKET_ALIGNED"
+        ]
+      }
+    },
+    {
+      "id": "IND_GDPC1",
+      "label": "Real Gross Domestic Product",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BEA / FRED"
+      }
+    },
+    {
+      "id": "IND_CIVPART",
+      "label": "Civilian Labor Force Participation Rate",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED"
+      }
+    },
+    {
+      "id": "MODEL_23",
+      "label": "Okun Gap (Growth-Employment Divergence)",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_okun_labor_gap",
+        "formula": "Okun_Gap = Actual_Unemployment_Delta - Expected_Unemployment_Delta",
+        "status_enums": [
+          "JOBLESS_GROWTH_WARNING",
+          "BALANCED_OKUN_EQUILIBRIUM",
+          "LABOR_HOARDING"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_23.1",
+      "label": "Labor Market Dual-Track Dynamics",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_labor_dual_track_matrix",
+        "formula": "labor_dual_track_matrix(PAYEMS_MoM, UNRATE_Delta, CIVPART_Delta)",
+        "status_enums": [
+          "BENIGN_SUPPLY_EXPANSION",
+          "RECESSION_EARLY_WARNING",
+          "BALANCED_LABOR_MARKET"
+        ]
+      }
+    },
+    {
+      "id": "IND_MORTGAGE30US",
+      "label": "30-Year Fixed Rate Mortgage Average",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "IND_PERMIT",
+      "label": "New Privately-Owned Housing Units Authorized",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "IND_IQ",
+      "label": "U.S. Export Price Index All Commodities",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED"
+      }
+    },
+    {
+      "id": "IND_IR",
+      "label": "U.S. Import Price Index All Commodities",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED"
+      }
+    },
+    {
+      "id": "MODEL_23.8",
+      "label": "Mortgage and Permit Divergence (Housing Freeze Index)",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_housing_freeze_index",
+        "formula": "Housing_Freeze_Index = MORTGAGE30US - (PERMIT_YoY / 10.0)",
+        "status_enums": [
+          "SEVERE_HOUSING_FREEZE",
+          "SUPPLY_CONTRACTION",
+          "HEALTHY_EXPANSION"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_25",
+      "label": "Terms of Trade (TOT)",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_terms_of_trade",
+        "formula": "Terms_Of_Trade = (IQ / IR) * 100",
+        "status_enums": [
+          "FAVORABLE_TRADE",
+          "BASELINE_EQUILIBRIUM",
+          "DETERIORATING_TERMS"
+        ]
+      }
+    },
+    {
+      "id": "IND_JTSJOL",
+      "label": "Job Openings: Total Nonfarm",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED"
+      }
+    },
+    {
+      "id": "IND_UNEMPLOY",
+      "label": "Unemployed Persons",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED"
+      }
+    },
+    {
+      "id": "IND_INDPRO",
+      "label": "Industrial Production Total Index",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "IND_AWHAETP",
+      "label": "Average Weekly Hours Total Private",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BLS / FRED"
+      }
+    },
+    {
+      "id": "MODEL_8",
+      "label": "Beveridge Curve Labor Tightness",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_beveridge_labor_tightness",
+        "formula": "Beveridge_Ratio = JTSJOL / UNEMPLOY",
+        "status_enums": [
+          "OVERHEATED_LABOR",
+          "COOLING_LABOR",
+          "BALANCED_LABOR_TIGHTNESS"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_23.4",
+      "label": "Early Layoff and Recession Signal",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_early_layoff_signal",
+        "formula": "Early_Layoff_Index = INDPRO_YoY + (AWHAETP_YoY * 2.0)",
+        "status_enums": [
+          "ACUTE_LAYOFF_CONTRACTION",
+          "EARLY_RECESSION_SIGNAL",
+          "EXPANSION_EMPLOYMENT_MOMENTUM"
+        ]
+      }
+    },
+    {
+      "id": "IND_DGS10",
+      "label": "10-Year Treasury Constant Maturity Nominal Rate",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "MODEL_7",
+      "label": "10-Year Breakeven Inflation Rate",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_breakeven_inflation",
+        "formula": "Breakeven_Inflation_Rate = DGS10 - DFII10",
+        "status_enums": [
+          "DE_ANCHORING_RISK",
+          "FED_ALIGNED_EQUILIBRIUM",
+          "DEFLATION_RISK"
+        ]
+      }
+    },
+    {
+      "id": "IND_GFDEGDQ188S",
+      "label": "Federal Debt: Total Public Debt as Percent of GDP",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "IND_GDPPOT",
+      "label": "Real Potential Gross Domestic Product",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "CBO / FRED"
+      }
+    },
+    {
+      "id": "MODEL_11",
+      "label": "Taylor Rule Policy Gap",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_taylor_policy_gap",
+        "formula": "Taylor_Policy_Gap = DFF - (2.0 + CPI_YoY + 0.5 * (CPI_YoY - 2.0) + 0.5 * Output_Gap)",
+        "status_enums": [
+          "BEHIND_THE_CURVE",
+          "OPTIMAL_ALIGNMENT",
+          "OVER_RESTRICTIVE"
+        ]
+      }
+    },
+    {
+      "id": "IND_DTWEXBGS",
+      "label": "Nominal Broad U.S. Dollar Index",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "IND_BOPGSTB",
+      "label": "U.S. Trade Balance Goods and Services",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BEA / FRED"
+      }
+    },
+    {
+      "id": "IND_NFCI",
+      "label": "Chicago Fed National Financial Conditions Index",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "IND_ANFCI",
+      "label": "Adjusted National Financial Conditions Index",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "MODEL_10",
+      "label": "Triffin External Balance",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_triffin_external_balance",
+        "formula": "DXY_Deficit_Tension = DTWEXBGS / (abs(BOPGSTB) / 1000)",
+        "status_enums": [
+          "RESERVE_CURRENCY_STRAIN",
+          "BALANCED_TRIFFIN_EQUILIBRIUM",
+          "ABUNDANT_OFFSHORE_LIQUIDITY"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_12",
+      "label": "Financial Conditions Tightness (Chicago Fed NFCI)",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_financial_conditions_regime",
+        "formula": "NFCI_Stress_Level = NFCI",
+        "status_enums": [
+          "TIGHT_FINANCIAL_CONDITIONS",
+          "BALANCED_FINANCIAL_CONDITIONS",
+          "LOOSE_FINANCIAL_CONDITIONS"
+        ]
+      }
+    },
+    {
+      "id": "IND_BAMLH0A0HYM2",
+      "label": "ICE BofA US High Yield Index Option-Adjusted Spread",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "ICE BofA / FRED"
+      }
+    },
+    {
+      "id": "IND_M2SL",
+      "label": "M2 Money Supply",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "MODEL_13",
+      "label": "High Yield Credit Spread / OAS",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_high_yield_credit_stress",
+        "formula": "HY_OAS_Spread_bps = BAMLH0A0HYM2 * 100",
+        "status_enums": [
+          "CREDIT_CRUNCH_ALARM",
+          "ELEVATED_RISK",
+          "RISK_APPETITE_HEALTHY"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_14",
+      "label": "Real M2 Money Momentum",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_real_m2_momentum",
+        "formula": "Real_M2_Growth = M2_YoY_Growth_Pct - CPI_YoY_Pct",
+        "status_enums": [
+          "LIQUIDITY_CONTRACTION",
+          "NEUTRAL",
+          "MONETARY_EXPANSION"
+        ]
+      }
+    },
+    {
+      "id": "IND_THREEFYTP10",
+      "label": "Adrian, Crump & Moench 10-Year Treasury Term Premium",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "NY Fed / FRED"
+      }
+    },
+    {
+      "id": "MODEL_15",
+      "label": "NY Fed ACM 10-Year Term Premium",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_acm_term_premium_breakdown",
+        "formula": "Expected_Short_Rate_Component = DGS10 - THREEFYTP10",
+        "status_enums": [
+          "FISCAL_SUPPLY_PRESSURE",
+          "BALANCED_PREMIUM",
+          "FLIGHT_TO_SAFETY"
+        ]
+      }
+    },
+    {
+      "id": "IND_NCBEILQ027S",
+      "label": "Nonfinancial Corporate Business: Corporate Equities Liability",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "IND_GDP",
+      "label": "Gross Domestic Product (Nominal)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BEA / FRED"
+      }
+    },
+    {
+      "id": "MODEL_19",
+      "label": "Buffett Indicator (Corporate Equities to GDP)",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_buffett_indicator",
+        "formula": "Buffett_Ratio_Pct = (Total_Equities_Market_Value / GDP) * 100",
+        "status_enums": [
+          "SEVERELY_OVERVALUED",
+          "OVERVALUED",
+          "FAIR_VALUED",
+          "UNDERVALUED"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_20",
+      "label": "Copper to Gold Macro Sentiment Ratio",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_copper_gold_ratio",
+        "formula": "Copper_Gold_Ratio = Copper_Price_Metric_Ton / Gold_Price_Ounce",
+        "status_enums": [
+          "CYCLICAL_EXPANSION",
+          "FLIGHT_TO_SAFETY"
+        ]
+      }
+    },
+    {
+      "id": "IND_DRCCLACBS",
+      "label": "Delinquency Rate on Credit Card Loans",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED"
+      }
+    },
+    {
+      "id": "IND_PSAVERT",
+      "label": "Personal Saving Rate",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "BEA / FRED"
+      }
+    },
+    {
+      "id": "MODEL_22",
+      "label": "Household Credit Stress Gauge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_household_credit_stress",
+        "formula": "Household_Stress_Ratio = DRCCLACBS / PSAVERT",
+        "status_enums": [
+          "SEVERE_CONSUMER_STRESS",
+          "ELEVATED_PRESSURE",
+          "HEALTHY_BALANCE_SHEET"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_24",
+      "label": "Safe Haven Flight Index",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_safe_haven_flight_index",
+        "formula": "Flight_To_Safety_Ratio = ((DTWEXBGS / DGS10) * BAMLH0A0HYM2) / 100.0",
+        "status_enums": [
+          "EXTREME_LIQUIDITY_PANIC",
+          "HIGH_FLIGHT_TO_SAFETY",
+          "MODERATE_HEDGING",
+          "NORMAL_MARKET_REGIME"
+        ]
+      }
+    },
+    {
+      "id": "IND_STICKCPIM157SFRBATL",
+      "label": "Sticky Price Consumer Price Index (Atlanta Fed)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Federal Reserve Bank of Atlanta / FRED",
+        "units": "Percent Change from Year Ago",
+        "trans": "pc1"
+      }
+    },
+    {
+      "id": "IND_FLEXCPIM157SFRBATL",
+      "label": "Flexible Price Consumer Price Index (Atlanta Fed)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Federal Reserve Bank of Atlanta / FRED",
+        "units": "Percent Change from Year Ago",
+        "trans": "pc1"
+      }
+    },
+    {
+      "id": "IND_PET_WCSSTUS1_W",
+      "label": "Weekly U.S. Ending Stocks of Crude Oil in SPR (PET.WCSSTUS1.W)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Thousand Barrels",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_PET_WCESTUS1_W",
+      "label": "Weekly U.S. Commercial Crude Oil Ending Stocks Excluding SPR (PET.WCESTUS1.W)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Thousand Barrels",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_PET_WCRFPUS2_W",
+      "label": "Weekly U.S. Field Production of Crude Oil (PET.WCRFPUS2.W)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Thousand Barrels per Day",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_PET_WGTSTUS1_W",
+      "label": "Weekly U.S. Ending Stocks of Total Gasoline (PET.WGTSTUS1.W)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Thousand Barrels",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "IND_NG_NW2_EPG0_SWO_R48_BCF_W",
+      "label": "Weekly Lower 48 Natural Gas In Underground Storage (NG.NW2_EPG0_SWO_R48_BCF.W)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Billion Cubic Feet",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "MODEL_25.15",
+      "label": "Domestic Governance Gridlock and Trade War Friction Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_governance_gridlock_friction",
+        "formula": "F_gov = F_budget + F_shutdown + F_tariff",
+        "status_enums": [
+          "DIVIDED_GRIDLOCK_TARIFF_SURGE",
+          "FRAGILE_COALITION_PARALYSIS",
+          "UNIFIED_DOMESTIC_EXPANSION",
+          "CENTRALIZED_STRATEGIC_COMMAND",
+          "BALANCED_INSTITUTIONAL_EQUILIBRIUM"
+        ],
+        "jurisdiction": "GEO_US"
+      }
+    },
+    {
+      "id": "MODEL_25.19",
+      "label": "Multi-Layer Macroeconomic Transmission Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_dynamic_macro_triggers",
+        "formula": "Delta_Macro_Triggers = Sum(W_i * Trigger_i)",
+        "status_enums": [
+          "MACRO_SHOCK_CEILING_MAX",
+          "MACRO_SHOCK_ELEVATED",
+          "MACRO_SHOCK_MODERATE",
+          "MACRO_EQUILIBRIUM_NEUTRAL"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_28.5",
+      "label": "Regime-Adjusted Market Impact Multiplier Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_adjusted_market_impact",
+        "formula": "Adjusted_Impact = Market_Impact_Score * Multiplier(Real_Rate, NFCI)",
+        "status_enums": [
+          "AMPLIFIED_SHOCK",
+          "NEUTRAL_PASS_THROUGH",
+          "DAMPED_LIQUIDITY_IMPACT"
+        ]
+      }
+    },
+    {
+      "id": "IND_USEPUINDXD",
+      "label": "Economic Policy Uncertainty Index for United States",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "Index",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "MODEL_28.2",
+      "label": "Geopolitical Market Impact Score Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_market_impact_score",
+        "formula": "Market_Impact_Score = (V_asset * 0.35) + (S_liquidity * 0.35) + (T_macro * 0.30)",
+        "status_enums": [
+          "ACUTE_MARKET_IMPACT",
+          "ELEVATED_VOLATILITY",
+          "CONTAINED_IMPACT",
+          "NEUTRAL_MARKET_IMPACT"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_26",
+      "label": "Central Bank Committee Dispersion & Hawkishness Index",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_committee_dispersion",
+        "formula": "H_Index = (N_hawkish - N_dovish) / N_total; Blau_Simpson = 1 - sum(p_i^2)",
+        "directional_stance_enums": [
+          "STRONG_HAWKISH_TILT",
+          "MODERATE_HAWKISH_BIAS",
+          "BALANCED_NEUTRAL_STANCE",
+          "MODERATE_DOVISH_BIAS",
+          "STRONG_DOVISH_TILT"
+        ],
+        "consensus_regime_enums": [
+          "STRONG_CONSENSUS",
+          "MODERATE_DISSENT",
+          "HIGH_DISPERSION"
+        ]
+      }
+    },
+    {
+      "id": "IND_TRIGGER_HORMUZ_SPREAD",
+      "label": "Hormuz Brent-WTI Divergence Shock Trigger",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Derived / Model 25.12",
+        "units": "Normalized Shock Vector"
+      }
+    },
+    {
+      "id": "IND_TRIGGER_OVX_ENERGY_PANIC",
+      "label": "Oil Volatility vs VIX Geopolitical Risk Premium Trigger",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Derived / Model 25.7",
+        "units": "Normalized Shock Vector"
+      }
+    },
+    {
+      "id": "IND_TRIGGER_NATGAS_CRACK",
+      "label": "WTI and Henry Hub Price Ratio Change Trigger",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Derived / Model 25.8",
+        "units": "Normalized Shock Vector"
+      }
+    },
+    {
+      "id": "IND_TRIGGER_CHIP_CONTAINMENT",
+      "label": "SOX Semiconductor Export Choke Trigger",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Derived / Model 25.14",
+        "units": "Normalized Shock Vector"
+      }
+    },
+    {
+      "id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
+      "label": "SOFR Rate Annual Change Funding Drain Trigger",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "NY Fed / FRED",
+        "units": "Normalized Shock Vector"
+      }
+    },
+    {
+      "id": "IND_TRIGGER_GSCPI_LOGISTICS",
+      "label": "Global Supply Chain Pressure Change Trigger",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "NY Fed / Model 25.3",
+        "units": "Normalized Shock Vector"
+      }
+    },
+    {
+      "id": "IND_TRIGGER_WHEAT_PRICE",
+      "label": "Global Wheat Price Annual Change Trigger",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "IMF / FRED",
+        "units": "Normalized Shock Vector"
+      }
+    },
+    {
+      "id": "IND_TRIGGER_CORN_PRICE",
+      "label": "Global Corn Price Annual Change Trigger",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "IMF / FRED",
+        "units": "Normalized Shock Vector"
+      }
+    }
   ],
   "edges": [
-    {"source": "IND_SOFR", "target": "MODEL_25.5", "type": "INGESTS_SERIES", "role": "sofr_val"},
-    {"source": "IND_EFFR", "target": "MODEL_25.5", "type": "INGESTS_SERIES", "role": "effr_val"},
-    {"source": "IND_GSCPI", "target": "MODEL_25.3", "type": "INGESTS_SERIES", "role": "gscpi_val"},
-    {"source": "IND_DFII10", "target": "MODEL_25.6", "type": "INGESTS_SERIES", "role": "real_yield_10y"},
-    {"source": "IND_WB_GOLD", "target": "MODEL_25.6", "type": "INGESTS_SERIES", "role": "gold_yoy_pct"},
-    {"source": "IND_OVXCLS", "target": "MODEL_25.7", "type": "INGESTS_SERIES", "role": "ovx_val"},
-    {"source": "IND_VIXCLS", "target": "MODEL_25.7", "type": "INGESTS_SERIES", "role": "vix_val"},
-    {"source": "IND_DCOILWTICO", "target": "MODEL_25.8", "type": "INGESTS_SERIES", "role": "wti_price"},
-    {"source": "IND_DHHNGSP", "target": "MODEL_25.8", "type": "INGESTS_SERIES", "role": "natgas_price"},
-    {"source": "IND_DGASNYH", "target": "MODEL_25.9", "type": "INGESTS_SERIES", "role": "gasoline_spot_usd_gal"},
-    {"source": "IND_DDFUELNYH", "target": "MODEL_25.9", "type": "INGESTS_SERIES", "role": "ulsd_spot_usd_gal"},
-    {"source": "IND_DCOILWTICO", "target": "MODEL_25.9", "type": "INGESTS_SERIES", "role": "wti_crude_usd_bbl"},
-    {"source": "MODEL_28.3", "target": "MODEL_28.4", "type": "BRIDGES_TO_MODEL", "passes": "severity_weight"},
-    {"source": "MODEL_25.1", "target": "MODEL_28.4", "type": "BRIDGES_TO_MODEL", "passes": "p_net"},
-    {"source": "IND_DRTSCIS", "target": "MODEL_25.10", "type": "INGESTS_SERIES", "role": "drtscis_val"},
-    {"source": "IND_LNS12500000", "target": "MODEL_25.11", "type": "INGESTS_SERIES", "role": "full_time_level"},
-    {"source": "IND_LNS12032194", "target": "MODEL_25.11", "type": "INGESTS_SERIES", "role": "part_time_econ_level"},
-    {"source": "BLOC_BRICS_MBRIDGE", "target": "MODEL_25.10", "type": "BRIDGES_TO_MODEL", "passes": "capital_fragmentation_drain"},
-    {"source": "BLOC_BRICS_MBRIDGE", "target": "MODEL_25.6", "type": "BRIDGES_TO_MODEL", "passes": "sovereign_gold_accumulation"},
-    {"source": "IND_DCOILBRENTEU", "target": "MODEL_25.12", "type": "INGESTS_SERIES", "role": "brent_price"},
-    {"source": "IND_DCOILWTICO", "target": "MODEL_25.12", "type": "INGESTS_SERIES", "role": "wti_price"},
-    {"source": "REG_RF_CAUCASUS_ARC", "target": "IND_DCOILBRENTEU", "type": "TRIGGERS_INDICATOR", "impact": "CASPIAN_BYPASS_FLOW_SECURITY"},
-    {"source": "REG_RF_CAUCASUS_ARC", "target": "IND_PWHEAMTUSDM", "type": "TRIGGERS_INDICATOR", "impact": "NORTH_CAUCASUS_TRANSIT_FRICTION"},
-    {"source": "REG_RF_VOLGA_SIBERIAN", "target": "IND_DCOILWTICO", "type": "TRIGGERS_INDICATOR", "impact": "GLOBAL_REFINERY_CRUDE_COMPENSATION"},
-    {"source": "REG_RF_VOLGA_SIBERIAN", "target": "IND_PCOPPUSDM", "type": "TRIGGERS_INDICATOR", "impact": "SIBERIAN_MINERAL_EXTRACTION_PRESSURE"},
-    {"source": "REG_RF_SOUTHERN_KRAIS", "target": "IND_DCOILBRENTEU", "type": "TRIGGERS_INDICATOR", "impact": "NOVOROSSIYSK_TANKER_FREIGHT_SURCHARGE"},
-    {"source": "REG_RF_SOUTHERN_KRAIS", "target": "IND_PWHEAMTUSDM", "type": "TRIGGERS_INDICATOR", "impact": "BLACK_SEA_AGRO_EXPORT_BOTTLENECK"},
-    {"source": "IND_DFF", "target": "MODEL_2", "type": "INGESTS_SERIES", "role": "Nominal Policy Rate Benchmark"},
-    {"source": "IND_CPIAUCSL", "target": "MODEL_2", "type": "INGESTS_SERIES", "role": "Headline Inflation Deflator"},
-    {"source": "IND_DGS3MO", "target": "MODEL_4", "type": "INGESTS_SERIES", "role": "3-Month T-Bill Yield Benchmark"},
-    {"source": "IND_DGS1MO", "target": "MODEL_4", "type": "INGESTS_SERIES", "role": "1-Month T-Bill Yield Benchmark"},
-    {"source": "IND_WALCL", "target": "MODEL_5", "type": "INGESTS_SERIES", "role": "walcl_val"},
-    {"source": "IND_WTREGEN", "target": "MODEL_5", "type": "INGESTS_SERIES", "role": "wtregen_val"},
-    {"source": "IND_RRPONTSYD", "target": "MODEL_5", "type": "INGESTS_SERIES", "role": "rrpontsyd_val"},
-    {"source": "INST_FED_US", "target": "IND_WALCL", "type": "TRIGGERS_INDICATOR", "impact": "BALANCE_SHEET_EXPANSION_OR_CONTRACTION"},
-    {"source": "INST_FED_US", "target": "IND_EFFR", "type": "TRIGGERS_INDICATOR", "impact": "POLICY_RATE_SETTING"},
-    {"source": "INST_FED_US", "target": "MODEL_5", "type": "BRIDGES_TO_MODEL", "passes": "liquidity_steering_policy"},
-    {"source": "INST_CBRT_TR", "target": "MODEL_25.2", "type": "BRIDGES_TO_MODEL", "passes": "inflation_target_transmission"},
-    {"source": "INST_ECB_EU", "target": "MODEL_25.5", "type": "BRIDGES_TO_MODEL", "passes": "eurodollar_repo_liquidity_impact"},
-    {"source": "IND_PAYEMS", "target": "MODEL_25.13", "type": "INGESTS_SERIES", "role": "payems_mom"},
-    {"source": "IND_UNRATE", "target": "MODEL_25.13", "type": "INGESTS_SERIES", "role": "unrate_diff"},
-    {"source": "IND_GSCPI", "target": "MODEL_25.14", "type": "INGESTS_SERIES", "role": "gscpi_val"},
-    {"source": "IND_NASDAQSOX", "target": "MODEL_25.14", "type": "INGESTS_SERIES", "role": "sox_yoy_pct"},
-    {"source": "IND_VIXCLS", "target": "MODEL_25.14", "type": "INGESTS_SERIES", "role": "vix_val"},
-    {"source": "IND_DFF", "target": "MODEL_25.16", "type": "INGESTS_SERIES", "role": "US Benchmark Rate"},
-    {"source": "IND_JP_FPOLM_PA", "target": "MODEL_25.16", "type": "INGESTS_SERIES", "role": "Japan Policy Benchmark Rate"},
-    {"source": "IND_DEXJPUS", "target": "MODEL_25.16", "type": "INGESTS_SERIES", "role": "Currency Momentum Pair"},
-    {"source": "INST_BOJ_JP", "target": "MODEL_25.16", "type": "MONETARY_AUTHORITY", "role": "Funding Currency Regulator"},
-    {"source": "IND_SAUPZPIOILBEGUSD", "target": "MODEL_25.18", "type": "INGESTS_SERIES", "role": "Hydrocarbon Fiscal Breakeven Threshold"},
-    {"source": "IND_DCOILBRENTEU", "target": "MODEL_25.18", "type": "INGESTS_SERIES", "role": "Brent Spot Benchmark"},
-    {"source": "IND_SOFR", "target": "MODEL_25.18", "type": "INGESTS_SERIES", "role": "Global Dollar Liquidity Benchmark"},
-    {"source": "IND_UNRATE", "target": "MODEL_18", "type": "INGESTS_SERIES", "role": "Civilian Unemployment Rate"},
-    {"source": "IND_CPIAUCSL", "target": "MODEL_18", "type": "INGESTS_SERIES", "role": "Headline Inflation Rate YoY"},
-    {"source": "IND_ISRATIO", "target": "MODEL_23.7", "type": "INGESTS_SERIES", "role": "Total Business Inventory to Sales Ratio"},
-    {"source": "IND_DGS3MO", "target": "MODEL_25.17", "type": "INGESTS_SERIES", "role": "dgs3mo"},
-    {"source": "IND_DGS1MO", "target": "MODEL_25.17", "type": "INGESTS_SERIES", "role": "dgs1mo"},
-    {"source": "IND_DCOILBRENTEU", "target": "MODEL_25.17", "type": "INGESTS_SERIES", "role": "brent_yoy_pct"},
-    {"source": "IND_DGS1MO", "target": "MODEL_1", "type": "INGESTS_SERIES", "role": "1-Month T-Bill Yield Benchmark"},
-    {"source": "IND_DFF", "target": "MODEL_1", "type": "INGESTS_SERIES", "role": "Effective Federal Funds Rate"},
-    {"source": "IND_SAHMREALTIME", "target": "MODEL_3", "type": "INGESTS_SERIES", "role": "Sahm Real-Time Recession Metric"},
-    {"source": "IND_T10Y2Y", "target": "MODEL_6", "type": "INGESTS_SERIES", "role": "10Y - 2Y Yield Spread Benchmark"},
-    {"source": "IND_VIXCLS", "target": "MODEL_16", "type": "INGESTS_SERIES", "role": "CBOE Volatility Index Benchmark"},
-    {"source": "IND_WB_GOLD", "target": "MODEL_21", "type": "INGESTS_SERIES", "role": "World Bank Pink Sheet Gold Benchmark"},
-    {"source": "IND_DCOILWTICO", "target": "MODEL_21", "type": "INGESTS_SERIES", "role": "WTI Crude Oil Benchmark"},
-    {"source": "IND_IC4WSA", "target": "MODEL_23.6", "type": "INGESTS_SERIES", "role": "Initial Jobless Claims 4W-MA YoY"},
-    {"source": "IND_UNRATE", "target": "MODEL_23.6", "type": "INGESTS_SERIES", "role": "Civilian Unemployment Rate YoY Diff"},
-    {"source": "INST_BOE_GB", "target": "IND_GB_FPOLM_PA", "type": "SETS_POLICY_RATE", "role": "Official Bank Rate Setting"},
-    {"source": "IND_GDPC1", "target": "MODEL_23", "type": "INGESTS_SERIES", "role": "Real GDP YoY Growth"},
-    {"source": "IND_UNRATE", "target": "MODEL_23", "type": "INGESTS_SERIES", "role": "Civilian Unemployment Rate YoY Diff"},
-    {"source": "IND_PAYEMS", "target": "MODEL_23.1", "type": "INGESTS_SERIES", "role": "Total Nonfarm Payrolls MoM Change"},
-    {"source": "IND_UNRATE", "target": "MODEL_23.1", "type": "INGESTS_SERIES", "role": "Civilian Unemployment Rate MoM Diff"},
-    {"source": "IND_CIVPART", "target": "MODEL_23.1", "type": "INGESTS_SERIES", "role": "Labor Force Participation Rate MoM Diff"},
-    {"source": "IND_MORTGAGE30US", "target": "MODEL_23.8", "type": "INGESTS_SERIES", "role": "30-Year Fixed Rate Mortgage Average"},
-    {"source": "IND_PERMIT", "target": "MODEL_23.8", "type": "INGESTS_SERIES", "role": "New Privately-Owned Housing Units Authorized YoY Diff"},
-    {"source": "IND_IQ", "target": "MODEL_25", "type": "INGESTS_SERIES", "role": "U.S. Export Price Index"},
-    {"source": "IND_IR", "target": "MODEL_25", "type": "INGESTS_SERIES", "role": "U.S. Import Price Index"},
-    {"source": "IND_JTSJOL", "target": "MODEL_8", "type": "INGESTS_SERIES", "role": "Job Openings Total Nonfarm"},
-    {"source": "IND_UNEMPLOY", "target": "MODEL_8", "type": "INGESTS_SERIES", "role": "Unemployed Persons"},
-    {"source": "IND_INDPRO", "target": "MODEL_23.4", "type": "INGESTS_SERIES", "role": "Industrial Production Total Index YoY"},
-    {"source": "IND_AWHAETP", "target": "MODEL_23.4", "type": "INGESTS_SERIES", "role": "Average Weekly Hours Total Private YoY"},
-    {"source": "IND_DGS10", "target": "MODEL_7", "type": "INGESTS_SERIES", "role": "10-Year Nominal Treasury Yield"},
-    {"source": "IND_DFII10", "target": "MODEL_7", "type": "INGESTS_SERIES", "role": "10-Year TIPS Real Yield"},
-    {"source": "IND_DGS10", "target": "MODEL_9", "type": "INGESTS_SERIES", "role": "10-Year Nominal Treasury Yield"},
-    {"source": "IND_CPIAUCSL", "target": "MODEL_9", "type": "INGESTS_SERIES", "role": "Headline CPI YoY Inflation"},
-    {"source": "IND_GFDEGDQ188S", "target": "MODEL_9", "type": "INGESTS_SERIES", "role": "Federal Debt as Percent of GDP"},
-    {"source": "IND_DFF", "target": "MODEL_11", "type": "INGESTS_SERIES", "role": "Federal Funds Effective Rate"},
-    {"source": "IND_CPIAUCSL", "target": "MODEL_11", "type": "INGESTS_SERIES", "role": "Headline CPI YoY Inflation"},
-    {"source": "IND_GDPC1", "target": "MODEL_11", "type": "INGESTS_SERIES", "role": "Real Gross Domestic Product"},
-    {"source": "IND_GDPPOT", "target": "MODEL_11", "type": "INGESTS_SERIES", "role": "Real Potential Gross Domestic Product"},
-    {"source": "IND_DTWEXBGS", "target": "MODEL_10", "type": "INGESTS_SERIES", "role": "Nominal Broad U.S. Dollar Index"},
-    {"source": "IND_BOPGSTB", "target": "MODEL_10", "type": "INGESTS_SERIES", "role": "U.S. Trade Balance Goods and Services"},
-    {"source": "IND_NFCI", "target": "MODEL_12", "type": "INGESTS_SERIES", "role": "Chicago Fed National Financial Conditions Index"},
-    {"source": "IND_ANFCI", "target": "MODEL_12", "type": "INGESTS_SERIES", "role": "Adjusted National Financial Conditions Index"},
-    {"source": "IND_BAMLH0A0HYM2", "target": "MODEL_13", "type": "INGESTS_SERIES", "role": "High Yield Option-Adjusted Spread"},
-    {"source": "IND_M2SL", "target": "MODEL_14", "type": "INGESTS_SERIES", "role": "M2 Money Supply YoY Growth"},
-    {"source": "IND_CPIAUCSL", "target": "MODEL_14", "type": "INGESTS_SERIES", "role": "Headline CPI YoY Inflation"},
-    {"source": "IND_THREEFYTP10", "target": "MODEL_15", "type": "INGESTS_SERIES", "role": "Adrian, Crump & Moench 10-Year Term Premium"},
-    {"source": "IND_DGS10", "target": "MODEL_15", "type": "INGESTS_SERIES", "role": "10-Year Nominal Treasury Yield"},
-    {"source": "IND_NCBEILQ027S", "target": "MODEL_19", "type": "INGESTS_SERIES", "role": "Corporate Equities Market Liability"},
-    {"source": "IND_GDP", "target": "MODEL_19", "type": "INGESTS_SERIES", "role": "Nominal Gross Domestic Product"},
-    {"source": "IND_PCOPPUSDM", "target": "MODEL_20", "type": "INGESTS_SERIES", "role": "Global Copper Price per Metric Ton"},
-    {"source": "IND_WB_GOLD", "target": "MODEL_20", "type": "INGESTS_SERIES", "role": "World Bank Gold Fixing Price per Ounce"},
-    {"source": "IND_DRCCLACBS", "target": "MODEL_22", "type": "INGESTS_SERIES", "role": "Credit Card Loan Delinquency Rate"},
-    {"source": "IND_PSAVERT", "target": "MODEL_22", "type": "INGESTS_SERIES", "role": "Personal Saving Rate"},
-    {"source": "IND_DTWEXBGS", "target": "MODEL_24", "type": "INGESTS_SERIES", "role": "Nominal Broad U.S. Dollar Index"},
-    {"source": "IND_BAMLH0A0HYM2", "target": "MODEL_24", "type": "INGESTS_SERIES", "role": "High Yield Option-Adjusted Spread"},
-    {"source": "IND_DGS10", "target": "MODEL_24", "type": "INGESTS_SERIES", "role": "10-Year Nominal Treasury Yield"},
-    {"source": "IND_STICKCPIM157SFRBATL", "target": "MODEL_25.2", "type": "INGESTS_SERIES", "role": "sticky_val"},
-    {"source": "IND_FLEXCPIM157SFRBATL", "target": "MODEL_25.2", "type": "INGESTS_SERIES", "role": "flex_val"},
-    {"source": "GOV_TREASURY_US", "target": "IND_WTREGEN", "type": "TRIGGERS_INDICATOR", "impact": "TGA_CASH_BALANCE_MANAGEMENT"},
-    {"source": "GOV_TREASURY_US", "target": "MODEL_5", "type": "BRIDGES_TO_MODEL", "passes": "tga_liquidity_drain_or_injection"},
-    {"source": "GOV_TREASURY_US", "target": "MODEL_9", "type": "BRIDGES_TO_MODEL", "passes": "debt_sustainability_and_issuance_pressure"},
-    {"source": "GOV_MOF_DE", "target": "MODEL_9", "type": "BRIDGES_TO_MODEL", "passes": "european_debt_brake_constraint"},
-    {"source": "IND_PET_WCSSTUS1_W", "target": "MODEL_28.4", "type": "INGESTS_SERIES", "role": "spr_stocks_kbbl"},
-    {"source": "IND_PET_WCRFPUS2_W", "target": "MODEL_28.4", "type": "INGESTS_SERIES", "role": "us_crude_prod_kbpd"},
-    {"source": "IND_PET_WGTSTUS1_W", "target": "MODEL_25.9", "type": "INGESTS_SERIES", "role": "gasoline_inventory_context_kbbl"},
-    {"source": "IND_NG_NW2_EPG0_SWO_R48_BCF_W", "target": "MODEL_25.8", "type": "INGESTS_SERIES", "role": "natgas_storage_context_bcf"},
-    {"source": "IND_PET_WCESTUS1_W", "target": "MODEL_25.12", "type": "INGESTS_SERIES", "role": "commercial_crude_stocks_kbbl"},
-    {"source": "BLOC_KENSINGTON", "target": "IND_VIXCLS", "type": "TRIGGERS_INDICATOR", "impact": "EUROPEAN_DEFENSE_STABILITY"},
-    {"source": "BLOC_KENSINGTON", "target": "IND_INDPRO", "type": "TRIGGERS_INDICATOR", "impact": "DEFENSE_INDUSTRIAL_CO_PRODUCTION"},
-    {"source": "BLOC_OCEAN_OF_PEACE", "target": "IND_GSCPI", "type": "TRIGGERS_INDICATOR", "impact": "SOUTH_PACIFIC_LOGISTICS_STABILITY"},
-    {"source": "BLOC_PUKPUK", "target": "IND_GSCPI", "type": "TRIGGERS_INDICATOR", "impact": "NORTHERN_APPROACHES_TRANSIT_SECURITY"},
-    {"source": "SEC_DEF_STARSHIELD", "target": "MODEL_25.14", "type": "TRANSMITS_RISK", "vector": "SPACE_DOMAIN_AEROSPACE_DEFENSE_SUPPLY"},
-    {"source": "IND_USEPUINDXD", "target": "MODEL_25.15", "type": "INGESTS_SERIES", "role": "economic_policy_uncertainty"},
-    {"source": "MODEL_25.19", "target": "MODEL_25.1", "type": "BRIDGES_TO_MODEL", "passes": "dynamic_macro_trigger_deltas"},
-    {"source": "MODEL_28.2", "target": "MODEL_28.5", "type": "BRIDGES_TO_MODEL", "passes": "market_impact_score"}
+    {
+      "source": "IND_SOFR",
+      "target": "MODEL_25.5",
+      "type": "INGESTS_SERIES",
+      "role": "sofr_val"
+    },
+    {
+      "source": "IND_EFFR",
+      "target": "MODEL_25.5",
+      "type": "INGESTS_SERIES",
+      "role": "effr_val"
+    },
+    {
+      "source": "IND_GSCPI",
+      "target": "MODEL_25.3",
+      "type": "INGESTS_SERIES",
+      "role": "gscpi_val"
+    },
+    {
+      "source": "IND_DFII10",
+      "target": "MODEL_25.6",
+      "type": "INGESTS_SERIES",
+      "role": "real_yield_10y"
+    },
+    {
+      "source": "IND_WB_GOLD",
+      "target": "MODEL_25.6",
+      "type": "INGESTS_SERIES",
+      "role": "gold_yoy_pct"
+    },
+    {
+      "source": "IND_OVXCLS",
+      "target": "MODEL_25.7",
+      "type": "INGESTS_SERIES",
+      "role": "ovx_val"
+    },
+    {
+      "source": "IND_VIXCLS",
+      "target": "MODEL_25.7",
+      "type": "INGESTS_SERIES",
+      "role": "vix_val"
+    },
+    {
+      "source": "IND_DCOILWTICO",
+      "target": "MODEL_25.8",
+      "type": "INGESTS_SERIES",
+      "role": "wti_price"
+    },
+    {
+      "source": "IND_DHHNGSP",
+      "target": "MODEL_25.8",
+      "type": "INGESTS_SERIES",
+      "role": "natgas_price"
+    },
+    {
+      "source": "IND_DGASNYH",
+      "target": "MODEL_25.9",
+      "type": "INGESTS_SERIES",
+      "role": "gasoline_spot_usd_gal"
+    },
+    {
+      "source": "IND_DDFUELNYH",
+      "target": "MODEL_25.9",
+      "type": "INGESTS_SERIES",
+      "role": "ulsd_spot_usd_gal"
+    },
+    {
+      "source": "IND_DCOILWTICO",
+      "target": "MODEL_25.9",
+      "type": "INGESTS_SERIES",
+      "role": "wti_crude_usd_bbl"
+    },
+    {
+      "source": "MODEL_28.3",
+      "target": "MODEL_28.4",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "severity_weight"
+    },
+    {
+      "source": "MODEL_25.1",
+      "target": "MODEL_28.4",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "p_net"
+    },
+    {
+      "source": "IND_DRTSCIS",
+      "target": "MODEL_25.10",
+      "type": "INGESTS_SERIES",
+      "role": "drtscis_val"
+    },
+    {
+      "source": "IND_LNS12500000",
+      "target": "MODEL_25.11",
+      "type": "INGESTS_SERIES",
+      "role": "full_time_level"
+    },
+    {
+      "source": "IND_LNS12032194",
+      "target": "MODEL_25.11",
+      "type": "INGESTS_SERIES",
+      "role": "part_time_econ_level"
+    },
+    {
+      "source": "BLOC_BRICS_MBRIDGE",
+      "target": "MODEL_25.10",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "capital_fragmentation_drain"
+    },
+    {
+      "source": "BLOC_BRICS_MBRIDGE",
+      "target": "MODEL_25.6",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "sovereign_gold_accumulation"
+    },
+    {
+      "source": "IND_DCOILBRENTEU",
+      "target": "MODEL_25.12",
+      "type": "INGESTS_SERIES",
+      "role": "brent_price"
+    },
+    {
+      "source": "IND_DCOILWTICO",
+      "target": "MODEL_25.12",
+      "type": "INGESTS_SERIES",
+      "role": "wti_price"
+    },
+    {
+      "source": "REG_RF_CAUCASUS_ARC",
+      "target": "IND_DCOILBRENTEU",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "CASPIAN_BYPASS_FLOW_SECURITY"
+    },
+    {
+      "source": "REG_RF_CAUCASUS_ARC",
+      "target": "IND_PWHEAMTUSDM",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "NORTH_CAUCASUS_TRANSIT_FRICTION"
+    },
+    {
+      "source": "REG_RF_VOLGA_SIBERIAN",
+      "target": "IND_DCOILWTICO",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "GLOBAL_REFINERY_CRUDE_COMPENSATION"
+    },
+    {
+      "source": "REG_RF_VOLGA_SIBERIAN",
+      "target": "IND_PCOPPUSDM",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "SIBERIAN_MINERAL_EXTRACTION_PRESSURE"
+    },
+    {
+      "source": "REG_RF_SOUTHERN_KRAIS",
+      "target": "IND_DCOILBRENTEU",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "NOVOROSSIYSK_TANKER_FREIGHT_SURCHARGE"
+    },
+    {
+      "source": "REG_RF_SOUTHERN_KRAIS",
+      "target": "IND_PWHEAMTUSDM",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "BLACK_SEA_AGRO_EXPORT_BOTTLENECK"
+    },
+    {
+      "source": "IND_DFF",
+      "target": "MODEL_2",
+      "type": "INGESTS_SERIES",
+      "role": "Nominal Policy Rate Benchmark"
+    },
+    {
+      "source": "IND_CPIAUCSL",
+      "target": "MODEL_2",
+      "type": "INGESTS_SERIES",
+      "role": "Headline Inflation Deflator"
+    },
+    {
+      "source": "IND_DGS3MO",
+      "target": "MODEL_4",
+      "type": "INGESTS_SERIES",
+      "role": "3-Month T-Bill Yield Benchmark"
+    },
+    {
+      "source": "IND_DGS1MO",
+      "target": "MODEL_4",
+      "type": "INGESTS_SERIES",
+      "role": "1-Month T-Bill Yield Benchmark"
+    },
+    {
+      "source": "IND_WALCL",
+      "target": "MODEL_5",
+      "type": "INGESTS_SERIES",
+      "role": "walcl_val"
+    },
+    {
+      "source": "IND_WTREGEN",
+      "target": "MODEL_5",
+      "type": "INGESTS_SERIES",
+      "role": "wtregen_val"
+    },
+    {
+      "source": "IND_RRPONTSYD",
+      "target": "MODEL_5",
+      "type": "INGESTS_SERIES",
+      "role": "rrpontsyd_val"
+    },
+    {
+      "source": "INST_FED_US",
+      "target": "IND_WALCL",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "BALANCE_SHEET_EXPANSION_OR_CONTRACTION"
+    },
+    {
+      "source": "INST_FED_US",
+      "target": "IND_EFFR",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "POLICY_RATE_SETTING"
+    },
+    {
+      "source": "INST_FED_US",
+      "target": "MODEL_5",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "liquidity_steering_policy"
+    },
+    {
+      "source": "INST_CBRT_TR",
+      "target": "MODEL_25.2",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "inflation_target_transmission"
+    },
+    {
+      "source": "INST_ECB_EU",
+      "target": "MODEL_25.5",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "eurodollar_repo_liquidity_impact"
+    },
+    {
+      "source": "IND_PAYEMS",
+      "target": "MODEL_25.13",
+      "type": "INGESTS_SERIES",
+      "role": "payems_mom"
+    },
+    {
+      "source": "IND_UNRATE",
+      "target": "MODEL_25.13",
+      "type": "INGESTS_SERIES",
+      "role": "unrate_diff"
+    },
+    {
+      "source": "IND_GSCPI",
+      "target": "MODEL_25.14",
+      "type": "INGESTS_SERIES",
+      "role": "gscpi_val"
+    },
+    {
+      "source": "IND_NASDAQSOX",
+      "target": "MODEL_25.14",
+      "type": "INGESTS_SERIES",
+      "role": "sox_yoy_pct"
+    },
+    {
+      "source": "IND_VIXCLS",
+      "target": "MODEL_25.14",
+      "type": "INGESTS_SERIES",
+      "role": "vix_val"
+    },
+    {
+      "source": "IND_DFF",
+      "target": "MODEL_25.16",
+      "type": "INGESTS_SERIES",
+      "role": "US Benchmark Rate"
+    },
+    {
+      "source": "IND_JP_FPOLM_PA",
+      "target": "MODEL_25.16",
+      "type": "INGESTS_SERIES",
+      "role": "Japan Policy Benchmark Rate"
+    },
+    {
+      "source": "IND_DEXJPUS",
+      "target": "MODEL_25.16",
+      "type": "INGESTS_SERIES",
+      "role": "Currency Momentum Pair"
+    },
+    {
+      "source": "INST_BOJ_JP",
+      "target": "MODEL_25.16",
+      "type": "MONETARY_AUTHORITY",
+      "role": "Funding Currency Regulator"
+    },
+    {
+      "source": "IND_SAUPZPIOILBEGUSD",
+      "target": "MODEL_25.18",
+      "type": "INGESTS_SERIES",
+      "role": "Hydrocarbon Fiscal Breakeven Threshold"
+    },
+    {
+      "source": "IND_DCOILBRENTEU",
+      "target": "MODEL_25.18",
+      "type": "INGESTS_SERIES",
+      "role": "Brent Spot Benchmark"
+    },
+    {
+      "source": "IND_SOFR",
+      "target": "MODEL_25.18",
+      "type": "INGESTS_SERIES",
+      "role": "Global Dollar Liquidity Benchmark"
+    },
+    {
+      "source": "IND_UNRATE",
+      "target": "MODEL_18",
+      "type": "INGESTS_SERIES",
+      "role": "Civilian Unemployment Rate"
+    },
+    {
+      "source": "IND_CPIAUCSL",
+      "target": "MODEL_18",
+      "type": "INGESTS_SERIES",
+      "role": "Headline Inflation Rate YoY"
+    },
+    {
+      "source": "IND_ISRATIO",
+      "target": "MODEL_23.7",
+      "type": "INGESTS_SERIES",
+      "role": "Total Business Inventory to Sales Ratio"
+    },
+    {
+      "source": "IND_DGS3MO",
+      "target": "MODEL_25.17",
+      "type": "INGESTS_SERIES",
+      "role": "dgs3mo"
+    },
+    {
+      "source": "IND_DGS1MO",
+      "target": "MODEL_25.17",
+      "type": "INGESTS_SERIES",
+      "role": "dgs1mo"
+    },
+    {
+      "source": "IND_DCOILBRENTEU",
+      "target": "MODEL_25.17",
+      "type": "INGESTS_SERIES",
+      "role": "brent_yoy_pct"
+    },
+    {
+      "source": "IND_DGS1MO",
+      "target": "MODEL_1",
+      "type": "INGESTS_SERIES",
+      "role": "1-Month T-Bill Yield Benchmark"
+    },
+    {
+      "source": "IND_DFF",
+      "target": "MODEL_1",
+      "type": "INGESTS_SERIES",
+      "role": "Effective Federal Funds Rate"
+    },
+    {
+      "source": "IND_SAHMREALTIME",
+      "target": "MODEL_3",
+      "type": "INGESTS_SERIES",
+      "role": "Sahm Real-Time Recession Metric"
+    },
+    {
+      "source": "IND_T10Y2Y",
+      "target": "MODEL_6",
+      "type": "INGESTS_SERIES",
+      "role": "10Y - 2Y Yield Spread Benchmark"
+    },
+    {
+      "source": "IND_VIXCLS",
+      "target": "MODEL_16",
+      "type": "INGESTS_SERIES",
+      "role": "CBOE Volatility Index Benchmark"
+    },
+    {
+      "source": "IND_WB_GOLD",
+      "target": "MODEL_21",
+      "type": "INGESTS_SERIES",
+      "role": "World Bank Pink Sheet Gold Benchmark"
+    },
+    {
+      "source": "IND_DCOILWTICO",
+      "target": "MODEL_21",
+      "type": "INGESTS_SERIES",
+      "role": "WTI Crude Oil Benchmark"
+    },
+    {
+      "source": "IND_IC4WSA",
+      "target": "MODEL_23.6",
+      "type": "INGESTS_SERIES",
+      "role": "Initial Jobless Claims 4W-MA YoY"
+    },
+    {
+      "source": "IND_UNRATE",
+      "target": "MODEL_23.6",
+      "type": "INGESTS_SERIES",
+      "role": "Civilian Unemployment Rate YoY Diff"
+    },
+    {
+      "source": "INST_BOE_GB",
+      "target": "IND_GB_FPOLM_PA",
+      "type": "SETS_POLICY_RATE",
+      "role": "Official Bank Rate Setting"
+    },
+    {
+      "source": "IND_GDPC1",
+      "target": "MODEL_23",
+      "type": "INGESTS_SERIES",
+      "role": "Real GDP YoY Growth"
+    },
+    {
+      "source": "IND_UNRATE",
+      "target": "MODEL_23",
+      "type": "INGESTS_SERIES",
+      "role": "Civilian Unemployment Rate YoY Diff"
+    },
+    {
+      "source": "IND_PAYEMS",
+      "target": "MODEL_23.1",
+      "type": "INGESTS_SERIES",
+      "role": "Total Nonfarm Payrolls MoM Change"
+    },
+    {
+      "source": "IND_UNRATE",
+      "target": "MODEL_23.1",
+      "type": "INGESTS_SERIES",
+      "role": "Civilian Unemployment Rate MoM Diff"
+    },
+    {
+      "source": "IND_CIVPART",
+      "target": "MODEL_23.1",
+      "type": "INGESTS_SERIES",
+      "role": "Labor Force Participation Rate MoM Diff"
+    },
+    {
+      "source": "IND_MORTGAGE30US",
+      "target": "MODEL_23.8",
+      "type": "INGESTS_SERIES",
+      "role": "30-Year Fixed Rate Mortgage Average"
+    },
+    {
+      "source": "IND_PERMIT",
+      "target": "MODEL_23.8",
+      "type": "INGESTS_SERIES",
+      "role": "New Privately-Owned Housing Units Authorized YoY Diff"
+    },
+    {
+      "source": "IND_IQ",
+      "target": "MODEL_25",
+      "type": "INGESTS_SERIES",
+      "role": "U.S. Export Price Index"
+    },
+    {
+      "source": "IND_IR",
+      "target": "MODEL_25",
+      "type": "INGESTS_SERIES",
+      "role": "U.S. Import Price Index"
+    },
+    {
+      "source": "IND_JTSJOL",
+      "target": "MODEL_8",
+      "type": "INGESTS_SERIES",
+      "role": "Job Openings Total Nonfarm"
+    },
+    {
+      "source": "IND_UNEMPLOY",
+      "target": "MODEL_8",
+      "type": "INGESTS_SERIES",
+      "role": "Unemployed Persons"
+    },
+    {
+      "source": "IND_INDPRO",
+      "target": "MODEL_23.4",
+      "type": "INGESTS_SERIES",
+      "role": "Industrial Production Total Index YoY"
+    },
+    {
+      "source": "IND_AWHAETP",
+      "target": "MODEL_23.4",
+      "type": "INGESTS_SERIES",
+      "role": "Average Weekly Hours Total Private YoY"
+    },
+    {
+      "source": "IND_DGS10",
+      "target": "MODEL_7",
+      "type": "INGESTS_SERIES",
+      "role": "10-Year Nominal Treasury Yield"
+    },
+    {
+      "source": "IND_DFII10",
+      "target": "MODEL_7",
+      "type": "INGESTS_SERIES",
+      "role": "10-Year TIPS Real Yield"
+    },
+    {
+      "source": "IND_DGS10",
+      "target": "MODEL_9",
+      "type": "INGESTS_SERIES",
+      "role": "10-Year Nominal Treasury Yield"
+    },
+    {
+      "source": "IND_CPIAUCSL",
+      "target": "MODEL_9",
+      "type": "INGESTS_SERIES",
+      "role": "Headline CPI YoY Inflation"
+    },
+    {
+      "source": "IND_GFDEGDQ188S",
+      "target": "MODEL_9",
+      "type": "INGESTS_SERIES",
+      "role": "Federal Debt as Percent of GDP"
+    },
+    {
+      "source": "IND_DFF",
+      "target": "MODEL_11",
+      "type": "INGESTS_SERIES",
+      "role": "Federal Funds Effective Rate"
+    },
+    {
+      "source": "IND_CPIAUCSL",
+      "target": "MODEL_11",
+      "type": "INGESTS_SERIES",
+      "role": "Headline CPI YoY Inflation"
+    },
+    {
+      "source": "IND_GDPC1",
+      "target": "MODEL_11",
+      "type": "INGESTS_SERIES",
+      "role": "Real Gross Domestic Product"
+    },
+    {
+      "source": "IND_GDPPOT",
+      "target": "MODEL_11",
+      "type": "INGESTS_SERIES",
+      "role": "Real Potential Gross Domestic Product"
+    },
+    {
+      "source": "IND_DTWEXBGS",
+      "target": "MODEL_10",
+      "type": "INGESTS_SERIES",
+      "role": "Nominal Broad U.S. Dollar Index"
+    },
+    {
+      "source": "IND_BOPGSTB",
+      "target": "MODEL_10",
+      "type": "INGESTS_SERIES",
+      "role": "U.S. Trade Balance Goods and Services"
+    },
+    {
+      "source": "IND_NFCI",
+      "target": "MODEL_12",
+      "type": "INGESTS_SERIES",
+      "role": "Chicago Fed National Financial Conditions Index"
+    },
+    {
+      "source": "IND_ANFCI",
+      "target": "MODEL_12",
+      "type": "INGESTS_SERIES",
+      "role": "Adjusted National Financial Conditions Index"
+    },
+    {
+      "source": "IND_BAMLH0A0HYM2",
+      "target": "MODEL_13",
+      "type": "INGESTS_SERIES",
+      "role": "High Yield Option-Adjusted Spread"
+    },
+    {
+      "source": "IND_M2SL",
+      "target": "MODEL_14",
+      "type": "INGESTS_SERIES",
+      "role": "M2 Money Supply YoY Growth"
+    },
+    {
+      "source": "IND_CPIAUCSL",
+      "target": "MODEL_14",
+      "type": "INGESTS_SERIES",
+      "role": "Headline CPI YoY Inflation"
+    },
+    {
+      "source": "IND_THREEFYTP10",
+      "target": "MODEL_15",
+      "type": "INGESTS_SERIES",
+      "role": "Adrian, Crump & Moench 10-Year Term Premium"
+    },
+    {
+      "source": "IND_DGS10",
+      "target": "MODEL_15",
+      "type": "INGESTS_SERIES",
+      "role": "10-Year Nominal Treasury Yield"
+    },
+    {
+      "source": "IND_NCBEILQ027S",
+      "target": "MODEL_19",
+      "type": "INGESTS_SERIES",
+      "role": "Corporate Equities Market Liability"
+    },
+    {
+      "source": "IND_GDP",
+      "target": "MODEL_19",
+      "type": "INGESTS_SERIES",
+      "role": "Nominal Gross Domestic Product"
+    },
+    {
+      "source": "IND_PCOPPUSDM",
+      "target": "MODEL_20",
+      "type": "INGESTS_SERIES",
+      "role": "Global Copper Price per Metric Ton"
+    },
+    {
+      "source": "IND_WB_GOLD",
+      "target": "MODEL_20",
+      "type": "INGESTS_SERIES",
+      "role": "World Bank Gold Fixing Price per Ounce"
+    },
+    {
+      "source": "IND_DRCCLACBS",
+      "target": "MODEL_22",
+      "type": "INGESTS_SERIES",
+      "role": "Credit Card Loan Delinquency Rate"
+    },
+    {
+      "source": "IND_PSAVERT",
+      "target": "MODEL_22",
+      "type": "INGESTS_SERIES",
+      "role": "Personal Saving Rate"
+    },
+    {
+      "source": "IND_DTWEXBGS",
+      "target": "MODEL_24",
+      "type": "INGESTS_SERIES",
+      "role": "Nominal Broad U.S. Dollar Index"
+    },
+    {
+      "source": "IND_BAMLH0A0HYM2",
+      "target": "MODEL_24",
+      "type": "INGESTS_SERIES",
+      "role": "High Yield Option-Adjusted Spread"
+    },
+    {
+      "source": "IND_DGS10",
+      "target": "MODEL_24",
+      "type": "INGESTS_SERIES",
+      "role": "10-Year Nominal Treasury Yield"
+    },
+    {
+      "source": "IND_STICKCPIM157SFRBATL",
+      "target": "MODEL_25.2",
+      "type": "INGESTS_SERIES",
+      "role": "sticky_val"
+    },
+    {
+      "source": "IND_FLEXCPIM157SFRBATL",
+      "target": "MODEL_25.2",
+      "type": "INGESTS_SERIES",
+      "role": "flex_val"
+    },
+    {
+      "source": "GOV_TREASURY_US",
+      "target": "IND_WTREGEN",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "TGA_CASH_BALANCE_MANAGEMENT"
+    },
+    {
+      "source": "GOV_TREASURY_US",
+      "target": "MODEL_5",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "tga_liquidity_drain_or_injection"
+    },
+    {
+      "source": "GOV_TREASURY_US",
+      "target": "MODEL_9",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "debt_sustainability_and_issuance_pressure"
+    },
+    {
+      "source": "GOV_MOF_DE",
+      "target": "MODEL_9",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "european_debt_brake_constraint"
+    },
+    {
+      "source": "IND_PET_WCSSTUS1_W",
+      "target": "MODEL_28.4",
+      "type": "INGESTS_SERIES",
+      "role": "spr_stocks_kbbl"
+    },
+    {
+      "source": "IND_PET_WCRFPUS2_W",
+      "target": "MODEL_28.4",
+      "type": "INGESTS_SERIES",
+      "role": "us_crude_prod_kbpd"
+    },
+    {
+      "source": "IND_PET_WGTSTUS1_W",
+      "target": "MODEL_25.9",
+      "type": "INGESTS_SERIES",
+      "role": "gasoline_inventory_context_kbbl"
+    },
+    {
+      "source": "IND_NG_NW2_EPG0_SWO_R48_BCF_W",
+      "target": "MODEL_25.8",
+      "type": "INGESTS_SERIES",
+      "role": "natgas_storage_context_bcf"
+    },
+    {
+      "source": "IND_PET_WCESTUS1_W",
+      "target": "MODEL_25.12",
+      "type": "INGESTS_SERIES",
+      "role": "commercial_crude_stocks_kbbl"
+    },
+    {
+      "source": "BLOC_KENSINGTON",
+      "target": "IND_VIXCLS",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "EUROPEAN_DEFENSE_STABILITY"
+    },
+    {
+      "source": "BLOC_KENSINGTON",
+      "target": "IND_INDPRO",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "DEFENSE_INDUSTRIAL_CO_PRODUCTION"
+    },
+    {
+      "source": "BLOC_OCEAN_OF_PEACE",
+      "target": "IND_GSCPI",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "SOUTH_PACIFIC_LOGISTICS_STABILITY"
+    },
+    {
+      "source": "BLOC_PUKPUK",
+      "target": "IND_GSCPI",
+      "type": "TRIGGERS_INDICATOR",
+      "impact": "NORTHERN_APPROACHES_TRANSIT_SECURITY"
+    },
+    {
+      "source": "SEC_DEF_STARSHIELD",
+      "target": "MODEL_25.14",
+      "type": "TRANSMITS_RISK",
+      "vector": "SPACE_DOMAIN_AEROSPACE_DEFENSE_SUPPLY"
+    },
+    {
+      "source": "IND_USEPUINDXD",
+      "target": "MODEL_25.15",
+      "type": "INGESTS_SERIES",
+      "role": "economic_policy_uncertainty"
+    },
+    {
+      "source": "MODEL_25.19",
+      "target": "MODEL_25.1",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "dynamic_macro_trigger_deltas"
+    },
+    {
+      "source": "MODEL_28.2",
+      "target": "MODEL_28.5",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "market_impact_score"
+    },
+    {
+      "source": "INST_FED_US",
+      "target": "MODEL_26",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "monetary_committee_voting_distribution"
+    },
+    {
+      "source": "INST_ECB_EU",
+      "target": "MODEL_26",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "monetary_committee_voting_distribution"
+    },
+    {
+      "source": "INST_BOE_GB",
+      "target": "MODEL_26",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "monetary_committee_voting_distribution"
+    },
+    {
+      "source": "INST_CBRT_TR",
+      "target": "MODEL_26",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "monetary_committee_voting_distribution"
+    },
+    {
+      "source": "INST_BOJ_JP",
+      "target": "MODEL_26",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "monetary_committee_voting_distribution"
+    },
+    {
+      "source": "IND_TRIGGER_HORMUZ_SPREAD",
+      "target": "MODEL_25.19",
+      "type": "INGESTS_SERIES",
+      "role": "hormuz_spread_shock"
+    },
+    {
+      "source": "IND_TRIGGER_OVX_ENERGY_PANIC",
+      "target": "MODEL_25.19",
+      "type": "INGESTS_SERIES",
+      "role": "ovx_energy_panic"
+    },
+    {
+      "source": "IND_TRIGGER_NATGAS_CRACK",
+      "target": "MODEL_25.19",
+      "type": "INGESTS_SERIES",
+      "role": "natgas_crack_shock"
+    },
+    {
+      "source": "IND_TRIGGER_CHIP_CONTAINMENT",
+      "target": "MODEL_25.19",
+      "type": "INGESTS_SERIES",
+      "role": "chip_containment_shock"
+    },
+    {
+      "source": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
+      "target": "MODEL_25.19",
+      "type": "INGESTS_SERIES",
+      "role": "sofr_dollar_drain"
+    },
+    {
+      "source": "IND_TRIGGER_GSCPI_LOGISTICS",
+      "target": "MODEL_25.19",
+      "type": "INGESTS_SERIES",
+      "role": "gscpi_logistics_shock"
+    },
+    {
+      "source": "IND_TRIGGER_WHEAT_PRICE",
+      "target": "MODEL_25.19",
+      "type": "INGESTS_SERIES",
+      "role": "wheat_price_shock"
+    },
+    {
+      "source": "IND_TRIGGER_CORN_PRICE",
+      "target": "MODEL_25.19",
+      "type": "INGESTS_SERIES",
+      "role": "corn_price_shock"
+    }
   ]
 }
