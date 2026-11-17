@@ -906,6 +906,20 @@ def main():
         except Exception as e:
             print(f"[WARN] Error reading llms-nasa-firms.json: {e}")
 
+    # Ingest IMF PortWatch AIS Telemetry (llms-portwatch.json)
+    portwatch_json_path = 'llms-portwatch.json'
+    if not os.path.exists(portwatch_json_path):
+        portwatch_json_path = os.path.join(os.path.dirname(__file__), '..', 'llms-portwatch.json')
+
+    portwatch_chokepoints = {}
+    if os.path.exists(portwatch_json_path):
+        try:
+            with open(portwatch_json_path, 'r', encoding='utf-8') as f:
+                pw_data = json.load(f)
+            portwatch_chokepoints = pw_data.get('chokepoints', {})
+        except Exception as e:
+            print(f"[WARN] Error reading llms-portwatch.json: {e}")
+
     # Actor-to-Monitored-Theater Mapping (All 25 Bilateral Dyads dynamically covered)
     ACTOR_THEATER_MAP = {
         'US_RU': ['USA', 'RUS'],
@@ -1222,6 +1236,33 @@ def main():
         lines_cb.append('<!-- DYNAMIC_CENTRAL_BANK_RATES_END -->')
         new_cb_block = '\n'.join(lines_cb)
 
+        # 4. Maritime Chokepoint AIS Telemetry Block (IMF PortWatch)
+        lines_pw = []
+        lines_pw.append('<!-- DYNAMIC_PORTWATCH_START -->')
+        lines_pw.append('### 1.5. LIVE MARITIME CHOKEPOINT TRANSIT TELEMETRY (IMF PORTWATCH AIS)')
+        lines_pw.append('> **AI Ingestion Contract & Epistemological Directive:**')
+        lines_pw.append(f'> - **Sync Cadence & ISO 8601 Timestamp:** {now_utc}')
+        lines_pw.append('> - **Source Authority:** IMF PortWatch / Oxford ECI / UN Global Platform AIS')
+        lines_pw.append('> - **Telemetry Endpoints:** [`llms-portwatch.json`](https://analysisreports.github.io/llms-portwatch.json) | [`llms-portwatch.txt`](https://analysisreports.github.io/llms-portwatch.txt)')
+        lines_pw.append('> - **Regime Rules:** `CHRONIC_CRISIS_BLOCKADE` (Δ% 2023 <= -40%), `SEVERE_CONTRACTION` (Δ% WoW <= -50%), `MODERATE_CONTRACTION` (Δ% WoW <= -25%), `CONGESTION_SURGE` (Δ% WoW >= +25%), `STABLE_FLOW` (Routine band).')
+        lines_pw.append('')
+        lines_pw.append('| Entity ID | Name | Date | Daily | Tnk | Cnt | 7d Avg | Δ% WoW | 2023 Base | Δ% 2023 | Flow Status |')
+        lines_pw.append('| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |')
+        for c_id, c_data in portwatch_chokepoints.items():
+            m = c_data.get('metrics', {})
+            dt = m.get('last_date') or 'N/A'
+            tot = m.get('latest_daily_total') if m.get('latest_daily_total') is not None else 'null'
+            tnk = m.get('latest_daily_tankers') if m.get('latest_daily_tankers') is not None else 'null'
+            cnt = m.get('latest_daily_containers') if m.get('latest_daily_containers') is not None else 'null'
+            avg7 = m.get('7d_avg_total') if m.get('7d_avg_total') is not None else 'null'
+            wow = f"{m.get('pct_change_vs_7d'):+.1f}%" if m.get('pct_change_vs_7d') is not None else 'N/A'
+            b2023 = f"{m.get('baseline_2023_daily'):.1f}" if m.get('baseline_2023_daily') is not None else 'N/A'
+            pct2023 = f"{m.get('pct_change_vs_2023'):+.1f}%" if m.get('pct_change_vs_2023') is not None else 'N/A'
+            st = f"`{m.get('flow_stress_level', 'UNKNOWN')}`"
+            lines_pw.append(f'| `{c_id}` | {c_data.get("name")} | {dt} | {tot} | {tnk} | {cnt} | {avg7} | {wow} | {b2023} | {pct2023} | {st} |')
+        lines_pw.append('<!-- DYNAMIC_PORTWATCH_END -->')
+        new_pw_block = '\n'.join(lines_pw)
+
         # Update Polarity Block
         start_pol = '<!-- DYNAMIC_POLARITY_START -->'
         end_pol = '<!-- DYNAMIC_POLARITY_END -->'
@@ -1241,6 +1282,22 @@ def main():
             txt_content = before_cb + new_cb_block + after_cb
         else:
             txt_content += '\n\n' + new_cb_block
+
+        # Update PortWatch AIS Telemetry Block
+        start_pw = '<!-- DYNAMIC_PORTWATCH_START -->'
+        end_pw = '<!-- DYNAMIC_PORTWATCH_END -->'
+        if start_pw in txt_content and end_pw in txt_content:
+            before_pw = txt_content.split(start_pw)[0]
+            after_pw = txt_content.split(end_pw)[1]
+            txt_content = before_pw + new_pw_block + after_pw
+        else:
+            # Place right after NASA telemetry block or at the end of Section 1
+            nasa_end = '<!-- DYNAMIC_NASA_TELEMETRY_END -->'
+            if nasa_end in txt_content:
+                before_nasa, after_nasa = txt_content.split(nasa_end)
+                txt_content = before_nasa + nasa_end + '\n\n' + new_pw_block + after_nasa
+            else:
+                txt_content += '\n\n' + new_pw_block
 
         with open(txt_path, 'w', encoding='utf-8') as f:
             f.write(txt_content)
