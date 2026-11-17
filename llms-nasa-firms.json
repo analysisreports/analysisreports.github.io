@@ -367,7 +367,7 @@
       "kinetic_conflict_score": 0,
       "conflict_severity": "LOW",
       "corridor_flashpoints": [
-        "CHOKE_SUEZ_CANAL",
+        "CHOKE_SUEZ",
         "PHILADELPHI_BUFFER"
       ],
       "sample_hotspots": [],

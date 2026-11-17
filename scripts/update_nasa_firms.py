@@ -174,7 +174,7 @@ MONITORED_THEATERS: Dict[str, Dict[str, Any]] = {
         "category": "MARITIME_CHOKEPOINT_SOVEREIGN",
         "theater": "Sinai & Suez Canal",
         "bounds": (24.7, 22.0, 36.9, 31.7),
-        "corridor_check": ["CHOKE_SUEZ_CANAL", "PHILADELPHI_BUFFER"]
+        "corridor_check": ["CHOKE_SUEZ", "PHILADELPHI_BUFFER"]
     },
     "SAU": {
         "entity_id": "GEO_SA",
@@ -322,9 +322,10 @@ def analyze_thermal_anomalies(country_code: str, rows: List[Dict[str, Any]]) -> 
     filtered_count = len(high_conf_hits)
     
     # Calculate Deterministic Kinetic Score (0 to 100 scale) for Model 28.1 (c1)
+    # Zero-Fallback Protocol: When no detections occur or filtered count is zero, return null (None)
     if filtered_count == 0:
-        kinetic_score = 0
-        severity = "LOW"
+        kinetic_score = None
+        severity = None
     elif filtered_count < 10 and max_frp < STRATEGIC_FRP_MW:
         kinetic_score = min(40, filtered_count * 4)
         severity = "MODERATE"
@@ -433,16 +434,17 @@ def build_outputs(map_key: str) -> Tuple[str, Dict[str, Any]]:
     for c_code, data in theaters_output.items():
         if data.get("status") == "OK":
             sev = data.get('conflict_severity')
-            sev_str = f"**{sev}**" if sev not in (None, "UNAVAILABLE") else "null (NASA Telemetry Pending)"
+            sev_str = f"**{sev}**" if sev not in (None, "UNAVAILABLE") else "null"
+            score_str = str(data['kinetic_conflict_score']) if data.get('kinetic_conflict_score') is not None else "null"
             lines.append(
                 f"| **{data['name']}** | {data['entity_id']} | OK | "
                 f"{data['high_confidence_anomalies']} | {data['peak_explosion_power_mw']:.1f} MW | "
-                f"{data['kinetic_conflict_score']} | {sev_str} | {data['category']} |"
+                f"{score_str} | {sev_str} | {data['category']} |"
             )
         else:
             lines.append(
                 f"| **{MONITORED_THEATERS[c_code]['name']}** | {MONITORED_THEATERS[c_code]['entity_id']} | "
-                f"{data.get('status')} | null | null | null | null (NASA Telemetry Pending) | {MONITORED_THEATERS[c_code]['category']} |"
+                f"{data.get('status')} | null | null | null | null | {MONITORED_THEATERS[c_code]['category']} |"
             )
             
     lines.append("")
