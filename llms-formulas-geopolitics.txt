@@ -426,24 +426,34 @@ def _is_num(val):
 ---
 
 ### 28.1. CONFLICT HEAT SCORE
-- Purpose: Scores kinetic military conflict, diplomatic friction, and critical infrastructure/trade transit disruption risks on a 0-100 scale.
+- Purpose: Scores kinetic military conflict, diplomatic friction, and critical infrastructure/trade transit disruption risks on a 0-100 scale. Integrates real-time NASA FIRMS satellite thermal anomaly telemetry as the canonical objective data feed for kinetic military strikes.
 - Target: core_analysis -> conflict_heat
+- Telemetry Data Feeds:
+  - c1 (kinetic_military): Ingested deterministically from NASA FIRMS orbital telemetry (llms-nasa-firms.json -> theaters[c_code].kinetic_conflict_score). Measures VIIRS 375m active fire clusters, FRP > 150 MW ballistic detonations, and strategic frontline barrages.
+  - c2 (geo_tension): Calibrated diplomatic rhetoric, bilateral threat stance, or geopolitical risk index (0-100).
+  - c3 (disruption_risk): Evaluated chokepoint transit and infrastructure interdiction risk derived from Model 28.3 (Chokepoint Disruption Severity Engine).
+- Strict Zero-Fallback Directive:
+  - If any component input (c1, c2, c3) is missing, unobserved, None, or non-finite, the function strictly evaluates to None (null).
+  - No synthetic placeholders, default zeros, or speculative proxies are permitted under Rule 1.
 - Formula:
   Conflict_Heat = (c1 * 0.40) + (c2 * 0.35) + (c3 * 0.25)
 - Machine-Executable Logic (Python):
   def conflict_heat_score(kinetic_military, geo_tension, disruption_risk):
       if not all(_is_num(v) for v in (kinetic_military, geo_tension, disruption_risk)):
           return None
-      c1 = min(100.0, max(0.0, float(kinetic_military)))
-      c2 = min(100.0, max(0.0, float(geo_tension)))
-      c3 = min(100.0, max(0.0, float(disruption_risk)))
+      c1 = float(kinetic_military)
+      c2 = float(geo_tension)
+      c3 = float(disruption_risk)
+      if c1 < 0.0 or c1 > 100.0 or c2 < 0.0 or c2 > 100.0 or c3 < 0.0 or c3 > 100.0:
+          return None
       score = (c1 * 0.40) + (c2 * 0.35) + (c3 * 0.25)
-      return int(round(min(100.0, score)))
-- Interpretation:
-  - Conflict_Heat >= 80 : CRITICAL_KINETIC_ESCALATION (Major war / Chokepoint closure / Acute kinetic escalation)
-  - 55 <= Conflict_Heat < 80 : HIGH_FRICTION (Direct conflict risk / Severe diplomatic crisis)
-  - 30 <= Conflict_Heat < 55 : MODERATE_TENSION (Proxy warfare / Managed regional tension)
-  - Conflict_Heat < 30 : LOW_RISK_ENVIRONMENT (Routine geopolitical baseline)
+      return int(round(min(100.0, max(0.0, score))))
+- Interpretation & Schema Severity Mapping:
+  - Conflict_Heat >= 80 : CRITICAL (Major state-on-state kinetic warfare / Strategic chokepoint closure / Direct ballistic strikes). Automatically satisfies kinetic criteria for Model 25.1 KINETIC_WAR when P_net < -0.95.
+  - 55 <= Conflict_Heat < 80 : HIGH (Acute proxy friction / High direct conflict probability / Severe naval or diplomatic standoff).
+  - 30 <= Conflict_Heat < 55 : MODERATE (Managed proxy friction / Tactical cross-border strikes / Localized low-intensity harassment).
+  - Conflict_Heat < 30 : LOW (Routine baseline / Managed deterrence / Minimal thermal signature).
+  - Null / Missing : UNAVAILABLE (Data feed offline, satellite unconfigured, or telemetry missing).
 
 
 ---
