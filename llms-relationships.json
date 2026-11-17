@@ -8,10 +8,10 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-relationships.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-17T22:37:04.548155+00:00",
+    "last_updated": "2026-11-17T22:56:35.807311+00:00",
     "sync_status": "PARTIAL_SUCCESS",
     "last_successful_sync": null,
-    "last_attempted_sync": "2026-11-17T22:37:04.548155+00:00",
+    "last_attempted_sync": "2026-11-17T22:56:35.807311+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -832,7 +832,7 @@
       "target_entity": "GEO_VE",
       "label": "US - VE (United States vs. Bolivarian Republic of Venezuela)",
       "p_baseline": -0.75,
-      "dynamic_delta": 0.090708,
+      "dynamic_delta": -0.083772,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -842,9 +842,9 @@
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
-          "direction": -1,
+          "direction": 1,
           "value": -0.4362,
-          "contribution": 0.4362,
+          "contribution": -0.4362,
           "status": "OK"
         },
         {
@@ -856,7 +856,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
-      "p_net": -0.66,
+      "p_net": -0.83,
       "conflict_severity": "MODERATE",
       "nasa_data": "STABLE",
       "regime_state": "PROXY_WAR",
@@ -873,7 +873,7 @@
       "target_entity": "GEO_SY",
       "label": "TR - SY (Republic of Türkiye vs. Syrian Arab Republic)",
       "p_baseline": -0.6,
-      "dynamic_delta": 0.08724,
+      "dynamic_delta": -0.2,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -882,15 +882,22 @@
       "diplomatic_mission_note": "Ankara Embassy scheduled opening 2026-12-01 (Damascus reopened 2024-12-14)",
       "macro_trigger_contributions": [
         {
-          "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
+          "trigger_id": "IND_TRIGGER_WHEAT_PRICE",
           "direction": -1,
-          "value": -0.4362,
-          "contribution": 0.4362,
+          "value": 0.5914,
+          "contribution": -0.5914,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_GSCPI_LOGISTICS",
+          "direction": -1,
+          "value": 1.0,
+          "contribution": -1.0,
           "status": "OK"
         }
       ],
-      "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
-      "p_net": -0.51,
+      "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
+      "p_net": -0.8,
       "conflict_severity": "LOW",
       "nasa_data": "STABLE",
       "regime_state": "PROXY_WAR",
