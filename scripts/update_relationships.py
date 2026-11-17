@@ -612,21 +612,25 @@ def main():
             for body in entries:
                 ent_match = re.search(r'(?:Canonical Entities|Entities):\s*([A-Z0-9_]+)\s*(?:vs\.?|-)\s*([A-Z0-9_]+)', body)
                 p_base_match = re.search(r'Baseline Polarity \(P_baseline\):\s*([+-]?\d+\.?\d*)', body)
+                sev_match = re.search(r'Conflict Severity:\s*([A-Z]+)', body)
                 umbrella_match = re.search(r'Multilateral Alliance Umbrella:\s*([A-Z0-9_]+)', body)
                 if ent_match and p_base_match:
                     e1, e2 = ent_match.group(1), ent_match.group(2)
                     p_val = float(p_base_match.group(1))
+                    sev_val = sev_match.group(1) if sev_match else 'MODERATE'
                     umb = umbrella_match.group(1) if umbrella_match else None
-                    section2_baselines[(e1, e2)] = {'p_baseline': p_val, 'umbrella': umb}
-                    section2_baselines[(e2, e1)] = {'p_baseline': p_val, 'umbrella': umb}
+                    section2_baselines[(e1, e2)] = {'p_baseline': p_val, 'conflict_severity': sev_val, 'umbrella': umb}
+                    section2_baselines[(e2, e1)] = {'p_baseline': p_val, 'conflict_severity': sev_val, 'umbrella': umb}
 
             # Baltics sub-sections handling (2.9.2.1, 2.9.2.2, 2.9.2.3)
             baltics = {'LT_RU': ('GEO_LT', 'GEO_RU'), 'EE_RU': ('GEO_EE', 'GEO_RU'), 'LV_RU': ('GEO_LV', 'GEO_RU')}
             for bid, (e1, e2) in baltics.items():
                 m = re.search(bid.replace('_', ' - ') + r'[^\n]*\n\s+- Baseline Polarity \(P_baseline\):\s*([+-]?\d+\.?\d*)', rel_text)
+                sev_m = re.search(bid.replace('_', ' - ') + r'[^\n]*\n(?:\s+-[^\n]*\n)*?\s+- Conflict Severity:\s*([A-Z]+)', rel_text)
                 if m:
-                    section2_baselines[(e1, e2)] = {'p_baseline': float(m.group(1)), 'umbrella': None}
-                    section2_baselines[(e2, e1)] = {'p_baseline': float(m.group(1)), 'umbrella': None}
+                    sev_val = sev_m.group(1) if sev_m else 'HIGH'
+                    section2_baselines[(e1, e2)] = {'p_baseline': float(m.group(1)), 'conflict_severity': sev_val, 'umbrella': None}
+                    section2_baselines[(e2, e1)] = {'p_baseline': float(m.group(1)), 'conflict_severity': sev_val, 'umbrella': None}
         except Exception as e:
             print(f"[WARN] Error reading section 2 baselines: {e}")
 
@@ -639,7 +643,6 @@ def main():
             'label': 'US - RU (United States vs. Russian Federation)',
             'p_baseline': -0.85,
             'dynamic_delta': vix_delta,
-            'conflict_severity': 'HIGH',
             'friction_nodes': ['EASTERN_EUROPE', 'BLACK_SEA', 'ARCTIC', 'BALTIC'],
             'primary_driver': 'VIX_AND_SANCTIONS'
         },
@@ -650,7 +653,6 @@ def main():
             'label': "US - CN (United States vs. People's Republic of China)",
             'p_baseline': -0.65,
             'dynamic_delta': round(chip_delta + min(0.0, vix_delta), 2),
-            'conflict_severity': 'HIGH',
             'friction_nodes': ['TAIWAN_STRAIT', 'SOUTH_CHINA_SEA', 'TECH_EXPORT_CONTROLS'],
             'primary_driver': 'MODEL_25_14_AI_CHIP_STRESS'
         },
@@ -661,7 +663,6 @@ def main():
             'label': "RU - CN (Russian Federation - People's Republic of China)",
             'p_baseline': +0.80,
             'dynamic_delta': 0.0,
-            'conflict_severity': 'LOW',
             'friction_nodes': ['CENTRAL_ASIA', 'ARCTIC_SEA_ROUTE'],
             'primary_driver': 'MBRIDGE_BILATERAL_SETTLEMENT'
         },
@@ -672,7 +673,6 @@ def main():
             'label': 'IL - IR (Israel vs. Islamic Republic of Iran)',
             'p_baseline': -0.95,
             'dynamic_delta': oil_delta,
-            'conflict_severity': 'CRITICAL',
             'friction_nodes': ['LEVANT', 'PERSIAN_GULF', 'RED_SEA', 'NUCLEAR_FACILITIES'],
             'primary_driver': 'MODEL_25_12_BRENT_WTI_BENCHMARK_SPREAD'
         },
@@ -683,7 +683,6 @@ def main():
             'label': 'SA - IR (Kingdom of Saudi Arabia vs. Islamic Republic of Iran)',
             'p_baseline': -0.50,
             'dynamic_delta': round(oil_delta * 0.5, 2),
-            'conflict_severity': 'MODERATE',
             'friction_nodes': ['YEMEN_BORDER', 'PERSIAN_GULF_SHIPPING'],
             'primary_driver': 'BEIJING_ACCORD_AND_OIL_FLOWS'
         },
@@ -694,7 +693,6 @@ def main():
             'label': 'US - IL (United States - Israel)',
             'p_baseline': +0.80,
             'dynamic_delta': 0.0,
-            'conflict_severity': 'LOW',
             'friction_nodes': ['REGIONAL_ESCALATION_SCALE'],
             'primary_driver': 'BILATERAL_SECURITY_PARTNERSHIP'
         },
@@ -705,7 +703,6 @@ def main():
             'label': 'US - IR (United States vs. Islamic Republic of Iran)',
             'p_baseline': -0.85,
             'dynamic_delta': oil_delta,
-            'conflict_severity': 'CRITICAL',
             'friction_nodes': ['STRAIT_OF_HORMUZ', 'PERSIAN_GULF', 'URANIUM_ENRICHMENT', 'AXIS_OF_RESISTANCE'],
             'primary_driver': 'PERSIAN_GULF_CONTAINMENT_AND_NUCLEAR_BREAKOUT'
         },
@@ -716,7 +713,6 @@ def main():
             'label': 'US - EU / NATO Core',
             'p_baseline': +0.85,
             'dynamic_delta': 0.0,
-            'conflict_severity': 'LOW',
             'friction_nodes': ['BURDEN_SHARING', 'INFLATION_REDUCTION_ACT'],
             'primary_driver': 'TRANSATLANTIC_SECURITY'
         },
@@ -727,7 +723,6 @@ def main():
             'label': 'RU - EU Core',
             'p_baseline': -0.80,
             'dynamic_delta': vix_delta,
-            'conflict_severity': 'HIGH',
             'friction_nodes': ['NORD_STREAM', 'RUSSIAN_ASSET_SEIZURE'],
             'primary_driver': 'ECONOMIC_WARFARE_STANDOFF'
         },
@@ -738,7 +733,6 @@ def main():
             'label': 'US - KP (United States vs. North Korea)',
             'p_baseline': -0.90,
             'dynamic_delta': 0.0,
-            'conflict_severity': 'HIGH',
             'friction_nodes': ['KOREAN_PENINSULA', 'SEA_OF_JAPAN'],
             'primary_driver': 'NUCLEAR_PROLIFERATION'
         },
@@ -749,7 +743,6 @@ def main():
             'label': 'AZ - AM (Republic of Azerbaijan vs. Republic of Armenia)',
             'p_baseline': -0.70,
             'dynamic_delta': vix_delta,
-            'conflict_severity': 'HIGH',
             'friction_nodes': ['ZANGEZUR_CORRIDOR', 'NAGORNO_KARABAKH', 'CASPIAN_TRANSIT'],
             'primary_driver': 'ZANGEZUR_CORRIDOR_AND_BORDER_DELIMITATION'
         },
@@ -760,7 +753,6 @@ def main():
             'label': 'LT - RU (Republic of Lithuania vs. Russian Federation)',
             'p_baseline': -0.85,
             'dynamic_delta': vix_delta,
-            'conflict_severity': 'HIGH',
             'friction_nodes': ['SUWALKI_GAP', 'BALTIC_SEA', 'ZONE_KALININGRAD_EXCLAVE', 'CORRIDOR_KALININGRAD_TRANSIT'],
             'primary_driver': 'SUWALKI_GAP_NATO_BORDER_FRICTION'
         },
@@ -771,7 +763,6 @@ def main():
             'label': 'EE - RU (Republic of Estonia vs. Russian Federation)',
             'p_baseline': -0.85,
             'dynamic_delta': vix_delta,
-            'conflict_severity': 'HIGH',
             'friction_nodes': ['NARVA_BORDER', 'BALTIC_SEA', 'CYBER_WARFARE_STANDOFF'],
             'primary_driver': 'BALTIC_DEFENCE_LINE_AND_CYBER_FRICTION'
         },
@@ -782,7 +773,6 @@ def main():
             'label': 'LV - RU (Republic of Latvia vs. Russian Federation)',
             'p_baseline': -0.85,
             'dynamic_delta': vix_delta,
-            'conflict_severity': 'HIGH',
             'friction_nodes': ['LATGALE_BORDER', 'BALTIC_SEA', 'BRELL_DESYNCHRONIZATION'],
             'primary_driver': 'BRELL_ENERGY_GRID_DESYNCHRONIZATION'
         },
@@ -793,7 +783,6 @@ def main():
             'label': 'YE - IL (Yemen Houthis / Ansarullah vs. State of Israel)',
             'p_baseline': -0.95,
             'dynamic_delta': oil_delta,
-            'conflict_severity': 'CRITICAL',
             'friction_nodes': ['BAB_EL_MANDEB', 'RED_SEA', 'GULF_OF_ADEN', 'PORT_OF_EILAT'],
             'primary_driver': 'MODEL_25_12_BRENT_WTI_BENCHMARK_SPREAD'
         },
@@ -804,7 +793,6 @@ def main():
             'label': 'US - VE (United States vs. Bolivarian Republic of Venezuela)',
             'p_baseline': -0.75,
             'dynamic_delta': round(oil_delta * 0.5, 2),
-            'conflict_severity': 'MODERATE',
             'friction_nodes': ['ORINOCO_BELT', 'CARIBBEAN_SEA', 'OFAC_SANCTIONS'],
             'primary_driver': 'HEAVY_CRUDE_OIL_SANCTIONS_AND_LICENSING'
         },
@@ -815,7 +803,6 @@ def main():
             'label': 'TR - SY (Republic of Türkiye vs. Syrian Arab Republic)',
             'p_baseline': -0.60,
             'dynamic_delta': round(oil_delta * 0.3, 2),
-            'conflict_severity': 'HIGH',
             'friction_nodes': ['NORTHERN_SYRIA_BUFFER', 'CROSS_BORDER_SECURITY', 'REFUGEE_REPATRIATION', 'EUPHRATES_BASIN'],
             'primary_driver': 'BORDER_SECURITY_AND_SOVEREIGN_BUFFER_ARCHITECTURE'
         },
@@ -826,7 +813,6 @@ def main():
             'label': 'TR - GR (Republic of Türkiye vs. Hellenic Republic)',
             'p_baseline': -0.35,
             'dynamic_delta': 0.0,
-            'conflict_severity': 'MODERATE',
             'friction_nodes': ['AEGEAN_AIRSPACE', 'EAST_MED_CONTINENTAL_SHELF', 'MARITIME_DELIMITATION'],
             'primary_driver': 'EAST_MED_CONTINENTAL_SHELF_AND_AEGEAN_SOVEREIGNTY'
         },
@@ -837,7 +823,6 @@ def main():
             'label': 'EG - IL (Arab Republic of Egypt vs. State of Israel)',
             'p_baseline': +0.30,
             'dynamic_delta': round(-oil_delta * 0.5, 2),
-            'conflict_severity': 'MODERATE',
             'friction_nodes': ['PHILADELPHI_CORRIDOR', 'RAFAH_TRANSIT', 'SINAI_SECURITY_GRID', 'SUEZ_CANAL_APPROACH'],
             'primary_driver': 'PHILADELPHI_CORRIDOR_AND_SUEZ_MARITIME_STABILITY'
         },
@@ -848,7 +833,6 @@ def main():
             'label': 'SA - YE (Kingdom of Saudi Arabia vs. Republic of Yemen)',
             'p_baseline': -0.55,
             'dynamic_delta': round(oil_delta * 0.4, 2),
-            'conflict_severity': 'HIGH',
             'friction_nodes': ['YEMEN_SOUTHERN_BORDER', 'RED_SEA_LITTORAL', 'BAB_EL_MANDEB_CORRIDOR', 'ASIR_NAJRAN_SECURITY'],
             'primary_driver': 'CROSS_BORDER_AIRSPACE_AND_BAB_EL_MANDEB_STABILIZATION'
         },
@@ -859,7 +843,6 @@ def main():
             'label': 'IR - IQ (Islamic Republic of Iran vs. Republic of Iraq)',
             'p_baseline': +0.65,
             'dynamic_delta': 0.0,
-            'conflict_severity': 'LOW',
             'friction_nodes': ['SHATT_AL_ARAB', 'BASRA_ENERGY_GRID', 'BILATERAL_CURRENCY_CLEARING', 'NORTHERN_BORDER_TRANSIT'],
             'primary_driver': 'CROSS_BORDER_HYDROCARBON_AND_TRANSIT_INTEGRATION'
         },
@@ -870,7 +853,6 @@ def main():
             'label': 'TR - SA (Republic of Türkiye - Kingdom of Saudi Arabia)',
             'p_baseline': +0.35,
             'dynamic_delta': mecca_delta_tr_sa,
-            'conflict_severity': 'LOW',
             'friction_nodes': ['RED_SEA_SECURITY', 'GULF_ENERGY_DEFENSE', 'DEFENSE_INDUSTRIAL_CO_PRODUCTION'],
             'primary_driver': 'MECCA_DEFENSE_PACT_TR_SA_AIR_NAVAL_SECURITY'
         },
@@ -881,7 +863,6 @@ def main():
             'label': 'SA - PK (Kingdom of Saudi Arabia - Islamic Republic of Pakistan)',
             'p_baseline': +0.65,
             'dynamic_delta': mecca_delta_sa_pk,
-            'conflict_severity': 'LOW',
             'friction_nodes': ['ARABIAN_SEA_LITTORAL', 'GWADAR_SECURITY_CORRIDOR', 'PETRODOLLAR_LIQUIDITY_TRANSFERS', 'NUCLEAR_DETERRENCE_UMBRELLA'],
             'primary_driver': 'MECCA_DEFENSE_PACT_SA_PK_NUCLEAR_FINANCIAL_SECURITY'
         },
@@ -892,7 +873,6 @@ def main():
             'label': 'TR - PK (Republic of Türkiye - Islamic Republic of Pakistan)',
             'p_baseline': +0.80,
             'dynamic_delta': mecca_delta_tr_pk,
-            'conflict_severity': 'LOW',
             'friction_nodes': ['DEFENSE_AEROSPACE_CO_PRODUCTION', 'KASHMIR_CYPRUS_DIPLOMATIC_AXIS', 'MIDDLE_CORRIDOR_ECO_RAIL', 'MILGEM_MARITIME_INTEGRATION'],
             'primary_driver': 'MECCA_DEFENSE_PACT_TR_PK_AEROSPACE_DEFENSE_ALLIANCE'
         },
@@ -903,7 +883,6 @@ def main():
             'label': 'UA - RU (Ukraine vs. Russian Federation)',
             'p_baseline': -0.95,
             'dynamic_delta': 0.0,
-            'conflict_severity': 'CRITICAL',
             'friction_nodes': ['BLACK_SEA', 'DONBAS', 'ZAPORIZHZHIA', 'KHERSON'],
             'primary_driver': 'TERRITORIAL_CONFRONTATION'
         }
@@ -985,6 +964,8 @@ def main():
         pair_key = (a['source_entity'], a['target_entity'])
         if pair_key in section2_baselines:
             a['p_baseline'] = section2_baselines[pair_key]['p_baseline']
+            if 'conflict_severity' in section2_baselines[pair_key]:
+                a['conflict_severity'] = section2_baselines[pair_key]['conflict_severity']
         # Separate NASA data feed from conflict severity
         a['nasa_data'] = resolve_actor_nasa_data(a['id'])
 
