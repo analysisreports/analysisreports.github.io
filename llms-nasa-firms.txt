@@ -1,6 +1,6 @@
 # Ersoy Toptaş Canonical Ingestion Contract (llms-nasa-firms.txt)
 > Autonomous Satellite Thermal Anomaly & Kinetic Conflict Intelligence Engine
-> Last Orbital Sync: 2026-11-17T13:11:47Z | Source: NASA FIRMS VIIRS 375m
+> Last Orbital Sync: 2026-11-17T14:30:09Z | Source: NASA FIRMS VIIRS 375m
 > Global Active Critical Kinetic Zones: None detected
 
 | Sovereign Theater | Entity ID | Status | 24h Hotspots | Peak FRP (MW) | Kinetic Score (0-100) | Conflict Severity (NASA Data) | Primary Strategic Axis |
@@ -12,6 +12,20 @@
 | **Republic of Yemen & Red Sea Littoral** | GEO_YE | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | MARITIME_CHOKEPOINT_INTERDICTION |
 | **Syrian Arab Republic Buffer** | GEO_SY | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | ASYMMETRIC_BUFFER_THEATER |
 | **Lebanese Republic Southern Axis** | GEO_LB | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | MISSILE_INTERDICTION_ZONE |
+| **United States Sovereign Axis** | GEO_US | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | STRATEGIC_SUPERPOWER_HOMELAND |
+| **People's Republic of China & Taiwan Strait** | GEO_CN | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | INDO_PACIFIC_STRATEGIC_RIVALRY |
+| **Democratic People's Republic of Korea Axis** | GEO_KP | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | NUCLEAR_PROLIFERATION_FLASHPOINT |
+| **Republic of Azerbaijan & Zangezur Buffer** | GEO_AZ | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | TRANS_CAUCASIAN_CORRIDOR |
+| **Republic of Armenia Border Axis** | GEO_AM | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | BORDER_DELIMITATION_STANDOFF |
+| **Baltic Flank & Suwalki Gap (EE, LV, LT)** | GEO_LT | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | NATO_ARTICLE_5_FLANK |
+| **Bolivarian Republic of Venezuela Axis** | GEO_VE | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | CARIBBEAN_HYDROCARBON_BASIN |
+| **Republic of Türkiye Anatolian & Aegean Littoral** | GEO_TR | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | STRATEGIC_PIVOT_AND_STRAITS |
+| **Hellenic Republic & Aegean Basin** | GEO_GR | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | AEGEAN_EAST_MED_LITTORAL |
+| **Arab Republic of Egypt & Suez Approach** | GEO_EG | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | MARITIME_CHOKEPOINT_SOVEREIGN |
+| **Kingdom of Saudi Arabia Energy Core** | GEO_SA | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | PERSIAN_GULF_HYDROCARBON_POWER |
+| **Republic of Iraq & Mesopotamia Basin** | GEO_IQ | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | CROSS_BORDER_STRATEGIC_THEATER |
+| **Islamic Republic of Pakistan Strategic Flank** | GEO_PK | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | SOUTH_ASIAN_NUCLEAR_POWER |
+| **European Strategic Core (DE, FR, GB)** | BLOC_EU | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | TRANSATLANTIC_SECURITY_CORE |
 
 ## Strategic Signature Interpretation Protocol:
 1. FRP > 150 MW indicates heavy artillery barrages, ammunition depot detonations, or direct ballistic missile strikes.

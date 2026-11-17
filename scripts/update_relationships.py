@@ -927,14 +927,33 @@ def main():
         except Exception as e:
             print(f"[WARN] Error reading llms-nasa-firms.json: {e}")
 
-    # Actor-to-Monitored-Theater Mapping
+    # Actor-to-Monitored-Theater Mapping (All 25 Bilateral Dyads dynamically covered)
     ACTOR_THEATER_MAP = {
-        'UA_RU': ['UKR', 'RUS'],
+        'US_RU': ['USA', 'RUS'],
+        'US_CN': ['USA', 'CHN'],
+        'RU_CN': ['RUS', 'CHN'],
         'IL_IR': ['ISR', 'IRN'],
+        'SA_IR': ['SAU', 'IRN'],
+        'US_IL': ['USA', 'ISR'],
+        'US_IR': ['USA', 'IRN'],
+        'US_EU': ['USA', 'EUR'],
+        'RU_EU': ['RUS', 'EUR'],
+        'US_KP': ['USA', 'PRK'],
+        'AZ_AM': ['AZE', 'ARM'],
+        'LT_RU': ['BLT', 'RUS'],
+        'EE_RU': ['BLT', 'RUS'],
+        'LV_RU': ['BLT', 'RUS'],
         'YE_IL': ['YEM', 'ISR'],
-        'US_IR': ['IRN'],
-        'TR_SY': ['SYR'],
-        'SA_YE': ['YEM'],
+        'US_VE': ['USA', 'VEN'],
+        'TR_SY': ['TUR', 'SYR'],
+        'TR_GR': ['TUR', 'GRC'],
+        'EG_IL': ['EGY', 'ISR'],
+        'SA_YE': ['SAU', 'YEM'],
+        'IR_IQ': ['IRN', 'IRQ'],
+        'TR_SA': ['TUR', 'SAU'],
+        'SA_PK': ['SAU', 'PAK'],
+        'TR_PK': ['TUR', 'PAK'],
+        'UA_RU': ['UKR', 'RUS'],
     }
 
     SEVERITY_RANK = {'LOW': 0, 'MODERATE': 1, 'HIGH': 2, 'CRITICAL': 3}

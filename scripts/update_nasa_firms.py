@@ -95,6 +95,118 @@ MONITORED_THEATERS: Dict[str, Dict[str, Any]] = {
         "theater": "Levant Littoral",
         "bounds": (35.1, 33.0, 36.6, 34.7),
         "corridor_check": ["LITANI_LINE", "BEIRUT_PORT"]
+    },
+    "USA": {
+        "entity_id": "GEO_US",
+        "name": "United States Sovereign Axis",
+        "category": "STRATEGIC_SUPERPOWER_HOMELAND",
+        "theater": "North America",
+        "bounds": (-125.0, 24.5, -66.9, 49.4),
+        "corridor_check": ["STRATEGIC_DEFENSE_ZONE"]
+    },
+    "CHN": {
+        "entity_id": "GEO_CN",
+        "name": "People's Republic of China & Taiwan Strait",
+        "category": "INDO_PACIFIC_STRATEGIC_RIVALRY",
+        "theater": "East Asia & First Island Chain",
+        "bounds": (73.5, 18.2, 134.8, 53.6),
+        "corridor_check": ["TAIWAN_STRAIT", "SOUTH_CHINA_SEA"]
+    },
+    "PRK": {
+        "entity_id": "GEO_KP",
+        "name": "Democratic People's Republic of Korea Axis",
+        "category": "NUCLEAR_PROLIFERATION_FLASHPOINT",
+        "theater": "Korean Peninsula",
+        "bounds": (124.1, 37.6, 130.7, 43.0),
+        "corridor_check": ["DMZ_LINE", "YELLOW_SEA"]
+    },
+    "AZE": {
+        "entity_id": "GEO_AZ",
+        "name": "Republic of Azerbaijan & Zangezur Buffer",
+        "category": "TRANS_CAUCASIAN_CORRIDOR",
+        "theater": "South Caucasus",
+        "bounds": (44.7, 38.3, 50.9, 41.9),
+        "corridor_check": ["ZANGEZUR_CORRIDOR", "CASPIAN_LITTORAL"]
+    },
+    "ARM": {
+        "entity_id": "GEO_AM",
+        "name": "Republic of Armenia Border Axis",
+        "category": "BORDER_DELIMITATION_STANDOFF",
+        "theater": "South Caucasus",
+        "bounds": (43.4, 38.8, 46.6, 41.3),
+        "corridor_check": ["SYUNIK_PROVINCE", "ZANGEZUR_APPROACH"]
+    },
+    "BLT": {
+        "entity_id": "GEO_LT",
+        "name": "Baltic Flank & Suwalki Gap (EE, LV, LT)",
+        "category": "NATO_ARTICLE_5_FLANK",
+        "theater": "Baltic Basin",
+        "bounds": (20.9, 53.9, 28.2, 59.7),
+        "corridor_check": ["CHOKE_SUWALKI_GAP", "BALTIC_DEFENCE_LINE"]
+    },
+    "VEN": {
+        "entity_id": "GEO_VE",
+        "name": "Bolivarian Republic of Venezuela Axis",
+        "category": "CARIBBEAN_HYDROCARBON_BASIN",
+        "theater": "Northern South America",
+        "bounds": (-73.4, 0.6, -59.8, 12.2),
+        "corridor_check": ["ORINOCO_BELT", "CARIBBEAN_LITTORAL"]
+    },
+    "TUR": {
+        "entity_id": "GEO_TR",
+        "name": "Republic of Türkiye Anatolian & Aegean Littoral",
+        "category": "STRATEGIC_PIVOT_AND_STRAITS",
+        "theater": "Anatolia & East Mediterranean",
+        "bounds": (25.6, 35.8, 44.8, 42.1),
+        "corridor_check": ["CHOKE_TURKISH_STRAITS", "SOUTHERN_BORDER_BUFFER"]
+    },
+    "GRC": {
+        "entity_id": "GEO_GR",
+        "name": "Hellenic Republic & Aegean Basin",
+        "category": "AEGEAN_EAST_MED_LITTORAL",
+        "theater": "Eastern Mediterranean",
+        "bounds": (19.3, 34.8, 28.3, 41.7),
+        "corridor_check": ["AEGEAN_AIRSPACE", "EAST_MED_SHELF"]
+    },
+    "EGY": {
+        "entity_id": "GEO_EG",
+        "name": "Arab Republic of Egypt & Suez Approach",
+        "category": "MARITIME_CHOKEPOINT_SOVEREIGN",
+        "theater": "Sinai & Suez Canal",
+        "bounds": (24.7, 22.0, 36.9, 31.7),
+        "corridor_check": ["CHOKE_SUEZ_CANAL", "PHILADELPHI_BUFFER"]
+    },
+    "SAU": {
+        "entity_id": "GEO_SA",
+        "name": "Kingdom of Saudi Arabia Energy Core",
+        "category": "PERSIAN_GULF_HYDROCARBON_POWER",
+        "theater": "Arabian Peninsula",
+        "bounds": (34.5, 16.3, 55.7, 32.2),
+        "corridor_check": ["RAS_TANURA_TERMINAL", "RED_SEA_LITTORAL"]
+    },
+    "IRQ": {
+        "entity_id": "GEO_IQ",
+        "name": "Republic of Iraq & Mesopotamia Basin",
+        "category": "CROSS_BORDER_STRATEGIC_THEATER",
+        "theater": "Mesopotamia",
+        "bounds": (38.8, 29.1, 48.6, 37.4),
+        "corridor_check": ["BASRA_OIL_TERMINAL", "NORTHERN_CORRIDOR"]
+    },
+    "PAK": {
+        "entity_id": "GEO_PK",
+        "name": "Islamic Republic of Pakistan Strategic Flank",
+        "category": "SOUTH_ASIAN_NUCLEAR_POWER",
+        "theater": "South Asia & Arabian Sea",
+        "bounds": (60.9, 23.7, 77.8, 37.1),
+        "corridor_check": ["GWADAR_PORT", "LINE_OF_CONTROL"]
+    },
+    "EUR": {
+        "entity_id": "BLOC_EU",
+        "name": "European Strategic Core (DE, FR, GB)",
+        "category": "TRANSATLANTIC_SECURITY_CORE",
+        "theater": "Western & Central Europe",
+        "bounds": (-5.1, 42.3, 15.0, 55.1),
+        "corridor_check": ["NORTH_SEA_LITTORAL", "RHINE_DANUBE_CORRIDOR"]
     }
 }
 

@@ -8,7 +8,7 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-nasa-firms.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-17T13:11:47Z",
+    "last_updated": "2026-11-17T14:30:09Z",
     "sync_status": "STANDBY_UNCONFIGURED_KEY",
     "last_successful_sync": null,
     "source_authority": "NASA Earth Science Data / FIRMS (VIIRS Suomi-NPP & NOAA-20)",
@@ -23,7 +23,7 @@
     "spatial_resolution_meters": 375,
     "min_noise_filter_mw": 25.0,
     "strategic_strike_threshold_mw": 150.0,
-    "monitored_theaters_count": 7,
+    "monitored_theaters_count": 21,
     "total_high_confidence_hits_24h": 0,
     "active_critical_kinetic_zones": []
   },
@@ -66,6 +66,90 @@
     },
     "LBN": {
       "entity_id": "GEO_LB",
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
+    },
+    "USA": {
+      "entity_id": "GEO_US",
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
+    },
+    "CHN": {
+      "entity_id": "GEO_CN",
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
+    },
+    "PRK": {
+      "entity_id": "GEO_KP",
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
+    },
+    "AZE": {
+      "entity_id": "GEO_AZ",
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
+    },
+    "ARM": {
+      "entity_id": "GEO_AM",
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
+    },
+    "BLT": {
+      "entity_id": "GEO_LT",
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
+    },
+    "VEN": {
+      "entity_id": "GEO_VE",
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
+    },
+    "TUR": {
+      "entity_id": "GEO_TR",
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
+    },
+    "GRC": {
+      "entity_id": "GEO_GR",
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
+    },
+    "EGY": {
+      "entity_id": "GEO_EG",
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
+    },
+    "SAU": {
+      "entity_id": "GEO_SA",
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
+    },
+    "IRQ": {
+      "entity_id": "GEO_IQ",
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
+    },
+    "PAK": {
+      "entity_id": "GEO_PK",
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
+    },
+    "EUR": {
+      "entity_id": "BLOC_EU",
       "status": "UNCONFIGURED_KEY",
       "kinetic_conflict_score": null,
       "conflict_severity": "UNAVAILABLE"
