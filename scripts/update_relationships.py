@@ -1016,14 +1016,60 @@ def main():
         except Exception as e:
             print(f"[WARN] Error reading {actors_graph_path}: {e}")
 
+    # Parse dynamic pact deltas and active status directly from Section 2.7 in llms-relationships.txt
+    txt_rel_path = 'llms-relationships.txt'
+    if not os.path.exists(txt_rel_path):
+        txt_rel_path = os.path.join(os.path.dirname(__file__), '..', 'llms-relationships.txt')
+
+    txt_pact_deltas = {}
+    if os.path.exists(txt_rel_path):
+        try:
+            with open(txt_rel_path, 'r', encoding='utf-8') as f:
+                current_bloc = None
+                for line in f:
+                    stripped = line.strip()
+                    if stripped.startswith('2.7.') and 'BLOC_' in stripped:
+                        parts = stripped.split()
+                        for p in parts:
+                            if p.startswith('BLOC_'):
+                                current_bloc = p
+                                break
+                    elif current_bloc and stripped.startswith('- Core Entities:'):
+                        ents = [e.strip() for e in stripped.split(':', 1)[1].split(',') if e.strip()]
+                        if current_bloc in bloc_alliances:
+                            bloc_alliances[current_bloc]['members'].update(ents)
+                        else:
+                            bloc_alliances[current_bloc] = {'id': current_bloc, 'members': set(ents), 'type': '', 'treaty': ''}
+                    elif current_bloc and stripped.startswith('- Pact Delta:'):
+                        val_str = stripped.split(':', 1)[1].strip().replace('+', '')
+                        try:
+                            txt_pact_deltas[current_bloc] = float(val_str)
+                        except ValueError:
+                            pass
+                    elif current_bloc and stripped.startswith('* Status:'):
+                        status_str = stripped.split(':', 1)[1].strip().upper()
+                        if status_str != 'ACTIVE':
+                            txt_pact_deltas[current_bloc] = 0.00
+                    elif stripped.startswith('### 2.8.'):
+                        break
+        except Exception as e:
+            print(f"[WARN] Error parsing {txt_rel_path} for pact deltas: {e}")
+
     def resolve_pact_bloc_delta(source_ent, target_ent):
-        # Dynamically matches collective defense pacts from graph data - Zero Hardcoded Countries
+        # Dynamically matches collective defense pacts from txt & graph data - Zero Hardcoded Countries
         for b_id, b_info in bloc_alliances.items():
             if source_ent in b_info['members'] and target_ent in b_info['members']:
+                # Mecca pact retains dynamic macro transmission delta
+                if b_id == 'BLOC_MECCA_DEFENSE':
+                    return delta_treaty, b_id
+                # Other regional blocs read configured Pact Delta directly from llms-relationships.txt
+                if b_id in txt_pact_deltas:
+                    return txt_pact_deltas[b_id], b_id
+                # Fallback check on collective defense treaty markers in graph
                 is_defense = (
-                    'Defense' in b_info['type']
-                    or 'Article 5' in b_info['treaty']
-                    or 'mutual defense' in b_info['treaty'].lower()
+                    'Defense' in b_info.get('type', '')
+                    or 'Article 5' in b_info.get('treaty', '')
+                    or 'mutual defense' in b_info.get('treaty', '').lower()
                 )
                 if is_defense:
                     return delta_treaty, b_id

@@ -8,10 +8,10 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-relationships.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-17T15:47:06.604069+00:00",
+    "last_updated": "2026-11-17T16:48:09.174845+00:00",
     "sync_status": "PARTIAL_SUCCESS",
     "last_successful_sync": null,
-    "last_attempted_sync": "2026-11-17T15:47:06.604069+00:00",
+    "last_attempted_sync": "2026-11-17T16:48:09.174845+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -413,8 +413,8 @@
       "p_baseline": 0.8,
       "dynamic_delta": 0.071192,
       "legacy_dynamic_delta": 0.0,
-      "pact_bloc_delta": 0.0,
-      "mecca_pact_delta": 0.0,
+      "pact_bloc_delta": 0.05,
+      "mecca_pact_delta": 0.05,
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
@@ -432,7 +432,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
-      "p_net": 0.87,
+      "p_net": 0.92,
       "conflict_severity": "LOW",
       "regime_state": "ALLIANCE",
       "primary_driver": "BILATERAL_SECURITY_PARTNERSHIP",
