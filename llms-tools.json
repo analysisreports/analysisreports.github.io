@@ -850,7 +850,7 @@
       "type": "function",
       "function": {
         "name": "calculate_dynamic_polarity_engine",
-        "description": "Clamps baseline polarity and tension delta to [-1.0, 1.0] and resolves the diplomatic/military bilateral regime.",
+        "description": "Clamps baseline polarity and tension delta to [-1.0, 1.0] and resolves the diplomatic/military bilateral regime using conflict severity rather than hardcoded pairs.",
         "parameters": {
           "type": "object",
           "properties": {
@@ -862,14 +862,30 @@
             },
             "dynamic_delta": {
               "type": "number",
-              "minimum": -2.0,
-              "maximum": 2.0,
-              "description": "Event-driven tension or alignment shock (-2.0 to 2.0)."
+              "minimum": -0.20,
+              "maximum": 0.20,
+              "description": "Event-driven tension or alignment shock clamped to [-0.20, 0.20] from Model 25.19."
+            },
+            "conflict_severity": {
+              "type": "string",
+              "enum": [
+                "CRITICAL",
+                "HIGH",
+                "MODERATE",
+                "LOW"
+              ],
+              "description": "Bilateral conflict severity level. CRITICAL triggers KINETIC_WAR when p_net < -0.95."
+            },
+            "mecca_pact_delta": {
+              "type": "number",
+              "default": 0.0,
+              "description": "Optional Model 25.18 Mecca Pact transmission delta for eligible pairs (TR_SA, SA_PK, TR_PK)."
             }
           },
           "required": [
             "p_baseline",
-            "dynamic_delta"
+            "dynamic_delta",
+            "conflict_severity"
           ]
         }
       }

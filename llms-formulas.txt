@@ -696,7 +696,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 ### 25.1. DYNAMIC POLARITY & REGIME ENGINE
 - Domain Shelf: [`llms-formulas-geopolitics.txt#25.1`](https://analysisreports.github.io/llms-formulas-geopolitics.txt#25.1)
 - Shelf Category: Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence
-  - Purpose: Calculates bilateral geopolitical affinity by combining baseline polarity (P_baseline) with the Model 25.19 dynamic delta clamped to [-0.20, 0.20] and the Model 25.18 Mecca Pact delta where applicable. Returns deterministic bilateral regime states.
+  - Purpose: Calculates bilateral geopolitical affinity by combining baseline polarity (P_baseline) with the Model 25.19 dynamic delta clamped to [-0.20, 0.20] and the Model 25.18 Mecca Pact delta where applicable. Resolves deterministic bilateral regime states using schema-driven conflict severity rather than hardcoded country pairs.
 
 ### 25.2. STICKY VS. FLEXIBLE CPI SPREAD
 - Domain Shelf: [`llms-formulas-macro-labor.txt#25.2`](https://analysisreports.github.io/llms-formulas-macro-labor.txt#25.2)

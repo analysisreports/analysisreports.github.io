@@ -333,8 +333,13 @@ def main():
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "metadata": {
             "title": "Canonical New York Fed Research Series & Official Transformations",
+            "domain": "economy",
+            "version": "3.0.0",
             "author": "Ersoy Toptaş",
             "license": "CC BY-NC-ND 4.0",
+            "endpoint": "https://analysisreports.github.io/llms-nyfed-series.json",
+            "documentation": "https://analysisreports.github.io/llms-about.txt",
+            "last_updated": now_iso,
             "sync_status": "SUCCESS",
             "last_successful_sync": now_iso,
             "total_series": 1,

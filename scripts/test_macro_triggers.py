@@ -49,11 +49,20 @@ class MacroTriggerTests(unittest.TestCase):
         self.assertEqual(contributions[1]["status"], "MISSING_DATA")
 
     def test_relationship_regime_boundaries(self):
-        self.assertEqual(relationships.get_regime(-0.5, "IL_IR"), "STRATEGIC_FRICTION")
-        self.assertEqual(relationships.get_regime(-0.51, "IL_IR"), "PROXY_WAR")
-        self.assertEqual(relationships.get_regime(-0.95, "IL_IR"), "PROXY_WAR")
-        self.assertEqual(relationships.get_regime(-0.96, "IL_IR"), "KINETIC_WAR")
-        self.assertEqual(relationships.get_regime(-1.0, "US_KP"), "PROXY_WAR")
+        self.assertEqual(relationships.get_regime(-0.5, "MODERATE"), "STRATEGIC_FRICTION")
+        self.assertEqual(relationships.get_regime(-0.51, "MODERATE"), "PROXY_WAR")
+        self.assertEqual(relationships.get_regime(-0.95, "MODERATE"), "PROXY_WAR")
+        # p_net < -0.95 with CRITICAL -> KINETIC_WAR
+        self.assertEqual(relationships.get_regime(-0.96, "CRITICAL"), "KINETIC_WAR")
+        self.assertEqual(relationships.get_regime(-1.0, "CRITICAL"), "KINETIC_WAR")
+        # p_net < -0.95 with non-critical (HIGH / MODERATE / LOW) -> PROXY_WAR
+        self.assertEqual(relationships.get_regime(-0.96, "HIGH"), "PROXY_WAR")
+        self.assertEqual(relationships.get_regime(-1.0, "HIGH"), "PROXY_WAR")
+        self.assertEqual(relationships.get_regime(-1.0, "MODERATE"), "PROXY_WAR")
+        self.assertEqual(relationships.get_regime(-1.0, "LOW"), "PROXY_WAR")
+        # Zero-Fallback check: missing/invalid severity returns UNAVAILABLE
+        self.assertEqual(relationships.get_regime(-1.0, None), "UNAVAILABLE")
+        self.assertEqual(relationships.get_regime(-1.0, "INVALID_SEVERITY"), "UNAVAILABLE")
 
     def test_ua_ru_grain_and_logistics_transmission(self):
         triggers = {
@@ -65,8 +74,8 @@ class MacroTriggerTests(unittest.TestCase):
         self.assertEqual(delta, -0.172)
         self.assertEqual([item["contribution"] for item in contributions], [-0.8, -0.5, 0.2])
         self.assertEqual(dominant, "IND_TRIGGER_WHEAT_PRICE")
-        self.assertEqual(relationships.get_regime(-0.96, "UA_RU"), "KINETIC_WAR")
-        self.assertEqual(relationships.get_regime(-0.95, "UA_RU"), "PROXY_WAR")
+        self.assertEqual(relationships.get_regime(-0.96, "CRITICAL"), "KINETIC_WAR")
+        self.assertEqual(relationships.get_regime(-0.95, "CRITICAL"), "PROXY_WAR")
         triggers["IND_TRIGGER_CORN_PRICE"].update(value=None, status="MISSING_DATA")
         delta, contributions, dominant = relationships.calc_relationship_trigger_delta("UA_RU", triggers)
         self.assertIsNone(delta)

@@ -19,7 +19,7 @@
 ```python
 import math
 
-ACTIVE_KINETIC_PAIRS = {"UA_RU", "IL_IR", "YE_IL"}
+VALID_CONFLICT_SEVERITIES = {"CRITICAL", "HIGH", "MODERATE", "LOW"}
 
 def _is_num(val):
     if val is None or isinstance(val, bool) or not isinstance(val, (int, float)):
@@ -33,20 +33,51 @@ def _is_num(val):
 ---
 
 ### 25.1. DYNAMIC POLARITY & REGIME ENGINE
-- Purpose: Calculates bilateral geopolitical affinity by combining baseline polarity (P_baseline) with the Model 25.19 dynamic delta clamped to [-0.20, 0.20] and the Model 25.18 Mecca Pact delta where applicable. Returns deterministic bilateral regime states.
-- Data Link: llms-relationships.txt -> Section 1 (DYNAMIC POLARITY & TRANSMISSION ENGINE)
+- Purpose: Calculates bilateral geopolitical affinity by combining baseline polarity (P_baseline) with the Model 25.19 dynamic delta clamped to [-0.20, 0.20] and the Model 25.18 Mecca Pact delta where applicable. Resolves deterministic bilateral regime states using schema-driven conflict severity rather than hardcoded country pairs.
+- Data Link:
+  - Primary Polarity & Severity Registry: llms-relationships.txt -> Section 1 (DYNAMIC POLARITY & TRANSMISSION ENGINE)
+  - Sovereign Dyadic Shelves (165 Dyads): llms-country-relationships.txt -> Section 2 (Conflict_Severity)
+  - Automated Escalation Trigger: llms-formulas-geopolitics.txt -> Model 28.1 (CONFLICT HEAT SCORE)
 - Formula:
   P_net = min(1.0, max(-1.0, P_baseline + dynamic_delta + mecca_pact_delta))
   dynamic_delta is the Model 25.19 relationship transmission; mecca_pact_delta is the Model 25.18 delta for TR_SA, SA_PK and TR_PK, and zero otherwise. Legacy petrol, chip and VIX deltas are reported separately and are not added.
-- KINETIC_WAR additionally requires the pair to belong to the manually maintained `ACTIVE_KINETIC_PAIRS = {"UA_RU", "IL_IR", "YE_IL"}`. This configuration is not an automatically updated event feed. Unlisted pairs below -0.95 remain PROXY_WAR.
+- Conflict Severity & Kinetic War Rule:
+  - `conflict_severity` is ingested directly from the dyad's `Conflict Severity` schema field (`CRITICAL`, `HIGH`, `MODERATE`, `LOW`) or derived deterministically from Model 28.1 (`Conflict_Heat >= 80` -> `CRITICAL`, `55 <= Conflict_Heat < 80` -> `HIGH`, `30 <= Conflict_Heat < 55` -> `MODERATE`, `Conflict_Heat < 30` -> `LOW`).
+  - `KINETIC_WAR` requires both `P_net < -0.95` and `conflict_severity == "CRITICAL"`. Pairs with `P_net < -0.95` and non-critical severity (`HIGH`, `MODERATE`, `LOW`) remain classified as `PROXY_WAR`.
+  - Zero-Fallback Directive: Missing, null, non-finite, or unrecognized `conflict_severity` values strictly return `None` (`UNAVAILABLE`).
 - Machine-Executable Logic (Python):
-  ACTIVE_KINETIC_PAIRS = {"UA_RU", "IL_IR", "YE_IL"}
+  VALID_CONFLICT_SEVERITIES = {"CRITICAL", "HIGH", "MODERATE", "LOW"}
 
-  def dynamic_polarity_engine(p_baseline, dynamic_delta, pair_id, mecca_pact_delta=0.0):
-      if any(v is None or isinstance(v, bool) for v in (p_baseline, dynamic_delta, mecca_pact_delta)):
+  def conflict_heat_to_severity(conflict_heat):
+      if conflict_heat is None or isinstance(conflict_heat, bool):
           return None
       try:
-          if not all(math.isfinite(v) for v in (p_baseline, dynamic_delta, mecca_pact_delta)):
+          score = float(conflict_heat)
+          if not math.isfinite(score) or score < 0.0 or score > 100.0:
+              return None
+          if score >= 80.0:
+              return "CRITICAL"
+          elif score >= 55.0:
+              return "HIGH"
+          elif score >= 30.0:
+              return "MODERATE"
+          else:
+              return "LOW"
+      except (TypeError, ValueError):
+          return None
+
+  def dynamic_polarity_engine(p_baseline, dynamic_delta, conflict_severity, mecca_pact_delta=0.0):
+      if any(v is None or isinstance(v, bool) for v in (p_baseline, dynamic_delta, mecca_pact_delta)):
+          return None
+      if conflict_severity is None or not isinstance(conflict_severity, str):
+          return None
+
+      severity = conflict_severity.strip().upper()
+      if severity not in VALID_CONFLICT_SEVERITIES:
+          return None
+
+      try:
+          if not all(math.isfinite(float(v)) for v in (p_baseline, dynamic_delta, mecca_pact_delta)):
               return None
 
           raw_p = float(p_baseline) + float(dynamic_delta) + float(mecca_pact_delta)
@@ -65,10 +96,10 @@ def _is_num(val):
               regime = "NEUTRAL"
           elif p_net >= -0.50:
               regime = "STRATEGIC_FRICTION"
-          elif p_net >= -0.95 or pair_id not in ACTIVE_KINETIC_PAIRS:
+          elif p_net >= -0.95:
               regime = "PROXY_WAR"
           else:
-              regime = "KINETIC_WAR"
+              regime = "KINETIC_WAR" if severity == "CRITICAL" else "PROXY_WAR"
 
           return {"p_net": p_net, "regime": regime}
       except (TypeError, ValueError):
@@ -79,8 +110,8 @@ def _is_num(val):
   - 0.10 <= p_net < 0.50 : TACTICAL_COOPERATION (Tactical Cooperation / Economic Interdependence)
   - -0.10 <= p_net < 0.10 : NEUTRAL (Strict Non-Alignment / Strategic Neutrality)
   - -0.50 <= p_net < -0.10 : STRATEGIC_FRICTION (Strategic Friction / Managed Divergence)
-  - -0.95 to below -0.50, or below -0.95 without configured active contact: PROXY_WAR (Proxy Warfare / Sanctions Regime / Asymmetric Conflict)
-  - p_net < -0.95 with configured active contact: KINETIC_WAR (Active Kinetic Warfare / Total Diplomatic Breakdown)
+  - -0.95 <= p_net < -0.50, or p_net < -0.95 with conflict_severity != CRITICAL : PROXY_WAR (Proxy Warfare / Sanctions Regime / Asymmetric Conflict)
+  - p_net < -0.95 with conflict_severity == CRITICAL (Model 28.1 Conflict_Heat >= 80) : KINETIC_WAR (Active Kinetic Warfare / Total Diplomatic Breakdown)
 
 
 ---
@@ -314,8 +345,8 @@ def _is_num(val):
   - `-0.10 <= P_net < 0.10`: NEUTRAL.
   - `-0.50 <= P_net < -0.10`: STRATEGIC_FRICTION.
   - `-0.95 <= P_net < -0.50`: PROXY_WAR.
-  - `P_net < -0.95`: KINETIC_WAR only when the pair is in `ACTIVE_KINETIC_PAIRS`; otherwise PROXY_WAR.
-- **Kinetic contact configuration:** `ACTIVE_KINETIC_PAIRS = {"UA_RU", "IL_IR", "YE_IL"}` is maintained manually, not verified or updated by an automated event feed. UA_RU is in this configuration and uses the same polarity thresholds as other pairs.
+  - `P_net < -0.95`: KINETIC_WAR when conflict_severity == "CRITICAL" (Model 28.1 Conflict_Heat >= 80); otherwise PROXY_WAR.
+- **Kinetic escalation rule:** KINETIC_WAR requires both `P_net < -0.95` and `conflict_severity == "CRITICAL"`. This classification resolves deterministically from schema-declared conflict severity or Model 28.1 outputs with zero hardcoded country configurations.
 ---
 
 ### 27. RHETORIC INTENSITY SCORE

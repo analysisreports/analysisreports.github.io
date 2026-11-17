@@ -442,9 +442,15 @@ def main():
     payload = {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "metadata": {
-            "engine": "Autonomous World Bank Commodity Time-Series Engine",
+            "title": "Autonomous World Bank Commodity Time-Series Engine",
+            "domain": "economy",
+            "version": "3.0.0",
             "author": "Ersoy Toptaş",
-            "license": "CC BY 4.0",
+            "license": "CC BY-NC-ND 4.0",
+            "endpoint": "https://analysisreports.github.io/llms-worldbank-series.json",
+            "documentation": "https://analysisreports.github.io/llms-about.txt",
+            "last_updated": now_iso,
+            "engine": "Autonomous World Bank Commodity Time-Series Engine",
             "sync_status": sync_status,
             "last_successful_sync": now_iso if sync_status == "SUCCESS" else fallback_sync_str,
             "data_source": "World Bank Commodity Price Data (The Pink Sheet)",

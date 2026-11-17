@@ -135,11 +135,11 @@ class OvxEnergyTriggerTests(unittest.TestCase):
                 self.assertEqual(pairs[pair_id]["p_net"], -0.94)
                 self.assertEqual(pairs[pair_id]["regime_state"], "PROXY_WAR")
             self.assertEqual(pairs["US_KP"]["regime_state"], "PROXY_WAR")
-            self.assertFalse(pairs["US_KP"]["kinetic_contact_configured"])
+            self.assertEqual(pairs["US_KP"]["conflict_severity"], "HIGH")
             for pair_id in ("IL_IR", "YE_IL"):
-                self.assertTrue(pairs[pair_id]["kinetic_contact_configured"])
+                self.assertEqual(pairs[pair_id]["conflict_severity"], "CRITICAL")
                 self.assertEqual(pairs[pair_id]["regime_state"],
-                                 relationships.get_regime(pairs[pair_id]["p_net"], pair_id))
+                                 relationships.get_regime(pairs[pair_id]["p_net"], pairs[pair_id]["conflict_severity"]))
             self.assertEqual(pairs["YE_IL"]["regime_state"], "KINETIC_WAR")
             self.assertEqual(len(output["relationships"]), 24)
             ua_ru = pairs["UA_RU"]
@@ -150,7 +150,7 @@ class OvxEnergyTriggerTests(unittest.TestCase):
             self.assertEqual([item["trigger_id"] for item in ua_ru["macro_trigger_contributions"]],
                              ["IND_TRIGGER_WHEAT_PRICE", "IND_TRIGGER_CORN_PRICE", "IND_TRIGGER_GSCPI_LOGISTICS"])
             self.assertEqual(ua_ru["dominant_trigger"], "IND_TRIGGER_GSCPI_LOGISTICS")
-            self.assertTrue(ua_ru["kinetic_contact_configured"])
+            self.assertEqual(ua_ru["conflict_severity"], "CRITICAL")
             self.assertEqual(ua_ru["regime_state"], "KINETIC_WAR")
             self.assertIn("IND_TRIGGER_WHEAT_PRICE: -1 × +0.2000 = -0.2000 (OK)", output_text)
             fred_data["series"]["PWHEAMTUSDM"]["year_ago_date"] = None
