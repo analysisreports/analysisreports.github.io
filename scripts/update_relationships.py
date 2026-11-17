@@ -961,7 +961,7 @@ def main():
     def resolve_actor_conflict_severity(actor_id, baseline_severity):
         theaters = ACTOR_THEATER_MAP.get(actor_id)
         if not theaters or not firms_theaters:
-            return baseline_severity
+            return None
         observed_severities = []
         for t in theaters:
             if t in firms_theaters:
@@ -969,12 +969,8 @@ def main():
                 if sev in SEVERITY_RANK:
                     observed_severities.append(sev)
         if not observed_severities:
-            return baseline_severity
-        highest_obs = max(observed_severities, key=lambda s: SEVERITY_RANK[s])
-        # If satellite telemetry detects active thermal / kinetic escalation (CRITICAL / HIGH), escalate dyad
-        if SEVERITY_RANK[highest_obs] > SEVERITY_RANK[baseline_severity]:
-            return highest_obs
-        return baseline_severity
+            return None
+        return max(observed_severities, key=lambda s: SEVERITY_RANK[s])
 
     # Auto-synchronize actors directly from llms-relationships.txt Section 2
     for a in actors:
