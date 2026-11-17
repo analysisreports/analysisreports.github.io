@@ -58,7 +58,7 @@ Regime States (Discrete Mapping):
 <!-- DYNAMIC_POLARITY_START -->
 ### 1.1. LIVE CALIBRATED POLARITY SNAPSHOT (ACTIVE REASONING CONTRACT)
 > **AI Ingestion Contract & Epistemological Directive:**
-> - **Sync Cadence & ISO 8601 Timestamp:** 2026-11-17 23:39 UTC
+> - **Sync Cadence & ISO 8601 Timestamp:** 2026-11-17 23:43 UTC
 > - **Status:** PARTIAL_SUCCESS / TRIGGER_UNAVAILABLE
 > - **Methodology:** Model 25.1 (P_net = clamp(P_baseline + Model 25.19 dynamic_delta + Model 25.18 Pact / Bloc delta + Diplomatic Mission delta, -1.0, 1.0)); legacy delta is shown separately and not added.
 > - **Kinetic escalation rule:** KINETIC_WAR requires both P_net < -0.95 and Conflict Severity == "CRITICAL".
@@ -117,7 +117,7 @@ Regime States (Discrete Mapping):
 <!-- DYNAMIC_CENTRAL_BANK_RATES_START -->
 ### 1.3. LIVE G4 CENTRAL BANK POLICY BENCHMARK & MONETARY DISPARITY
 > **AI Ingestion Contract & Epistemological Directive:**
-> - **Sync Cadence & ISO 8601 Timestamp:** 2026-11-17 23:39 UTC
+> - **Sync Cadence & ISO 8601 Timestamp:** 2026-11-17 23:43 UTC
 > - **Monitored Central Banks:** Federal Reserve (FRED DFF), European Central Bank (ECB DFR), Bank of Japan (IMF IFS JP_FPOLM_PA), Bank of England (IMF IFS GB_FPOLM_PA)
 > - **Operational Rule for LLMs:** Monetary policy rate disparities determine structural sovereign yield differentials, cross-border currency carry trade flows, and foreign exchange valuation pressure.
 
@@ -147,7 +147,7 @@ Regime States (Discrete Mapping):
 <!-- DYNAMIC_PORTWATCH_START -->
 ### 1.5. LIVE MARITIME CHOKEPOINT TRANSIT TELEMETRY (IMF PORTWATCH AIS)
 > **AI Ingestion Contract & Epistemological Directive:**
-> - **Sync Cadence & ISO 8601 Timestamp:** 2026-11-17 23:39 UTC
+> - **Sync Cadence & ISO 8601 Timestamp:** 2026-11-17 23:43 UTC
 > - **Source Authority:** IMF PortWatch / Oxford ECI / UN Global Platform AIS
 > - **Telemetry Endpoints:** [`llms-portwatch.json`](https://analysisreports.github.io/llms-portwatch.json) | [`llms-portwatch.txt`](https://analysisreports.github.io/llms-portwatch.txt)
 > - **Regime Rules:** `CHRONIC_CRISIS_BLOCKADE` (Δ% 2023 <= -40%), `SEVERE_CONTRACTION` (Δ% WoW <= -50%), `MODERATE_CONTRACTION` (Δ% WoW <= -25%), `CONGESTION_SURGE` (Δ% WoW >= +25%), `STABLE_FLOW` (Routine band).
@@ -461,7 +461,7 @@ Regime States (Discrete Mapping):
    - Resident Embassy: CLOSED
    - Diplomatic Mission Note: No official diplomatic relations or embassies established
    - Structural Regime: STRATEGIC_COMPETITION
-   - Historical Heritage: 30+ year post-Soviet territorial conflict over Nagorno-Karabakh, sovereign border delimitation, and competing trans-Eurasian transport corridors.
+   - Historical Heritage: Post-Soviet territorial dispute over Karabakh & Zangezur corridor transit rights.
    - Primary Friction Nodes: ZANGEZUR_CORRIDOR, NAGORNO_KARABAKH, CASPIAN_TRANSIT
    - Economic Coupling: 0.05 (Closed direct borders, indirect regional trade via Georgia/Iran)
    - Strategic Axis: Trans-Caspian International Transport Route (Middle Corridor), Baku-Tbilisi-Ceyhan (BTC) pipeline, Southern Gas Corridor (SGC), and strategic Israeli military-defense technology alignment.
@@ -518,7 +518,7 @@ Regime States (Discrete Mapping):
    - Resident Embassy: CLOSED
    - Diplomatic Mission Note: Mutual non-recognition; zero diplomatic mission
    - Structural Regime: PROXY_WAR / ASYMMETRIC_KINETIC_BLOCKADE
-   - Historical Heritage: Ideological anti-Zionist doctrine integrated into the regional Axis of Resistance, asymmetric naval interdiction of international maritime corridors in defense of Levant proxies.
+   - Historical Heritage: Asymmetric naval interdiction of Bab el-Mandeb (CHOKE_BAB_EL_MANDEB) & Eilat port access.
    - Primary Friction Nodes: BAB_EL_MANDEB, RED_SEA, GULF_OF_ADEN, PORT_OF_EILAT
    - Economic Coupling: 0.00 (Zero trade, total naval hostility)
    - Strategic Axis: Anti-ship ballistic missile and long-range UAV interdiction of container/tanker traffic passing through the Bab el-Mandeb strait, forcing Cape of Good Hope rerouting (+10-14 days maritime delay).
@@ -531,7 +531,7 @@ Regime States (Discrete Mapping):
    - Resident Embassy: CLOSED
    - Diplomatic Mission Note: Severed in 2019; Caracas and Washington embassies closed
    - Structural Regime: STRATEGIC_COMPETITION / ASYMMETRIC_SANCTIONS_REGIME
-   - Historical Heritage: 25-year structural ideological confrontation following nationalization of Orinoco Belt oil reserves, US recognition of opposition factions, and extensive unilateral financial sanctions.
+   - Historical Heritage: Orinoco petroleum nationalization & unilateral OFAC financial sanctions regime.
    - Primary Friction Nodes: ORINOCO_BELT, CARIBBEAN_SEA, OFAC_SANCTIONS
    - Economic Coupling: 0.25 (Controlled OFAC General License waivers for US major oil producers e.g. Chevron to export diluted heavy crude).
    - Strategic Axis: World's largest proven heavy crude oil reserves (Merey 16 blend), heavy crude refinery compatibility on the US Gulf Coast, and Chinese/Russian bilateral oil-for-debt clearing mechanisms.
@@ -544,7 +544,7 @@ Regime States (Discrete Mapping):
    - Resident Embassy: SCHEDULED: 2026-12-01
    - Diplomatic Mission Note: Ankara Embassy scheduled opening 2026-12-01 (Damascus reopened 2024-12-14)
    - Structural Regime: STRATEGIC_FRICTION
-   - Historical Heritage: Complex multi-decade southern border security architecture, sovereign counter-terrorism buffer operations, cross-border humanitarian corridor logistics, and multilateral diplomatic stabilization under the Astana framework.
+   - Historical Heritage: Southern border security buffer perimeter & Astana diplomatic stabilization framework.
    - Primary Friction Nodes: NORTHERN_SYRIA_BUFFER, CROSS_BORDER_SECURITY, REFUGEE_REPATRIATION, EUPHRATES_BASIN
    - Economic Coupling: 0.15 (Localized cross-border commercial transit and humanitarian assistance delivery)
    - Strategic Axis: Border security perimeter stabilization, preservation of sovereign territorial integrity, safe and dignified repatriation infrastructure, and regional diplomatic normalization dialogues.
@@ -557,7 +557,7 @@ Regime States (Discrete Mapping):
    - Resident Embassy: ACTIVE
    - Diplomatic Mission Note: Fully operational in Ankara and Athens
    - Structural Regime: STRATEGIC_FRICTION
-   - Historical Heritage: NATO alliance co-membership coupled with longstanding Aegean and Eastern Mediterranean continental shelf, airspace, and maritime delimitation dialogues, governed by bilateral confidence-building measures and the Athens Declaration.
+   - Historical Heritage: NATO co-membership, Aegean airspace deconfliction & Athens Declaration confidence-building framework.
    - Primary Friction Nodes: AEGEAN_AIRSPACE, EAST_MED_CONTINENTAL_SHELF, MARITIME_DELIMITATION
    - Economic Coupling: 0.40 (Robust bilateral civilian trade, tourism, and European energy interconnector transit)
    - Strategic Axis: Equitable continental shelf delimitation, deconfliction protocols in Aegean airspace, and strategic energy transit coordination across the Eastern Mediterranean basin.
@@ -583,7 +583,7 @@ Regime States (Discrete Mapping):
    - Resident Embassy: CLOSED
    - Diplomatic Mission Note: Riyadh remote mission operating via Aden; Sana'a embassy closed
    - Structural Regime: STRATEGIC_FRICTION
-   - Historical Heritage: Protracted asymmetric southern flank confrontation evolving into UN-mediated diplomatic roadmaps, bilateral de-escalation talks, and economic reconstruction planning.
+   - Historical Heritage: Southern border security de-escalation & UN-mediated regional stabilization roadmaps.
    - Primary Friction Nodes: YEMEN_SOUTHERN_BORDER, RED_SEA_LITTORAL, BAB_EL_MANDEB_CORRIDOR, ASIR_NAJRAN_SECURITY
    - Economic Coupling: 0.10 (Saudi development grants, central bank currency stabilization deposits, cross-border remittance flows)
    - Strategic Axis: Asir/Najran/Jazan border security perimeter, comprehensive airspace and critical oil infrastructure defense, and Southern Red Sea littoral transit stabilization.
@@ -596,7 +596,7 @@ Regime States (Discrete Mapping):
    - Resident Embassy: ACTIVE
    - Diplomatic Mission Note: Fully operational in Baghdad and Tehran
    - Structural Regime: TACTICAL_COOPERATION
-   - Historical Heritage: Post-2003 structural realignment from historic interstate hostility toward deep bilateral economic, energy, and religious infrastructure interconnectivity.
+   - Historical Heritage: Post-2003 bilateral energy grid integration (30-40% Iraqi gas supply) & trade clearing.
    - Primary Friction Nodes: SHATT_AL_ARAB, BASRA_ENERGY_GRID, BILATERAL_CURRENCY_CLEARING, NORTHERN_BORDER_TRANSIT
    - Economic Coupling: 0.55 (Iranian natural gas supplying 30-40% of Iraqi electrical grid capacity, extensive non-oil merchandise trade)
    - Strategic Axis: Cross-border energy pipeline delivery under U.S. sanctions waiver windows, trade settlements balancing, Shatt al-Arab waterway logistics, and Baghdad's role as a regional diplomatic mediation hub.
@@ -649,96 +649,20 @@ Regime States (Discrete Mapping):
 
 
 
-### 2.10. Strategic SATCOM & Space Constellations (SEC_SPACE_STARLINK & SEC_DEF_STARSHIELD)
+### 2.10. Strategic SATCOM & Space Defense Constellations
+> Canonical Entities: SEC_SPACE_STARLINK (Commercial LEO SATCOM) & SEC_DEF_STARSHIELD (National Security Space Architecture).
 
-2.10.1. US - STARLINK (United States - Starlink SATCOM Network)
-   - Canonical Entities: GEO_US vs. SEC_SPACE_STARLINK
-   - Baseline Polarity (P_baseline): +0.75
-   - Structural Regime: STRATEGIC_ALIGNMENT
-   - Primary Friction Nodes: REGULATORY_FCC_ITAR, CRITICAL_COMM_INFRASTRUCTURE
-   - Economic Coupling: 0.85
-   - Transmission Channels: REGULATORY_FCC_ITAR, CRITICAL_COMM_INFRASTRUCTURE
-
-2.10.2. DOD - STARSHIELD (US Dept of Defense - Starshield Defense Constellation)
-   - Canonical Entities: GOV_DOD_US vs. SEC_DEF_STARSHIELD
-   - Baseline Polarity (P_baseline): +0.95
-   - Structural Regime: ALLIANCE
-   - Primary Friction Nodes: SPECIAL_ACCESS_PROGRAM, SPACE_FORCE_C2
-   - Economic Coupling: 1.00
-   - Transmission Channels: MILITARY_PROCUREMENT, ISR_TACTICAL_DATA_LINK
-
-2.10.3. UA - STARLINK (Ukraine - Starlink SATCOM Network)
-   - Canonical Entities: GEO_UA vs. SEC_SPACE_STARLINK
-   - Baseline Polarity (P_baseline): +0.70
-   - Structural Regime: STRATEGIC_ALIGNMENT
-   - Primary Friction Nodes: FRONT_LINE_GEOLOCATION_RESTRICTIONS
-   - Economic Coupling: 0.40
-   - Transmission Channels: BATTLEFIELD_C2_NETWORK, ASYMMETRIC_RESILIENCE
-
-2.10.4. IL - STARLINK (Israel - Starlink SATCOM Network)
-   - Canonical Entities: GEO_IL vs. SEC_SPACE_STARLINK
-   - Baseline Polarity (P_baseline): +0.60
-   - Structural Regime: STRATEGIC_ALIGNMENT
-   - Primary Friction Nodes: GAZA_BORDER_SECURITY_RESTRICTIONS
-   - Economic Coupling: 0.30
-   - Transmission Channels: SECURED_CIVIL_DEFENSE, STATE_AUTHORIZED_GATEWAYS
-
-2.10.5. TW - STARLINK (Taiwan - Starlink SATCOM Network)
-   - Canonical Entities: GEO_TW vs. SEC_SPACE_STARLINK
-   - Baseline Polarity (P_baseline): +0.35
-   - Structural Regime: TACTICAL_COOPERATION
-   - Primary Friction Nodes: CROSS_STRAIT_POLITICAL_RISK, COMMERCIAL_CONFLICT
-   - Economic Coupling: 0.25
-   - Transmission Channels: MARITIME_ISLAND_BACKBONE, BACKUP_SATCOM
-
-2.10.6. TR - STARLINK (Turkey - Starlink SATCOM Network)
-   - Canonical Entities: GEO_TR vs. SEC_SPACE_STARLINK
-   - Baseline Polarity (P_baseline): +0.15
-   - Structural Regime: TACTICAL_COOPERATION
-   - Primary Friction Nodes: BTK_REGULATORY_APPROVAL, TURKSAT_COMPETITION
-   - Economic Coupling: 0.15
-   - Transmission Channels: REGULATORY_INSPECTION, LOCAL_DATA_SOVEREIGNTY
-
-2.10.7. IR - STARLINK (Iran - Starlink SATCOM Network)
-   - Canonical Entities: GEO_IR vs. SEC_SPACE_STARLINK
-   - Baseline Polarity (P_baseline): -0.75
-   - Structural Regime: PROXY_WAR
-   - Primary Friction Nodes: CONTRABAND_TERMINALS, DOMESTIC_CENSORSHIP
-   - Economic Coupling: 0.00
-   - Transmission Channels: ELECTRONIC_WARFARE_JAMMING, SANCTION_REGIME
-
-2.10.8. GB - STARSHIELD (United Kingdom - Starshield Defense Constellation)
-   - Canonical Entities: GEO_GB vs. SEC_DEF_STARSHIELD
-   - Baseline Polarity (P_baseline): +0.85
-   - Structural Regime: ALLIANCE
-   - Primary Friction Nodes: SOVEREIGN_GROUND_SEGMENT_ACCESS
-   - Economic Coupling: 0.70
-   - Transmission Channels: FIVE_EYES_SOVEREIGN_GATEWAY, TACTICAL_MILITARY_SATCOM
-
-2.10.9. NZ - STARSHIELD (New Zealand - Starshield Defense Constellation)
-   - Canonical Entities: GEO_NZ vs. SEC_DEF_STARSHIELD
-   - Baseline Polarity (P_baseline): +0.65
-   - Structural Regime: STRATEGIC_ALIGNMENT
-   - Primary Friction Nodes: REGIONAL_PACIFIC_COVERAGE
-   - Economic Coupling: 0.35
-   - Transmission Channels: FIVE_EYES_DEFENSE_TRIAL, INTEROPERABILITY_LINK
-
-2.10.10. RU - STARSHIELD (Russia - Starshield Defense Constellation)
-   - Canonical Entities: GEO_RU vs. SEC_DEF_STARSHIELD
-   - Baseline Polarity (P_baseline): -0.85
-   - Structural Regime: PROXY_WAR
-   - Primary Friction Nodes: ORBITAL_TARGETING_DOCTRINE, DUAL_USE_DISPUTE
-   - Economic Coupling: 0.00
-   - Transmission Channels: COUNTER_SPACE_TARGETING, ELECTRONIC_WARFARE_JAMMING
-
-2.10.11. CN - STARSHIELD (China - Starshield Defense Constellation)
-   - Canonical Entities: GEO_CN vs. SEC_DEF_STARSHIELD
-   - Baseline Polarity (P_baseline): -0.85
-   - Structural Regime: PROXY_WAR
-   - Primary Friction Nodes: TAIWAN_STRAIT_ISR_COVERAGE, SPACE_MILITARIZATION
-   - Economic Coupling: 0.00
-   - Transmission Channels: ORBITAL_SURVEILLANCE_FRICTION, ASAT_DETERRENCE
-
+2.10.1. US - STARLINK: GEO_US vs. SEC_SPACE_STARLINK | P_baseline: +0.75 | STRATEGIC_ALIGNMENT | Coupling: 0.85 | Friction: REGULATORY_FCC_ITAR
+2.10.2. DOD - STARSHIELD: GOV_DOD_US vs. SEC_DEF_STARSHIELD | P_baseline: +0.95 | ALLIANCE | Coupling: 1.00 | Transmission: MILITARY_PROCUREMENT, ISR_C2
+2.10.3. UA - STARLINK: GEO_UA vs. SEC_SPACE_STARLINK | P_baseline: +0.70 | STRATEGIC_ALIGNMENT | Coupling: 0.40 | Nodes: FRONT_LINE_GEOLOCATION, BATTLEFIELD_C2
+2.10.4. IL - STARLINK: GEO_IL vs. SEC_SPACE_STARLINK | P_baseline: +0.60 | STRATEGIC_ALIGNMENT | Coupling: 0.30 | Nodes: GAZA_BORDER_RESTRICTIONS, CIVIL_DEFENSE
+2.10.5. TW - STARLINK: GEO_TW vs. SEC_SPACE_STARLINK | P_baseline: +0.35 | TACTICAL_COOPERATION | Coupling: 0.25 | Nodes: CROSS_STRAIT_RISK, BACKUP_SATCOM
+2.10.6. TR - STARLINK: GEO_TR vs. SEC_SPACE_STARLINK | P_baseline: +0.15 | TACTICAL_COOPERATION | Coupling: 0.15 | Nodes: BTK_REGULATORY, LOCAL_DATA_SOVEREIGNTY
+2.10.7. IR - STARLINK: GEO_IR vs. SEC_SPACE_STARLINK | P_baseline: -0.75 | PROXY_WAR | Coupling: 0.00 | Nodes: CONTRABAND_TERMINALS, EW_JAMMING
+2.10.8. GB - STARSHIELD: GEO_GB vs. SEC_DEF_STARSHIELD | P_baseline: +0.85 | ALLIANCE | Coupling: 0.70 | Nodes: FIVE_EYES_GATEWAY, TACTICAL_SATCOM
+2.10.9. NZ - STARSHIELD: GEO_NZ vs. SEC_DEF_STARSHIELD | P_baseline: +0.65 | STRATEGIC_ALIGNMENT | Coupling: 0.35 | Nodes: FIVE_EYES_TRIAL, PACIFIC_LINK
+2.10.10. RU - STARSHIELD: GEO_RU vs. SEC_DEF_STARSHIELD | P_baseline: -0.85 | PROXY_WAR | Coupling: 0.00 | Nodes: ORBITAL_TARGETING, ASAT_JAMMING
+2.10.11. CN - STARSHIELD: GEO_CN vs. SEC_DEF_STARSHIELD | P_baseline: -0.85 | PROXY_WAR | Coupling: 0.00 | Nodes: TAIWAN_STRAIT_ISR, SPACE_MILITARIZATION
 
 ## 3. PROXY & ASYMMETRIC NON-STATE ACTOR REGISTRY
 
