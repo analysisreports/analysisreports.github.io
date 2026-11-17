@@ -1244,17 +1244,7 @@ def main():
             nasa_str = a.get("nasa_data") if a.get("nasa_data") is not None else "null"
             lines_rel.append(f'| **{a["id"]}** | {p_base_str} | {delta_str} | {a["pact_bloc_delta"]:+.2f} | {diplo_str} | {legacy_str} | {p_net_str} | {sev_str} | {nasa_str} | {a["regime_state"]} | {a["primary_driver"]} |')
         lines_rel.append('')
-        lines_rel.append('**Model 25.19 relationship contributions:** 0.20 × (dominant signed contribution + 0.20 × sum of the others), clamped to [-0.20, +0.20]; LT_RU, EE_RU and LV_RU have a further lower limit of -0.09.')
-        lines_rel.append('')
-        lines_rel.append('| Actor Pair | Trigger: direction × value = contribution | Dominant Trigger |')
-        lines_rel.append('| :--- | :--- | :--- |')
-        for a in relationships_output:
-            parts = []
-            for item in a['macro_trigger_contributions']:
-                value = f'{item["value"]:+.4f}' if item['value'] is not None else 'null'
-                contribution = f'{item["contribution"]:+.4f}' if item['contribution'] is not None else 'null'
-                parts.append(f'{item["trigger_id"]}: {item["direction"]:+d} × {value} = {contribution} ({item["status"]})')
-            lines_rel.append(f'| **{a["id"]}** | {"; ".join(parts)} | {a["dominant_trigger"] or "UNAVAILABLE"} |')
+        lines_rel.append('> **Model 25.19 relationship contributions:** Detailed trigger contributions and mathematical cross-multiplications are archived in [`llms-relationships.json`](https://analysisreports.github.io/llms-relationships.json).')
         lines_rel.append('<!-- DYNAMIC_POLARITY_END -->')
         new_polarity_block = '\n'.join(lines_rel)
 

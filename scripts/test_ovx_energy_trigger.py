@@ -155,7 +155,7 @@ class OvxEnergyTriggerTests(unittest.TestCase):
             self.assertEqual(ua_ru["dominant_trigger"], "IND_TRIGGER_GSCPI_LOGISTICS")
             self.assertEqual(ua_ru["conflict_severity"], "CRITICAL")
             self.assertEqual(ua_ru["regime_state"], "KINETIC_WAR")
-            self.assertIn("IND_TRIGGER_WHEAT_PRICE: -1 × +0.2000 = -0.2000 (OK)", output_text)
+            self.assertEqual(ua_ru["macro_trigger_contributions"][0]["trigger_id"], "IND_TRIGGER_WHEAT_PRICE")
             fred_data["series"]["PWHEAMTUSDM"]["year_ago_date"] = None
             for entry in ("OVXCLS", "VIXCLS"):
                 fred_data["series"][entry]["year_ago_date"] = None
