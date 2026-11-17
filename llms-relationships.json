@@ -8,10 +8,10 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-relationships.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-17T16:48:09.174845+00:00",
+    "last_updated": "2026-11-17T18:02:39.153895+00:00",
     "sync_status": "PARTIAL_SUCCESS",
     "last_successful_sync": null,
-    "last_attempted_sync": "2026-11-17T16:48:09.174845+00:00",
+    "last_attempted_sync": "2026-11-17T18:02:39.153895+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -249,6 +249,7 @@
       "dominant_trigger": "IND_TRIGGER_OVX_ENERGY_PANIC",
       "p_net": -0.93,
       "conflict_severity": "HIGH",
+      "nasa_data": null,
       "regime_state": "PROXY_WAR",
       "primary_driver": "VIX_AND_SANCTIONS",
       "friction_nodes": [
@@ -287,6 +288,7 @@
       "dominant_trigger": null,
       "p_net": null,
       "conflict_severity": "HIGH",
+      "nasa_data": null,
       "regime_state": "UNAVAILABLE",
       "primary_driver": "MODEL_25_14_AI_CHIP_STRESS",
       "friction_nodes": [
@@ -324,6 +326,7 @@
       "dominant_trigger": null,
       "p_net": null,
       "conflict_severity": "LOW",
+      "nasa_data": null,
       "regime_state": "UNAVAILABLE",
       "primary_driver": "MBRIDGE_BILATERAL_SETTLEMENT",
       "friction_nodes": [
@@ -360,6 +363,7 @@
       "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
       "p_net": -0.88,
       "conflict_severity": "CRITICAL",
+      "nasa_data": null,
       "regime_state": "PROXY_WAR",
       "primary_driver": "MODEL_25_12_BRENT_WTI_BENCHMARK_SPREAD",
       "friction_nodes": [
@@ -398,6 +402,7 @@
       "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
       "p_net": 0.22,
       "conflict_severity": "MODERATE",
+      "nasa_data": null,
       "regime_state": "TACTICAL_COOPERATION",
       "primary_driver": "BEIJING_ACCORD_AND_OIL_FLOWS",
       "friction_nodes": [
@@ -434,6 +439,7 @@
       "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
       "p_net": 0.92,
       "conflict_severity": "LOW",
+      "nasa_data": null,
       "regime_state": "ALLIANCE",
       "primary_driver": "BILATERAL_SECURITY_PARTNERSHIP",
       "friction_nodes": [
@@ -469,6 +475,7 @@
       "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
       "p_net": -0.78,
       "conflict_severity": "CRITICAL",
+      "nasa_data": null,
       "regime_state": "PROXY_WAR",
       "primary_driver": "PERSIAN_GULF_CONTAINMENT_AND_NUCLEAR_BREAKOUT",
       "friction_nodes": [
@@ -507,6 +514,7 @@
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
       "p_net": 0.73,
       "conflict_severity": "LOW",
+      "nasa_data": null,
       "regime_state": "STRATEGIC_ALIGNMENT",
       "primary_driver": "TRANSATLANTIC_SECURITY",
       "friction_nodes": [
@@ -543,6 +551,7 @@
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
       "p_net": -0.94,
       "conflict_severity": "HIGH",
+      "nasa_data": null,
       "regime_state": "PROXY_WAR",
       "primary_driver": "ECONOMIC_WARFARE_STANDOFF",
       "friction_nodes": [
@@ -572,6 +581,7 @@
       "dominant_trigger": null,
       "p_net": null,
       "conflict_severity": "HIGH",
+      "nasa_data": null,
       "regime_state": "UNAVAILABLE",
       "primary_driver": "NUCLEAR_PROLIFERATION",
       "friction_nodes": [
@@ -601,6 +611,7 @@
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
       "p_net": -0.83,
       "conflict_severity": "HIGH",
+      "nasa_data": null,
       "regime_state": "PROXY_WAR",
       "primary_driver": "ZANGEZUR_CORRIDOR_AND_BORDER_DELIMITATION",
       "friction_nodes": [
@@ -638,6 +649,7 @@
       "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
       "p_net": -0.94,
       "conflict_severity": "HIGH",
+      "nasa_data": null,
       "regime_state": "PROXY_WAR",
       "primary_driver": "SUWALKI_GAP_NATO_BORDER_FRICTION",
       "friction_nodes": [
@@ -676,6 +688,7 @@
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
       "p_net": -0.94,
       "conflict_severity": "HIGH",
+      "nasa_data": null,
       "regime_state": "PROXY_WAR",
       "primary_driver": "BALTIC_DEFENCE_LINE_AND_CYBER_FRICTION",
       "friction_nodes": [
@@ -713,6 +726,7 @@
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
       "p_net": -0.94,
       "conflict_severity": "HIGH",
+      "nasa_data": null,
       "regime_state": "PROXY_WAR",
       "primary_driver": "BRELL_ENERGY_GRID_DESYNCHRONIZATION",
       "friction_nodes": [
@@ -757,6 +771,7 @@
       "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
       "p_net": -1.0,
       "conflict_severity": "CRITICAL",
+      "nasa_data": null,
       "regime_state": "KINETIC_WAR",
       "primary_driver": "MODEL_25_12_BRENT_WTI_BENCHMARK_SPREAD",
       "friction_nodes": [
@@ -795,6 +810,7 @@
       "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
       "p_net": -0.66,
       "conflict_severity": "MODERATE",
+      "nasa_data": null,
       "regime_state": "PROXY_WAR",
       "primary_driver": "HEAVY_CRUDE_OIL_SANCTIONS_AND_LICENSING",
       "friction_nodes": [
@@ -825,6 +841,7 @@
       "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
       "p_net": -0.51,
       "conflict_severity": "HIGH",
+      "nasa_data": null,
       "regime_state": "PROXY_WAR",
       "primary_driver": "BORDER_SECURITY_AND_SOVEREIGN_BUFFER_ARCHITECTURE",
       "friction_nodes": [
@@ -856,6 +873,7 @@
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
       "p_net": -0.48,
       "conflict_severity": "MODERATE",
+      "nasa_data": null,
       "regime_state": "STRATEGIC_FRICTION",
       "primary_driver": "EAST_MED_CONTINENTAL_SHELF_AND_AEGEAN_SOVEREIGNTY",
       "friction_nodes": [
@@ -893,6 +911,7 @@
       "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
       "p_net": 0.1,
       "conflict_severity": "MODERATE",
+      "nasa_data": null,
       "regime_state": "TACTICAL_COOPERATION",
       "primary_driver": "PHILADELPHI_CORRIDOR_AND_SUEZ_MARITIME_STABILITY",
       "friction_nodes": [
@@ -931,6 +950,7 @@
       "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
       "p_net": -0.73,
       "conflict_severity": "HIGH",
+      "nasa_data": null,
       "regime_state": "PROXY_WAR",
       "primary_driver": "CROSS_BORDER_AIRSPACE_AND_BAB_EL_MANDEB_STABILIZATION",
       "friction_nodes": [
@@ -969,6 +989,7 @@
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
       "p_net": 0.78,
       "conflict_severity": "LOW",
+      "nasa_data": null,
       "regime_state": "STRATEGIC_ALIGNMENT",
       "primary_driver": "CROSS_BORDER_HYDROCARBON_AND_TRANSIT_INTEGRATION",
       "friction_nodes": [
@@ -1007,6 +1028,7 @@
       "dominant_trigger": "IND_TRIGGER_OVX_ENERGY_PANIC",
       "p_net": 0.53,
       "conflict_severity": "LOW",
+      "nasa_data": null,
       "regime_state": "STRATEGIC_ALIGNMENT",
       "primary_driver": "MECCA_DEFENSE_PACT_TR_SA_AIR_NAVAL_SECURITY",
       "friction_nodes": [
@@ -1037,6 +1059,7 @@
       "dominant_trigger": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
       "p_net": 0.73,
       "conflict_severity": "LOW",
+      "nasa_data": null,
       "regime_state": "STRATEGIC_ALIGNMENT",
       "primary_driver": "MECCA_DEFENSE_PACT_SA_PK_NUCLEAR_FINANCIAL_SECURITY",
       "friction_nodes": [
@@ -1075,6 +1098,7 @@
       "dominant_trigger": null,
       "p_net": null,
       "conflict_severity": "LOW",
+      "nasa_data": null,
       "regime_state": "UNAVAILABLE",
       "primary_driver": "MECCA_DEFENSE_PACT_TR_PK_AEROSPACE_DEFENSE_ALLIANCE",
       "friction_nodes": [
@@ -1120,6 +1144,7 @@
       "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
       "p_net": -1.0,
       "conflict_severity": "CRITICAL",
+      "nasa_data": null,
       "regime_state": "KINETIC_WAR",
       "primary_driver": "TERRITORIAL_CONFRONTATION",
       "friction_nodes": [
