@@ -120,19 +120,21 @@ class OvxEnergyTriggerTests(unittest.TestCase):
             self.assertEqual(pair["legacy_dynamic_delta"], round(expected_oil * 0.5, 2))
             hormuz = triggers["IND_TRIGGER_HORMUZ_SPREAD"]["value"]
             self.assertEqual(pair["dynamic_delta"], 0.074144)
-            self.assertEqual(pair["p_net"], round(relationships.clamp(pair["p_baseline"] + pair["dynamic_delta"]), 2))
+            diplo = pair["diplomatic_delta"] if pair.get("diplomatic_delta") is not None else 0.0
+            self.assertEqual(pair["p_net"], round(relationships.clamp(pair["p_baseline"] + pair["dynamic_delta"] + diplo), 2))
             self.assertEqual(pair["macro_trigger_contributions"][0]["contribution"], -hormuz)
             for pair_id in ("TR_SA", "SA_PK", "TR_PK"):
                 mecca_pair = next(item for item in output["relationships"] if item["id"] == pair_id)
                 self.assertEqual(mecca_pair["mecca_pact_delta"], 0.1)
                 self.assertEqual(mecca_pair["legacy_dynamic_delta"], 0.0)
                 max_lim = 0.95 if pair_id == "TR_PK" else 1.00
+                m_diplo = mecca_pair["diplomatic_delta"] if mecca_pair.get("diplomatic_delta") is not None else 0.0
                 self.assertEqual(mecca_pair["p_net"], round(min(max_lim, relationships.clamp(
-                    mecca_pair["p_baseline"] + mecca_pair["dynamic_delta"] + mecca_pair["mecca_pact_delta"])), 2))
+                    mecca_pair["p_baseline"] + mecca_pair["dynamic_delta"] + mecca_pair["mecca_pact_delta"] + m_diplo)), 2))
             pairs = {item["id"]: item for item in output["relationships"]}
             for pair_id in ("LT_RU", "EE_RU", "LV_RU"):
                 self.assertEqual(pairs[pair_id]["dynamic_delta"], -0.09)
-                self.assertEqual(pairs[pair_id]["p_net"], -0.94)
+                self.assertEqual(pairs[pair_id]["p_net"], -0.89)
                 self.assertEqual(pairs[pair_id]["regime_state"], "PROXY_WAR")
             self.assertEqual(pairs["US_KP"]["regime_state"], "PROXY_WAR")
             self.assertEqual(pairs["US_KP"]["conflict_severity"], "HIGH")

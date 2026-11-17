@@ -17,6 +17,7 @@ import os
 import json
 import math
 import datetime
+import re
 
 MACRO_TRIGGER_MODEL = 'MODEL_25.19'
 BALTIC_RUSSIA_PAIRS = {'LT_RU', 'EE_RU', 'LV_RU'}
@@ -90,6 +91,27 @@ def get_regime(p_net, conflict_severity='MODERATE'):
     elif p_net >= -0.50: return 'STRATEGIC_FRICTION'
     elif p_net >= -0.95: return 'PROXY_WAR'
     else: return 'KINETIC_WAR' if sev == 'CRITICAL' else 'PROXY_WAR'
+
+def parse_resident_embassy(emb_raw, current_utc_date=None):
+    if not emb_raw or not isinstance(emb_raw, str):
+        return 'CLOSED', 0.00, 'NO_DATA'
+    if current_utc_date is None:
+        current_utc_date = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d')
+    emb_upper = emb_raw.upper().strip()
+    if emb_upper.startswith('ACTIVE'):
+        return 'ACTIVE', 0.05, emb_raw
+    elif emb_upper.startswith('SCHEDULED'):
+        m = re.search(r'SCHEDULED:\s*(\d{4}-\d{2}-\d{2})', emb_raw)
+        if m:
+            sched_date = m.group(1)
+            if current_utc_date >= sched_date:
+                return 'ACTIVE', 0.05, f'ACTIVE (Promoted on {sched_date})'
+            else:
+                return 'SCHEDULED', 0.00, emb_raw
+        return 'SCHEDULED', 0.00, emb_raw
+    else:
+        return 'CLOSED', 0.00, emb_raw
+
 
 
 def calc_brent_wti_spread(brent_price, wti_price):
@@ -613,24 +635,28 @@ def main():
                 ent_match = re.search(r'(?:Canonical Entities|Entities):\s*([A-Z0-9_]+)\s*(?:vs\.?|-)\s*([A-Z0-9_]+)', body)
                 p_base_match = re.search(r'Baseline Polarity \(P_baseline\):\s*([+-]?\d+\.?\d*)', body)
                 sev_match = re.search(r'Conflict Severity:\s*([A-Z]+)', body)
+                emb_match = re.search(r'Resident Embassy:\s*([^\n]+)', body)
                 umbrella_match = re.search(r'Multilateral Alliance Umbrella:\s*([A-Z0-9_]+)', body)
                 if ent_match and p_base_match:
                     e1, e2 = ent_match.group(1), ent_match.group(2)
                     p_val = float(p_base_match.group(1))
                     sev_val = sev_match.group(1) if sev_match else 'MODERATE'
                     umb = umbrella_match.group(1) if umbrella_match else None
-                    section2_baselines[(e1, e2)] = {'p_baseline': p_val, 'conflict_severity': sev_val, 'umbrella': umb}
-                    section2_baselines[(e2, e1)] = {'p_baseline': p_val, 'conflict_severity': sev_val, 'umbrella': umb}
+                    emb_val = emb_match.group(1).strip() if emb_match else None
+                    section2_baselines[(e1, e2)] = {'p_baseline': p_val, 'conflict_severity': sev_val, 'umbrella': umb, 'resident_embassy': emb_val}
+                    section2_baselines[(e2, e1)] = {'p_baseline': p_val, 'conflict_severity': sev_val, 'umbrella': umb, 'resident_embassy': emb_val}
 
             # Baltics sub-sections handling (2.9.2.1, 2.9.2.2, 2.9.2.3)
             baltics = {'LT_RU': ('GEO_LT', 'GEO_RU'), 'EE_RU': ('GEO_EE', 'GEO_RU'), 'LV_RU': ('GEO_LV', 'GEO_RU')}
             for bid, (e1, e2) in baltics.items():
                 m = re.search(bid.replace('_', ' - ') + r'[^\n]*\n\s+- Baseline Polarity \(P_baseline\):\s*([+-]?\d+\.?\d*)', rel_text)
                 sev_m = re.search(bid.replace('_', ' - ') + r'[^\n]*\n(?:\s+-[^\n]*\n)*?\s+- Conflict Severity:\s*([A-Z]+)', rel_text)
+                emb_m = re.search(bid.replace('_', ' - ') + r'[^\n]*\n(?:\s+-[^\n]*\n)*?\s+- Resident Embassy:\s*([^\n]+)', rel_text)
                 if m:
                     sev_val = sev_m.group(1) if sev_m else 'HIGH'
-                    section2_baselines[(e1, e2)] = {'p_baseline': float(m.group(1)), 'conflict_severity': sev_val, 'umbrella': None}
-                    section2_baselines[(e2, e1)] = {'p_baseline': float(m.group(1)), 'conflict_severity': sev_val, 'umbrella': None}
+                    emb_val = emb_m.group(1).strip() if emb_m else None
+                    section2_baselines[(e1, e2)] = {'p_baseline': float(m.group(1)), 'conflict_severity': sev_val, 'umbrella': None, 'resident_embassy': emb_val}
+                    section2_baselines[(e2, e1)] = {'p_baseline': float(m.group(1)), 'conflict_severity': sev_val, 'umbrella': None, 'resident_embassy': emb_val}
         except Exception as e:
             print(f"[WARN] Error reading section 2 baselines: {e}")
 
@@ -980,6 +1006,8 @@ def main():
             a['p_baseline'] = section2_baselines[pair_key]['p_baseline']
             if 'conflict_severity' in section2_baselines[pair_key]:
                 a['conflict_severity'] = section2_baselines[pair_key]['conflict_severity']
+            if 'resident_embassy' in section2_baselines[pair_key]:
+                a['resident_embassy_raw'] = section2_baselines[pair_key]['resident_embassy']
         # Separate NASA data feed from conflict severity
         a['nasa_data'] = resolve_actor_nasa_data(a['id'])
 
@@ -1079,13 +1107,14 @@ def main():
         dyn, contributions, dominant_trigger = calc_relationship_trigger_delta(a['id'], trigger_by_id)
         pact_delta, matched_bloc = resolve_pact_bloc_delta(a['source_entity'], a['target_entity'])
         legacy_delta = 0.0 if matched_bloc else a['dynamic_delta']
+        emb_status, diplomatic_delta, emb_desc = parse_resident_embassy(a.get('resident_embassy_raw'))
         if dyn is None:
             missing = [item['trigger_id'] for item in contributions if item['contribution'] is None]
             print(f"[WARN] {a['id']}: relationship delta unavailable; missing triggers: {', '.join(missing)}")
             p_net = None
             regime = 'UNAVAILABLE'
         else:
-            raw_p = a['p_baseline'] + dyn + pact_delta
+            raw_p = a['p_baseline'] + dyn + pact_delta + diplomatic_delta
             # Non-Article 5 / non-integrated command pairs clamp to max +0.95
             max_limit = 0.95 if a['id'] == 'TR_PK' else 1.00
             # Non-critical severity pairs clamp to min -0.95 to keep -1.0 exclusive to CRITICAL severity
@@ -1102,6 +1131,9 @@ def main():
             'legacy_dynamic_delta': legacy_delta,
             'pact_bloc_delta': pact_delta,
             'mecca_pact_delta': pact_delta,
+            'diplomatic_delta': diplomatic_delta,
+            'resident_embassy_status': emb_status,
+            'resident_embassy_desc': emb_desc,
             'macro_trigger_contributions': contributions,
             'dominant_trigger': dominant_trigger,
             'p_net': p_net,
@@ -1175,7 +1207,7 @@ def main():
         lines_rel.append('> **AI Ingestion Contract & Epistemological Directive:**')
         lines_rel.append(f'> - **Sync Cadence & ISO 8601 Timestamp:** {now_utc}')
         lines_rel.append('> - **Status:** OPERATIONAL / DETERMINISTIC_CALIBRATION_ACTIVE' if trigger_ok else '> - **Status:** PARTIAL_SUCCESS / TRIGGER_UNAVAILABLE')
-        lines_rel.append('> - **Methodology:** Model 25.1 (P_net = clamp(P_baseline + Model 25.19 dynamic_delta + Model 25.18 Pact / Bloc delta, -1.0, 1.0)); legacy delta is shown separately and not added.')
+        lines_rel.append('> - **Methodology:** Model 25.1 (P_net = clamp(P_baseline + Model 25.19 dynamic_delta + Model 25.18 Pact / Bloc delta + Diplomatic Mission delta, -1.0, 1.0)); legacy delta is shown separately and not added.')
         lines_rel.append('> - **Kinetic escalation rule:** KINETIC_WAR requires both P_net < -0.95 and Conflict Severity == "CRITICAL".')
         lines_rel.append('> - **NASA Data Column Specification:** Ingested independently from NASA FIRMS VIIRS 375m orbital telemetry (`llms-nasa-firms.json`) for monitored frontline theaters:')
         lines_rel.append('>   - `HOT` : Active massive kinetic barrage or refinery/ballistic strike (FRP > 500 MW).')
@@ -1193,16 +1225,17 @@ def main():
         lines_rel.append('')
         lines_rel.append('> **AI Zero-Fallback & Integrity Protocol:** When any required input time-series is unobserved, delayed at the official source, or misaligned in observation dates, the dynamic delta strictly evaluates to `null` (`UNAVAILABLE`). In strict adherence to Rule 1 (No Hallucination) and Zero-Fallback standards, synthetic defaults, proxies, or mock numbers are NEVER fabricated.')
         lines_rel.append('')
-        lines_rel.append('| Actor Pair | P_baseline (Structural) | Dynamic Delta (Model 25.19) | Pact / Bloc Delta | Legacy Delta (Not Added) | P_net (Active Polarity) | Conflict Severity | NASA Data | Active Regime State | Structural Primary Driver |')
-        lines_rel.append('| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- | :--- |')
+        lines_rel.append('| Actor Pair | P_baseline (Structural) | Dynamic Delta (Model 25.19) | Pact / Bloc Delta | Diplomatic Delta | Legacy Delta (Not Added) | P_net (Active Polarity) | Conflict Severity | NASA Data | Active Regime State | Structural Primary Driver |')
+        lines_rel.append('| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- | :--- |')
         for a in relationships_output:
             delta_str = f'{a["dynamic_delta"]:+.6f}' if a['dynamic_delta'] is not None else 'null'
             legacy_str = f'{a["legacy_dynamic_delta"]:+.2f}' if a['legacy_dynamic_delta'] is not None else '+0.00'
+            diplo_str = f'{a["diplomatic_delta"]:+.2f}' if a.get("diplomatic_delta") is not None else '+0.00'
             p_net_str = f'{a["p_net"]:+.2f}' if a['p_net'] is not None else 'null'
             p_base_str = f'+{a["p_baseline"]:.2f}' if a['p_baseline'] >= 0 else f'{a["p_baseline"]:.2f}'
             sev_str = a["conflict_severity"] if a["conflict_severity"] not in (None, "UNAVAILABLE") else "MODERATE"
             nasa_str = a.get("nasa_data") if a.get("nasa_data") is not None else "null"
-            lines_rel.append(f'| **{a["id"]}** | {p_base_str} | {delta_str} | {a["pact_bloc_delta"]:+.2f} | {legacy_str} | {p_net_str} | {sev_str} | {nasa_str} | {a["regime_state"]} | {a["primary_driver"]} |')
+            lines_rel.append(f'| **{a["id"]}** | {p_base_str} | {delta_str} | {a["pact_bloc_delta"]:+.2f} | {diplo_str} | {legacy_str} | {p_net_str} | {sev_str} | {nasa_str} | {a["regime_state"]} | {a["primary_driver"]} |')
         lines_rel.append('')
         lines_rel.append('**Model 25.19 relationship contributions:** 0.20 × (dominant signed contribution + 0.20 × sum of the others), clamped to [-0.20, +0.20]; LT_RU, EE_RU and LV_RU have a further lower limit of -0.09.')
         lines_rel.append('')

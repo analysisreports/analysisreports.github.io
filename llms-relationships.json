@@ -8,10 +8,10 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-relationships.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-17T20:54:12.461948+00:00",
+    "last_updated": "2026-11-17T22:30:05.801382+00:00",
     "sync_status": "PARTIAL_SUCCESS",
     "last_successful_sync": null,
-    "last_attempted_sync": "2026-11-17T20:54:12.461948+00:00",
+    "last_attempted_sync": "2026-11-17T22:30:05.801382+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -230,6 +230,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.05,
+      "resident_embassy_status": "ACTIVE",
+      "resident_embassy_desc": "ACTIVE (Limited bilateral staff in Moscow and Washington)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
@@ -247,7 +250,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_OVX_ENERGY_PANIC",
-      "p_net": -0.93,
+      "p_net": -0.88,
       "conflict_severity": "HIGH",
       "nasa_data": "STABLE",
       "regime_state": "PROXY_WAR",
@@ -269,6 +272,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.05,
+      "resident_embassy_status": "ACTIVE",
+      "resident_embassy_desc": "ACTIVE (Fully operational in Beijing and Washington)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_CHIP_CONTAINMENT",
@@ -307,6 +313,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.05,
+      "resident_embassy_status": "ACTIVE",
+      "resident_embassy_desc": "ACTIVE (Fully operational in Beijing and Moscow)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
@@ -344,6 +353,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.0,
+      "resident_embassy_status": "CLOSED",
+      "resident_embassy_desc": "CLOSED (No diplomatic relations or embassy since 1979 Revolution)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
@@ -383,6 +395,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.05,
+      "resident_embassy_status": "ACTIVE",
+      "resident_embassy_desc": "ACTIVE (Reopened in Tehran and Riyadh following 2023 Beijing Accord)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
@@ -400,7 +415,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
-      "p_net": 0.22,
+      "p_net": 0.27,
       "conflict_severity": "MODERATE",
       "nasa_data": "STABLE",
       "regime_state": "TACTICAL_COOPERATION",
@@ -420,6 +435,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.05,
       "mecca_pact_delta": 0.05,
+      "diplomatic_delta": 0.05,
+      "resident_embassy_status": "ACTIVE",
+      "resident_embassy_desc": "ACTIVE (Fully operational in Jerusalem and Washington)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
@@ -437,7 +455,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
-      "p_net": 0.92,
+      "p_net": 0.97,
       "conflict_severity": "LOW",
       "nasa_data": "STABLE",
       "regime_state": "ALLIANCE",
@@ -456,6 +474,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.0,
+      "resident_embassy_status": "CLOSED",
+      "resident_embassy_desc": "CLOSED (Severed in 1980; Swiss protecting power mandate)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
@@ -495,6 +516,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.05,
+      "resident_embassy_status": "ACTIVE",
+      "resident_embassy_desc": "ACTIVE (US Mission to EU in Brussels / EU Delegation in Washington)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
@@ -512,7 +536,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
-      "p_net": 0.73,
+      "p_net": 0.78,
       "conflict_severity": "LOW",
       "nasa_data": "STABLE",
       "regime_state": "STRATEGIC_ALIGNMENT",
@@ -532,6 +556,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.05,
+      "resident_embassy_status": "ACTIVE",
+      "resident_embassy_desc": "ACTIVE (EU Delegation in Moscow / Russian Mission to EU in Brussels)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
@@ -549,7 +576,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
-      "p_net": -0.94,
+      "p_net": -0.89,
       "conflict_severity": "HIGH",
       "nasa_data": "STABLE",
       "regime_state": "PROXY_WAR",
@@ -569,6 +596,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.0,
+      "resident_embassy_status": "CLOSED",
+      "resident_embassy_desc": "CLOSED (No bilateral diplomatic relations established)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_CHIP_CONTAINMENT",
@@ -599,6 +629,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.0,
+      "resident_embassy_status": "CLOSED",
+      "resident_embassy_desc": "CLOSED (No official diplomatic relations or embassies established)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
@@ -630,6 +663,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.05,
+      "resident_embassy_status": "ACTIVE",
+      "resident_embassy_desc": "ACTIVE (Downgraded to Chargé d'Affaires level)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_GSCPI_LOGISTICS",
@@ -647,7 +683,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
-      "p_net": -0.94,
+      "p_net": -0.89,
       "conflict_severity": "HIGH",
       "nasa_data": "STABLE",
       "regime_state": "PROXY_WAR",
@@ -669,6 +705,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.05,
+      "resident_embassy_status": "ACTIVE",
+      "resident_embassy_desc": "ACTIVE (Downgraded to Chargé d'Affaires level)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
@@ -686,7 +725,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
-      "p_net": -0.94,
+      "p_net": -0.89,
       "conflict_severity": "HIGH",
       "nasa_data": "STABLE",
       "regime_state": "PROXY_WAR",
@@ -707,6 +746,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.05,
+      "resident_embassy_status": "ACTIVE",
+      "resident_embassy_desc": "ACTIVE (Downgraded to Chargé d'Affaires level)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
@@ -724,7 +766,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
-      "p_net": -0.94,
+      "p_net": -0.89,
       "conflict_severity": "HIGH",
       "nasa_data": "STABLE",
       "regime_state": "PROXY_WAR",
@@ -745,6 +787,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.0,
+      "resident_embassy_status": "CLOSED",
+      "resident_embassy_desc": "CLOSED (Mutual non-recognition; zero diplomatic mission)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
@@ -791,6 +836,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.0,
+      "resident_embassy_status": "CLOSED",
+      "resident_embassy_desc": "CLOSED (Severed in 2019; Caracas and Washington embassies closed)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
@@ -829,6 +877,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.0,
+      "resident_embassy_status": "SCHEDULED",
+      "resident_embassy_desc": "SCHEDULED: 2026-12-01 | Ankara Embassy (Damascus reopened 2024-12-14)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
@@ -840,7 +891,7 @@
       ],
       "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
       "p_net": -0.51,
-      "conflict_severity": "HIGH",
+      "conflict_severity": "LOW",
       "nasa_data": "STABLE",
       "regime_state": "PROXY_WAR",
       "primary_driver": "BORDER_SECURITY_AND_SOVEREIGN_BUFFER_ARCHITECTURE",
@@ -861,6 +912,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.05,
+      "resident_embassy_status": "ACTIVE",
+      "resident_embassy_desc": "ACTIVE (Fully operational in Ankara and Athens)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
@@ -871,7 +925,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
-      "p_net": -0.48,
+      "p_net": -0.43,
       "conflict_severity": "MODERATE",
       "nasa_data": "STABLE",
       "regime_state": "STRATEGIC_FRICTION",
@@ -892,6 +946,9 @@
       "legacy_dynamic_delta": -0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.05,
+      "resident_embassy_status": "ACTIVE",
+      "resident_embassy_desc": "ACTIVE (Fully operational in Cairo and Tel Aviv)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
@@ -909,7 +966,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
-      "p_net": 0.1,
+      "p_net": 0.15,
       "conflict_severity": "MODERATE",
       "nasa_data": "STABLE",
       "regime_state": "TACTICAL_COOPERATION",
@@ -931,6 +988,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.0,
+      "resident_embassy_status": "CLOSED",
+      "resident_embassy_desc": "CLOSED (Riyadh remote mission operating via Aden; Sana'a embassy closed)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
@@ -970,6 +1030,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.05,
+      "resident_embassy_status": "ACTIVE",
+      "resident_embassy_desc": "ACTIVE (Fully operational in Baghdad and Tehran)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
@@ -987,7 +1050,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
-      "p_net": 0.78,
+      "p_net": 0.83,
       "conflict_severity": "LOW",
       "nasa_data": "STABLE",
       "regime_state": "STRATEGIC_ALIGNMENT",
@@ -1009,6 +1072,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.1,
       "mecca_pact_delta": 0.1,
+      "diplomatic_delta": 0.05,
+      "resident_embassy_status": "ACTIVE",
+      "resident_embassy_desc": "ACTIVE (Fully operational in Riyadh and Ankara)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
@@ -1026,7 +1092,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_OVX_ENERGY_PANIC",
-      "p_net": 0.53,
+      "p_net": 0.58,
       "conflict_severity": "LOW",
       "nasa_data": "STABLE",
       "regime_state": "STRATEGIC_ALIGNMENT",
@@ -1047,6 +1113,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.1,
       "mecca_pact_delta": 0.1,
+      "diplomatic_delta": 0.05,
+      "resident_embassy_status": "ACTIVE",
+      "resident_embassy_desc": "ACTIVE (Fully operational in Islamabad and Riyadh)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
@@ -1057,7 +1126,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
-      "p_net": 0.73,
+      "p_net": 0.78,
       "conflict_severity": "LOW",
       "nasa_data": "STABLE",
       "regime_state": "STRATEGIC_ALIGNMENT",
@@ -1079,6 +1148,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.1,
       "mecca_pact_delta": 0.1,
+      "diplomatic_delta": 0.05,
+      "resident_embassy_status": "ACTIVE",
+      "resident_embassy_desc": "ACTIVE (Fully operational in Islamabad and Ankara)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_CHIP_CONTAINMENT",
@@ -1118,6 +1190,9 @@
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
+      "diplomatic_delta": 0.0,
+      "resident_embassy_status": "CLOSED",
+      "resident_embassy_desc": "CLOSED (Severed on 2022-02-24 due to full-scale kinetic invasion)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_WHEAT_PRICE",

@@ -33,14 +33,14 @@ def _is_num(val):
 ---
 
 ### 25.1. DYNAMIC POLARITY & REGIME ENGINE
-- Purpose: Calculates bilateral geopolitical affinity by combining baseline polarity (P_baseline) with the Model 25.19 dynamic delta clamped to [-0.20, 0.20] and the Model 25.18 Mecca Pact delta where applicable. Resolves deterministic bilateral regime states using schema-driven conflict severity rather than hardcoded country pairs.
+- Purpose: Calculates bilateral geopolitical affinity by combining baseline polarity (P_baseline) with the Model 25.19 dynamic delta clamped to [-0.20, 0.20], collective defense pact deltas (Model 25.18 Mecca Pact / Regional Alliances), and Resident Embassy diplomatic mission presence (+0.05 for operational missions). Resolves deterministic bilateral regime states using schema-driven conflict severity rather than hardcoded country pairs.
 - Data Link:
   - Primary Polarity & Severity Registry: llms-relationships.txt -> Section 1 (DYNAMIC POLARITY & TRANSMISSION ENGINE)
   - Sovereign Dyadic Shelves (165 Dyads): llms-country-relationships.txt -> Section 2 (Conflict_Severity)
   - Automated Escalation Trigger: llms-formulas-geopolitics.txt -> Model 28.1 (CONFLICT HEAT SCORE)
 - Formula:
-  P_net = min(1.0, max(-1.0, P_baseline + dynamic_delta + mecca_pact_delta))
-  dynamic_delta is the Model 25.19 relationship transmission; mecca_pact_delta is the Model 25.18 delta for TR_SA, SA_PK and TR_PK, and zero otherwise. Legacy petrol, chip and VIX deltas are reported separately and are not added.
+  P_net = min(1.0, max(-1.0, P_baseline + dynamic_delta + pact_bloc_delta + diplomatic_delta))
+  dynamic_delta is the Model 25.19 relationship transmission; pact_bloc_delta is the collective defense delta (+0.10 for BLOC_MECCA_DEFENSE / Article 5 treaties); diplomatic_delta is +0.05 when an active resident diplomatic mission (embassy) is established, and +0.00 if closed or scheduled for a future date. Legacy petrol, chip and VIX deltas are reported separately and are not added.
 - Conflict Severity & Kinetic War Rule:
   - `conflict_severity` is ingested directly from the dyad's `Conflict Severity` schema field (`CRITICAL`, `HIGH`, `MODERATE`, `LOW`) or derived deterministically from Model 28.1 (`Conflict_Heat >= 80` -> `CRITICAL`, `55 <= Conflict_Heat < 80` -> `HIGH`, `30 <= Conflict_Heat < 55` -> `MODERATE`, `Conflict_Heat < 30` -> `LOW`).
   - `KINETIC_WAR` requires both `P_net < -0.95` and `conflict_severity == "CRITICAL"`. Pairs with `P_net < -0.95` and non-critical severity (`HIGH`, `MODERATE`, `LOW`) remain classified as `PROXY_WAR`.
@@ -66,8 +66,8 @@ def _is_num(val):
       except (TypeError, ValueError):
           return None
 
-  def dynamic_polarity_engine(p_baseline, dynamic_delta, conflict_severity, mecca_pact_delta=0.0):
-      if any(v is None or isinstance(v, bool) for v in (p_baseline, dynamic_delta, mecca_pact_delta)):
+  def dynamic_polarity_engine(p_baseline, dynamic_delta, conflict_severity, mecca_pact_delta=0.0, diplomatic_delta=0.0):
+      if any(v is None or isinstance(v, bool) for v in (p_baseline, dynamic_delta, mecca_pact_delta, diplomatic_delta)):
           return None
       if conflict_severity is None or not isinstance(conflict_severity, str):
           return None
@@ -77,10 +77,10 @@ def _is_num(val):
           return None
 
       try:
-          if not all(math.isfinite(float(v)) for v in (p_baseline, dynamic_delta, mecca_pact_delta)):
+          if not all(math.isfinite(float(v)) for v in (p_baseline, dynamic_delta, mecca_pact_delta, diplomatic_delta)):
               return None
 
-          raw_p = float(p_baseline) + float(dynamic_delta) + float(mecca_pact_delta)
+          raw_p = float(p_baseline) + float(dynamic_delta) + float(mecca_pact_delta) + float(diplomatic_delta)
           # Clamp to [-1.0, 1.0] interval
           p_net = round(min(1.0, max(-1.0, raw_p)), 2)
           if not math.isfinite(p_net):
