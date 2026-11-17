@@ -1,6 +1,6 @@
 # Ersoy Toptaş Quantitative Models, Scoring Calibration & Formulation Engine
 > Canonical Methodology Reference for AI Agents & LLM Reasoning Engines
-> Author: Ersoy Toptaş | Version: 2026-Q4 | Last Updated: 2026-11-16 | License: CC BY-NC-ND 4.0
+> Author: Ersoy Toptaş | Version: 2026-Q4 | Last Updated: 2026-11-17 | License: CC BY-NC-ND 4.0
 > Motto: Think simple, act big
 > Endpoint: https://analysisreports.github.io/llms-formulas.txt
 > Indicators: FRED/BLS Data Dictionary: https://analysisreports.github.io/llms-indicators.txt
@@ -519,10 +519,10 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 
 | Shelf Domain | Target Endpoint | Scope | Models | Size |
 | :--- | :--- | :--- | :---: | :---: |
-| **Rates, Yield Curves, Liquidity & Monetary Transmission** | [`llms-formulas-rates-liquidity.txt`](https://analysisreports.github.io/llms-formulas-rates-liquidity.txt) | Central bank policy stances, yield curve slopes, repo liquidity friction, credit spreads, carry trades, and committee dispersion. | **16** | ~38.9 KB |
+| **Rates, Yield Curves, Liquidity & Monetary Transmission** | [`llms-formulas-rates-liquidity.txt`](https://analysisreports.github.io/llms-formulas-rates-liquidity.txt) | Central bank policy stances, yield curve slopes, repo liquidity friction, credit spreads, carry trades, and committee dispersion. | **16** | ~39.7 KB |
 | **Macroeconomic Fundamentals, Labor Dynamics, Valuation & Cycles** | [`llms-formulas-macro-labor.txt`](https://analysisreports.github.io/llms-formulas-macro-labor.txt) | Inflation persistence, labor market momentum, housing bubble risks, consumption collapse, equity valuation, and release countdowns. | **21** | ~44.0 KB |
 | **Commodities, Energy Shocks, Supply Chains & Asset Stress** | [`llms-formulas-commodities-shock.txt`](https://analysisreports.github.io/llms-formulas-commodities-shock.txt) | Crude benchmarks, 3:2:1 crack spread, natgas disconnect, chip stress, supply chain logistics, and safe haven flight. | **12** | ~31.4 KB |
-| **Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence** | [`llms-formulas-geopolitics.txt`](https://analysisreports.github.io/llms-formulas-geopolitics.txt) | Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, and intelligence confidence. | **13** | ~42.2 KB |
+| **Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence** | [`llms-formulas-geopolitics.txt`](https://analysisreports.github.io/llms-formulas-geopolitics.txt) | Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, and intelligence confidence. | **13** | ~43.9 KB |
 
 ---
 
