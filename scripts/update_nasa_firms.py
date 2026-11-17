@@ -38,13 +38,14 @@ OUTPUT_JSON = os.path.join(ROOT_DIR, "llms-nasa-firms.json")
 OUTPUT_TXT = os.path.join(ROOT_DIR, "llms-nasa-firms.txt")
 
 # Canonical Monitored Sovereign Theaters & Chokepoints
-# Maps ISO country code to Sovereign Entity ID & Geographic Theater
+# Maps ISO country code to Sovereign Entity ID, Geographic Theater, and Spatial Bounding Box (min_lon, min_lat, max_lon, max_lat)
 MONITORED_THEATERS: Dict[str, Dict[str, Any]] = {
     "UKR": {
         "entity_id": "GEO_UA",
         "name": "Ukraine Frontline Axis",
         "category": "CONVENTIONAL_LAND_WARFARE",
         "theater": "Eastern European Flank",
+        "bounds": (22.0, 44.0, 40.5, 52.5),
         "corridor_check": ["BLACK_SEA", "DONBAS", "ZAPORIZHZHIA", "KHERSON"]
     },
     "RUS": {
@@ -52,6 +53,7 @@ MONITORED_THEATERS: Dict[str, Dict[str, Any]] = {
         "name": "Russian Federation Border & Refinery Littoral",
         "category": "STRATEGIC_INFRASTRUCTURE",
         "theater": "Eurasian Core",
+        "bounds": (35.0, 50.0, 45.0, 56.5),
         "corridor_check": ["KURSK_BORDER", "REFINERY_CORRIDOR", "BLACK_SEA_LITTORAL"]
     },
     "ISR": {
@@ -59,6 +61,7 @@ MONITORED_THEATERS: Dict[str, Dict[str, Any]] = {
         "name": "State of Israel & Frontline Perimeters",
         "category": "HIGH_INTENSITY_MISSILE_THEATER",
         "theater": "Levant Basin",
+        "bounds": (34.0, 29.5, 36.0, 33.5),
         "corridor_check": ["NORTHERN_BORDER", "GAZA_PERIMETER", "PORT_OF_EILAT"]
     },
     "IRN": {
@@ -66,6 +69,7 @@ MONITORED_THEATERS: Dict[str, Dict[str, Any]] = {
         "name": "Islamic Republic of Iran & Gulf Littoral",
         "category": "CHOKEPOINT_LITTORAL_AND_NUCLEAR",
         "theater": "Persian Gulf & Zagros",
+        "bounds": (44.0, 24.5, 63.5, 39.8),
         "corridor_check": ["CHOKE_HORMUZ", "KHUZESTAN_ENERGY_GRID", "NATANZ_ISFAHAN"]
     },
     "YEM": {
@@ -73,6 +77,7 @@ MONITORED_THEATERS: Dict[str, Dict[str, Any]] = {
         "name": "Republic of Yemen & Red Sea Littoral",
         "category": "MARITIME_CHOKEPOINT_INTERDICTION",
         "theater": "Bab el-Mandeb / Red Sea",
+        "bounds": (42.0, 12.0, 54.0, 19.0),
         "corridor_check": ["CHOKE_BAB_EL_MANDEB", "HODEIDAH_PORT", "GULF_OF_ADEN"]
     },
     "SYR": {
@@ -80,6 +85,7 @@ MONITORED_THEATERS: Dict[str, Dict[str, Any]] = {
         "name": "Syrian Arab Republic Buffer",
         "category": "ASYMMETRIC_BUFFER_THEATER",
         "theater": "Levant",
+        "bounds": (35.5, 32.3, 42.4, 37.3),
         "corridor_check": ["NORTHERN_BUFFER", "EUPHRATES_BASIN"]
     },
     "LBN": {
@@ -87,6 +93,7 @@ MONITORED_THEATERS: Dict[str, Dict[str, Any]] = {
         "name": "Lebanese Republic Southern Axis",
         "category": "MISSILE_INTERDICTION_ZONE",
         "theater": "Levant Littoral",
+        "bounds": (35.1, 33.0, 36.6, 34.7),
         "corridor_check": ["LITANI_LINE", "BEIRUT_PORT"]
     }
 }
@@ -110,24 +117,32 @@ MIN_FRP_MW = 25.0           # Minimum Fire Radiative Power (MW) to exclude trivi
 STRATEGIC_FRP_MW = 150.0    # Massive explosion / ammunition depot / missile impact threshold
 REFINERY_FRP_MW = 500.0     # Industrial oil refinery / fuel storage blaze threshold
 
-def fetch_firms_country_csv(map_key: str, country_code: str, days: int = 1) -> Optional[List[Dict[str, Any]]]:
+def fetch_firms_area_csv(map_key: str, bounds: Tuple[float, float, float, float], days: int = 1) -> Optional[List[Dict[str, Any]]]:
     """
-    Fetches real-time VIIRS Suomi-NPP 375m active fire data for a specific ISO country code.
-    Endpoint: https://firms.modaps.eosdis.nasa.gov/api/country/csv/[MAP_KEY]/VIIRS_SNPP_NRT/[COUNTRY]/[DAYS]
+    Fetches real-time VIIRS Suomi-NPP 375m active fire data for a spatial bounding box.
+    NASA FIRMS Area Endpoint: https://firms.modaps.eosdis.nasa.gov/api/area/csv/[MAP_KEY]/VIIRS_SNPP_NRT/[W,S,E,N]/[DAYS]
     """
-    url = f"https://firms.modaps.eosdis.nasa.gov/api/country/csv/{map_key}/VIIRS_SNPP_NRT/{country_code}/{days}"
+    w, s, e, n = bounds
+    area_str = f"{w:.1f},{s:.1f},{e:.1f},{n:.1f}"
+    url = f"https://firms.modaps.eosdis.nasa.gov/api/area/csv/{map_key}/VIIRS_SNPP_NRT/{area_str}/{days}"
     req = urllib.request.Request(
         url,
         headers={"User-Agent": "AnalysisReports-Autonomous-Ecosystem/3.0 (ORCID:0009-0005-6130-8003)"}
     )
     try:
-        with urllib.request.urlopen(req, timeout=20) as resp:
+        with urllib.request.urlopen(req, timeout=25) as resp:
             content = resp.read().decode("utf-8")
+            if "Invalid" in content or "Error" in content or "not available" in content:
+                print(f"  [WARN] NASA FIRMS returned error response for area {area_str}: {content.strip()}")
+                return None
             reader = csv.DictReader(io.StringIO(content))
             rows = list(reader)
             return rows
+    except urllib.error.HTTPError as e:
+        print(f"  [WARN] NASA FIRMS HTTP {e.code} error for area {area_str}: {e.reason}")
+        return None
     except Exception as e:
-        print(f"  [WARN] NASA FIRMS fetch error for {country_code}: {e}")
+        print(f"  [WARN] NASA FIRMS network fetch error for area {area_str}: {e}")
         return None
 
 def analyze_thermal_anomalies(country_code: str, rows: List[Dict[str, Any]]) -> Dict[str, Any]:
@@ -240,7 +255,7 @@ def build_outputs(map_key: str) -> Tuple[str, Dict[str, Any]]:
             }
             continue
             
-        raw_rows = fetch_firms_country_csv(map_key, c_code, days=1)
+        raw_rows = fetch_firms_area_csv(map_key, MONITORED_THEATERS[c_code]["bounds"], days=1)
         if raw_rows is None:
             theaters_output[c_code] = {
                 "entity_id": MONITORED_THEATERS[c_code]["entity_id"],
