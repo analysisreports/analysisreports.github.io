@@ -544,6 +544,18 @@
         "type": "none"
       },
       "description": "Focused 25-dyad matrix for Middle East, Persian Gulf, Levant, Eastern Mediterranean, and Regional Security stances."
+    },
+    {
+      "id": "nasa-firms-telemetry",
+      "name": "NASA FIRMS Satellite Thermal Anomaly & Kinetic Conflict Engine",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-nasa-firms.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-nasa-firms.txt",
+      "authentication": {
+        "type": "api_key"
+      },
+      "description": "Real-time orbital telemetry monitoring active kinetic conflict zones and critical thermal anomalies via VIIRS 375m sensor data."
     }
   ],
   "capabilities": {

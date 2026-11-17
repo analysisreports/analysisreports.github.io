@@ -1,0 +1,19 @@
+# Ersoy Toptaş Canonical Ingestion Contract (llms-nasa-firms.txt)
+> Autonomous Satellite Thermal Anomaly & Kinetic Conflict Intelligence Engine
+> Last Orbital Sync: 2026-11-17T11:08:57Z | Source: NASA FIRMS VIIRS 375m
+> Global Active Critical Kinetic Zones: None detected
+
+| Sovereign Theater | Entity ID | Status | 24h Hotspots | Peak FRP (MW) | Kinetic Score (0-100) | Conflict Severity | Primary Strategic Axis |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Ukraine Frontline Axis** | GEO_UA | UNCONFIGURED_KEY | null | null | null | UNAVAILABLE | CONVENTIONAL_LAND_WARFARE |
+| **Russian Federation Border & Refinery Littoral** | GEO_RU | UNCONFIGURED_KEY | null | null | null | UNAVAILABLE | STRATEGIC_INFRASTRUCTURE |
+| **State of Israel & Frontline Perimeters** | GEO_IL | UNCONFIGURED_KEY | null | null | null | UNAVAILABLE | HIGH_INTENSITY_MISSILE_THEATER |
+| **Islamic Republic of Iran & Gulf Littoral** | GEO_IR | UNCONFIGURED_KEY | null | null | null | UNAVAILABLE | CHOKEPOINT_LITTORAL_AND_NUCLEAR |
+| **Republic of Yemen & Red Sea Littoral** | GEO_YE | UNCONFIGURED_KEY | null | null | null | UNAVAILABLE | MARITIME_CHOKEPOINT_INTERDICTION |
+| **Syrian Arab Republic Buffer** | GEO_SY | UNCONFIGURED_KEY | null | null | null | UNAVAILABLE | ASYMMETRIC_BUFFER_THEATER |
+| **Lebanese Republic Southern Axis** | GEO_LB | UNCONFIGURED_KEY | null | null | null | UNAVAILABLE | MISSILE_INTERDICTION_ZONE |
+
+## Strategic Signature Interpretation Protocol:
+1. FRP > 150 MW indicates heavy artillery barrages, ammunition depot detonations, or direct ballistic missile strikes.
+2. FRP > 500 MW indicates burning oil refineries, hydrocarbon pipelines, or industrial fuel depots.
+3. Conflict Severity == 'CRITICAL' automatically satisfies the kinetic condition for Model 25.1 (KINETIC_WAR).

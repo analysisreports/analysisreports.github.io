@@ -434,6 +434,7 @@ def verify_corporate_metadata_headers() -> int:
         "llms-eia-series.json",
         "llms-models.json",
         "llms-relationships.json",
+        "llms-nasa-firms.json",
         "country.json",
         "glossary.json"
     ]

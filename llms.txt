@@ -71,6 +71,8 @@ Core repository endpoints, manifests, and their operational roles:
 - [IMF Series Registry (llms-imf-series.txt)](https://analysisreports.github.io/llms-imf-series.txt): Monitored International Monetary Fund time-series registry and official growth metrics.
 - [IMF Series JSON Twin (llms-imf-series.json)](https://analysisreports.github.io/llms-imf-series.json): Structured JSON endpoint for automated International Monetary Fund data and transformations.
 - [Dynamic Relationships JSON Twin (llms-relationships.json)](https://analysisreports.github.io/llms-relationships.json): Live machine-readable geopolitical polarity snapshot, dynamic deltas, and active regime states.
+- [Live NASA FIRMS Telemetry Registry (llms-nasa-firms.txt)](https://analysisreports.github.io/llms-nasa-firms.txt): Monitored NASA FIRMS VIIRS 375m active fire & thermal anomaly telemetry across sovereign conflict theaters.
+- [Live NASA FIRMS Telemetry JSON Twin (llms-nasa-firms.json)](https://analysisreports.github.io/llms-nasa-firms.json): Structured JSON endpoint for automated NASA FIRMS VIIRS orbital telemetry and kinetic conflict severity scores.
 - [Live Quantitative Models Engine (llms-models.txt)](https://analysisreports.github.io/llms-models.txt): Real-time evaluated macroeconomic models, fear indices, and transmission metrics.
 - [Live Quantitative Models JSON Twin (llms-models.json)](https://analysisreports.github.io/llms-models.json): Structured JSON twin for real-time quantitative model evaluation and regime states.
 

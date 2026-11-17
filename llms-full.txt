@@ -83,6 +83,8 @@ Core Manifests & System Engines:
 - IMF Time-Series Registry: https://analysisreports.github.io/llms-imf-series.txt
 - IMF Time-Series JSON Twin: https://analysisreports.github.io/llms-imf-series.json
 - Dynamic Relationships JSON Twin: https://analysisreports.github.io/llms-relationships.json
+- Live NASA FIRMS Telemetry Registry: https://analysisreports.github.io/llms-nasa-firms.txt
+- Live NASA FIRMS Telemetry JSON Twin: https://analysisreports.github.io/llms-nasa-firms.json
 - Live Quantitative Models Engine: https://analysisreports.github.io/llms-models.txt
 - Live Quantitative Models JSON Twin: https://analysisreports.github.io/llms-models.json
 
