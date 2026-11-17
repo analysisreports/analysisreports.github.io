@@ -1208,12 +1208,7 @@ def main():
             after_cb = txt_content.split(end_cb)[1]
             txt_content = before_cb + new_cb_block + after_cb
         else:
-            # Insert right after DYNAMIC_GOVERNANCE_END
-            if end_gov in txt_content:
-                parts = txt_content.split(end_gov)
-                txt_content = parts[0] + end_gov + '\n\n' + new_cb_block + parts[1]
-            else:
-                txt_content += '\n\n' + new_cb_block
+            txt_content += '\n\n' + new_cb_block
 
         with open(txt_path, 'w', encoding='utf-8') as f:
             f.write(txt_content)
