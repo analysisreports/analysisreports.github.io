@@ -1,10 +1,6 @@
 # Ersoy Toptaş Canonical Ingestion Contract (llms-nasa-firms.txt)
 > Autonomous Satellite Thermal Anomaly & Kinetic Conflict Intelligence Engine
-<<<<<<< HEAD
-> Last Orbital Sync: 2026-11-17T12:56:07Z | Source: NASA FIRMS VIIRS 375m
-=======
-> Last Orbital Sync: 2026-11-17T12:59:09Z | Source: NASA FIRMS VIIRS 375m
->>>>>>> b1b2e8649d42627193a3cfbbc732fcd695df277b
+> Last Orbital Sync: 2026-11-17T13:11:47Z | Source: NASA FIRMS VIIRS 375m
 > Global Active Critical Kinetic Zones: None detected
 
 | Sovereign Theater | Entity ID | Status | 24h Hotspots | Peak FRP (MW) | Kinetic Score (0-100) | Conflict Severity (NASA Data) | Primary Strategic Axis |
