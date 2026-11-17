@@ -322,10 +322,10 @@ def analyze_thermal_anomalies(country_code: str, rows: List[Dict[str, Any]]) -> 
     filtered_count = len(high_conf_hits)
     
     # Calculate Deterministic Kinetic Score (0 to 100 scale) for Model 28.1 (c1)
-    # Zero-Fallback Protocol: When no detections occur or filtered count is zero, return null (None)
+    # Zero detections represents genuine telemetry of routine baseline / no thermal anomalies (score: 0, severity: LOW)
     if filtered_count == 0:
-        kinetic_score = None
-        severity = None
+        kinetic_score = 0
+        severity = "LOW"
     elif filtered_count < 10 and max_frp < STRATEGIC_FRP_MW:
         kinetic_score = min(40, filtered_count * 4)
         severity = "MODERATE"
