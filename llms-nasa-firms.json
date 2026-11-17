@@ -8,9 +8,9 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-nasa-firms.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-17T11:08:57Z",
-    "sync_status": "STANDBY_UNCONFIGURED_KEY",
-    "last_successful_sync": null,
+    "last_updated": "2026-11-17T11:26:49Z",
+    "sync_status": "SUCCESS",
+    "last_successful_sync": "2026-11-17T11:26:49Z",
     "source_authority": "NASA Earth Science Data / FIRMS (VIIRS Suomi-NPP & NOAA-20)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.1",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -30,43 +30,43 @@
   "theaters": {
     "UKR": {
       "entity_id": "GEO_UA",
-      "status": "UNCONFIGURED_KEY",
+      "status": "API_OFFLINE",
       "kinetic_conflict_score": null,
       "conflict_severity": "UNAVAILABLE"
     },
     "RUS": {
       "entity_id": "GEO_RU",
-      "status": "UNCONFIGURED_KEY",
+      "status": "API_OFFLINE",
       "kinetic_conflict_score": null,
       "conflict_severity": "UNAVAILABLE"
     },
     "ISR": {
       "entity_id": "GEO_IL",
-      "status": "UNCONFIGURED_KEY",
+      "status": "API_OFFLINE",
       "kinetic_conflict_score": null,
       "conflict_severity": "UNAVAILABLE"
     },
     "IRN": {
       "entity_id": "GEO_IR",
-      "status": "UNCONFIGURED_KEY",
+      "status": "API_OFFLINE",
       "kinetic_conflict_score": null,
       "conflict_severity": "UNAVAILABLE"
     },
     "YEM": {
       "entity_id": "GEO_YE",
-      "status": "UNCONFIGURED_KEY",
+      "status": "API_OFFLINE",
       "kinetic_conflict_score": null,
       "conflict_severity": "UNAVAILABLE"
     },
     "SYR": {
       "entity_id": "GEO_SY",
-      "status": "UNCONFIGURED_KEY",
+      "status": "API_OFFLINE",
       "kinetic_conflict_score": null,
       "conflict_severity": "UNAVAILABLE"
     },
     "LBN": {
       "entity_id": "GEO_LB",
-      "status": "UNCONFIGURED_KEY",
+      "status": "API_OFFLINE",
       "kinetic_conflict_score": null,
       "conflict_severity": "UNAVAILABLE"
     }
