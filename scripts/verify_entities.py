@@ -70,7 +70,7 @@ def get_allowed_vocabularies() -> Tuple[Set[str], re.Pattern]:
                     if m:
                         valid_tokens.add(m.group(1))
 
-    # 3. llms-graph.json içindeki node_categories tanımlarını ekle (COMMODITY_STRATEGIC, ENERGY_BENCHMARK vb.)
+    # 3. llms-graph.json içindeki node_categories ve llms-graph-models.json içindeki status_enums tanımlarını ekle
     if os.path.exists(GRAPH_FILE):
         try:
             import json
@@ -78,6 +78,56 @@ def get_allowed_vocabularies() -> Tuple[Set[str], re.Pattern]:
                 gd = json.load(gf)
                 for cat in gd.get("graph_metadata", {}).get("node_categories", []):
                     valid_tokens.add(cat)
+        except Exception:
+            pass
+
+    graph_models_file = os.path.join(ROOT_DIR, "llms-graph-models.json")
+    if os.path.exists(graph_models_file):
+        try:
+            import json
+            with open(graph_models_file, "r", encoding="utf-8") as gmf:
+                gmd = json.load(gmf)
+                for node in gmd.get("nodes", []):
+                    for st in node.get("attributes", {}).get("status_enums", []):
+                        valid_tokens.add(st)
+        except Exception:
+            pass
+
+    # 4. llms-formulas*.txt raflarından ve şablon/grafik dosyalarından tanımlı iletim/etki yüklemlerini topla
+    import glob
+    for fpath in glob.glob(os.path.join(ROOT_DIR, "llms-formulas*.txt")):
+        try:
+            with open(fpath, "r", encoding="utf-8") as ff:
+                for line in ff:
+                    for token in re.findall(r"\b([A-Z][A-Z0-9_]{3,})\b", line):
+                        if any(k in token for k in ("EQUILIBRIUM", "STANCE", "PRESSURE", "TIGHT", "HAWKISH", "DOVISH", "ALARM", "EXPANSION", "CONTRACTION", "DISPERSION", "DISSENT", "CONSENSUS", "FREEZE", "WARNING", "SIGNAL", "CRISIS", "RECESSION", "DRAIN", "SHOCK")):
+                            valid_tokens.add(token)
+        except Exception:
+            pass
+
+    # 5. llms-graph-chokepoints.json içindeki impact alanlarını topla
+    choke_file = os.path.join(ROOT_DIR, "llms-graph-chokepoints.json")
+    if os.path.exists(choke_file):
+        try:
+            import json
+            with open(choke_file, "r", encoding="utf-8") as cf:
+                cd = json.load(cf)
+                for edge in cd.get("edges", []):
+                    imp = edge.get("impact")
+                    if imp:
+                        valid_tokens.add(imp)
+        except Exception:
+            pass
+
+    # 6. llms-schema-strategic-macro.txt içindeki iletim ilişkisi yüklemlerini ekle
+    schema_macro_file = os.path.join(ROOT_DIR, "llms-schema-strategic-macro.txt")
+    if os.path.exists(schema_macro_file):
+        try:
+            with open(schema_macro_file, "r", encoding="utf-8") as smf:
+                for line in smf:
+                    if "predicate" in line:
+                        for token in re.findall(r"\b([A-Z][A-Z0-9_]{5,})\b", line):
+                            valid_tokens.add(token)
         except Exception:
             pass
 

@@ -52,106 +52,13 @@ Regime States (Discrete Mapping):
 - KINETIC_WAR               : P_net < -0.95 AND Conflict Severity == "CRITICAL" (Direct state-on-state military confrontation).
 - DETENTE                   : Formal treaties de-escalating structural conflict.
 - DIPLOMATIC_CONTACT        : Tactical communication without shifting structural baseline.
-- BALANCED_OKUN_EQUILIBRIUM : Okun growth and employment elasticity in historical equilibrium.
-- JOBLESS_GROWTH_WARNING    : Unemployment rising despite real GDP growth expansion.
-- LABOR_HOARDING            : Firms retaining labor despite sub-trend economic growth.
-- BALANCED_LABOR_MARKET     : Balanced job creation and civilian participation dynamics.
-- BENIGN_SUPPLY_EXPANSION   : Rising participation absorbing labor with steady unemployment.
-- RECESSION_EARLY_WARNING   : Job creation below demographic replacement alongside rising unemployment.
-- SEVERE_HOUSING_FREEZE     : Elevated mortgage rates and collapsing permits stalling housing transaction liquidity.
-- SUPPLY_CONTRACTION        : Restrictive financing suppressing new residential construction permits.
-- HEALTHY_EXPANSION         : Balanced mortgage rates and expanding building permit momentum.
-- FAVORABLE_TRADE           : Export price power expanding sovereign purchasing terms over imports.
-- BASELINE_EQUILIBRIUM      : Bilateral terms of trade in historical balance.
-- DETERIORATING_TERMS           : Import prices outpacing export revenues creating terms of trade drag.
-- OVERHEATED_LABOR              : Job openings far outstripping unemployed workers indicating acute wage-price spiral risk.
-- COOLING_LABOR                 : Job openings falling below unemployed headcount signaling labor demand contraction.
-- BALANCED_LABOR_TIGHTNESS      : Beveridge curve ratio in historical labor supply-demand equilibrium.
-- ACUTE_LAYOFF_CONTRACTION      : Severe decline in weekly manufacturing hours and industrial production confirming recessionary layoffs.
-- EARLY_RECESSION_SIGNAL        : Contraction in hours worked preceding headline employment deterioration.
-- EXPANSION_EMPLOYMENT_MOMENTUM : Expanding industrial production and resilient workweek hours signaling robust employment.
-- DE_ANCHORING_RISK             : 10-year breakeven inflation rate exceeding 2.50% signaling unanchored inflation expectations.
-- FED_ALIGNED_EQUILIBRIUM       : 10-year breakeven inflation rate priced between 2.00% and 2.50% aligned with the Fed inflation target.
-- DEFLATION_RISK                : 10-year breakeven inflation rate falling below 2.00% indicating deflationary contraction risk.
-- REPRESSION_REGIME             : Negative real Treasury yields eroding public debt burden in real terms.
-- SUSTAINABLE_CYCLE             : Public debt service costs and real borrowing yields within sustainable fiscal bounds.
-- DEBT_CRISIS_ALARM             : Severe debt pressure index exceeding 1.50 signaling explosive debt service crowding out fiscal budgets.
-- BEHIND_THE_CURVE              : Federal Reserve policy rate trailing optimal Taylor rule benchmark by over 100 bps.
-- OPTIMAL_ALIGNMENT             : Federal Reserve policy rate aligned within +/- 100 bps of optimal Taylor rule prescription.
-- OVER_RESTRICTIVE              : Federal Reserve policy rate exceeding optimal Taylor rule benchmark by over 100 bps risking recession.
-- RESERVE_CURRENCY_STRAIN       : Strong dollar index combined with expanding external trade deficits signaling global offshore dollar shortage.
-- BALANCED_TRIFFIN_EQUILIBRIUM  : Trade deficit and dollar reserve liquidity expanding in balanced global transmission.
-- ABUNDANT_OFFSHORE_LIQUIDITY   : Softening dollar valuation and narrowing deficit reflecting abundant global liquidity.
-- TIGHT_FINANCIAL_CONDITIONS    : Chicago Fed NFCI crossing positive territory indicating market risk premiums and tighter than average conditions.
-- BALANCED_FINANCIAL_CONDITIONS : Financial conditions index at historical benchmark zero.
-- LOOSE_FINANCIAL_CONDITIONS    : Negative Chicago Fed NFCI indicating accommodative liquidity and suppressed risk spreads.
-- CREDIT_CRUNCH_ALARM           : High yield credit spread exceeding 500 bps indicating acute default and corporate refinancing distress.
-- ELEVATED_RISK                 : High yield credit spread between 350 and 500 bps reflecting softening risk appetite and caution.
-- RISK_APPETITE_HEALTHY         : High yield credit spread below 350 bps reflecting robust corporate funding liquidity and low default risk.
-- MONETARY_EXPANSION            : Real M2 money growth positive reflecting expanding broad liquidity and aggregate demand support.
-- LIQUIDITY_CONTRACTION         : Real M2 money growth negative reflecting monetary contraction and disinflationary drag.
-- FISCAL_SUPPLY_PRESSURE        : 10-year Treasury term premium exceeding 0.50% reflecting elevated fiscal deficit issuance and inflation risk.
-- BALANCED_PREMIUM              : 10-year Treasury term premium within historical normal band of -0.50% to +0.50%.
-- FLIGHT_TO_SAFETY              : 10-year Treasury term premium below -0.50% reflecting acute flight to safety and Treasury scarcity.
-- SEVERELY_OVERVALUED           : Equity market valuation to GDP exceeding 180% indicating speculative bubble froth and severe correction risk.
-- OVERVALUED                    : Equity market valuation to GDP between 140% and 180% reflecting stretched valuations above trend.
-- FAIR_VALUED                   : Equity market valuation to GDP between 100% and 140% reflecting balanced asset pricing.
-- UNDERVALUED                   : Equity market valuation to GDP below 100% reflecting attractive entry territory.
-- CYCLICAL_EXPANSION            : Copper-to-gold ratio exhibiting rising momentum reflecting industrial demand expansion and cyclical economic acceleration.
-- SEVERE_CONSUMER_STRESS        : Household credit delinquency rate exceeding personal saving rate indicating consumer insolvency and spending contraction.
-- ELEVATED_PRESSURE             : Household credit delinquency rate between 0.50 and 1.00 of personal saving rate reflecting thinning household liquidity buffers.
-- HEALTHY_BALANCE_SHEET         : Household credit delinquency rate below 0.50 of personal saving rate indicating resilient consumer balance sheets.
-- EXTREME_LIQUIDITY_PANIC       : Flight to safety ratio exceeding 2.50 indicating acute flight to cash and systemic liquidity panic.
-- HIGH_FLIGHT_TO_SAFETY         : Flight to safety ratio between 1.80 and 2.50 reflecting intense safe-haven flows into dollars and sovereign debt.
-- MODERATE_HEDGING              : Flight to safety ratio between 1.00 and 1.80 indicating defensive macro portfolio positioning.
-- NORMAL_MARKET_REGIME          : Flight to safety ratio below 1.00 reflecting orderly risk pricing and calm capital markets.
-- DEBALANCING_DEDOLLARIZATION_PANIC : Gold rallying despite high real yields indicating systemic fiat currency debasement and central bank de-dollarization.
-- ACCOMMODATIVE_GOLD_BULL       : Negative real Treasury yields providing monetary liquidity tailwinds for gold appreciation.
-- TRADITIONAL_REAL_RATE_DOMINANCE : Positive real Treasury yields exerting orthodox downward pressure on non-yielding physical gold.
-- STRUCTURAL_INFLATION_TRAP     : Sticky CPI exceeding flexible CPI by over 2.0% indicating structural service-shelter inflation entrapment.
-- TRANSITORY_INFLATION_SURGE    : Flexible CPI outpacing sticky CPI by over 2.0% reflecting transient commodity-led supply price spikes.
-- BALANCED_DISINFLATION_PATH    : Sticky and flexible inflation rates aligned within a +/- 2.0% spread along a balanced disinflation trajectory.
-- NATGAS_CRISIS_BLACKOUT_RISK   : Crude-to-gas ratio falling below 6.0 reflecting acute natural gas deficit and power generation blackout risks.
-- NATGAS_GLUT_ENERGY_CHEAP      : Crude-to-gas ratio exceeding 35.0 indicating extreme regional natural gas oversupply and depressed fuel costs.
-- ENERGY_PARITY_EQUILIBRIUM     : Crude-to-gas ratio within historical BTU parity corridor of 6.0 to 35.0.
-- ENERGY_SUPPLY_SHOCK_ALARM     : Model 20 critical energy supply disruption threshold triggered.
-- ENERGY_SUPPLY_SHOCK_TRANSMISSION : Geopolitical chokepoint disruption transmitting to energy prices.
-- ENERGY_FREIGHT_RISK_PREMIUM   : Maritime tanker rerouting and freight risk premium expansion.
-- CRACK_SPREAD_EXPANDING       : Model 25.9 3:2:1 spot crack spread is higher than its year-ago comparison.
-- CRACK_SPREAD_CONTRACTING     : Model 25.9 3:2:1 spot crack spread is lower than its year-ago comparison.
-- CRACK_SPREAD_UNCHANGED       : Model 25.9 3:2:1 spot crack spread equals its year-ago comparison.
-- UNCLASSIFIED                  : Model 25.9 cannot classify year-over-year direction when any prior-year spot price is unavailable.
-- ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL : Net percentage of banks tightening C&I loan standards exceeding 40% signaling severe credit channel freeze and recession.
-- RESTRICTIVE_CREDIT_CONTRACTION : Net percentage of banks tightening C&I loan standards between 20% and 40% reflecting restrictive commercial bank lending.
-- AGGRESSIVE_CREDIT_EXPANSION   : Net percentage of banks loosening lending standards below -10% reflecting loose credit expansion.
-- NEUTRAL_CREDIT_CONDITIONS     : Net percentage of banks tightening lending standards within balanced historical corridor of -10% to 20%.
-- ACUTE_LABOR_MARKET_FRACTURE_RECESSION : Involuntary part-time surge outpacing full-time jobs by over 30% alongside part-time growth > 15% signaling acute labor recession.
-- STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL : Involuntary part-time growth exceeding full-time employment by over 18% exposing hidden structural labor fragility.
-- ROBUST_FULL_TIME_EXPANSION    : Full-time employment growth strongly outstripping part-time additions reflecting resilient labor market fundamentals.
-- STABLE_EMPLOYMENT_COMPOSITION : Full-time and involuntary part-time employment dynamics in stable historical balance.
-- DIVIDED_GRIDLOCK_TARIFF_SURGE : Domestic legislation paralyzed by divided legislature forcing executive pivot toward unilateral tariffs and protectionism.
-- FRAGILE_COALITION_PARALYSIS   : Parliamentary coalition gridlock holding fiscal policy hostage.
-- UNIFIED_DOMESTIC_EXPANSION     : Unified legislative majority enabling aggressive domestic fiscal reform.
-- CENTRALIZED_STRATEGIC_COMMAND  : Zero domestic legislative gridlock under centralized vertical state authority.
-- BALANCED_INSTITUTIONAL_EQUILIBRIUM : Institutional legislative-executive balance operating within normal constitutional friction.
-- STRONG_HAWKISH_TILT            : Committee policy balance index exceeding +0.50 favoring aggressive monetary tightening.
-- MODERATE_HAWKISH_BIAS          : Committee policy balance index between +0.15 and +0.50 favoring moderate tightening.
-- BALANCED_NEUTRAL_STANCE        : Committee policy balance index between -0.15 and +0.15 reflecting balanced policy consensus.
-- MODERATE_DOVISH_BIAS           : Committee policy balance index between -0.50 and -0.15 favoring moderate easing.
-- STRONG_DOVISH_TILT             : Committee policy balance index below -0.50 favoring aggressive rate cuts.
-- STRONG_CONSENSUS               : Committee voting dispersion below 0.30 reflecting robust unity.
-- MODERATE_DISSENT               : Committee voting dispersion between 0.30 and 0.48 reflecting emerging division.
-- HIGH_DISPERSION                : Committee voting dispersion exceeding 0.48 reflecting elevated internal fracture.
-- FOREIGN_AID_CONDITIONALITY     : Legislative or administrative conditioning, restriction, or suspension of sovereign foreign assistance and bilateral security financing.
-- CHOKEPOINT_INTERDICTION        : Asymmetric disruption, naval interdiction, or closure threats targeting strategic maritime transit corridors and global energy passages.
-- EXECUTIVE_TRADE_AGGRESSION     : Executive deployment of unilateral administrative tariffs, emergency sanctions, and import surcharges bypassing divided legislative bodies.
 
 ---
 
 <!-- DYNAMIC_POLARITY_START -->
 ### 1.1. LIVE CALIBRATED POLARITY SNAPSHOT (ACTIVE REASONING CONTRACT)
 > **AI Ingestion Contract & Epistemological Directive:**
-> - **Sync Cadence & ISO 8601 Timestamp:** 2026-11-17 23:18 UTC
+> - **Sync Cadence & ISO 8601 Timestamp:** 2026-11-17 23:27 UTC
 > - **Status:** PARTIAL_SUCCESS / TRIGGER_UNAVAILABLE
 > - **Methodology:** Model 25.1 (P_net = clamp(P_baseline + Model 25.19 dynamic_delta + Model 25.18 Pact / Bloc delta + Diplomatic Mission delta, -1.0, 1.0)); legacy delta is shown separately and not added.
 > - **Kinetic escalation rule:** KINETIC_WAR requires both P_net < -0.95 and Conflict Severity == "CRITICAL".
@@ -210,7 +117,7 @@ Regime States (Discrete Mapping):
 <!-- DYNAMIC_CENTRAL_BANK_RATES_START -->
 ### 1.3. LIVE G4 CENTRAL BANK POLICY BENCHMARK & MONETARY DISPARITY
 > **AI Ingestion Contract & Epistemological Directive:**
-> - **Sync Cadence & ISO 8601 Timestamp:** 2026-11-17 23:18 UTC
+> - **Sync Cadence & ISO 8601 Timestamp:** 2026-11-17 23:27 UTC
 > - **Monitored Central Banks:** Federal Reserve (FRED DFF), European Central Bank (ECB DFR), Bank of Japan (IMF IFS JP_FPOLM_PA), Bank of England (IMF IFS GB_FPOLM_PA)
 > - **Operational Rule for LLMs:** Monetary policy rate disparities determine structural sovereign yield differentials, cross-border currency carry trade flows, and foreign exchange valuation pressure.
 
@@ -240,7 +147,7 @@ Regime States (Discrete Mapping):
 <!-- DYNAMIC_PORTWATCH_START -->
 ### 1.5. LIVE MARITIME CHOKEPOINT TRANSIT TELEMETRY (IMF PORTWATCH AIS)
 > **AI Ingestion Contract & Epistemological Directive:**
-> - **Sync Cadence & ISO 8601 Timestamp:** 2026-11-17 23:18 UTC
+> - **Sync Cadence & ISO 8601 Timestamp:** 2026-11-17 23:27 UTC
 > - **Source Authority:** IMF PortWatch / Oxford ECI / UN Global Platform AIS
 > - **Telemetry Endpoints:** [`llms-portwatch.json`](https://analysisreports.github.io/llms-portwatch.json) | [`llms-portwatch.txt`](https://analysisreports.github.io/llms-portwatch.txt)
 > - **Regime Rules:** `CHRONIC_CRISIS_BLOCKADE` (Δ% 2023 <= -40%), `SEVERE_CONTRACTION` (Δ% WoW <= -50%), `MODERATE_CONTRACTION` (Δ% WoW <= -25%), `CONGESTION_SURGE` (Δ% WoW >= +25%), `STABLE_FLOW` (Routine band).
