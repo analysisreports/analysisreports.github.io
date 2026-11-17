@@ -8,9 +8,9 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-nasa-firms.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-17T11:43:11Z",
-    "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-17T11:43:11Z",
+    "last_updated": "2026-11-17T12:56:07Z",
+    "sync_status": "STANDBY_UNCONFIGURED_KEY",
+    "last_successful_sync": null,
     "source_authority": "NASA Earth Science Data / FIRMS (VIIRS Suomi-NPP & NOAA-20)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.1",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -30,149 +30,45 @@
   "theaters": {
     "UKR": {
       "entity_id": "GEO_UA",
-      "name": "Ukraine Frontline Axis",
-      "theater": "Eastern European Flank",
-      "category": "CONVENTIONAL_LAND_WARFARE",
-      "total_satellite_detections": 0,
-      "high_confidence_anomalies": 0,
-      "strategic_missile_strikes_count": 0,
-      "refinery_depot_blazes_count": 0,
-      "total_radiative_power_mw": 0.0,
-      "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
-      "corridor_flashpoints": [
-        "BLACK_SEA",
-        "DONBAS",
-        "ZAPORIZHZHIA",
-        "KHERSON"
-      ],
-      "sample_hotspots": [],
-      "status": "OK"
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
     },
     "RUS": {
       "entity_id": "GEO_RU",
-      "name": "Russian Federation Border & Refinery Littoral",
-      "theater": "Eurasian Core",
-      "category": "STRATEGIC_INFRASTRUCTURE",
-      "total_satellite_detections": 0,
-      "high_confidence_anomalies": 0,
-      "strategic_missile_strikes_count": 0,
-      "refinery_depot_blazes_count": 0,
-      "total_radiative_power_mw": 0.0,
-      "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
-      "corridor_flashpoints": [
-        "KURSK_BORDER",
-        "REFINERY_CORRIDOR",
-        "BLACK_SEA_LITTORAL"
-      ],
-      "sample_hotspots": [],
-      "status": "OK"
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
     },
     "ISR": {
       "entity_id": "GEO_IL",
-      "name": "State of Israel & Frontline Perimeters",
-      "theater": "Levant Basin",
-      "category": "HIGH_INTENSITY_MISSILE_THEATER",
-      "total_satellite_detections": 0,
-      "high_confidence_anomalies": 0,
-      "strategic_missile_strikes_count": 0,
-      "refinery_depot_blazes_count": 0,
-      "total_radiative_power_mw": 0.0,
-      "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
-      "corridor_flashpoints": [
-        "NORTHERN_BORDER",
-        "GAZA_PERIMETER",
-        "PORT_OF_EILAT"
-      ],
-      "sample_hotspots": [],
-      "status": "OK"
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
     },
     "IRN": {
       "entity_id": "GEO_IR",
-      "name": "Islamic Republic of Iran & Gulf Littoral",
-      "theater": "Persian Gulf & Zagros",
-      "category": "CHOKEPOINT_LITTORAL_AND_NUCLEAR",
-      "total_satellite_detections": 0,
-      "high_confidence_anomalies": 0,
-      "strategic_missile_strikes_count": 0,
-      "refinery_depot_blazes_count": 0,
-      "total_radiative_power_mw": 0.0,
-      "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
-      "corridor_flashpoints": [
-        "CHOKE_HORMUZ",
-        "KHUZESTAN_ENERGY_GRID",
-        "NATANZ_ISFAHAN"
-      ],
-      "sample_hotspots": [],
-      "status": "OK"
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
     },
     "YEM": {
       "entity_id": "GEO_YE",
-      "name": "Republic of Yemen & Red Sea Littoral",
-      "theater": "Bab el-Mandeb / Red Sea",
-      "category": "MARITIME_CHOKEPOINT_INTERDICTION",
-      "total_satellite_detections": 0,
-      "high_confidence_anomalies": 0,
-      "strategic_missile_strikes_count": 0,
-      "refinery_depot_blazes_count": 0,
-      "total_radiative_power_mw": 0.0,
-      "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
-      "corridor_flashpoints": [
-        "CHOKE_BAB_EL_MANDEB",
-        "HODEIDAH_PORT",
-        "GULF_OF_ADEN"
-      ],
-      "sample_hotspots": [],
-      "status": "OK"
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
     },
     "SYR": {
       "entity_id": "GEO_SY",
-      "name": "Syrian Arab Republic Buffer",
-      "theater": "Levant",
-      "category": "ASYMMETRIC_BUFFER_THEATER",
-      "total_satellite_detections": 0,
-      "high_confidence_anomalies": 0,
-      "strategic_missile_strikes_count": 0,
-      "refinery_depot_blazes_count": 0,
-      "total_radiative_power_mw": 0.0,
-      "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
-      "corridor_flashpoints": [
-        "NORTHERN_BUFFER",
-        "EUPHRATES_BASIN"
-      ],
-      "sample_hotspots": [],
-      "status": "OK"
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
     },
     "LBN": {
       "entity_id": "GEO_LB",
-      "name": "Lebanese Republic Southern Axis",
-      "theater": "Levant Littoral",
-      "category": "MISSILE_INTERDICTION_ZONE",
-      "total_satellite_detections": 0,
-      "high_confidence_anomalies": 0,
-      "strategic_missile_strikes_count": 0,
-      "refinery_depot_blazes_count": 0,
-      "total_radiative_power_mw": 0.0,
-      "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
-      "corridor_flashpoints": [
-        "LITANI_LINE",
-        "BEIRUT_PORT"
-      ],
-      "sample_hotspots": [],
-      "status": "OK"
+      "status": "UNCONFIGURED_KEY",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNAVAILABLE"
     }
   }
 }

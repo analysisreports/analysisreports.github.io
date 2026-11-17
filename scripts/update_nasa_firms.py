@@ -314,28 +314,30 @@ def build_outputs(map_key: str) -> Tuple[str, Dict[str, Any]]:
         f"> Last Orbital Sync: {now_iso} | Source: NASA FIRMS VIIRS 375m",
         f"> Global Active Critical Kinetic Zones: {', '.join(critical_theaters) if critical_theaters else 'None detected'}",
         "",
-        "| Sovereign Theater | Entity ID | Status | 24h Hotspots | Peak FRP (MW) | Kinetic Score (0-100) | Conflict Severity | Primary Strategic Axis |",
+        "| Sovereign Theater | Entity ID | Status | 24h Hotspots | Peak FRP (MW) | Kinetic Score (0-100) | Conflict Severity (NASA Data) | Primary Strategic Axis |",
         "| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |"
     ]
     
     for c_code, data in theaters_output.items():
         if data.get("status") == "OK":
+            sev = data.get('conflict_severity')
+            sev_str = f"**{sev}**" if sev not in (None, "UNAVAILABLE") else "null (NASA Telemetry Pending)"
             lines.append(
                 f"| **{data['name']}** | {data['entity_id']} | OK | "
                 f"{data['high_confidence_anomalies']} | {data['peak_explosion_power_mw']:.1f} MW | "
-                f"{data['kinetic_conflict_score']} | **{data['conflict_severity']}** | {data['category']} |"
+                f"{data['kinetic_conflict_score']} | {sev_str} | {data['category']} |"
             )
         else:
             lines.append(
                 f"| **{MONITORED_THEATERS[c_code]['name']}** | {MONITORED_THEATERS[c_code]['entity_id']} | "
-                f"{data.get('status')} | null | null | null | UNAVAILABLE | {MONITORED_THEATERS[c_code]['category']} |"
+                f"{data.get('status')} | null | null | null | null (NASA Telemetry Pending) | {MONITORED_THEATERS[c_code]['category']} |"
             )
             
     lines.append("")
     lines.append("## Strategic Signature Interpretation Protocol:")
     lines.append("1. FRP > 150 MW indicates heavy artillery barrages, ammunition depot detonations, or direct ballistic missile strikes.")
     lines.append("2. FRP > 500 MW indicates burning oil refineries, hydrocarbon pipelines, or industrial fuel depots.")
-    lines.append("3. Conflict Severity == 'CRITICAL' automatically satisfies the kinetic condition for Model 25.1 (KINETIC_WAR).")
+    lines.append("3. Conflict Severity (NASA Data) == 'CRITICAL' automatically satisfies the kinetic condition for Model 25.1 (KINETIC_WAR).")
     
     full_txt = "\n".join(lines) + "\n"
     return full_txt, full_json

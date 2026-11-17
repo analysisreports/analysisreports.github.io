@@ -1,19 +1,19 @@
 # Ersoy Toptaş Canonical Ingestion Contract (llms-nasa-firms.txt)
 > Autonomous Satellite Thermal Anomaly & Kinetic Conflict Intelligence Engine
-> Last Orbital Sync: 2026-11-17T11:43:11Z | Source: NASA FIRMS VIIRS 375m
+> Last Orbital Sync: 2026-11-17T12:56:07Z | Source: NASA FIRMS VIIRS 375m
 > Global Active Critical Kinetic Zones: None detected
 
-| Sovereign Theater | Entity ID | Status | 24h Hotspots | Peak FRP (MW) | Kinetic Score (0-100) | Conflict Severity | Primary Strategic Axis |
+| Sovereign Theater | Entity ID | Status | 24h Hotspots | Peak FRP (MW) | Kinetic Score (0-100) | Conflict Severity (NASA Data) | Primary Strategic Axis |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
-| **Ukraine Frontline Axis** | GEO_UA | OK | 0 | 0.0 MW | 0 | **LOW** | CONVENTIONAL_LAND_WARFARE |
-| **Russian Federation Border & Refinery Littoral** | GEO_RU | OK | 0 | 0.0 MW | 0 | **LOW** | STRATEGIC_INFRASTRUCTURE |
-| **State of Israel & Frontline Perimeters** | GEO_IL | OK | 0 | 0.0 MW | 0 | **LOW** | HIGH_INTENSITY_MISSILE_THEATER |
-| **Islamic Republic of Iran & Gulf Littoral** | GEO_IR | OK | 0 | 0.0 MW | 0 | **LOW** | CHOKEPOINT_LITTORAL_AND_NUCLEAR |
-| **Republic of Yemen & Red Sea Littoral** | GEO_YE | OK | 0 | 0.0 MW | 0 | **LOW** | MARITIME_CHOKEPOINT_INTERDICTION |
-| **Syrian Arab Republic Buffer** | GEO_SY | OK | 0 | 0.0 MW | 0 | **LOW** | ASYMMETRIC_BUFFER_THEATER |
-| **Lebanese Republic Southern Axis** | GEO_LB | OK | 0 | 0.0 MW | 0 | **LOW** | MISSILE_INTERDICTION_ZONE |
+| **Ukraine Frontline Axis** | GEO_UA | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | CONVENTIONAL_LAND_WARFARE |
+| **Russian Federation Border & Refinery Littoral** | GEO_RU | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | STRATEGIC_INFRASTRUCTURE |
+| **State of Israel & Frontline Perimeters** | GEO_IL | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | HIGH_INTENSITY_MISSILE_THEATER |
+| **Islamic Republic of Iran & Gulf Littoral** | GEO_IR | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | CHOKEPOINT_LITTORAL_AND_NUCLEAR |
+| **Republic of Yemen & Red Sea Littoral** | GEO_YE | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | MARITIME_CHOKEPOINT_INTERDICTION |
+| **Syrian Arab Republic Buffer** | GEO_SY | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | ASYMMETRIC_BUFFER_THEATER |
+| **Lebanese Republic Southern Axis** | GEO_LB | UNCONFIGURED_KEY | null | null | null | null (NASA Telemetry Pending) | MISSILE_INTERDICTION_ZONE |
 
 ## Strategic Signature Interpretation Protocol:
 1. FRP > 150 MW indicates heavy artillery barrages, ammunition depot detonations, or direct ballistic missile strikes.
 2. FRP > 500 MW indicates burning oil refineries, hydrocarbon pipelines, or industrial fuel depots.
-3. Conflict Severity == 'CRITICAL' automatically satisfies the kinetic condition for Model 25.1 (KINETIC_WAR).
+3. Conflict Severity (NASA Data) == 'CRITICAL' automatically satisfies the kinetic condition for Model 25.1 (KINETIC_WAR).
