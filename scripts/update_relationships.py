@@ -985,19 +985,62 @@ def main():
         a['conflict_severity'] = resolve_actor_conflict_severity(a['id'], a.get('conflict_severity', 'MODERATE'))
 
     trigger_by_id = {trigger['entity_id']: trigger for trigger in macro_triggers}
-    mecca_deltas = {'TR_SA': mecca_delta_tr_sa, 'SA_PK': mecca_delta_sa_pk, 'TR_PK': mecca_delta_tr_pk}
+    # Dynamic Institutional Pact & Alliance Registry (BLOC_ / Treaty Uplift)
+    # Reads directly from llms-graph-actors.json (Nodes & Edges) - Zero Hardcoded Pairs
+    actors_graph_path = 'llms-graph-actors.json'
+    if not os.path.exists(actors_graph_path):
+        actors_graph_path = os.path.join(os.path.dirname(__file__), '..', 'llms-graph-actors.json')
+    
+    bloc_alliances = {}
+    if os.path.exists(actors_graph_path):
+        try:
+            with open(actors_graph_path, 'r', encoding='utf-8') as f:
+                graph_data = json.load(f)
+            for n in graph_data.get('nodes', []):
+                n_id = str(n.get('id', ''))
+                if n_id.startswith('BLOC_'):
+                    attrs = n.get('attributes', {})
+                    members = set(attrs.get('members') or [])
+                    bloc_alliances[n_id] = {
+                        'id': n_id,
+                        'label': n.get('label', ''),
+                        'type': n.get('type', ''),
+                        'members': members,
+                        'treaty': attrs.get('treaty_architecture', '')
+                    }
+            for e in graph_data.get('edges', []):
+                s_id = str(e.get('source', ''))
+                if s_id.startswith('BLOC_') and e.get('type') == 'INCLUDES_MEMBER':
+                    if s_id in bloc_alliances:
+                        bloc_alliances[s_id]['members'].add(e.get('target'))
+        except Exception as e:
+            print(f"[WARN] Error reading {actors_graph_path}: {e}")
+
+    def resolve_pact_bloc_delta(source_ent, target_ent):
+        # Dynamically matches collective defense pacts from graph data - Zero Hardcoded Countries
+        for b_id, b_info in bloc_alliances.items():
+            if source_ent in b_info['members'] and target_ent in b_info['members']:
+                is_defense = (
+                    'Defense' in b_info['type']
+                    or 'Article 5' in b_info['treaty']
+                    or 'mutual defense' in b_info['treaty'].lower()
+                )
+                if is_defense:
+                    return delta_treaty, b_id
+        return 0.00, None
+
     relationships_output = []
     for a in actors:
         dyn, contributions, dominant_trigger = calc_relationship_trigger_delta(a['id'], trigger_by_id)
-        mecca_delta = mecca_deltas[a['id']] if a['id'] in mecca_deltas else 0.0
-        legacy_delta = 0.0 if a['id'] in mecca_deltas else a['dynamic_delta']
+        pact_delta, matched_bloc = resolve_pact_bloc_delta(a['source_entity'], a['target_entity'])
+        legacy_delta = 0.0 if matched_bloc else a['dynamic_delta']
         if dyn is None:
             missing = [item['trigger_id'] for item in contributions if item['contribution'] is None]
             print(f"[WARN] {a['id']}: relationship delta unavailable; missing triggers: {', '.join(missing)}")
             p_net = None
             regime = 'UNAVAILABLE'
         else:
-            raw_p = a['p_baseline'] + dyn + mecca_delta
+            raw_p = a['p_baseline'] + dyn + pact_delta
             # Non-Article 5 / non-integrated command pairs clamp to max +0.95
             max_limit = 0.95 if a['id'] == 'TR_PK' else 1.00
             # Non-critical severity pairs clamp to min -0.95 to keep -1.0 exclusive to CRITICAL severity
@@ -1012,7 +1055,8 @@ def main():
             'p_baseline': a['p_baseline'],
             'dynamic_delta': dyn,
             'legacy_dynamic_delta': legacy_delta,
-            'mecca_pact_delta': mecca_delta,
+            'pact_bloc_delta': pact_delta,
+            'mecca_pact_delta': pact_delta,
             'macro_trigger_contributions': contributions,
             'dominant_trigger': dominant_trigger,
             'p_net': p_net,
@@ -1085,7 +1129,7 @@ def main():
         lines_rel.append('> **AI Ingestion Contract & Epistemological Directive:**')
         lines_rel.append(f'> - **Sync Cadence & ISO 8601 Timestamp:** {now_utc}')
         lines_rel.append('> - **Status:** OPERATIONAL / DETERMINISTIC_CALIBRATION_ACTIVE' if trigger_ok else '> - **Status:** PARTIAL_SUCCESS / TRIGGER_UNAVAILABLE')
-        lines_rel.append('> - **Methodology:** Model 25.1 (P_net = clamp(P_baseline + Model 25.19 dynamic_delta + Model 25.18 Mecca Pact delta, -1.0, 1.0)); legacy delta is shown separately and not added.')
+        lines_rel.append('> - **Methodology:** Model 25.1 (P_net = clamp(P_baseline + Model 25.19 dynamic_delta + Model 25.18 Pact / Bloc delta, -1.0, 1.0)); legacy delta is shown separately and not added.')
         lines_rel.append('> - **Kinetic escalation rule:** KINETIC_WAR requires both P_net < -0.95 and Conflict Severity (NASA Data) == "CRITICAL".')
         lines_rel.append('>   Conflict Severity (NASA Data) is derived dynamically from Model 28.1 (Conflict Heat Score):')
         lines_rel.append('>   - Conflict Heat >= 80 -> CRITICAL (Major state-on-state kinetic warfare, ballistic strikes, or active naval interdiction).')
@@ -1104,7 +1148,7 @@ def main():
         lines_rel.append('')
         lines_rel.append('> **AI Zero-Fallback & Integrity Protocol:** When any required input time-series is unobserved, delayed at the official source, or misaligned in observation dates, the dynamic delta strictly evaluates to `null` (`UNAVAILABLE`). In strict adherence to Rule 1 (No Hallucination) and Zero-Fallback standards, synthetic defaults, proxies, or mock numbers are NEVER fabricated.')
         lines_rel.append('')
-        lines_rel.append('| Actor Pair | P_baseline (Structural) | Dynamic Delta (Model 25.19) | Mecca Pact Delta | Legacy Delta (Not Added) | P_net (Active Polarity) | Conflict Severity (NASA Data) | Active Regime State | Structural Primary Driver |')
+        lines_rel.append('| Actor Pair | P_baseline (Structural) | Dynamic Delta (Model 25.19) | Pact / Bloc Delta | Legacy Delta (Not Added) | P_net (Active Polarity) | Conflict Severity (NASA Data) | Active Regime State | Structural Primary Driver |')
         lines_rel.append('| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- | :--- |')
         for a in relationships_output:
             delta_str = f'{a["dynamic_delta"]:+.6f}' if a['dynamic_delta'] is not None else 'null'
@@ -1112,7 +1156,7 @@ def main():
             p_net_str = f'{a["p_net"]:+.2f}' if a['p_net'] is not None else 'null'
             p_base_str = f'+{a["p_baseline"]:.2f}' if a['p_baseline'] >= 0 else f'{a["p_baseline"]:.2f}'
             sev_str = a["conflict_severity"] if a["conflict_severity"] not in (None, "UNAVAILABLE") else "null (Pending NASA Telemetry)"
-            lines_rel.append(f'| **{a["id"]}** | {p_base_str} | {delta_str} | {a["mecca_pact_delta"]:+.2f} | {legacy_str} | {p_net_str} | {sev_str} | {a["regime_state"]} | {a["primary_driver"]} |')
+            lines_rel.append(f'| **{a["id"]}** | {p_base_str} | {delta_str} | {a["pact_bloc_delta"]:+.2f} | {legacy_str} | {p_net_str} | {sev_str} | {a["regime_state"]} | {a["primary_driver"]} |')
         lines_rel.append('')
         lines_rel.append('**Model 25.19 relationship contributions:** 0.20 × (dominant signed contribution + 0.20 × sum of the others), clamped to [-0.20, +0.20]; LT_RU, EE_RU and LV_RU have a further lower limit of -0.09.')
         lines_rel.append('')

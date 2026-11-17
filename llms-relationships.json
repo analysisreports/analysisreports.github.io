@@ -8,10 +8,10 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-relationships.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-17T14:30:13.516383+00:00",
+    "last_updated": "2026-11-17T15:30:07.503130+00:00",
     "sync_status": "PARTIAL_SUCCESS",
     "last_successful_sync": null,
-    "last_attempted_sync": "2026-11-17T14:30:13.516383+00:00",
+    "last_attempted_sync": "2026-11-17T15:30:07.503130+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -228,6 +228,7 @@
       "p_baseline": -0.85,
       "dynamic_delta": -0.076772,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -265,6 +266,7 @@
       "p_baseline": -0.65,
       "dynamic_delta": null,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -301,6 +303,7 @@
       "p_baseline": 0.8,
       "dynamic_delta": null,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -336,6 +339,7 @@
       "p_baseline": -0.95,
       "dynamic_delta": 0.071192,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -373,6 +377,7 @@
       "p_baseline": 0.15,
       "dynamic_delta": 0.071192,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -408,6 +413,7 @@
       "p_baseline": 0.8,
       "dynamic_delta": 0.071192,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -442,6 +448,7 @@
       "p_baseline": -0.85,
       "dynamic_delta": 0.071192,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -479,6 +486,7 @@
       "p_baseline": 0.85,
       "dynamic_delta": -0.123832,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -514,6 +522,7 @@
       "p_baseline": -0.8,
       "dynamic_delta": -0.143348,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -549,6 +558,7 @@
       "p_baseline": -0.9,
       "dynamic_delta": null,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -577,6 +587,7 @@
       "p_baseline": -0.7,
       "dynamic_delta": -0.1273,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -606,6 +617,7 @@
       "p_baseline": -0.85,
       "dynamic_delta": -0.09,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -643,6 +655,7 @@
       "p_baseline": -0.85,
       "dynamic_delta": -0.09,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -679,6 +692,7 @@
       "p_baseline": -0.85,
       "dynamic_delta": -0.09,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -715,6 +729,7 @@
       "p_baseline": -0.95,
       "dynamic_delta": -0.1986,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -759,6 +774,7 @@
       "p_baseline": -0.75,
       "dynamic_delta": 0.090708,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -795,6 +811,7 @@
       "p_baseline": -0.6,
       "dynamic_delta": 0.08724,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -825,6 +842,7 @@
       "p_baseline": -0.35,
       "dynamic_delta": -0.1273,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -854,6 +872,7 @@
       "p_baseline": 0.3,
       "dynamic_delta": -0.2,
       "legacy_dynamic_delta": -0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -891,6 +910,7 @@
       "p_baseline": -0.55,
       "dynamic_delta": -0.182552,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -928,6 +948,7 @@
       "p_baseline": 0.65,
       "dynamic_delta": 0.130768,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
@@ -965,6 +986,7 @@
       "p_baseline": 0.35,
       "dynamic_delta": 0.076772,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.1,
       "mecca_pact_delta": 0.1,
       "macro_trigger_contributions": [
         {
@@ -1001,6 +1023,7 @@
       "p_baseline": 0.65,
       "dynamic_delta": -0.01734,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.1,
       "mecca_pact_delta": 0.1,
       "macro_trigger_contributions": [
         {
@@ -1031,6 +1054,7 @@
       "p_baseline": 0.8,
       "dynamic_delta": null,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.1,
       "mecca_pact_delta": 0.1,
       "macro_trigger_contributions": [
         {
@@ -1068,6 +1092,7 @@
       "p_baseline": -0.95,
       "dynamic_delta": -0.2,
       "legacy_dynamic_delta": 0.0,
+      "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "macro_trigger_contributions": [
         {
