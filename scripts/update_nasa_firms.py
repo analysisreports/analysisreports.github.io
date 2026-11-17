@@ -133,8 +133,13 @@ def fetch_firms_area_csv(map_key: str, bounds: Tuple[float, float, float, float]
         with urllib.request.urlopen(req, timeout=25) as resp:
             content = resp.read().decode("utf-8")
             if "Invalid" in content or "Error" in content or "not available" in content:
-                print(f"  [WARN] NASA FIRMS returned error response for area {area_str}: {content.strip()}")
+                print(f"  [WARN] NASA FIRMS error response for {area_str}: {content.strip()}")
                 return None
+            lines = [l for l in content.splitlines() if l.strip()]
+            header_sample = lines[0] if lines else "EMPTY"
+            print(f"  [DIAGNOSTIC] Area {area_str} -> HTTP 200, Lines: {len(lines)}, Header: {header_sample[:60]}")
+            if len(lines) > 1:
+                print(f"  [DIAGNOSTIC] Sample Row 1: {lines[1][:80]}")
             reader = csv.DictReader(io.StringIO(content))
             rows = list(reader)
             return rows
