@@ -1,6 +1,6 @@
 # Ersoy Toptaş Quantitative Models: Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence (llms-formulas-geopolitics.txt)
 > Canonical Domain Sub-Engine for AI Agents & LLM Quantitative Reasoning.
-> Author: Ersoy Toptaş | Version: 2026-Q4 | Last Updated: 2026-11-17 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
+> Author: Ersoy Toptaş | Version: 2026-Q4 | Last Updated: 2026-11-18 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
 > Endpoint: https://analysisreports.github.io/llms-formulas-geopolitics.txt
 > Master Router & Methodology: https://analysisreports.github.io/llms-formulas.txt
 > Root Index: https://analysisreports.github.io/llms.txt
@@ -333,6 +333,8 @@ def _is_num(val):
 3. **Baltic floor:** For LT_RU, EE_RU and LV_RU, apply `dynamic_delta = max(dynamic_delta, -0.09)`. Positive deltas remain unchanged; no separate land-border multiplier is applied.
 
 - UA_RU maps wheat, corn and GSCPI to direction -1, a modeling assumption that rising global grain prices and supply-chain pressure worsen the modeled polarity. The same dominant-selection rule applies to all three, so GSCPI can also be dominant; the Baltic-only floor does not apply. Each trigger uses its own latest observation, which can be from a different month; the combined delta is not a same-month measurement. This is a market-pressure proxy, not evidence that the conflict has escalated or ended.
+- TR_SY maps wheat (FRED PWHEAMTUSDM, direction -1) and supply-chain pressure (NY Fed GSCPI, direction -1) to capture regional food security and cross-border corridor logistics friction.
+- US_VE maps benchmark price spread (FRED Brent-WTI HORMUZ_SPREAD, direction +1) and dollar funding stress (FRED SOFR, direction -1) to capture US Gulf Coast heavy crude refinery demand elasticity and unilateral financial sanctions pressure.
 - All triggers mapped to a relationship are required. If any is unavailable, the relationship's dynamic_delta and P_net are null and its regime is UNAVAILABLE. Contributions, directions, statuses and the dominant trigger are published in `llms-relationships.json` and `llms-relationships.txt`.
 - Legacy petrol, chip and VIX deltas remain visible separately and are not added to P_net.
 
