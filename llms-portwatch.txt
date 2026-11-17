@@ -1,0 +1,24 @@
+# Ersoy Toptaş Canonical Ingestion Contract (llms-portwatch.txt)
+> Autonomous IMF PortWatch Maritime Chokepoint & AIS Daily Transit Registry
+> Last Sync: 2026-11-17T20:44:20.237484+00:00 | Source: IMF PortWatch / Oxford ECI / UN AIS
+> Active Supply Chain Bottlenecks: CHOKE_TURKISH_STRAITS (Bosporus Strait), CHOKE_HORMUZ (Strait of Hormuz)
+
+| Chokepoint Entity | Name | Theater | Last Date | Latest Daily | Tankers | Containers | 7d Avg | Δ% WoW | 2023 Baseline | Δ% vs 2023 | Flow Stress |
+| :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| `CHOKE_SUEZ` | Suez Canal | Red Sea / Mediterranean Gateway | 2026-11-15 | 44 | 14 | 12 | 46.1 | -4.6% | 54.2 | -18.8% | `STABLE_FLOW` |
+| `CHOKE_PANAMA` | Panama Canal | Trans-Isthmus Americas | 2026-11-15 | 30 | 16 | 9 | 28.1 | +6.6% | 30.2 | -0.7% | `STABLE_FLOW` |
+| `CHOKE_TURKISH_STRAITS` | Bosporus Strait | Black Sea Littoral | 2026-11-15 | 57 | 12 | 5 | 48.6 | +17.4% | 96.2 | -40.7% | `CHRONIC_CRISIS_BLOCKADE` |
+| `CHOKE_BAB_EL_MANDEB` | Bab el-Mandeb Strait | Southern Red Sea / Gulf of Aden | 2026-11-15 | 34 | 9 | 11 | 25.6 | +33.0% | 52.9 | -35.7% | `CONGESTION_SURGE` |
+| `CHOKE_MALACCA` | Malacca Strait | Indo-Pacific / Southeast Asia | 2026-11-15 | 258 | 82 | 78 | 229.9 | +12.2% | 195.8 | +31.8% | `STABLE_FLOW` |
+| `CHOKE_HORMUZ` | Strait of Hormuz | Persian Gulf / Arabian Sea | 2026-11-15 | 2 | 0 | 1 | 2.3 | -12.5% | 89.0 | -97.8% | `CHRONIC_CRISIS_BLOCKADE` |
+| `CHOKE_GIBRALTAR` | Gibraltar Strait | Western Mediterranean Gateway | 2026-11-15 | 130 | 41 | 24 | 123.7 | +5.1% | 131.0 | -0.8% | `STABLE_FLOW` |
+| `CHOKE_TAIWAN` | Taiwan Strait | East China Sea / Taiwan | 2026-11-15 | 223 | 44 | 80 | 220.9 | +1.0% | 242.3 | -8.0% | `STABLE_FLOW` |
+| `CHOKE_LOMBOK` | Lombok Strait | Indonesian Archipelagic Deep-Draft Corridor | 2026-11-15 | 39 | 8 | 1 | 37.0 | +5.4% | 35.4 | +10.2% | `STABLE_FLOW` |
+| `CHOKE_MAKASSAR` | Makassar Strait | Indonesian Archipelagic Deep-Draft Corridor | 2026-11-15 | 57 | 8 | 3 | 47.9 | +19.1% | 52.4 | +8.8% | `STABLE_FLOW` |
+
+## Macroeconomic Transmission Links
+- **Energy & Oil Supply:** Disruptions in `CHOKE_HORMUZ` or `CHOKE_BAB_EL_MANDEB` trigger immediate freight rate spikes (BDTI/BCTI) and Brent crack spread volatility.
+- **Container Shipping & CPI:** Suez Canal diversions around Africa add 10-14 days to transit times, inflating TEU container indices (WCI / FBX) and passing through into EU/US core import price inflation.
+
+---
+Official JSON Twin: https://analysisreports.github.io/llms-portwatch.json

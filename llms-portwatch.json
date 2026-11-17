@@ -1,0 +1,748 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "metadata": {
+    "title": "IMF PortWatch Maritime Chokepoint & Daily AIS Transit Ingestion Contract",
+    "domain": "macroeconomics",
+    "version": "1.0.0",
+    "author": "Ersoy Toptaş",
+    "license": "CC BY-NC-ND 4.0",
+    "endpoint": "https://analysisreports.github.io/llms-portwatch.json",
+    "documentation": "https://analysisreports.github.io/llms-about.txt",
+    "last_updated": "2026-11-17T20:44:20.237484+00:00",
+    "sync_status": "SUCCESS",
+    "source_authority": "International Monetary Fund (IMF) PortWatch / Oxford ECI / UN Global Platform AIS",
+    "source_portal": "https://portwatch.imf.org/",
+    "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#28.0",
+    "root_index": "https://analysisreports.github.io/llms.txt"
+  },
+  "ais_telemetry_summary": {
+    "monitored_chokepoints_count": 10,
+    "active_disrupted_chokepoints": [
+      "CHOKE_TURKISH_STRAITS (Bosporus Strait)",
+      "CHOKE_HORMUZ (Strait of Hormuz)"
+    ],
+    "reporting_window_days": 7
+  },
+  "chokepoints": {
+    "CHOKE_SUEZ": {
+      "entity_id": "CHOKE_SUEZ",
+      "portwatch_id": "chokepoint1",
+      "name": "Suez Canal",
+      "theater": "Red Sea / Mediterranean Gateway",
+      "strategic_importance": "Primary container artery between Asia and Europe",
+      "metrics": {
+        "status": "OPERATIONAL",
+        "last_date": "2026-11-15",
+        "latest_daily_total": 44,
+        "latest_daily_tankers": 14,
+        "latest_daily_containers": 12,
+        "7d_avg_total": 46.1,
+        "7d_avg_tankers": 15.0,
+        "7d_avg_containers": 13.9,
+        "pct_change_vs_7d": -4.6,
+        "baseline_2023_daily": 54.2,
+        "pct_change_vs_2023": -18.8,
+        "flow_stress_level": "STABLE_FLOW"
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-09",
+          "portname": "Suez Canal",
+          "n_total": 43,
+          "n_tanker": 15,
+          "n_container": 11
+        },
+        {
+          "date": "2026-11-10",
+          "portname": "Suez Canal",
+          "n_total": 50,
+          "n_tanker": 14,
+          "n_container": 13
+        },
+        {
+          "date": "2026-11-11",
+          "portname": "Suez Canal",
+          "n_total": 43,
+          "n_tanker": 14,
+          "n_container": 18
+        },
+        {
+          "date": "2026-11-12",
+          "portname": "Suez Canal",
+          "n_total": 59,
+          "n_tanker": 22,
+          "n_container": 11
+        },
+        {
+          "date": "2026-11-13",
+          "portname": "Suez Canal",
+          "n_total": 48,
+          "n_tanker": 11,
+          "n_container": 20
+        },
+        {
+          "date": "2026-11-14",
+          "portname": "Suez Canal",
+          "n_total": 36,
+          "n_tanker": 15,
+          "n_container": 12
+        },
+        {
+          "date": "2026-11-15",
+          "portname": "Suez Canal",
+          "n_total": 44,
+          "n_tanker": 14,
+          "n_container": 12
+        }
+      ]
+    },
+    "CHOKE_PANAMA": {
+      "entity_id": "CHOKE_PANAMA",
+      "portwatch_id": "chokepoint2",
+      "name": "Panama Canal",
+      "theater": "Trans-Isthmus Americas",
+      "strategic_importance": "Critical Atlantic-Pacific link for US agricultural and energy trade",
+      "metrics": {
+        "status": "OPERATIONAL",
+        "last_date": "2026-11-15",
+        "latest_daily_total": 30,
+        "latest_daily_tankers": 16,
+        "latest_daily_containers": 9,
+        "7d_avg_total": 28.1,
+        "7d_avg_tankers": 13.3,
+        "7d_avg_containers": 8.0,
+        "pct_change_vs_7d": 6.6,
+        "baseline_2023_daily": 30.2,
+        "pct_change_vs_2023": -0.7,
+        "flow_stress_level": "STABLE_FLOW"
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-09",
+          "portname": "Panama Canal",
+          "n_total": 25,
+          "n_tanker": 10,
+          "n_container": 9
+        },
+        {
+          "date": "2026-11-10",
+          "portname": "Panama Canal",
+          "n_total": 28,
+          "n_tanker": 10,
+          "n_container": 9
+        },
+        {
+          "date": "2026-11-11",
+          "portname": "Panama Canal",
+          "n_total": 27,
+          "n_tanker": 13,
+          "n_container": 7
+        },
+        {
+          "date": "2026-11-12",
+          "portname": "Panama Canal",
+          "n_total": 26,
+          "n_tanker": 13,
+          "n_container": 7
+        },
+        {
+          "date": "2026-11-13",
+          "portname": "Panama Canal",
+          "n_total": 32,
+          "n_tanker": 18,
+          "n_container": 7
+        },
+        {
+          "date": "2026-11-14",
+          "portname": "Panama Canal",
+          "n_total": 29,
+          "n_tanker": 13,
+          "n_container": 8
+        },
+        {
+          "date": "2026-11-15",
+          "portname": "Panama Canal",
+          "n_total": 30,
+          "n_tanker": 16,
+          "n_container": 9
+        }
+      ]
+    },
+    "CHOKE_TURKISH_STRAITS": {
+      "entity_id": "CHOKE_TURKISH_STRAITS",
+      "portwatch_id": "chokepoint3",
+      "name": "Bosporus Strait",
+      "theater": "Black Sea Littoral",
+      "strategic_importance": "Russian and Ukrainian grain, mineral, and oil export corridor",
+      "metrics": {
+        "status": "OPERATIONAL",
+        "last_date": "2026-11-15",
+        "latest_daily_total": 57,
+        "latest_daily_tankers": 12,
+        "latest_daily_containers": 5,
+        "7d_avg_total": 48.6,
+        "7d_avg_tankers": 15.0,
+        "7d_avg_containers": 5.0,
+        "pct_change_vs_7d": 17.4,
+        "baseline_2023_daily": 96.2,
+        "pct_change_vs_2023": -40.7,
+        "flow_stress_level": "CHRONIC_CRISIS_BLOCKADE"
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-09",
+          "portname": "Bosporus Strait",
+          "n_total": 52,
+          "n_tanker": 16,
+          "n_container": 4
+        },
+        {
+          "date": "2026-11-10",
+          "portname": "Bosporus Strait",
+          "n_total": 70,
+          "n_tanker": 30,
+          "n_container": 6
+        },
+        {
+          "date": "2026-11-11",
+          "portname": "Bosporus Strait",
+          "n_total": 52,
+          "n_tanker": 17,
+          "n_container": 2
+        },
+        {
+          "date": "2026-11-12",
+          "portname": "Bosporus Strait",
+          "n_total": 47,
+          "n_tanker": 13,
+          "n_container": 10
+        },
+        {
+          "date": "2026-11-13",
+          "portname": "Bosporus Strait",
+          "n_total": 41,
+          "n_tanker": 10,
+          "n_container": 5
+        },
+        {
+          "date": "2026-11-14",
+          "portname": "Bosporus Strait",
+          "n_total": 21,
+          "n_tanker": 7,
+          "n_container": 3
+        },
+        {
+          "date": "2026-11-15",
+          "portname": "Bosporus Strait",
+          "n_total": 57,
+          "n_tanker": 12,
+          "n_container": 5
+        }
+      ]
+    },
+    "CHOKE_BAB_EL_MANDEB": {
+      "entity_id": "CHOKE_BAB_EL_MANDEB",
+      "portwatch_id": "chokepoint4",
+      "name": "Bab el-Mandeb Strait",
+      "theater": "Southern Red Sea / Gulf of Aden",
+      "strategic_importance": "Asymmetric disruption zone forcing Cape of Good Hope rerouting",
+      "metrics": {
+        "status": "OPERATIONAL",
+        "last_date": "2026-11-15",
+        "latest_daily_total": 34,
+        "latest_daily_tankers": 9,
+        "latest_daily_containers": 11,
+        "7d_avg_total": 25.6,
+        "7d_avg_tankers": 8.9,
+        "7d_avg_containers": 4.4,
+        "pct_change_vs_7d": 33.0,
+        "baseline_2023_daily": 52.9,
+        "pct_change_vs_2023": -35.7,
+        "flow_stress_level": "CONGESTION_SURGE"
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-09",
+          "portname": "Bab el-Mandeb Strait",
+          "n_total": 29,
+          "n_tanker": 11,
+          "n_container": 3
+        },
+        {
+          "date": "2026-11-10",
+          "portname": "Bab el-Mandeb Strait",
+          "n_total": 25,
+          "n_tanker": 10,
+          "n_container": 0
+        },
+        {
+          "date": "2026-11-11",
+          "portname": "Bab el-Mandeb Strait",
+          "n_total": 19,
+          "n_tanker": 8,
+          "n_container": 3
+        },
+        {
+          "date": "2026-11-12",
+          "portname": "Bab el-Mandeb Strait",
+          "n_total": 24,
+          "n_tanker": 7,
+          "n_container": 4
+        },
+        {
+          "date": "2026-11-13",
+          "portname": "Bab el-Mandeb Strait",
+          "n_total": 28,
+          "n_tanker": 10,
+          "n_container": 6
+        },
+        {
+          "date": "2026-11-14",
+          "portname": "Bab el-Mandeb Strait",
+          "n_total": 20,
+          "n_tanker": 7,
+          "n_container": 4
+        },
+        {
+          "date": "2026-11-15",
+          "portname": "Bab el-Mandeb Strait",
+          "n_total": 34,
+          "n_tanker": 9,
+          "n_container": 11
+        }
+      ]
+    },
+    "CHOKE_MALACCA": {
+      "entity_id": "CHOKE_MALACCA",
+      "portwatch_id": "chokepoint5",
+      "name": "Malacca Strait",
+      "theater": "Indo-Pacific / Southeast Asia",
+      "strategic_importance": "China Malacca Dilemma; primary crude transit from Persian Gulf to East Asia",
+      "metrics": {
+        "status": "OPERATIONAL",
+        "last_date": "2026-11-15",
+        "latest_daily_total": 258,
+        "latest_daily_tankers": 82,
+        "latest_daily_containers": 78,
+        "7d_avg_total": 229.9,
+        "7d_avg_tankers": 78.1,
+        "7d_avg_containers": 61.9,
+        "pct_change_vs_7d": 12.2,
+        "baseline_2023_daily": 195.8,
+        "pct_change_vs_2023": 31.8,
+        "flow_stress_level": "STABLE_FLOW"
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-09",
+          "portname": "Malacca Strait",
+          "n_total": 207,
+          "n_tanker": 76,
+          "n_container": 52
+        },
+        {
+          "date": "2026-11-10",
+          "portname": "Malacca Strait",
+          "n_total": 220,
+          "n_tanker": 78,
+          "n_container": 56
+        },
+        {
+          "date": "2026-11-11",
+          "portname": "Malacca Strait",
+          "n_total": 233,
+          "n_tanker": 83,
+          "n_container": 56
+        },
+        {
+          "date": "2026-11-12",
+          "portname": "Malacca Strait",
+          "n_total": 242,
+          "n_tanker": 80,
+          "n_container": 59
+        },
+        {
+          "date": "2026-11-13",
+          "portname": "Malacca Strait",
+          "n_total": 221,
+          "n_tanker": 77,
+          "n_container": 63
+        },
+        {
+          "date": "2026-11-14",
+          "portname": "Malacca Strait",
+          "n_total": 228,
+          "n_tanker": 71,
+          "n_container": 69
+        },
+        {
+          "date": "2026-11-15",
+          "portname": "Malacca Strait",
+          "n_total": 258,
+          "n_tanker": 82,
+          "n_container": 78
+        }
+      ]
+    },
+    "CHOKE_HORMUZ": {
+      "entity_id": "CHOKE_HORMUZ",
+      "portwatch_id": "chokepoint6",
+      "name": "Strait of Hormuz",
+      "theater": "Persian Gulf / Arabian Sea",
+      "strategic_importance": "Global crude oil transit artery carrying ~20% of global petroleum liquids",
+      "metrics": {
+        "status": "OPERATIONAL",
+        "last_date": "2026-11-15",
+        "latest_daily_total": 2,
+        "latest_daily_tankers": 0,
+        "latest_daily_containers": 1,
+        "7d_avg_total": 2.3,
+        "7d_avg_tankers": 0.4,
+        "7d_avg_containers": 0.3,
+        "pct_change_vs_7d": -12.5,
+        "baseline_2023_daily": 89.0,
+        "pct_change_vs_2023": -97.8,
+        "flow_stress_level": "CHRONIC_CRISIS_BLOCKADE"
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-09",
+          "portname": "Strait of Hormuz",
+          "n_total": 6,
+          "n_tanker": 1,
+          "n_container": 0
+        },
+        {
+          "date": "2026-11-10",
+          "portname": "Strait of Hormuz",
+          "n_total": 1,
+          "n_tanker": 0,
+          "n_container": 0
+        },
+        {
+          "date": "2026-11-11",
+          "portname": "Strait of Hormuz",
+          "n_total": 4,
+          "n_tanker": 1,
+          "n_container": 1
+        },
+        {
+          "date": "2026-11-12",
+          "portname": "Strait of Hormuz",
+          "n_total": 1,
+          "n_tanker": 1,
+          "n_container": 0
+        },
+        {
+          "date": "2026-11-13",
+          "portname": "Strait of Hormuz",
+          "n_total": 1,
+          "n_tanker": 0,
+          "n_container": 0
+        },
+        {
+          "date": "2026-11-14",
+          "portname": "Strait of Hormuz",
+          "n_total": 1,
+          "n_tanker": 0,
+          "n_container": 0
+        },
+        {
+          "date": "2026-11-15",
+          "portname": "Strait of Hormuz",
+          "n_total": 2,
+          "n_tanker": 0,
+          "n_container": 1
+        }
+      ]
+    },
+    "CHOKE_GIBRALTAR": {
+      "entity_id": "CHOKE_GIBRALTAR",
+      "portwatch_id": "chokepoint8",
+      "name": "Gibraltar Strait",
+      "theater": "Western Mediterranean Gateway",
+      "strategic_importance": "Atlantic-Mediterranean transit choke",
+      "metrics": {
+        "status": "OPERATIONAL",
+        "last_date": "2026-11-15",
+        "latest_daily_total": 130,
+        "latest_daily_tankers": 41,
+        "latest_daily_containers": 24,
+        "7d_avg_total": 123.7,
+        "7d_avg_tankers": 37.4,
+        "7d_avg_containers": 28.9,
+        "pct_change_vs_7d": 5.1,
+        "baseline_2023_daily": 131.0,
+        "pct_change_vs_2023": -0.8,
+        "flow_stress_level": "STABLE_FLOW"
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-09",
+          "portname": "Gibraltar Strait",
+          "n_total": 127,
+          "n_tanker": 29,
+          "n_container": 36
+        },
+        {
+          "date": "2026-11-10",
+          "portname": "Gibraltar Strait",
+          "n_total": 107,
+          "n_tanker": 28,
+          "n_container": 30
+        },
+        {
+          "date": "2026-11-11",
+          "portname": "Gibraltar Strait",
+          "n_total": 110,
+          "n_tanker": 39,
+          "n_container": 24
+        },
+        {
+          "date": "2026-11-12",
+          "portname": "Gibraltar Strait",
+          "n_total": 127,
+          "n_tanker": 38,
+          "n_container": 25
+        },
+        {
+          "date": "2026-11-13",
+          "portname": "Gibraltar Strait",
+          "n_total": 139,
+          "n_tanker": 46,
+          "n_container": 34
+        },
+        {
+          "date": "2026-11-14",
+          "portname": "Gibraltar Strait",
+          "n_total": 126,
+          "n_tanker": 41,
+          "n_container": 29
+        },
+        {
+          "date": "2026-11-15",
+          "portname": "Gibraltar Strait",
+          "n_total": 130,
+          "n_tanker": 41,
+          "n_container": 24
+        }
+      ]
+    },
+    "CHOKE_TAIWAN": {
+      "entity_id": "CHOKE_TAIWAN",
+      "portwatch_id": "chokepoint11",
+      "name": "Taiwan Strait",
+      "theater": "East China Sea / Taiwan",
+      "strategic_importance": "Critical semiconductor and global container maritime highway",
+      "metrics": {
+        "status": "OPERATIONAL",
+        "last_date": "2026-11-15",
+        "latest_daily_total": 223,
+        "latest_daily_tankers": 44,
+        "latest_daily_containers": 80,
+        "7d_avg_total": 220.9,
+        "7d_avg_tankers": 47.0,
+        "7d_avg_containers": 85.4,
+        "pct_change_vs_7d": 1.0,
+        "baseline_2023_daily": 242.3,
+        "pct_change_vs_2023": -8.0,
+        "flow_stress_level": "STABLE_FLOW"
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-09",
+          "portname": "Taiwan Strait",
+          "n_total": 203,
+          "n_tanker": 47,
+          "n_container": 76
+        },
+        {
+          "date": "2026-11-10",
+          "portname": "Taiwan Strait",
+          "n_total": 181,
+          "n_tanker": 30,
+          "n_container": 76
+        },
+        {
+          "date": "2026-11-11",
+          "portname": "Taiwan Strait",
+          "n_total": 226,
+          "n_tanker": 51,
+          "n_container": 91
+        },
+        {
+          "date": "2026-11-12",
+          "portname": "Taiwan Strait",
+          "n_total": 214,
+          "n_tanker": 40,
+          "n_container": 85
+        },
+        {
+          "date": "2026-11-13",
+          "portname": "Taiwan Strait",
+          "n_total": 246,
+          "n_tanker": 58,
+          "n_container": 94
+        },
+        {
+          "date": "2026-11-14",
+          "portname": "Taiwan Strait",
+          "n_total": 253,
+          "n_tanker": 59,
+          "n_container": 96
+        },
+        {
+          "date": "2026-11-15",
+          "portname": "Taiwan Strait",
+          "n_total": 223,
+          "n_tanker": 44,
+          "n_container": 80
+        }
+      ]
+    },
+    "CHOKE_LOMBOK": {
+      "entity_id": "CHOKE_LOMBOK",
+      "portwatch_id": "chokepoint15",
+      "name": "Lombok Strait",
+      "theater": "Indonesian Archipelagic Deep-Draft Corridor",
+      "strategic_importance": "Deep-water alternative to Malacca for Capesize bulk carriers and VLECs",
+      "metrics": {
+        "status": "OPERATIONAL",
+        "last_date": "2026-11-15",
+        "latest_daily_total": 39,
+        "latest_daily_tankers": 8,
+        "latest_daily_containers": 1,
+        "7d_avg_total": 37.0,
+        "7d_avg_tankers": 6.6,
+        "7d_avg_containers": 0.3,
+        "pct_change_vs_7d": 5.4,
+        "baseline_2023_daily": 35.4,
+        "pct_change_vs_2023": 10.2,
+        "flow_stress_level": "STABLE_FLOW"
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-09",
+          "portname": "Lombok Strait",
+          "n_total": 31,
+          "n_tanker": 6,
+          "n_container": 0
+        },
+        {
+          "date": "2026-11-10",
+          "portname": "Lombok Strait",
+          "n_total": 40,
+          "n_tanker": 8,
+          "n_container": 0
+        },
+        {
+          "date": "2026-11-11",
+          "portname": "Lombok Strait",
+          "n_total": 37,
+          "n_tanker": 4,
+          "n_container": 0
+        },
+        {
+          "date": "2026-11-12",
+          "portname": "Lombok Strait",
+          "n_total": 30,
+          "n_tanker": 8,
+          "n_container": 0
+        },
+        {
+          "date": "2026-11-13",
+          "portname": "Lombok Strait",
+          "n_total": 47,
+          "n_tanker": 6,
+          "n_container": 0
+        },
+        {
+          "date": "2026-11-14",
+          "portname": "Lombok Strait",
+          "n_total": 35,
+          "n_tanker": 6,
+          "n_container": 1
+        },
+        {
+          "date": "2026-11-15",
+          "portname": "Lombok Strait",
+          "n_total": 39,
+          "n_tanker": 8,
+          "n_container": 1
+        }
+      ]
+    },
+    "CHOKE_MAKASSAR": {
+      "entity_id": "CHOKE_MAKASSAR",
+      "portwatch_id": "chokepoint20",
+      "name": "Makassar Strait",
+      "theater": "Indonesian Archipelagic Deep-Draft Corridor",
+      "strategic_importance": "North-South Indonesian maritime transit connecting Celebes Sea to Java Sea",
+      "metrics": {
+        "status": "OPERATIONAL",
+        "last_date": "2026-11-15",
+        "latest_daily_total": 57,
+        "latest_daily_tankers": 8,
+        "latest_daily_containers": 3,
+        "7d_avg_total": 47.9,
+        "7d_avg_tankers": 5.1,
+        "7d_avg_containers": 2.3,
+        "pct_change_vs_7d": 19.1,
+        "baseline_2023_daily": 52.4,
+        "pct_change_vs_2023": 8.8,
+        "flow_stress_level": "STABLE_FLOW"
+      },
+      "recent_observations": [
+        {
+          "date": "2026-11-09",
+          "portname": "Makassar Strait",
+          "n_total": 42,
+          "n_tanker": 3,
+          "n_container": 2
+        },
+        {
+          "date": "2026-11-10",
+          "portname": "Makassar Strait",
+          "n_total": 59,
+          "n_tanker": 6,
+          "n_container": 3
+        },
+        {
+          "date": "2026-11-11",
+          "portname": "Makassar Strait",
+          "n_total": 54,
+          "n_tanker": 3,
+          "n_container": 2
+        },
+        {
+          "date": "2026-11-12",
+          "portname": "Makassar Strait",
+          "n_total": 40,
+          "n_tanker": 4,
+          "n_container": 2
+        },
+        {
+          "date": "2026-11-13",
+          "portname": "Makassar Strait",
+          "n_total": 40,
+          "n_tanker": 4,
+          "n_container": 1
+        },
+        {
+          "date": "2026-11-14",
+          "portname": "Makassar Strait",
+          "n_total": 43,
+          "n_tanker": 8,
+          "n_container": 3
+        },
+        {
+          "date": "2026-11-15",
+          "portname": "Makassar Strait",
+          "n_total": 57,
+          "n_tanker": 8,
+          "n_container": 3
+        }
+      ]
+    }
+  }
+}

@@ -85,6 +85,8 @@ Core Manifests & System Engines:
 - Dynamic Relationships JSON Twin: https://analysisreports.github.io/llms-relationships.json
 - Live NASA FIRMS Telemetry Registry: https://analysisreports.github.io/llms-nasa-firms.txt
 - Live NASA FIRMS Telemetry JSON Twin: https://analysisreports.github.io/llms-nasa-firms.json
+- Live IMF PortWatch AIS Telemetry Registry: https://analysisreports.github.io/llms-portwatch.txt
+- Live IMF PortWatch AIS Telemetry JSON Twin: https://analysisreports.github.io/llms-portwatch.json
 - Live Quantitative Models Engine: https://analysisreports.github.io/llms-models.txt
 - Live Quantitative Models JSON Twin: https://analysisreports.github.io/llms-models.json
 

@@ -556,6 +556,18 @@
         "type": "api_key"
       },
       "description": "Real-time orbital telemetry monitoring active kinetic conflict zones and critical thermal anomalies via VIIRS 375m sensor data."
+    },
+    {
+      "id": "imf-portwatch-telemetry",
+      "name": "IMF PortWatch Maritime Chokepoint & AIS Daily Transit Telemetry",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-portwatch.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-portwatch.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Autonomous IMF PortWatch AIS telemetry monitoring daily vessel transits, tankers, containers, and crisis drop percentages across global maritime chokepoints."
     }
   ],
   "capabilities": {
