@@ -94,23 +94,23 @@ def get_regime(p_net, conflict_severity='MODERATE'):
 
 def parse_resident_embassy(emb_raw, current_utc_date=None):
     if not emb_raw or not isinstance(emb_raw, str):
-        return 'CLOSED', 0.00, 'NO_DATA'
+        return 'CLOSED', 0.00
     if current_utc_date is None:
         current_utc_date = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d')
     emb_upper = emb_raw.upper().strip()
     if emb_upper.startswith('ACTIVE'):
-        return 'ACTIVE', 0.05, emb_raw
+        return 'ACTIVE', 0.05
     elif emb_upper.startswith('SCHEDULED'):
         m = re.search(r'SCHEDULED:\s*(\d{4}-\d{2}-\d{2})', emb_raw)
         if m:
             sched_date = m.group(1)
             if current_utc_date >= sched_date:
-                return 'ACTIVE', 0.05, f'ACTIVE (Promoted on {sched_date})'
+                return 'ACTIVE', 0.05
             else:
-                return 'SCHEDULED', 0.00, emb_raw
-        return 'SCHEDULED', 0.00, emb_raw
+                return 'SCHEDULED', 0.00
+        return 'SCHEDULED', 0.00
     else:
-        return 'CLOSED', 0.00, emb_raw
+        return 'CLOSED', 0.00
 
 
 
@@ -636,6 +636,7 @@ def main():
                 p_base_match = re.search(r'Baseline Polarity \(P_baseline\):\s*([+-]?\d+\.?\d*)', body)
                 sev_match = re.search(r'Conflict Severity:\s*([A-Z]+)', body)
                 emb_match = re.search(r'Resident Embassy:\s*([^\n]+)', body)
+                emb_note_match = re.search(r'Diplomatic Mission Note:\s*([^\n]+)', body)
                 umbrella_match = re.search(r'Multilateral Alliance Umbrella:\s*([A-Z0-9_]+)', body)
                 if ent_match and p_base_match:
                     e1, e2 = ent_match.group(1), ent_match.group(2)
@@ -643,8 +644,9 @@ def main():
                     sev_val = sev_match.group(1) if sev_match else 'MODERATE'
                     umb = umbrella_match.group(1) if umbrella_match else None
                     emb_val = emb_match.group(1).strip() if emb_match else None
-                    section2_baselines[(e1, e2)] = {'p_baseline': p_val, 'conflict_severity': sev_val, 'umbrella': umb, 'resident_embassy': emb_val}
-                    section2_baselines[(e2, e1)] = {'p_baseline': p_val, 'conflict_severity': sev_val, 'umbrella': umb, 'resident_embassy': emb_val}
+                    emb_note = emb_note_match.group(1).strip() if emb_note_match else None
+                    section2_baselines[(e1, e2)] = {'p_baseline': p_val, 'conflict_severity': sev_val, 'umbrella': umb, 'resident_embassy': emb_val, 'diplomatic_mission_note': emb_note}
+                    section2_baselines[(e2, e1)] = {'p_baseline': p_val, 'conflict_severity': sev_val, 'umbrella': umb, 'resident_embassy': emb_val, 'diplomatic_mission_note': emb_note}
 
             # Baltics sub-sections handling (2.9.2.1, 2.9.2.2, 2.9.2.3)
             baltics = {'LT_RU': ('GEO_LT', 'GEO_RU'), 'EE_RU': ('GEO_EE', 'GEO_RU'), 'LV_RU': ('GEO_LV', 'GEO_RU')}
@@ -652,11 +654,13 @@ def main():
                 m = re.search(bid.replace('_', ' - ') + r'[^\n]*\n\s+- Baseline Polarity \(P_baseline\):\s*([+-]?\d+\.?\d*)', rel_text)
                 sev_m = re.search(bid.replace('_', ' - ') + r'[^\n]*\n(?:\s+-[^\n]*\n)*?\s+- Conflict Severity:\s*([A-Z]+)', rel_text)
                 emb_m = re.search(bid.replace('_', ' - ') + r'[^\n]*\n(?:\s+-[^\n]*\n)*?\s+- Resident Embassy:\s*([^\n]+)', rel_text)
+                emb_note_m = re.search(bid.replace('_', ' - ') + r'[^\n]*\n(?:\s+-[^\n]*\n)*?\s+- Diplomatic Mission Note:\s*([^\n]+)', rel_text)
                 if m:
                     sev_val = sev_m.group(1) if sev_m else 'HIGH'
                     emb_val = emb_m.group(1).strip() if emb_m else None
-                    section2_baselines[(e1, e2)] = {'p_baseline': float(m.group(1)), 'conflict_severity': sev_val, 'umbrella': None, 'resident_embassy': emb_val}
-                    section2_baselines[(e2, e1)] = {'p_baseline': float(m.group(1)), 'conflict_severity': sev_val, 'umbrella': None, 'resident_embassy': emb_val}
+                    emb_note = emb_note_m.group(1).strip() if emb_note_m else None
+                    section2_baselines[(e1, e2)] = {'p_baseline': float(m.group(1)), 'conflict_severity': sev_val, 'umbrella': None, 'resident_embassy': emb_val, 'diplomatic_mission_note': emb_note}
+                    section2_baselines[(e2, e1)] = {'p_baseline': float(m.group(1)), 'conflict_severity': sev_val, 'umbrella': None, 'resident_embassy': emb_val, 'diplomatic_mission_note': emb_note}
         except Exception as e:
             print(f"[WARN] Error reading section 2 baselines: {e}")
 
@@ -1008,6 +1012,8 @@ def main():
                 a['conflict_severity'] = section2_baselines[pair_key]['conflict_severity']
             if 'resident_embassy' in section2_baselines[pair_key]:
                 a['resident_embassy_raw'] = section2_baselines[pair_key]['resident_embassy']
+            if 'diplomatic_mission_note' in section2_baselines[pair_key]:
+                a['diplomatic_mission_note'] = section2_baselines[pair_key]['diplomatic_mission_note']
         # Separate NASA data feed from conflict severity
         a['nasa_data'] = resolve_actor_nasa_data(a['id'])
 
@@ -1107,7 +1113,8 @@ def main():
         dyn, contributions, dominant_trigger = calc_relationship_trigger_delta(a['id'], trigger_by_id)
         pact_delta, matched_bloc = resolve_pact_bloc_delta(a['source_entity'], a['target_entity'])
         legacy_delta = 0.0 if matched_bloc else a['dynamic_delta']
-        emb_status, diplomatic_delta, emb_desc = parse_resident_embassy(a.get('resident_embassy_raw'))
+        emb_status, diplomatic_delta = parse_resident_embassy(a.get('resident_embassy_raw'))
+        emb_note = a.get('diplomatic_mission_note')
         if dyn is None:
             missing = [item['trigger_id'] for item in contributions if item['contribution'] is None]
             print(f"[WARN] {a['id']}: relationship delta unavailable; missing triggers: {', '.join(missing)}")
@@ -1132,8 +1139,8 @@ def main():
             'pact_bloc_delta': pact_delta,
             'mecca_pact_delta': pact_delta,
             'diplomatic_delta': diplomatic_delta,
-            'resident_embassy_status': emb_status,
-            'resident_embassy_desc': emb_desc,
+            'resident_embassy': emb_status,
+            'diplomatic_mission_note': emb_note,
             'macro_trigger_contributions': contributions,
             'dominant_trigger': dominant_trigger,
             'p_net': p_net,

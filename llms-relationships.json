@@ -8,10 +8,10 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-relationships.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-17T22:30:05.801382+00:00",
+    "last_updated": "2026-11-17T22:37:04.548155+00:00",
     "sync_status": "PARTIAL_SUCCESS",
     "last_successful_sync": null,
-    "last_attempted_sync": "2026-11-17T22:30:05.801382+00:00",
+    "last_attempted_sync": "2026-11-17T22:37:04.548155+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -231,8 +231,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.05,
-      "resident_embassy_status": "ACTIVE",
-      "resident_embassy_desc": "ACTIVE (Limited bilateral staff in Moscow and Washington)",
+      "resident_embassy": "ACTIVE",
+      "diplomatic_mission_note": "Limited bilateral staff in Moscow and Washington",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
@@ -273,8 +273,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.05,
-      "resident_embassy_status": "ACTIVE",
-      "resident_embassy_desc": "ACTIVE (Fully operational in Beijing and Washington)",
+      "resident_embassy": "ACTIVE",
+      "diplomatic_mission_note": "Fully operational in Beijing and Washington",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_CHIP_CONTAINMENT",
@@ -314,8 +314,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.05,
-      "resident_embassy_status": "ACTIVE",
-      "resident_embassy_desc": "ACTIVE (Fully operational in Beijing and Moscow)",
+      "resident_embassy": "ACTIVE",
+      "diplomatic_mission_note": "Fully operational in Beijing and Moscow",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
@@ -354,8 +354,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.0,
-      "resident_embassy_status": "CLOSED",
-      "resident_embassy_desc": "CLOSED (No diplomatic relations or embassy since 1979 Revolution)",
+      "resident_embassy": "CLOSED",
+      "diplomatic_mission_note": "No diplomatic relations or embassy since 1979 Revolution",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
@@ -396,8 +396,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.05,
-      "resident_embassy_status": "ACTIVE",
-      "resident_embassy_desc": "ACTIVE (Reopened in Tehran and Riyadh following 2023 Beijing Accord)",
+      "resident_embassy": "ACTIVE",
+      "diplomatic_mission_note": "Reopened in Tehran and Riyadh following 2023 Beijing Accord",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
@@ -436,8 +436,8 @@
       "pact_bloc_delta": 0.05,
       "mecca_pact_delta": 0.05,
       "diplomatic_delta": 0.05,
-      "resident_embassy_status": "ACTIVE",
-      "resident_embassy_desc": "ACTIVE (Fully operational in Jerusalem and Washington)",
+      "resident_embassy": "ACTIVE",
+      "diplomatic_mission_note": "Fully operational in Jerusalem and Washington",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
@@ -475,8 +475,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.0,
-      "resident_embassy_status": "CLOSED",
-      "resident_embassy_desc": "CLOSED (Severed in 1980; Swiss protecting power mandate)",
+      "resident_embassy": "CLOSED",
+      "diplomatic_mission_note": "Severed in 1980; Swiss protecting power mandate",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
@@ -517,8 +517,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.05,
-      "resident_embassy_status": "ACTIVE",
-      "resident_embassy_desc": "ACTIVE (US Mission to EU in Brussels / EU Delegation in Washington)",
+      "resident_embassy": "ACTIVE",
+      "diplomatic_mission_note": "US Mission to EU in Brussels / EU Delegation in Washington",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
@@ -557,8 +557,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.05,
-      "resident_embassy_status": "ACTIVE",
-      "resident_embassy_desc": "ACTIVE (EU Delegation in Moscow / Russian Mission to EU in Brussels)",
+      "resident_embassy": "ACTIVE",
+      "diplomatic_mission_note": "EU Delegation in Moscow / Russian Mission to EU in Brussels",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
@@ -597,8 +597,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.0,
-      "resident_embassy_status": "CLOSED",
-      "resident_embassy_desc": "CLOSED (No bilateral diplomatic relations established)",
+      "resident_embassy": "CLOSED",
+      "diplomatic_mission_note": "No bilateral diplomatic relations established",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_CHIP_CONTAINMENT",
@@ -630,8 +630,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.0,
-      "resident_embassy_status": "CLOSED",
-      "resident_embassy_desc": "CLOSED (No official diplomatic relations or embassies established)",
+      "resident_embassy": "CLOSED",
+      "diplomatic_mission_note": "No official diplomatic relations or embassies established",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
@@ -664,8 +664,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.05,
-      "resident_embassy_status": "ACTIVE",
-      "resident_embassy_desc": "ACTIVE (Downgraded to Chargé d'Affaires level)",
+      "resident_embassy": "ACTIVE",
+      "diplomatic_mission_note": "Downgraded to Chargé d'Affaires level",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_GSCPI_LOGISTICS",
@@ -706,8 +706,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.05,
-      "resident_embassy_status": "ACTIVE",
-      "resident_embassy_desc": "ACTIVE (Downgraded to Chargé d'Affaires level)",
+      "resident_embassy": "ACTIVE",
+      "diplomatic_mission_note": "Downgraded to Chargé d'Affaires level",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
@@ -747,8 +747,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.05,
-      "resident_embassy_status": "ACTIVE",
-      "resident_embassy_desc": "ACTIVE (Downgraded to Chargé d'Affaires level)",
+      "resident_embassy": "ACTIVE",
+      "diplomatic_mission_note": "Downgraded to Chargé d'Affaires level",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
@@ -788,8 +788,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.0,
-      "resident_embassy_status": "CLOSED",
-      "resident_embassy_desc": "CLOSED (Mutual non-recognition; zero diplomatic mission)",
+      "resident_embassy": "CLOSED",
+      "diplomatic_mission_note": "Mutual non-recognition; zero diplomatic mission",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
@@ -837,8 +837,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.0,
-      "resident_embassy_status": "CLOSED",
-      "resident_embassy_desc": "CLOSED (Severed in 2019; Caracas and Washington embassies closed)",
+      "resident_embassy": "CLOSED",
+      "diplomatic_mission_note": "Severed in 2019; Caracas and Washington embassies closed",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
@@ -878,8 +878,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.0,
-      "resident_embassy_status": "SCHEDULED",
-      "resident_embassy_desc": "SCHEDULED: 2026-12-01 | Ankara Embassy (Damascus reopened 2024-12-14)",
+      "resident_embassy": "SCHEDULED",
+      "diplomatic_mission_note": "Ankara Embassy scheduled opening 2026-12-01 (Damascus reopened 2024-12-14)",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
@@ -913,8 +913,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.05,
-      "resident_embassy_status": "ACTIVE",
-      "resident_embassy_desc": "ACTIVE (Fully operational in Ankara and Athens)",
+      "resident_embassy": "ACTIVE",
+      "diplomatic_mission_note": "Fully operational in Ankara and Athens",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
@@ -947,8 +947,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.05,
-      "resident_embassy_status": "ACTIVE",
-      "resident_embassy_desc": "ACTIVE (Fully operational in Cairo and Tel Aviv)",
+      "resident_embassy": "ACTIVE",
+      "diplomatic_mission_note": "Fully operational in Cairo and Tel Aviv",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
@@ -989,8 +989,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.0,
-      "resident_embassy_status": "CLOSED",
-      "resident_embassy_desc": "CLOSED (Riyadh remote mission operating via Aden; Sana'a embassy closed)",
+      "resident_embassy": "CLOSED",
+      "diplomatic_mission_note": "Riyadh remote mission operating via Aden; Sana'a embassy closed",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
@@ -1031,8 +1031,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.05,
-      "resident_embassy_status": "ACTIVE",
-      "resident_embassy_desc": "ACTIVE (Fully operational in Baghdad and Tehran)",
+      "resident_embassy": "ACTIVE",
+      "diplomatic_mission_note": "Fully operational in Baghdad and Tehran",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
@@ -1073,8 +1073,8 @@
       "pact_bloc_delta": 0.1,
       "mecca_pact_delta": 0.1,
       "diplomatic_delta": 0.05,
-      "resident_embassy_status": "ACTIVE",
-      "resident_embassy_desc": "ACTIVE (Fully operational in Riyadh and Ankara)",
+      "resident_embassy": "ACTIVE",
+      "diplomatic_mission_note": "Fully operational in Riyadh and Ankara",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
@@ -1114,8 +1114,8 @@
       "pact_bloc_delta": 0.1,
       "mecca_pact_delta": 0.1,
       "diplomatic_delta": 0.05,
-      "resident_embassy_status": "ACTIVE",
-      "resident_embassy_desc": "ACTIVE (Fully operational in Islamabad and Riyadh)",
+      "resident_embassy": "ACTIVE",
+      "diplomatic_mission_note": "Fully operational in Islamabad and Riyadh",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
@@ -1149,8 +1149,8 @@
       "pact_bloc_delta": 0.1,
       "mecca_pact_delta": 0.1,
       "diplomatic_delta": 0.05,
-      "resident_embassy_status": "ACTIVE",
-      "resident_embassy_desc": "ACTIVE (Fully operational in Islamabad and Ankara)",
+      "resident_embassy": "ACTIVE",
+      "diplomatic_mission_note": "Fully operational in Islamabad and Ankara",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_CHIP_CONTAINMENT",
@@ -1191,8 +1191,8 @@
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
       "diplomatic_delta": 0.0,
-      "resident_embassy_status": "CLOSED",
-      "resident_embassy_desc": "CLOSED (Severed on 2022-02-24 due to full-scale kinetic invasion)",
+      "resident_embassy": "CLOSED",
+      "diplomatic_mission_note": "Severed on 2022-02-24 due to full-scale kinetic invasion",
       "macro_trigger_contributions": [
         {
           "trigger_id": "IND_TRIGGER_WHEAT_PRICE",
