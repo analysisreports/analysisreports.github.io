@@ -141,7 +141,8 @@ class OvxEnergyTriggerTests(unittest.TestCase):
                 self.assertEqual(pairs[pair_id]["regime_state"],
                                  relationships.get_regime(pairs[pair_id]["p_net"], pairs[pair_id]["conflict_severity"]))
             self.assertEqual(pairs["YE_IL"]["regime_state"], "KINETIC_WAR")
-            self.assertEqual(len(output["relationships"]), 24)
+            self.assertEqual(len(output["relationships"]), 25)
+            self.assertIn("US_IR", pairs)
             ua_ru = pairs["UA_RU"]
             self.assertEqual((ua_ru["source_entity"], ua_ru["target_entity"]), ("GEO_UA", "GEO_RU"))
             self.assertEqual(ua_ru["p_baseline"], -0.95)

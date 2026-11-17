@@ -8,10 +8,10 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-relationships.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-17T12:02:58.534355+00:00",
+    "last_updated": "2026-11-17T12:12:56.324137+00:00",
     "sync_status": "PARTIAL_SUCCESS",
     "last_successful_sync": null,
-    "last_attempted_sync": "2026-11-17T12:02:58.534355+00:00",
+    "last_attempted_sync": "2026-11-17T12:12:56.324137+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -432,6 +432,43 @@
       "primary_driver": "BILATERAL_SECURITY_PARTNERSHIP",
       "friction_nodes": [
         "REGIONAL_ESCALATION_SCALE"
+      ]
+    },
+    {
+      "id": "US_IR",
+      "source_entity": "GEO_US",
+      "target_entity": "GEO_IR",
+      "label": "US - IR (United States vs. Islamic Republic of Iran)",
+      "p_baseline": -0.85,
+      "dynamic_delta": 0.071192,
+      "legacy_dynamic_delta": 0.0,
+      "mecca_pact_delta": 0.0,
+      "macro_trigger_contributions": [
+        {
+          "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
+          "direction": -1,
+          "value": -0.4362,
+          "contribution": 0.4362,
+          "status": "OK"
+        },
+        {
+          "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
+          "direction": -1,
+          "value": 0.4012,
+          "contribution": -0.4012,
+          "status": "OK"
+        }
+      ],
+      "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
+      "p_net": -0.78,
+      "conflict_severity": "CRITICAL",
+      "regime_state": "PROXY_WAR",
+      "primary_driver": "PERSIAN_GULF_CONTAINMENT_AND_NUCLEAR_BREAKOUT",
+      "friction_nodes": [
+        "STRAIT_OF_HORMUZ",
+        "PERSIAN_GULF",
+        "URANIUM_ENRICHMENT",
+        "AXIS_OF_RESISTANCE"
       ]
     },
     {

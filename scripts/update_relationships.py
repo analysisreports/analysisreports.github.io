@@ -46,6 +46,7 @@ RELATIONSHIP_TRIGGERS = {
     'SA_PK': [('SOFR_DOLLAR_DRAIN', 1)],
     'TR_PK': [('CHIP_CONTAINMENT', 1), ('SOFR_DOLLAR_DRAIN', -1)],
     'UA_RU': [('WHEAT_PRICE', -1), ('CORN_PRICE', -1), ('GSCPI_LOGISTICS', -1)],
+    'US_IR': [('HORMUZ_SPREAD', -1), ('OVX_ENERGY_PANIC', -1)],
 }
 
 def clamp(val, low=-1.0, high=1.0):
@@ -698,6 +699,17 @@ def main():
             'primary_driver': 'BILATERAL_SECURITY_PARTNERSHIP'
         },
         {
+            'id': 'US_IR',
+            'source_entity': 'GEO_US',
+            'target_entity': 'GEO_IR',
+            'label': 'US - IR (United States vs. Islamic Republic of Iran)',
+            'p_baseline': -0.85,
+            'dynamic_delta': oil_delta,
+            'conflict_severity': 'CRITICAL',
+            'friction_nodes': ['STRAIT_OF_HORMUZ', 'PERSIAN_GULF', 'URANIUM_ENRICHMENT', 'AXIS_OF_RESISTANCE'],
+            'primary_driver': 'PERSIAN_GULF_CONTAINMENT_AND_NUCLEAR_BREAKOUT'
+        },
+        {
             'id': 'US_EU',
             'source_entity': 'GEO_US',
             'target_entity': 'BLOC_EU',
@@ -920,6 +932,7 @@ def main():
         'UA_RU': ['UKR', 'RUS'],
         'IL_IR': ['ISR', 'IRN'],
         'YE_IL': ['YEM', 'ISR'],
+        'US_IR': ['IRN'],
         'TR_SY': ['SYR'],
         'SA_YE': ['YEM'],
     }
