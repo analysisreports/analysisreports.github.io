@@ -2174,6 +2174,13 @@
       "type": "PATRON_COUPLING",
       "coupling_factor": 1,
       "role": "Diplomatic & Foreign Policy Execution Authority"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_IR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.85,
+      "regime": "PROXY_WAR / KINETIC_STANDOFF"
     }
   ],
   "metadata": {

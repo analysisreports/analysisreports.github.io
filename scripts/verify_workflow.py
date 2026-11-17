@@ -124,6 +124,8 @@ def audit(base_files, current_files):
             expected.append(
                 "null" if value is None else f"{value:+.{precision}f}"
             )
+        if "conflict_severity" in relation:
+            expected.append(relation.get("conflict_severity"))
         expected.extend([relation.get("regime_state"), relation.get("primary_driver")])
         if current_rows[pair_id] != expected:
             errors.append(f"New relationship {pair_id}: dynamic TXT row does not match JSON.")
