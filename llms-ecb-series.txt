@@ -45,7 +45,7 @@ ICP/M.U2.N.XEF000.4.ANR
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-17 05:52:29 UTC
+# - Synced At: 2026-11-18 05:19:58 UTC
 # - Sync Status: SUCCESS (11 / 11 series active)
 # - Total Series Synced: 11 / 11
 # - Source Authority: European Central Bank (ECB Data Portal REST API)
@@ -56,111 +56,111 @@ ICP/M.U2.N.XEF000.4.ANR
 Series Ref: EXR/D.USD.EUR.SP00.A
 Title: Euro / US Dollar Spot Exchange Rate
 Frequency: Daily (n_obs_per_yr: 260) | Units: USD per 1 EUR
-Last Date: 2026-11-13 | Current Value: 1.1052 | Previous Value: 1.1081 | Year Ago Value: 1.1533
+Last Date: 2026-11-17 | Current Value: 1.0989 | Previous Value: 1.1014 | Year Ago Value: 1.1571
 
 Transformations (Official ECB Formulation - Section 0.5):
-  1. Change: -0.0029
-  2. Change from Year Ago: -0.0481
-  3. Percent Change: -0.2617%
-  4. Percent Change from Year Ago: -4.1706%
-  5. Compounded Annual Rate of Change: -49.4059%
-  6. Continuously Compounded Rate of Change: -0.2621%
-  7. Continuously Compounded Annual Rate of Change: -68.1336%
+  1. Change: -0.0025
+  2. Change from Year Ago: -0.0582
+  3. Percent Change: -0.2270%
+  4. Percent Change from Year Ago: -5.0298%
+  5. Compounded Annual Rate of Change: -44.6132%
+  6. Continuously Compounded Rate of Change: -0.2272%
+  7. Continuously Compounded Annual Rate of Change: -59.0829%
 
 Recent Observations (Last 5):
-  2026-11-09: 1.1193
-  2026-11-10: 1.1214
   2026-11-11: 1.1127
   2026-11-12: 1.1081
   2026-11-13: 1.1052
+  2026-11-16: 1.1014
+  2026-11-17: 1.0989
 
 --------------------------------------------------------------------------------
 Series Ref: EXR/D.GBP.EUR.SP00.A
 Title: Euro / UK Pound Sterling Spot Exchange Rate
 Frequency: Daily (n_obs_per_yr: 260) | Units: GBP per 1 EUR
-Last Date: 2026-11-16 | Current Value: 0.8345 | Previous Value: 0.8356 | Year Ago Value: 0.8811
+Last Date: 2026-11-17 | Current Value: 0.8330 | Previous Value: 0.8345 | Year Ago Value: 0.8778
 
 Transformations (Official ECB Formulation - Section 0.5):
-  1. Change: -0.0011
-  2. Change from Year Ago: -0.0466
-  3. Percent Change: -0.1304%
-  4. Percent Change from Year Ago: -5.2888%
-  5. Compounded Annual Rate of Change: -28.7790%
-  6. Continuously Compounded Rate of Change: -0.1305%
-  7. Continuously Compounded Annual Rate of Change: -33.9383%
+  1. Change: -0.0015
+  2. Change from Year Ago: -0.0448
+  3. Percent Change: -0.1738%
+  4. Percent Change from Year Ago: -5.0980%
+  5. Compounded Annual Rate of Change: -36.3748%
+  6. Continuously Compounded Rate of Change: -0.1739%
+  7. Continuously Compounded Annual Rate of Change: -45.2160%
 
 Recent Observations (Last 5):
-  2026-11-10: 0.8355
   2026-11-11: 0.8362
   2026-11-12: 0.8359
   2026-11-13: 0.8356
   2026-11-16: 0.8345
+  2026-11-17: 0.8330
 
 --------------------------------------------------------------------------------
 Series Ref: EXR/D.CHF.EUR.SP00.A
 Title: Euro / Swiss Franc Spot Exchange Rate
 Frequency: Daily (n_obs_per_yr: 260) | Units: CHF per 1 EUR
-Last Date: 2026-11-16 | Current Value: 0.9244 | Previous Value: 0.9266 | Year Ago Value: 0.9312
+Last Date: 2026-11-17 | Current Value: 0.9233 | Previous Value: 0.9244 | Year Ago Value: 0.9318
 
 Transformations (Official ECB Formulation - Section 0.5):
-  1. Change: -0.0022
-  2. Change from Year Ago: -0.0068
-  3. Percent Change: -0.2374%
-  4. Percent Change from Year Ago: -0.7302%
-  5. Compounded Annual Rate of Change: -46.1003%
-  6. Continuously Compounded Rate of Change: -0.2377%
-  7. Continuously Compounded Annual Rate of Change: -61.8045%
+  1. Change: -0.0011
+  2. Change from Year Ago: -0.0085
+  3. Percent Change: -0.1190%
+  4. Percent Change from Year Ago: -0.9122%
+  5. Compounded Annual Rate of Change: -26.6241%
+  6. Continuously Compounded Rate of Change: -0.1191%
+  7. Continuously Compounded Annual Rate of Change: -30.9574%
 
 Recent Observations (Last 5):
-  2026-11-10: 0.9203
   2026-11-11: 0.9234
   2026-11-12: 0.9232
   2026-11-13: 0.9266
   2026-11-16: 0.9244
+  2026-11-17: 0.9233
 
 --------------------------------------------------------------------------------
 Series Ref: EXR/D.JPY.EUR.SP00.A
 Title: Euro / Japanese Yen Spot Exchange Rate
 Frequency: Daily (n_obs_per_yr: 260) | Units: JPY per 1 EUR
-Last Date: 2026-11-16 | Current Value: 175.7800 | Previous Value: 176.8300 | Year Ago Value: 176.9900
+Last Date: 2026-11-17 | Current Value: 175.0500 | Previous Value: 175.7800 | Year Ago Value: 178.3100
 
 Transformations (Official ECB Formulation - Section 0.5):
-  1. Change: -1.0500
-  2. Change from Year Ago: -1.2100
-  3. Percent Change: -0.5938%
-  4. Percent Change from Year Ago: -0.6837%
-  5. Compounded Annual Rate of Change: -78.7424%
-  6. Continuously Compounded Rate of Change: -0.5956%
-  7. Continuously Compounded Annual Rate of Change: -154.8458%
+  1. Change: -0.7300
+  2. Change from Year Ago: -3.2600
+  3. Percent Change: -0.4153%
+  4. Percent Change from Year Ago: -1.8283%
+  5. Compounded Annual Rate of Change: -66.1085%
+  6. Continuously Compounded Rate of Change: -0.4162%
+  7. Continuously Compounded Annual Rate of Change: -108.2007%
 
 Recent Observations (Last 5):
-  2026-11-10: 177.3800
   2026-11-11: 177.1800
   2026-11-12: 176.9600
   2026-11-13: 176.8300
   2026-11-16: 175.7800
+  2026-11-17: 175.0500
 
 --------------------------------------------------------------------------------
 Series Ref: EST/B.EU000A2X2A25.WT
 Title: Euro Short-Term Rate (€STR) Benchmark
 Frequency: Daily (n_obs_per_yr: 260) | Units: Percent per Annum
-Last Date: 2026-11-13 | Current Value: 2.4370 | Previous Value: 2.4430 | Year Ago Value: 1.9300
+Last Date: 2026-11-16 | Current Value: 2.4400 | Previous Value: 2.4370 | Year Ago Value: 1.9320
 
 Transformations (Official ECB Formulation - Section 0.5):
-  1. Change: -0.0060
-  2. Change from Year Ago: +0.5070
-  3. Percent Change: -0.2456%
-  4. Percent Change from Year Ago: +26.2694%
+  1. Change: +0.0030
+  2. Change from Year Ago: +0.5080
+  3. Percent Change: +0.1231%
+  4. Percent Change from Year Ago: +26.2940%
   5. Compounded Annual Rate of Change: N/A (Rate is already annualized)
-  6. Continuously Compounded Rate of Change: -0.2459%
+  6. Continuously Compounded Rate of Change: +0.1230%
   7. Continuously Compounded Annual Rate of Change: N/A (Rate is already annualized)
 
 Recent Observations (Last 5):
-  2026-11-09: 2.4420
   2026-11-10: 2.4420
   2026-11-11: 2.4390
   2026-11-12: 2.4430
   2026-11-13: 2.4370
+  2026-11-16: 2.4400
 
 --------------------------------------------------------------------------------
 Series Ref: ILM/W.U2.C.T000000.Z5.Z01

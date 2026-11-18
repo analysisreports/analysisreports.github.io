@@ -8,9 +8,9 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-ecb-series.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-16T10:26:47.944598+00:00",
+    "last_updated": "2026-11-18T05:19:58.880994+00:00",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-16T10:26:47.944598+00:00",
+    "last_successful_sync": "2026-11-18T05:19:58.880994+00:00",
     "total_series": 11,
     "total_registered": 11,
     "missing_series": [],
@@ -27,29 +27,21 @@
       "units": "USD per 1 EUR",
       "category": "Foreign Exchange",
       "source": "European Central Bank (ECB Data Portal)",
-      "last_date": "2026-11-13",
-      "last_synced_utc": "2026-11-15T04:00:30.038332+00:00",
-      "current_value": 1.1052,
-      "previous_value": 1.1081,
-      "year_ago_value": 1.1533,
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-18T05:19:58.880994+00:00",
+      "current_value": 1.0989,
+      "previous_value": 1.1014,
+      "year_ago_value": 1.1571,
       "transformations": {
-        "change": -0.0029,
-        "change_from_year_ago": -0.0481,
-        "percent_change": -0.2617,
-        "percent_change_from_year_ago": -4.1706,
-        "compounded_annual_rate_of_change": -49.4059,
-        "continuously_compounded_rate_of_change": -0.2621,
-        "continuously_compounded_annual_rate_of_change": -68.1336
+        "change": -0.0025,
+        "change_from_year_ago": -0.0582,
+        "percent_change": -0.227,
+        "percent_change_from_year_ago": -5.0298,
+        "compounded_annual_rate_of_change": -44.6132,
+        "continuously_compounded_rate_of_change": -0.2272,
+        "continuously_compounded_annual_rate_of_change": -59.0829
       },
       "recent_observations": [
-        {
-          "date": "2026-11-09",
-          "value": 1.1193
-        },
-        {
-          "date": "2026-11-10",
-          "value": 1.1214
-        },
         {
           "date": "2026-11-11",
           "value": 1.1127
@@ -61,6 +53,14 @@
         {
           "date": "2026-11-13",
           "value": 1.1052
+        },
+        {
+          "date": "2026-11-16",
+          "value": 1.1014
+        },
+        {
+          "date": "2026-11-17",
+          "value": 1.0989
         }
       ]
     },
@@ -72,29 +72,21 @@
       "units": "GBP per 1 EUR",
       "category": "Foreign Exchange",
       "source": "European Central Bank (ECB Data Portal)",
-      "last_date": "2026-11-13",
-      "last_synced_utc": "2026-11-14T04:16:46.699145+00:00",
-      "current_value": 0.83559,
-      "previous_value": 0.83595,
-      "year_ago_value": 0.8807,
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-18T05:19:58.880994+00:00",
+      "current_value": 0.83305,
+      "previous_value": 0.8345,
+      "year_ago_value": 0.8778,
       "transformations": {
-        "change": -0.0004,
-        "change_from_year_ago": -0.0451,
-        "percent_change": -0.0431,
-        "percent_change_from_year_ago": -5.1221,
-        "compounded_annual_rate_of_change": -10.5949,
-        "continuously_compounded_rate_of_change": -0.0431,
-        "continuously_compounded_annual_rate_of_change": -11.1993
+        "change": -0.0015,
+        "change_from_year_ago": -0.0448,
+        "percent_change": -0.1738,
+        "percent_change_from_year_ago": -5.098,
+        "compounded_annual_rate_of_change": -36.3748,
+        "continuously_compounded_rate_of_change": -0.1739,
+        "continuously_compounded_annual_rate_of_change": -45.216
       },
       "recent_observations": [
-        {
-          "date": "2026-11-09",
-          "value": 0.8343
-        },
-        {
-          "date": "2026-11-10",
-          "value": 0.83545
-        },
         {
           "date": "2026-11-11",
           "value": 0.83618
@@ -106,6 +98,14 @@
         {
           "date": "2026-11-13",
           "value": 0.83559
+        },
+        {
+          "date": "2026-11-16",
+          "value": 0.8345
+        },
+        {
+          "date": "2026-11-17",
+          "value": 0.83305
         }
       ]
     },
@@ -117,29 +117,21 @@
       "units": "CHF per 1 EUR",
       "category": "Foreign Exchange",
       "source": "European Central Bank (ECB Data Portal)",
-      "last_date": "2026-11-13",
-      "last_synced_utc": "2026-11-14T04:16:46.699145+00:00",
-      "current_value": 0.9266,
-      "previous_value": 0.9232,
-      "year_ago_value": 0.9316,
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-18T05:19:58.880994+00:00",
+      "current_value": 0.9233,
+      "previous_value": 0.9244,
+      "year_ago_value": 0.9318,
       "transformations": {
-        "change": 0.0034,
-        "change_from_year_ago": -0.005,
-        "percent_change": 0.3683,
-        "percent_change_from_year_ago": -0.5367,
-        "compounded_annual_rate_of_change": 160.0699,
-        "continuously_compounded_rate_of_change": 0.3676,
-        "continuously_compounded_annual_rate_of_change": 95.578
+        "change": -0.0011,
+        "change_from_year_ago": -0.0085,
+        "percent_change": -0.119,
+        "percent_change_from_year_ago": -0.9122,
+        "compounded_annual_rate_of_change": -26.6241,
+        "continuously_compounded_rate_of_change": -0.1191,
+        "continuously_compounded_annual_rate_of_change": -30.9574
       },
       "recent_observations": [
-        {
-          "date": "2026-11-09",
-          "value": 0.9164
-        },
-        {
-          "date": "2026-11-10",
-          "value": 0.9203
-        },
         {
           "date": "2026-11-11",
           "value": 0.9234
@@ -151,6 +143,14 @@
         {
           "date": "2026-11-13",
           "value": 0.9266
+        },
+        {
+          "date": "2026-11-16",
+          "value": 0.9244
+        },
+        {
+          "date": "2026-11-17",
+          "value": 0.9233
         }
       ]
     },
@@ -162,29 +162,21 @@
       "units": "JPY per 1 EUR",
       "category": "Foreign Exchange",
       "source": "European Central Bank (ECB Data Portal)",
-      "last_date": "2026-11-13",
-      "last_synced_utc": "2026-11-14T04:16:46.699145+00:00",
-      "current_value": 176.83,
-      "previous_value": 176.96,
-      "year_ago_value": 177.15,
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-18T05:19:58.880994+00:00",
+      "current_value": 175.05,
+      "previous_value": 175.78,
+      "year_ago_value": 178.31,
       "transformations": {
-        "change": -0.13,
-        "change_from_year_ago": -0.32,
-        "percent_change": -0.0735,
-        "percent_change_from_year_ago": -0.1806,
-        "compounded_annual_rate_of_change": -17.3928,
-        "continuously_compounded_rate_of_change": -0.0735,
-        "continuously_compounded_annual_rate_of_change": -19.1074
+        "change": -0.73,
+        "change_from_year_ago": -3.26,
+        "percent_change": -0.4153,
+        "percent_change_from_year_ago": -1.8283,
+        "compounded_annual_rate_of_change": -66.1085,
+        "continuously_compounded_rate_of_change": -0.4162,
+        "continuously_compounded_annual_rate_of_change": -108.2007
       },
       "recent_observations": [
-        {
-          "date": "2026-11-09",
-          "value": 176.79
-        },
-        {
-          "date": "2026-11-10",
-          "value": 177.38
-        },
         {
           "date": "2026-11-11",
           "value": 177.18
@@ -196,6 +188,14 @@
         {
           "date": "2026-11-13",
           "value": 176.83
+        },
+        {
+          "date": "2026-11-16",
+          "value": 175.78
+        },
+        {
+          "date": "2026-11-17",
+          "value": 175.05
         }
       ]
     },
@@ -207,29 +207,21 @@
       "units": "Percent per Annum",
       "category": "Money Market Benchmark",
       "source": "European Central Bank (ECB Data Portal)",
-      "last_date": "2026-11-12",
-      "last_synced_utc": "2026-11-14T04:16:46.699145+00:00",
-      "current_value": 2.443,
-      "previous_value": 2.439,
-      "year_ago_value": 1.929,
+      "last_date": "2026-11-16",
+      "last_synced_utc": "2026-11-18T05:19:58.880994+00:00",
+      "current_value": 2.44,
+      "previous_value": 2.437,
+      "year_ago_value": 1.932,
       "transformations": {
-        "change": 0.004,
-        "change_from_year_ago": 0.514,
-        "percent_change": 0.164,
-        "percent_change_from_year_ago": 26.6459,
+        "change": 0.003,
+        "change_from_year_ago": 0.508,
+        "percent_change": 0.1231,
+        "percent_change_from_year_ago": 26.294,
         "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 0.1639,
+        "continuously_compounded_rate_of_change": 0.123,
         "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
-        {
-          "date": "2026-11-06",
-          "value": 2.443
-        },
-        {
-          "date": "2026-11-09",
-          "value": 2.442
-        },
         {
           "date": "2026-11-10",
           "value": 2.442
@@ -241,6 +233,14 @@
         {
           "date": "2026-11-12",
           "value": 2.443
+        },
+        {
+          "date": "2026-11-13",
+          "value": 2.437
+        },
+        {
+          "date": "2026-11-16",
+          "value": 2.44
         }
       ]
     },
