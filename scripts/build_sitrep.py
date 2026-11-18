@@ -394,48 +394,48 @@ def build_sitrep():
             "domain": "energy_maritime",
             "formula_link": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.12",
             "telemetry_signal": f"SPREAD_BRENT_WTI: {_fmt(spread_brent_wti)} | US_SPR_STOCKS: {_fmt(spr_val, prefix='', decimals=0)} k bbl (YoY: {_fmt_pct(spr_yoy)})",
-            "media_claim_bias": "News/Media claim global oil supply and pricing remain stable.",
-            "ground_truth_reality": f"The {_fmt(spread_brent_wti)} Brent-WTI spread proves that high-risk seaborne crude carries an active war/transit insurance premium over pipeline crude, while depleted SPR ({_fmt(spr_val, prefix='', decimals=0)} k bbl) limits emergency supply intervention."
+            "media_claim_bias": "Mainstream commentary often suggests global crude benchmarks remain largely balanced.",
+            "ground_truth_reality": f"The {_fmt(spread_brent_wti)} Brent-WTI spread may indicate that seaborne crude reflects elevated maritime transit and insurance considerations relative to domestic pipeline grades, while current SPR levels ({_fmt(spr_val, prefix='', decimals=0)} k bbl) could suggest limited room for sustained strategic buffer deployment."
         },
         {
             "rule_id": "RULE_2_OFFSHORE_DOLLAR_SHORTAGE",
             "domain": "macro_liquidity",
             "formula_link": "https://analysisreports.github.io/llms-formulas.txt#0.2.2",
             "telemetry_signal": f"FED_BROAD_DOLLAR: {_fmt(dxy_val, prefix='', decimals=2)} (YoY: {_fmt_pct(dxy_yoy)}) | SOFR_EFFR_SPREAD: {_fmt(sofr_fedfunds_spread_bps, prefix='', suffix=' bps')}",
-            "media_claim_bias": "News/Media claim the US Dollar is soft or neutral based on superficial 6-currency DXY.",
-            "ground_truth_reality": f"The Fed's 26-nation trade-weighted Broad Dollar ({_fmt(dxy_val, prefix='', decimals=2)}) and positive SOFR spread ({_fmt(sofr_fedfunds_spread_bps, prefix='', suffix=' bps')}) verify that global supply chain chokepoints are actively creating an acute offshore dollar funding crunch across Emerging Markets."
+            "media_claim_bias": "Market summaries frequently interpret headline 6-currency DXY movements as reflecting neutral broader dollar conditions.",
+            "ground_truth_reality": f"The Fed's 26-currency trade-weighted Broad Dollar ({_fmt(dxy_val, prefix='', decimals=2)}) alongside positive SOFR spread ({_fmt(sofr_fedfunds_spread_bps, prefix='', suffix=' bps')}) can be viewed as an indication that localized offshore dollar funding frictions and supply-chain related currency pressures may be developing across emerging partner economies."
         },
         {
             "rule_id": "RULE_3_STRATEGIC_PASSAGE_PARALYSIS",
             "domain": "maritime_chokepoints",
             "formula_link": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.3",
             "telemetry_signal": f"CHOKE_HORMUZ: {hormuz_daily} vessels/day ({hormuz_shift_str}) | CHOKE_TURKISH_STRAITS: {turk_shift_str}",
-            "media_claim_bias": "News/Media claim commercial shipping corridors are normalizing or diplomacy is maintaining navigation.",
-            "ground_truth_reality": f"IMF PortWatch satellite AIS telemetry confirms catastrophic real-time navigation blockades (Hormuz at {hormuz_daily} daily vessels, {hormuz_shift_str}); civilian merchant traffic under standard insurance is completely paralyzed. Residual flows rely on transponder blackouts (going dark), GPS spoofing, and high-risk military naval escorts (war-economy logistics, not normalized commerce)."
+            "media_claim_bias": "Diplomatic statements and headline reporting generally emphasize corridor continuity and stabilization efforts.",
+            "ground_truth_reality": f"IMF PortWatch satellite AIS telemetry confirms official commercial transits have registered significant contraction (Hormuz at {hormuz_daily} daily vessels, {hormuz_shift_str}); observed physical flows may increasingly be shaped by specialized operational parameters, including military naval escort coordination and intermittent transponder management, rather than standardized peacetime commercial routing."
         },
         {
             "rule_id": "RULE_4_SEMICONDUCTOR_CONTAINMENT_FRICTION",
             "domain": "semiconductors_tech",
             "formula_link": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.14",
             "telemetry_signal": f"MODEL_25_14_CHIP_STRESS: {_fmt(chip_stress_val, prefix='', decimals=3)} ({chip_stress_reg}) | NYFED_GSCPI: {_fmt(gscpi_val, prefix='', decimals=2)} Z-Score",
-            "media_claim_bias": "News/Media claim trade sanctions and BIS export controls have cleanly severed advanced hardware transfer to China.",
-            "ground_truth_reality": f"Persistent elevated hardware stress ({_fmt(chip_stress_val, prefix='', decimals=3)}) alongside supply chain friction ({_fmt(gscpi_val, prefix='', decimals=2)} Z-Score) verifies that semiconductor containment is producing gray-market rerouting through intermediary hubs, driving up capex inflation."
+            "media_claim_bias": "Trade overviews tend to highlight the immediate dampening effect of direct bilateral technology export controls.",
+            "ground_truth_reality": f"Persistent hardware stress readings ({_fmt(chip_stress_val, prefix='', decimals=3)}) and elevated logistics friction ({_fmt(gscpi_val, prefix='', decimals=2)} Z-Score) could suggest that tech supply networks might be partially adapting through regional intermediary hubs, potentially contributing to higher intermediary transaction costs."
         },
         {
             "rule_id": "RULE_5_BYPASS_CAPACITY_CEILING",
             "domain": "energy_chokepoints",
             "formula_link": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.4",
             "telemetry_signal": f"MODEL_28_4_SPILLOVER: {_fmt(m28_4.get('primary_value'), prefix='', decimals=0)} ({m28_4.get('status', 'MODERATE_FRICTION')}) | Net Deficit: {_fmt(unmet_deficit_mbpd, prefix='', decimals=2)} mbpd ({_fmt(deficit_ratio_pct, prefix='', decimals=1)}%) | IL_IR Polarity: {_fmt(il_ir_p_net, prefix='', decimals=2)}",
-            "media_claim_bias": "News/Media claim overland bypass pipelines (Petroline/Fujairah) can fully absorb maritime chokepoint closures.",
-            "ground_truth_reality": f"Model 28.4 mathematical formulation confirms total regional bypass buffer ({_fmt(bypass_buffer_mbpd, prefix='', decimals=2)} mbpd including sustainable SPR) leaves an unbridgeable {_fmt(unmet_deficit_mbpd, prefix='', decimals=2)} mbpd deficit ({_fmt(deficit_ratio_pct, prefix='', decimals=1)}% of gross flow), exposing structural physical shortage under IL-IR hostility ({_fmt(il_ir_p_net, prefix='', decimals=2)})."
+            "media_claim_bias": "Public infrastructure reviews often cite overland pipeline capacity as an adaptable alternative to maritime bottlenecks.",
+            "ground_truth_reality": f"Model 28.4 parameter calculations suggest that existing regional pipeline alternatives ({_fmt(bypass_buffer_mbpd, prefix='', decimals=2)} mbpd buffer capacity) may face structural throughput ceilings relative to aggregate baseline requirements ({_fmt(unmet_deficit_mbpd, prefix='', decimals=2)} mbpd calculated gap), implying that full substitution might require extended operational adjustments under prevailing tension ({_fmt(il_ir_p_net, prefix='', decimals=2)})."
         },
         {
             "rule_id": "RULE_6_SECONDARY_ROUTING_FRICTION",
             "domain": "tech_trade_geopolitics",
             "formula_link": "https://analysisreports.github.io/llms-relationships.txt#4.3",
             "telemetry_signal": f"CHOKE_MALACCA: {malacca_daily} vessels/day ({malacca_shift_str}) | US_CN Baseline Polarity: {_fmt(us_cn_p_base, prefix='', decimals=2)} | NYFED_GSCPI: {_fmt(gscpi_val, prefix='', decimals=2)} Z-Score",
-            "media_claim_bias": "News/Media claim direct bilateral sanctions have eliminated advanced technology transfer between major blocs.",
-            "ground_truth_reality": f"A {malacca_shift_str} maritime traffic surge at Malacca alongside elevated logistics friction ({_fmt(gscpi_val, prefix='', decimals=2)} Z-Score) proves trade flows are bypassing direct bilateral channels via Southeast Asian intermediary hubs, triggering secondary supply chain strain under US-CN friction ({_fmt(us_cn_p_base, prefix='', decimals=2)})."
+            "media_claim_bias": "Regulatory announcements typically frame export licensing regimes primarily through the lens of direct bilateral trade balances.",
+            "ground_truth_reality": f"A {malacca_shift_str} maritime volume shift at Malacca combined with supply chain friction indicators ({_fmt(gscpi_val, prefix='', decimals=2)} Z-Score) may indicate that trade flows could be experiencing geographical rerouting via Southeast Asian transit hubs, potentially introducing secondary compliance and logistics complexity under bilateral friction ({_fmt(us_cn_p_base, prefix='', decimals=2)})."
         }
     ]
 
