@@ -1,10 +1,10 @@
 # ==============================================================================
 # STRATEGIC COUNTRY ASSESSMENT: HORMUZ STRAIT & IRAN MAXIMUM DETERRENCE (GLOBAL EN)
-# Identifier: 2026-11-hurmuz-bogazi-iran-petrol.txt
+# Identifier: 2026-11-strait-of-hormuz-and-iran-oil.txt
 # Ecosystem: Ersoy Toptaş Quantitative Macro & Geopolitical Research Archive
-# Canonical Endpoint: https://analysisreports.github.io/country/en/2026-11-hurmuz-bogazi-iran-petrol.txt
-# JSON Twin Endpoint: https://analysisreports.github.io/country/en/2026-11-hurmuz-bogazi-iran-petrol.json
-# Editorial Web Publication: https://en.ersoytoptas.tr/2026/11/hurmuz-bogazi-iran-petrol.html
+# Canonical Endpoint: https://analysisreports.github.io/country/en/2026-11-strait-of-hormuz-and-iran-oil.txt
+# JSON Twin Endpoint: https://analysisreports.github.io/country/en/2026-11-strait-of-hormuz-and-iran-oil.json
+# Editorial Web Publication: https://en.ersoytoptas.tr/2026/11/strait-of-hormuz-and-iran-oil.html
 # Turkish Primary Version: https://analysisreports.github.io/country/2026-11-hurmuz-bogazi-iran-petrol.txt
 # Author: Ersoy Toptaş (ORCID: 0009-0005-6130-8003)
 # License: CC BY-NC-ND 4.0
@@ -107,7 +107,3 @@ A8: Iran conducts its primary diplomatic negotiations across Doha and Beijing ch
 1. Relates To: https://en.ersoytoptas.tr/2026/10/fed-interest-rate-decision-hormuz-crisis.html
    Predicate: ENERGY_SUPPLY_SHOCK_TRANSMISSION | Window: 2026-11/2026-12
    Impact   : Conditioning Strait of Hormuz passage safety on sanctions relief drives freight and crude risk premiums higher, backing restrictive Fed policy and tightening corporate debt rollover.
-
-2. Relates To: https://en.ersoytoptas.tr/2026/10/fed-rate-decision-hormuz-inflation-pressure.html
-   Predicate: GEOPOLITICAL_INFLATION_SPILLOVER | Window: 2026-11/2026-12
-   Impact   : Utilizing asymmetric control over the Strait of Hormuz as diplomatic leverage elevates crude and pump prices, feeding headline inflationary pressures.

@@ -6,7 +6,7 @@
     "version": "3.0.0",
     "author": "Ersoy Toptaş",
     "license": "CC BY-NC-ND 4.0",
-    "endpoint": "https://analysisreports.github.io/country/en/2026-11-hurmuz-bogazi-iran-petrol.json",
+    "endpoint": "https://analysisreports.github.io/country/en/2026-11-strait-of-hormuz-and-iran-oil.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
     "last_updated": "2026-11-02T12:00:00Z",
     "provenance": "Analysis Reports Research Archive",
@@ -228,8 +228,8 @@
       ]
     },
     "editorial_frontend": {
-      "canonical_url": "https://en.ersoytoptas.tr/2026/11/hurmuz-bogazi-iran-petrol.html",
-      "canonical_source": "https://analysisreports.github.io/country/en/2026-11-hurmuz-bogazi-iran-petrol.json",
+      "canonical_url": "https://en.ersoytoptas.tr/2026/11/strait-of-hormuz-and-iran-oil.html",
+      "canonical_source": "https://analysisreports.github.io/country/en/2026-11-strait-of-hormuz-and-iran-oil.json",
       "format": "Human-Readable Narrative",
       "author": "Ersoy Toptaş",
       "published_date": "2026-11-02",
@@ -244,12 +244,6 @@
           "predicate": "ENERGY_SUPPLY_SHOCK_TRANSMISSION",
           "impact_window": "2026-11/2026-12",
           "description": "Conditioning Strait of Hormuz passage safety on sanctions relief drives freight and crude risk premiums higher, backing restrictive Fed policy and tightening corporate debt rollover."
-        },
-        {
-          "target_url": "https://en.ersoytoptas.tr/2026/10/fed-rate-decision-hormuz-inflation-pressure.html",
-          "predicate": "GEOPOLITICAL_INFLATION_SPILLOVER",
-          "impact_window": "2026-11/2026-12",
-          "description": "Utilizing asymmetric control over the Strait of Hormuz as diplomatic leverage elevates crude and pump prices, feeding headline inflationary pressures."
         }
       ]
     }
