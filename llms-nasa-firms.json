@@ -8,9 +8,9 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-nasa-firms.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-18T11:42:14Z",
+    "last_updated": "2026-11-18T11:51:54Z",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-18T11:42:14Z",
+    "last_successful_sync": "2026-11-18T11:51:54Z",
     "source_authority": "NASA Earth Science Data / FIRMS (VIIRS Suomi-NPP & NOAA-20)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.1",
     "root_index": "https://analysisreports.github.io/llms.txt"
