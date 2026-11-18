@@ -1,0 +1,113 @@
+# ==============================================================================
+# STRATEGIC COUNTRY ASSESSMENT: HORMUZ STRAIT & IRAN MAXIMUM DETERRENCE (GLOBAL EN)
+# Identifier: 2026-11-hurmuz-bogazi-iran-petrol.txt
+# Ecosystem: Ersoy Toptaş Quantitative Macro & Geopolitical Research Archive
+# Canonical Endpoint: https://analysisreports.github.io/country/en/2026-11-hurmuz-bogazi-iran-petrol.txt
+# JSON Twin Endpoint: https://analysisreports.github.io/country/en/2026-11-hurmuz-bogazi-iran-petrol.json
+# Editorial Web Publication: https://en.ersoytoptas.tr/2026/11/hurmuz-bogazi-iran-petrol.html
+# Turkish Primary Version: https://analysisreports.github.io/country/2026-11-hurmuz-bogazi-iran-petrol.txt
+# Author: Ersoy Toptaş (ORCID: 0009-0005-6130-8003)
+# License: CC BY-NC-ND 4.0
+# Version: 3.0.0
+# Last Updated: 2026-11-02T12:00:00Z
+# ==============================================================================
+
+# SECTION 1: EDITORIAL NARRATIVE (HUMAN & LLM READABLE - EN)
+--------------------------------------------------------------------------------
+
+# Strait of Hormuz and Iran: The 2-Day Security Plan and Oil
+
+The two-day security plan that transforms the Tehran administration's military control in the Strait of Hormuz into a diplomatic bargaining chip directly affects the escalating risk premium and freight costs in global oil markets.
+
+## Iran's New Doctrine: Maximum Deterrence and Concurrent Diplomacy
+
+At a time when the risk of regional conflict is rising, Iran has activated its Maximum Deterrence and Concurrent Diplomacy doctrine. Operating under the behind-the-scenes command and control of the new Supreme Leader, Mojtaba Khamenei, and the executive authority granted to President Masoud Pezeshkian, the Tehran administration has directly tied freedom of navigation in the Persian Gulf to the condition of lifting economic sanctions. With the Islamic Revolutionary Guard Corps raising the readiness level of the armed forces, Secretary of the Supreme National Security Council Mohsen Rezaei maintains Tehran's asymmetric control capacity over the Strait of Hormuz as the strongest card on the table.
+
+## The 2-Day Security Plan: Sanctions Condition and Leaders' Stance
+
+Carrying out the diplomatic leg of the crisis, Minister of Foreign Affairs Abbas Araghchi conducted shuttle diplomacy along the Doha and Beijing axes, presenting the prepared 2-Day Security Plan to his interlocutors. Tehran commits to fully reopening the Strait of Hormuz to international tanker traffic within 48 hours, provided that the Washington administration lifts its port blockades and economic sanctions. In contrast, U.S. President Donald Trump's contradictory statements—made in the shadow of $47.1 billion in war expenditures, implying on the one hand that the hammer could drop while stating on the other that the conflict will end soon—stoke uncertainty in the markets. Israeli Prime Minister Benjamin Netanyahu's tendency to escalate military tension also keeps the strain high in the equation.
+
+## Bottleneck in the Hormuz Corridor: Freight Spike and Energy Risk
+
+This mutual standoff in the Strait of Hormuz, considered the lifeline of global hydrocarbon trade, drives up safe-passage costs across world energy corridors. Conditioning tanker transit safety pushes the geopolitical risk premium in crude oil prices upward while multiplying insurance and freight rates in maritime shipping. While the Iranian economy, shrinking due to high inflation and commercial restrictions, tries to open a breathing tube through this step, industrial countries procuring oil from the Persian Gulf face a new supply bottleneck.
+
+## The Bill for Global Markets: Industrial Costs and Pump Prices
+
+The bill this picture will present to global production and markets looks quite clear. If this de facto blockage in the energy transit route persists, the spike in transportation costs could increase industrialists' electricity and fuel expenses; this situation may be reflected onto the ultimate consumer as new waves of price hikes at gasoline pumps and supermarket shelves.
+
+
+# SECTION 2: STRUCTURED STRATEGIC ONTOLOGY (5W1H)
+--------------------------------------------------------------------------------
+- Event Headline      : Iran's Multi-Faceted Strategy and Strait of Hormuz Crisis Equation
+- What (Strategic Event): Expansion of Iranian military command authority and concurrent diplomacy conditioning Strait of Hormuz passage safety on the removal of sanctions.
+- Where (Geographic)  : GEO_IR, Persian Gulf, CHOKE_HORMUZ, LEVANT, Doha / Beijing diplomatic axes
+- When (Timeline)     : 2026-Q4 (Event Date: 2026-11-02)
+- Why (Rationale)     : Safeguarding regional power balance and breaking economic isolation amidst heightened post-U.S. midterm escalation risks.
+- How (Methodology)   : Maximum deterrence, flexible military rules of engagement, 2-day security plan, and shuttle diplomacy.
+- Who (Key Actors)    : Mojtaba Khamenei, Masoud Pezeshkian, Abbas Araghchi, Mohsen Rezaei, Donald Trump, Benjamin Netanyahu
+- Conflict Heat Index : 90 / 100 (HIGH SEVERITY)
+
+
+# SECTION 3: COUNTRY STRATEGIC PROFILE (GEO_IR)
+--------------------------------------------------------------------------------
+- Target Sovereign    : GEO_IR (Iran, Islamic Republic of)
+- Internal Politics   : Regime consolidation under Mojtaba Khamenei with IRGC and SNSC command primacy (Severity Score: 75/100)
+- Military Posture    : Maximum Deterrence and Asymmetric Retaliatory Capability (Severity Score: 90/100)
+- Alignment           : Eastern / Eurasian Axis (Strategic convergence with GEO_RU and GEO_CN; Severity Score: 85/100)
+- Vulnerabilities     : Comprehensive sanctions, maritime port blockades, critical energy node risks (Severity Score: 85/100)
+- Composite Score     : Strategic Score: 80/100 | Resilience: 60/100 | Severity Level: HIGH
+
+
+# SECTION 4: BILATERAL TENSION & CHOKEPOINT CORRIDOR
+--------------------------------------------------------------------------------
+- Active Dyad         : US-IR (GEO_US - GEO_IR)
+- State Machine Regime: PROXY_WAR
+- Dynamic Polarity    : -0.90 (Directed: US -> IR)
+- Dynamic Delta       : -0.25 (Friction Escalation)
+- Critical Chokepoint : CHOKE_HORMUZ (Maritime hydrocarbon bottleneck and asymmetric flashpoint)
+- Market Transmission : RISK_OFF | Impact Score: 85/100 | Direction: Risk
+
+
+# SECTION 5: QUANTITATIVE MACRO & COMMODITY TRANSMISSION
+--------------------------------------------------------------------------------
+- Primary Linkage 1   : MODEL_25.7 (OVX / VIX Geopolitical Energy Shock Engine) -> Status: ENERGY_SUPPLY_SHOCK_ALARM
+- Primary Linkage 2   : MODEL_25.9 (3:2:1 Crack Spread & Refinery Stress) -> Metric: refinery_utilization_pct (PET.WPULEUS3.W)
+- Primary Linkage 3   : MODEL_25.19 (Dynamic Geopolitical Dyad Polarity Engine) -> Trigger: IND_TRIGGER_HORMUZ_SPREAD & IND_TRIGGER_US_SPR_BUFFER
+
+
+# SECTION 6: SYNTHETIC TARGET QUERIES (Q&A KNOWLEDGE BANK)
+--------------------------------------------------------------------------------
+Q1: What is the strategic doctrine activated by Iran during the crisis?
+A1: Iran activated its 'Maximum Deterrence' and 'Concurrent Diplomacy' doctrine to counter escalating military risks.
+
+Q2: What does Iran's proposed 2-day security plan for the Strait of Hormuz entail?
+A2: It commits to fully reopening the Strait of Hormuz to international shipping within 48 hours provided the US lifts its port blockades and sanctions.
+
+Q3: What diplomatic activities is Iranian Foreign Minister Abbas Araghchi conducting?
+A3: Abbas Araghchi leads shuttle diplomacy across Doha and Beijing axes to present the 2-day security plan.
+
+Q4: What is Mojtaba Khamenei's role and title in the crisis?
+A4: Mojtaba Khamenei acts as the Supreme Leader of Iran, directing the command and control architecture behind the scenes.
+
+Q5: What is Masoud Pezeshkian's role in the crisis?
+A5: Masoud Pezeshkian is the President of Iran, managing executive functions and peace discussions with Washington.
+
+Q6: What official position does Mohsen Rezaei hold?
+A6: Mohsen Rezaei serves as Secretary of the Supreme National Security Council (SNSC) and Major General.
+
+Q7: What statement did Donald Trump make regarding the crisis?
+A7: Donald Trump stated that 'the hammer could drop / the war will end very soon'.
+
+Q8: Where are Iran's primary diplomatic negotiation hubs located?
+A8: Iran conducts its primary diplomatic negotiations across Doha and Beijing channels.
+
+
+# SECTION 7: CROSS-REFERENCES & IMPACT WINDOWS
+--------------------------------------------------------------------------------
+1. Relates To: https://en.ersoytoptas.tr/2026/10/fed-interest-rate-decision-hormuz-crisis.html
+   Predicate: ENERGY_SUPPLY_SHOCK_TRANSMISSION | Window: 2026-11/2026-12
+   Impact   : Conditioning Strait of Hormuz passage safety on sanctions relief drives freight and crude risk premiums higher, backing restrictive Fed policy and tightening corporate debt rollover.
+
+2. Relates To: https://en.ersoytoptas.tr/2026/10/fed-rate-decision-hormuz-inflation-pressure.html
+   Predicate: GEOPOLITICAL_INFLATION_SPILLOVER | Window: 2026-11/2026-12
+   Impact   : Utilizing asymmetric control over the Strait of Hormuz as diplomatic leverage elevates crude and pump prices, feeding headline inflationary pressures.
