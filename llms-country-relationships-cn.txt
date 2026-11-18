@@ -94,7 +94,7 @@
 # Total Vectors in Tier: 8 Dyads
 # ------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_RU
 Common Reference: China ↔ Russian Federation
 Dyad ID: REL_GEO_CN_GEO_RU
@@ -109,7 +109,7 @@ Core Strategic Flashpoints:
   2. Arctic commercial coordination along the Northern Sea Route (CORRIDOR_NORTHERN_SEA_ROUTE) and joint Pacific air patrols.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, BLOC_SCO, CORRIDOR_NORTHERN_SEA_ROUTE
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_PK
 Common Reference: China ↔ Islamic Republic of Pakistan
 Dyad ID: REL_GEO_CN_GEO_PK
@@ -124,7 +124,7 @@ Core Strategic Flashpoints:
   2. Nuclear deterrence dynamics and cross-border skirmishes on the Line of Control with India.
 Cross-Reference Multilateral Nodes: CORRIDOR_CPEC, BLOC_SCO, GEO_IN, CHOKE_MALACCA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_KP
 Common Reference: China ↔ Democratic People's Republic of Korea
 Dyad ID: REL_GEO_CN_GEO_KP
@@ -139,7 +139,7 @@ Core Strategic Flashpoints:
   2. Enforcement vs evasion of UN Security Council sanctions regimes through ship-to-ship maritime transfers.
 Cross-Reference Multilateral Nodes: GEO_KR, GEO_US, GEO_JP
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_KH
 Common Reference: China ↔ Kingdom of Cambodia
 Dyad ID: REL_GEO_CN_GEO_KH
@@ -154,7 +154,7 @@ Core Strategic Flashpoints:
   2. Environmental and geopolitical friction with Vietnam over the diversion of Mekong River waters via the Funan Techo canal.
 Cross-Reference Multilateral Nodes: BLOC_RCEP, GEO_VN, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_LA
 Common Reference: China ↔ Lao People's Democratic Republic
 Dyad ID: REL_GEO_CN_GEO_LA
@@ -169,7 +169,7 @@ Core Strategic Flashpoints:
   2. Cascade of mega-dams along the Upper Mekong (Lancang) altering hydrological cycles across downstream Southeast Asia.
 Cross-Reference Multilateral Nodes: BLOC_RCEP, GEO_TH, GEO_VN
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_MM
 Common Reference: China ↔ Republic of the Union of Myanmar
 Dyad ID: REL_GEO_CN_GEO_MM
@@ -184,7 +184,7 @@ Core Strategic Flashpoints:
   2. Massive crackdowns on transnational cyber-scam industrial parks along the Kokang and Shan State frontiers.
 Cross-Reference Multilateral Nodes: CHOKE_MALACCA, GEO_IN, GEO_TH
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_IR
 Common Reference: China ↔ Islamic Republic of Iran
 Dyad ID: REL_GEO_CN_GEO_IR
@@ -199,7 +199,7 @@ Core Strategic Flashpoints:
   2. Regional military escalation with Israel and Western strikes risking disruptions to Persian Gulf energy transit.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, BLOC_SCO, CHOKE_HORMUZ, CORRIDOR_INSTC
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_SB
 Common Reference: China ↔ Solomon Islands
 Dyad ID: REL_GEO_CN_GEO_SB
@@ -221,7 +221,7 @@ Cross-Reference Multilateral Nodes: GEO_AU, GEO_US, GEO_NZ
 # Total Vectors in Tier: 14 Dyads
 # ------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_SA
 Common Reference: China ↔ Kingdom of Saudi Arabia
 Dyad ID: REL_GEO_CN_GEO_SA
@@ -236,7 +236,7 @@ Core Strategic Flashpoints:
   2. Balancing Saudi security cooperation with Washington against deep telecommunications and ballistic missile tech cooperation with Beijing.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, BLOC_OPEC, CHOKE_HORMUZ, BLOC_BRICS_MBRIDGE
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_AE
 Common Reference: China ↔ United Arab Emirates
 Dyad ID: REL_GEO_CN_GEO_AE
@@ -251,7 +251,7 @@ Core Strategic Flashpoints:
   2. Expansion of Renminbi offshore clearing hubs in Abu Dhabi and local currency swap operations.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, BLOC_BRICS_MBRIDGE, CHOKE_HORMUZ
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_KZ
 Common Reference: China ↔ Republic of Kazakhstan
 Dyad ID: REL_GEO_CN_GEO_KZ
@@ -266,7 +266,7 @@ Core Strategic Flashpoints:
   2. Popular domestic environmental and land-lease sensitivities regarding large-scale Chinese agro-industrial investments.
 Cross-Reference Multilateral Nodes: BLOC_SCO, BASIN_CASPIAN_SEA, GEO_RU
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_ID
 Common Reference: China ↔ Republic of Indonesia
 Dyad ID: REL_GEO_CN_GEO_ID
@@ -281,7 +281,7 @@ Core Strategic Flashpoints:
   2. Western EV subsidy rules (US Inflation Reduction Act) discriminating against Indonesian nickel processed by Chinese-owned smelters.
 Cross-Reference Multilateral Nodes: BLOC_RCEP, CHOKE_LOMBOK_MAKASSAR, CHOKE_MALACCA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_MY
 Common Reference: China ↔ Malaysia
 Dyad ID: REL_GEO_CN_GEO_MY
@@ -296,7 +296,7 @@ Core Strategic Flashpoints:
   2. US export control compliance pressures on Penang semiconductor packaging facilities handling dual-use chips.
 Cross-Reference Multilateral Nodes: BLOC_RCEP, CHOKE_MALACCA, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_VN
 Common Reference: China ↔ Socialist Republic of Vietnam
 Dyad ID: REL_GEO_CN_GEO_VN
@@ -311,7 +311,7 @@ Core Strategic Flashpoints:
   2. Standard-gauge railway cross-border modernization connecting Kunming and Nanning with Hanoi and Haiphong.
 Cross-Reference Multilateral Nodes: BLOC_RCEP, CHOKE_MALACCA, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_SG
 Common Reference: China ↔ Republic of Singapore
 Dyad ID: REL_GEO_CN_GEO_SG
@@ -326,7 +326,7 @@ Core Strategic Flashpoints:
   2. Cross-border capital flight controls and anti-money laundering regulatory compliance.
 Cross-Reference Multilateral Nodes: BLOC_RCEP, CHOKE_MALACCA, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_TH
 Common Reference: China ↔ Kingdom of Thailand
 Dyad ID: REL_GEO_CN_GEO_TH
@@ -341,7 +341,7 @@ Core Strategic Flashpoints:
   2. Regional telecommunications crime syndicates operating across Thai-Myanmar border zones.
 Cross-Reference Multilateral Nodes: BLOC_RCEP, GEO_US, CHOKE_MALACCA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_TR
 Common Reference: China ↔ Republic of Türkiye
 Dyad ID: REL_GEO_CN_GEO_TR
@@ -356,7 +356,7 @@ Core Strategic Flashpoints:
   2. Significant bilateral trade imbalance favoring Chinese industrial imports.
 Cross-Reference Multilateral Nodes: CHOKE_TURKISH_STRAITS, BASIN_CASPIAN_SEA, BLOC_NATO
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_HU
 Common Reference: China ↔ Hungary
 Dyad ID: REL_GEO_CN_GEO_HU
@@ -371,7 +371,7 @@ Core Strategic Flashpoints:
   2. Vulnerability to future EU-wide foreign direct investment screening and technology transfer restrictions.
 Cross-Reference Multilateral Nodes: BLOC_EU, BLOC_NATO, GEO_DE
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_RS
 Common Reference: China ↔ Republic of Serbia
 Dyad ID: REL_GEO_CN_GEO_RS
@@ -386,7 +386,7 @@ Core Strategic Flashpoints:
   2. Environmental compliance protests concerning heavy metallurgical and copper smelting operations.
 Cross-Reference Multilateral Nodes: GEO_RU, BLOC_EU
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_BR
 Common Reference: China ↔ Federative Republic of Brazil
 Dyad ID: REL_GEO_CN_GEO_BR
@@ -401,7 +401,7 @@ Core Strategic Flashpoints:
   2. Anti-dumping disputes regarding cheap Chinese steel and industrial goods competing with Brazilian domestic manufacturers.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, ZONE_LITHIUM_TRIANGLE, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_ZA
 Common Reference: China ↔ Republic of South Africa
 Dyad ID: REL_GEO_CN_GEO_ZA
@@ -416,7 +416,7 @@ Core Strategic Flashpoints:
   2. US Congressional threats to review South Africa's preferential trade status (AGOA) due to close Beijing-Moscow alignments.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, CHOKE_MOZAMBIQUE, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_EG
 Common Reference: China ↔ Arab Republic of Egypt
 Dyad ID: REL_GEO_CN_GEO_EG
@@ -437,7 +437,7 @@ Cross-Reference Multilateral Nodes: BLOC_BRICS, CHOKE_SUEZ, CHOKE_BAB_EL_MANDEB
 # Total Vectors in Tier: 9 Dyads
 # ------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_US
 Common Reference: China ↔ United States of America
 Dyad ID: REL_GEO_CN_GEO_US
@@ -452,7 +452,7 @@ Core Strategic Flashpoints:
   2. High-level summit diplomacy (Spring 2026 Beijing, Autumn 2026 Washington, and November 2026 Shenzhen APEC Trilateral) institutionalizing managed competition.
 Cross-Reference Multilateral Nodes: ZONE_FIRST_ISLAND_CHAIN, CHOKE_TAIWAN, BLOC_AUKUS
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_TW
 Common Reference: China ↔ Taiwan
 Dyad ID: REL_GEO_CN_GEO_TW
@@ -467,7 +467,7 @@ Core Strategic Flashpoints:
   2. Incursions across the Taiwan Strait median line and comprehensive grey-zone drone circumnavigations.
 Cross-Reference Multilateral Nodes: CHOKE_TAIWAN, ZONE_FIRST_ISLAND_CHAIN, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_IN
 Common Reference: China ↔ Republic of India
 Dyad ID: REL_GEO_CN_GEO_IN
@@ -483,7 +483,7 @@ Core Strategic Flashpoints:
   3. Chinese mega-dam construction on the Yarlung Tsangpo (Brahmaputra) raising acute downstream water security alarms in India.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, BLOC_SCO, BLOC_QUAD, CORRIDOR_CPEC
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_JP
 Common Reference: China ↔ Japan
 Dyad ID: REL_GEO_CN_GEO_JP
@@ -498,7 +498,7 @@ Core Strategic Flashpoints:
   2. Japanese official declarations identifying peace in the Taiwan Strait as an existential national security interest.
 Cross-Reference Multilateral Nodes: ZONE_FIRST_ISLAND_CHAIN, GEO_US, BLOC_RCEP
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_PH
 Common Reference: China ↔ Republic of the Philippines
 Dyad ID: REL_GEO_CN_GEO_PH
@@ -513,7 +513,7 @@ Core Strategic Flashpoints:
   2. Chinese reclamation or permanent structure construction at Scarborough Shoal (Bajo de Masinloc).
 Cross-Reference Multilateral Nodes: CHOKE_LUZON, ZONE_FIRST_ISLAND_CHAIN, BLOC_RCEP, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_AU
 Common Reference: China ↔ Commonwealth of Australia
 Dyad ID: REL_GEO_CN_GEO_AU
@@ -528,7 +528,7 @@ Core Strategic Flashpoints:
   2. Australian regulatory blocking of Chinese state-backed investment in critical rare earth and lithium mining ventures.
 Cross-Reference Multilateral Nodes: BLOC_AUKUS, BLOC_QUAD, BLOC_RCEP, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_KR
 Common Reference: China ↔ Republic of Korea
 Dyad ID: REL_GEO_CN_GEO_KR
@@ -543,7 +543,7 @@ Core Strategic Flashpoints:
   2. Chinese maritime research and fishing fleet friction in the Yellow Sea (West Sea) exclusive economic zones.
 Cross-Reference Multilateral Nodes: BLOC_RCEP, GEO_KP, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_DE
 Common Reference: China ↔ Federal Republic of Germany
 Dyad ID: REL_GEO_CN_GEO_DE
@@ -558,7 +558,7 @@ Core Strategic Flashpoints:
   2. German enforcement of supply chain due diligence laws restricting components from Xinjiang.
 Cross-Reference Multilateral Nodes: BLOC_EU, BLOC_NATO, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_GB
 Common Reference: China ↔ United Kingdom
 Dyad ID: REL_GEO_CN_GEO_GB
@@ -579,7 +579,7 @@ Cross-Reference Multilateral Nodes: BLOC_AUKUS, BLOC_NATO, GEO_US
 # Total Vectors in Tier: 3 Dyads
 # ------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_DJ
 Common Reference: China ↔ Republic of Djibouti
 Dyad ID: REL_GEO_CN_GEO_DJ
@@ -594,7 +594,7 @@ Core Strategic Flashpoints:
   2. Heightened naval escort operations protecting Chinese commercial shipping amidst Red Sea maritime strikes.
 Cross-Reference Multilateral Nodes: CHOKE_BAB_EL_MANDEB, GEO_US, GEO_FR
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_CD
 Common Reference: China ↔ Democratic Republic of the Congo
 Dyad ID: REL_GEO_CN_GEO_CD
@@ -609,7 +609,7 @@ Core Strategic Flashpoints:
   2. Western diplomatic and financial initiatives (Lobito Atlantic Railway Corridor) designed to divert critical copper and cobalt away from Chinese supply chains.
 Cross-Reference Multilateral Nodes: ZONE_COPPER_COBALT_BELT, GEO_US, BLOC_EU
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_CN ↔ GEO_LK
 Common Reference: China ↔ Democratic Socialist Republic of Sri Lanka
 Dyad ID: REL_GEO_CN_GEO_LK

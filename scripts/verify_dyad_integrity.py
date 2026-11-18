@@ -47,7 +47,7 @@ def audit_shelf_txt(shelf_path: str, expected_hub: str) -> Tuple[List[str], Dict
     with open(shelf_path, "r", encoding="utf-8") as f:
         content = f.read()
 
-    blocks = content.split("--------------------------------------------------------------------------------")
+    blocks = re.split(r'^\s*-{3,}\s*$', content, flags=re.MULTILINE)
     for b_idx, block in enumerate(blocks):
         if "Bilateral Dyad:" not in block:
             continue
@@ -179,7 +179,7 @@ def audit_txt_integrity(content: str) -> Tuple[List[str], Dict[str, Dict[str, An
             continue
         hub_geo = f"GEO_{hub_match.group(1)}"
 
-        blocks = hub_txt.split("--------------------------------------------------------------------------------")
+        blocks = re.split(r'^\s*-{3,}\s*$', hub_txt, flags=re.MULTILINE)
         for b_idx, block in enumerate(blocks):
             if "Bilateral Dyad:" not in block:
                 continue

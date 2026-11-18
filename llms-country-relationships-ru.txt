@@ -89,7 +89,7 @@
 # Total Vectors in Tier: 7 Dyads
 # ------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_BY
 Common Reference: Russia ↔ Republic of Belarus
 Dyad ID: REL_GEO_RU_GEO_BY
@@ -104,7 +104,7 @@ Core Strategic Flashpoints:
   2. Integrated air and missile defense command posturing against Polish and Baltic deployments.
 Cross-Reference Multilateral Nodes: BLOC_CSTO, CHOKE_SUWALKI_GAP, ZONE_KALININGRAD_EXCLAVE, CORRIDOR_KALININGRAD_TRANSIT
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_CN
 Common Reference: Russia ↔ People's Republic of China
 Dyad ID: REL_GEO_RU_GEO_CN
@@ -119,7 +119,7 @@ Core Strategic Flashpoints:
   2. Arctic commercial coordination along the Northern Sea Route (CORRIDOR_NORTHERN_SEA_ROUTE) and joint Pacific air patrols.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, BLOC_SCO, CORRIDOR_NORTHERN_SEA_ROUTE
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_KP
 Common Reference: Russia ↔ Democratic People's Republic of Korea
 Dyad ID: REL_GEO_RU_GEO_KP
@@ -134,7 +134,7 @@ Core Strategic Flashpoints:
   2. Escalating deterrence posturing on the Korean Peninsula triggering reciprocal defense obligations.
 Cross-Reference Multilateral Nodes: BLOC_SCO, GEO_KR, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_IR
 Common Reference: Russia ↔ Islamic Republic of Iran
 Dyad ID: REL_GEO_RU_GEO_IR
@@ -149,7 +149,7 @@ Core Strategic Flashpoints:
   2. Naval and maritime security exercises in the Persian Gulf and Caspian Sea basin.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, BLOC_SCO, CORRIDOR_INSTC, BASIN_CASPIAN_SEA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_SY
 Common Reference: Russia ↔ Syrian Arab Republic
 Dyad ID: REL_GEO_RU_GEO_SY
@@ -165,7 +165,7 @@ Core Strategic Flashpoints:
   3. Russian-Turkish deconfliction protocols across northern Syrian border provinces.
 Cross-Reference Multilateral Nodes: BASIN_EAST_MED_DEEPSEA, GEO_TR, GEO_IL
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_KZ
 Common Reference: Russia ↔ Republic of Kazakhstan
 Dyad ID: REL_GEO_RU_GEO_KZ
@@ -180,7 +180,7 @@ Core Strategic Flashpoints:
   2. Diplomatic balancing between Russian security guarantees and Western secondary sanctions compliance.
 Cross-Reference Multilateral Nodes: BLOC_CSTO, BLOC_SCO, BASIN_CASPIAN_SEA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_AM
 Common Reference: Russia ↔ Republic of Armenia
 Dyad ID: REL_GEO_RU_GEO_AM
@@ -201,7 +201,7 @@ Cross-Reference Multilateral Nodes: BLOC_CSTO, CORRIDOR_ZANGEZUR, GEO_AZ, GEO_TR
 # Total Vectors in Tier: 12 Dyads
 # ------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_TR
 Common Reference: Russia ↔ Republic of Türkiye
 Dyad ID: REL_GEO_RU_GEO_TR
@@ -216,7 +216,7 @@ Core Strategic Flashpoints:
   2. Conflicting proxy interests in Syria, Libya, and the South Caucasus mediated via transactional diplomacy.
 Cross-Reference Multilateral Nodes: CHOKE_TURKISH_STRAITS, CORRIDOR_BLACK_SEA, BLOC_NATO
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_IN
 Common Reference: Russia ↔ Republic of India
 Dyad ID: REL_GEO_RU_GEO_IN
@@ -231,7 +231,7 @@ Core Strategic Flashpoints:
   2. Balancing Indian ties with the Quad against Russian strategic coordination with China.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, BLOC_SCO, CORRIDOR_INSTC
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_SA
 Common Reference: Russia ↔ Kingdom of Saudi Arabia
 Dyad ID: REL_GEO_RU_GEO_SA
@@ -246,7 +246,7 @@ Core Strategic Flashpoints:
   2. Coordination on non-USD crude oil pricing frameworks within the expanded BRICS ecosystem.
 Cross-Reference Multilateral Nodes: BLOC_OPEC, BLOC_BRICS, CHOKE_HORMUZ
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_AE
 Common Reference: Russia ↔ United Arab Emirates
 Dyad ID: REL_GEO_RU_GEO_AE
@@ -261,7 +261,7 @@ Core Strategic Flashpoints:
   2. Coordination of maritime oil tanker fleets and international trade credit facilities.
 Cross-Reference Multilateral Nodes: BLOC_OPEC, BLOC_BRICS, CHOKE_HORMUZ
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_EG
 Common Reference: Russia ↔ Arab Republic of Egypt
 Dyad ID: REL_GEO_RU_GEO_EG
@@ -276,7 +276,7 @@ Core Strategic Flashpoints:
   2. Egyptian currency shortages affecting import financing for essential grains and engineering capital.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, CHOKE_SUEZ, BASIN_EAST_MED_DEEPSEA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_RS
 Common Reference: Russia ↔ Republic of Serbia
 Dyad ID: REL_GEO_RU_GEO_RS
@@ -291,7 +291,7 @@ Core Strategic Flashpoints:
   2. European Union conditionality demanding full foreign policy alignment as an accession prerequisite.
 Cross-Reference Multilateral Nodes: BLOC_EU, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_VN
 Common Reference: Russia ↔ Socialist Republic of Vietnam
 Dyad ID: REL_GEO_RU_GEO_VN
@@ -306,7 +306,7 @@ Core Strategic Flashpoints:
   2. Payment clearance hurdles under US secondary sanctions regimes (CAATSA).
 Cross-Reference Multilateral Nodes: BLOC_SCO, GEO_CN, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_BR
 Common Reference: Russia ↔ Federative Republic of Brazil
 Dyad ID: REL_GEO_RU_GEO_BR
@@ -321,7 +321,7 @@ Core Strategic Flashpoints:
   2. Debates over local currency settlement mechanisms and BRICS common payment architectures.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_ZA
 Common Reference: Russia ↔ Republic of South Africa
 Dyad ID: REL_GEO_RU_GEO_ZA
@@ -336,7 +336,7 @@ Core Strategic Flashpoints:
   2. Western diplomatic and trade pressure threatening South Africa's AGOA trade preferences.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_AZ
 Common Reference: Russia ↔ Republic of Azerbaijan
 Dyad ID: REL_GEO_RU_GEO_AZ
@@ -351,7 +351,7 @@ Core Strategic Flashpoints:
   2. Balancing relations between Azerbaijan's alliance with Turkey and Russia's regional security doctrine.
 Cross-Reference Multilateral Nodes: BASIN_CASPIAN_SEA, CORRIDOR_INSTC, CORRIDOR_ZANGEZUR, GEO_TR
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_UZ
 Common Reference: Russia ↔ Republic of Uzbekistan
 Dyad ID: REL_GEO_RU_GEO_UZ
@@ -366,7 +366,7 @@ Core Strategic Flashpoints:
   2. Border stability and counter-terror coordination regarding northern Afghan border security.
 Cross-Reference Multilateral Nodes: BLOC_SCO, GEO_AF
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_MN
 Common Reference: Russia ↔ Mongolia
 Dyad ID: REL_GEO_RU_GEO_MN
@@ -387,7 +387,7 @@ Cross-Reference Multilateral Nodes: GEO_CN, GEO_US
 # Total Vectors in Tier: 10 Dyads
 # ------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_UA
 Common Reference: Russia ↔ Ukraine
 Dyad ID: REL_GEO_RU_GEO_UA
@@ -403,7 +403,7 @@ Core Strategic Flashpoints:
   3. Ukrainian long-range strikes against strategic Russian defense infrastructure.
 Cross-Reference Multilateral Nodes: CORRIDOR_BLACK_SEA, BLOC_NATO, BLOC_EU
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_US
 Common Reference: Russia ↔ United States of America
 Dyad ID: REL_GEO_RU_GEO_US
@@ -418,7 +418,7 @@ Core Strategic Flashpoints:
   2. Intercepts between strategic bombers and reconnaissance platforms over international airspace.
 Cross-Reference Multilateral Nodes: BLOC_NATO, CHOKE_BERING, CORRIDOR_NORTHERN_SEA_ROUTE
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_GB
 Common Reference: Russia ↔ United Kingdom
 Dyad ID: REL_GEO_RU_GEO_GB
@@ -433,7 +433,7 @@ Core Strategic Flashpoints:
   2. Air and naval reconnaissance missions in the Black Sea and North Atlantic.
 Cross-Reference Multilateral Nodes: BLOC_NATO, CHOKE_GIUK_GAP
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_DE
 Common Reference: Russia ↔ Federal Republic of Germany
 Dyad ID: REL_GEO_RU_GEO_DE
@@ -448,7 +448,7 @@ Core Strategic Flashpoints:
   2. Legal debates regarding the confiscation and utilization of frozen Russian sovereign assets.
 Cross-Reference Multilateral Nodes: BLOC_EU, BLOC_NATO, CHOKE_DANISH_STRAITS
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_FR
 Common Reference: Russia ↔ French Republic
 Dyad ID: REL_GEO_RU_GEO_FR
@@ -463,7 +463,7 @@ Core Strategic Flashpoints:
   2. Hybrid information and proxy operations across Francophone West Africa.
 Cross-Reference Multilateral Nodes: BLOC_EU, BLOC_NATO, BASIN_EAST_MED_DEEPSEA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_PL
 Common Reference: Russia ↔ Republic of Poland
 Dyad ID: REL_GEO_RU_GEO_PL
@@ -478,7 +478,7 @@ Core Strategic Flashpoints:
   2. Cross-border missile and drone incursions during Russian deep-strike operations in western Ukraine.
 Cross-Reference Multilateral Nodes: CHOKE_SUWALKI_GAP, ZONE_KALININGRAD_EXCLAVE, BLOC_NATO
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_GE
 Common Reference: Russia ↔ Georgia
 Dyad ID: REL_GEO_RU_GEO_GE
@@ -493,7 +493,7 @@ Core Strategic Flashpoints:
   2. Domestic Georgian legislative battles balancing pragmatic Russian normalization against Euro-Atlantic constitutional aspirations.
 Cross-Reference Multilateral Nodes: GEO_TR, GEO_AM, GEO_AZ
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_JP
 Common Reference: Russia ↔ Japan
 Dyad ID: REL_GEO_RU_GEO_JP
@@ -508,7 +508,7 @@ Core Strategic Flashpoints:
   2. Japanese naval surveillance of Russian Pacific Fleet movements through La Perouse and Tsugaru straits.
 Cross-Reference Multilateral Nodes: GEO_US, GEO_CN, CHOKE_BERING
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_FI
 Common Reference: Russia ↔ Republic of Finland
 Dyad ID: REL_GEO_RU_GEO_FI
@@ -523,7 +523,7 @@ Core Strategic Flashpoints:
   2. Protection of critical subsea power and telecom cables in the Gulf of Finland.
 Cross-Reference Multilateral Nodes: BLOC_NATO, CHOKE_DANISH_STRAITS
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_MD
 Common Reference: Russia ↔ Republic of Moldova
 Dyad ID: REL_GEO_RU_GEO_MD
@@ -544,7 +544,7 @@ Cross-Reference Multilateral Nodes: BLOC_EU, GEO_UA, GEO_RO
 # Total Vectors in Tier: 4 Dyads
 # ------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_LY
 Common Reference: Russia ↔ State of Libya
 Dyad ID: REL_GEO_RU_GEO_LY
@@ -559,7 +559,7 @@ Core Strategic Flashpoints:
   2. Periodic clashes over control of central oil crescent export terminals.
 Cross-Reference Multilateral Nodes: BASIN_EAST_MED_DEEPSEA, GEO_TR, GEO_EG
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_SD
 Common Reference: Russia ↔ Republic of the Sudan
 Dyad ID: REL_GEO_RU_GEO_SD
@@ -574,7 +574,7 @@ Core Strategic Flashpoints:
   2. Complex civil war dynamics involving regional sponsors across the Red Sea littoral.
 Cross-Reference Multilateral Nodes: CHOKE_BAB_EL_MANDEB, GEO_SA, GEO_EG
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_VE
 Common Reference: Russia ↔ Bolivarian Republic of Venezuela
 Dyad ID: REL_GEO_RU_GEO_VE
@@ -589,7 +589,7 @@ Core Strategic Flashpoints:
   2. US naval deployments and sanctions enforcement in the Caribbean Sea.
 Cross-Reference Multilateral Nodes: ZONE_ORINOCO_PETROLEUM, BASIN_ESSEQUIBO, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_RU ↔ GEO_CU
 Common Reference: Russia ↔ Republic of Cuba
 Dyad ID: REL_GEO_RU_GEO_CU

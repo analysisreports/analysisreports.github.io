@@ -93,7 +93,7 @@
 # Total Vectors in Tier: 8 Dyads
 # ------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_RU
 Common Reference: Iran ↔ Russian Federation
 Dyad ID: REL_GEO_IR_GEO_RU
@@ -108,7 +108,7 @@ Core Strategic Flashpoints:
   2. Naval and maritime security exercises in the Persian Gulf and Caspian Sea basin.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, BLOC_SCO, CORRIDOR_INSTC, BASIN_CASPIAN_SEA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_CN
 Common Reference: Iran ↔ People's Republic of China
 Dyad ID: REL_GEO_IR_GEO_CN
@@ -123,7 +123,7 @@ Core Strategic Flashpoints:
   2. Regional military escalation with Israel and Western strikes risking disruptions to Persian Gulf energy transit.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, BLOC_SCO, CHOKE_HORMUZ, CORRIDOR_INSTC
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_SY
 Common Reference: Iran ↔ Syrian Arab Republic
 Dyad ID: REL_GEO_IR_GEO_SY
@@ -138,7 +138,7 @@ Core Strategic Flashpoints:
   2. Full interdiction of Iranian weapons convoys attempting to transit from western Iraq into Lebanese territory.
 Cross-Reference Multilateral Nodes: GEO_TR, GEO_IL, BASIN_EAST_MED_DEEPSEA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_IQ
 Common Reference: Iran ↔ Republic of Iraq
 Dyad ID: REL_GEO_IR_GEO_IQ
@@ -153,7 +153,7 @@ Core Strategic Flashpoints:
   2. US Treasury financial restrictions and enforcement actions against Iraqi private banks facilitating illicit dollar transfers to Tehran.
 Cross-Reference Multilateral Nodes: GEO_US, GEO_IL, BLOC_OPEC
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_LB
 Common Reference: Iran ↔ Republic of Lebanon
 Dyad ID: REL_GEO_IR_GEO_LB
@@ -168,7 +168,7 @@ Core Strategic Flashpoints:
   2. Domestic Lebanese political deadlocks and sovereignty demands pushing to disarm sectarian militias.
 Cross-Reference Multilateral Nodes: GEO_IL, BASIN_EAST_MED_DEEPSEA, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_YE
 Common Reference: Iran ↔ Republic of Yemen
 Dyad ID: REL_GEO_IR_GEO_YE
@@ -183,7 +183,7 @@ Core Strategic Flashpoints:
   2. Cross-border ballistic missile attacks launched from Yemen striking central Israeli urban centers.
 Cross-Reference Multilateral Nodes: CHOKE_BAB_EL_MANDEB, GEO_US, GEO_SA, GEO_IL
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_KP
 Common Reference: Iran ↔ Democratic People's Republic of Korea
 Dyad ID: REL_GEO_IR_GEO_KP
@@ -198,7 +198,7 @@ Core Strategic Flashpoints:
   2. Secondary sanctions on dual-use procurement networks operating through East Asian intermediaries.
 Cross-Reference Multilateral Nodes: GEO_US, GEO_KR
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_VE
 Common Reference: Iran ↔ Bolivarian Republic of Venezuela
 Dyad ID: REL_GEO_IR_GEO_VE
@@ -219,7 +219,7 @@ Cross-Reference Multilateral Nodes: ZONE_ORINOCO_PETROLEUM, GEO_US
 # Total Vectors in Tier: 10 Dyads
 # ------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_TR
 Common Reference: Iran ↔ Republic of Türkiye
 Dyad ID: REL_GEO_IR_GEO_TR
@@ -234,7 +234,7 @@ Core Strategic Flashpoints:
   2. Iranian redlines opposing the extraterritorial Zangezur Corridor (CORRIDOR_ZANGEZUR) bypassing Iranian territory.
 Cross-Reference Multilateral Nodes: CORRIDOR_ZANGEZUR, BASIN_CASPIAN_SEA, BLOC_NATO
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_SA
 Common Reference: Iran ↔ Kingdom of Saudi Arabia
 Dyad ID: REL_GEO_IR_GEO_SA
@@ -249,7 +249,7 @@ Core Strategic Flashpoints:
   2. Maritime border delineation disputes regarding the shared Arash/Dorra offshore natural gas field.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, BLOC_OPEC, CHOKE_HORMUZ
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_AE
 Common Reference: Iran ↔ United Arab Emirates
 Dyad ID: REL_GEO_IR_GEO_AE
@@ -264,7 +264,7 @@ Core Strategic Flashpoints:
   2. Periodic diplomatic clashes over multilateral joint communiques regarding the sovereignty of the three Gulf islands.
 Cross-Reference Multilateral Nodes: CHOKE_HORMUZ, BLOC_BRICS, BLOC_OPEC
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_QA
 Common Reference: Iran ↔ State of Qatar
 Dyad ID: REL_GEO_IR_GEO_QA
@@ -279,7 +279,7 @@ Core Strategic Flashpoints:
   2. Management of shared gas extraction rates and cross-boundary reservoir pressure maintenance.
 Cross-Reference Multilateral Nodes: CHOKE_HORMUZ, BLOC_OPEC, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_OM
 Common Reference: Iran ↔ Sultanate of Oman
 Dyad ID: REL_GEO_IR_GEO_OM
@@ -294,7 +294,7 @@ Core Strategic Flashpoints:
   2. Western sanctions complicating planned cross-Gulf energy pipeline construction.
 Cross-Reference Multilateral Nodes: CHOKE_HORMUZ, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_IN
 Common Reference: Iran ↔ Republic of India
 Dyad ID: REL_GEO_IR_GEO_IN
@@ -309,7 +309,7 @@ Core Strategic Flashpoints:
   2. Indian diplomatic balancing between strategic partnerships with Israel/US and long-term transit investments in Iran.
 Cross-Reference Multilateral Nodes: CORRIDOR_INSTC, BLOC_BRICS, BLOC_SCO, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_PK
 Common Reference: Iran ↔ Islamic Republic of Pakistan
 Dyad ID: REL_GEO_IR_GEO_PK
@@ -324,7 +324,7 @@ Core Strategic Flashpoints:
   2. Pakistani diplomatic balancing between historic security dependency on Saudi Arabia/US and border stability with Iran.
 Cross-Reference Multilateral Nodes: BLOC_SCO, CORRIDOR_CPEC, GEO_SA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_AM
 Common Reference: Iran ↔ Republic of Armenia
 Dyad ID: REL_GEO_IR_GEO_AM
@@ -339,7 +339,7 @@ Core Strategic Flashpoints:
   2. Expanding Western and EU civilian monitoring missions along the Armenian-Azerbaijani border near Iran.
 Cross-Reference Multilateral Nodes: CORRIDOR_ZANGEZUR, GEO_AZ, GEO_TR, GEO_RU
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_AZ
 Common Reference: Iran ↔ Republic of Azerbaijan
 Dyad ID: REL_GEO_IR_GEO_AZ
@@ -354,7 +354,7 @@ Core Strategic Flashpoints:
   2. Intelligence and security incidents surrounding alleged Israeli surveillance platforms stationed near the Iranian frontier.
 Cross-Reference Multilateral Nodes: CORRIDOR_ZANGEZUR, CORRIDOR_INSTC, GEO_IL, GEO_TR
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_TM
 Common Reference: Iran ↔ Turkmenistan
 Dyad ID: REL_GEO_IR_GEO_TM
@@ -375,7 +375,7 @@ Cross-Reference Multilateral Nodes: BASIN_CASPIAN_SEA, BLOC_SCO, GEO_AZ
 # Total Vectors in Tier: 5 Dyads
 # ------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_IL
 Common Reference: Iran ↔ State of Israel
 Dyad ID: REL_GEO_IR_GEO_IL
@@ -390,7 +390,7 @@ Core Strategic Flashpoints:
   2. Iranian saturation ballistic missile salvos targeting Israeli military airbases, intelligence centers, and critical power infrastructure.
 Cross-Reference Multilateral Nodes: GEO_US, CHOKE_HORMUZ, BASIN_EAST_MED_DEEPSEA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_US
 Common Reference: Iran ↔ United States of America
 Dyad ID: REL_GEO_IR_GEO_US
@@ -405,7 +405,7 @@ Core Strategic Flashpoints:
   2. Potential breakout toward weapons-grade 90% enriched uranium and resultant preemptive military strikes.
 Cross-Reference Multilateral Nodes: CHOKE_HORMUZ, BLOC_OPEC, GEO_IL
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_GB
 Common Reference: Iran ↔ United Kingdom
 Dyad ID: REL_GEO_IR_GEO_GB
@@ -420,7 +420,7 @@ Core Strategic Flashpoints:
   2. Designation of the Islamic Revolutionary Guard Corps (IRGC) as a proscribed terrorist organization in the UK.
 Cross-Reference Multilateral Nodes: BLOC_NATO, CHOKE_HORMUZ, GEO_US
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_FR
 Common Reference: Iran ↔ French Republic
 Dyad ID: REL_GEO_IR_GEO_FR
@@ -435,7 +435,7 @@ Core Strategic Flashpoints:
   2. French maritime naval deployments participating in European-led Gulf surveillance missions (EMASOH).
 Cross-Reference Multilateral Nodes: BLOC_EU, BASIN_EAST_MED_DEEPSEA, GEO_LB
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_DE
 Common Reference: Iran ↔ Federal Republic of Germany
 Dyad ID: REL_GEO_IR_GEO_DE
@@ -456,7 +456,7 @@ Cross-Reference Multilateral Nodes: BLOC_EU, GEO_US
 # Total Vectors in Tier: 2 Dyads
 # ------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_AF
 Common Reference: Iran ↔ Islamic Emirate of Afghanistan
 Dyad ID: REL_GEO_IR_GEO_AF
@@ -471,7 +471,7 @@ Core Strategic Flashpoints:
   2. Severe humanitarian and demographic strains caused by large-scale deportations of undocumented Afghan migrants.
 Cross-Reference Multilateral Nodes: GEO_PK, BLOC_SCO
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_IR ↔ GEO_BH
 Common Reference: Iran ↔ Kingdom of Bahrain
 Dyad ID: REL_GEO_IR_GEO_BH

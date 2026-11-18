@@ -90,7 +90,7 @@
 # Total Vectors in Tier: 23 Dyads
 # ------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_GB
 Common Reference: United States ↔ United Kingdom
 Dyad ID: REL_GEO_US_GEO_GB
@@ -106,7 +106,7 @@ Core Strategic Flashpoints:
   3. Global financial clearing standards and cross-border sanctions enforcement.
 Cross-Reference Multilateral Nodes: BLOC_NATO, BLOC_AUKUS, CHOKE_GIUK_GAP
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_CA
 Common Reference: United States ↔ Canada
 Dyad ID: REL_GEO_US_GEO_CA
@@ -122,7 +122,7 @@ Core Strategic Flashpoints:
   3. Border trade compliance and tariff dispute adjudication under BLOC_USMCA.
 Cross-Reference Multilateral Nodes: BLOC_USMCA, BLOC_NATO
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_AU
 Common Reference: United States ↔ Commonwealth of Australia
 Dyad ID: REL_GEO_US_GEO_AU
@@ -138,7 +138,7 @@ Core Strategic Flashpoints:
   3. Supply chain decoupling from Chinese critical mineral processing monopolies.
 Cross-Reference Multilateral Nodes: BLOC_AUKUS, BLOC_QUAD, CHOKE_LOMBOK_MAKASSAR
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_NZ
 Common Reference: United States ↔ New Zealand
 Dyad ID: REL_GEO_US_GEO_NZ
@@ -154,7 +154,7 @@ Core Strategic Flashpoints:
   3. Potential New Zealand accession to AUKUS Pillar II advanced technology collaboration.
 Cross-Reference Multilateral Nodes: BLOC_AUKUS, GEO_AU
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_IL
 Common Reference: United States ↔ State of Israel
 Dyad ID: REL_GEO_US_GEO_IL
@@ -170,7 +170,7 @@ Core Strategic Flashpoints:
   3. Preservation of US qualitative military edge (QME) across Middle Eastern arms transfer deals.
 Cross-Reference Multilateral Nodes: GEO_IR, GEO_LB, BASIN_EAST_MED_DEEPSEA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_JP
 Common Reference: United States ↔ Japan
 Dyad ID: REL_GEO_US_GEO_JP
@@ -186,7 +186,7 @@ Core Strategic Flashpoints:
   3. Disruption of maritime chokepoints along First Island Chain (CHOKE_TAIWAN, CHOKE_LUZON).
 Cross-Reference Multilateral Nodes: BLOC_QUAD, CHOKE_TAIWAN, CHOKE_LUZON
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_KR
 Common Reference: United States ↔ Republic of Korea
 Dyad ID: REL_GEO_US_GEO_KR
@@ -202,7 +202,7 @@ Core Strategic Flashpoints:
   3. Transition timeline for wartime operational control (OPCON) transfer.
 Cross-Reference Multilateral Nodes: GEO_KP, GEO_JP
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_DE
 Common Reference: United States ↔ Federal Republic of Germany
 Dyad ID: REL_GEO_US_GEO_DE
@@ -218,7 +218,7 @@ Core Strategic Flashpoints:
   3. Long-range conventional precision strike weapons deployment on German soil.
 Cross-Reference Multilateral Nodes: BLOC_NATO, BLOC_EU, INST_ECB_EU
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_FR
 Common Reference: United States ↔ French Republic
 Dyad ID: REL_GEO_US_GEO_FR
@@ -234,7 +234,7 @@ Core Strategic Flashpoints:
   3. Security vacuum in Francophone West Africa following military coups and Russian PMC entry.
 Cross-Reference Multilateral Nodes: BLOC_NATO, BLOC_EU
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_IT
 Common Reference: United States ↔ Italian Republic
 Dyad ID: REL_GEO_US_GEO_IT
@@ -250,7 +250,7 @@ Core Strategic Flashpoints:
   3. Defense industrial integration within NATO and GCAP next-gen fighter program.
 Cross-Reference Multilateral Nodes: BLOC_NATO, BLOC_EU, CHOKE_GIBRALTAR
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_PL
 Common Reference: United States ↔ Republic of Poland
 Dyad ID: REL_GEO_US_GEO_PL
@@ -266,7 +266,7 @@ Core Strategic Flashpoints:
   3. Logistical transport and missile defense shield operations along Ukrainian border.
 Cross-Reference Multilateral Nodes: BLOC_NATO, CHOKE_SUWALKI_GAP, GEO_UA, GEO_BY
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_LT
 Common Reference: United States ↔ Republic of Lithuania
 Dyad ID: REL_GEO_US_GEO_LT
@@ -282,7 +282,7 @@ Core Strategic Flashpoints:
   3. Hybrid border provocations and electronic jamming from Belarusian territory.
 Cross-Reference Multilateral Nodes: BLOC_NATO, CHOKE_SUWALKI_GAP, CORRIDOR_KALININGRAD_TRANSIT, BLOC_BALTIC_ASSEMBLY
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_LV
 Common Reference: United States ↔ Republic of Latvia
 Dyad ID: REL_GEO_US_GEO_LV
@@ -298,7 +298,7 @@ Core Strategic Flashpoints:
   3. Logistical rail development connecting Baltic states to Europe (CORRIDOR_RAIL_BALTICA).
 Cross-Reference Multilateral Nodes: BLOC_NATO, CORRIDOR_RAIL_BALTICA, BLOC_BALTIC_ASSEMBLY
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_EE
 Common Reference: United States ↔ Republic of Estonia
 Dyad ID: REL_GEO_US_GEO_EE
@@ -314,7 +314,7 @@ Core Strategic Flashpoints:
   3. Rapid implementation of national defense spending exceeding 3% of GDP.
 Cross-Reference Multilateral Nodes: BLOC_NATO, BLOC_BALTIC_ASSEMBLY
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_NL
 Common Reference: United States ↔ Kingdom of the Netherlands
 Dyad ID: REL_GEO_US_GEO_NL
@@ -330,7 +330,7 @@ Core Strategic Flashpoints:
   3. European air defense integration through Patriot and advanced naval frigates.
 Cross-Reference Multilateral Nodes: BLOC_NATO, BLOC_EU, GEO_CN
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_NO
 Common Reference: United States ↔ Kingdom of Norway
 Dyad ID: REL_GEO_US_GEO_NO
@@ -346,7 +346,7 @@ Core Strategic Flashpoints:
   3. Securing continental Europe's subsea energy pipeline grid against underwater sabotage.
 Cross-Reference Multilateral Nodes: BLOC_NATO, CHOKE_GIUK_GAP, GEO_RU
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_SE
 Common Reference: United States ↔ Kingdom of Sweden
 Dyad ID: REL_GEO_US_GEO_SE
@@ -362,7 +362,7 @@ Core Strategic Flashpoints:
   3. Interoperability of Swedish air force with US Nordic joint air command doctrine.
 Cross-Reference Multilateral Nodes: BLOC_NATO, BLOC_EU
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_FI
 Common Reference: United States ↔ Republic of Finland
 Dyad ID: REL_GEO_US_GEO_FI
@@ -378,7 +378,7 @@ Core Strategic Flashpoints:
   3. Russian deployment of new military district forces along the Finnish frontier.
 Cross-Reference Multilateral Nodes: BLOC_NATO, GEO_RU
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_DK
 Common Reference: United States ↔ Kingdom of Denmark
 Dyad ID: REL_GEO_US_GEO_DK
@@ -394,7 +394,7 @@ Core Strategic Flashpoints:
   3. Defense modernization of the Faroe-Iceland-Greenland surveillance gap.
 Cross-Reference Multilateral Nodes: BLOC_NATO, CHOKE_DANISH_STRAITS
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_RO
 Common Reference: United States ↔ Romania
 Dyad ID: REL_GEO_US_GEO_RO
@@ -410,7 +410,7 @@ Core Strategic Flashpoints:
   3. Stability of neighboring Moldova and Transnistria Russian garrison.
 Cross-Reference Multilateral Nodes: BLOC_NATO, CORRIDOR_BLACK_SEA, GEO_UA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_GR
 Common Reference: United States ↔ Hellenic Republic
 Dyad ID: REL_GEO_US_GEO_GR
@@ -426,7 +426,7 @@ Core Strategic Flashpoints:
   3. Logistical throughput of military material through Alexandroupoli bypassing Turkish Straits.
 Cross-Reference Multilateral Nodes: BLOC_NATO, GEO_TR, BASIN_EAST_MED_DEEPSEA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_ES
 Common Reference: United States ↔ Kingdom of Spain
 Dyad ID: REL_GEO_US_GEO_ES
@@ -442,7 +442,7 @@ Core Strategic Flashpoints:
   3. Relations with North African states (Algeria gas pipeline vs. Morocco Western Sahara recognition).
 Cross-Reference Multilateral Nodes: BLOC_NATO, BLOC_EU, CHOKE_GIBRALTAR
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_BE
 Common Reference: United States ↔ Kingdom of Belgium
 Dyad ID: REL_GEO_US_GEO_BE
@@ -464,7 +464,7 @@ Cross-Reference Multilateral Nodes: BLOC_NATO, BLOC_EU
 # Total Vectors in Tier: 32 Dyads
 # ------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_TR
 Common Reference: United States ↔ Republic of Türkiye
 Dyad ID: REL_GEO_US_GEO_TR
@@ -480,7 +480,7 @@ Core Strategic Flashpoints:
   3. Eastern Mediterranean maritime jurisdiction (EEZ) disputes and Cyprus balance of power.
 Cross-Reference Multilateral Nodes: BLOC_NATO, CHOKE_TURKISH_STRAITS, CORRIDOR_ZANGEZUR
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_UA
 Common Reference: United States ↔ Ukraine
 Dyad ID: REL_GEO_US_GEO_UA
@@ -496,7 +496,7 @@ Core Strategic Flashpoints:
   3. Post-war reconstruction financing and long-term bilateral security commitments.
 Cross-Reference Multilateral Nodes: GEO_RU, CORRIDOR_BLACK_SEA, BLOC_NATO
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_TW
 Common Reference: United States ↔ Taiwan
 Dyad ID: REL_GEO_US_GEO_TW
@@ -512,7 +512,7 @@ Core Strategic Flashpoints:
   3. Diplomatic status and US high-level official engagement protocols.
 Cross-Reference Multilateral Nodes: GEO_CN, CHOKE_TAIWAN, CHOKE_LUZON
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_IN
 Common Reference: United States ↔ Republic of India
 Dyad ID: REL_GEO_US_GEO_IN
@@ -528,7 +528,7 @@ Core Strategic Flashpoints:
   3. US allegations of extra-territorial intelligence operations vs. Indian domestic security priorities.
 Cross-Reference Multilateral Nodes: BLOC_QUAD, BLOC_BRICS, CHOKE_MALACCA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_SA
 Common Reference: United States ↔ Kingdom of Saudi Arabia
 Dyad ID: REL_GEO_US_GEO_SA
@@ -544,7 +544,7 @@ Core Strategic Flashpoints:
   3. Oil pricing policy disputes during US electoral cycles and inflation spikes.
 Cross-Reference Multilateral Nodes: BLOC_OPEC, BLOC_BRICS, CHOKE_HORMUZ
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_AE
 Common Reference: United States ↔ United Arab Emirates
 Dyad ID: REL_GEO_US_GEO_AE
@@ -560,7 +560,7 @@ Core Strategic Flashpoints:
   3. Security of maritime energy traffic transiting Strait of Hormuz (CHOKE_HORMUZ).
 Cross-Reference Multilateral Nodes: CHOKE_HORMUZ, BLOC_BRICS, BLOC_OPEC
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_QA
 Common Reference: United States ↔ State of Qatar
 Dyad ID: REL_GEO_US_GEO_QA
@@ -576,7 +576,7 @@ Core Strategic Flashpoints:
   3. Expansion of North Field LNG export terminals and long-term contracts with Asian/European buyers.
 Cross-Reference Multilateral Nodes: CHOKE_HORMUZ, GEO_IR
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_EG
 Common Reference: United States ↔ Arab Republic of Egypt
 Dyad ID: REL_GEO_US_GEO_EG
@@ -592,7 +592,7 @@ Core Strategic Flashpoints:
   3. Grand Ethiopian Renaissance Dam (GERD) dispute and Nile River water security.
 Cross-Reference Multilateral Nodes: CHOKE_SUEZ, CHOKE_BAB_EL_MANDEB, GEO_IL
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_JO
 Common Reference: United States ↔ Hashemite Kingdom of Jordan
 Dyad ID: REL_GEO_US_GEO_JO
@@ -608,7 +608,7 @@ Core Strategic Flashpoints:
   3. Internal economic pressures from Syrian and Palestinian refugee populations.
 Cross-Reference Multilateral Nodes: GEO_IL, GEO_SY, GEO_IQ
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_IQ
 Common Reference: United States ↔ Republic of Iraq
 Dyad ID: REL_GEO_US_GEO_IQ
@@ -624,7 +624,7 @@ Core Strategic Flashpoints:
   3. Federal Reserve compliance scrutiny on Iraqi private commercial banks regarding dollar smuggling to GEO_IR.
 Cross-Reference Multilateral Nodes: GEO_IR, INST_NY_FED, BLOC_OPEC
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_KW
 Common Reference: United States ↔ State of Kuwait
 Dyad ID: REL_GEO_US_GEO_KW
@@ -640,7 +640,7 @@ Core Strategic Flashpoints:
   3. Logistical support for US forces operating across the northern Persian Gulf theater.
 Cross-Reference Multilateral Nodes: BLOC_OPEC, CHOKE_HORMUZ, GEO_IQ
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_BH
 Common Reference: United States ↔ Kingdom of Bahrain
 Dyad ID: REL_GEO_US_GEO_BH
@@ -656,7 +656,7 @@ Core Strategic Flashpoints:
   3. Securing merchant navigation through Strait of Hormuz (CHOKE_HORMUZ).
 Cross-Reference Multilateral Nodes: CHOKE_HORMUZ, GEO_IL, GEO_IR
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_OM
 Common Reference: United States ↔ Sultanate of Oman
 Dyad ID: REL_GEO_US_GEO_OM
@@ -672,7 +672,7 @@ Core Strategic Flashpoints:
   3. Succession and fiscal consolidation under Sultan Haitham bin Tarik.
 Cross-Reference Multilateral Nodes: CHOKE_HORMUZ, GEO_IR
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_PH
 Common Reference: United States ↔ Republic of the Philippines
 Dyad ID: REL_GEO_US_GEO_PH
@@ -688,7 +688,7 @@ Core Strategic Flashpoints:
   3. Cross-strait contingency preparation directly south of GEO_TW.
 Cross-Reference Multilateral Nodes: CHOKE_LUZON, GEO_TW, GEO_CN
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_SG
 Common Reference: United States ↔ Republic of Singapore
 Dyad ID: REL_GEO_US_GEO_SG
@@ -704,7 +704,7 @@ Core Strategic Flashpoints:
   3. Regional AI chip export controls enforcement and transshipment scrutiny.
 Cross-Reference Multilateral Nodes: CHOKE_MALACCA, GEO_CN
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_TH
 Common Reference: United States ↔ Kingdom of Thailand
 Dyad ID: REL_GEO_US_GEO_TH
@@ -720,7 +720,7 @@ Core Strategic Flashpoints:
   3. US congressional scrutiny over domestic electoral stability and monarchical legal structures.
 Cross-Reference Multilateral Nodes: GEO_CN, GEO_MM
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_VN
 Common Reference: United States ↔ Socialist Republic of Vietnam
 Dyad ID: REL_GEO_US_GEO_VN
@@ -736,7 +736,7 @@ Core Strategic Flashpoints:
   3. Vietnamese military equipment procurement diversification away from historic Russian suppliers.
 Cross-Reference Multilateral Nodes: GEO_CN, CHOKE_MALACCA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_ID
 Common Reference: United States ↔ Republic of Indonesia
 Dyad ID: REL_GEO_US_GEO_ID
@@ -752,7 +752,7 @@ Core Strategic Flashpoints:
   3. US Inflation Reduction Act (IRA) electric vehicle tax credit eligibility for Indonesian nickel.
 Cross-Reference Multilateral Nodes: CHOKE_LOMBOK_MAKASSAR, BLOC_BRICS, GEO_CN
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_MY
 Common Reference: United States ↔ Malaysia
 Dyad ID: REL_GEO_US_GEO_MY
@@ -768,7 +768,7 @@ Core Strategic Flashpoints:
   3. Piracy, smuggling, and maritime traffic management along Strait of Malacca (CHOKE_MALACCA).
 Cross-Reference Multilateral Nodes: CHOKE_MALACCA, BLOC_BRICS, GEO_CN
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_MX
 Common Reference: United States ↔ United Mexican States
 Dyad ID: REL_GEO_US_GEO_MX
@@ -784,7 +784,7 @@ Core Strategic Flashpoints:
   3. Dispute over Chinese automotive manufacturing investments near the US border.
 Cross-Reference Multilateral Nodes: BLOC_USMCA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_BR
 Common Reference: United States ↔ Federative Republic of Brazil
 Dyad ID: REL_GEO_US_GEO_BR
@@ -800,7 +800,7 @@ Core Strategic Flashpoints:
   3. Chinese commercial dominance as Brazil's primary export destination.
 Cross-Reference Multilateral Nodes: BLOC_BRICS
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_CO
 Common Reference: United States ↔ Republic of Colombia
 Dyad ID: REL_GEO_US_GEO_CO
@@ -816,7 +816,7 @@ Core Strategic Flashpoints:
   3. Diplomatic rupture with Israel over Gaza and impact on Colombian military hardware maintenance.
 Cross-Reference Multilateral Nodes: GEO_VE, CHOKE_PANAMA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_CL
 Common Reference: United States ↔ Republic of Chile
 Dyad ID: REL_GEO_US_GEO_CL
@@ -832,7 +832,7 @@ Core Strategic Flashpoints:
   3. Pacific maritime security and Antarctic territorial research cooperation.
 Cross-Reference Multilateral Nodes: ORG_OECD
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_AR
 Common Reference: United States ↔ Argentine Republic
 Dyad ID: REL_GEO_US_GEO_AR
@@ -848,7 +848,7 @@ Core Strategic Flashpoints:
   3. Macroeconomic dollarization debate and foreign reserve stabilization.
 Cross-Reference Multilateral Nodes: ORG_IMF, BLOC_BRICS
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_PA
 Common Reference: United States ↔ Republic of Panama
 Dyad ID: REL_GEO_US_GEO_PA
@@ -864,7 +864,7 @@ Core Strategic Flashpoints:
   3. Biometric screening and deportation logistics along the southern border.
 Cross-Reference Multilateral Nodes: CHOKE_PANAMA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_NG
 Common Reference: United States ↔ Federal Republic of Nigeria
 Dyad ID: REL_GEO_US_GEO_NG
@@ -880,7 +880,7 @@ Core Strategic Flashpoints:
   3. Counter-insurgency operations against Boko Haram and ISWAP across Lake Chad basin.
 Cross-Reference Multilateral Nodes: BLOC_OPEC
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_KE
 Common Reference: United States ↔ Republic of Kenya
 Dyad ID: REL_GEO_US_GEO_KE
@@ -896,7 +896,7 @@ Core Strategic Flashpoints:
   3. Managing heavy sovereign debt liabilities to Chinese state lenders.
 Cross-Reference Multilateral Nodes: GEO_SO, GEO_HT
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_ZA
 Common Reference: United States ↔ Republic of South Africa
 Dyad ID: REL_GEO_US_GEO_ZA
@@ -912,7 +912,7 @@ Core Strategic Flashpoints:
   3. Domestic energy sector crisis (Eskom load-shedding) and just energy transition funding.
 Cross-Reference Multilateral Nodes: BLOC_BRICS, GEO_IL
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_MA
 Common Reference: United States ↔ Kingdom of Morocco
 Dyad ID: REL_GEO_US_GEO_MA
@@ -928,7 +928,7 @@ Core Strategic Flashpoints:
   3. Securing the southern approaches to Strait of Gibraltar (CHOKE_GIBRALTAR).
 Cross-Reference Multilateral Nodes: CHOKE_GIBRALTAR, GEO_IL
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_AZ
 Common Reference: United States ↔ Republic of Azerbaijan
 Dyad ID: REL_GEO_US_GEO_AZ
@@ -944,7 +944,7 @@ Core Strategic Flashpoints:
   3. Deterrence against Iranian military posturing along the Arax river frontier.
 Cross-Reference Multilateral Nodes: BASIN_CASPIAN_SEA, CORRIDOR_ZANGEZUR, GEO_AM, GEO_IL
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_KZ
 Common Reference: United States ↔ Republic of Kazakhstan
 Dyad ID: REL_GEO_US_GEO_KZ
@@ -960,7 +960,7 @@ Core Strategic Flashpoints:
   3. Enforcement of secondary sanctions preventing Western dual-use tech diversion to Russian military industry.
 Cross-Reference Multilateral Nodes: BASIN_CASPIAN_SEA, GEO_RU, GEO_CN
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_AM
 Common Reference: United States ↔ Republic of Armenia
 Dyad ID: REL_GEO_US_GEO_AM
@@ -982,7 +982,7 @@ Cross-Reference Multilateral Nodes: CORRIDOR_ZANGEZUR, GEO_AZ, GEO_RU
 # Total Vectors in Tier: 8 Dyads
 # ------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_CN
 Common Reference: United States ↔ People's Republic of China
 Dyad ID: REL_GEO_US_GEO_CN
@@ -998,7 +998,7 @@ Core Strategic Flashpoints:
   3. Strategic maritime transit choke points, primarily CHOKE_MALACCA dependency.
 Cross-Reference Multilateral Nodes: CHOKE_MALACCA, BLOC_BRICS, BLOC_NATO, GEO_TW
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_RU
 Common Reference: United States ↔ Russian Federation
 Dyad ID: REL_GEO_US_GEO_RU
@@ -1014,7 +1014,7 @@ Core Strategic Flashpoints:
   3. Strategic nuclear posture and hypersonic weapons deployment in Europe/Kaliningrad.
 Cross-Reference Multilateral Nodes: BLOC_NATO, BLOC_BRICS, INST_FED_US, INST_CBR_RU, GEO_UA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_IR
 Common Reference: United States ↔ Islamic Republic of Iran
 Dyad ID: REL_GEO_US_GEO_IR
@@ -1030,7 +1030,7 @@ Core Strategic Flashpoints:
   3. Maritime harassment and seizure of commercial tankers in the Persian Gulf and Gulf of Oman.
 Cross-Reference Multilateral Nodes: CHOKE_HORMUZ, GEO_IL, GEO_YE
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_KP
 Common Reference: United States ↔ Democratic People's Republic of Korea
 Dyad ID: REL_GEO_US_GEO_KP
@@ -1046,7 +1046,7 @@ Core Strategic Flashpoints:
   3. Cyber-theft operations laundering cryptocurrency to fund covert weapons development.
 Cross-Reference Multilateral Nodes: GEO_KR, GEO_RU, GEO_JP
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_CU
 Common Reference: United States ↔ Republic of Cuba
 Dyad ID: REL_GEO_US_GEO_CU
@@ -1062,7 +1062,7 @@ Core Strategic Flashpoints:
   3. Russian naval port calls and joint exercises in Havana harbor.
 Cross-Reference Multilateral Nodes: GEO_RU, GEO_CN, GEO_VE
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_VE
 Common Reference: United States ↔ Bolivarian Republic of Venezuela
 Dyad ID: REL_GEO_US_GEO_VE
@@ -1078,7 +1078,7 @@ Core Strategic Flashpoints:
   3. Venezuelan territorial claims over Guyana's Essequibo oil basin (BASIN_ESSEQUIBO).
 Cross-Reference Multilateral Nodes: BASIN_ESSEQUIBO, GEO_RU, GEO_CN, GEO_IR
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_BY
 Common Reference: United States ↔ Republic of Belarus
 Dyad ID: REL_GEO_US_GEO_BY
@@ -1094,7 +1094,7 @@ Core Strategic Flashpoints:
   3. Total political and military integration into the Russia-Belarus Union State architecture.
 Cross-Reference Multilateral Nodes: GEO_RU, GEO_PL, GEO_LT, CHOKE_SUWALKI_GAP
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_NI
 Common Reference: United States ↔ Republic of Nicaragua
 Dyad ID: REL_GEO_US_GEO_NI
@@ -1116,7 +1116,7 @@ Cross-Reference Multilateral Nodes: GEO_RU, GEO_CN, GEO_CU
 # Total Vectors in Tier: 10 Dyads
 # ------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_SY
 Common Reference: United States ↔ Syrian Arab Republic
 Dyad ID: REL_GEO_US_GEO_SY
@@ -1132,7 +1132,7 @@ Core Strategic Flashpoints:
   3. Controlled humanitarian and financial rehabilitation access conditioned on inclusive transitional constitutional governance.
 Cross-Reference Multilateral Nodes: GEO_TR, GEO_IL, GEO_RU, GEO_IR
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_YE
 Common Reference: United States ↔ Republic of Yemen
 Dyad ID: REL_GEO_US_GEO_YE
@@ -1148,7 +1148,7 @@ Core Strategic Flashpoints:
   3. Fragile UN-brokered truce mechanisms between Saudi Arabia and Houthi authorities.
 Cross-Reference Multilateral Nodes: CHOKE_BAB_EL_MANDEB, CHOKE_SUEZ, GEO_IR, GEO_SA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_LB
 Common Reference: United States ↔ Lebanese Republic
 Dyad ID: REL_GEO_US_GEO_LB
@@ -1164,7 +1164,7 @@ Core Strategic Flashpoints:
   3. Enforcement of UN Security Council Resolution 1701 and disarmament south of the Litani River.
 Cross-Reference Multilateral Nodes: GEO_IL, GEO_IR, BASIN_EAST_MED_DEEPSEA
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_AF
 Common Reference: United States ↔ Islamic Emirate of Afghanistan
 Dyad ID: REL_GEO_US_GEO_AF
@@ -1180,7 +1180,7 @@ Core Strategic Flashpoints:
   3. Chinese commercial investment in Afghan lithium deposits and Aynak copper mine.
 Cross-Reference Multilateral Nodes: GEO_PK, GEO_CN
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_LY
 Common Reference: United States ↔ State of Libya
 Dyad ID: REL_GEO_US_GEO_LY
@@ -1196,7 +1196,7 @@ Core Strategic Flashpoints:
   3. Russian military expansion establishing naval logistics access along the central Mediterranean coast.
 Cross-Reference Multilateral Nodes: BLOC_OPEC, GEO_RU, GEO_TR, GEO_IT
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_SD
 Common Reference: United States ↔ Republic of the Sudan
 Dyad ID: REL_GEO_US_GEO_SD
@@ -1212,7 +1212,7 @@ Core Strategic Flashpoints:
   3. Russian pursuit of a formal naval base agreement at Port Sudan.
 Cross-Reference Multilateral Nodes: GEO_EG, GEO_AE, GEO_RU, CHOKE_BAB_EL_MANDEB
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_SO
 Common Reference: United States ↔ Federal Republic of Somalia
 Dyad ID: REL_GEO_US_GEO_SO
@@ -1228,7 +1228,7 @@ Core Strategic Flashpoints:
   3. Turkish-Somali defense and economic cooperation agreement securing maritime EEZ.
 Cross-Reference Multilateral Nodes: GEO_TR, CHOKE_BAB_EL_MANDEB
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_HT
 Common Reference: United States ↔ Republic of Haiti
 Dyad ID: REL_GEO_US_GEO_HT
@@ -1244,7 +1244,7 @@ Core Strategic Flashpoints:
   3. Establishment of transitional governance mechanisms to organize credible presidential elections.
 Cross-Reference Multilateral Nodes: GEO_KE
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_PK
 Common Reference: United States ↔ Islamic Republic of Pakistan
 Dyad ID: REL_GEO_US_GEO_PK
@@ -1260,7 +1260,7 @@ Core Strategic Flashpoints:
   3. Chinese military footprint expansion at Gwadar deepwater port.
 Cross-Reference Multilateral Nodes: GEO_IN, GEO_CN, GEO_AF, ORG_IMF
 
---------------------------------------------------------------------------------
+---
 Bilateral Dyad: GEO_US ↔ GEO_MM
 Common Reference: United States ↔ Republic of the Union of Myanmar
 Dyad ID: REL_GEO_US_GEO_MM
