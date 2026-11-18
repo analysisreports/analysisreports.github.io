@@ -86,19 +86,17 @@ MONITORED_CORRIDORS = [
     }
 ]
 
-def fetch_census_endpoint(flow: str, cty_codes: List[str], api_key: str, time_param: str) -> Optional[List[List[str]]]:
+def fetch_corridor_observations(flow: str, cty_code: str, api_key: str) -> Optional[List[Dict[str, Any]]]:
     """
-    Fetches international trade data from US Census Bureau API.
+    Fetches the most recent semiconductor trade observations for a single strategic corridor.
+    Uses FRED-like limited window (from 2024 to present) for high speed and zero timeouts.
     flow: 'imports' or 'exports'
     """
-    cty_str = ",".join(cty_codes)
     val_field = "GEN_VAL_MO" if flow == "imports" else "ALL_VAL_MO"
-    yr_field = "GEN_VAL_YR" if flow == "imports" else "ALL_VAL_YR"
     
     url = (
         f"https://api.census.gov/data/timeseries/intltrade/{flow}/naics"
-        f"?get=NAICS,CTY_CODE,CTY_NAME,{val_field},{yr_field}&time={time_param}"
-        f"&NAICS=3344&CTY_CODE={cty_str}&key={api_key}"
+        f"?get={val_field},CTY_NAME&time=from+2024-01&NAICS=3344&CTY_CODE={cty_code}&key={api_key}"
     )
     
     req = urllib.request.Request(
@@ -106,18 +104,28 @@ def fetch_census_endpoint(flow: str, cty_codes: List[str], api_key: str, time_pa
         headers={"User-Agent": "AnalysisReports-Census-Engine/3.0 (ORCID:0009-0005-6130-8003)"}
     )
     try:
-        with urllib.request.urlopen(req, timeout=25) as resp:
+        with urllib.request.urlopen(req, timeout=15) as resp:
             content = resp.read().decode("utf-8")
             if "Missing Key" in content or "Invalid Key" in content:
                 print(f"  [WARN] Census API Authentication Error: Invalid or missing API key.")
                 return None
             data = json.loads(content)
-            return data
-    except urllib.error.HTTPError as e:
-        print(f"  [WARN] Census API HTTP {e.code} for {flow}: {e.reason}")
-        return None
+            if data and len(data) > 1:
+                header = data[0]
+                val_idx = 0
+                time_idx = header.index("time") if "time" in header else 2
+                obs = []
+                for row in data[1:]:
+                    try:
+                        v = float(row[val_idx])
+                        d = str(row[time_idx]).strip()
+                        obs.append({"date": d, "value": v})
+                    except (ValueError, TypeError):
+                        continue
+                return sorted(obs, key=lambda x: x["date"])
+            return None
     except Exception as e:
-        print(f"  [WARN] Census API connection error for {flow}: {e}")
+        print(f"  [WARN] Census API connection error for {flow} (CTY {cty_code}): {e}")
         return None
 
 def build_outputs(api_key: str = "") -> Tuple[str, Dict[str, Any]]:
@@ -134,79 +142,35 @@ def build_outputs(api_key: str = "") -> Tuple[str, Dict[str, Any]]:
             existing_json = {}
 
     corridors_output = {}
+    existing_corridors = existing_json.get("corridors", {})
     total_val_imp_global = 0.0
     total_val_exp_global = 0.0
     sync_status = "SUCCESS" if api_key else "STANDBY_UNCONFIGURED_KEY"
 
-    if api_key:
-        current_year = datetime.datetime.now(datetime.timezone.utc).year
-        # Query monthly window from previous year to current year
-        time_query = f"from+{current_year - 1}-01+to+{current_year}-12"
-        cty_codes = [c["cty_code"] for c in MONITORED_CORRIDORS]
-        
-        print(f"[*] Querying U.S. Census Imports API for NAICS 3344 ({time_query})...")
-        raw_imports = fetch_census_endpoint("imports", cty_codes, api_key, time_query)
-        
-        print(f"[*] Querying U.S. Census Exports API for NAICS 3344 ({time_query})...")
-        raw_exports = fetch_census_endpoint("exports", cty_codes, api_key, time_query)
-        
-        # Parse matrix if returned
-        # Headers: ['NAICS', 'CTY_CODE', 'CTY_NAME', 'GEN_VAL_MO', 'GEN_VAL_YR', 'time']
-        imp_map = {}
-        if raw_imports and len(raw_imports) > 1:
-            header = raw_imports[0]
-            val_idx = header.index("GEN_VAL_MO") if "GEN_VAL_MO" in header else 3
-            cty_idx = header.index("CTY_CODE") if "CTY_CODE" in header else 1
-            time_idx = header.index("time") if "time" in header else 5
-            
-            for row in raw_imports[1:]:
-                c_code = str(row[cty_idx]).strip()
-                t_str = str(row[time_idx]).strip()
-                try:
-                    val = float(row[val_idx])
-                except (ValueError, TypeError):
-                    val = 0.0
-                if c_code not in imp_map:
-                    imp_map[c_code] = []
-                imp_map[c_code].append({"date": t_str, "value": val})
-                
-        exp_map = {}
-        if raw_exports and len(raw_exports) > 1:
-            header = raw_exports[0]
-            val_idx = header.index("ALL_VAL_MO") if "ALL_VAL_MO" in header else 3
-            cty_idx = header.index("CTY_CODE") if "CTY_CODE" in header else 1
-            time_idx = header.index("time") if "time" in header else 5
-            
-            for row in raw_exports[1:]:
-                c_code = str(row[cty_idx]).strip()
-                t_str = str(row[time_idx]).strip()
-                try:
-                    val = float(row[val_idx])
-                except (ValueError, TypeError):
-                    val = 0.0
-                if c_code not in exp_map:
-                    exp_map[c_code] = []
-                exp_map[c_code].append({"date": t_str, "value": val})
+    for corr in MONITORED_CORRIDORS:
+        c_code = corr["cty_code"]
+        c_id = corr["id"]
+        cached = existing_corridors.get(c_id, {})
 
-        for corr in MONITORED_CORRIDORS:
-            c_code = corr["cty_code"]
-            c_id = corr["id"]
+        if api_key:
+            print(f"[*] Ingesting NAICS 3344 for {corr['country_name']} (CTY {c_code})...")
+            # For World Total, Census intltrade endpoint uses CTY_CODE='-'
+            query_code = "-" if c_code == "0001" else c_code
+            imps = fetch_corridor_observations("imports", query_code, api_key)
+            exps = fetch_corridor_observations("exports", query_code, api_key)
             
-            imps = sorted(imp_map.get(c_code, []), key=lambda x: x["date"])
-            exps = sorted(exp_map.get(c_code, []), key=lambda x: x["date"])
+            latest_imp = imps[-1]["value"] if imps else cached.get("latest_monthly_import_usd")
+            latest_imp_date = imps[-1]["date"] if imps else cached.get("last_observation_date")
+            prev_imp = imps[-2]["value"] if (imps and len(imps) >= 2) else None
             
-            latest_imp = imps[-1]["value"] if imps else None
-            latest_imp_date = imps[-1]["date"] if imps else None
-            prev_imp = imps[-2]["value"] if len(imps) >= 2 else None
+            latest_exp = exps[-1]["value"] if exps else cached.get("latest_monthly_export_usd")
+            latest_exp_date = exps[-1]["date"] if exps else cached.get("last_observation_date")
+            prev_exp = exps[-2]["value"] if (exps and len(exps) >= 2) else None
             
-            latest_exp = exps[-1]["value"] if exps else None
-            latest_exp_date = exps[-1]["date"] if exps else None
-            prev_exp = exps[-2]["value"] if len(exps) >= 2 else None
+            trade_balance = (latest_exp - latest_imp) if (latest_exp is not None and latest_imp is not None) else cached.get("net_bilateral_trade_balance_usd")
             
-            trade_balance = (latest_exp - latest_imp) if (latest_exp is not None and latest_imp is not None) else None
-            
-            imp_mom_pct = (((latest_imp / prev_imp) - 1.0) * 100.0) if (latest_imp and prev_imp and prev_imp > 0) else None
-            exp_mom_pct = (((latest_exp / prev_exp) - 1.0) * 100.0) if (latest_exp and prev_exp and prev_exp > 0) else None
+            imp_mom_pct = (((latest_imp / prev_imp) - 1.0) * 100.0) if (latest_imp and prev_imp and prev_imp > 0) else cached.get("import_mom_pct")
+            exp_mom_pct = (((latest_exp / prev_exp) - 1.0) * 100.0) if (latest_exp and prev_exp and prev_exp > 0) else cached.get("export_mom_pct")
             
             corridors_output[c_id] = {
                 "entity_id": corr["entity_id"],
@@ -226,13 +190,12 @@ def build_outputs(api_key: str = "") -> Tuple[str, Dict[str, Any]]:
             if c_code == "0001":
                 total_val_imp_global = latest_imp or 0.0
                 total_val_exp_global = latest_exp or 0.0
-    else:
-        # Fallback to existing if available
-        if "corridors" in existing_json:
-            corridors_output = existing_json["corridors"]
         else:
-            for corr in MONITORED_CORRIDORS:
-                corridors_output[corr["id"]] = {
+            # Fallback retention mode (FRED Standard: Zero Data Loss)
+            if c_id in existing_corridors:
+                corridors_output[c_id] = existing_corridors[c_id]
+            else:
+                corridors_output[c_id] = {
                     "entity_id": corr["entity_id"],
                     "country_name": corr["country_name"],
                     "cty_code": corr["cty_code"],

@@ -1,16 +1,16 @@
 # Ersoy Toptaş Canonical Ingestion Contract (llms-census-series.txt)
 > Autonomous U.S. Census Bureau International Trade Engine (NAICS 3344: Semiconductor & Components)
-> Last Sync: 2026-11-18 16:40:48 UTC | Source: U.S. Census Bureau International Trade API
+> Last Sync: 2026-11-18 17:06:31 UTC | Source: U.S. Census Bureau International Trade API
 > Monitored Classification: NAICS 3344 | Reporting Unit: USD ($)
 
 | Strategic Corridor | Entity ID | CTY | Date | Imports ($) | MoM Δ% | Exports ($) | MoM Δ% | Net Trade Balance ($) | Status | Strategic Axis |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
-| **World Total** | `GLOBAL` | `0001` | N/A | null | N/A | null | N/A | null | `STANDBY` | U.S. Aggregate Global Semiconductor & Component Trade Volume |
-| **China** | `GEO_CN` | `5700` | N/A | null | N/A | null | N/A | null | `STANDBY` | Bilateral U.S.-China Tech Decoupling & Export Control Verification |
-| **Taiwan** | `GEO_TW` | `5830` | N/A | null | N/A | null | N/A | null | `STANDBY` | Advanced Foundry & Fab Dependency Axis (TSMC Chokepoint) |
-| **South Korea** | `GEO_KR` | `5800` | N/A | null | N/A | null | N/A | null | `STANDBY` | Global Memory Architecture (DRAM / HBM / NAND) Supply Line |
-| **Japan** | `GEO_JP` | `5880` | N/A | null | N/A | null | N/A | null | `STANDBY` | Semiconductor Silicon Wafers, Photoresists & Equipment Corridor |
-| **European Union** | `BLOC_EU` | `0003` | N/A | null | N/A | null | N/A | null | `STANDBY` | EUV Photolithography (ASML) & Advanced Tooling Architecture |
+| **World Total** | `GLOBAL` | `0001` | 2026-09 | $30,594,050,177 | +14.7% | $7,401,648,680 | +6.2% | $-23,192,401,497 | `OK` | U.S. Aggregate Global Semiconductor & Component Trade Volume |
+| **China** | `GEO_CN` | `5700` | 2026-09 | $1,017,721,419 | +14.4% | $1,291,129,510 | -8.4% | $+273,408,091 | `OK` | Bilateral U.S.-China Tech Decoupling & Export Control Verification |
+| **Taiwan** | `GEO_TW` | `5830` | 2026-09 | $6,809,991,106 | -2.1% | $989,988,687 | +7.6% | $-5,820,002,419 | `OK` | Advanced Foundry & Fab Dependency Axis (TSMC Chokepoint) |
+| **South Korea** | `GEO_KR` | `5800` | 2026-09 | $7,156,474,554 | +112.9% | $157,634,725 | -13.5% | $-6,998,839,829 | `OK` | Global Memory Architecture (DRAM / HBM / NAND) Supply Line |
+| **Japan** | `GEO_JP` | `5880` | 2026-09 | $812,695,225 | +22.5% | $96,948,156 | -20.8% | $-715,747,069 | `OK` | Semiconductor Silicon Wafers, Photoresists & Equipment Corridor |
+| **European Union** | `BLOC_EU` | `0003` | 2026-09 | $1,144,232,510 | -13.2% | $656,828,446 | +26.9% | $-487,404,064 | `OK` | EUV Photolithography (ASML) & Advanced Tooling Architecture |
 
 ## Macroeconomic & Strategic Transmission Directives:
 1. **Tech Decoupling Velocity:** Sharp contractions in U.S. NAICS 3344 exports to China (CTY 5700) quantify the enforcement velocity of BIS export controls and Model 25.14 (AI Chip Stress).

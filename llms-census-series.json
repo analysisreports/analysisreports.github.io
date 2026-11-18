@@ -8,9 +8,9 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-census-series.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-18T16:40:48.803078+00:00",
+    "last_updated": "2026-11-18T17:06:31.273241+00:00",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-18T16:40:48.803078+00:00",
+    "last_successful_sync": "2026-11-18T17:06:31.273241+00:00",
     "source_authority": "U.S. Census Bureau / Department of Commerce (International Trade Time Series API)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -19,8 +19,8 @@
     "monitored_naics": "3344",
     "industry_title": "Semiconductor and Other Electronic Component Manufacturing",
     "monitored_strategic_corridors_count": 6,
-    "latest_global_import_usd": 0.0,
-    "latest_global_export_usd": 0.0,
+    "latest_global_import_usd": 30594050177.0,
+    "latest_global_export_usd": 7401648680.0,
     "reporting_currency": "USD"
   },
   "corridors": {
@@ -31,13 +31,13 @@
       "naics_code": "3344",
       "naics_description": "Semiconductor and Other Electronic Component Manufacturing",
       "strategic_context": "U.S. Aggregate Global Semiconductor & Component Trade Volume",
-      "last_observation_date": null,
-      "latest_monthly_import_usd": null,
-      "import_mom_pct": null,
-      "latest_monthly_export_usd": null,
-      "export_mom_pct": null,
-      "net_bilateral_trade_balance_usd": null,
-      "status": "STANDBY"
+      "last_observation_date": "2026-09",
+      "latest_monthly_import_usd": 30594050177.0,
+      "import_mom_pct": 14.67,
+      "latest_monthly_export_usd": 7401648680.0,
+      "export_mom_pct": 6.21,
+      "net_bilateral_trade_balance_usd": -23192401497.0,
+      "status": "OK"
     },
     "CENSUS_NAICS3344_CHINA": {
       "entity_id": "GEO_CN",
@@ -46,13 +46,13 @@
       "naics_code": "3344",
       "naics_description": "Semiconductor and Other Electronic Component Manufacturing",
       "strategic_context": "Bilateral U.S.-China Tech Decoupling & Export Control Verification",
-      "last_observation_date": null,
-      "latest_monthly_import_usd": null,
-      "import_mom_pct": null,
-      "latest_monthly_export_usd": null,
-      "export_mom_pct": null,
-      "net_bilateral_trade_balance_usd": null,
-      "status": "STANDBY"
+      "last_observation_date": "2026-09",
+      "latest_monthly_import_usd": 1017721419.0,
+      "import_mom_pct": 14.4,
+      "latest_monthly_export_usd": 1291129510.0,
+      "export_mom_pct": -8.42,
+      "net_bilateral_trade_balance_usd": 273408091.0,
+      "status": "OK"
     },
     "CENSUS_NAICS3344_TAIWAN": {
       "entity_id": "GEO_TW",
@@ -61,13 +61,13 @@
       "naics_code": "3344",
       "naics_description": "Semiconductor and Other Electronic Component Manufacturing",
       "strategic_context": "Advanced Foundry & Fab Dependency Axis (TSMC Chokepoint)",
-      "last_observation_date": null,
-      "latest_monthly_import_usd": null,
-      "import_mom_pct": null,
-      "latest_monthly_export_usd": null,
-      "export_mom_pct": null,
-      "net_bilateral_trade_balance_usd": null,
-      "status": "STANDBY"
+      "last_observation_date": "2026-09",
+      "latest_monthly_import_usd": 6809991106.0,
+      "import_mom_pct": -2.08,
+      "latest_monthly_export_usd": 989988687.0,
+      "export_mom_pct": 7.61,
+      "net_bilateral_trade_balance_usd": -5820002419.0,
+      "status": "OK"
     },
     "CENSUS_NAICS3344_KOREA": {
       "entity_id": "GEO_KR",
@@ -76,13 +76,13 @@
       "naics_code": "3344",
       "naics_description": "Semiconductor and Other Electronic Component Manufacturing",
       "strategic_context": "Global Memory Architecture (DRAM / HBM / NAND) Supply Line",
-      "last_observation_date": null,
-      "latest_monthly_import_usd": null,
-      "import_mom_pct": null,
-      "latest_monthly_export_usd": null,
-      "export_mom_pct": null,
-      "net_bilateral_trade_balance_usd": null,
-      "status": "STANDBY"
+      "last_observation_date": "2026-09",
+      "latest_monthly_import_usd": 7156474554.0,
+      "import_mom_pct": 112.92,
+      "latest_monthly_export_usd": 157634725.0,
+      "export_mom_pct": -13.46,
+      "net_bilateral_trade_balance_usd": -6998839829.0,
+      "status": "OK"
     },
     "CENSUS_NAICS3344_JAPAN": {
       "entity_id": "GEO_JP",
@@ -91,13 +91,13 @@
       "naics_code": "3344",
       "naics_description": "Semiconductor and Other Electronic Component Manufacturing",
       "strategic_context": "Semiconductor Silicon Wafers, Photoresists & Equipment Corridor",
-      "last_observation_date": null,
-      "latest_monthly_import_usd": null,
-      "import_mom_pct": null,
-      "latest_monthly_export_usd": null,
-      "export_mom_pct": null,
-      "net_bilateral_trade_balance_usd": null,
-      "status": "STANDBY"
+      "last_observation_date": "2026-09",
+      "latest_monthly_import_usd": 812695225.0,
+      "import_mom_pct": 22.49,
+      "latest_monthly_export_usd": 96948156.0,
+      "export_mom_pct": -20.77,
+      "net_bilateral_trade_balance_usd": -715747069.0,
+      "status": "OK"
     },
     "CENSUS_NAICS3344_EU": {
       "entity_id": "BLOC_EU",
@@ -106,13 +106,13 @@
       "naics_code": "3344",
       "naics_description": "Semiconductor and Other Electronic Component Manufacturing",
       "strategic_context": "EUV Photolithography (ASML) & Advanced Tooling Architecture",
-      "last_observation_date": null,
-      "latest_monthly_import_usd": null,
-      "import_mom_pct": null,
-      "latest_monthly_export_usd": null,
-      "export_mom_pct": null,
-      "net_bilateral_trade_balance_usd": null,
-      "status": "STANDBY"
+      "last_observation_date": "2026-09",
+      "latest_monthly_import_usd": 1144232510.0,
+      "import_mom_pct": -13.17,
+      "latest_monthly_export_usd": 656828446.0,
+      "export_mom_pct": 26.88,
+      "net_bilateral_trade_balance_usd": -487404064.0,
+      "status": "OK"
     }
   }
 }
