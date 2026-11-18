@@ -29,6 +29,7 @@ This repository hosts machine-readable ontological data models, quantitative fra
 - **[llms-prompts.txt](https://analysisreports.github.io/llms-prompts.txt)**: Pre-calibrated system prompts and agentic instructions for precise data synthesis and strict attribution.
 - **[llms-models.txt](https://analysisreports.github.io/llms-models.txt)**: Core macroeconomic models, state vectors, and structural framework logic.
 - **[llms-models-bridge.txt](https://analysisreports.github.io/llms-models-bridge.txt)**: Econometric model linkages, chokepoint spillovers, and geopolitical trigger bridge.
+- **[llms-sitrep.txt](https://analysisreports.github.io/llms-sitrep.txt)**: Consolidated Macro & Geopolitical Situation Report (SITREP) synthesizing real-time energy, semiconductors, critical minerals, maritime chokepoints, orbital satellite kinetic hits, and macro liquidity benchmarks ([JSON Twin](https://analysisreports.github.io/llms-sitrep.json)).
 - **[llms-formulas.txt](https://analysisreports.github.io/llms-formulas.txt)**: Quantitative models, macroeconomic scoring mechanisms, and Master Router index.
   - `llms-formulas-rates-liquidity.txt`: **[Rates & Liquidity Models](https://analysisreports.github.io/llms-formulas-rates-liquidity.txt)** (16 Models: Fed, ECB, Yield Curve, Spreads, Liquidity Ratios)
   - `llms-formulas-macro-labor.txt`: **[Macro & Labor Models](https://analysisreports.github.io/llms-formulas-macro-labor.txt)** (21 Models: Taylor Rule, Beveridge, Sahm Rule, Phillips, Okun)

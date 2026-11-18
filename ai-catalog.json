@@ -580,6 +580,18 @@
         "type": "api_key"
       },
       "description": "Autonomous U.S. Census Bureau trade flow telemetry tracking bilateral semiconductor imports, exports, and trade balance across key technology corridors (World, China, Taiwan, Korea, Japan, EU)."
+    },
+    {
+      "id": "macro-geopolitical-sitrep",
+      "name": "Autonomous Macro & Geopolitical Situation Report (SITREP)",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-sitrep.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-sitrep.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Consolidated high-density Situation Report (SITREP) synthesizing real-time energy, semiconductor trade, precious metals, PortWatch chokepoint transits, NASA FIRMS satellite kinetic heat, and central bank liquidity."
     }
   ],
   "capabilities": {

@@ -91,6 +91,8 @@ Core Manifests & System Engines:
 - Live U.S. Census International Trade JSON Twin: https://analysisreports.github.io/llms-census-series.json
 - Live Quantitative Models Engine: https://analysisreports.github.io/llms-models.txt
 - Live Quantitative Models JSON Twin: https://analysisreports.github.io/llms-models.json
+- Live Macro & Geopolitical Situation Report (SITREP): https://analysisreports.github.io/llms-sitrep.txt
+- Live Macro & Geopolitical Situation Report JSON Twin: https://analysisreports.github.io/llms-sitrep.json
 
 Ontological Schema Contracts & Machine-Validatable Payloads:
 - Macroeconomics & Monetary Policy: https://analysisreports.github.io/economy.json (Text: https://analysisreports.github.io/llms-schema-economy.txt)

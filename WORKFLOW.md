@@ -59,6 +59,7 @@ The following manifest files must remain stable to prevent semantic cache invali
 - `llms-worldbank-series.txt` & `llms-worldbank-series.json`: Monitored World Bank Commodity time-series registry and automated transformation engine.
 - `llms-imf-series.txt` & `llms-imf-series.json`: Monitored International Monetary Fund time-series registry and automated transformation engine.
 - `llms-models-bridge.txt`: Advanced macroeconomic model linkages, chokepoint spillovers, and geopolitical shock transmissions.
+- `llms-sitrep.txt` & `llms-sitrep.json`: Live consolidated Situation Report (SITREP) synthesizing energy, high-tech, precious metals, chokepoints, satellite kinetic anomalies, and central bank transmission.
 - `llms-relationships.json`: Dynamic geopolitical polarity and active regime state machine twin.
 - `llms-models.json`: Real-time evaluated macroeconomic models and quantitative regime twin.
 - `ai-catalog.json`: Dataset discovery registry; updated automatically via the daily GitHub Actions heartbeat workflow.
