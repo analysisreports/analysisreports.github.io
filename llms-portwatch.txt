@@ -1,6 +1,6 @@
 # Ersoy Toptaş Canonical Ingestion Contract (llms-portwatch.txt)
 > Autonomous IMF PortWatch Maritime Chokepoint & AIS Daily Transit Registry
-> Last Sync: 2026-11-17T20:44:20.237484+00:00 | Source: IMF PortWatch / Oxford ECI / UN AIS
+> Last Sync: 2026-11-18T10:47:38.513621+00:00 | Source: IMF PortWatch / Oxford ECI / UN AIS
 > Active Supply Chain Bottlenecks: CHOKE_TURKISH_STRAITS (Bosporus Strait), CHOKE_HORMUZ (Strait of Hormuz)
 
 | Chokepoint Entity | Name | Theater | Last Date | Latest Daily | Tankers | Containers | 7d Avg | Δ% WoW | 2023 Baseline | Δ% vs 2023 | Flow Stress |
