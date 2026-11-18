@@ -411,7 +411,7 @@ def build_sitrep():
             "formula_link": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.3",
             "telemetry_signal": f"CHOKE_HORMUZ: {hormuz_daily} vessels/day ({hormuz_shift_str}) | CHOKE_TURKISH_STRAITS: {turk_shift_str}",
             "media_claim_bias": "News/Media claim commercial shipping corridors are normalizing or diplomacy is maintaining navigation.",
-            "ground_truth_reality": f"IMF PortWatch satellite AIS telemetry confirms catastrophic real-time navigation blockades (Hormuz at {hormuz_daily} daily vessels, {hormuz_shift_str}); physical merchant traffic is paralyzed regardless of diplomatic rhetoric."
+            "ground_truth_reality": f"IMF PortWatch satellite AIS telemetry confirms catastrophic real-time navigation blockades (Hormuz at {hormuz_daily} daily vessels, {hormuz_shift_str}); civilian merchant traffic under standard insurance is completely paralyzed. Residual flows rely on transponder blackouts (going dark), GPS spoofing, and high-risk military naval escorts (war-economy logistics, not normalized commerce)."
         },
         {
             "rule_id": "RULE_4_SEMICONDUCTOR_CONTAINMENT_FRICTION",
