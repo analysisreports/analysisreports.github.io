@@ -1,6 +1,6 @@
 # Ersoy Toptaş Canonical Ingestion Contract (llms-nasa-firms.txt)
 > Autonomous Satellite Thermal Anomaly & Kinetic Conflict Intelligence Engine
-> Last Orbital Sync: 2026-11-18T13:53:26Z | Source: NASA FIRMS VIIRS 375m
+> Last Orbital Sync: 2026-11-18T14:13:51Z | Source: NASA FIRMS VIIRS 375m
 > Global Active Critical Kinetic Zones: Islamic Republic of Iran & Gulf Littoral, People's Republic of China & Taiwan Strait, Kingdom of Saudi Arabia Energy Core, Republic of Iraq & Mesopotamia Basin, Islamic Republic of Pakistan Strategic Flank
 
 | Sovereign Theater | Entity ID | Status | 24h Hotspots | Peak FRP (MW) | Kinetic Score (0-100) | Conflict Severity (NASA Data) | Primary Strategic Axis |
