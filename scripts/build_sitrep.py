@@ -211,7 +211,6 @@ def build_sitrep():
 
     silver_s = fred_series.get("SLVPRUSD", {})
     silver_val = silver_s.get("current_value")
-    silver_status = "FEED_ACTIVE" if _is_num(silver_val) else "SOURCE_FEED_UNAVAILABLE"
     gold_silver_ratio = round(gold_val / silver_val, 2) if (_is_num(gold_val) and _is_num(silver_val) and silver_val > 0) else None
 
     copper_s = fred_series.get("PCOPPUSDM", {})
@@ -226,13 +225,14 @@ def build_sitrep():
         "gold_usd_ozt": gold_val,
         "gold_yoy_pct": gold_yoy,
         "silver_usd_ozt": silver_val,
-        "silver_status": silver_status,
         "gold_silver_ratio": gold_silver_ratio,
         "copper_global_usd_mt": copper_val,
         "copper_yoy_pct": copper_yoy,
         "wheat_global_usd_mt": wheat_val,
         "wheat_yoy_pct": wheat_yoy
     }
+    if not _is_num(silver_val):
+        metals_matrix["silver_status"] = "SOURCE_FEED_UNAVAILABLE"
 
     # --------------------------------------------------------------------------
     # 5. MARITIME CHOKEPOINTS (PORTWATCH AIS REAL-TIME DISRUPTIONS)
@@ -376,7 +376,7 @@ def build_sitrep():
         "## 4. PRECIOUS METALS, CRITICAL MINERALS & FOOD SECURITY",
         "---",
         f"GOLD_SPOT_USD_OZT        : {_fmt(metals_matrix['gold_usd_ozt'])} | YoY: {_fmt_pct(metals_matrix['gold_yoy_pct'])} | SIGNAL: SYSTEMIC_SAFE_HAVEN",
-        f"SILVER_SPOT_USD_OZT      : {_fmt(metals_matrix['silver_usd_ozt'])} | STATUS: {metals_matrix['silver_status']} | GOLD_SILVER_RATIO: {_fmt(metals_matrix['gold_silver_ratio'], prefix='', decimals=1)}",
+        f"SILVER_SPOT_USD_OZT      : {_fmt(metals_matrix['silver_usd_ozt'])}" + (f" | STATUS: {metals_matrix['silver_status']}" if "silver_status" in metals_matrix else "") + f" | GOLD_SILVER_RATIO: {_fmt(metals_matrix['gold_silver_ratio'], prefix='', decimals=1)}",
         f"COPPER_GLOBAL_USD_MT     : {_fmt(metals_matrix['copper_global_usd_mt'])} | YoY: {_fmt_pct(metals_matrix['copper_yoy_pct'])} (Dr. Copper Growth Pulse)",
         f"WHEAT_GLOBAL_USD_MT      : {_fmt(metals_matrix['wheat_global_usd_mt'])} | YoY: {_fmt_pct(metals_matrix['wheat_yoy_pct'])} (Black Sea Agro Security)",
         "",
