@@ -1,0 +1,42 @@
+name: U.S. Census International Trade Telemetry Sync
+
+on:
+  schedule:
+    # Runs on the 6th day of each month at 14:00 UTC (captures Census Bureau monthly trade release)
+    - cron: '0 14 6 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-census-trade:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch U.S. Census NAICS 3344 Trade Flows & Build Contracts
+        env:
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+        run: |
+          python scripts/update_census_series.py
+          python scripts/update_relationships.py
+
+      - name: Commit and Push Census Trade Updates
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add llms-census-series.json llms-census-series.txt llms-relationships.json llms-relationships.txt
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "Auto update U.S. Census International Trade Telemetry [skip ci]"
+            git pull --rebase origin main
+            git push
+          else
+            echo "No changes detected in Census trade telemetry."
+          fi

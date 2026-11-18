@@ -87,6 +87,8 @@ Core Manifests & System Engines:
 - Live NASA FIRMS Telemetry JSON Twin: https://analysisreports.github.io/llms-nasa-firms.json
 - Live IMF PortWatch AIS Telemetry Registry: https://analysisreports.github.io/llms-portwatch.txt
 - Live IMF PortWatch AIS Telemetry JSON Twin: https://analysisreports.github.io/llms-portwatch.json
+- Live U.S. Census International Trade Registry: https://analysisreports.github.io/llms-census-series.txt
+- Live U.S. Census International Trade JSON Twin: https://analysisreports.github.io/llms-census-series.json
 - Live Quantitative Models Engine: https://analysisreports.github.io/llms-models.txt
 - Live Quantitative Models JSON Twin: https://analysisreports.github.io/llms-models.json
 

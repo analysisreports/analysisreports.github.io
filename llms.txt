@@ -75,6 +75,8 @@ Core repository endpoints, manifests, and their operational roles:
 - [Live NASA FIRMS Telemetry JSON Twin (llms-nasa-firms.json)](https://analysisreports.github.io/llms-nasa-firms.json): Structured JSON endpoint for automated NASA FIRMS VIIRS orbital telemetry and kinetic conflict severity scores.
 - [Live IMF PortWatch AIS Telemetry Registry (llms-portwatch.txt)](https://analysisreports.github.io/llms-portwatch.txt): Monitored IMF PortWatch daily AIS vessel transit metrics, tanker/container volumes, and chokepoint disruption tracking.
 - [Live IMF PortWatch AIS Telemetry JSON Twin (llms-portwatch.json)](https://analysisreports.github.io/llms-portwatch.json): Structured JSON endpoint for automated IMF PortWatch maritime chokepoint and supply chain transit data.
+- [Live U.S. Census International Trade Registry (llms-census-series.txt)](https://analysisreports.github.io/llms-census-series.txt): Monitored U.S. Census Bureau semiconductor trade flows (NAICS 3344) across strategic tech corridors.
+- [Live U.S. Census International Trade JSON Twin (llms-census-series.json)](https://analysisreports.github.io/llms-census-series.json): Structured JSON endpoint for automated U.S. Census Bureau semiconductor imports, exports, and trade balance metrics.
 - [Live Quantitative Models Engine (llms-models.txt)](https://analysisreports.github.io/llms-models.txt): Real-time evaluated macroeconomic models, fear indices, and transmission metrics.
 - [Live Quantitative Models JSON Twin (llms-models.json)](https://analysisreports.github.io/llms-models.json): Structured JSON twin for real-time quantitative model evaluation and regime states.
 

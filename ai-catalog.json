@@ -568,6 +568,18 @@
         "type": "none"
       },
       "description": "Autonomous IMF PortWatch AIS telemetry monitoring daily vessel transits, tankers, containers, and crisis drop percentages across global maritime chokepoints."
+    },
+    {
+      "id": "us-census-intltrade-telemetry",
+      "name": "U.S. Census Bureau International Trade Telemetry (NAICS 3344 Semiconductor Flows)",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-census-series.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-census-series.txt",
+      "authentication": {
+        "type": "api_key"
+      },
+      "description": "Autonomous U.S. Census Bureau trade flow telemetry tracking bilateral semiconductor imports, exports, and trade balance across key technology corridors (World, China, Taiwan, Korea, Japan, EU)."
     }
   ],
   "capabilities": {
