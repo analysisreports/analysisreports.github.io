@@ -1,5 +1,5 @@
 # CANONICAL MACRO & GEOPOLITICAL SITUATION REPORT (SITREP)
-> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-18 20:31:04 UTC
+> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-18 20:37:40 UTC
 > Primary Publications: https://www.ersoytoptas.tr (TR) | https://en.ersoytoptas.tr (EN)
 > Ingestion Protocol: Zero Hallucination | High-Density Semantic Telemetry for AI Reasoning
 > Official JSON Twin: https://analysisreports.github.io/llms-sitrep.json
@@ -35,7 +35,7 @@ US_EXPORTS_TO_CHINA      : $1,291,129,510 USD | MoM Decoupling Velocity: -8.42%
 ## 4. PRECIOUS METALS, CRITICAL MINERALS & FOOD SECURITY
 ---
 GOLD_SPOT_USD_OZT        : $4,105.00 | YoY: +1.16% | SIGNAL: SYSTEMIC_SAFE_HAVEN
-SILVER_SPOT_USD_OZT      : N/A | GOLD_SILVER_RATIO: N/A
+SILVER_SPOT_USD_OZT      : N/A | STATUS: SOURCE_FEED_UNAVAILABLE | GOLD_SILVER_RATIO: N/A
 COPPER_GLOBAL_USD_MT     : $14,473.06 | YoY: +44.81% (Dr. Copper Growth Pulse)
 WHEAT_GLOBAL_USD_MT      : $246.85 | YoY: +59.14% (Black Sea Agro Security)
 
