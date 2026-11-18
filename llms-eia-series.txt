@@ -40,7 +40,7 @@ PET.WPULEUS3.W
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-18 05:20:51 UTC
+# - Synced At: 2026-11-18 09:57:58 UTC
 # - Sync Status: SUCCESS (6 / 6 series active)
 # - Total Series Synced: 6 / 6
 # - Source Authority: U.S. Energy Information Administration (EIA Open Data API v2)
