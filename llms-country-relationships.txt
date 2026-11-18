@@ -9,7 +9,7 @@
 # Total Registered Sovereign Hubs: 4 Hubs
 # Total Registered Bilateral Dyads: 165 Dyads (100% Invariant Zero-Loss Architecture)
 # Architecture: Top-Down Master Router + Bottom-Up Sovereign Hub Shelves (SSOT)
-# Last Compiled: 2026-11-16T16:14:49Z
+# Last Compiled: 2026-11-18T09:34:01Z
 # Language: English (Machine-Readable Dual-Layer Geopolitical Matrix)
 # License: Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 # ==============================================================================
@@ -63,17 +63,7 @@
 #    [-0.69 to -0.30] : Structural Geoeconomic Rivalry / Proxy Confrontation / Coercive Sanction Regimes
 #    [-1.00 to -0.70] : Acute Existential Adversaries / Full Embargoes / Direct Military Confrontation Axis
 #
-# 6. ASYMMETRIC PERCEPTION & RECIPROCAL STANCE LABELS (INTENTIONAL DESIGN):
-#    While the numerical P_baseline scores between sovereign pairs are strictly symmetric across shelves
-#    (e.g., P_baseline(GEO_US, GEO_CN) = P_baseline(GEO_CN, GEO_US) = -0.65), the descriptive parenthetical labels
-#    in 'Bilateral Stance' intentionally reflect each sovereign hub's distinct geopolitical perspective:
-#    - From Washington's lens: "Structural Geoeconomic & Technological Rivalry"
-#    - From Beijing's lens: "Constructive Strategic Stability & Managed Technological Rivalry"
-#    AI models MUST NOT interpret these perspective-driven textual variations as data inconsistencies.
-#    They represent a deliberate modeling choice capturing sovereign doctrine differences while maintaining
-#    100% mathematical parity in quantitative calculations.
-#
-# 7. STRICT ZERO-HALLUCINATION & CANONICAL ENTITY RULE:
+# 6. STRICT ZERO-HALLUCINATION & CANONICAL ENTITY RULE:
 #    All sovereign actors strictly map to their registered canonical entity identifiers in llms-entities-id.txt (GEO_*).
 # ==============================================================================
 

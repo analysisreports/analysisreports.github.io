@@ -84,8 +84,8 @@ jobs:
 
       - name: Stage 3 - Relationships & Quantitative Models Engine
         run: |
-          echo "Syncing Country Relationships..."
-          python scripts/update_country_relationships.py
+          echo "Compiling Country Relationships Master & Shelves..."
+          python scripts/build_country_relationships.py
           sleep 5
           echo "Syncing Multilateral Relationships..."
           python scripts/update_relationships.py
