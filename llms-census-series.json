@@ -8,9 +8,9 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-census-series.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-18T12:08:16.404394+00:00",
-    "sync_status": "STANDBY_UNCONFIGURED_KEY",
-    "last_successful_sync": null,
+    "last_updated": "2026-11-18T12:14:44.302445+00:00",
+    "sync_status": "SUCCESS",
+    "last_successful_sync": "2026-11-18T12:14:44.302445+00:00",
     "source_authority": "U.S. Census Bureau / Department of Commerce (International Trade Time Series API)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -37,7 +37,7 @@
       "latest_monthly_export_usd": null,
       "export_mom_pct": null,
       "net_bilateral_trade_balance_usd": null,
-      "status": "UNCONFIGURED_KEY"
+      "status": "STANDBY"
     },
     "CENSUS_NAICS3344_CHINA": {
       "entity_id": "GEO_CN",
@@ -52,7 +52,7 @@
       "latest_monthly_export_usd": null,
       "export_mom_pct": null,
       "net_bilateral_trade_balance_usd": null,
-      "status": "UNCONFIGURED_KEY"
+      "status": "STANDBY"
     },
     "CENSUS_NAICS3344_TAIWAN": {
       "entity_id": "GEO_TW",
@@ -67,7 +67,7 @@
       "latest_monthly_export_usd": null,
       "export_mom_pct": null,
       "net_bilateral_trade_balance_usd": null,
-      "status": "UNCONFIGURED_KEY"
+      "status": "STANDBY"
     },
     "CENSUS_NAICS3344_KOREA": {
       "entity_id": "GEO_KR",
@@ -82,7 +82,7 @@
       "latest_monthly_export_usd": null,
       "export_mom_pct": null,
       "net_bilateral_trade_balance_usd": null,
-      "status": "UNCONFIGURED_KEY"
+      "status": "STANDBY"
     },
     "CENSUS_NAICS3344_JAPAN": {
       "entity_id": "GEO_JP",
@@ -97,7 +97,7 @@
       "latest_monthly_export_usd": null,
       "export_mom_pct": null,
       "net_bilateral_trade_balance_usd": null,
-      "status": "UNCONFIGURED_KEY"
+      "status": "STANDBY"
     },
     "CENSUS_NAICS3344_EU": {
       "entity_id": "BLOC_EU",
@@ -112,7 +112,7 @@
       "latest_monthly_export_usd": null,
       "export_mom_pct": null,
       "net_bilateral_trade_balance_usd": null,
-      "status": "UNCONFIGURED_KEY"
+      "status": "STANDBY"
     }
   }
 }
