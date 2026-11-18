@@ -35,7 +35,7 @@ GSCPI
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-18T09:57:26Z
+# - Synced At: 2026-11-18T10:06:08Z
 # - Total Series Synced: 1 / 1
 # - Source Authority: Federal Reserve Bank of New York (AMEC)
 # - Official Endpoint: https://www.newyorkfed.org/research/policy/gscpi
