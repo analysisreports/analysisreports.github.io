@@ -343,13 +343,14 @@ def _is_num(val):
   - FRED: DDFUELNYH (Ultra-Low-Sulfur No. 2 Diesel Fuel Prices: New York Harbor - Dollars per Gallon)
   - FRED: DCOILWTICO (Crude Oil Prices: West Texas Intermediate - Dollars per Barrel)
   - EIA: PET.WGTSTUS1.W (Weekly U.S. Ending Stocks of Total Gasoline - Thousand Barrels)
+  - EIA: PET.WPULEUS3.W (Weekly U.S. Percent Utilization of Refinery Operable Capacity - Percent)
 - Formula:
   Crack_Spread_321_USD_per_bbl = ((2 * DGASNYH_USD_per_gal * 42) + (DDFUELNYH_USD_per_gal * 42)) / 3 - DCOILWTICO_USD_per_bbl
   Calculate only when DGASNYH, DDFUELNYH, and DCOILWTICO share the exact same observation date.
   Calculate the same formula using each series' FRED year_ago_value to get Prior_Year_Crack_Spread_321_USD_per_bbl.
   Status = CRACK_SPREAD_EXPANDING if current spread > prior-year spread; CRACK_SPREAD_CONTRACTING if lower; CRACK_SPREAD_UNCHANGED if equal; UNCLASSIFIED if any prior-year price is unavailable.
   This status describes year-over-year direction, not an absolute high/low regime; no historical percentile thresholds are used.
-  Gasoline stocks and YoY change are context metrics only; days of supply is not calculated without a live gasoline-consumption series.
+  Gasoline stocks, refinery utilization rate (PET.WPULEUS3.W), and YoY changes are context metrics only; utilization >93-95% signals operable bottleneck while <85% triggers cross-Atlantic distillate import demand (TÜPRAŞ/STAR & Reliance rotators). Days of supply is not calculated without a live gasoline-consumption series.
 - Machine-Executable Logic (Python):
   def gasoline_321_crack_spread(gasoline_usd_gal, ulsd_usd_gal, wti_usd_bbl, gasoline_date, ulsd_date, wti_date, gasoline_year_ago=None, ulsd_year_ago=None, wti_year_ago=None):
       prices = (gasoline_usd_gal, ulsd_usd_gal, wti_usd_bbl)

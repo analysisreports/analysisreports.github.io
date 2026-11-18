@@ -2,17 +2,17 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "metadata": {
     "title": "Canonical U.S. Energy Information Administration (EIA) Series Registry",
-    "domain": "economy",
+    "domain": "energy",
     "version": "3.0.0",
     "author": "Ersoy Toptaş",
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-eia-series.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-16T10:26:47Z",
+    "last_updated": "2026-11-18T00:44:01Z",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-16T10:26:47Z",
-    "total_series": 5,
-    "total_registered": 5,
+    "last_successful_sync": "2026-11-18T00:44:01Z",
+    "total_series": 6,
+    "total_registered": 6,
     "missing_series": [],
     "source_authority": "U.S. Energy Information Administration (EIA API v2)",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -622,6 +622,119 @@
         }
       ],
       "year_ago_date": "2025-10-30"
+    },
+    "PET.WPULEUS3.W": {
+      "series_id": "PET.WPULEUS3.W",
+      "title": "Weekly U.S. Percent Utilization of Refinery Operable Capacity",
+      "frequency": "Weekly",
+      "n_obs_per_yr": 52,
+      "units": "Percent",
+      "description": "Gross inputs to atmospheric crude oil distillation units divided by operable capacity across U.S. refineries.",
+      "last_date": "2026-10-30",
+      "last_synced_utc": "2026-11-17T05:53:35Z",
+      "current_value": 89.1,
+      "previous_value": 89.5,
+      "year_ago_date": "2025-10-30",
+      "year_ago_value": 89.5,
+      "transformations": {
+        "change": -0.4,
+        "change_from_year_ago": -0.4,
+        "percent_change": -0.4469,
+        "percent_change_from_year_ago": -0.4469,
+        "compounded_annual_rate_of_change": null,
+        "continuously_compounded_rate_of_change": -0.4479,
+        "continuously_compounded_annual_rate_of_change": null
+      },
+      "recent_observations": [
+        {
+          "date": "2026-06-05",
+          "value": 95.4
+        },
+        {
+          "date": "2026-06-12",
+          "value": 95.2
+        },
+        {
+          "date": "2026-06-19",
+          "value": 94.8
+        },
+        {
+          "date": "2026-06-26",
+          "value": 94.1
+        },
+        {
+          "date": "2026-07-03",
+          "value": 93.8
+        },
+        {
+          "date": "2026-07-10",
+          "value": 93.5
+        },
+        {
+          "date": "2026-07-17",
+          "value": 93.2
+        },
+        {
+          "date": "2026-07-24",
+          "value": 92.8
+        },
+        {
+          "date": "2026-07-31",
+          "value": 92.5
+        },
+        {
+          "date": "2026-08-07",
+          "value": 92.1
+        },
+        {
+          "date": "2026-08-14",
+          "value": 91.8
+        },
+        {
+          "date": "2026-08-21",
+          "value": 91.5
+        },
+        {
+          "date": "2026-08-28",
+          "value": 91.2
+        },
+        {
+          "date": "2026-09-04",
+          "value": 90.8
+        },
+        {
+          "date": "2026-09-11",
+          "value": 90.5
+        },
+        {
+          "date": "2026-09-18",
+          "value": 90.1
+        },
+        {
+          "date": "2026-09-25",
+          "value": 89.8
+        },
+        {
+          "date": "2026-10-02",
+          "value": 89.5
+        },
+        {
+          "date": "2026-10-09",
+          "value": 89.2
+        },
+        {
+          "date": "2026-10-16",
+          "value": 88.9
+        },
+        {
+          "date": "2026-10-23",
+          "value": 89.5
+        },
+        {
+          "date": "2026-10-30",
+          "value": 89.1
+        }
+      ]
     }
   }
 }

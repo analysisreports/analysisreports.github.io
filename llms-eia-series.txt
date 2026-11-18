@@ -26,6 +26,7 @@ PET.WCESTUS1.W
 PET.WCRFPUS2.W
 PET.WGTSTUS1.W
 NG.NW2_EPG0_SWO_R48_BCF.W
+PET.WPULEUS3.W
 
 [MONTHLY]
 
@@ -39,9 +40,9 @@ NG.NW2_EPG0_SWO_R48_BCF.W
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-17 05:53:35 UTC
-# - Sync Status: SUCCESS (5 / 5 series active)
-# - Total Series Synced: 5 / 5
+# - Synced At: 2026-11-18 00:44:01 UTC
+# - Sync Status: SUCCESS (6 / 6 series active)
+# - Total Series Synced: 6 / 6
 # - Source Authority: U.S. Energy Information Administration (EIA Open Data API v2)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
@@ -155,3 +156,25 @@ Recent Observations (Last 5):
   2026-10-16: 3644.0000
   2026-10-23: 3724.0000
   2026-10-30: 3801.0000
+
+--------------------------------------------------------------------------------
+Series ID: PET.WPULEUS3.W
+Title: Weekly U.S. Percent Utilization of Refinery Operable Capacity
+Frequency: Weekly (n_obs_per_yr: 52) | Units: Percent
+Last Date: 2026-10-30 | Current Value: 89.1000 | Previous Value: 89.5000 | Year Ago Value: 89.5000
+
+Transformations (Official EIA / St. Louis Fed Formulas):
+  1. Change: -0.4000
+  2. Change from Year Ago: -0.4000
+  3. Percent Change: -0.4469%
+  4. Percent Change from Year Ago: -0.4469%
+  5. Compounded Annual Rate of Change: N/A (Rate is already annualized)
+  6. Continuously Compounded Rate of Change: -0.4479%
+  7. Continuously Compounded Annual Rate of Change: N/A (Rate is already annualized)
+
+Recent Observations (Last 5):
+  2026-10-02: 89.5000
+  2026-10-09: 89.2000
+  2026-10-16: 88.9000
+  2026-10-23: 89.5000
+  2026-10-30: 89.1000

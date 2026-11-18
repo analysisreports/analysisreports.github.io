@@ -76,10 +76,10 @@
 8.4.3. MODEL_25.9_GASOLINE_DISTILLATE_CRUDE_321_CRACK_SPREAD
 - Target Formula: llms-formulas.txt -> Model 25.9 (gasoline_321_crack_spread)
 - Data Series Triggered: IND_DGASNYH, IND_DDFUELNYH, IND_DCOILWTICO (exact same-date observations required)
-- Context Series: IND_PET_WGTSTUS1_W gasoline stocks; not a days-of-supply input
+- Context Series: IND_PET_WGTSTUS1_W (gasoline stocks) and IND_PET_WPULEUS3_W (refinery utilization rate; >93-95% signals operable capacity bottleneck); not a days-of-supply input
 - Status Enums: CRACK_SPREAD_EXPANDING | CRACK_SPREAD_CONTRACTING | CRACK_SPREAD_UNCHANGED | UNCLASSIFIED
 - Interpretation: New York Harbor spot benchmark proxy; GASREGW is a retail price and is not a crack-spread input.
-- Primary Geopolitical Vector: Asymmetric maritime re-routing (6.2), Mediterranean (TR) & South Asian (IN) logistics and refining hubs (5.4), Black Sea and Danish Straits shipping curbs (4.4, 4.8).
+- Primary Geopolitical Vector: Asymmetric maritime re-routing (6.2), Mediterranean (TR) & South Asian (IN) logistics and refining hubs (5.4), Black Sea and Danish Straits shipping curbs (4.4, 4.8), and U.S. Gulf Coast heavy crude feedstock demand elasticity (US-VE 2.9.4).
 
 ### 8.5. Banking Credit Transmission & Systemic Tightening Engine (Model 25.10)
 8.5.1. MODEL_25.10_SLOOS_LENDING_TIGHTNESS_GAUGE

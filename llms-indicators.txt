@@ -136,10 +136,11 @@ Mathematical Guardrails:
 
 1. **GSCPI** (Global Supply Chain Pressure Index) | Freq: Monthly | Units: Standard Deviations from Historical Mean (Z-Score) | Source: NY Fed AMEC
 
-### 2.6. U.S. Energy Information Administration (EIA Open Data API) Official Series (5 Series)
+### 2.6. U.S. Energy Information Administration (EIA Open Data API) Official Series (6 Series)
 
 1. **PET.WCSSTUS1.W** (Weekly U.S. Ending Stocks of Crude Oil in Strategic Petroleum Reserve (SPR)) | Freq: Weekly | Units: Thousand Barrels | Source: EIA Open Data API v2
 2. **PET.WCESTUS1.W** (Weekly U.S. Ending Stocks of Crude Oil Excluding SPR (Commercial Stocks)) | Freq: Weekly | Units: Thousand Barrels | Source: EIA Open Data API v2
 3. **PET.WCRFPUS2.W** (Weekly U.S. Field Production of Crude Oil) | Freq: Weekly | Units: Thousand Barrels per Day | Source: EIA Open Data API v2
 4. **PET.WGTSTUS1.W** (Weekly U.S. Ending Stocks of Total Gasoline) | Freq: Weekly | Units: Thousand Barrels | Source: EIA Open Data API v2
 5. **NG.NW2_EPG0_SWO_R48_BCF.W** (Weekly Lower 48 States Working Gas in Underground Natural Gas Storage) | Freq: Weekly | Units: Billion Cubic Feet | Source: EIA Open Data API v2
+6. **PET.WPULEUS3.W** (Weekly U.S. Percent Utilization of Refinery Operable Capacity) | Freq: Weekly | Units: Percent | Source: EIA Open Data API v2

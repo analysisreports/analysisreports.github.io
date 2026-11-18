@@ -78,6 +78,13 @@ SERIES_METADATA: Dict[str, Dict[str, Any]] = {
         "n_obs_per_yr": 52,
         "units": "Billion Cubic Feet",
         "description": "Volume of working natural gas in underground storage facilities across the Lower 48 states."
+    },
+    "PET.WPULEUS3.W": {
+        "title": "Weekly U.S. Percent Utilization of Refinery Operable Capacity",
+        "frequency": "Weekly",
+        "n_obs_per_yr": 52,
+        "units": "Percent",
+        "description": "Gross inputs to atmospheric crude oil distillation units divided by operable capacity across U.S. refineries."
     }
 }
 
@@ -251,6 +258,7 @@ PET.WCESTUS1.W
 PET.WCRFPUS2.W
 PET.WGTSTUS1.W
 NG.NW2_EPG0_SWO_R48_BCF.W
+PET.WPULEUS3.W
 
 [MONTHLY]
 
