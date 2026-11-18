@@ -1,7 +1,7 @@
 {
   "$schema": "https://analysisreports.github.io/schemas/country-strategic-assessment.schema.json",
   "metadata": {
-    "title": "FOMC Faiz Artırımı ve İstihdam Piyasasında Kademeli Dengelenme",
+    "title": "Fed Faiz Kararı: Hürmüz Krizi ve Enflasyon Baskısı",
     "domain": "economy",
     "version": "3.0.0",
     "author": "Ersoy Toptaş",
@@ -21,82 +21,94 @@
       "Enflasyon",
       "İş Gücü Piyasası",
       "Tahvil Piyasası",
-      "Makroekonomik Projeksiyonlar",
-      "Faiz Artırımı",
-      "Fomc"
+      "Hürmüz Boğazı",
+      "Petrol Fiyatları",
+      "FOMC"
     ],
     "summary": {
-      "headline": "FOMC Faiz Artırımı ve İstihdam Piyasasında Kademeli Dengelenme",
-      "one_sentence_summary": "Federal Açık Piyasa Komitesi (FOMC), yapışkan enflasyonla mücadele amacıyla politika faizini 25 baz puan artırarak %3,75 - %4,00 aralığına yükseltirken, istihdam piyasasında ılımlı bir soğuma kaydedilmiştir.",
+      "headline": "Fed Faiz Kararı: Hürmüz Krizi ve Enflasyon Baskısı",
+      "one_sentence_summary": "Hürmüz Boğazı'nda tırmanan enerji krizi ile yüzde 3'ün üzerindeki enflasyon dengesi, Fed'in 28 Ekim toplantısında politika faizini yüzde 4 seviyesinde sabit tutma ihtimalini güçlendiriyor.",
       "main_topic_keywords": [
         "Faiz Kararı",
-        "Enflasyon",
-        "İstihdam",
+        "Hürmüz Krizi",
+        "Enflasyon Baskısı",
         "Para Politikası",
-        "Tahvil Verimleri"
+        "PCE Enflasyonu"
       ]
     },
     "5N1K_analysis": {
-      "headline": "FOMC'nin 25 Baz Puanlık Faiz Artırımı ve Kısıtlayıcı Duruşu",
-      "what": "Federal Fonlama faiz oranı hedef aralığının 25 baz puan artırılarak %3,75 - %4,00 seviyesine yükseltilmesi ve kısıtlayıcı para politikası duruşunun sürdürülmesi.",
+      "headline": "FOMC'nin 28 Ekim Toplantısında Faizi %4,00 Seviyesinde Sabit Tutma Beklentisi",
+      "what": "Hürmüz Boğazı petrol şoku ve %3'ün üzerindeki yapışkan PCE enflasyonu nedeniyle Federal Fonlama faizinin %4,00 üst bandında sabit bırakılması (pas geçilmesi) beklentisi.",
       "where": "Amerika Birleşik Devletleri",
-      "when": "16 Eylül 2026",
-      "event_date": "2026-09-16",
-      "decision_status": "REALIZED_PAST_EVENT",
-      "why": "Enflasyonun %2,0 hedefinin üzerinde seyretmesi, PCE ve alt kalemlerdeki yapışkanlık ile orta vadeli enflasyonist trendlerin dizginlenmesi hedefi.",
-      "how": "Komite üyelerinin 12-0 oybirliği ile faiz artırımı kararı alması ve kısıtlayıcı iletişimin benimsenmesi yoluyla.",
-      "who": "Federal Açık Piyasa Komitesi (FOMC), FOMC Başkanı Warsh, ABD Çalışma İstatistikleri Bürosu (BLS)",
+      "when": "28 Ekim 2026",
+      "event_date": "2026-10-28",
+      "decision_status": "PENDING_EXPECTATION",
+      "why": "Çekirdek PCE'nin %3,01 ve manşet PCE'nin %3,42 ile %2 hedefinden uzak olması, Hürmüz mayın krizi ve petrolün $109,69'a tırmanmasının getirdiği enflasyonist baskı.",
+      "how": "FOMC'nin faiz indirimi beklentilerini öteleyerek faizi %4 seviyesinde sabit tutması ve kısıtlayıcı para politikasını sürdürmesi yoluyla.",
+      "who": "Federal Açık Piyasa Komitesi (FOMC), FOMC Başkanı Kevin Warsh, ABD Çalışma İstatistikleri Bürosu (BLS)",
       "heat": 70
     },
     "quantitative_data_summary": {
       "primary_indicator_tracking": {
-        "indicator_name": "Sentezlenmiş Portföy Endeksi",
-        "reference_period": "Eylül 2026",
+        "indicator_name": "Federal Fonlama Faiz Oranı Hedef Aralığı",
+        "reference_period": "Ekim 2026",
         "value_comparison": {
-          "current_period_value": "38.5",
-          "current_numeric_value": 38.5,
-          "previous_period_value": "41.2",
-          "previous_numeric_value": 41.2,
-          "nominal_change": "-2.7",
-          "target_deviation_bps": -50
+          "current_period_value": "%3,75 - %4,00",
+          "current_numeric_value": 4.0,
+          "previous_period_value": "%3,75 - %4,00",
+          "previous_numeric_value": 4.0,
+          "nominal_change": "0.0",
+          "target_deviation_bps": 0
         },
         "change_rates_percentage": {
-          "change_rate_compared_to_previous_month": "-%6,55",
-          "change_rate_compared_to_december_of_the_previous_year": "+%28,5",
-          "change_rate_compared_to_the_same_month_of_the_previous_year": "+%38,5",
-          "change_rate_according_to_twelve_month_averages": "+%45,0"
+          "change_rate_compared_to_previous_month": "%0,0",
+          "change_rate_compared_to_december_of_the_previous_year": "+%25,0",
+          "change_rate_compared_to_the_same_month_of_the_previous_year": "+%33,3",
+          "change_rate_according_to_twelve_month_averages": "+%40,0"
         },
         "macro_stance": "RESTRICTIVE",
-        "yield_spread_bps": -25
+        "yield_spread_bps": 35
       },
       "other_supporting_data": [
         {
-          "indicator_name": "Federal Fonlama Faiz Oranı Hedef Aralığı",
-          "indicator_value": "%3,75 - %4,00",
-          "effective_date": "2026-09-16",
-          "fred_series_id": "DFEDTARU / DFEDTARL"
+          "indicator_name": "Federal Fonlama Faiz Oranı Üst Bandı",
+          "indicator_value": "%4,00",
+          "effective_date": "2026-10-28",
+          "fred_series_id": "DFEDTARU"
         },
         {
-          "indicator_name": "Manşet PCE Enflasyonu",
-          "indicator_value": "%3,4",
-          "reference_period": "2026-08",
+          "indicator_name": "Manşet PCE Enflasyonu (Yıllık)",
+          "indicator_value": "%3,42",
+          "reference_period": "2026-09",
           "fred_series_id": "PCEPI"
         },
         {
-          "indicator_name": "Çekirdek PCE Enflasyonu",
-          "indicator_value": "%3,0",
-          "reference_period": "2026-08",
+          "indicator_name": "Çekirdek PCE Enflasyonu (Yıllık)",
+          "indicator_value": "%3,01",
+          "reference_period": "2026-09",
           "fred_series_id": "PCEPILFE"
         },
         {
-          "indicator_name": "Tüketici Fiyat Endeksi (CPI)",
-          "indicator_value": "%2,4",
-          "reference_period": "2026-08",
-          "fred_series_id": "CPIAUCSL"
+          "indicator_name": "10 Yıllık Hazine Tahvil Getirisi",
+          "indicator_value": "%5,10",
+          "reference_period": "2026-10",
+          "fred_series_id": "DGS10"
+        },
+        {
+          "indicator_name": "2 Yıllık Hazine Tahvil Getirisi",
+          "indicator_value": "%4,77",
+          "reference_period": "2026-10",
+          "fred_series_id": "DGS2"
+        },
+        {
+          "indicator_name": "1 Aylık Hazine Bonosu Getirisi",
+          "indicator_value": "%4,17",
+          "reference_period": "2026-10",
+          "fred_series_id": "DGS1MO"
         },
         {
           "indicator_name": "Tarım Dışı İstihdam Toplamı",
-          "indicator_value": "159.044",
+          "indicator_value": "159.000",
           "unit": "Thousands of Persons",
           "measurement_type": "Toplam istihdam seviyesi",
           "reference_period": "2026-09",
@@ -117,33 +129,35 @@
           "fred_series_id": "UNRATE"
         },
         {
-          "indicator_name": "İstihdam Verisi Net Aşağı Yönlü Revizyonu",
-          "indicator_value": "-60",
-          "unit": "Thousands of Persons",
-          "reference_period": "2026-07 / 2026-08"
+          "indicator_name": "Şirketler Temerrüt Risk Primi (BAA Spread)",
+          "indicator_value": "%3,23",
+          "reference_period": "2026-10",
+          "fred_series_id": "BAA10Y"
         },
         {
-          "indicator_name": "Ortalama Saatlik Kazançlar Yıllık Değişim",
-          "indicator_value": "%3,0",
-          "reference_period": "2026-09",
-          "fred_series_id": "CES0500000003"
+          "indicator_name": "Chicago Fed Ulusal Finansal Koşullar Endeksi (NFCI)",
+          "indicator_value": "-0,499",
+          "reference_period": "2026-10",
+          "fred_series_id": "NFCI"
         },
         {
-          "indicator_name": "İş Gücüne Katılım Oranı",
-          "indicator_value": "%61,8",
-          "reference_period": "2026-09",
-          "fred_series_id": "CIVPART"
+          "indicator_name": "Spot Brent Ham Petrol Fiyatı",
+          "indicator_value": "109,69",
+          "unit": "USD per Barrel",
+          "reference_period": "2026-10",
+          "fred_series_id": "DCOILBRENTEU"
         },
         {
-          "indicator_name": "Çekirdek Enflasyon (Aylık)",
-          "indicator_value": "%0,29",
-          "reference_period": "2026-08",
-          "fred_series_id": "CPILFESL"
+          "indicator_name": "ABD Genelinde Normal Benzin Galon Fiyatı",
+          "indicator_value": "4,33",
+          "unit": "USD per Gallon",
+          "reference_period": "2026-10",
+          "fred_series_id": "GASREGCOVW"
         }
       ],
       "monetary_authority": "Federal Reserve | FED",
-      "voting_and_consensus_dynamics": "Karar 12-0 oybirliği ile alınmış olup komite içinde tam konsensüs bulunmaktadır.",
-      "voting_split": "12-0",
+      "voting_and_consensus_dynamics": "FOMC'nin kısıtlayıcı para politikasını sürdürerek faizi yüzde 4 seviyesinde sabit tutması ve Hürmüz maliyet şokunu izlemesi beklenmektedir.",
+      "voting_split": "12-0 (Beklenen Konsensüs)",
       "committee_dispersion_score": 0.15
     },
     "actors_and_dynamics": {
@@ -215,9 +229,9 @@
       "key_quotes": [
         {
           "speaker": "Warsh",
-          "quote": "Faiz artışı finansal sistemdeki akomodasyonun bir dozunun kaldırılmasıdır.",
+          "quote": "Kısıtlayıcı para politikası duruşu, Hürmüz kaynaklı maliyet şoku ve yapışkan enflasyon dinamikleri kırılana kadar korunacaktır.",
           "significance_level": "HIGH",
-          "significance_analysis": "Parasal sıkılaşmanın ekonomiyi resesyona sokmak için değil, piyasadaki aşırı likidite ve gevşek finansal koşulları kademeli olarak dengelemek amacıyla devreye sokulduğunu belirten şahin duruş teyidi."
+          "significance_analysis": "FOMC'nin faiz indirimi konusunda aceleci davranmayacağını ve manşet enflasyonu yukarı iten jeopolitik enerji şokunu izleyerek politika faizini kısıtlayıcı bölgede tutmayı sürdüreceğini teyit eden şahin duruş."
         }
       ]
     },
@@ -257,44 +271,44 @@
     "target_queries": {
       "qa_pairs": [
         {
-          "q": "Federal Açık Piyasa Komitesi (FOMC) 16 Eylül 2026 tarihinde politika faiz oranını hangi aralığa yükseltmiştir?",
-          "a": "FOMC, 16 Eylül 2026 tarihinde federal fonlama faiz oranı hedef aralığını 25 baz puan artırarak yüzde 3,75 - yüzde 4,00 seviyesine yükseltmiştir."
+          "q": "Federal Açık Piyasa Komitesi'nin (FOMC) 28 Ekim 2026 toplantısına ilişkin temel faiz beklentisi nedir?",
+          "a": "FOMC'nin 28 Ekim 2026 toplantısında faiz indirimi beklentilerini öteleyerek politika faizini yüzde 4,00 seviyesinde sabit tutması (pas geçmesi) beklenmektedir."
         },
         {
-          "q": "Federal Rezerv'in (Fed) 16 Eylül 2026 tarihindeki faiz artırımı kararı komite içerisinde nasıl bir oylama dağılımıyla alınmıştır?",
-          "a": "Karar, FOMC üyelerinin 12-0 oybirliği ile alınmış olup komite içinde tam konsensüs sağlanmıştır."
+          "q": "Fed'in faiz indirimi konusunda aceleci davranmamasını sağlayan istihdam ve finansman göstergeleri nelerdir?",
+          "a": "İşsizlik oranının yüzde 4,2 seviyesinde tutunması, tarım dışı istihdamın 29 bin artışla 159 milyon seviyesini koruması, şirketlerin temerrüt risk priminin yüzde 3,23 olması ve finansal koşullar endeksinin eksi 0,499 düzeyinde seyretmesi Fed'e esneklik kazandırmaktadır."
         },
         {
-          "q": "Ağustos 2026 dönemine ait manşet ve çekirdek PCE enflasyonu verileri yüzde kaç olarak gerçekleşmiştir?",
-          "a": "Ağustos 2026 döneminde manşet PCE enflasyonu yüzde 3,4, çekirdek PCE enflasyonu ise yüzde 3,0 oranında kaydedilmiştir."
+          "q": "Fed'in radarındaki manşet ve çekirdek kişisel tüketim harcamaları (PCE) enflasyonu yıllık bazda ne kadardır?",
+          "a": "Manşet kişisel tüketim harcamaları enflasyonu yıllık bazda yüzde 3,42, çekirdek PCE enflasyonu ise yıllık bazda yüzde 3,01 seviyesindedir."
         },
         {
-          "q": "Eylül 2026'da ABD Çalışma İstatistikleri Bürosu (BLS) tarafından açıklanan tarım dışı istihdam değişimi ve işsizlik oranı nedir?",
-          "a": "Eylül 2026'da tarım dışı istihdam değişimi artı 29.000 olarak gerçekleşirken, işsizlik oranı yüzde 4,2 seviyesinde duyurulmuştur."
+          "q": "ABD Hazine tahvilleri getiri eğrisinde 10 yıllık ve 2 yıllık getiriler hangi seviyelerde dengelenmiştir?",
+          "a": "10 yıllık Hazine tahvil getirisi yüzde 5,10, 2 yıllık tahvil getirisi yüzde 4,77 seviyesindedir; getiri eğrisi 35 baz puanla pozitif bölgede yer almaktadır."
         },
         {
-          "q": "Temmuz ve Ağustos aylarını kapsayan istihdam verilerinde yapılan net aşağı yönlü revizyon miktarı ne kadardır?",
-          "a": "Temmuz ve Ağustos dönemindeki istihdam verilerinde toplam 60.000 kişilik net aşağı yönlü revizyon yapılmıştır."
+          "q": "Hürmüz Boğazı'ndaki askeri gerilim ve tanker yangını enerji fiyatlarını nasıl etkilemiştir?",
+          "a": "Hürmüz Boğazı'nda bir petrol tankerinin mayına çarparak alev alması ve askeri abluka, spot Brent petrolü 109,69 dolar bandına, ABD genelinde normal benzinin galon fiyatını ise 4,33 dolara yükseltmiştir."
         },
         {
-          "q": "FOMC Başkanı Warsh, Eylül 2026 toplantısındaki faiz artırımı kararını ve para politikası duruşunu nasıl nitelendirmiştir?",
-          "a": "FOMC Başkanı Warsh, yapılan faiz artışının finansal sistemdeki akomodasyonun bir dozunun kaldırılması anlamına geldiğini belirtmiştir."
+          "q": "1 aylık Hazine bonosu getirisinin politika faizinin üzerine çıkması piyasalar açısından ne anlama gelmektedir?",
+          "a": "1 aylık Hazine bonosu getirisinin yüzde 4,17 ile Fed'in yüzde 4'lük politika faizinin üzerine çıkması, piyasadaki nakit ihtiyacının ve tedirginliğin canlı kaldığını yansıtmaktadır."
         },
         {
-          "q": "Eylül 2026 döneminde Sentezlenmiş Portföy Endeksi bir önceki aya göre nasıl bir değişim göstermiştir?",
-          "a": "Sentezlenmiş Portföy Endeksi, cari dönemde 38,5 seviyesine gerileyerek bir önceki dönemin 41,2 olan değerine kıyasla düşüş kaydetmiştir."
+          "q": "Yüksek enerji maliyetleri akaryakıt dışında hangi sektörleri doğrudan tehdit etmektedir?",
+          "a": "Enerji maliyetlerindeki bu sıçrama sadece akaryakıtı değil, tarımsal gübre tedarikini ve gıda üretim maliyetlerini de doğrudan etkilemektedir."
         },
         {
-          "q": "FOMC'nin kısıtlayıcı para politikası duruşunun arkasındaki temel stratejik hedef ve gerekçe nedir?",
-          "a": "Enflasyonun yüzde 2,0 hedefinin üzerinde seyretmesi, PCE ve alt kalemlerdeki yapışkanlık ile orta vadeli enflasyonist trendlerin dizginlenmesi hedeflenmektedir."
+          "q": "FOMC'nin kısıtlayıcı para politikasını sürdürmesinin arkasındaki temel makroekonomik gerekçe nedir?",
+          "a": "Enflasyonun yüzde 2'lik resmi hedefin belirgin şekilde üzerinde seyretmesi ve Hürmüz Boğazı kaynaklı enerji maliyet şokunun manşet enflasyonu yukarı itme riskidir."
         },
         {
-          "q": "Yüksek faiz politikasının uzun süre korunmasının kurumsal borçlanma ve şirketler üzerindeki stratejik etkisi ne olacaktır?",
-          "a": "Yüksek faiz politikasının uzun süre korunması borçlanma maliyetlerini artıracak, yatırımlarda hurdle rate oranlarını yükseltecek ve sermaye disiplinini zorunlu kılacaktır."
+          "q": "Yüksek faiz politikasının ve borçlanma maliyetlerinin sürmesinin reel sektöre etkisi ne olacaktır?",
+          "a": "Kararın ardından borçlanma faizlerinin yüksek kalması hem tüketici kredilerinde hem de sanayicinin yatırım maliyetlerinde hissedilir bir finansman yükü oluşturacaktır."
         },
         {
-          "q": "Hürmüz Boğazı'ndaki seyrüsefer risklerinin küresel ekonomiye ve enflasyona olası ikincil tur etkisi nedir?",
-          "a": "Hürmüz Boğazı'ndaki seyrüsefer riskleri ve küresel çatışmalar petrol, enerji ve tarımsal emtia fiyatları üzerinden enflasyonist ikinci tur etki riski yaratmaktadır."
+          "q": "Hürmüz Boğazı'ndaki jeopolitik krizin Fed'in faiz kararları üzerindeki aktarım kanalı nasıldır?",
+          "a": "Hürmüz seyrüsefer krizi petrol ve benzin fiyatlarını sıçratmakta, bu durum manşet enflasyonda katılık yaratarak Fed'in faiz indirimlerini ertelemesine ve kısıtlayıcı duruşu uzatmasına yol açmaktadır."
         }
       ]
     },
@@ -315,7 +329,7 @@
           "target_published_date": "2026-10-30",
           "predicate": "MONETARY_TIGHTENING_TRANSMISSION",
           "impact_window": "2026-10/2026-12",
-          "description": "Yapışkan PCE enflasyonu ve Hürmüz Boğazı petrol sıçraması nedeniyle alınan 25 baz puanlık faiz artırımı kararı, 10 yıllık Hazine tahvil faizlerinin yüzde 5,05 seviyesine tırmanmasına ve şirketlerin borçlanma maliyetlerinin artmasına zemin hazırlamıştır."
+          "description": "Yapışkan PCE enflasyonu ve Hürmüz Boğazı petrol sıçraması nedeniyle faizi yüzde 4,00 seviyesinde sabit tutma eğilimi, 10 yıllık Hazine tahvil faizlerinin yüzde 5,05 seviyesine tırmanmasına ve reel sektörün borçlanma maliyetlerinin artmasına zemin hazırlamıştır."
         },
         {
           "target_url": "https://www.ersoytoptas.tr/2026/10/abd-rusya-baris-trafigi-starshield-krizi-cephede-neler-oluyor.html",

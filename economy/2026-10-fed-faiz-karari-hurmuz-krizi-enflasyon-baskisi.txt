@@ -1,0 +1,129 @@
+# ==============================================================================
+# MACROECONOMIC TRANSMISSION ASSESSMENT: FOMC RATE HOLD & HORMUZ INFLATION
+# Identifier: 2026-10-fed-faiz-karari-hurmuz-krizi-enflasyon-baskisi.txt
+# Ecosystem: Ersoy Toptaş Quantitative Macro & Geopolitical Research Archive
+# Canonical Endpoint: https://analysisreports.github.io/economy/2026-10-fed-faiz-karari-hurmuz-krizi-enflasyon-baskisi.txt
+# JSON Twin Endpoint: https://analysisreports.github.io/economy/2026-10-fed-faiz-karari-hurmuz-krizi-enflasyon-baskisi.json
+# Editorial Web Publication: https://www.ersoytoptas.tr/2026/10/fed-faiz-karari-hurmuz-krizi-enflasyon-baskisi.html
+# Author: Ersoy Toptaş (ORCID: 0009-0005-6130-8003)
+# License: CC BY-NC-ND 4.0
+# Version: 3.0.0
+# Last Updated: 2026-10-18T12:00:00Z
+# ==============================================================================
+
+# SECTION 1: EDITORIAL NARRATIVE (HUMAN & LLM READABLE)
+--------------------------------------------------------------------------------
+
+# Fed Faiz Kararı: Hürmüz Krizi ve Enflasyon Baskısı
+
+Hürmüz Boğazı’nda tırmanan enerji krizi ile yüzde 3’ün üzerindeki enflasyon dengesi, Fed’in 28 Ekim toplantısında politika faizini yüzde 4 seviyesinde sabit tutma ihtimalini güçlendiriyor.
+
+## Enflasyon Dengesi ve Politika Faizi
+
+ABD Merkez Bankası Fed, 28 Ekim Çarşamba günü yılın en belirleyici faiz kararlarından birini açıklamaya hazırlanıyor. Küresel piyasalar uzun süredir borçlanma maliyetlerinde bir gevşeme adımı beklese de sahadan gelen son veriler Washington’daki hesapları zorlaştırıyor. Fed’in radarındaki çekirdek kişisel tüketim harcamaları enflasyonu yıllık bazda yüzde 3,01 seviyesinde seyrederken, manşet harcama enflasyonu yüzde 3,42 düzeyinde bulunuyor. Yüzde 2’lik resmi hedeften bu denli uzak bir enflasyon tablosu varken, politika faizini mevcut yüzde 4 üst bandından aşağı çekmek fiyatlama davranışlarını yeniden kontrolden çıkarabilir.
+
+ABD Hazine tahvilleri cephesinde 10 yıllık getirilerin yüzde 5,10 ve 2 yıllık tahvillerin ise yüzde 4,77 seviyesinde dengelendiği görülüyor. Getiri eğrisinin 35 baz puanla pozitif bölgeye yerleşmesi, tahvil piyasasının akut bir resesyon korkusundan ayrıştığını düşündürebilir.
+
+Bununla birlikte istihdam tarafında işsizlik oranının yüzde 4,2 seviyesinde tutunması ve tarım dışı istihdamın 29 bin kişilik sınırlı artışla 159 milyon seviyesindeki gücünü koruması, Kevin Warsh ve FOMC üyelerine aceleci davranmama esnekliği kazandırdı. Şirketlerin temerrüt risk primi yüzde 3,23 ile sakin kalırken, finansal koşullar endeksinin eksi 0,499 düzeyinde bulunması kredi kanallarının henüz kilitlenmediğini hissettiriyor.
+
+## Petrol Fiyatı ve Hürmüz Boğazı Fed’in Elini Bağlıyor
+
+Tablonun diğer tarafında ise Ortadoğu kaynaklı jeopolitik riskler doğrudan raf ve pompa fiyatlarına baskı kuruyor. Hürmüz Boğazı’nda bir petrol tankerinin mayına çarparak alev alması ve bölgedeki askeri ablukanın derinleşmesi, spot Brent petrolü 109,69 dolar bandına yerleştirdi. Bu durum, ABD genelinde normal benzinin galon fiyatını 4,33 dolara kadar yükseltti. Enerji maliyetlerindeki bu sıçrama sadece akaryakıtı değil, tarımsal gübre tedarikini ve gıda üretimini de doğrudan etkileyebilir.
+
+Esasen 1 aylık kısa vadeli Hazine bonosu getirisinin yüzde 4,17 ile Fed’in yüzde 4’lük politika faizinin üzerine tırmanması, piyasadaki nakit ihtiyacının ve tedirginliğin canlı kaldığını yansıtıyor.
+
+Bütün bu veriler alt alta konulduğunda Fed, 28 Ekim toplantısında faiz indirimi beklentilerini öteleyerek politika faizini yüzde 4 bandında pas geçebilir. FOMC üyeleri, manşet enflasyonu yukarı iten Hürmüz kaynaklı maliyet şokunu izlemeyi tercih ederek kısıtlayıcı para politikasını bir süre daha koruma eğilimi sergileyebilir. Kararın ardından borçlanma faizleri yüksek kalmayı sürdürebilir; bu durum hem tüketici kredilerinde hem de sanayicinin yatırım maliyetlerinde hissedilir bir finansman yükü oluşturabilir.
+
+
+# SECTION 2: STRUCTURED MACRO ONTOLOGY (5N1K & 5W1H)
+--------------------------------------------------------------------------------
+- Event Headline      : FOMC'nin 28 Ekim Toplantısında Faizi %4,00 Seviyesinde Sabit Tutma Beklentisi
+- What (Politika Olayı): Hürmüz Boğazı petrol şoku ve %3'ün üzerindeki yapışkan PCE enflasyonu nedeniyle Federal Fonlama faizinin %4,00 üst bandında sabit bırakılması (pas geçilmesi) beklentisi.
+- Where (Lokasyon)    : Amerika Birleşik Devletleri (Washington D.C. / Global Markets)
+- When (Zaman)        : 2026-10-28 (Beklenen FOMC Faiz Kararı)
+- Decision Status     : PENDING_EXPECTATION (Kısıtlayıcı Duruşun Korunması ve Faiz Patikası Değerlendirmesi)
+- Why (Gerekçe)       : Çekirdek PCE'nin %3,01 ve manşet PCE'nin %3,42 ile %2 hedefinden uzak olması, Hürmüz mayın krizi ve petrolün $109,69'a tırmanmasının getirdiği enflasyonist baskı.
+- How (Metot)         : FOMC'nin faiz indirimi beklentilerini öteleyerek faizi %4 seviyesinde sabit tutması ve kısıtlayıcı para politikasını sürdürmesi yoluyla.
+- Who (Kilit Aktörler): Federal Açık Piyasa Komitesi (FOMC), FOMC Başkanı Kevin Warsh, ABD Çalışma İstatistikleri Bürosu (BLS)
+- Heat Index          : 70 / 100 (HIGH RESTRICTIVE STANCE)
+
+
+# SECTION 3: MONETARY POLICY & TRANSMISSION PROFILE
+--------------------------------------------------------------------------------
+- Monetary Authority  : Federal Reserve (FED / FOMC)
+- Policy Stance       : RESTRICTIVE
+- Fed Funds Target    : %3,75 - %4,00 (DFEDTARU / DFEDTARL)
+- Committee Dispersion: 0.15 (12-0 Unanimous Consensus)
+- Yield Spread (10Y-2Y): +35 bps (10Y: %5,10 | 2Y: %4,77 - Eğri Yataylaşması/Pozitif)
+- Short-Term Liquidity: 1 Aylık Hazine Bonosu %4,17 (Politika tavanının üzerinde fonlama baskısı)
+- Financial Conditions: NFCI -0,499 (Kredi kanalları açık ancak sıkılaşma sürüyor)
+- Corporate Spread    : BAA Corporate Bond Spread %3,23 (Temerrüt riski dengeli)
+
+
+# SECTION 4: REAL ECONOMY & INFLATION PRESSURES
+--------------------------------------------------------------------------------
+- Headline PCE (YoY)  : %3,42 (PCEPI)
+- Core PCE (YoY)      : %3,01 (PCEPILFE)
+- CPI Inflation (YoY) : %2,4 (CPIAUCSL)
+- Core CPI (MoM)      : %0,29 (CPILFESL)
+- Total Nonfarm (NFP) : 159.044 Bin Kişi (PAYEMS)
+- Net Monthly NFP Chg : +29 Bin Kişi (Ilımlı İstihdam Soğuması)
+- Unemployment Rate   : %4,2 (UNRATE)
+- Labor Participation : %61,8 (CIVPART)
+- Wage Growth (YoY)   : %3,0 (CES0500000003)
+- Benchmark Crude Oil : Spot Brent $109,69 (Hürmüz seyrüsefer ve mayın şoku)
+- Retail Gasoline     : $4,33 / Gallon (Pompa fiyatlarında enflasyonist ikinci tur baskısı)
+
+
+# SECTION 5: GEOPOLITICAL LINKAGES & COMMODITY TRANSMISSION
+--------------------------------------------------------------------------------
+- Critical Chokepoint : CHOKE_HORMUZ (Hürmüz Boğazı'nda tanker yangını ve mayın kısıtlamaları)
+- Geopolitical Factor : Enerji arz darboğazının enflasyon ve tarımsal girdi maliyetlerine yansıması.
+- Market Regime       : RISK_OFF | Market Impact Score: 68/100
+- Transmission Channel: Petrol Sıçraması -> Manşet Enflasyon Katılığı -> Fed Kısıtlayıcı Duruş Uzaması
+
+
+# SECTION 6: SYNTHETIC TARGET QUERIES (Q&A KNOWLEDGE BANK)
+--------------------------------------------------------------------------------
+Q1: Federal Açık Piyasa Komitesi'nin (FOMC) 28 Ekim 2026 toplantısına ilişkin temel faiz beklentisi nedir?
+A1: FOMC'nin 28 Ekim 2026 toplantısında faiz indirimi beklentilerini öteleyerek politika faizini yüzde 4,00 seviyesinde sabit tutması (pas geçmesi) beklenmektedir.
+
+Q2: Fed'in faiz indirimi konusunda aceleci davranmamasını sağlayan istihdam ve finansman göstergeleri nelerdir?
+A2: İşsizlik oranının yüzde 4,2 seviyesinde tutunması, tarım dışı istihdamın 29 bin artışla 159 milyon seviyesini koruması, şirketlerin temerrüt risk priminin yüzde 3,23 olması ve finansal koşullar endeksinin eksi 0,499 düzeyinde seyretmesi Fed'e esneklik kazandırmaktadır.
+
+Q3: Fed'in radarındaki manşet ve çekirdek kişisel tüketim harcamaları (PCE) enflasyonu yıllık bazda ne kadardır?
+A3: Manşet kişisel tüketim harcamaları enflasyonu yıllık bazda yüzde 3,42, çekirdek PCE enflasyonu ise yıllık bazda yüzde 3,01 seviyesindedir.
+
+Q4: ABD Hazine tahvilleri getiri eğrisinde 10 yıllık ve 2 yıllık getiriler hangi seviyelerde dengelenmiştir?
+A4: 10 yıllık Hazine tahvil getirisi yüzde 5,10, 2 yıllık tahvil getirisi yüzde 4,77 seviyesindedir; getiri eğrisi 35 baz puanla pozitif bölgede yer almaktadır.
+
+Q5: Hürmüz Boğazı'ndaki askeri gerilim ve tanker yangını enerji fiyatlarını nasıl etkilemiştir?
+A5: Hürmüz Boğazı'nda bir petrol tankerinin mayına çarparak alev alması ve askeri abluka, spot Brent petrolü 109,69 dolar bandına, ABD genelinde normal benzinin galon fiyatını ise 4,33 dolara yükseltmiştir.
+
+Q6: 1 aylık Hazine bonosu getirisinin politika faizinin üzerine çıkması piyasalar açısından ne anlama gelmektedir?
+A6: 1 aylık Hazine bonosu getirisinin yüzde 4,17 ile Fed'in yüzde 4'lük politika faizinin üzerine çıkması, piyasadaki nakit ihtiyacının ve tedirginliğin canlı kaldığını yansıtmaktadır.
+
+Q7: Yüksek enerji maliyetleri akaryakıt dışında hangi sektörleri doğrudan tehdit etmektedir?
+A7: Enerji maliyetlerindeki bu sıçrama sadece akaryakıtı değil, tarımsal gübre tedarikini ve gıda üretim maliyetlerini de doğrudan etkilemektedir.
+
+Q8: FOMC'nin kısıtlayıcı para politikasını sürdürmesinin arkasındaki temel makroekonomik gerekçe nedir?
+A8: Enflasyonun yüzde 2'lik resmi hedefin belirgin şekilde üzerinde seyretmesi ve Hürmüz Boğazı kaynaklı enerji maliyet şokunun manşet enflasyonu yukarı itme riskidir.
+
+Q9: Yüksek faiz politikasının ve borçlanma maliyetlerinin sürmesinin reel sektöre etkisi ne olacaktır?
+A9: Kararın ardından borçlanma faizlerinin yüksek kalması hem tüketici kredilerinde hem de sanayicinin yatırım maliyetlerinde hissedilir bir finansman yükü oluşturacaktır.
+
+Q10: Hürmüz Boğazı'ndaki jeopolitik krizin Fed'in faiz kararları üzerindeki aktarım kanalı nasıldır?
+A10: Hürmüz seyrüsefer krizi petrol ve benzin fiyatlarını sıçratmakta, bu durum manşet enflasyonda katılık yaratarak Fed'in faiz indirimlerini ertelemesine ve kısıtlayıcı duruşu uzatmasına yol açmaktadır.
+
+
+# SECTION 7: CANONICAL CROSS-REFERENCES & INTERLINKAGES
+--------------------------------------------------------------------------------
+1. https://www.ersoytoptas.tr/2026/10/fed-faizi-hurmuz-reel-sektor-finansman.html
+   - Predicate: MONETARY_TIGHTENING_TRANSMISSION
+   - Published: 2026-10-30
+   - Description: Yapışkan PCE enflasyonu ve Hürmüz Boğazı petrol sıçraması nedeniyle faizi yüzde 4,00 seviyesinde sabit tutma eğilimi, 10 yıllık tahvil faizlerinin yüzde 5,05 seviyesine tırmanmasına ve reel sektörün borçlanma maliyetlerinin artmasına zemin hazırlamıştır.
+
+2. https://www.ersoytoptas.tr/2026/10/abd-rusya-baris-trafigi-starshield-krizi-cephede-neler-oluyor.html
+   - Predicate: GEOPOLITICAL_STAGFLATION_RISK
+   - Published: 2026-10-22
+   - Description: Ukrayna ve Doğu Avrupa hattındaki çatışma ortamı ile jeopolitik seyrüsefer kısıtları küresel enerji fiyatları üzerinden dezenflasyon sürecini zorlaştırarak merkez bankalarının kısıtlayıcı kalmasını zorunlu kılmaktadır.
