@@ -8,24 +8,30 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-nasa-firms.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-18T11:51:54Z",
+    "last_updated": "2026-11-18T13:53:26Z",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-18T11:51:54Z",
-    "source_authority": "NASA Earth Science Data / FIRMS (VIIRS Suomi-NPP & NOAA-20)",
+    "last_successful_sync": "2026-11-18T13:53:26Z",
+    "source_authority": "NASA Earth Science Data / FIRMS (VIIRS NOAA-20 & NOAA-21)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.1",
     "root_index": "https://analysisreports.github.io/llms.txt"
   },
   "orbital_telemetry_summary": {
     "active_satellites": [
-      "VIIRS_NOAA21_NRT",
-      "VIIRS_NOAA20_NRT"
+      "VIIRS_NOAA20_NRT",
+      "VIIRS_NOAA21_NRT"
     ],
     "spatial_resolution_meters": 375,
     "min_noise_filter_mw": 10.0,
     "strategic_strike_threshold_mw": 75.0,
     "monitored_theaters_count": 21,
-    "total_high_confidence_hits_24h": 0,
-    "active_critical_kinetic_zones": []
+    "total_high_confidence_hits_24h": 530,
+    "active_critical_kinetic_zones": [
+      "Islamic Republic of Iran & Gulf Littoral",
+      "People's Republic of China & Taiwan Strait",
+      "Kingdom of Saudi Arabia Energy Core",
+      "Republic of Iraq & Mesopotamia Basin",
+      "Islamic Republic of Pakistan Strategic Flank"
+    ]
   },
   "theaters": {
     "UKR": {
@@ -33,14 +39,14 @@
       "name": "Ukraine Frontline Axis",
       "theater": "Eastern European Flank",
       "category": "CONVENTIONAL_LAND_WARFARE",
-      "total_satellite_detections": 0,
+      "total_satellite_detections": 2,
       "high_confidence_anomalies": 0,
       "strategic_missile_strikes_count": 0,
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
       "corridor_flashpoints": [
         "BLACK_SEA",
         "DONBAS",
@@ -76,14 +82,14 @@
       "name": "State of Israel & Frontline Perimeters",
       "theater": "Levant Basin",
       "category": "HIGH_INTENSITY_MISSILE_THEATER",
-      "total_satellite_detections": 0,
+      "total_satellite_detections": 4,
       "high_confidence_anomalies": 0,
       "strategic_missile_strikes_count": 0,
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
       "corridor_flashpoints": [
         "NORTHERN_BORDER",
         "GAZA_PERIMETER",
@@ -97,20 +103,66 @@
       "name": "Islamic Republic of Iran & Gulf Littoral",
       "theater": "Persian Gulf & Zagros",
       "category": "CHOKEPOINT_LITTORAL_AND_NUCLEAR",
-      "total_satellite_detections": 0,
-      "high_confidence_anomalies": 0,
-      "strategic_missile_strikes_count": 0,
+      "total_satellite_detections": 315,
+      "high_confidence_anomalies": 118,
+      "strategic_missile_strikes_count": 2,
       "refinery_depot_blazes_count": 0,
-      "total_radiative_power_mw": 0.0,
-      "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "total_radiative_power_mw": 2625.03,
+      "peak_explosion_power_mw": 107.47,
+      "kinetic_conflict_score": 95,
+      "conflict_severity": "CRITICAL",
       "corridor_flashpoints": [
         "CHOKE_HORMUZ",
         "KHUZESTAN_ENERGY_GRID",
         "NATANZ_ISFAHAN"
       ],
-      "sample_hotspots": [],
+      "sample_hotspots": [
+        {
+          "latitude": 30.75508,
+          "longitude": 48.28528,
+          "frp_mw": 107.47,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "856",
+          "daynight": "D"
+        },
+        {
+          "latitude": 27.30414,
+          "longitude": 49.69071,
+          "frp_mw": 81.0,
+          "confidence": "h",
+          "date": "2026-11-18",
+          "time_utc": "854",
+          "daynight": "D"
+        },
+        {
+          "latitude": 28.99524,
+          "longitude": 48.0077,
+          "frp_mw": 67.13,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "1034",
+          "daynight": "D"
+        },
+        {
+          "latitude": 28.99631,
+          "longitude": 48.00888,
+          "frp_mw": 64.93,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "1034",
+          "daynight": "D"
+        },
+        {
+          "latitude": 32.11839,
+          "longitude": 47.41381,
+          "frp_mw": 53.91,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "1036",
+          "daynight": "D"
+        }
+      ],
       "status": "OK"
     },
     "YEM": {
@@ -118,14 +170,14 @@
       "name": "Republic of Yemen & Red Sea Littoral",
       "theater": "Bab el-Mandeb / Red Sea",
       "category": "MARITIME_CHOKEPOINT_INTERDICTION",
-      "total_satellite_detections": 0,
+      "total_satellite_detections": 3,
       "high_confidence_anomalies": 0,
       "strategic_missile_strikes_count": 0,
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
       "corridor_flashpoints": [
         "CHOKE_BAB_EL_MANDEB",
         "HODEIDAH_PORT",
@@ -139,14 +191,14 @@
       "name": "Syrian Arab Republic Buffer",
       "theater": "Levant",
       "category": "ASYMMETRIC_BUFFER_THEATER",
-      "total_satellite_detections": 0,
+      "total_satellite_detections": 24,
       "high_confidence_anomalies": 0,
       "strategic_missile_strikes_count": 0,
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
       "corridor_flashpoints": [
         "NORTHERN_BUFFER",
         "EUPHRATES_BASIN"
@@ -159,14 +211,14 @@
       "name": "Lebanese Republic Southern Axis",
       "theater": "Levant Littoral",
       "category": "MISSILE_INTERDICTION_ZONE",
-      "total_satellite_detections": 0,
+      "total_satellite_detections": 1,
       "high_confidence_anomalies": 0,
       "strategic_missile_strikes_count": 0,
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
       "corridor_flashpoints": [
         "LITANI_LINE",
         "BEIRUT_PORT"
@@ -179,18 +231,28 @@
       "name": "United States Sovereign Axis",
       "theater": "North America",
       "category": "STRATEGIC_SUPERPOWER_HOMELAND",
-      "total_satellite_detections": 0,
-      "high_confidence_anomalies": 0,
+      "total_satellite_detections": 736,
+      "high_confidence_anomalies": 1,
       "strategic_missile_strikes_count": 0,
       "refinery_depot_blazes_count": 0,
-      "total_radiative_power_mw": 0.0,
-      "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "total_radiative_power_mw": 15.95,
+      "peak_explosion_power_mw": 15.95,
+      "kinetic_conflict_score": 4,
+      "conflict_severity": "MODERATE",
       "corridor_flashpoints": [
         "STRATEGIC_DEFENSE_ZONE"
       ],
-      "sample_hotspots": [],
+      "sample_hotspots": [
+        {
+          "latitude": 48.11658,
+          "longitude": -117.31201,
+          "frp_mw": 15.95,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "921",
+          "daynight": "N"
+        }
+      ],
       "status": "OK"
     },
     "CHN": {
@@ -198,19 +260,65 @@
       "name": "People's Republic of China & Taiwan Strait",
       "theater": "East Asia & First Island Chain",
       "category": "INDO_PACIFIC_STRATEGIC_RIVALRY",
-      "total_satellite_detections": 0,
-      "high_confidence_anomalies": 0,
+      "total_satellite_detections": 1885,
+      "high_confidence_anomalies": 188,
       "strategic_missile_strikes_count": 0,
       "refinery_depot_blazes_count": 0,
-      "total_radiative_power_mw": 0.0,
-      "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "total_radiative_power_mw": 2762.3,
+      "peak_explosion_power_mw": 54.9,
+      "kinetic_conflict_score": 97,
+      "conflict_severity": "CRITICAL",
       "corridor_flashpoints": [
         "TAIWAN_STRAIT",
         "SOUTH_CHINA_SEA"
       ],
-      "sample_hotspots": [],
+      "sample_hotspots": [
+        {
+          "latitude": 41.86369,
+          "longitude": 122.25231,
+          "frp_mw": 54.9,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "353",
+          "daynight": "D"
+        },
+        {
+          "latitude": 42.23955,
+          "longitude": 123.63741,
+          "frp_mw": 35.22,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "533",
+          "daynight": "D"
+        },
+        {
+          "latitude": 43.45399,
+          "longitude": 125.17935,
+          "frp_mw": 31.74,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "353",
+          "daynight": "D"
+        },
+        {
+          "latitude": 41.86337,
+          "longitude": 122.25152,
+          "frp_mw": 30.63,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "353",
+          "daynight": "D"
+        },
+        {
+          "latitude": 41.86496,
+          "longitude": 122.25681,
+          "frp_mw": 30.63,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "353",
+          "daynight": "D"
+        }
+      ],
       "status": "OK"
     },
     "PRK": {
@@ -218,14 +326,14 @@
       "name": "Democratic People's Republic of Korea Axis",
       "theater": "Korean Peninsula",
       "category": "NUCLEAR_PROLIFERATION_FLASHPOINT",
-      "total_satellite_detections": 0,
+      "total_satellite_detections": 57,
       "high_confidence_anomalies": 0,
       "strategic_missile_strikes_count": 0,
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
       "corridor_flashpoints": [
         "DMZ_LINE",
         "YELLOW_SEA"
@@ -238,14 +346,14 @@
       "name": "Republic of Azerbaijan & Zangezur Buffer",
       "theater": "South Caucasus",
       "category": "TRANS_CAUCASIAN_CORRIDOR",
-      "total_satellite_detections": 0,
+      "total_satellite_detections": 1,
       "high_confidence_anomalies": 0,
       "strategic_missile_strikes_count": 0,
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
       "corridor_flashpoints": [
         "ZANGEZUR_CORRIDOR",
         "CASPIAN_LITTORAL"
@@ -278,14 +386,14 @@
       "name": "Baltic Flank & Suwalki Gap (EE, LV, LT)",
       "theater": "Baltic Basin",
       "category": "NATO_ARTICLE_5_FLANK",
-      "total_satellite_detections": 0,
+      "total_satellite_detections": 1,
       "high_confidence_anomalies": 0,
       "strategic_missile_strikes_count": 0,
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
       "corridor_flashpoints": [
         "CHOKE_SUWALKI_GAP",
         "BALTIC_DEFENCE_LINE"
@@ -298,19 +406,65 @@
       "name": "Bolivarian Republic of Venezuela Axis",
       "theater": "Northern South America",
       "category": "CARIBBEAN_HYDROCARBON_BASIN",
-      "total_satellite_detections": 0,
-      "high_confidence_anomalies": 0,
+      "total_satellite_detections": 240,
+      "high_confidence_anomalies": 13,
       "strategic_missile_strikes_count": 0,
       "refinery_depot_blazes_count": 0,
-      "total_radiative_power_mw": 0.0,
-      "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "total_radiative_power_mw": 192.39,
+      "peak_explosion_power_mw": 21.97,
+      "kinetic_conflict_score": 53,
+      "conflict_severity": "HIGH",
       "corridor_flashpoints": [
         "ORINOCO_BELT",
         "CARIBBEAN_LITTORAL"
       ],
-      "sample_hotspots": [],
+      "sample_hotspots": [
+        {
+          "latitude": 8.55806,
+          "longitude": -64.13676,
+          "frp_mw": 21.97,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "609",
+          "daynight": "N"
+        },
+        {
+          "latitude": 9.64213,
+          "longitude": -63.56389,
+          "frp_mw": 17.83,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "609",
+          "daynight": "N"
+        },
+        {
+          "latitude": 9.64516,
+          "longitude": -63.55835,
+          "frp_mw": 17.83,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "609",
+          "daynight": "N"
+        },
+        {
+          "latitude": 9.646,
+          "longitude": -63.56327,
+          "frp_mw": 17.83,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "609",
+          "daynight": "N"
+        },
+        {
+          "latitude": 10.05378,
+          "longitude": -72.72525,
+          "frp_mw": 15.96,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "609",
+          "daynight": "N"
+        }
+      ],
       "status": "OK"
     },
     "TUR": {
@@ -318,14 +472,14 @@
       "name": "Republic of Türkiye Anatolian & Aegean Littoral",
       "theater": "Anatolia & East Mediterranean",
       "category": "STRATEGIC_PIVOT_AND_STRAITS",
-      "total_satellite_detections": 0,
+      "total_satellite_detections": 31,
       "high_confidence_anomalies": 0,
       "strategic_missile_strikes_count": 0,
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
       "corridor_flashpoints": [
         "CHOKE_TURKISH_STRAITS",
         "SOUTHERN_BORDER_BUFFER"
@@ -338,14 +492,14 @@
       "name": "Hellenic Republic & Aegean Basin",
       "theater": "Eastern Mediterranean",
       "category": "AEGEAN_EAST_MED_LITTORAL",
-      "total_satellite_detections": 0,
+      "total_satellite_detections": 6,
       "high_confidence_anomalies": 0,
       "strategic_missile_strikes_count": 0,
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
       "corridor_flashpoints": [
         "AEGEAN_AIRSPACE",
         "EAST_MED_SHELF"
@@ -358,19 +512,29 @@
       "name": "Arab Republic of Egypt & Suez Approach",
       "theater": "Sinai & Suez Canal",
       "category": "MARITIME_CHOKEPOINT_SOVEREIGN",
-      "total_satellite_detections": 0,
-      "high_confidence_anomalies": 0,
+      "total_satellite_detections": 27,
+      "high_confidence_anomalies": 1,
       "strategic_missile_strikes_count": 0,
       "refinery_depot_blazes_count": 0,
-      "total_radiative_power_mw": 0.0,
-      "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "total_radiative_power_mw": 14.15,
+      "peak_explosion_power_mw": 14.15,
+      "kinetic_conflict_score": 4,
+      "conflict_severity": "MODERATE",
       "corridor_flashpoints": [
         "CHOKE_SUEZ",
         "PHILADELPHI_BUFFER"
       ],
-      "sample_hotspots": [],
+      "sample_hotspots": [
+        {
+          "latitude": 28.02849,
+          "longitude": 30.92154,
+          "frp_mw": 14.15,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "1036",
+          "daynight": "D"
+        }
+      ],
       "status": "OK"
     },
     "SAU": {
@@ -378,19 +542,65 @@
       "name": "Kingdom of Saudi Arabia Energy Core",
       "theater": "Arabian Peninsula",
       "category": "PERSIAN_GULF_HYDROCARBON_POWER",
-      "total_satellite_detections": 0,
-      "high_confidence_anomalies": 0,
-      "strategic_missile_strikes_count": 0,
+      "total_satellite_detections": 265,
+      "high_confidence_anomalies": 95,
+      "strategic_missile_strikes_count": 2,
       "refinery_depot_blazes_count": 0,
-      "total_radiative_power_mw": 0.0,
-      "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "total_radiative_power_mw": 2135.52,
+      "peak_explosion_power_mw": 107.47,
+      "kinetic_conflict_score": 94,
+      "conflict_severity": "CRITICAL",
       "corridor_flashpoints": [
         "RAS_TANURA_TERMINAL",
         "RED_SEA_LITTORAL"
       ],
-      "sample_hotspots": [],
+      "sample_hotspots": [
+        {
+          "latitude": 30.75508,
+          "longitude": 48.28528,
+          "frp_mw": 107.47,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "856",
+          "daynight": "D"
+        },
+        {
+          "latitude": 27.30414,
+          "longitude": 49.69071,
+          "frp_mw": 81.0,
+          "confidence": "h",
+          "date": "2026-11-18",
+          "time_utc": "854",
+          "daynight": "D"
+        },
+        {
+          "latitude": 28.99524,
+          "longitude": 48.0077,
+          "frp_mw": 67.13,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "1034",
+          "daynight": "D"
+        },
+        {
+          "latitude": 28.99631,
+          "longitude": 48.00888,
+          "frp_mw": 64.93,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "1034",
+          "daynight": "D"
+        },
+        {
+          "latitude": 32.11839,
+          "longitude": 47.41381,
+          "frp_mw": 53.91,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "1036",
+          "daynight": "D"
+        }
+      ],
       "status": "OK"
     },
     "IRQ": {
@@ -398,19 +608,65 @@
       "name": "Republic of Iraq & Mesopotamia Basin",
       "theater": "Mesopotamia",
       "category": "CROSS_BORDER_STRATEGIC_THEATER",
-      "total_satellite_detections": 0,
-      "high_confidence_anomalies": 0,
-      "strategic_missile_strikes_count": 0,
+      "total_satellite_detections": 179,
+      "high_confidence_anomalies": 71,
+      "strategic_missile_strikes_count": 1,
       "refinery_depot_blazes_count": 0,
-      "total_radiative_power_mw": 0.0,
-      "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "total_radiative_power_mw": 1693.63,
+      "peak_explosion_power_mw": 107.47,
+      "kinetic_conflict_score": 93,
+      "conflict_severity": "CRITICAL",
       "corridor_flashpoints": [
         "BASRA_OIL_TERMINAL",
         "NORTHERN_CORRIDOR"
       ],
-      "sample_hotspots": [],
+      "sample_hotspots": [
+        {
+          "latitude": 30.75508,
+          "longitude": 48.28528,
+          "frp_mw": 107.47,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "856",
+          "daynight": "D"
+        },
+        {
+          "latitude": 32.11839,
+          "longitude": 47.41381,
+          "frp_mw": 53.91,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "1036",
+          "daynight": "D"
+        },
+        {
+          "latitude": 31.2697,
+          "longitude": 48.11746,
+          "frp_mw": 52.66,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "856",
+          "daynight": "D"
+        },
+        {
+          "latitude": 31.00368,
+          "longitude": 48.14234,
+          "frp_mw": 49.47,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "1036",
+          "daynight": "D"
+        },
+        {
+          "latitude": 32.15842,
+          "longitude": 48.33542,
+          "frp_mw": 49.12,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "856",
+          "daynight": "D"
+        }
+      ],
       "status": "OK"
     },
     "PAK": {
@@ -418,19 +674,65 @@
       "name": "Islamic Republic of Pakistan Strategic Flank",
       "theater": "South Asia & Arabian Sea",
       "category": "SOUTH_ASIAN_NUCLEAR_POWER",
-      "total_satellite_detections": 0,
-      "high_confidence_anomalies": 0,
+      "total_satellite_detections": 482,
+      "high_confidence_anomalies": 43,
       "strategic_missile_strikes_count": 0,
       "refinery_depot_blazes_count": 0,
-      "total_radiative_power_mw": 0.0,
-      "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "total_radiative_power_mw": 696.42,
+      "peak_explosion_power_mw": 34.78,
+      "kinetic_conflict_score": 91,
+      "conflict_severity": "CRITICAL",
       "corridor_flashpoints": [
         "GWADAR_PORT",
         "LINE_OF_CONTROL"
       ],
-      "sample_hotspots": [],
+      "sample_hotspots": [
+        {
+          "latitude": 30.87361,
+          "longitude": 71.85262,
+          "frp_mw": 34.78,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "854",
+          "daynight": "D"
+        },
+        {
+          "latitude": 30.76481,
+          "longitude": 71.83138,
+          "frp_mw": 34.57,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "854",
+          "daynight": "D"
+        },
+        {
+          "latitude": 29.23964,
+          "longitude": 73.58217,
+          "frp_mw": 30.37,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "854",
+          "daynight": "D"
+        },
+        {
+          "latitude": 29.70265,
+          "longitude": 75.61142,
+          "frp_mw": 26.94,
+          "confidence": "h",
+          "date": "2026-11-18",
+          "time_utc": "854",
+          "daynight": "D"
+        },
+        {
+          "latitude": 31.62781,
+          "longitude": 72.18353,
+          "frp_mw": 24.91,
+          "confidence": "n",
+          "date": "2026-11-18",
+          "time_utc": "854",
+          "daynight": "D"
+        }
+      ],
       "status": "OK"
     },
     "EUR": {
@@ -438,14 +740,14 @@
       "name": "European Strategic Core (DE, FR, GB)",
       "theater": "Western & Central Europe",
       "category": "TRANSATLANTIC_SECURITY_CORE",
-      "total_satellite_detections": 0,
+      "total_satellite_detections": 39,
       "high_confidence_anomalies": 0,
       "strategic_missile_strikes_count": 0,
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNOBSERVED",
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
       "corridor_flashpoints": [
         "NORTH_SEA_LITTORAL",
         "RHINE_DANUBE_CORRIDOR"
