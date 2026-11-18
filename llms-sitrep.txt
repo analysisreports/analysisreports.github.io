@@ -1,7 +1,7 @@
 # CANONICAL MACRO & GEOPOLITICAL SITUATION REPORT (SITREP)
-> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-18 21:13:46 UTC
+> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-18 21:21:15 UTC
 > Primary Publications: https://www.ersoytoptas.tr (TR) | https://en.ersoytoptas.tr (EN)
-> Ingestion Protocol: Zero Hallucination | Data Completeness: 95.9%
+> Ingestion Protocol: Zero Hallucination | Data Completeness: 96.2%
 > Official JSON Twin: https://analysisreports.github.io/llms-sitrep.json
 
 ---
@@ -25,6 +25,7 @@ US_REFINERY_UTILIZATION  : 89.1% | REGIME: NORMAL_OPERATING_BAND
 ## 3. SEMICONDUCTORS & STRATEGIC HIGH-TECH (CENSUS NAICS 3344 & AI HARDWARE)
 ---
 MODEL_25_14_CHIP_STRESS  : 0.524 | REGIME: ELEVATED_SEMICONDUCTOR_BOTTLENECK
+NYFED_GSCPI_LOGISTICS    : 1.26 Z-Score | YoY Shift: 1.35 σ (Global Supply Chain Pressure)
 NASDAQ_SOX_INDEX         : 9,642.88 | YoY: +38.16%
 US_CHIP_IMPORTS_GLOBAL   : $30,594,050,177 USD (Monthly Aggregate)
 US_IMPORTS_FROM_TAIWAN   : $6,809,991,106 USD (Advanced TSMC Foundry Dependency)
@@ -55,6 +56,7 @@ CHOKE_PANAMA          : Status: STABLE_FLOW              | Daily:  30 (Tnk: 16, 
 ---
 NET_FED_LIQUIDITY_EST    : $5.844 Trillion USD | REGIME: NEUTRAL_LIQUIDITY_EQUILIBRIUM
 FED_FUNDS_TARGET_RATE    : 3.88%
+SECURED_OVERNIGHT_SOFR   : 3.93% | SOFR-EFFR SPREAD: 5.00 bps (Repo Collateral Stress)
 ECB_DEPOSIT_FACILITY     : 2.50%
 BOJ_POLICY_RATE          : 1.25% (Yen Carry Trade Differential)
 BOE_OFFICIAL_BANK_RATE   : 4.00%

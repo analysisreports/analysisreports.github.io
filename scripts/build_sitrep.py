@@ -77,6 +77,7 @@ def build_sitrep():
     nasa_data = _load_json("llms-nasa-firms.json")
     ecb_data = _load_json("llms-ecb-series.json")
     imf_data = _load_json("llms-imf-series.json")
+    nyfed_data = _load_json("llms-nyfed-series.json")
     models_data = _load_json("llms-models.json")
 
     fred_series = fred_data.get("series", {})
@@ -84,6 +85,7 @@ def build_sitrep():
     census_series = census_data.get("series", {})
     chokepoints = portwatch_data.get("chokepoints", {})
     theaters = nasa_data.get("theaters", {})
+    nyfed_series = nyfed_data.get("series", {})
     models_list = models_data.get("models", [])
     models_dict = {m.get("model_id"): m for m in models_list if isinstance(m, dict)}
 
@@ -203,9 +205,15 @@ def build_sitrep():
     eu_trade = census_corridors.get("CENSUS_NAICS3344_EU", {})
     world_trade = census_corridors.get("CENSUS_NAICS3344_WORLD", {})
 
+    gscpi_s = nyfed_series.get("GSCPI", {})
+    gscpi_val = gscpi_s.get("current_value")
+    gscpi_yoy_chg = gscpi_s.get("transformations", {}).get("change_from_year_ago")
+
     tech_matrix = {
         "ai_chip_stress_score": chip_stress_val,
         "ai_chip_stress_regime": chip_stress_reg,
+        "nyfed_gscpi_pressure_zscore": gscpi_val,
+        "nyfed_gscpi_yoy_change": gscpi_yoy_chg,
         "sox_index_val": sox_val,
         "sox_yoy_pct": sox_yoy,
         "us_semiconductor_imports_global_usd": world_trade.get("latest_monthly_import_usd"),
@@ -301,10 +309,15 @@ def build_sitrep():
     hy_val = hy_s.get("current_value")
     hy_yoy = hy_s.get("transformations", {}).get("percent_change_from_year_ago")
 
+    sofr_val = fred_series.get("SOFR", {}).get("current_value")
+    sofr_fedfunds_spread_bps = round((sofr_val - fed_rate) * 100.0, 1) if (_is_num(sofr_val) and _is_num(fed_rate)) else None
+
     liquidity_matrix = {
         "net_fed_liquidity_trillion_usd": net_liquidity_trillion,
         "net_fed_liquidity_regime": net_liq_status,
         "fed_policy_rate_pct": fed_rate,
+        "secured_overnight_financing_rate_pct": sofr_val,
+        "sofr_fedfunds_spread_bps": sofr_fedfunds_spread_bps,
         "ecb_deposit_rate_pct": ecb_rate,
         "boj_policy_rate_pct": boj_rate,
         "boe_bank_rate_pct": boe_rate,
@@ -410,6 +423,7 @@ def build_sitrep():
         "## 3. SEMICONDUCTORS & STRATEGIC HIGH-TECH (CENSUS NAICS 3344 & AI HARDWARE)",
         "---",
         f"MODEL_25_14_CHIP_STRESS  : {_fmt(tech_matrix['ai_chip_stress_score'], prefix='', decimals=3)} | REGIME: {tech_matrix['ai_chip_stress_regime']}",
+        f"NYFED_GSCPI_LOGISTICS    : {_fmt(tech_matrix['nyfed_gscpi_pressure_zscore'], prefix='', decimals=2)} Z-Score | YoY Shift: {_fmt(tech_matrix['nyfed_gscpi_yoy_change'], prefix='', decimals=2)} σ (Global Supply Chain Pressure)",
         f"NASDAQ_SOX_INDEX         : {_fmt(tech_matrix['sox_index_val'], prefix='', decimals=2)} | YoY: {_fmt_pct(tech_matrix['sox_yoy_pct'])}",
         f"US_CHIP_IMPORTS_GLOBAL   : {_fmt(tech_matrix['us_semiconductor_imports_global_usd'], decimals=0)} USD (Monthly Aggregate)",
         f"US_IMPORTS_FROM_TAIWAN   : {_fmt(tech_matrix['us_semiconductor_imports_taiwan_usd'], decimals=0)} USD (Advanced TSMC Foundry Dependency)",
@@ -446,6 +460,7 @@ def build_sitrep():
         "---",
         f"NET_FED_LIQUIDITY_EST    : {_fmt(liquidity_matrix['net_fed_liquidity_trillion_usd'], prefix='$', suffix=' Trillion USD', decimals=3)} | REGIME: {liquidity_matrix['net_fed_liquidity_regime']}",
         f"FED_FUNDS_TARGET_RATE    : {_fmt(liquidity_matrix['fed_policy_rate_pct'], prefix='', suffix='%')}",
+        f"SECURED_OVERNIGHT_SOFR   : {_fmt(liquidity_matrix['secured_overnight_financing_rate_pct'], prefix='', suffix='%')} | SOFR-EFFR SPREAD: {_fmt(liquidity_matrix['sofr_fedfunds_spread_bps'], prefix='', suffix=' bps')} (Repo Collateral Stress)",
         f"ECB_DEPOSIT_FACILITY     : {_fmt(liquidity_matrix['ecb_deposit_rate_pct'], prefix='', suffix='%')}",
         f"BOJ_POLICY_RATE          : {_fmt(liquidity_matrix['boj_policy_rate_pct'], prefix='', suffix='%')} (Yen Carry Trade Differential)",
         f"BOE_OFFICIAL_BANK_RATE   : {_fmt(liquidity_matrix['boe_bank_rate_pct'], prefix='', suffix='%')}",
