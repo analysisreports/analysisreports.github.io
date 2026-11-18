@@ -1,7 +1,7 @@
 # CANONICAL MACRO & GEOPOLITICAL SITUATION REPORT (SITREP)
-> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-18 20:50:21 UTC
+> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-18 21:13:46 UTC
 > Primary Publications: https://www.ersoytoptas.tr (TR) | https://en.ersoytoptas.tr (EN)
-> Ingestion Protocol: Zero Hallucination | High-Density Semantic Telemetry for AI Reasoning
+> Ingestion Protocol: Zero Hallucination | Data Completeness: 95.9%
 > Official JSON Twin: https://analysisreports.github.io/llms-sitrep.json
 
 ---
@@ -60,6 +60,9 @@ BOJ_POLICY_RATE          : 1.25% (Yen Carry Trade Differential)
 BOE_OFFICIAL_BANK_RATE   : 4.00%
 US_10Y_BREAKEVEN_INFL    : 2.20% (Market Inflation Anchor)
 US_10Y_2Y_YIELD_SPREAD   : 30.00 bps (Recession / Normalization Curve)
+CBOE_VIX_VOLATILITY      : 22.91 | YoY: +30.84% (Equity Fear Gauge)
+FED_BROAD_DOLLAR_INDEX  : 122.65 | YoY: +1.76% (Global Dollar Shortage / Trade Weighted)
+US_HIGH_YIELD_OAS_SPREAD: 3.34% | YoY: +5.36% (Corporate Credit Default Risk)
 
 ---
 # END OF SITREP TELEMETRY - ZERO ASSUMPTIONS - PURE QUANTITATIVE STATE

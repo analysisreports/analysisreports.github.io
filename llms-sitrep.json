@@ -8,8 +8,9 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-sitrep.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-18T20:50:21Z",
+    "last_updated": "2026-11-18T21:13:46Z",
     "sync_status": "SUCCESS",
+    "data_completeness_pct": 95.9,
     "source_authority": "Consolidated Telemetry (FRED, U.S. Census Bureau, EIA, IMF PortWatch, NASA FIRMS, ECB)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -145,6 +146,12 @@
     "boj_policy_rate_pct": 1.25,
     "boe_bank_rate_pct": 4.0,
     "us_10y_breakeven_inflation_pct": 2.2,
-    "yield_curve_10y_2y_spread_bps": 30.0
+    "yield_curve_10y_2y_spread_bps": 30.0,
+    "cboe_vix_index": 22.91,
+    "cboe_vix_yoy_pct": 30.8395,
+    "fed_broad_dollar_index": 122.6503,
+    "fed_broad_dollar_yoy_pct": 1.7581,
+    "us_high_yield_spread_pct": 3.34,
+    "us_high_yield_spread_yoy_pct": 5.3628
   }
 }

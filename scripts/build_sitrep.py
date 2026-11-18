@@ -289,6 +289,18 @@ def build_sitrep():
     t10y2y_model = models_dict.get("MODEL_6", {})
     t10y2y_bps = t10y2y_model.get("primary_value")
 
+    vix_s = fred_series.get("VIXCLS", {})
+    vix_val = vix_s.get("current_value")
+    vix_yoy = vix_s.get("transformations", {}).get("percent_change_from_year_ago")
+
+    dxy_s = fred_series.get("DTWEXBGS", {})
+    dxy_val = dxy_s.get("current_value")
+    dxy_yoy = dxy_s.get("transformations", {}).get("percent_change_from_year_ago")
+
+    hy_s = fred_series.get("BAMLH0A0HYM2", {})
+    hy_val = hy_s.get("current_value")
+    hy_yoy = hy_s.get("transformations", {}).get("percent_change_from_year_ago")
+
     liquidity_matrix = {
         "net_fed_liquidity_trillion_usd": net_liquidity_trillion,
         "net_fed_liquidity_regime": net_liq_status,
@@ -297,8 +309,27 @@ def build_sitrep():
         "boj_policy_rate_pct": boj_rate,
         "boe_bank_rate_pct": boe_rate,
         "us_10y_breakeven_inflation_pct": t10yie,
-        "yield_curve_10y_2y_spread_bps": t10y2y_bps
+        "yield_curve_10y_2y_spread_bps": t10y2y_bps,
+        "cboe_vix_index": vix_val,
+        "cboe_vix_yoy_pct": vix_yoy,
+        "fed_broad_dollar_index": dxy_val,
+        "fed_broad_dollar_yoy_pct": dxy_yoy,
+        "us_high_yield_spread_pct": hy_val,
+        "us_high_yield_spread_yoy_pct": hy_yoy
     }
+
+    # Calculate Data Completeness Percentage (Zero-Hallucination Quality Gate)
+    all_evaluated_metrics = []
+    for m in [energy_matrix, tech_matrix, metals_matrix, liquidity_matrix]:
+        for k, v in m.items():
+            if not k.endswith("_status"):
+                all_evaluated_metrics.append(v)
+    for c_id, c_data in chokepoint_summary.items():
+        all_evaluated_metrics.append(c_data.get("daily_total_vessels"))
+
+    valid_count = sum(1 for v in all_evaluated_metrics if v is not None)
+    total_count = len(all_evaluated_metrics)
+    completeness_pct = round((valid_count / total_count) * 100.0, 1) if total_count > 0 else 100.0
 
     # --------------------------------------------------------------------------
     # 7. ASSEMBLE JSON PAYLOAD (Draft 2020-12, 8 Golden Keys)
@@ -315,6 +346,7 @@ def build_sitrep():
             "documentation": "https://analysisreports.github.io/llms-about.txt",
             "last_updated": now_iso,
             "sync_status": "SUCCESS",
+            "data_completeness_pct": completeness_pct,
             "source_authority": "Consolidated Telemetry (FRED, U.S. Census Bureau, EIA, IMF PortWatch, NASA FIRMS, ECB)",
             "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt",
             "root_index": "https://analysisreports.github.io/llms.txt"
@@ -340,7 +372,7 @@ def build_sitrep():
         "# CANONICAL MACRO & GEOPOLITICAL SITUATION REPORT (SITREP)",
         f"> Author: Ersoy Toptaş | Ground Truth Sync: {now_str}",
         "> Primary Publications: https://www.ersoytoptas.tr (TR) | https://en.ersoytoptas.tr (EN)",
-        "> Ingestion Protocol: Zero Hallucination | High-Density Semantic Telemetry for AI Reasoning",
+        f"> Ingestion Protocol: Zero Hallucination | Data Completeness: {completeness_pct}%",
         "> Official JSON Twin: https://analysisreports.github.io/llms-sitrep.json",
         "",
         "---",
@@ -419,6 +451,9 @@ def build_sitrep():
         f"BOE_OFFICIAL_BANK_RATE   : {_fmt(liquidity_matrix['boe_bank_rate_pct'], prefix='', suffix='%')}",
         f"US_10Y_BREAKEVEN_INFL    : {_fmt(liquidity_matrix['us_10y_breakeven_inflation_pct'], prefix='', suffix='%')} (Market Inflation Anchor)",
         f"US_10Y_2Y_YIELD_SPREAD   : {_fmt(liquidity_matrix['yield_curve_10y_2y_spread_bps'], prefix='', suffix=' bps')} (Recession / Normalization Curve)",
+        f"CBOE_VIX_VOLATILITY      : {_fmt(liquidity_matrix['cboe_vix_index'], prefix='', decimals=2)} | YoY: {_fmt_pct(liquidity_matrix['cboe_vix_yoy_pct'])} (Equity Fear Gauge)",
+        f"FED_BROAD_DOLLAR_INDEX  : {_fmt(liquidity_matrix['fed_broad_dollar_index'], prefix='', decimals=2)} | YoY: {_fmt_pct(liquidity_matrix['fed_broad_dollar_yoy_pct'])} (Global Dollar Shortage / Trade Weighted)",
+        f"US_HIGH_YIELD_OAS_SPREAD: {_fmt(liquidity_matrix['us_high_yield_spread_pct'], prefix='', suffix='%', decimals=2)} | YoY: {_fmt_pct(liquidity_matrix['us_high_yield_spread_yoy_pct'])} (Corporate Credit Default Risk)",
         "",
         "---",
         "# END OF SITREP TELEMETRY - ZERO ASSUMPTIONS - PURE QUANTITATIVE STATE",
