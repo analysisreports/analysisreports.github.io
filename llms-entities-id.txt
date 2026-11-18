@@ -403,3 +403,4 @@ IND_TRIGGER_SOFR_DOLLAR_DRAIN | Aliases: SOFR Rate Annual Change, Model 25.19 SO
 IND_TRIGGER_GSCPI_LOGISTICS  | Aliases: Global Supply Chain Pressure Change, Model 25.19 Logistics Trigger
 IND_TRIGGER_WHEAT_PRICE      | Aliases: Global Wheat Price Annual Change, Model 25.19 Wheat Trigger
 IND_TRIGGER_CORN_PRICE       | Aliases: Global Corn Price Annual Change, Model 25.19 Corn Trigger
+IND_TRIGGER_US_SPR_BUFFER    | Aliases: Strategic Petroleum Reserve Buffer Depletion Trigger, Model 25.19 SPR Trigger

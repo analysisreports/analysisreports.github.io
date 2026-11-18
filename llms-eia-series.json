@@ -136,7 +136,8 @@
           "date": "2026-10-30",
           "value": 282184.0
         }
-      ]
+      ],
+      "year_ago_date": "2025-10-30"
     },
     "PET.WCESTUS1.W": {
       "series_id": "PET.WCESTUS1.W",
@@ -256,7 +257,8 @@
           "date": "2026-10-30",
           "value": 409760.0
         }
-      ]
+      ],
+      "year_ago_date": "2025-10-30"
     },
     "PET.WCRFPUS2.W": {
       "series_id": "PET.WCRFPUS2.W",
@@ -376,7 +378,8 @@
           "date": "2026-10-30",
           "value": 14003.0
         }
-      ]
+      ],
+      "year_ago_date": "2025-10-30"
     },
     "PET.WGTSTUS1.W": {
       "series_id": "PET.WGTSTUS1.W",
@@ -496,7 +499,8 @@
           "date": "2026-10-30",
           "value": 208958.0
         }
-      ]
+      ],
+      "year_ago_date": "2025-10-30"
     },
     "NG.NW2_EPG0_SWO_R48_BCF.W": {
       "series_id": "NG.NW2_EPG0_SWO_R48_BCF.W",
@@ -616,7 +620,8 @@
           "date": "2026-10-30",
           "value": 3801.0
         }
-      ]
+      ],
+      "year_ago_date": "2025-10-30"
     }
   }
 }

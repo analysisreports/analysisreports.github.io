@@ -106,7 +106,7 @@ class OvxEnergyTriggerTests(unittest.TestCase):
                 os.chdir(old_cwd)
             output = json.loads((temp / "llms-relationships.json").read_text(encoding="utf-8"))
             triggers = {item["entity_id"]: item for item in output["macro_triggers"]}
-            self.assertEqual(len(triggers), 8)
+            self.assertEqual(len(triggers), 9)
             self.assertTrue(all(item["model"] == "MODEL_25.19" for item in triggers.values()))
             self.assertEqual(triggers["IND_TRIGGER_OVX_ENERGY_PANIC"]["value"], 0.3274)
             output_text = (temp / "llms-relationships.txt").read_text(encoding="utf-8")

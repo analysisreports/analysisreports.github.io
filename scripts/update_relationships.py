@@ -23,7 +23,7 @@ MACRO_TRIGGER_MODEL = 'MODEL_25.19'
 BALTIC_RUSSIA_PAIRS = {'LT_RU', 'EE_RU', 'LV_RU'}
 
 RELATIONSHIP_TRIGGERS = {
-    'US_RU': [('OVX_ENERGY_PANIC', -1), ('SOFR_DOLLAR_DRAIN', -1)],
+    'US_RU': [('OVX_ENERGY_PANIC', -1), ('SOFR_DOLLAR_DRAIN', -1), ('US_SPR_BUFFER', 1)],
     'US_CN': [('CHIP_CONTAINMENT', -1), ('GSCPI_LOGISTICS', -1)],
     'RU_CN': [('SOFR_DOLLAR_DRAIN', 1), ('CHIP_CONTAINMENT', 1)],
     'IL_IR': [('HORMUZ_SPREAD', -1), ('OVX_ENERGY_PANIC', -1)],
@@ -37,7 +37,7 @@ RELATIONSHIP_TRIGGERS = {
     'EE_RU': [('NATGAS_CRACK', -1), ('OVX_ENERGY_PANIC', -1)],
     'LV_RU': [('NATGAS_CRACK', -1), ('OVX_ENERGY_PANIC', -1)],
     'YE_IL': [('HORMUZ_SPREAD', -1), ('OVX_ENERGY_PANIC', -1), ('GSCPI_LOGISTICS', -1)],
-    'US_VE': [('HORMUZ_SPREAD', 1), ('SOFR_DOLLAR_DRAIN', -1)],
+    'US_VE': [('HORMUZ_SPREAD', 1), ('SOFR_DOLLAR_DRAIN', -1), ('US_SPR_BUFFER', -1)],
     'TR_SY': [('WHEAT_PRICE', -1), ('GSCPI_LOGISTICS', -1)],
     'TR_GR': [('NATGAS_CRACK', -1)],
     'EG_IL': [('HORMUZ_SPREAD', 1), ('GSCPI_LOGISTICS', -1)],
@@ -47,7 +47,7 @@ RELATIONSHIP_TRIGGERS = {
     'SA_PK': [('SOFR_DOLLAR_DRAIN', 1)],
     'TR_PK': [('CHIP_CONTAINMENT', 1), ('SOFR_DOLLAR_DRAIN', -1)],
     'UA_RU': [('WHEAT_PRICE', -1), ('CORN_PRICE', -1), ('GSCPI_LOGISTICS', -1)],
-    'US_IR': [('HORMUZ_SPREAD', -1), ('OVX_ENERGY_PANIC', -1)],
+    'US_IR': [('HORMUZ_SPREAD', -1), ('OVX_ENERGY_PANIC', -1), ('US_SPR_BUFFER', 1)],
 }
 
 def clamp(val, low=-1.0, high=1.0):
@@ -413,6 +413,19 @@ def main():
             nyfed_series_data = {}
     gscpi = nyfed_series_data.get('GSCPI', {}).get('current_value')
     gscpi_entry = gscpi_with_year_ago_date(nyfed_series_data)
+    # Ingest EIA SPR directly from official EIA JSON twin (ZERO synthetic fallback)
+    eia_json_path = 'llms-eia-series.json'
+    if not os.path.exists(eia_json_path):
+        eia_json_path = os.path.join(os.path.dirname(__file__), '..', 'llms-eia-series.json')
+    eia_series_data = {}
+    if os.path.exists(eia_json_path):
+        try:
+            with open(eia_json_path, 'r', encoding='utf-8') as f:
+                eia_json = json.load(f)
+                eia_series_data = eia_json.get('series', {})
+        except Exception:
+            eia_series_data = {}
+
     macro_triggers = [
         calc_annual_trigger(
             'IND_TRIGGER_HORMUZ_SPREAD', MACRO_TRIGGER_MODEL, series,
@@ -443,6 +456,10 @@ def main():
         calc_annual_trigger(
             'IND_TRIGGER_CORN_PRICE', MACRO_TRIGGER_MODEL, series,
             ('PMAIZMTUSDM',), lambda values: values['PMAIZMTUSDM'], ('PMAIZMTUSDM',),
+        ),
+        calc_annual_trigger(
+            'IND_TRIGGER_US_SPR_BUFFER', MACRO_TRIGGER_MODEL, eia_series_data,
+            ('PET.WCSSTUS1.W',), lambda values: values['PET.WCSSTUS1.W'], ('PET.WCSSTUS1.W',),
         ),
     ]
     for trigger in macro_triggers:

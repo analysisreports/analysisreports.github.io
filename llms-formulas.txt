@@ -522,7 +522,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 | **Rates, Yield Curves, Liquidity & Monetary Transmission** | [`llms-formulas-rates-liquidity.txt`](https://analysisreports.github.io/llms-formulas-rates-liquidity.txt) | Central bank policy stances, yield curve slopes, repo liquidity friction, credit spreads, carry trades, and committee dispersion. | **16** | ~39.7 KB |
 | **Macroeconomic Fundamentals, Labor Dynamics, Valuation & Cycles** | [`llms-formulas-macro-labor.txt`](https://analysisreports.github.io/llms-formulas-macro-labor.txt) | Inflation persistence, labor market momentum, housing bubble risks, consumption collapse, equity valuation, and release countdowns. | **21** | ~44.0 KB |
 | **Commodities, Energy Shocks, Supply Chains & Asset Stress** | [`llms-formulas-commodities-shock.txt`](https://analysisreports.github.io/llms-formulas-commodities-shock.txt) | Crude benchmarks, 3:2:1 crack spread, natgas disconnect, chip stress, supply chain logistics, and safe haven flight. | **12** | ~31.4 KB |
-| **Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence** | [`llms-formulas-geopolitics.txt`](https://analysisreports.github.io/llms-formulas-geopolitics.txt) | Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, and intelligence confidence. | **13** | ~44.6 KB |
+| **Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence** | [`llms-formulas-geopolitics.txt`](https://analysisreports.github.io/llms-formulas-geopolitics.txt) | Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, and intelligence confidence. | **13** | ~45.1 KB |
 
 ---
 

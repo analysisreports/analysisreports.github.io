@@ -321,11 +321,15 @@ def _is_num(val):
   - Inputs: FRED `PWHEAMTUSDM` (wheat) and `PMAIZMTUSDM` (corn), respectively, with current and year-ago monthly prices in USD per metric ton.
   - Each trigger is `P(price_current, price_prior)`. Percentage changes put the two commodities on a comparable scale without combining their price levels.
   - These are global market pressure indicators, not direct observations of the conflict or of Ukrainian export volumes. Harvests, weather and other global factors also affect prices.
+- `IND_TRIGGER_US_SPR_BUFFER`
+  - Inputs: EIA `PET.WCSSTUS1.W` (Weekly U.S. Ending Stocks of Crude Oil in Strategic Petroleum Reserve), current and year-ago stock levels in thousand barrels.
+  - `trigger = P(stocks_current, stocks_prior)`.
+  - Measures annual rate of expansion or depletion of the U.S. emergency petroleum buffer. A negative score reflects inventory erosion, constraining sanctions elasticity and heightening energy shock vulnerability.
 
-- Data integrity: Inputs must be finite; Brent, WTI, Henry Hub, OVX, VIX, NASDAQSOX, wheat and corn prices or index values must be positive when used. Current dates must match for same-frequency combined series. For the chip trigger, current NASDAQSOX and VIX dates must match, and the monthly GSCPI date must not be later than them. Each year-ago date must precede its current date, and the SOX two-year-ago date must precede its year-ago date.
+- Data integrity: Inputs must be finite; Brent, WTI, Henry Hub, OVX, VIX, NASDAQSOX, wheat, corn, and SPR inventory stocks must be positive when used. Current dates must match for same-frequency combined series. For the chip trigger, current NASDAQSOX and VIX dates must match, and the monthly GSCPI date must not be later than them. Each year-ago date must precede its current date, and the SOX two-year-ago date must precede its year-ago date.
 - Historical dates: Year-ago dates may differ because series use their own retained observations. A historical ratio or composite assembled from different dates is not a same-day observation. The GSCPI prior date is used only when retained observations match the published current and year-ago values.
 - Missing or invalid inputs, mismatched current dates, or a non-positive prior value for percentage change produce `null`, an explicit status and a warning; a valid current value remains visible where available. Calculations use unrounded inputs and intermediate ratios, except for the SOX year-over-year values rounded as specified above.
-- Output: All eight IDs are published with `model: MODEL_25.19`, their inputs, dates and status in `llms-relationships.json`, and summarized in `llms-relationships.txt`.
+- Output: All nine IDs are published with `model: MODEL_25.19`, their inputs, dates and status in `llms-relationships.json`, and summarized in `llms-relationships.txt`.
 
 #### Relationship Transmission Pipeline
 1. **Contribution and dominant selection:** For each trigger mapped to a pair, `contribution_i = trigger_value_i * impact_direction_i`, where the direction is +1 or -1. Select the signed contribution with the largest absolute value as `dominant`. If magnitudes tie, select the first trigger in the pair's mapping.

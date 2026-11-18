@@ -466,6 +466,7 @@ def main():
                 "last_synced_utc": now_iso,
                 "current_value": xt,
                 "previous_value": xt_prev,
+                "year_ago_date": yr_ago_obs["date"] if yr_ago_obs else None,
                 "year_ago_value": xt_yr,
                 "transformations": {
                     "change": chg,
