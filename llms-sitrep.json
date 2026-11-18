@@ -8,7 +8,7 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-sitrep.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-18T20:09:26Z",
+    "last_updated": "2026-11-18T20:31:04Z",
     "sync_status": "SUCCESS",
     "source_authority": "Consolidated Telemetry (FRED, U.S. Census Bureau, EIA, IMF PortWatch, NASA FIRMS, ECB)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt",

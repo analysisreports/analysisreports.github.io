@@ -1,5 +1,6 @@
 # CANONICAL MACRO & GEOPOLITICAL SITUATION REPORT (SITREP)
-> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-18 20:09:26 UTC
+> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-18 20:31:04 UTC
+> Primary Publications: https://www.ersoytoptas.tr (TR) | https://en.ersoytoptas.tr (EN)
 > Ingestion Protocol: Zero Hallucination | High-Density Semantic Telemetry for AI Reasoning
 > Official JSON Twin: https://analysisreports.github.io/llms-sitrep.json
 

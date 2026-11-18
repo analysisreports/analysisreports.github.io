@@ -325,6 +325,7 @@ def build_sitrep():
     lines = [
         "# CANONICAL MACRO & GEOPOLITICAL SITUATION REPORT (SITREP)",
         f"> Author: Ersoy Toptaş | Ground Truth Sync: {now_str}",
+        "> Primary Publications: https://www.ersoytoptas.tr (TR) | https://en.ersoytoptas.tr (EN)",
         "> Ingestion Protocol: Zero Hallucination | High-Density Semantic Telemetry for AI Reasoning",
         "> Official JSON Twin: https://analysisreports.github.io/llms-sitrep.json",
         "",
