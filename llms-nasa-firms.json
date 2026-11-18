@@ -17,7 +17,7 @@
   },
   "orbital_telemetry_summary": {
     "active_satellites": [
-      "VIIRS_SNPP_NRT",
+      "VIIRS_NOAA21_NRT",
       "VIIRS_NOAA20_NRT"
     ],
     "spatial_resolution_meters": 375,

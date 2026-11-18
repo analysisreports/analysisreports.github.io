@@ -4,7 +4,7 @@
 update_nasa_firms.py
 ---------------------
 Autonomous Satellite Thermal Anomaly & Kinetic Conflict Intelligence Engine.
-Sources real-time thermal anomalies from NASA FIRMS (VIIRS Suomi-NPP / NOAA-20 / NOAA-21).
+Sources real-time thermal anomalies from NASA FIRMS (VIIRS NOAA-20 & NOAA-21 / NOAA-20 / NOAA-21).
 
 Detects 5 Strategic Macro & Defense Signatures:
 1. Conventional Kinetic Military Engagements (c1 Kinetic Military Score in Model 28.1)
@@ -231,12 +231,12 @@ REFINERY_FRP_MW = 250.0     # Industrial oil refinery / fuel storage blaze thres
 
 def fetch_firms_area_csv(map_key: str, bounds: Tuple[float, float, float, float], days: int = 1) -> Optional[List[Dict[str, Any]]]:
     """
-    Fetches real-time VIIRS Suomi-NPP 375m active fire data for a spatial bounding box.
-    NASA FIRMS Area Endpoint: https://firms.modaps.eosdis.nasa.gov/api/area/csv/[MAP_KEY]/VIIRS_SNPP_NRT/[W,S,E,N]/[DAYS]
+    Fetches real-time VIIRS NOAA-20 & NOAA-21 375m active fire data for a spatial bounding box.
+    NASA FIRMS Area Endpoint: https://firms.modaps.eosdis.nasa.gov/api/area/csv/[MAP_KEY]/VIIRS_NOAA20_NRT/[W,S,E,N]/[DAYS]
     """
     w, s, e, n = bounds
     area_str = f"{w:.1f},{s:.1f},{e:.1f},{n:.1f}"
-    url = f"https://firms.modaps.eosdis.nasa.gov/api/area/csv/{map_key}/VIIRS_SNPP_NRT/{area_str}/{days}"
+    url = f"https://firms.modaps.eosdis.nasa.gov/api/area/csv/{map_key}/VIIRS_NOAA20_NRT/{area_str}/{days}"
     req = urllib.request.Request(
         url,
         headers={"User-Agent": "AnalysisReports-Autonomous-Ecosystem/3.0 (ORCID:0009-0005-6130-8003)"}
@@ -407,12 +407,12 @@ def build_outputs(map_key: str) -> Tuple[str, Dict[str, Any]]:
             "last_updated": now_iso,
             "sync_status": "SUCCESS" if map_key else "STANDBY_UNCONFIGURED_KEY",
             "last_successful_sync": now_iso if map_key else None,
-            "source_authority": "NASA Earth Science Data / FIRMS (VIIRS Suomi-NPP & NOAA-20)",
+            "source_authority": "NASA Earth Science Data / FIRMS (VIIRS NOAA-20 & NOAA-21)",
             "methodology_reference": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.1",
             "root_index": "https://analysisreports.github.io/llms.txt"
         },
         "orbital_telemetry_summary": {
-            "active_satellites": ["VIIRS_SNPP_NRT", "VIIRS_NOAA20_NRT"],
+            "active_satellites": ["VIIRS_NOAA20_NRT", "VIIRS_NOAA21_NRT"],
             "spatial_resolution_meters": 375,
             "min_noise_filter_mw": MIN_FRP_MW,
             "strategic_strike_threshold_mw": STRATEGIC_FRP_MW,
