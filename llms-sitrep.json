@@ -8,7 +8,7 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-sitrep.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-18T20:46:42Z",
+    "last_updated": "2026-11-18T20:50:21Z",
     "sync_status": "SUCCESS",
     "source_authority": "Consolidated Telemetry (FRED, U.S. Census Bureau, EIA, IMF PortWatch, NASA FIRMS, ECB)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt",
@@ -69,7 +69,8 @@
     "copper_yoy_pct": 44.8062,
     "wheat_global_usd_mt": 246.85180245,
     "wheat_yoy_pct": 59.141,
-    "silver_status": "SOURCE_FEED_UNAVAILABLE"
+    "silver_usd_ozt_status": "SOURCE_FEED_UNAVAILABLE",
+    "gold_silver_ratio_status": "SOURCE_FEED_UNAVAILABLE"
   },
   "maritime_chokepoints": {
     "CHOKE_HORMUZ": {

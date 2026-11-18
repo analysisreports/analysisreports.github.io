@@ -39,6 +39,20 @@ def _is_num(val):
     except (OverflowError, ValueError, TypeError):
         return False
 
+def _annotate_telemetry_deficits(matrix: Dict[str, Any], matrix_name: str = "") -> Dict[str, Any]:
+    """
+    Zero-overhead telemetry anomaly annotator.
+    If a metric is None, generates an explicit reason tag so AI agents know
+    the data is missing due to upstream feed status rather than a system bug.
+    Adds ZERO extra keys when data is actively flowing.
+    """
+    deficits = {}
+    for key, val in list(matrix.items()):
+        if val is None and not key.endswith("_status"):
+            deficits[f"{key}_status"] = "SOURCE_FEED_UNAVAILABLE"
+    matrix.update(deficits)
+    return matrix
+
 def _load_json(filename: str) -> Dict[str, Any]:
     path = os.path.join(BASE_DIR, filename)
     if not os.path.exists(path):
@@ -231,8 +245,6 @@ def build_sitrep():
         "wheat_global_usd_mt": wheat_val,
         "wheat_yoy_pct": wheat_yoy
     }
-    if not _is_num(silver_val):
-        metals_matrix["silver_status"] = "SOURCE_FEED_UNAVAILABLE"
 
     # --------------------------------------------------------------------------
     # 5. MARITIME CHOKEPOINTS (PORTWATCH AIS REAL-TIME DISRUPTIONS)
@@ -308,11 +320,11 @@ def build_sitrep():
             "root_index": "https://analysisreports.github.io/llms.txt"
         },
         "top_systemic_flashes": primary_flashes,
-        "energy_matrix": energy_matrix,
-        "semiconductors_tech": tech_matrix,
-        "metals_commodities": metals_matrix,
+        "energy_matrix": _annotate_telemetry_deficits(energy_matrix),
+        "semiconductors_tech": _annotate_telemetry_deficits(tech_matrix),
+        "metals_commodities": _annotate_telemetry_deficits(metals_matrix),
         "maritime_chokepoints": chokepoint_summary,
-        "macro_liquidity": liquidity_matrix
+        "macro_liquidity": _annotate_telemetry_deficits(liquidity_matrix)
     }
 
     # Save JSON Twin
@@ -376,7 +388,7 @@ def build_sitrep():
         "## 4. PRECIOUS METALS, CRITICAL MINERALS & FOOD SECURITY",
         "---",
         f"GOLD_SPOT_USD_OZT        : {_fmt(metals_matrix['gold_usd_ozt'])} | YoY: {_fmt_pct(metals_matrix['gold_yoy_pct'])} | SIGNAL: SYSTEMIC_SAFE_HAVEN",
-        f"SILVER_SPOT_USD_OZT      : {_fmt(metals_matrix['silver_usd_ozt'])}" + (f" | STATUS: {metals_matrix['silver_status']}" if "silver_status" in metals_matrix else "") + f" | GOLD_SILVER_RATIO: {_fmt(metals_matrix['gold_silver_ratio'], prefix='', decimals=1)}",
+        f"SILVER_SPOT_USD_OZT      : {_fmt(metals_matrix['silver_usd_ozt'])}" + (f" | STATUS: {metals_matrix['silver_usd_ozt_status']}" if "silver_usd_ozt_status" in metals_matrix else "") + f" | GOLD_SILVER_RATIO: {_fmt(metals_matrix['gold_silver_ratio'], prefix='', decimals=1)}",
         f"COPPER_GLOBAL_USD_MT     : {_fmt(metals_matrix['copper_global_usd_mt'])} | YoY: {_fmt_pct(metals_matrix['copper_yoy_pct'])} (Dr. Copper Growth Pulse)",
         f"WHEAT_GLOBAL_USD_MT      : {_fmt(metals_matrix['wheat_global_usd_mt'])} | YoY: {_fmt_pct(metals_matrix['wheat_yoy_pct'])} (Black Sea Agro Security)",
         "",
