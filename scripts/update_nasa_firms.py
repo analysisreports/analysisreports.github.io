@@ -225,9 +225,9 @@ MARITIME_CHOKEPOINTS = {
 }
 
 # Satellite Thresholds (Noise Filtering Protocol)
-MIN_FRP_MW = 25.0           # Minimum Fire Radiative Power (MW) to exclude trivial brush/camp fires
-STRATEGIC_FRP_MW = 150.0    # Massive explosion / ammunition depot / missile impact threshold
-REFINERY_FRP_MW = 500.0     # Industrial oil refinery / fuel storage blaze threshold
+MIN_FRP_MW = 10.0           # Minimum Fire Radiative Power (MW) to exclude trivial brush/camp fires
+STRATEGIC_FRP_MW = 75.0     # Massive explosion / ammunition depot / missile impact threshold
+REFINERY_FRP_MW = 250.0     # Industrial oil refinery / fuel storage blaze threshold
 
 def fetch_firms_area_csv(map_key: str, bounds: Tuple[float, float, float, float], days: int = 1) -> Optional[List[Dict[str, Any]]]:
     """
@@ -449,8 +449,8 @@ def build_outputs(map_key: str) -> Tuple[str, Dict[str, Any]]:
             
     lines.append("")
     lines.append("## Strategic Signature Interpretation Protocol:")
-    lines.append("1. FRP > 150 MW indicates heavy artillery barrages, ammunition depot detonations, or direct ballistic missile strikes.")
-    lines.append("2. FRP > 500 MW indicates burning oil refineries, hydrocarbon pipelines, or industrial fuel depots.")
+    lines.append("1. FRP > 75 MW indicates heavy artillery barrages, ammunition depot detonations, or direct ballistic missile strikes.")
+    lines.append("2. FRP > 250 MW indicates burning oil refineries, hydrocarbon pipelines, or industrial fuel depots.")
     lines.append("3. Conflict Severity (NASA Data) == 'CRITICAL' automatically satisfies the kinetic condition for Model 25.1 (KINETIC_WAR).")
     
     full_txt = "\n".join(lines) + "\n"
