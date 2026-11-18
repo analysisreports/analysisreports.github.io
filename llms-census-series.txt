@@ -1,6 +1,6 @@
 # Ersoy Toptaş Canonical Ingestion Contract (llms-census-series.txt)
 > Autonomous U.S. Census Bureau International Trade Engine (NAICS 3344: Semiconductor & Components)
-> Last Sync: 2026-11-18 17:06:31 UTC | Source: U.S. Census Bureau International Trade API
+> Last Sync: 2026-11-18 17:14:00 UTC | Source: U.S. Census Bureau International Trade API
 > Monitored Classification: NAICS 3344 | Reporting Unit: USD ($)
 
 | Strategic Corridor | Entity ID | CTY | Date | Imports ($) | MoM Δ% | Exports ($) | MoM Δ% | Net Trade Balance ($) | Status | Strategic Axis |
