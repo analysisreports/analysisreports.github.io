@@ -400,7 +400,7 @@ def build_sitrep():
     # 8. ASSEMBLE JSON PAYLOAD (Draft 2020-12, 8 Golden Keys)
     # --------------------------------------------------------------------------
     sitrep_json = {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$schema": "https://analysisreports.github.io/schemas/sitrep.schema.json",
         "metadata": {
             "title": "Autonomous Macro & Geopolitical Situation Report (SITREP)",
             "domain": "macroeconomics",
