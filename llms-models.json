@@ -8,11 +8,11 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-models.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-18T09:58:50.183610+00:00",
+    "last_updated": "2026-11-18T10:07:31.893437+00:00",
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-18T09:58:50.183610+00:00",
+    "last_successful_sync": "2026-11-18T10:07:31.893437+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -98,18 +98,18 @@
       "model_id": "MODEL_5",
       "model_name": "Net Fed Liquidity Index",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#5",
-      "primary_value": 5.791,
+      "primary_value": 5.844,
       "unit": "Trillion USD",
       "status": "NEUTRAL_LIQUIDITY_EQUILIBRIUM",
       "inputs": {
-        "fed_total_assets_walcl_mil": 6748145.0,
-        "treasury_general_account_tga_mil": 957175.0,
+        "fed_total_assets_walcl_mil": 6758867.0,
+        "treasury_general_account_tga_mil": 914370.0,
         "overnight_reverse_repo_rrp_bil": 0.351,
         "overnight_reverse_repo_rrp_mil": 351.0
       },
       "metrics": {
-        "net_liquidity_millions_usd": 5790619.0,
-        "net_liquidity_trillions_usd": 5.791
+        "net_liquidity_millions_usd": 5844146.0,
+        "net_liquidity_trillions_usd": 5.844
       },
       "interpretation": "Unencumbered commercial bank liquidity: WALCL - (TGA + ON_RRP). Direct fuel for equity asset valuations."
     },
@@ -230,17 +230,17 @@
       "model_id": "MODEL_12",
       "model_name": "Financial Conditions Tightness (Chicago Fed NFCI)",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#12",
-      "primary_value": -0.459,
+      "primary_value": -0.462,
       "unit": "Index Points",
       "status": "LOOSE_FINANCIAL_CONDITIONS",
       "inputs": {
-        "chicago_fed_nfci": -0.459,
-        "adjusted_anfci": -0.435
+        "chicago_fed_nfci": -0.462,
+        "adjusted_anfci": -0.477
       },
       "metrics": {
-        "nfci_stress_level": -0.459,
-        "adjusted_anfci": -0.435,
-        "macroeconomic_divergence": -0.024
+        "nfci_stress_level": -0.462,
+        "adjusted_anfci": -0.477,
+        "macroeconomic_divergence": 0.015
       },
       "interpretation": "Monitors monetary policy transmission into financial markets across debt, equity, and leverage risk premiums. Values < 0 indicate looser than average financial conditions; > 0 indicates restrictive financial conditions."
     },
@@ -449,16 +449,16 @@
       "model_id": "MODEL_23.4",
       "model_name": "Early Layoff and Recession Signal",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.4",
-      "primary_value": 3.41,
+      "primary_value": 3.32,
       "unit": "Index Points",
       "status": "EXPANSION_EMPLOYMENT_MOMENTUM",
       "inputs": {
-        "industrial_production_yoy_pct": 2.25,
+        "industrial_production_yoy_pct": 2.15,
         "weekly_hours_yoy_pct": 0.58
       },
       "metrics": {
-        "early_layoff_index": 3.41,
-        "indpro_yoy_pct": 2.25,
+        "early_layoff_index": 3.32,
+        "indpro_yoy_pct": 2.15,
         "awhaetp_yoy_pct": 0.58
       },
       "interpretation": "Detects latent employment losses and early recessionary inflection before headline unemployment rises by synthesizing weekly hours worked against industrial production momentum."
@@ -467,11 +467,11 @@
       "model_id": "MODEL_23.6",
       "model_name": "Early Employment Crack Signal",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.6",
-      "primary_value": -13.64,
+      "primary_value": -13.99,
       "unit": "Index Points",
       "status": "LABOR_MARKET_ALIGNED",
       "inputs": {
-        "ic4wsa_yoy_pct": -13.64,
+        "ic4wsa_yoy_pct": -13.99,
         "unrate_delta_ppt": -0.3
       },
       "components": {
@@ -479,7 +479,7 @@
         "crack_threshold": 15.0
       },
       "metrics": {
-        "early_employment_crack_index": -13.64,
+        "early_employment_crack_index": -13.99,
         "effective_unrate_delta": 0.0,
         "crack_threshold": 15.0
       },
@@ -504,16 +504,16 @@
       "model_id": "MODEL_23.8",
       "model_name": "Mortgage and Permit Divergence (Housing Freeze Index)",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.8",
-      "primary_value": 7.5,
+      "primary_value": 7.43,
       "unit": "Index Points",
       "status": "SUPPLY_CONTRACTION",
       "inputs": {
-        "mortgage_30y_rate_pct": 7.18,
+        "mortgage_30y_rate_pct": 7.11,
         "building_permits_yoy_pct": -3.19
       },
       "metrics": {
-        "housing_freeze_index": 7.5,
-        "mortgage_rate": 7.18,
+        "housing_freeze_index": 7.43,
+        "mortgage_rate": 7.11,
         "permits_yoy_pct": -3.19
       },
       "interpretation": "Measures divergence between surging mortgage borrowing costs and residential building permit momentum to model lock-in supply bottlenecks and housing transaction freezes."
@@ -541,17 +541,17 @@
       "model_id": "MODEL_25",
       "model_name": "Terms of Trade (TOT)",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#25",
-      "primary_value": 112.22,
+      "primary_value": 112.42,
       "unit": "Index Points",
       "status": "FAVORABLE_TRADE",
       "inputs": {
-        "export_price_index_iq": 170.8,
-        "import_price_index_ir": 152.2
+        "export_price_index_iq": 172.9,
+        "import_price_index_ir": 153.8
       },
       "metrics": {
-        "terms_of_trade_ratio": 112.22,
-        "export_index": 170.8,
-        "import_index": 152.2
+        "terms_of_trade_ratio": 112.42,
+        "export_index": 172.9,
+        "import_index": 153.8
       },
       "interpretation": "Evaluates sovereign purchasing power and current account terms-of-trade transfers by measuring the relative price of exported commodities against imported goods."
     },
