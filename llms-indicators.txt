@@ -36,7 +36,7 @@ Mathematical Guardrails:
 
 ## 2. OFFICIAL LIVE-INGESTED TIME-SERIES REGISTRY (100% API MONITORED)
 
-### 2.1. Federal Reserve Bank of St. Louis (FRED) Official Series (69 Series)
+### 2.1. Federal Reserve Bank of St. Louis (FRED) Official Series (71 Series)
 
 1. **ANFCI** (Chicago Fed Adjusted National Financial Conditions Index) | Freq: Weekly | Units: Index | Source: FRED
 2. **AWHAETP** (Average Weekly Hours of All Employees, Total Private) | Freq: Monthly | Units: Hours | Source: FRED
@@ -144,3 +144,7 @@ Mathematical Guardrails:
 4. **PET.WGTSTUS1.W** (Weekly U.S. Ending Stocks of Total Gasoline) | Freq: Weekly | Units: Thousand Barrels | Source: EIA Open Data API v2
 5. **NG.NW2_EPG0_SWO_R48_BCF.W** (Weekly Lower 48 States Working Gas in Underground Natural Gas Storage) | Freq: Weekly | Units: Billion Cubic Feet | Source: EIA Open Data API v2
 6. **PET.WPULEUS3.W** (Weekly U.S. Percent Utilization of Refinery Operable Capacity) | Freq: Weekly | Units: Percent | Source: EIA Open Data API v2
+
+### 2.7. U.S. Census Bureau Official International Trade Series (1 Series)
+
+1. **NAICS_3344** (Semiconductor and Other Electronic Component Manufacturing International Trade Flows) | Freq: Monthly | Units: USD ($) | Source: U.S. Census Bureau International Trade API

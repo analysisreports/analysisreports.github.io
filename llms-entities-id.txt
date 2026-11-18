@@ -278,6 +278,7 @@ REG_AGENCY_SEC_US    | Aliases: SEC, Securities and Exchange Commission, U.S. SE
 REG_AGENCY_OFAC_US   | Aliases: OFAC, Office of Foreign Assets Control, U.S. Department of the Treasury OFAC
 STAT_EIA_US          | Aliases: EIA, U.S. Energy Information Administration
 STAT_CBO_US          | Aliases: CBO, Congressional Budget Office
+STAT_CENSUS_US       | Aliases: Census, U.S. Census Bureau, United States Census Bureau, Department of Commerce Census
 
 # [FINANCIAL MARKETS, EXCHANGES & SECTORS] (Prefix: MKT_ / SEC_)
 MKT_CBOE             | Aliases: CBOE, Chicago Board Options Exchange
@@ -393,6 +394,9 @@ IND_DEXKOUS           | Source: FRED | Name: Spot Exchange Rate South Korean Won
 IND_USEPUINDXD        | Source: FRED | Name: Economic Policy Uncertainty Index for United States
 IND_FYFRG             | Source: FRED | Name: Federal Receipts: Customs Duties (Millions USD)
 IND_FDEFX             | Source: BEA / FRED | Name: Federal National Defense Consumption Expenditures (Billions USD)
+IND_IPG3344S          | Source: FRED | Name: Industrial Production: Semiconductor and Other Electronic Component (Index 2017=100)
+IND_PCU33443344       | Source: BLS / FRED | Name: Producer Price Index: Semiconductor and Other Electronic Component Manufacturing (Index Dec 1980=100)
+IND_CENSUS_TRADE_NAICS3344 | Source: U.S. Census Bureau | Name: Monthly Semiconductor and Electronic Component International Trade Value (USD)
 
 
 # [GEOPOLITICAL MACRO TRIGGERS & SHOCK VECTORS] (Prefix: IND_TRIGGER_)
