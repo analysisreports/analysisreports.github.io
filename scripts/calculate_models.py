@@ -1246,7 +1246,8 @@ def calc_gasoline_321_crack_spread(
     gasoline_stocks_yoy_val=None,
     gasoline_spot_price_year_ago_val=None,
     ulsd_spot_price_year_ago_val=None,
-    wti_barrel_price_year_ago_val=None
+    wti_barrel_price_year_ago_val=None,
+    refinery_utilization_pct_val=None
 ) -> Optional[Dict[str, Any]]:
     prices = (gasoline_spot_price_val, ulsd_spot_price_val, wti_barrel_price_val)
     dates = (gasoline_date, ulsd_date, wti_date)
@@ -1293,6 +1294,19 @@ def calc_gasoline_321_crack_spread(
                     return None
                 inputs_dict["gasoline_stocks_yoy_pct"] = round(f_yoy, 2)
                 metrics_dict["gasoline_stocks_yoy_pct"] = round(f_yoy, 2)
+
+        if refinery_utilization_pct_val is not None and not isinstance(refinery_utilization_pct_val, bool):
+            f_util = float(refinery_utilization_pct_val)
+            if not math.isfinite(f_util) or f_util < 0.0 or f_util > 100.0:
+                return None
+            refinery_regime = (
+                "BOTTLENECK_CRUNCH" if f_util >= 93.0
+                else "MAINTENANCE_TURNAROUND" if f_util < 85.0
+                else "NORMAL_OPERATING_BAND"
+            )
+            inputs_dict["refinery_utilization_pct"] = round(f_util, 2)
+            metrics_dict["refinery_utilization_pct"] = round(f_util, 2)
+            metrics_dict["refinery_capacity_regime"] = refinery_regime
 
         year_ago_values = (
             gasoline_spot_price_year_ago_val,
@@ -2904,6 +2918,7 @@ def main():
     gasoline_stocks_yoy = None
     natgas_storage = None
     natgas_storage_yoy = None
+    refinery_utilization = None
     if os.path.exists(eia_json_path):
         try:
             with open(eia_json_path, "r", encoding="utf-8") as f:
@@ -2920,6 +2935,9 @@ def main():
                 ng_entry = eia_series_data.get("NG.NW2_EPG0_SWO_R48_BCF.W", {})
                 natgas_storage = ng_entry.get("current_value")
                 natgas_storage_yoy = ng_entry.get("transformations", {}).get("percent_change_from_year_ago")
+
+                refinery_entry = eia_series_data.get("PET.WPULEUS3.W", {})
+                refinery_utilization = refinery_entry.get("current_value")
 
                 if spr_stocks is None:
                     ingestion_warnings.append("EIA PET.WCSSTUS1.W (SPR Stocks) is missing/null.")
@@ -3012,7 +3030,8 @@ def main():
             gasoline_stocks_yoy,
             gasoline_spot.get("year_ago_value"),
             ulsd_spot.get("year_ago_value"),
-            wti_spot.get("year_ago_value")
+            wti_spot.get("year_ago_value"),
+            refinery_utilization
         )
         if m_crack_spread:
             models_calculated.append(m_crack_spread)
@@ -3130,9 +3149,14 @@ def main():
     payload = {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "metadata": {
-            "engine": "Autonomous Quantitative Macroeconomic Model Engine",
+            "title": "Autonomous Quantitative Macroeconomic Model Engine",
+            "domain": "economy",
+            "version": "3.0.0",
             "author": "Ersoy Toptaş",
-            "license": "CC BY 4.0",
+            "license": "CC BY-NC-ND 4.0",
+            "endpoint": "https://analysisreports.github.io/llms-models.json",
+            "documentation": "https://analysisreports.github.io/llms-about.txt",
+            "last_updated": now_iso,
             "sync_status": sync_status,
             "ingestion_health": "OPTIMAL" if not ingestion_warnings else "WARNING",
             "ingestion_warnings": ingestion_warnings,

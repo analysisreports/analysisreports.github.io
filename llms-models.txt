@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-16 13:29 UTC
+> **Last Calibrated Sync:** 2026-11-18 01:24 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -327,8 +327,8 @@
 #### [MODEL_25.9] Gasoline / Distillate / Crude 3:2:1 Crack Spread
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.9
 - **Evaluated Status:** `CRACK_SPREAD_EXPANDING` (Primary Value: 36.86 USD per Barrel)
-- **Inputs Evaluated:** `{"gasoline_spot_usd_gal": 2.415, "ulsd_spot_usd_gal": 4.204, "wti_crude_usd_bbl": 89.62, "matched_observation_date": "2026-11-11", "gasoline_stocks_kbbl": 208958.0, "gasoline_stocks_yoy_pct": 1.43, "gasoline_spot_usd_gal_year_ago": 1.926, "ulsd_spot_usd_gal_year_ago": 2.418, "wti_crude_usd_bbl_year_ago": 60.97}`
-- **Secondary Metrics:** `{"crack_spread_321_usd_bbl": 36.86, "gasoline_2_barrel_equiv_usd": 202.86, "ulsd_1_barrel_equiv_usd": 176.57, "wti_crude_usd_bbl": 89.62, "gasoline_stocks_kbbl": 208958.0, "gasoline_stocks_yoy_pct": 1.43, "crack_spread_321_year_ago_usd_bbl": 26.81, "crack_spread_321_yoy_change_usd_bbl": 10.05, "crack_spread_321_yoy_pct": 37.49}`
+- **Inputs Evaluated:** `{"gasoline_spot_usd_gal": 2.415, "ulsd_spot_usd_gal": 4.204, "wti_crude_usd_bbl": 89.62, "matched_observation_date": "2026-11-11", "gasoline_stocks_kbbl": 208958.0, "gasoline_stocks_yoy_pct": 1.43, "refinery_utilization_pct": 89.1, "gasoline_spot_usd_gal_year_ago": 1.926, "ulsd_spot_usd_gal_year_ago": 2.418, "wti_crude_usd_bbl_year_ago": 60.97}`
+- **Secondary Metrics:** `{"crack_spread_321_usd_bbl": 36.86, "gasoline_2_barrel_equiv_usd": 202.86, "ulsd_1_barrel_equiv_usd": 176.57, "wti_crude_usd_bbl": 89.62, "gasoline_stocks_kbbl": 208958.0, "gasoline_stocks_yoy_pct": 1.43, "refinery_utilization_pct": 89.1, "refinery_capacity_regime": "NORMAL_OPERATING_BAND", "crack_spread_321_year_ago_usd_bbl": 26.81, "crack_spread_321_yoy_change_usd_bbl": 10.05, "crack_spread_321_yoy_pct": 37.49}`
 - **Economic Synthesis:** The same-date 3:2:1 crack spread is 36.86 USD/bbl, up 10.05 USD/bbl (37.49%) from 26.81 USD/bbl one year earlier. Status describes the year-over-year direction, not whether the absolute spread is high or low. Gasoline inventory is contextual only.
 
 #### [MODEL_25.10] SLOOS Lending Standards Recession Gauge

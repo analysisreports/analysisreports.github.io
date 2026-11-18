@@ -1428,6 +1428,10 @@
             "gasoline_stocks_yoy_val": {
               "type": "number",
               "description": "Optional year-over-year change in gasoline stocks, as a context metric only."
+            },
+            "refinery_utilization_pct_val": {
+              "type": "number",
+              "description": "Optional weekly U.S. percent utilization of refinery operable capacity (EIA: PET.WPULEUS3.W) as a physical capacity bottleneck metric (>=93% BOTTLENECK_CRUNCH, <85% MAINTENANCE_TURNAROUND)."
             }
           },
           "required": [
