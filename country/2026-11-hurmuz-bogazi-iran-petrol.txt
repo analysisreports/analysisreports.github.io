@@ -1,0 +1,112 @@
+# ==============================================================================
+# STRATEGIC COUNTRY ASSESSMENT: HORMUZ STRAIT & IRAN MAXIMUM DETERRENCE
+# Identifier: 2026-11-hurmuz-bogazi-iran-petrol.txt
+# Ecosystem: Ersoy Toptaş Quantitative Macro & Geopolitical Research Archive
+# Canonical Endpoint: https://analysisreports.github.io/country/2026-11-hurmuz-bogazi-iran-petrol.txt
+# JSON Twin Endpoint: https://analysisreports.github.io/country/2026-11-hurmuz-bogazi-iran-petrol.json
+# Editorial Web Publication: https://www.ersoytoptas.tr/2026/11/hurmuz-bogazi-iran-petrol.html
+# Author: Ersoy Toptaş (ORCID: 0009-0005-6130-8003)
+# License: CC BY-NC-ND 4.0
+# Version: 3.0.0
+# Last Updated: 2026-11-02T12:00:00Z
+# ==============================================================================
+
+# SECTION 1: EDITORIAL NARRATIVE (HUMAN & LLM READABLE)
+--------------------------------------------------------------------------------
+
+# Hürmüz Boğazı ve İran: 2 Günlük Güvenlik Planı ve Petrol
+
+Tahran yönetiminin Hürmüz Boğazı'ndaki askeri kontrolünü diplomatik bir pazarlık kartına dönüştüren iki günlük güvenlik planı, küresel petrol piyasalarında tırmanan risk primini ve navlun maliyetlerini doğrudan etkiliyor.
+
+## İran'ın Yeni Doktrini: Maksimum Caydırıcılık ve Eşzamanlı Diplomasi
+
+İran, bölgesel çatışma riskinin yükseldiği bir dönemde Maksimum Caydırıcılık ve Eşzamanlı Diplomasi doktrinini devreye soktu. Yeni Dini Lider Mücteba Hamaney'in arka plandaki komuta kontrolü ve Cumhurbaşkanı Mesud Pezeşkiyan hükümetine tanıdığı icra yetkisiyle hareket eden Tahran yönetimi, Basra Körfezi'ndeki seyrüsefer güvenliğini doğrudan ekonomik yaptırımların kaldırılması şartına bağladı. Silahlı kuvvetlerin teyakkuz seviyesini artıran Devrim Muhafızları ile Milli Güvenlik Yüksek Konseyi Sekreteri Mohsen Rızai, Hürmüz Boğazı üzerindeki asimetrik denetim kapasitesini masadaki en güçlü koz olarak tutuyor.
+
+## 2 Günlük Güvenlik Planı: Yaptırım Şartı ve Liderlerin Tutumu
+
+Krizin diplomatik ayağını yürüten Dışişleri Bakanı Abbas Arakçi ise Doha ve Pekin hatlarında mekik diplomasisi yürüterek hazırlanan 2 Günlük Güvenlik Planı'nı muhataplarına sundu. Tahran, Washington yönetiminin liman ablukasını ve ekonomik yaptırımlarını kaldırması halinde Hürmüz Boğazı'nı 48 saat içinde uluslararası tanker trafiğine tamamen açmayı taahhüt ediyor. Buna karşılık ABD Başkanı Donald Trump'ın 47,1 milyar dolarlık savaş harcamalarının gölgesinde yaptığı bir yandan çekicin inebileceğini ima eden diğer yandan çatışmanın yakında biteceğini söyleyen çelişkili açıklamaları, piyasalardaki belirsizliği körüklüyor. İsrail Başbakanı Benjamin Netanyahu'nun askeri gerilimi tırmandırma eğilimi de denklemdeki tansiyonu yüksek tutmaya devam ediyor.
+
+## Hürmüz Koridorunda Tıkanıklık: Navlun Sıçraması ve Enerji Riski
+
+Küresel hidrokarbon ticaretinin can damarı sayılan Hürmüz Boğazı'ndaki bu karşılıklı restleşme, dünya enerji koridorlarında güvenli geçiş maliyetlerini sıçratıyor. Tankerlerin geçiş emniyetinin şarta bağlanması, ham petrol fiyatlarındaki jeopolitik risk primini yukarı iterken deniz taşımacılığında sigorta ve navlun bedellerini katlıyor. Yüksek enflasyon ve ticari kısıtlamalar nedeniyle daralan İran ekonomisi bu adımla nefes borusu açmaya çalışırken, Basra Körfezi'nden petrol tedarik eden sanayi ülkeleri yeni bir arz darboğazıyla yüzleşiyor.
+
+## Küresel Piyasalara Fatura: Sanayi Maliyetleri ve Pompa Fiyatları
+
+Tablonun küresel üretime ve piyasalara çıkaracağı fatura oldukça net görünüyor. Enerji geçiş hattındaki bu fiili tıkanıklık uzadığı takdirde, taşımacılık maliyetlerindeki sıçrama sanayicinin elektrik ve yakıt giderlerini artırabilir; bu durum nihai tüketiciye benzin pompası ve market raflarındaki yeni zam dalgaları olarak yansıyabilir.
+
+
+# SECTION 2: STRUCTURED STRATEGIC ONTOLOGY (5N1K & 5W1H)
+--------------------------------------------------------------------------------
+- Event Headline      : İran'ın Çok Yönlü Stratejisi ve Hürmüz Boğazı Kriz Denklemi
+- What (Stratejik Olay): İran'ın askeri komuta yetkilerini genişleterek ve eşzamanlı diplomasi yürüterek Hürmüz Boğazı güvenliği ile yaptırım ablukasını kaldırma şartlarını sunması.
+- Where (Lokasyon)    : GEO_IR, Basra Körfezi, CHOKE_HORMUZ, LEVANT, Doha / Beijing müzakere hatları
+- When (Zaman)        : 2026-Q4 (Event Date: 2026-11-02)
+- Why (Gerekçe)       : ABD ara seçimleri sonrası artan eskalasyon riskine karşı bölgesel güç dengesini korumak ve ekonomik ablukayı kırmak.
+- How (Metot)         : Maksimum caydırıcılık, Askeri angajman kurallarının esnetilmesi, 2 günlük güvenlik planı ve mekik diplomasisi yoluyla.
+- Who (Kilit Aktörler): Mücteba Hamaney, Mesud Pezeşkiyan, Abbas Arakçi, Mohsen Rızai, Donald Trump, Benjamin Netanyahu
+- Conflict Heat Index : 90 / 100 (HIGH SEVERITY)
+
+
+# SECTION 3: COUNTRY STRATEGIC PROFILE (GEO_IR)
+--------------------------------------------------------------------------------
+- Target Sovereign    : GEO_IR (Iran, Islamic Republic of)
+- Internal Politics   : Liderlik konsolidasyonu ve Devrim Muhafızları - SNSC kurumsal güç dengesi (Severity Score: 75/100)
+- Military Posture    : Maksimum Caydırıcılık ve Asimetrik Misilleme Kapasitesi (Severity Score: 90/100)
+- Alignment           : Avrasya İttifakı / Doğu Bloku (GEO_RU, GEO_CN stratejik yakınlaşması; Severity Score: 85/100)
+- Vulnerabilities     : Kapsamlı yaptırımlar, liman ablukası ve kritik enerji altyapı riski (Severity Score: 85/100)
+- Composite Score     : Strategic Score: 80/100 | Resilience: 60/100 | Severity Level: HIGH
+
+
+# SECTION 4: BILATERAL TENSION & CHOKEPOINT CORRIDOR
+--------------------------------------------------------------------------------
+- Active Dyad         : US-IR (GEO_US - GEO_IR)
+- State Machine Regime: PROXY_WAR
+- Dynamic Polarity    : -0.90 (Directed: US -> IR)
+- Dynamic Delta       : -0.25 (Friction Escalation)
+- Critical Chokepoint : CHOKE_HORMUZ (Küresel hidrokarbon ticaretinin ve seyrüsefer güvenliğinin asimetrik kırılma noktası)
+- Market Transmission : RISK_OFF | Impact Score: 85/100 | Direction: Risk
+
+
+# SECTION 5: QUANTITATIVE MACRO & COMMODITY TRANSMISSION
+--------------------------------------------------------------------------------
+- Primary Linkage 1   : MODEL_25.7 (OVX / VIX Geopolitical Energy Shock Engine) -> Status: ENERGY_SUPPLY_SHOCK_ALARM
+- Primary Linkage 2   : MODEL_25.9 (3:2:1 Crack Spread & Refinery Stress) -> Metric: refinery_utilization_pct (PET.WPULEUS3.W)
+- Primary Linkage 3   : MODEL_25.19 (Dynamic Geopolitical Dyad Polarity Engine) -> Trigger: IND_TRIGGER_HORMUZ_SPREAD & IND_TRIGGER_US_SPR_BUFFER
+
+
+# SECTION 6: SYNTHETIC TARGET QUERIES (Q&A KNOWLEDGE BANK)
+--------------------------------------------------------------------------------
+Q1: İran'ın kriz döneminde devreye soktuğu stratejik doktrin nedir?
+A1: İran, artan askeri eskalasyon riskine karşı 'Maksimum Caydırıcılık' ve 'Eşzamanlı Diplomasi' doktrinini devreye sokmuştur.
+
+Q2: Hürmüz Boğazı'nın güvenliği için İran'ın sunduğu 2 günlük güvenlik planı neleri kapsamaktadır?
+A2: ABD liman ablukasını kaldırdığı takdirde Hürmüz Boğazı'nın 48 saat içinde uluslararası gemi trafiğine açılmasını öngörmektedir.
+
+Q3: İran Dışişleri Bakanı Abbas Arakçi hangi diplomatik faaliyetleri yürütmektedir?
+A3: Abbas Arakçi, Hürmüz Boğazı güvenlik planı ve mekik diplomasisinin yürütücülüğünü üstlenmektedir.
+
+Q4: Mücteba Hamaney'in kriz sürecindeki rolü ve unvanı nedir?
+A4: Mücteba Hamaney, İran Dini Lideri olarak komuta yapısını geriden yöneten en yüksek otoritedir.
+
+Q5: Mesud Pezeşkiyan'ın krizdeki görevi nedir?
+A5: Mesud Pezeşkiyan, ABD ile barış görüşmelerini yürüten İran Cumhurbaşkanı ve icra başkanıdır.
+
+Q6: Mohsen Rızai hangi kurumsal pozisyonda görev yapmaktadır?
+A6: Mohsen Rızai, Milli Güvenlik Yüksek Konseyi (SNSC) Sekreteri ve Tümgeneral olarak görev yapmaktadır.
+
+Q7: Donald Trump'ın kriz hakkındaki açıklaması nedir?
+A7: Donald Trump, 'çekiç inebilir / savaş çok yakında bitecek' şeklinde açıklama yapmıştır.
+
+Q8: İran'ın diplomatik temaslar yürüttüğü ana merkezler neresidir?
+A8: İran diplomatik temaslarını Doha ve Beijing hatlarında yürütmektedir.
+
+
+# SECTION 7: CROSS-REFERENCES & IMPACT WINDOWS
+--------------------------------------------------------------------------------
+1. Relates To: https://www.ersoytoptas.tr/2026/10/fed-faizi-hurmuz-reel-sektor-finansman.html
+   Predicate: ENERGY_SUPPLY_SHOCK_TRANSMISSION | Window: 2026-11/2026-12
+   Impact   : Tahran yönetiminin Hürmüz Boğazı'ndaki geçiş emniyetini yaptırımların kaldırılması şartına bağlaması ve navlun/petrol maliyetlerini tırmandırması, Fed'in kısıtlayıcı faiz duruşunu destekleyerek reel sektörün refinansman krizini derinleştirmektedir.
+
+2. Relates To: https://www.ersoytoptas.tr/2026/10/fed-faiz-karari-hurmuz-krizi-enflasyon-baskisi.html
+   Predicate: GEOPOLITICAL_INFLATION_SPILLOVER | Window: 2026-11/2026-12
+   Impact   : İran'ın 2 günlük güvenlik planı ile Hürmüz Boğazı üzerindeki asimetrik kontrolünü diplomatik koz olarak kullanması, ham petrol ve pompa fiyatlarında jeopolitik risk primini yukarı çekerek manşet enflasyonist baskıları beslemektedir.
