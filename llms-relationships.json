@@ -8,10 +8,10 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-relationships.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-18T14:21:17.758809+00:00",
+    "last_updated": "2026-11-18T16:40:49.426414+00:00",
     "sync_status": "PARTIAL_SUCCESS",
     "last_successful_sync": null,
-    "last_attempted_sync": "2026-11-18T14:21:17.758809+00:00",
+    "last_attempted_sync": "2026-11-18T16:40:49.426414+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {

@@ -8,9 +8,9 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-census-series.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-18T12:14:44.302445+00:00",
+    "last_updated": "2026-11-18T16:40:48.803078+00:00",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-18T12:14:44.302445+00:00",
+    "last_successful_sync": "2026-11-18T16:40:48.803078+00:00",
     "source_authority": "U.S. Census Bureau / Department of Commerce (International Trade Time Series API)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
     "root_index": "https://analysisreports.github.io/llms.txt"
