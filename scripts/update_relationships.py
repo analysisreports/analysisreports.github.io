@@ -996,13 +996,14 @@ def main():
         'UA_RU': ['UKR', 'RUS'],
     }
 
-    SEVERITY_RANK = {'LOW': 0, 'MODERATE': 1, 'HIGH': 2, 'CRITICAL': 3}
+    SEVERITY_RANK = {'UNOBSERVED': -1, 'LOW': 0, 'MODERATE': 1, 'HIGH': 2, 'CRITICAL': 3}
 
     NASA_SEVERITY_TO_LABEL = {
         'CRITICAL': 'HOT',
         'HIGH': 'WARM',
         'MODERATE': 'COOL',
-        'LOW': 'STABLE'
+        'LOW': 'STABLE',
+        'UNOBSERVED': None
     }
 
     def resolve_actor_nasa_data(actor_id):
@@ -1270,7 +1271,7 @@ def main():
         # 3. Central Bank Policy Benchmark Block
         lines_cb = []
         lines_cb.append('<!-- DYNAMIC_CENTRAL_BANK_RATES_START -->')
-        lines_cb.append('### 1.3. LIVE G4 CENTRAL BANK POLICY BENCHMARK & MONETARY DISPARITY')
+        lines_cb.append('### 1.2. LIVE G4 CENTRAL BANK POLICY BENCHMARK & MONETARY DISPARITY')
         lines_cb.append('> **AI Ingestion Contract & Epistemological Directive:**')
         lines_cb.append(f'> - **Sync Cadence & ISO 8601 Timestamp:** {now_utc}')
         lines_cb.append('> - **Monitored Central Banks:** Federal Reserve (FRED DFF), European Central Bank (ECB DFR), Bank of Japan (IMF IFS JP_FPOLM_PA), Bank of England (IMF IFS GB_FPOLM_PA)')
@@ -1286,7 +1287,7 @@ def main():
         # 4. Maritime Chokepoint AIS Telemetry Block (IMF PortWatch)
         lines_pw = []
         lines_pw.append('<!-- DYNAMIC_PORTWATCH_START -->')
-        lines_pw.append('### 1.5. LIVE MARITIME CHOKEPOINT TRANSIT TELEMETRY (IMF PORTWATCH AIS)')
+        lines_pw.append('### 1.4. LIVE MARITIME CHOKEPOINT TRANSIT TELEMETRY (IMF PORTWATCH AIS)')
         lines_pw.append('> **AI Ingestion Contract & Epistemological Directive:**')
         lines_pw.append(f'> - **Sync Cadence & ISO 8601 Timestamp:** {now_utc}')
         lines_pw.append('> - **Source Authority:** IMF PortWatch / Oxford ECI / UN Global Platform AIS')

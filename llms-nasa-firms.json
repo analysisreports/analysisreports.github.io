@@ -39,8 +39,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "BLACK_SEA",
         "DONBAS",
@@ -61,8 +61,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "KURSK_BORDER",
         "REFINERY_CORRIDOR",
@@ -82,8 +82,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "NORTHERN_BORDER",
         "GAZA_PERIMETER",
@@ -103,8 +103,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "CHOKE_HORMUZ",
         "KHUZESTAN_ENERGY_GRID",
@@ -124,8 +124,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "CHOKE_BAB_EL_MANDEB",
         "HODEIDAH_PORT",
@@ -145,8 +145,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "NORTHERN_BUFFER",
         "EUPHRATES_BASIN"
@@ -165,8 +165,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "LITANI_LINE",
         "BEIRUT_PORT"
@@ -185,8 +185,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "STRATEGIC_DEFENSE_ZONE"
       ],
@@ -204,8 +204,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "TAIWAN_STRAIT",
         "SOUTH_CHINA_SEA"
@@ -224,8 +224,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "DMZ_LINE",
         "YELLOW_SEA"
@@ -244,8 +244,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "ZANGEZUR_CORRIDOR",
         "CASPIAN_LITTORAL"
@@ -264,8 +264,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "SYUNIK_PROVINCE",
         "ZANGEZUR_APPROACH"
@@ -284,8 +284,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "CHOKE_SUWALKI_GAP",
         "BALTIC_DEFENCE_LINE"
@@ -304,8 +304,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "ORINOCO_BELT",
         "CARIBBEAN_LITTORAL"
@@ -324,8 +324,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "CHOKE_TURKISH_STRAITS",
         "SOUTHERN_BORDER_BUFFER"
@@ -344,8 +344,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "AEGEAN_AIRSPACE",
         "EAST_MED_SHELF"
@@ -364,8 +364,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "CHOKE_SUEZ",
         "PHILADELPHI_BUFFER"
@@ -384,8 +384,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "RAS_TANURA_TERMINAL",
         "RED_SEA_LITTORAL"
@@ -404,8 +404,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "BASRA_OIL_TERMINAL",
         "NORTHERN_CORRIDOR"
@@ -424,8 +424,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "GWADAR_PORT",
         "LINE_OF_CONTROL"
@@ -444,8 +444,8 @@
       "refinery_depot_blazes_count": 0,
       "total_radiative_power_mw": 0.0,
       "peak_explosion_power_mw": 0.0,
-      "kinetic_conflict_score": 0,
-      "conflict_severity": "LOW",
+      "kinetic_conflict_score": null,
+      "conflict_severity": "UNOBSERVED",
       "corridor_flashpoints": [
         "NORTH_SEA_LITTORAL",
         "RHINE_DANUBE_CORRIDOR"
