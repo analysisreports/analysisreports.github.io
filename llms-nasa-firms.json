@@ -8,9 +8,9 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-nasa-firms.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-18T10:59:09Z",
-    "sync_status": "STANDBY_UNCONFIGURED_KEY",
-    "last_successful_sync": null,
+    "last_updated": "2026-11-18T11:42:14Z",
+    "sync_status": "SUCCESS",
+    "last_successful_sync": "2026-11-18T11:42:14Z",
     "source_authority": "NASA Earth Science Data / FIRMS (VIIRS Suomi-NPP & NOAA-20)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.1",
     "root_index": "https://analysisreports.github.io/llms.txt"
@@ -30,129 +30,428 @@
   "theaters": {
     "UKR": {
       "entity_id": "GEO_UA",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Ukraine Frontline Axis",
+      "theater": "Eastern European Flank",
+      "category": "CONVENTIONAL_LAND_WARFARE",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "BLACK_SEA",
+        "DONBAS",
+        "ZAPORIZHZHIA",
+        "KHERSON"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "RUS": {
       "entity_id": "GEO_RU",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Russian Federation Border & Refinery Littoral",
+      "theater": "Eurasian Core",
+      "category": "STRATEGIC_INFRASTRUCTURE",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "KURSK_BORDER",
+        "REFINERY_CORRIDOR",
+        "BLACK_SEA_LITTORAL"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "ISR": {
       "entity_id": "GEO_IL",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "State of Israel & Frontline Perimeters",
+      "theater": "Levant Basin",
+      "category": "HIGH_INTENSITY_MISSILE_THEATER",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "NORTHERN_BORDER",
+        "GAZA_PERIMETER",
+        "PORT_OF_EILAT"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "IRN": {
       "entity_id": "GEO_IR",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Islamic Republic of Iran & Gulf Littoral",
+      "theater": "Persian Gulf & Zagros",
+      "category": "CHOKEPOINT_LITTORAL_AND_NUCLEAR",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "CHOKE_HORMUZ",
+        "KHUZESTAN_ENERGY_GRID",
+        "NATANZ_ISFAHAN"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "YEM": {
       "entity_id": "GEO_YE",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Republic of Yemen & Red Sea Littoral",
+      "theater": "Bab el-Mandeb / Red Sea",
+      "category": "MARITIME_CHOKEPOINT_INTERDICTION",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "CHOKE_BAB_EL_MANDEB",
+        "HODEIDAH_PORT",
+        "GULF_OF_ADEN"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "SYR": {
       "entity_id": "GEO_SY",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Syrian Arab Republic Buffer",
+      "theater": "Levant",
+      "category": "ASYMMETRIC_BUFFER_THEATER",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "NORTHERN_BUFFER",
+        "EUPHRATES_BASIN"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "LBN": {
       "entity_id": "GEO_LB",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Lebanese Republic Southern Axis",
+      "theater": "Levant Littoral",
+      "category": "MISSILE_INTERDICTION_ZONE",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "LITANI_LINE",
+        "BEIRUT_PORT"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "USA": {
       "entity_id": "GEO_US",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "United States Sovereign Axis",
+      "theater": "North America",
+      "category": "STRATEGIC_SUPERPOWER_HOMELAND",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "STRATEGIC_DEFENSE_ZONE"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "CHN": {
       "entity_id": "GEO_CN",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "People's Republic of China & Taiwan Strait",
+      "theater": "East Asia & First Island Chain",
+      "category": "INDO_PACIFIC_STRATEGIC_RIVALRY",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "TAIWAN_STRAIT",
+        "SOUTH_CHINA_SEA"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "PRK": {
       "entity_id": "GEO_KP",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Democratic People's Republic of Korea Axis",
+      "theater": "Korean Peninsula",
+      "category": "NUCLEAR_PROLIFERATION_FLASHPOINT",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "DMZ_LINE",
+        "YELLOW_SEA"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "AZE": {
       "entity_id": "GEO_AZ",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Republic of Azerbaijan & Zangezur Buffer",
+      "theater": "South Caucasus",
+      "category": "TRANS_CAUCASIAN_CORRIDOR",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "ZANGEZUR_CORRIDOR",
+        "CASPIAN_LITTORAL"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "ARM": {
       "entity_id": "GEO_AM",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Republic of Armenia Border Axis",
+      "theater": "South Caucasus",
+      "category": "BORDER_DELIMITATION_STANDOFF",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "SYUNIK_PROVINCE",
+        "ZANGEZUR_APPROACH"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "BLT": {
       "entity_id": "GEO_LT",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Baltic Flank & Suwalki Gap (EE, LV, LT)",
+      "theater": "Baltic Basin",
+      "category": "NATO_ARTICLE_5_FLANK",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "CHOKE_SUWALKI_GAP",
+        "BALTIC_DEFENCE_LINE"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "VEN": {
       "entity_id": "GEO_VE",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Bolivarian Republic of Venezuela Axis",
+      "theater": "Northern South America",
+      "category": "CARIBBEAN_HYDROCARBON_BASIN",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "ORINOCO_BELT",
+        "CARIBBEAN_LITTORAL"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "TUR": {
       "entity_id": "GEO_TR",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Republic of Türkiye Anatolian & Aegean Littoral",
+      "theater": "Anatolia & East Mediterranean",
+      "category": "STRATEGIC_PIVOT_AND_STRAITS",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "CHOKE_TURKISH_STRAITS",
+        "SOUTHERN_BORDER_BUFFER"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "GRC": {
       "entity_id": "GEO_GR",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Hellenic Republic & Aegean Basin",
+      "theater": "Eastern Mediterranean",
+      "category": "AEGEAN_EAST_MED_LITTORAL",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "AEGEAN_AIRSPACE",
+        "EAST_MED_SHELF"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "EGY": {
       "entity_id": "GEO_EG",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Arab Republic of Egypt & Suez Approach",
+      "theater": "Sinai & Suez Canal",
+      "category": "MARITIME_CHOKEPOINT_SOVEREIGN",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "CHOKE_SUEZ",
+        "PHILADELPHI_BUFFER"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "SAU": {
       "entity_id": "GEO_SA",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Kingdom of Saudi Arabia Energy Core",
+      "theater": "Arabian Peninsula",
+      "category": "PERSIAN_GULF_HYDROCARBON_POWER",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "RAS_TANURA_TERMINAL",
+        "RED_SEA_LITTORAL"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "IRQ": {
       "entity_id": "GEO_IQ",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Republic of Iraq & Mesopotamia Basin",
+      "theater": "Mesopotamia",
+      "category": "CROSS_BORDER_STRATEGIC_THEATER",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "BASRA_OIL_TERMINAL",
+        "NORTHERN_CORRIDOR"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "PAK": {
       "entity_id": "GEO_PK",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "Islamic Republic of Pakistan Strategic Flank",
+      "theater": "South Asia & Arabian Sea",
+      "category": "SOUTH_ASIAN_NUCLEAR_POWER",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "GWADAR_PORT",
+        "LINE_OF_CONTROL"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     },
     "EUR": {
       "entity_id": "BLOC_EU",
-      "status": "UNCONFIGURED_KEY",
-      "kinetic_conflict_score": null,
-      "conflict_severity": "UNAVAILABLE"
+      "name": "European Strategic Core (DE, FR, GB)",
+      "theater": "Western & Central Europe",
+      "category": "TRANSATLANTIC_SECURITY_CORE",
+      "total_satellite_detections": 0,
+      "high_confidence_anomalies": 0,
+      "strategic_missile_strikes_count": 0,
+      "refinery_depot_blazes_count": 0,
+      "total_radiative_power_mw": 0.0,
+      "peak_explosion_power_mw": 0.0,
+      "kinetic_conflict_score": 0,
+      "conflict_severity": "LOW",
+      "corridor_flashpoints": [
+        "NORTH_SEA_LITTORAL",
+        "RHINE_DANUBE_CORRIDOR"
+      ],
+      "sample_hotspots": [],
+      "status": "OK"
     }
   }
 }
