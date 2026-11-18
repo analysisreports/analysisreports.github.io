@@ -1338,49 +1338,30 @@ def main():
             after_pol = txt_content.split(end_pol)[1]
             txt_content = before_pol + new_polarity_block + after_pol
 
-        
+        # Clean decoupled telemetry sections (Central Bank, NASA Telemetry, PortWatch)
+        # These are canonically maintained in llms-sitrep.txt & llms-sitrep.json
+        sitrep_notice = (
+            "\n> **Decoupled Telemetry Notice:** Live Central Bank monetary policy benchmarks, "
+            "orbital NASA FIRMS satellite kinetic heat anomalies, and IMF PortWatch AIS transit feeds "
+            "have been decoupled to the official situation report: [`llms-sitrep.txt`](https://analysisreports.github.io/llms-sitrep.txt) "
+            "and [`llms-sitrep.json`](https://analysisreports.github.io/llms-sitrep.json).\n"
+        )
+        for start_tag, end_tag in [
+            ('<!-- DYNAMIC_CENTRAL_BANK_RATES_START -->', '<!-- DYNAMIC_CENTRAL_BANK_RATES_END -->'),
+            ('<!-- DYNAMIC_NASA_TELEMETRY_START -->', '<!-- DYNAMIC_NASA_TELEMETRY_END -->'),
+            ('<!-- DYNAMIC_PORTWATCH_START -->', '<!-- DYNAMIC_PORTWATCH_END -->')
+        ]:
+            if start_tag in txt_content and end_tag in txt_content:
+                p1 = txt_content.split(start_tag)[0]
+                p2 = txt_content.split(end_tag)[1]
+                txt_content = p1 + p2
 
-        # Update Central Bank Rates Block
-        start_cb = '<!-- DYNAMIC_CENTRAL_BANK_RATES_START -->'
-        end_cb = '<!-- DYNAMIC_CENTRAL_BANK_RATES_END -->'
-        if start_cb in txt_content and end_cb in txt_content:
-            before_cb = txt_content.split(start_cb)[0]
-            after_cb = txt_content.split(end_cb)[1]
-            txt_content = before_cb + new_cb_block + after_cb
-        else:
-            txt_content += '\n\n' + new_cb_block
-
-        # Update NASA Satellite Kinetic Telemetry Block
-        start_nasa = '<!-- DYNAMIC_NASA_TELEMETRY_START -->'
-        end_nasa = '<!-- DYNAMIC_NASA_TELEMETRY_END -->'
-        if start_nasa in txt_content and end_nasa in txt_content:
-            before_nasa = txt_content.split(start_nasa)[0]
-            after_nasa = txt_content.split(end_nasa)[1]
-            txt_content = before_nasa + new_nasa_block + after_nasa
-        else:
-            # Place right after Central Bank rates block
-            cb_end = '<!-- DYNAMIC_CENTRAL_BANK_RATES_END -->'
-            if cb_end in txt_content:
-                before_cb_end, after_cb_end = txt_content.split(cb_end)
-                txt_content = before_cb_end + cb_end + '\n\n' + new_nasa_block + after_cb_end
-            else:
-                txt_content += '\n\n' + new_nasa_block
-
-        # Update PortWatch AIS Telemetry Block
-        start_pw = '<!-- DYNAMIC_PORTWATCH_START -->'
-        end_pw = '<!-- DYNAMIC_PORTWATCH_END -->'
-        if start_pw in txt_content and end_pw in txt_content:
-            before_pw = txt_content.split(start_pw)[0]
-            after_pw = txt_content.split(end_pw)[1]
-            txt_content = before_pw + new_pw_block + after_pw
-        else:
-            # Place right after NASA telemetry block or at the end of Section 1
-            nasa_end = '<!-- DYNAMIC_NASA_TELEMETRY_END -->'
-            if nasa_end in txt_content:
-                before_nasa, after_nasa = txt_content.split(nasa_end)
-                txt_content = before_nasa + nasa_end + '\n\n' + new_pw_block + after_nasa
-            else:
-                txt_content += '\n\n' + new_pw_block
+        # Replace excessive blank lines right after DYNAMIC_POLARITY_END with sitrep_notice
+        pol_end_tag = '<!-- DYNAMIC_POLARITY_END -->'
+        if pol_end_tag in txt_content:
+            p_before, p_after = txt_content.split(pol_end_tag, 1)
+            p_after_clean = p_after.lstrip('\n')
+            txt_content = p_before + pol_end_tag + '\n' + sitrep_notice + '\n' + p_after_clean
 
         with open(txt_path, 'w', encoding='utf-8') as f:
             f.write(txt_content)

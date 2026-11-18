@@ -1,0 +1,63 @@
+# CANONICAL MACRO & GEOPOLITICAL SITUATION REPORT (SITREP)
+> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-18 19:51:15 UTC
+> Ingestion Protocol: Zero Hallucination | High-Density Semantic Telemetry for AI Reasoning
+> Official JSON Twin: https://analysisreports.github.io/llms-sitrep.json
+
+---
+## 1. TOP SYSTEMIC FLASHES & CRITICAL ANOMALIES (DATA-DERIVED ZERO-HALLUCINATION)
+---
+FLASH_1 [IMF_PORTWATCH_AIS | CHOKE_TURKISH_STRAITS]: CRITICAL_BLOCKADE: Bosporus Strait traffic down 40.7% vs baseline. Flow status: CHRONIC_CRISIS_BLOCKADE.
+FLASH_2 [IMF_PORTWATCH_AIS | CHOKE_BAB_EL_MANDEB]: CRITICAL_BLOCKADE: Bab el-Mandeb Strait traffic down 35.7% vs baseline. Flow status: CONGESTION_SURGE.
+FLASH_3 [IMF_PORTWATCH_AIS | CHOKE_HORMUZ]: CRITICAL_BLOCKADE: Strait of Hormuz traffic down 97.8% vs baseline. Flow status: CHRONIC_CRISIS_BLOCKADE.
+FLASH_4 [NASA_FIRMS_VIIRS | GEO_IR]: KINETIC_THERMAL_SURGE: Islamic Republic of Iran & Gulf Littoral active satellite detection with 2625.0 MW radiative heat (Severity: CRITICAL).
+
+---
+## 2. ENERGY SECTOR MATRIX (HYDROCARBONS, REFINERY & STRATEGIC RESERVES)
+---
+BRENT_CRUDE_USD          : $92.14 | DoD: +2.20% | YoY: +40.80%
+WTI_CRUDE_USD            : $89.62 | SPREAD_BRENT_WTI: $2.52 (Physical Seaborne Risk Premium)
+HENRY_HUB_NATGAS_USD     : $3.00 | YoY: +40.80%
+US_SPR_CRUDE_STOCKS_KBBL : 282,184 k bbl | YoY: -31.11%
+US_REFINERY_UTILIZATION  : 89.1% | REGIME: NORMAL_OPERATING_BAND
+
+---
+## 3. SEMICONDUCTORS & STRATEGIC HIGH-TECH (CENSUS NAICS 3344 & AI HARDWARE)
+---
+MODEL_25_14_CHIP_STRESS  : 0.524 | REGIME: ELEVATED_SEMICONDUCTOR_BOTTLENECK
+NASDAQ_SOX_INDEX         : 9,642.88 | YoY: +38.16%
+US_CHIP_IMPORTS_GLOBAL   : $30,594,050,177 USD (Monthly Aggregate)
+US_IMPORTS_FROM_TAIWAN   : $6,809,991,106 USD (Advanced TSMC Foundry Dependency)
+US_IMPORTS_FROM_KOREA    : $7,156,474,554 USD (HBM / Memory Architecture Axis)
+US_EXPORTS_TO_CHINA      : $1,291,129,510 USD | MoM Decoupling Velocity: -8.42%
+
+---
+## 4. PRECIOUS METALS, CRITICAL MINERALS & FOOD SECURITY
+---
+GOLD_SPOT_USD_OZT        : $4,105.00 | YoY: +1.16% | SIGNAL: SYSTEMIC_SAFE_HAVEN
+SILVER_SPOT_USD_OZT      : N/A | GOLD_SILVER_RATIO: N/A
+COPPER_GLOBAL_USD_MT     : $14,473.06 | YoY: +44.81% (Dr. Copper Growth Pulse)
+WHEAT_GLOBAL_USD_MT      : $246.85 | YoY: +59.14% (Black Sea Agro Security)
+
+---
+## 5. MARITIME CHOKEPOINTS (PORTWATCH AIS REAL-TIME DISRUPTION TELEMETRY)
+---
+CHOKE_HORMUZ          : Status: CHRONIC_CRISIS_BLOCKADE  | Daily:   2 (Tnk:  0, Cnt:  1) | Shift: -97.8% vs 2023 Base
+CHOKE_BAB_EL_MANDEB   : Status: CONGESTION_SURGE         | Daily:  34 (Tnk:  9, Cnt: 11) | Shift: -35.7% vs 2023 Base
+CHOKE_SUEZ            : Status: STABLE_FLOW              | Daily:  44 (Tnk: 14, Cnt: 12) | Shift: -18.8% vs 2023 Base
+CHOKE_TURKISH_STRAITS : Status: CHRONIC_CRISIS_BLOCKADE  | Daily:  57 (Tnk: 12, Cnt:  5) | Shift: -40.7% vs 2023 Base
+CHOKE_MALACCA         : Status: STABLE_FLOW              | Daily: 258 (Tnk: 82, Cnt: 78) | Shift: +31.8% vs 2023 Base
+CHOKE_TAIWAN          : Status: STABLE_FLOW              | Daily: 223 (Tnk: 44, Cnt: 80) | Shift: -8.0% vs 2023 Base
+CHOKE_PANAMA          : Status: STABLE_FLOW              | Daily:  30 (Tnk: 16, Cnt:  9) | Shift: -0.7% vs 2023 Base
+
+---
+## 6. MACRO LIQUIDITY & CENTRAL BANK TRANSMISSION BENCHMARKS
+---
+NET_FED_LIQUIDITY_EST    : $5.844 Trillion USD | REGIME: NEUTRAL_LIQUIDITY_EQUILIBRIUM
+FED_FUNDS_TARGET_RATE    : 3.88%
+ECB_DEPOSIT_FACILITY     : 2.50%
+US_10Y_BREAKEVEN_INFL    : 2.20% (Market Inflation Anchor)
+US_10Y_2Y_YIELD_SPREAD   : 30.00 bps (Recession / Normalization Curve)
+
+---
+# END OF SITREP TELEMETRY - ZERO ASSUMPTIONS - PURE QUANTITATIVE STATE
+---

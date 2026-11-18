@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "metadata": {
+    "title": "Autonomous Macro & Geopolitical Situation Report (SITREP)",
+    "domain": "macroeconomics",
+    "version": "1.0.0",
+    "author": "Ersoy Toptaş",
+    "license": "CC BY-NC-ND 4.0",
+    "endpoint": "https://analysisreports.github.io/llms-sitrep.json",
+    "documentation": "https://analysisreports.github.io/llms-about.txt",
+    "last_updated": "2026-11-18T19:51:15Z",
+    "sync_status": "SUCCESS",
+    "source_authority": "Consolidated Telemetry (FRED, U.S. Census Bureau, EIA, IMF PortWatch, NASA FIRMS, ECB)",
+    "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt",
+    "root_index": "https://analysisreports.github.io/llms.txt"
+  },
+  "top_systemic_flashes": [
+    {
+      "source": "IMF_PORTWATCH_AIS",
+      "entity_id": "CHOKE_TURKISH_STRAITS",
+      "event": "CRITICAL_BLOCKADE: Bosporus Strait traffic down 40.7% vs baseline. Flow status: CHRONIC_CRISIS_BLOCKADE."
+    },
+    {
+      "source": "IMF_PORTWATCH_AIS",
+      "entity_id": "CHOKE_BAB_EL_MANDEB",
+      "event": "CRITICAL_BLOCKADE: Bab el-Mandeb Strait traffic down 35.7% vs baseline. Flow status: CONGESTION_SURGE."
+    },
+    {
+      "source": "IMF_PORTWATCH_AIS",
+      "entity_id": "CHOKE_HORMUZ",
+      "event": "CRITICAL_BLOCKADE: Strait of Hormuz traffic down 97.8% vs baseline. Flow status: CHRONIC_CRISIS_BLOCKADE."
+    },
+    {
+      "source": "NASA_FIRMS_VIIRS",
+      "entity_id": "GEO_IR",
+      "event": "KINETIC_THERMAL_SURGE: Islamic Republic of Iran & Gulf Littoral active satellite detection with 2625.0 MW radiative heat (Severity: CRITICAL)."
+    }
+  ],
+  "energy_matrix": {
+    "brent_crude_usd": 92.14,
+    "brent_dod_pct": 2.1961,
+    "brent_yoy_pct": 40.8007,
+    "wti_crude_usd": 89.62,
+    "spread_brent_wti_usd": 2.52,
+    "henry_hub_natural_gas_usd": 3.0,
+    "us_spr_crude_stocks_k_bbl": 282184.0,
+    "us_spr_yoy_pct": -31.1066,
+    "us_refinery_utilization_pct": 89.1,
+    "refinery_capacity_regime": "NORMAL_OPERATING_BAND"
+  },
+  "semiconductors_tech": {
+    "ai_chip_stress_score": 0.524,
+    "ai_chip_stress_regime": "ELEVATED_SEMICONDUCTOR_BOTTLENECK",
+    "sox_index_val": 9642.88,
+    "sox_yoy_pct": 38.1587,
+    "us_semiconductor_imports_global_usd": 30594050177.0,
+    "us_semiconductor_imports_taiwan_usd": 6809991106.0,
+    "us_semiconductor_imports_korea_usd": 7156474554.0,
+    "us_semiconductor_imports_eu_usd": 1144232510.0,
+    "us_semiconductor_exports_china_usd": 1291129510.0,
+    "us_semiconductor_exports_china_mom_pct": -8.42
+  },
+  "metals_commodities": {
+    "gold_usd_ozt": 4105.0,
+    "gold_yoy_pct": 1.1582,
+    "silver_usd_ozt": null,
+    "gold_silver_ratio": null,
+    "copper_global_usd_mt": 14473.05590909091,
+    "copper_yoy_pct": 44.8062,
+    "wheat_global_usd_mt": 246.85180245,
+    "wheat_yoy_pct": 59.141
+  },
+  "maritime_chokepoints": {
+    "CHOKE_HORMUZ": {
+      "name": "Strait of Hormuz",
+      "flow_status": "CHRONIC_CRISIS_BLOCKADE",
+      "daily_total_vessels": 2,
+      "daily_tankers": 0,
+      "daily_containers": 1,
+      "pct_change_vs_7d": -12.5,
+      "pct_change_vs_2023": -97.8
+    },
+    "CHOKE_BAB_EL_MANDEB": {
+      "name": "Bab el-Mandeb Strait",
+      "flow_status": "CONGESTION_SURGE",
+      "daily_total_vessels": 34,
+      "daily_tankers": 9,
+      "daily_containers": 11,
+      "pct_change_vs_7d": 33.0,
+      "pct_change_vs_2023": -35.7
+    },
+    "CHOKE_SUEZ": {
+      "name": "Suez Canal",
+      "flow_status": "STABLE_FLOW",
+      "daily_total_vessels": 44,
+      "daily_tankers": 14,
+      "daily_containers": 12,
+      "pct_change_vs_7d": -4.6,
+      "pct_change_vs_2023": -18.8
+    },
+    "CHOKE_TURKISH_STRAITS": {
+      "name": "Bosporus Strait",
+      "flow_status": "CHRONIC_CRISIS_BLOCKADE",
+      "daily_total_vessels": 57,
+      "daily_tankers": 12,
+      "daily_containers": 5,
+      "pct_change_vs_7d": 17.4,
+      "pct_change_vs_2023": -40.7
+    },
+    "CHOKE_MALACCA": {
+      "name": "Malacca Strait",
+      "flow_status": "STABLE_FLOW",
+      "daily_total_vessels": 258,
+      "daily_tankers": 82,
+      "daily_containers": 78,
+      "pct_change_vs_7d": 12.2,
+      "pct_change_vs_2023": 31.8
+    },
+    "CHOKE_TAIWAN": {
+      "name": "Taiwan Strait",
+      "flow_status": "STABLE_FLOW",
+      "daily_total_vessels": 223,
+      "daily_tankers": 44,
+      "daily_containers": 80,
+      "pct_change_vs_7d": 1.0,
+      "pct_change_vs_2023": -8.0
+    },
+    "CHOKE_PANAMA": {
+      "name": "Panama Canal",
+      "flow_status": "STABLE_FLOW",
+      "daily_total_vessels": 30,
+      "daily_tankers": 16,
+      "daily_containers": 9,
+      "pct_change_vs_7d": 6.6,
+      "pct_change_vs_2023": -0.7
+    }
+  },
+  "macro_liquidity": {
+    "net_fed_liquidity_trillion_usd": 5.844,
+    "net_fed_liquidity_regime": "NEUTRAL_LIQUIDITY_EQUILIBRIUM",
+    "fed_policy_rate_pct": 3.88,
+    "ecb_deposit_rate_pct": 2.5,
+    "us_10y_breakeven_inflation_pct": 2.2,
+    "yield_curve_10y_2y_spread_bps": 30.0
+  }
+}

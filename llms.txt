@@ -79,6 +79,8 @@ Core repository endpoints, manifests, and their operational roles:
 - [Live U.S. Census International Trade JSON Twin (llms-census-series.json)](https://analysisreports.github.io/llms-census-series.json): Structured JSON endpoint for automated U.S. Census Bureau semiconductor imports, exports, and trade balance metrics.
 - [Live Quantitative Models Engine (llms-models.txt)](https://analysisreports.github.io/llms-models.txt): Real-time evaluated macroeconomic models, fear indices, and transmission metrics.
 - [Live Quantitative Models JSON Twin (llms-models.json)](https://analysisreports.github.io/llms-models.json): Structured JSON twin for real-time quantitative model evaluation and regime states.
+- [Live Macro & Geopolitical Situation Report (llms-sitrep.txt)](https://analysisreports.github.io/llms-sitrep.txt): Consolidated high-density semantic situation report (SITREP) synthesizing real-time energy, semiconductors, precious metals, chokepoints, satellite kinetic hits, and macro liquidity benchmarks.
+- [Live Macro & Geopolitical Situation Report JSON Twin (llms-sitrep.json)](https://analysisreports.github.io/llms-sitrep.json): Structured JSON endpoint for the consolidated situation report with zero-hallucination data-derived systemic flashes.
 
 ---
 
