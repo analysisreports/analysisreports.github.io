@@ -36,38 +36,97 @@
         "root_index"
       ],
       "properties": {
-        "title": { "type": "string" },
-        "domain": { "type": "string" },
-        "version": { "type": "string" },
-        "author": { "type": "string" },
-        "license": { "type": "string" },
-        "endpoint": { "type": "string", "format": "uri" },
-        "documentation": { "type": "string", "format": "uri" },
-        "last_updated": { "type": "string", "format": "date-time" },
-        "sync_status": { "type": "string", "enum": ["SUCCESS", "FAILED", "PARTIAL"] },
-        "data_completeness_pct": { "type": "number" },
-        "source_authority": { "type": "string" },
-        "methodology_reference": { "type": "string", "format": "uri" },
-        "root_index": { "type": "string", "format": "uri" }
+        "title": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        },
+        "endpoint": {
+          "type": "string",
+          "format": "uri"
+        },
+        "documentation": {
+          "type": "string",
+          "format": "uri"
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sync_status": {
+          "type": "string",
+          "enum": [
+            "SUCCESS",
+            "FAILED",
+            "PARTIAL"
+          ]
+        },
+        "data_completeness_pct": {
+          "type": "number"
+        },
+        "disclaimer": {
+          "type": "string"
+        },
+        "source_authority": {
+          "type": "string"
+        },
+        "methodology_reference": {
+          "type": "string",
+          "format": "uri"
+        },
+        "root_index": {
+          "type": "string",
+          "format": "uri"
+        }
       }
     },
     "top_systemic_flashes": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["source", "entity_id", "event"],
+        "required": [
+          "source",
+          "entity_id",
+          "event"
+        ],
         "properties": {
-          "source": { "type": "string" },
-          "entity_id": { "type": "string" },
-          "event": { "type": "string" }
+          "source": {
+            "type": "string"
+          },
+          "entity_id": {
+            "type": "string"
+          },
+          "event": {
+            "type": "string"
+          }
         }
       }
     },
-    "energy_matrix": { "type": "object" },
-    "semiconductors_tech": { "type": "object" },
-    "metals_commodities": { "type": "object" },
-    "maritime_chokepoints": { "type": "object" },
-    "macro_liquidity": { "type": "object" },
+    "energy_matrix": {
+      "type": "object"
+    },
+    "semiconductors_tech": {
+      "type": "object"
+    },
+    "metals_commodities": {
+      "type": "object"
+    },
+    "maritime_chokepoints": {
+      "type": "object"
+    },
+    "macro_liquidity": {
+      "type": "object"
+    },
     "systemic_contagion_rules": {
       "type": "array",
       "description": "Deterministic rules for validating mainstream news narratives against physical ground truth telemetry.",
@@ -78,14 +137,29 @@
           "domain",
           "telemetry_signal",
           "media_claim_bias",
-          "ground_truth_reality"
+          "ground_truth_reality",
+          "formula_link"
         ],
         "properties": {
-          "rule_id": { "type": "string" },
-          "domain": { "type": "string" },
-          "telemetry_signal": { "type": "string" },
-          "media_claim_bias": { "type": "string" },
-          "ground_truth_reality": { "type": "string" }
+          "rule_id": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "telemetry_signal": {
+            "type": "string"
+          },
+          "media_claim_bias": {
+            "type": "string"
+          },
+          "ground_truth_reality": {
+            "type": "string"
+          },
+          "formula_link": {
+            "type": "string",
+            "format": "uri"
+          }
         }
       }
     }

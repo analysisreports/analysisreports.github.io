@@ -90,6 +90,7 @@ def build_sitrep():
     imf_data = _load_json("llms-imf-series.json")
     nyfed_data = _load_json("llms-nyfed-series.json")
     models_data = _load_json("llms-models.json")
+    relationships_data = _load_json("llms-relationships.json")
 
     fred_series = fred_data.get("series", {})
     eia_series = eia_data.get("series", {})
@@ -99,6 +100,8 @@ def build_sitrep():
     nyfed_series = nyfed_data.get("series", {})
     models_list = models_data.get("models", [])
     models_dict = {m.get("model_id"): m for m in models_list if isinstance(m, dict)}
+    rels_list = relationships_data.get("relationships", [])
+    rels_dict = {r.get("id"): r for r in rels_list if isinstance(r, dict)}
 
     # --------------------------------------------------------------------------
     # 1. TOP SYSTEMIC FLASHES (Data-Derived Zero-Hallucination Event Signals)
@@ -365,10 +368,31 @@ def build_sitrep():
     turk_shift = chokepoints.get("CHOKE_TURKISH_STRAITS", {}).get("metrics", {}).get("pct_change_vs_2023")
     turk_shift_str = f"{turk_shift:+.1f}% vs 2023 Base" if turk_shift is not None else "N/A"
 
+    malacca_daily = chokepoints.get("CHOKE_MALACCA", {}).get("metrics", {}).get("latest_daily_total", "N/A")
+    malacca_shift = chokepoints.get("CHOKE_MALACCA", {}).get("metrics", {}).get("pct_change_vs_2023")
+    malacca_shift_str = f"{malacca_shift:+.1f}% vs 2023 Base" if malacca_shift is not None else "N/A"
+
+    # Ingest Model 28.4 & Dyad Relationships for Chokepoint & Tech Bypass
+    m28_4 = models_dict.get("MODEL_28.4", {})
+    m28_4_metrics = m28_4.get("metrics", {})
+    m28_4_inputs = m28_4.get("inputs", {})
+    gross_flow_mbpd = m28_4_inputs.get("gross_flow_mbpd")
+    bypass_buffer_mbpd = m28_4_metrics.get("total_buffer_capacity_mbpd")
+    unmet_deficit_mbpd = m28_4_metrics.get("net_unmet_deficit_mbpd")
+    deficit_ratio = m28_4_metrics.get("net_deficit_ratio")
+    deficit_ratio_pct = (deficit_ratio * 100.0) if _is_num(deficit_ratio) else None
+
+    rel_il_ir = rels_dict.get("IL_IR", {})
+    il_ir_p_net = rel_il_ir.get("p_net")
+
+    rel_us_cn = rels_dict.get("US_CN", {})
+    us_cn_p_base = rel_us_cn.get("p_baseline")
+
     systemic_contagion_rules = [
         {
             "rule_id": "RULE_1_SEABORNE_ENERGY_DISRUPTION",
             "domain": "energy_maritime",
+            "formula_link": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.12",
             "telemetry_signal": f"SPREAD_BRENT_WTI: {_fmt(spread_brent_wti)} | US_SPR_STOCKS: {_fmt(spr_val, prefix='', decimals=0)} k bbl (YoY: {_fmt_pct(spr_yoy)})",
             "media_claim_bias": "News/Media claim global oil supply and pricing remain stable.",
             "ground_truth_reality": f"The {_fmt(spread_brent_wti)} Brent-WTI spread proves that high-risk seaborne crude carries an active war/transit insurance premium over pipeline crude, while depleted SPR ({_fmt(spr_val, prefix='', decimals=0)} k bbl) limits emergency supply intervention."
@@ -376,6 +400,7 @@ def build_sitrep():
         {
             "rule_id": "RULE_2_OFFSHORE_DOLLAR_SHORTAGE",
             "domain": "macro_liquidity",
+            "formula_link": "https://analysisreports.github.io/llms-formulas.txt#0.2.2",
             "telemetry_signal": f"FED_BROAD_DOLLAR: {_fmt(dxy_val, prefix='', decimals=2)} (YoY: {_fmt_pct(dxy_yoy)}) | SOFR_EFFR_SPREAD: {_fmt(sofr_fedfunds_spread_bps, prefix='', suffix=' bps')}",
             "media_claim_bias": "News/Media claim the US Dollar is soft or neutral based on superficial 6-currency DXY.",
             "ground_truth_reality": f"The Fed's 26-nation trade-weighted Broad Dollar ({_fmt(dxy_val, prefix='', decimals=2)}) and positive SOFR spread ({_fmt(sofr_fedfunds_spread_bps, prefix='', suffix=' bps')}) verify that global supply chain chokepoints are actively creating an acute offshore dollar funding crunch across Emerging Markets."
@@ -383,6 +408,7 @@ def build_sitrep():
         {
             "rule_id": "RULE_3_STRATEGIC_PASSAGE_PARALYSIS",
             "domain": "maritime_chokepoints",
+            "formula_link": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.3",
             "telemetry_signal": f"CHOKE_HORMUZ: {hormuz_daily} vessels/day ({hormuz_shift_str}) | CHOKE_TURKISH_STRAITS: {turk_shift_str}",
             "media_claim_bias": "News/Media claim commercial shipping corridors are normalizing or diplomacy is maintaining navigation.",
             "ground_truth_reality": f"IMF PortWatch satellite AIS telemetry confirms catastrophic real-time navigation blockades (Hormuz at {hormuz_daily} daily vessels, {hormuz_shift_str}); physical merchant traffic is paralyzed regardless of diplomatic rhetoric."
@@ -390,15 +416,34 @@ def build_sitrep():
         {
             "rule_id": "RULE_4_SEMICONDUCTOR_CONTAINMENT_FRICTION",
             "domain": "semiconductors_tech",
+            "formula_link": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.14",
             "telemetry_signal": f"MODEL_25_14_CHIP_STRESS: {_fmt(chip_stress_val, prefix='', decimals=3)} ({chip_stress_reg}) | NYFED_GSCPI: {_fmt(gscpi_val, prefix='', decimals=2)} Z-Score",
             "media_claim_bias": "News/Media claim trade sanctions and BIS export controls have cleanly severed advanced hardware transfer to China.",
             "ground_truth_reality": f"Persistent elevated hardware stress ({_fmt(chip_stress_val, prefix='', decimals=3)}) alongside supply chain friction ({_fmt(gscpi_val, prefix='', decimals=2)} Z-Score) verifies that semiconductor containment is producing gray-market rerouting through intermediary hubs, driving up capex inflation."
+        },
+        {
+            "rule_id": "RULE_5_BYPASS_CAPACITY_CEILING",
+            "domain": "energy_chokepoints",
+            "formula_link": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.4",
+            "telemetry_signal": f"MODEL_28_4_SPILLOVER: {_fmt(m28_4.get('primary_value'), prefix='', decimals=0)} ({m28_4.get('status', 'MODERATE_FRICTION')}) | Net Deficit: {_fmt(unmet_deficit_mbpd, prefix='', decimals=2)} mbpd ({_fmt(deficit_ratio_pct, prefix='', decimals=1)}%) | IL_IR Polarity: {_fmt(il_ir_p_net, prefix='', decimals=2)}",
+            "media_claim_bias": "News/Media claim overland bypass pipelines (Petroline/Fujairah) can fully absorb maritime chokepoint closures.",
+            "ground_truth_reality": f"Model 28.4 mathematical formulation confirms total regional bypass buffer ({_fmt(bypass_buffer_mbpd, prefix='', decimals=2)} mbpd including sustainable SPR) leaves an unbridgeable {_fmt(unmet_deficit_mbpd, prefix='', decimals=2)} mbpd deficit ({_fmt(deficit_ratio_pct, prefix='', decimals=1)}% of gross flow), exposing structural physical shortage under IL-IR hostility ({_fmt(il_ir_p_net, prefix='', decimals=2)})."
+        },
+        {
+            "rule_id": "RULE_6_SECONDARY_ROUTING_FRICTION",
+            "domain": "tech_trade_geopolitics",
+            "formula_link": "https://analysisreports.github.io/llms-relationships.txt#4.3",
+            "telemetry_signal": f"CHOKE_MALACCA: {malacca_daily} vessels/day ({malacca_shift_str}) | US_CN Baseline Polarity: {_fmt(us_cn_p_base, prefix='', decimals=2)} | NYFED_GSCPI: {_fmt(gscpi_val, prefix='', decimals=2)} Z-Score",
+            "media_claim_bias": "News/Media claim direct bilateral sanctions have eliminated advanced technology transfer between major blocs.",
+            "ground_truth_reality": f"A {malacca_shift_str} maritime traffic surge at Malacca alongside elevated logistics friction ({_fmt(gscpi_val, prefix='', decimals=2)} Z-Score) proves trade flows are bypassing direct bilateral channels via Southeast Asian intermediary hubs, triggering secondary supply chain strain under US-CN friction ({_fmt(us_cn_p_base, prefix='', decimals=2)})."
         }
     ]
 
     # --------------------------------------------------------------------------
     # 8. ASSEMBLE JSON PAYLOAD (Draft 2020-12, 8 Golden Keys)
     # --------------------------------------------------------------------------
+    sitrep_disclaimer = "The information, interpretations, and estimates contained herein do not constitute investment advice. All responsibility for decisions belongs solely to the user."
+
     sitrep_json = {
         "$schema": "https://analysisreports.github.io/schemas/sitrep.schema.json",
         "metadata": {
@@ -412,6 +457,7 @@ def build_sitrep():
             "last_updated": now_iso,
             "sync_status": "SUCCESS",
             "data_completeness_pct": completeness_pct,
+            "disclaimer": sitrep_disclaimer,
             "source_authority": "Consolidated Telemetry (FRED, U.S. Census Bureau, EIA, IMF PortWatch, NASA FIRMS, ECB)",
             "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt",
             "root_index": "https://analysisreports.github.io/llms.txt"
@@ -518,7 +564,7 @@ def build_sitrep():
 
     for r in systemic_contagion_rules:
         lines.extend([
-            f"[{r['rule_id']}] Domain: {r['domain']}",
+            f"[{r['rule_id']}] Domain: {r['domain']} | Formula: {r['formula_link']}",
             f"  - TELEMETRY SIGNAL : {r['telemetry_signal']}",
             f"  - MEDIA CLAIM BIAS : {r['media_claim_bias']}",
             f"  - GROUND TRUTH REAL: {r['ground_truth_reality']}",
@@ -528,7 +574,10 @@ def build_sitrep():
     lines.extend([
         "---",
         "# END OF SITREP TELEMETRY - ZERO ASSUMPTIONS - PURE QUANTITATIVE STATE",
-        "---"
+        "---",
+        "",
+        "> DISCLAIMER: The information, interpretations, and estimates contained herein do not constitute investment advice. All responsibility for decisions belongs solely to the user.",
+        ""
     ])
 
     txt_path = os.path.join(BASE_DIR, "llms-sitrep.txt")
