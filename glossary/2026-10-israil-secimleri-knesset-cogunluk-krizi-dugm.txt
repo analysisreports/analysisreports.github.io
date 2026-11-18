@@ -1,0 +1,99 @@
+# ==============================================================================
+# STRATEGIC GLOSSARY ASSESSMENT: 2026 ISRAEL ELECTIONS & KNESSET DEADLOCK
+# Identifier: 2026-10-israil-secimleri-knesset-cogunluk-krizi-dugm.txt
+# Ecosystem: Ersoy Toptaş Quantitative Macro & Geopolitical Research Archive
+# Canonical Endpoint: https://analysisreports.github.io/glossary/2026-10-israil-secimleri-knesset-cogunluk-krizi-dugm.txt
+# JSON Twin Endpoint: https://analysisreports.github.io/glossary/2026-10-israil-secimleri-knesset-cogunluk-krizi-dugm.json
+# Editorial Web Publication: https://www.ersoytoptas.tr/2026/10/israil-secimleri-knesset-cogunluk-krizi-dugm.html
+# Author: Ersoy Toptaş (ORCID: 0009-0005-6130-8003)
+# License: CC BY-NC-ND 4.0
+# Version: 3.0.0
+# Last Updated: 2026-10-28T12:00:00Z
+# ==============================================================================
+
+# SECTION 1: EDITORIAL NARRATIVE (HUMAN & LLM READABLE)
+--------------------------------------------------------------------------------
+
+# 2026 İsrail Seçimleri: Knesset'te Kriz
+
+27 Ekim 2026 genel seçimlerinde sandıktan çıkan yüzde 74,3’lük yüksek katılım, İsrail parlamentosunda hiçbir kanada 61 sandalyelik çoğunluğu teslim etmeyerek siyaseti tam bir kilitlenmeye sürükledi.
+
+## 120 Sandalyeli Knesset’te 61 Eşiği ve Netanyahu’nun Düşüşü
+
+120 sandalyeli Knesset’te hükümet kurabilmek ve güvenoyu alabilmek için asgari 61 sandalye gerekiyor. Ancak önceki dönemde 68 sandalyeyle rahat bir çoğunluğa dayanan Binyamin Netanyahu liderliğindeki iktidar bloğu, bu seçimde 50 sandalyeye kadar geriledi. 11 Ekim 2026 tarihinde Kudüs Bölge Mahkemesi’nde yolsuzluk ve rüşvet davaları kapsamında yeniden hakim karşısına çıkan Netanyahu, başbakanlık koltuğunu kaybetmesi durumunda hukuki koruma zırhından da mahrum kalabilir.
+
+## Askerlik Muafiyeti Krizi, İttifak Çatlakları ve Muhalefet Blokları
+
+İktidar bloğundaki bu sert erimenin merkezinde, Yüksek Mahkeme’nin dindar Musevilerin askerlik muafiyetini iptal etmesi yatıyor. Şas ve Birleşik Tevrat Yahudiliği gibi Haredi partilerinin askerlik muafiyeti yasasını kırmızı çizgi ilan etmesi, seküler ve milliyetçi sağ kanatla kurulan geleneksel ittifakı çatlattı. Yair Lapid ve Naftali Bennett ise Bader-Ofer artık oy yönteminden azami fayda sağlamak amacıyla Nisan 2026’da kurdukları Beyachad İttifakı ile merkez-sağ oyları konsolide etmeyi denedi. Muhalefet cephesinde eski Genelkurmay Başkanı Gadi Eisenkot liderliğindeki Yashar öne çıksa da hiçbir Siyonist blok tek başına salt çoğunluk sınırını aşamadı.
+
+## Kilit Aktör Arap Partileri: Ra'am, Ortak Liste ve Güvenoyu Pazarlığı
+
+Knesset aritmetiğindeki bu parçalanma, yüzde 3,25’lik yasal seçim barajını aşarak meclise giren Arap partilerini sürecin en belirleyici aktörü konumuna taşıdı. Mansur Abbas liderliğindeki Ra'am, Arap toplumuna ayrılacak bütçe, altyapı ve güvenlik yatırımları karşılığında Siyonist bir hükümete dışarıdan güvenoyu desteği vermeye açık duruyor. Ayman Odeh ve Ahmad Tibbi öncülüğündeki Ortak Liste ise Netanyahu’yu iktidardan düşürmek şartıyla belirli ilkeler üzerinden dış destek seçeneğini masada tutuyor. Cumhurbaşkanı Isaac Herzog’un anayasal takvim gereğince hükümeti kurma görevini ilk etapta kime vereceği bu sebeple büyük önem taşıyor.
+
+## Hükümet Kurma Takvimi, Erken Seçim Olasılığı ve Piyasa Riskleri
+
+İlk adayın 28 gün ve ek 14 günlük uzatma hakkı, ikinci adayın ise 28 günlük süresi bulunuyor. Şayet 61 imzaya dayalı bir hükümet çıkarılamazsa, 21 günlük meclis içi ortak aday arayışının ardından Knesset otomatik olarak feshedilerek 90 gün içinde yeniden erken seçime gidilebilir. Gazze, Lübnan ve İran hattındaki bölgesel gerilimlerin sürdüğü bir dönemde beliren bu yönetim boşluğu, piyasalardaki risk primini besleyerek enerji koridorlarındaki maliyet baskısını canlı tutabilir.
+
+
+# SECTION 2: STRUCTURED STRATEGIC ONTOLOGY (5N1K & 5W1H)
+--------------------------------------------------------------------------------
+- Event Headline      : 27 Ekim 2026 İsrail Genel Seçimleri: Knesset Çoğunluk Krizinde 61 Sandalye Kilitlenmesi
+- What (Stratejik Olay): %74,3 rekor seçmen katılımı, Netanyahu iktidar bloğunun 68'den 50 sandalyeye gerilemesi, Haredi askerlik muafiyeti çatlağı ve Arap partilerinin 'kral yapıcı' (kingmaker) konumuna yükselmesi.
+- Where (Lokasyon)    : GEO_IL (State of Israel), Kudüs, Knesset, Kudüs Bölge Mahkemesi
+- When (Zaman)        : 2026-Q4 (Event Date: 2026-10-27)
+- Why (Gerekçe)       : Yüksek Mahkeme'nin dindar Musevilerin askerlik muafiyetini iptal etmesi, savaş yorgunluğu ve Netanyahu'nun hukuki yargılama süreçleri.
+- How (Metot)         : Ülke geneli tek seçim çevresi, kapalı liste nispi temsil, %3,25 seçim barajı ve Bader-Ofer artık oy tahsis formülü yoluyla.
+- Who (Kilit Aktörler): Binyamin Netanyahu, Gadi Eisenkot, Yair Lapid, Naftali Bennett, Mansur Abbas, Isaac Herzog
+- Political Tension   : 88 / 100 (SYSTEMIC PARLIAMENTARY DEADLOCK)
+
+
+# SECTION 3: ELECTORAL & INSTITUTIONAL DYNAMICS
+--------------------------------------------------------------------------------
+- Target Sovereign    : GEO_IL (State of Israel)
+- Total Knesset Seats : 120 Seats
+- Majority Threshold  : 61 Seats (Absolute Majority for Confidence Vote)
+- Voter Turnout       : 74.3%
+- Electoral Threshold : 3.25% (Equivalent to ~4 seats)
+- Outgoing Coalition  : 68 Seats -> 50 Seats (Net Loss: 18 Seats)
+- Opposition Coalition: Fragmented Zionist blocs unable to reach 61 without external Arab parties support (Ra'am & Joint List)
+- Constitutional Clock: Candidate A: 28 + 14 Days | Candidate B: 28 Days | Knesset Search: 21 Days -> Dissolution within 90 Days
+
+
+# SECTION 4: BILATERAL TENSION & REGIONAL SPILLOVER
+--------------------------------------------------------------------------------
+- Active Dyads        : IL_IR (Critical Polarity: -0.87, KINETIC_WAR Risk) & YE_IL (-1.00)
+- Regional Exposure   : Red Sea, Bab el-Mandeb and Gulf energy corridor risk premium
+- Strategic Linkage   : US_IL Bilateral Security Partnership & Washington Congressional Aid Cycles
+
+
+# SECTION 5: DOMESTIC-FOREIGN TRANSMISSION LINKAGES
+--------------------------------------------------------------------------------
+- Linkage 1 (Hormuz & Energy): İsrail'deki yönetim boşluğu ve hükümet krizi, Gazze-Lübnan-İran hattında gerilimi canlı tutarak petrol risk primini beslemektedir.
+- Linkage 2 (US Congress Midterms): Knesset'teki kilitlenme ile ABD Temsilciler Meclisi'ndeki 218-214 bıçak sırtı çoğunluk, müttefikler arası eşzamanlı karar alma felci üretmektedir.
+
+
+# SECTION 6: SYNTHETIC TARGET QUERIES (Q&A KNOWLEDGE BANK)
+--------------------------------------------------------------------------------
+Q1: 27 Ekim 2026 İsrail Genel Seçimlerinde seçmen katılım oranı ne olmuştur?
+A1: 27 Ekim 2026 genel seçimlerinde seçmen katılım oranı yüzde 74,3 olarak gerçekleşmiştir.
+
+Q2: İsrail'de hükümet kurabilmek için Knesset'te kaç sandalyelik salt çoğunluk eşiğine ulaşılması gerekmektedir?
+A2: 120 sandalyeli Knesset'te hükümet kurabilmek ve güvenoyu alabilmek için asgari 61 sandalyelik çoğunluk eşiğine ulaşılması gerekmektedir.
+
+Q3: Binyamin Netanyahu liderliğindeki önceki dönem iktidar bloğu seçimlerde kaç sandalyeye gerilemiştir?
+A3: Önceki dönemde 68 sandalyeye sahip olan Netanyahu liderliğindeki iktidar bloğu, seçimler sonucunda 50 sandalyeye gerilemiştir.
+
+Q4: Eski Genelkurmay Başkanı Gadi Eisenkot hangi siyasi oluşumun liderliğinde seçimlere katılmıştır?
+A4: Gadi Eisenkot, muhalefet kanadında yer alan Yashar lideri olarak seçimlere katılmıştır.
+
+Q5: Knesset'e girebilmek için uygulanan yasal seçim barajı yüzde kaç oranındadır?
+A5: Knesset'e girebilmek için aşılması gereken yasal seçim barajı yüzde 3,25 oranındadır.
+
+Q6: Binyamin Netanyahu'nun Kudüs Bölge Mahkemesi'nde yeniden hakim karşısına çıktığı tarih nedir?
+A6: Binyamin Netanyahu, 11 Ekim 2026 tarihinde Kudüs Bölge Mahkemesi'nde yolsuzluk ve rüşvet davaları kapsamında yeniden hakim karşısına çıkmıştır.
+
+Q7: Bader-Ofer yöntemi ve artık oy anlaşmaları (agremant) İsrail seçim sisteminde ne amaçla uygulanmaktadır?
+A7: Bader-Ofer yöntemi, barajı aşan partiler arasında sandalye dağıtımı yapıldıktan sonra arta kalan artık sandalyelerin tahsisinde ve seçim öncesi artık oy anlaşması yapan ittifakları ödüllendirmek amacıyla uygulanmaktadır.
+
+Q8: Yair Lapid ve Naftali Bennett'in Bader-Ofer yönteminden faydalanmak amacıyla Nisan 2026'da kurduğu ittifakın adı nedir?
+A8: Yair Lapid ve Naftali Bennett, Nisan 2026'da Bader-Ofer artık oy yönteminden azami fayda sağlamak amacıyla Beyachad İttifakı çatısı altında güçlerini birleştirmiştir.
