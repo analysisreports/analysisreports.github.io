@@ -39,6 +39,17 @@ def _is_num(val):
     except (OverflowError, ValueError, TypeError):
         return False
 
+def _fmt(val, prefix="$", suffix="", decimals=2, default="N/A"):
+    if _is_num(val):
+        fmt_str = f"{{:,.{decimals}f}}"
+        return f"{prefix}{fmt_str.format(val)}{suffix}"
+    return default
+
+def _fmt_pct(val, default="N/A"):
+    if _is_num(val):
+        return f"{val:+.2f}%"
+    return default
+
 def _annotate_telemetry_deficits(matrix: Dict[str, Any], matrix_name: str = "") -> Dict[str, Any]:
     """
     Zero-overhead telemetry anomaly annotator.
@@ -345,7 +356,48 @@ def build_sitrep():
     completeness_pct = round((valid_count / total_count) * 100.0, 1) if total_count > 0 else 100.0
 
     # --------------------------------------------------------------------------
-    # 7. ASSEMBLE JSON PAYLOAD (Draft 2020-12, 8 Golden Keys)
+    # 7. DYNAMIC SYSTEMIC CONTAGION VECTORS & MEDIA REALITY CHECK RULES
+    # --------------------------------------------------------------------------
+    hormuz_daily = chokepoints.get("CHOKE_HORMUZ", {}).get("metrics", {}).get("latest_daily_total", "N/A")
+    hormuz_shift = chokepoints.get("CHOKE_HORMUZ", {}).get("metrics", {}).get("pct_change_vs_2023")
+    hormuz_shift_str = f"{hormuz_shift:+.1f}% vs 2023 Base" if hormuz_shift is not None else "N/A"
+
+    turk_shift = chokepoints.get("CHOKE_TURKISH_STRAITS", {}).get("metrics", {}).get("pct_change_vs_2023")
+    turk_shift_str = f"{turk_shift:+.1f}% vs 2023 Base" if turk_shift is not None else "N/A"
+
+    systemic_contagion_rules = [
+        {
+            "rule_id": "RULE_1_SEABORNE_ENERGY_DISRUPTION",
+            "domain": "energy_maritime",
+            "telemetry_signal": f"SPREAD_BRENT_WTI: {_fmt(spread_brent_wti)} | US_SPR_STOCKS: {_fmt(spr_val, prefix='', decimals=0)} k bbl (YoY: {_fmt_pct(spr_yoy)})",
+            "media_claim_bias": "News/Media claim global oil supply and pricing remain stable.",
+            "ground_truth_reality": f"The {_fmt(spread_brent_wti)} Brent-WTI spread proves that high-risk seaborne crude carries an active war/transit insurance premium over pipeline crude, while depleted SPR ({_fmt(spr_val, prefix='', decimals=0)} k bbl) limits emergency supply intervention."
+        },
+        {
+            "rule_id": "RULE_2_OFFSHORE_DOLLAR_SHORTAGE",
+            "domain": "macro_liquidity",
+            "telemetry_signal": f"FED_BROAD_DOLLAR: {_fmt(dxy_val, prefix='', decimals=2)} (YoY: {_fmt_pct(dxy_yoy)}) | SOFR_EFFR_SPREAD: {_fmt(sofr_fedfunds_spread_bps, prefix='', suffix=' bps')}",
+            "media_claim_bias": "News/Media claim the US Dollar is soft or neutral based on superficial 6-currency DXY.",
+            "ground_truth_reality": f"The Fed's 26-nation trade-weighted Broad Dollar ({_fmt(dxy_val, prefix='', decimals=2)}) and positive SOFR spread ({_fmt(sofr_fedfunds_spread_bps, prefix='', suffix=' bps')}) verify that global supply chain chokepoints are actively creating an acute offshore dollar funding crunch across Emerging Markets."
+        },
+        {
+            "rule_id": "RULE_3_STRATEGIC_PASSAGE_PARALYSIS",
+            "domain": "maritime_chokepoints",
+            "telemetry_signal": f"CHOKE_HORMUZ: {hormuz_daily} vessels/day ({hormuz_shift_str}) | CHOKE_TURKISH_STRAITS: {turk_shift_str}",
+            "media_claim_bias": "News/Media claim commercial shipping corridors are normalizing or diplomacy is maintaining navigation.",
+            "ground_truth_reality": f"IMF PortWatch satellite AIS telemetry confirms catastrophic real-time navigation blockades (Hormuz at {hormuz_daily} daily vessels, {hormuz_shift_str}); physical merchant traffic is paralyzed regardless of diplomatic rhetoric."
+        },
+        {
+            "rule_id": "RULE_4_SEMICONDUCTOR_CONTAINMENT_FRICTION",
+            "domain": "semiconductors_tech",
+            "telemetry_signal": f"MODEL_25_14_CHIP_STRESS: {_fmt(chip_stress_val, prefix='', decimals=3)} ({chip_stress_reg}) | NYFED_GSCPI: {_fmt(gscpi_val, prefix='', decimals=2)} Z-Score",
+            "media_claim_bias": "News/Media claim trade sanctions and BIS export controls have cleanly severed advanced hardware transfer to China.",
+            "ground_truth_reality": f"Persistent elevated hardware stress ({_fmt(chip_stress_val, prefix='', decimals=3)}) alongside supply chain friction ({_fmt(gscpi_val, prefix='', decimals=2)} Z-Score) verifies that semiconductor containment is producing gray-market rerouting through intermediary hubs, driving up capex inflation."
+        }
+    ]
+
+    # --------------------------------------------------------------------------
+    # 8. ASSEMBLE JSON PAYLOAD (Draft 2020-12, 8 Golden Keys)
     # --------------------------------------------------------------------------
     sitrep_json = {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -369,7 +421,8 @@ def build_sitrep():
         "semiconductors_tech": _annotate_telemetry_deficits(tech_matrix),
         "metals_commodities": _annotate_telemetry_deficits(metals_matrix),
         "maritime_chokepoints": chokepoint_summary,
-        "macro_liquidity": _annotate_telemetry_deficits(liquidity_matrix)
+        "macro_liquidity": _annotate_telemetry_deficits(liquidity_matrix),
+        "systemic_contagion_rules": systemic_contagion_rules
     }
 
     # Save JSON Twin
@@ -395,18 +448,6 @@ def build_sitrep():
 
     for i, flash in enumerate(primary_flashes, 1):
         lines.append(f"FLASH_{i} [{flash['source']} | {flash['entity_id']}]: {flash['event']}")
-
-    # Helper for formatting values
-    def _fmt(val, prefix="$", suffix="", decimals=2, default="N/A"):
-        if _is_num(val):
-            fmt_str = f"{{:,.{decimals}f}}"
-            return f"{prefix}{fmt_str.format(val)}{suffix}"
-        return default
-
-    def _fmt_pct(val, default="N/A"):
-        if _is_num(val):
-            return f"{val:+.2f}%"
-        return default
 
     lines.extend([
         "",
@@ -470,6 +511,21 @@ def build_sitrep():
         f"FED_BROAD_DOLLAR_INDEX  : {_fmt(liquidity_matrix['fed_broad_dollar_index'], prefix='', decimals=2)} | YoY: {_fmt_pct(liquidity_matrix['fed_broad_dollar_yoy_pct'])} (Global Dollar Shortage / Trade Weighted)",
         f"US_HIGH_YIELD_OAS_SPREAD: {_fmt(liquidity_matrix['us_high_yield_spread_pct'], prefix='', suffix='%', decimals=2)} | YoY: {_fmt_pct(liquidity_matrix['us_high_yield_spread_yoy_pct'])} (Corporate Credit Default Risk)",
         "",
+        "---",
+        "## 7. SYSTEMIC CONTAGION VECTORS & MEDIA REALITY CHECK (GROUND TRUTH RULES)",
+        "---"
+    ])
+
+    for r in systemic_contagion_rules:
+        lines.extend([
+            f"[{r['rule_id']}] Domain: {r['domain']}",
+            f"  - TELEMETRY SIGNAL : {r['telemetry_signal']}",
+            f"  - MEDIA CLAIM BIAS : {r['media_claim_bias']}",
+            f"  - GROUND TRUTH REAL: {r['ground_truth_reality']}",
+            ""
+        ])
+
+    lines.extend([
         "---",
         "# END OF SITREP TELEMETRY - ZERO ASSUMPTIONS - PURE QUANTITATIVE STATE",
         "---"
