@@ -266,6 +266,10 @@ def build_sitrep():
     if ecb_rate is None:
         ecb_rate = ecb_s.get("FM.D.U2.EUR.4F.KR.DFR.LEV", {}).get("current_value")
 
+    imf_s = imf_data.get("series", {})
+    boj_rate = imf_s.get("JP_FPOLM_PA", {}).get("current_value")
+    boe_rate = imf_s.get("GB_FPOLM_PA", {}).get("current_value")
+
     breakeven_model = models_dict.get("MODEL_7", {})
     t10yie = breakeven_model.get("primary_value")
     t10y2y_model = models_dict.get("MODEL_6", {})
@@ -276,6 +280,8 @@ def build_sitrep():
         "net_fed_liquidity_regime": net_liq_status,
         "fed_policy_rate_pct": fed_rate,
         "ecb_deposit_rate_pct": ecb_rate,
+        "boj_policy_rate_pct": boj_rate,
+        "boe_bank_rate_pct": boe_rate,
         "us_10y_breakeven_inflation_pct": t10yie,
         "yield_curve_10y_2y_spread_bps": t10y2y_bps
     }
@@ -394,6 +400,8 @@ def build_sitrep():
         f"NET_FED_LIQUIDITY_EST    : {_fmt(liquidity_matrix['net_fed_liquidity_trillion_usd'], prefix='$', suffix=' Trillion USD', decimals=3)} | REGIME: {liquidity_matrix['net_fed_liquidity_regime']}",
         f"FED_FUNDS_TARGET_RATE    : {_fmt(liquidity_matrix['fed_policy_rate_pct'], prefix='', suffix='%')}",
         f"ECB_DEPOSIT_FACILITY     : {_fmt(liquidity_matrix['ecb_deposit_rate_pct'], prefix='', suffix='%')}",
+        f"BOJ_POLICY_RATE          : {_fmt(liquidity_matrix['boj_policy_rate_pct'], prefix='', suffix='%')} (Yen Carry Trade Differential)",
+        f"BOE_OFFICIAL_BANK_RATE   : {_fmt(liquidity_matrix['boe_bank_rate_pct'], prefix='', suffix='%')}",
         f"US_10Y_BREAKEVEN_INFL    : {_fmt(liquidity_matrix['us_10y_breakeven_inflation_pct'], prefix='', suffix='%')} (Market Inflation Anchor)",
         f"US_10Y_2Y_YIELD_SPREAD   : {_fmt(liquidity_matrix['yield_curve_10y_2y_spread_bps'], prefix='', suffix=' bps')} (Recession / Normalization Curve)",
         "",

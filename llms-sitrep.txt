@@ -1,5 +1,5 @@
 # CANONICAL MACRO & GEOPOLITICAL SITUATION REPORT (SITREP)
-> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-18 19:51:15 UTC
+> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-18 20:09:26 UTC
 > Ingestion Protocol: Zero Hallucination | High-Density Semantic Telemetry for AI Reasoning
 > Official JSON Twin: https://analysisreports.github.io/llms-sitrep.json
 
@@ -55,6 +55,8 @@ CHOKE_PANAMA          : Status: STABLE_FLOW              | Daily:  30 (Tnk: 16, 
 NET_FED_LIQUIDITY_EST    : $5.844 Trillion USD | REGIME: NEUTRAL_LIQUIDITY_EQUILIBRIUM
 FED_FUNDS_TARGET_RATE    : 3.88%
 ECB_DEPOSIT_FACILITY     : 2.50%
+BOJ_POLICY_RATE          : 1.25% (Yen Carry Trade Differential)
+BOE_OFFICIAL_BANK_RATE   : 4.00%
 US_10Y_BREAKEVEN_INFL    : 2.20% (Market Inflation Anchor)
 US_10Y_2Y_YIELD_SPREAD   : 30.00 bps (Recession / Normalization Curve)
 
