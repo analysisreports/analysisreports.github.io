@@ -8,11 +8,11 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-models.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-18T01:24:32.414634+00:00",
+    "last_updated": "2026-11-18T09:58:50.183610+00:00",
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-18T01:24:32.414634+00:00",
+    "last_successful_sync": "2026-11-18T09:58:50.183610+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -29,16 +29,16 @@
       "model_id": "MODEL_1",
       "model_name": "Fed Policy Stance & Market Pressure Gauge",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#1",
-      "primary_value": 12.0,
+      "primary_value": 10.0,
       "unit": "Basis Points (bps)",
       "status": "HAWKISH_MARKET_PRESSURE",
       "inputs": {
-        "treasury_1m_yield_dgs1mo": 4.12,
+        "treasury_1m_yield_dgs1mo": 4.1,
         "fed_policy_rate": 4.0
       },
       "metrics": {
-        "spread_basis_points": 12.0,
-        "dgs1mo_yield": 4.12,
+        "spread_basis_points": 10.0,
+        "dgs1mo_yield": 4.1,
         "fed_funds_rate": 4.0
       },
       "interpretation": "Spread between 1-Month Treasury yield and Fed Funds Rate. Measures market-implied rate cut pressure (<= -15 bps) or liquidity-driven hawkish stress (> +4 bps)."
@@ -80,17 +80,17 @@
       "model_id": "MODEL_4",
       "model_name": "Front-End T-Bill Slope & Liquidity Spread",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#4",
-      "primary_value": 20.0,
+      "primary_value": 24.0,
       "unit": "Basis Points (bps)",
       "status": "NORMAL_SLOPE",
       "inputs": {
-        "treasury_3m_yield_dgs3mo": 4.32,
-        "treasury_1m_yield_dgs1mo": 4.12
+        "treasury_3m_yield_dgs3mo": 4.34,
+        "treasury_1m_yield_dgs1mo": 4.1
       },
       "metrics": {
-        "spread_basis_points": 20.0,
-        "dgs3mo_yield": 4.32,
-        "dgs1mo_yield": 4.12
+        "spread_basis_points": 24.0,
+        "dgs3mo_yield": 4.34,
+        "dgs1mo_yield": 4.1
       },
       "interpretation": "Tracks the slope between 3-month and 1-month Treasury bills. Negative values indicate acute front-end cash collateral squeeze and inverted money market slope."
     },
@@ -104,11 +104,11 @@
       "inputs": {
         "fed_total_assets_walcl_mil": 6748145.0,
         "treasury_general_account_tga_mil": 957175.0,
-        "overnight_reverse_repo_rrp_bil": 0.325,
-        "overnight_reverse_repo_rrp_mil": 325.0
+        "overnight_reverse_repo_rrp_bil": 0.351,
+        "overnight_reverse_repo_rrp_mil": 351.0
       },
       "metrics": {
-        "net_liquidity_millions_usd": 5790645.0,
+        "net_liquidity_millions_usd": 5790619.0,
         "net_liquidity_trillions_usd": 5.791
       },
       "interpretation": "Unencumbered commercial bank liquidity: WALCL - (TGA + ON_RRP). Direct fuel for equity asset valuations."
@@ -117,15 +117,15 @@
       "model_id": "MODEL_6",
       "model_name": "Treasury Yield Curve Slope (10Y - 2Y)",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#6",
-      "primary_value": 27.0,
+      "primary_value": 30.0,
       "unit": "Basis Points (bps)",
       "status": "NORMAL_CURVE_EXPANSION",
       "inputs": {
-        "t10y2y_spread_pct": 0.27
+        "t10y2y_spread_pct": 0.3
       },
       "metrics": {
-        "yield_spread_bps": 27.0,
-        "t10y2y_spread_pct": 0.27
+        "yield_spread_bps": 30.0,
+        "t10y2y_spread_pct": 0.3
       },
       "interpretation": "Leading cyclical economic barometer. Inversions (bps < 0) historically precede sovereign US business cycle recessions."
     },
@@ -133,17 +133,17 @@
       "model_id": "MODEL_7",
       "model_name": "10-Year Breakeven Inflation Rate",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#7",
-      "primary_value": 2.24,
+      "primary_value": 2.2,
       "unit": "Percent (%)",
       "status": "FED_ALIGNED_EQUILIBRIUM",
       "inputs": {
-        "nominal_10y_yield_dgs10": 5.1,
-        "tips_10y_real_yield_dfii10": 2.86
+        "nominal_10y_yield_dgs10": 5.12,
+        "tips_10y_real_yield_dfii10": 2.92
       },
       "metrics": {
-        "breakeven_inflation_rate_pct": 2.24,
-        "dgs10_nominal": 5.1,
-        "dfii10_tips_real": 2.86
+        "breakeven_inflation_rate_pct": 2.2,
+        "dgs10_nominal": 5.12,
+        "dfii10_tips_real": 2.92
       },
       "interpretation": "Reflects the bond market's expected average annual inflation rate over the next 10 years by subtracting 10-year TIPS real yields from 10-year nominal Treasury yields."
     },
@@ -169,17 +169,17 @@
       "model_id": "MODEL_9",
       "model_name": "Financial Repression Index",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#9",
-      "primary_value": 1.236,
+      "primary_value": 1.26,
       "unit": "Index Score",
       "status": "SUSTAINABLE_CYCLE",
       "inputs": {
-        "nominal_10y_yield_dgs10": 5.1,
+        "nominal_10y_yield_dgs10": 5.12,
         "headline_cpi_yoy_pct": 4.08,
         "federal_debt_pct_gdp": 121.19
       },
       "metrics": {
-        "debt_pressure_index": 1.236,
-        "real_10y_yield_pct": 1.02,
+        "debt_pressure_index": 1.26,
+        "real_10y_yield_pct": 1.04,
         "federal_debt_gdp_ratio": 121.19
       },
       "interpretation": "Scores the risk of eroding public debt in real terms under negative real yields versus triggering an explosive debt service crisis under high real yields and high sovereign debt ratios."
@@ -188,17 +188,17 @@
       "model_id": "MODEL_10",
       "model_name": "Triffin External Balance",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#10",
-      "primary_value": 1.1602,
+      "primary_value": 1.1676,
       "unit": "Tension Ratio",
       "status": "BALANCED_TRIFFIN_EQUILIBRIUM",
       "inputs": {
-        "broad_dollar_index_dtwexbgs": 121.8803,
+        "broad_dollar_index_dtwexbgs": 122.6503,
         "trade_balance_bopgstb_mil": -105047.0
       },
       "metrics": {
-        "dxy_deficit_tension": 1.1602,
+        "dxy_deficit_tension": 1.1676,
         "monthly_trade_deficit_bil": 105.05,
-        "broad_dollar_index": 121.8803
+        "broad_dollar_index": 122.6503
       },
       "interpretation": "Tracks global liquidity imbalances between the US dollar's reserve currency status and the US external trade deficit. Rising ratios signal offshore dollar shortage and structural funding stress."
     },
@@ -248,15 +248,15 @@
       "model_id": "MODEL_13",
       "model_name": "High Yield Credit Spread / OAS",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#13",
-      "primary_value": 320,
+      "primary_value": 334,
       "unit": "Basis Points (bps)",
       "status": "RISK_APPETITE_HEALTHY",
       "inputs": {
-        "high_yield_oas_bamlh0a0hym2": 3.2
+        "high_yield_oas_bamlh0a0hym2": 3.34
       },
       "metrics": {
-        "spread_bps": 320,
-        "bamlh0a0hym2_pct": 3.2
+        "spread_bps": 334,
+        "bamlh0a0hym2_pct": 3.34
       },
       "interpretation": "Measures corporate credit default risk and risk appetite contraction. Spreads above 500 bps signal acute default and refinancing distress; below 350 bps reflect healthy risk appetite."
     },
@@ -282,17 +282,17 @@
       "model_id": "MODEL_15",
       "model_name": "NY Fed ACM 10-Year Term Premium",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#15",
-      "primary_value": 0.87,
+      "primary_value": 0.99,
       "unit": "Percent (%)",
       "status": "FISCAL_SUPPLY_PRESSURE",
       "inputs": {
-        "nominal_10y_yield_dgs10": 5.1,
-        "acm_10y_term_premium_threefytp10": 0.87
+        "nominal_10y_yield_dgs10": 5.12,
+        "acm_10y_term_premium_threefytp10": 0.99
       },
       "metrics": {
-        "term_premium_pct": 0.87,
-        "expected_average_short_rate_pct": 4.23,
-        "nominal_10y_yield_pct": 5.1
+        "term_premium_pct": 0.99,
+        "expected_average_short_rate_pct": 4.13,
+        "nominal_10y_yield_pct": 5.12
       },
       "interpretation": "Decomposes 10-year Treasury yields via the Adrian, Crump & Moench (ACM) model. Term premium >= +0.50% reflects duration risk, fiscal supply pressure, or inflation uncertainty; <= -0.50% reflects safe-haven duration demand or central bank asset purchases."
     },
@@ -300,17 +300,17 @@
       "model_id": "MODEL_16",
       "model_name": "CBOE Volatility & Market Fear Regime",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#16",
-      "primary_value": 18.7,
+      "primary_value": 22.91,
       "unit": "Points",
-      "status": "NORMAL_VOLATILITY",
-      "market_bias": "BALANCED",
+      "status": "ELEVATED_STRESS",
+      "market_bias": "RISK_OFF",
       "inputs": {
-        "vix_close": 18.7
+        "vix_close": 22.91
       },
       "metrics": {
-        "vix_level": 18.7,
-        "regime": "NORMAL_VOLATILITY",
-        "market_bias": "BALANCED"
+        "vix_level": 22.91,
+        "regime": "ELEVATED_STRESS",
+        "market_bias": "RISK_OFF"
       },
       "interpretation": "30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime."
     },
@@ -522,18 +522,18 @@
       "model_id": "MODEL_24",
       "model_name": "Safe Haven Flight Index",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#24",
-      "primary_value": 0.765,
+      "primary_value": 0.8,
       "unit": "Flight Ratio",
       "status": "NORMAL_MARKET_REGIME",
       "inputs": {
-        "nominal_broad_dollar_index_dtwexbgs": 121.8803,
-        "high_yield_oas_bamlh0a0hym2": 3.2,
-        "nominal_10y_treasury_dgs10": 5.1
+        "nominal_broad_dollar_index_dtwexbgs": 122.6503,
+        "high_yield_oas_bamlh0a0hym2": 3.34,
+        "nominal_10y_treasury_dgs10": 5.12
       },
       "metrics": {
-        "flight_ratio": 0.765,
-        "safe_haven_score": 76.47,
-        "dollar_bond_ratio": 23.9
+        "flight_ratio": 0.8,
+        "safe_haven_score": 80.01,
+        "dollar_bond_ratio": 23.96
       },
       "interpretation": "Measures capital flight into safe-haven USD and flight-to-safety dynamics by evaluating dollar strength and credit spreads against Treasury yields. Values > 1.80 indicate acute flight to safety."
     },
@@ -634,15 +634,15 @@
       "model_id": "MODEL_25.5",
       "model_name": "Repo Liquidity Friction Spread Engine",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#25.5",
-      "primary_value": 2.0,
+      "primary_value": 5.0,
       "unit": "Basis Points (bps)",
-      "status": "HEALTHY_MONETARY_TRANSMISSION",
+      "status": "SYSTEMIC_CASH_DRAIN_WARNING",
       "inputs": {
-        "sofr_rate": 3.9,
+        "sofr_rate": 3.93,
         "effr_rate": 3.88
       },
       "metrics": {
-        "spread_bps": 2.0
+        "spread_bps": 5.0
       },
       "interpretation": "Measures funding market friction tracking the spread between secured repo financing (SOFR) and unsecured Fed funds (EFFR). Spreads between -5.0 and +5.0 bps indicate healthy monetary transmission."
     },
@@ -650,15 +650,15 @@
       "model_id": "MODEL_25.6",
       "model_name": "Gold / Real Yield Debasement Gauge",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.6",
-      "primary_value": 2.86,
+      "primary_value": 2.92,
       "unit": "Percent (%)",
       "status": "TRADITIONAL_REAL_RATE_DOMINANCE",
       "inputs": {
-        "tips_10y_real_yield_dfii10": 2.86,
+        "tips_10y_real_yield_dfii10": 2.92,
         "gold_price_yoy_pct_ind_wb_gold": 1.16
       },
       "metrics": {
-        "real_yield_10y_pct": 2.86,
+        "real_yield_10y_pct": 2.92,
         "gold_yoy_pct": 1.16
       },
       "interpretation": "Detects de-dollarization trends and fiat debasement by measuring breakdowns in the traditional inverse correlation between 10-year TIPS real yields and gold prices. Gold rallying above 15% alongside real yields > 1.5% signals systemic de-dollarization."
@@ -667,15 +667,15 @@
       "model_id": "MODEL_25.7",
       "model_name": "OVX / VIX Geopolitical Energy Shock Engine",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.7",
-      "primary_value": 2.77,
+      "primary_value": 2.16,
       "unit": "Ratio",
-      "status": "ENERGY_SUPPLY_SHOCK_ALARM",
+      "status": "BALANCED_ENERGY_VOLATILITY",
       "inputs": {
-        "ovx_close": 51.72,
-        "vix_close": 18.7
+        "ovx_close": 49.59,
+        "vix_close": 22.91
       },
       "metrics": {
-        "ovx_vix_ratio": 2.77
+        "ovx_vix_ratio": 2.16
       },
       "interpretation": "Evaluates the ratio between crude oil volatility (OVX) and equity volatility (VIX). Ratios > 2.2 signal severe geopolitical oil supply shocks and stagflationary headwinds."
     },
@@ -772,16 +772,16 @@
       "model_id": "MODEL_25.17",
       "model_name": "Liquidity & Commodity Macro Regime Matrix",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.17",
-      "primary_value": 20.0,
+      "primary_value": 24.0,
       "unit": "Basis Points (bps)",
       "status": "REFLATIONARY_EXPANSION",
       "inputs": {
-        "treasury_3m_yield_dgs3mo": 4.32,
-        "treasury_1m_yield_dgs1mo": 4.12,
+        "treasury_3m_yield_dgs3mo": 4.34,
+        "treasury_1m_yield_dgs1mo": 4.1,
         "brent_crude_yoy_pct": 40.8
       },
       "metrics": {
-        "slope_bps": 20.0,
+        "slope_bps": 24.0,
         "brent_yoy_pct": 40.8
       },
       "interpretation": "Evaluates front-end money market liquidity (3M-1M T-Bill spread) against crude oil cost inflation (Brent YoY %) in a 2x2 macro matrix to identify systemic liquidity and cost shock regimes."
@@ -790,24 +790,24 @@
       "model_id": "MODEL_25.14",
       "model_name": "AI Hardware & Semiconductor Supply Chain Stress Gauge",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.14",
-      "primary_value": 0.456,
+      "primary_value": 0.524,
       "unit": "Score (Normalized)",
-      "status": "BALANCED_HARDWARE_FLOW",
+      "status": "ELEVATED_SEMICONDUCTOR_BOTTLENECK",
       "inputs": {
         "gscpi_std_dev": 1.262,
-        "sox_yoy_pct": 40.36,
-        "vix_level": 18.7
+        "sox_yoy_pct": 38.16,
+        "vix_level": 22.91
       },
       "components": {
         "gscpi_weight": 0.505,
-        "sox_weight": -0.283,
-        "vix_weight": 0.234
+        "sox_weight": -0.267,
+        "vix_weight": 0.286
       },
       "metrics": {
-        "hardware_stress_score": 0.456,
+        "hardware_stress_score": 0.524,
         "gscpi_weight": 0.505,
-        "sox_weight": -0.283,
-        "vix_weight": 0.234
+        "sox_weight": -0.267,
+        "vix_weight": 0.286
       },
       "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks, hardware inflation, and space-grade tactical defense processor conduits (SEC_DEF_STARSHIELD)."
     },
@@ -815,21 +815,21 @@
       "model_id": "MODEL_25.16",
       "model_name": "Yen Carry Trade Dissolution and Stress Gauge",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#25.16",
-      "primary_value": 6.2379,
+      "primary_value": 7.9094,
       "unit": "% (Net Carry Buffer)",
       "status": "CALM_ACCUMULATION",
       "inputs": {
         "rate_us_dff": 3.88,
         "rate_jp_boj": 1.25,
-        "jpy_30d_momentum_pct": 3.61
+        "jpy_30d_momentum_pct": 5.28
       },
       "components": {
         "rate_spread": 2.63,
-        "net_buffer": 6.2379
+        "net_buffer": 7.9094
       },
       "metrics": {
         "rate_spread": 2.63,
-        "net_buffer": 6.2379
+        "net_buffer": 7.9094
       },
       "interpretation": "Monitors cross-currency Yen Carry Trade buffer, unwinding risk, and global leverage liquidation shocks."
     },
@@ -842,7 +842,7 @@
       "status": "TREATY_ACTIVE_EQUILIBRIUM",
       "inputs": {
         "brent_usd_bbl": 92.14,
-        "sofr_percent": 3.9,
+        "sofr_percent": 3.93,
         "imf_breakeven_usd_bbl": 90.94
       },
       "metrics": {
@@ -868,7 +868,7 @@
       "inputs": {
         "chokepoint_id": "CHOKE_HORMUZ",
         "severity_enum": "CATASTROPHIC",
-        "p_net": -0.88,
+        "p_net": -0.87,
         "crisis_duration_days": 14,
         "gross_flow_mbpd": 20.5,
         "regional_bypass_capacity_mbpd": 4.0,
@@ -877,14 +877,14 @@
       },
       "metrics": {
         "severity_weight": 1.0,
-        "polarity_friction_factor": 0.88,
+        "polarity_friction_factor": 0.87,
         "spr_sustainable_drawdown_mbpd": 3.14,
         "effective_spr_release_mbpd": 3.14,
         "total_buffer_capacity_mbpd": 7.14,
         "net_unmet_deficit_mbpd": 13.36,
         "net_deficit_ratio": 0.6517,
         "duration_scale_factor": 0.7,
-        "unscaled_base_shock": 72.02,
+        "unscaled_base_shock": 71.72,
         "us_crude_field_production_mbpd": 14.0
       },
       "interpretation": "Couples maritime chokepoint severity (CATASTROPHIC) with live EIA SPR inventory (3.14 mbpd sustainable release) and regional pipeline bypass to evaluate macroeconomic spillover under acute crisis."
