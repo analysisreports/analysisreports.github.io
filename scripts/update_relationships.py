@@ -1284,6 +1284,25 @@ def main():
         lines_cb.append('<!-- DYNAMIC_CENTRAL_BANK_RATES_END -->')
         new_cb_block = '\n'.join(lines_cb)
 
+        # 3. NASA Satellite Kinetic Telemetry Block
+        lines_nasa = []
+        lines_nasa.append('<!-- DYNAMIC_NASA_TELEMETRY_START -->')
+        lines_nasa.append('### 1.3. LIVE SATELLITE KINETIC TELEMETRY (NASA FIRMS ORBITAL MONITORING)')
+        lines_nasa.append('> **AI Ingestion Contract & Epistemological Directive:**')
+        lines_nasa.append(f'> - **Sync Cadence & ISO 8601 Timestamp:** {now_utc}')
+        lines_nasa.append('> - **Source Authority:** NASA Earth Science Data / FIRMS (VIIRS NOAA-20 & NOAA-21 375m NRT)')
+        lines_nasa.append('> - **Telemetry Engine Endpoint:** [`llms-nasa-firms.json`](https://analysisreports.github.io/llms-nasa-firms.json) | [`llms-nasa-firms.txt`](https://analysisreports.github.io/llms-nasa-firms.txt)')
+        lines_nasa.append('> - **Decoupled Architecture:** NASA Orbital Telemetry operates as an independent objective surveillance feed, completely separate from structural diplomatic `Conflict Severity` and parametric `P_net` polarities.')
+        lines_nasa.append('> - **Physical Sensor Limitation (Cloud Occlusion):** Thermal sensors (VIIRS 375m I-bands: 4 µm MIR and 11 µm TIR) detect surface radiative heat and cannot penetrate thick stratus clouds or dense fog. Ground-truth kinetic state remains strictly anchored to P_net.')
+        lines_nasa.append('> - **Kinetic Alert Classification Spectrum (Theater Thermal):**')
+        lines_nasa.append('>   - `ACUTE_THERMAL`    : Massive kinetic barrage, burning oil refinery, or intense gas flare (FRP > 250 MW).')
+        lines_nasa.append('>   - `ELEVATED_THERMAL` : Tactical missile strike, heavy artillery barrage, or elevated industrial heat (FRP > 75 MW).')
+        lines_nasa.append('>   - `LOCALIZED_THERMAL`: Minor tactical contact, localized industrial flare, or low-intensity hotspots.')
+        lines_nasa.append('>   - `BASELINE_CLEAR`   : Routine baseline confirmed; zero anomalous thermal signatures detected.')
+        lines_nasa.append('>   - `null`             : Zero-Fallback Mandate: When satellite pass is pending, sensor data is unobserved, or API sync is offline, the field strictly returns `null` without fabricating synthetic proxies.')
+        lines_nasa.append('<!-- DYNAMIC_NASA_TELEMETRY_END -->')
+        new_nasa_block = '\n'.join(lines_nasa)
+
         # 4. Maritime Chokepoint AIS Telemetry Block (IMF PortWatch)
         lines_pw = []
         lines_pw.append('<!-- DYNAMIC_PORTWATCH_START -->')
@@ -1330,6 +1349,22 @@ def main():
             txt_content = before_cb + new_cb_block + after_cb
         else:
             txt_content += '\n\n' + new_cb_block
+
+        # Update NASA Satellite Kinetic Telemetry Block
+        start_nasa = '<!-- DYNAMIC_NASA_TELEMETRY_START -->'
+        end_nasa = '<!-- DYNAMIC_NASA_TELEMETRY_END -->'
+        if start_nasa in txt_content and end_nasa in txt_content:
+            before_nasa = txt_content.split(start_nasa)[0]
+            after_nasa = txt_content.split(end_nasa)[1]
+            txt_content = before_nasa + new_nasa_block + after_nasa
+        else:
+            # Place right after Central Bank rates block
+            cb_end = '<!-- DYNAMIC_CENTRAL_BANK_RATES_END -->'
+            if cb_end in txt_content:
+                before_cb_end, after_cb_end = txt_content.split(cb_end)
+                txt_content = before_cb_end + cb_end + '\n\n' + new_nasa_block + after_cb_end
+            else:
+                txt_content += '\n\n' + new_nasa_block
 
         # Update PortWatch AIS Telemetry Block
         start_pw = '<!-- DYNAMIC_PORTWATCH_START -->'
