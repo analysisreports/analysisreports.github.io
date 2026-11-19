@@ -8,11 +8,11 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-fred-series.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-18T10:05:30Z",
+    "last_updated": "2026-11-19T05:15:48Z",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-18T10:05:30Z",
-    "total_series": 73,
-    "total_registered": 73,
+    "last_successful_sync": "2026-11-19T05:15:48Z",
+    "total_series": 75,
+    "total_registered": 75,
     "missing_series": [],
     "source_authority": "Federal Reserve Bank of St. Louis (FRED)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#0.3",
@@ -27,7 +27,7 @@
       "units": "Percent",
       "source": "Percent",
       "last_date": "2026-11-13",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
       "current_value": 0.9864,
       "previous_value": 0.9656,
       "year_ago_value": 0.4795,
@@ -71,41 +71,41 @@
       "n_obs_per_yr": 260,
       "units": "Dollars per Barrel",
       "source": "Dollars per Barrel",
-      "last_date": "2026-11-11",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 92.14,
-      "previous_value": 90.16,
-      "year_ago_value": 65.44,
-      "year_ago_date": "2025-10-31",
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 92.94,
+      "previous_value": 92.9,
+      "year_ago_value": 63.41,
+      "year_ago_date": "2025-11-06",
       "transformations": {
-        "change": 1.98,
-        "change_from_year_ago": 26.7,
-        "percent_change": 2.1961,
-        "percent_change_from_year_ago": 40.8007,
-        "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 2.1723,
-        "continuously_compounded_annual_rate_of_change": 564.8055
+        "change": 0.04,
+        "change_from_year_ago": 29.53,
+        "percent_change": 0.0431,
+        "percent_change_from_year_ago": 46.5699,
+        "compounded_annual_rate_of_change": 11.8428,
+        "continuously_compounded_rate_of_change": 0.043,
+        "continuously_compounded_annual_rate_of_change": 11.1924
       },
       "recent_observations": [
         {
-          "date": "2026-11-05",
-          "value": 97.96
-        },
-        {
-          "date": "2026-11-06",
-          "value": 97.83
-        },
-        {
-          "date": "2026-11-09",
-          "value": 91.03
-        },
-        {
-          "date": "2026-11-10",
-          "value": 90.16
-        },
-        {
           "date": "2026-11-11",
           "value": 92.14
+        },
+        {
+          "date": "2026-11-12",
+          "value": 95.42
+        },
+        {
+          "date": "2026-11-13",
+          "value": 95.17
+        },
+        {
+          "date": "2026-11-16",
+          "value": 92.9
+        },
+        {
+          "date": "2026-11-17",
+          "value": 92.94
         }
       ]
     },
@@ -116,26 +116,22 @@
       "n_obs_per_yr": 260,
       "units": "Percent",
       "source": "Percent",
-      "last_date": "2026-11-16",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 3.34,
-      "previous_value": 3.23,
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 3.43,
+      "previous_value": 3.34,
       "year_ago_value": 3.17,
-      "year_ago_date": "2025-11-19",
+      "year_ago_date": "2025-11-20",
       "transformations": {
-        "change": 0.11,
-        "change_from_year_ago": 0.17,
-        "percent_change": 3.4056,
-        "percent_change_from_year_ago": 5.3628,
+        "change": 0.09,
+        "change_from_year_ago": 0.26,
+        "percent_change": 2.6946,
+        "percent_change_from_year_ago": 8.2019,
         "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 3.3489,
+        "continuously_compounded_rate_of_change": 2.6589,
         "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
-        {
-          "date": "2026-11-10",
-          "value": 3.3
-        },
         {
           "date": "2026-11-11",
           "value": 3.3
@@ -151,6 +147,10 @@
         {
           "date": "2026-11-16",
           "value": 3.34
+        },
+        {
+          "date": "2026-11-17",
+          "value": 3.43
         }
       ]
     },
@@ -162,7 +162,7 @@
       "units": "Index Jan 2006=100",
       "source": "Index Jan 2006=100",
       "last_date": "2026-11-13",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
       "current_value": 122.6503,
       "previous_value": 122.5433,
       "year_ago_value": 120.5312,
@@ -206,41 +206,41 @@
       "n_obs_per_yr": 260,
       "units": "Dollars per Barrel",
       "source": "Dollars per Barrel",
-      "last_date": "2026-11-11",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 89.62,
-      "previous_value": 89.62,
-      "year_ago_value": 60.97,
-      "year_ago_date": "2025-10-28",
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 89.53,
+      "previous_value": 89.24,
+      "year_ago_value": 61.79,
+      "year_ago_date": "2025-11-03",
       "transformations": {
-        "change": 0.0,
-        "change_from_year_ago": 28.65,
-        "percent_change": 0.0,
-        "percent_change_from_year_ago": 46.9903,
-        "compounded_annual_rate_of_change": 0.0,
-        "continuously_compounded_rate_of_change": 0.0,
-        "continuously_compounded_annual_rate_of_change": 0.0
+        "change": 0.29,
+        "change_from_year_ago": 27.74,
+        "percent_change": 0.325,
+        "percent_change_from_year_ago": 44.894,
+        "compounded_annual_rate_of_change": 132.4588,
+        "continuously_compounded_rate_of_change": 0.3244,
+        "continuously_compounded_annual_rate_of_change": 84.3543
       },
       "recent_observations": [
         {
-          "date": "2026-11-05",
-          "value": 94.05
-        },
-        {
-          "date": "2026-11-06",
-          "value": 94.37
-        },
-        {
-          "date": "2026-11-09",
-          "value": 90.4
-        },
-        {
-          "date": "2026-11-10",
-          "value": 89.62
-        },
-        {
           "date": "2026-11-11",
           "value": 89.62
+        },
+        {
+          "date": "2026-11-12",
+          "value": 92.3
+        },
+        {
+          "date": "2026-11-13",
+          "value": 91.96
+        },
+        {
+          "date": "2026-11-16",
+          "value": 89.24
+        },
+        {
+          "date": "2026-11-17",
+          "value": 89.53
         }
       ]
     },
@@ -251,41 +251,41 @@
       "n_obs_per_yr": 260,
       "units": "Dollars per Gallon",
       "source": "Dollars per Gallon",
-      "last_date": "2026-11-11",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 2.415,
-      "previous_value": 2.415,
-      "year_ago_value": 1.926,
-      "year_ago_date": "2025-10-28",
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 2.328,
+      "previous_value": 2.322,
+      "year_ago_value": 1.923,
+      "year_ago_date": "2025-11-03",
       "transformations": {
-        "change": 0.0,
-        "change_from_year_ago": 0.489,
-        "percent_change": 0.0,
-        "percent_change_from_year_ago": 25.3894,
-        "compounded_annual_rate_of_change": 0.0,
-        "continuously_compounded_rate_of_change": 0.0,
-        "continuously_compounded_annual_rate_of_change": 0.0
+        "change": 0.006,
+        "change_from_year_ago": 0.405,
+        "percent_change": 0.2584,
+        "percent_change_from_year_ago": 21.0608,
+        "compounded_annual_rate_of_change": 95.613,
+        "continuously_compounded_rate_of_change": 0.2581,
+        "continuously_compounded_annual_rate_of_change": 67.0968
       },
       "recent_observations": [
         {
-          "date": "2026-11-05",
-          "value": 2.568
-        },
-        {
-          "date": "2026-11-06",
-          "value": 2.563
-        },
-        {
-          "date": "2026-11-09",
-          "value": 2.434
-        },
-        {
-          "date": "2026-11-10",
-          "value": 2.415
-        },
-        {
           "date": "2026-11-11",
           "value": 2.415
+        },
+        {
+          "date": "2026-11-12",
+          "value": 2.462
+        },
+        {
+          "date": "2026-11-13",
+          "value": 2.418
+        },
+        {
+          "date": "2026-11-16",
+          "value": 2.322
+        },
+        {
+          "date": "2026-11-17",
+          "value": 2.328
         }
       ]
     },
@@ -296,41 +296,41 @@
       "n_obs_per_yr": 260,
       "units": "Dollars per Gallon",
       "source": "Dollars per Gallon",
-      "last_date": "2026-11-11",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 4.204,
-      "previous_value": 4.204,
-      "year_ago_value": 2.418,
-      "year_ago_date": "2025-10-28",
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 4.093,
+      "previous_value": 4.112,
+      "year_ago_value": 2.456,
+      "year_ago_date": "2025-11-03",
       "transformations": {
-        "change": 0.0,
-        "change_from_year_ago": 1.786,
-        "percent_change": 0.0,
-        "percent_change_from_year_ago": 73.8627,
-        "compounded_annual_rate_of_change": 0.0,
-        "continuously_compounded_rate_of_change": 0.0,
-        "continuously_compounded_annual_rate_of_change": 0.0
+        "change": -0.019,
+        "change_from_year_ago": 1.637,
+        "percent_change": -0.4621,
+        "percent_change_from_year_ago": 66.6531,
+        "compounded_annual_rate_of_change": -70.0052,
+        "continuously_compounded_rate_of_change": -0.4631,
+        "continuously_compounded_annual_rate_of_change": -120.4146
       },
       "recent_observations": [
         {
-          "date": "2026-11-05",
-          "value": 4.639
-        },
-        {
-          "date": "2026-11-06",
-          "value": 4.467
-        },
-        {
-          "date": "2026-11-09",
-          "value": 4.249
-        },
-        {
-          "date": "2026-11-10",
-          "value": 4.204
-        },
-        {
           "date": "2026-11-11",
           "value": 4.204
+        },
+        {
+          "date": "2026-11-12",
+          "value": 4.321
+        },
+        {
+          "date": "2026-11-13",
+          "value": 4.345
+        },
+        {
+          "date": "2026-11-16",
+          "value": 4.112
+        },
+        {
+          "date": "2026-11-17",
+          "value": 4.093
         }
       ]
     },
@@ -341,26 +341,22 @@
       "n_obs_per_yr": 260,
       "units": "Index",
       "source": "Index",
-      "last_date": "2026-11-16",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 22.91,
-      "previous_value": 19.3,
-      "year_ago_value": 17.51,
-      "year_ago_date": "2025-11-12",
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 25.46,
+      "previous_value": 22.91,
+      "year_ago_value": 20.0,
+      "year_ago_date": "2025-11-13",
       "transformations": {
-        "change": 3.61,
-        "change_from_year_ago": 5.4,
-        "percent_change": 18.7047,
-        "percent_change_from_year_ago": 30.8395,
+        "change": 2.55,
+        "change_from_year_ago": 5.46,
+        "percent_change": 11.1305,
+        "percent_change_from_year_ago": 27.3,
         "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 17.1468,
-        "continuously_compounded_annual_rate_of_change": 4458.1784
+        "continuously_compounded_rate_of_change": 10.5535,
+        "continuously_compounded_annual_rate_of_change": 2743.9125
       },
       "recent_observations": [
-        {
-          "date": "2026-11-10",
-          "value": 19.46
-        },
         {
           "date": "2026-11-11",
           "value": 17.49
@@ -376,6 +372,10 @@
         {
           "date": "2026-11-16",
           "value": 22.91
+        },
+        {
+          "date": "2026-11-17",
+          "value": 25.46
         }
       ]
     },
@@ -386,26 +386,22 @@
       "n_obs_per_yr": 260,
       "units": "Index",
       "source": "Index",
-      "last_date": "2026-11-17",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 9642.88,
-      "previous_value": 9610.65,
-      "year_ago_value": 6979.57,
-      "year_ago_date": "2025-11-04",
+      "last_date": "2026-11-18",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 9652.8,
+      "previous_value": 9642.88,
+      "year_ago_value": 7190.27,
+      "year_ago_date": "2025-11-05",
       "transformations": {
-        "change": 32.23,
-        "change_from_year_ago": 2663.31,
-        "percent_change": 0.3354,
-        "percent_change_from_year_ago": 38.1587,
-        "compounded_annual_rate_of_change": 138.8032,
-        "continuously_compounded_rate_of_change": 0.3348,
-        "continuously_compounded_annual_rate_of_change": 87.047
+        "change": 9.92,
+        "change_from_year_ago": 2462.53,
+        "percent_change": 0.1029,
+        "percent_change_from_year_ago": 34.2481,
+        "compounded_annual_rate_of_change": 30.6477,
+        "continuously_compounded_rate_of_change": 0.1028,
+        "continuously_compounded_annual_rate_of_change": 26.7334
       },
       "recent_observations": [
-        {
-          "date": "2026-11-11",
-          "value": 10564.11
-        },
         {
           "date": "2026-11-12",
           "value": 10506.67
@@ -421,10 +417,14 @@
         {
           "date": "2026-11-17",
           "value": 9642.88
+        },
+        {
+          "date": "2026-11-18",
+          "value": 9652.8
         }
       ],
-      "two_years_ago_value": 5215.21,
-      "two_years_ago_date": "2024-10-21"
+      "two_years_ago_value": 5190.71,
+      "two_years_ago_date": "2024-10-22"
     },
     "T10Y2Y": {
       "series_id": "T10Y2Y",
@@ -433,26 +433,22 @@
       "n_obs_per_yr": 260,
       "units": "Percent",
       "source": "Percent",
-      "last_date": "2026-11-17",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 0.3,
-      "previous_value": 0.29,
-      "year_ago_value": 0.51,
-      "year_ago_date": "2025-10-31",
+      "last_date": "2026-11-18",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 0.27,
+      "previous_value": 0.3,
+      "year_ago_value": 0.53,
+      "year_ago_date": "2025-11-03",
       "transformations": {
-        "change": 0.01,
-        "change_from_year_ago": -0.21,
-        "percent_change": 3.4483,
-        "percent_change_from_year_ago": -41.1765,
+        "change": -0.03,
+        "change_from_year_ago": -0.26,
+        "percent_change": -10.0,
+        "percent_change_from_year_ago": -49.0566,
         "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 3.3902,
+        "continuously_compounded_rate_of_change": -10.5361,
         "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
-        {
-          "date": "2026-11-10",
-          "value": 0.25
-        },
         {
           "date": "2026-11-12",
           "value": 0.24
@@ -468,6 +464,10 @@
         {
           "date": "2026-11-17",
           "value": 0.3
+        },
+        {
+          "date": "2026-11-18",
+          "value": 0.27
         }
       ]
     },
@@ -478,26 +478,22 @@
       "n_obs_per_yr": 260,
       "units": "Billions of US Dollars",
       "source": "Billions of US Dollars",
-      "last_date": "2026-11-17",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 0.351,
-      "previous_value": 0.182,
-      "year_ago_value": 19.166,
-      "year_ago_date": "2025-10-30",
+      "last_date": "2026-11-18",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 0.331,
+      "previous_value": 0.351,
+      "year_ago_value": 51.802,
+      "year_ago_date": "2025-10-31",
       "transformations": {
-        "change": 0.169,
-        "change_from_year_ago": -18.815,
-        "percent_change": 92.8571,
-        "percent_change_from_year_ago": -98.1686,
-        "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 65.678,
-        "continuously_compounded_annual_rate_of_change": 17076.2679
+        "change": -0.02,
+        "change_from_year_ago": -51.471,
+        "percent_change": -5.698,
+        "percent_change_from_year_ago": -99.361,
+        "compounded_annual_rate_of_change": -100.0,
+        "continuously_compounded_rate_of_change": -5.8668,
+        "continuously_compounded_annual_rate_of_change": -1525.3641
       },
       "recent_observations": [
-        {
-          "date": "2026-11-10",
-          "value": 0.152
-        },
         {
           "date": "2026-11-12",
           "value": 0.25
@@ -513,6 +509,10 @@
         {
           "date": "2026-11-17",
           "value": 0.351
+        },
+        {
+          "date": "2026-11-18",
+          "value": 0.331
         }
       ]
     },
@@ -523,12 +523,12 @@
       "n_obs_per_yr": 260,
       "units": "Percent",
       "source": "Percent",
-      "last_date": "2026-11-16",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
       "current_value": 3.88,
       "previous_value": 3.88,
       "year_ago_value": 3.64,
-      "year_ago_date": "2026-03-01",
+      "year_ago_date": "2026-03-02",
       "transformations": {
         "change": 0.0,
         "change_from_year_ago": 0.24,
@@ -539,10 +539,6 @@
         "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
-        {
-          "date": "2026-11-12",
-          "value": 3.88
-        },
         {
           "date": "2026-11-13",
           "value": 3.88
@@ -558,6 +554,10 @@
         {
           "date": "2026-11-16",
           "value": 3.88
+        },
+        {
+          "date": "2026-11-17",
+          "value": 3.88
         }
       ]
     },
@@ -568,12 +568,12 @@
       "n_obs_per_yr": 260,
       "units": "Percent",
       "source": "Percent",
-      "last_date": "2026-11-17",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
+      "last_date": "2026-11-18",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
       "current_value": 4.0,
       "previous_value": 4.0,
       "year_ago_value": 3.75,
-      "year_ago_date": "2026-03-02",
+      "year_ago_date": "2026-03-03",
       "transformations": {
         "change": 0.0,
         "change_from_year_ago": 0.25,
@@ -584,10 +584,6 @@
         "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
-        {
-          "date": "2026-11-13",
-          "value": 4.0
-        },
         {
           "date": "2026-11-14",
           "value": 4.0
@@ -603,6 +599,10 @@
         {
           "date": "2026-11-17",
           "value": 4.0
+        },
+        {
+          "date": "2026-11-18",
+          "value": 4.0
         }
       ]
     },
@@ -613,41 +613,41 @@
       "n_obs_per_yr": 260,
       "units": "Dollars per Million BTU",
       "source": "Dollars per Million BTU",
-      "last_date": "2026-11-11",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 3.0,
-      "previous_value": 3.0,
-      "year_ago_value": 3.34,
-      "year_ago_date": "2025-10-23",
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 3.1,
+      "previous_value": 3.2,
+      "year_ago_value": 3.36,
+      "year_ago_date": "2025-10-29",
       "transformations": {
-        "change": 0.0,
-        "change_from_year_ago": -0.34,
-        "percent_change": 0.0,
-        "percent_change_from_year_ago": -10.1796,
-        "compounded_annual_rate_of_change": 0.0,
-        "continuously_compounded_rate_of_change": 0.0,
-        "continuously_compounded_annual_rate_of_change": 0.0
+        "change": -0.1,
+        "change_from_year_ago": -0.26,
+        "percent_change": -3.125,
+        "percent_change_from_year_ago": -7.7381,
+        "compounded_annual_rate_of_change": -99.974,
+        "continuously_compounded_rate_of_change": -3.1749,
+        "continuously_compounded_annual_rate_of_change": -825.4662
       },
       "recent_observations": [
         {
-          "date": "2026-11-05",
-          "value": 2.61
-        },
-        {
-          "date": "2026-11-06",
-          "value": 2.6
-        },
-        {
-          "date": "2026-11-09",
-          "value": 2.89
-        },
-        {
-          "date": "2026-11-10",
-          "value": 3.0
-        },
-        {
           "date": "2026-11-11",
           "value": 3.0
+        },
+        {
+          "date": "2026-11-12",
+          "value": 3.0
+        },
+        {
+          "date": "2026-11-13",
+          "value": 3.26
+        },
+        {
+          "date": "2026-11-16",
+          "value": 3.2
+        },
+        {
+          "date": "2026-11-17",
+          "value": 3.1
         }
       ]
     },
@@ -658,26 +658,22 @@
       "n_obs_per_yr": 260,
       "units": "Percent",
       "source": "Percent",
-      "last_date": "2026-11-16",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 2.92,
-      "previous_value": 2.91,
-      "year_ago_value": 1.82,
-      "year_ago_date": "2025-10-30",
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 2.89,
+      "previous_value": 2.92,
+      "year_ago_value": 1.81,
+      "year_ago_date": "2025-10-31",
       "transformations": {
-        "change": 0.01,
-        "change_from_year_ago": 1.1,
-        "percent_change": 0.3436,
-        "percent_change_from_year_ago": 60.4396,
+        "change": -0.03,
+        "change_from_year_ago": 1.08,
+        "percent_change": -1.0274,
+        "percent_change_from_year_ago": 59.6685,
         "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 0.3431,
+        "continuously_compounded_rate_of_change": -1.0327,
         "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
-        {
-          "date": "2026-11-09",
-          "value": 2.66
-        },
         {
           "date": "2026-11-10",
           "value": 2.78
@@ -693,6 +689,10 @@
         {
           "date": "2026-11-16",
           "value": 2.92
+        },
+        {
+          "date": "2026-11-17",
+          "value": 2.89
         }
       ]
     },
@@ -704,7 +704,7 @@
       "units": "Japanese Yen to One U.S. Dollar",
       "source": "Japanese Yen to One U.S. Dollar",
       "last_date": "2026-11-13",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
       "current_value": 159.93,
       "previous_value": 159.6,
       "year_ago_value": 151.91,
@@ -748,26 +748,22 @@
       "n_obs_per_yr": 260,
       "units": "Percent",
       "source": "Percent",
-      "last_date": "2026-11-16",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 5.12,
-      "previous_value": 5.15,
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 5.1,
+      "previous_value": 5.12,
       "year_ago_value": 4.11,
-      "year_ago_date": "2025-10-30",
+      "year_ago_date": "2025-10-31",
       "transformations": {
-        "change": -0.03,
-        "change_from_year_ago": 1.01,
-        "percent_change": -0.5825,
-        "percent_change_from_year_ago": 24.5742,
+        "change": -0.02,
+        "change_from_year_ago": 0.99,
+        "percent_change": -0.3906,
+        "percent_change_from_year_ago": 24.0876,
         "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": -0.5842,
+        "continuously_compounded_rate_of_change": -0.3914,
         "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
-        {
-          "date": "2026-11-09",
-          "value": 4.88
-        },
         {
           "date": "2026-11-10",
           "value": 4.98
@@ -783,6 +779,10 @@
         {
           "date": "2026-11-16",
           "value": 5.12
+        },
+        {
+          "date": "2026-11-17",
+          "value": 5.1
         }
       ]
     },
@@ -793,26 +793,22 @@
       "n_obs_per_yr": 260,
       "units": "Percent",
       "source": "Percent",
-      "last_date": "2026-11-16",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 4.1,
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 4.09,
       "previous_value": 4.1,
-      "year_ago_value": 4.05,
-      "year_ago_date": "2025-10-30",
+      "year_ago_value": 4.06,
+      "year_ago_date": "2025-10-31",
       "transformations": {
-        "change": 0.0,
-        "change_from_year_ago": 0.05,
-        "percent_change": 0.0,
-        "percent_change_from_year_ago": 1.2346,
+        "change": -0.01,
+        "change_from_year_ago": 0.03,
+        "percent_change": -0.2439,
+        "percent_change_from_year_ago": 0.7389,
         "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 0.0,
+        "continuously_compounded_rate_of_change": -0.2442,
         "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
-        {
-          "date": "2026-11-09",
-          "value": 4.04
-        },
         {
           "date": "2026-11-10",
           "value": 4.05
@@ -828,6 +824,10 @@
         {
           "date": "2026-11-16",
           "value": 4.1
+        },
+        {
+          "date": "2026-11-17",
+          "value": 4.09
         }
       ]
     },
@@ -838,26 +838,22 @@
       "n_obs_per_yr": 260,
       "units": "Percent",
       "source": "Percent",
-      "last_date": "2026-11-16",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 4.34,
-      "previous_value": 4.32,
-      "year_ago_value": 3.92,
-      "year_ago_date": "2025-10-30",
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 4.33,
+      "previous_value": 4.34,
+      "year_ago_value": 3.89,
+      "year_ago_date": "2025-10-31",
       "transformations": {
-        "change": 0.02,
-        "change_from_year_ago": 0.42,
-        "percent_change": 0.463,
-        "percent_change_from_year_ago": 10.7143,
+        "change": -0.01,
+        "change_from_year_ago": 0.44,
+        "percent_change": -0.2304,
+        "percent_change_from_year_ago": 11.3111,
         "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 0.4619,
+        "continuously_compounded_rate_of_change": -0.2307,
         "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
-        {
-          "date": "2026-11-09",
-          "value": 4.24
-        },
         {
           "date": "2026-11-10",
           "value": 4.3
@@ -873,6 +869,10 @@
         {
           "date": "2026-11-16",
           "value": 4.34
+        },
+        {
+          "date": "2026-11-17",
+          "value": 4.33
         }
       ]
     },
@@ -883,30 +883,22 @@
       "n_obs_per_yr": 260,
       "units": "Index",
       "source": "Index",
-      "last_date": "2026-11-16",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 7416.59,
-      "previous_value": 7561.67,
-      "year_ago_value": null,
-      "year_ago_date": null,
+      "last_date": "2026-11-18",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 7323.63,
+      "previous_value": 7340.53,
+      "year_ago_value": 6796.29,
+      "year_ago_date": "2025-11-05",
       "transformations": {
-        "change": -145.08,
-        "change_from_year_ago": null,
-        "percent_change": -1.9186,
-        "percent_change_from_year_ago": null,
-        "compounded_annual_rate_of_change": -99.3506,
-        "continuously_compounded_rate_of_change": -1.9373,
-        "continuously_compounded_annual_rate_of_change": -503.6897
+        "change": -16.9,
+        "change_from_year_ago": 527.34,
+        "percent_change": -0.2302,
+        "percent_change_from_year_ago": 7.7592,
+        "compounded_annual_rate_of_change": -45.0796,
+        "continuously_compounded_rate_of_change": -0.2305,
+        "continuously_compounded_annual_rate_of_change": -59.9285
       },
       "recent_observations": [
-        {
-          "date": "2026-11-10",
-          "value": 7520.93
-        },
-        {
-          "date": "2026-11-11",
-          "value": 7619.38
-        },
         {
           "date": "2026-11-12",
           "value": 7592.4
@@ -918,6 +910,14 @@
         {
           "date": "2026-11-16",
           "value": 7416.59
+        },
+        {
+          "date": "2026-11-17",
+          "value": 7340.53
+        },
+        {
+          "date": "2026-11-18",
+          "value": 7323.63
         }
       ]
     },
@@ -928,26 +928,22 @@
       "n_obs_per_yr": 260,
       "units": "Percent",
       "source": "Percent",
-      "last_date": "2026-11-16",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 3.93,
-      "previous_value": 3.9,
-      "year_ago_value": 4.27,
-      "year_ago_date": "2025-10-29",
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 3.92,
+      "previous_value": 3.93,
+      "year_ago_value": 4.04,
+      "year_ago_date": "2025-10-30",
       "transformations": {
-        "change": 0.03,
-        "change_from_year_ago": -0.34,
-        "percent_change": 0.7692,
-        "percent_change_from_year_ago": -7.9625,
+        "change": -0.01,
+        "change_from_year_ago": -0.12,
+        "percent_change": -0.2545,
+        "percent_change_from_year_ago": -2.9703,
         "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": 0.7663,
+        "continuously_compounded_rate_of_change": -0.2548,
         "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
-        {
-          "date": "2026-11-09",
-          "value": 3.88
-        },
         {
           "date": "2026-11-10",
           "value": 3.89
@@ -963,6 +959,10 @@
         {
           "date": "2026-11-16",
           "value": 3.93
+        },
+        {
+          "date": "2026-11-17",
+          "value": 3.92
         }
       ]
     },
@@ -973,26 +973,22 @@
       "n_obs_per_yr": 260,
       "units": "Index",
       "source": "Index",
-      "last_date": "2026-11-16",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 49.59,
-      "previous_value": 50.28,
-      "year_ago_value": 34.31,
-      "year_ago_date": "2025-11-03",
+      "last_date": "2026-11-17",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 49.9,
+      "previous_value": 49.59,
+      "year_ago_value": 34.27,
+      "year_ago_date": "2025-11-04",
       "transformations": {
-        "change": -0.69,
-        "change_from_year_ago": 15.28,
-        "percent_change": -1.3723,
-        "percent_change_from_year_ago": 44.5351,
-        "compounded_annual_rate_of_change": -97.2477,
-        "continuously_compounded_rate_of_change": -1.3818,
-        "continuously_compounded_annual_rate_of_change": -359.2728
+        "change": 0.31,
+        "change_from_year_ago": 15.63,
+        "percent_change": 0.6251,
+        "percent_change_from_year_ago": 45.6084,
+        "compounded_annual_rate_of_change": 405.4448,
+        "continuously_compounded_rate_of_change": 0.6232,
+        "continuously_compounded_annual_rate_of_change": 162.0269
       },
       "recent_observations": [
-        {
-          "date": "2026-11-10",
-          "value": 53.1
-        },
         {
           "date": "2026-11-11",
           "value": 51.26
@@ -1008,6 +1004,10 @@
         {
           "date": "2026-11-16",
           "value": 49.59
+        },
+        {
+          "date": "2026-11-17",
+          "value": 49.9
         }
       ]
     },
@@ -1018,26 +1018,22 @@
       "n_obs_per_yr": 260,
       "units": "Percent",
       "source": "Percent",
-      "last_date": "2026-11-13",
-      "last_synced_utc": "2026-11-18T09:57:03Z",
-      "current_value": 3.9832,
-      "previous_value": 3.9846,
+      "last_date": "2026-11-16",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 3.9833,
+      "previous_value": 3.9832,
       "year_ago_value": 3.9694,
-      "year_ago_date": "2025-11-04",
+      "year_ago_date": "2025-11-05",
       "transformations": {
-        "change": -0.0014,
-        "change_from_year_ago": 0.0138,
-        "percent_change": -0.0351,
-        "percent_change_from_year_ago": 0.3477,
+        "change": 0.0001,
+        "change_from_year_ago": 0.0139,
+        "percent_change": 0.0025,
+        "percent_change_from_year_ago": 0.3502,
         "compounded_annual_rate_of_change": null,
-        "continuously_compounded_rate_of_change": -0.0351,
+        "continuously_compounded_rate_of_change": 0.0025,
         "continuously_compounded_annual_rate_of_change": null
       },
       "recent_observations": [
-        {
-          "date": "2026-11-09",
-          "value": 3.9842
-        },
         {
           "date": "2026-11-10",
           "value": 3.9837
@@ -1053,6 +1049,10 @@
         {
           "date": "2026-11-13",
           "value": 3.9832
+        },
+        {
+          "date": "2026-11-16",
+          "value": 3.9833
         }
       ]
     },
@@ -2898,6 +2898,96 @@
         {
           "date": "2026-10-01",
           "value": 4840.0
+        }
+      ]
+    },
+    "IPG3344S": {
+      "series_id": "IPG3344S",
+      "title": "Industrial Production: Manufacturing: Durable Goods: Semiconductor and Other Electronic Component (NAICS = 3344)",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Index 2017=100",
+      "source": "Index 2017=100",
+      "last_date": "2026-10-01",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 195.0164,
+      "previous_value": 190.7773,
+      "year_ago_value": 169.1163,
+      "year_ago_date": "2025-10-01",
+      "transformations": {
+        "change": 4.2391,
+        "change_from_year_ago": 25.9001,
+        "percent_change": 2.222,
+        "percent_change_from_year_ago": 15.315,
+        "compounded_annual_rate_of_change": 30.1767,
+        "continuously_compounded_rate_of_change": 2.1977,
+        "continuously_compounded_annual_rate_of_change": 26.3723
+      },
+      "recent_observations": [
+        {
+          "date": "2026-06-01",
+          "value": 184.5467
+        },
+        {
+          "date": "2026-07-01",
+          "value": 189.0641
+        },
+        {
+          "date": "2026-08-01",
+          "value": 191.1936
+        },
+        {
+          "date": "2026-09-01",
+          "value": 190.7773
+        },
+        {
+          "date": "2026-10-01",
+          "value": 195.0164
+        }
+      ]
+    },
+    "PCU33443344": {
+      "series_id": "PCU33443344",
+      "title": "Producer Price Index by Industry: Semiconductor and Other Electronic Component Manufacturing",
+      "frequency": "Monthly",
+      "n_obs_per_yr": 12,
+      "units": "Index Dec 1984=100",
+      "source": "Index Dec 1984=100",
+      "last_date": "2026-10-01",
+      "last_synced_utc": "2026-11-19T05:15:48Z",
+      "current_value": 78.533,
+      "previous_value": 75.576,
+      "year_ago_value": 60.114,
+      "year_ago_date": "2025-10-01",
+      "transformations": {
+        "change": 2.957,
+        "change_from_year_ago": 18.419,
+        "percent_change": 3.9126,
+        "percent_change_from_year_ago": 30.6401,
+        "compounded_annual_rate_of_change": 58.4964,
+        "continuously_compounded_rate_of_change": 3.838,
+        "continuously_compounded_annual_rate_of_change": 46.0562
+      },
+      "recent_observations": [
+        {
+          "date": "2026-06-01",
+          "value": 73.685
+        },
+        {
+          "date": "2026-07-01",
+          "value": 73.188
+        },
+        {
+          "date": "2026-08-01",
+          "value": 75.864
+        },
+        {
+          "date": "2026-09-01",
+          "value": 75.576
+        },
+        {
+          "date": "2026-10-01",
+          "value": 78.533
         }
       ]
     },
