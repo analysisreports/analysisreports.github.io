@@ -55,6 +55,11 @@
           "type": "string",
           "format": "uri"
         },
+        "text_endpoint": {
+          "type": "string",
+          "format": "uri",
+          "description": "Canonical URI of the synchronized human/LLM plain text markdown twin (llms-sitrep.txt)."
+        },
         "documentation": {
           "type": "string",
           "format": "uri"

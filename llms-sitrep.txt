@@ -1,5 +1,5 @@
 # CANONICAL MACRO & GEOPOLITICAL SITUATION REPORT (SITREP)
-> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-19 02:31:07 UTC
+> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-19 02:54:42 UTC
 > Primary Publications: https://www.ersoytoptas.tr (TR) | https://en.ersoytoptas.tr (EN)
 > Ingestion Protocol: Zero Hallucination | Data Completeness: 98.3%
 > Official JSON Twin: https://analysisreports.github.io/llms-sitrep.json
@@ -38,6 +38,7 @@ US_EXPORTS_TO_CHINA      : $1,291,129,510 USD | MoM Decoupling Velocity: -8.42% 
 GOLD_SPOT_USD_OZT        : $3,750.60 [£2,848.27 GBP @ 1.3168 GBP/USD | Source: The Royal Mint Sovereign Spot Benchmark / ECB FX | London SLOC]
 GOLD_WB_MONTHLY_AVG_USD  : $4,105.00 | YoY: +1.16% | SIGNAL: SYSTEMIC_SAFE_HAVEN [Source: World Bank Pink Sheet | Obs: 2026-10-01]
 SILVER_SPOT_USD_OZT      : $45.61 [£34.64 GBP @ 1.3168 GBP/USD | Source: The Royal Mint Sovereign Spot Benchmark] | GOLD_SILVER_RATIO: 82.2
+SILVER_WB_MONTHLY_AVG_USD: [Source: World Bank Pink Sheet / FRED | Feed Status: SOURCE_FEED_UNAVAILABLE]
 COPPER_GLOBAL_USD_MT     : $14,473.06 | YoY: +44.81% (Dr. Copper Growth Pulse) [Source: FRED/IMF | Obs: 2026-09-01]
 WHEAT_GLOBAL_USD_MT      : $246.85 | YoY: +59.14% (Black Sea Agro Security) [Source: FRED/IMF | Obs: 2026-09-01]
 
