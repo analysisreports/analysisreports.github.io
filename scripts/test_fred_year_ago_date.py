@@ -1,4 +1,6 @@
+import contextlib
 import datetime
+import io
 import unittest
 from unittest.mock import patch
 
@@ -13,7 +15,8 @@ class FredYearAgoDateTests(unittest.TestCase):
             {"date": "2025-12-31", "value": 30.0},
         ]
         data = {"metadata": {"units": "Index"}, "observations": observations}
-        with patch.object(fred, "get_series_data_api", return_value=data):
+        with patch.object(fred, "get_series_data_api", return_value=data), \
+             contextlib.redirect_stdout(io.StringIO()):
             text, output = fred.build_outputs({"ANNUAL": ["OVXCLS"]}, "test-key")
 
         entry = output["series"]["OVXCLS"]
@@ -29,7 +32,8 @@ class FredYearAgoDateTests(unittest.TestCase):
                 {"date": "2026-11-09", "value": 57.20},
             ],
         }
-        with patch.object(fred, "get_series_data_api", return_value=data):
+        with patch.object(fred, "get_series_data_api", return_value=data), \
+             contextlib.redirect_stdout(io.StringIO()):
             text, output = fred.build_outputs({"DAILY": ["OVXCLS"]}, "test-key")
 
         entry = output["series"]["OVXCLS"]
@@ -46,7 +50,8 @@ class FredYearAgoDateTests(unittest.TestCase):
                 {"date": "2025-12-31", "value": 30.0},
             ],
         }
-        with patch.object(fred, "get_series_data_api", return_value=data) as fetch:
+        with patch.object(fred, "get_series_data_api", return_value=data) as fetch, \
+             contextlib.redirect_stdout(io.StringIO()):
             _, output = fred.build_outputs({"ANNUAL": ["NASDAQSOX"]}, "test-key")
         fetch.assert_called_once()
         entry = output["series"]["NASDAQSOX"]
@@ -66,7 +71,8 @@ class FredYearAgoDateTests(unittest.TestCase):
                 "units": "Index",
             }
         }
-        with patch.dict(fred.CACHE_TTL_DAYS, {"DAILY": 3}), patch.object(fred, "get_series_data_api") as fetch:
+        with patch.dict(fred.CACHE_TTL_DAYS, {"DAILY": 3}), patch.object(fred, "get_series_data_api") as fetch, \
+             contextlib.redirect_stdout(io.StringIO()):
             text, output = fred.build_outputs({"DAILY": ["OVXCLS"]}, "test-key", cached)
 
         fetch.assert_not_called()

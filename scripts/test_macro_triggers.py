@@ -186,6 +186,48 @@ class MacroTriggerTests(unittest.TestCase):
         self.assertIsNone(result["value"])
         self.assertIn("NASDAQSOX.two_years_ago_value", result["warning"])
 
+    def test_hermetic_us_spr_buffer_and_all_trigger_fallbacks(self):
+        # Test US_SPR_BUFFER calculation hermetically with synthetic-free offline fixtures
+        series = {
+            "WCSSTUS1": entry(400_000, 380_000),
+        }
+        res = relationships.calc_annual_trigger(
+            "IND_TRIGGER_US_SPR_BUFFER", "MODEL_25.19", series, ("WCSSTUS1",),
+            lambda v: v["WCSSTUS1"], ("WCSSTUS1",)
+        )
+        self.assertEqual(res["status"], "OK")
+        self.assertAlmostEqual(res["value"], 0.0526, places=4)
+
+        # Missing date -> MISSING_DATA hermetic contract
+        series["WCSSTUS1"]["year_ago_date"] = None
+        res_missing = relationships.calc_annual_trigger(
+            "IND_TRIGGER_US_SPR_BUFFER", "MODEL_25.19", series, ("WCSSTUS1",),
+            lambda v: v["WCSSTUS1"], ("WCSSTUS1",)
+        )
+        self.assertEqual(res_missing["status"], "MISSING_DATA")
+        self.assertIsNone(res_missing["value"])
+
+    def test_relationship_all_pairs_clamping_and_known_dyads(self):
+        # Testing clamping on known dyad (US_IR)
+        triggers = {
+            "IND_TRIGGER_HORMUZ_SPREAD": {"value": 1.0, "status": "OK"},
+            "IND_TRIGGER_OVX_ENERGY_PANIC": {"value": 1.0, "status": "OK"},
+            "IND_TRIGGER_US_SPR_BUFFER": {"value": -1.0, "status": "OK"},
+        }
+        delta, contribs, dominant = relationships.calc_relationship_trigger_delta("US_IR", triggers)
+        self.assertEqual(delta, -0.20)
+        self.assertEqual(len(contribs), 3)
+        self.assertIsNotNone(dominant)
+
+        # Opposite direction clamping (+0.20)
+        triggers = {
+            "IND_TRIGGER_HORMUZ_SPREAD": {"value": -1.0, "status": "OK"},
+            "IND_TRIGGER_OVX_ENERGY_PANIC": {"value": -1.0, "status": "OK"},
+            "IND_TRIGGER_US_SPR_BUFFER": {"value": 1.0, "status": "OK"},
+        }
+        delta, contribs, dominant = relationships.calc_relationship_trigger_delta("US_IR", triggers)
+        self.assertEqual(delta, 0.20)
+
 
 if __name__ == "__main__":
     unittest.main()

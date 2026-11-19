@@ -33,7 +33,8 @@ class TaylorAlignmentTests(unittest.TestCase):
         for entry in cached.values():
             entry["n_obs_per_yr"] = 4
         response = io.BytesIO(b"observation_date,GDPPOT\n2026-07-01,24200.4446936\n")
-        with patch.object(fred.urllib.request, "urlopen", return_value=response) as urlopen:
+        with patch.object(fred.urllib.request, "urlopen", return_value=response) as urlopen, \
+             redirect_stdout(io.StringIO()):
             _, result = fred.build_outputs({"QUARTERLY": ["GDPC1", "GDPPOT"]}, "", cached)
         url = urlopen.call_args.args[0].full_url
         self.assertIn("cosd=2026-07-01", url)
@@ -71,9 +72,11 @@ class TaylorAlignmentTests(unittest.TestCase):
         ):
             with self.subTest(content=content), patch.object(
                 fred.urllib.request, "urlopen", return_value=io.BytesIO(content)
-            ):
+            ), redirect_stdout(io.StringIO()):
                 self.assertIsNone(fred.fetch_gdppot_for_quarter("2026-07-01"))
-        with patch.object(fred.urllib.request, "urlopen", side_effect=OSError("offline")), patch.object(fred.time, "sleep"):
+        with patch.object(fred.urllib.request, "urlopen", side_effect=OSError("offline")), \
+             patch.object(fred.time, "sleep"), \
+             redirect_stdout(io.StringIO()):
             self.assertIsNone(fred.fetch_gdppot_for_quarter("2026-07-01"))
 
     def test_api_exact_quarter_retry_and_source_does_not_expose_key(self):
@@ -99,7 +102,7 @@ class TaylorAlignmentTests(unittest.TestCase):
         csv_response = io.BytesIO(b"observation_date,GDPPOT\n2026-07-01,24200.4446936\n")
         with patch.object(
             fred.urllib.request, "urlopen", side_effect=[api_response, csv_response]
-        ):
+        ), redirect_stdout(io.StringIO()):
             result = fred.fetch_gdppot_for_quarter("2026-07-01", "secret-key")
         self.assertEqual(result["date"], "2026-07-01")
         self.assertIn("fredgraph.csv", result["source"])
@@ -108,7 +111,7 @@ class TaylorAlignmentTests(unittest.TestCase):
         response = io.BytesIO(b"observation_date,GDPPOT\n2026-07-01,24200.4446936\n")
         with patch.object(
             fred.urllib.request, "urlopen", side_effect=[OSError("timeout"), OSError("timeout"), response]
-        ) as urlopen, patch.object(fred.time, "sleep"):
+        ) as urlopen, patch.object(fred.time, "sleep"), redirect_stdout(io.StringIO()):
             result = fred.fetch_gdppot_for_quarter("2026-07-01", "secret-key")
         self.assertEqual(urlopen.call_count, 3)
         self.assertEqual(result["value"], 24200.4446936)
@@ -128,7 +131,8 @@ class TaylorAlignmentTests(unittest.TestCase):
             },
         }
         with patch.object(fred.urllib.request, "urlopen", side_effect=OSError("timeout")) as urlopen, \
-                patch.object(fred.time, "sleep"):
+                patch.object(fred.time, "sleep"), \
+                redirect_stdout(io.StringIO()):
             _, result = fred.build_outputs({"QUARTERLY": ["GDPC1", "GDPPOT"]}, "secret-key", cached)
         self.assertEqual(urlopen.call_count, 4)
         self.assertIsNone(result["series"]["GDPPOT"]["gdpc1_quarter_observation"])
