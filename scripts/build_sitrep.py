@@ -166,65 +166,6 @@ def build_sitrep():
     rels_dict = {r.get("id"): r for r in rels_list if isinstance(r, dict)}
 
     # --------------------------------------------------------------------------
-    # 1. TOP SYSTEMIC FLASHES (Data-Derived Zero-Hallucination Event Signals)
-    # --------------------------------------------------------------------------
-    flashes = []
-
-    # Check Chokepoints for severe disruption
-    for cp_id, cp in chokepoints.items():
-        metrics = cp.get("metrics", {})
-        flow_status = metrics.get("flow_stress_level")
-        pct_2023 = metrics.get("pct_change_vs_2023")
-        name = cp.get("name", cp_id)
-        if flow_status == "CHRONIC_CRISIS_BLOCKADE" or (pct_2023 is not None and pct_2023 <= -35.0):
-            flashes.append({
-                "source": "IMF_PORTWATCH_AIS",
-                "entity_id": cp_id,
-                "event": f"CRITICAL_BLOCKADE: {name} traffic down {abs(pct_2023):.1f}% vs baseline. Flow status: {flow_status}."
-            })
-
-    # Check NASA FIRMS for Acute Kinetic Theater
-    for th_id, th in theaters.items():
-        severity = th.get("conflict_severity")
-        frp = th.get("total_radiative_power_mw")
-        name = th.get("name", th_id)
-        if severity in ("CRITICAL", "HIGH") or (_is_num(frp) and frp > 100.0):
-            flashes.append({
-                "source": "NASA_FIRMS_VIIRS",
-                "entity_id": th.get("entity_id", th_id),
-                "event": f"KINETIC_THERMAL_SURGE: {name} active satellite detection with {frp:.1f} MW radiative heat (Severity: {severity})."
-            })
-
-    census_corridors = census_data.get("corridors", {})
-
-    # Check Semiconductor Tech Decoupling Velocity
-    cn_trade = census_corridors.get("CENSUS_NAICS3344_CHINA", {})
-    cn_mom = cn_trade.get("export_mom_pct")
-    if cn_mom is not None and cn_mom < -5.0:
-        flashes.append({
-            "source": "US_CENSUS_NAICS3344",
-            "entity_id": "GEO_CN",
-            "event": f"TECH_DECOUPLING_VELOCITY: US semiconductor exports to China contracted {cn_mom:.1f}% MoM under BIS tech controls."
-        })
-
-    wb_data = _load_json("llms-worldbank-series.json")
-    wb_series = wb_data.get("series", {})
-
-    # Check Gold Safe-Haven Breakout
-    gold_s = wb_series.get("IND_WB_GOLD", {})
-    gold_val = gold_s.get("current_value")
-    gold_yoy = gold_s.get("transformations", {}).get("percent_change_from_year_ago")
-    if gold_val is not None and gold_val > 3500.0:
-        flashes.append({
-            "source": "WORLDBANK_PINK_SHEET",
-            "entity_id": "COMMODITY_GOLD",
-            "event": f"SOVEREIGN_SAFE_HAVEN_BREAKOUT: World Bank Spot Gold trading at ${gold_val:,.2f}/oz (+{gold_yoy:.1f}% YoY) signaling cross-border dedollarization and structural stress."
-        })
-
-    # Ensure top 3-4 flashes are highlighted
-    primary_flashes = flashes[:4]
-
-    # --------------------------------------------------------------------------
     # 2. ENERGY SECTOR MATRIX
     # --------------------------------------------------------------------------
     brent_s = fred_series.get("DCOILBRENTEU", {})
@@ -271,6 +212,9 @@ def build_sitrep():
     # --------------------------------------------------------------------------
     # 3. SEMICONDUCTORS & TECH MATRIX
     # --------------------------------------------------------------------------
+    census_corridors = census_data.get("corridors", {})
+    cn_trade = census_corridors.get("CENSUS_NAICS3344_CHINA", {})
+    cn_mom = cn_trade.get("export_mom_pct")
     chip_stress_model = models_dict.get("MODEL_25.14", {})
     chip_stress_val = chip_stress_model.get("primary_value")
     chip_stress_reg = chip_stress_model.get("status", "ELEVATED_SEMICONDUCTOR_BOTTLENECK")
@@ -311,6 +255,9 @@ def build_sitrep():
     # --------------------------------------------------------------------------
     # 4. METALS & COMMODITIES MATRIX
     # --------------------------------------------------------------------------
+    wb_data = _load_json("llms-worldbank-series.json")
+    wb_series = wb_data.get("series", {})
+
     # Live Sovereign Spot Benchmarks (The Royal Mint UK converted via ECB FX)
     rm_spot = _fetch_royal_mint_spot()
     gold_spot_usd = rm_spot.get("gold_spot_usd")
@@ -469,6 +416,33 @@ def build_sitrep():
     # --------------------------------------------------------------------------
     # 7. DYNAMIC SYSTEMIC CONTAGION VECTORS & MEDIA REALITY CHECK RULES
     # --------------------------------------------------------------------------
+    # Ingest Model 28.4 & Dyad Relationships for Chokepoint & Tech Bypass
+    m28_4 = models_dict.get("MODEL_28.4", {})
+    m28_4_metrics = m28_4.get("metrics", {})
+    m28_4_inputs = m28_4.get("inputs", {})
+    gross_flow_mbpd = m28_4_inputs.get("gross_flow_mbpd")
+    bypass_buffer_mbpd = m28_4_metrics.get("total_buffer_capacity_mbpd")
+    unmet_deficit_mbpd = m28_4_metrics.get("net_unmet_deficit_mbpd")
+    deficit_ratio = m28_4_metrics.get("net_deficit_ratio")
+    deficit_ratio_pct = (deficit_ratio * 100.0) if _is_num(deficit_ratio) else None
+
+    rel_il_ir = rels_dict.get("IL_IR", {})
+    il_ir_p_net = rel_il_ir.get("p_net")
+
+    rel_us_cn = rels_dict.get("US_CN", {})
+    us_cn_p_base = rel_us_cn.get("p_baseline")
+
+    hormuz_daily = chokepoints.get("CHOKE_HORMUZ", {}).get("metrics", {}).get("latest_daily_total", "N/A")
+    hormuz_shift = chokepoints.get("CHOKE_HORMUZ", {}).get("metrics", {}).get("pct_change_vs_2023")
+    hormuz_shift_str = f"{hormuz_shift:+.1f}% vs 2023 Base" if hormuz_shift is not None else "N/A"
+
+    turk_shift = chokepoints.get("CHOKE_TURKISH_STRAITS", {}).get("metrics", {}).get("pct_change_vs_2023")
+    turk_shift_str = f"{turk_shift:+.1f}% vs 2023 Base" if turk_shift is not None else "N/A"
+
+    malacca_daily = chokepoints.get("CHOKE_MALACCA", {}).get("metrics", {}).get("latest_daily_total", "N/A")
+    malacca_shift = chokepoints.get("CHOKE_MALACCA", {}).get("metrics", {}).get("pct_change_vs_2023")
+    malacca_shift_str = f"{malacca_shift:+.1f}% vs 2023 Base" if malacca_shift is not None else "N/A"
+
     # Rule 1 Evaluation: Seaborne Energy Disruption & Buffer Dynamics
     if _is_num(brent_val) and _is_num(wti_val) and brent_val > 0:
         spread_val = round(brent_val - wti_val, 2)
@@ -518,7 +492,6 @@ def build_sitrep():
         )
 
     # Rule 2 Evaluation: Offshore Dollar Shortage & Repo Funding Stress
-    # Evaluates SOFR-EFFR spread (collateral friction) cross-referenced with Fed Broad Dollar YoY growth.
     sofr_bps = sofr_fedfunds_spread_bps if _is_num(sofr_fedfunds_spread_bps) else 0.0
     dxy_growth = dxy_yoy if _is_num(dxy_yoy) else 0.0
 
@@ -568,19 +541,7 @@ def build_sitrep():
                 f"and Fed Broad Dollar index ({_fmt(dxy_val, prefix='', decimals=2)}, YoY: {_fmt_pct(dxy_growth)}) aligns with non-stress historical baselines."
             )
 
-    hormuz_daily = chokepoints.get("CHOKE_HORMUZ", {}).get("metrics", {}).get("latest_daily_total", "N/A")
-    hormuz_shift = chokepoints.get("CHOKE_HORMUZ", {}).get("metrics", {}).get("pct_change_vs_2023")
-    hormuz_shift_str = f"{hormuz_shift:+.1f}% vs 2023 Base" if hormuz_shift is not None else "N/A"
-
-    turk_shift = chokepoints.get("CHOKE_TURKISH_STRAITS", {}).get("metrics", {}).get("pct_change_vs_2023")
-    turk_shift_str = f"{turk_shift:+.1f}% vs 2023 Base" if turk_shift is not None else "N/A"
-
-    malacca_daily = chokepoints.get("CHOKE_MALACCA", {}).get("metrics", {}).get("latest_daily_total", "N/A")
-    malacca_shift = chokepoints.get("CHOKE_MALACCA", {}).get("metrics", {}).get("pct_change_vs_2023")
-    malacca_shift_str = f"{malacca_shift:+.1f}% vs 2023 Base" if malacca_shift is not None else "N/A"
-
     # Rule 3 Evaluation: Strategic Passage Paralysis (Multi-Chokepoint AIS Network Disruption)
-    # Evaluates worst-case chokepoint contraction and simultaneous systemic chokepoint failures.
     cp_shifts = {
         "CHOKE_HORMUZ": hormuz_shift,
         "CHOKE_TURKISH_STRAITS": turk_shift,
@@ -626,7 +587,6 @@ def build_sitrep():
         )
 
     # Rule 4 Evaluation: Semiconductor Containment Friction & Intermediary Rerouting
-    # Evaluates Model 25.14 AI Chip Stress score cross-referenced with NY Fed GSCPI logistics pressure.
     c_stress = chip_stress_val if _is_num(chip_stress_val) else 0.0
     gscpi_num = gscpi_val if _is_num(gscpi_val) else 0.0
     cn_mom = tech_matrix.get("us_semiconductor_exports_china_mom_pct")
@@ -659,24 +619,7 @@ def build_sitrep():
                 f"and GSCPI logistics at {_fmt(gscpi_num, prefix='', decimals=2)} Z-Score suggest relatively unencumbered supply distribution."
             )
 
-    # Ingest Model 28.4 & Dyad Relationships for Chokepoint & Tech Bypass
-    m28_4 = models_dict.get("MODEL_28.4", {})
-    m28_4_metrics = m28_4.get("metrics", {})
-    m28_4_inputs = m28_4.get("inputs", {})
-    gross_flow_mbpd = m28_4_inputs.get("gross_flow_mbpd")
-    bypass_buffer_mbpd = m28_4_metrics.get("total_buffer_capacity_mbpd")
-    unmet_deficit_mbpd = m28_4_metrics.get("net_unmet_deficit_mbpd")
-    deficit_ratio = m28_4_metrics.get("net_deficit_ratio")
-    deficit_ratio_pct = (deficit_ratio * 100.0) if _is_num(deficit_ratio) else None
-
-    rel_il_ir = rels_dict.get("IL_IR", {})
-    il_ir_p_net = rel_il_ir.get("p_net")
-
-    rel_us_cn = rels_dict.get("US_CN", {})
-    us_cn_p_base = rel_us_cn.get("p_baseline")
-
     # Rule 5 Evaluation: Overland Pipeline Bypass Capacity Ceiling
-    # Cross-references Model 28.4 net unmet oil deficit with IL_IR geopolitical hostility.
     d_ratio = deficit_ratio_pct if _is_num(deficit_ratio_pct) else 0.0
     il_ir_pol = il_ir_p_net if _is_num(il_ir_p_net) else 0.0
 
@@ -706,7 +649,6 @@ def build_sitrep():
             )
 
     # Rule 6 Evaluation: Secondary Routing Friction & Southeast Asian Hub Congestion
-    # Evaluates Malacca AIS traffic surge vs 2023 base cross-referenced with NY Fed GSCPI logistics pressure and US_CN bilateral friction.
     m_shift = malacca_shift if _is_num(malacca_shift) else 0.0
     u_cn_pol = us_cn_p_base if _is_num(us_cn_p_base) else 0.0
 
@@ -742,7 +684,6 @@ def build_sitrep():
             )
 
     # Rule 7 Evaluation: Precious Metals Sovereign Safe Haven & Monetary Debasement Hedge
-    # Evaluates live The Royal Mint Gold/Silver Ratio cross-referenced with CBOE VIX market fear gauge and US High Yield spread.
     gs_ratio = metals_matrix.get("gold_silver_ratio")
     vix_score = vix_val if _is_num(vix_val) else 0.0
     gold_spot_price = metals_matrix.get("gold_spot_usd_ozt")
@@ -788,6 +729,68 @@ def build_sitrep():
         rule_7_ground_truth = (
             f"Precious metals telemetry indicates spot gold at {_fmt(gold_spot_price)} USD and spot silver at {_fmt(silver_spot_price)} USD."
         )
+
+    # --------------------------------------------------------------------------
+    # 1. TOP SYSTEMIC FLASHES (Data-Derived Zero-Hallucination Event Signals with Causal Vectors)
+    # --------------------------------------------------------------------------
+    flashes = []
+
+    # Priority 1: Multi-Chokepoint AIS Disruption (Rule 3 Sentezi)
+    if worst_drop <= -35.0:
+        flashes.append({
+            "source": "IMF_PORTWATCH_AIS",
+            "entity_id": worst_cp_name,
+            "event": f"CRITICAL_BLOCKADE: {worst_cp_name} traffic down {abs(worst_drop):.1f}% vs baseline (Hormuz: {hormuz_daily} vessels/day). Flow status: CHRONIC_CRISIS_BLOCKADE.",
+            "causal_chain": "MARITIME_CHOKEPOINT_CONTRACTION -> PHYSICAL_TRANSIT_DEFICIT -> OFFSHORE_FREIGHT_SURGE",
+            "systemic_impact": "Physical seaborne commerce increasingly depends on specialized routing and escort protocols; global tanker/container schedules face cascading delays."
+        })
+
+    # Priority 2: Overland Bypass Capacity Ceiling (Rule 5 Sentezi - Strategic Hydrocarbon Deficit)
+    if d_ratio > 50.0 and il_ir_pol <= -0.75:
+        flashes.append({
+            "source": "MODEL_28_4_BYPASS_ENGINE",
+            "entity_id": "CHOKE_HORMUZ",
+            "event": f"STRUCTURAL_BYPASS_CEILING: Overland pipelines ({_fmt(bypass_buffer_mbpd, prefix='', decimals=2)} mbpd buffer) leave {_fmt(unmet_deficit_mbpd, prefix='', decimals=2)} mbpd unmet deficit ({d_ratio:.1f}%) under hostile polarity ({_fmt(il_ir_pol, prefix='', decimals=2)}).",
+            "causal_chain": "MARITIME_FLOW_BLOCKADE -> PIPELINE_THROUGHPUT_LIMIT -> STRUCTURAL_ENERGY_DEFICIT",
+            "systemic_impact": "Overland corridors cannot fully substitute maritime volumes; energy importing economies face persistent structural physical deficit."
+        })
+
+    # Priority 3: Sovereign Monetary Safe-Haven Accumulation (Rule 7 Sentezi - Bullion vs Industrial)
+    if _is_num(gs_ratio) and gs_ratio >= 78.0 and vix_score >= 20.0:
+        flashes.append({
+            "source": "THE_ROYAL_MINT_BENCHMARK",
+            "entity_id": "INST_ROYAL_MINT_UK",
+            "event": f"SOVEREIGN_SAFE_HAVEN_ACCUMULATION: Live Gold/Silver Ratio at {_fmt(gs_ratio, prefix='', decimals=1)} (Gold: {_fmt(gold_spot_price)}, Silver: {_fmt(silver_spot_price)}) with elevated VIX ({_fmt(vix_score, prefix='', decimals=2)}).",
+            "causal_chain": "GEOPOLITICAL_FRICTION -> CURRENCY_DEBASEMENT_HEDGE -> PHYSICAL_BULLION_ACCUMULATION",
+            "systemic_impact": "Sovereign reserve managers and institutional capital prioritize monetary safe-haven assets over cyclical industrial raw materials."
+        })
+
+    # Priority 4: Semiconductor Decoupling Velocity (Rule 4 Sentezi - Hardware Containment)
+    if cn_mom is not None and cn_mom < -5.0:
+        flashes.append({
+            "source": "US_CENSUS_NAICS3344",
+            "entity_id": "GEO_CN",
+            "event": f"TECH_DECOUPLING_VELOCITY: Direct US chip exports to China contracted {cn_mom:.1f}% MoM amid Model 25.14 stress ({_fmt(c_stress, prefix='', decimals=3)}).",
+            "causal_chain": "EXPORT_CONTROL_ENFORCEMENT -> DIRECT_SHIPMENT_CONTRACTION -> INTERMEDIARY_HUB_REROUTING",
+            "systemic_impact": "Global AI hardware capex inflates as procurement routes adapt through secondary Asian transshipment hubs."
+        })
+
+    # Priority 5: Kinetic Thermal Anomaly (NASA FIRMS Primary Theater)
+    for th_id, th in theaters.items():
+        severity = th.get("conflict_severity")
+        frp = th.get("total_radiative_power_mw")
+        name = th.get("name", th_id)
+        if severity == "CRITICAL" or (_is_num(frp) and frp > 1000.0):
+            flashes.append({
+                "source": "NASA_FIRMS_VIIRS",
+                "entity_id": th.get("entity_id", th_id),
+                "event": f"KINETIC_THERMAL_SURGE: {name} orbital detection with {frp:.1f} MW radiative heat (Severity: {severity}).",
+                "causal_chain": "THEATER_MISSILE_ENGAGEMENT -> ASYMMETRIC_INFRASTRUCTURE_RISK -> MARITIME_INSURANCE_SPIKE",
+                "systemic_impact": "Heightened war-risk insurance premiums and potential rerouting away from regional littoral waters."
+            })
+
+    # Ensure top 5 balanced flashes across all dimensions
+    primary_flashes = flashes[:5]
 
     systemic_contagion_rules = [
         {
@@ -904,6 +907,9 @@ def build_sitrep():
 
     for i, flash in enumerate(primary_flashes, 1):
         lines.append(f"FLASH_{i} [{flash['source']} | {flash['entity_id']}]: {flash['event']}")
+        if "causal_chain" in flash and "systemic_impact" in flash:
+            lines.append(f"  - Causal Chain   : {flash['causal_chain']}")
+            lines.append(f"  - Systemic Impact: {flash['systemic_impact']}")
 
     lines.extend([
         "",

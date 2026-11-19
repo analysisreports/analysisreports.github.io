@@ -1,5 +1,5 @@
 # CANONICAL MACRO & GEOPOLITICAL SITUATION REPORT (SITREP)
-> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-19 02:54:42 UTC
+> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-19 03:13:14 UTC
 > Primary Publications: https://www.ersoytoptas.tr (TR) | https://en.ersoytoptas.tr (EN)
 > Ingestion Protocol: Zero Hallucination | Data Completeness: 98.3%
 > Official JSON Twin: https://analysisreports.github.io/llms-sitrep.json
@@ -7,10 +7,21 @@
 ---
 ## 1. TOP SYSTEMIC FLASHES & CRITICAL ANOMALIES (DATA-DERIVED ZERO-HALLUCINATION)
 ---
-FLASH_1 [IMF_PORTWATCH_AIS | CHOKE_TURKISH_STRAITS]: CRITICAL_BLOCKADE: Bosporus Strait traffic down 40.7% vs baseline. Flow status: CHRONIC_CRISIS_BLOCKADE.
-FLASH_2 [IMF_PORTWATCH_AIS | CHOKE_BAB_EL_MANDEB]: CRITICAL_BLOCKADE: Bab el-Mandeb Strait traffic down 35.7% vs baseline. Flow status: CONGESTION_SURGE.
-FLASH_3 [IMF_PORTWATCH_AIS | CHOKE_HORMUZ]: CRITICAL_BLOCKADE: Strait of Hormuz traffic down 97.8% vs baseline. Flow status: CHRONIC_CRISIS_BLOCKADE.
-FLASH_4 [NASA_FIRMS_VIIRS | GEO_IR]: KINETIC_THERMAL_SURGE: Islamic Republic of Iran & Gulf Littoral active satellite detection with 2625.0 MW radiative heat (Severity: CRITICAL).
+FLASH_1 [IMF_PORTWATCH_AIS | CHOKE_HORMUZ]: CRITICAL_BLOCKADE: CHOKE_HORMUZ traffic down 97.8% vs baseline (Hormuz: 2 vessels/day). Flow status: CHRONIC_CRISIS_BLOCKADE.
+  - Causal Chain   : MARITIME_CHOKEPOINT_CONTRACTION -> PHYSICAL_TRANSIT_DEFICIT -> OFFSHORE_FREIGHT_SURGE
+  - Systemic Impact: Physical seaborne commerce increasingly depends on specialized routing and escort protocols; global tanker/container schedules face cascading delays.
+FLASH_2 [MODEL_28_4_BYPASS_ENGINE | CHOKE_HORMUZ]: STRUCTURAL_BYPASS_CEILING: Overland pipelines (7.14 mbpd buffer) leave 13.36 mbpd unmet deficit (65.2%) under hostile polarity (-0.87).
+  - Causal Chain   : MARITIME_FLOW_BLOCKADE -> PIPELINE_THROUGHPUT_LIMIT -> STRUCTURAL_ENERGY_DEFICIT
+  - Systemic Impact: Overland corridors cannot fully substitute maritime volumes; energy importing economies face persistent structural physical deficit.
+FLASH_3 [THE_ROYAL_MINT_BENCHMARK | INST_ROYAL_MINT_UK]: SOVEREIGN_SAFE_HAVEN_ACCUMULATION: Live Gold/Silver Ratio at 82.2 (Gold: $3,750.60, Silver: $45.61) with elevated VIX (22.91).
+  - Causal Chain   : GEOPOLITICAL_FRICTION -> CURRENCY_DEBASEMENT_HEDGE -> PHYSICAL_BULLION_ACCUMULATION
+  - Systemic Impact: Sovereign reserve managers and institutional capital prioritize monetary safe-haven assets over cyclical industrial raw materials.
+FLASH_4 [US_CENSUS_NAICS3344 | GEO_CN]: TECH_DECOUPLING_VELOCITY: Direct US chip exports to China contracted -8.4% MoM amid Model 25.14 stress (0.524).
+  - Causal Chain   : EXPORT_CONTROL_ENFORCEMENT -> DIRECT_SHIPMENT_CONTRACTION -> INTERMEDIARY_HUB_REROUTING
+  - Systemic Impact: Global AI hardware capex inflates as procurement routes adapt through secondary Asian transshipment hubs.
+FLASH_5 [NASA_FIRMS_VIIRS | GEO_IR]: KINETIC_THERMAL_SURGE: Islamic Republic of Iran & Gulf Littoral orbital detection with 2625.0 MW radiative heat (Severity: CRITICAL).
+  - Causal Chain   : THEATER_MISSILE_ENGAGEMENT -> ASYMMETRIC_INFRASTRUCTURE_RISK -> MARITIME_INSURANCE_SPIKE
+  - Systemic Impact: Heightened war-risk insurance premiums and potential rerouting away from regional littoral waters.
 
 ---
 ## 2. ENERGY SECTOR MATRIX (HYDROCARBONS, REFINERY & STRATEGIC RESERVES)

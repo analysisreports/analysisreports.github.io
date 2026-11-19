@@ -113,6 +113,14 @@
           },
           "event": {
             "type": "string"
+          },
+          "causal_chain": {
+            "type": "string",
+            "description": "Deterministic transmission vector sequence (A -> B -> C)."
+          },
+          "systemic_impact": {
+            "type": "string",
+            "description": "Cross-asset institutional and macroeconomic consequence."
           }
         }
       }
