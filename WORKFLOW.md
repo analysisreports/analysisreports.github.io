@@ -60,6 +60,7 @@ The following manifest files must remain stable to prevent semantic cache invali
 - `llms-imf-series.txt` & `llms-imf-series.json`: Monitored International Monetary Fund time-series registry and automated transformation engine.
 - `llms-models-bridge.txt`: Advanced macroeconomic model linkages, chokepoint spillovers, and geopolitical shock transmissions.
 - `llms-sitrep.txt` & `llms-sitrep.json`: Live consolidated Situation Report (SITREP) synthesizing energy, high-tech, precious metals, chokepoints, satellite kinetic anomalies, and central bank transmission.
+- `llms-news.txt` & `llms-news.json`: Live consolidated Tier-1 geopolitical and macroeconomic news telemetry synthesized across accredited wire services, entity-linked via `llms-entities-id.txt`, and filtered by the Media Manipulation & Political Noise Rejection Protocol.
 - `llms-relationships.json`: Dynamic geopolitical polarity and active regime state machine twin.
 - `llms-models.json`: Real-time evaluated macroeconomic models and quantitative regime twin.
 - `ai-catalog.json`: Dataset discovery registry; updated automatically via the daily GitHub Actions heartbeat workflow.
@@ -74,6 +75,7 @@ The following manifest files must remain stable to prevent semantic cache invali
 - [ ] **Series Identity:** Does every FRED/BLS/ECB/WB/IMF series key in `llms-formulas.txt` match the exact string key in `llms-indicators.txt` and corresponding series registries?
 - [ ] **Graph Integrity:** Does every source and target in `llms-graph.json` `"edges"` correspond to an existing `"id"` in `"nodes"`?
 - [ ] **Dual-Twin Parity:** Are the dynamic tables in `llms-relationships.txt` and `llms-relationships.json` perfectly synchronized?
+- [ ] **News Telemetry Dual-Twin Parity:** Are `llms-news.json` and `llms-news.txt` synchronized with 100% canonical entity IDs and zero URL token bloat?
 
 ### Automated Change-Completeness Gate
 

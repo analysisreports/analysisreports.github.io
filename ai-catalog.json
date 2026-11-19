@@ -592,6 +592,18 @@
         "type": "none"
       },
       "description": "Consolidated high-density Situation Report (SITREP) synthesizing real-time energy, semiconductor trade, precious metals, PortWatch chokepoint transits, NASA FIRMS satellite kinetic heat, and central bank liquidity."
+    },
+    {
+      "id": "llms-news",
+      "name": "Autonomous Geopolitical & Macroeconomic News Telemetry",
+      "type": "dataset",
+      "format": "application/json",
+      "url": "https://analysisreports.github.io/llms-news.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-news.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Live consolidated Tier-1 geopolitical and macroeconomic news telemetry synthesized across accredited wire services, entity-linked via llms-entities-id.txt, and filtered by the Media Manipulation & Political Noise Rejection Protocol."
     }
   ],
   "capabilities": {
