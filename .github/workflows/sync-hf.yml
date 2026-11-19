@@ -16,6 +16,38 @@ jobs:
       - name: Install Hugging Face Hub
         run: pip install huggingface_hub
 
+      - name: Ensure Valid Hugging Face YAML in README.md
+        run: |
+          python -c "
+          with open('README.md', 'r', encoding='utf-8') as f:
+              content = f.read().lstrip()
+
+          if not content.startswith('---'):
+              yaml_header = '''---
+          language:
+            - en
+            - tr
+          license: other
+          license_name: cc-by-nc-nd-4.0
+          license_link: LICENSE.md
+          task_categories:
+            - text-generation
+          tags:
+            - macroeconomics
+            - geopolitics
+            - knowledge-graph
+            - llm-context
+            - quantitative-finance
+          pretty_name: Analysis Reports
+          ---
+
+          '''
+              # Girintileri temizle
+              yaml_header = '\n'.join(line[10:] if line.startswith('          ') else line for line in yaml_header.splitlines()) + '\n'
+              with open('README.md', 'w', encoding='utf-8') as f:
+                  f.write(yaml_header + content)
+          "
+
       - name: Upload Clean Dataset Structure to Hugging Face
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
