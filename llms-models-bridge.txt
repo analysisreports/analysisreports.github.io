@@ -227,3 +227,15 @@
 - Primary Geopolitical Vector: Maritime blockade and Persian Gulf transit interdiction at Strait of Hormuz.
 - Actor Coupling: Bilateral polarity tension (P_net = -0.95), regional bypass pipelines, live EIA Strategic Petroleum Reserve (SPR) drawdown capacity.
 - Transmission Linkage: Couples 20.5 mbpd gross transit exposure with live EIA SPR inventories (282.18 mbbl -> 3.14 mbpd sustainable drawdown rate) and US field production (14.0 mbpd) through an S-curve crisis duration multiplier to evaluate net macroeconomic price and supply shock transmission.
+
+### 8.18. Broad Dollar Shortage & Offshore Liquidity Strain Engine (Model 25.20)
+
+8.18.1. MODEL_25.20_BROAD_DOLLAR_SHORTAGE
+- Target Formula: llms-formulas.txt -> Model 25.20 (calculate_broad_dollar_shortage)
+- Entities Coupled: GEO_US, GEO_IR, CHOKE_HORMUZ (llms-entities-id.txt)
+- Data Series Triggered: DTWEXBGS, SOFR, DFF, PortWatch CHOKE_HORMUZ AIS Contraction
+- Status Enums: ACUTE_OFFSHORE_DOLLAR_DRAIN | LATENT_LIQUIDITY_STRAIN | BENIGN_GLOBAL_LIQUIDITY
+- Primary Geopolitical Vector: Persian Gulf and maritime chokepoint bottlenecks forcing global energy and freight cash settlements into immediate offshore USD conversion.
+- Actor Coupling: US Federal Reserve domestic repo transmission vs. non-reserve Emerging Market FX vulnerability; US-Iran maritime confrontation and Red Sea transit friction.
+- Transmission Linkage: Bypasses headline DXY Euro-skew by coupling the 26-economy Trade-Weighted Broad Dollar Index (DTWEXBGS) with secured funding repo spreads (SOFR - DFF) and real-time IMF PortWatch AIS transit drops; signals covert offshore dollar drain and cross-border trade finance stress.
+

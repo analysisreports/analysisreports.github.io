@@ -8,11 +8,11 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-models.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-19T05:17:45.495548+00:00",
+    "last_updated": "2026-11-19T23:14:35.007909+00:00",
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-19T05:17:45.495548+00:00",
+    "last_successful_sync": "2026-11-19T23:14:35.007909+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -22,7 +22,7 @@
       "U.S. Energy Information Administration (EIA)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 45
+    "total_models_active": 46
   },
   "models": [
     {
@@ -832,6 +832,32 @@
         "net_buffer": 7.9094
       },
       "interpretation": "Monitors cross-currency Yen Carry Trade buffer, unwinding risk, and global leverage liquidation shocks."
+    },
+    {
+      "model_id": "MODEL_25.20",
+      "model_name": "Broad Dollar Shortage & Offshore Liquidity Strain Index (BDSI)",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#25.20",
+      "primary_value": 0.5098,
+      "unit": "Index [0.0 - 1.0]",
+      "status": "LATENT_LIQUIDITY_STRAIN",
+      "inputs": {
+        "broad_dollar_yoy_pct": 1.76,
+        "sofr_rate": 3.92,
+        "dff_rate": 3.88,
+        "hormuz_drop_pct": -97.8
+      },
+      "components": {
+        "broad_dollar_expansion_score": 0.3516,
+        "sofr_dff_spread_bps": 4.0,
+        "chokepoint_shock_score": 0.978,
+        "bdsi_score": 0.5098
+      },
+      "metrics": {
+        "broad_dollar_yoy": 1.76,
+        "sofr_spread_bps": 4.0,
+        "hormuz_drop_pct": -97.8
+      },
+      "interpretation": "Detects covert offshore USD scarcity via Trade-Weighted Broad Dollar, secured repo spread (SOFR-EFFR), and maritime energy flow shock."
     },
     {
       "model_id": "MODEL_25.18",

@@ -851,8 +851,8 @@ def build_sitrep():
         {
             "rule_id": "RULE_2_OFFSHORE_DOLLAR_SHORTAGE",
             "domain": "macro_liquidity",
-            "formula_link": "https://analysisreports.github.io/llms-formulas.txt#0.2.2",
-            "telemetry_signal": f"FED_BROAD_DOLLAR: {_fmt(dxy_val, prefix='', decimals=2)} (YoY: {_fmt_pct(dxy_yoy)}) | SOFR_EFFR_SPREAD: {_fmt(sofr_fedfunds_spread_bps, prefix='', suffix=' bps')}",
+            "formula_link": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#25.20",
+            "telemetry_signal": f"MODEL_25_20_BDSI: {_fmt(models_dict.get('MODEL_25.20', {}).get('primary_value'), prefix='', decimals=3)} ({models_dict.get('MODEL_25.20', {}).get('status', 'LATENT_LIQUIDITY_STRAIN')}) | FED_BROAD_DOLLAR: {_fmt(dxy_val, prefix='', decimals=2)} (YoY: {_fmt_pct(dxy_yoy)}) | SOFR_EFFR_SPREAD: {_fmt(sofr_fedfunds_spread_bps, prefix='', suffix=' bps')}",
             "media_claim_bias": "Market summaries frequently interpret headline 6-currency DXY movements as reflecting neutral broader dollar conditions.",
             "ground_truth_reality": rule_2_ground_truth
         },

@@ -12,7 +12,7 @@
 > Editorial Frontends: https://www.ersoytoptas.tr/ | https://en.ersoytoptas.tr/
 > Shelf Scope: Central bank policy stances, yield curve slopes, repo liquidity friction, credit spreads, carry trades, and committee dispersion.
 > Zero-Fallback Directive: Strict deterministic execution. Missing or non-finite inputs strictly return None (null).
-> Models Contained: 16 Domain Models (1, 2, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 25.5, 25.16, 26)
+> Models Contained: 17 Domain Models (1, 2, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 25.5, 25.16, 25.20, 26)
 
 ---
 
@@ -733,6 +733,67 @@ def _is_num(val):
   - status == MANAGED_TIGHTENING : BoJ normalizes policy in a controlled manner; currency volatility absorbed within manageable bounds.
   - status == CALM_ACCUMULATION : Wide interest rate margin and stable/weak Yen; global carry trade funding flows uninterrupted.
 
+---
+
+### 25.20. BROAD DOLLAR SHORTAGE & OFFSHORE LIQUIDITY STRAIN INDEX (BDSI)
+- Purpose: Detects covert offshore US Dollar scarcity when headline DXY appears calm, by combining Trade-Weighted Broad Dollar expansion, secured funding spread anomalies (SOFR vs Fed Funds), and maritime energy chokepoint disruptions.
+- Target: economy.json, llms-models.json -> MODEL_25.20_BROAD_DOLLAR_SHORTAGE
+- Frequency: Daily (Business Day)
+- Canonical Input Series:
+  - IND_DTWEXBGS : Nominal Broad U.S. Dollar Index (Trade-Weighted, 26 economies, Jan 2006=100)
+  - IND_SOFR     : Secured Overnight Financing Rate (Benchmark Secured Repo Rate, %)
+  - IND_DFF      : Federal Funds Effective Rate (Overnight Unsecured Rate, %)
+  - CHOKE_HORMUZ : Strait of Hormuz Daily AIS Transit Contraction (%) via IMF PortWatch
+- Mathematical Formulation:
+  1. Broad Dollar Expansion Signal:
+     S_broad = clamp((Broad_Dollar_YoY_pct - 0.0) / 5.0, 0.0, 1.0)
+  2. Secured Funding Friction Spread:
+     Spread_repo_bps = (SOFR - DFF) * 100.0
+     S_repo = clamp(Spread_repo_bps / 15.0, 0.0, 1.0)
+  3. Energy Chokepoint Disruption Shock:
+     S_choke = clamp(abs(Hormuz_AIS_drop_pct) / 100.0, 0.0, 1.0)
+  4. Composite Strain Index (BDSI):
+     BDSI = (0.35 * S_broad) + (0.35 * S_repo) + (0.30 * S_choke)
+- Machine-Executable Logic (Python):
+  def calculate_broad_dollar_shortage(broad_dollar_yoy_pct, sofr_rate, dff_rate, hormuz_drop_pct):
+      if any(v is None or isinstance(v, bool) for v in (broad_dollar_yoy_pct, sofr_rate, dff_rate, hormuz_drop_pct)):
+          return None
+      try:
+          yoy = float(broad_dollar_yoy_pct)
+          sofr = float(sofr_rate)
+          dff = float(dff_rate)
+          choke = float(hormuz_drop_pct)
+          if not (math.isfinite(yoy) and math.isfinite(sofr) and math.isfinite(dff) and math.isfinite(choke)):
+              return None
+          
+          s_broad = max(0.0, min(1.0, yoy / 5.0))
+          spread_bps = round((sofr - dff) * 100.0, 2)
+          s_repo = max(0.0, min(1.0, spread_bps / 15.0))
+          s_choke = max(0.0, min(1.0, abs(choke) / 100.0))
+          
+          bdsi = round(0.35 * s_broad + 0.35 * s_repo + 0.30 * s_choke, 4)
+          
+          if bdsi >= 0.65 or (s_repo >= 0.60 and s_choke >= 0.70):
+              status = "ACUTE_OFFSHORE_DOLLAR_DRAIN"
+          elif bdsi >= 0.35 or s_repo > 0.0:
+              status = "LATENT_LIQUIDITY_STRAIN"
+          else:
+              status = "BENIGN_GLOBAL_LIQUIDITY"
+              
+          return {
+              "model_id": "MODEL_25.20_BROAD_DOLLAR_SHORTAGE",
+              "bdsi_score": bdsi,
+              "sofr_dff_spread_bps": spread_bps,
+              "broad_dollar_expansion_score": round(s_broad, 4),
+              "chokepoint_shock_score": round(s_choke, 4),
+              "status": status
+          }
+      except (TypeError, ValueError, OverflowError):
+          return None
+- Interpretation:
+  - status == ACUTE_OFFSHORE_DOLLAR_DRAIN : Severe offshore USD funding crisis; energy chokepoint collapse forces dollar hoarding while repo spreads blow out; emerging market currencies and cross-border bank credit face immediate rollover shock.
+  - status == LATENT_LIQUIDITY_STRAIN : Headline DXY remains range-bound, but positive repo friction (SOFR > DFF) or broad dollar momentum signals emerging stress in offshore trade finance.
+  - status == BENIGN_GLOBAL_LIQUIDITY : Repo funding clears smoothly, broad dollar is stable, and maritime corridors operate without systemic dollar bottlenecks.
 
 ---
 

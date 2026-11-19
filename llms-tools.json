@@ -862,8 +862,8 @@
             },
             "dynamic_delta": {
               "type": "number",
-              "minimum": -0.20,
-              "maximum": 0.20,
+              "minimum": -0.2,
+              "maximum": 0.2,
               "description": "Event-driven tension or alignment shock clamped to [-0.20, 0.20] from Model 25.19."
             },
             "conflict_severity": {
@@ -1969,6 +1969,40 @@
               "description": "Optional canonical entity ID (e.g. 'GEO_IR', 'GEO_RU', 'GEO_US', 'GEO_CN', 'GEO_IL', 'CHOKE_HORMUZ', 'INST_FED_US'). If omitted, retrieves all top active dispatches."
             }
           }
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calculate_broad_dollar_shortage",
+        "description": "Calculates Broad Dollar Shortage & Offshore Liquidity Strain Index (BDSI / Model 25.20) evaluating covert global USD scarcity via Broad Dollar YoY, SOFR-EFFR repo spread, and maritime energy chokepoint shocks.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "broad_dollar_yoy_pct": {
+              "type": "number",
+              "description": "Nominal Broad U.S. Dollar Index (IND_DTWEXBGS) YoY percentage change (e.g., 1.76)"
+            },
+            "sofr_rate": {
+              "type": "number",
+              "description": "Secured Overnight Financing Rate (IND_SOFR) in percent (e.g., 3.92)"
+            },
+            "dff_rate": {
+              "type": "number",
+              "description": "Federal Funds Effective Rate (IND_DFF) in percent (e.g., 3.88)"
+            },
+            "hormuz_drop_pct": {
+              "type": "number",
+              "description": "Strait of Hormuz (CHOKE_HORMUZ) daily AIS transit contraction vs 2023 baseline in percent (e.g., -97.8)"
+            }
+          },
+          "required": [
+            "broad_dollar_yoy_pct",
+            "sofr_rate",
+            "dff_rate",
+            "hormuz_drop_pct"
+          ]
         }
       }
     }

@@ -1486,6 +1486,27 @@
         "source": "IMF / FRED",
         "units": "Normalized Shock Vector"
       }
+    },
+    {
+      "id": "MODEL_25.20",
+      "label": "Broad Dollar Shortage & Offshore Liquidity Strain Index (BDSI)",
+      "category": "MODEL",
+      "type": "Macroeconomic Liquidity Strain Model",
+      "attributes": {
+        "target_regimes": [
+          "BENIGN_GLOBAL_LIQUIDITY",
+          "LATENT_LIQUIDITY_STRAIN",
+          "ACUTE_OFFSHORE_DOLLAR_DRAIN"
+        ],
+        "jurisdiction": "GEO_US",
+        "function": "calculate_broad_dollar_shortage",
+        "formula": "BDSI = 0.35*S_broad + 0.35*S_repo + 0.30*S_choke",
+        "status_enums": [
+          "BENIGN_GLOBAL_LIQUIDITY",
+          "LATENT_LIQUIDITY_STRAIN",
+          "ACUTE_OFFSHORE_DOLLAR_DRAIN"
+        ]
+      }
     }
   ],
   "edges": [
@@ -2322,6 +2343,38 @@
       "target": "MODEL_25.19",
       "type": "INGESTS_SERIES",
       "role": "corn_price_shock"
+    },
+    {
+      "source": "IND_DTWEXBGS",
+      "target": "MODEL_25.20",
+      "relation": "INGESTS_SERIES",
+      "attributes": {
+        "role": "Broad Dollar YoY Expansion Signal"
+      }
+    },
+    {
+      "source": "IND_SOFR",
+      "target": "MODEL_25.20",
+      "relation": "INGESTS_SERIES",
+      "attributes": {
+        "role": "Benchmark Secured Repo Rate"
+      }
+    },
+    {
+      "source": "IND_DFF",
+      "target": "MODEL_25.20",
+      "relation": "INGESTS_SERIES",
+      "attributes": {
+        "role": "Federal Funds Effective Rate"
+      }
+    },
+    {
+      "source": "CHOKE_HORMUZ",
+      "target": "MODEL_25.20",
+      "relation": "INGESTS_SERIES",
+      "attributes": {
+        "role": "Energy Chokepoint Transit Contraction"
+      }
     }
   ],
   "metadata": {

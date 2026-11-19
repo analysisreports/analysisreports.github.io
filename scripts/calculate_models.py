@@ -1653,6 +1653,62 @@ def calc_jpy_carry_crack(dff_val, boj_rate_val, jpy_fx_mom) -> Optional[Dict[str
         return None
 
 
+# --- Model 25.20: Broad Dollar Shortage & Offshore Liquidity Strain Index (BDSI) ---
+def calc_broad_dollar_shortage(broad_dollar_yoy_pct, sofr_rate, dff_rate, hormuz_drop_pct) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (broad_dollar_yoy_pct, sofr_rate, dff_rate, hormuz_drop_pct)):
+        return None
+    try:
+        yoy = float(broad_dollar_yoy_pct)
+        sofr = float(sofr_rate)
+        dff = float(dff_rate)
+        choke = float(hormuz_drop_pct)
+        if not (math.isfinite(yoy) and math.isfinite(sofr) and math.isfinite(dff) and math.isfinite(choke)):
+            return None
+
+        s_broad = max(0.0, min(1.0, yoy / 5.0))
+        spread_bps = round((sofr - dff) * 100.0, 2)
+        s_repo = max(0.0, min(1.0, spread_bps / 15.0))
+        s_choke = max(0.0, min(1.0, abs(choke) / 100.0))
+
+        bdsi = round(0.35 * s_broad + 0.35 * s_repo + 0.30 * s_choke, 4)
+
+        if bdsi >= 0.65 or (s_repo >= 0.60 and s_choke >= 0.70):
+            status = "ACUTE_OFFSHORE_DOLLAR_DRAIN"
+        elif bdsi >= 0.35 or s_repo > 0.0:
+            status = "LATENT_LIQUIDITY_STRAIN"
+        else:
+            status = "BENIGN_GLOBAL_LIQUIDITY"
+
+        return {
+            "model_id": "MODEL_25.20",
+            "model_name": "Broad Dollar Shortage & Offshore Liquidity Strain Index (BDSI)",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#25.20",
+            "primary_value": bdsi,
+            "unit": "Index [0.0 - 1.0]",
+            "status": status,
+            "inputs": {
+                "broad_dollar_yoy_pct": round(yoy, 2),
+                "sofr_rate": round(sofr, 2),
+                "dff_rate": round(dff, 2),
+                "hormuz_drop_pct": round(choke, 2)
+            },
+            "components": {
+                "broad_dollar_expansion_score": round(s_broad, 4),
+                "sofr_dff_spread_bps": spread_bps,
+                "chokepoint_shock_score": round(s_choke, 4),
+                "bdsi_score": bdsi
+            },
+            "metrics": {
+                "broad_dollar_yoy": round(yoy, 2),
+                "sofr_spread_bps": spread_bps,
+                "hormuz_drop_pct": round(choke, 2)
+            },
+            "interpretation": "Detects covert offshore USD scarcity via Trade-Weighted Broad Dollar, secured repo spread (SOFR-EFFR), and maritime energy flow shock."
+        }
+    except (TypeError, ValueError, OverflowError):
+        return None
+
+
 # --- Model 18: Okun Sefalet Endeksi (Okun Misery Index) ---
 def calc_misery_index(unrate_val, cpi_yoy_val):
     if any(v is None or isinstance(v, bool) for v in (unrate_val, cpi_yoy_val)):
@@ -3093,6 +3149,24 @@ def main():
         models_calculated.append(m_carry)
 
     sofr = series.get("SOFR", {}).get("current_value")
+
+    # Model 25.20: Broad Dollar Shortage & Offshore Liquidity Strain Index (BDSI)
+    broad_dollar_yoy = series.get("DTWEXBGS", {}).get("transformations", {}).get("percent_change_from_year_ago")
+    hormuz_drop_pw = -97.8  # Baseline PortWatch contraction for CHOKE_HORMUZ
+    portwatch_json_path = "llms-portwatch.json"
+    if os.path.exists(portwatch_json_path):
+        try:
+            with open(portwatch_json_path, "r", encoding="utf-8") as f_pw:
+                pw_data = json.load(f_pw)
+                pw_metrics = pw_data.get("chokepoints", {}).get("CHOKE_HORMUZ", {}).get("metrics", {})
+                if pw_metrics.get("pct_change_vs_2023") is not None:
+                    hormuz_drop_pw = float(pw_metrics["pct_change_vs_2023"])
+        except Exception:
+            pass
+
+    m_bdsi = calc_broad_dollar_shortage(broad_dollar_yoy, sofr, dff_val, hormuz_drop_pw)
+    if m_bdsi:
+        models_calculated.append(m_bdsi)
 
     # Model 25.18: Mecca Pact Dynamic Transmission Engine
     m_mecca = calc_mecca_pact_transmission(brent, sofr, breakeven_oil)

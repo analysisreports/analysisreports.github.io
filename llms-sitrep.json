@@ -9,7 +9,7 @@
     "endpoint": "https://analysisreports.github.io/llms-sitrep.json",
     "text_endpoint": "https://analysisreports.github.io/llms-sitrep.txt",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-19T21:15:27Z",
+    "last_updated": "2026-11-19T23:19:22Z",
     "sync_status": "SUCCESS",
     "data_completeness_pct": 98.3,
     "disclaimer": "The information, interpretations, and estimates contained herein do not constitute investment advice. All responsibility for decisions belongs solely to the user.",
@@ -192,8 +192,8 @@
     {
       "rule_id": "RULE_2_OFFSHORE_DOLLAR_SHORTAGE",
       "domain": "macro_liquidity",
-      "formula_link": "https://analysisreports.github.io/llms-formulas.txt#0.2.2",
-      "telemetry_signal": "FED_BROAD_DOLLAR: 122.65 (YoY: +1.76%) | SOFR_EFFR_SPREAD: 4.00 bps",
+      "formula_link": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#25.20",
+      "telemetry_signal": "MODEL_25_20_BDSI: 0.510 (LATENT_LIQUIDITY_STRAIN) | FED_BROAD_DOLLAR: 122.65 (YoY: +1.76%) | SOFR_EFFR_SPREAD: 4.00 bps",
       "media_claim_bias": "Market summaries frequently interpret headline 6-currency DXY movements as reflecting neutral broader dollar conditions.",
       "ground_truth_reality": "Liquidity indicators remain in balanced territory; SOFR-EFFR spread is moderate (4.00 bps) and Fed Broad Dollar index (122.65, YoY: +1.76%) aligns with non-stress historical baselines."
     },
