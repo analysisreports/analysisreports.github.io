@@ -39,6 +39,7 @@ jobs:
             - llm-context
             - quantitative-finance
           pretty_name: Analysis Reports
+          viewer: false
           ---
 
           '''
