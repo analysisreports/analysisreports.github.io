@@ -1,5 +1,5 @@
 {
-  "": "https://agenticresourcediscovery.org/spec/v1/schema.json",
+  "$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
   "agent_protocol_version": "1.0.0",
   "name": "Ersoy Toptaş Strategic Macro & Geopolitical Research Agent Node",
   "description": "Autonomous A2A agent interface and structured knowledge base modeling global macroeconomics, monetary policies, geopolitical risk, and bilateral dyads.",
