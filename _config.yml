@@ -2,3 +2,5 @@ theme: jekyll-theme-minimal
 title: Ersoy Toptaş
 url: "https://analysisreports.github.io"
 description: "Machine-readable macroeconomic research, quantitative models, and data frameworks on global markets, central bank policy, and geopolitical risk."
+include:
+  - .well-known
