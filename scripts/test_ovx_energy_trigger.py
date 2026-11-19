@@ -90,10 +90,16 @@ class OvxEnergyTriggerTests(unittest.TestCase):
             fred_data = json.loads(fred_path.read_text(encoding="utf-8"))
             for key, entry in sample_series().items():
                 fred_data["series"][key].update(entry)
-            for key, current in (("PWHEAMTUSDM", 120), ("PMAIZMTUSDM", 110)):
+            for key, (cur, prev, y_cur, y_prev) in {
+                "PWHEAMTUSDM": (120, 100, "2026-09-01", "2025-09-01"),
+                "PMAIZMTUSDM": (110, 100, "2026-09-01", "2025-09-01"),
+                "DCOILBRENTEU": (92.14, 65.44, "2026-11-11", "2025-10-31"),
+                "DCOILWTICO": (89.62, 60.97, "2026-11-11", "2025-10-28"),
+                "DHHNGSP": (3.0, 3.0, "2026-11-11", "2025-10-28"),
+            }.items():
                 fred_data["series"][key].update(
-                    current_value=current, year_ago_value=100,
-                    last_date="2026-09-01", year_ago_date="2025-09-01",
+                    current_value=cur, year_ago_value=prev,
+                    last_date=y_cur, year_ago_date=y_prev,
                 )
             fred_data["series"]["NASDAQSOX"]["last_date"] = sample_series()["VIXCLS"]["last_date"]
             fred_path.write_text(json.dumps(fred_data), encoding="utf-8")
