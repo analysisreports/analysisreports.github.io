@@ -9,7 +9,7 @@
     "endpoint": "https://analysisreports.github.io/llms-news.json",
     "text_endpoint": "https://analysisreports.github.io/llms-news.txt",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-19T19:00:01Z",
+    "last_updated": "2026-11-19T19:43:15Z",
     "total_dispatches": 8,
     "ingestion_protocol": "Tier-1 Institutional Whitelist Only",
     "disclaimer": "Media narratives are recorded strictly as telemetry signals and methodologically cross-checked against official state pacts and physical sensor records."
@@ -24,34 +24,51 @@
       "headline": "See How Ukraine Hit Putin’s Showpiece Bridge",
       "published_utc": "2026-11-18T17:15:00Z",
       "event_severity": "CRITICAL",
+      "institutional_status": "TELEMETRY_CORROBORATED",
       "source_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPQW91X0JWZ3EzUlNCVHl3N0VHVV8wWkYyXzJvRXB4ZVA3RFRxZWZjVF96akJjc0FyZW41OE1Xdkl2eFMzSTR6ek5RTVRORWgyQjZoY3FmVnJEZ2MxZ3o1ME1WdXhEQVJtNW94enplSl94aGJDZFBrN3VVbVdIZ2R3Nm9wU2I?oc=5",
       "dispatch_id": "DISPATCH_20261119_01"
-    },
-    {
-      "primary_entity": "GEO_IL",
-      "related_entities": [
-        "GEO_IL",
-        "GEO_IR"
-      ],
-      "source_authority": "AP News",
-      "headline": "Mideast nations ramp up efforts to avert all-out war as Israel urges Iran strikes, officials say",
-      "published_utc": "2026-11-19T01:16:00Z",
-      "event_severity": "CRITICAL",
-      "source_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQVkpMQk5Ha1FZNG45Vmt6WWxWeUtMS3lSU0hON0F0b0ItSHlWY0NnUHFyQ1JTWFBPSWViZTFVZHpKNWI3V3R1TjM0b25HWTNEZGZ2Q1ItZG5hdXNGcG03M3FjZlJKNmE5SC1lYTJERmRETERvdGJOUGlsMG9pQjVVU2dEWkJxOEY2eXJYd1RtVmNlN2pIcGlLcHJlaw?oc=5",
-      "dispatch_id": "DISPATCH_20261119_02"
     },
     {
       "primary_entity": "GEO_IR",
       "related_entities": [
         "GEO_IR",
-        "CHOKE_HORMUZ"
+        "GEO_IL"
+      ],
+      "source_authority": "AP News",
+      "headline": "Mideast nations ramp up efforts to avert all-out war as Israel urges Iran strikes, officials say",
+      "published_utc": "2026-11-19T01:16:00Z",
+      "event_severity": "CRITICAL",
+      "institutional_status": "MONITORING_TELEMETRY",
+      "source_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQVkpMQk5Ha1FZNG45Vmt6WWxWeUtMS3lSU0hON0F0b0ItSHlWY0NnUHFyQ1JTWFBPSWViZTFVZHpKNWI3V3R1TjM0b25HWTNEZGZ2Q1ItZG5hdXNGcG03M3FjZlJKNmE5SC1lYTJERmRETERvdGJOUGlsMG9pQjVVU2dEWkJxOEY2eXJYd1RtVmNlN2pIcGlLcHJlaw?oc=5",
+      "dispatch_id": "DISPATCH_20261119_02"
+    },
+    {
+      "primary_entity": "CHOKE_HORMUZ",
+      "related_entities": [
+        "CHOKE_HORMUZ",
+        "GEO_IR"
       ],
       "source_authority": "WSJ",
       "headline": "The Iran War Could Permanently Slash Reliance on Hormuz, IEA Says",
       "published_utc": "2026-11-19T05:55:00Z",
       "event_severity": "CRITICAL",
+      "institutional_status": "TELEMETRY_CORROBORATED",
       "source_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxONkRNTmVJRC1mZzYtOE1lWkpzLUYybFdUbTdtRmItWjJCZFBlMXpNQkJ5cDdpX3Z0dlp3MFhaOTFCU1Rmczg1MWs1SUhOY3B1cVp5UDlQM0ZkQ3dWd2dsZldjdWo4cHQyQk5CWDZkWHlkRGp5RmJrNm5NSWRyZEJNLTlsVHhSbWd5akdWNVNzVlNUSGRFNVVtcHJDOVRSbWxScFJGWmFjdWx5ZkQyejhTNWxYYw?oc=5",
       "dispatch_id": "DISPATCH_20261119_03"
+    },
+    {
+      "primary_entity": "GEO_US",
+      "related_entities": [
+        "GEO_US",
+        "GEO_IR"
+      ],
+      "source_authority": "Al Jazeera",
+      "headline": "‘Too early’ to determine impact of US blockade on Iran, with Tehran defiant",
+      "published_utc": "2026-11-19T07:19:41Z",
+      "event_severity": "CRITICAL",
+      "institutional_status": "MONITORING_TELEMETRY",
+      "source_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNR0tDOEoxcE1oTWlVYnFZX2w3SXQ4UHY5ZGM5NUhiOVNiblhqMm1ZblFiWFF4YTVPM0RaZURuMjFkNjNFOHRiaDExTGtFZEJrN0tMR0EycjdieDZCRHRPTFdvVDlqSE4wMnYzbl83TkJvRE11bWRtdVU3a1RWLXdwdzhyRXhmVndmU0ZHZ3NJLWowdWh1QVA3TkJyS0RfdnV1SFRRQlNCR3lGSnplWXVmUWgzMWfSAboBQVVfeXFMTU1hWUtoLVAyQ3VmUW1hVDJRRUxjYXRyODAzY2RrdWR0SnE2a09VMDROQjRfdUc3azJSU0R2djhtdTAyb0hwTHREMFZjcURxTDlyMHVKZjBlcDdYbzNtOTFCdzNadnZhZ3VjUV9tVmlDcUJvWVJNNU1xa3puRzVXVVZHNmhiSmhBai14WWQzbWpIVHJQVXIyVWlBaDVIWElzeDNmUVdDMTRuYmFNTzdUMVBSNDBXRkxaX0Jn?oc=5",
+      "dispatch_id": "DISPATCH_20261119_04"
     },
     {
       "primary_entity": "GEO_RU",
@@ -62,8 +79,9 @@
       "headline": "What the Crimean bridge attack means for Russia",
       "published_utc": "2026-11-19T15:28:14Z",
       "event_severity": "CRITICAL",
+      "institutional_status": "TELEMETRY_CORROBORATED",
       "source_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPVWNJeU52cmNIWXVxYXloM1RVdm5SQWdTd3pFWUd6QzhXYmhNeWx4enlkSjNENHBLcnBDY240aV96SEdiTnFVOUtuTWJ4ZmVIUHYySmJaczR6NzJLXzQwc2p0Y1lfSnpNaUdfOEdHLUwyZDdGVkVFODZFZjRtVVVXUjNVdWl5REXSAYcBQVVfeXFMTWR5dF9IVHRBaVhOc2RKbGpGR193aDhrRHRwSFRDZzVLeV9EdnloLTFHRU9CRi01TU5VV09iSXJ0V2VBTGJndFo0R3BSdDhmcXpraFhlSllSREJLVEZYcDVfT3NDQXRLTVdyWEpRNEw3YUY1TVJQT09KWEowOHVWSkFMeHlRVVhB?oc=5",
-      "dispatch_id": "DISPATCH_20261119_04"
+      "dispatch_id": "DISPATCH_20261119_05"
     },
     {
       "primary_entity": "INST_FED_US",
@@ -74,8 +92,9 @@
       "headline": "Fed’s Waller says central bank may need to ‘shock people’ with half-point rate hike",
       "published_utc": "2026-11-18T12:20:11Z",
       "event_severity": "HIGH",
+      "institutional_status": "MACRO_POLICY_ALIGNED",
       "source_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQQ0FXYWthQmJLZi05SXhQR1o2akNmbUo4WFAyUWVjbjdkNmdwWi05clFGakpLMEFkSi1oS2ljalM2N2NyclZWTE9temNQMTJjZk9EQTYwZUJiMVlPcE1zQzA4eE5OU0tNQTg5QU5fU3k4bGIxM2NIVVFGZUZzRlR6VXEwVjBLNmvSAYwBQVVfeXFMUDZSczNSbHAxcjNFa1FMNWU3STJRUVBRV0x6SjhFVFRBdGNqSFhqMGl5bGtMSkN0YzQyWUpWLVppMmxpQWNFbFF4VmY0eE5feTJ5UVotZnNPYVdEdXhzWWVmaTk3YmdXNGdtRHlRN1RqeElDMXBEbkw4Z1hyWWxnM3hBWm9MME5Xbm5MNU0?oc=5",
-      "dispatch_id": "DISPATCH_20261119_05"
+      "dispatch_id": "DISPATCH_20261119_06"
     },
     {
       "primary_entity": "ORG_IMF",
@@ -86,8 +105,9 @@
       "headline": "Global inflation calls for monetary policy tightening in many economies, IMF head says",
       "published_utc": "2026-11-19T02:43:00Z",
       "event_severity": "HIGH",
+      "institutional_status": "MACRO_POLICY_ALIGNED",
       "source_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNek12QlczdG01emR1MWtEdU8zWXFZalNKUWE3cDR4Vm9YbFNVaU51Y3RxT0Ywak8yV2FrSUQxelVFRDBRZlFwblRqMWctbmw5TUFja2xjSEh3UW1PQUJtTEVmb0FkMVpoYkg0UWVFYkNOZXhSSU54RUJxOTVOdDNQaEk4N2FqUjdWQjNpSk1yZndSZjhzcURKc2dUT2RLOUVqb3dwUGExZG1KUm4tdk05VzBDN0N4SGhvbFdxZg?oc=5",
-      "dispatch_id": "DISPATCH_20261119_06"
+      "dispatch_id": "DISPATCH_20261119_07"
     },
     {
       "primary_entity": "INST_ECB_EU",
@@ -98,19 +118,8 @@
       "headline": "ECB’s Nagel Says December Rate Hike Would Send Clear Signal",
       "published_utc": "2026-11-19T12:30:00Z",
       "event_severity": "HIGH",
+      "institutional_status": "MACRO_POLICY_ALIGNED",
       "source_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOZzdveHVtY29ENG9EWkRTNS1TbTBuWTN5bkU0dDlUWUNhTnFPWUdMMnc1M3BaN0Y1aVg3OElXcnVwMDNNV3R4M01WQkJPbzI3VkdsMWlvMlRjZGYwbE9MU0piSWU3TEZURzd1UXBuT25TZWNhU29BZUh0X2loUTVtU2tCRW1Ld1NjYjZzeHNXQmVVV3luQkc2TTFnaUx1OEc5b2wzUFY2ZEJyUi1IdU5J?oc=5",
-      "dispatch_id": "DISPATCH_20261119_07"
-    },
-    {
-      "primary_entity": "GEO_US",
-      "related_entities": [
-        "GEO_US"
-      ],
-      "source_authority": "Reuters",
-      "headline": "FCC votes to ban Chinese telecoms from direct access to US phone numbers",
-      "published_utc": "2026-11-19T17:47:45Z",
-      "event_severity": "HIGH",
-      "source_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQWkYzUDdmajR4a0dEeTd2NlRjc2FJZUtZRGhmZ1dFTXJsT3ZvMmdJb2RFZ2RIb1dfWGl3NVZhWXhFcTUzaFhtZ3N4QlFHbDNSUEFIYllLS1BBYXViZ1JKaDF1QV83RzFMcy1nd3llWUR0S25XVXFaNU9iMjRZc3paa2U5Nlo3dE5sV0NLWnYwaGpsVjB1MktEdlIwaGdNYnR6R1gyS0hB?oc=5",
       "dispatch_id": "DISPATCH_20261119_08"
     }
   ]

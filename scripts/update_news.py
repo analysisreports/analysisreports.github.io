@@ -132,12 +132,34 @@ def clean_headline(title: str, source_name: str) -> str:
     """Strips trailing source suffix from Google News RSS title."""
     if not title:
         return ""
-    # Strip e.g. " - Reuters" or " - The Wall Street Journal"
     if " - " in title:
         parts = title.rsplit(" - ", 1)
         if parts[1].strip().lower() == source_name.strip().lower() or len(parts[1].strip()) < 35:
             return parts[0].strip()
     return title.strip()
+
+
+def evaluate_alignment_status(headline: str, primary_entity: str) -> str:
+    """Evaluates diplomatic and empirical alignment status with institutional neutrality."""
+    h_lower = headline.lower()
+    
+    # 1. Formal binding ratification check (Highest institutional authority)
+    if any(k in h_lower for k in ["treaty ratified", "pact enacted", "officially ratified", "ratifies treaty", "pact signed into law"]):
+        return "FORMAL_TREATY_RATIFIED"
+    
+    # 2. Central bank / macro policy alignment
+    if "INST_FED" in primary_entity or "INST_ECB" in primary_entity or "ORG_IMF" in primary_entity or "inflation" in h_lower or "rate" in h_lower:
+        return "MACRO_POLICY_ALIGNED"
+        
+    # 3. Physical telemetry & corridor corroboration
+    if any(k in h_lower for k in ["hormuz", "red sea", "mandeb", "bridge", "refinery", "pipeline", "port", "tanker", "drone"]):
+        return "TELEMETRY_CORROBORATED"
+        
+    # 4. Diplomatic contact / summit / bilateral talks
+    if any(k in h_lower for k in ["summit", "talks", "meet", "visit", "declaration", "statement", "dialogue"]):
+        return "DIPLOMATIC_ENGAGEMENT_OBSERVED"
+        
+    return "MONITORING_TELEMETRY"
 
 
 def parse_pub_date(pub_date_str: str) -> str:
@@ -252,6 +274,7 @@ def update_news_telemetry():
 
         severity = assess_severity(cleaned_title, CONFIG["severity_rules"])
         iso_pub_date = parse_pub_date(item["pub_date_raw"])
+        alignment_status = evaluate_alignment_status(cleaned_title, matched_eids[0])
 
         processed_dispatches.append({
             "primary_entity": matched_eids[0],
@@ -260,6 +283,7 @@ def update_news_telemetry():
             "headline": cleaned_title,
             "published_utc": iso_pub_date,
             "event_severity": severity,
+            "institutional_status": alignment_status,
             "source_url": item["link"]
         })
 
@@ -355,7 +379,7 @@ def update_news_telemetry():
     for d in selected_dispatches:
         entities_str = ", ".join(d["related_entities"])
         txt_lines.extend([
-            f"[{d['dispatch_id']}] SEVERITY: {d['event_severity']} | ENTITY: {d['primary_entity']} ({entities_str})",
+            f"[{d['dispatch_id']}] SEVERITY: {d['event_severity']} | STATUS: {d['institutional_status']} | ENTITY: {d['primary_entity']} ({entities_str})",
             f"  - SOURCE   : {d['source_authority']} | Published: {d['published_utc']}",
             f"  - HEADLINE : {d['headline']}",
             ""
