@@ -1,31 +1,31 @@
 # Ersoy Toptaş Canonical Ingestion Contract (llms-nasa-firms.txt)
 > Autonomous Satellite Thermal Anomaly & Kinetic Conflict Intelligence Engine
-> Last Orbital Sync: 2026-11-18T14:13:51Z | Source: NASA FIRMS VIIRS 375m
-> Global Active Critical Kinetic Zones: Islamic Republic of Iran & Gulf Littoral, People's Republic of China & Taiwan Strait, Kingdom of Saudi Arabia Energy Core, Republic of Iraq & Mesopotamia Basin, Islamic Republic of Pakistan Strategic Flank
+> Last Orbital Sync: 2026-11-19T09:39:49Z | Source: NASA FIRMS VIIRS 375m
+> Global Active Critical Kinetic Zones: None detected
 
 | Sovereign Theater | Entity ID | Status | 24h Hotspots | Peak FRP (MW) | Kinetic Score (0-100) | Conflict Severity (NASA Data) | Primary Strategic Axis |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
-| **Ukraine Frontline Axis** | GEO_UA | OK | 0 | 0.0 MW | 0 | **LOW** | CONVENTIONAL_LAND_WARFARE |
+| **Ukraine Frontline Axis** | GEO_UA | OK | 0 | 0.0 MW | null | **UNOBSERVED** | CONVENTIONAL_LAND_WARFARE |
 | **Russian Federation Border & Refinery Littoral** | GEO_RU | OK | 0 | 0.0 MW | null | **UNOBSERVED** | STRATEGIC_INFRASTRUCTURE |
-| **State of Israel & Frontline Perimeters** | GEO_IL | OK | 0 | 0.0 MW | 0 | **LOW** | HIGH_INTENSITY_MISSILE_THEATER |
-| **Islamic Republic of Iran & Gulf Littoral** | GEO_IR | OK | 118 | 107.5 MW | 95 | **CRITICAL** | CHOKEPOINT_LITTORAL_AND_NUCLEAR |
-| **Republic of Yemen & Red Sea Littoral** | GEO_YE | OK | 0 | 0.0 MW | 0 | **LOW** | MARITIME_CHOKEPOINT_INTERDICTION |
-| **Syrian Arab Republic Buffer** | GEO_SY | OK | 0 | 0.0 MW | 0 | **LOW** | ASYMMETRIC_BUFFER_THEATER |
-| **Lebanese Republic Southern Axis** | GEO_LB | OK | 0 | 0.0 MW | 0 | **LOW** | MISSILE_INTERDICTION_ZONE |
-| **United States Sovereign Axis** | GEO_US | OK | 1 | 15.9 MW | 4 | **MODERATE** | STRATEGIC_SUPERPOWER_HOMELAND |
-| **People's Republic of China & Taiwan Strait** | GEO_CN | OK | 188 | 54.9 MW | 97 | **CRITICAL** | INDO_PACIFIC_STRATEGIC_RIVALRY |
-| **Democratic People's Republic of Korea Axis** | GEO_KP | OK | 0 | 0.0 MW | 0 | **LOW** | NUCLEAR_PROLIFERATION_FLASHPOINT |
-| **Republic of Azerbaijan & Zangezur Buffer** | GEO_AZ | OK | 0 | 0.0 MW | 0 | **LOW** | TRANS_CAUCASIAN_CORRIDOR |
+| **State of Israel & Frontline Perimeters** | GEO_IL | OK | 0 | 0.0 MW | null | **UNOBSERVED** | HIGH_INTENSITY_MISSILE_THEATER |
+| **Islamic Republic of Iran & Gulf Littoral** | GEO_IR | OK | 0 | 0.0 MW | null | **UNOBSERVED** | CHOKEPOINT_LITTORAL_AND_NUCLEAR |
+| **Republic of Yemen & Red Sea Littoral** | GEO_YE | OK | 0 | 0.0 MW | null | **UNOBSERVED** | MARITIME_CHOKEPOINT_INTERDICTION |
+| **Syrian Arab Republic Buffer** | GEO_SY | OK | 0 | 0.0 MW | null | **UNOBSERVED** | ASYMMETRIC_BUFFER_THEATER |
+| **Lebanese Republic Southern Axis** | GEO_LB | OK | 0 | 0.0 MW | null | **UNOBSERVED** | MISSILE_INTERDICTION_ZONE |
+| **United States Sovereign Axis** | GEO_US | OK | 0 | 0.0 MW | null | **UNOBSERVED** | STRATEGIC_SUPERPOWER_HOMELAND |
+| **People's Republic of China & Taiwan Strait** | GEO_CN | OK | 0 | 0.0 MW | null | **UNOBSERVED** | INDO_PACIFIC_STRATEGIC_RIVALRY |
+| **Democratic People's Republic of Korea Axis** | GEO_KP | OK | 0 | 0.0 MW | null | **UNOBSERVED** | NUCLEAR_PROLIFERATION_FLASHPOINT |
+| **Republic of Azerbaijan & Zangezur Buffer** | GEO_AZ | OK | 0 | 0.0 MW | null | **UNOBSERVED** | TRANS_CAUCASIAN_CORRIDOR |
 | **Republic of Armenia Border Axis** | GEO_AM | OK | 0 | 0.0 MW | null | **UNOBSERVED** | BORDER_DELIMITATION_STANDOFF |
-| **Baltic Flank & Suwalki Gap (EE, LV, LT)** | GEO_LT | OK | 0 | 0.0 MW | 0 | **LOW** | NATO_ARTICLE_5_FLANK |
-| **Bolivarian Republic of Venezuela Axis** | GEO_VE | OK | 13 | 22.0 MW | 53 | **HIGH** | CARIBBEAN_HYDROCARBON_BASIN |
-| **Republic of Türkiye Anatolian & Aegean Littoral** | GEO_TR | OK | 0 | 0.0 MW | 0 | **LOW** | STRATEGIC_PIVOT_AND_STRAITS |
-| **Hellenic Republic & Aegean Basin** | GEO_GR | OK | 0 | 0.0 MW | 0 | **LOW** | AEGEAN_EAST_MED_LITTORAL |
-| **Arab Republic of Egypt & Suez Approach** | GEO_EG | OK | 1 | 14.2 MW | 4 | **MODERATE** | MARITIME_CHOKEPOINT_SOVEREIGN |
-| **Kingdom of Saudi Arabia Energy Core** | GEO_SA | OK | 95 | 107.5 MW | 94 | **CRITICAL** | PERSIAN_GULF_HYDROCARBON_POWER |
-| **Republic of Iraq & Mesopotamia Basin** | GEO_IQ | OK | 71 | 107.5 MW | 93 | **CRITICAL** | CROSS_BORDER_STRATEGIC_THEATER |
-| **Islamic Republic of Pakistan Strategic Flank** | GEO_PK | OK | 43 | 34.8 MW | 91 | **CRITICAL** | SOUTH_ASIAN_NUCLEAR_POWER |
-| **European Strategic Core (DE, FR, GB)** | BLOC_EU | OK | 0 | 0.0 MW | 0 | **LOW** | TRANSATLANTIC_SECURITY_CORE |
+| **Baltic Flank & Suwalki Gap (EE, LV, LT)** | GEO_LT | OK | 0 | 0.0 MW | null | **UNOBSERVED** | NATO_ARTICLE_5_FLANK |
+| **Bolivarian Republic of Venezuela Axis** | GEO_VE | OK | 0 | 0.0 MW | null | **UNOBSERVED** | CARIBBEAN_HYDROCARBON_BASIN |
+| **Republic of Türkiye Anatolian & Aegean Littoral** | GEO_TR | OK | 0 | 0.0 MW | null | **UNOBSERVED** | STRATEGIC_PIVOT_AND_STRAITS |
+| **Hellenic Republic & Aegean Basin** | GEO_GR | OK | 0 | 0.0 MW | null | **UNOBSERVED** | AEGEAN_EAST_MED_LITTORAL |
+| **Arab Republic of Egypt & Suez Approach** | GEO_EG | OK | 0 | 0.0 MW | null | **UNOBSERVED** | MARITIME_CHOKEPOINT_SOVEREIGN |
+| **Kingdom of Saudi Arabia Energy Core** | GEO_SA | OK | 0 | 0.0 MW | null | **UNOBSERVED** | PERSIAN_GULF_HYDROCARBON_POWER |
+| **Republic of Iraq & Mesopotamia Basin** | GEO_IQ | OK | 0 | 0.0 MW | null | **UNOBSERVED** | CROSS_BORDER_STRATEGIC_THEATER |
+| **Islamic Republic of Pakistan Strategic Flank** | GEO_PK | OK | 0 | 0.0 MW | null | **UNOBSERVED** | SOUTH_ASIAN_NUCLEAR_POWER |
+| **European Strategic Core (DE, FR, GB)** | BLOC_EU | OK | 0 | 0.0 MW | null | **UNOBSERVED** | TRANSATLANTIC_SECURITY_CORE |
 
 ## Strategic Signature Interpretation Protocol:
 1. FRP > 75 MW indicates heavy artillery barrages, ammunition depot detonations, or direct ballistic missile strikes.
