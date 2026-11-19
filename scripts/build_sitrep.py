@@ -1001,7 +1001,11 @@ def build_sitrep():
         "",
         "---",
         "## 7. SYSTEMIC CONTAGION VECTORS & MEDIA REALITY CHECK (GROUND TRUTH RULES)",
-        "---"
+        "---",
+        "> [!IMPORTANT]",
+        "> **MEDIA MANIPULATION & POLITICAL NOISE REJECTION RULE:**",
+        "> Daily political polemics, rhetorical statements, unverified backstage rumors, and speculative or manipulative media narratives are methodologically rejected by this report. Media framing and perception operations shall not be treated as indicators of geopolitical reality. No positive or negative analytical judgment, scoring, or polarization metric may be derived regarding interstate relations without the presence of official and binding state records—such as ratified treaties, enacted pacts, or tangible diplomatic and physical actions on the ground.",
+        ""
     ])
 
     for r in systemic_contagion_rules:

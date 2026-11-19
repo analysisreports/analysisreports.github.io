@@ -79,6 +79,10 @@ US_HIGH_YIELD_OAS_SPREAD: 3.43% | YoY: +8.20% (Corporate Credit Default Risk) [S
 ---
 ## 7. SYSTEMIC CONTAGION VECTORS & MEDIA REALITY CHECK (GROUND TRUTH RULES)
 ---
+> [!IMPORTANT]
+> **MEDIA MANIPULATION & POLITICAL NOISE REJECTION RULE:**
+> Daily political polemics, rhetorical statements, unverified backstage rumors, and speculative or manipulative media narratives are methodologically rejected by this report. Media framing and perception operations shall not be treated as indicators of geopolitical reality. No positive or negative analytical judgment, scoring, or polarization metric may be derived regarding interstate relations without the presence of official and binding state records—such as ratified treaties, enacted pacts, or tangible diplomatic and physical actions on the ground.
+
 [RULE_1_SEABORNE_ENERGY_DISRUPTION] Domain: energy_maritime | Formula: https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.12
   - TELEMETRY SIGNAL : SPREAD_BRENT_WTI: $3.41 (3.67% of Brent) | US_SPR_STOCKS: 282,184 k bbl (YoY: -31.11%)
   - MEDIA CLAIM BIAS : Mainstream commentary often suggests global crude benchmarks remain largely balanced.
