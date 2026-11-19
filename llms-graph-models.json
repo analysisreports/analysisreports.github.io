@@ -2350,7 +2350,8 @@
       "relation": "INGESTS_SERIES",
       "attributes": {
         "role": "Broad Dollar YoY Expansion Signal"
-      }
+      },
+      "type": "INGESTS_SERIES"
     },
     {
       "source": "IND_SOFR",
@@ -2358,7 +2359,8 @@
       "relation": "INGESTS_SERIES",
       "attributes": {
         "role": "Benchmark Secured Repo Rate"
-      }
+      },
+      "type": "INGESTS_SERIES"
     },
     {
       "source": "IND_DFF",
@@ -2366,7 +2368,8 @@
       "relation": "INGESTS_SERIES",
       "attributes": {
         "role": "Federal Funds Effective Rate"
-      }
+      },
+      "type": "INGESTS_SERIES"
     },
     {
       "source": "CHOKE_HORMUZ",
@@ -2374,7 +2377,8 @@
       "relation": "INGESTS_SERIES",
       "attributes": {
         "role": "Energy Chokepoint Transit Contraction"
-      }
+      },
+      "type": "INGESTS_SERIES"
     }
   ],
   "metadata": {
