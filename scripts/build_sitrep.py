@@ -482,34 +482,34 @@ def build_sitrep():
     if spread_ratio_pct is not None and _is_num(spr_val):
         if spread_ratio_pct > 5.0 and spr_val < spr_threshold_kbbl:
             rule_1_ground_truth = (
-                f"Severe maritime transit dislocation; Brent-WTI spread at {_fmt(spread_brent_wti)} ({spread_ratio_pct:.2f}% of Brent baseline). "
-                f"US SPR buffer is critically depleted at {_fmt(spr_val, prefix='', decimals=0)} k bbl (below 350M bbl threshold), "
-                "leaving global energy supply chains without an active sovereign buffer against physical chokepoint escalation."
+                f"Observable maritime transit divergence; Brent-WTI spread at {_fmt(spread_brent_wti)} ({spread_ratio_pct:.2f}% of Brent baseline). "
+                f"With US SPR stocks recorded at {_fmt(spr_val, prefix='', decimals=0)} k bbl (below historical 350M bbl reference levels), "
+                "telemetry suggests that strategic physical buffers may offer more limited absorption capacity if maritime shipping friction persists."
             )
         elif spread_ratio_pct > 5.0 and spr_val >= spr_threshold_kbbl:
             rule_1_ground_truth = (
-                f"Elevated seaborne transit and war-risk insurance friction; Brent-WTI spread at {_fmt(spread_brent_wti)} ({spread_ratio_pct:.2f}% of Brent). "
-                f"US SPR maintains structural baseline buffer at {_fmt(spr_val, prefix='', decimals=0)} k bbl, providing temporary stabilization capacity."
+                f"Elevated seaborne transit considerations; Brent-WTI spread at {_fmt(spread_brent_wti)} ({spread_ratio_pct:.2f}% of Brent baseline). "
+                f"US SPR reserves ({_fmt(spr_val, prefix='', decimals=0)} k bbl) appear to provide an active structural baseline that could help temper near-term spot volatility."
             )
         elif 2.5 <= spread_ratio_pct <= 5.0 and spr_val < spr_threshold_kbbl:
             rule_1_ground_truth = (
-                f"Moderate maritime arbitrage friction; Brent-WTI spread at {_fmt(spread_brent_wti)} ({spread_ratio_pct:.2f}% of Brent). "
-                f"Depleted US SPR ({_fmt(spr_val, prefix='', decimals=0)} k bbl) signals structural vulnerability if chokepoint flows contract further."
+                f"Moderate maritime arbitrage variance; Brent-WTI spread at {_fmt(spread_brent_wti)} ({spread_ratio_pct:.2f}% of Brent baseline). "
+                f"Prevailing SPR levels ({_fmt(spr_val, prefix='', decimals=0)} k bbl) could indicate an underlying vulnerability should corridor transit volumes contract further."
             )
         elif 2.5 <= spread_ratio_pct <= 5.0 and spr_val >= spr_threshold_kbbl:
             rule_1_ground_truth = (
-                f"Elevated marine transit costs; Brent-WTI spread at {_fmt(spread_brent_wti)} ({spread_ratio_pct:.2f}% of Brent baseline). "
-                f"US SPR reserve at {_fmt(spr_val, prefix='', decimals=0)} k bbl provides an active strategic cushion against immediate spot disruptions."
+                f"Measured marine transit costs; Brent-WTI spread at {_fmt(spread_brent_wti)} ({spread_ratio_pct:.2f}% of Brent baseline). "
+                f"US SPR inventory at {_fmt(spr_val, prefix='', decimals=0)} k bbl may be viewed as a supportive strategic buffer against localized logistics friction."
             )
         elif spread_ratio_pct < 2.5 and spr_val < spr_threshold_kbbl:
             rule_1_ground_truth = (
-                f"Transatlantic crude arbitrage is balanced at {_fmt(spread_brent_wti)} ({spread_ratio_pct:.2f}% of Brent), "
-                f"yet US SPR stocks remain depleted at {_fmt(spr_val, prefix='', decimals=0)} k bbl, leaving downstream supply unbuffered."
+                f"Transatlantic crude benchmarks appear relatively balanced at {_fmt(spread_brent_wti)} ({spread_ratio_pct:.2f}% of Brent baseline); "
+                f"however, lower SPR reserves ({_fmt(spr_val, prefix='', decimals=0)} k bbl) suggest limited strategic cushion for potential future market shifts."
             )
         else:
             rule_1_ground_truth = (
-                f"Transatlantic arbitrage in equilibrium; Brent-WTI spread at {_fmt(spread_brent_wti)} ({spread_ratio_pct:.2f}% of Brent baseline). "
-                f"US SPR buffer stable at {_fmt(spr_val, prefix='', decimals=0)} k bbl."
+                f"Transatlantic arbitrage reflects baseline equilibrium; Brent-WTI spread at {_fmt(spread_brent_wti)} ({spread_ratio_pct:.2f}% of Brent baseline). "
+                f"US SPR buffer is maintained at {_fmt(spr_val, prefix='', decimals=0)} k bbl."
             )
     else:
         rule_1_ground_truth = (
@@ -525,47 +525,47 @@ def build_sitrep():
     if sofr_bps >= 15.0:
         if dxy_growth >= 3.0:
             rule_2_ground_truth = (
-                f"Acute systemic offshore dollar squeeze; SOFR-EFFR spread spiked to {_fmt(sofr_bps, prefix='', suffix=' bps')} "
-                f"under simultaneous trade-weighted Broad Dollar surge of {_fmt_pct(dxy_growth)} (Index: {_fmt(dxy_val, prefix='', decimals=2)}). "
-                "Global banking counterparties face severe cross-border collateral scarcity and offshore dollar refinancing strain."
+                f"Noticeable offshore funding tightness; SOFR-EFFR spread widened to {_fmt(sofr_bps, prefix='', suffix=' bps')} "
+                f"alongside Broad Dollar appreciation of {_fmt_pct(dxy_growth)} (Index: {_fmt(dxy_val, prefix='', decimals=2)}). "
+                "This combination may point toward tightening collateral availability and localized dollar liquidity constraints across cross-border banking networks."
             )
         else:
             rule_2_ground_truth = (
-                f"Severe domestic repo collateral friction; SOFR-EFFR spread reaches {_fmt(sofr_bps, prefix='', suffix=' bps')}, "
-                f"while Broad Dollar YoY ({_fmt_pct(dxy_growth)}) indicates isolated domestic balance sheet constraints rather than global flight to USD."
+                f"Domestic repo collateral friction; SOFR-EFFR spread stands at {_fmt(sofr_bps, prefix='', suffix=' bps')}, "
+                f"while Broad Dollar YoY ({_fmt_pct(dxy_growth)}) may suggest internal balance sheet friction rather than broad global dollar flight."
             )
     elif sofr_bps >= 5.0:
         if dxy_growth >= 3.0:
             rule_2_ground_truth = (
-                f"Broad global currency drain with emerging liquidity strain; Fed Broad Dollar expanded {_fmt_pct(dxy_growth)} YoY "
-                f"alongside positive SOFR repo spread ({_fmt(sofr_bps, prefix='', suffix=' bps')}). Emerging market central banks face imported inflation and reserve drain."
+                f"Broad currency demand with mild liquidity adjustment; Fed Broad Dollar expanded {_fmt_pct(dxy_growth)} YoY "
+                f"alongside positive SOFR spread ({_fmt(sofr_bps, prefix='', suffix=' bps')}), which could indicate gradual currency adjustment pressures among trade partners."
             )
         else:
             rule_2_ground_truth = (
-                f"Mild repo collateral friction detected; SOFR-EFFR spread at {_fmt(sofr_bps, prefix='', suffix=' bps')}. "
-                f"Broad Dollar index ({_fmt(dxy_val, prefix='', decimals=2)}, YoY: {_fmt_pct(dxy_growth)}) reflects moderate, orderly offshore dollar demand."
+                f"Mild repo collateral friction observed; SOFR-EFFR spread at {_fmt(sofr_bps, prefix='', suffix=' bps')}. "
+                f"Broad Dollar index ({_fmt(dxy_val, prefix='', decimals=2)}, YoY: {_fmt_pct(dxy_growth)}) may reflect orderly, manageable offshore dollar demand."
             )
     elif sofr_bps < 0.0:
         if dxy_growth >= 3.0:
             rule_2_ground_truth = (
-                f"Currency-driven external dollar drain; Broad Dollar expanded {_fmt_pct(dxy_growth)} YoY, "
-                f"even though US domestic repo markets operate with surplus cash (SOFR spread at {_fmt(sofr_bps, prefix='', suffix=' bps')})."
+                f"External dollar demand shift; Broad Dollar expanded {_fmt_pct(dxy_growth)} YoY, "
+                f"even though US domestic repo conditions show ample liquidity (SOFR spread at {_fmt(sofr_bps, prefix='', suffix=' bps')})."
             )
         else:
             rule_2_ground_truth = (
-                f"Ample domestic reserve liquidity with inverted repo spread ({_fmt(sofr_bps, prefix='', suffix=' bps')}); "
-                f"Broad Dollar YoY ({_fmt_pct(dxy_growth)}) confirms unconstrained global dollar funding baseline."
+                f"Accommodative domestic reserve conditions with slightly negative repo spread ({_fmt(sofr_bps, prefix='', suffix=' bps')}); "
+                f"Broad Dollar YoY ({_fmt_pct(dxy_growth)}) suggests an unconstrained dollar liquidity environment."
             )
     else:
         if dxy_growth >= 3.0:
             rule_2_ground_truth = (
-                f"Silent dollar drain; domestic SOFR repo rate is aligned with EFFR ({_fmt(sofr_bps, prefix='', suffix=' bps')}), "
-                f"yet the 26-currency Broad Dollar index is appreciating sharply ({_fmt_pct(dxy_growth)} YoY), creating currency stress for trading partners."
+                f"Selective dollar strengthening; domestic SOFR repo rate remains close to EFFR ({_fmt(sofr_bps, prefix='', suffix=' bps')}), "
+                f"while the Broad Dollar index appreciation ({_fmt_pct(dxy_growth)} YoY) may reflect trade-weight dynamics rather than systemic cash scarcity."
             )
         else:
             rule_2_ground_truth = (
-                f"Normal liquidity baseline; SOFR-EFFR spread is balanced ({_fmt(sofr_bps, prefix='', suffix=' bps')}) "
-                f"and Fed Broad Dollar index ({_fmt(dxy_val, prefix='', decimals=2)}, YoY: {_fmt_pct(dxy_growth)}) remains within stable non-crisis bands."
+                f"Liquidity indicators remain in balanced territory; SOFR-EFFR spread is moderate ({_fmt(sofr_bps, prefix='', suffix=' bps')}) "
+                f"and Fed Broad Dollar index ({_fmt(dxy_val, prefix='', decimals=2)}, YoY: {_fmt_pct(dxy_growth)}) aligns with non-stress historical baselines."
             )
 
     hormuz_daily = chokepoints.get("CHOKE_HORMUZ", {}).get("metrics", {}).get("latest_daily_total", "N/A")
@@ -597,30 +597,31 @@ def build_sitrep():
     if worst_drop <= -80.0:
         if disrupted_count >= 2:
             rule_3_ground_truth = (
-                f"Catastrophic multi-corridor maritime paralysis; {worst_cp_name} collapsed by {worst_drop:+.1f}% vs 2023 baseline, "
-                f"with {disrupted_count} primary global chokepoints simultaneously contracting over 30% (Hormuz: {hormuz_daily} vessels/day, {hormuz_shift_str}; "
-                f"Turkish Straits: {turk_shift_str}). Standard commercial transit is structurally suspended, forcing naval escorts and AIS dark voyages."
+                f"Pronounced multi-corridor transit deceleration; {worst_cp_name} contracted by {worst_drop:+.1f}% vs 2023 baseline, "
+                f"with {disrupted_count} primary global chokepoints simultaneously showing shifts exceeding -30% (Hormuz: {hormuz_daily} vessels/day, {hormuz_shift_str}; "
+                f"Turkish Straits: {turk_shift_str}). Observed commercial flows appear increasingly shaped by specialized operational parameters, "
+                "potentially requiring selective routing and convoy coordination rather than routine peacetime transits."
             )
         else:
             rule_3_ground_truth = (
-                f"Severe acute blockage concentrated at {worst_cp_name} ({worst_drop:+.1f}% vs baseline; Hormuz: {hormuz_daily} vessels/day), "
-                f"while secondary corridors remain partially permeable. Regional maritime rerouting imposes extended voyage days and soaring war-risk premia."
+                f"Concentrated commercial flow adjustment observed at {worst_cp_name} ({worst_drop:+.1f}% vs baseline; Hormuz: {hormuz_daily} vessels/day), "
+                f"while secondary corridors maintain relative permeability. Vessel operators may be incorporating extended routing schedules and updated risk premia."
             )
     elif worst_drop <= -30.0:
         if disrupted_count >= 2:
             rule_3_ground_truth = (
-                f"Systemic synchronized maritime congestion across {disrupted_count} strategic waterways; "
-                f"Hormuz contracts {hormuz_shift_str} ({hormuz_daily} vessels/day) and Turkish Straits shifts {turk_shift_str}. "
-                "Global container and tanker operators face cascading port delays and rerouting friction."
+                f"Broad maritime flow variance across {disrupted_count} monitored waterways; "
+                f"Hormuz transits record {hormuz_shift_str} ({hormuz_daily} vessels/day) and Turkish Straits show {turk_shift_str}. "
+                "This synchronization could indicate cumulative scheduling delays across international maritime networks."
             )
         else:
             rule_3_ground_truth = (
-                f"Elevated localized transit friction at {worst_cp_name} ({worst_drop:+.1f}% vs baseline); "
-                f"traffic operates under heightened naval security protocols without full network gridlock."
+                f"Localized transit variance at {worst_cp_name} ({worst_drop:+.1f}% vs baseline); "
+                f"operations may reflect heightened navigational caution without broader network dislocation."
             )
     else:
         rule_3_ground_truth = (
-            f"Strategic maritime corridors operate within normal commercial variance; "
+            f"Strategic maritime corridors appear to operate within typical historical variance; "
             f"Hormuz transits record {hormuz_daily} vessels/day ({hormuz_shift_str}) and Turkish Straits reflect {turk_shift_str}."
         )
 
@@ -634,28 +635,28 @@ def build_sitrep():
     if c_stress >= 0.50:
         if gscpi_num >= 1.00:
             rule_4_ground_truth = (
-                f"Severe technology supply chain friction; Model 25.14 AI Chip Stress at {_fmt(c_stress, prefix='', decimals=3)} ({chip_stress_reg}) "
-                f"cross-referenced with elevated NY Fed GSCPI pressure ({_fmt(gscpi_num, prefix='', decimals=2)} Z-Score). "
-                f"Direct US-to-China chip export contraction ({cn_mom_str} MoM velocity) combined with heavy Asian import concentration "
+                f"Calculated technology supply chain friction; Model 25.14 AI Chip Stress registers {_fmt(c_stress, prefix='', decimals=3)} ({chip_stress_reg}) "
+                f"alongside elevated NY Fed GSCPI pressure ({_fmt(gscpi_num, prefix='', decimals=2)} Z-Score). "
+                f"Direct US-to-China chip export changes ({cn_mom_str} MoM velocity) alongside sustained Asian import volumes "
                 f"(Taiwan: {_fmt(tech_matrix['us_semiconductor_imports_taiwan_usd'], decimals=0)} USD, Korea: {_fmt(tech_matrix['us_semiconductor_imports_korea_usd'], decimals=0)} USD) "
-                "indicates active trade rerouting via secondary Asian hubs, inflating hardware transaction costs."
+                "may suggest that market participants are exploring alternative routing hubs, which could introduce additional logistics and compliance considerations."
             )
         else:
             rule_4_ground_truth = (
-                f"Concentrated semiconductor hardware bottleneck; Model 25.14 Chip Stress registers {_fmt(c_stress, prefix='', decimals=3)} ({chip_stress_reg}), "
-                f"even though broad shipping logistics ({_fmt(gscpi_num, prefix='', decimals=2)} Z-Score) remain manageable. "
-                "Signals localized foundry capacity constraints and regulatory licensing bottlenecks."
+                f"Specific semiconductor hardware variance; Model 25.14 Chip Stress registers {_fmt(c_stress, prefix='', decimals=3)} ({chip_stress_reg}), "
+                f"while broader logistics indicators ({_fmt(gscpi_num, prefix='', decimals=2)} Z-Score) remain moderate. "
+                "This could reflect localized fabrication priorities or licensing processing timelines."
             )
     else:
         if gscpi_num >= 1.00:
             rule_4_ground_truth = (
-                f"General maritime and air freight logistics drag ({_fmt(gscpi_num, prefix='', decimals=2)} Z-Score); "
-                f"however, baseline semiconductor hardware stress remains contained at {_fmt(c_stress, prefix='', decimals=3)} ({chip_stress_reg})."
+                f"Broader freight logistics friction ({_fmt(gscpi_num, prefix='', decimals=2)} Z-Score); "
+                f"however, baseline semiconductor hardware indicators remain within calibrated limits ({_fmt(c_stress, prefix='', decimals=3)}, {chip_stress_reg})."
             )
         else:
             rule_4_ground_truth = (
-                f"Technology trade flows operate in structural equilibrium; Model 25.14 Chip Stress at {_fmt(c_stress, prefix='', decimals=3)} "
-                f"and GSCPI logistics at {_fmt(gscpi_num, prefix='', decimals=2)} Z-Score confirm unconstrained wafer fabrication and distribution."
+                f"Technology distribution indicators operate in balanced territory; Model 25.14 Chip Stress at {_fmt(c_stress, prefix='', decimals=3)} "
+                f"and GSCPI logistics at {_fmt(gscpi_num, prefix='', decimals=2)} Z-Score suggest relatively unencumbered supply distribution."
             )
 
     # Ingest Model 28.4 & Dyad Relationships for Chokepoint & Tech Bypass
@@ -682,26 +683,26 @@ def build_sitrep():
     if d_ratio > 50.0:
         if il_ir_pol <= -0.75:
             rule_5_ground_truth = (
-                f"Critical pipeline bypass insufficiency; Model 28.4 establishes that overland pipelines ({_fmt(bypass_buffer_mbpd, prefix='', decimals=2)} mbpd buffer) "
-                f"leave a massive {_fmt(unmet_deficit_mbpd, prefix='', decimals=2)} mbpd deficit ({d_ratio:.1f}% unmet) relative to baseline flows ({_fmt(gross_flow_mbpd, prefix='', decimals=2)} mbpd). "
-                f"Under acute kinetic tension (IL_IR polarity: {_fmt(il_ir_pol, prefix='', decimals=2)}), Red Sea terminal vulnerabilities (Yanbu) eliminate operational redundancy."
+                f"Structural overland bypass considerations; Model 28.4 parameters indicate overland pipelines ({_fmt(bypass_buffer_mbpd, prefix='', decimals=2)} mbpd capacity) "
+                f"leave a calculated {_fmt(unmet_deficit_mbpd, prefix='', decimals=2)} mbpd differential ({d_ratio:.1f}% of baseline flows of {_fmt(gross_flow_mbpd, prefix='', decimals=2)} mbpd). "
+                f"Under prevailing regional geopolitical polarity ({_fmt(il_ir_pol, prefix='', decimals=2)}), infrastructure substitution may require extended operational lead times and alternate transit coordination."
             )
         else:
             rule_5_ground_truth = (
-                f"Structural overland capacity ceiling; pipeline bypass buffer ({_fmt(bypass_buffer_mbpd, prefix='', decimals=2)} mbpd) "
-                f"leaves a net {_fmt(unmet_deficit_mbpd, prefix='', decimals=2)} mbpd physical deficit ({d_ratio:.1f}% unmet), "
-                f"confirming that maritime transit cannot be substituted purely through engineering alternatives even during moderate tension ({_fmt(il_ir_pol, prefix='', decimals=2)})."
+                f"Overland pipeline capacity ceilings; bypass capacity ({_fmt(bypass_buffer_mbpd, prefix='', decimals=2)} mbpd) "
+                f"leaves a net {_fmt(unmet_deficit_mbpd, prefix='', decimals=2)} mbpd volume differential ({d_ratio:.1f}%), "
+                f"indicating that overland alternatives may serve as a partial rather than comprehensive substitute for maritime transit."
             )
     else:
         if il_ir_pol <= -0.75:
             rule_5_ground_truth = (
-                f"Geopolitically contested pipeline buffer; while nominal pipeline deficit remains below 50% ({d_ratio:.1f}%), "
-                f"hostile regional polarity ({_fmt(il_ir_pol, prefix='', decimals=2)}) exposes terminal infrastructure to targeted asymmetric disruption."
+                f"Contested overland corridor dynamics; while the calculated pipeline gap remains below 50% ({d_ratio:.1f}%), "
+                f"regional geopolitical tensions ({_fmt(il_ir_pol, prefix='', decimals=2)}) suggest that terminal infrastructure may face intermittent operational constraints."
             )
         else:
             rule_5_ground_truth = (
-                f"Operational pipeline bypass resilience; existing overland transit capacity ({_fmt(bypass_buffer_mbpd, prefix='', decimals=2)} mbpd) "
-                f"absorbs critical maritime volumes (deficit contained at {d_ratio:.1f}%) under stable diplomatic baselines ({_fmt(il_ir_pol, prefix='', decimals=2)})."
+                f"Overland bypass operational resilience; available transit alternatives ({_fmt(bypass_buffer_mbpd, prefix='', decimals=2)} mbpd) "
+                f"appear structurally positioned to absorb significant maritime variance (differential estimated at {d_ratio:.1f}%) under stable diplomatic conditions."
             )
 
     # Rule 6 Evaluation: Secondary Routing Friction & Southeast Asian Hub Congestion
@@ -712,32 +713,32 @@ def build_sitrep():
     if m_shift >= 25.0:
         if gscpi_num >= 1.00:
             rule_6_ground_truth = (
-                f"Acute secondary hub congestion and transshipment diversion; Malacca daily traffic surged {malacca_shift_str} ({malacca_daily} vessels/day) "
-                f"amid elevated global supply chain friction ({_fmt(gscpi_num, prefix='', decimals=2)} Z-Score). "
-                f"Under persistent bilateral friction (US_CN polarity: {_fmt(u_cn_pol, prefix='', decimals=2)}), trade flows are actively bypassing primary direct routes, "
-                "triggering secondary compliance burdens, extended voyage delays, and warehouse congestion across Southeast Asian hubs."
+                f"Secondary corridor volume concentration; Malacca daily transits shifted {malacca_shift_str} ({malacca_daily} vessels/day) "
+                f"alongside global logistics friction indicators ({_fmt(gscpi_num, prefix='', decimals=2)} Z-Score). "
+                f"Under bilateral trade realignments (US_CN polarity: {_fmt(u_cn_pol, prefix='', decimals=2)}), observed traffic patterns may indicate "
+                "cargo rerouting via regional transshipment hubs, which could gradually influence port turnaround intervals and intermediate handling costs."
             )
         else:
             rule_6_ground_truth = (
-                f"Concentrated maritime traffic diversion through Malacca ({malacca_shift_str}, {malacca_daily} vessels/day); "
-                f"while broad container freight pressures ({_fmt(gscpi_num, prefix='', decimals=2)} Z-Score) remain contained, "
-                f"regional fleet concentration reflects structural cargo rerouting away from geopolitical friction zones ({_fmt(u_cn_pol, prefix='', decimals=2)})."
+                f"Noticeable traffic reallocation toward Malacca ({malacca_shift_str}, {malacca_daily} vessels/day); "
+                f"while broader logistics metrics ({_fmt(gscpi_num, prefix='', decimals=2)} Z-Score) remain within baseline, "
+                f"fleet movements could reflect prudent operational adjustments relative to geopolitical monitoring zones ({_fmt(u_cn_pol, prefix='', decimals=2)})."
             )
     elif m_shift <= -20.0:
         rule_6_ground_truth = (
-            f"Anomalous contraction in Southeast Asian transit corridors; Malacca transits dropped {malacca_shift_str} ({malacca_daily} vessels/day), "
-            "indicating upstream industrial production slowing or maritime diversion south of Sunda/Lombok straits."
+            f"Measured contraction in Malacca passage volumes ({malacca_shift_str}, {malacca_daily} vessels/day), "
+            "which may indicate shifting upstream industrial demand or exploration of alternate southern passage routes."
         )
     else:
         if gscpi_num >= 1.00:
             rule_6_ground_truth = (
-                f"Global shipping bottlenecks ({_fmt(gscpi_num, prefix='', decimals=2)} Z-Score) impact freight timelines, "
-                f"though Malacca traffic remains within baseline ranges ({malacca_shift_str}, {malacca_daily} vessels/day)."
+                f"Broader freight logistics friction ({_fmt(gscpi_num, prefix='', decimals=2)} Z-Score) may influence transit timelines, "
+                f"even as Malacca volume flows reflect steady baseline activity ({malacca_shift_str}, {malacca_daily} vessels/day)."
             )
         else:
             rule_6_ground_truth = (
-                f"Standard transit routing across Indo-Pacific waterways; Malacca volume variance ({malacca_shift_str}) "
-                f"and GSCPI logistics ({_fmt(gscpi_num, prefix='', decimals=2)} Z-Score) confirm frictionless maritime commercial access."
+                f"Standard transit routing across regional waterways; Malacca volume variance ({malacca_shift_str}) "
+                f"and GSCPI logistics ({_fmt(gscpi_num, prefix='', decimals=2)} Z-Score) reflect consistent commercial maritime activity."
             )
 
     # Rule 7 Evaluation: Precious Metals Sovereign Safe Haven & Monetary Debasement Hedge
@@ -751,37 +752,37 @@ def build_sitrep():
         if gs_ratio >= 85.0:
             if vix_score >= 20.0:
                 rule_7_ground_truth = (
-                    f"Systemic safe haven flight and liquidity hoarding; Gold/Silver Ratio reached {_fmt(gs_ratio, prefix='', decimals=1)} "
-                    f"(Gold: {_fmt(gold_spot_price)}, Silver: {_fmt(silver_spot_price)}) alongside elevated market stress (VIX: {_fmt(vix_score, prefix='', decimals=2)}). "
-                    "Capital is abandoning cyclical industrial commodities in favor of pure sovereign monetary hedges, signaling acute stagflationary anxiety."
+                    f"Noticeable monetary asset preference; Gold/Silver Ratio stands at {_fmt(gs_ratio, prefix='', decimals=1)} "
+                    f"(Gold: {_fmt(gold_spot_price)}, Silver: {_fmt(silver_spot_price)}) alongside heightened market volatility (VIX: {_fmt(vix_score, prefix='', decimals=2)}). "
+                    "This divergence may reflect increased market attention toward sovereign monetary stores of value relative to cyclical industrial commodities."
                 )
             else:
                 rule_7_ground_truth = (
-                    f"Structural sovereign gold accumulation; Gold/Silver Ratio trades at an elevated {_fmt(gs_ratio, prefix='', decimals=1)} "
-                    f"despite subdued equity volatility (VIX: {_fmt(vix_score, prefix='', decimals=2)}). Central banks and sovereign reserve allocators are actively diversifying reserves."
+                    f"Structural reserve diversification signals; Gold/Silver Ratio trades at {_fmt(gs_ratio, prefix='', decimals=1)} "
+                    f"despite moderate equity volatility (VIX: {_fmt(vix_score, prefix='', decimals=2)}), which could point toward steady reserve reallocation by institutional participants."
                 )
         elif gs_ratio >= 78.0:
             if vix_score >= 20.0:
                 rule_7_ground_truth = (
-                    f"Monetary hedge accumulation and geopolitical premium; Gold/Silver Ratio at {_fmt(gs_ratio, prefix='', decimals=1)} "
+                    f"Monetary hedging considerations and geopolitical risk awareness; Gold/Silver Ratio at {_fmt(gs_ratio, prefix='', decimals=1)} "
                     f"(Spot Gold: {_fmt(gold_spot_price)} via The Royal Mint / ECB FX, Silver: {_fmt(silver_spot_price)}) "
-                    f"combined with heightened volatility (VIX: {_fmt(vix_score, prefix='', decimals=2)}, YoY: {_fmt_pct(vix_yoy)}). "
-                    "Confirms persistent sovereign reserve accumulation and currency debasement hedging rather than cyclical industrial demand."
+                    f"alongside elevated volatility readings (VIX: {_fmt(vix_score, prefix='', decimals=2)}, YoY: {_fmt_pct(vix_yoy)}). "
+                    "This combination tends to indicate that market participants may be placing an emphasis on monetary asset stability and sovereign hedging."
                 )
             else:
                 rule_7_ground_truth = (
                     f"Moderate monetary hedge premium; Gold/Silver Ratio at {_fmt(gs_ratio, prefix='', decimals=1)} "
-                    f"reflects steady sovereign gold preference over industrial metals under baseline market calm (VIX: {_fmt(vix_score, prefix='', decimals=2)})."
+                    f"may suggest a continued preference for monetary bullion relative to industrial raw materials under prevailing market conditions."
                 )
         elif gs_ratio < 70.0:
             rule_7_ground_truth = (
-                f"Industrial reflation expansion; depressed Gold/Silver Ratio ({_fmt(gs_ratio, prefix='', decimals=1)}) "
-                f"demonstrates silver and copper outperformance over monetary bullion, consistent with manufacturing acceleration rather than financial panic."
+                f"Industrial commodity demand dynamics; a lower Gold/Silver Ratio ({_fmt(gs_ratio, prefix='', decimals=1)}) "
+                "could suggest relative strength in industrial fabrication metals over monetary safe-haven allocations."
             )
         else:
             rule_7_ground_truth = (
-                f"Equilibrium precious metals valuation; Gold/Silver Ratio at {_fmt(gs_ratio, prefix='', decimals=1)} "
-                f"and VIX at {_fmt(vix_score, prefix='', decimals=2)} indicate neutral historical balance between monetary and industrial demand."
+                f"Precious metals metrics indicate balanced historical valuation; Gold/Silver Ratio at {_fmt(gs_ratio, prefix='', decimals=1)} "
+                f"and VIX at {_fmt(vix_score, prefix='', decimals=2)} appear consistent with typical baseline relationships."
             )
     else:
         rule_7_ground_truth = (
