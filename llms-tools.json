@@ -1955,6 +1955,22 @@
           ]
         }
       }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "get_geopolitical_news_telemetry",
+        "description": "Retrieves live Tier-1 accredited news dispatches filtered by the Media Manipulation & Political Noise Rejection Protocol from llms-news.json, entity-linked via canonical IDs.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "entity_id": {
+              "type": "string",
+              "description": "Optional canonical entity ID (e.g. 'GEO_IR', 'GEO_RU', 'GEO_US', 'GEO_CN', 'GEO_IL', 'CHOKE_HORMUZ', 'INST_FED_US'). If omitted, retrieves all top active dispatches."
+            }
+          }
+        }
+      }
     }
   ],
   "metadata": {
@@ -1965,7 +1981,7 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-tools.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-19T19:35:00Z",
+    "last_updated": "2026-11-19T22:25:00Z",
     "master_graph": "https://analysisreports.github.io/llms-graph.json"
   }
 }
