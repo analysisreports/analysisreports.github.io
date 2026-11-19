@@ -907,6 +907,22 @@ def build_sitrep():
         "systemic_contagion_rules": systemic_contagion_rules
     }
 
+    # 7.5. PULL NEWS TELEMETRY SUMMARY IF AVAILABLE
+    news_summary_line = ""
+    news_json_path = os.path.join(BASE_DIR, "llms-news.json")
+    if os.path.exists(news_json_path):
+        try:
+            with open(news_json_path, "r", encoding="utf-8") as nf:
+                ndata = json.load(nf)
+                dispatches = ndata.get("dispatches", [])
+                tot_n = len(dispatches)
+                crit_n = sum(1 for d in dispatches if d.get("event_severity") == "CRITICAL")
+                tele_n = sum(1 for d in dispatches if d.get("institutional_status") == "TELEMETRY_CORROBORATED")
+                macro_n = sum(1 for d in dispatches if d.get("institutional_status") == "MACRO_POLICY_ALIGNED")
+                news_summary_line = f"NEWS_TELEMETRY_SUMMARY   : {tot_n} Tier-1 Dispatches ({crit_n} CRITICAL, {tele_n} TELEMETRY_CORROBORATED, {macro_n} MACRO_POLICY_ALIGNED) [Source: llms-news.txt]"
+        except Exception:
+            pass
+
     # Save JSON Twin
     json_path = os.path.join(BASE_DIR, "llms-sitrep.json")
     with open(json_path, "w", encoding="utf-8") as f:
@@ -1007,6 +1023,12 @@ def build_sitrep():
         "> Daily political polemics, rhetorical statements, unverified backstage rumors, and speculative or manipulative media narratives are methodologically rejected by this report. Media framing and perception operations shall not be treated as indicators of geopolitical reality. No positive or negative analytical judgment, scoring, or polarization metric may be derived regarding interstate relations without the presence of official and binding state records—such as ratified treaties, enacted pacts, or tangible diplomatic and physical actions on the ground.",
         ""
     ])
+
+    if news_summary_line:
+        lines.extend([
+            f"> **TIER-1 NEWS INTELLIGENCE:** {news_summary_line}",
+            ""
+        ])
 
     for r in systemic_contagion_rules:
         lines.extend([
