@@ -1,7 +1,7 @@
 # CANONICAL MACRO & GEOPOLITICAL SITUATION REPORT (SITREP)
-> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-19 01:08:54 UTC
+> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-19 01:43:54 UTC
 > Primary Publications: https://www.ersoytoptas.tr (TR) | https://en.ersoytoptas.tr (EN)
-> Ingestion Protocol: Zero Hallucination | Data Completeness: 96.6%
+> Ingestion Protocol: Zero Hallucination | Data Completeness: 98.3%
 > Official JSON Twin: https://analysisreports.github.io/llms-sitrep.json
 
 ---
@@ -27,17 +27,17 @@ US_REFINERY_UTILIZATION  : 89.1% | REGIME: NORMAL_OPERATING_BAND [Source: EIA | 
 MODEL_25_14_CHIP_STRESS  : 0.524 | REGIME: ELEVATED_SEMICONDUCTOR_BOTTLENECK [Model 25.14 Quantitative Engine]
 NYFED_GSCPI_LOGISTICS    : 1.26 Z-Score | YoY Shift: 1.35 σ [Source: NY Fed GSCPI | Obs: 2026-10-31]
 NASDAQ_SOX_INDEX         : 9,642.88 | YoY: +38.16% [Source: FRED/PHLX | Obs: 2026-11-17]
-US_CHIP_IMPORTS_GLOBAL   : $30,594,050,177 USD (Monthly Aggregate) [Source: US Census NAICS 3344 | Obs: N/A]
-US_IMPORTS_FROM_TAIWAN   : $6,809,991,106 USD (Advanced TSMC Foundry Dependency) [Source: US Census | Obs: N/A]
-US_IMPORTS_FROM_KOREA    : $7,156,474,554 USD (HBM / Memory Architecture Axis) [Source: US Census | Obs: N/A]
-US_EXPORTS_TO_CHINA      : $1,291,129,510 USD | MoM Decoupling Velocity: -8.42% [Source: US Census | Obs: N/A]
+US_CHIP_IMPORTS_GLOBAL   : $30,594,050,177 USD (Monthly Aggregate) [Source: US Census NAICS 3344 | Obs: 2026-09]
+US_IMPORTS_FROM_TAIWAN   : $6,809,991,106 USD (Advanced TSMC Foundry Dependency) [Source: US Census | Obs: 2026-09]
+US_IMPORTS_FROM_KOREA    : $7,156,474,554 USD (HBM / Memory Architecture Axis) [Source: US Census | Obs: 2026-09]
+US_EXPORTS_TO_CHINA      : $1,291,129,510 USD | MoM Decoupling Velocity: -8.42% [Source: US Census | Obs: 2026-09]
 
 ---
 ## 4. PRECIOUS METALS, CRITICAL MINERALS & FOOD SECURITY
 ---
 GOLD_SPOT_USD_OZT        : $3,750.60 [£2,848.27 GBP @ 1.3168 GBP/USD | Source: The Royal Mint Sovereign Spot Benchmark / ECB FX | London SLOC]
 GOLD_WB_MONTHLY_AVG_USD  : $4,105.00 | YoY: +1.16% | SIGNAL: SYSTEMIC_SAFE_HAVEN [Source: World Bank Pink Sheet | Obs: 2026-10-01]
-SILVER_SPOT_USD_OZT      : $45.61 [£34.64 GBP @ 1.3168 GBP/USD | Source: The Royal Mint Sovereign Spot Benchmark] | GOLD_SILVER_RATIO: N/A
+SILVER_SPOT_USD_OZT      : $45.61 [£34.64 GBP @ 1.3168 GBP/USD | Source: The Royal Mint Sovereign Spot Benchmark] | GOLD_SILVER_RATIO: 82.2
 COPPER_GLOBAL_USD_MT     : $14,473.06 | YoY: +44.81% (Dr. Copper Growth Pulse) [Source: FRED/IMF | Obs: 2026-09-01]
 WHEAT_GLOBAL_USD_MT      : $246.85 | YoY: +59.14% (Black Sea Agro Security) [Source: FRED/IMF | Obs: 2026-09-01]
 

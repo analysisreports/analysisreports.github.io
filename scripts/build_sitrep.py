@@ -286,7 +286,7 @@ def build_sitrep():
     kr_trade = census_corridors.get("CENSUS_NAICS3344_KOREA", {})
     eu_trade = census_corridors.get("CENSUS_NAICS3344_EU", {})
     world_trade = census_corridors.get("CENSUS_NAICS3344_WORLD", {})
-    census_date = world_trade.get("last_date", "N/A")
+    census_date = world_trade.get("last_observation_date") or world_trade.get("last_date", "N/A")
 
     gscpi_s = nyfed_series.get("GSCPI", {})
     gscpi_val = gscpi_s.get("current_value")
@@ -327,7 +327,14 @@ def build_sitrep():
     silver_s = fred_series.get("SLVPRUSD", {})
     silver_val = silver_s.get("current_value")
     silver_date = silver_s.get("last_date", "N/A")
-    gold_silver_ratio = round(gold_val / silver_val, 2) if (_is_num(gold_val) and _is_num(silver_val) and silver_val > 0) else None
+    
+    # Gold-Silver Ratio: Prioritize live sovereign spot benchmarks, fallback to monthly historical series
+    if _is_num(gold_spot_usd) and _is_num(silver_spot_usd) and silver_spot_usd > 0:
+        gold_silver_ratio = round(gold_spot_usd / silver_spot_usd, 2)
+    elif _is_num(gold_val) and _is_num(silver_val) and silver_val > 0:
+        gold_silver_ratio = round(gold_val / silver_val, 2)
+    else:
+        gold_silver_ratio = None
 
     copper_s = fred_series.get("PCOPPUSDM", {})
     copper_val = copper_s.get("current_value")
