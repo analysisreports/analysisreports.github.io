@@ -61,7 +61,7 @@ jobs:
           ignore_patterns = [
               '.git', '.github', '.vscode', 
               '_includes', '.gitignore', 
-              '_config.yml', 'README.md',
+              '_config.yml',
               'dataset-metadata.json'
           ]
 

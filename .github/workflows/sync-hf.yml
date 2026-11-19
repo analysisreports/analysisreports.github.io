@@ -33,8 +33,7 @@ jobs:
                   '.vscode/*', '.vscode/**',
                   '_includes/*', '_includes/**',
                   '.gitignore',
-                  '_config.yml',
-                  'README.md'
+                  '_config.yml'
               ],
               commit_message='Auto-sync dataset structure from GitHub'
           )
