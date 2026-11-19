@@ -279,6 +279,8 @@ REG_AGENCY_OFAC_US   | Aliases: OFAC, Office of Foreign Assets Control, U.S. Dep
 STAT_EIA_US          | Aliases: EIA, U.S. Energy Information Administration
 STAT_CBO_US          | Aliases: CBO, Congressional Budget Office
 STAT_CENSUS_US       | Aliases: Census, U.S. Census Bureau, United States Census Bureau, Department of Commerce Census
+REG_AGENCY_CFTC_US   | Aliases: CFTC, Commodity Futures Trading Commission, U.S. CFTC
+INST_ROYAL_MINT_UK   | Aliases: The Royal Mint, Royal Mint UK, Sovereign Mint of the United Kingdom, HM Treasury Royal Mint
 
 # [FINANCIAL MARKETS, EXCHANGES & SECTORS] (Prefix: MKT_ / SEC_)
 MKT_CBOE             | Aliases: CBOE, Chicago Board Options Exchange
@@ -397,6 +399,12 @@ IND_FDEFX             | Source: BEA / FRED | Name: Federal National Defense Cons
 IND_IPG3344S          | Source: FRED | Name: Industrial Production: Semiconductor and Other Electronic Component (Index 2017=100)
 IND_PCU33443344       | Source: BLS / FRED | Name: Producer Price Index: Semiconductor and Other Electronic Component Manufacturing (Index Dec 1980=100)
 IND_CENSUS_TRADE_NAICS3344 | Source: U.S. Census Bureau | Name: Monthly Semiconductor and Electronic Component International Trade Value (USD)
+IND_CFTC_GOLD_OI           | Source: U.S. CFTC | Name: COMEX Gold Futures Total Open Interest Contracts
+IND_CFTC_GOLD_NONCOMM_NET  | Source: U.S. CFTC | Name: COMEX Gold Futures Non-Commercial Net Speculative Positioning
+IND_ROYALMINT_GOLD_SPOT_GBP  | Source: The Royal Mint | Name: The Royal Mint Spot Gold Price (GBP per Troy Ounce)
+IND_ROYALMINT_GOLD_SPOT_USD  | Source: The Royal Mint / ECB FX | Name: The Royal Mint Spot Gold Benchmark Converted to USD (USD per Troy Ounce)
+IND_ROYALMINT_SILVER_SPOT_GBP| Source: The Royal Mint | Name: The Royal Mint Spot Silver Price (GBP per Troy Ounce)
+IND_ROYALMINT_SILVER_SPOT_USD| Source: The Royal Mint / ECB FX | Name: The Royal Mint Spot Silver Benchmark Converted to USD (USD per Troy Ounce)
 
 
 # [GEOPOLITICAL MACRO TRIGGERS & SHOCK VECTORS] (Prefix: IND_TRIGGER_)

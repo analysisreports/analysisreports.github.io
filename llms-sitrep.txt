@@ -1,7 +1,7 @@
 # CANONICAL MACRO & GEOPOLITICAL SITUATION REPORT (SITREP)
-> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-18 23:12:20 UTC
+> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-19 01:08:54 UTC
 > Primary Publications: https://www.ersoytoptas.tr (TR) | https://en.ersoytoptas.tr (EN)
-> Ingestion Protocol: Zero Hallucination | Data Completeness: 96.2%
+> Ingestion Protocol: Zero Hallucination | Data Completeness: 96.6%
 > Official JSON Twin: https://analysisreports.github.io/llms-sitrep.json
 
 ---
@@ -15,56 +15,57 @@ FLASH_4 [NASA_FIRMS_VIIRS | GEO_IR]: KINETIC_THERMAL_SURGE: Islamic Republic of 
 ---
 ## 2. ENERGY SECTOR MATRIX (HYDROCARBONS, REFINERY & STRATEGIC RESERVES)
 ---
-BRENT_CRUDE_USD          : $92.14 | DoD: +2.20% | YoY: +40.80%
-WTI_CRUDE_USD            : $89.62 | SPREAD_BRENT_WTI: $2.52 (Physical Seaborne Risk Premium)
-HENRY_HUB_NATGAS_USD     : $3.00 | YoY: +40.80%
-US_SPR_CRUDE_STOCKS_KBBL : 282,184 k bbl | YoY: -31.11%
-US_REFINERY_UTILIZATION  : 89.1% | REGIME: NORMAL_OPERATING_BAND
+BRENT_CRUDE_USD          : $92.14 | DoD: +2.20% | YoY: +40.80% [Source: FRED/EIA | Obs: 2026-11-11]
+WTI_CRUDE_USD            : $89.62 | SPREAD_BRENT_WTI: $2.52 (Physical Seaborne Risk Premium) [Source: FRED/EIA | Obs: 2026-11-11]
+HENRY_HUB_NATGAS_USD     : $3.00 | YoY: +40.80% [Source: FRED/EIA | Obs: 2026-11-11]
+US_SPR_CRUDE_STOCKS_KBBL : 282,184 k bbl | YoY: -31.11% [Source: EIA | Obs: 2026-10-30]
+US_REFINERY_UTILIZATION  : 89.1% | REGIME: NORMAL_OPERATING_BAND [Source: EIA | Obs: 2026-10-30]
 
 ---
 ## 3. SEMICONDUCTORS & STRATEGIC HIGH-TECH (CENSUS NAICS 3344 & AI HARDWARE)
 ---
-MODEL_25_14_CHIP_STRESS  : 0.524 | REGIME: ELEVATED_SEMICONDUCTOR_BOTTLENECK
-NYFED_GSCPI_LOGISTICS    : 1.26 Z-Score | YoY Shift: 1.35 σ (Global Supply Chain Pressure)
-NASDAQ_SOX_INDEX         : 9,642.88 | YoY: +38.16%
-US_CHIP_IMPORTS_GLOBAL   : $30,594,050,177 USD (Monthly Aggregate)
-US_IMPORTS_FROM_TAIWAN   : $6,809,991,106 USD (Advanced TSMC Foundry Dependency)
-US_IMPORTS_FROM_KOREA    : $7,156,474,554 USD (HBM / Memory Architecture Axis)
-US_EXPORTS_TO_CHINA      : $1,291,129,510 USD | MoM Decoupling Velocity: -8.42%
+MODEL_25_14_CHIP_STRESS  : 0.524 | REGIME: ELEVATED_SEMICONDUCTOR_BOTTLENECK [Model 25.14 Quantitative Engine]
+NYFED_GSCPI_LOGISTICS    : 1.26 Z-Score | YoY Shift: 1.35 σ [Source: NY Fed GSCPI | Obs: 2026-10-31]
+NASDAQ_SOX_INDEX         : 9,642.88 | YoY: +38.16% [Source: FRED/PHLX | Obs: 2026-11-17]
+US_CHIP_IMPORTS_GLOBAL   : $30,594,050,177 USD (Monthly Aggregate) [Source: US Census NAICS 3344 | Obs: N/A]
+US_IMPORTS_FROM_TAIWAN   : $6,809,991,106 USD (Advanced TSMC Foundry Dependency) [Source: US Census | Obs: N/A]
+US_IMPORTS_FROM_KOREA    : $7,156,474,554 USD (HBM / Memory Architecture Axis) [Source: US Census | Obs: N/A]
+US_EXPORTS_TO_CHINA      : $1,291,129,510 USD | MoM Decoupling Velocity: -8.42% [Source: US Census | Obs: N/A]
 
 ---
 ## 4. PRECIOUS METALS, CRITICAL MINERALS & FOOD SECURITY
 ---
-GOLD_SPOT_USD_OZT        : $4,105.00 | YoY: +1.16% | SIGNAL: SYSTEMIC_SAFE_HAVEN
-SILVER_SPOT_USD_OZT      : N/A | STATUS: SOURCE_FEED_UNAVAILABLE | GOLD_SILVER_RATIO: N/A
-COPPER_GLOBAL_USD_MT     : $14,473.06 | YoY: +44.81% (Dr. Copper Growth Pulse)
-WHEAT_GLOBAL_USD_MT      : $246.85 | YoY: +59.14% (Black Sea Agro Security)
+GOLD_SPOT_USD_OZT        : $3,750.60 [£2,848.27 GBP @ 1.3168 GBP/USD | Source: The Royal Mint Sovereign Spot Benchmark / ECB FX | London SLOC]
+GOLD_WB_MONTHLY_AVG_USD  : $4,105.00 | YoY: +1.16% | SIGNAL: SYSTEMIC_SAFE_HAVEN [Source: World Bank Pink Sheet | Obs: 2026-10-01]
+SILVER_SPOT_USD_OZT      : $45.61 [£34.64 GBP @ 1.3168 GBP/USD | Source: The Royal Mint Sovereign Spot Benchmark] | GOLD_SILVER_RATIO: N/A
+COPPER_GLOBAL_USD_MT     : $14,473.06 | YoY: +44.81% (Dr. Copper Growth Pulse) [Source: FRED/IMF | Obs: 2026-09-01]
+WHEAT_GLOBAL_USD_MT      : $246.85 | YoY: +59.14% (Black Sea Agro Security) [Source: FRED/IMF | Obs: 2026-09-01]
 
 ---
 ## 5. MARITIME CHOKEPOINTS (PORTWATCH AIS REAL-TIME DISRUPTION TELEMETRY)
 ---
-CHOKE_HORMUZ          : Status: CHRONIC_CRISIS_BLOCKADE  | Daily:   2 (Tnk:  0, Cnt:  1) | Shift: -97.8% vs 2023 Base
-CHOKE_BAB_EL_MANDEB   : Status: CONGESTION_SURGE         | Daily:  34 (Tnk:  9, Cnt: 11) | Shift: -35.7% vs 2023 Base
-CHOKE_SUEZ            : Status: STABLE_FLOW              | Daily:  44 (Tnk: 14, Cnt: 12) | Shift: -18.8% vs 2023 Base
-CHOKE_TURKISH_STRAITS : Status: CHRONIC_CRISIS_BLOCKADE  | Daily:  57 (Tnk: 12, Cnt:  5) | Shift: -40.7% vs 2023 Base
-CHOKE_MALACCA         : Status: STABLE_FLOW              | Daily: 258 (Tnk: 82, Cnt: 78) | Shift: +31.8% vs 2023 Base
-CHOKE_TAIWAN          : Status: STABLE_FLOW              | Daily: 223 (Tnk: 44, Cnt: 80) | Shift: -8.0% vs 2023 Base
-CHOKE_PANAMA          : Status: STABLE_FLOW              | Daily:  30 (Tnk: 16, Cnt:  9) | Shift: -0.7% vs 2023 Base
+CHOKE_HORMUZ          : Status: CHRONIC_CRISIS_BLOCKADE  | Daily:   2 (Tnk:  0, Cnt:  1) | Shift: -97.8% vs 2023 Base [Source: IMF PortWatch | Obs: 2026-11-15]
+CHOKE_BAB_EL_MANDEB   : Status: CONGESTION_SURGE         | Daily:  34 (Tnk:  9, Cnt: 11) | Shift: -35.7% vs 2023 Base [Source: IMF PortWatch | Obs: 2026-11-15]
+CHOKE_SUEZ            : Status: STABLE_FLOW              | Daily:  44 (Tnk: 14, Cnt: 12) | Shift: -18.8% vs 2023 Base [Source: IMF PortWatch | Obs: 2026-11-15]
+CHOKE_TURKISH_STRAITS : Status: CHRONIC_CRISIS_BLOCKADE  | Daily:  57 (Tnk: 12, Cnt:  5) | Shift: -40.7% vs 2023 Base [Source: IMF PortWatch | Obs: 2026-11-15]
+CHOKE_MALACCA         : Status: STABLE_FLOW              | Daily: 258 (Tnk: 82, Cnt: 78) | Shift: +31.8% vs 2023 Base [Source: IMF PortWatch | Obs: 2026-11-15]
+CHOKE_TAIWAN          : Status: STABLE_FLOW              | Daily: 223 (Tnk: 44, Cnt: 80) | Shift: -8.0% vs 2023 Base [Source: IMF PortWatch | Obs: 2026-11-15]
+CHOKE_PANAMA          : Status: STABLE_FLOW              | Daily:  30 (Tnk: 16, Cnt:  9) | Shift: -0.7% vs 2023 Base [Source: IMF PortWatch | Obs: 2026-11-15]
 
 ---
 ## 6. MACRO LIQUIDITY & CENTRAL BANK TRANSMISSION BENCHMARKS
 ---
-NET_FED_LIQUIDITY_EST    : $5.844 Trillion USD | REGIME: NEUTRAL_LIQUIDITY_EQUILIBRIUM
-FED_FUNDS_TARGET_RATE    : 3.88%
-SECURED_OVERNIGHT_SOFR   : 3.93% | SOFR-EFFR SPREAD: 5.00 bps (Repo Collateral Stress)
-ECB_DEPOSIT_FACILITY     : 2.50%
-BOJ_POLICY_RATE          : 1.25% (Yen Carry Trade Differential)
-BOE_OFFICIAL_BANK_RATE   : 4.00%
-US_10Y_BREAKEVEN_INFL    : 2.20% (Market Inflation Anchor)
-US_10Y_2Y_YIELD_SPREAD   : 30.00 bps (Recession / Normalization Curve)
-CBOE_VIX_VOLATILITY      : 22.91 | YoY: +30.84% (Equity Fear Gauge)
-FED_BROAD_DOLLAR_INDEX  : 122.65 | YoY: +1.76% (Global Dollar Shortage / Trade Weighted)
-US_HIGH_YIELD_OAS_SPREAD: 3.34% | YoY: +5.36% (Corporate Credit Default Risk)
+NET_FED_LIQUIDITY_EST    : $5.844 Trillion USD | REGIME: NEUTRAL_LIQUIDITY_EQUILIBRIUM [Model 5 Reserve Engine]
+FED_FUNDS_TARGET_RATE    : 3.88% [Source: Federal Reserve / FRED | Obs: 2026-10-01]
+SECURED_OVERNIGHT_SOFR   : 3.93% | SOFR-EFFR SPREAD: 5.00 bps (Repo Collateral Stress) [Source: NY Fed / FRED | Obs: 2026-11-16]
+ECB_DEPOSIT_FACILITY     : 2.50% [Source: ECB Official | Obs: 2026-09-16]
+BOJ_POLICY_RATE          : 1.25% (Yen Carry Trade Differential) [Source: Bank of Japan / IMF | Obs: 2026-10-01]
+BOE_OFFICIAL_BANK_RATE   : 4.00% [Source: Bank of England / IMF | Obs: 2026-11-01]
+US_10Y_BREAKEVEN_INFL    : 2.20% (Market Inflation Anchor) [Model 7 Breakeven Engine]
+US_10Y_2Y_YIELD_SPREAD   : 30.00 bps (Recession / Normalization Curve) [Model 6 Yield Engine]
+CBOE_VIX_VOLATILITY      : 22.91 | YoY: +30.84% (Equity Fear Gauge) [Source: CBOE / FRED | Obs: 2026-11-16]
+FED_BROAD_DOLLAR_INDEX  : 122.65 | YoY: +1.76% (Global Dollar Shortage / Trade Weighted) [Source: Federal Reserve / FRED | Obs: 2026-11-13]
+US_HIGH_YIELD_OAS_SPREAD: 3.34% | YoY: +5.36% (Corporate Credit Default Risk) [Source: ICE BofA / FRED | Obs: 2026-11-16]
 
 ---
 ## 7. SYSTEMIC CONTAGION VECTORS & MEDIA REALITY CHECK (GROUND TRUTH RULES)

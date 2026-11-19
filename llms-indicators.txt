@@ -148,3 +148,8 @@ Mathematical Guardrails:
 ### 2.7. U.S. Census Bureau Official International Trade Series (1 Series)
 
 1. **NAICS_3344** (Semiconductor and Other Electronic Component Manufacturing International Trade Flows) | Freq: Monthly | Units: USD ($) | Source: U.S. Census Bureau International Trade API
+
+### 2.8. The Royal Mint Sovereign Spot Benchmarks & Central Bank FX (2 Series)
+
+1. **IND_ROYALMINT_GOLD_SPOT_USD** (The Royal Mint Spot Gold Price Benchmark Converted to USD via Official Central Bank FX) | Freq: Daily/Live | Units: USD per Troy Ounce | Source: The Royal Mint / ECB FX
+2. **IND_ROYALMINT_SILVER_SPOT_USD** (The Royal Mint Spot Silver Price Benchmark Converted to USD via Official Central Bank FX) | Freq: Daily/Live | Units: USD per Troy Ounce | Source: The Royal Mint / ECB FX

@@ -8,9 +8,9 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-sitrep.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-18T23:12:20Z",
+    "last_updated": "2026-11-19T01:08:54Z",
     "sync_status": "SUCCESS",
-    "data_completeness_pct": 96.2,
+    "data_completeness_pct": 96.6,
     "disclaimer": "The information, interpretations, and estimates contained herein do not constitute investment advice. All responsibility for decisions belongs solely to the user.",
     "source_authority": "Consolidated Telemetry (FRED, U.S. Census Bureau, EIA, IMF PortWatch, NASA FIRMS, ECB)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt",
@@ -65,6 +65,11 @@
     "us_semiconductor_exports_china_mom_pct": -8.42
   },
   "metals_commodities": {
+    "gold_spot_usd_ozt": 3750.6,
+    "gold_spot_gbp_ozt": 2848.27,
+    "silver_spot_usd_ozt": 45.61,
+    "silver_spot_gbp_ozt": 34.64,
+    "ecb_gbp_usd_cross_rate": 1.3168,
     "gold_usd_ozt": 4105.0,
     "gold_yoy_pct": 1.1582,
     "silver_usd_ozt": null,
