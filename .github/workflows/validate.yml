@@ -70,3 +70,7 @@ jobs:
       - name: Verify net Fed liquidity units
         run: |
           python -m unittest discover -s scripts -p test_net_fed_liquidity.py
+
+      - name: Verify SITREP schema and dual-twin integrity
+        run: |
+          python -m unittest discover -s scripts -p test_sitrep_integrity.py
