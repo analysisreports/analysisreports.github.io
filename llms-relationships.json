@@ -8,77 +8,77 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-relationships.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-18T20:00:11.976807+00:00",
+    "last_updated": "2026-11-19T05:17:40.440935+00:00",
     "sync_status": "PARTIAL_SUCCESS",
     "last_successful_sync": null,
-    "last_attempted_sync": "2026-11-18T20:00:11.976807+00:00",
+    "last_attempted_sync": "2026-11-19T05:17:40.440935+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
-      "brent_wti_spread_usd": 2.52,
-      "vix_index": 22.91,
-      "sox_yoy_pct": 38.1587,
+      "brent_wti_spread_usd": 3.41,
+      "vix_index": 25.46,
+      "sox_yoy_pct": 34.2481,
       "gscpi_std_dev": 1.2619,
-      "ai_chip_stress_score": 0.524
+      "ai_chip_stress_score": 0.583
     }
   },
   "macro_triggers": [
     {
       "entity_id": "IND_TRIGGER_HORMUZ_SPREAD",
       "model": "MODEL_25.19",
-      "value": -0.4362,
+      "value": 1.0,
       "status": "OK",
       "warning": null,
       "inputs": {
-        "DCOILBRENTEU.current_value": 92.14,
-        "DCOILWTICO.current_value": 89.62,
-        "DCOILBRENTEU.year_ago_value": 65.44,
-        "DCOILWTICO.year_ago_value": 60.97,
-        "DCOILBRENTEU.last_date": "2026-11-11",
-        "DCOILWTICO.last_date": "2026-11-11",
-        "DCOILBRENTEU.year_ago_date": "2025-10-31",
-        "DCOILWTICO.year_ago_date": "2025-10-28"
+        "DCOILBRENTEU.current_value": 92.94,
+        "DCOILWTICO.current_value": 89.53,
+        "DCOILBRENTEU.year_ago_value": 63.41,
+        "DCOILWTICO.year_ago_value": 61.79,
+        "DCOILBRENTEU.last_date": "2026-11-17",
+        "DCOILWTICO.last_date": "2026-11-17",
+        "DCOILBRENTEU.year_ago_date": "2025-11-06",
+        "DCOILWTICO.year_ago_date": "2025-11-03"
       },
-      "current_model_value": 2.52,
-      "year_ago_model_value": 4.47
+      "current_model_value": 3.41,
+      "year_ago_model_value": 1.62
     },
     {
       "entity_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
       "model": "MODEL_25.19",
-      "value": 0.1047,
+      "value": 0.1438,
       "status": "OK",
       "warning": null,
       "inputs": {
-        "OVXCLS.current_value": 49.59,
-        "VIXCLS.current_value": 22.91,
-        "OVXCLS.year_ago_value": 34.31,
-        "VIXCLS.year_ago_value": 17.51,
-        "OVXCLS.last_date": "2026-11-16",
-        "VIXCLS.last_date": "2026-11-16",
-        "OVXCLS.year_ago_date": "2025-11-03",
-        "VIXCLS.year_ago_date": "2025-11-12"
+        "OVXCLS.current_value": 49.9,
+        "VIXCLS.current_value": 25.46,
+        "OVXCLS.year_ago_value": 34.27,
+        "VIXCLS.year_ago_value": 20.0,
+        "OVXCLS.last_date": "2026-11-17",
+        "VIXCLS.last_date": "2026-11-17",
+        "OVXCLS.year_ago_date": "2025-11-04",
+        "VIXCLS.year_ago_date": "2025-11-13"
       },
-      "current_model_value": 2.1646,
-      "year_ago_model_value": 1.9595
+      "current_model_value": 1.9599,
+      "year_ago_model_value": 1.7135
     },
     {
       "entity_id": "IND_TRIGGER_NATGAS_CRACK",
       "model": "MODEL_25.19",
-      "value": 0.6365,
+      "value": 0.5705,
       "status": "OK",
       "warning": null,
       "inputs": {
-        "DCOILWTICO.current_value": 89.62,
-        "DHHNGSP.current_value": 3.0,
-        "DCOILWTICO.year_ago_value": 60.97,
-        "DHHNGSP.year_ago_value": 3.34,
-        "DCOILWTICO.last_date": "2026-11-11",
-        "DHHNGSP.last_date": "2026-11-11",
-        "DCOILWTICO.year_ago_date": "2025-10-28",
-        "DHHNGSP.year_ago_date": "2025-10-23"
+        "DCOILWTICO.current_value": 89.53,
+        "DHHNGSP.current_value": 3.1,
+        "DCOILWTICO.year_ago_value": 61.79,
+        "DHHNGSP.year_ago_value": 3.36,
+        "DCOILWTICO.last_date": "2026-11-17",
+        "DHHNGSP.last_date": "2026-11-17",
+        "DCOILWTICO.year_ago_date": "2025-11-03",
+        "DHHNGSP.year_ago_date": "2025-10-29"
       },
-      "current_model_value": 29.8733,
-      "year_ago_model_value": 18.2545
+      "current_model_value": 28.8806,
+      "year_ago_model_value": 18.3899
     },
     {
       "entity_id": "IND_TRIGGER_CHIP_CONTAINMENT",
@@ -87,16 +87,16 @@
       "status": "DATE_MISMATCH",
       "warning": "Current NASDAQSOX and VIX observation dates do not match.",
       "inputs": {
-        "NASDAQSOX.current_value": 9642.88,
-        "NASDAQSOX.year_ago_value": 6979.57,
-        "NASDAQSOX.two_years_ago_value": 5215.21,
-        "NASDAQSOX.last_date": "2026-11-17",
-        "NASDAQSOX.year_ago_date": "2025-11-04",
-        "NASDAQSOX.two_years_ago_date": "2024-10-21",
-        "VIXCLS.current_value": 22.91,
-        "VIXCLS.year_ago_value": 17.51,
-        "VIXCLS.last_date": "2026-11-16",
-        "VIXCLS.year_ago_date": "2025-11-12",
+        "NASDAQSOX.current_value": 9652.8,
+        "NASDAQSOX.year_ago_value": 7190.27,
+        "NASDAQSOX.two_years_ago_value": 5190.71,
+        "NASDAQSOX.last_date": "2026-11-18",
+        "NASDAQSOX.year_ago_date": "2025-11-05",
+        "NASDAQSOX.two_years_ago_date": "2024-10-22",
+        "VIXCLS.current_value": 25.46,
+        "VIXCLS.year_ago_value": 20.0,
+        "VIXCLS.last_date": "2026-11-17",
+        "VIXCLS.year_ago_date": "2025-11-13",
         "GSCPI.current_value": 1.2619,
         "GSCPI.year_ago_value": -0.0842,
         "GSCPI.last_date": "2026-10-31",
@@ -108,17 +108,17 @@
     {
       "entity_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
       "model": "MODEL_25.19",
-      "value": -0.0796,
+      "value": -0.0297,
       "status": "OK",
       "warning": null,
       "inputs": {
-        "SOFR.current_value": 3.93,
-        "SOFR.year_ago_value": 4.27,
-        "SOFR.last_date": "2026-11-16",
-        "SOFR.year_ago_date": "2025-10-29"
+        "SOFR.current_value": 3.92,
+        "SOFR.year_ago_value": 4.04,
+        "SOFR.last_date": "2026-11-17",
+        "SOFR.year_ago_date": "2025-10-30"
       },
-      "current_model_value": 3.93,
-      "year_ago_model_value": 4.27
+      "current_model_value": 3.92,
+      "year_ago_model_value": 4.04
     },
     {
       "entity_id": "IND_TRIGGER_GSCPI_LOGISTICS",
@@ -198,7 +198,7 @@
         "institution_id": "INST_FED_US",
         "benchmark": "Federal Funds Effective Rate (DFF)",
         "rate": 3.88,
-        "effective_date": "2026-11-16",
+        "effective_date": "2026-11-17",
         "spread_vs_dff_ppt": 0.0,
         "spread_str": "Benchmark (0.00)"
       },
@@ -241,7 +241,7 @@
       "target_entity": "GEO_RU",
       "label": "US - RU (United States vs. Russian Federation)",
       "p_baseline": -0.85,
-      "dynamic_delta": -0.063224,
+      "dynamic_delta": -0.066784,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -252,15 +252,15 @@
         {
           "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
           "direction": -1,
-          "value": 0.1047,
-          "contribution": -0.1047,
+          "value": 0.1438,
+          "contribution": -0.1438,
           "status": "OK"
         },
         {
           "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
           "direction": -1,
-          "value": -0.0796,
-          "contribution": 0.0796,
+          "value": -0.0297,
+          "contribution": 0.0297,
           "status": "OK"
         },
         {
@@ -272,7 +272,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_US_SPR_BUFFER",
-      "p_net": -0.86,
+      "p_net": -0.87,
       "conflict_severity": "HIGH",
       "nasa_data": "LOCALIZED_THERMAL",
       "regime_state": "PROXY_WAR",
@@ -342,8 +342,8 @@
         {
           "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
           "direction": 1,
-          "value": -0.0796,
-          "contribution": -0.0796,
+          "value": -0.0297,
+          "contribution": -0.0297,
           "status": "OK"
         },
         {
@@ -371,7 +371,7 @@
       "target_entity": "GEO_IR",
       "label": "IL - IR (Israel vs. Islamic Republic of Iran)",
       "p_baseline": -0.95,
-      "dynamic_delta": 0.083052,
+      "dynamic_delta": -0.2,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -382,23 +382,23 @@
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
           "direction": -1,
-          "value": -0.4362,
-          "contribution": 0.4362,
+          "value": 1.0,
+          "contribution": -1.0,
           "status": "OK"
         },
         {
           "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
           "direction": -1,
-          "value": 0.1047,
-          "contribution": -0.1047,
+          "value": 0.1438,
+          "contribution": -0.1438,
           "status": "OK"
         }
       ],
       "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
-      "p_net": -0.87,
+      "p_net": -1.0,
       "conflict_severity": "CRITICAL",
       "nasa_data": "ACUTE_THERMAL",
-      "regime_state": "PROXY_WAR",
+      "regime_state": "KINETIC_WAR",
       "primary_driver": "MODEL_25_12_BRENT_WTI_BENCHMARK_SPREAD",
       "friction_nodes": [
         "LEVANT",
@@ -413,7 +413,7 @@
       "target_entity": "GEO_IR",
       "label": "SA - IR (Kingdom of Saudi Arabia vs. Islamic Republic of Iran)",
       "p_baseline": 0.15,
-      "dynamic_delta": 0.083052,
+      "dynamic_delta": -0.2,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -424,23 +424,23 @@
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
           "direction": -1,
-          "value": -0.4362,
-          "contribution": 0.4362,
+          "value": 1.0,
+          "contribution": -1.0,
           "status": "OK"
         },
         {
           "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
           "direction": -1,
-          "value": 0.1047,
-          "contribution": -0.1047,
+          "value": 0.1438,
+          "contribution": -0.1438,
           "status": "OK"
         }
       ],
       "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
-      "p_net": 0.28,
+      "p_net": -0.0,
       "conflict_severity": "MODERATE",
       "nasa_data": "ACUTE_THERMAL",
-      "regime_state": "TACTICAL_COOPERATION",
+      "regime_state": "NEUTRAL",
       "primary_driver": "BEIJING_ACCORD_AND_OIL_FLOWS",
       "friction_nodes": [
         "YEMEN_BORDER",
@@ -453,7 +453,7 @@
       "target_entity": "GEO_IL",
       "label": "US - IL (United States - Israel)",
       "p_baseline": 0.8,
-      "dynamic_delta": 0.083052,
+      "dynamic_delta": -0.2,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.05,
       "mecca_pact_delta": 0.05,
@@ -464,23 +464,23 @@
         {
           "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
           "direction": -1,
-          "value": 0.1047,
-          "contribution": -0.1047,
+          "value": 0.1438,
+          "contribution": -0.1438,
           "status": "OK"
         },
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
           "direction": -1,
-          "value": -0.4362,
-          "contribution": 0.4362,
+          "value": 1.0,
+          "contribution": -1.0,
           "status": "OK"
         }
       ],
       "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
-      "p_net": 0.98,
+      "p_net": 0.7,
       "conflict_severity": "LOW",
       "nasa_data": "LOCALIZED_THERMAL",
-      "regime_state": "ALLIANCE",
+      "regime_state": "STRATEGIC_ALIGNMENT",
       "primary_driver": "BILATERAL_SECURITY_PARTNERSHIP",
       "friction_nodes": [
         "REGIONAL_ESCALATION_SCALE"
@@ -492,7 +492,7 @@
       "target_entity": "GEO_IR",
       "label": "US - IR (United States vs. Islamic Republic of Iran)",
       "p_baseline": -0.85,
-      "dynamic_delta": 0.070608,
+      "dynamic_delta": -0.2,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -503,15 +503,15 @@
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
           "direction": -1,
-          "value": -0.4362,
-          "contribution": 0.4362,
+          "value": 1.0,
+          "contribution": -1.0,
           "status": "OK"
         },
         {
           "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
           "direction": -1,
-          "value": 0.1047,
-          "contribution": -0.1047,
+          "value": 0.1438,
+          "contribution": -0.1438,
           "status": "OK"
         },
         {
@@ -523,10 +523,10 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
-      "p_net": -0.78,
+      "p_net": -1.0,
       "conflict_severity": "CRITICAL",
       "nasa_data": "ACUTE_THERMAL",
-      "regime_state": "PROXY_WAR",
+      "regime_state": "KINETIC_WAR",
       "primary_driver": "PERSIAN_GULF_CONTAINMENT_AND_NUCLEAR_BREAKOUT",
       "friction_nodes": [
         "STRAIT_OF_HORMUZ",
@@ -541,7 +541,7 @@
       "target_entity": "BLOC_EU",
       "label": "US - EU / NATO Core",
       "p_baseline": 0.85,
-      "dynamic_delta": -0.124116,
+      "dynamic_delta": -0.112912,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -552,20 +552,20 @@
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
           "direction": -1,
-          "value": 0.6365,
-          "contribution": -0.6365,
+          "value": 0.5705,
+          "contribution": -0.5705,
           "status": "OK"
         },
         {
           "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
           "direction": -1,
-          "value": -0.0796,
-          "contribution": 0.0796,
+          "value": -0.0297,
+          "contribution": 0.0297,
           "status": "OK"
         }
       ],
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
-      "p_net": 0.78,
+      "p_net": 0.79,
       "conflict_severity": "LOW",
       "nasa_data": "LOCALIZED_THERMAL",
       "regime_state": "STRATEGIC_ALIGNMENT",
@@ -581,7 +581,7 @@
       "target_entity": "BLOC_EU",
       "label": "RU - EU Core",
       "p_baseline": -0.8,
-      "dynamic_delta": -0.131488,
+      "dynamic_delta": -0.119852,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -592,20 +592,20 @@
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
           "direction": -1,
-          "value": 0.6365,
-          "contribution": -0.6365,
+          "value": 0.5705,
+          "contribution": -0.5705,
           "status": "OK"
         },
         {
           "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
           "direction": -1,
-          "value": 0.1047,
-          "contribution": -0.1047,
+          "value": 0.1438,
+          "contribution": -0.1438,
           "status": "OK"
         }
       ],
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
-      "p_net": -0.88,
+      "p_net": -0.87,
       "conflict_severity": "HIGH",
       "nasa_data": "BASELINE_CLEAR",
       "regime_state": "PROXY_WAR",
@@ -654,7 +654,7 @@
       "target_entity": "GEO_AM",
       "label": "AZ - AM (Republic of Azerbaijan vs. Republic of Armenia)",
       "p_baseline": -0.7,
-      "dynamic_delta": -0.1273,
+      "dynamic_delta": -0.1141,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -665,13 +665,13 @@
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
           "direction": -1,
-          "value": 0.6365,
-          "contribution": -0.6365,
+          "value": 0.5705,
+          "contribution": -0.5705,
           "status": "OK"
         }
       ],
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
-      "p_net": -0.83,
+      "p_net": -0.81,
       "conflict_severity": "HIGH",
       "nasa_data": "BASELINE_CLEAR",
       "regime_state": "PROXY_WAR",
@@ -706,8 +706,8 @@
         {
           "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
           "direction": -1,
-          "value": -0.0796,
-          "contribution": 0.0796,
+          "value": -0.0297,
+          "contribution": 0.0297,
           "status": "OK"
         }
       ],
@@ -741,15 +741,15 @@
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
           "direction": -1,
-          "value": 0.6365,
-          "contribution": -0.6365,
+          "value": 0.5705,
+          "contribution": -0.5705,
           "status": "OK"
         },
         {
           "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
           "direction": -1,
-          "value": 0.1047,
-          "contribution": -0.1047,
+          "value": 0.1438,
+          "contribution": -0.1438,
           "status": "OK"
         }
       ],
@@ -782,15 +782,15 @@
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
           "direction": -1,
-          "value": 0.6365,
-          "contribution": -0.6365,
+          "value": 0.5705,
+          "contribution": -0.5705,
           "status": "OK"
         },
         {
           "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
           "direction": -1,
-          "value": 0.1047,
-          "contribution": -0.1047,
+          "value": 0.1438,
+          "contribution": -0.1438,
           "status": "OK"
         }
       ],
@@ -812,7 +812,7 @@
       "target_entity": "GEO_IL",
       "label": "YE - IL (Yemen Houthis / Ansarullah vs. State of Israel)",
       "p_baseline": -0.95,
-      "dynamic_delta": -0.18674,
+      "dynamic_delta": -0.2,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -823,15 +823,15 @@
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
           "direction": -1,
-          "value": -0.4362,
-          "contribution": 0.4362,
+          "value": 1.0,
+          "contribution": -1.0,
           "status": "OK"
         },
         {
           "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
           "direction": -1,
-          "value": 0.1047,
-          "contribution": -0.1047,
+          "value": 0.1438,
+          "contribution": -0.1438,
           "status": "OK"
         },
         {
@@ -842,7 +842,7 @@
           "status": "OK"
         }
       ],
-      "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
+      "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
       "p_net": -1.0,
       "conflict_severity": "CRITICAL",
       "nasa_data": "BASELINE_CLEAR",
@@ -861,7 +861,7 @@
       "target_entity": "GEO_VE",
       "label": "US - VE (United States vs. Bolivarian Republic of Venezuela)",
       "p_baseline": -0.75,
-      "dynamic_delta": -0.071612,
+      "dynamic_delta": 0.2,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -872,15 +872,15 @@
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
           "direction": 1,
-          "value": -0.4362,
-          "contribution": -0.4362,
+          "value": 1.0,
+          "contribution": 1.0,
           "status": "OK"
         },
         {
           "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
           "direction": -1,
-          "value": -0.0796,
-          "contribution": 0.0796,
+          "value": -0.0297,
+          "contribution": 0.0297,
           "status": "OK"
         },
         {
@@ -892,7 +892,7 @@
         }
       ],
       "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
-      "p_net": -0.82,
+      "p_net": -0.55,
       "conflict_severity": "MODERATE",
       "nasa_data": "ELEVATED_THERMAL",
       "regime_state": "PROXY_WAR",
@@ -951,7 +951,7 @@
       "target_entity": "GEO_GR",
       "label": "TR - GR (Republic of Türkiye vs. Hellenic Republic)",
       "p_baseline": -0.35,
-      "dynamic_delta": -0.1273,
+      "dynamic_delta": -0.1141,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -962,13 +962,13 @@
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
           "direction": -1,
-          "value": 0.6365,
-          "contribution": -0.6365,
+          "value": 0.5705,
+          "contribution": -0.5705,
           "status": "OK"
         }
       ],
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
-      "p_net": -0.43,
+      "p_net": -0.41,
       "conflict_severity": "MODERATE",
       "nasa_data": "BASELINE_CLEAR",
       "regime_state": "STRATEGIC_FRICTION",
@@ -985,7 +985,7 @@
       "target_entity": "GEO_IL",
       "label": "EG - IL (Arab Republic of Egypt vs. State of Israel)",
       "p_baseline": 0.3,
-      "dynamic_delta": -0.2,
+      "dynamic_delta": 0.16,
       "legacy_dynamic_delta": -0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -996,8 +996,8 @@
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
           "direction": 1,
-          "value": -0.4362,
-          "contribution": -0.4362,
+          "value": 1.0,
+          "contribution": 1.0,
           "status": "OK"
         },
         {
@@ -1008,11 +1008,11 @@
           "status": "OK"
         }
       ],
-      "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
-      "p_net": 0.15,
+      "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
+      "p_net": 0.51,
       "conflict_severity": "MODERATE",
       "nasa_data": "LOCALIZED_THERMAL",
-      "regime_state": "TACTICAL_COOPERATION",
+      "regime_state": "STRATEGIC_ALIGNMENT",
       "primary_driver": "PHILADELPHI_CORRIDOR_AND_SUEZ_MARITIME_STABILITY",
       "friction_nodes": [
         "PHILADELPHI_CORRIDOR",
@@ -1027,7 +1027,7 @@
       "target_entity": "GEO_YE",
       "label": "SA - YE (Kingdom of Saudi Arabia vs. Republic of Yemen)",
       "p_baseline": -0.55,
-      "dynamic_delta": -0.182552,
+      "dynamic_delta": -0.2,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -1038,8 +1038,8 @@
         {
           "trigger_id": "IND_TRIGGER_HORMUZ_SPREAD",
           "direction": -1,
-          "value": -0.4362,
-          "contribution": 0.4362,
+          "value": 1.0,
+          "contribution": -1.0,
           "status": "OK"
         },
         {
@@ -1050,8 +1050,8 @@
           "status": "OK"
         }
       ],
-      "dominant_trigger": "IND_TRIGGER_GSCPI_LOGISTICS",
-      "p_net": -0.73,
+      "dominant_trigger": "IND_TRIGGER_HORMUZ_SPREAD",
+      "p_net": -0.75,
       "conflict_severity": "HIGH",
       "nasa_data": "ACUTE_THERMAL",
       "regime_state": "PROXY_WAR",
@@ -1069,7 +1069,7 @@
       "target_entity": "GEO_IQ",
       "label": "IR - IQ (Islamic Republic of Iran vs. Republic of Iraq)",
       "p_baseline": 0.65,
-      "dynamic_delta": 0.130484,
+      "dynamic_delta": 0.115288,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -1080,20 +1080,20 @@
         {
           "trigger_id": "IND_TRIGGER_NATGAS_CRACK",
           "direction": 1,
-          "value": 0.6365,
-          "contribution": 0.6365,
+          "value": 0.5705,
+          "contribution": 0.5705,
           "status": "OK"
         },
         {
           "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
           "direction": -1,
-          "value": -0.0796,
-          "contribution": 0.0796,
+          "value": -0.0297,
+          "contribution": 0.0297,
           "status": "OK"
         }
       ],
       "dominant_trigger": "IND_TRIGGER_NATGAS_CRACK",
-      "p_net": 0.83,
+      "p_net": 0.82,
       "conflict_severity": "LOW",
       "nasa_data": "ACUTE_THERMAL",
       "regime_state": "STRATEGIC_ALIGNMENT",
@@ -1111,7 +1111,7 @@
       "target_entity": "GEO_SA",
       "label": "TR - SA (Republic of Türkiye - Kingdom of Saudi Arabia)",
       "p_baseline": 0.35,
-      "dynamic_delta": 0.017756,
+      "dynamic_delta": 0.027572,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.1,
       "mecca_pact_delta": 0.1,
@@ -1122,20 +1122,20 @@
         {
           "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
           "direction": 1,
-          "value": -0.0796,
-          "contribution": -0.0796,
+          "value": -0.0297,
+          "contribution": -0.0297,
           "status": "OK"
         },
         {
           "trigger_id": "IND_TRIGGER_OVX_ENERGY_PANIC",
           "direction": 1,
-          "value": 0.1047,
-          "contribution": 0.1047,
+          "value": 0.1438,
+          "contribution": 0.1438,
           "status": "OK"
         }
       ],
       "dominant_trigger": "IND_TRIGGER_OVX_ENERGY_PANIC",
-      "p_net": 0.52,
+      "p_net": 0.53,
       "conflict_severity": "LOW",
       "nasa_data": "ACUTE_THERMAL",
       "regime_state": "STRATEGIC_ALIGNMENT",
@@ -1152,7 +1152,7 @@
       "target_entity": "GEO_PK",
       "label": "SA - PK (Kingdom of Saudi Arabia - Islamic Republic of Pakistan)",
       "p_baseline": 0.65,
-      "dynamic_delta": -0.01592,
+      "dynamic_delta": -0.00594,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.1,
       "mecca_pact_delta": 0.1,
@@ -1163,13 +1163,13 @@
         {
           "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
           "direction": 1,
-          "value": -0.0796,
-          "contribution": -0.0796,
+          "value": -0.0297,
+          "contribution": -0.0297,
           "status": "OK"
         }
       ],
       "dominant_trigger": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
-      "p_net": 0.78,
+      "p_net": 0.79,
       "conflict_severity": "LOW",
       "nasa_data": "ACUTE_THERMAL",
       "regime_state": "STRATEGIC_ALIGNMENT",
@@ -1205,8 +1205,8 @@
         {
           "trigger_id": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
           "direction": -1,
-          "value": -0.0796,
-          "contribution": 0.0796,
+          "value": -0.0297,
+          "contribution": 0.0297,
           "status": "OK"
         }
       ],

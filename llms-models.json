@@ -8,11 +8,11 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-models.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-18T10:07:31.893437+00:00",
+    "last_updated": "2026-11-19T05:17:45.495548+00:00",
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-18T10:07:31.893437+00:00",
+    "last_successful_sync": "2026-11-19T05:17:45.495548+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -29,16 +29,16 @@
       "model_id": "MODEL_1",
       "model_name": "Fed Policy Stance & Market Pressure Gauge",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#1",
-      "primary_value": 10.0,
+      "primary_value": 9.0,
       "unit": "Basis Points (bps)",
       "status": "HAWKISH_MARKET_PRESSURE",
       "inputs": {
-        "treasury_1m_yield_dgs1mo": 4.1,
+        "treasury_1m_yield_dgs1mo": 4.09,
         "fed_policy_rate": 4.0
       },
       "metrics": {
-        "spread_basis_points": 10.0,
-        "dgs1mo_yield": 4.1,
+        "spread_basis_points": 9.0,
+        "dgs1mo_yield": 4.09,
         "fed_funds_rate": 4.0
       },
       "interpretation": "Spread between 1-Month Treasury yield and Fed Funds Rate. Measures market-implied rate cut pressure (<= -15 bps) or liquidity-driven hawkish stress (> +4 bps)."
@@ -84,13 +84,13 @@
       "unit": "Basis Points (bps)",
       "status": "NORMAL_SLOPE",
       "inputs": {
-        "treasury_3m_yield_dgs3mo": 4.34,
-        "treasury_1m_yield_dgs1mo": 4.1
+        "treasury_3m_yield_dgs3mo": 4.33,
+        "treasury_1m_yield_dgs1mo": 4.09
       },
       "metrics": {
         "spread_basis_points": 24.0,
-        "dgs3mo_yield": 4.34,
-        "dgs1mo_yield": 4.1
+        "dgs3mo_yield": 4.33,
+        "dgs1mo_yield": 4.09
       },
       "interpretation": "Tracks the slope between 3-month and 1-month Treasury bills. Negative values indicate acute front-end cash collateral squeeze and inverted money market slope."
     },
@@ -104,11 +104,11 @@
       "inputs": {
         "fed_total_assets_walcl_mil": 6758867.0,
         "treasury_general_account_tga_mil": 914370.0,
-        "overnight_reverse_repo_rrp_bil": 0.351,
-        "overnight_reverse_repo_rrp_mil": 351.0
+        "overnight_reverse_repo_rrp_bil": 0.331,
+        "overnight_reverse_repo_rrp_mil": 331.0
       },
       "metrics": {
-        "net_liquidity_millions_usd": 5844146.0,
+        "net_liquidity_millions_usd": 5844166.0,
         "net_liquidity_trillions_usd": 5.844
       },
       "interpretation": "Unencumbered commercial bank liquidity: WALCL - (TGA + ON_RRP). Direct fuel for equity asset valuations."
@@ -117,15 +117,15 @@
       "model_id": "MODEL_6",
       "model_name": "Treasury Yield Curve Slope (10Y - 2Y)",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#6",
-      "primary_value": 30.0,
+      "primary_value": 27.0,
       "unit": "Basis Points (bps)",
       "status": "NORMAL_CURVE_EXPANSION",
       "inputs": {
-        "t10y2y_spread_pct": 0.3
+        "t10y2y_spread_pct": 0.27
       },
       "metrics": {
-        "yield_spread_bps": 30.0,
-        "t10y2y_spread_pct": 0.3
+        "yield_spread_bps": 27.0,
+        "t10y2y_spread_pct": 0.27
       },
       "interpretation": "Leading cyclical economic barometer. Inversions (bps < 0) historically precede sovereign US business cycle recessions."
     },
@@ -133,17 +133,17 @@
       "model_id": "MODEL_7",
       "model_name": "10-Year Breakeven Inflation Rate",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#7",
-      "primary_value": 2.2,
+      "primary_value": 2.21,
       "unit": "Percent (%)",
       "status": "FED_ALIGNED_EQUILIBRIUM",
       "inputs": {
-        "nominal_10y_yield_dgs10": 5.12,
-        "tips_10y_real_yield_dfii10": 2.92
+        "nominal_10y_yield_dgs10": 5.1,
+        "tips_10y_real_yield_dfii10": 2.89
       },
       "metrics": {
-        "breakeven_inflation_rate_pct": 2.2,
-        "dgs10_nominal": 5.12,
-        "dfii10_tips_real": 2.92
+        "breakeven_inflation_rate_pct": 2.21,
+        "dgs10_nominal": 5.1,
+        "dfii10_tips_real": 2.89
       },
       "interpretation": "Reflects the bond market's expected average annual inflation rate over the next 10 years by subtracting 10-year TIPS real yields from 10-year nominal Treasury yields."
     },
@@ -169,17 +169,17 @@
       "model_id": "MODEL_9",
       "model_name": "Financial Repression Index",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#9",
-      "primary_value": 1.26,
+      "primary_value": 1.236,
       "unit": "Index Score",
       "status": "SUSTAINABLE_CYCLE",
       "inputs": {
-        "nominal_10y_yield_dgs10": 5.12,
+        "nominal_10y_yield_dgs10": 5.1,
         "headline_cpi_yoy_pct": 4.08,
         "federal_debt_pct_gdp": 121.19
       },
       "metrics": {
-        "debt_pressure_index": 1.26,
-        "real_10y_yield_pct": 1.04,
+        "debt_pressure_index": 1.236,
+        "real_10y_yield_pct": 1.02,
         "federal_debt_gdp_ratio": 121.19
       },
       "interpretation": "Scores the risk of eroding public debt in real terms under negative real yields versus triggering an explosive debt service crisis under high real yields and high sovereign debt ratios."
@@ -248,15 +248,15 @@
       "model_id": "MODEL_13",
       "model_name": "High Yield Credit Spread / OAS",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#13",
-      "primary_value": 334,
+      "primary_value": 343,
       "unit": "Basis Points (bps)",
       "status": "RISK_APPETITE_HEALTHY",
       "inputs": {
-        "high_yield_oas_bamlh0a0hym2": 3.34
+        "high_yield_oas_bamlh0a0hym2": 3.43
       },
       "metrics": {
-        "spread_bps": 334,
-        "bamlh0a0hym2_pct": 3.34
+        "spread_bps": 343,
+        "bamlh0a0hym2_pct": 3.43
       },
       "interpretation": "Measures corporate credit default risk and risk appetite contraction. Spreads above 500 bps signal acute default and refinancing distress; below 350 bps reflect healthy risk appetite."
     },
@@ -286,13 +286,13 @@
       "unit": "Percent (%)",
       "status": "FISCAL_SUPPLY_PRESSURE",
       "inputs": {
-        "nominal_10y_yield_dgs10": 5.12,
+        "nominal_10y_yield_dgs10": 5.1,
         "acm_10y_term_premium_threefytp10": 0.99
       },
       "metrics": {
         "term_premium_pct": 0.99,
-        "expected_average_short_rate_pct": 4.13,
-        "nominal_10y_yield_pct": 5.12
+        "expected_average_short_rate_pct": 4.11,
+        "nominal_10y_yield_pct": 5.1
       },
       "interpretation": "Decomposes 10-year Treasury yields via the Adrian, Crump & Moench (ACM) model. Term premium >= +0.50% reflects duration risk, fiscal supply pressure, or inflation uncertainty; <= -0.50% reflects safe-haven duration demand or central bank asset purchases."
     },
@@ -300,15 +300,15 @@
       "model_id": "MODEL_16",
       "model_name": "CBOE Volatility & Market Fear Regime",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#16",
-      "primary_value": 22.91,
+      "primary_value": 25.46,
       "unit": "Points",
       "status": "ELEVATED_STRESS",
       "market_bias": "RISK_OFF",
       "inputs": {
-        "vix_close": 22.91
+        "vix_close": 25.46
       },
       "metrics": {
-        "vix_level": 22.91,
+        "vix_level": 25.46,
         "regime": "ELEVATED_STRESS",
         "market_bias": "RISK_OFF"
       },
@@ -372,19 +372,19 @@
       "model_id": "MODEL_21",
       "model_name": "Gold to Oil Crisis & Recession Ratio",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#21",
-      "primary_value": 45.8,
+      "primary_value": 45.85,
       "unit": "Barrels per Ounce",
       "status": "MACRO_CRISIS_RECESSION",
       "inputs": {
         "gold_price_usd_oz": 4105.0,
-        "oil_price_usd_bbl": 89.62
+        "oil_price_usd_bbl": 89.53
       },
       "components": {
-        "ratio": 45.8,
+        "ratio": 45.85,
         "historical_equilibrium_band": "12.0 - 25.0"
       },
       "metrics": {
-        "gold_oil_ratio": 45.8,
+        "gold_oil_ratio": 45.85,
         "historical_equilibrium_band": "12.0 - 25.0"
       },
       "interpretation": "Calculates ounces of gold per barrel of crude oil to classify recessionary safe-haven demand or supply-side energy shocks."
@@ -522,18 +522,18 @@
       "model_id": "MODEL_24",
       "model_name": "Safe Haven Flight Index",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#24",
-      "primary_value": 0.8,
+      "primary_value": 0.825,
       "unit": "Flight Ratio",
       "status": "NORMAL_MARKET_REGIME",
       "inputs": {
         "nominal_broad_dollar_index_dtwexbgs": 122.6503,
-        "high_yield_oas_bamlh0a0hym2": 3.34,
-        "nominal_10y_treasury_dgs10": 5.12
+        "high_yield_oas_bamlh0a0hym2": 3.43,
+        "nominal_10y_treasury_dgs10": 5.1
       },
       "metrics": {
-        "flight_ratio": 0.8,
-        "safe_haven_score": 80.01,
-        "dollar_bond_ratio": 23.96
+        "flight_ratio": 0.825,
+        "safe_haven_score": 82.49,
+        "dollar_bond_ratio": 24.05
       },
       "interpretation": "Measures capital flight into safe-haven USD and flight-to-safety dynamics by evaluating dollar strength and credit spreads against Treasury yields. Values > 1.80 indicate acute flight to safety."
     },
@@ -559,19 +559,19 @@
       "model_id": "MODEL_25.12",
       "model_name": "Brent-WTI Benchmark Price Spread",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.12",
-      "primary_value": 2.52,
+      "primary_value": 3.41,
       "unit": "USD",
       "status": "TYPICAL_BRENT_WTI_SPREAD",
       "inputs": {
-        "brent_usd": 92.14,
-        "wti_usd": 89.62,
+        "brent_usd": 92.94,
+        "wti_usd": 89.53,
         "commercial_crude_stocks_mbbl": 409.76,
         "us_crude_production_mbpd": 14.0
       },
       "metrics": {
-        "brent_wti_spread_usd": 2.52,
-        "brent_usd": 92.14,
-        "wti_usd": 89.62,
+        "brent_wti_spread_usd": 3.41,
+        "brent_usd": 92.94,
+        "wti_usd": 89.53,
         "commercial_crude_stocks_mbbl": 409.76,
         "us_crude_production_mbpd": 14.0
       },
@@ -634,15 +634,15 @@
       "model_id": "MODEL_25.5",
       "model_name": "Repo Liquidity Friction Spread Engine",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#25.5",
-      "primary_value": 5.0,
+      "primary_value": 4.0,
       "unit": "Basis Points (bps)",
-      "status": "SYSTEMIC_CASH_DRAIN_WARNING",
+      "status": "HEALTHY_MONETARY_TRANSMISSION",
       "inputs": {
-        "sofr_rate": 3.93,
+        "sofr_rate": 3.92,
         "effr_rate": 3.88
       },
       "metrics": {
-        "spread_bps": 5.0
+        "spread_bps": 4.0
       },
       "interpretation": "Measures funding market friction tracking the spread between secured repo financing (SOFR) and unsecured Fed funds (EFFR). Spreads between -5.0 and +5.0 bps indicate healthy monetary transmission."
     },
@@ -650,15 +650,15 @@
       "model_id": "MODEL_25.6",
       "model_name": "Gold / Real Yield Debasement Gauge",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.6",
-      "primary_value": 2.92,
+      "primary_value": 2.89,
       "unit": "Percent (%)",
       "status": "TRADITIONAL_REAL_RATE_DOMINANCE",
       "inputs": {
-        "tips_10y_real_yield_dfii10": 2.92,
+        "tips_10y_real_yield_dfii10": 2.89,
         "gold_price_yoy_pct_ind_wb_gold": 1.16
       },
       "metrics": {
-        "real_yield_10y_pct": 2.92,
+        "real_yield_10y_pct": 2.89,
         "gold_yoy_pct": 1.16
       },
       "interpretation": "Detects de-dollarization trends and fiat debasement by measuring breakdowns in the traditional inverse correlation between 10-year TIPS real yields and gold prices. Gold rallying above 15% alongside real yields > 1.5% signals systemic de-dollarization."
@@ -667,15 +667,15 @@
       "model_id": "MODEL_25.7",
       "model_name": "OVX / VIX Geopolitical Energy Shock Engine",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.7",
-      "primary_value": 2.16,
+      "primary_value": 1.96,
       "unit": "Ratio",
       "status": "BALANCED_ENERGY_VOLATILITY",
       "inputs": {
-        "ovx_close": 49.59,
-        "vix_close": 22.91
+        "ovx_close": 49.9,
+        "vix_close": 25.46
       },
       "metrics": {
-        "ovx_vix_ratio": 2.16
+        "ovx_vix_ratio": 1.96
       },
       "interpretation": "Evaluates the ratio between crude oil volatility (OVX) and equity volatility (VIX). Ratios > 2.2 signal severe geopolitical oil supply shocks and stagflationary headwinds."
     },
@@ -683,57 +683,57 @@
       "model_id": "MODEL_25.8",
       "model_name": "Natgas / Crude Oil Price-Ratio Disconnect Engine",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.8",
-      "primary_value": 29.87,
+      "primary_value": 28.88,
       "unit": "WTI/NatGas Ratio",
       "status": "ENERGY_PARITY_EQUILIBRIUM",
       "inputs": {
-        "wti_crude_usd_bbl": 89.62,
-        "henry_hub_natgas_usd_mmbtu": 3.0,
+        "wti_crude_usd_bbl": 89.53,
+        "henry_hub_natgas_usd_mmbtu": 3.1,
         "lower48_natgas_storage_bcf": 3801.0,
         "natgas_storage_yoy_pct": -2.66
       },
       "metrics": {
-        "btu_disconnect_ratio": 29.87,
-        "wti_price": 89.62,
-        "natgas_price": 3.0,
+        "btu_disconnect_ratio": 28.88,
+        "wti_price": 89.53,
+        "natgas_price": 3.1,
         "lower48_natgas_storage_bcf": 3801.0,
         "natgas_storage_yoy_pct": -2.66
       },
-      "interpretation": "Tracks relative purchasing power: at current quotes, the price of one WTI barrel buys 29.87 MMBtu of Henry Hub gas. Ratios below 6 mark the near-thermal-equivalence band around 5.8 MMBtu per barrel; ratios above 35 flag the empirical high-ratio tail of the matched post-2009 daily series. EIA underground gas storage is supplied as context alongside the price ratio. Current Lower 48 underground gas storage: 3801.0 Bcf."
+      "interpretation": "Tracks relative purchasing power: at current quotes, the price of one WTI barrel buys 28.88 MMBtu of Henry Hub gas. Ratios below 6 mark the near-thermal-equivalence band around 5.8 MMBtu per barrel; ratios above 35 flag the empirical high-ratio tail of the matched post-2009 daily series. EIA underground gas storage is supplied as context alongside the price ratio. Current Lower 48 underground gas storage: 3801.0 Bcf."
     },
     {
       "model_id": "MODEL_25.9",
       "model_name": "Gasoline / Distillate / Crude 3:2:1 Crack Spread",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.9",
-      "primary_value": 36.86,
+      "primary_value": 32.96,
       "unit": "USD per Barrel",
       "status": "CRACK_SPREAD_EXPANDING",
       "inputs": {
-        "gasoline_spot_usd_gal": 2.415,
-        "ulsd_spot_usd_gal": 4.204,
-        "wti_crude_usd_bbl": 89.62,
-        "matched_observation_date": "2026-11-11",
+        "gasoline_spot_usd_gal": 2.328,
+        "ulsd_spot_usd_gal": 4.093,
+        "wti_crude_usd_bbl": 89.53,
+        "matched_observation_date": "2026-11-17",
         "gasoline_stocks_kbbl": 208958.0,
         "gasoline_stocks_yoy_pct": 1.43,
         "refinery_utilization_pct": 89.1,
-        "gasoline_spot_usd_gal_year_ago": 1.926,
-        "ulsd_spot_usd_gal_year_ago": 2.418,
-        "wti_crude_usd_bbl_year_ago": 60.97
+        "gasoline_spot_usd_gal_year_ago": 1.923,
+        "ulsd_spot_usd_gal_year_ago": 2.456,
+        "wti_crude_usd_bbl_year_ago": 61.79
       },
       "metrics": {
-        "crack_spread_321_usd_bbl": 36.86,
-        "gasoline_2_barrel_equiv_usd": 202.86,
-        "ulsd_1_barrel_equiv_usd": 176.57,
-        "wti_crude_usd_bbl": 89.62,
+        "crack_spread_321_usd_bbl": 32.96,
+        "gasoline_2_barrel_equiv_usd": 195.55,
+        "ulsd_1_barrel_equiv_usd": 171.91,
+        "wti_crude_usd_bbl": 89.53,
         "gasoline_stocks_kbbl": 208958.0,
         "gasoline_stocks_yoy_pct": 1.43,
         "refinery_utilization_pct": 89.1,
         "refinery_capacity_regime": "NORMAL_OPERATING_BAND",
-        "crack_spread_321_year_ago_usd_bbl": 26.81,
-        "crack_spread_321_yoy_change_usd_bbl": 10.05,
-        "crack_spread_321_yoy_pct": 37.49
+        "crack_spread_321_year_ago_usd_bbl": 26.44,
+        "crack_spread_321_yoy_change_usd_bbl": 6.52,
+        "crack_spread_321_yoy_pct": 24.66
       },
-      "interpretation": "The same-date 3:2:1 crack spread is 36.86 USD/bbl, up 10.05 USD/bbl (37.49%) from 26.81 USD/bbl one year earlier. Status describes the year-over-year direction, not whether the absolute spread is high or low. Gasoline inventory is contextual only."
+      "interpretation": "The same-date 3:2:1 crack spread is 32.96 USD/bbl, up 6.52 USD/bbl (24.66%) from 26.44 USD/bbl one year earlier. Status describes the year-over-year direction, not whether the absolute spread is high or low. Gasoline inventory is contextual only."
     },
     {
       "model_id": "MODEL_25.10",
@@ -776,13 +776,13 @@
       "unit": "Basis Points (bps)",
       "status": "REFLATIONARY_EXPANSION",
       "inputs": {
-        "treasury_3m_yield_dgs3mo": 4.34,
-        "treasury_1m_yield_dgs1mo": 4.1,
-        "brent_crude_yoy_pct": 40.8
+        "treasury_3m_yield_dgs3mo": 4.33,
+        "treasury_1m_yield_dgs1mo": 4.09,
+        "brent_crude_yoy_pct": 46.57
       },
       "metrics": {
         "slope_bps": 24.0,
-        "brent_yoy_pct": 40.8
+        "brent_yoy_pct": 46.57
       },
       "interpretation": "Evaluates front-end money market liquidity (3M-1M T-Bill spread) against crude oil cost inflation (Brent YoY %) in a 2x2 macro matrix to identify systemic liquidity and cost shock regimes."
     },
@@ -790,24 +790,24 @@
       "model_id": "MODEL_25.14",
       "model_name": "AI Hardware & Semiconductor Supply Chain Stress Gauge",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.14",
-      "primary_value": 0.524,
+      "primary_value": 0.583,
       "unit": "Score (Normalized)",
       "status": "ELEVATED_SEMICONDUCTOR_BOTTLENECK",
       "inputs": {
         "gscpi_std_dev": 1.262,
-        "sox_yoy_pct": 38.16,
-        "vix_level": 22.91
+        "sox_yoy_pct": 34.25,
+        "vix_level": 25.46
       },
       "components": {
         "gscpi_weight": 0.505,
-        "sox_weight": -0.267,
-        "vix_weight": 0.286
+        "sox_weight": -0.24,
+        "vix_weight": 0.318
       },
       "metrics": {
-        "hardware_stress_score": 0.524,
+        "hardware_stress_score": 0.583,
         "gscpi_weight": 0.505,
-        "sox_weight": -0.267,
-        "vix_weight": 0.286
+        "sox_weight": -0.24,
+        "vix_weight": 0.318
       },
       "interpretation": "Normalized composite metric monitoring semiconductor physical supply bottlenecks, hardware inflation, and space-grade tactical defense processor conduits (SEC_DEF_STARSHIELD)."
     },
@@ -841,12 +841,12 @@
       "unit": "Dynamic Delta Index (Avg)",
       "status": "TREATY_ACTIVE_EQUILIBRIUM",
       "inputs": {
-        "brent_usd_bbl": 92.14,
-        "sofr_percent": 3.93,
+        "brent_usd_bbl": 92.94,
+        "sofr_percent": 3.92,
         "imf_breakeven_usd_bbl": 90.94
       },
       "metrics": {
-        "oil_breakeven_ratio": 1.0132,
+        "oil_breakeven_ratio": 1.022,
         "delta_treaty_baseline": 0.1,
         "energy_fiscal_component": 0.0,
         "dollar_liquidity_friction": 0.0,
@@ -862,13 +862,13 @@
       "model_id": "MODEL_28.4",
       "model_name": "Chokepoint Macro Spillover Bridge (Hormuz - Live EIA SPR)",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.4",
-      "primary_value": 50,
+      "primary_value": 53,
       "unit": "Index (0-100)",
       "status": "MODERATE_FRICTION",
       "inputs": {
         "chokepoint_id": "CHOKE_HORMUZ",
         "severity_enum": "CATASTROPHIC",
-        "p_net": -0.87,
+        "p_net": -1.0,
         "crisis_duration_days": 14,
         "gross_flow_mbpd": 20.5,
         "regional_bypass_capacity_mbpd": 4.0,
@@ -877,14 +877,14 @@
       },
       "metrics": {
         "severity_weight": 1.0,
-        "polarity_friction_factor": 0.87,
+        "polarity_friction_factor": 1.0,
         "spr_sustainable_drawdown_mbpd": 3.14,
         "effective_spr_release_mbpd": 3.14,
         "total_buffer_capacity_mbpd": 7.14,
         "net_unmet_deficit_mbpd": 13.36,
         "net_deficit_ratio": 0.6517,
         "duration_scale_factor": 0.7,
-        "unscaled_base_shock": 71.72,
+        "unscaled_base_shock": 75.62,
         "us_crude_field_production_mbpd": 14.0
       },
       "interpretation": "Couples maritime chokepoint severity (CATASTROPHIC) with live EIA SPR inventory (3.14 mbpd sustainable release) and regional pipeline bypass to evaluate macroeconomic spillover under acute crisis."
