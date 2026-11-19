@@ -1892,6 +1892,69 @@
           ]
         }
       }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "get_macro_model_snapshot",
+        "description": "Retrieves real-time evaluated macroeconomic quantitative model outputs from llms-models.json, including primary calculated values, status regimes, units, and input telemetry.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "model_id": {
+              "type": "string",
+              "description": "Canonical quantitative model identifier (e.g. 'MODEL_5' for Net Fed Liquidity, 'MODEL_11' for Taylor Rule Policy Gap, 'MODEL_1' for Fed Policy Spread). If omitted, summarizes all active models."
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "get_chokepoint_sitrep_telemetry",
+        "description": "Retrieves live maritime chokepoint transit telemetry and crisis flow status from llms-sitrep.json (IMF PortWatch & AIS satellite telemetry).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "chokepoint_id": {
+              "type": "string",
+              "enum": [
+                "CHOKE_HORMUZ",
+                "CHOKE_BAB_EL_MANDEB",
+                "CHOKE_SUEZ",
+                "CHOKE_TURKISH_STRAITS",
+                "CHOKE_MALACCA",
+                "CHOKE_TAIWAN",
+                "CHOKE_PANAMA"
+              ],
+              "description": "Canonical maritime chokepoint entity ID from llms-entities-id.txt."
+            }
+          },
+          "required": [
+            "chokepoint_id"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "get_bilateral_dyad_polarity",
+        "description": "Retrieves real-time geopolitical dyad polarity scores from llms-relationships.json, including baseline polarity (P_baseline), dynamic macro delta, net polarity (P_net), and structural regime state.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "dyad_id": {
+              "type": "string",
+              "description": "Canonical sovereign dyad pair code (e.g. 'US_IR', 'US_CN', 'US_RU', 'IL_IR', 'SA_IR', 'TR_GR'). Symmetrical across bilateral hubs."
+            }
+          },
+          "required": [
+            "dyad_id"
+          ]
+        }
+      }
     }
   ],
   "metadata": {
@@ -1902,7 +1965,7 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-tools.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-16T23:15:00Z",
+    "last_updated": "2026-11-19T19:35:00Z",
     "master_graph": "https://analysisreports.github.io/llms-graph.json"
   }
 }
