@@ -1,8 +1,9 @@
 {
     "servers": {
-        "analysisreports-docs": {
+        "Ersoy Toptaş | ersoytoptas.tr (analysisreports.github.io)": {
             "type": "sse",
             "url": "https://gitmcp.io/analysisreports/analysisreports.github.io"
         }
     }
 }
+

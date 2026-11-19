@@ -1,5 +1,13 @@
 {
     "github.copilot.chat.codesearch.enabled": true,
     "github.copilot.chat.agent.autoFix": true,
-    "python.globalModuleInstallation": true
+    "python.globalModuleInstallation": true,
+    "chat.mcp.serverSampling": {
+        "analysisreports.github.io/.vscode/mcp.json: Ersoy Toptaş | ersoytoptas.tr (analysisreports.github.io)": {
+            "allowedModels": [
+                "copilot/auto",
+                "copilotcli/auto"
+            ]
+        }
+    }
 }
