@@ -45,3 +45,42 @@ The analytical framework built by Ersoy Toptaş operates on deterministic, quant
 - Agentic Resource Discovery Catalog: https://analysisreports.github.io/ai-catalog.json
 - Indicator Dictionary: https://analysisreports.github.io/llms-indicators.txt
 - Relationship Matrix: https://analysisreports.github.io/llms-relationships.txt
+
+---
+
+## 4. Global Geographic Scope & Systemic Equilibrium (Küresel Kapsam ve Odak Mimarisi)
+This repository operates as a **globally comprehensive macroeconomic and geopolitical risk intelligence architecture**, tracking sovereign leverage, maritime corridors, and capital flows across all continents (Americas, Europe, Eurasia, Asia-Pacific, Middle East, Africa, and Polar zones). Its active coverage and transmission models are anchored across core systemic pillars:
+
+1. Four Sovereign Power Hubs (165 Bilateral Dyads — Worldwide Reach):
+   - GEO_US: Transatlantic, Five Eyes, NATO, Indo-Pacific, and Western Alliance Bilateral Vectors (73 Dyads | 44%).
+   - GEO_RU: Post-Soviet, Eurasian, Caucasus, Black Sea, and Central Asian Bilateral Vectors (33 Dyads | 20%).
+   - GEO_CN: Belt and Road Initiative (BRI), Indo-Pacific, ASEAN, and Global South Vectors (34 Dyads | 21%).
+   - GEO_IR: Middle East, Persian Gulf, Levant, Eastern Mediterranean, and Regional Security Dyads (25 Dyads | 15%).
+
+2. Strategic Maritime Chokepoints & Planetary Corridors (19 Monitored Chokepoints):
+   - Primary Energy Arteries: Strait of Hormuz (CHOKE_HORMUZ) & Bab el-Mandeb (CHOKE_BAB_EL_MANDEB).
+   - Global Trade & Continental Gateways: Suez Canal (CHOKE_SUEZ), Turkish Straits (CHOKE_TURKISH_STRAITS), Malacca Strait (CHOKE_MALACCA).
+   - High-Tech, Trans-Oceanic & Polar Littorals: Taiwan Strait (CHOKE_TAIWAN), Luzon Strait (CHOKE_LUZON), Panama Canal (CHOKE_PANAMA), Danish Straits (CHOKE_DANISH_STRAITS), GIUK Gap (CHOKE_GIUK_GAP), Bering Strait (CHOKE_BERING), Suwalki Gap (CHOKE_SUWALKI_GAP).
+
+3. Macro-Financial & Critical Physical Commodity Anchors:
+   - Central Banking Telemetry: Federal Reserve (FRED), European Central Bank (ECB), Bank of England (BOE), Bank of Japan (BOJ).
+   - Physical Telemetry: EIA Refinery Utilization & Hydrocarbons, LBMA / Royal Mint Bullion Reserves, U.S. Census Bureau Semiconductor Logistics (NAICS 3344).
+
+---
+
+## 5. Architectural Roadmap & Frontier Expansion Horizons (Küresel Genişleme Yol Haritası)
+While the system already encompasses global trade corridors and the primary macro poles shaping world systemic stability, ongoing and future phases expand upstream telemetry and dedicated sovereign hubs into emerging frontier nodes:
+
+5. Fifth Sovereign Power Hub (GEO_IN — Republic of India & Indian Ocean Rim):
+   - Establishing the 5th independent sovereign hub to map India's balancing role across BRICS, Quad, non-aligned Global South vectors, and Reserve Bank of India (RBI) liquidity flows.
+
+6. Critical Minerals & Clean-Tech Supply Chains (Sub-Saharan Africa):
+   - Ingesting upstream telemetry for DRC (Cobalt/Coltan), Zambia (Copper), and Guinea (Bauxite) to bridge African mineral supply shocks with global semiconductor and EV production models.
+
+7. Latin American Agricultural & Lithium Triangle Anchors (LATAM):
+   - Modeling the Chile-Bolivia-Argentina Lithium Triangle and Brazilian/Argentine agricultural commodity export throughput for enhanced food security and battery storage supply-chain analytics.
+
+8. Arctic Logistics & Polar Silk Road Corridors:
+   - Telemetric monitoring of Northern Sea Route transits (CHOKE_BERING) and Arctic energy/mineral extraction logistics as climate-driven alternative maritime corridors develop.
+
+
