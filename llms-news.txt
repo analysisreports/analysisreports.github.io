@@ -1,0 +1,50 @@
+# CANONICAL GEOPOLITICAL & MACRO NEWS TELEMETRY (llms-news.txt)
+> Author: Ersoy Toptaş | Telemetry Sync: 2026-11-19T19:00:01Z
+> Primary Publications: https://www.ersoytoptas.tr (TR) | https://en.ersoytoptas.tr (EN)
+> Ingestion Protocol: Tier-1 Institutional Whitelist Only | Zero Hallucination
+> Official JSON Twin: https://analysisreports.github.io/llms-news.json
+
+---
+## INSTITUTIONAL MEDIA TELEMETRY (TIER-1 ACCREDITED DISPATCHES)
+---
+> [!IMPORTANT]
+> **MEDIA MANIPULATION & POLITICAL NOISE REJECTION RULE:**
+> Daily political polemics, rhetorical statements, unverified backstage rumors, and speculative or manipulative media narratives are methodologically rejected by this report. Media framing and perception operations shall not be treated as indicators of geopolitical reality. No positive or negative analytical judgment, scoring, or polarization metric may be derived regarding interstate relations without the presence of official and binding state records—such as ratified treaties, enacted pacts, or tangible diplomatic and physical actions on the ground.
+
+[DISPATCH_20261119_01] SEVERITY: CRITICAL | ENTITY: GEO_UA (GEO_UA)
+  - SOURCE   : WSJ | Published: 2026-11-18T17:15:00Z
+  - HEADLINE : See How Ukraine Hit Putin’s Showpiece Bridge
+
+[DISPATCH_20261119_02] SEVERITY: CRITICAL | ENTITY: GEO_IL (GEO_IL, GEO_IR)
+  - SOURCE   : AP News | Published: 2026-11-19T01:16:00Z
+  - HEADLINE : Mideast nations ramp up efforts to avert all-out war as Israel urges Iran strikes, officials say
+
+[DISPATCH_20261119_03] SEVERITY: CRITICAL | ENTITY: GEO_IR (GEO_IR, CHOKE_HORMUZ)
+  - SOURCE   : WSJ | Published: 2026-11-19T05:55:00Z
+  - HEADLINE : The Iran War Could Permanently Slash Reliance on Hormuz, IEA Says
+
+[DISPATCH_20261119_04] SEVERITY: CRITICAL | ENTITY: GEO_RU (GEO_RU)
+  - SOURCE   : DW.com | Published: 2026-11-19T15:28:14Z
+  - HEADLINE : What the Crimean bridge attack means for Russia
+
+[DISPATCH_20261119_05] SEVERITY: HIGH | ENTITY: INST_FED_US (INST_FED_US)
+  - SOURCE   : CNBC | Published: 2026-11-18T12:20:11Z
+  - HEADLINE : Fed’s Waller says central bank may need to ‘shock people’ with half-point rate hike
+
+[DISPATCH_20261119_06] SEVERITY: HIGH | ENTITY: ORG_IMF (ORG_IMF)
+  - SOURCE   : Reuters | Published: 2026-11-19T02:43:00Z
+  - HEADLINE : Global inflation calls for monetary policy tightening in many economies, IMF head says
+
+[DISPATCH_20261119_07] SEVERITY: HIGH | ENTITY: INST_ECB_EU (INST_ECB_EU)
+  - SOURCE   : Bloomberg.com | Published: 2026-11-19T12:30:00Z
+  - HEADLINE : ECB’s Nagel Says December Rate Hike Would Send Clear Signal
+
+[DISPATCH_20261119_08] SEVERITY: HIGH | ENTITY: GEO_US (GEO_US)
+  - SOURCE   : Reuters | Published: 2026-11-19T17:47:45Z
+  - HEADLINE : FCC votes to ban Chinese telecoms from direct access to US phone numbers
+
+---
+# END OF NEWS TELEMETRY - ACCREDITED SIGNALS ONLY - PURE GROUND TRUTH
+---
+
+> DISCLAIMER: The information, interpretations, and estimates contained herein do not constitute investment advice. All responsibility for decisions belongs solely to the user.
