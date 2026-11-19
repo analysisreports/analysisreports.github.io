@@ -9,7 +9,7 @@
     "endpoint": "https://analysisreports.github.io/llms-sitrep.json",
     "text_endpoint": "https://analysisreports.github.io/llms-sitrep.txt",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-19T03:13:14Z",
+    "last_updated": "2026-11-19T13:53:11Z",
     "sync_status": "SUCCESS",
     "data_completeness_pct": 98.3,
     "disclaimer": "The information, interpretations, and estimates contained herein do not constitute investment advice. All responsibility for decisions belongs solely to the user.",
@@ -28,51 +28,45 @@
     {
       "source": "MODEL_28_4_BYPASS_ENGINE",
       "entity_id": "CHOKE_HORMUZ",
-      "event": "STRUCTURAL_BYPASS_CEILING: Overland pipelines (7.14 mbpd buffer) leave 13.36 mbpd unmet deficit (65.2%) under hostile polarity (-0.87).",
+      "event": "STRUCTURAL_BYPASS_CEILING: Overland pipelines (7.14 mbpd buffer) leave 13.36 mbpd unmet deficit (65.2%) under hostile polarity (-1.00).",
       "causal_chain": "MARITIME_FLOW_BLOCKADE -> PIPELINE_THROUGHPUT_LIMIT -> STRUCTURAL_ENERGY_DEFICIT",
       "systemic_impact": "Overland corridors cannot fully substitute maritime volumes; energy importing economies face persistent structural physical deficit."
     },
     {
       "source": "THE_ROYAL_MINT_BENCHMARK",
       "entity_id": "INST_ROYAL_MINT_UK",
-      "event": "SOVEREIGN_SAFE_HAVEN_ACCUMULATION: Live Gold/Silver Ratio at 82.2 (Gold: $3,750.60, Silver: $45.61) with elevated VIX (22.91).",
+      "event": "SOVEREIGN_SAFE_HAVEN_ACCUMULATION: Live Gold/Silver Ratio at 82.2 (Gold: $3,757.15, Silver: $45.69) with elevated VIX (25.46).",
       "causal_chain": "GEOPOLITICAL_FRICTION -> CURRENCY_DEBASEMENT_HEDGE -> PHYSICAL_BULLION_ACCUMULATION",
       "systemic_impact": "Sovereign reserve managers and institutional capital prioritize monetary safe-haven assets over cyclical industrial raw materials."
     },
     {
       "source": "US_CENSUS_NAICS3344",
       "entity_id": "GEO_CN",
-      "event": "TECH_DECOUPLING_VELOCITY: Direct US chip exports to China contracted -8.4% MoM amid Model 25.14 stress (0.524).",
+      "event": "TECH_DECOUPLING_VELOCITY: Direct US chip exports to China contracted -8.4% MoM amid Model 25.14 stress (0.583).",
       "causal_chain": "EXPORT_CONTROL_ENFORCEMENT -> DIRECT_SHIPMENT_CONTRACTION -> INTERMEDIARY_HUB_REROUTING",
       "systemic_impact": "Global AI hardware capex inflates as procurement routes adapt through secondary Asian transshipment hubs."
-    },
-    {
-      "source": "NASA_FIRMS_VIIRS",
-      "entity_id": "GEO_IR",
-      "event": "KINETIC_THERMAL_SURGE: Islamic Republic of Iran & Gulf Littoral orbital detection with 2625.0 MW radiative heat (Severity: CRITICAL).",
-      "causal_chain": "THEATER_MISSILE_ENGAGEMENT -> ASYMMETRIC_INFRASTRUCTURE_RISK -> MARITIME_INSURANCE_SPIKE",
-      "systemic_impact": "Heightened war-risk insurance premiums and potential rerouting away from regional littoral waters."
     }
   ],
   "energy_matrix": {
-    "brent_crude_usd": 92.14,
-    "brent_dod_pct": 2.1961,
-    "brent_yoy_pct": 40.8007,
-    "wti_crude_usd": 89.62,
-    "spread_brent_wti_usd": 2.52,
-    "henry_hub_natural_gas_usd": 3.0,
+    "brent_crude_usd": 92.94,
+    "brent_dod_pct": 0.0431,
+    "brent_yoy_pct": 46.5699,
+    "wti_crude_usd": 89.53,
+    "spread_brent_wti_usd": 3.41,
+    "henry_hub_natural_gas_usd": 3.1,
+    "henry_hub_natural_gas_yoy_pct": -7.7381,
     "us_spr_crude_stocks_k_bbl": 282184.0,
     "us_spr_yoy_pct": -31.1066,
     "us_refinery_utilization_pct": 89.1,
     "refinery_capacity_regime": "NORMAL_OPERATING_BAND"
   },
   "semiconductors_tech": {
-    "ai_chip_stress_score": 0.524,
+    "ai_chip_stress_score": 0.583,
     "ai_chip_stress_regime": "ELEVATED_SEMICONDUCTOR_BOTTLENECK",
     "nyfed_gscpi_pressure_zscore": 1.2619,
     "nyfed_gscpi_yoy_change": 1.3461,
-    "sox_index_val": 9642.88,
-    "sox_yoy_pct": 38.1587,
+    "sox_index_val": 9652.8,
+    "sox_yoy_pct": 34.2481,
     "us_semiconductor_imports_global_usd": 30594050177.0,
     "us_semiconductor_imports_taiwan_usd": 6809991106.0,
     "us_semiconductor_imports_korea_usd": 7156474554.0,
@@ -81,11 +75,12 @@
     "us_semiconductor_exports_china_mom_pct": -8.42
   },
   "metals_commodities": {
-    "gold_spot_usd_ozt": 3750.6,
+    "gold_spot_usd_ozt": 3757.15,
     "gold_spot_gbp_ozt": 2848.27,
-    "silver_spot_usd_ozt": 45.61,
+    "silver_spot_usd_ozt": 45.69,
     "silver_spot_gbp_ozt": 34.64,
-    "ecb_gbp_usd_cross_rate": 1.3168,
+    "ecb_gbp_usd_cross_rate": 1.3191,
+    "fx_observation_date": "2026-11-17",
     "gold_usd_ozt": 4105.0,
     "gold_yoy_pct": 1.1582,
     "silver_usd_ozt": null,
@@ -165,36 +160,36 @@
     "net_fed_liquidity_trillion_usd": 5.844,
     "net_fed_liquidity_regime": "NEUTRAL_LIQUIDITY_EQUILIBRIUM",
     "fed_policy_rate_pct": 3.88,
-    "secured_overnight_financing_rate_pct": 3.93,
-    "sofr_fedfunds_spread_bps": 5.0,
+    "secured_overnight_financing_rate_pct": 3.92,
+    "sofr_fedfunds_spread_bps": 4.0,
     "ecb_deposit_rate_pct": 2.5,
     "boj_policy_rate_pct": 1.25,
     "boe_bank_rate_pct": 4.0,
-    "us_10y_breakeven_inflation_pct": 2.2,
-    "yield_curve_10y_2y_spread_bps": 30.0,
-    "cboe_vix_index": 22.91,
-    "cboe_vix_yoy_pct": 30.8395,
+    "us_10y_breakeven_inflation_pct": 2.21,
+    "yield_curve_10y_2y_spread_bps": 27.0,
+    "cboe_vix_index": 25.46,
+    "cboe_vix_yoy_pct": 27.3,
     "fed_broad_dollar_index": 122.6503,
     "fed_broad_dollar_yoy_pct": 1.7581,
-    "us_high_yield_spread_pct": 3.34,
-    "us_high_yield_spread_yoy_pct": 5.3628
+    "us_high_yield_spread_pct": 3.43,
+    "us_high_yield_spread_yoy_pct": 8.2019
   },
   "systemic_contagion_rules": [
     {
       "rule_id": "RULE_1_SEABORNE_ENERGY_DISRUPTION",
       "domain": "energy_maritime",
       "formula_link": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.12",
-      "telemetry_signal": "SPREAD_BRENT_WTI: $2.52 (2.73% of Brent) | US_SPR_STOCKS: 282,184 k bbl (YoY: -31.11%)",
+      "telemetry_signal": "SPREAD_BRENT_WTI: $3.41 (3.67% of Brent) | US_SPR_STOCKS: 282,184 k bbl (YoY: -31.11%)",
       "media_claim_bias": "Mainstream commentary often suggests global crude benchmarks remain largely balanced.",
-      "ground_truth_reality": "Moderate maritime arbitrage variance; Brent-WTI spread at $2.52 (2.73% of Brent baseline). Prevailing SPR levels (282,184 k bbl) could indicate an underlying vulnerability should corridor transit volumes contract further."
+      "ground_truth_reality": "Moderate maritime arbitrage variance; Brent-WTI spread at $3.41 (3.67% of Brent baseline). Prevailing SPR levels (282,184 k bbl) could indicate an underlying vulnerability should corridor transit volumes contract further."
     },
     {
       "rule_id": "RULE_2_OFFSHORE_DOLLAR_SHORTAGE",
       "domain": "macro_liquidity",
       "formula_link": "https://analysisreports.github.io/llms-formulas.txt#0.2.2",
-      "telemetry_signal": "FED_BROAD_DOLLAR: 122.65 (YoY: +1.76%) | SOFR_EFFR_SPREAD: 5.00 bps",
+      "telemetry_signal": "FED_BROAD_DOLLAR: 122.65 (YoY: +1.76%) | SOFR_EFFR_SPREAD: 4.00 bps",
       "media_claim_bias": "Market summaries frequently interpret headline 6-currency DXY movements as reflecting neutral broader dollar conditions.",
-      "ground_truth_reality": "Mild repo collateral friction observed; SOFR-EFFR spread at 5.00 bps. Broad Dollar index (122.65, YoY: +1.76%) may reflect orderly, manageable offshore dollar demand."
+      "ground_truth_reality": "Liquidity indicators remain in balanced territory; SOFR-EFFR spread is moderate (4.00 bps) and Fed Broad Dollar index (122.65, YoY: +1.76%) aligns with non-stress historical baselines."
     },
     {
       "rule_id": "RULE_3_STRATEGIC_PASSAGE_PARALYSIS",
@@ -208,17 +203,17 @@
       "rule_id": "RULE_4_SEMICONDUCTOR_CONTAINMENT_FRICTION",
       "domain": "semiconductors_tech",
       "formula_link": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.14",
-      "telemetry_signal": "MODEL_25_14_CHIP_STRESS: 0.524 (ELEVATED_SEMICONDUCTOR_BOTTLENECK) | NYFED_GSCPI: 1.26 Z-Score | US_CN MoM: -8.42%",
+      "telemetry_signal": "MODEL_25_14_CHIP_STRESS: 0.583 (ELEVATED_SEMICONDUCTOR_BOTTLENECK) | NYFED_GSCPI: 1.26 Z-Score | US_CN MoM: -8.42%",
       "media_claim_bias": "Trade overviews tend to highlight the immediate dampening effect of direct bilateral technology export controls.",
-      "ground_truth_reality": "Calculated technology supply chain friction; Model 25.14 AI Chip Stress registers 0.524 (ELEVATED_SEMICONDUCTOR_BOTTLENECK) alongside elevated NY Fed GSCPI pressure (1.26 Z-Score). Direct US-to-China chip export changes (-8.42% MoM velocity) alongside sustained Asian import volumes (Taiwan: $6,809,991,106 USD, Korea: $7,156,474,554 USD) may suggest that market participants are exploring alternative routing hubs, which could introduce additional logistics and compliance considerations."
+      "ground_truth_reality": "Calculated technology supply chain friction; Model 25.14 AI Chip Stress registers 0.583 (ELEVATED_SEMICONDUCTOR_BOTTLENECK) alongside elevated NY Fed GSCPI pressure (1.26 Z-Score). Direct US-to-China chip export changes (-8.42% MoM velocity) alongside sustained Asian import volumes (Taiwan: $6,809,991,106 USD, Korea: $7,156,474,554 USD) may suggest that market participants are exploring alternative routing hubs, which could introduce additional logistics and compliance considerations."
     },
     {
       "rule_id": "RULE_5_BYPASS_CAPACITY_CEILING",
       "domain": "energy_chokepoints",
       "formula_link": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.4",
-      "telemetry_signal": "MODEL_28_4_SPILLOVER: 50 (MODERATE_FRICTION) | Net Deficit: 13.36 mbpd (65.2%) | IL_IR Polarity: -0.87",
+      "telemetry_signal": "MODEL_28_4_SPILLOVER: 53 (MODERATE_FRICTION) | Net Deficit: 13.36 mbpd (65.2%) | IL_IR Polarity: -1.00",
       "media_claim_bias": "Public infrastructure reviews often cite overland pipeline capacity as an adaptable alternative to maritime bottlenecks.",
-      "ground_truth_reality": "Structural overland bypass considerations; Model 28.4 parameters indicate overland pipelines (7.14 mbpd capacity) leave a calculated 13.36 mbpd differential (65.2% of baseline flows of 20.50 mbpd). Under prevailing regional geopolitical polarity (-0.87), infrastructure substitution may require extended operational lead times and alternate transit coordination."
+      "ground_truth_reality": "Structural overland bypass considerations; Model 28.4 parameters indicate overland pipelines (7.14 mbpd capacity) leave a calculated 13.36 mbpd differential (65.2% of baseline flows of 20.50 mbpd). Under prevailing regional geopolitical polarity (-1.00), infrastructure substitution may require extended operational lead times and alternate transit coordination."
     },
     {
       "rule_id": "RULE_6_SECONDARY_ROUTING_FRICTION",
@@ -232,9 +227,9 @@
       "rule_id": "RULE_7_MONETARY_STRESS_SAFE_HAVEN",
       "domain": "metals_commodities",
       "formula_link": "https://analysisreports.github.io/llms-formulas.txt#0.2.1",
-      "telemetry_signal": "GOLD_SPOT_USD: $3,750.60 | SILVER_SPOT_USD: $45.61 | GOLD_SILVER_RATIO: 82.2 | CBOE_VIX: 22.91",
+      "telemetry_signal": "GOLD_SPOT_USD: $3,757.15 | SILVER_SPOT_USD: $45.69 | GOLD_SILVER_RATIO: 82.2 | CBOE_VIX: 25.46",
       "media_claim_bias": "Financial commentary frequently characterizes precious metals rallies as routine commodity inflation or speculative trading cycles.",
-      "ground_truth_reality": "Monetary hedging considerations and geopolitical risk awareness; Gold/Silver Ratio at 82.2 (Spot Gold: $3,750.60 via The Royal Mint / ECB FX, Silver: $45.61) alongside elevated volatility readings (VIX: 22.91, YoY: +30.84%). This combination tends to indicate that market participants may be placing an emphasis on monetary asset stability and sovereign hedging."
+      "ground_truth_reality": "Monetary hedging considerations and geopolitical risk awareness; Gold/Silver Ratio at 82.2 (Spot Gold: $3,757.15 via The Royal Mint / ECB FX, Silver: $45.69) alongside elevated volatility readings (VIX: 25.46, YoY: +27.30%). This combination tends to indicate that market participants may be placing an emphasis on monetary asset stability and sovereign hedging."
     }
   ]
 }

@@ -64,7 +64,7 @@ def _annotate_telemetry_deficits(matrix: Dict[str, Any], matrix_name: str = "") 
     matrix.update(deficits)
     return matrix
 
-def _fetch_royal_mint_spot() -> Dict[str, Any]:
+def _fetch_royal_mint_spot(ecb_data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     """
     Ingests live spot gold and silver benchmarks directly from The Royal Mint dataLayer
     and converts to USD via official European Central Bank (ECB) FX cross rates.
@@ -72,6 +72,7 @@ def _fetch_royal_mint_spot() -> Dict[str, Any]:
     """
     import urllib.request
     import re
+    import gzip
 
     spot_data = {
         "gold_gbp": None,
@@ -80,6 +81,7 @@ def _fetch_royal_mint_spot() -> Dict[str, Any]:
         "gold_spot_usd": None,
         "silver_spot_usd": None,
         "source": "The Royal Mint Sovereign Benchmark / ECB FX",
+        "fx_observation_date": "N/A",
         "status": "UNAVAILABLE"
     }
     
@@ -99,30 +101,48 @@ def _fetch_royal_mint_spot() -> Dict[str, Any]:
         print(f"[WARN] Royal Mint spot ingestion error: {e}")
         return spot_data
 
+    # Attempt Live ECB FX Rates Ingestion
+    eur_usd = None
+    eur_gbp = None
+    fx_date = "N/A"
     try:
         url_usd = "https://data-api.ecb.europa.eu/service/data/EXR/D.USD.EUR.SP00.A?lastNObservations=1&format=jsondata"
         url_gbp = "https://data-api.ecb.europa.eu/service/data/EXR/D.GBP.EUR.SP00.A?lastNObservations=1&format=jsondata"
         
-        req_u = urllib.request.Request(url_usd, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req_u, timeout=10) as ru:
-            du = json.loads(ru.read().decode("utf-8"))
-            eur_usd = du["dataSets"][0]["series"]["0:0:0:0:0"]["observations"]["0"][0]
+        def _get_ecb_live(url):
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
+            with urllib.request.urlopen(req, timeout=5) as r:
+                raw = r.read()
+                try:
+                    raw = gzip.decompress(raw)
+                except Exception:
+                    pass
+                return json.loads(raw.decode("utf-8"))
 
-        req_g = urllib.request.Request(url_gbp, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req_g, timeout=10) as rg:
-            dg = json.loads(rg.read().decode("utf-8"))
-            eur_gbp = dg["dataSets"][0]["series"]["0:0:0:0:0"]["observations"]["0"][0]
-
-        if eur_usd and eur_gbp and eur_gbp > 0:
-            gbp_usd = round(eur_usd / eur_gbp, 4)
-            spot_data["gbp_usd_rate"] = gbp_usd
-            if spot_data["gold_gbp"] is not None:
-                spot_data["gold_spot_usd"] = round(spot_data["gold_gbp"] * gbp_usd, 2)
-            if spot_data["silver_gbp"] is not None:
-                spot_data["silver_spot_usd"] = round(spot_data["silver_gbp"] * gbp_usd, 2)
-            spot_data["status"] = "LIVE_OFFICIAL_BENCHMARK"
+        du = _get_ecb_live(url_usd)
+        dg = _get_ecb_live(url_gbp)
+        eur_usd = du["dataSets"][0]["series"]["0:0:0:0:0"]["observations"]["0"][0]
+        eur_gbp = dg["dataSets"][0]["series"]["0:0:0:0:0"]["observations"]["0"][0]
+        fx_date = du["structure"]["dimensions"]["observation"][0]["values"][0]["id"]
     except Exception as e:
-        print(f"[WARN] ECB FX cross-rate ingestion error: {e}")
+        # Fallback to local verified ECB telemetry file (llms-ecb-series.json)
+        if ecb_data and "series" in ecb_data:
+            ecb_series = ecb_data.get("series", {})
+            u_entry = ecb_series.get("EXR/D.USD.EUR.SP00.A", {})
+            g_entry = ecb_series.get("EXR/D.GBP.EUR.SP00.A", {})
+            eur_usd = u_entry.get("current_value")
+            eur_gbp = g_entry.get("current_value")
+            fx_date = u_entry.get("last_date", "N/A")
+
+    if eur_usd and eur_gbp and eur_gbp > 0:
+        gbp_usd = round(eur_usd / eur_gbp, 4)
+        spot_data["gbp_usd_rate"] = gbp_usd
+        spot_data["fx_observation_date"] = fx_date
+        if spot_data["gold_gbp"] is not None:
+            spot_data["gold_spot_usd"] = round(spot_data["gold_gbp"] * gbp_usd, 2)
+        if spot_data["silver_gbp"] is not None:
+            spot_data["silver_spot_usd"] = round(spot_data["silver_gbp"] * gbp_usd, 2)
+        spot_data["status"] = "LIVE_OFFICIAL_BENCHMARK"
 
     return spot_data
 
@@ -203,6 +223,7 @@ def build_sitrep():
         "wti_crude_usd": wti_val,
         "spread_brent_wti_usd": spread_brent_wti,
         "henry_hub_natural_gas_usd": gas_val,
+        "henry_hub_natural_gas_yoy_pct": gas_yoy,
         "us_spr_crude_stocks_k_bbl": spr_val,
         "us_spr_yoy_pct": spr_yoy,
         "us_refinery_utilization_pct": ref_val,
@@ -259,12 +280,13 @@ def build_sitrep():
     wb_series = wb_data.get("series", {})
 
     # Live Sovereign Spot Benchmarks (The Royal Mint UK converted via ECB FX)
-    rm_spot = _fetch_royal_mint_spot()
+    rm_spot = _fetch_royal_mint_spot(ecb_data)
     gold_spot_usd = rm_spot.get("gold_spot_usd")
     silver_spot_usd = rm_spot.get("silver_spot_usd")
     rm_gold_gbp = rm_spot.get("gold_gbp")
     rm_silver_gbp = rm_spot.get("silver_gbp")
     rm_fx_rate = rm_spot.get("gbp_usd_rate")
+    rm_fx_date = rm_spot.get("fx_observation_date", "N/A")
 
     gold_s = wb_series.get("IND_WB_GOLD", {})
     gold_val = gold_s.get("current_value")
@@ -299,6 +321,7 @@ def build_sitrep():
         "silver_spot_usd_ozt": silver_spot_usd,
         "silver_spot_gbp_ozt": rm_silver_gbp,
         "ecb_gbp_usd_cross_rate": rm_fx_rate,
+        "fx_observation_date": rm_fx_date,
         "gold_usd_ozt": gold_val,
         "gold_yoy_pct": gold_yoy,
         "silver_usd_ozt": silver_val,
@@ -918,14 +941,14 @@ def build_sitrep():
         "---",
         f"BRENT_CRUDE_USD          : {_fmt(energy_matrix['brent_crude_usd'])} | DoD: {_fmt_pct(energy_matrix['brent_dod_pct'])} | YoY: {_fmt_pct(energy_matrix['brent_yoy_pct'])} [Source: FRED/EIA | Obs: {brent_date}]",
         f"WTI_CRUDE_USD            : {_fmt(energy_matrix['wti_crude_usd'])} | SPREAD_BRENT_WTI: {_fmt(energy_matrix['spread_brent_wti_usd'])} (Physical Seaborne Risk Premium) [Source: FRED/EIA | Obs: {wti_date}]",
-        f"HENRY_HUB_NATGAS_USD     : {_fmt(energy_matrix['henry_hub_natural_gas_usd'])} | YoY: {_fmt_pct(energy_matrix['brent_yoy_pct'])} [Source: FRED/EIA | Obs: {gas_date}]",
+        f"HENRY_HUB_NATGAS_USD     : {_fmt(energy_matrix['henry_hub_natural_gas_usd'])} | YoY: {_fmt_pct(energy_matrix['henry_hub_natural_gas_yoy_pct'])} [Source: FRED/EIA | Obs: {gas_date}]",
         f"US_SPR_CRUDE_STOCKS_KBBL : {_fmt(energy_matrix['us_spr_crude_stocks_k_bbl'], prefix='', decimals=0)} k bbl | YoY: {_fmt_pct(energy_matrix['us_spr_yoy_pct'])} [Source: EIA | Obs: {spr_date}]",
         f"US_REFINERY_UTILIZATION  : {_fmt(energy_matrix['us_refinery_utilization_pct'], prefix='', suffix='%', decimals=1)} | REGIME: {energy_matrix['refinery_capacity_regime']} [Source: EIA | Obs: {ref_date}]",
         "",
         "---",
         "## 3. SEMICONDUCTORS & STRATEGIC HIGH-TECH (CENSUS NAICS 3344 & AI HARDWARE)",
         "---",
-        f"MODEL_25_14_CHIP_STRESS  : {_fmt(tech_matrix['ai_chip_stress_score'], prefix='', decimals=3)} | REGIME: {tech_matrix['ai_chip_stress_regime']} [Model 25.14 Quantitative Engine]",
+        f"MODEL_25_14_CHIP_STRESS  : {_fmt(tech_matrix['ai_chip_stress_score'], prefix='', decimals=3)} | REGIME: {tech_matrix['ai_chip_stress_regime']} [Model 25.14 Quantitative Engine | Obs: {census_date}]",
         f"NYFED_GSCPI_LOGISTICS    : {_fmt(tech_matrix['nyfed_gscpi_pressure_zscore'], prefix='', decimals=2)} Z-Score | YoY Shift: {_fmt(tech_matrix['nyfed_gscpi_yoy_change'], prefix='', decimals=2)} σ [Source: NY Fed GSCPI | Obs: {gscpi_date}]",
         f"NASDAQ_SOX_INDEX         : {_fmt(tech_matrix['sox_index_val'], prefix='', decimals=2)} | YoY: {_fmt_pct(tech_matrix['sox_yoy_pct'])} [Source: FRED/PHLX | Obs: {sox_date}]",
         f"US_CHIP_IMPORTS_GLOBAL   : {_fmt(tech_matrix['us_semiconductor_imports_global_usd'], decimals=0)} USD (Monthly Aggregate) [Source: US Census NAICS 3344 | Obs: {census_date}]",
@@ -936,9 +959,9 @@ def build_sitrep():
         "---",
         "## 4. PRECIOUS METALS, CRITICAL MINERALS & FOOD SECURITY",
         "---",
-        f"GOLD_SPOT_USD_OZT        : {_fmt(metals_matrix['gold_spot_usd_ozt'])}" + (f" [£{metals_matrix['gold_spot_gbp_ozt']:,.2f} GBP @ {metals_matrix['ecb_gbp_usd_cross_rate']:.4f} GBP/USD | Source: The Royal Mint Sovereign Spot Benchmark / ECB FX | London SLOC]" if _is_num(metals_matrix['gold_spot_usd_ozt']) else " [Source: The Royal Mint | Feed Status: UNAVAILABLE]"),
+        f"GOLD_SPOT_USD_OZT        : {_fmt(metals_matrix['gold_spot_usd_ozt'])}" + (f" [£{metals_matrix['gold_spot_gbp_ozt']:,.2f} GBP @ {metals_matrix['ecb_gbp_usd_cross_rate']:.4f} GBP/USD | Source: The Royal Mint Sovereign Spot Benchmark / ECB FX | Obs: {rm_fx_date} | London SLOC]" if _is_num(metals_matrix['gold_spot_usd_ozt']) else " [Source: The Royal Mint | Feed Status: UNAVAILABLE]"),
         f"GOLD_WB_MONTHLY_AVG_USD  : {_fmt(metals_matrix['gold_usd_ozt'])} | YoY: {_fmt_pct(metals_matrix['gold_yoy_pct'])} | SIGNAL: SYSTEMIC_SAFE_HAVEN [Source: World Bank Pink Sheet | Obs: {gold_date}]",
-        f"SILVER_SPOT_USD_OZT      : " + (f"{_fmt(metals_matrix['silver_spot_usd_ozt'])} [£{metals_matrix['silver_spot_gbp_ozt']:,.2f} GBP @ {metals_matrix['ecb_gbp_usd_cross_rate']:.4f} GBP/USD | Source: The Royal Mint Sovereign Spot Benchmark]" if _is_num(metals_matrix['silver_spot_usd_ozt']) else " [Source: The Royal Mint | Feed Status: UNAVAILABLE]") + f" | GOLD_SILVER_RATIO: {_fmt(metals_matrix['gold_silver_ratio'], prefix='', decimals=1)}",
+        f"SILVER_SPOT_USD_OZT      : " + (f"{_fmt(metals_matrix['silver_spot_usd_ozt'])} [£{metals_matrix['silver_spot_gbp_ozt']:,.2f} GBP @ {metals_matrix['ecb_gbp_usd_cross_rate']:.4f} GBP/USD | Source: The Royal Mint Sovereign Spot Benchmark | Obs: {rm_fx_date}]" if _is_num(metals_matrix['silver_spot_usd_ozt']) else " [Source: The Royal Mint | Feed Status: UNAVAILABLE]") + f" | GOLD_SILVER_RATIO: {_fmt(metals_matrix['gold_silver_ratio'], prefix='', decimals=1)}",
         f"SILVER_WB_MONTHLY_AVG_USD: " + (f"{_fmt(metals_matrix['silver_usd_ozt'])} [Source: World Bank Pink Sheet / FRED | Obs: {silver_date}]" if _is_num(metals_matrix['silver_usd_ozt']) else "[Source: World Bank Pink Sheet / FRED | Feed Status: SOURCE_FEED_UNAVAILABLE]"),
         f"COPPER_GLOBAL_USD_MT     : {_fmt(metals_matrix['copper_global_usd_mt'])} | YoY: {_fmt_pct(metals_matrix['copper_yoy_pct'])} (Dr. Copper Growth Pulse) [Source: FRED/IMF | Obs: {copper_date}]",
         f"WHEAT_GLOBAL_USD_MT      : {_fmt(metals_matrix['wheat_global_usd_mt'])} | YoY: {_fmt_pct(metals_matrix['wheat_yoy_pct'])} (Black Sea Agro Security) [Source: FRED/IMF | Obs: {wheat_date}]",
@@ -964,14 +987,14 @@ def build_sitrep():
         "---",
         "## 6. MACRO LIQUIDITY & CENTRAL BANK TRANSMISSION BENCHMARKS",
         "---",
-        f"NET_FED_LIQUIDITY_EST    : {_fmt(liquidity_matrix['net_fed_liquidity_trillion_usd'], prefix='$', suffix=' Trillion USD', decimals=3)} | REGIME: {liquidity_matrix['net_fed_liquidity_regime']} [Model 5 Reserve Engine]",
+        f"NET_FED_LIQUIDITY_EST    : {_fmt(liquidity_matrix['net_fed_liquidity_trillion_usd'], prefix='$', suffix=' Trillion USD', decimals=3)} | REGIME: {liquidity_matrix['net_fed_liquidity_regime']} [Model 5 Reserve Engine | Obs: {fed_date}]",
         f"FED_FUNDS_TARGET_RATE    : {_fmt(liquidity_matrix['fed_policy_rate_pct'], prefix='', suffix='%')} [Source: Federal Reserve / FRED | Obs: {fed_date}]",
         f"SECURED_OVERNIGHT_SOFR   : {_fmt(liquidity_matrix['secured_overnight_financing_rate_pct'], prefix='', suffix='%')} | SOFR-EFFR SPREAD: {_fmt(liquidity_matrix['sofr_fedfunds_spread_bps'], prefix='', suffix=' bps')} (Repo Collateral Stress) [Source: NY Fed / FRED | Obs: {sofr_date}]",
         f"ECB_DEPOSIT_FACILITY     : {_fmt(liquidity_matrix['ecb_deposit_rate_pct'], prefix='', suffix='%')} [Source: ECB Official | Obs: {ecb_date}]",
         f"BOJ_POLICY_RATE          : {_fmt(liquidity_matrix['boj_policy_rate_pct'], prefix='', suffix='%')} (Yen Carry Trade Differential) [Source: Bank of Japan / IMF | Obs: {boj_date}]",
         f"BOE_OFFICIAL_BANK_RATE   : {_fmt(liquidity_matrix['boe_bank_rate_pct'], prefix='', suffix='%')} [Source: Bank of England / IMF | Obs: {boe_date}]",
-        f"US_10Y_BREAKEVEN_INFL    : {_fmt(liquidity_matrix['us_10y_breakeven_inflation_pct'], prefix='', suffix='%')} (Market Inflation Anchor) [Model 7 Breakeven Engine]",
-        f"US_10Y_2Y_YIELD_SPREAD   : {_fmt(liquidity_matrix['yield_curve_10y_2y_spread_bps'], prefix='', suffix=' bps')} (Recession / Normalization Curve) [Model 6 Yield Engine]",
+        f"US_10Y_BREAKEVEN_INFL    : {_fmt(liquidity_matrix['us_10y_breakeven_inflation_pct'], prefix='', suffix='%')} (Market Inflation Anchor) [Model 7 Breakeven Engine | Obs: {dxy_date}]",
+        f"US_10Y_2Y_YIELD_SPREAD   : {_fmt(liquidity_matrix['yield_curve_10y_2y_spread_bps'], prefix='', suffix=' bps')} (Recession / Normalization Curve) [Model 6 Yield Engine | Obs: {dxy_date}]",
         f"CBOE_VIX_VOLATILITY      : {_fmt(liquidity_matrix['cboe_vix_index'], prefix='', decimals=2)} | YoY: {_fmt_pct(liquidity_matrix['cboe_vix_yoy_pct'])} (Equity Fear Gauge) [Source: CBOE / FRED | Obs: {vix_date}]",
         f"FED_BROAD_DOLLAR_INDEX  : {_fmt(liquidity_matrix['fed_broad_dollar_index'], prefix='', decimals=2)} | YoY: {_fmt_pct(liquidity_matrix['fed_broad_dollar_yoy_pct'])} (Global Dollar Shortage / Trade Weighted) [Source: Federal Reserve / FRED | Obs: {dxy_date}]",
         f"US_HIGH_YIELD_OAS_SPREAD: {_fmt(liquidity_matrix['us_high_yield_spread_pct'], prefix='', suffix='%', decimals=2)} | YoY: {_fmt_pct(liquidity_matrix['us_high_yield_spread_yoy_pct'])} (Corporate Credit Default Risk) [Source: ICE BofA / FRED | Obs: {hy_date}]",
