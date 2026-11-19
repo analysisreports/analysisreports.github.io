@@ -1,0 +1,41 @@
+name: 4-Hour Tier-1 News & SITREP Telemetry Sync
+
+on:
+  schedule:
+    # Runs every 4 hours at :00 UTC (00:00, 04:00, 08:00, 12:00, 16:00, 20:00 UTC)
+    # Corresponds to Turkey Time (TSİ, UTC+3): 03:00, 07:00, 11:00, 15:00, 19:00, 23:00
+    - cron: '0 */4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-news-sitrep:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch Tier-1 News Telemetry & Rebuild SITREP
+        run: |
+          python scripts/update_news.py
+          python scripts/build_sitrep.py
+
+      - name: Commit and Push News & SITREP Updates
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add llms-news.json llms-news.txt llms-sitrep.json llms-sitrep.txt
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "chore(telemetry): 4-hour tier-1 news & sitrep sync [skip ci]"
+            git pull --rebase origin main
+            git push
+          else
+            echo "No changes detected in Tier-1 news dispatches or SITREP."
+          fi
