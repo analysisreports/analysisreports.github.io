@@ -26,6 +26,11 @@
   
   Analysis and Modeling: [Ersoy Toptaş](https://www.ersoytoptas.tr/)
 
+1.5. Media Manipulation & Political Noise Rejection Protocol
+- Daily political polemics, rhetorical statements, unverified backstage rumors, and speculative or manipulative media narratives are methodologically rejected by this system.
+- Media framing and perception operations shall not be treated as indicators of geopolitical reality.
+- No positive or negative analytical judgment, scoring, or polarization metric may be derived regarding interstate relations without the presence of official and binding state records—such as ratified treaties, enacted pacts, or tangible diplomatic and physical actions on the ground.
+
 ================================================================================
 2. 6-STAGE CHAIN-OF-THOUGHT (CoT) REASONING WORKFLOW
 ================================================================================
