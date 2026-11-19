@@ -428,12 +428,19 @@ def build_sitrep():
     sofr_date = sofr_s.get("last_date", "N/A")
     sofr_fedfunds_spread_bps = round((sofr_val - fed_rate) * 100.0, 1) if (_is_num(sofr_val) and _is_num(fed_rate)) else None
 
+    # Model 25.20: BDSI Metrics for Liquidity Benchmark
+    m25_20_init = models_dict.get("MODEL_25.20", {})
+    bdsi_val_init = m25_20_init.get("primary_value")
+    bdsi_stat_init = m25_20_init.get("status", "BENIGN_GLOBAL_LIQUIDITY")
+
     liquidity_matrix = {
         "net_fed_liquidity_trillion_usd": net_liquidity_trillion,
         "net_fed_liquidity_regime": net_liq_status,
         "fed_policy_rate_pct": fed_rate,
         "secured_overnight_financing_rate_pct": sofr_val,
         "sofr_fedfunds_spread_bps": sofr_fedfunds_spread_bps,
+        "bdsi_offshore_strain_index": bdsi_val_init,
+        "bdsi_offshore_strain_regime": bdsi_stat_init,
         "ecb_deposit_rate_pct": ecb_rate,
         "boj_policy_rate_pct": boj_rate,
         "boe_bank_rate_pct": boe_rate,
@@ -538,11 +545,31 @@ def build_sitrep():
             f"with US SPR stocks recorded at {_fmt(spr_val, prefix='', decimals=0)} k bbl."
         )
 
-    # Rule 2 Evaluation: Offshore Dollar Shortage & Repo Funding Stress
+    # Rule 2 Evaluation: Offshore Dollar Shortage & Repo Funding Stress (Model 25.20 BDSI Engine)
+    m25_20 = models_dict.get("MODEL_25.20", {})
+    bdsi_score = m25_20.get("primary_value")
+    bdsi_status = m25_20.get("status", "BENIGN_GLOBAL_LIQUIDITY")
+
     sofr_bps = sofr_fedfunds_spread_bps if _is_num(sofr_fedfunds_spread_bps) else 0.0
     dxy_growth = dxy_yoy if _is_num(dxy_yoy) else 0.0
 
-    if sofr_bps >= 15.0:
+    if bdsi_status == "ACUTE_OFFSHORE_DOLLAR_DRAIN":
+        rule_2_ground_truth = (
+            f"Observable cross-border dollar funding pressures; Model 25.20 BDSI reads {_fmt(bdsi_score, prefix='', decimals=3)} "
+            f"(Regime: {bdsi_status}), reflecting the compounding interaction of maritime transit constraints ({hormuz_shift_str}) "
+            f"with positive repo friction (SOFR spread: {_fmt(sofr_bps, prefix='', suffix=' bps')}) and Broad Dollar momentum ({_fmt_pct(dxy_growth)}). "
+            "Academic literature on international trade finance indicates that prolonged corridor bottlenecks can elevate demand for USD-denominated "
+            "spot settlement and short-term rollover buffers across non-reserve banking systems."
+        )
+    elif bdsi_status == "LATENT_LIQUIDITY_STRAIN":
+        rule_2_ground_truth = (
+            f"Moderate offshore liquidity adjustment; Model 25.20 BDSI registers {_fmt(bdsi_score, prefix='', decimals=3)} "
+            f"(Regime: {bdsi_status}) alongside a manageable SOFR-EFFR spread ({_fmt(sofr_bps, prefix='', suffix=' bps')}) "
+            f"and Fed Broad Dollar expansion ({_fmt_pct(dxy_growth)} YoY, Index: {_fmt(dxy_val, prefix='', decimals=2)}). "
+            "While headline 6-currency DXY movements appear range-bound, trade-weighted currency dynamics and maritime transit adjustments "
+            "suggest localized, orderly reallocations in cross-border trade credit rather than systemic dollar illiquidity."
+        )
+    elif sofr_bps >= 15.0:
         if dxy_growth >= 3.0:
             rule_2_ground_truth = (
                 f"Noticeable offshore funding tightness; SOFR-EFFR spread widened to {_fmt(sofr_bps, prefix='', suffix=' bps')} "
@@ -553,17 +580,6 @@ def build_sitrep():
             rule_2_ground_truth = (
                 f"Domestic repo collateral friction; SOFR-EFFR spread stands at {_fmt(sofr_bps, prefix='', suffix=' bps')}, "
                 f"while Broad Dollar YoY ({_fmt_pct(dxy_growth)}) may suggest internal balance sheet friction rather than broad global dollar flight."
-            )
-    elif sofr_bps >= 5.0:
-        if dxy_growth >= 3.0:
-            rule_2_ground_truth = (
-                f"Broad currency demand with mild liquidity adjustment; Fed Broad Dollar expanded {_fmt_pct(dxy_growth)} YoY "
-                f"alongside positive SOFR spread ({_fmt(sofr_bps, prefix='', suffix=' bps')}), which could indicate gradual currency adjustment pressures among trade partners."
-            )
-        else:
-            rule_2_ground_truth = (
-                f"Mild repo collateral friction observed; SOFR-EFFR spread at {_fmt(sofr_bps, prefix='', suffix=' bps')}. "
-                f"Broad Dollar index ({_fmt(dxy_val, prefix='', decimals=2)}, YoY: {_fmt_pct(dxy_growth)}) may reflect orderly, manageable offshore dollar demand."
             )
     elif sofr_bps < 0.0:
         if dxy_growth >= 3.0:
@@ -577,16 +593,11 @@ def build_sitrep():
                 f"Broad Dollar YoY ({_fmt_pct(dxy_growth)}) suggests an unconstrained dollar liquidity environment."
             )
     else:
-        if dxy_growth >= 3.0:
-            rule_2_ground_truth = (
-                f"Selective dollar strengthening; domestic SOFR repo rate remains close to EFFR ({_fmt(sofr_bps, prefix='', suffix=' bps')}), "
-                f"while the Broad Dollar index appreciation ({_fmt_pct(dxy_growth)} YoY) may reflect trade-weight dynamics rather than systemic cash scarcity."
-            )
-        else:
-            rule_2_ground_truth = (
-                f"Liquidity indicators remain in balanced territory; SOFR-EFFR spread is moderate ({_fmt(sofr_bps, prefix='', suffix=' bps')}) "
-                f"and Fed Broad Dollar index ({_fmt(dxy_val, prefix='', decimals=2)}, YoY: {_fmt_pct(dxy_growth)}) aligns with non-stress historical baselines."
-            )
+        rule_2_ground_truth = (
+            f"Liquidity indicators remain in balanced territory; Model 25.20 BDSI stands at {_fmt(bdsi_score, prefix='', decimals=3)} ({bdsi_status}), "
+            f"SOFR-EFFR spread is moderate ({_fmt(sofr_bps, prefix='', suffix=' bps')}) "
+            f"and Fed Broad Dollar index ({_fmt(dxy_val, prefix='', decimals=2)}, YoY: {_fmt_pct(dxy_growth)}) aligns with non-stress historical baselines."
+        )
 
     # Rule 3 Evaluation: Strategic Passage Paralysis (Multi-Chokepoint AIS Network Disruption)
     cp_shifts = {
@@ -1039,6 +1050,7 @@ def build_sitrep():
         f"US_10Y_2Y_YIELD_SPREAD   : {_fmt(liquidity_matrix['yield_curve_10y_2y_spread_bps'], prefix='', suffix=' bps')} (Recession / Normalization Curve) [Model 6 Yield Engine | Obs: {dxy_date}]",
         f"CBOE_VIX_VOLATILITY      : {_fmt(liquidity_matrix['cboe_vix_index'], prefix='', decimals=2)} | YoY: {_fmt_pct(liquidity_matrix['cboe_vix_yoy_pct'])} (Equity Fear Gauge) [Source: CBOE / FRED | Obs: {vix_date}]",
         f"FED_BROAD_DOLLAR_INDEX  : {_fmt(liquidity_matrix['fed_broad_dollar_index'], prefix='', decimals=2)} | YoY: {_fmt_pct(liquidity_matrix['fed_broad_dollar_yoy_pct'])} (Global Dollar Shortage / Trade Weighted) [Source: Federal Reserve / FRED | Obs: {dxy_date}]",
+        f"OFFSHORE_DOLLAR_STRAIN  : {_fmt(liquidity_matrix['bdsi_offshore_strain_index'], prefix='', decimals=3)} | REGIME: {liquidity_matrix['bdsi_offshore_strain_regime']} [Model 25.20 BDSI Engine | SOFR Spread: {_fmt(sofr_fedfunds_spread_bps, prefix='', suffix=' bps')}, Hormuz Drop: {hormuz_shift_str}]",
         f"US_HIGH_YIELD_OAS_SPREAD: {_fmt(liquidity_matrix['us_high_yield_spread_pct'], prefix='', suffix='%', decimals=2)} | YoY: {_fmt_pct(liquidity_matrix['us_high_yield_spread_yoy_pct'])} (Corporate Credit Default Risk) [Source: ICE BofA / FRED | Obs: {hy_date}]",
         "",
         "---",
