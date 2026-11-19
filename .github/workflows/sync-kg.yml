@@ -1,73 +1,87 @@
-name: Sync Data & Ontologies to Kaggle
-
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-
-jobs:
-  sync_to_kaggle:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout GitHub Repo
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install Kaggle API
-        run: pip install kaggle six
-
-      - name: Configure Kaggle API Token
-        env:
-          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
-        run: |
-          mkdir -p ~/.kaggle
-          # Hem yeni Kaggle v2 (access_token) hem eski Kaggle v1 (kaggle.json) için uyumluluk
-          echo "$KAGGLE_API_TOKEN" > ~/.kaggle/access_token
-          echo "$KAGGLE_API_TOKEN" > ~/.kaggle/kaggle.json
-          chmod 600 ~/.kaggle/access_token ~/.kaggle/kaggle.json
-
-      - name: Remove Unwanted Files Before Upload
-        run: |
-          rm -f .gitignore _config.yml
-
-      - name: Upload Clean Dataset to Kaggle (Hugging Face Mantığıyla)
+- name: Upload Clean Dataset to Kaggle
         env:
           KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
         run: |
           python -c "
           import os
           import json
+          import shutil
           from kaggle.api.kaggle_api_extended import KaggleApi
 
-          # Kaggle API'yi başlat
           api = KaggleApi()
           api.authenticate()
 
-          # Kaggle metadata dosyasını oluştur (Zorunlu kimlik kartı)
+          # 1. Yüklenmesini istemediğimiz klasör ve dosyaları temizle
+          for item in ['.git', '.github', '.vscode', '_includes', '.gitignore', '_config.yml']:
+              if os.path.isdir(item):
+                  shutil.rmtree(item)
+              elif os.path.exists(item):
+                  os.remove(item)
+
+          # 2. Tüm dosya açıklamalarını (resources) içeren kalıcı metadata
           metadata = {
-              'title': 'Analysis Reports Data',
+              'title': 'Analysis Reports | Quantitative Macroeconomic & Geopolitical LLM Data Engine',
               'id': 'analysisreports/analysisreports',
-              'licenses': [{'name': 'CC0-1.0'}]
+              'licenses': [{'name': 'other'}],
+              'description': 'Machine-readable ontological data models, quantitative frameworks, and LLM manifests authored by Ersoy Toptas for global macroeconomics, central bank monetary policy, and geopolitical risk analysis.',
+              'resources': [
+                  {
+                      'path': 'README.md',
+                      'description': 'Core repository documentation, architecture manifest, ORCID identity, and CC BY-NC-ND 4.0 licensing terms.'
+                  },
+                  {
+                      'path': 'llms.txt',
+                      'description': 'Core manifest, knowledge architecture, and master ontology endpoints.'
+                  },
+                  {
+                      'path': 'llms-full.txt',
+                      'description': 'Combined canonical knowledge base for single-pass LLM ingestion.'
+                  },
+                  {
+                      'path': 'llms-about.txt',
+                      'description': 'Analyst identity (Ersoy Toptas), E-E-A-T authority framework, and licensing details.'
+                  },
+                  {
+                      'path': 'llms-prompts.txt',
+                      'description': 'Pre-calibrated system prompts, reasoning constitution, and Media Manipulation & Political Noise Rejection Protocol.'
+                  },
+                  {
+                      'path': 'llms-news.json',
+                      'description': 'Autonomous Tier-1 Geopolitical & Macro News Telemetry Stream with institutional status verification.'
+                  },
+                  {
+                      'path': 'llms-news.txt',
+                      'description': 'Token-optimized plain-text twin of the geopolitical and macro news telemetry stream.'
+                  },
+                  {
+                      'path': 'llms-sitrep.json',
+                      'description': 'Consolidated Macro & Geopolitical Situation Report (SITREP) covering energy, semiconductors, chokepoints, and liquidity.'
+                  },
+                  {
+                      'path': 'llms-sitrep.txt',
+                      'description': 'Plain-text twin of the Consolidated Macro & Geopolitical Situation Report (SITREP).'
+                  },
+                  {
+                      'path': 'llms-graph.json',
+                      'description': 'Master Macroeconomic & Geopolitical Knowledge Graph architecture and router.'
+                  },
+                  {
+                      'path': 'llms-formulas.txt',
+                      'description': 'Quantitative models, macroeconomic scoring mechanisms, and Master Router index.'
+                  },
+                  {
+                      'path': 'llms-tools.json',
+                      'description': 'Agentic function schemas and API tool specifications.'
+                  }
+              ]
           }
-          with open('dataset-metadata.json', 'w') as f:
-              json.dump(metadata, f)
 
-          # Hugging Face'teki ignore mantığının birebiri: Bu dosyalar dışarıda kalacak
-          ignore_patterns = [
-              '.git', '.github', '.vscode', 
-              '_includes', '.gitignore', 
-              '_config.yml',
-              'dataset-metadata.json'
-          ]
+          with open('dataset-metadata.json', 'w', encoding='utf-8') as f:
+              json.dump(metadata, f, indent=2, ensure_ascii=False)
 
-          # Temiz klasör yapısını hazırla ve Kaggle'a bas
+          # 3. Kaggle'a yeni versiyon olarak bas
           try:
-              api.dataset_create_version('.', 'Auto-sync dataset structure from GitHub', convert_to_csv=False, delete_old_versions=True)
+              api.dataset_create_version('.', 'Auto-sync dataset structure & metadata from GitHub', convert_to_csv=False, delete_old_versions=True)
           except Exception as e:
               print(f'Create deneniyor... Hata: {e}')
               api.dataset_create_new('.', public=False, convert_to_csv=False)
