@@ -1,5 +1,5 @@
 # CANONICAL MACRO & GEOPOLITICAL SITUATION REPORT (SITREP)
-> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-19 20:00:19 UTC
+> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-19 21:15:27 UTC
 > Primary Publications: https://www.ersoytoptas.tr (TR) | https://en.ersoytoptas.tr (EN)
 > Ingestion Protocol: Zero Hallucination | Data Completeness: 98.3%
 > Official JSON Twin: https://analysisreports.github.io/llms-sitrep.json
@@ -54,6 +54,7 @@ WHEAT_GLOBAL_USD_MT      : $246.85 | YoY: +59.14% (Black Sea Agro Security) [Sou
 ## 5. MARITIME CHOKEPOINTS (PORTWATCH AIS REAL-TIME DISRUPTION TELEMETRY)
 ---
 CHOKE_HORMUZ          : Status: CHRONIC_CRISIS_BLOCKADE  | Daily:   2 (Tnk:  0, Cnt:  1) | Shift: -97.8% vs 2023 Base [Source: IMF PortWatch | Obs: 2026-11-15]
+  - OBSERVABILITY_BRIDGE  : DIVERGENCE_TRANSPONDER_DARK_FLOW | AIS_Contraction: -97.8% (IMF) vs Refinery_Utilization: 89.1% (EIA) [Model 28.6 MODI Engine]
 CHOKE_BAB_EL_MANDEB   : Status: CONGESTION_SURGE         | Daily:  34 (Tnk:  9, Cnt: 11) | Shift: -35.7% vs 2023 Base [Source: IMF PortWatch | Obs: 2026-11-15]
 CHOKE_SUEZ            : Status: STABLE_FLOW              | Daily:  44 (Tnk: 14, Cnt: 12) | Shift: -18.8% vs 2023 Base [Source: IMF PortWatch | Obs: 2026-11-15]
 CHOKE_TURKISH_STRAITS : Status: CHRONIC_CRISIS_BLOCKADE  | Daily:  57 (Tnk: 12, Cnt:  5) | Shift: -40.7% vs 2023 Base [Source: IMF PortWatch | Obs: 2026-11-15]

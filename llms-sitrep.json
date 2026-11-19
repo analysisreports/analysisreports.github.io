@@ -9,7 +9,7 @@
     "endpoint": "https://analysisreports.github.io/llms-sitrep.json",
     "text_endpoint": "https://analysisreports.github.io/llms-sitrep.txt",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-19T20:00:19Z",
+    "last_updated": "2026-11-19T21:15:27Z",
     "sync_status": "SUCCESS",
     "data_completeness_pct": 98.3,
     "disclaimer": "The information, interpretations, and estimates contained herein do not constitute investment advice. All responsibility for decisions belongs solely to the user.",
@@ -99,7 +99,13 @@
       "daily_tankers": 0,
       "daily_containers": 1,
       "pct_change_vs_7d": -12.5,
-      "pct_change_vs_2023": -97.8
+      "pct_change_vs_2023": -97.8,
+      "observability_bridge": {
+        "status_key": "DIVERGENCE_TRANSPONDER_DARK_FLOW",
+        "formula_link": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.6",
+        "ais_shift_pct": -97.8,
+        "refinery_utilization_pct": 89.1
+      }
     },
     "CHOKE_BAB_EL_MANDEB": {
       "name": "Bab el-Mandeb Strait",

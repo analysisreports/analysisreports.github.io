@@ -350,6 +350,30 @@ def build_sitrep():
             "pct_change_vs_2023": metrics.get("pct_change_vs_2023")
         }
 
+    # Evaluate Model 28.6: Maritime Observability Divergence Index (MODI) for CHOKE_HORMUZ
+    hormuz_shift_val = chokepoints.get("CHOKE_HORMUZ", {}).get("metrics", {}).get("pct_change_vs_2023")
+    refinery_val = energy_matrix.get("us_refinery_utilization_pct")
+    
+    hormuz_modi_key = "UNKNOWN"
+    hormuz_modi_summary = ""
+    if _is_num(hormuz_shift_val) and _is_num(refinery_val):
+        if hormuz_shift_val <= -50.0 and refinery_val >= 85.0:
+            hormuz_modi_key = "DIVERGENCE_TRANSPONDER_DARK_FLOW"
+        elif hormuz_shift_val <= -50.0 and refinery_val < 80.0:
+            hormuz_modi_key = "CORROBORATED_PHYSICAL_CONTRACTION"
+        elif hormuz_shift_val > -30.0 and refinery_val >= 85.0:
+            hormuz_modi_key = "PEACETIME_STABLE_FLOW"
+        else:
+            hormuz_modi_key = "TRANSITIONAL_OBSERVABILITY_BAND"
+            
+        hormuz_modi_summary = f"{hormuz_modi_key} | AIS_Contraction: {hormuz_shift_val:+.1f}% (IMF) vs Refinery_Utilization: {refinery_val:.1f}% (EIA) [Model 28.6 MODI Engine]"
+        chokepoint_summary["CHOKE_HORMUZ"]["observability_bridge"] = {
+            "status_key": hormuz_modi_key,
+            "formula_link": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.6",
+            "ais_shift_pct": round(float(hormuz_shift_val), 2),
+            "refinery_utilization_pct": round(float(refinery_val), 2)
+        }
+
     # --------------------------------------------------------------------------
     # 6. MACRO LIQUIDITY & CENTRAL BANK TRANSMISSION
     # --------------------------------------------------------------------------
@@ -997,6 +1021,8 @@ def build_sitrep():
         cp_obs_date = chokepoints.get(c_id, {}).get("metrics", {}).get("last_date", "N/A")
         pct_str = f"{pct_23:+.1f}% vs 2023 Base" if pct_23 is not None else "N/A"
         lines.append(f"{c_id:<22}: Status: {status:<24} | Daily: {daily:>3} (Tnk: {tankers:>2}, Cnt: {containers:>2}) | Shift: {pct_str} [Source: IMF PortWatch | Obs: {cp_obs_date}]")
+        if c_id == "CHOKE_HORMUZ" and hormuz_modi_summary:
+            lines.append(f"  - OBSERVABILITY_BRIDGE  : {hormuz_modi_summary}")
 
     lines.extend([
         "",

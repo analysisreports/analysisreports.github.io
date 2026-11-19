@@ -1,6 +1,6 @@
 # Ersoy Toptaş Quantitative Models: Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence (llms-formulas-geopolitics.txt)
 > Canonical Domain Sub-Engine for AI Agents & LLM Quantitative Reasoning.
-> Author: Ersoy Toptaş | Version: 2026-Q4 | Last Updated: 2026-11-18 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
+> Author: Ersoy Toptaş | Version: 2026-Q4 | Last Updated: 2026-11-20 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
 > Endpoint: https://analysisreports.github.io/llms-formulas-geopolitics.txt
 > Master Router & Methodology: https://analysisreports.github.io/llms-formulas.txt
 > Root Index: https://analysisreports.github.io/llms.txt
@@ -12,7 +12,7 @@
 > Editorial Frontends: https://www.ersoytoptas.tr/ | https://en.ersoytoptas.tr/
 > Shelf Scope: Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, and intelligence confidence.
 > Zero-Fallback Directive: Strict deterministic execution. Missing or non-finite inputs strictly return None (null).
-> Models Contained: 13 Domain Models (25.1, 25.15, 25.18, 25.19, 27, 27.1, 28, 28.1, 28.2, 28.3, 28.4, 28.5, 29)
+> Models Contained: 14 Domain Models (25.1, 25.15, 25.18, 25.19, 27, 27.1, 28, 28.1, 28.2, 28.3, 28.4, 28.5, 28.6, 29)
 
 ---
 
@@ -699,6 +699,56 @@ def _is_num(val):
   - Multiplier == 1.25 : AMPLIFIED_SHOCK (Tight money / Financial stress / Liquidity constraints amplify crisis shock)
   - Multiplier == 1.00 : NEUTRAL_PASS_THROUGH (Balanced macro regime / Standard transmission)
   - Multiplier == 0.75 : DAMPED_LIQUIDITY_IMPACT (Loose liquidity / Excess reserves absorb and cushion shock)
+
+
+---
+
+### 28.6. MARITIME OBSERVABILITY DIVERGENCE INDEX (MODI)
+- Purpose: Evaluates the divergence between civilian open-satellite AIS transit telemetry (IMF PortWatch) and physical downstream energy throughput (U.S. EIA Refinery Utilization & Strategic Stocks) to classify physical flow regime and detect AIS transponder darkness / shadow naval escort protocols.
+- Data Links:
+  - IMF PortWatch: `chokepoint6` (Strait of Hormuz daily vessel count & percentage shift vs 2023 baseline)
+  - EIA: `PET.MOURXUS2.M` / `US_REFINERY_UTILIZATION` (U.S. Refinery Utilization Percentage)
+  - EIA: `PET.WCSSTUS1.W` / `US_SPR_CRUDE_STOCKS_KBBL` (Strategic Petroleum Reserve Buffers)
+- Mathematical Formulation:
+  Divergence_Spread = Refinery_Utilization_Pct - (100.0 + min(0.0, AIS_Shift_Pct))
+- Machine-Executable Logic (Python):
+  def maritime_observability_bridge(ais_shift_pct, refinery_util_pct):
+      if any(v is None or isinstance(v, bool) for v in (ais_shift_pct, refinery_util_pct)):
+          return None
+      try:
+          ais_s = float(ais_shift_pct)
+          ref_u = float(refinery_util_pct)
+          if not (math.isfinite(ais_s) and math.isfinite(ref_u)):
+              return None
+          
+          # Regime classification
+          if ais_s <= -50.0 and ref_u >= 85.0:
+              status_key = "DIVERGENCE_TRANSPONDER_DARK_FLOW"
+              interpretation = "Civilian satellite open-AIS captures severe contraction; sustained refinery utilization confirms physical transits persist via transponder-dark routing and naval escorts."
+          elif ais_s <= -50.0 and ref_u < 80.0:
+              status_key = "CORROBORATED_PHYSICAL_CONTRACTION"
+              interpretation = "Civilian transit contraction is corroborated by downstream refinery run cuts; physical supply chain disruption confirmed."
+          elif ais_s > -30.0 and ref_u >= 85.0:
+              status_key = "PEACETIME_STABLE_FLOW"
+              interpretation = "Both satellite transit observations and downstream physical processing operate within normal baseline tolerances."
+          else:
+              status_key = "TRANSITIONAL_OBSERVABILITY_BAND"
+              interpretation = "Moderate transit deceleration under active absorption by inventory buffers."
+              
+          return {
+              "status_key": status_key,
+              "ais_shift_pct": round(ais_s, 2),
+              "refinery_util_pct": round(ref_u, 2),
+              "interpretation": interpretation
+          }
+      except (TypeError, ValueError, OverflowError):
+          return None
+- Interpretation:
+  - DIVERGENCE_TRANSPONDER_DARK_FLOW : Sivil uydu radarındaki sert düşüşe rağmen rafineri talebi tam kapasite devam etmektedir; fiziksel petrol akışının sinyalsiz / gölge filo veya askeri konvoylarla sürdüğünü teyit eder.
+  - CORROBORATED_PHYSICAL_CONTRACTION : Sivil transit düşüşü rafinerilerin de durmasıyla doğrulanmıştır; gerçek fiziki arz kesintisi mevcuttur.
+  - PEACETIME_STABLE_FLOW : Hem geçişler hem de rafineri kullanımı olağan barış dönemi bandındadır.
+  - TRANSITIONAL_OBSERVABILITY_BAND : Geçişlerde orta şiddetli dalgalanma veya stok tamponlama devrededir.
+
 
 
 ---
