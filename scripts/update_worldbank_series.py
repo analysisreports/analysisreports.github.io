@@ -20,6 +20,7 @@ JSON Twin: https://analysisreports.github.io/llms-worldbank-series.json
 """
 
 import os
+import sys
 import io
 import csv
 import json
@@ -32,6 +33,23 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 CONFIG_FILE = os.path.join(ROOT_DIR, "llms-worldbank-series.txt")
 OUTPUT_JSON = os.path.join(ROOT_DIR, "llms-worldbank-series.json")
 
+WB_COMMODITY_PORTAL = "https://www.worldbank.org/en/research/commodity-markets"
+DEFAULT_WB_EXCEL_URL = "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx"
+
+def resolve_wb_excel_url() -> str:
+    """Dynamically resolves the latest official World Bank Pink Sheet Excel workbook URL."""
+    try:
+        import re
+        req = urllib.request.Request(WB_COMMODITY_PORTAL, headers={"User-Agent": "AnalysisReports-WorldBank-Engine/1.0"})
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            html = resp.read().decode("utf-8", errors="ignore")
+        links = re.findall(r'href=[\'"](https?://[^\'"]*CMO-Historical-Data-Monthly[^\'"]*)[\'"]', html, re.I)
+        if links:
+            return links[0]
+    except Exception:
+        pass
+    return DEFAULT_WB_EXCEL_URL
+
 # Official World Bank Open Commodity Data Sources
 WB_DATA_SOURCES = {
     "GOLD": {
@@ -43,7 +61,7 @@ WB_DATA_SOURCES = {
         "n_obs_per_yr": 12
     },
     "SILVER": {
-        "url": "https://thedocs.worldbank.org/en/doc/5d903e848db1d1b83e0ec8f744e55570-0350012021/related/CMO-Historical-Data-Monthly.xlsx",
+        "url": DEFAULT_WB_EXCEL_URL,
         "sheet": "Monthly Prices",
         "col_name": "Silver",
         "name": "World Bank Official Silver Price (The Pink Sheet)",
@@ -167,6 +185,8 @@ def calc_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr: int = 12
 def fetch_wb_series(key: str, meta: Dict[str, Any], now_iso: Optional[str] = None) -> Optional[Dict[str, Any]]:
     """Fetches full historical time-series and calculates transformations."""
     url = meta["url"]
+    if url == DEFAULT_WB_EXCEL_URL:
+        url = resolve_wb_excel_url()
     req = urllib.request.Request(url, headers={"User-Agent": "AnalysisReports-WorldBank-Engine/1.0"})
     
     raw_bytes = None
@@ -414,7 +434,7 @@ def main():
         is_cache_valid = False
         elapsed_days = 9999.0
 
-        if cached_entry and isinstance(cached_entry, dict):
+        if cached_entry and isinstance(cached_entry, dict) and "--force" not in sys.argv:
             last_sync_str = cached_entry.get("last_synced_utc") or fallback_sync_str
             if last_sync_str:
                 try:
@@ -439,7 +459,7 @@ def main():
 
         # 3. API Hata / Zaman Aşımı Sigortası: Asla eski veriyi silme!
         if not res:
-            if cached_entry and isinstance(cached_entry, dict):
+            if cached_entry and isinstance(cached_entry, dict) and "--force" not in sys.argv:
                 print(f"  [API TIMEOUT - RETAINED] {s_id} [{freq_upper}]: Veri kaynağı yanıt vermedi. Mevcut resmi snapshot korundu!")
                 stale_series.append(s_id)
                 if not cached_entry.get("last_synced_utc") and fallback_sync_str:

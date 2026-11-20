@@ -26,7 +26,7 @@ SILVER
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-20 16:12:53 UTC
+# - Synced At: 2026-11-20 16:20:47 UTC
 # - Sync Status: SUCCESS
 # - Total Series Synced: 2 / 2
 # - Missing Series: None
@@ -61,20 +61,20 @@ Recent Observations (Last 5):
 Series ID: IND_WB_SILVER
 Title: World Bank Official Silver Price (The Pink Sheet)
 Frequency: Monthly (n_obs_per_yr: 12) | Units: USD per Troy Ounce
-Last Date: 2024-12-01 | Current Value: 30.7640 | Previous Value: 31.0940 | Year Ago Value: 23.8780
+Last Date: 2026-10-01 | Current Value: 57.0000 | Previous Value: 64.6000 | Year Ago Value: 49.4000
 
 Transformations (Official World Bank / St. Louis Fed Formulas):
-  1. Change: -0.3300
-  2. Change from Year Ago: +6.8860
-  3. Percent Change: -1.0613%
-  4. Percent Change from Year Ago: +28.8383%
-  5. Compounded Annual Rate of Change: -12.0179%
-  6. Continuously Compounded Rate of Change: -1.0670%
-  7. Continuously Compounded Annual Rate of Change: -12.8036%
+  1. Change: -7.6000
+  2. Change from Year Ago: +7.6000
+  3. Percent Change: -11.7647%
+  4. Percent Change from Year Ago: +15.3846%
+  5. Compounded Annual Rate of Change: -77.7306%
+  6. Continuously Compounded Rate of Change: -12.5163%
+  7. Continuously Compounded Annual Rate of Change: -150.1958%
 
 Recent Observations (Last 5):
-  2024-08: 28.5300
-  2024-09: 30.1310
-  2024-10: 32.4160
-  2024-11: 31.0940
-  2024-12: 30.7640
+  2026-06: 66.7000
+  2026-07: 58.8000
+  2026-08: 65.4000
+  2026-09: 64.6000
+  2026-10: 57.0000

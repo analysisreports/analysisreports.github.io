@@ -8,10 +8,10 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-worldbank-series.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-20T16:12:53Z",
+    "last_updated": "2026-11-20T16:20:47Z",
     "engine": "Autonomous World Bank Commodity Time-Series Engine",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-20T16:12:53Z",
+    "last_successful_sync": "2026-11-20T16:20:47Z",
     "data_source": "World Bank Commodity Price Data (The Pink Sheet)",
     "monitored_series_count": 2,
     "total_registered_series": 2,
@@ -31,6 +31,7 @@
       "n_obs_per_yr": 12,
       "unit": "USD per Troy Ounce",
       "observation_date": "2026-10-01",
+      "last_synced_utc": "2026-11-20T16:20:47Z",
       "current_value": 4105.0,
       "previous_value": 4319.0,
       "year_ago_value": 4058.0,
@@ -75,40 +76,40 @@
       "frequency": "Monthly",
       "n_obs_per_yr": 12,
       "unit": "USD per Troy Ounce",
-      "observation_date": "2024-12-01",
-      "last_synced_utc": "2026-11-20T16:12:53Z",
-      "current_value": 30.764,
-      "previous_value": 31.094,
-      "year_ago_value": 23.878,
+      "observation_date": "2026-10-01",
+      "last_synced_utc": "2026-11-20T16:20:47Z",
+      "current_value": 57.0,
+      "previous_value": 64.6,
+      "year_ago_value": 49.4,
       "transformations": {
-        "change": -0.33,
-        "change_from_year_ago": 6.886,
-        "percent_change": -1.0613,
-        "percent_change_from_year_ago": 28.8383,
-        "compounded_annual_rate_of_change": -12.0179,
-        "continuously_compounded_rate_of_change": -1.067,
-        "continuously_compounded_annual_rate_of_change": -12.8036
+        "change": -7.6,
+        "change_from_year_ago": 7.6,
+        "percent_change": -11.7647,
+        "percent_change_from_year_ago": 15.3846,
+        "compounded_annual_rate_of_change": -77.7306,
+        "continuously_compounded_rate_of_change": -12.5163,
+        "continuously_compounded_annual_rate_of_change": -150.1958
       },
       "recent_observations": [
         {
-          "date": "2024-08",
-          "value": 28.53
+          "date": "2026-06",
+          "value": 66.7
         },
         {
-          "date": "2024-09",
-          "value": 30.131
+          "date": "2026-07",
+          "value": 58.8
         },
         {
-          "date": "2024-10",
-          "value": 32.416
+          "date": "2026-08",
+          "value": 65.4
         },
         {
-          "date": "2024-11",
-          "value": 31.094
+          "date": "2026-09",
+          "value": 64.6
         },
         {
-          "date": "2024-12",
-          "value": 30.764
+          "date": "2026-10",
+          "value": 57.0
         }
       ]
     }
