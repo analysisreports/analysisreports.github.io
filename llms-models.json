@@ -8,11 +8,11 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-models.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-20T03:24:33.265723+00:00",
+    "last_updated": "2026-11-20T05:06:08.913651+00:00",
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-20T03:24:33.265723+00:00",
+    "last_successful_sync": "2026-11-20T05:06:08.913651+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -637,17 +637,17 @@
       "inputs": {
         "brent_usd": 92.94,
         "wti_usd": 89.53,
-        "commercial_crude_stocks_mbbl": 409.76,
-        "us_crude_production_mbpd": 14.0
+        "commercial_crude_stocks_mbbl": 417.8,
+        "us_crude_production_mbpd": 14.03
       },
       "metrics": {
         "brent_wti_spread_usd": 3.41,
         "brent_usd": 92.94,
         "wti_usd": 89.53,
-        "commercial_crude_stocks_mbbl": 409.76,
-        "us_crude_production_mbpd": 14.0
+        "commercial_crude_stocks_mbbl": 417.8,
+        "us_crude_production_mbpd": 14.03
       },
-      "interpretation": "Measures the Brent-WTI benchmark price difference, indicating Brent's relative premium or discount and the degree of price divergence between the two markets. Live EIA commercial crude stocks: 409.76 mbbl. Live EIA US crude field production: 14.0 mbpd."
+      "interpretation": "Measures the Brent-WTI benchmark price difference, indicating Brent's relative premium or discount and the degree of price divergence between the two markets. Live EIA commercial crude stocks: 417.8 mbbl. Live EIA US crude field production: 14.03 mbpd."
     },
     {
       "model_id": "MODEL_25.13",
@@ -761,17 +761,17 @@
       "inputs": {
         "wti_crude_usd_bbl": 89.53,
         "henry_hub_natgas_usd_mmbtu": 3.1,
-        "lower48_natgas_storage_bcf": 3801.0,
-        "natgas_storage_yoy_pct": -2.66
+        "lower48_natgas_storage_bcf": 3882.0,
+        "natgas_storage_yoy_pct": -1.37
       },
       "metrics": {
         "btu_disconnect_ratio": 28.88,
         "wti_price": 89.53,
         "natgas_price": 3.1,
-        "lower48_natgas_storage_bcf": 3801.0,
-        "natgas_storage_yoy_pct": -2.66
+        "lower48_natgas_storage_bcf": 3882.0,
+        "natgas_storage_yoy_pct": -1.37
       },
-      "interpretation": "Tracks relative purchasing power: at current quotes, the price of one WTI barrel buys 28.88 MMBtu of Henry Hub gas. Ratios below 6 mark the near-thermal-equivalence band around 5.8 MMBtu per barrel; ratios above 35 flag the empirical high-ratio tail of the matched post-2009 daily series. EIA underground gas storage is supplied as context alongside the price ratio. Current Lower 48 underground gas storage: 3801.0 Bcf."
+      "interpretation": "Tracks relative purchasing power: at current quotes, the price of one WTI barrel buys 28.88 MMBtu of Henry Hub gas. Ratios below 6 mark the near-thermal-equivalence band around 5.8 MMBtu per barrel; ratios above 35 flag the empirical high-ratio tail of the matched post-2009 daily series. EIA underground gas storage is supplied as context alongside the price ratio. Current Lower 48 underground gas storage: 3882.0 Bcf."
     },
     {
       "model_id": "MODEL_25.9",
@@ -785,8 +785,8 @@
         "ulsd_spot_usd_gal": 4.093,
         "wti_crude_usd_bbl": 89.53,
         "matched_observation_date": "2026-11-17",
-        "gasoline_stocks_kbbl": 208958.0,
-        "gasoline_stocks_yoy_pct": 1.43,
+        "gasoline_stocks_kbbl": 215949.0,
+        "gasoline_stocks_yoy_pct": 4.13,
         "refinery_utilization_pct": 89.1,
         "gasoline_spot_usd_gal_year_ago": 1.923,
         "ulsd_spot_usd_gal_year_ago": 2.456,
@@ -797,8 +797,8 @@
         "gasoline_2_barrel_equiv_usd": 195.55,
         "ulsd_1_barrel_equiv_usd": 171.91,
         "wti_crude_usd_bbl": 89.53,
-        "gasoline_stocks_kbbl": 208958.0,
-        "gasoline_stocks_yoy_pct": 1.43,
+        "gasoline_stocks_kbbl": 215949.0,
+        "gasoline_stocks_yoy_pct": 4.13,
         "refinery_utilization_pct": 89.1,
         "refinery_capacity_regime": "NORMAL_OPERATING_BAND",
         "crack_spread_321_year_ago_usd_bbl": 26.44,
@@ -970,22 +970,22 @@
         "crisis_duration_days": 14,
         "gross_flow_mbpd": 20.5,
         "regional_bypass_capacity_mbpd": 4.0,
-        "eia_spr_stocks_mbbl": 282.18,
-        "eia_us_crude_prod_mbpd": 14.0
+        "eia_spr_stocks_mbbl": 276.36,
+        "eia_us_crude_prod_mbpd": 14.03
       },
       "metrics": {
         "severity_weight": 1.0,
         "polarity_friction_factor": 1.0,
-        "spr_sustainable_drawdown_mbpd": 3.14,
-        "effective_spr_release_mbpd": 3.14,
-        "total_buffer_capacity_mbpd": 7.14,
-        "net_unmet_deficit_mbpd": 13.36,
-        "net_deficit_ratio": 0.6517,
+        "spr_sustainable_drawdown_mbpd": 3.07,
+        "effective_spr_release_mbpd": 3.07,
+        "total_buffer_capacity_mbpd": 7.07,
+        "net_unmet_deficit_mbpd": 13.43,
+        "net_deficit_ratio": 0.6551,
         "duration_scale_factor": 0.7,
-        "unscaled_base_shock": 75.62,
-        "us_crude_field_production_mbpd": 14.0
+        "unscaled_base_shock": 75.86,
+        "us_crude_field_production_mbpd": 14.03
       },
-      "interpretation": "Couples maritime chokepoint severity (CATASTROPHIC) with live EIA SPR inventory (3.14 mbpd sustainable release) and regional pipeline bypass to evaluate macroeconomic spillover under acute crisis."
+      "interpretation": "Couples maritime chokepoint severity (CATASTROPHIC) with live EIA SPR inventory (3.07 mbpd sustainable release) and regional pipeline bypass to evaluate macroeconomic spillover under acute crisis."
     }
   ]
 }

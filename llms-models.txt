@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-20 03:24 UTC
+> **Last Calibrated Sync:** 2026-11-20 05:06 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -304,9 +304,9 @@
 #### [MODEL_25.12] Brent-WTI Benchmark Price Spread
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.12
 - **Evaluated Status:** `TYPICAL_BRENT_WTI_SPREAD` (Primary Value: 3.41 USD)
-- **Inputs Evaluated:** `{"brent_usd": 92.94, "wti_usd": 89.53, "commercial_crude_stocks_mbbl": 409.76, "us_crude_production_mbpd": 14.0}`
-- **Secondary Metrics:** `{"brent_wti_spread_usd": 3.41, "brent_usd": 92.94, "wti_usd": 89.53, "commercial_crude_stocks_mbbl": 409.76, "us_crude_production_mbpd": 14.0}`
-- **Economic Synthesis:** Measures the Brent-WTI benchmark price difference, indicating Brent's relative premium or discount and the degree of price divergence between the two markets. Live EIA commercial crude stocks: 409.76 mbbl. Live EIA US crude field production: 14.0 mbpd.
+- **Inputs Evaluated:** `{"brent_usd": 92.94, "wti_usd": 89.53, "commercial_crude_stocks_mbbl": 417.8, "us_crude_production_mbpd": 14.03}`
+- **Secondary Metrics:** `{"brent_wti_spread_usd": 3.41, "brent_usd": 92.94, "wti_usd": 89.53, "commercial_crude_stocks_mbbl": 417.8, "us_crude_production_mbpd": 14.03}`
+- **Economic Synthesis:** Measures the Brent-WTI benchmark price difference, indicating Brent's relative premium or discount and the degree of price divergence between the two markets. Live EIA commercial crude stocks: 417.8 mbbl. Live EIA US crude field production: 14.03 mbpd.
 
 #### [MODEL_25.13] Labor Market Momentum Index (LMMI)
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#25.13
@@ -353,15 +353,15 @@
 #### [MODEL_25.8] Natgas / Crude Oil Price-Ratio Disconnect Engine
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.8
 - **Evaluated Status:** `ENERGY_PARITY_EQUILIBRIUM` (Primary Value: 28.88 WTI/NatGas Ratio)
-- **Inputs Evaluated:** `{"wti_crude_usd_bbl": 89.53, "henry_hub_natgas_usd_mmbtu": 3.1, "lower48_natgas_storage_bcf": 3801.0, "natgas_storage_yoy_pct": -2.66}`
-- **Secondary Metrics:** `{"btu_disconnect_ratio": 28.88, "wti_price": 89.53, "natgas_price": 3.1, "lower48_natgas_storage_bcf": 3801.0, "natgas_storage_yoy_pct": -2.66}`
-- **Economic Synthesis:** Tracks relative purchasing power: at current quotes, the price of one WTI barrel buys 28.88 MMBtu of Henry Hub gas. Ratios below 6 mark the near-thermal-equivalence band around 5.8 MMBtu per barrel; ratios above 35 flag the empirical high-ratio tail of the matched post-2009 daily series. EIA underground gas storage is supplied as context alongside the price ratio. Current Lower 48 underground gas storage: 3801.0 Bcf.
+- **Inputs Evaluated:** `{"wti_crude_usd_bbl": 89.53, "henry_hub_natgas_usd_mmbtu": 3.1, "lower48_natgas_storage_bcf": 3882.0, "natgas_storage_yoy_pct": -1.37}`
+- **Secondary Metrics:** `{"btu_disconnect_ratio": 28.88, "wti_price": 89.53, "natgas_price": 3.1, "lower48_natgas_storage_bcf": 3882.0, "natgas_storage_yoy_pct": -1.37}`
+- **Economic Synthesis:** Tracks relative purchasing power: at current quotes, the price of one WTI barrel buys 28.88 MMBtu of Henry Hub gas. Ratios below 6 mark the near-thermal-equivalence band around 5.8 MMBtu per barrel; ratios above 35 flag the empirical high-ratio tail of the matched post-2009 daily series. EIA underground gas storage is supplied as context alongside the price ratio. Current Lower 48 underground gas storage: 3882.0 Bcf.
 
 #### [MODEL_25.9] Gasoline / Distillate / Crude 3:2:1 Crack Spread
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.9
 - **Evaluated Status:** `CRACK_SPREAD_EXPANDING` (Primary Value: 32.96 USD per Barrel)
-- **Inputs Evaluated:** `{"gasoline_spot_usd_gal": 2.328, "ulsd_spot_usd_gal": 4.093, "wti_crude_usd_bbl": 89.53, "matched_observation_date": "2026-11-17", "gasoline_stocks_kbbl": 208958.0, "gasoline_stocks_yoy_pct": 1.43, "refinery_utilization_pct": 89.1, "gasoline_spot_usd_gal_year_ago": 1.923, "ulsd_spot_usd_gal_year_ago": 2.456, "wti_crude_usd_bbl_year_ago": 61.79}`
-- **Secondary Metrics:** `{"crack_spread_321_usd_bbl": 32.96, "gasoline_2_barrel_equiv_usd": 195.55, "ulsd_1_barrel_equiv_usd": 171.91, "wti_crude_usd_bbl": 89.53, "gasoline_stocks_kbbl": 208958.0, "gasoline_stocks_yoy_pct": 1.43, "refinery_utilization_pct": 89.1, "refinery_capacity_regime": "NORMAL_OPERATING_BAND", "crack_spread_321_year_ago_usd_bbl": 26.44, "crack_spread_321_yoy_change_usd_bbl": 6.52, "crack_spread_321_yoy_pct": 24.66}`
+- **Inputs Evaluated:** `{"gasoline_spot_usd_gal": 2.328, "ulsd_spot_usd_gal": 4.093, "wti_crude_usd_bbl": 89.53, "matched_observation_date": "2026-11-17", "gasoline_stocks_kbbl": 215949.0, "gasoline_stocks_yoy_pct": 4.13, "refinery_utilization_pct": 89.1, "gasoline_spot_usd_gal_year_ago": 1.923, "ulsd_spot_usd_gal_year_ago": 2.456, "wti_crude_usd_bbl_year_ago": 61.79}`
+- **Secondary Metrics:** `{"crack_spread_321_usd_bbl": 32.96, "gasoline_2_barrel_equiv_usd": 195.55, "ulsd_1_barrel_equiv_usd": 171.91, "wti_crude_usd_bbl": 89.53, "gasoline_stocks_kbbl": 215949.0, "gasoline_stocks_yoy_pct": 4.13, "refinery_utilization_pct": 89.1, "refinery_capacity_regime": "NORMAL_OPERATING_BAND", "crack_spread_321_year_ago_usd_bbl": 26.44, "crack_spread_321_yoy_change_usd_bbl": 6.52, "crack_spread_321_yoy_pct": 24.66}`
 - **Economic Synthesis:** The same-date 3:2:1 crack spread is 32.96 USD/bbl, up 6.52 USD/bbl (24.66%) from 26.44 USD/bbl one year earlier. Status describes the year-over-year direction, not whether the absolute spread is high or low. Gasoline inventory is contextual only.
 
 #### [MODEL_25.10] SLOOS Lending Standards Recession Gauge
@@ -419,6 +419,6 @@
 #### [MODEL_28.4] Chokepoint Macro Spillover Bridge (Hormuz - Live EIA SPR)
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.4
 - **Evaluated Status:** `MODERATE_FRICTION` (Primary Value: 53 Index (0-100))
-- **Inputs Evaluated:** `{"chokepoint_id": "CHOKE_HORMUZ", "severity_enum": "CATASTROPHIC", "p_net": -1.0, "crisis_duration_days": 14, "gross_flow_mbpd": 20.5, "regional_bypass_capacity_mbpd": 4.0, "eia_spr_stocks_mbbl": 282.18, "eia_us_crude_prod_mbpd": 14.0}`
-- **Secondary Metrics:** `{"severity_weight": 1.0, "polarity_friction_factor": 1.0, "spr_sustainable_drawdown_mbpd": 3.14, "effective_spr_release_mbpd": 3.14, "total_buffer_capacity_mbpd": 7.14, "net_unmet_deficit_mbpd": 13.36, "net_deficit_ratio": 0.6517, "duration_scale_factor": 0.7, "unscaled_base_shock": 75.62, "us_crude_field_production_mbpd": 14.0}`
-- **Economic Synthesis:** Couples maritime chokepoint severity (CATASTROPHIC) with live EIA SPR inventory (3.14 mbpd sustainable release) and regional pipeline bypass to evaluate macroeconomic spillover under acute crisis.
+- **Inputs Evaluated:** `{"chokepoint_id": "CHOKE_HORMUZ", "severity_enum": "CATASTROPHIC", "p_net": -1.0, "crisis_duration_days": 14, "gross_flow_mbpd": 20.5, "regional_bypass_capacity_mbpd": 4.0, "eia_spr_stocks_mbbl": 276.36, "eia_us_crude_prod_mbpd": 14.03}`
+- **Secondary Metrics:** `{"severity_weight": 1.0, "polarity_friction_factor": 1.0, "spr_sustainable_drawdown_mbpd": 3.07, "effective_spr_release_mbpd": 3.07, "total_buffer_capacity_mbpd": 7.07, "net_unmet_deficit_mbpd": 13.43, "net_deficit_ratio": 0.6551, "duration_scale_factor": 0.7, "unscaled_base_shock": 75.86, "us_crude_field_production_mbpd": 14.03}`
+- **Economic Synthesis:** Couples maritime chokepoint severity (CATASTROPHIC) with live EIA SPR inventory (3.07 mbpd sustainable release) and regional pipeline bypass to evaluate macroeconomic spillover under acute crisis.

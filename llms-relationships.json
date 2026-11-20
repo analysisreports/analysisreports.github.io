@@ -8,10 +8,10 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-relationships.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-19T09:39:56.495363+00:00",
+    "last_updated": "2026-11-20T05:06:03.868184+00:00",
     "sync_status": "PARTIAL_SUCCESS",
     "last_successful_sync": null,
-    "last_attempted_sync": "2026-11-19T09:39:56.495363+00:00",
+    "last_attempted_sync": "2026-11-20T05:06:03.868184+00:00",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt#25.1",
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
     "macro_inputs": {
@@ -168,17 +168,17 @@
     {
       "entity_id": "IND_TRIGGER_US_SPR_BUFFER",
       "model": "MODEL_25.19",
-      "value": -0.3111,
+      "value": -0.3275,
       "status": "OK",
       "warning": null,
       "inputs": {
-        "PET.WCSSTUS1.W.current_value": 282184.0,
-        "PET.WCSSTUS1.W.year_ago_value": 409595.0,
-        "PET.WCSSTUS1.W.last_date": "2026-10-30",
-        "PET.WCSSTUS1.W.year_ago_date": "2025-10-30"
+        "PET.WCSSTUS1.W.current_value": 276361.0,
+        "PET.WCSSTUS1.W.year_ago_value": 410926.0,
+        "PET.WCSSTUS1.W.last_date": "2026-11-13",
+        "PET.WCSSTUS1.W.year_ago_date": "2025-11-14"
       },
-      "current_model_value": 282184.0,
-      "year_ago_model_value": 409595.0
+      "current_model_value": 276361.0,
+      "year_ago_model_value": 410926.0
     }
   ],
   "central_bank_policy_benchmark": {
@@ -241,7 +241,7 @@
       "target_entity": "GEO_RU",
       "label": "US - RU (United States vs. Russian Federation)",
       "p_baseline": -0.85,
-      "dynamic_delta": -0.066784,
+      "dynamic_delta": -0.070064,
       "legacy_dynamic_delta": 0.0,
       "pact_bloc_delta": 0.0,
       "mecca_pact_delta": 0.0,
@@ -266,8 +266,8 @@
         {
           "trigger_id": "IND_TRIGGER_US_SPR_BUFFER",
           "direction": 1,
-          "value": -0.3111,
-          "contribution": -0.3111,
+          "value": -0.3275,
+          "contribution": -0.3275,
           "status": "OK"
         }
       ],
@@ -517,8 +517,8 @@
         {
           "trigger_id": "IND_TRIGGER_US_SPR_BUFFER",
           "direction": 1,
-          "value": -0.3111,
-          "contribution": -0.3111,
+          "value": -0.3275,
+          "contribution": -0.3275,
           "status": "OK"
         }
       ],
@@ -886,8 +886,8 @@
         {
           "trigger_id": "IND_TRIGGER_US_SPR_BUFFER",
           "direction": -1,
-          "value": -0.3111,
-          "contribution": 0.3111,
+          "value": -0.3275,
+          "contribution": 0.3275,
           "status": "OK"
         }
       ],

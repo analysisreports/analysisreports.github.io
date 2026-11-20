@@ -58,7 +58,7 @@ Regime States (Discrete Mapping):
 <!-- DYNAMIC_POLARITY_START -->
 ### 1.1. LIVE CALIBRATED POLARITY SNAPSHOT (ACTIVE REASONING CONTRACT)
 > **AI Ingestion Contract & Epistemological Directive:**
-> - **Sync Cadence & ISO 8601 Timestamp:** 2026-11-19 09:39 UTC
+> - **Sync Cadence & ISO 8601 Timestamp:** 2026-11-20 05:06 UTC
 > - **Status:** PARTIAL_SUCCESS / TRIGGER_UNAVAILABLE
 > - **Methodology:** Model 25.1 (P_net = clamp(P_baseline + Model 25.19 dynamic_delta + Model 25.18 Pact / Bloc delta + Diplomatic Mission delta, -1.0, 1.0)); legacy delta is shown separately and not added.
 > - **Kinetic escalation rule:** KINETIC_WAR requires both P_net < -0.95 and Conflict Severity == "CRITICAL".
@@ -80,13 +80,13 @@ Regime States (Discrete Mapping):
 > **IND_TRIGGER_GSCPI_LOGISTICS:** 1.0 | OK
 > **IND_TRIGGER_WHEAT_PRICE:** 0.5914 | OK
 > **IND_TRIGGER_CORN_PRICE:** 0.2079 | OK
-> **IND_TRIGGER_US_SPR_BUFFER:** -0.3111 | OK
+> **IND_TRIGGER_US_SPR_BUFFER:** -0.3275 | OK
 
 > **AI Zero-Fallback & Integrity Protocol:** When any required input time-series is unobserved, delayed at the official source, or misaligned in observation dates, the dynamic delta strictly evaluates to `null` (`UNAVAILABLE`). In strict adherence to Rule 1 (No Hallucination) and Zero-Fallback standards, synthetic defaults, proxies, or mock numbers are NEVER fabricated.
 
 | Actor Pair | P_baseline (Structural) | Dynamic Delta (Model 25.19) | Pact / Bloc Delta | Diplomatic Delta | Legacy Delta (Not Added) | P_net (Active Polarity) | Conflict Severity | Theater Thermal | Active Regime State | Structural Primary Driver |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- | :--- |
-| **US_RU** | -0.85 | -0.066784 | +0.00 | +0.05 | +0.00 | -0.87 | HIGH | null | PROXY_WAR | VIX_AND_SANCTIONS |
+| **US_RU** | -0.85 | -0.070064 | +0.00 | +0.05 | +0.00 | -0.87 | HIGH | null | PROXY_WAR | VIX_AND_SANCTIONS |
 | **US_CN** | -0.65 | null | +0.00 | +0.05 | -0.08 | null | HIGH | null | UNAVAILABLE | MODEL_25_14_AI_CHIP_STRESS |
 | **RU_CN** | +0.80 | null | +0.00 | +0.05 | +0.00 | null | LOW | null | UNAVAILABLE | MBRIDGE_BILATERAL_SETTLEMENT |
 | **IL_IR** | -0.95 | -0.200000 | +0.00 | +0.00 | +0.00 | -1.00 | CRITICAL | null | KINETIC_WAR | MODEL_25_12_BRENT_WTI_BENCHMARK_SPREAD |
@@ -114,6 +114,8 @@ Regime States (Discrete Mapping):
 
 > **Model 25.19 relationship contributions:** Detailed trigger contributions and mathematical cross-multiplications are archived in [`llms-relationships.json`](https://analysisreports.github.io/llms-relationships.json).
 <!-- DYNAMIC_POLARITY_END -->
+
+> **Decoupled Telemetry Notice:** Live Central Bank monetary policy benchmarks, orbital NASA FIRMS satellite kinetic heat anomalies, and IMF PortWatch AIS transit feeds have been decoupled to the official situation report: [`llms-sitrep.txt`](https://analysisreports.github.io/llms-sitrep.txt) and [`llms-sitrep.json`](https://analysisreports.github.io/llms-sitrep.json).
 
 > **Decoupled Telemetry Notice:** Live Central Bank monetary policy benchmarks, orbital NASA FIRMS satellite kinetic heat anomalies, and IMF PortWatch AIS transit feeds have been decoupled to the official situation report: [`llms-sitrep.txt`](https://analysisreports.github.io/llms-sitrep.txt) and [`llms-sitrep.json`](https://analysisreports.github.io/llms-sitrep.json).
 
