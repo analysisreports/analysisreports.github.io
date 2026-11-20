@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "Quantitative Macroeconomic Models & Indicator Data Bindings Subgraph",
   "version": "3.0.0",
-  "author": "Ersoy Toptas",
+  "author": "Ersoy Toptaş",
   "license": "CC BY-NC-ND 4.0",
   "repository": "https://analysisreports.github.io/",
   "endpoint": "https://analysisreports.github.io/llms-graph-models.json",
@@ -1619,6 +1619,126 @@
           "SEVERE_REAL_CONTRACTION"
         ]
       }
+    },
+    {
+      "id": "IND_TRIGGER_US_SPR_BUFFER",
+      "label": "Strategic Petroleum Reserve Buffer Depletion Trigger",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Normalized Shock Vector"
+      }
+    },
+    {
+      "id": "IND_PMAIZMTUSDM",
+      "label": "Global Price of Corn (PMAIZMTUSDM)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "IMF / FRED",
+        "units": "USD per Metric Ton",
+        "trans": "lin"
+      }
+    },
+    {
+      "id": "MODEL_27",
+      "label": "Rhetoric Intensity Score Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_rhetoric_intensity_score",
+        "formula": "Rhetoric_Score = (x1 * 0.30) + (x2 * 0.30) + (x3 * 0.20) + (x4 * 0.20)",
+        "status_enums": [
+          "CRITICAL",
+          "HIGH",
+          "ELEVATED",
+          "MODERATE",
+          "LOW"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_27.1",
+      "label": "Composite Tension Score Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_composite_tension",
+        "formula": "Composite_Tension = (Rhetoric_Score * 0.50) + (Alliance_Friction * 0.50)",
+        "status_enums": [
+          "ACUTE_TENSION",
+          "ELEVATED_FRICTION",
+          "MODERATE_STRESS",
+          "STABLE_EQUILIBRIUM"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_28",
+      "label": "Composite Strategic Score Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_composite_strategic_score",
+        "formula": "Composite_Strategic_Score = (pol * 0.25) + (defense * 0.35) + (geo * 0.20) + (vuln * 0.20)",
+        "status_enums": [
+          "CRITICAL_RISK",
+          "ELEVATED_RISK",
+          "MODERATE_RISK",
+          "STABLE_EQUILIBRIUM"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_28.1",
+      "label": "Conflict Heat Score Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_conflict_heat_score",
+        "formula": "Conflict_Heat = (c1 * 0.40) + (c2 * 0.35) + (c3 * 0.25)",
+        "status_enums": [
+          "WAR_ZONE",
+          "CRITICAL_FRICTION",
+          "ELEVATED_TENSION",
+          "MANAGED_DISPUTE",
+          "PEACE"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_28.6",
+      "label": "Maritime Observability Divergence Index (MODI)",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_maritime_observability_bridge",
+        "formula": "Divergence_Spread = Refinery_Utilization_Pct - (100.0 + min(0.0, AIS_Shift_Pct))",
+        "status_enums": [
+          "DIVERGENCE_TRANSPONDER_DARK_FLOW",
+          "CORROBORATED_PHYSICAL_CONTRACTION",
+          "PEACETIME_STABLE_FLOW",
+          "TRANSITIONAL_OBSERVABILITY_BAND"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_29",
+      "label": "Evidence & Source Confidence Score Engine",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_confidence_score",
+        "formula": "Confidence_Score = (authority * 0.40) + (confirmation * 0.35) + (recency * 0.25)",
+        "status_enums": [
+          "HIGH_CONFIDENCE",
+          "CORROBORATED",
+          "TENTATIVE",
+          "UNVERIFIED"
+        ]
+      }
+    },
+    {
+      "id": "IND_PET_WPULEUS3_W",
+      "label": "Weekly U.S. Percent Utilization of Refinery Operable Capacity",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "EIA",
+        "units": "Percent"
+      }
     }
   ],
   "edges": [
@@ -2459,38 +2579,26 @@
     {
       "source": "IND_DTWEXBGS",
       "target": "MODEL_25.20",
-      "relation": "INGESTS_SERIES",
-      "attributes": {
-        "role": "Broad Dollar YoY Expansion Signal"
-      },
-      "type": "INGESTS_SERIES"
+      "type": "INGESTS_SERIES",
+      "role": "Broad Dollar YoY Expansion Signal"
     },
     {
       "source": "IND_SOFR",
       "target": "MODEL_25.20",
-      "relation": "INGESTS_SERIES",
-      "attributes": {
-        "role": "Benchmark Secured Repo Rate"
-      },
-      "type": "INGESTS_SERIES"
+      "type": "INGESTS_SERIES",
+      "role": "Benchmark Secured Repo Rate"
     },
     {
       "source": "IND_DFF",
       "target": "MODEL_25.20",
-      "relation": "INGESTS_SERIES",
-      "attributes": {
-        "role": "Federal Funds Effective Rate"
-      },
-      "type": "INGESTS_SERIES"
+      "type": "INGESTS_SERIES",
+      "role": "Federal Funds Effective Rate"
     },
     {
       "source": "CHOKE_HORMUZ",
       "target": "MODEL_25.20",
-      "relation": "INGESTS_SERIES",
-      "attributes": {
-        "role": "Energy Chokepoint Transit Contraction"
-      },
-      "type": "INGESTS_SERIES"
+      "type": "INGESTS_SERIES",
+      "role": "Energy Chokepoint Transit Contraction"
     },
     {
       "source": "IND_SP500_EARNINGS_YIELD",
@@ -2539,6 +2647,84 @@
       "target": "MODEL_23.5",
       "type": "INGESTS_SERIES",
       "role": "Headline CPI Inflation Deflator"
+    },
+    {
+      "source": "IND_TRIGGER_US_SPR_BUFFER",
+      "target": "MODEL_25.19",
+      "type": "INGESTS_SERIES",
+      "role": "spr_buffer_shock"
+    },
+    {
+      "source": "IND_PET_WCSSTUS1_W",
+      "target": "IND_TRIGGER_US_SPR_BUFFER",
+      "type": "FEEDS_TRIGGER",
+      "role": "spr_inventory_drawdown"
+    },
+    {
+      "source": "IND_PMAIZMTUSDM",
+      "target": "IND_TRIGGER_CORN_PRICE",
+      "type": "FEEDS_TRIGGER",
+      "role": "corn_price_draw"
+    },
+    {
+      "source": "CHOKE_HORMUZ",
+      "target": "MODEL_28.6",
+      "type": "INGESTS_SERIES",
+      "role": "ais_vessel_transit_shift_pct"
+    },
+    {
+      "source": "IND_PET_WPULEUS3_W",
+      "target": "MODEL_28.6",
+      "type": "INGESTS_SERIES",
+      "role": "us_refinery_utilization_pct"
+    },
+    {
+      "source": "MODEL_27",
+      "target": "MODEL_27.1",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "rhetoric_score"
+    },
+    {
+      "source": "MODEL_27.1",
+      "target": "MODEL_28.1",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "geo_tension"
+    },
+    {
+      "source": "MODEL_28.3",
+      "target": "MODEL_28.1",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "disruption_risk"
+    },
+    {
+      "source": "IND_GASREGW",
+      "target": "MODEL_25.9",
+      "type": "INGESTS_SERIES",
+      "role": "retail_gasoline_context_usd_gal"
+    },
+    {
+      "source": "IND_WPU06",
+      "target": "MODEL_25.14",
+      "type": "INGESTS_SERIES",
+      "role": "chemical_precursor_cost_index"
+    },
+    {
+      "source": "MODEL_25.1",
+      "target": "MODEL_28",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "geo_polarization_score"
+    },
+    {
+      "source": "MODEL_28.1",
+      "target": "MODEL_28",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "conflict_heat_score"
+    },
+    {
+      "source": "MODEL_29",
+      "target": "MODEL_28",
+      "type": "BRIDGES_TO_MODEL",
+      "passes": "intelligence_confidence_factor"
     }
   ],
   "metadata": {

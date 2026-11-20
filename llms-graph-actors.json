@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "Sovereign States, Alliances & Strategic Actors Subgraph",
   "version": "3.0.0",
-  "author": "Ersoy Toptas",
+  "author": "Ersoy Toptaş",
   "license": "CC BY-NC-ND 4.0",
   "repository": "https://analysisreports.github.io/",
   "endpoint": "https://analysisreports.github.io/llms-graph-actors.json",

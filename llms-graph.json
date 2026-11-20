@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "name": "Ersoy Toptas Macroeconomic & Geopolitical Knowledge Graph (Master Router & Guide)",
+  "name": "Ersoy Toptaş Macroeconomic & Geopolitical Knowledge Graph (Master Router & Guide)",
   "version": "3.0.0",
-  "author": "Ersoy Toptas",
+  "author": "Ersoy Toptaş",
   "license": "CC BY-NC-ND 4.0",
   "repository": "https://analysisreports.github.io/",
   "architecture_type": "FEDERATED_MODULAR_GRAPH",
@@ -13,12 +13,12 @@
     "actors_subgraph": "https://analysisreports.github.io/llms-graph-actors.json"
   },
   "graph_accounting": {
-    "modular_subgraphs_nodes": 254,
-    "modular_subgraphs_edges": 339,
+    "modular_subgraphs_nodes": 273,
+    "modular_subgraphs_edges": 365,
     "core_backbone_nodes": 9,
     "core_backbone_edges": 8,
-    "total_federated_nodes": 263,
-    "total_federated_edges": 347
+    "total_federated_nodes": 282,
+    "total_federated_edges": 373
   },
   "subgraphs": {
     "chokepoints": {
@@ -30,15 +30,15 @@
     },
     "models": {
       "endpoint": "https://analysisreports.github.io/llms-graph-models.json",
-      "nodes_count": 129,
-      "edges_count": 139,
+      "nodes_count": 148,
+      "edges_count": 164,
       "token_size": "~9,500",
       "scope": "Quantitative macro models, FRED/BEA indicators, and data ingestion bindings"
     },
     "actors": {
       "endpoint": "https://analysisreports.github.io/llms-graph-actors.json",
       "nodes_count": 108,
-      "edges_count": 150,
+      "edges_count": 151,
       "token_size": "~8,800",
       "scope": "Sovereign states, bilateral polarities, multilateral defense alliances, and strategic defense actors"
     },

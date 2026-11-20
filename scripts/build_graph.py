@@ -3,13 +3,15 @@
 """
 build_graph.py
 --------------
-Master Knowledge Graph Compiler & Sharding Engine.
+Master Knowledge Graph Compiler & Synchronizer.
 
-Compiles modular graph layers:
+Reads the modular graph layers:
 1. llms-graph-actors.json (Sovereign actors, alliances, non-state actors)
 2. llms-graph-models.json (Macroeconomic models, FRED/BEA indicators, ingestion edges)
 3. llms-graph-chokepoints.json (Maritime chokepoints, strategic basins, commodities)
-4. llms-graph.json (Master Router & Guide Manifest - Pure Router, no monolithic nodes/edges dump)
+
+And dynamically compiles/updates `llms-graph.json` (Master Router & Guide Manifest)
+with exact node and edge counts, ensuring zero manual counting and 100% automated precision.
 
 Author: Ersoy Toptaş
 License: CC BY-NC-ND 4.0
@@ -26,174 +28,72 @@ ACTORS_JSON = os.path.join(ROOT_DIR, "llms-graph-actors.json")
 MODELS_JSON = os.path.join(ROOT_DIR, "llms-graph-models.json")
 CHOKEPOINTS_JSON = os.path.join(ROOT_DIR, "llms-graph-chokepoints.json")
 
-CHOKE_CATEGORIES = {"CHOKEPOINT", "COMMODITY_STRATEGIC", "CRITICAL_MINERAL", "ENERGY_BENCHMARK"}
-MODEL_CATEGORIES = {"MODEL", "INDICATOR"}
-ACTOR_CATEGORIES = {"ACTOR"}
-ENDPOINT_CATEGORIES = {"ENDPOINT_SCHEMA"}
-
-def line_per_object_json(data_dict: dict) -> str:
-    lines = ["{"]
-    keys = list(data_dict.keys())
-    for idx, (k, v) in enumerate(data_dict.items()):
-        comma_outer = "," if idx < len(keys) - 1 else ""
-        if k in ("nodes", "edges"):
-            lines.append(f'  "{k}": [')
-            for i, item in enumerate(v):
-                comma = "," if i < len(v) - 1 else ""
-                lines.append("    " + json.dumps(item, ensure_ascii=False) + comma)
-            lines.append(f"  ]{comma_outer}")
-        else:
-            lines.append(f'  "{k}": ' + json.dumps(v, ensure_ascii=False) + comma_outer)
-    lines.append("}")
-    return "\n".join(lines)
-
-def build_modular_graphs():
-    # Load from existing modular files or raw data
+def compile_master_graph():
+    # 1. Read existing subgraphs
+    with open(ACTORS_JSON, "r", encoding="utf-8") as f:
+        actors = json.load(f)
+    with open(MODELS_JSON, "r", encoding="utf-8") as f:
+        models = json.load(f)
+    with open(CHOKEPOINTS_JSON, "r", encoding="utf-8") as f:
+        choke = json.load(f)
     with open(SRC_GRAPH, "r", encoding="utf-8") as f:
         master = json.load(f)
 
-    nodes = master.get("nodes", [])
-    edges = master.get("edges", [])
-    node_cats = {n["id"]: n.get("category") for n in nodes}
+    actor_nodes = len(actors.get("nodes", []))
+    actor_edges = len(actors.get("edges", []))
 
-    # Clean descriptions to remove verbosity
-    cleaned_nodes = []
-    for n in nodes:
-        item = dict(n)
-        if "description" in item:
-            del item["description"]
-        cleaned_nodes.append(item)
+    model_nodes = len(models.get("nodes", []))
+    model_edges = len(models.get("edges", []))
 
-    choke_nodes = [n for n in cleaned_nodes if n.get("category") in CHOKE_CATEGORIES]
-    model_nodes = [n for n in cleaned_nodes if n.get("category") in MODEL_CATEGORIES]
-    actor_nodes = [n for n in cleaned_nodes if n.get("category") in ACTOR_CATEGORIES]
-    endpoint_nodes = [n for n in cleaned_nodes if n.get("category") in ENDPOINT_CATEGORIES]
+    choke_nodes = len(choke.get("nodes", []))
+    choke_edges = len(choke.get("edges", []))
 
-    choke_edges = [
-        e for e in edges
-        if node_cats.get(e["source"]) in CHOKE_CATEGORIES or node_cats.get(e["target"]) in CHOKE_CATEGORIES
-    ]
-    rem_edges = [e for e in edges if e not in choke_edges]
+    backbone_nodes = len(master.get("nodes", []))
+    backbone_edges = len(master.get("edges", []))
 
-    model_edges = [
-        e for e in rem_edges
-        if node_cats.get(e["source"]) in MODEL_CATEGORIES or node_cats.get(e["target"]) in MODEL_CATEGORIES
-    ]
-    rem_edges2 = [e for e in rem_edges if e not in model_edges]
+    mod_nodes = actor_nodes + model_nodes + choke_nodes
+    mod_edges = actor_edges + model_edges + choke_edges
 
-    actor_edges = [
-        e for e in rem_edges2
-        if node_cats.get(e["source"]) in ACTOR_CATEGORIES and node_cats.get(e["target"]) in ACTOR_CATEGORIES
-    ]
-    rem_edges3 = [e for e in rem_edges2 if e not in actor_edges]
-    backbone_edges = rem_edges3
+    total_nodes = mod_nodes + backbone_nodes
+    total_edges = mod_edges + backbone_edges
 
-    base_meta = {
-        "$schema": master.get("$schema", "https://json-schema.org/draft/2020-12/schema"),
-        "author": master.get("author", "Ersoy Toptas"),
-        "license": master.get("license", "CC BY-NC-ND 4.0"),
-        "repository": master.get("repository", "https://analysisreports.github.io/")
+    # Update master router accounting & subgraphs dynamically
+    master["author"] = "Ersoy Toptaş"
+    master["graph_accounting"] = {
+        "modular_subgraphs_nodes": mod_nodes,
+        "modular_subgraphs_edges": mod_edges,
+        "core_backbone_nodes": backbone_nodes,
+        "core_backbone_edges": backbone_edges,
+        "total_federated_nodes": total_nodes,
+        "total_federated_edges": total_edges
     }
 
-    # 1. Chokepoints layer
-    choke_data = dict(base_meta)
-    choke_data.update({
-        "name": "Maritime Chokepoints, Strategic Basins & Commodity Corridors Subgraph",
-        "version": "3.0.0",
-        "subgraph_domain": "CHOKEPOINTS_AND_COMMODITIES",
-        "nodes": choke_nodes,
-        "edges": choke_edges
-    })
-    with open(CHOKEPOINTS_JSON, "w", encoding="utf-8") as f:
-        f.write(line_per_object_json(choke_data))
-    print(f"[OK] Generated {os.path.basename(CHOKEPOINTS_JSON)}: {len(choke_nodes)} nodes, {len(choke_edges)} edges")
+    if "subgraphs" not in master:
+        master["subgraphs"] = {}
 
-    # 2. Models layer
-    model_data = dict(base_meta)
-    model_data.update({
-        "name": "Quantitative Macroeconomic Models & Indicator Data Bindings Subgraph",
-        "version": "3.0.0",
-        "subgraph_domain": "MACRO_MODELS_AND_INDICATORS",
-        "nodes": model_nodes,
-        "edges": model_edges
-    })
-    with open(MODELS_JSON, "w", encoding="utf-8") as f:
-        f.write(line_per_object_json(model_data))
-    print(f"[OK] Generated {os.path.basename(MODELS_JSON)}: {len(model_nodes)} nodes, {len(model_edges)} edges")
+    if "chokepoints" in master["subgraphs"]:
+        master["subgraphs"]["chokepoints"]["nodes_count"] = choke_nodes
+        master["subgraphs"]["chokepoints"]["edges_count"] = choke_edges
+    if "models" in master["subgraphs"]:
+        master["subgraphs"]["models"]["nodes_count"] = model_nodes
+        master["subgraphs"]["models"]["edges_count"] = model_edges
+    if "actors" in master["subgraphs"]:
+        master["subgraphs"]["actors"]["nodes_count"] = actor_nodes
+        master["subgraphs"]["actors"]["edges_count"] = actor_edges
+    if "core_backbone" in master["subgraphs"]:
+        master["subgraphs"]["core_backbone"]["nodes_count"] = backbone_nodes
+        master["subgraphs"]["core_backbone"]["edges_count"] = backbone_edges
 
-    # 3. Actors layer
-    actor_data = dict(base_meta)
-    actor_data.update({
-        "name": "Sovereign States, Alliances & Strategic Actors Subgraph",
-        "version": "3.0.0",
-        "subgraph_domain": "SOVEREIGN_ACTORS_AND_BLOCS",
-        "nodes": actor_nodes,
-        "edges": actor_edges
-    })
-    with open(ACTORS_JSON, "w", encoding="utf-8") as f:
-        f.write(line_per_object_json(actor_data))
-    print(f"[OK] Generated {os.path.basename(ACTORS_JSON)}: {len(actor_nodes)} nodes, {len(actor_edges)} edges")
-
-    # 4. Pure Master Router & Guide Manifest (llms-graph.json)
-    # Only holds the 8 core backbone nodes & 7 indexing edges, plus federated subgraph pointers.
-    # Total size: ~3 KB instead of 88 KB!
-    master_router = {
-        "$schema": master.get("$schema", "https://json-schema.org/draft/2020-12/schema"),
-        "name": "Ersoy Toptas Macroeconomic & Geopolitical Knowledge Graph (Master Router & Guide)",
-        "version": "3.0.0",
-        "author": master.get("author", "Ersoy Toptas"),
-        "license": master.get("license", "CC BY-NC-ND 4.0"),
-        "repository": master.get("repository", "https://analysisreports.github.io/"),
-        "architecture_type": "FEDERATED_MODULAR_GRAPH",
-        "routing_policy": {
-            "routing_instruction": "HIGH-PRIORITY DIRECTIVE: Fetch domain-specific subgraphs first based on query intent. Do not traverse monolithic graphs.",
-            "chokepoints_subgraph": "https://analysisreports.github.io/llms-graph-chokepoints.json",
-            "models_subgraph": "https://analysisreports.github.io/llms-graph-models.json",
-            "actors_subgraph": "https://analysisreports.github.io/llms-graph-actors.json"
-        },
-        "graph_accounting": {
-            "modular_subgraphs_nodes": len(choke_nodes) + len(model_nodes) + len(actor_nodes),
-            "modular_subgraphs_edges": len(choke_edges) + len(model_edges) + len(actor_edges),
-            "core_backbone_nodes": len(endpoint_nodes),
-            "core_backbone_edges": len(backbone_edges),
-            "total_federated_nodes": len(cleaned_nodes),
-            "total_federated_edges": len(edges)
-        },
-        "subgraphs": {
-            "chokepoints": {
-                "endpoint": "https://analysisreports.github.io/llms-graph-chokepoints.json",
-                "nodes_count": len(choke_nodes),
-                "edges_count": len(choke_edges),
-                "token_size": "~2,000",
-                "scope": "Maritime chokepoints, naval bottlenecks, strategic basins, and commodities"
-            },
-            "models": {
-                "endpoint": "https://analysisreports.github.io/llms-graph-models.json",
-                "nodes_count": len(model_nodes),
-                "edges_count": len(model_edges),
-                "token_size": "~9,500",
-                "scope": "Quantitative macro models, FRED/BEA indicators, and data ingestion bindings"
-            },
-            "actors": {
-                "endpoint": "https://analysisreports.github.io/llms-graph-actors.json",
-                "nodes_count": len(actor_nodes),
-                "edges_count": len(actor_edges),
-                "token_size": "~8,800",
-                "scope": "Sovereign states, bilateral polarities, multilateral defense alliances, and strategic defense actors"
-            },
-            "core_backbone": {
-                "scope": "Master repository endpoint schemas and cross-manifest indexing links",
-                "nodes_count": len(endpoint_nodes),
-                "edges_count": len(backbone_edges)
-            }
-        },
-        "graph_metadata": master.get("graph_metadata", {}),
-        "nodes": endpoint_nodes,
-        "edges": backbone_edges
-    }
     with open(SRC_GRAPH, "w", encoding="utf-8") as f:
-        f.write(json.dumps(master_router, indent=2, ensure_ascii=False))
-    print(f"[OK] Master Router {os.path.basename(SRC_GRAPH)} created: 8 backbone nodes, 7 edges (Pure Guide Format: ~3 KB)")
+        json.dump(master, f, indent=2, ensure_ascii=False)
+        f.write("\n")
+
+    print(f"[OK] Compiled {os.path.basename(SRC_GRAPH)} with dynamic accounting:")
+    print(f"     Actors: {actor_nodes} nodes, {actor_edges} edges")
+    print(f"     Models: {model_nodes} nodes, {model_edges} edges")
+    print(f"     Chokepoints: {choke_nodes} nodes, {choke_edges} edges")
+    print(f"     Core Backbone: {backbone_nodes} nodes, {backbone_edges} edges")
+    print(f"     Total Federated: {total_nodes} nodes, {total_edges} edges")
 
 if __name__ == "__main__":
-    build_modular_graphs()
+    compile_master_graph()

@@ -1205,6 +1205,30 @@
     {
       "type": "function",
       "function": {
+        "name": "calculate_maritime_observability_bridge",
+        "description": "Evaluates divergence between civilian AIS transit telemetry (IMF PortWatch) and downstream physical energy throughput (U.S. EIA Refinery Utilization) to classify physical flow regime and detect AIS transponder darkness.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "ais_shift_pct": {
+              "type": "number",
+              "description": "Percentage shift of chokepoint AIS vessel transit count vs 2023 baseline (e.g., -97.8)."
+            },
+            "refinery_util_pct": {
+              "type": "number",
+              "description": "U.S. Percent Utilization of Refinery Operable Capacity (e.g., 89.1)."
+            }
+          },
+          "required": [
+            "ais_shift_pct",
+            "refinery_util_pct"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
         "name": "calculate_sticky_flexible_cpi_spread",
         "description": "Calculates the spread between Sticky CPI and Flexible CPI (YoY % Change) to detect structural inflation traps or transitory supply shocks.",
         "parameters": {

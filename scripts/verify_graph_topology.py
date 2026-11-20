@@ -156,6 +156,57 @@ def main():
     errors = enc_errors
     warnings = []
 
+    # 1.2 Graph Accounting & Subgraph Counts Strict Synchronicity Guard
+    accounting = data.get("graph_accounting", {})
+    subgraphs = data.get("subgraphs", {})
+
+    m_path = os.path.join(ROOT_DIR, "llms-graph-models.json")
+    a_path = os.path.join(ROOT_DIR, "llms-graph-actors.json")
+    c_path = os.path.join(ROOT_DIR, "llms-graph-chokepoints.json")
+
+    actual_m_nodes = len(json.load(open(m_path, encoding="utf-8")).get("nodes", [])) if os.path.exists(m_path) else 0
+    actual_m_edges = len(json.load(open(m_path, encoding="utf-8")).get("edges", [])) if os.path.exists(m_path) else 0
+    actual_a_nodes = len(json.load(open(a_path, encoding="utf-8")).get("nodes", [])) if os.path.exists(a_path) else 0
+    actual_a_edges = len(json.load(open(a_path, encoding="utf-8")).get("edges", [])) if os.path.exists(a_path) else 0
+    actual_c_nodes = len(json.load(open(c_path, encoding="utf-8")).get("nodes", [])) if os.path.exists(c_path) else 0
+    actual_c_edges = len(json.load(open(c_path, encoding="utf-8")).get("edges", [])) if os.path.exists(c_path) else 0
+
+    actual_bb_nodes = len(data.get("nodes", []))
+    actual_bb_edges = len(data.get("edges", []))
+
+    actual_mod_nodes = actual_m_nodes + actual_a_nodes + actual_c_nodes
+    actual_mod_edges = actual_m_edges + actual_a_edges + actual_c_edges
+    actual_tot_nodes = actual_mod_nodes + actual_bb_nodes
+    actual_tot_edges = actual_mod_edges + actual_bb_edges
+
+    # Check graph_accounting exact matches
+    if accounting.get("modular_subgraphs_nodes") != actual_mod_nodes:
+        errors.append(f"graph_accounting.modular_subgraphs_nodes ({accounting.get('modular_subgraphs_nodes')}) != actual ({actual_mod_nodes})")
+    if accounting.get("modular_subgraphs_edges") != actual_mod_edges:
+        errors.append(f"graph_accounting.modular_subgraphs_edges ({accounting.get('modular_subgraphs_edges')}) != actual ({actual_mod_edges})")
+    if accounting.get("core_backbone_nodes") != actual_bb_nodes:
+        errors.append(f"graph_accounting.core_backbone_nodes ({accounting.get('core_backbone_nodes')}) != actual ({actual_bb_nodes})")
+    if accounting.get("core_backbone_edges") != actual_bb_edges:
+        errors.append(f"graph_accounting.core_backbone_edges ({accounting.get('core_backbone_edges')}) != actual ({actual_bb_edges})")
+    if accounting.get("total_federated_nodes") != actual_tot_nodes:
+        errors.append(f"graph_accounting.total_federated_nodes ({accounting.get('total_federated_nodes')}) != actual ({actual_tot_nodes})")
+    if accounting.get("total_federated_edges") != actual_tot_edges:
+        errors.append(f"graph_accounting.total_federated_edges ({accounting.get('total_federated_edges')}) != actual ({actual_tot_edges})")
+
+    # Check individual subgraphs exact matches
+    if subgraphs.get("models", {}).get("nodes_count") != actual_m_nodes:
+        errors.append(f"subgraphs.models.nodes_count ({subgraphs.get('models', {}).get('nodes_count')}) != actual ({actual_m_nodes})")
+    if subgraphs.get("models", {}).get("edges_count") != actual_m_edges:
+        errors.append(f"subgraphs.models.edges_count ({subgraphs.get('models', {}).get('edges_count')}) != actual ({actual_m_edges})")
+    if subgraphs.get("actors", {}).get("nodes_count") != actual_a_nodes:
+        errors.append(f"subgraphs.actors.nodes_count ({subgraphs.get('actors', {}).get('nodes_count')}) != actual ({actual_a_nodes})")
+    if subgraphs.get("actors", {}).get("edges_count") != actual_a_edges:
+        errors.append(f"subgraphs.actors.edges_count ({subgraphs.get('actors', {}).get('edges_count')}) != actual ({actual_a_edges})")
+    if subgraphs.get("chokepoints", {}).get("nodes_count") != actual_c_nodes:
+        errors.append(f"subgraphs.chokepoints.nodes_count ({subgraphs.get('chokepoints', {}).get('nodes_count')}) != actual ({actual_c_nodes})")
+    if subgraphs.get("chokepoints", {}).get("edges_count") != actual_c_edges:
+        errors.append(f"subgraphs.chokepoints.edges_count ({subgraphs.get('chokepoints', {}).get('edges_count')}) != actual ({actual_c_edges})")
+
     # 2. Node & Edge Uniqueness
     node_registry: Dict[str, Dict[str, Any]] = {}
     duplicate_nodes = []
