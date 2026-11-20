@@ -8,9 +8,9 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-eia-series.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-19T05:16:53Z",
+    "last_updated": "2026-11-20T05:02:54Z",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-19T05:16:53Z",
+    "last_successful_sync": "2026-11-20T05:02:54Z",
     "total_series": 6,
     "total_registered": 6,
     "missing_series": [],
@@ -25,29 +25,22 @@
       "n_obs_per_yr": 52,
       "units": "Thousand Barrels",
       "description": "Crude oil stocks held in the federal Strategic Petroleum Reserve emergency caverns.",
-      "last_date": "2026-10-30",
-      "last_synced_utc": "2026-11-11T23:06:31Z",
-      "current_value": 282184.0,
-      "previous_value": 282583.0,
-      "year_ago_value": 409595.0,
+      "last_date": "2026-11-13",
+      "last_synced_utc": "2026-11-20T05:02:54Z",
+      "current_value": 276361.0,
+      "previous_value": 279535.0,
+      "year_ago_date": "2025-11-14",
+      "year_ago_value": 410926.0,
       "transformations": {
-        "change": -399.0,
-        "change_from_year_ago": -127411.0,
-        "percent_change": -0.1412,
-        "percent_change_from_year_ago": -31.1066,
-        "compounded_annual_rate_of_change": -7.084,
-        "continuously_compounded_rate_of_change": -0.1413,
-        "continuously_compounded_annual_rate_of_change": -7.3475
+        "change": -3174.0,
+        "change_from_year_ago": -134565.0,
+        "percent_change": -1.1355,
+        "percent_change_from_year_ago": -32.7468,
+        "compounded_annual_rate_of_change": -44.7784,
+        "continuously_compounded_rate_of_change": -1.142,
+        "continuously_compounded_annual_rate_of_change": -59.3815
       },
       "recent_observations": [
-        {
-          "date": "2026-05-22",
-          "value": 365112.0
-        },
-        {
-          "date": "2026-05-29",
-          "value": 357119.0
-        },
         {
           "date": "2026-06-05",
           "value": 349192.0
@@ -135,9 +128,16 @@
         {
           "date": "2026-10-30",
           "value": 282184.0
+        },
+        {
+          "date": "2026-11-06",
+          "value": 279535.0
+        },
+        {
+          "date": "2026-11-13",
+          "value": 276361.0
         }
-      ],
-      "year_ago_date": "2025-10-30"
+      ]
     },
     "PET.WCESTUS1.W": {
       "series_id": "PET.WCESTUS1.W",
@@ -146,29 +146,22 @@
       "n_obs_per_yr": 52,
       "units": "Thousand Barrels",
       "description": "Domestic commercial crude oil inventories held at refineries, bulk terminals, and pipelines.",
-      "last_date": "2026-10-30",
-      "last_synced_utc": "2026-11-11T23:06:31Z",
-      "current_value": 409760.0,
-      "previous_value": 410625.0,
-      "year_ago_value": 421168.0,
+      "last_date": "2026-11-13",
+      "last_synced_utc": "2026-11-20T05:02:54Z",
+      "current_value": 417797.0,
+      "previous_value": 414417.0,
+      "year_ago_date": "2025-11-14",
+      "year_ago_value": 424155.0,
       "transformations": {
-        "change": -865.0,
-        "change_from_year_ago": -11408.0,
-        "percent_change": -0.2107,
-        "percent_change_from_year_ago": -2.7087,
-        "compounded_annual_rate_of_change": -10.3858,
-        "continuously_compounded_rate_of_change": -0.2109,
-        "continuously_compounded_annual_rate_of_change": -10.9656
+        "change": 3380.0,
+        "change_from_year_ago": -6358.0,
+        "percent_change": 0.8156,
+        "percent_change_from_year_ago": -1.499,
+        "compounded_annual_rate_of_change": 52.5609,
+        "continuously_compounded_rate_of_change": 0.8123,
+        "continuously_compounded_annual_rate_of_change": 42.2394
       },
       "recent_observations": [
-        {
-          "date": "2026-05-22",
-          "value": 441686.0
-        },
-        {
-          "date": "2026-05-29",
-          "value": 433712.0
-        },
         {
           "date": "2026-06-05",
           "value": 426485.0
@@ -256,9 +249,16 @@
         {
           "date": "2026-10-30",
           "value": 409760.0
+        },
+        {
+          "date": "2026-11-06",
+          "value": 414417.0
+        },
+        {
+          "date": "2026-11-13",
+          "value": 417797.0
         }
-      ],
-      "year_ago_date": "2025-10-30"
+      ]
     },
     "PET.WCRFPUS2.W": {
       "series_id": "PET.WCRFPUS2.W",
@@ -267,29 +267,22 @@
       "n_obs_per_yr": 52,
       "units": "Thousand Barrels per Day",
       "description": "Aggregate domestic crude extraction rate across US shale and conventional basins.",
-      "last_date": "2026-10-30",
-      "last_synced_utc": "2026-11-11T23:06:31Z",
-      "current_value": 14003.0,
-      "previous_value": 13992.0,
-      "year_ago_value": 13651.0,
+      "last_date": "2026-11-13",
+      "last_synced_utc": "2026-11-20T05:02:54Z",
+      "current_value": 14032.0,
+      "previous_value": 14013.0,
+      "year_ago_date": "2025-11-14",
+      "year_ago_value": 13834.0,
       "transformations": {
-        "change": 11.0,
-        "change_from_year_ago": 352.0,
-        "percent_change": 0.0786,
-        "percent_change_from_year_ago": 2.5786,
-        "compounded_annual_rate_of_change": 4.1711,
-        "continuously_compounded_rate_of_change": 0.0786,
-        "continuously_compounded_annual_rate_of_change": 4.0864
+        "change": 19.0,
+        "change_from_year_ago": 198.0,
+        "percent_change": 0.1356,
+        "percent_change_from_year_ago": 1.4313,
+        "compounded_annual_rate_of_change": 7.3,
+        "continuously_compounded_rate_of_change": 0.1355,
+        "continuously_compounded_annual_rate_of_change": 7.0458
       },
       "recent_observations": [
-        {
-          "date": "2026-05-22",
-          "value": 13715.0
-        },
-        {
-          "date": "2026-05-29",
-          "value": 13707.0
-        },
         {
           "date": "2026-06-05",
           "value": 13799.0
@@ -377,9 +370,16 @@
         {
           "date": "2026-10-30",
           "value": 14003.0
+        },
+        {
+          "date": "2026-11-06",
+          "value": 14013.0
+        },
+        {
+          "date": "2026-11-13",
+          "value": 14032.0
         }
-      ],
-      "year_ago_date": "2025-10-30"
+      ]
     },
     "PET.WGTSTUS1.W": {
       "series_id": "PET.WGTSTUS1.W",
@@ -388,29 +388,22 @@
       "n_obs_per_yr": 52,
       "units": "Thousand Barrels",
       "description": "Finished motor gasoline and blending components held in commercial storage.",
-      "last_date": "2026-10-30",
-      "last_synced_utc": "2026-11-11T23:06:31Z",
-      "current_value": 208958.0,
-      "previous_value": 209180.0,
-      "year_ago_value": 206009.0,
+      "last_date": "2026-11-13",
+      "last_synced_utc": "2026-11-20T05:02:54Z",
+      "current_value": 215949.0,
+      "previous_value": 210757.0,
+      "year_ago_date": "2025-11-14",
+      "year_ago_value": 207391.0,
       "transformations": {
-        "change": -222.0,
-        "change_from_year_ago": 2949.0,
-        "percent_change": -0.1061,
-        "percent_change_from_year_ago": 1.4315,
-        "compounded_annual_rate_of_change": -5.3719,
-        "continuously_compounded_rate_of_change": -0.1062,
-        "continuously_compounded_annual_rate_of_change": -5.5216
+        "change": 5192.0,
+        "change_from_year_ago": 8558.0,
+        "percent_change": 2.4635,
+        "percent_change_from_year_ago": 4.1265,
+        "compounded_annual_rate_of_change": 254.485,
+        "continuously_compounded_rate_of_change": 2.4336,
+        "continuously_compounded_annual_rate_of_change": 126.5496
       },
       "recent_observations": [
-        {
-          "date": "2026-05-22",
-          "value": 211591.0
-        },
-        {
-          "date": "2026-05-29",
-          "value": 214955.0
-        },
         {
           "date": "2026-06-05",
           "value": 215141.0
@@ -498,9 +491,16 @@
         {
           "date": "2026-10-30",
           "value": 208958.0
+        },
+        {
+          "date": "2026-11-06",
+          "value": 210757.0
+        },
+        {
+          "date": "2026-11-13",
+          "value": 215949.0
         }
-      ],
-      "year_ago_date": "2025-10-30"
+      ]
     },
     "NG.NW2_EPG0_SWO_R48_BCF.W": {
       "series_id": "NG.NW2_EPG0_SWO_R48_BCF.W",
@@ -509,29 +509,22 @@
       "n_obs_per_yr": 52,
       "units": "Billion Cubic Feet",
       "description": "Volume of working natural gas in underground storage facilities across the Lower 48 states.",
-      "last_date": "2026-10-30",
-      "last_synced_utc": "2026-11-11T23:06:31Z",
-      "current_value": 3801.0,
-      "previous_value": 3724.0,
-      "year_ago_value": 3905.0,
+      "last_date": "2026-11-13",
+      "last_synced_utc": "2026-11-20T05:02:54Z",
+      "current_value": 3882.0,
+      "previous_value": 3862.0,
+      "year_ago_date": "2025-11-14",
+      "year_ago_value": 3936.0,
       "transformations": {
-        "change": 77.0,
-        "change_from_year_ago": -104.0,
-        "percent_change": 2.0677,
-        "percent_change_from_year_ago": -2.6633,
-        "compounded_annual_rate_of_change": 189.8586,
-        "continuously_compounded_rate_of_change": 2.0466,
-        "continuously_compounded_annual_rate_of_change": 106.4223
+        "change": 20.0,
+        "change_from_year_ago": -54.0,
+        "percent_change": 0.5179,
+        "percent_change_from_year_ago": -1.372,
+        "compounded_annual_rate_of_change": 30.8126,
+        "continuously_compounded_rate_of_change": 0.5165,
+        "continuously_compounded_annual_rate_of_change": 26.8596
       },
       "recent_observations": [
-        {
-          "date": "2026-05-22",
-          "value": 2483.0
-        },
-        {
-          "date": "2026-05-29",
-          "value": 2578.0
-        },
         {
           "date": "2026-06-05",
           "value": 2686.0
@@ -619,9 +612,16 @@
         {
           "date": "2026-10-30",
           "value": 3801.0
+        },
+        {
+          "date": "2026-11-06",
+          "value": 3862.0
+        },
+        {
+          "date": "2026-11-13",
+          "value": 3882.0
         }
-      ],
-      "year_ago_date": "2025-10-30"
+      ]
     },
     "PET.WPULEUS3.W": {
       "series_id": "PET.WPULEUS3.W",

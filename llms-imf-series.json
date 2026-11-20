@@ -8,9 +8,9 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-imf-series.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-19T05:17:03Z",
+    "last_updated": "2026-11-20T05:03:07Z",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-19T05:17:03Z",
+    "last_successful_sync": "2026-11-20T05:03:07Z",
     "total_series": 4,
     "total_registered_series": 4,
     "missing_series": [],
@@ -27,40 +27,40 @@
       "n_obs_per_yr": 260,
       "units": "Israeli New Shekels per US Dollar",
       "source": "International Monetary Fund (IMF) Representative Exchange Rates",
-      "last_date": "2026-11-13",
-      "last_synced_utc": "2026-11-16T10:26:48Z",
-      "current_value": 3.199,
-      "previous_value": 3.191,
-      "year_ago_value": 3.306,
+      "last_date": "2026-11-19",
+      "last_synced_utc": "2026-11-20T05:03:07Z",
+      "current_value": 3.282,
+      "previous_value": 3.261,
+      "year_ago_value": 3.242,
       "transformations": {
-        "change": 0.008,
-        "change_from_year_ago": -0.107,
-        "percent_change": 0.2507,
-        "percent_change_from_year_ago": -3.2365,
-        "compounded_annual_rate_of_change": 91.7491,
-        "continuously_compounded_rate_of_change": 0.2504,
-        "continuously_compounded_annual_rate_of_change": 65.1018
+        "change": 0.021,
+        "change_from_year_ago": 0.04,
+        "percent_change": 0.644,
+        "percent_change_from_year_ago": 1.2338,
+        "compounded_annual_rate_of_change": 430.6672,
+        "continuously_compounded_rate_of_change": 0.6419,
+        "continuously_compounded_annual_rate_of_change": 166.8965
       },
       "recent_observations": [
         {
-          "date": "2026-11-09",
-          "value": 3.171
-        },
-        {
-          "date": "2026-11-10",
-          "value": 3.161
-        },
-        {
-          "date": "2026-11-11",
-          "value": 3.172
-        },
-        {
-          "date": "2026-11-12",
-          "value": 3.191
-        },
-        {
           "date": "2026-11-13",
           "value": 3.199
+        },
+        {
+          "date": "2026-11-16",
+          "value": 3.223
+        },
+        {
+          "date": "2026-11-17",
+          "value": 3.246
+        },
+        {
+          "date": "2026-11-18",
+          "value": 3.261
+        },
+        {
+          "date": "2026-11-19",
+          "value": 3.282
         }
       ]
     },
