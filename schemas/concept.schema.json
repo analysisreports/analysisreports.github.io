@@ -83,7 +83,8 @@
           "type": [
             "object",
             "array",
-            "string"
+            "string",
+            "null"
           ]
         },
         "term": {
