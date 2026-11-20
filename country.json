@@ -33,7 +33,7 @@
       "how": "",
       "who_entity_id": null,
       "who": "",
-      "heat": 0
+      "heat": null
     },
     "country_strategic_assessment": {
       "country_entity_id": null,
@@ -43,29 +43,29 @@
         "leadership_and_regime_stability": "",
         "institutional_power_balance": "",
         "opposition_and_social_cohesion": "",
-        "severity_score": 0
+        "severity_score": null
       },
       "security_and_defense_posture": {
         "military_doctrine": "",
         "force_capacity_and_readiness": "",
         "critical_frontline_status": "",
-        "severity_score": 0
+        "severity_score": null
       },
       "geopolitical_alignment": {
         "bloc_alignment": "",
         "strategic_dependencies": "",
         "regional_influence_and_rivalries": "",
-        "severity_score": 0
+        "severity_score": null
       },
       "strategic_vulnerabilities": {
         "sanctions_and_economic_warfare": "",
         "critical_infrastructure_risk": "",
         "demographic_and_humanitarian_pressure": "",
-        "severity_score": 0
+        "severity_score": null
       },
-      "resilience_score": 50,
-      "composite_strategic_score": 50,
-      "severity_level": "MODERATE"
+      "resilience_score": null,
+      "composite_strategic_score": null,
+      "severity_level": null
     },
     "actors_and_dynamics": {
       "key_players": [
@@ -74,20 +74,20 @@
           "name": "",
           "affiliation": "",
           "role_in_event": "",
-          "influence_score": 0
+          "influence_score": null
         }
       ],
       "relationship_map": [
         {
           "source_entity_id": null,
           "source": "",
-          "relation": "Conflict",
+          "relation": null,
           "target_entity_id": null,
           "target": "",
           "directed": true,
-          "severity": "MODERATE",
-          "polarity": 0.0,
-          "heat": 0
+          "severity": null,
+          "polarity": null,
+          "heat": null
         }
       ]
     },
@@ -96,15 +96,15 @@
       "strategic_implication": "",
       "underlying_message": "",
       "market_dynamics": "",
-      "conflict_heat": 0,
-      "market_impact_direction": "NEUTRAL",
-      "market_impact_score": 0,
+      "conflict_heat": null,
+      "market_impact_direction": null,
+      "market_impact_score": null,
       "key_quotes": [
         {
           "speaker_entity_id": null,
           "speaker": "",
           "quote": "",
-          "significance_level": "MEDIUM",
+          "significance_level": null,
           "significance_analysis": ""
         }
       ]
@@ -120,8 +120,8 @@
     "geopolitical_state_vector": {
       "actor_pair_entity_id": null,
       "actor_pair": "",
-      "regime_state": "DIPLOMATIC_CONTACT",
-      "dynamic_delta": 0.0,
+      "regime_state": null,
+      "dynamic_delta": null,
       "active_friction_nodes_entity_id": [
         null
       ],
@@ -144,17 +144,17 @@
       ],
       "potential_consequences": {
         "short_term": "",
-        "short_term_days": 30,
+        "short_term_days": null,
         "long_term": "",
-        "long_term_days": 365
+        "long_term_days": null
       },
       "next_key_event": null,
       "target_date": null,
-      "status": "ACTIVE",
-      "probability_percent": 50,
-      "impact_score": 50,
-      "direction": "Neutral",
-      "confidence_score": 80
+      "status": null,
+      "probability_percent": null,
+      "impact_score": null,
+      "direction": null,
+      "confidence_score": null
     },
     "target_queries": {
       "qa_pairs": [

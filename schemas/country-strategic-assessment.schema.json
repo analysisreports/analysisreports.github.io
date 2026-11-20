@@ -2,182 +2,326 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://analysisreports.github.io/schemas/country-strategic-assessment.schema.json",
   "title": "Country & Macro Strategic Assessment Schema",
-  "description": "Formal JSON Schema for national-level strategic, geopolitical, and macroeconomic assessments.",
+  "description": "Contract for the country template and Turkish and English country articles.",
   "type": "object",
-  "required": [
-    "metadata",
-    "structured_content_analysis"
-  ],
+  "required": ["$schema", "metadata", "structured_content_analysis"],
   "properties": {
-    "$schema": {
-      "type": "string"
-    },
+    "$schema": { "const": "https://analysisreports.github.io/schemas/country-strategic-assessment.schema.json" },
     "metadata": {
       "type": "object",
-      "required": [
-        "title",
-        "domain",
-        "version",
-        "author",
-        "license",
-        "endpoint",
-        "documentation",
-        "last_updated"
-      ],
+      "required": ["title", "domain", "version", "author", "license", "endpoint", "documentation", "last_updated"],
       "properties": {
-        "title": {
-          "type": "string"
-        },
-        "domain": {
-          "type": "string"
-        },
-        "version": {
-          "type": "string"
-        },
-        "author": {
-          "type": "string"
-        },
-        "license": {
-          "type": "string"
-        },
-        "endpoint": {
-          "type": "string",
-          "format": "uri"
-        },
-        "documentation": {
-          "type": "string",
-          "format": "uri"
-        },
-        "last_updated": {
-          "type": "string"
-        },
-        "provenance": {
-          "type": "string"
-        },
-        "methodology": {
-          "type": "string",
-          "format": "uri"
-        },
-        "ai_prompts": {
-          "type": "string",
-          "format": "uri"
-        },
-        "formulas_engine": {
-          "type": "string",
-          "format": "uri"
-        },
-        "entity_dictionary": {
-          "type": "string",
-          "format": "uri"
-        }
+        "title": { "type": "string" },
+        "domain": { "const": "country" },
+        "version": { "type": "string" },
+        "author": { "type": "string" },
+        "license": { "type": "string" },
+        "endpoint": { "type": "string", "format": "uri" },
+        "documentation": { "type": "string", "format": "uri" },
+        "last_updated": { "type": "string" },
+        "provenance": { "type": "string" },
+        "methodology": { "type": "string", "format": "uri" },
+        "ai_prompts": { "type": "string", "format": "uri" },
+        "formulas_engine": { "type": "string", "format": "uri" },
+        "entity_dictionary": { "type": "string", "format": "uri" }
       }
     },
     "structured_content_analysis": {
       "type": "object",
-      "required": [
-        "editorial_frontend",
-        "cross_references"
-      ],
+      "required": ["editorial_frontend", "cross_references"],
       "properties": {
-        "focus_areas": {
-          "type": [
-            "object",
-            "array",
-            "string"
-          ]
-        },
+        "focus_areas": { "$ref": "#/$defs/stringArray" },
         "summary": {
-          "type": [
-            "object",
-            "array",
-            "string"
-          ]
+          "type": "object",
+          "properties": {
+            "headline": { "$ref": "#/$defs/text" },
+            "one_sentence_summary": { "$ref": "#/$defs/text" }
+          }
         },
         "5N1K_analysis": {
-          "type": [
-            "object",
-            "array",
-            "string"
-          ]
+          "type": "object",
+          "properties": {
+            "headline": { "$ref": "#/$defs/text" },
+            "what": { "$ref": "#/$defs/text" },
+            "where": { "$ref": "#/$defs/text" },
+            "when": { "$ref": "#/$defs/text" },
+            "event_date": { "$ref": "#/$defs/text" },
+            "why": { "$ref": "#/$defs/text" },
+            "how": { "$ref": "#/$defs/text" },
+            "who_entity_id": { "$ref": "#/$defs/text" },
+            "who": { "$ref": "#/$defs/text" },
+            "heat": { "$ref": "#/$defs/score" }
+          }
         },
-        "quantitative_data_summary": {
-          "type": [
-            "object",
-            "array",
-            "string"
-          ]
-        },
+        "quantitative_data_summary": { "type": ["object", "array", "string"] },
         "country_strategic_assessment": {
-          "type": [
-            "object",
-            "array",
-            "string"
-          ]
+          "type": "object",
+          "properties": {
+            "country_entity_id": { "$ref": "#/$defs/text" },
+            "country_name": { "$ref": "#/$defs/text" },
+            "country_code": { "$ref": "#/$defs/text" },
+            "internal_political_dynamics": {
+              "type": "object",
+              "properties": {
+                "leadership_and_regime_stability": { "$ref": "#/$defs/text" },
+                "institutional_power_balance": { "$ref": "#/$defs/text" },
+                "opposition_and_social_cohesion": { "$ref": "#/$defs/text" },
+                "severity_score": { "$ref": "#/$defs/score" }
+              }
+            },
+            "security_and_defense_posture": {
+              "type": "object",
+              "properties": {
+                "military_doctrine": { "$ref": "#/$defs/text" },
+                "force_capacity_and_readiness": { "$ref": "#/$defs/text" },
+                "critical_frontline_status": { "$ref": "#/$defs/text" },
+                "severity_score": { "$ref": "#/$defs/score" }
+              }
+            },
+            "geopolitical_alignment": {
+              "type": "object",
+              "properties": {
+                "bloc_alignment": { "$ref": "#/$defs/text" },
+                "strategic_dependencies": { "$ref": "#/$defs/text" },
+                "regional_influence_and_rivalries": { "$ref": "#/$defs/text" },
+                "severity_score": { "$ref": "#/$defs/score" }
+              }
+            },
+            "strategic_vulnerabilities": {
+              "type": "object",
+              "properties": {
+                "sanctions_and_economic_warfare": { "$ref": "#/$defs/text" },
+                "critical_infrastructure_risk": { "$ref": "#/$defs/text" },
+                "demographic_and_humanitarian_pressure": { "$ref": "#/$defs/text" },
+                "severity_score": { "$ref": "#/$defs/score" }
+              }
+            },
+            "resilience_score": { "$ref": "#/$defs/score" },
+            "composite_strategic_score": { "$ref": "#/$defs/score" },
+            "severity_level": { "$ref": "#/$defs/severityLevel" }
+          }
+        },
+        "political_dynamics_assessment": {
+          "type": "object",
+          "properties": {
+            "discourse_and_narrative": {
+              "type": "object",
+              "properties": {
+                "main_narrative": { "$ref": "#/$defs/text" },
+                "tone_and_rhetoric": { "$ref": "#/$defs/text" },
+                "counter_argument_target": { "$ref": "#/$defs/text" },
+                "rhetoric_intensity_score": { "$ref": "#/$defs/score" }
+              }
+            },
+            "power_and_alliance_balance": {
+              "type": "object",
+              "properties": {
+                "alliance_cohesion": { "$ref": "#/$defs/text" },
+                "electoral_base_dynamics": { "$ref": "#/$defs/text" },
+                "institutional_friction": { "$ref": "#/$defs/text" },
+                "alliance_friction_score": { "$ref": "#/$defs/score" }
+              }
+            },
+            "composite_tension_score": { "$ref": "#/$defs/score" },
+            "severity_level": { "$ref": "#/$defs/severityLevel" }
+          }
         },
         "actors_and_dynamics": {
-          "type": [
-            "object",
-            "array",
-            "string"
-          ]
+          "type": "object",
+          "properties": {
+            "key_players": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "entity_id": { "$ref": "#/$defs/text" },
+                  "name": { "$ref": "#/$defs/text" },
+                  "affiliation": { "$ref": "#/$defs/text" },
+                  "role_in_event": { "$ref": "#/$defs/text" },
+                  "influence_score": { "$ref": "#/$defs/score" }
+                }
+              }
+            },
+            "relationship_map": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "source_entity_id": { "$ref": "#/$defs/text" },
+                  "source": { "$ref": "#/$defs/text" },
+                  "relation": { "$ref": "#/$defs/text" },
+                  "target_entity_id": { "$ref": "#/$defs/text" },
+                  "target": { "$ref": "#/$defs/text" },
+                  "directed": { "type": "boolean" },
+                  "severity": { "enum": ["CRITICAL", "HIGH", "MODERATE", "LOW", "COOLING", null] },
+                  "polarity": { "type": ["number", "null"], "minimum": -1, "maximum": 1 },
+                  "heat": { "$ref": "#/$defs/score" }
+                }
+              }
+            }
+          }
         },
         "core_analysis": {
-          "type": [
-            "object",
-            "array",
-            "string"
-          ]
+          "type": "object",
+          "properties": {
+            "central_conflict_or_goal": { "$ref": "#/$defs/text" },
+            "strategic_implication": { "$ref": "#/$defs/text" },
+            "underlying_message": { "$ref": "#/$defs/text" },
+            "market_dynamics": { "$ref": "#/$defs/text" },
+            "geopolitical_factors": { "$ref": "#/$defs/text" },
+            "transmission_and_micro_impact": {
+              "type": "object",
+              "properties": {
+                "affected_domains": { "$ref": "#/$defs/stringArray" },
+                "impact_mechanism": { "$ref": "#/$defs/text" },
+                "pressure_severity": { "$ref": "#/$defs/severityLevel" }
+              }
+            },
+            "conflict_heat": { "$ref": "#/$defs/score" },
+            "market_impact_direction": { "enum": ["RISK_ON", "RISK_OFF", "NEUTRAL", null] },
+            "market_impact_score": { "$ref": "#/$defs/score" },
+            "key_quotes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "speaker_entity_id": { "$ref": "#/$defs/text" },
+                  "speaker": { "$ref": "#/$defs/text" },
+                  "quote": { "$ref": "#/$defs/text" },
+                  "significance_level": { "enum": ["HIGH", "MEDIUM", "LOW", null] },
+                  "significance_analysis": { "$ref": "#/$defs/text" }
+                }
+              }
+            }
+          }
         },
         "strategic_geography_and_assets": {
-          "type": [
-            "object",
-            "array",
-            "string"
-          ]
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "asset_entity_id": { "$ref": "#/$defs/text" },
+              "asset_name": { "$ref": "#/$defs/text" },
+              "strategic_importance": { "$ref": "#/$defs/text" },
+              "control_status": { "$ref": "#/$defs/text" }
+            }
+          }
         },
         "geopolitical_state_vector": {
-          "type": [
-            "object",
-            "array",
-            "string"
-          ]
+          "type": "object",
+          "properties": {
+            "actor_pair_entity_id": { "$ref": "#/$defs/text" },
+            "actor_pair": { "$ref": "#/$defs/text" },
+            "regime_state": {
+              "enum": ["ALLIANCE", "STRATEGIC_ALIGNMENT", "TACTICAL_COOPERATION", "NEUTRAL", "STRATEGIC_FRICTION", "DETENTE", "DIPLOMATIC_CONTACT", "PROXY_WAR", "KINETIC_WAR", "UNAVAILABLE", null]
+            },
+            "dynamic_delta": { "type": ["number", "null"], "minimum": -2, "maximum": 2 },
+            "active_friction_nodes_entity_id": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/text" }
+            },
+            "active_friction_nodes": { "$ref": "#/$defs/stringArray" },
+            "effective_date": { "$ref": "#/$defs/text" }
+          }
         },
         "future_outlook": {
-          "type": [
-            "object",
-            "array",
-            "string"
-          ]
-        },
-        "target_queries": {
-          "type": [
-            "object",
-            "array",
-            "string"
-          ]
+          "type": "object",
+          "properties": {
+            "strategic_actions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "action_type": { "$ref": "#/$defs/text" },
+                  "description": { "$ref": "#/$defs/text" },
+                  "target_stakeholder": {
+                    "type": "object",
+                    "properties": {
+                      "entity_id": { "$ref": "#/$defs/text" },
+                      "entity_name": { "$ref": "#/$defs/text" },
+                      "jurisdiction_or_sector": { "$ref": "#/$defs/text" }
+                    }
+                  }
+                }
+              }
+            },
+            "potential_consequences": {
+              "type": "object",
+              "properties": {
+                "short_term": { "$ref": "#/$defs/text" },
+                "short_term_days": { "type": ["number", "null"], "minimum": 1, "maximum": 180 },
+                "long_term": { "$ref": "#/$defs/text" },
+                "long_term_days": { "type": ["number", "null"], "minimum": 181, "maximum": 365 }
+              }
+            },
+            "next_key_event": { "$ref": "#/$defs/text" },
+            "target_date": { "$ref": "#/$defs/text" },
+            "status": { "enum": ["ACTIVE", "REALIZED", "EXPIRED", null] },
+            "probability": { "enum": ["Low", "Medium", "High", null] },
+            "probability_percent": { "$ref": "#/$defs/score" },
+            "impact": { "enum": ["Low", "Moderate", "Severe", null] },
+            "impact_score": { "$ref": "#/$defs/score" },
+            "direction": { "enum": ["Risk", "Opportunity", "Neutral", null] },
+            "confidence_score": { "$ref": "#/$defs/score" }
+          }
         },
         "categorization": {
-          "type": [
-            "object",
-            "array",
-            "string"
-          ]
+          "type": "object",
+          "properties": { "tags": { "$ref": "#/$defs/stringArray" } }
+        },
+        "target_queries": {
+          "type": "object",
+          "properties": {
+            "qa_pairs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "q": { "$ref": "#/$defs/text" },
+                  "a": { "$ref": "#/$defs/text" }
+                }
+              }
+            }
+          }
         },
         "editorial_frontend": {
-          "type": [
-            "object",
-            "array",
-            "string"
-          ]
+          "type": "object",
+          "properties": {
+            "canonical_url": { "$ref": "#/$defs/text" },
+            "canonical_source": { "$ref": "#/$defs/text" },
+            "format": { "$ref": "#/$defs/text" },
+            "author": { "$ref": "#/$defs/text" },
+            "published_date": { "$ref": "#/$defs/text" },
+            "analysis_as_of_date": { "$ref": "#/$defs/text" },
+            "language": { "$ref": "#/$defs/text" },
+            "description": { "$ref": "#/$defs/text" }
+          }
         },
         "cross_references": {
-          "type": [
-            "object",
-            "array",
-            "string"
-          ]
+          "type": "object",
+          "properties": {
+            "relations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "target_url": { "$ref": "#/$defs/text" },
+                  "target_published_date": { "$ref": "#/$defs/text" },
+                  "predicate": { "$ref": "#/$defs/text" },
+                  "impact_window": { "$ref": "#/$defs/text" },
+                  "description": { "$ref": "#/$defs/text" }
+                }
+              }
+            }
+          }
         }
       }
     }
+  },
+  "$defs": {
+    "text": { "type": ["string", "null"] },
+    "stringArray": { "type": "array", "items": { "type": "string" } },
+    "score": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+    "severityLevel": { "enum": ["CRITICAL", "HIGH", "MODERATE", "LOW", null] }
   }
 }

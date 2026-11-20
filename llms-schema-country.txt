@@ -3,6 +3,8 @@
 # Identifier: llms-schema-country.txt
 # Ecosystem: Ersoy Toptaş Quantitative Macro Research
 # Canonical Endpoint: https://analysisreports.github.io/llms-schema-country.txt
+# Machine Validation Schema: https://analysisreports.github.io/schemas/country-strategic-assessment.schema.json
+# Root Template: https://analysisreports.github.io/country.json
 # Data Feed Source: https://ersoytoptas.tr/feeds/posts/default/-/country?alt=json
 # Ontology Dictionary: https://analysisreports.github.io/llms-entities-id.txt
 # ==============================================================================
@@ -11,6 +13,13 @@
 This schema defines the standard ontological payload for geopolitical risk, defense doctrine,
 bilateral state polarity, and strategic crisis analysis posts under the "country" category. LLM agents must use this
 contract to parse 5W1H frameworks, conflict heat indices, actor relationship matrices, and synthetic QA pairs.
+
+The machine schema validates the country template and country article JSON files, including
+metadata, section types, selected nested fields, score bounds and categorical values. It
+permits optional sections and null for unavailable scores; it does not verify source
+accuracy, score methodology, canonical entity IDs, or every nested field. Report missing
+or uncalculable data explicitly to consumers; JSON Schema alone cannot enforce the warning.
+The country template is a structural example, not an observation.
 
 [JSON PAYLOAD STRUCTURE]
 Every country entry embeds a clean JSON object inside its post content:
@@ -120,7 +129,7 @@ Every country entry embeds a clean JSON object inside its post content:
     "geopolitical_state_vector": {
       "actor_pair_entity_id": "string (Analiz edilen aktör ikilisinin kanonik kod birleşimi. Örn: GEO_US-GEO_RU, GEO_IL-GEO_IR)",
       "actor_pair": "string (Analiz edilen aktör ikilisi, Örn: US-RU, IL-IR)",
-      "regime_state": "string (Değerler: ALLIANCE | DETENTE | DIPLOMATIC_CONTACT | PROXY_WAR | KINETIC_WAR)",
+      "regime_state": "string (Değerler: ALLIANCE | STRATEGIC_ALIGNMENT | TACTICAL_COOPERATION | NEUTRAL | STRATEGIC_FRICTION | DETENTE | DIPLOMATIC_CONTACT | PROXY_WAR | KINETIC_WAR | UNAVAILABLE; yoksa null)",
       "dynamic_delta": "number (-2.0 ile +2.0 arası dinamik gerilim sapması)",
       "active_friction_nodes_entity_id": [
         "string (Sürtüşme noktalarının kanonik kodları. Örn: CHOKE_BLACK_SEA, CHOKE_RED_SEA)"
@@ -150,7 +159,7 @@ Every country entry embeds a clean JSON object inside its post content:
       },
       "next_key_event": "string (Beklenen bir sonraki zirve, askeri tatbikat, müzakere veya anlaşma. Metinde yoksa null)",
       "target_date": "string (Format: YYYY-MM. Örn: 2026-10. Metinde kesinleşmiş tarih yoksa null)",
-      "status": "string (Değerler: ACTIVE | REALIZED | EXPIRED. Varsayılan: ACTIVE)",
+      "status": "string (Değerler: ACTIVE | REALIZED | EXPIRED; bilinmiyorsa null)",
       "probability_percent": "number (0 ile 100 arası sayısal olasılık)",
       "impact_score": "number (0 ile 100 arası sayısal etki puanı)",
       "direction": "string (Değerler: Risk | Opportunity | Neutral)",
