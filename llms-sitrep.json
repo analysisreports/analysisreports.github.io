@@ -9,7 +9,7 @@
     "endpoint": "https://analysisreports.github.io/llms-sitrep.json",
     "text_endpoint": "https://analysisreports.github.io/llms-sitrep.txt",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-20T05:47:35Z",
+    "last_updated": "2026-11-20T06:36:20Z",
     "sync_status": "SUCCESS",
     "data_completeness_pct": 98.4,
     "disclaimer": "The information, interpretations, and estimates contained herein do not constitute investment advice. All responsibility for decisions belongs solely to the user.",
