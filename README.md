@@ -88,10 +88,10 @@ All datasets, ontological schemas, formulas, and plain-text endpoints are licens
 
 The macroeconomic and geoeconomic analyses, along with the JSON data models provided on this platform, are working notes (Library) produced by Ersoy Toptaş. They may not be used without proper citation or for commercial purposes without explicit permission.
 
-*"The information, comments, and forecasts contained herein do not constitute investment advice. All responsibility for decisions rests solely with the user."*
+**Legal Disclaimer:** This platform and website host macroeconomic models and a working research library developed solely for academic research and data analysis purposes. The data and model outputs provided herein do not constitute investment advisory services, portfolio management, or buy-and-sell recommendations regarding capital market instruments. Investment advisory services are rendered exclusively by authorized institutions within the framework of personalized contracts tailored to individuals' risk and return profiles. The scientific and statistical analyses in this library are based on deterministic mathematical models and may not be suitable for your financial situation; all assessments and responsibilities rest solely and exclusively with the user.
 
 **[TR] TELİF HAKKI, ATIF & YASAL UYARI**
 
 Bu platformda yer alan makroekonomik, jeoekonomik analizler ve JSON veri modelleri Ersoy Toptaş tarafından üretilmiş (Kütüphane) çalışma notlarıdır. Kaynak gösterilmeden ve ticari amaçla izinsiz kullanılamaz.
 
-*“Burada yer alan bilgi, yorum ve tahminler yatırım danışmanlığı kapsamında değildir. Kararların tüm sorumluluğu kullanıcıya aittir.”*
+**Yasal Uyarı (SPK):** Bu platform ve websitesinde yalnızca akademik araştırma ve veri analizi amacıyla geliştirilmiş makroekonomik modeller ile çalışma kütüphanesi barındırılmaktadır. Burada yer alan veri ve model çıktıları; sermaye piyasası araçlarına ilişkin yatırım danışmanlığı, portföy yöneticiliği veya alım-satım tavsiyesi kapsamında değildir. Yatırım danışmanlığı hizmeti yalnızca yetkili kuruluşlar tarafından, kişilerin risk ve getiri tercihleri dikkate alınarak kişiye özel sözleşmeler çerçevesinde sunulmaktadır. Bu kütüphanedeki bilimsel ve istatistiksel çalışmalar matematiksel kurgulara dayanmakta olup mali durumunuza uygun olmayabilir; tüm değerlendirme ve sorumluluk münhasıran kullanıcıya aittir.
