@@ -2,6 +2,9 @@
     "github.copilot.chat.codesearch.enabled": true,
     "github.copilot.chat.agent.autoFix": true,
     "python.globalModuleInstallation": true,
+    "json.schemaDownload.trustedDomains": {
+        "https://analysisreports.github.io/schemas/series-registry.schema.json": true
+    },
     "chat.mcp.serverSampling": {
         "analysisreports.github.io/.vscode/mcp.json: Ersoy Toptaş | ersoytoptas.tr (analysisreports.github.io)": {
             "allowedModels": [
