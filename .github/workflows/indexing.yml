@@ -36,12 +36,32 @@ jobs:
             -d "hub.url=https://en.ersoytoptas.tr/feeds/posts/default?alt=rss"
           echo "Google ve Gemini botları için WebSub üzerinden RSS anonsu geçildi."
 
-      # 2. BÖLÜM: Bing Webmaster Tools API ile Bing, Copilot ve ChatGPT İndeksleme
+      # 2. BÖLÜM: Bing Webmaster Tools API ile Bing, Copilot ve ChatGPT İndeksleme (Her İki Doğrulanmış Mülk İçin)
       - name: Submit URLs to Bing Webmaster Tools API
         env:
           BING_API_KEY: ${{ secrets.BING_API_KEY }}
         run: |
           if [ -n "$BING_API_KEY" ]; then
+            # 1. Mülk: analysisreports.github.io
+            curl --silent --show-error --fail-with-body -X POST "https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=${BING_API_KEY}" \
+              -H "Content-Type: application/json; charset=utf-8" \
+              -d '{
+                "siteUrl": "https://analysisreports.github.io",
+                "urlList": [
+                  "https://analysisreports.github.io/",
+                  "https://analysisreports.github.io/index.html",
+                  "https://analysisreports.github.io/llms.txt",
+                  "https://analysisreports.github.io/llms-sitrep.txt",
+                  "https://analysisreports.github.io/llms-sitrep.json",
+                  "https://analysisreports.github.io/llms-news.txt",
+                  "https://analysisreports.github.io/llms-news.json",
+                  "https://analysisreports.github.io/llms-formulas.txt",
+                  "https://analysisreports.github.io/sitemap.xml"
+                ]
+              }'
+            echo "Bing, Copilot ve ChatGPT için analysisreports.github.io başarıyla gönderildi."
+
+            # 2. Mülk: www.ersoytoptas.tr
             curl --silent --show-error --fail-with-body -X POST "https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=${BING_API_KEY}" \
               -H "Content-Type: application/json; charset=utf-8" \
               -d '{
@@ -51,7 +71,7 @@ jobs:
                   "https://en.ersoytoptas.tr/"
                 ]
               }'
-            echo "Bing, Copilot ve ChatGPT için Bing Webmaster API üzerinden anons başarıyla geçildi (ersoytoptas.tr)."
+            echo "Bing, Copilot ve ChatGPT için www.ersoytoptas.tr başarıyla gönderildi."
           else
             echo "BING_API_KEY secret bulunamadı, adım atlandı."
           fi
