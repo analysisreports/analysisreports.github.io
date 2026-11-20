@@ -238,7 +238,7 @@ def main():
     now_iso = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     payload = {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$schema": "https://analysisreports.github.io/schemas/country-relationships.schema.json",
         "metadata": {
             "title": "Canonical Bilateral Country Relationships & Dyadic Matrix",
             "domain": "country",

@@ -16,6 +16,7 @@ Validates the formal compliance of:
 7. country.json and country articles <-> schemas/country-strategic-assessment.schema.json
 8. glossary.json                 <-> schemas/glossary-term.schema.json
 9. master and modular graphs     <-> schemas/graph.schema.json
+10. country relationship master and shelves <-> schemas/country-relationships.schema.json
 
 Author: Ersoy Toptaş
 License: CC BY 4.0
@@ -43,7 +44,12 @@ SCHEMA_MAPPING: Dict[str, str] = {
     "llms-graph.json": "graph.schema.json",
     "llms-graph-actors.json": "graph.schema.json",
     "llms-graph-models.json": "graph.schema.json",
-    "llms-graph-chokepoints.json": "graph.schema.json"
+    "llms-graph-chokepoints.json": "graph.schema.json",
+    "llms-country-relationships.json": "country-relationships.schema.json",
+    "llms-country-relationships-us.json": "country-relationships.schema.json",
+    "llms-country-relationships-ru.json": "country-relationships.schema.json",
+    "llms-country-relationships-cn.json": "country-relationships.schema.json",
+    "llms-country-relationships-ir.json": "country-relationships.schema.json"
 }
 
 def audit_root_schemas() -> List[str]:
@@ -98,6 +104,7 @@ def audit_root_schemas() -> List[str]:
             "economy.schema.json",
             "country-strategic-assessment.schema.json",
             "graph.schema.json",
+            "country-relationships.schema.json",
         ) and not has_jsonschema:
             errors.append(f"{target_name}: jsonschema is required for {schema_name} validation")
             continue
@@ -119,6 +126,7 @@ def audit_root_schemas() -> List[str]:
                 "economy.schema.json",
                 "country-strategic-assessment.schema.json",
                 "graph.schema.json",
+                "country-relationships.schema.json",
             ):
                 jsonschema.Draft202012Validator.check_schema(schema_data)
             validator = jsonschema.Draft202012Validator(schema_data)
@@ -145,7 +153,7 @@ def main():
         print("=" * 70)
         sys.exit(1)
     else:
-        print("[SUCCESS] Root contracts, article payloads, and graph documents passed the available schema checks.")
+        print("[SUCCESS] Root contracts, article payloads, graph documents, and relationship documents passed the available schema checks.")
         print("=" * 70)
         sys.exit(0)
 

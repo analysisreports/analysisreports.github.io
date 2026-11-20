@@ -270,7 +270,7 @@ def build_master_json(master_hubs_json: Dict[str, Any]) -> Dict[str, Any]:
     total_dyads = sum(h["total_dyads"] for h in master_hubs_json.values())
 
     return {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$schema": "https://analysisreports.github.io/schemas/country-relationships.schema.json",
         "metadata": {
             "title": "Canonical Bilateral Country Relationships Master Router & Index",
             "domain": "country",

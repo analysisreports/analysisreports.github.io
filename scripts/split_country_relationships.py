@@ -180,7 +180,7 @@ def split_country_relationships():
 
         # Build Shelf JSON
         shelf_json_payload = {
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$schema": "https://analysisreports.github.io/schemas/country-relationships.schema.json",
             "metadata": {
                 "title": f"Canonical Sovereign Country Relationships - {shelf['name']}",
                 "author": "Ersoy Toptaş",
