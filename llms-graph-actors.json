@@ -236,15 +236,6 @@
       }
     },
     {
-      "id": "GEO_CZ",
-      "label": "Czech Republic",
-      "category": "ACTOR",
-      "type": "Sovereign State",
-      "attributes": {
-        "currency": "CZK"
-      }
-    },
-    {
       "id": "GEO_HU",
       "label": "Hungary",
       "category": "ACTOR",
@@ -256,15 +247,6 @@
     {
       "id": "GEO_GR",
       "label": "Hellenic Republic",
-      "category": "ACTOR",
-      "type": "Sovereign State",
-      "attributes": {
-        "currency": "EUR"
-      }
-    },
-    {
-      "id": "GEO_CY",
-      "label": "Republic of Cyprus",
       "category": "ACTOR",
       "type": "Sovereign State",
       "attributes": {
@@ -2181,6 +2163,13 @@
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.85,
       "regime": "PROXY_WAR / KINETIC_STANDOFF"
+    },
+    {
+      "source": "GEO_TR",
+      "target": "GEO_CY_TR",
+      "type": "PATRON_COUPLING",
+      "coupling_factor": 1.0,
+      "role": "Diplomatic, Security & Currency Guarantor"
     }
   ],
   "metadata": {

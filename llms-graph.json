@@ -13,12 +13,12 @@
     "actors_subgraph": "https://analysisreports.github.io/llms-graph-actors.json"
   },
   "graph_accounting": {
-    "modular_subgraphs_nodes": 273,
-    "modular_subgraphs_edges": 365,
+    "modular_subgraphs_nodes": 271,
+    "modular_subgraphs_edges": 366,
     "core_backbone_nodes": 9,
     "core_backbone_edges": 8,
-    "total_federated_nodes": 282,
-    "total_federated_edges": 373
+    "total_federated_nodes": 280,
+    "total_federated_edges": 374
   },
   "subgraphs": {
     "chokepoints": {
@@ -37,8 +37,8 @@
     },
     "actors": {
       "endpoint": "https://analysisreports.github.io/llms-graph-actors.json",
-      "nodes_count": 108,
-      "edges_count": 151,
+      "nodes_count": 106,
+      "edges_count": 152,
       "token_size": "~8,800",
       "scope": "Sovereign states, bilateral polarities, multilateral defense alliances, and strategic defense actors"
     },

@@ -298,8 +298,44 @@ def main():
     pol_errors, synced_count = audit_polarity_synchronization(edges)
     errors.extend(pol_errors)
 
-    # 5. Orphan Node Detection (Degree 0)
+    # 5. Orphan Node Detection (Degree 0) - Zero Orphan Tolerance
     orphans = [nid for nid, deg in node_degree.items() if deg == 0]
+    if orphans:
+        errors.append(f"ORPHAN NODES DETECTED: Found {len(orphans)} isolated nodes with 0 connections in Knowledge Graph: {sorted(orphans)}")
+
+    # 6. Cross-Manifest Parity (Formulas <-> Graph <-> Models Manifest)
+    # Extracts all active models from formula files and ensures they are registered in the graph
+    import glob
+    formula_files = glob.glob(os.path.join(ROOT_DIR, "llms-formulas*.txt"))
+    all_formula_models = set()
+    for ff in formula_files:
+        with open(ff, "r", encoding="utf-8") as f_f:
+            f_content = f_f.read()
+        for match in re.finditer(r'^###\s+([0-9]+(?:\.[0-9]+)?)\.\s+', f_content, re.M):
+            num = match.group(1)
+            # Skip architectural directives or reserved placeholders
+            if num in ("0.1", "0.2", "0.4", "0.5", "0.5.1", "0.6", "0.7", "25.4"):
+                continue
+            all_formula_models.add(f"MODEL_{num}")
+
+    graph_model_nodes = {nid for nid in node_registry if nid.startswith("MODEL_")}
+    missing_models_in_graph = all_formula_models - graph_model_nodes
+    if missing_models_in_graph:
+        errors.append(
+            f"FORMULA TO GRAPH DESYNCHRONIZATION: The following models are documented in formula manifests but MISSING from Knowledge Graph: {sorted(missing_models_in_graph)}"
+        )
+
+    # 7. Model Ingestion Integrity Guard
+    # Every MODEL_ node must ingest at least one series or connect to another model via BRIDGES_TO_MODEL/EXECUTES_MODEL
+    for mid in graph_model_nodes:
+        has_ingress_or_bridge = any(
+            (e.get("target") == mid and e.get("type") in ("INGESTS_SERIES", "EXECUTES_MODEL", "BRIDGES_TO_MODEL")) or
+            (e.get("source") == mid and e.get("type") in ("BRIDGES_TO_MODEL", "EXECUTES_MODEL"))
+            for e in edges if isinstance(e, dict)
+        )
+        if not has_ingress_or_bridge:
+            errors.append(f"UNLINKED MODEL NODE: '{mid}' has no INGESTS_SERIES or bridge connection in graph!")
+
     connected_count = len(node_registry) - len(orphans)
 
     n_count = len(node_registry)
