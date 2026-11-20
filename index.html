@@ -8,6 +8,79 @@
   <meta name="author" content="Ersoy Toptaş">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://analysisreports.github.io/">
+
+  <!-- Schema.org JSON-LD Structured Data for Search Engines & AI Crawlers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://analysisreports.github.io/#website",
+        "url": "https://analysisreports.github.io/",
+        "name": "Ersoy Toptaş Quantitative Macro Intelligence Architecture",
+        "description": "Deterministic econometric models, sovereign polarity matrices, and real-time geopolitical telemetry.",
+        "publisher": {
+          "@type": "Person",
+          "name": "Ersoy Toptaş",
+          "sameAs": [
+            "https://orcid.org/0009-0005-6130-8003",
+            "https://www.ersoytoptas.tr/",
+            "https://en.ersoytoptas.tr/"
+          ]
+        }
+      },
+      {
+        "@type": "DataCatalog",
+        "@id": "https://analysisreports.github.io/#datacatalog",
+        "name": "Machine-Readable Macroeconomic & Geopolitical Telemetry Catalog",
+        "url": "https://analysisreports.github.io/ai-catalog.json",
+        "description": "Consolidated catalog of machine-readable endpoints including live SITREP, Wire News, Sovereign Dyads, and Formula Shelves.",
+        "creator": {
+          "@type": "Person",
+          "name": "Ersoy Toptaş"
+        },
+        "dataset": [
+          {
+            "@type": "Dataset",
+            "name": "Autonomous Situation Report (SITREP)",
+            "description": "Consolidated real-time telemetry synthesizing energy, semiconductors, precious metals, and maritime chokepoints.",
+            "distribution": [
+              {
+                "@type": "DataDownload",
+                "encodingFormat": "text/plain",
+                "contentUrl": "https://analysisreports.github.io/llms-sitrep.txt"
+              },
+              {
+                "@type": "DataDownload",
+                "encodingFormat": "application/json",
+                "contentUrl": "https://analysisreports.github.io/llms-sitrep.json"
+              }
+            ]
+          },
+          {
+            "@type": "Dataset",
+            "name": "Tier-1 Geopolitical & Macro News Telemetry",
+            "description": "Institutional wire news telemetry filtered by state record verification and zero noise rejection.",
+            "distribution": [
+              {
+                "@type": "DataDownload",
+                "encodingFormat": "text/plain",
+                "contentUrl": "https://analysisreports.github.io/llms-news.txt"
+              },
+              {
+                "@type": "DataDownload",
+                "encodingFormat": "application/json",
+                "contentUrl": "https://analysisreports.github.io/llms-news.json"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <style>
     :root {
       --bg: #0d1117;
@@ -18,7 +91,6 @@
       --accent: #58a6ff;
       --accent-hover: #79c0ff;
       --badge-bg: #21262d;
-      --code-bg: #0b0e14;
     }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -213,14 +285,29 @@
 
         <!-- Card 6: Time-Series Registries & Ingestion Contracts -->
         <div class="card">
-          <h2>📊 Ingested Series & Schemas</h2>
-          <p>Canonical observation registries and formal JSON Draft 2020-12 data contracts.</p>
+          <h2>📊 Ingested Series & Benchmarks</h2>
+          <p>Canonical observation registries and live central bank/energy time-series.</p>
           <ul class="link-list">
             <li><a href="llms-fred-series.json">llms-fred-series.json (FRED US Macro)</a></li>
             <li><a href="llms-ecb-series.json">llms-ecb-series.json (ECB Eurozone)</a></li>
             <li><a href="llms-eia-series.json">llms-eia-series.json (EIA Energy & SPR)</a></li>
             <li><a href="llms-portwatch.json">llms-portwatch.json (IMF PortWatch AIS)</a></li>
             <li><a href="WORKFLOW.md">WORKFLOW.md (Integration Protocol)</a></li>
+          </ul>
+        </div>
+
+        <!-- Card 7: Canonical Domain Ontologies & Schemas -->
+        <div class="card">
+          <h2>📜 Domain Ontologies & Schemas</h2>
+          <p>The 7 primary JSON payloads and Draft 2020-12 ontological schema contracts defining macro research domains.</p>
+          <ul class="link-list">
+            <li><a href="economy.json">economy.json (Central Bank & Policy Rates)</a></li>
+            <li><a href="country.json">country.json (Sovereign Strategic Assessment)</a></li>
+            <li><a href="political.json">political.json (Domestic Political Risk)</a></li>
+            <li><a href="political-country.json">political-country.json (Bilateral Friction)</a></li>
+            <li><a href="strategic-macro.json">strategic-macro.json (Unified Macro Regime)</a></li>
+            <li><a href="editorial.json">editorial.json (Institutional Editorial Nodes)</a></li>
+            <li><a href="glossary.json">glossary.json (Terminology & Concept Engine)</a></li>
           </ul>
         </div>
       </div>
