@@ -12,6 +12,10 @@ on:
       - 'glossary/**'
       - 'editorial/**'
       - 'political-country/**'
+      - 'llms*.txt'
+      - 'llms*.json'
+      - 'sitemap.xml'
+      - 'index.html'
   workflow_dispatch:
 
 jobs:

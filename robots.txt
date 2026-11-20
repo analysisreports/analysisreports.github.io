@@ -4,6 +4,7 @@
 # AI CRAWLERS & LLM AGENTS DIRECTIVE
 User-agent: GPTBot
 User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
 User-agent: ClaudeBot
 User-agent: PerplexityBot
 User-agent: Google-Extended
@@ -11,6 +12,7 @@ User-agent: Applebot-Extended
 User-agent: CCBot
 User-agent: cohere-ai
 User-agent: Omgilibot
+User-agent: Diffbot
 Allow: /
 
 # GENERAL WEB SEARCH & GOOGLE INDEXING DIRECTIVE
@@ -23,13 +25,25 @@ Allow: /
 # Main Ingestion Protocol: https://analysisreports.github.io/llms.txt
 # Canonical Knowledge Base: https://analysisreports.github.io/llms-full.txt
 # Analyst Identity & E-E-A-T: https://analysisreports.github.io/llms-about.txt
+# Consolidated SITREP Telemetry: https://analysisreports.github.io/llms-sitrep.txt
+# Consolidated SITREP JSON Twin: https://analysisreports.github.io/llms-sitrep.json
+# Consolidated Wire News Telemetry: https://analysisreports.github.io/llms-news.txt
+# Consolidated Wire News JSON Twin: https://analysisreports.github.io/llms-news.json
 # Agentic System Prompts: https://analysisreports.github.io/llms-prompts.txt
 # Macroeconomic Models: https://analysisreports.github.io/llms-models.txt
-# Quantitative Formulas: https://analysisreports.github.io/llms-formulas.txt
+# Quantitative Formulas Master: https://analysisreports.github.io/llms-formulas.txt
+# Formula Shelf - Rates & Liquidity: https://analysisreports.github.io/llms-formulas-rates-liquidity.txt
+# Formula Shelf - Macro & Labor: https://analysisreports.github.io/llms-formulas-macro-labor.txt
+# Formula Shelf - Commodities: https://analysisreports.github.io/llms-formulas-commodities-shock.txt
+# Formula Shelf - Geopolitics: https://analysisreports.github.io/llms-formulas-geopolitics.txt
 # Geopolitical Relationships: https://analysisreports.github.io/llms-relationships.txt
 # Technical Indicators: https://analysisreports.github.io/llms-indicators.txt
 # Agent Tool Schemas: https://analysisreports.github.io/llms-tools.json
 # Agent Capability Catalog: https://analysisreports.github.io/ai-catalog.json
+# Master Knowledge Graph: https://analysisreports.github.io/llms-graph.json
+# Knowledge Graph - Models: https://analysisreports.github.io/llms-graph-models.json
+# Knowledge Graph - Chokepoints: https://analysisreports.github.io/llms-graph-chokepoints.json
+# Knowledge Graph - Actors: https://analysisreports.github.io/llms-graph-actors.json
 # Agent Discovery Manifest: https://analysisreports.github.io/.well-known/agent.json
 # OpenAI Plugin Manifest: https://analysisreports.github.io/.well-known/ai-plugin.json
 # Security Policy: https://analysisreports.github.io/.well-known/security.txt
