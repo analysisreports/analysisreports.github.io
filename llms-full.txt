@@ -194,9 +194,6 @@ TIER 3: INSTITUTIONAL DECISION, GEOPOLITICAL TENSION & CALIBRATION ENGINE
   - 28.5. Regime-Adjusted Market Impact (real_rate, nfci_val)
 - 29. Evidence & Source Confidence Score (authority, confirmation, recency)
 
-TIER 4: OFFICIAL MACROECONOMIC RELEASE CALENDARS & COUNTDOWN ENGINE
-- 30. Official Macroeconomic Release Calendars & Countdown Engine (Official BLS & BEA Countdown: BLS, BEA APIs)
-
 ---
 
 ## 5. Execution Workflow for Autonomous AI Agents

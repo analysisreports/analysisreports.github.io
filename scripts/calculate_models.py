@@ -221,7 +221,7 @@ def calc_front_end_t_bill_slope(dgs3mo_val, dgs1mo_val):
 
 
 # --- Model 5: Net Fed Likiditesi (Net Fed Liquidity Index) ---
-def calc_net_fed_liquidity(walcl_mil, tga_mil, rrp_mil):
+def calc_net_fed_liquidity(walcl_mil, tga_mil, rrp_mil, prev_net_liquidity=None):
     if any(v is None or isinstance(v, bool) for v in (walcl_mil, tga_mil, rrp_mil)):
         return None
     try:
@@ -231,7 +231,8 @@ def calc_net_fed_liquidity(walcl_mil, tga_mil, rrp_mil):
 
         if not all(math.isfinite(x) for x in (w, t, r)):
             return None
-        if min(w, t, r) < 0:
+        # Fed balance sheet must be strictly positive; TGA and ON RRP cannot be negative
+        if w <= 0.0 or t < 0.0 or r < 0.0:
             return None
 
         net_liq = w - (t + r)
@@ -248,6 +249,22 @@ def calc_net_fed_liquidity(walcl_mil, tga_mil, rrp_mil):
         else:
             status = "NEUTRAL_LIQUIDITY_EQUILIBRIUM"
 
+        delta = None
+        if prev_net_liquidity is not None and not isinstance(prev_net_liquidity, bool):
+            try:
+                p_val = float(prev_net_liquidity)
+                if math.isfinite(p_val):
+                    delta = round(net_liq_mil - p_val, 2)
+            except (TypeError, ValueError):
+                pass
+
+        metrics = {
+            "net_liquidity_millions_usd": net_liq_mil,
+            "net_liquidity_trillions_usd": net_liq_tril
+        }
+        if delta is not None:
+            metrics["delta_millions_usd"] = delta
+
         return {
             "model_id": "MODEL_5",
             "model_name": "Net Fed Liquidity Index",
@@ -261,10 +278,7 @@ def calc_net_fed_liquidity(walcl_mil, tga_mil, rrp_mil):
                 "overnight_reverse_repo_rrp_bil": round(r / 1000.0, 3),
                 "overnight_reverse_repo_rrp_mil": r
             },
-            "metrics": {
-                "net_liquidity_millions_usd": net_liq_mil,
-                "net_liquidity_trillions_usd": net_liq_tril
-            },
+            "metrics": metrics,
             "interpretation": "Unencumbered commercial bank liquidity: WALCL - (TGA + ON_RRP). Direct fuel for equity asset valuations."
         }
     except (TypeError, ValueError):
@@ -1932,9 +1946,9 @@ def calc_gold_oil_ratio(gold_price, oil_price) -> Optional[Dict[str, Any]]:
         if g <= 0 or o <= 0:
             return None
         ratio = round(g / o, 2)
-        if ratio >= 25.0:
+        if ratio > 25.0:
             status = "MACRO_CRISIS_RECESSION"
-        elif ratio <= 12.0:
+        elif ratio < 12.0:
             status = "SUPPLY_SHOCK_INFLATION"
         else:
             status = "HISTORICAL_EQUILIBRIUM"
@@ -2973,7 +2987,23 @@ def main():
             if rrp_bil is None or isinstance(rrp_bil, bool):
                 raise ValueError("RRPONTSYD value is missing or invalid")
             rrp_mil = float(rrp_bil) * 1000.0
-            m_liq = calc_net_fed_liquidity(walcl, tga, rrp_mil)
+
+            # Calculate previous net liquidity in millions if previous series values are available
+            prev_walcl = series.get("WALCL", {}).get("previous_value")
+            prev_tga = series.get("WTREGEN", {}).get("previous_value")
+            prev_rrp_bil = series.get("RRPONTSYD", {}).get("previous_value")
+            prev_net = None
+            if prev_walcl is not None and prev_tga is not None and prev_rrp_bil is not None:
+                try:
+                    pw = float(prev_walcl)
+                    pt = float(prev_tga)
+                    pr = float(prev_rrp_bil) * 1000.0
+                    if pw > 0.0 and pt >= 0.0 and pr >= 0.0:
+                        prev_net = pw - (pt + pr)
+                except (TypeError, ValueError):
+                    prev_net = None
+
+            m_liq = calc_net_fed_liquidity(walcl, tga, rrp_mil, prev_net_liquidity=prev_net)
         except (TypeError, ValueError, OverflowError) as e:
             ingestion_warnings.append(f"Model 5 RRPONTSYD conversion error: {e}")
         else:
@@ -3374,17 +3404,30 @@ def main():
 
     # Model 25.16: Yen Carry Trade Dissolution (BoJ Policy Rate via IMF / FED DFF)
     dff_val = series.get('DFF', {}).get('current_value')
-    jpy_mom = series.get('DEXJPUS', {}).get('transformations', {}).get('percent_change_from_year_ago')
+    dexjpus_s = series.get('DEXJPUS', {})
+    jpy_mom = dexjpus_s.get('transformations', {}).get('percent_change_30d')
+    if jpy_mom is None:
+        curr_jpy = dexjpus_s.get('current_value')
+        prev_jpy_30 = dexjpus_s.get('thirty_days_ago_value')
+        if curr_jpy is not None and prev_jpy_30 is not None:
+            try:
+                pj = float(prev_jpy_30)
+                if pj > 0:
+                    jpy_mom = round(((float(curr_jpy) / pj) - 1.0) * 100.0, 4)
+            except (TypeError, ValueError):
+                jpy_mom = None
 
     m_carry = calc_jpy_carry_crack(dff_val, boj_rate, jpy_mom)
     if m_carry:
         models_calculated.append(m_carry)
+    else:
+        ingestion_warnings.append("Model 25.16 requires DFF, BoJ rate and 30-day DEXJPUS momentum.")
 
     sofr = series.get("SOFR", {}).get("current_value")
 
     # Model 25.20: Broad Dollar Shortage & Offshore Liquidity Strain Index (BDSI)
     broad_dollar_yoy = series.get("DTWEXBGS", {}).get("transformations", {}).get("percent_change_from_year_ago")
-    hormuz_drop_pw = -97.8  # Baseline PortWatch contraction for CHOKE_HORMUZ
+    hormuz_drop_pw = None
     portwatch_json_path = "llms-portwatch.json"
     if os.path.exists(portwatch_json_path):
         try:
@@ -3393,12 +3436,16 @@ def main():
                 pw_metrics = pw_data.get("chokepoints", {}).get("CHOKE_HORMUZ", {}).get("metrics", {})
                 if pw_metrics.get("pct_change_vs_2023") is not None:
                     hormuz_drop_pw = float(pw_metrics["pct_change_vs_2023"])
-        except Exception:
-            pass
+        except Exception as e:
+            ingestion_warnings.append(f"PortWatch CHOKE_HORMUZ read error: {e}")
+    else:
+        ingestion_warnings.append("PortWatch dataset missing: llms-portwatch.json")
 
     m_bdsi = calc_broad_dollar_shortage(broad_dollar_yoy, sofr, dff_val, hormuz_drop_pw)
     if m_bdsi:
         models_calculated.append(m_bdsi)
+    else:
+        ingestion_warnings.append("Model 25.20 requires DTWEXBGS YoY, SOFR, DFF, and live PortWatch CHOKE_HORMUZ contraction telemetry.")
 
     # Model 25.18: Mecca Pact Dynamic Transmission Engine
     m_mecca = calc_mecca_pact_transmission(brent, sofr, breakeven_oil)

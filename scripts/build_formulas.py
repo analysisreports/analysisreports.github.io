@@ -53,7 +53,7 @@ SHELVES = [
         "file": os.path.join(ROOT_DIR, "llms-formulas-macro-labor.txt"),
         "filename": "llms-formulas-macro-labor.txt",
         "title": "Macroeconomic Fundamentals, Labor Dynamics, Valuation & Cycles",
-        "scope": "Inflation persistence, labor market momentum, housing bubble risks, consumption collapse, equity valuation, and release countdowns.",
+        "scope": "Inflation persistence, labor market momentum, housing bubble risks, consumption collapse, and equity valuation.",
         "tier": "TIER 1, 2 & 4: MACRO, LABOR & VALUATION"
     },
     {

@@ -528,7 +528,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 | Shelf Domain | Target Endpoint | Scope | Models | Size |
 | :--- | :--- | :--- | :---: | :---: |
 | **Rates, Yield Curves, Liquidity & Monetary Transmission** | [`llms-formulas-rates-liquidity.txt`](https://analysisreports.github.io/llms-formulas-rates-liquidity.txt) | Central bank policy stances, yield curve slopes, repo liquidity friction, credit spreads, carry trades, and committee dispersion. | **17** | ~42.6 KB |
-| **Macroeconomic Fundamentals, Labor Dynamics, Valuation & Cycles** | [`llms-formulas-macro-labor.txt`](https://analysisreports.github.io/llms-formulas-macro-labor.txt) | Inflation persistence, labor market momentum, housing bubble risks, consumption collapse, equity valuation, and release countdowns. | **21** | ~44.9 KB |
+| **Macroeconomic Fundamentals, Labor Dynamics, Valuation & Cycles** | [`llms-formulas-macro-labor.txt`](https://analysisreports.github.io/llms-formulas-macro-labor.txt) | Inflation persistence, labor market momentum, housing bubble risks, consumption collapse, and equity valuation. | **20** | ~42.8 KB |
 | **Commodities, Energy Shocks, Supply Chains & Asset Stress** | [`llms-formulas-commodities-shock.txt`](https://analysisreports.github.io/llms-formulas-commodities-shock.txt) | Crude benchmarks, 3:2:1 crack spread, natgas disconnect, chip stress, supply chain logistics, and safe haven flight. | **12** | ~31.7 KB |
 | **Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence** | [`llms-formulas-geopolitics.txt`](https://analysisreports.github.io/llms-formulas-geopolitics.txt) | Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, and intelligence confidence. | **14** | ~49.4 KB |
 
@@ -861,8 +861,3 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 - Domain Shelf: [`llms-formulas-geopolitics.txt#29`](https://analysisreports.github.io/llms-formulas-geopolitics.txt#29)
 - Shelf Category: Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence
   - Purpose: Evaluates authority, corroboration, and recency of intelligence supporting analytical assertions on a deterministic 0-100 scale.
-
-### 30. OFFICIAL MACROECONOMIC RELEASE CALENDARS & COUNTDOWN ENGINE
-- Domain Shelf: [`llms-formulas-macro-labor.txt#30`](https://analysisreports.github.io/llms-formulas-macro-labor.txt#30)
-- Shelf Category: Macroeconomic Fundamentals, Labor Dynamics, Valuation & Cycles
-  - Purpose: Deterministically resolves scheduled release dates and computes remaining days for Tier-1 economic releases including CPI, NFP, PPI, PCE Inflation, and GDP.

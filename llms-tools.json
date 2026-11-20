@@ -1205,34 +1205,6 @@
     {
       "type": "function",
       "function": {
-        "name": "calculate_macro_release_countdown",
-        "description": "Calculates remaining days until official macro release (BLS: CPI, NFP, PPI; BEA: PCE, GDP) from target and reference dates.",
-        "parameters": {
-          "type": "object",
-          "properties": {
-            "target_date_str": {
-              "type": "string",
-              "format": "date",
-              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-              "description": "Official scheduled release date in YYYY-MM-DD format."
-            },
-            "current_date_str": {
-              "type": "string",
-              "format": "date",
-              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-              "description": "Reference or current execution date in YYYY-MM-DD format."
-            }
-          },
-          "required": [
-            "target_date_str",
-            "current_date_str"
-          ]
-        }
-      }
-    },
-    {
-      "type": "function",
-      "function": {
         "name": "calculate_sticky_flexible_cpi_spread",
         "description": "Calculates the spread between Sticky CPI and Flexible CPI (YoY % Change) to detect structural inflation traps or transitory supply shocks.",
         "parameters": {

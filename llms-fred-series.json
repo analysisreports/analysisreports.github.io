@@ -4,7 +4,7 @@
     "title": "Canonical FRED Monitored Series & Official Transformations",
     "domain": "economy",
     "version": "3.0.0",
-    "author": "Ersoy Toptaş",
+    "author": "Ersoy Topta\u015f",
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-fred-series.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
@@ -716,7 +716,8 @@
         "percent_change_from_year_ago": 5.2794,
         "compounded_annual_rate_of_change": 71.0933,
         "continuously_compounded_rate_of_change": 0.2066,
-        "continuously_compounded_annual_rate_of_change": 53.7039
+        "continuously_compounded_annual_rate_of_change": 53.7039,
+        "percent_change_30d": 0.6862
       },
       "recent_observations": [
         {
@@ -739,7 +740,9 @@
           "date": "2026-11-13",
           "value": 159.93
         }
-      ]
+      ],
+      "thirty_days_ago_value": 158.84,
+      "thirty_days_ago_date": "2026-10-14"
     },
     "DGS10": {
       "series_id": "DGS10",

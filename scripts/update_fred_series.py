@@ -429,6 +429,13 @@ def recompute_entry_transformations(entry: Dict[str, Any], n_obs_per_yr: int):
         "continuously_compounded_rate_of_change": fred_continuously_compounded_rate(xt, xt_prev),
         "continuously_compounded_annual_rate_of_change": None if is_rate else fred_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr)
     }
+    if entry.get("series_id") == "DEXJPUS" and entry.get("thirty_days_ago_value"):
+        try:
+            p30 = float(entry["thirty_days_ago_value"])
+            if p30 > 0 and xt is not None:
+                entry["transformations"]["percent_change_30d"] = round(((float(xt) / p30) - 1.0) * 100.0, 4)
+        except (TypeError, ValueError):
+            pass
 
 def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_series: Optional[Dict[str, Any]] = None, fallback_sync_str: Optional[str] = None) -> Tuple[str, Dict[str, Any]]:
     if existing_series is None:
@@ -509,6 +516,18 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
             two_years_ago_idx = len(obs) - 1 - 2 * n_obs_per_yr
             t_two_years_ago = obs[two_years_ago_idx] if s_id == "NASDAQSOX" and two_years_ago_idx >= 0 else None
 
+            # DEXJPUS 30-Day observation match for Model 25.16 Yen Carry Trade Momentum
+            t_thirty_days_ago = None
+            if s_id == "DEXJPUS":
+                try:
+                    curr_date = datetime.date.fromisoformat(t_curr["date"])
+                    target_date = curr_date - datetime.timedelta(days=30)
+                    past_obs = [o for o in obs if datetime.date.fromisoformat(o["date"]) <= target_date]
+                    if past_obs:
+                        t_thirty_days_ago = past_obs[-1]
+                except Exception:
+                    t_thirty_days_ago = None
+
             xt = t_curr["value"]
             xt_prev = t_prev["value"]
             xt_year_ago = t_year_ago["value"] if t_year_ago else None
@@ -554,6 +573,16 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
             if s_id == "NASDAQSOX":
                 entry_dict["two_years_ago_value"] = t_two_years_ago["value"] if t_two_years_ago else None
                 entry_dict["two_years_ago_date"] = t_two_years_ago["date"] if t_two_years_ago else None
+
+            if s_id == "DEXJPUS" and t_thirty_days_ago:
+                entry_dict["thirty_days_ago_value"] = t_thirty_days_ago["value"]
+                entry_dict["thirty_days_ago_date"] = t_thirty_days_ago["date"]
+                try:
+                    p30_val = float(t_thirty_days_ago["value"])
+                    if p30_val > 0:
+                        entry_dict["transformations"]["percent_change_30d"] = round(((float(xt) / p30_val) - 1.0) * 100.0, 4)
+                except (TypeError, ValueError):
+                    pass
 
             json_series_dict[s_id] = entry_dict
             txt_blocks.append(format_fred_txt_block(entry_dict))

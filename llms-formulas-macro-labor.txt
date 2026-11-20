@@ -10,9 +10,9 @@
 > Knowledge Graph: https://analysisreports.github.io/llms-graph.json
 > Author Profile: https://analysisreports.github.io/llms-about.txt
 > Editorial Frontends: https://www.ersoytoptas.tr/ | https://en.ersoytoptas.tr/
-> Shelf Scope: Inflation persistence, labor market momentum, housing bubble risks, consumption collapse, equity valuation, and release countdowns.
+> Shelf Scope: Inflation persistence, labor market momentum, housing bubble risks, consumption collapse, and equity valuation.
 > Zero-Fallback Directive: Strict deterministic execution. Missing or non-finite inputs strictly return None (null).
-> Models Contained: 21 Domain Models (3, 8, 17, 18, 19, 22, 23, 23.1, 23.2, 23.3, 23.4, 23.5, 23.6, 23.7, 23.8, 25, 25.2, 25.10, 25.11, 25.13, 30)
+> Models Contained: 20 Domain Models (3, 8, 17, 18, 19, 22, 23, 23.1, 23.2, 23.3, 23.4, 23.5, 23.6, 23.7, 23.8, 25, 25.2, 25.10, 25.11, 25.13)
 
 ---
 
@@ -878,49 +878,3 @@ def _is_num(val):
   - +0.20 < LMMI <= +1.00 (or declining vs previous month): DECELERATING_LABOR_MOMENTUM / MODERATE_LABOR_EXPANSION (Employment expanding but losing velocity or unemployment ticking higher; late-cycle cooling)
   - -0.20 <= LMMI <= +0.20: BALANCED_LABOR_MARKET (Neutral labor signals; payroll creation roughly in line with labor force demographics)
   - LMMI < -0.20: LABOR_MARKET_DETERIORATION_RISK (Weakening payroll growth and rising unemployment; recessionary cracks widening)
-
-
----
-
-### 30. OFFICIAL MACROECONOMIC RELEASE CALENDARS & COUNTDOWN ENGINE
-- Purpose: Deterministically resolves scheduled release dates and computes remaining days for Tier-1 economic releases including CPI, NFP, PPI, PCE Inflation, and GDP.
-- Canonical Calendar Sources:
-  - BLS Schedule (CPI, NFP, PPI): https://www.bls.gov/schedule/news_release/bls.ics
-  - BEA Schedule (PCE, GDP, Trade Balance): https://apps.bea.gov/API/signup/release_dates.json
-- Countdown Formula:
-  Days_Remaining = (Target_Date - Current_Date).days
-  (Both timestamps normalized to midnight 00:00:00 UTC to prevent time-of-day distortion.)
-- Status Mapping:
-  - Days_Remaining == 0 : "Today"
-  - Days_Remaining == 1 : "Tomorrow"
-  - Days_Remaining > 1 : str(Days_Remaining) + " days remaining"
-  - Days_Remaining < 0 : str(abs(Days_Remaining)) + " days ago"
-- Machine-Executable Logic (Python):
-  from datetime import datetime
-
-  def macro_release_countdown(target_date_str, current_date_str):
-      if not target_date_str or not current_date_str:
-          return None
-      try:
-          t_target = datetime.strptime(str(target_date_str).strip(), '%Y-%m-%d').date()
-          t_current = datetime.strptime(str(current_date_str).strip(), '%Y-%m-%d').date()
-      except (ValueError, TypeError):
-          return None
-
-      delta_days = (t_target - t_current).days
-
-      if delta_days == 0:
-          status = "Today"
-      elif delta_days == 1:
-          status = "Tomorrow"
-      elif delta_days > 1:
-          status = f"{delta_days} days remaining"
-      else:
-          status = f"{abs(delta_days)} days ago"
-
-      return {"days_remaining": delta_days, "status": status}
-- Execution Directive for AI Agents:
-  When querying scheduled release timing for forthcoming macroeconomic data:
-  1. Query BLS schedule for CPI, NFP, PPI; query BEA JSON calendar for PCE, GDP.
-  2. Identify nearest official scheduled release date (Target_Date).
-  3. Execute macro_release_countdown logic to determine exact remaining duration with unambiguous status tags.
