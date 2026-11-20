@@ -4,13 +4,13 @@
     "title": "Canonical FRED Monitored Series & Official Transformations",
     "domain": "economy",
     "version": "3.0.0",
-    "author": "Ersoy Topta\u015f",
+    "author": "Ersoy Toptaş",
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-fred-series.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-20T02:20:37Z",
+    "last_updated": "2026-11-20T05:02:06Z",
     "sync_status": "SUCCESS",
-    "last_successful_sync": "2026-11-20T02:20:37Z",
+    "last_successful_sync": "2026-11-20T05:02:06Z",
     "total_series": 81,
     "total_registered": 81,
     "missing_series": [],
@@ -3316,7 +3316,7 @@
       "gdpc1_quarter_observation": {
         "date": "2026-07-01",
         "value": 24200.4446936,
-        "source": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=GDPPOT&cosd=2026-07-01&coed=2026-07-01"
+        "source": "https://api.stlouisfed.org/fred/series/observations?series_id=GDPPOT&observation_start=2026-07-01&observation_end=2026-07-01&file_type=json"
       },
       "last_date": "2036-10-01",
       "current_value": 29443.0227307,
