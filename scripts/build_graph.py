@@ -23,6 +23,7 @@ import json
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC_GRAPH = os.path.join(ROOT_DIR, "llms-graph.json")
+GRAPH_SCHEMA_URL = "https://analysisreports.github.io/schemas/graph.schema.json"
 
 ACTORS_JSON = os.path.join(ROOT_DIR, "llms-graph-actors.json")
 MODELS_JSON = os.path.join(ROOT_DIR, "llms-graph-models.json")
@@ -58,6 +59,7 @@ def compile_master_graph():
     total_edges = mod_edges + backbone_edges
 
     # Update master router accounting & subgraphs dynamically
+    master["$schema"] = GRAPH_SCHEMA_URL
     master["author"] = "Ersoy Toptaş"
     master["graph_accounting"] = {
         "modular_subgraphs_nodes": mod_nodes,

@@ -85,7 +85,7 @@ Core repository endpoints, manifests, and their operational roles:
 
 ---
 
-## 3. ONTOLOGICAL SCHEMA CONTRACTS (7 CANONICAL SCHEMAS)
+## 3. ONTOLOGICAL SCHEMA CONTRACTS (8 CANONICAL SCHEMAS)
 Dual-layer specification contracts consisting of plain-text guides and machine-validated JSON schemas:
 
 1. **Economy:** [llms-schema-economy.txt](https://analysisreports.github.io/llms-schema-economy.txt) | [economy.schema.json](https://analysisreports.github.io/schemas/economy.schema.json) | [economy.json](https://analysisreports.github.io/economy.json) (Central bank policy rates, Fed liquidity models, yield spreads, and dots).
@@ -95,6 +95,7 @@ Dual-layer specification contracts consisting of plain-text guides and machine-v
 5. **Glossary:** [llms-schema-glossary.txt](https://analysisreports.github.io/llms-schema-glossary.txt) | [glossary.json](https://analysisreports.github.io/glossary.json) (Institutional mechanisms, constitutional frameworks, and operational legal doctrines).
 6. **Political-Country:** [llms-schema-political-country.txt](https://analysisreports.github.io/llms-schema-political-country.txt) | [political-country.json](https://analysisreports.github.io/political-country.json) (Unified modeling of domestic political friction and sovereign risk dynamics).
 7. **Concept:** [llms-schema-concept.txt](https://analysisreports.github.io/llms-schema-concept.txt) | [concept.json](https://analysisreports.github.io/concept.json) (Financial concepts, macroeconomic taxonomies, and theoretical indicator definitions).
+8. **Knowledge Graph:** [llms-schema-graph.txt](https://analysisreports.github.io/llms-schema-graph.txt) | [graph.schema.json](https://analysisreports.github.io/schemas/graph.schema.json) | [llms-graph.json](https://analysisreports.github.io/llms-graph.json) (Federated master graph and modular actor, model, and chokepoint subgraphs).
 
 ---
 

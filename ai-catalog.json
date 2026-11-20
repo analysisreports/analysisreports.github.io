@@ -281,6 +281,18 @@
       "description": "Ontological relationship network between actors, chokepoints, indicators, and models."
     },
     {
+      "id": "schema-graph-spec",
+      "name": "Federated Knowledge Graph JSON Schema Specification (Draft 2020-12)",
+      "type": "specification",
+      "format": "application/schema+json",
+      "url": "https://analysisreports.github.io/schemas/graph.schema.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-schema-graph.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Formal JSON Schema for the master graph router and actor, model, and chokepoint subgraphs."
+    },
+    {
       "id": "live-fred-series",
       "name": "Canonical FRED Time-Series Registry & Official Transformations",
       "type": "dataset",

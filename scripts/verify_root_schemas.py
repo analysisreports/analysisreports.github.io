@@ -15,6 +15,7 @@ Validates the formal compliance of:
 6. economy.json and economy articles <-> schemas/economy.schema.json
 7. country.json and country articles <-> schemas/country-strategic-assessment.schema.json
 8. glossary.json                 <-> schemas/glossary-term.schema.json
+9. master and modular graphs     <-> schemas/graph.schema.json
 
 Author: Ersoy Toptaş
 License: CC BY 4.0
@@ -38,7 +39,11 @@ SCHEMA_MAPPING: Dict[str, str] = {
     "strategic-macro.json": "strategic-macro.schema.json",
     "economy.json": "economy.schema.json",
     "country.json": "country-strategic-assessment.schema.json",
-    "glossary.json": "glossary-term.schema.json"
+    "glossary.json": "glossary-term.schema.json",
+    "llms-graph.json": "graph.schema.json",
+    "llms-graph-actors.json": "graph.schema.json",
+    "llms-graph-models.json": "graph.schema.json",
+    "llms-graph-chokepoints.json": "graph.schema.json"
 }
 
 def audit_root_schemas() -> List[str]:
@@ -89,7 +94,11 @@ def audit_root_schemas() -> List[str]:
                 errors.append(f"Schema Decode Error in {schema_name}: {e}")
                 continue
 
-        if schema_name in ("economy.schema.json", "country-strategic-assessment.schema.json") and not has_jsonschema:
+        if schema_name in (
+            "economy.schema.json",
+            "country-strategic-assessment.schema.json",
+            "graph.schema.json",
+        ) and not has_jsonschema:
             errors.append(f"{target_name}: jsonschema is required for {schema_name} validation")
             continue
 
@@ -106,7 +115,11 @@ def audit_root_schemas() -> List[str]:
 
         # Formal Draft 2020-12 validator when jsonschema is available
         if has_jsonschema:
-            if schema_name in ("economy.schema.json", "country-strategic-assessment.schema.json"):
+            if schema_name in (
+                "economy.schema.json",
+                "country-strategic-assessment.schema.json",
+                "graph.schema.json",
+            ):
                 jsonschema.Draft202012Validator.check_schema(schema_data)
             validator = jsonschema.Draft202012Validator(schema_data)
             schema_errors = list(validator.iter_errors(target_data))
@@ -132,7 +145,7 @@ def main():
         print("=" * 70)
         sys.exit(1)
     else:
-        print("[SUCCESS] Root contracts and economy/country articles passed the available schema checks.")
+        print("[SUCCESS] Root contracts, article payloads, and graph documents passed the available schema checks.")
         print("=" * 70)
         sys.exit(0)
 

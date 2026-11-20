@@ -62,10 +62,11 @@ jobs:
         run: |
           python scripts/verify_all.py
 
-      - name: Verify economy and country schema behavior
+      - name: Verify article and graph schema behavior
         run: |
           python -m unittest discover -s scripts -p test_economy_schema.py
           python -m unittest discover -s scripts -p test_country_schema.py
+          python -m unittest discover -s scripts -p test_graph_schema.py
 
       - name: Verify Taylor GDP period alignment
         run: |

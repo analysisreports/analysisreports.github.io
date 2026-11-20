@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "https://analysisreports.github.io/schemas/graph.schema.json",
   "name": "Ersoy Toptaş Macroeconomic & Geopolitical Knowledge Graph (Master Router & Guide)",
   "version": "3.0.0",
   "author": "Ersoy Toptaş",

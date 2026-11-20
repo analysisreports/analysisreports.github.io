@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "https://analysisreports.github.io/schemas/graph.schema.json",
   "name": "Maritime Chokepoints, Strategic Basins & Commodity Corridors Subgraph",
   "version": "3.0.0",
   "author": "Ersoy Toptaş",

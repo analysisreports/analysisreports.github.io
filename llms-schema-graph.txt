@@ -1,0 +1,87 @@
+# Knowledge Graph Schema Guide
+
+Machine-readable contract: https://analysisreports.github.io/schemas/graph.schema.json
+JSON Schema dialect: Draft 2020-12
+Graph family: Federated master router and modular subgraphs
+
+## 1. Scope
+
+The graph contract applies to these endpoints:
+
+- `llms-graph.json` — master router and core-backbone graph
+- `llms-graph-actors.json` — sovereign actors and blocs
+- `llms-graph-models.json` — macroeconomic models and indicators
+- `llms-graph-chokepoints.json` — chokepoints, corridors, basins, and commodities
+
+The machine schema validates each document's structure and field types. It does
+not merge or resolve references across files.
+
+## 2. Document shapes
+
+### Master graph
+
+The master document uses `architecture_type: FEDERATED_MODULAR_GRAPH` and
+contains:
+
+- `routing_policy`: routing instruction and the three subgraph endpoint URLs.
+- `graph_accounting`: node and edge counts for modular subgraphs, the core
+  backbone, and the federated total.
+- `subgraphs`: endpoint, scope, token-size, and node/edge counts for each
+  modular subgraph; the core-backbone record has no separate endpoint.
+- `graph_metadata`: the registered node categories and edge types.
+- `nodes` and `edges`: the core-backbone graph.
+- `metadata`: the graph title, domain, version, authorship, endpoint,
+  documentation, and update timestamp.
+
+Federated totals are the sum of the three modular subgraphs and the core
+backbone. `scripts/build_graph.py` is the source of truth for these generated
+counts; do not edit accounting values by hand.
+
+### Modular subgraphs
+
+Each modular document contains `endpoint`, `master_graph`, `subgraph_domain`,
+`last_updated`, `nodes`, `edges`, and `metadata`, along with its name, version,
+author, license, and repository. Its root `metadata` repeats the canonical
+document identity and may include the master graph and subgraph domain.
+
+## 3. Nodes
+
+Every node has:
+
+- `id`: stable canonical identifier.
+- `label`: human-readable name.
+- `category`: one of `ACTOR`, `CHOKEPOINT`, `INDICATOR`, `MODEL`,
+  `ENDPOINT_SCHEMA`, `COMMODITY_STRATEGIC`, `CRITICAL_MINERAL`, or
+  `ENERGY_BENCHMARK`.
+- Optional `type` and `attributes`.
+
+`attributes` is an extensible object because actor, series, model, and strategic
+geography nodes have different domain-specific fields. Keep its values valid
+JSON; represent an unavailable value as `null`, not as a fabricated default.
+
+## 4. Edges
+
+Every edge has a `source`, `target`, and registered `type`. Endpoints use node
+IDs. The permitted edge types are declared in `graph_metadata.edge_types` on
+the master and enumerated by the machine schema. Optional edge properties carry
+relationship details, such as `p_baseline`, `regime`, `role`, `passes`, or
+`description`. `p_baseline`, when present, is either `null` or a number in
+[-1, 1].
+
+## 5. Cross-file integrity and verification
+
+JSON Schema cannot enforce unique node IDs, resolve edge endpoints against
+nodes in multiple files, or verify arithmetic between graph counts. Preserve
+those invariants with the repository's graph compiler and topology checks:
+
+1. Run `python scripts/build_graph.py` after changing modular graph data.
+2. Run `python scripts/verify_graph_topology.py` to check IDs, edge endpoints,
+   registered types, polarity synchronization, and graph accounting.
+3. Run `python scripts/verify_entities.py` and
+   `python scripts/verify_cross_consistency.py` for cross-file entity and
+   relationship consistency.
+4. Validate the master and all three modular documents against
+   `schemas/graph.schema.json`.
+
+Each graph document identifies `schemas/graph.schema.json` in its `$schema`
+field. The schema itself uses JSON Schema Draft 2020-12 as its dialect.
