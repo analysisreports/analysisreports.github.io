@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-20 01:52 UTC
+> **Last Calibrated Sync:** 2026-11-20 02:23 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -30,6 +30,7 @@
 | **MODEL_14** | Real M2 Money Momentum | **1.63** | Percentage Points (ppt) | `MONETARY_EXPANSION` | Detects aggregate demand and monetary impulse by calcul... |
 | **MODEL_15** | NY Fed ACM 10-Year Term Premium | **0.99** | Percent (%) | `FISCAL_SUPPLY_PRESSURE` | Decomposes 10-year Treasury yields via the Adrian, Crum... |
 | **MODEL_16** | CBOE Volatility & Market Fear Regime | **25.46** | Points | `ELEVATED_STRESS` | 30-day forward S&P 500 implied volatility fear gauge an... |
+| **MODEL_17** | Macro Equity Risk Premium (ERP) | **-1.01** | Percent | `OVERVALUED_STOCKS` | Measures the excess yield premium offered by equities r... |
 | **MODEL_18** | Okun Misery Index | **8.18** | Index Points | `MODERATE` | Measures household welfare loss and stagflationary stre... |
 | **MODEL_19** | Buffett Indicator (Corporate Equities to GDP) | **251.59** | Percent (%) | `SEVERELY_OVERVALUED` | Measures total equity valuation froth against national ... |
 | **MODEL_20** | Copper to Gold Macro Sentiment Ratio | **3.5257** | Ratio (USD/MT to USD/oz) | `CYCLICAL_EXPANSION` | Pits industrial cyclical momentum (Doctor Copper) again... |
@@ -37,7 +38,10 @@
 | **MODEL_22** | Household Credit Stress Gauge | **0.75** | Stress Ratio | `ELEVATED_PRESSURE` | Measures consumer debt service vulnerability by evaluat... |
 | **MODEL_23** | Okun Gap (Growth-Employment Divergence) | **-0.27** | Percentage Points (ppt) | `BALANCED_OKUN_EQUILIBRIUM` | Evaluates the historical elasticity between real GDP gr... |
 | **MODEL_23.1** | Labor Market Dual-Track Dynamics | **165.0** | Thousands (k) | `BALANCED_LABOR_MARKET` | Cross-evaluates payroll gains against unemployment rate... |
+| **MODEL_23.2** | Total Funds Flow and Velocity Momentum | **33177.5** | Billions USD (Flow) | `BALANCED_LIQUIDITY_FLOW` | Models effective monetary flow volume by multiplying br... |
+| **MODEL_23.3** | Housing Affordability and Bubble Gauge | **10350.0** | Labor Hours per Home | `ACCESSIBLE_MARKET` | Measures housing affordability by dividing median home ... |
 | **MODEL_23.4** | Early Layoff and Recession Signal | **3.32** | Index Points | `EXPANSION_EMPLOYMENT_MOMENTUM` | Detects latent employment losses and early recessionary... |
+| **MODEL_23.5** | Real Consumption Collapse Radar | **2.74** | Percentage Points (YoY) | `STRONG_VOLUME_EXPANSION` | Measures real household consumption volume by stripping... |
 | **MODEL_23.6** | Early Employment Crack Signal | **-13.99** | Index Points | `LABOR_MARKET_ALIGNED` | Identifies early labor cracks by comparing weekly joble... |
 | **MODEL_23.7** | Inventory to Sales Glut Ratio | **1.33** | Ratio | `BALANCED_SUPPLY_CHAIN` | Measures total business inventories relative to monthly... |
 | **MODEL_23.8** | Mortgage and Permit Divergence (Housing Freeze Index) | **7.43** | Index Points | `SUPPLY_CONTRACTION` | Measures divergence between surging mortgage borrowing ... |
@@ -176,6 +180,13 @@
 - **Secondary Metrics:** `{"vix_level": 25.46, "regime": "ELEVATED_STRESS", "market_bias": "RISK_OFF"}`
 - **Economic Synthesis:** 30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime.
 
+#### [MODEL_17] Macro Equity Risk Premium (ERP)
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#17
+- **Evaluated Status:** `OVERVALUED_STOCKS` (Primary Value: -1.01 Percent)
+- **Inputs Evaluated:** `{"sp500_earnings_yield_pct": 4.09, "treasury_10y_yield_pct": 5.1}`
+- **Secondary Metrics:** `{"equity_risk_premium_pct": -1.01, "earnings_yield": 4.09, "risk_free_rate": 5.1}`
+- **Economic Synthesis:** Measures the excess yield premium offered by equities relative to the risk-free 10-year US Treasury yield. ERP < 0.50% signals overvalued stocks.
+
 #### [MODEL_18] Okun Misery Index
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#18
 - **Evaluated Status:** `MODERATE` (Primary Value: 8.18 Index Points)
@@ -226,12 +237,33 @@
 - **Secondary Metrics:** `{"payems_change_k": 165.0, "unrate_change_ppt": -0.1, "civpart_change_ppt": 0.1}`
 - **Economic Synthesis:** Cross-evaluates payroll gains against unemployment rate and participation rate shifts to determine whether employment growth is organically absorbing new entrants or masking structural deterioration.
 
+#### [MODEL_23.2] Total Funds Flow and Velocity Momentum
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.2
+- **Evaluated Status:** `BALANCED_LIQUIDITY_FLOW` (Primary Value: 33177.5 Billions USD (Flow))
+- **Inputs Evaluated:** `{"m2_money_supply_bil": 23413.9, "m2_velocity_ratio": 1.417}`
+- **Secondary Metrics:** `{"total_funds_flow": 33177.5, "tff_qoq_pct": 0.27}`
+- **Economic Synthesis:** Models effective monetary flow volume by multiplying broad money supply (M2) by velocity of money (M2V).
+
+#### [MODEL_23.3] Housing Affordability and Bubble Gauge
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.3
+- **Evaluated Status:** `ACCESSIBLE_MARKET` (Primary Value: 10350.0 Labor Hours per Home)
+- **Inputs Evaluated:** `{"median_sales_price_usd": 393300.0, "average_hourly_earnings_usd": 38.0}`
+- **Secondary Metrics:** `{"affordability_hours": 10350.0, "median_sales_price": 393300.0, "average_hourly_earnings": 38.0}`
+- **Economic Synthesis:** Measures housing affordability by dividing median home sales price (MSPUS) by average hourly earnings (CES0500000003). Ratio > 13500 hours signals severe bubble risk.
+
 #### [MODEL_23.4] Early Layoff and Recession Signal
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.4
 - **Evaluated Status:** `EXPANSION_EMPLOYMENT_MOMENTUM` (Primary Value: 3.32 Index Points)
 - **Inputs Evaluated:** `{"industrial_production_yoy_pct": 2.15, "weekly_hours_yoy_pct": 0.58}`
 - **Secondary Metrics:** `{"early_layoff_index": 3.32, "indpro_yoy_pct": 2.15, "awhaetp_yoy_pct": 0.58}`
 - **Economic Synthesis:** Detects latent employment losses and early recessionary inflection before headline unemployment rises by synthesizing weekly hours worked against industrial production momentum.
+
+#### [MODEL_23.5] Real Consumption Collapse Radar
+- **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.5
+- **Evaluated Status:** `STRONG_VOLUME_EXPANSION` (Primary Value: 2.74 Percentage Points (YoY))
+- **Inputs Evaluated:** `{"retail_sales_yoy_pct": 6.82, "cpi_yoy_pct": 4.08}`
+- **Secondary Metrics:** `{"real_consumption_growth": 2.74, "nominal_retail_yoy": 6.82, "inflation_cpi_yoy": 4.08}`
+- **Economic Synthesis:** Measures real household consumption volume by stripping CPI inflation from nominal retail sales growth (RSAFS). Real growth < 0.0 signals real demand contraction.
 
 #### [MODEL_23.6] Early Employment Crack Signal
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.6

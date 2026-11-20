@@ -90,6 +90,10 @@ LNS12500000
 LNS12032194
 IPG3344S
 PCU33443344
+CES0500000003
+RSAFS
+RSXFS
+SP500_EARNINGS_YIELD
 
 
 [QUARTERLY]
@@ -102,6 +106,8 @@ GDP
 DRCCLACBS
 DRTSCIS
 FDEFX
+M2V
+MSPUS
 
 
 [SEMIANNUAL]
@@ -112,9 +118,9 @@ FDEFX
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-19 05:15:48 UTC
-# - Sync Status: SUCCESS (75 / 75 series active)
-# - Total Series Synced: 75 / 75
+# - Synced At: 2026-11-20 02:20:37 UTC
+# - Sync Status: SUCCESS (81 / 81 series active)
+# - Total Series Synced: 81 / 81
 # - Source Authority: Federal Reserve Bank of St. Louis (FRED API)
 # - Canonical Formulas Reference: Section 0.3 of https://analysisreports.github.io/llms-formulas.txt
 # - Zero-Hallucination Directive: Values below represent immutable ground truth.
@@ -1638,6 +1644,98 @@ Recent Observations (Last 5):
   2026-10-01: 78.5330
 
 --------------------------------------------------------------------------------
+Series ID: CES0500000003
+Title: Average Hourly Earnings of All Employees, Total Private
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Dollars per Hour
+Last Date: 2026-10-01 | Current Value: 38.0000 | Previous Value: 37.8600
+Year Ago Date: 2025-10-01 | Year Ago Value: 36.8500
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.1400
+  2. Change from Year Ago: +1.1500
+  3. Percent Change: +0.3698%
+  4. Percent Change from Year Ago: +3.1208%
+  5. Compounded Annual Rate of Change: +4.5288%
+  6. Continuously Compounded Rate of Change: +0.3691%
+  7. Continuously Compounded Annual Rate of Change: +4.4292%
+
+Recent Observations (Last 5):
+  2026-06-01: 37.5900
+  2026-07-01: 37.6400
+  2026-08-01: 37.7600
+  2026-09-01: 37.8600
+  2026-10-01: 38.0000
+
+--------------------------------------------------------------------------------
+Series ID: RSAFS
+Title: Advance Retail Sales: Retail and Food Services, Total
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Millions of Dollars
+Last Date: 2026-10-01 | Current Value: 748220.0000 | Previous Value: 746637.0000
+Year Ago Date: 2025-10-01 | Year Ago Value: 700427.0000
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +1583.0000
+  2. Change from Year Ago: +47793.0000
+  3. Percent Change: +0.2120%
+  4. Percent Change from Year Ago: +6.8234%
+  5. Compounded Annual Rate of Change: +2.5741%
+  6. Continuously Compounded Rate of Change: +0.2118%
+  7. Continuously Compounded Annual Rate of Change: +2.5415%
+
+Recent Observations (Last 5):
+  2026-06-01: 732898.0000
+  2026-07-01: 729915.0000
+  2026-08-01: 740502.0000
+  2026-09-01: 746637.0000
+  2026-10-01: 748220.0000
+
+--------------------------------------------------------------------------------
+Series ID: RSXFS
+Title: Advance Retail Sales: Retail Trade Excluding Food Services
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Millions of Dollars
+Last Date: 2026-10-01 | Current Value: 655299.0000 | Previous Value: 653943.0000
+Year Ago Date: 2025-10-01 | Year Ago Value: 613622.0000
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +1356.0000
+  2. Change from Year Ago: +41677.0000
+  3. Percent Change: +0.2074%
+  4. Percent Change from Year Ago: +6.7920%
+  5. Compounded Annual Rate of Change: +2.5169%
+  6. Continuously Compounded Rate of Change: +0.2071%
+  7. Continuously Compounded Annual Rate of Change: +2.4857%
+
+Recent Observations (Last 5):
+  2026-06-01: 642793.0000
+  2026-07-01: 639263.0000
+  2026-08-01: 648652.0000
+  2026-09-01: 653943.0000
+  2026-10-01: 655299.0000
+
+--------------------------------------------------------------------------------
+Series ID: SP500_EARNINGS_YIELD
+Title: S&P 500 Earnings Yield
+Frequency: Monthly (n_obs_per_yr: 12) | Units: Percent
+Last Date: 2026-11-19 | Current Value: 4.0900 | Previous Value: 3.8900
+Year Ago Date: 2025-12-01 | Year Ago Value: 3.5100
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: +0.2000
+  2. Change from Year Ago: +0.5800
+  3. Percent Change: +5.1414%
+  4. Percent Change from Year Ago: +16.5242%
+  5. Compounded Annual Rate of Change: N/A (Rate is already annualized)
+  6. Continuously Compounded Rate of Change: +5.0136%
+  7. Continuously Compounded Annual Rate of Change: N/A (Rate is already annualized)
+
+Recent Observations (Last 5):
+  2026-08-01: 3.8300
+  2026-09-01: 3.8500
+  2026-10-01: 3.8200
+  2026-11-01: 3.8900
+  2026-11-19: 4.0900
+
+--------------------------------------------------------------------------------
 Series ID: GDPC1
 Title: Real Gross Domestic Product
 Frequency: Quarterly (n_obs_per_yr: 4) | Units: Billions of Chained 2017 Dollars
@@ -1844,4 +1942,50 @@ Recent Observations (Last 5):
   2026-04-01: 1189.9300
   2026-07-01: 1233.2340
 
-GDPPOT observation matched to GDPC1 quarter: 2026-07-01 | Value: 24200.4447 | Source: https://api.stlouisfed.org/fred/series/observations?series_id=GDPPOT&observation_start=2026-07-01&observation_end=2026-07-01&file_type=json
+--------------------------------------------------------------------------------
+Series ID: M2V
+Title: Velocity of M2 Money Stock
+Frequency: Quarterly (n_obs_per_yr: 4) | Units: Ratio
+Last Date: 2026-07-01 | Current Value: 1.4170 | Previous Value: 1.4200
+Year Ago Date: 2025-07-01 | Year Ago Value: 1.4130
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -0.0030
+  2. Change from Year Ago: +0.0040
+  3. Percent Change: -0.2113%
+  4. Percent Change from Year Ago: +0.2831%
+  5. Compounded Annual Rate of Change: -0.8424%
+  6. Continuously Compounded Rate of Change: -0.2115%
+  7. Continuously Compounded Annual Rate of Change: -0.8460%
+
+Recent Observations (Last 5):
+  2025-07-01: 1.4130
+  2025-10-01: 1.4130
+  2026-01-01: 1.4170
+  2026-04-01: 1.4200
+  2026-07-01: 1.4170
+
+--------------------------------------------------------------------------------
+Series ID: MSPUS
+Title: Median Sales Price of Houses Sold for the United States
+Frequency: Quarterly (n_obs_per_yr: 4) | Units: Dollars
+Last Date: 2026-07-01 | Current Value: 393300.0000 | Previous Value: 413500.0000
+Year Ago Date: 2025-07-01 | Year Ago Value: 410100.0000
+
+Transformations (Official St. Louis Fed Formulas):
+  1. Change: -20200.0000
+  2. Change from Year Ago: -16800.0000
+  3. Percent Change: -4.8851%
+  4. Percent Change from Year Ago: -4.0966%
+  5. Compounded Annual Rate of Change: -18.1547%
+  6. Continuously Compounded Rate of Change: -5.0085%
+  7. Continuously Compounded Annual Rate of Change: -20.0339%
+
+Recent Observations (Last 5):
+  2025-07-01: 410100.0000
+  2025-10-01: 412300.0000
+  2026-01-01: 408500.0000
+  2026-04-01: 413500.0000
+  2026-07-01: 393300.0000
+
+GDPPOT observation matched to GDPC1 quarter: 2026-07-01 | Value: 24200.4447 | Source: https://fred.stlouisfed.org/graph/fredgraph.csv?id=GDPPOT&cosd=2026-07-01&coed=2026-07-01

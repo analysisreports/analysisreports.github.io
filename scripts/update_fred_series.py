@@ -132,7 +132,7 @@ FREQ_N_MAP = {
 # Strict Zero-Loss Mandate: If TTL expires and API fails/times out, existing snapshot is 100% retained.
 # ==============================================================================
 CACHE_TTL_DAYS = {
-    "DAILY": 0,
+    "DAILY": 1,
     "WEEKLY": 3,
     "BIWEEKLY": 4,
     "MONTHLY": 14,
@@ -162,6 +162,73 @@ def fetch_json(url: str) -> Optional[Dict[str, Any]]:
                 time.sleep(2)
             else:
                 print(f"Error fetching {url}: {e}")
+    return None
+
+KNOWN_FRED_METADATA = {
+    "M2V": {"title": "Velocity of M2 Money Stock", "units": "Ratio", "source": "Federal Reserve Bank of St. Louis"},
+    "MSPUS": {"title": "Median Sales Price of Houses Sold for the United States", "units": "Dollars", "source": "U.S. Census Bureau and U.S. Department of Housing and Urban Development"},
+    "CES0500000003": {"title": "Average Hourly Earnings of All Employees, Total Private", "units": "Dollars per Hour", "source": "U.S. Bureau of Labor Statistics"},
+    "RSAFS": {"title": "Advance Retail Sales: Retail and Food Services, Total", "units": "Millions of Dollars", "source": "U.S. Census Bureau"},
+    "RSXFS": {"title": "Advance Retail Sales: Retail Trade Excluding Food Services", "units": "Millions of Dollars", "source": "U.S. Census Bureau"},
+    "SP500_EARNINGS_YIELD": {"title": "S&P 500 Earnings Yield", "units": "Percent", "source": "Multpl / Standard & Poor's"}
+}
+
+def get_series_data_csv(series_id: str, n_obs_per_yr: int) -> Optional[Dict[str, Any]]:
+    # 1. Specialized handling for SP500_EARNINGS_YIELD via Multpl
+    if series_id == "SP500_EARNINGS_YIELD":
+        url = "https://www.multpl.com/s-p-500-earnings-yield/table/by-month"
+        req = urllib.request.Request(url, headers={"User-Agent": "AnalysisReports-FRED-Engine/1.0 (Windows NT 10.0; Win64; x64)"})
+        for attempt in range(1, 3):
+            try:
+                with urllib.request.urlopen(req, timeout=15) as resp:
+                    html = resp.read().decode("utf-8")
+                pattern = re.compile(r"<tr[^>]*>\s*<td>(.*?)</td>\s*<td>(.*?)</td>", re.DOTALL)
+                matches = pattern.findall(html)
+                cleaned = []
+                for date_str, val_str in matches:
+                    date_clean = date_str.strip()
+                    val_clean = re.sub(r"<[^>]+>", "", val_str).replace("%", "").replace("†", "").replace("&#x2002;", "").strip()
+                    try:
+                        f_val = float(val_clean)
+                        dt = datetime.datetime.strptime(date_clean, "%b %d, %Y")
+                        cleaned.append({"date": dt.strftime("%Y-%m-%d"), "value": f_val})
+                    except Exception:
+                        continue
+                cleaned.reverse()
+                if len(cleaned) >= 2:
+                    meta = KNOWN_FRED_METADATA.get(series_id, {"title": series_id, "units": "Percent", "source": "Multpl"})
+                    return {"metadata": meta, "observations": cleaned}
+            except Exception as e:
+                time.sleep(1)
+        return None
+
+    # 2. FRED Graph CSV endpoint fallback
+    csv_url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}"
+    for attempt in range(1, 3):
+        try:
+            # Try via subprocess curl first for reliable TLS / Akamai session handling
+            import subprocess
+            res = subprocess.run(["curl.exe", "-s", "--max-time", "15", csv_url], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            content = res.stdout if res.returncode == 0 and res.stdout else None
+            if not content:
+                req = urllib.request.Request(csv_url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
+                with urllib.request.urlopen(req, timeout=15) as resp:
+                    content = resp.read().decode("utf-8")
+            
+            reader = csv.reader(io.StringIO(content))
+            next(reader)
+            cleaned = []
+            for row in reader:
+                if len(row) >= 2 and row[1].strip() and row[1].strip() != ".":
+                    try:
+                        cleaned.append({"date": row[0].strip(), "value": float(row[1].strip())})
+                    except ValueError:
+                        pass
+            if len(cleaned) >= 2:
+                meta = KNOWN_FRED_METADATA.get(series_id, {"title": series_id, "units": "Index", "source": "FRED"})
+                return {"metadata": meta, "observations": cleaned}
+        except Exception:
+            time.sleep(1)
     return None
 
 def get_series_data_api(series_id: str, api_key: str, n_obs_per_yr: int) -> Optional[Dict[str, Any]]:
@@ -407,13 +474,14 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
                 txt_blocks.append(format_fred_txt_block(cached_entry))
                 continue
 
-            # 2. Süresi dolmuşsa veya yeni seriyse FRED API'den çek
+            # 2. Süresi dolmuşsa veya yeni seriyse FRED API'den veya CSV fallback'ten çek
             print(f"  [FETCHING] {s_id} [{freq}] (TTL doldu veya yeni seri, FRED API'sine bağlanılıyor)...")
             data = None
             if api_key:
                 data = get_series_data_api(s_id, api_key, n_obs_per_yr)
-            else:
-                print(f"  [WARNING] FRED_API_KEY bulunamadı, API isteği yapılamıyor.")
+            if not data:
+                print(f"  [CSV / PUBLIC TELEMETRY FETCH] {s_id} [{freq}] veri çekiliyor...")
+                data = get_series_data_csv(s_id, n_obs_per_yr)
 
             # 3. API Hata / Zaman Aşımı Koruma Sigortası: Asla eski veriyi silme!
             if not data:

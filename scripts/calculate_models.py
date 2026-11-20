@@ -1726,6 +1726,52 @@ def calc_broad_dollar_shortage(broad_dollar_yoy_pct, sofr_rate, dff_rate, hormuz
         return None
 
 
+# --- Model 17: Macro Equity Risk Premium (ERP) ---
+def calc_macro_equity_risk_premium(earnings_yield_pct, dgs10_val) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (earnings_yield_pct, dgs10_val)):
+        return None
+    try:
+        ey = float(earnings_yield_pct)
+        d10 = float(dgs10_val)
+        if not (math.isfinite(ey) and math.isfinite(d10)):
+            return None
+        # Nominal 10Y Treasury yield cannot be negative
+        if min(d10, 0.0) != 0.0:
+            return None
+
+        erp = round(ey - d10, 2)
+        if not math.isfinite(erp):
+            return None
+
+        if min(erp, 0.50) == erp:
+            status = "OVERVALUED_STOCKS"
+        elif max(erp, 2.50) == erp:
+            status = "ATTRACTIVE_STOCKS"
+        else:
+            status = "FAIR_VALUE"
+
+        return {
+            "model_id": "MODEL_17",
+            "model_name": "Macro Equity Risk Premium (ERP)",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#17",
+            "primary_value": erp,
+            "unit": "Percent",
+            "status": status,
+            "inputs": {
+                "sp500_earnings_yield_pct": round(ey, 2),
+                "treasury_10y_yield_pct": round(d10, 2)
+            },
+            "metrics": {
+                "equity_risk_premium_pct": erp,
+                "earnings_yield": round(ey, 2),
+                "risk_free_rate": round(d10, 2)
+            },
+            "interpretation": "Measures the excess yield premium offered by equities relative to the risk-free 10-year US Treasury yield. ERP < 0.50% signals overvalued stocks."
+        }
+    except (TypeError, ValueError, OverflowError):
+        return None
+
+
 # --- Model 18: Okun Sefalet Endeksi (Okun Misery Index) ---
 def calc_misery_index(unrate_val, cpi_yoy_val):
     if any(v is None or isinstance(v, bool) for v in (unrate_val, cpi_yoy_val)):
@@ -2050,6 +2096,99 @@ def calc_labor_dual_track_matrix(payems_mom, unrate_delta, civpart_delta) -> Opt
         return None
 
 
+# --- Model 23.2: Total Funds Flow and Velocity Momentum ---
+def calc_total_funds_flow(m2_level, m2_velocity, prev_tff=None) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (m2_level, m2_velocity)):
+        return None
+    try:
+        m2 = float(m2_level)
+        v = float(m2_velocity)
+        if not (math.isfinite(m2) and math.isfinite(v)):
+            return None
+        if min(m2, 0.0) == m2 or min(v, 0.0) == v:
+            return None
+
+        raw_tff = m2 * v
+        if not math.isfinite(raw_tff):
+            return None
+        tff_val = round(raw_tff, 2)
+
+        mom_change = None
+        status = "BALANCED_LIQUIDITY_FLOW"
+        if prev_tff is not None and not isinstance(prev_tff, bool) and math.isfinite(prev_tff) and prev_tff > 0:
+            mom_change = round(((tff_val / float(prev_tff)) - 1.0) * 100.0, 2)
+            if max(mom_change, 2.0) == mom_change and mom_change != 2.0:
+                status = "EXCESS_VELOCITY_INFLATION"
+            elif min(mom_change, 0.0) == mom_change and mom_change != 0.0:
+                status = "LIQUIDITY_STAGNATION"
+
+        return {
+            "model_id": "MODEL_23.2",
+            "model_name": "Total Funds Flow and Velocity Momentum",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.2",
+            "primary_value": tff_val,
+            "unit": "Billions USD (Flow)",
+            "status": status,
+            "inputs": {
+                "m2_money_supply_bil": round(m2, 2),
+                "m2_velocity_ratio": round(v, 4)
+            },
+            "metrics": {
+                "total_funds_flow": tff_val,
+                "tff_qoq_pct": mom_change
+            },
+            "interpretation": "Models effective monetary flow volume by multiplying broad money supply (M2) by velocity of money (M2V)."
+        }
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+
+
+# --- Model 23.3: Housing Affordability and Bubble Gauge ---
+def calc_housing_bubble_gauge(mspus_val, ahe_val) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (mspus_val, ahe_val)):
+        return None
+    try:
+        m = float(mspus_val)
+        a = float(ahe_val)
+        if not (math.isfinite(m) and math.isfinite(a)):
+            return None
+        if min(m, 0.0) == m or min(a, 0.0) == a or a == 0.0:
+            return None
+
+        raw_ratio = m / a
+        if not math.isfinite(raw_ratio):
+            return None
+        ratio = round(raw_ratio, 2)
+
+        if max(ratio, 13500.0) == ratio and ratio != 13500.0:
+            status = "SEVERE_HOUSING_BUBBLE"
+        elif max(ratio, 11000.0) == ratio and ratio != 11000.0:
+            status = "ELEVATED_STRESS"
+        else:
+            status = "ACCESSIBLE_MARKET"
+
+        return {
+            "model_id": "MODEL_23.3",
+            "model_name": "Housing Affordability and Bubble Gauge",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.3",
+            "primary_value": ratio,
+            "unit": "Labor Hours per Home",
+            "status": status,
+            "inputs": {
+                "median_sales_price_usd": round(m, 2),
+                "average_hourly_earnings_usd": round(a, 2)
+            },
+            "metrics": {
+                "affordability_hours": ratio,
+                "median_sales_price": round(m, 2),
+                "average_hourly_earnings": round(a, 2)
+            },
+            "interpretation": "Measures housing affordability by dividing median home sales price (MSPUS) by average hourly earnings (CES0500000003). Ratio > 13500 hours signals severe bubble risk."
+        }
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+
+
 # --- Model 23.4: Early Layoff and Recession Signal ---
 def calc_early_layoff_signal(indpro_yoy_pct, awhaetp_yoy_pct) -> Optional[Dict[str, Any]]:
     if any(v is None or isinstance(v, bool) for v in (indpro_yoy_pct, awhaetp_yoy_pct)):
@@ -2089,6 +2228,52 @@ def calc_early_layoff_signal(indpro_yoy_pct, awhaetp_yoy_pct) -> Optional[Dict[s
                 "awhaetp_yoy_pct": round(hrs, 2)
             },
             "interpretation": "Detects latent employment losses and early recessionary inflection before headline unemployment rises by synthesizing weekly hours worked against industrial production momentum."
+        }
+    except (TypeError, ValueError):
+        return None
+
+
+# --- Model 23.5: Real Consumption Collapse Radar ---
+def calc_real_consumption_collapse_radar(retail_sales_yoy_pct, cpi_yoy_pct) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (retail_sales_yoy_pct, cpi_yoy_pct)):
+        return None
+    try:
+        ret = float(retail_sales_yoy_pct)
+        cpi = float(cpi_yoy_pct)
+        if not (math.isfinite(ret) and math.isfinite(cpi)):
+            return None
+
+        raw_growth = ret - cpi
+        if not math.isfinite(raw_growth):
+            return None
+        growth = round(raw_growth, 2)
+
+        if min(growth, -2.0) == growth and growth != -2.0:
+            status = "SEVERE_REAL_CONTRACTION"
+        elif min(growth, 0.0) == growth and growth != 0.0:
+            status = "REAL_DEMAND_CONTRACTION"
+        elif max(growth, 2.0) == growth and growth != 2.0:
+            status = "STRONG_VOLUME_EXPANSION"
+        else:
+            status = "MODERATE_VOLUME_EXPANSION"
+
+        return {
+            "model_id": "MODEL_23.5",
+            "model_name": "Real Consumption Collapse Radar",
+            "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.5",
+            "primary_value": growth,
+            "unit": "Percentage Points (YoY)",
+            "status": status,
+            "inputs": {
+                "retail_sales_yoy_pct": round(ret, 2),
+                "cpi_yoy_pct": round(cpi, 2)
+            },
+            "metrics": {
+                "real_consumption_growth": growth,
+                "nominal_retail_yoy": round(ret, 2),
+                "inflation_cpi_yoy": round(cpi, 2)
+            },
+            "interpretation": "Measures real household consumption volume by stripping CPI inflation from nominal retail sales growth (RSAFS). Real growth < 0.0 signals real demand contraction."
         }
     except (TypeError, ValueError):
         return None
@@ -2877,6 +3062,12 @@ def main():
     if m_vix:
         models_calculated.append(m_vix)
 
+    # Model 17: Macro Equity Risk Premium (ERP)
+    sp500_ey_val = series.get("SP500_EARNINGS_YIELD", {}).get("current_value")
+    m_erp = calc_macro_equity_risk_premium(sp500_ey_val, dgs10_val)
+    if m_erp:
+        models_calculated.append(m_erp)
+
     # Model 18: Okun Misery Index (UNRATE x CPI YoY)
     m_misery = calc_misery_index(unrate_curr, cpi_yoy)
     if m_misery:
@@ -2942,12 +3133,35 @@ def main():
     if m_dual_track:
         models_calculated.append(m_dual_track)
 
+    # Model 23.2: Total Funds Flow and Velocity Momentum
+    m2_val = series.get("M2SL", {}).get("current_value")
+    m2_v_val = series.get("M2V", {}).get("current_value")
+    m2_prev = series.get("M2SL", {}).get("previous_value")
+    m2_v_prev = series.get("M2V", {}).get("previous_value")
+    prev_tff_val = (float(m2_prev) * float(m2_v_prev)) if (m2_prev is not None and m2_v_prev is not None) else None
+    m_tff = calc_total_funds_flow(m2_val, m2_v_val, prev_tff=prev_tff_val)
+    if m_tff:
+        models_calculated.append(m_tff)
+
+    # Model 23.3: Housing Affordability and Bubble Gauge
+    mspus_val = series.get("MSPUS", {}).get("current_value")
+    ces_ahe_val = series.get("CES0500000003", {}).get("current_value")
+    m_housing_bubble = calc_housing_bubble_gauge(mspus_val, ces_ahe_val)
+    if m_housing_bubble:
+        models_calculated.append(m_housing_bubble)
+
     # Model 23.4: Early Layoff and Recession Signal
     indpro_yoy = series.get("INDPRO", {}).get("transformations", {}).get("percent_change_from_year_ago")
     awhaetp_yoy = series.get("AWHAETP", {}).get("transformations", {}).get("percent_change_from_year_ago")
     m_layoff = calc_early_layoff_signal(indpro_yoy, awhaetp_yoy)
     if m_layoff:
         models_calculated.append(m_layoff)
+
+    # Model 23.5: Real Consumption Collapse Radar
+    rsafs_yoy = series.get("RSAFS", {}).get("transformations", {}).get("percent_change_from_year_ago")
+    m_real_cons = calc_real_consumption_collapse_radar(rsafs_yoy, cpi_yoy)
+    if m_real_cons:
+        models_calculated.append(m_real_cons)
 
     # Model 23.6: Early Employment Crack Signal (FRED IC4WSA x UNRATE)
     ic4wsa_yoy = series.get("IC4WSA", {}).get("transformations", {}).get("percent_change_from_year_ago")

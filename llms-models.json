@@ -8,11 +8,11 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-models.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-20T01:52:46.217396+00:00",
+    "last_updated": "2026-11-20T02:23:21.151798+00:00",
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-20T01:52:46.217396+00:00",
+    "last_successful_sync": "2026-11-20T02:23:21.151798+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -22,7 +22,7 @@
       "U.S. Energy Information Administration (EIA)"
     ],
     "entity_dictionary": "https://analysisreports.github.io/llms-entities-id.txt",
-    "total_models_active": 46
+    "total_models_active": 50
   },
   "models": [
     {
@@ -315,6 +315,24 @@
       "interpretation": "30-day forward S&P 500 implied volatility fear gauge and systemic liquidity stress regime."
     },
     {
+      "model_id": "MODEL_17",
+      "model_name": "Macro Equity Risk Premium (ERP)",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#17",
+      "primary_value": -1.01,
+      "unit": "Percent",
+      "status": "OVERVALUED_STOCKS",
+      "inputs": {
+        "sp500_earnings_yield_pct": 4.09,
+        "treasury_10y_yield_pct": 5.1
+      },
+      "metrics": {
+        "equity_risk_premium_pct": -1.01,
+        "earnings_yield": 4.09,
+        "risk_free_rate": 5.1
+      },
+      "interpretation": "Measures the excess yield premium offered by equities relative to the risk-free 10-year US Treasury yield. ERP < 0.50% signals overvalued stocks."
+    },
+    {
       "model_id": "MODEL_18",
       "model_name": "Okun Misery Index",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#18",
@@ -446,6 +464,41 @@
       "interpretation": "Cross-evaluates payroll gains against unemployment rate and participation rate shifts to determine whether employment growth is organically absorbing new entrants or masking structural deterioration."
     },
     {
+      "model_id": "MODEL_23.2",
+      "model_name": "Total Funds Flow and Velocity Momentum",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.2",
+      "primary_value": 33177.5,
+      "unit": "Billions USD (Flow)",
+      "status": "BALANCED_LIQUIDITY_FLOW",
+      "inputs": {
+        "m2_money_supply_bil": 23413.9,
+        "m2_velocity_ratio": 1.417
+      },
+      "metrics": {
+        "total_funds_flow": 33177.5,
+        "tff_qoq_pct": 0.27
+      },
+      "interpretation": "Models effective monetary flow volume by multiplying broad money supply (M2) by velocity of money (M2V)."
+    },
+    {
+      "model_id": "MODEL_23.3",
+      "model_name": "Housing Affordability and Bubble Gauge",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.3",
+      "primary_value": 10350.0,
+      "unit": "Labor Hours per Home",
+      "status": "ACCESSIBLE_MARKET",
+      "inputs": {
+        "median_sales_price_usd": 393300.0,
+        "average_hourly_earnings_usd": 38.0
+      },
+      "metrics": {
+        "affordability_hours": 10350.0,
+        "median_sales_price": 393300.0,
+        "average_hourly_earnings": 38.0
+      },
+      "interpretation": "Measures housing affordability by dividing median home sales price (MSPUS) by average hourly earnings (CES0500000003). Ratio > 13500 hours signals severe bubble risk."
+    },
+    {
       "model_id": "MODEL_23.4",
       "model_name": "Early Layoff and Recession Signal",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.4",
@@ -462,6 +515,24 @@
         "awhaetp_yoy_pct": 0.58
       },
       "interpretation": "Detects latent employment losses and early recessionary inflection before headline unemployment rises by synthesizing weekly hours worked against industrial production momentum."
+    },
+    {
+      "model_id": "MODEL_23.5",
+      "model_name": "Real Consumption Collapse Radar",
+      "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.5",
+      "primary_value": 2.74,
+      "unit": "Percentage Points (YoY)",
+      "status": "STRONG_VOLUME_EXPANSION",
+      "inputs": {
+        "retail_sales_yoy_pct": 6.82,
+        "cpi_yoy_pct": 4.08
+      },
+      "metrics": {
+        "real_consumption_growth": 2.74,
+        "nominal_retail_yoy": 6.82,
+        "inflation_cpi_yoy": 4.08
+      },
+      "interpretation": "Measures real household consumption volume by stripping CPI inflation from nominal retail sales growth (RSAFS). Real growth < 0.0 signals real demand contraction."
     },
     {
       "model_id": "MODEL_23.6",
