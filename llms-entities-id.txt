@@ -394,6 +394,7 @@ IND_PET_WCRFPUS2_W    | Source: EIA | Name: Weekly U.S. Field Production of Crud
 IND_PET_WGTSTUS1_W    | Source: EIA | Name: Weekly U.S. Ending Stocks of Total Gasoline (Thousand Barrels)
 IND_NG_NW2_EPG0_SWO_R48_BCF_W | Source: EIA | Name: Weekly Lower 48 Natural Gas In Underground Storage (Billion Cubic Feet)
 IND_PET_WPULEUS3_W    | Source: EIA | Name: Weekly U.S. Percent Utilization of Refinery Operable Capacity (Percent)
+IND_PORTWATCH_HORMUZ_AIS | Source: IMF PortWatch | Name: Hormuz Strait Daily AIS Transit Shift vs 2023 Baseline (Percent)
 IND_DEXKOUS           | Source: FRED | Name: Spot Exchange Rate South Korean Won to US Dollars (DEXKOUS)
 IND_USEPUINDXD        | Source: FRED | Name: Economic Policy Uncertainty Index for United States
 IND_FYFRG             | Source: FRED | Name: Federal Receipts: Customs Duties (Millions USD)

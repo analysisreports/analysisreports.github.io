@@ -487,9 +487,9 @@
         "function": "calculate_net_fed_liquidity",
         "formula": "RRP_Millions = RRPONTSYD_Billions * 1000; Net_Liquidity_Millions = WALCL_Millions - (WTREGEN_Millions + RRP_Millions)",
         "status_enums": [
-          "LIQUIDITY_EXPANSION",
-          "NEUTRAL",
-          "LIQUIDITY_CONTRACTION"
+          "EXPANSIVE_LIQUIDITY_SURPLUS",
+          "NEUTRAL_LIQUIDITY_EQUILIBRIUM",
+          "RESTRICTIVE_LIQUIDITY_DRAIN"
         ]
       }
     },
@@ -760,7 +760,7 @@
         "formula": "Sahm_Diff = SAHMREALTIME",
         "status_enums": [
           "RECESSION_CONFIRMED",
-          "RECESSION_WARNING",
+          "PRE_RECESSION_WARNING",
           "NORMAL_LABOR_MARKET"
         ]
       }
@@ -790,7 +790,7 @@
           "COMPLACENCY",
           "NORMAL_VOLATILITY",
           "ELEVATED_STRESS",
-          "ACUTE_FEAR_PANIC"
+          "CRISIS_SHOCK"
         ]
       }
     },
@@ -802,9 +802,9 @@
         "function": "calculate_gold_oil_ratio",
         "formula": "Gold_Oil_Ratio = IND_WB_GOLD / DCOILWTICO",
         "status_enums": [
-          "NORMAL_ECONOMIC_EXPANSION",
-          "ELEVATED_MACRO_FRICTION",
-          "MACRO_CRISIS_RECESSION"
+          "MACRO_CRISIS_RECESSION",
+          "SUPPLY_SHOCK_INFLATION",
+          "HISTORICAL_EQUILIBRIUM"
         ]
       }
     },
@@ -1739,6 +1739,17 @@
         "source": "EIA",
         "units": "Percent"
       }
+    },
+    {
+      "id": "IND_PORTWATCH_HORMUZ_AIS",
+      "label": "Hormuz Strait Daily AIS Transit Shift vs 2023 Baseline",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "IMF PortWatch",
+        "units": "Percent",
+        "portwatch_id": "chokepoint6",
+        "trans": "lin"
+      }
     }
   ],
   "edges": [
@@ -2657,17 +2668,17 @@
     {
       "source": "IND_PET_WCSSTUS1_W",
       "target": "IND_TRIGGER_US_SPR_BUFFER",
-      "type": "FEEDS_TRIGGER",
+      "type": "INGESTS_SERIES",
       "role": "spr_inventory_drawdown"
     },
     {
       "source": "IND_PMAIZMTUSDM",
       "target": "IND_TRIGGER_CORN_PRICE",
-      "type": "FEEDS_TRIGGER",
+      "type": "INGESTS_SERIES",
       "role": "corn_price_draw"
     },
     {
-      "source": "CHOKE_HORMUZ",
+      "source": "IND_PORTWATCH_HORMUZ_AIS",
       "target": "MODEL_28.6",
       "type": "INGESTS_SERIES",
       "role": "ais_vessel_transit_shift_pct"

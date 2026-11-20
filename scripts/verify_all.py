@@ -90,7 +90,7 @@ def main():
 
     all_passed = True
     for title, script_name, desc, success, duration, _ in results:
-        status_tag = "✔ PASSED" if success else "✖ FAILED"
+        status_tag = "[PASS]" if success else "[FAIL]"
         if not success:
             all_passed = False
         print(f"  {status_tag:<10} | {title:<42} | {desc}")
