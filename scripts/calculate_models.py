@@ -902,7 +902,7 @@ def calc_brent_wti_spread(
 
 
 # --- Model 25.13: Labor Market Momentum Index (LMMI / EMME) ---
-def calc_labor_market_momentum_index(payems_curr, payems_yr_ago, unrate_curr, unrate_yr_ago):
+def calc_labor_market_momentum_index(payems_curr, payems_yr_ago, unrate_curr, unrate_yr_ago, prev_lmmi=None):
     if any(v is None or isinstance(v, bool) for v in (payems_curr, payems_yr_ago, unrate_curr, unrate_yr_ago)):
         return None
     try:
@@ -926,14 +926,30 @@ def calc_labor_market_momentum_index(payems_curr, payems_yr_ago, unrate_curr, un
         lmmi = round(raw_lmmi, 2)
         strength_ratio = round(p_growth * (1.0 / u_curr), 2) if u_curr > 0 else None
 
-        if lmmi > 1.0:
-            status = "STRONG_LABOR_EXPANSION"
-        elif lmmi > 0.20:
-            status = "MODERATE_LABOR_EXPANSION"
-        elif lmmi < -0.20:
-            status = "LABOR_MARKET_DETERIORATION_RISK"
+        # Dynamic momentum direction check if historical LMMI benchmark is provided
+        if prev_lmmi is not None and not isinstance(prev_lmmi, bool):
+            try:
+                p_lmmi = float(prev_lmmi)
+                if math.isfinite(p_lmmi):
+                    if lmmi > 0.20:
+                        status = "DECELERATING_LABOR_MOMENTUM" if lmmi < p_lmmi else "STRONG_LABOR_EXPANSION"
+                    elif lmmi < -0.20:
+                        status = "LABOR_MARKET_DETERIORATION_RISK"
+                    else:
+                        status = "BALANCED_LABOR_MARKET"
+                else:
+                    return None
+            except (TypeError, ValueError):
+                return None
         else:
-            status = "BALANCED_LABOR_MARKET"
+            if lmmi > 1.0:
+                status = "STRONG_LABOR_EXPANSION"
+            elif lmmi > 0.20:
+                status = "MODERATE_LABOR_EXPANSION"
+            elif lmmi < -0.20:
+                status = "LABOR_MARKET_DETERIORATION_RISK"
+            else:
+                status = "BALANCED_LABOR_MARKET"
 
         return {
             "model_id": "MODEL_25.13",
@@ -1914,9 +1930,9 @@ def calc_household_credit_stress(delinquency_rate_val, saving_rate_val) -> Optio
         if delinq < 0.0:
             return None
 
-        # If saving rate is zero or negative, buffer is exhausted
+        # If saving rate is zero or negative, buffer is exhausted; ratio is strictly null (zero synthetic fallback)
         if saving <= 0.0:
-            ratio = 999.0
+            ratio = None
             status = "SEVERE_CONSUMER_STRESS"
         else:
             ratio = round(delinq / saving, 3)

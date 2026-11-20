@@ -113,6 +113,7 @@ def _is_num(val):
 
 ### 17. MACRO EQUITY RISK PREMIUM (ERP)
 - Purpose: Measures the excess yield premium offered by equities (S&P 500 earnings yield) relative to the risk-free 10-year US Treasury yield.
+- Execution Profile: On-Demand Tool Specification & Prompting Reference. Evaluated when live S&P 500 earnings yield telemetry is supplied by external fundamental market feeds.
 - Data Series Keys:
   - Multpl / FRED Proxy: SP500_EARNINGS_YIELD (S&P 500 Trailing/Forward Earnings Yield / 1/PE * 100)
   - FRED: DGS10 (Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity)
@@ -360,6 +361,7 @@ def _is_num(val):
 
 ### 23.2. TOTAL FUNDS FLOW AND VELOCITY MOMENTUM (TOTAL FUNDS FLOW)
 - Purpose: Models real and financial transaction liquidity volume, effective monetary flow, and asset inflation pressure by multiplying broad money supply (M2) by the velocity of money (M2V). (Note: As M2V is quarterly, M2SL observations must be aligned to quarterly frequency).
+- Execution Profile: On-Demand Tool Specification & Prompting Reference. Evaluated on quarterly intervals upon release of FRED M2V velocity telemetry.
 - Data Series Keys:
   - FRED: M2SL (M2 Money Supply - Billions of USD, Seasonally Adjusted)
   - FRED: M2V (Velocity of M2 Money Stock - Quarterly)
@@ -527,6 +529,7 @@ def _is_num(val):
 
 ### 23.6. EARLY EMPLOYMENT CRACK SIGNAL
 - Purpose: Detects leading employment cracks by tracking weekly initial claims spikes when the headline unemployment rate (a lagging metric) appears benign.
+- Methodological Dual-Confirmation Rationale: Initial claims (ICSA/IC4WSA) serve as a high-frequency leading flow metric, while the civilian unemployment rate (UNRATE) is a lagging stock metric. The index subtracts 10x the positive unemployment rate change to isolate whether claims are surging independently before headline unemployment catches up. The joint requirement (claims_yoy >= 15% and crack_index > 15) establishes dual statistical confirmation, preventing temporary seasonal layoff noise from triggering false macroeconomic crisis alarms.
 - Data Series Keys:
   - FRED Benchmark: IC4WSA (4-Week Moving Average of Initial Claims - YoY Percent Change)
   - FRED Alternative: ICSA (Initial Claims - Weekly Level YoY Percent Change)
@@ -611,6 +614,7 @@ def _is_num(val):
 
 ### 23.8. MORTGAGE AND PERMIT DIVERGENCE (HOUSING FREEZE INDEX)
 - Purpose: Measures divergence between surging mortgage rates and builder permitting appetite to model housing supply constraints, market lock-in effects, and shelter inflation persistence. (Note: As MORTGAGE30US is weekly, monthly average must be aligned to PERMIT).
+- Methodological Scaling & Normalization Rationale: Building permit annual growth (PERMIT_YoY) exhibits an empirical standard deviation roughly an order of magnitude larger than nominal mortgage rate levels (e.g. ±20% to ±40% swings vs. 3% to 8% interest rates). Dividing PERMIT_YoY by 10.0 linearly normalizes its variance to match the unit magnitude of 30-year fixed mortgage rates, allowing a balanced composite spread without permits completely overwhelming interest rate dynamics. The 5.0 and 8.0 thresholds correspond empirically to historical median mortgage burdens and severe affordability contraction zones (such as post-1981 and 2022-2024 lock-in regimes).
 - Data Series Keys:
   - FRED: MORTGAGE30US (30-Year Fixed Rate Mortgage Average in the United States - Percent)
   - FRED: PERMIT (New Privately-Owned Housing Units Authorized - YoY Percent Change)
