@@ -95,3 +95,8 @@ jobs:
         run: |
           python scripts/verify_special_sources.py
           python -m unittest discover -s scripts -p test_special_sources.py
+
+      - name: Guard quantitative models TXT and JSON twin
+        run: |
+          python scripts/verify_models_source.py
+          python -m unittest discover -s scripts -p test_models_source.py

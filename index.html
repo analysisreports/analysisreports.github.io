@@ -87,17 +87,18 @@
 
   <style>
     :root {
-      --bg: #0d1117;
-      --card-bg: #161b22;
-      --border: #30363d;
-      --text: #c9d1d9;
-      --heading: #f0f6fc;
-      --accent: #58a6ff;
-      --accent-hover: #79c0ff;
-      --badge-bg: #21262d;
+      --bg: #f6f7f5;
+      --card-bg: #ffffff;
+      --border: #d8ddd9;
+      --text: #30363a;
+      --heading: #17324d;
+      --accent: #315f7d;
+      --accent-hover: #193f5a;
+      --muted: #667077;
+      --badge-bg: #eef2f0;
     }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-family: "Segoe UI", Arial, sans-serif;
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
@@ -105,38 +106,41 @@
       padding: 0;
     }
     .container {
-      max-width: 1040px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 52px 24px 32px;
     }
     header {
       border-bottom: 1px solid var(--border);
-      padding-bottom: 24px;
-      margin-bottom: 32px;
+      padding-bottom: 28px;
+      margin-bottom: 34px;
     }
     h1 {
       color: var(--heading);
-      font-size: 2rem;
-      margin: 0 0 10px 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 0 0 12px 0;
       font-weight: 600;
+      letter-spacing: -0.025em;
     }
     .subtitle {
-      font-size: 1.05rem;
-      color: #8b949e;
-      margin: 0 0 16px 0;
+      max-width: 820px;
+      font-size: 1.08rem;
+      color: var(--muted);
+      margin: 0 0 20px 0;
     }
     .author-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 8px;
       font-size: 0.85rem;
     }
     .badge {
       background: var(--badge-bg);
       border: 1px solid var(--border);
-      padding: 4px 10px;
-      border-radius: 6px;
-      color: var(--heading);
+      padding: 5px 10px;
+      border-radius: 3px;
+      color: var(--text);
       text-decoration: none;
     }
     .badge:hover {
@@ -144,20 +148,21 @@
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
       margin-bottom: 36px;
     }
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px;
+      border-radius: 3px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
     }
     .card h2 {
-      font-size: 1.15rem;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.22rem;
       color: var(--heading);
       margin: 0 0 12px 0;
       display: flex;
@@ -165,8 +170,8 @@
       gap: 8px;
     }
     .card p {
-      font-size: 0.9rem;
-      color: #8b949e;
+      font-size: 0.92rem;
+      color: var(--muted);
       margin: 0 0 16px 0;
     }
     .link-list {
@@ -175,13 +180,14 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 7px;
     }
     .link-list a {
       color: var(--accent);
       text-decoration: none;
       font-size: 0.88rem;
-      font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-weight: 600;
       display: inline-block;
       transition: color 0.15s ease;
     }
@@ -193,12 +199,27 @@
       border-top: 1px solid var(--border);
       padding-top: 24px;
       font-size: 0.85rem;
-      color: #8b949e;
+      color: var(--muted);
       text-align: center;
     }
     footer a {
       color: var(--accent);
       text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 32px 18px 24px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -219,114 +240,62 @@
 
     <main>
       <div class="grid">
-        <!-- Card 1: Core AI Ingestion Manifests -->
+        <!-- Card 1: Core research indexes -->
         <div class="card">
-          <h2>🧭 Core Ingestion & Manifests</h2>
+          <h2>Core Ingestion & Manifests</h2>
           <p>Canonical root manifests and guidelines optimized for autonomous AI agents, LLMs, and research crawlers.</p>
           <ul class="link-list">
-            <li><a href="llms.txt">llms.txt (Root Manifest)</a></li>
-            <li><a href="llms-full.txt">llms-full.txt (Full Directory)</a></li>
-            <li><a href="llms-about.txt">llms-about.txt (Author & Methodology)</a></li>
-            <li><a href="llms-prompts.txt">llms-prompts.txt (6-Stage CoT Directives)</a></li>
-            <li><a href="llms-tools.json">llms-tools.json (Callable Agent Tools)</a></li>
-            <li><a href="ai-catalog.json">ai-catalog.json (Resource Discovery)</a></li>
+            <li><a href="llms.txt">Research Library Index</a></li>
+            <li><a href="llms-full.txt">Full Research Directory</a></li>
+            <li><a href="llms-about.txt">Author and Methodology</a></li>
+            <li><a href="WORKFLOW.md">Research Integration Protocol</a></li>
           </ul>
         </div>
 
-        <!-- Card 2: Living Situation Reports & News -->
+        <!-- Card 2: Current research outputs -->
         <div class="card">
-          <h2>⚡ Real-Time Telemetry & News</h2>
+          <h2>Real-Time Telemetry & News</h2>
           <p>Consolidated high-frequency situation reports and accredited geopolitical intelligence synthesized across global sensors.</p>
           <ul class="link-list">
             <li><a href="llms-sitrep.txt">llms-sitrep.txt (Consolidated SITREP)</a></li>
-            <li><a href="llms-sitrep.json">llms-sitrep.json (SITREP JSON Twin)</a></li>
             <li><a href="llms-news.txt">llms-news.txt (Tier-1 Wire Dispatches)</a></li>
-            <li><a href="llms-news.json">llms-news.json (News JSON Twin)</a></li>
             <li><a href="llms-models.txt">llms-models.txt (Evaluated Models)</a></li>
-            <li><a href="llms-models.json">llms-models.json (Models JSON Twin)</a></li>
+            <li><a href="llms-full.txt">Complete Research Directory</a></li>
           </ul>
         </div>
 
-        <!-- Card 3: Quantitative Formulas & Shelves -->
+        <!-- Card 3: Quantitative formulas -->
         <div class="card">
-          <h2>📐 Quantitative Formula Shelves</h2>
+          <h2>Quantitative Formula Shelves</h2>
           <p>Deterministic mathematical formulations covering central bank rates, labor momentum, supply shocks, and maritime chokepoints.</p>
           <ul class="link-list">
             <li><a href="llms-formulas.txt">llms-formulas.txt (Master Router)</a></li>
-            <li><a href="llms-formulas-rates-liquidity.txt">llms-formulas-rates-liquidity.txt (Rates & Liquidity)</a></li>
-            <li><a href="llms-formulas-macro-labor.txt">llms-formulas-macro-labor.txt (Macro & Labor)</a></li>
-            <li><a href="llms-formulas-commodities-shock.txt">llms-formulas-commodities-shock.txt (Commodities)</a></li>
-            <li><a href="llms-formulas-geopolitics.txt">llms-formulas-geopolitics.txt (Geopolitics & Chokepoints)</a></li>
+            <li><a href="llms-formulas-rates-liquidity.txt">Rates and Liquidity Models</a></li>
+            <li><a href="llms-formulas-macro-labor.txt">Macroeconomic and Labor Models</a></li>
+            <li><a href="llms-formulas-commodities-shock.txt">Commodities and Supply-Shock Models</a></li>
           </ul>
         </div>
 
-        <!-- Card 4: Knowledge Graph Subgraphs -->
+        <!-- Card 4: Data and structural frameworks -->
         <div class="card">
-          <h2>🕸️ Graph RAG Architecture</h2>
-          <p>Topological knowledge graphs linking sovereign actors, bilateral alliances, maritime chokepoints, and econometric indicators.</p>
+          <h2>Data, Graphs & Schemas</h2>
+          <p>Canonical observation registries, topological knowledge graphs, bilateral relationship matrices, and Draft 2020-12 ontological schema contracts.</p>
           <ul class="link-list">
-            <li><a href="llms-graph.json">llms-graph.json (Master Graph Router)</a></li>
-            <li><a href="llms-graph-models.json">llms-graph-models.json (Models Subgraph)</a></li>
-            <li><a href="llms-graph-chokepoints.json">llms-graph-chokepoints.json (Chokepoints Subgraph)</a></li>
-            <li><a href="llms-graph-actors.json">llms-graph-actors.json (Sovereign Actors Subgraph)</a></li>
-            <li><a href="llms-entities-id.txt">llms-entities-id.txt (Entity ID Dictionary)</a></li>
-          </ul>
-        </div>
-
-        <!-- Card 5: Bilateral Sovereign Dyad Shelves -->
-        <div class="card">
-          <h2>🌍 Sovereign Country Hubs</h2>
-          <p>Bilateral dyadic relationship matrices and baseline polarity scores across four sovereign geopolitical axes.</p>
-          <ul class="link-list">
-            <li><a href="llms-country-relationships-us.txt">llms-country-relationships-us.txt (United States & Western Hub)</a></li>
-            <li><a href="llms-country-relationships-ru.txt">llms-country-relationships-ru.txt (Russian & Eurasian Hub)</a></li>
-            <li><a href="llms-country-relationships-cn.txt">llms-country-relationships-cn.txt (China & BRI Hub)</a></li>
-            <li><a href="llms-country-relationships-ir.txt">llms-country-relationships-ir.txt (Iran & Regional Security Hub)</a></li>
-            <li><a href="llms-relationships.txt">llms-relationships.txt (Dynamic Polarity Matrix)</a></li>
-          </ul>
-        </div>
-
-        <!-- Card 6: Time-Series Registries & Ingestion Contracts -->
-        <div class="card">
-          <h2>📊 Ingested Series & Benchmarks</h2>
-          <p>Canonical observation registries and live central bank/energy time-series.</p>
-          <ul class="link-list">
-            <li><a href="llms-fred-series.json">llms-fred-series.json (FRED US Macro)</a></li>
-            <li><a href="llms-ecb-series.json">llms-ecb-series.json (ECB Eurozone)</a></li>
-            <li><a href="llms-eia-series.json">llms-eia-series.json (EIA Energy & SPR)</a></li>
-            <li><a href="llms-imf-series.json">llms-imf-series.json (IMF Global Macro)</a></li>
-            <li><a href="llms-worldbank-series.json">llms-worldbank-series.json (World Bank)</a></li>
-            <li><a href="llms-nyfed-series.json">llms-nyfed-series.json (NY Fed Liquidity)</a></li>
-            <li><a href="llms-census-series.json">llms-census-series.json (US Census Trade)</a></li>
-            <li><a href="llms-portwatch.json">llms-portwatch.json (IMF PortWatch AIS)</a></li>
-            <li><a href="WORKFLOW.md">WORKFLOW.md (Integration Protocol)</a></li>
-          </ul>
-        </div>
-
-        <!-- Card 7: Canonical Domain Ontologies & Schemas -->
-        <div class="card">
-          <h2>📜 Domain Ontologies & Schemas</h2>
-          <p>Canonical JSON payloads and Draft 2020-12 ontological schema contracts defining macro research domains.</p>
-          <ul class="link-list">
-            <li><a href="economy.json">economy.json (Central Bank & Policy Rates)</a></li>
-            <li><a href="country.json">country.json (Sovereign Strategic Assessment)</a></li>
-            <li><a href="political.json">political.json (Domestic Political Risk)</a></li>
-            <li><a href="political-country.json">political-country.json (Bilateral Friction)</a></li>
-            <li><a href="strategic-macro.json">strategic-macro.json (Unified Macro Regime)</a></li>
-            <li><a href="concept.json">concept.json (Theoretical Frameworks & Mechanisms)</a></li>
-            <li><a href="editorial.json">editorial.json (Institutional Editorial Nodes)</a></li>
-            <li><a href="glossary.json">glossary.json (Terminology & Concept Engine)</a></li>
+            <li><a href="llms-indicators.txt">Official Time-Series Registry</a></li>
+            <li><a href="llms-country-relationships.txt">Country Relationship Index</a></li>
+            <li><a href="llms-graph.json">Structural Knowledge Graph</a></li>
+            <li><a href="ai-catalog.json">Complete Machine-Readable Catalog</a></li>
           </ul>
         </div>
       </div>
     </main>
 
     <footer>
-      <p style="font-size: 0.82rem; color: #8b949e; max-width: 850px; margin: 0 auto 14px auto; font-style: italic;">
+      <p style="font-size: 0.82rem; color: var(--muted); max-width: 850px; margin: 0 auto 14px auto; font-style: italic;">
         <strong>Non-Financial Advice Disclaimer:</strong> The information, deterministic econometric models, and geopolitical estimates contained herein are research study notes and macro regime algorithms for AI models and researchers. They do not constitute investment advisory services, algorithmic trading signals, or speculative financial recommendations. All analytical decisions and evaluations rest solely with the user.
       </p>
-      <p style="font-size: 0.85rem; color: #8b949e; margin-bottom: 8px;">
-        Architected by <strong>Ersoy Toptaş</strong>. Automated reasoning, schema verification, code auditing, and knowledge graph engineering workflows executed using <strong>Google Gemini Models</strong> and <strong>GitHub Copilot</strong>.
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0 auto 8px; max-width: 850px; text-align: center;">
+        Developed by <strong>Ersoy Toptaş</strong>. Artificial intelligence models were used to support content, schema, and code review workflows.
       </p>
       <p style="font-size: 0.85rem; margin-bottom: 8px;">
         &copy; 2026 Ersoy Toptaş. All rights reserved. Licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 (CC BY-NC-ND 4.0)</a>.

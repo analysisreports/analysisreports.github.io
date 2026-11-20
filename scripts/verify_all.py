@@ -36,6 +36,7 @@ TEST_SUITE: List[Tuple[str, str, str, Tuple[str, ...]]] = [
     ("Cross-File Polarity Consistency (SSOT)", "verify_cross_consistency.py", "Read-only Single Source of Truth check", ("--check",)),
     ("Country Relationship TXT/JSON Twin Guard", "verify_country_relationships_source.py", "4 Shelves, 165 Dyads, field-level parity", ()),
     ("Special Canonical TXT Source Guard", "verify_special_sources.py", "Entities, indicators, formulas, News & SITREP", ()),
+    ("Quantitative Models TXT/JSON Twin Guard", "verify_models_source.py", "50 Models, field-level parity & formula anchors", ()),
     ("Dyad Symmetry & Hub Isolation Guard", "verify_dyad_integrity.py", "165 Dyads, 0 Leaks, 100% Symmetric Mirrors", ()),
     ("Chronological & Treaty Temporal Sanity", "verify_temporal_sanity.py", "Sequence (Sign<=Enact), Watersheds, 2026 Horizon", ()),
     ("Knowledge Graph Topology & Edge Integrity", "verify_graph_topology.py", "Topological Health, Zero Broken Edges, SSOT Polarity Invariance", ()),

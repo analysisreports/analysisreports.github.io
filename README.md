@@ -17,7 +17,7 @@ This repository hosts machine-readable ontological data models, quantitative fra
 
 ---
 
-> *Technical Note: Architected by Ersoy Toptaş. Automated reasoning, schema verification, code auditing, and knowledge graph engineering workflows executed using Google Gemini models and GitHub Copilot.* **[analysisreports](https://github.com/analysisreports/analysisreports.github.io)** 
+> *Technical Note: Developed by Ersoy Toptaş. AI models were used as support tools for content, schema, and code review workflows.* **[analysisreports](https://github.com/analysisreports/analysisreports.github.io)**
 
 ---
 
