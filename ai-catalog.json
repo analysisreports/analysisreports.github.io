@@ -615,7 +615,7 @@
     "graph_rag": true,
     "bilateral_dyads": true
   },
-  "last_updated": "2026-11-19",
+  "last_updated": "2026-11-20",
   "monitored_directories": {
     "economy": {
       "total_payloads": 2,
