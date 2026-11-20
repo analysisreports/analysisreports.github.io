@@ -118,6 +118,8 @@ def _is_num(val):
 
 ### 25.15. DOMESTIC GOVERNANCE GRIDLOCK & EXTERNAL TARIFF FRICTION ENGINE (GOVERNANCE_GRIDLOCK_FRICTION)
 - Purpose: Quantifies how sovereign executive-legislative power balances, parliamentary seat margins, and regime structures constrain domestic policy space and systematically force executive leadership to deploy unilateral external economic leverage (Section 232/301 tariffs, IEEPA sanctions, emergency trade restrictions).
+- Sovereign Scope & Supported Country Sub-Engine:
+  - This model is strictly parameterized for a closed benchmark subset of 6 key geopolitical sovereign actors: `GEO_US`, `GEO_DE`, `GEO_IL`, `GEO_JP`, `GEO_CN`, and `GEO_RU`. Other sovereign entities not included in this canonical subset return `None` (null).
 - Canonical Entity Mapping (llms-entities-id.txt):
   - GEO_US: Presidential / Bicameral Congress (218 House threshold, 60 Senate Filibuster).
   - GEO_DE: Parliamentary Coalition (Bundestag 316 majority threshold, Schuldenbremse fiscal brake).
@@ -280,9 +282,9 @@ def _is_num(val):
 ---
 
 ### 25.19. MULTI-LAYER MACROECONOMIC TRANSMISSION ENGINE
-- Purpose: Calculate eight bounded macroeconomic trigger scores and transmit their signed contributions to bilateral relationship deltas. Model 25.18 calculates the separate Mecca Pact delta; Model 25.1 combines the deltas with the structural baseline and classifies the resulting net polarity.
+- Purpose: Calculate nine bounded macroeconomic trigger scores and transmit their signed contributions to bilateral relationship deltas. Model 25.18 calculates the separate Mecca Pact delta; Model 25.1 combines the deltas with the structural baseline and classifies the resulting net polarity.
 - Notation: `current` and `prior` mean the latest and year-ago observations retained for each series.
-- Percentage change: `P(current, prior) = round(clamp(current / prior - 1, -1, 1), 4)`. The prior value must be positive. For example, an increase of 32.74% produces +0.3274.
+- Percentage change: `P(current, prior) = round(clamp(current / prior - 1, -1, 1), 4)`. The prior value must be strictly positive (`prior > 0`). If `prior <= 0`, percentage change is mathematically undefined and returns `null`. For example, an increase of 32.74% produces +0.3274.
 - Signed-index change: `D(current, prior) = round(clamp(current - prior, -1, 1), 4)`. This measures a difference in index points rather than a percentage, so it remains meaningful when the prior index is zero or negative.
 - A positive score means the measured indicator increased; a negative score means it decreased. Clamping limits both methods to [-1, 1]. Neither method determines the direction or size of an effect on a country relationship.
 
@@ -291,6 +293,7 @@ def _is_num(val):
   - Inputs: FRED `DCOILBRENTEU` (Brent) and `DCOILWTICO` (WTI), current and year-ago prices.
   - `spread_current = Brent_current - WTI_current`; `spread_prior = Brent_prior - WTI_prior`.
   - `trigger = P(spread_current, spread_prior)`.
+  - **Spread Boundary & Positivity Rule:** Brent and WTI price inputs must be finite and strictly positive. Because `P(current, prior)` requires `prior > 0`, the historical benchmark spread must be strictly positive (`spread_prior > 0`). If Brent-WTI spread inverts or collapses (`spread_prior <= 0`), the percentage change is mathematically invalid, returning `null` with status `INVALID_DATA` ('Annual percentage change requires a positive prior model value.').
   - Measures change in the benchmark price difference; it does not directly observe a Hormuz disruption.
 - `IND_TRIGGER_OVX_ENERGY_PANIC`
   - Inputs: FRED `OVXCLS` and `VIXCLS`, current and year-ago index values.
@@ -338,7 +341,7 @@ def _is_num(val):
 
 - UA_RU maps wheat, corn and GSCPI to direction -1, a modeling assumption that rising global grain prices and supply-chain pressure worsen the modeled polarity. The same dominant-selection rule applies to all three, so GSCPI can also be dominant; the Baltic-only floor does not apply. Each trigger uses its own latest observation, which can be from a different month; the combined delta is not a same-month measurement. This is a market-pressure proxy, not evidence that the conflict has escalated or ended.
 - TR_SY maps wheat (FRED PWHEAMTUSDM, direction -1) and supply-chain pressure (NY Fed GSCPI, direction -1) to capture regional food security and cross-border corridor logistics friction.
-- US_VE maps benchmark price spread (FRED Brent-WTI HORMUZ_SPREAD, direction +1) and dollar funding stress (FRED SOFR, direction -1) to capture US Gulf Coast heavy crude refinery demand elasticity and unilateral financial sanctions pressure.
+- US_VE maps benchmark price spread (FRED Brent-WTI HORMUZ_SPREAD, direction +1), dollar funding stress (FRED SOFR, direction -1), and U.S. emergency petroleum buffer depletion (EIA US_SPR_BUFFER, direction -1) to capture US Gulf Coast heavy crude refinery demand elasticity, unilateral financial sanctions pressure, and strategic inventory erosion.
 - All triggers mapped to a relationship are required. If any is unavailable, the relationship's dynamic_delta and P_net are null and its regime is UNAVAILABLE. Contributions, directions, statuses and the dominant trigger are published in `llms-relationships.json` and `llms-relationships.txt`.
 - Legacy petrol, chip and VIX deltas remain visible separately and are not added to P_net.
 
@@ -704,11 +707,10 @@ def _is_num(val):
 ---
 
 ### 28.6. MARITIME OBSERVABILITY DIVERGENCE INDEX (MODI)
-- Purpose: Evaluates the divergence between civilian open-satellite AIS transit telemetry (IMF PortWatch) and physical downstream energy throughput (U.S. EIA Refinery Utilization & Strategic Stocks) to classify physical flow regime and detect AIS transponder darkness / shadow naval escort protocols.
+- Purpose: Evaluates the divergence between civilian open-satellite AIS transit telemetry (IMF PortWatch) and physical downstream energy throughput (U.S. EIA Refinery Utilization) to classify physical flow regime and detect AIS transponder darkness / shadow naval escort protocols.
 - Data Links:
   - IMF PortWatch: `chokepoint6` (Strait of Hormuz daily vessel count & percentage shift vs 2023 baseline)
   - EIA: `PET.MOURXUS2.M` / `US_REFINERY_UTILIZATION` (U.S. Refinery Utilization Percentage)
-  - EIA: `PET.WCSSTUS1.W` / `US_SPR_CRUDE_STOCKS_KBBL` (Strategic Petroleum Reserve Buffers)
 - Mathematical Formulation:
   Divergence_Spread = Refinery_Utilization_Pct - (100.0 + min(0.0, AIS_Shift_Pct))
 - Machine-Executable Logic (Python):
@@ -721,6 +723,9 @@ def _is_num(val):
           if not (math.isfinite(ais_s) and math.isfinite(ref_u)):
               return None
           
+          # Observability divergence metric: measures spread between physical refinery draw and visible satellite transits
+          divergence_spread = round(ref_u - (100.0 + min(0.0, ais_s)), 2)
+
           # Regime classification
           if ais_s <= -50.0 and ref_u >= 85.0:
               status_key = "DIVERGENCE_TRANSPONDER_DARK_FLOW"
@@ -737,6 +742,7 @@ def _is_num(val):
               
           return {
               "status_key": status_key,
+              "divergence_spread": divergence_spread,
               "ais_shift_pct": round(ais_s, 2),
               "refinery_util_pct": round(ref_u, 2),
               "interpretation": interpretation
