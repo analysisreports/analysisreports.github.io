@@ -224,6 +224,26 @@ def build_master_router():
         purpose_line = f"  - Purpose: {m['purpose']}" if m['purpose'] else ""
         target_line = f"\n  - Target: {m['target']}" if m['target'] else ""
         
+        # Explicit Architectural Note for reserved/consolidated model numbers
+        if num == "25.3":
+            entry = (
+                f"### {num}. {title}\n"
+                f"- Domain Shelf: [`{shelf['filename']}#{num}`]({endpoint})\n"
+                f"- Shelf Category: {shelf['title']}"
+            )
+            if purpose_line:
+                entry += f"\n{purpose_line}"
+            if target_line:
+                entry += f"{target_line}"
+            entry += (
+                f"\n\n### 25.4. [RESERVED / ARCHITECTURALLY CONSOLIDATED]\n"
+                f"- Status: Architectural Reservation & Consolidation Note\n"
+                f"- Scope: Originally reserved for collateral friction; unified into Model 25.5 (Repo Friction SOFR-EFFR) and Model 25.3 (Supply Chain Logistics Engine)."
+            )
+            index_entries.append(entry)
+            index_entries.append("")
+            continue
+
         entry = (
             f"### {num}. {title}\n"
             f"- Domain Shelf: [`{shelf['filename']}#{num}`]({endpoint})\n"

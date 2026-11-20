@@ -248,7 +248,7 @@ def ecb_change_year_ago(xt, xt_year_ago):
 
 # 3. Percent Change: ((x(t) / x(t-1)) - 1) * 100
 def ecb_percent_change(xt, xt_prev):
-    if not (_is_num(xt) and _is_num(xt_prev)) or xt_prev == 0:
+    if not (_is_num(xt) and _is_num(xt_prev)) or xt_prev <= 0:
         return None
     try:
         res = ((xt / xt_prev) - 1.0) * 100.0
@@ -258,7 +258,7 @@ def ecb_percent_change(xt, xt_prev):
 
 # 4. Percent Change from Year Ago (YoY): ((x(t) / x(t - n_obs_per_yr)) - 1) * 100
 def ecb_percent_change_year_ago(xt, xt_year_ago):
-    if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago == 0:
+    if not (_is_num(xt) and _is_num(xt_year_ago)) or xt_year_ago <= 0:
         return None
     try:
         res = ((xt / xt_year_ago) - 1.0) * 100.0
@@ -374,16 +374,22 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
           std_val = math.sqrt(var_val)
 
           latest = clean[-1]
-          z_score = round((latest - mean_val) / std_val, 3) if std_val > 1e-9 else 0.0
-          abs_z = abs(z_score)
-          if abs_z >= 3.0:
+          # Zero-Variance Degeneracy Guard: If std_val <= 1e-9 (all observations identical),
+          # the mathematical ratio 0/0 is indeterminate. By deterministic policy, z is assigned 0.0 (NORMAL_VARIATION).
+          raw_z = (latest - mean_val) / std_val if std_val > 1e-9 else 0.0
+          abs_raw_z = abs(raw_z)
+
+          # Regime classification MUST evaluate against the unrounded raw float (preventing boundary inflation, e.g. 2.9994 -> 3.000)
+          if abs_raw_z >= 3.0:
               z_regime = "BLACK_SWAN_OUTLIER"
-          elif abs_z >= 2.0:
+          elif abs_raw_z >= 2.0:
               z_regime = "ELEVATED_ANOMALY"
-          elif abs_z >= 1.0:
+          elif abs_raw_z >= 1.0:
               z_regime = "MODERATE_DEVIATION"
           else:
               z_regime = "NORMAL_VARIATION"
+
+          z_score = round(raw_z, 3)
 
           sma_6 = round(sum(clean[-6:]) / 6.0, 4) if n >= 6 else None
           sma_12 = round(sum(clean[-12:]) / 12.0, 4) if n >= 12 else None
@@ -438,11 +444,13 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
       except (TypeError, ValueError, ZeroDivisionError):
           return None
 - Interpretation:
-  - Z-Score Anomaly Regimes:
-    - z_score_regime == BLACK_SWAN_OUTLIER : Extreme statistical anomaly beyond historical 3-sigma bands (|z| >= 3.0)
-    - z_score_regime == ELEVATED_ANOMALY : Significant regime tension outside 2-sigma historical distribution (2.0 <= |z| < 3.0)
-    - z_score_regime == MODERATE_DEVIATION : Moderate historical displacement or nascent trend emergence (1.0 <= |z| < 2.0)
-    - z_score_regime == NORMAL_VARIATION : Routine historical market distribution (|z| < 1.0)
+  - Z-Score Anomaly Regimes & Zero-Variance Policy:
+    - Zero-Variance Degeneracy Guard: If historical series observations have zero variance (std_dev <= 1e-9), theoretical z = 0/0 is indeterminate; it deterministically resolves to 0.0 (`NORMAL_VARIATION`).
+    - Raw Float Boundary Rule: Regime classification thresholds (|z| >= 3.0, 2.0, 1.0) strictly evaluate unrounded raw floats to eliminate artificial regime jumps caused by three-decimal rounding (e.g. 2.9994 evaluated as < 3.0, avoiding spurious BLACK_SWAN_OUTLIER).
+    - z_score_regime == BLACK_SWAN_OUTLIER : Extreme statistical anomaly beyond historical 3-sigma bands (|raw_z| >= 3.0)
+    - z_score_regime == ELEVATED_ANOMALY : Significant regime tension outside 2-sigma historical distribution (2.0 <= |raw_z| < 3.0)
+    - z_score_regime == MODERATE_DEVIATION : Moderate historical displacement or nascent trend emergence (1.0 <= |raw_z| < 2.0)
+    - z_score_regime == NORMAL_VARIATION : Routine historical market distribution (|raw_z| < 1.0)
   - Trend Direction Regimes:
     - trend_regime == STRONG_UPTREND : Aggressive upward trajectory and accelerating positive momentum (Slope > 0.10)
     - trend_regime == MILD_UPTREND : Moderate positive expansion trend (0.02 <= Slope <= 0.10)
@@ -520,7 +528,7 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 | Shelf Domain | Target Endpoint | Scope | Models | Size |
 | :--- | :--- | :--- | :---: | :---: |
 | **Rates, Yield Curves, Liquidity & Monetary Transmission** | [`llms-formulas-rates-liquidity.txt`](https://analysisreports.github.io/llms-formulas-rates-liquidity.txt) | Central bank policy stances, yield curve slopes, repo liquidity friction, credit spreads, carry trades, and committee dispersion. | **17** | ~43.1 KB |
-| **Macroeconomic Fundamentals, Labor Dynamics, Valuation & Cycles** | [`llms-formulas-macro-labor.txt`](https://analysisreports.github.io/llms-formulas-macro-labor.txt) | Inflation persistence, labor market momentum, housing bubble risks, consumption collapse, equity valuation, and release countdowns. | **21** | ~44.0 KB |
+| **Macroeconomic Fundamentals, Labor Dynamics, Valuation & Cycles** | [`llms-formulas-macro-labor.txt`](https://analysisreports.github.io/llms-formulas-macro-labor.txt) | Inflation persistence, labor market momentum, housing bubble risks, consumption collapse, equity valuation, and release countdowns. | **21** | ~44.5 KB |
 | **Commodities, Energy Shocks, Supply Chains & Asset Stress** | [`llms-formulas-commodities-shock.txt`](https://analysisreports.github.io/llms-formulas-commodities-shock.txt) | Crude benchmarks, 3:2:1 crack spread, natgas disconnect, chip stress, supply chain logistics, and safe haven flight. | **12** | ~31.7 KB |
 | **Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence** | [`llms-formulas-geopolitics.txt`](https://analysisreports.github.io/llms-formulas-geopolitics.txt) | Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, and intelligence confidence. | **14** | ~48.3 KB |
 
@@ -707,6 +715,10 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 - Domain Shelf: [`llms-formulas-commodities-shock.txt#25.3`](https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.3)
 - Shelf Category: Commodities, Energy Shocks, Supply Chains & Asset Stress
   - Purpose: Measures standard deviations (Z-score) of global freight rates, air cargo costs, and delivery times from their historical average to detect supply-side cost inflation shocks or logistics slack.
+
+### 25.4. [RESERVED / ARCHITECTURALLY CONSOLIDATED]
+- Status: Architectural Reservation & Consolidation Note
+- Scope: Originally reserved for collateral friction; unified into Model 25.5 (Repo Friction SOFR-EFFR) and Model 25.3 (Supply Chain Logistics Engine).
 
 ### 25.5. REPO LIQUIDITY FRICTION SPREAD ENGINE (SOFR - EFFR SPREAD)
 - Domain Shelf: [`llms-formulas-rates-liquidity.txt#25.5`](https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#25.5)

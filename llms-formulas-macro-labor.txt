@@ -802,13 +802,14 @@ def _is_num(val):
 
 ### 25.13. LABOR MARKET MOMENTUM INDEX (LMMI / EMME)
 - Purpose: Couples the annual percentage growth of Nonfarm Payrolls (PAYEMS) with the annual percentage point change in the Civilian Unemployment Rate (UNRATE) to measure net momentum, structural deceleration, and employment slack pressure on the Federal Reserve monetary policy reaction function.
+> **Dimensionality & Metric Construction Note:** PAYEMS_YoY_Pct is expressed as percentage growth (% YoY), whereas UNRATE_YoY_Diff is expressed in raw percentage points (pp). While dimensionally heterogeneous, this standard macro differential directly captures the net spread between payroll hiring acceleration and headline labor slack deterioration.
 - Data Series Keys:
   - BLS / FRED: PAYEMS (All Employees, Total Nonfarm - Monthly Level, in Thousands)
   - BLS / FRED: UNRATE (Civilian Unemployment Rate - Monthly Percent, %)
 - Formula:
-  PAYEMS_YoY_Pct = ((PAYEMS(t) / PAYEMS(t-12)) - 1.0) * 100.0
-  UNRATE_YoY_Diff = UNRATE(t) - UNRATE(t-12)
-  LMMI = PAYEMS_YoY_Pct - UNRATE_YoY_Diff
+  PAYEMS_YoY_Pct = ((PAYEMS(t) / PAYEMS(t-12)) - 1.0) * 100.0  # Unit: %
+  UNRATE_YoY_Diff = UNRATE(t) - UNRATE(t-12)                     # Unit: percentage points (pp)
+  LMMI = PAYEMS_YoY_Pct - UNRATE_YoY_Diff                        # Composite Momentum Spread
   Employment_Strength_Ratio = PAYEMS_YoY_Pct * (1.0 / UNRATE(t))
 - Machine-Executable Logic (Python):
   def labor_market_momentum_index(payems_current, payems_yr_ago, unrate_current, unrate_yr_ago, prev_lmmi=None):
