@@ -269,7 +269,7 @@ def main():
         
     # Compile JSON Output
     payload_json = {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$schema": "https://analysisreports.github.io/schemas/telemetry.schema.json",
         "metadata": {
             "title": "IMF PortWatch Maritime Chokepoint & Daily AIS Transit Ingestion Contract",
             "domain": "macroeconomics",

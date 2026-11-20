@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://analysisreports.github.io/schemas/telemetry.schema.json",
+  "title": "Live Sensor Telemetry Schema",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["$schema", "metadata", "ais_telemetry_summary", "chokepoints"],
+      "properties": {
+        "$schema": {"const": "https://analysisreports.github.io/schemas/telemetry.schema.json"},
+        "metadata": {"$ref": "#/$defs/metadata"},
+        "ais_telemetry_summary": {"type": "object"},
+        "chokepoints": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["entity_id", "metrics"],
+            "properties": {
+              "entity_id": {"type": "string"},
+              "metrics": {"type": "object"}
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": ["$schema", "metadata", "orbital_telemetry_summary", "theaters"],
+      "properties": {
+        "$schema": {"const": "https://analysisreports.github.io/schemas/telemetry.schema.json"},
+        "metadata": {"$ref": "#/$defs/metadata"},
+        "orbital_telemetry_summary": {"type": "object"},
+        "theaters": {"type": "object", "minProperties": 1}
+      }
+    },
+    {
+      "type": "object",
+      "required": ["$schema", "metadata", "trade_telemetry_summary", "corridors"],
+      "properties": {
+        "$schema": {"const": "https://analysisreports.github.io/schemas/telemetry.schema.json"},
+        "metadata": {"$ref": "#/$defs/metadata"},
+        "trade_telemetry_summary": {"type": "object"},
+        "corridors": {"type": "object", "minProperties": 1}
+      }
+    }
+  ],
+  "$defs": {
+    "metadata": {
+      "type": "object",
+      "required": ["title", "domain", "version", "author", "license", "endpoint", "documentation", "last_updated", "sync_status", "source_authority"],
+      "properties": {
+        "last_updated": {"type": "string", "format": "date-time"},
+        "sync_status": {"type": "string"}
+      }
+    }
+  }
+}

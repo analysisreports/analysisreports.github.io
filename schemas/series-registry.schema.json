@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://analysisreports.github.io/schemas/series-registry.schema.json",
+  "title": "Live Series Registry Schema",
+  "type": "object",
+  "required": ["$schema", "metadata", "series"],
+  "properties": {
+    "$schema": {"const": "https://analysisreports.github.io/schemas/series-registry.schema.json"},
+    "metadata": {"$ref": "#/$defs/metadata"},
+    "series": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"$ref": "#/$defs/series"}
+    }
+  },
+  "$defs": {
+    "metadata": {
+      "type": "object",
+      "required": ["title", "domain", "version", "author", "license", "endpoint", "documentation", "last_updated", "sync_status"],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "domain": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "author": {"type": "string", "minLength": 1},
+        "license": {"type": "string", "minLength": 1},
+        "endpoint": {"type": "string", "format": "uri"},
+        "documentation": {"type": "string", "format": "uri"},
+        "last_updated": {"type": "string", "format": "date-time"},
+        "sync_status": {"type": "string"},
+        "missing_series": {"type": "array", "items": {"type": "string"}},
+        "stale_series": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "series": {
+      "type": "object",
+      "required": ["frequency", "n_obs_per_yr", "current_value", "previous_value", "year_ago_value", "transformations", "recent_observations"],
+      "properties": {
+        "series_id": {"type": "string"},
+        "series_ref": {"type": "string"},
+        "entity_id": {"type": ["string", "null"]},
+        "title": {"type": "string"},
+        "name": {"type": "string"},
+        "frequency": {"type": "string"},
+        "n_obs_per_yr": {"type": "integer", "minimum": 1},
+        "units": {"type": "string"},
+        "unit": {"type": "string"},
+        "current_value": {"type": ["number", "null"]},
+        "previous_value": {"type": ["number", "null"]},
+        "year_ago_value": {"type": ["number", "null"]},
+        "transformations": {
+          "type": "object",
+          "required": ["change", "change_from_year_ago", "percent_change", "percent_change_from_year_ago"],
+          "additionalProperties": {"type": ["number", "null"]}
+        },
+        "recent_observations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["date", "value"],
+            "properties": {
+              "date": {"type": "string"},
+              "value": {"type": ["number", "null"]}
+            }
+          }
+        }
+      }
+    }
+  }
+}

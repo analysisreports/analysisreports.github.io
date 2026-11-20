@@ -516,7 +516,7 @@ def main():
 """
 
     full_json = {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$schema": "https://analysisreports.github.io/schemas/series-registry.schema.json",
         "metadata": {
             "title": "Canonical U.S. Energy Information Administration (EIA) Series Registry",
             "domain": "energy",

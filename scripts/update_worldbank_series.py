@@ -440,7 +440,7 @@ def main():
 
     # 2. Generate full llms-worldbank-series.json
     payload = {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$schema": "https://analysisreports.github.io/schemas/series-registry.schema.json",
         "metadata": {
             "title": "Autonomous World Bank Commodity Time-Series Engine",
             "domain": "economy",

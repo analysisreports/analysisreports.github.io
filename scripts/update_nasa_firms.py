@@ -395,7 +395,7 @@ def build_outputs(map_key: str) -> Tuple[str, Dict[str, Any]]:
             
     # Compile Master JSON Machine Contract (8 Golden Keys)
     full_json = {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$schema": "https://analysisreports.github.io/schemas/telemetry.schema.json",
         "metadata": {
             "title": "NASA FIRMS Satellite Thermal Anomaly & Autonomous Kinetic War Engine",
             "domain": "security",

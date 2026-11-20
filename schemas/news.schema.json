@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://analysisreports.github.io/schemas/news.schema.json",
+  "title": "News Telemetry Schema",
+  "type": "object",
+  "required": ["$schema", "metadata", "dispatches"],
+  "properties": {
+    "$schema": {"const": "https://analysisreports.github.io/schemas/news.schema.json"},
+    "metadata": {
+      "type": "object",
+      "required": ["title", "domain", "version", "author", "license", "endpoint", "text_endpoint", "documentation", "last_updated", "total_dispatches"],
+      "properties": {
+        "last_updated": {"type": "string", "format": "date-time"},
+        "total_dispatches": {"type": "integer", "minimum": 0}
+      }
+    },
+    "dispatches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["primary_entity", "related_entities", "source_authority", "headline", "published_utc", "event_severity", "institutional_status", "source_url", "dispatch_id"],
+        "properties": {
+          "primary_entity": {"type": "string"},
+          "related_entities": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "source_authority": {"type": "string"},
+          "headline": {"type": "string"},
+          "published_utc": {"type": "string", "format": "date-time"},
+          "event_severity": {"type": "string"},
+          "institutional_status": {"type": "string"},
+          "source_url": {"type": "string", "format": "uri"},
+          "dispatch_id": {"type": "string", "pattern": "^DISPATCH_[0-9]{8}_[0-9]+$"}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://analysisreports.github.io/schemas/tools.schema.json",
+  "title": "LLM Quantitative Tool Manifest Schema",
+  "type": "object",
+  "required": ["$schema", "name", "version", "description", "author", "license", "repository", "endpoint", "documentation", "last_updated", "tools"],
+  "properties": {
+    "$schema": {"const": "https://analysisreports.github.io/schemas/tools.schema.json"},
+    "name": {"type": "string"},
+    "version": {"type": "string"},
+    "description": {"type": "string"},
+    "author": {"type": "string"},
+    "license": {"type": "string"},
+    "repository": {"type": "string", "format": "uri"},
+    "endpoint": {"type": "string", "format": "uri"},
+    "documentation": {"type": "string", "format": "uri"},
+    "last_updated": {"type": "string", "format": "date-time"},
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "function"],
+        "properties": {
+          "type": {"const": "function"},
+          "function": {
+            "type": "object",
+            "required": ["name", "description", "parameters"],
+            "properties": {
+              "name": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+              "description": {"type": "string"},
+              "parameters": {"type": "object"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

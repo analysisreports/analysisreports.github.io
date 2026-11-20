@@ -480,7 +480,7 @@ def build_outputs(frequencies: Dict[str, List[str]], existing_series: Optional[D
 """
 
     full_json = {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$schema": "https://analysisreports.github.io/schemas/series-registry.schema.json",
         "metadata": {
             "title": "Canonical European Central Bank (ECB) Monitored Series & Official Transformations",
             "domain": "economy",

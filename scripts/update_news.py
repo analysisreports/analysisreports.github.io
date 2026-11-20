@@ -337,7 +337,7 @@ def update_news_telemetry():
 
     # 4. Generate JSON Twin
     news_json_data = {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$schema": "https://analysisreports.github.io/schemas/news.schema.json",
         "metadata": {
             "title": "Autonomous Geopolitical & Macroeconomic News Telemetry",
             "domain": "geopolitics_macro",

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "https://analysisreports.github.io/schemas/telemetry.schema.json",
   "metadata": {
     "title": "NASA FIRMS Satellite Thermal Anomaly & Autonomous Kinetic War Engine",
     "domain": "security",

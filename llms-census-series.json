@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "https://analysisreports.github.io/schemas/telemetry.schema.json",
   "metadata": {
     "title": "U.S. Census Bureau International Trade Telemetry Engine (NAICS 3344)",
     "domain": "macroeconomics",

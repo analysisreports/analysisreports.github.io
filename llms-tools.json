@@ -1,4 +1,5 @@
 {
+  "$schema": "https://analysisreports.github.io/schemas/tools.schema.json",
   "name": "Ersoy Toptas Macro Quantitative Tool Engine",
   "version": "2026-Q4",
   "description": "Deterministic macro, geopolitical, and econometric model schemas enabling autonomous LLM research agents to execute quantitative formulas without hallucination.",

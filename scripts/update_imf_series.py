@@ -543,7 +543,7 @@ def main():
         f.write(full_txt)
 
     output_json = {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$schema": "https://analysisreports.github.io/schemas/series-registry.schema.json",
         "metadata": {
             "title": "Canonical IMF Monitored Series & Official Transformations",
             "domain": "economy",

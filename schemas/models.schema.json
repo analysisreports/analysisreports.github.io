@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://analysisreports.github.io/schemas/models.schema.json",
+  "title": "Quantitative Models Snapshot Schema",
+  "type": "object",
+  "required": ["$schema", "metadata", "models"],
+  "properties": {
+    "$schema": {"const": "https://analysisreports.github.io/schemas/models.schema.json"},
+    "metadata": {
+      "type": "object",
+      "required": ["title", "domain", "version", "author", "license", "endpoint", "documentation", "last_updated", "sync_status", "total_models_active"],
+      "properties": {
+        "total_models_active": {"type": "integer", "minimum": 0},
+        "last_updated": {"type": "string", "format": "date-time"}
+      }
+    },
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["model_id", "model_name", "formula_ref", "primary_value", "unit", "status", "inputs", "metrics", "interpretation"],
+        "properties": {
+          "model_id": {"type": "string", "pattern": "^MODEL_[0-9]+(?:\\.[0-9]+)?$"},
+          "model_name": {"type": "string", "minLength": 1},
+          "formula_ref": {"type": "string", "format": "uri"},
+          "primary_value": {"type": ["number", "null"]},
+          "unit": {"type": "string"},
+          "status": {"type": "string"},
+          "inputs": {"type": "object", "additionalProperties": true},
+          "metrics": {"type": "object", "additionalProperties": true},
+          "interpretation": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

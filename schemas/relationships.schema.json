@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://analysisreports.github.io/schemas/relationships.schema.json",
+  "title": "Dynamic Geopolitical Relationships Schema",
+  "type": "object",
+  "required": ["$schema", "metadata", "macro_triggers", "relationships", "chokepoints"],
+  "properties": {
+    "$schema": {"const": "https://analysisreports.github.io/schemas/relationships.schema.json"},
+    "metadata": {
+      "type": "object",
+      "required": ["title", "domain", "version", "author", "license", "endpoint", "documentation", "last_updated", "sync_status"],
+      "properties": {
+        "last_updated": {"type": "string", "format": "date-time"},
+        "last_successful_sync": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "macro_triggers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["entity_id", "model", "value", "status"],
+        "properties": {
+          "entity_id": {"type": "string"},
+          "model": {"type": "string"},
+          "value": {"type": ["number", "null"]},
+          "status": {"type": "string"},
+          "warning": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "central_bank_policy_benchmark": {"type": "object"},
+    "relationships": {
+      "type": "array",
+      "items": {"type": "object", "required": ["id", "source_entity", "target_entity"]}
+    },
+    "chokepoints": {
+      "type": "array",
+      "items": {"type": "object", "required": ["id"]}
+    }
+  }
+}

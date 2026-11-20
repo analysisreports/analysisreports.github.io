@@ -1174,7 +1174,7 @@ def main():
     sync_time = datetime.datetime.now(datetime.timezone.utc).isoformat()
     trigger_ok = all(trigger['status'] == 'OK' for trigger in macro_triggers)
     payload = {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$schema": "https://analysisreports.github.io/schemas/relationships.schema.json",
         'metadata': {
             'title': 'Dynamic Geopolitical Polarity & Sovereign Governance Engine',
             'domain': 'political',

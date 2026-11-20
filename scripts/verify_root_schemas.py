@@ -49,7 +49,20 @@ SCHEMA_MAPPING: Dict[str, str] = {
     "llms-country-relationships-us.json": "country-relationships.schema.json",
     "llms-country-relationships-ru.json": "country-relationships.schema.json",
     "llms-country-relationships-cn.json": "country-relationships.schema.json",
-    "llms-country-relationships-ir.json": "country-relationships.schema.json"
+    "llms-country-relationships-ir.json": "country-relationships.schema.json",
+    "llms-fred-series.json": "series-registry.schema.json",
+    "llms-ecb-series.json": "series-registry.schema.json",
+    "llms-eia-series.json": "series-registry.schema.json",
+    "llms-nyfed-series.json": "series-registry.schema.json",
+    "llms-worldbank-series.json": "series-registry.schema.json",
+    "llms-imf-series.json": "series-registry.schema.json",
+    "llms-models.json": "models.schema.json",
+    "llms-relationships.json": "relationships.schema.json",
+    "llms-portwatch.json": "telemetry.schema.json",
+    "llms-nasa-firms.json": "telemetry.schema.json",
+    "llms-census-series.json": "telemetry.schema.json",
+    "llms-news.json": "news.schema.json",
+    "llms-tools.json": "tools.schema.json"
 }
 
 def audit_root_schemas() -> List[str]:
@@ -71,6 +84,8 @@ def audit_root_schemas() -> List[str]:
     for directory, schema_name in (
         ("economy", "economy.schema.json"),
         ("country", "country-strategic-assessment.schema.json"),
+        ("political", "political.schema.json"),
+        ("glossary", "glossary-term.schema.json"),
     ):
         for path in sorted(glob.glob(os.path.join(ROOT_DIR, directory, "**", "*.json"), recursive=True)):
             targets[os.path.relpath(path, ROOT_DIR)] = schema_name
@@ -105,6 +120,14 @@ def audit_root_schemas() -> List[str]:
             "country-strategic-assessment.schema.json",
             "graph.schema.json",
             "country-relationships.schema.json",
+            "series-registry.schema.json",
+            "models.schema.json",
+            "relationships.schema.json",
+            "telemetry.schema.json",
+            "news.schema.json",
+            "tools.schema.json",
+            "political.schema.json",
+            "glossary-term.schema.json",
         ) and not has_jsonschema:
             errors.append(f"{target_name}: jsonschema is required for {schema_name} validation")
             continue
@@ -127,6 +150,14 @@ def audit_root_schemas() -> List[str]:
                 "country-strategic-assessment.schema.json",
                 "graph.schema.json",
                 "country-relationships.schema.json",
+                "series-registry.schema.json",
+                "models.schema.json",
+                "relationships.schema.json",
+                "telemetry.schema.json",
+                "news.schema.json",
+                "tools.schema.json",
+                "political.schema.json",
+                "glossary-term.schema.json",
             ):
                 jsonschema.Draft202012Validator.check_schema(schema_data)
             validator = jsonschema.Draft202012Validator(schema_data)

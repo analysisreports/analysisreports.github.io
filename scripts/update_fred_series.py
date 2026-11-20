@@ -623,7 +623,7 @@ def build_outputs(frequencies: Dict[str, List[str]], api_key: str, existing_seri
 """
 
     full_json = {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$schema": "https://analysisreports.github.io/schemas/series-registry.schema.json",
         "metadata": {
             "title": "Canonical FRED Monitored Series & Official Transformations",
             "domain": "economy",
