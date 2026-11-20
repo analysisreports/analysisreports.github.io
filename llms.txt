@@ -88,7 +88,7 @@ Core repository endpoints, manifests, and their operational roles:
 ## 3. ONTOLOGICAL SCHEMA CONTRACTS (7 CANONICAL SCHEMAS)
 Dual-layer specification contracts consisting of plain-text guides and machine-validated JSON schemas:
 
-1. **Economy:** [llms-schema-economy.txt](https://analysisreports.github.io/llms-schema-economy.txt) | [economy.json](https://analysisreports.github.io/economy.json) (Central bank policy rates, Fed liquidity models, yield spreads, and dots).
+1. **Economy:** [llms-schema-economy.txt](https://analysisreports.github.io/llms-schema-economy.txt) | [economy.schema.json](https://analysisreports.github.io/schemas/economy.schema.json) | [economy.json](https://analysisreports.github.io/economy.json) (Central bank policy rates, Fed liquidity models, yield spreads, and dots).
 2. **Country:** [llms-schema-country.txt](https://analysisreports.github.io/llms-schema-country.txt) | [country.json](https://analysisreports.github.io/country.json) (Strategic 5W1H frameworks, defense doctrines, chokepoints, and bilateral polarity).
 3. **Political:** [llms-schema-political.txt](https://analysisreports.github.io/llms-schema-political.txt) | [political.json](https://analysisreports.github.io/political.json) (Leadership rhetoric scores, alliance friction, and political stability indices).
 4. **Editorial:** [llms-schema-editorial.txt](https://analysisreports.github.io/llms-schema-editorial.txt) | [editorial.json](https://analysisreports.github.io/editorial.json) (Strategic stance classification: Hawkish, Dovish, Neutral, Contrarian, Skeptical).

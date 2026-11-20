@@ -1,0 +1,326 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://analysisreports.github.io/schemas/economy.schema.json",
+  "title": "Economy and Monetary Policy Analysis Schema",
+  "description": "Contract for the economy template and Turkish and English economy articles.",
+  "type": "object",
+  "required": ["$schema", "metadata", "structured_content_analysis"],
+  "properties": {
+    "$schema": { "const": "https://analysisreports.github.io/schemas/economy.schema.json" },
+    "metadata": {
+      "type": "object",
+      "required": ["title", "domain", "version", "author", "license", "endpoint", "documentation", "last_updated"],
+      "properties": {
+        "title": { "type": "string" },
+        "domain": { "const": "economy" },
+        "version": { "type": "string" },
+        "author": { "type": "string" },
+        "license": { "type": "string" },
+        "endpoint": { "type": "string", "format": "uri" },
+        "documentation": { "type": "string", "format": "uri" },
+        "last_updated": { "type": "string" },
+        "provenance": { "type": "string" },
+        "methodology": { "type": "string", "format": "uri" },
+        "ai_prompts": { "type": "string", "format": "uri" },
+        "formulas_engine": { "type": "string", "format": "uri" },
+        "entity_dictionary": { "type": "string", "format": "uri" }
+      }
+    },
+    "structured_content_analysis": {
+      "type": "object",
+      "required": ["editorial_frontend", "cross_references"],
+      "properties": {
+        "focus_areas": { "$ref": "#/$defs/stringArray" },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "headline": { "$ref": "#/$defs/text" },
+            "one_sentence_summary": { "$ref": "#/$defs/text" },
+            "main_topic_keywords": { "$ref": "#/$defs/stringArray" }
+          }
+        },
+        "5N1K_analysis": {
+          "type": "object",
+          "properties": {
+            "headline": { "$ref": "#/$defs/text" },
+            "what": { "$ref": "#/$defs/text" },
+            "where": { "$ref": "#/$defs/text" },
+            "when": { "$ref": "#/$defs/text" },
+            "event_date": { "$ref": "#/$defs/text" },
+            "decision_status": { "$ref": "#/$defs/text" },
+            "why": { "$ref": "#/$defs/text" },
+            "how": { "$ref": "#/$defs/text" },
+            "who_entity_id": { "$ref": "#/$defs/text" },
+            "who": { "$ref": "#/$defs/text" },
+            "heat": { "$ref": "#/$defs/score" }
+          }
+        },
+        "quantitative_data_summary": {
+          "type": "object",
+          "properties": {
+            "primary_indicator_tracking": { "$ref": "#/$defs/indicator" },
+            "other_supporting_data": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/indicator" }
+            },
+            "trade_and_sectoral_breakdown": {
+              "type": "object",
+              "properties": {
+                "partners_and_regions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "entity_id": { "$ref": "#/$defs/text" },
+                      "partner_name": { "$ref": "#/$defs/text" },
+                      "volume_or_balance": { "$ref": "#/$defs/text" },
+                      "change_rate": { "$ref": "#/$defs/text" }
+                    }
+                  }
+                },
+                "sector_or_product_dynamics": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "sector_entity_id": { "$ref": "#/$defs/text" },
+                      "category_name": { "$ref": "#/$defs/text" },
+                      "growth_or_value": { "$ref": "#/$defs/text" },
+                      "impact_note": { "$ref": "#/$defs/text" }
+                    }
+                  }
+                }
+              }
+            },
+            "market_and_liquidity_indicators": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "series_entity_id": { "$ref": "#/$defs/text" },
+                  "asset_entity_id": { "$ref": "#/$defs/text" },
+                  "segment": { "enum": ["MONEY_MARKET", "BOND_YIELD", "FX", "EQUITY", "COMMODITY", null] },
+                  "asset_or_rate_name": { "$ref": "#/$defs/text" },
+                  "current_level": { "$ref": "#/$defs/text" },
+                  "change_or_spread": { "$ref": "#/$defs/text" }
+                }
+              }
+            },
+            "monetary_authority_entity_id": { "$ref": "#/$defs/text" },
+            "monetary_authority": { "$ref": "#/$defs/text" },
+            "voting_and_consensus_dynamics": { "$ref": "#/$defs/text" },
+            "voting_split": { "$ref": "#/$defs/text" },
+            "committee_dispersion_score": { "type": ["number", "null"], "minimum": 0, "maximum": 1 }
+          }
+        },
+        "actors_and_dynamics": {
+          "type": "object",
+          "properties": {
+            "key_players": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "entity_id": { "$ref": "#/$defs/text" },
+                  "name": { "$ref": "#/$defs/text" },
+                  "affiliation": { "$ref": "#/$defs/text" },
+                  "role_in_event": { "$ref": "#/$defs/text" },
+                  "influence_score": { "$ref": "#/$defs/score" }
+                }
+              }
+            },
+            "relationship_map": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "source_entity_id": { "$ref": "#/$defs/text" },
+                  "source": { "$ref": "#/$defs/text" },
+                  "relation": { "$ref": "#/$defs/text" },
+                  "target_entity_id": { "$ref": "#/$defs/text" },
+                  "target": { "$ref": "#/$defs/text" },
+                  "directed": { "type": "boolean" },
+                  "severity": { "enum": ["CRITICAL", "HIGH", "MODERATE", "LOW", "COOLING", null] },
+                  "polarity": { "type": ["number", "null"], "minimum": -1, "maximum": 1 },
+                  "heat": { "$ref": "#/$defs/score" }
+                }
+              }
+            }
+          }
+        },
+        "core_analysis": {
+          "type": "object",
+          "properties": {
+            "central_conflict_or_goal": { "$ref": "#/$defs/text" },
+            "strategic_implication": { "$ref": "#/$defs/text" },
+            "underlying_message": { "$ref": "#/$defs/text" },
+            "market_dynamics": { "$ref": "#/$defs/text" },
+            "transmission_and_micro_impact": {
+              "type": "object",
+              "properties": {
+                "affected_domains": { "$ref": "#/$defs/stringArray" },
+                "impact_mechanism": { "$ref": "#/$defs/text" },
+                "pressure_severity": { "enum": ["CRITICAL", "HIGH", "MODERATE", "LOW", null] }
+              }
+            },
+            "geopolitical_factors": { "$ref": "#/$defs/text" },
+            "conflict_heat": { "$ref": "#/$defs/score" },
+            "market_impact_direction": { "enum": ["RISK_ON", "RISK_OFF", "NEUTRAL", null] },
+            "market_impact_score": { "$ref": "#/$defs/score" },
+            "key_quotes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "speaker_entity_id": { "$ref": "#/$defs/text" },
+                  "speaker": { "$ref": "#/$defs/text" },
+                  "quote": { "$ref": "#/$defs/text" },
+                  "significance_level": { "enum": ["HIGH", "MEDIUM", "LOW", null] },
+                  "significance_analysis": { "$ref": "#/$defs/text" }
+                }
+              }
+            }
+          }
+        },
+        "future_outlook": {
+          "type": "object",
+          "properties": {
+            "strategic_actions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "action_type": { "$ref": "#/$defs/text" },
+                  "description": { "$ref": "#/$defs/text" },
+                  "target_stakeholder": {
+                    "type": "object",
+                    "properties": {
+                      "entity_id": { "$ref": "#/$defs/text" },
+                      "entity_name": { "$ref": "#/$defs/text" },
+                      "jurisdiction_or_sector": { "$ref": "#/$defs/text" }
+                    }
+                  }
+                }
+              }
+            },
+            "upcoming_rate_decision": {
+              "type": "object",
+              "properties": {
+                "event_name": { "$ref": "#/$defs/text" },
+                "expected_decision_date": { "$ref": "#/$defs/text" },
+                "decision_status": { "$ref": "#/$defs/text" },
+                "market_expectation": { "$ref": "#/$defs/text" }
+              }
+            },
+            "potential_consequences": {
+              "type": "object",
+              "properties": {
+                "short_term": { "$ref": "#/$defs/text" },
+                "short_term_days": { "type": ["number", "null"], "minimum": 1, "maximum": 180 },
+                "long_term": { "$ref": "#/$defs/text" },
+                "long_term_days": { "type": ["number", "null"], "minimum": 181, "maximum": 365 }
+              }
+            },
+            "next_key_event": { "$ref": "#/$defs/text" },
+            "target_date": { "$ref": "#/$defs/text" },
+            "status": { "enum": ["ACTIVE", "REALIZED", "EXPIRED", null] },
+            "probability": { "enum": ["Low", "Medium", "High", null] },
+            "probability_percent": { "$ref": "#/$defs/score" },
+            "impact": { "enum": ["Low", "Moderate", "Severe", null] },
+            "impact_score": { "$ref": "#/$defs/score" },
+            "direction": { "enum": ["Risk", "Opportunity", "Neutral", null] },
+            "confidence_score": { "$ref": "#/$defs/score" }
+          }
+        },
+        "categorization": {
+          "type": "object",
+          "properties": { "tags": { "$ref": "#/$defs/stringArray" } }
+        },
+        "target_queries": {
+          "type": "object",
+          "properties": {
+            "qa_pairs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": { "q": { "$ref": "#/$defs/text" }, "a": { "$ref": "#/$defs/text" } }
+              }
+            }
+          }
+        },
+        "editorial_frontend": {
+          "type": "object",
+          "properties": {
+            "canonical_url": { "$ref": "#/$defs/text" },
+            "canonical_source": { "$ref": "#/$defs/text" },
+            "format": { "$ref": "#/$defs/text" },
+            "author": { "$ref": "#/$defs/text" },
+            "published_date": { "$ref": "#/$defs/text" },
+            "analysis_as_of_date": { "$ref": "#/$defs/text" },
+            "language": { "$ref": "#/$defs/text" },
+            "description": { "$ref": "#/$defs/text" }
+          }
+        },
+        "cross_references": {
+          "type": "object",
+          "properties": {
+            "relations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "target_url": { "$ref": "#/$defs/text" },
+                  "target_published_date": { "$ref": "#/$defs/text" },
+                  "predicate": { "$ref": "#/$defs/text" },
+                  "impact_window": { "$ref": "#/$defs/text" },
+                  "description": { "$ref": "#/$defs/text" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "text": { "type": ["string", "null"] },
+    "stringArray": { "type": "array", "items": { "type": "string" } },
+    "score": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+    "indicator": {
+      "type": "object",
+      "properties": {
+        "series_entity_id": { "$ref": "#/$defs/text" },
+        "indicator_name": { "$ref": "#/$defs/text" },
+        "indicator_value": { "$ref": "#/$defs/text" },
+        "reference_period": { "$ref": "#/$defs/text" },
+        "effective_date": { "$ref": "#/$defs/text" },
+        "fred_series_id": { "$ref": "#/$defs/text" },
+        "unit": { "$ref": "#/$defs/text" },
+        "measurement_type": { "$ref": "#/$defs/text" },
+        "value_comparison": {
+          "type": "object",
+          "properties": {
+            "current_period_value": { "$ref": "#/$defs/text" },
+            "current_numeric_value": { "type": ["number", "null"] },
+            "previous_period_value": { "$ref": "#/$defs/text" },
+            "previous_numeric_value": { "type": ["number", "null"] },
+            "nominal_change": { "$ref": "#/$defs/text" },
+            "change_rate": { "$ref": "#/$defs/text" },
+            "target_deviation_bps": { "type": ["number", "null"] }
+          }
+        },
+        "change_rates_percentage": {
+          "type": "object",
+          "properties": {
+            "change_rate_compared_to_previous_month": { "$ref": "#/$defs/text" },
+            "change_rate_compared_to_december_of_the_previous_year": { "$ref": "#/$defs/text" },
+            "change_rate_compared_to_the_same_month_of_the_previous_year": { "$ref": "#/$defs/text" },
+            "change_rate_according_to_twelve_month_averages": { "$ref": "#/$defs/text" }
+          }
+        },
+        "macro_stance": { "enum": ["RESTRICTIVE", "NEUTRAL", "ACCOMMODATIVE", null] },
+        "yield_spread_bps": { "type": ["number", "null"] }
+      }
+    }
+  }
+}

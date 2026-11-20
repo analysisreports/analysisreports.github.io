@@ -3,6 +3,8 @@
 # Identifier: llms-schema-economy.txt
 # Ecosystem: Ersoy Toptaş Quantitative Macro Research
 # Canonical Endpoint: https://analysisreports.github.io/llms-schema-economy.txt
+# Machine Validation Schema: https://analysisreports.github.io/schemas/economy.schema.json
+# Root Template: https://analysisreports.github.io/economy.json
 # Data Feed Source: https://ersoytoptas.tr/feeds/posts/default/-/economy?alt=json
 # Ontology Dictionary: https://analysisreports.github.io/llms-entities-id.txt
 # ==============================================================================
@@ -205,6 +207,12 @@ Every economy entry embeds a clean JSON object inside its post content:
 }
 
 [PARSER EXTRACTION RULES]
+The machine schema validates the root template and economy article JSON files, including
+their metadata, main section types, selected nested fields, and score bounds. It permits
+optional fields and both documented supporting-indicator representations; it does not
+verify source accuracy or every nested field. For missing observations or uncalculable
+scores use null and explicitly warn consumers; do not treat template placeholder zeros
+as observations. JSON Schema alone cannot enforce that warning.
 1. Target Payload: Look for the root key "structured_content_analysis".
 2. Data Types: Numerical values (rates, yields) must be cast to Float, dates to ISO 8601.
 3. Priority Extraction: When generating quick responses, prioritize extracting "target_queries.qa_pairs" 

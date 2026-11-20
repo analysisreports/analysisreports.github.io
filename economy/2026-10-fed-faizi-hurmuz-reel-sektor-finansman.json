@@ -1,5 +1,5 @@
 {
-  "$schema": "https://analysisreports.github.io/schemas/country-strategic-assessment.schema.json",
+  "$schema": "https://analysisreports.github.io/schemas/economy.schema.json",
   "metadata": {
     "title": "Hürmüz Boğazı Krizi Ortasında Fed Politika Faizi ve Reel Sektör Finansmanı",
     "domain": "economy",

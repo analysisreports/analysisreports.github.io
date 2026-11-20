@@ -38,14 +38,14 @@
     },
     {
       "id": "schema-economy",
-      "name": "Macroeconomics and Monetary Policy JSON Schema",
+      "name": "Macroeconomics and Monetary Policy JSON Template",
       "type": "specification",
       "format": "application/json",
       "url": "https://analysisreports.github.io/economy.json",
       "authentication": {
         "type": "none"
       },
-      "description": "Machine-validatable JSON schema for FOMC decisions, Net Fed Liquidity models, yield curves, and macro indicators."
+      "description": "Root economy payload template for monetary policy and macroeconomic analysis."
     },
     {
       "id": "schema-country",
@@ -124,6 +124,18 @@
         "type": "none"
       },
       "description": "Machine-validatable JSON schema modeling conceptual definitions, taxonomies, and framework indicators."
+    },
+    {
+      "id": "schema-economy-spec",
+      "name": "Economy and Monetary Policy JSON Schema Specification (Draft 2020-12)",
+      "type": "specification",
+      "format": "application/schema+json",
+      "url": "https://analysisreports.github.io/schemas/economy.schema.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-schema-economy.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Formal JSON Schema for the economy template and economy article payloads."
     },
     {
       "id": "schema-country-spec",

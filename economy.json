@@ -1,5 +1,5 @@
 {
-  "$schema": "https://analysisreports.github.io/schemas/country-strategic-assessment.schema.json",
+  "$schema": "https://analysisreports.github.io/schemas/economy.schema.json",
   "metadata": {
     "title": "Macroeconomic Strategic Analysis Data Contract",
     "domain": "economy",

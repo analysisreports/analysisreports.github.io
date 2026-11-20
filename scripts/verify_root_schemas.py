@@ -12,7 +12,7 @@ Validates the formal compliance of:
 3. political.json                <-> schemas/political.schema.json
 4. political-country.json        <-> schemas/political-country.schema.json
 5. strategic-macro.json          <-> schemas/strategic-macro.schema.json
-6. economy.json                  <-> schemas/strategic-macro.schema.json
+6. economy.json and economy articles <-> schemas/economy.schema.json
 7. country.json                  <-> schemas/country-strategic-assessment.schema.json
 8. glossary.json                 <-> schemas/glossary-term.schema.json
 
@@ -24,6 +24,7 @@ Endpoint: https://analysisreports.github.io/
 import os
 import sys
 import json
+import glob
 from typing import List, Dict
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -35,7 +36,7 @@ SCHEMA_MAPPING: Dict[str, str] = {
     "political.json": "political.schema.json",
     "political-country.json": "political-country.schema.json",
     "strategic-macro.json": "strategic-macro.schema.json",
-    "economy.json": "strategic-macro.schema.json",
+    "economy.json": "economy.schema.json",
     "country.json": "country-strategic-assessment.schema.json",
     "glossary.json": "glossary-term.schema.json"
 }
@@ -55,7 +56,11 @@ def audit_root_schemas() -> List[str]:
     if not has_jsonschema:
         print("[WARN] python 'jsonschema' package not installed; performing structural fallback validation.")
 
-    for target_name, schema_name in SCHEMA_MAPPING.items():
+    targets = dict(SCHEMA_MAPPING)
+    for path in sorted(glob.glob(os.path.join(ROOT_DIR, "economy", "**", "*.json"), recursive=True)):
+        targets[os.path.relpath(path, ROOT_DIR)] = "economy.schema.json"
+
+    for target_name, schema_name in targets.items():
         target_path = os.path.join(ROOT_DIR, target_name)
         schema_path = os.path.join(SCHEMAS_DIR, schema_name)
 
@@ -80,6 +85,10 @@ def audit_root_schemas() -> List[str]:
                 errors.append(f"Schema Decode Error in {schema_name}: {e}")
                 continue
 
+        if schema_name == "economy.schema.json" and not has_jsonschema:
+            errors.append(f"{target_name}: jsonschema is required for economy contract validation")
+            continue
+
         # Basic structural required keys check (available in pure standard library)
         req_keys = schema_data.get("required", [])
         for rk in req_keys:
@@ -93,6 +102,8 @@ def audit_root_schemas() -> List[str]:
 
         # Formal Draft 2020-12 validator when jsonschema is available
         if has_jsonschema:
+            if schema_name == "economy.schema.json":
+                jsonschema.Draft202012Validator.check_schema(schema_data)
             validator = jsonschema.Draft202012Validator(schema_data)
             schema_errors = list(validator.iter_errors(target_data))
 
@@ -117,7 +128,7 @@ def main():
         print("=" * 70)
         sys.exit(1)
     else:
-        print("[SUCCESS] All 8 Root JSON Payloads strictly comply with formal Draft 2020-12 schemas.")
+        print("[SUCCESS] Root contracts and economy articles passed the available schema checks.")
         print("=" * 70)
         sys.exit(0)
 
