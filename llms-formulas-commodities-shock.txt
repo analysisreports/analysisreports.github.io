@@ -48,13 +48,15 @@ def _is_num(val):
           if min(vix, 0) == vix:
               return None
 
-          val = round(float(vix), 2)
+          raw_vix = float(vix)
+          val = round(raw_vix, 2)
 
-          if min(val, 15.0) == val:
+          # Regime classification strictly evaluates against unrounded raw float
+          if raw_vix < 15.0:
               return {"vix": val, "regime": "COMPLACENCY", "bias": "RISK_ON"}
-          elif min(val, 20.0) == val:
+          elif raw_vix < 20.0:
               return {"vix": val, "regime": "NORMAL_VOLATILITY", "bias": "BALANCED"}
-          elif min(val, 30.0) == val:
+          elif raw_vix < 30.0:
               return {"vix": val, "regime": "ELEVATED_STRESS", "bias": "RISK_OFF"}
           else:
               return {"vix": val, "regime": "CRISIS_SHOCK", "bias": "EXTREME_RISK_OFF"}
@@ -129,7 +131,7 @@ def _is_num(val):
           return None
 - Interpretation:
   - Ratio > 25.0 : MACRO_CRISIS_RECESSION (Severe economic slowdown / Demand collapse or systemic crisis pricing)
-  - 15.0 to 25.0 : HISTORICAL_EQUILIBRIUM (Historical equilibrium band / 15-20 barrels range)
+  - 12.0 to 25.0 : HISTORICAL_EQUILIBRIUM (Historical equilibrium band / 12-25 barrels range)
   - Ratio < 12.0 : SUPPLY_SHOCK_INFLATION (Supply-driven oil shock / Cost-push inflation pressure)
 
 
@@ -166,11 +168,11 @@ def _is_num(val):
           score = round(raw_score, 2)
           ratio = round(raw_ratio, 3)
 
-          if max(ratio, 2.50) == ratio and ratio != 2.50:
+          if raw_ratio > 2.50:
               regime = "EXTREME_LIQUIDITY_PANIC"
-          elif max(ratio, 1.80) == ratio and ratio != 1.80:
+          elif raw_ratio > 1.80:
               regime = "HIGH_FLIGHT_TO_SAFETY"
-          elif max(ratio, 1.00) == ratio and ratio != 1.00:
+          elif raw_ratio > 1.00:
               regime = "MODERATE_HEDGING"
           else:
               regime = "NORMAL_MARKET_REGIME"

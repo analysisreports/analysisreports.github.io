@@ -789,13 +789,14 @@ def calc_vix_market_regime(vix):
             return None
 
         val = round(v, 2)
-        if val < 15.0:
+        # Regime classification evaluates against unrounded raw float
+        if v < 15.0:
             regime = "COMPLACENCY"
             bias = "RISK_ON"
-        elif val < 20.0:
+        elif v < 20.0:
             regime = "NORMAL_VOLATILITY"
             bias = "BALANCED"
-        elif val < 30.0:
+        elif v < 30.0:
             regime = "ELEVATED_STRESS"
             bias = "RISK_OFF"
         else:
@@ -2232,11 +2233,11 @@ def calc_safe_haven_flight_index(dxy_val, hy_spread_val, dgs10_val) -> Optional[
         score = round(raw_score, 2)
         ratio = round(raw_ratio, 3)
 
-        if ratio > 2.50:
+        if raw_ratio > 2.50:
             status = "EXTREME_LIQUIDITY_PANIC"
-        elif ratio > 1.80:
+        elif raw_ratio > 1.80:
             status = "HIGH_FLIGHT_TO_SAFETY"
-        elif ratio > 1.00:
+        elif raw_ratio > 1.00:
             status = "MODERATE_HEDGING"
         else:
             status = "NORMAL_MARKET_REGIME"
