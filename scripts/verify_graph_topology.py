@@ -117,6 +117,8 @@ def main():
 
     # 1. Encoding Guard
     enc_errors = audit_encoding(raw_content)
+    errors = list(enc_errors)
+    warnings = []
 
     data = json.loads(raw_content)
 
@@ -141,20 +143,27 @@ def main():
     nodes = list(data.get("nodes", []))
     edges = list(data.get("edges", []))
 
+    mod_nodes_count = 0
+    mod_edges_count = 0
+
     for sg_path in subgraph_files:
         if os.path.exists(sg_path):
             with open(sg_path, "r", encoding="utf-8") as sg_f:
                 sg_data = json.load(sg_f)
-                nodes.extend(sg_data.get("nodes", []))
-                edges.extend(sg_data.get("edges", []))
+                sg_nodes = sg_data.get("nodes", [])
+                sg_edges = sg_data.get("edges", [])
+                nodes.extend(sg_nodes)
+                edges.extend(sg_edges)
+                mod_nodes_count += len(sg_nodes)
+                mod_edges_count += len(sg_edges)
         else:
             errors.append(f"MISSING SUBGRAPH FILE: {sg_path}")
 
-    print(f"[*] Federated Nodes Audited : {len(nodes)} (8 Master Backbone + 234 Modular Subgraphs)")
-    print(f"[*] Federated Edges Audited : {len(edges)} (7 Master Backbone + 297 Modular Subgraphs)")
+    bb_nodes_count = len(data.get("nodes", []))
+    bb_edges_count = len(data.get("edges", []))
 
-    errors = enc_errors
-    warnings = []
+    print(f"[*] Federated Nodes Audited : {len(nodes)} ({bb_nodes_count} Master Backbone + {mod_nodes_count} Modular Subgraphs)")
+    print(f"[*] Federated Edges Audited : {len(edges)} ({bb_edges_count} Master Backbone + {mod_edges_count} Modular Subgraphs)")
 
     # 1.2 Graph Accounting & Subgraph Counts Strict Synchronicity Guard
     accounting = data.get("graph_accounting", {})
@@ -313,8 +322,8 @@ def main():
             f_content = f_f.read()
         for match in re.finditer(r'^###\s+([0-9]+(?:\.[0-9]+)?)\.\s+', f_content, re.M):
             num = match.group(1)
-            # Skip architectural directives or reserved placeholders
-            if num in ("0.1", "0.2", "0.4", "0.5", "0.5.1", "0.6", "0.7", "25.4"):
+            # Skip architectural directives, data engines or reserved placeholders
+            if num in ("0.1", "0.2", "0.3", "0.4", "0.5", "0.5.1", "0.6", "0.7", "25.4"):
                 continue
             all_formula_models.add(f"MODEL_{num}")
 
