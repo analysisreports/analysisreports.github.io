@@ -5,7 +5,7 @@ verify_all.py
 --------------
 Master Enterprise Orchestrator & Unified CI/CD Continuous Quality Suite.
 
-Runs the complete 9-pillar institutional verification pipeline:
+Runs the complete institutional verification pipeline:
 1. Entity Dictionary Compliance (verify_entities.py)
 2. Zero-Synthetic-Data & Fallback Validator (verify_zero_fallbacks.py)
 3. Cross-File Polarity Auto-Sync & SSOT Equalizer (verify_cross_consistency.py)
@@ -34,6 +34,8 @@ TEST_SUITE: List[Tuple[str, str, str, Tuple[str, ...]]] = [
     ("Entity Dictionary Compliance", "verify_entities.py", "388 Valid Entities across 40 Dynamic Files", ()),
     ("Zero-Synthetic-Data & Fallback Guard", "verify_zero_fallbacks.py", "100% Real API Ingestion, Zero Mocks", ()),
     ("Cross-File Polarity Consistency (SSOT)", "verify_cross_consistency.py", "Read-only Single Source of Truth check", ("--check",)),
+    ("Country Relationship TXT/JSON Twin Guard", "verify_country_relationships_source.py", "4 Shelves, 165 Dyads, field-level parity", ()),
+    ("Special Canonical TXT Source Guard", "verify_special_sources.py", "Entities, indicators, formulas, News & SITREP", ()),
     ("Dyad Symmetry & Hub Isolation Guard", "verify_dyad_integrity.py", "165 Dyads, 0 Leaks, 100% Symmetric Mirrors", ()),
     ("Chronological & Treaty Temporal Sanity", "verify_temporal_sanity.py", "Sequence (Sign<=Enact), Watersheds, 2026 Horizon", ()),
     ("Knowledge Graph Topology & Edge Integrity", "verify_graph_topology.py", "Topological Health, Zero Broken Edges, SSOT Polarity Invariance", ()),

@@ -344,6 +344,7 @@ def _is_num(val):
 - US_VE maps benchmark price spread (FRED Brent-WTI HORMUZ_SPREAD, direction +1), dollar funding stress (FRED SOFR, direction -1), and U.S. emergency petroleum buffer depletion (EIA US_SPR_BUFFER, direction -1) to capture US Gulf Coast heavy crude refinery demand elasticity, unilateral financial sanctions pressure, and strategic inventory erosion.
 - All triggers mapped to a relationship are required. If any is unavailable, the relationship's dynamic_delta and P_net are null and its regime is UNAVAILABLE. Contributions, directions, statuses and the dominant trigger are published in `llms-relationships.json` and `llms-relationships.txt`.
 - Legacy petrol, chip and VIX deltas remain visible separately and are not added to P_net.
+- Interpretation: Each trigger is a bounded proxy for a documented macroeconomic pressure channel, not direct evidence of a geopolitical event. A missing input invalidates the dependent relationship transmission; it must remain null with an explicit status instead of being treated as zero or replaced by a fallback.
 
 #### Integration with Models 25.18 and 25.1
 - **Model 25.18:** For TR_SA, SA_PK and TR_PK, the Mecca Pact delta is calculated separately using the +0.10 treaty uplift, Brent relative to Saudi fiscal breakeven oil, and SOFR. TR_SA and SA_PK include the energy and dollar adjustments; TR_PK includes the dollar adjustment but not the energy adjustment. Each is clamped to [-0.30, +0.30] and rounded to two decimals. In the relationship generator, when the required macro inputs are unavailable or invalid, only the +0.10 treaty uplift is retained. For all other pairs, the Mecca Pact delta is zero.
@@ -762,6 +763,7 @@ def _is_num(val):
 ### 29. EVIDENCE & SOURCE CONFIDENCE SCORE
 - Purpose: Evaluates authority, corroboration, and recency of intelligence supporting analytical assertions on a deterministic 0-100 scale.
 - Input Standards: Explicitly accepts inputs on standard normalized [0.0, 1.0] unit scale (or percentage [0.0, 100.0] via explicit scale="pct"). Eliminates scale guessing heuristics.
+- Formula: confidence_score = round((authority * 0.40 + corroboration * 0.35 + recency * 0.25) * 100.0)
 - Machine-Executable Logic (Python):
   def confidence_score(authority, confirmation, recency, scale="unit"):
       if any(v is None or isinstance(v, bool) for v in (authority, confirmation, recency)):

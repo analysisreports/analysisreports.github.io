@@ -72,7 +72,7 @@ def process_block(blk_lines: List[str], start_line: int, current_hub: str, seen_
     seen_dyad_ids[dyad_id] = start_line
 
     # 4. Bilateral Stance & Classification
-    stance_m = re.search(r"^Bilateral Stance:\s*([+\-0-9\.]+)\s*\((.+?)\)", text, re.M)
+    stance_m = re.search(r"^Bilateral Stance:\s*([+\-0-9\.]+)\s*\((.*)\)\s*$", text, re.M)
     if not stance_m:
         raise ValueError(f"[Line {start_line}] Missing or malformed 'Bilateral Stance' for {dyad_id}.")
     try:

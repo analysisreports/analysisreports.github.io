@@ -62,6 +62,11 @@ jobs:
         run: |
           python scripts/verify_all.py
 
+      - name: Check country relationship source files and JSON twins
+        run: |
+          python scripts/verify_country_relationships_source.py
+          python -m unittest discover -s scripts -p test_country_relationships_source.py
+
       - name: Verify article and graph schema behavior
         run: |
           python -m unittest discover -s scripts -p test_economy_schema.py
@@ -85,3 +90,8 @@ jobs:
       - name: Verify SITREP schema and dual-twin integrity
         run: |
           python -m unittest discover -s scripts -p test_sitrep_integrity.py
+
+      - name: Guard canonical special TXT sources
+        run: |
+          python scripts/verify_special_sources.py
+          python -m unittest discover -s scripts -p test_special_sources.py
