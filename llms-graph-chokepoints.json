@@ -18,7 +18,7 @@
         "location": "26°34'N 56°15'E",
         "volume": "~20-21 Million bpd (20% of global petroleum)",
         "disruption_severity": "CATASTROPHIC",
-        "severity_weight": 1
+        "severity_weight": 1.0
       }
     },
     {
@@ -40,7 +40,7 @@
         "location": "1°26'N 103°00'E",
         "volume": "~80% of China's crude imports",
         "disruption_severity": "CATASTROPHIC",
-        "severity_weight": 1
+        "severity_weight": 1.0
       }
     },
     {
@@ -51,7 +51,7 @@
         "location": "24°00'N 119°00'E",
         "vulnerability": "Advanced Semiconductor Supply Shock",
         "disruption_severity": "CATASTROPHIC",
-        "severity_weight": 1
+        "severity_weight": 1.0
       }
     },
     {
@@ -89,7 +89,7 @@
       "label": "Lithium and Battery Raw Materials",
       "category": "CRITICAL_MINERAL",
       "attributes": {
-        "geographic_basin": "LATAM_TRIANGLE"
+        "geographic_basin": "ZONE_LITHIUM_TRIANGLE"
       }
     },
     {
@@ -120,7 +120,7 @@
         "location": "54°43'N 20°30'E",
         "type": "Militarized Exclave & Naval Bastion",
         "disruption_severity": "CATASTROPHIC",
-        "severity_weight": 1
+        "severity_weight": 1.0
       }
     },
     {
@@ -154,7 +154,7 @@
         "regime_framework": "1936 Montreux Convention",
         "sovereign_authority": "GEO_TR",
         "disruption_severity": "HIGH",
-        "severity_weight": 0.8
+        "severity_weight": 0.7
       }
     },
     {
@@ -165,7 +165,7 @@
         "location": "63°00'N 18°00'W",
         "strategic_domain": "Transatlantic Subsea Cables & ASW Chokepoint",
         "disruption_severity": "CATASTROPHIC",
-        "severity_weight": 0.95
+        "severity_weight": 1.0
       }
     },
     {
@@ -176,8 +176,8 @@
         "location": "08°30'S 115°45'E",
         "strategic_domain": "Deep-Draft Capesize & Submarine Transit",
         "sovereign_authority": "GEO_ID",
-        "disruption_severity": "MODERATE_HIGH",
-        "severity_weight": 0.75
+        "disruption_severity": "MODERATE-HIGH",
+        "severity_weight": 0.45
       }
     },
     {
@@ -188,8 +188,8 @@
         "location": "00°20'S 118°10'E",
         "strategic_domain": "Archipelagic Deepwater Corridor",
         "sovereign_authority": "GEO_ID",
-        "disruption_severity": "MODERATE_HIGH",
-        "severity_weight": 0.7
+        "disruption_severity": "MODERATE-HIGH",
+        "severity_weight": 0.45
       }
     }
   ],
@@ -469,20 +469,23 @@
     {
       "source": "GEO_BO",
       "target": "ENERGY_LITHIUM",
-      "type": "HAS_LITHIUM_RESOURCES",
-      "description": "Holds world's largest identified lithium resources (~23M tonnes, Salar de Uyuni) with no commercial-scale production."
+      "type": "CONTROLS_LEVERAGE",
+      "description": "Holds world's largest identified lithium resources (~23M tonnes, Salar de Uyuni) with no commercial-scale production.",
+      "commodity_role": "HAS_LITHIUM_RESOURCES"
     },
     {
       "source": "GEO_CL",
       "target": "ENERGY_LITHIUM",
-      "type": "EXPORTS_LITHIUM",
-      "description": "World's second-largest lithium producer and dominant brine exporter via Salar de Atacama."
+      "type": "CONTROLS_LEVERAGE",
+      "description": "World's second-largest lithium producer and dominant brine exporter via Salar de Atacama.",
+      "commodity_role": "EXPORTS_LITHIUM"
     },
     {
       "source": "GEO_AR",
       "target": "ENERGY_LITHIUM",
-      "type": "PRODUCES_LITHIUM",
-      "description": "Rapidly expanding commercial lithium extraction projects across the Puna plateau."
+      "type": "CONTROLS_LEVERAGE",
+      "description": "Rapidly expanding commercial lithium extraction projects across the Puna plateau.",
+      "commodity_role": "PRODUCES_LITHIUM"
     }
   ],
   "metadata": {
