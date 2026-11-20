@@ -47,7 +47,8 @@
       "category": "ACTOR",
       "type": "Sovereign State",
       "attributes": {
-        "primary_friction": "LEVANT_PERSIAN_GULF_NUCLEAR"
+        "primary_friction": "LEVANT_PERSIAN_GULF_NUCLEAR",
+        "currency": "ILS"
       }
     },
     {
@@ -531,7 +532,7 @@
       "category": "ACTOR",
       "type": "Central Bank",
       "attributes": {
-        "jurisdiction": "GEO_DE",
+        "jurisdiction": "BLOC_EU",
         "currency": "EUR"
       }
     },
@@ -1165,6 +1166,265 @@
         "patron_coupling": 0.9,
         "theater": "LEVANT_EAST_MEDITERRANEAN"
       }
+    },
+    {
+      "id": "GEO_NZ",
+      "label": "New Zealand",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_IT",
+      "label": "Italy",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_NL",
+      "label": "Netherlands",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_FI",
+      "label": "Finland",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_DK",
+      "label": "Denmark",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_RO",
+      "label": "Romania",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_ES",
+      "label": "Spain",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_BE",
+      "label": "Belgium",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_QA",
+      "label": "State of Qatar",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_JO",
+      "label": "Jordan",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_KW",
+      "label": "Kuwait",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_BH",
+      "label": "Bahrain",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_OM",
+      "label": "Oman",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_VN",
+      "label": "Socialist Republic of Vietnam",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_CO",
+      "label": "Republic of Colombia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_PA",
+      "label": "Panama",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_NG",
+      "label": "Nigeria",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_KE",
+      "label": "Kenya",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_CU",
+      "label": "Republic of Cuba",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_BY",
+      "label": "Belarus",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_NI",
+      "label": "Nicaragua",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_LB",
+      "label": "Lebanon",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_AF",
+      "label": "Afghanistan",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_SD",
+      "label": "Sudan",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_SO",
+      "label": "Somalia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_HT",
+      "label": "Haiti",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_MM",
+      "label": "Myanmar",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_RS",
+      "label": "Serbia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_MN",
+      "label": "Mongolia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_GE",
+      "label": "Georgia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_MD",
+      "label": "Moldova",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_KH",
+      "label": "Cambodia",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_LA",
+      "label": "Laos",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_SB",
+      "label": "Solomon Islands",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_DJ",
+      "label": "Djibouti",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_CD",
+      "label": "Democratic Republic of the Congo",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
+    },
+    {
+      "id": "GEO_LK",
+      "label": "Sri Lanka",
+      "category": "ACTOR",
+      "type": "Sovereign State",
+      "attributes": {}
     }
   ],
   "edges": [
@@ -1180,7 +1440,7 @@
       "target": "GEO_CN",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.65,
-      "regime": "STRATEGIC_COMPETITION"
+      "regime": "PROXY_WAR"
     },
     {
       "source": "GEO_RU",
@@ -1194,7 +1454,7 @@
       "target": "GEO_IR",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.95,
-      "regime": "PROXY_WAR / KINETIC_STANDOFF"
+      "regime": "PROXY_WAR"
     },
     {
       "source": "GEO_IR",
@@ -1222,14 +1482,14 @@
       "target": "GEO_KP",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.9,
-      "regime": "KINETIC_STANDOFF"
+      "regime": "PROXY_WAR"
     },
     {
       "source": "BLOC_BRICS_MBRIDGE",
       "target": "GEO_US",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.7,
-      "regime": "MONETARY_DECOUPLING"
+      "regime": "PROXY_WAR"
     },
     {
       "source": "BLOC_C6",
@@ -1313,7 +1573,7 @@
       "target": "GEO_DE",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.7,
-      "regime": "ECONOMIC_WARFARE"
+      "regime": "PROXY_WAR"
     },
     {
       "source": "GEO_DE",
@@ -1362,14 +1622,14 @@
       "target": "GEO_TW",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.9,
-      "regime": "KINETIC_STANDOFF"
+      "regime": "PROXY_WAR"
     },
     {
       "source": "GEO_CN",
       "target": "GEO_JP",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.55,
-      "regime": "STRATEGIC_COMPETITION"
+      "regime": "PROXY_WAR"
     },
     {
       "source": "GEO_US",
@@ -1687,7 +1947,7 @@
       "target": "GEO_IN",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.3,
-      "regime": "STRATEGIC_COMPETITION"
+      "regime": "STRATEGIC_FRICTION"
     },
     {
       "source": "GEO_IR",
@@ -1708,7 +1968,7 @@
       "target": "GEO_PK",
       "type": "POLARITY_COUPLING",
       "p_baseline": 0.15,
-      "regime": "TRANSACTIONAL"
+      "regime": "TACTICAL_COOPERATION"
     },
     {
       "source": "GEO_IR",
@@ -1785,7 +2045,7 @@
       "target": "GEO_IL",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.95,
-      "regime": "PROXY_WAR / KINETIC_BLOCKADE"
+      "regime": "PROXY_WAR"
     },
     {
       "source": "GEO_SA",
@@ -1972,7 +2232,7 @@
       "target": "GEO_ZA",
       "type": "POLARITY_COUPLING",
       "p_baseline": 0.1,
-      "regime": "TRANSACTIONAL"
+      "regime": "TACTICAL_COOPERATION"
     },
     {
       "source": "GEO_RU",
@@ -1986,7 +2246,7 @@
       "target": "GEO_LY",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.25,
-      "regime": "FRICTION"
+      "regime": "STRATEGIC_FRICTION"
     },
     {
       "source": "GEO_RU",
@@ -2162,7 +2422,7 @@
       "target": "GEO_IR",
       "type": "POLARITY_COUPLING",
       "p_baseline": -0.85,
-      "regime": "PROXY_WAR / KINETIC_STANDOFF"
+      "regime": "PROXY_WAR"
     },
     {
       "source": "GEO_TR",
@@ -2170,6 +2430,650 @@
       "type": "PATRON_COUPLING",
       "coupling_factor": 1.0,
       "role": "Diplomatic, Security & Currency Guarantor"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_NZ",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.9,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_IL",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.8,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_IT",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.8,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_LT",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_LV",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_EE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_NL",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_FI",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_DK",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_RO",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.8,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_ES",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.8,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_BE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.8,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_QA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.65,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_JO",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.6,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_IQ",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.2,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_KW",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.65,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_BH",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.65,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_OM",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.5,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_PH",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.7,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_VN",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.45,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_CO",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.5,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_PA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.6,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_NG",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.35,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_KE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.55,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_AZ",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.35,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_KZ",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.3,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_AM",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.3,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_CU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.7,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_BY",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.8,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_NI",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.7,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_SY",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.2,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_LB",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.3,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_AF",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.65,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_SD",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.5,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_SO",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.15,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_HT",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.2,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_US",
+      "target": "GEO_MM",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.65,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_BY",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.95,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_KP",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.85,
+      "regime": "ALLIANCE"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_IR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.75,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_AM",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.4,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_SA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.55,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_EG",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.45,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_RS",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.6,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_VN",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.5,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_BR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.45,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_AZ",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.4,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_MN",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.5,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_GB",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.8,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_FR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.65,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_GE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.45,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_JP",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.6,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_FI",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.75,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_MD",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.55,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_SD",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.2,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_RU",
+      "target": "GEO_CU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.65,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_KP",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.8,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_KH",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.75,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_LA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.7,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_MM",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.6,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_IR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.65,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_SB",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.65,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_SA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.6,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_KZ",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.6,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_VN",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.45,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_SG",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.5,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_TR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.4,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_RS",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.65,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_BR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.55,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_ZA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.5,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_EG",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.5,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_AU",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.4,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_KR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.35,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_DE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.35,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_GB",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.45,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_DJ",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.65,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_CD",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.5,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_CN",
+      "target": "GEO_LK",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.45,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_SY",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.45,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_LB",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.7,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_KP",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.7,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_TR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.2,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_SA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.15,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_QA",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.45,
+      "regime": "TACTICAL_COOPERATION"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_OM",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.55,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_AM",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": 0.5,
+      "regime": "STRATEGIC_ALIGNMENT"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_AZ",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.2,
+      "regime": "STRATEGIC_FRICTION"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_GB",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.65,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_FR",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.6,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_DE",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.6,
+      "regime": "PROXY_WAR"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_AF",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.1,
+      "regime": "NEUTRAL"
+    },
+    {
+      "source": "GEO_IR",
+      "target": "GEO_BH",
+      "type": "POLARITY_COUPLING",
+      "p_baseline": -0.2,
+      "regime": "STRATEGIC_FRICTION"
     }
   ],
   "metadata": {

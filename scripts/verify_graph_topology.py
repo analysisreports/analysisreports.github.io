@@ -303,9 +303,20 @@ def main():
     if invalid_attribute_entities:
         errors.extend(invalid_attribute_entities)
 
-    # 4. Master SSOT Polarity Invariance
+    # 4. Master SSOT Polarity Invariance & Canonical Regime Guard
     pol_errors, synced_count = audit_polarity_synchronization(edges)
     errors.extend(pol_errors)
+
+    # 4.1 Strict Model 25.1 Canonical Regime Guard
+    CANONICAL_REGIMES = {"ALLIANCE", "STRATEGIC_ALIGNMENT", "TACTICAL_COOPERATION", "NEUTRAL", "STRATEGIC_FRICTION", "PROXY_WAR", "KINETIC_WAR"}
+    invalid_regimes = []
+    for idx, e in enumerate(edges):
+        if "regime" in e:
+            reg = e["regime"]
+            if not isinstance(reg, str) or reg not in CANONICAL_REGIMES or "/" in reg:
+                invalid_regimes.append(f"Edge #{idx} ({e.get('source')} -> {e.get('target')}): Non-canonical regime '{reg}'! Must strictly be one of {sorted(CANONICAL_REGIMES)}")
+    if invalid_regimes:
+        errors.extend(invalid_regimes)
 
     # 5. Orphan Node Detection (Degree 0) - Zero Orphan Tolerance
     orphans = [nid for nid, deg in node_degree.items() if deg == 0]
