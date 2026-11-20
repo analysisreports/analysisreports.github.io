@@ -36,17 +36,22 @@ jobs:
             -d "hub.url=https://en.ersoytoptas.tr/feeds/posts/default?alt=rss"
           echo "Google ve Gemini botları için WebSub üzerinden RSS anonsu geçildi."
 
-      # 2. BÖLÜM: Bing, ChatGPT ve Perplexity İçin IndexNow Sinyali
-      - name: Ping Bing & AI Engines via IndexNow
+      # 2. BÖLÜM: Bing Webmaster Tools API ile Bing, Copilot ve ChatGPT İndeksleme
+      - name: Submit URLs to Bing Webmaster Tools API
+        env:
+          BING_API_KEY: ${{ secrets.BING_API_KEY }}
         run: |
-          curl --silent --show-error --fail-with-body -X POST "https://api.indexnow.org/indexnow" \
-            -H "Content-Type: application/json; charset=utf-8" \
-            -d '{
-              "host": "www.ersoytoptas.tr",
-              "key": "b401745e766a4948af2a7d7e1e930edf",
-              "urlList": [
-                "https://www.ersoytoptas.tr/",
-                "https://en.ersoytoptas.tr/"
-              ]
-            }'
-          echo "Google, Bing, ChatGPT ve Perplexity botları için IndexNow anonsu geçildi (ersoytoptas.tr)."
+          if [ -n "$BING_API_KEY" ]; then
+            curl --silent --show-error --fail-with-body -X POST "https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=${BING_API_KEY}" \
+              -H "Content-Type: application/json; charset=utf-8" \
+              -d '{
+                "siteUrl": "https://www.ersoytoptas.tr",
+                "urlList": [
+                  "https://www.ersoytoptas.tr/",
+                  "https://en.ersoytoptas.tr/"
+                ]
+              }'
+            echo "Bing, Copilot ve ChatGPT için Bing Webmaster API üzerinden anons başarıyla geçildi (ersoytoptas.tr)."
+          else
+            echo "BING_API_KEY secret bulunamadı, adım atlandı."
+          fi
