@@ -17,7 +17,7 @@ This repository hosts machine-readable ontological data models, quantitative fra
 
 ---
 
-> *Technical Note: The structural architecture and machine-readable pipelines of this repository were organized with the technical assistance of Google Gemini AI.*  **[analysisreports](https://github.com/analysisreports/analysisreports.github.io)** 
+> *Technical Note: Architected by Ersoy Toptaş. Automated reasoning, schema verification, and knowledge graph engineering workflows executed using Google Gemini models.*  **[analysisreports](https://github.com/analysisreports/analysisreports.github.io)** 
 
 ---
 
