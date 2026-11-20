@@ -293,9 +293,10 @@ def build_sitrep():
     gold_yoy = gold_s.get("transformations", {}).get("percent_change_from_year_ago")
     gold_date = gold_s.get("observation_date", "N/A")
 
-    silver_s = fred_series.get("SLVPRUSD", {})
+    silver_s = wb_series.get("IND_WB_SILVER", {})
     silver_val = silver_s.get("current_value")
-    silver_date = silver_s.get("last_date", "N/A")
+    silver_yoy = silver_s.get("transformations", {}).get("percent_change_from_year_ago")
+    silver_date = silver_s.get("observation_date", "N/A")
     
     # Gold-Silver Ratio: Prioritize live sovereign spot benchmarks, fallback to monthly historical series
     if _is_num(gold_spot_usd) and _is_num(silver_spot_usd) and silver_spot_usd > 0:
@@ -325,6 +326,7 @@ def build_sitrep():
         "gold_usd_ozt": gold_val,
         "gold_yoy_pct": gold_yoy,
         "silver_usd_ozt": silver_val,
+        "silver_yoy_pct": silver_yoy,
         "gold_silver_ratio": gold_silver_ratio,
         "copper_global_usd_mt": copper_val,
         "copper_yoy_pct": copper_yoy,
@@ -1017,7 +1019,7 @@ def build_sitrep():
         f"GOLD_SPOT_USD_OZT        : {_fmt(metals_matrix['gold_spot_usd_ozt'])}" + (f" [£{metals_matrix['gold_spot_gbp_ozt']:,.2f} GBP @ {metals_matrix['ecb_gbp_usd_cross_rate']:.4f} GBP/USD | Source: The Royal Mint Sovereign Spot Benchmark / ECB FX | Obs: {rm_fx_date} | London SLOC]" if _is_num(metals_matrix['gold_spot_usd_ozt']) else " [Source: The Royal Mint | Feed Status: UNAVAILABLE]"),
         f"GOLD_WB_MONTHLY_AVG_USD  : {_fmt(metals_matrix['gold_usd_ozt'])} | YoY: {_fmt_pct(metals_matrix['gold_yoy_pct'])} | SIGNAL: SYSTEMIC_SAFE_HAVEN [Source: World Bank Pink Sheet | Obs: {gold_date}]",
         f"SILVER_SPOT_USD_OZT      : " + (f"{_fmt(metals_matrix['silver_spot_usd_ozt'])} [£{metals_matrix['silver_spot_gbp_ozt']:,.2f} GBP @ {metals_matrix['ecb_gbp_usd_cross_rate']:.4f} GBP/USD | Source: The Royal Mint Sovereign Spot Benchmark | Obs: {rm_fx_date}]" if _is_num(metals_matrix['silver_spot_usd_ozt']) else " [Source: The Royal Mint | Feed Status: UNAVAILABLE]") + f" | GOLD_SILVER_RATIO: {_fmt(metals_matrix['gold_silver_ratio'], prefix='', decimals=1)}",
-        f"SILVER_WB_MONTHLY_AVG_USD: " + (f"{_fmt(metals_matrix['silver_usd_ozt'])} [Source: World Bank Pink Sheet / FRED | Obs: {silver_date}]" if _is_num(metals_matrix['silver_usd_ozt']) else "[Source: World Bank Pink Sheet / FRED | Feed Status: SOURCE_FEED_UNAVAILABLE]"),
+        f"SILVER_WB_MONTHLY_AVG_USD: " + (f"{_fmt(metals_matrix['silver_usd_ozt'])} | YoY: {_fmt_pct(metals_matrix.get('silver_yoy_pct'))} [Source: World Bank Pink Sheet | Obs: {silver_date}]" if _is_num(metals_matrix['silver_usd_ozt']) else "[Source: World Bank Pink Sheet | Feed Status: SOURCE_FEED_UNAVAILABLE]"),
         f"COPPER_GLOBAL_USD_MT     : {_fmt(metals_matrix['copper_global_usd_mt'])} | YoY: {_fmt_pct(metals_matrix['copper_yoy_pct'])} (Dr. Copper Growth Pulse) [Source: FRED/IMF | Obs: {copper_date}]",
         f"WHEAT_GLOBAL_USD_MT      : {_fmt(metals_matrix['wheat_global_usd_mt'])} | YoY: {_fmt_pct(metals_matrix['wheat_yoy_pct'])} (Black Sea Agro Security) [Source: FRED/IMF | Obs: {wheat_date}]",
         "",

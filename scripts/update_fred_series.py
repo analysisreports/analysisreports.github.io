@@ -133,12 +133,12 @@ FREQ_N_MAP = {
 # ==============================================================================
 CACHE_TTL_DAYS = {
     "DAILY": 2,
-    "WEEKLY": 3,
-    "BIWEEKLY": 4,
-    "MONTHLY": 0,
-    "QUARTERLY": 95,
-    "SEMIANNUAL": 185,
-    "ANNUAL": 365
+    "WEEKLY": 2,
+    "BIWEEKLY": 3,
+    "MONTHLY": 3,
+    "QUARTERLY": 30,
+    "SEMIANNUAL": 30,
+    "ANNUAL": 60
 }
 
 # ==============================================================================

@@ -41,6 +41,16 @@ WB_DATA_SOURCES = {
         "description": "Gold (USD/troy oz), 99.5% fine, London afternoon fixing, average of daily rates",
         "frequency": "Monthly",
         "n_obs_per_yr": 12
+    },
+    "SILVER": {
+        "url": "https://thedocs.worldbank.org/en/doc/5d903e848db1d1b83e0ec8f744e55570-0350012021/related/CMO-Historical-Data-Monthly.xlsx",
+        "sheet": "Monthly Prices",
+        "col_name": "Silver",
+        "name": "World Bank Official Silver Price (The Pink Sheet)",
+        "unit": "USD per Troy Ounce",
+        "description": "Silver (USD/troy oz), 99.9% fine, London morning fixing, average of daily rates",
+        "frequency": "Monthly",
+        "n_obs_per_yr": 12
     }
 }
 
@@ -159,11 +169,11 @@ def fetch_wb_series(key: str, meta: Dict[str, Any], now_iso: Optional[str] = Non
     url = meta["url"]
     req = urllib.request.Request(url, headers={"User-Agent": "AnalysisReports-WorldBank-Engine/1.0"})
     
-    content = None
+    raw_bytes = None
     for attempt in range(1, 3):
         try:
-            with urllib.request.urlopen(req, timeout=25) as resp:
-                content = resp.read().decode("utf-8")
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                raw_bytes = resp.read()
                 break
         except Exception as e:
             err_msg = str(e)
@@ -176,22 +186,63 @@ def fetch_wb_series(key: str, meta: Dict[str, Any], now_iso: Optional[str] = Non
                 print(f"[HATA] {key} verisi çekilemedi: {e}")
                 return None
 
-    if not content:
+    if not raw_bytes:
         return None
 
-    reader = csv.reader(io.StringIO(content.strip()))
-    header = next(reader, None)
-    
     observations: List[Tuple[str, float]] = []
-    for row in reader:
-        if len(row) >= 2 and row[1].strip():
-            try:
-                date_str = row[0].strip()
-                val = float(row[1].strip())
-                if math.isfinite(val):
-                    observations.append((date_str, val))
-            except ValueError:
-                continue
+
+    if url.endswith(".xlsx") or meta.get("sheet"):
+        try:
+            import pandas as pd
+            xl = pd.ExcelFile(io.BytesIO(raw_bytes))
+            sheet_name = meta.get("sheet", "Monthly Prices")
+            df = xl.parse(sheet_name, header=None)
+            target_col_name = meta.get("col_name", key).strip().lower()
+
+            target_col = None
+            header_row = 4
+            for c in range(df.shape[1]):
+                if str(df.iloc[header_row, c]).strip().lower() == target_col_name:
+                    target_col = c
+                    break
+
+            if target_col is None:
+                print(f"[HATA] Excel içinde {target_col_name} sütunu bulunamadı.")
+                return None
+
+            for r in range(header_row + 2, len(df)):
+                d_str = str(df.iloc[r, 0]).strip()
+                v_raw = df.iloc[r, target_col]
+                try:
+                    val = float(v_raw)
+                    if math.isfinite(val):
+                        if "M" in d_str:
+                            p = d_str.split("M")
+                            d_str = f"{p[0]}-{int(p[1]):02d}"
+                        observations.append((d_str, val))
+                except (ValueError, TypeError):
+                    continue
+        except Exception as e:
+            print(f"[HATA] Excel ayrıştırma hatası: {e}")
+            return None
+    else:
+        try:
+            content = raw_bytes.decode("utf-8")
+        except UnicodeDecodeError:
+            content = raw_bytes.decode("latin-1")
+
+        reader = csv.reader(io.StringIO(content.strip()))
+        header = next(reader, None)
+
+        for row in reader:
+            if len(row) >= 2 and row[1].strip():
+                try:
+                    date_str = row[0].strip()
+                    val = float(row[1].strip())
+                    if math.isfinite(val):
+                        observations.append((date_str, val))
+                except ValueError:
+                    continue
 
     if not observations:
         return None

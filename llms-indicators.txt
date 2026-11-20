@@ -134,9 +134,10 @@ Mathematical Guardrails:
 10. **ICP/M.U2.N.XEF000.4.ANR** (Euro Area Core HICP Inflation Rate (Excl. Energy & Food)) | Freq: Monthly | Units: Annual Rate of Change (%) | Source: ECB
 11. **ILM/W.U2.C.T000000.Z5.Z01** (Eurosystem Consolidated Balance Sheet - Total Assets) | Freq: Weekly | Units: Millions of EUR | Source: ECB
 
-### 2.3. World Bank Official Commodity Price Series (1 Series)
+### 2.3. World Bank Official Commodity Price Series (2 Series)
 
 1. **IND_WB_GOLD** (World Bank Official Gold Price (The Pink Sheet)) | Freq: Monthly | Units: USD per Troy Ounce | Source: World Bank Pink Sheet
+2. **IND_WB_SILVER** (World Bank Official Silver Price (The Pink Sheet)) | Freq: Monthly | Units: USD per Troy Ounce | Source: World Bank Pink Sheet
 
 ### 2.4. International Monetary Fund (IMF IFS) Official Series (3 Series)
 

@@ -9,9 +9,9 @@
     "endpoint": "https://analysisreports.github.io/llms-sitrep.json",
     "text_endpoint": "https://analysisreports.github.io/llms-sitrep.txt",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-20T06:36:20Z",
+    "last_updated": "2026-11-20T16:14:50Z",
     "sync_status": "SUCCESS",
-    "data_completeness_pct": 98.4,
+    "data_completeness_pct": 100.0,
     "disclaimer": "The information, interpretations, and estimates contained herein do not constitute investment advice. All responsibility for decisions belongs solely to the user.",
     "source_authority": "Consolidated Telemetry (FRED, U.S. Census Bureau, EIA, IMF PortWatch, NASA FIRMS, ECB)",
     "methodology_reference": "https://analysisreports.github.io/llms-formulas.txt",
@@ -35,7 +35,7 @@
     {
       "source": "THE_ROYAL_MINT_BENCHMARK",
       "entity_id": "INST_ROYAL_MINT_UK",
-      "event": "SOVEREIGN_SAFE_HAVEN_ACCUMULATION: Live Gold/Silver Ratio at 84.8 (Gold: $3,626.51, Silver: $42.78) with elevated VIX (25.46).",
+      "event": "SOVEREIGN_SAFE_HAVEN_ACCUMULATION: Live Gold/Silver Ratio at 84.8 (Gold: $3,637.54, Silver: $42.91) with elevated VIX (25.46).",
       "causal_chain": "GEOPOLITICAL_FRICTION -> CURRENCY_DEBASEMENT_HEDGE -> PHYSICAL_BULLION_ACCUMULATION",
       "systemic_impact": "Sovereign reserve managers and institutional capital prioritize monetary safe-haven assets over cyclical industrial raw materials."
     },
@@ -45,6 +45,13 @@
       "event": "TECH_DECOUPLING_VELOCITY: Direct US chip exports to China contracted -8.4% MoM amid Model 25.14 stress (0.583).",
       "causal_chain": "EXPORT_CONTROL_ENFORCEMENT -> DIRECT_SHIPMENT_CONTRACTION -> INTERMEDIARY_HUB_REROUTING",
       "systemic_impact": "Global AI hardware capex inflates as procurement routes adapt through secondary Asian transshipment hubs."
+    },
+    {
+      "source": "NASA_FIRMS_VIIRS",
+      "entity_id": "GEO_CN",
+      "event": "KINETIC_THERMAL_SURGE: People's Republic of China & Taiwan Strait orbital detection with 2248.0 MW radiative heat (Severity: CRITICAL).",
+      "causal_chain": "THEATER_MISSILE_ENGAGEMENT -> ASYMMETRIC_INFRASTRUCTURE_RISK -> MARITIME_INSURANCE_SPIKE",
+      "systemic_impact": "Heightened war-risk insurance premiums and potential rerouting away from regional littoral waters."
     }
   ],
   "energy_matrix": {
@@ -75,21 +82,21 @@
     "us_semiconductor_exports_china_mom_pct": -8.42
   },
   "metals_commodities": {
-    "gold_spot_usd_ozt": 3626.51,
+    "gold_spot_usd_ozt": 3637.54,
     "gold_spot_gbp_ozt": 2757.59,
-    "silver_spot_usd_ozt": 42.78,
+    "silver_spot_usd_ozt": 42.91,
     "silver_spot_gbp_ozt": 32.53,
-    "ecb_gbp_usd_cross_rate": 1.3151,
-    "fx_observation_date": "2026-11-19",
+    "ecb_gbp_usd_cross_rate": 1.3191,
+    "fx_observation_date": "2026-11-17",
     "gold_usd_ozt": 4105.0,
     "gold_yoy_pct": 1.1582,
-    "silver_usd_ozt": null,
+    "silver_usd_ozt": 30.764,
+    "silver_yoy_pct": 28.8383,
     "gold_silver_ratio": 84.77,
     "copper_global_usd_mt": 14473.05590909091,
     "copper_yoy_pct": 44.8062,
     "wheat_global_usd_mt": 246.85180245,
-    "wheat_yoy_pct": 59.141,
-    "silver_usd_ozt_status": "SOURCE_FEED_UNAVAILABLE"
+    "wheat_yoy_pct": 59.141
   },
   "maritime_chokepoints": {
     "CHOKE_HORMUZ": {
@@ -235,9 +242,9 @@
       "rule_id": "RULE_7_MONETARY_STRESS_SAFE_HAVEN",
       "domain": "metals_commodities",
       "formula_link": "https://analysisreports.github.io/llms-formulas.txt#0.2.1",
-      "telemetry_signal": "GOLD_SPOT_USD: $3,626.51 | SILVER_SPOT_USD: $42.78 | GOLD_SILVER_RATIO: 84.8 | CBOE_VIX: 25.46",
+      "telemetry_signal": "GOLD_SPOT_USD: $3,637.54 | SILVER_SPOT_USD: $42.91 | GOLD_SILVER_RATIO: 84.8 | CBOE_VIX: 25.46",
       "media_claim_bias": "Financial commentary frequently characterizes precious metals rallies as routine commodity inflation or speculative trading cycles.",
-      "ground_truth_reality": "Monetary hedging considerations and geopolitical risk awareness; Gold/Silver Ratio at 84.8 (Spot Gold: $3,626.51 via The Royal Mint / ECB FX, Silver: $42.78) alongside elevated volatility readings (VIX: 25.46, YoY: +27.30%). This combination tends to indicate that market participants may be placing an emphasis on monetary asset stability and sovereign hedging."
+      "ground_truth_reality": "Monetary hedging considerations and geopolitical risk awareness; Gold/Silver Ratio at 84.8 (Spot Gold: $3,637.54 via The Royal Mint / ECB FX, Silver: $42.91) alongside elevated volatility readings (VIX: 25.46, YoY: +27.30%). This combination tends to indicate that market participants may be placing an emphasis on monetary asset stability and sovereign hedging."
     }
   ]
 }
