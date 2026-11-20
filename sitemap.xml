@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Ersoy Toptaş Quantitative Macro Research & Machine-Readable AI Knowledge Base -->
-  <!-- Total Canonical Endpoints: 80 | Generated: 2026-11-20 06:36 UTC -->
+  <!-- Total Canonical Endpoints: 91 | Generated: 2026-11-20 16:51 UTC -->
   <url>
     <loc>https://analysisreports.github.io/</loc>
     <lastmod>2026-11-20</lastmod>
@@ -124,6 +124,18 @@
   </url>
   <url>
     <loc>https://analysisreports.github.io/llms-models-bridge.txt</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://analysisreports.github.io/llms-schema-graph.txt</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://analysisreports.github.io/schemas/graph.schema.json</loc>
     <lastmod>2026-11-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -309,6 +321,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://analysisreports.github.io/llms-schema-country-relationships.txt</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://analysisreports.github.io/llms-tools.json</loc>
     <lastmod>2026-11-20</lastmod>
     <changefreq>daily</changefreq>
@@ -322,6 +340,30 @@
   </url>
   <url>
     <loc>https://analysisreports.github.io/llms-worldbank-series.txt</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://analysisreports.github.io/schemas/country-relationships.schema.json</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://analysisreports.github.io/schemas/relationships.schema.json</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://analysisreports.github.io/schemas/series-registry.schema.json</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://analysisreports.github.io/schemas/tools.schema.json</loc>
     <lastmod>2026-11-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -405,6 +447,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://analysisreports.github.io/schemas/economy.schema.json</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://analysisreports.github.io/schemas/editorial.schema.json</loc>
     <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -412,6 +460,18 @@
   </url>
   <url>
     <loc>https://analysisreports.github.io/schemas/glossary-term.schema.json</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://analysisreports.github.io/schemas/models.schema.json</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://analysisreports.github.io/schemas/news.schema.json</loc>
     <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -436,6 +496,12 @@
   </url>
   <url>
     <loc>https://analysisreports.github.io/schemas/strategic-macro.schema.json</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://analysisreports.github.io/schemas/telemetry.schema.json</loc>
     <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
