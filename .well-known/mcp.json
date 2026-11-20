@@ -1,0 +1,38 @@
+{
+  "$schema": "https://modelcontextprotocol.io",
+  "name": "Ersoy Toptaş — Autonomous Macro & Quantitative Intelligence MCP Server",
+  "author": {
+    "name": "Ersoy Toptaş",
+    "orcid": "0009-0005-6130-8003",
+    "url": "https://ersoytoptas.tr"
+  },
+  "version": "1.0.0",
+  "license": "CC-BY-NC-ND-4.0",
+  "endpoints": [
+    {
+      "transport": "streamable-http",
+      "url": "https://ersoytoptas.tr",
+      "status": "canonical"
+    },
+    {
+      "transport": "streamable-http",
+      "url": "https://workers.dev",
+      "status": "active"
+    }
+  ],
+  "capabilities": {
+    "tools": [
+      "get_macro_sitrep",
+      "get_econometric_models",
+      "get_knowledge_graph",
+      "get_sovereign_dyads",
+      "get_formula_router",
+      "get_wire_news"
+    ]
+  },
+  "canonical_manifests": {
+    "llms_txt": "https://github.io",
+    "ai_catalog": "https://github.io",
+    "tools_manifest": "https://github.io"
+  }
+}
