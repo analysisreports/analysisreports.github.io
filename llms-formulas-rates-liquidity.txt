@@ -45,7 +45,7 @@ def _is_num(val):
           if not (math.isfinite(dgs1mo) and math.isfinite(fed_policy_rate)):
               return None
           # Nominal yield and policy target cannot be negative
-          if min(dgs1mo, 0) != 0 or min(fed_policy_rate, 0) != 0:
+          if dgs1mo < 0.0 or fed_policy_rate < 0.0:
               return None
 
           raw_spread = (float(dgs1mo) - float(fed_policy_rate)) * 100.0
@@ -88,8 +88,8 @@ def _is_num(val):
       try:
           if not (math.isfinite(dff) and math.isfinite(cpi_yoy)):
               return None
-          # Nominal policy rate cannot be negative (min(v, 0) == 0 check: v >= 0)
-          if min(dff, 0) != 0:
+          # Nominal policy rate cannot be negative
+          if dff < 0.0:
               return None
 
           raw_rate = float(dff) - float(cpi_yoy)
@@ -97,9 +97,9 @@ def _is_num(val):
               return None
           rate = round(raw_rate, 2)
 
-          if max(rate, 1.50) == rate and rate != 1.50:
+          if rate > 1.50:
               status = "RESTRICTIVE"
-          elif min(rate, 0.0) == rate and rate != 0.0:
+          elif rate < 0.0:
               status = "ACCOMMODATIVE"
           else:
               status = "NEUTRAL"
@@ -130,7 +130,7 @@ def _is_num(val):
           if not (math.isfinite(dgs3mo) and math.isfinite(dgs1mo)):
               return None
           # Nominal bill yields cannot be negative
-          if min(dgs3mo, 0) != 0 or min(dgs1mo, 0) != 0:
+          if dgs3mo < 0.0 or dgs1mo < 0.0:
               return None
 
           raw_spread = (float(dgs3mo) - float(dgs1mo)) * 100.0
@@ -138,7 +138,7 @@ def _is_num(val):
               return None
           spread = round(raw_spread, 2)
 
-          if min(spread, 0.0) == spread and spread != 0.0:
+          if spread < 0.0:
               status = "INVERTED_FRONT_END"
           else:
               status = "NORMAL_SLOPE"
@@ -175,10 +175,10 @@ def _is_num(val):
           if not (math.isfinite(walcl) and math.isfinite(wtregen) and math.isfinite(rrpontsyd)):
               return None
           # Fed total balance sheet must be strictly positive
-          if min(walcl, 0) == walcl:
+          if walcl <= 0.0:
               return None
           # TGA and ON RRP balance series cannot be negative
-          if min(wtregen, 0) != 0 or min(rrpontsyd, 0) != 0:
+          if wtregen < 0.0 or rrpontsyd < 0.0:
               return None
 
           raw_net = float(walcl) - (float(wtregen) + float(rrpontsyd))
@@ -232,8 +232,8 @@ def _is_num(val):
       try:
           if not (math.isfinite(dgs10) and math.isfinite(dgs2)):
               return None
-          # Nominal Treasury yields cannot be negative (min(v, 0) == 0 check: v >= 0)
-          if min(dgs10, 0) != 0 or min(dgs2, 0) != 0:
+          # Nominal Treasury yields cannot be negative
+          if dgs10 < 0.0 or dgs2 < 0.0:
               return None
 
           raw_spread = (float(dgs10) - float(dgs2)) * 100.0
@@ -278,16 +278,16 @@ def _is_num(val):
           if not (math.isfinite(dgs10) and math.isfinite(dfii10)):
               return None
           # Nominal yield cannot be negative (TIPS real yield may be negative)
-          if min(dgs10, 0) != 0:
+          if dgs10 < 0.0:
               return None
 
           rate = round(float(dgs10) - float(dfii10), 2)
           if not math.isfinite(rate):
               return None
 
-          if max(rate, 2.50) == rate and rate != 2.50:
+          if rate > 2.50:
               status = "DE_ANCHORING_RISK"
-          elif min(rate, 2.00) == rate and rate != 2.00:
+          elif rate < 2.00:
               status = "DEFLATION_RISK"
           else:
               status = "FED_ALIGNED_EQUILIBRIUM"
@@ -319,8 +319,8 @@ def _is_num(val):
       try:
           if not (math.isfinite(dgs10) and math.isfinite(cpi_yoy) and math.isfinite(debt_gdp_pct)):
               return None
-          # Nominal yield and debt/GDP ratio cannot be negative (min(v, 0) == 0 check: v >= 0)
-          if min(dgs10, 0) != 0 or min(debt_gdp_pct, 0) != 0:
+          # Nominal yield and debt/GDP ratio cannot be negative
+          if dgs10 < 0.0 or debt_gdp_pct < 0.0:
               return None
 
           real_yield = round(float(dgs10) - float(cpi_yoy), 2)
@@ -329,9 +329,9 @@ def _is_num(val):
               return None
           index = round(raw_index, 3)
 
-          if min(index, 0.0) == index and index != 0.0:
+          if index < 0.0:
               status = "REPRESSION_REGIME"
-          elif max(index, 1.50) == index and index != 1.50:
+          elif index > 1.50:
               status = "DEBT_CRISIS_ALARM"
           else:
               status = "SUSTAINABLE_CYCLE"
@@ -432,8 +432,8 @@ def _is_num(val):
       try:
           if not (math.isfinite(dff) and math.isfinite(cpi_yoy) and math.isfinite(gdpc1) and math.isfinite(gdppot)):
               return None
-          # Nominal policy rate cannot be negative (min(v, 0) == 0 check: v >= 0)
-          if min(dff, 0) != 0:
+          # Nominal policy rate cannot be negative
+          if dff < 0.0:
               return None
           # GDP inputs use billions of chained 2017 dollars; reject a near-zero denominator.
           if gdpc1 <= 0 or gdppot <= 1.0:
@@ -459,9 +459,9 @@ def _is_num(val):
           if not math.isfinite(gap):
               return None
 
-          if min(gap, -1.00) == gap and gap != -1.00:
+          if gap < -1.00:
               status = "BEHIND_THE_CURVE"
-          elif max(gap, 1.00) == gap and gap != 1.00:
+          elif gap > 1.00:
               status = "OVER_RESTRICTIVE"
           else:
               status = "OPTIMAL_ALIGNMENT"
@@ -536,14 +536,14 @@ def _is_num(val):
           if not math.isfinite(hy_spread):
               return None
           # Credit risk spread must be positive and greater than zero
-          if min(hy_spread, 0) == hy_spread:
+          if hy_spread <= 0.0:
               return None
 
           bps = int(round(float(hy_spread) * 100.0))
 
-          if max(bps, 500) == bps:
+          if bps >= 500:
               status = "CREDIT_CRUNCH_ALARM"
-          elif max(bps, 350) == bps:
+          elif bps >= 350:
               status = "ELEVATED_RISK"
           else:
               status = "RISK_APPETITE_HEALTHY"
@@ -580,7 +580,7 @@ def _is_num(val):
 
           if diff == 0.0:
               status = "NEUTRAL"
-          elif min(diff, 0.0) == diff:
+          elif diff < 0.0:
               status = "LIQUIDITY_CONTRACTION"
           else:
               status = "MONETARY_EXPANSION"

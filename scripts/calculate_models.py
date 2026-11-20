@@ -40,7 +40,7 @@ def _is_num(val):
 def _is_pos(val):
     if not _is_num(val):
         return False
-    return min(val, 0) != val
+    return val > 0
 
 # ==============================================================================
 # 1. MODEL 1: FED POLICY STANCE & MARKET PRESSURE GAUGE
@@ -1736,16 +1736,17 @@ def calc_macro_equity_risk_premium(earnings_yield_pct, dgs10_val) -> Optional[Di
         if not (math.isfinite(ey) and math.isfinite(d10)):
             return None
         # Nominal 10Y Treasury yield cannot be negative
-        if min(d10, 0.0) != 0.0:
+        if d10 < 0.0:
             return None
 
-        erp = round(ey - d10, 2)
-        if not math.isfinite(erp):
+        raw_erp = ey - d10
+        if not math.isfinite(raw_erp):
             return None
+        erp = round(raw_erp, 2)
 
-        if min(erp, 0.50) == erp:
+        if erp < 0.50:
             status = "OVERVALUED_STOCKS"
-        elif max(erp, 2.50) == erp:
+        elif erp > 2.50:
             status = "ATTRACTIVE_STOCKS"
         else:
             status = "FAIR_VALUE"
@@ -2105,7 +2106,7 @@ def calc_total_funds_flow(m2_level, m2_velocity, prev_tff=None) -> Optional[Dict
         v = float(m2_velocity)
         if not (math.isfinite(m2) and math.isfinite(v)):
             return None
-        if min(m2, 0.0) == m2 or min(v, 0.0) == v:
+        if m2 <= 0.0 or v <= 0.0:
             return None
 
         raw_tff = m2 * v
@@ -2117,9 +2118,9 @@ def calc_total_funds_flow(m2_level, m2_velocity, prev_tff=None) -> Optional[Dict
         status = "BALANCED_LIQUIDITY_FLOW"
         if prev_tff is not None and not isinstance(prev_tff, bool) and math.isfinite(prev_tff) and prev_tff > 0:
             mom_change = round(((tff_val / float(prev_tff)) - 1.0) * 100.0, 2)
-            if max(mom_change, 2.0) == mom_change and mom_change != 2.0:
+            if mom_change > 2.0:
                 status = "EXCESS_VELOCITY_INFLATION"
-            elif min(mom_change, 0.0) == mom_change and mom_change != 0.0:
+            elif mom_change < 0.0:
                 status = "LIQUIDITY_STAGNATION"
 
         return {
@@ -2152,7 +2153,7 @@ def calc_housing_bubble_gauge(mspus_val, ahe_val) -> Optional[Dict[str, Any]]:
         a = float(ahe_val)
         if not (math.isfinite(m) and math.isfinite(a)):
             return None
-        if min(m, 0.0) == m or min(a, 0.0) == a or a == 0.0:
+        if m <= 0.0 or a <= 0.0:
             return None
 
         raw_ratio = m / a
@@ -2160,9 +2161,9 @@ def calc_housing_bubble_gauge(mspus_val, ahe_val) -> Optional[Dict[str, Any]]:
             return None
         ratio = round(raw_ratio, 2)
 
-        if max(ratio, 13500.0) == ratio and ratio != 13500.0:
+        if ratio > 13500.0:
             status = "SEVERE_HOUSING_BUBBLE"
-        elif max(ratio, 11000.0) == ratio and ratio != 11000.0:
+        elif ratio > 11000.0:
             status = "ELEVATED_STRESS"
         else:
             status = "ACCESSIBLE_MARKET"
@@ -2248,11 +2249,11 @@ def calc_real_consumption_collapse_radar(retail_sales_yoy_pct, cpi_yoy_pct) -> O
             return None
         growth = round(raw_growth, 2)
 
-        if min(growth, -2.0) == growth and growth != -2.0:
+        if growth < -2.0:
             status = "SEVERE_REAL_CONTRACTION"
-        elif min(growth, 0.0) == growth and growth != 0.0:
+        elif growth < 0.0:
             status = "REAL_DEMAND_CONTRACTION"
-        elif max(growth, 2.0) == growth and growth != 2.0:
+        elif growth > 2.0:
             status = "STRONG_VOLUME_EXPANSION"
         else:
             status = "MODERATE_VOLUME_EXPANSION"

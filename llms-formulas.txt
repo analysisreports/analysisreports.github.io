@@ -89,7 +89,7 @@ def _is_num(val):
 def _is_pos(val):
     if not _is_num(val):
         return False
-    return min(val, 0) != val
+    return val > 0
 
 1. Change (Periodic Absolute Change):
    Formula: x(t) - x(t-1)
@@ -224,7 +224,7 @@ def _is_num(val):
 def _is_pos(val):
     if not _is_num(val):
         return False
-    return min(val, 0) != val
+    return val > 0
 
 # 1. Periodic Absolute Change: x(t) - x(t-1)
 def ecb_change(xt, xt_prev):
@@ -527,8 +527,8 @@ def ecb_continuously_compounded_annual_rate(xt, xt_prev, n_obs_per_yr):
 
 | Shelf Domain | Target Endpoint | Scope | Models | Size |
 | :--- | :--- | :--- | :---: | :---: |
-| **Rates, Yield Curves, Liquidity & Monetary Transmission** | [`llms-formulas-rates-liquidity.txt`](https://analysisreports.github.io/llms-formulas-rates-liquidity.txt) | Central bank policy stances, yield curve slopes, repo liquidity friction, credit spreads, carry trades, and committee dispersion. | **17** | ~43.1 KB |
-| **Macroeconomic Fundamentals, Labor Dynamics, Valuation & Cycles** | [`llms-formulas-macro-labor.txt`](https://analysisreports.github.io/llms-formulas-macro-labor.txt) | Inflation persistence, labor market momentum, housing bubble risks, consumption collapse, equity valuation, and release countdowns. | **21** | ~46.0 KB |
+| **Rates, Yield Curves, Liquidity & Monetary Transmission** | [`llms-formulas-rates-liquidity.txt`](https://analysisreports.github.io/llms-formulas-rates-liquidity.txt) | Central bank policy stances, yield curve slopes, repo liquidity friction, credit spreads, carry trades, and committee dispersion. | **17** | ~42.6 KB |
+| **Macroeconomic Fundamentals, Labor Dynamics, Valuation & Cycles** | [`llms-formulas-macro-labor.txt`](https://analysisreports.github.io/llms-formulas-macro-labor.txt) | Inflation persistence, labor market momentum, housing bubble risks, consumption collapse, equity valuation, and release countdowns. | **21** | ~44.9 KB |
 | **Commodities, Energy Shocks, Supply Chains & Asset Stress** | [`llms-formulas-commodities-shock.txt`](https://analysisreports.github.io/llms-formulas-commodities-shock.txt) | Crude benchmarks, 3:2:1 crack spread, natgas disconnect, chip stress, supply chain logistics, and safe haven flight. | **12** | ~31.7 KB |
 | **Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence** | [`llms-formulas-geopolitics.txt`](https://analysisreports.github.io/llms-formulas-geopolitics.txt) | Bilateral dynamic polarities, Mecca Pact dynamics, maritime chokepoints, conflict heat, market impact, and intelligence confidence. | **14** | ~49.4 KB |
 

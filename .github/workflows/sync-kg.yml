@@ -1,4 +1,22 @@
-- name: Upload Clean Dataset to Kaggle
+name: Sync Data & Ontologies to Kaggle
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  sync_to_kaggle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout GitHub Repo
+        uses: actions/checkout@v4
+
+      - name: Install Kaggle CLI
+        run: pip install kaggle
+
+      - name: Upload Clean Dataset to Kaggle
         env:
           KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
         run: |

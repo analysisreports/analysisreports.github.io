@@ -45,7 +45,7 @@ def _is_num(val):
           if not (math.isfinite(unrate_3m_avg) and math.isfinite(min_prior_3m_avg)):
               return None
           # Unemployment rate averages cannot be negative
-          if min(unrate_3m_avg, 0) != 0 or min(min_prior_3m_avg, 0) != 0:
+          if unrate_3m_avg < 0.0 or min_prior_3m_avg < 0.0:
               return None
 
           raw_diff = float(unrate_3m_avg) - float(min_prior_3m_avg)
@@ -53,9 +53,9 @@ def _is_num(val):
               return None
           diff = round(raw_diff, 2)
 
-          if max(diff, 0.50) == diff:
+          if diff >= 0.50:
               status = "RECESSION_CONFIRMED"
-          elif max(diff, 0.30) == diff:
+          elif diff >= 0.30:
               status = "PRE_RECESSION_WARNING"
           else:
               status = "NORMAL_LABOR_MARKET"
@@ -86,16 +86,16 @@ def _is_num(val):
           if not (math.isfinite(jtsjol) and math.isfinite(unemploy)):
               return None
           # Counts cannot be negative. Unemployed count cannot be zero (zero division guard).
-          if min(jtsjol, 0) != 0 or min(unemploy, 0) != 0 or unemploy == 0:
+          if jtsjol < 0.0 or unemploy <= 0.0:
               return None
 
           ratio = round(float(jtsjol) / float(unemploy), 2)
           if not math.isfinite(ratio):
               return None
 
-          if max(ratio, 1.50) == ratio and ratio != 1.50:
+          if ratio > 1.50:
               status = "OVERHEATED_LABOR"
-          elif min(ratio, 1.00) == ratio and ratio != 1.00:
+          elif ratio < 1.00:
               status = "COOLING_LABOR"
           else:
               status = "BALANCED_LABOR_TIGHTNESS"
@@ -126,17 +126,17 @@ def _is_num(val):
       try:
           if not (math.isfinite(earnings_yield) and math.isfinite(dgs10)):
               return None
-          # Nominal 10Y Treasury yield cannot be negative (min(v, 0) == 0 check: v >= 0)
-          if min(dgs10, 0) != 0:
+          # Nominal 10Y Treasury yield cannot be negative
+          if dgs10 < 0.0:
               return None
 
           erp = round(earnings_yield - dgs10, 2)
           if not math.isfinite(erp):
               return None
 
-          if min(erp, 0.50) == erp:
+          if erp < 0.50:
               status = "OVERVALUED_STOCKS"
-          elif max(erp, 2.50) == erp:
+          elif erp > 2.50:
               status = "ATTRACTIVE_STOCKS"
           else:
               status = "FAIR_VALUE"
@@ -166,19 +166,19 @@ def _is_num(val):
       try:
           if not (math.isfinite(unrate) and math.isfinite(cpi_yoy)):
               return None
-          # Unemployment rate cannot be negative (min(v, 0) == 0 check: v >= 0)
-          if min(unrate, 0) != 0:
+          # Unemployment rate cannot be negative
+          if unrate < 0.0:
               return None
 
           score = round(unrate + cpi_yoy, 2)
           if not math.isfinite(score):
               return None
 
-          if max(score, 12.0) == score:
+          if score >= 12.0:
               status = "ACUTE_CRISIS"
-          elif max(score, 10.0) == score:
+          elif score >= 10.0:
               status = "ELEVATED_STRESS"
-          elif max(score, 6.0) == score:
+          elif score >= 6.0:
               status = "MODERATE"
           else:
               status = "GOLDILOCKS"
@@ -211,7 +211,7 @@ def _is_num(val):
           if not (math.isfinite(market_val) and math.isfinite(gdp_val)):
               return None
           # Market value and GDP must be strictly positive and finite numbers (zero and negative guard)
-          if min(market_val, 0) == market_val or min(gdp_val, 0) == gdp_val:
+          if market_val <= 0.0 or gdp_val <= 0.0:
               return None
 
           gdp_mil = gdp_val * 1000.0
@@ -220,11 +220,11 @@ def _is_num(val):
               return None
           ratio = round(raw_ratio, 2)
 
-          if max(ratio, 180.0) == ratio:
+          if ratio >= 180.0:
               status = "SEVERELY_OVERVALUED"
-          elif max(ratio, 140.0) == ratio:
+          elif ratio >= 140.0:
               status = "OVERVALUED"
-          elif max(ratio, 100.0) == ratio:
+          elif ratio >= 100.0:
               status = "FAIR_VALUED"
           else:
               status = "UNDERVALUED"
@@ -255,18 +255,18 @@ def _is_num(val):
       try:
           if not (math.isfinite(delinquency_rate) and math.isfinite(saving_rate)):
               return None
-          # Delinquency rate cannot be negative (min(v, 0) == 0 check: v >= 0)
-          if min(delinquency_rate, 0) != 0:
+          # Delinquency rate cannot be negative
+          if delinquency_rate < 0.0:
               return None
           # If saving rate is 0 or negative, household buffer is exhausted
-          if min(saving_rate, 0) == saving_rate:
+          if saving_rate <= 0.0:
               return {"stress_ratio": None, "status": "SEVERE_CONSUMER_STRESS"}
 
           ratio = round(delinquency_rate / saving_rate, 3)
 
-          if max(ratio, 1.00) == ratio:
+          if ratio >= 1.00:
               status = "SEVERE_CONSUMER_STRESS"
-          elif max(ratio, 0.50) == ratio:
+          elif ratio >= 0.50:
               status = "ELEVATED_PRESSURE"
           else:
               status = "HEALTHY_BALANCE_SHEET"
@@ -303,9 +303,9 @@ def _is_num(val):
           expected_delta = -0.5 * (real_gdp_yoy - 2.0)
           gap = round(actual_unrate_delta - expected_delta, 2)
 
-          if max(gap, 0.50) == gap:
+          if gap >= 0.50:
               status = "JOBLESS_GROWTH_WARNING"
-          elif min(gap, -0.50) == gap:
+          elif gap <= -0.50:
               status = "LABOR_HOARDING"
           else:
               status = "BALANCED_OKUN_EQUILIBRIUM"
@@ -341,9 +341,9 @@ def _is_num(val):
           u_diff = round(float(unrate_delta), 2)
           c_diff = round(float(civpart_delta), 2)
 
-          if max(p_mom, 150.0) == p_mom and p_mom != 150.0 and u_diff >= 0.0 and c_diff > 0.0:
+          if p_mom > 150.0 and u_diff >= 0.0 and c_diff > 0.0:
               status = "BENIGN_SUPPLY_EXPANSION"
-          elif min(p_mom, 100.0) == p_mom and p_mom != 100.0 and u_diff > 0.10:
+          elif p_mom < 100.0 and u_diff > 0.10:
               status = "RECESSION_EARLY_WARNING"
           else:
               status = "BALANCED_LABOR_MARKET"
@@ -374,7 +374,7 @@ def _is_num(val):
       try:
           if not (math.isfinite(m2_level) and math.isfinite(m2_velocity)):
               return None
-          if min(m2_level, 0) == m2_level or min(m2_velocity, 0) == m2_velocity:
+          if m2_level <= 0.0 or m2_velocity <= 0.0:
               return None
 
           raw_tff = float(m2_level) * float(m2_velocity)
@@ -386,9 +386,9 @@ def _is_num(val):
           status = "BALANCED_LIQUIDITY_FLOW"
           if prev_tff is not None and not isinstance(prev_tff, bool) and math.isfinite(prev_tff) and prev_tff > 0:
               mom_change = round(((tff_val / float(prev_tff)) - 1.0) * 100.0, 2)
-              if max(mom_change, 2.0) == mom_change and mom_change != 2.0:
+              if mom_change > 2.0:
                   status = "EXCESS_VELOCITY_INFLATION"
-              elif min(mom_change, 0.0) == mom_change and mom_change != 0.0:
+              elif mom_change < 0.0:
                   status = "LIQUIDITY_STAGNATION"
 
           return {
@@ -420,7 +420,7 @@ def _is_num(val):
       try:
           if not (math.isfinite(mspus) and math.isfinite(ahe)):
               return None
-          if min(mspus, 0) == mspus or min(ahe, 0) == ahe or ahe == 0:
+          if mspus <= 0.0 or ahe <= 0.0:
               return None
 
           raw_ratio = float(mspus) / float(ahe)
@@ -428,9 +428,9 @@ def _is_num(val):
               return None
           ratio = round(raw_ratio, 2)
 
-          if max(ratio, 13500.0) == ratio and ratio != 13500.0:
+          if ratio > 13500.0:
               status = "SEVERE_HOUSING_BUBBLE"
-          elif max(ratio, 11000.0) == ratio and ratio != 11000.0:
+          elif ratio > 11000.0:
               status = "ELEVATED_STRESS"
           else:
               status = "ACCESSIBLE_MARKET"
@@ -506,11 +506,11 @@ def _is_num(val):
               return None
           growth = round(raw_growth, 2)
 
-          if min(growth, -2.0) == growth and growth != -2.0:
+          if growth < -2.0:
               status = "SEVERE_REAL_CONTRACTION"
-          elif min(growth, 0.0) == growth and growth != 0.0:
+          elif growth < 0.0:
               status = "REAL_DEMAND_CONTRACTION"
-          elif max(growth, 2.0) == growth and growth != 2.0:
+          elif growth > 2.0:
               status = "STRONG_VOLUME_EXPANSION"
           else:
               status = "MODERATE_VOLUME_EXPANSION"
@@ -555,9 +555,9 @@ def _is_num(val):
               return None
           index = round(raw_index, 2)
 
-          if max(claims_yoy, 15.0) == claims_yoy and max(index, 15.0) == index and index != 15.0:
+          if claims_yoy >= 15.0 and index > 15.0:
               status = "HIDDEN_CRISIS_UNFOLDING"
-          elif max(claims_yoy, 8.0) == claims_yoy and max(index, 5.0) == index and index != 5.0:
+          elif claims_yoy >= 8.0 and index > 5.0:
               status = "EARLY_WARNING_CRACK"
           else:
               status = "LABOR_MARKET_ALIGNED"
@@ -589,14 +589,14 @@ def _is_num(val):
           if not math.isfinite(isratio):
               return None
 
-          if min(isratio, 0.0) == isratio or isratio == 0.0:
+          if isratio <= 0.0:
               return None
 
           ratio = round(float(isratio), 2)
 
-          if max(ratio, 1.45) == ratio and ratio != 1.45:
+          if ratio > 1.45:
               status = "SYSTEMIC_INVENTORY_GLUT"
-          elif min(ratio, 1.28) == ratio and ratio != 1.28:
+          elif ratio < 1.28:
               status = "SUPPLY_SHOCK_SHORTAGE"
           else:
               status = "BALANCED_SUPPLY_CHAIN"
@@ -628,7 +628,7 @@ def _is_num(val):
           if not (math.isfinite(mortgage_rate) and math.isfinite(permit_yoy)):
               return None
 
-          if min(mortgage_rate, 0.0) == mortgage_rate or mortgage_rate == 0.0:
+          if mortgage_rate <= 0.0:
               return None
 
           raw_index = float(mortgage_rate) - (float(permit_yoy) / 10.0)
@@ -636,9 +636,9 @@ def _is_num(val):
               return None
           index = round(raw_index, 2)
 
-          if max(index, 8.0) == index and index != 8.0:
+          if index > 8.0:
               status = "SEVERE_HOUSING_FREEZE"
-          elif max(index, 5.0) == index and index != 5.0:
+          elif index > 5.0:
               status = "SUPPLY_CONTRACTION"
           else:
               status = "HEALTHY_EXPANSION"
@@ -665,7 +665,7 @@ def _is_num(val):
   def terms_of_trade_index(export_idx, import_idx):
       if any(v is None or isinstance(v, bool) for v in (export_idx, import_idx)): return None
       try:
-          if min(export_idx, 0) == export_idx or min(import_idx, 0) == import_idx:
+          if export_idx <= 0.0 or import_idx <= 0.0:
               return None
           res = (export_idx / import_idx) * 100.0
           return round(res, 2) if math.isfinite(res) else None

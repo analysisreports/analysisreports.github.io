@@ -45,7 +45,7 @@ def _is_num(val):
           if not math.isfinite(vix):
               return None
           # VIX level must be strictly positive and greater than zero
-          if min(vix, 0) == vix:
+          if vix <= 0.0:
               return None
 
           raw_vix = float(vix)
@@ -86,7 +86,7 @@ def _is_num(val):
           if not (math.isfinite(copper_price) and math.isfinite(gold_price)):
               return None
           # Commodity prices must be strictly positive and finite numbers (zero and negative guard)
-          if min(copper_price, 0) == copper_price or min(gold_price, 0) == gold_price:
+          if copper_price <= 0.0 or gold_price <= 0.0:
               return None
           res = copper_price / gold_price
           return round(res, 4) if math.isfinite(res) else None
@@ -114,14 +114,17 @@ def _is_num(val):
           if not (math.isfinite(gold_price) and math.isfinite(oil_price)):
               return None
           # Commodity prices must be strictly positive and finite numbers (zero and negative guard)
-          if min(gold_price, 0) == gold_price or min(oil_price, 0) == oil_price:
+          if gold_price <= 0.0 or oil_price <= 0.0:
               return None
 
-          ratio = round(gold_price / oil_price, 2)
+          raw_ratio = gold_price / oil_price
+          if not math.isfinite(raw_ratio):
+              return None
+          ratio = round(raw_ratio, 2)
 
-          if max(ratio, 25.0) == ratio:
+          if ratio > 25.0:
               status = "MACRO_CRISIS_RECESSION"
-          elif min(ratio, 12.0) == ratio:
+          elif ratio < 12.0:
               status = "SUPPLY_SHOCK_INFLATION"
           else:
               status = "HISTORICAL_EQUILIBRIUM"
@@ -154,7 +157,7 @@ def _is_num(val):
       try:
           if not (math.isfinite(dxy) and math.isfinite(hy_spread) and math.isfinite(dgs10)):
               return None
-          if any(min(v, 0.0) == v or v == 0.0 for v in (dxy, hy_spread, dgs10)):
+          if any(v <= 0.0 for v in (dxy, hy_spread, dgs10)):
               return None
 
           raw_dollar_bond_ratio = float(dxy) / float(dgs10)

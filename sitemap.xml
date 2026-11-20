@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Ersoy Toptaş Quantitative Macro Research & Machine-Readable AI Knowledge Base -->
-  <!-- Total Canonical Endpoints: 80 | Generated: 2026-11-20 02:24 UTC -->
+  <!-- Total Canonical Endpoints: 80 | Generated: 2026-11-20 02:51 UTC -->
   <url>
     <loc>https://analysisreports.github.io/</loc>
     <lastmod>2026-11-20</lastmod>
@@ -232,13 +232,13 @@
   </url>
   <url>
     <loc>https://analysisreports.github.io/llms-fred-series.json</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://analysisreports.github.io/llms-fred-series.txt</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
