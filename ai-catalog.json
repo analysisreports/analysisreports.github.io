@@ -377,6 +377,18 @@
       "description": "Comprehensive 165-dyad master geopolitical matrix defining bilateral stance polarities, asymmetric leverage vectors, and multilateral cross-references."
     },
     {
+      "id": "schema-country-relationships-spec",
+      "name": "Sovereign Country Relationships JSON Schema Specification (Draft 2020-12)",
+      "type": "specification",
+      "format": "application/schema+json",
+      "url": "https://analysisreports.github.io/schemas/country-relationships.schema.json",
+      "text_twin_url": "https://analysisreports.github.io/llms-schema-country-relationships.txt",
+      "authentication": {
+        "type": "none"
+      },
+      "description": "Formal JSON Schema for the country relationship master router and four sovereign hub shelves."
+    },
+    {
       "id": "dynamic-geopolitical-matrix",
       "name": "Dynamic Geopolitical Polarity & Sovereign Governance Engine",
       "type": "dataset",

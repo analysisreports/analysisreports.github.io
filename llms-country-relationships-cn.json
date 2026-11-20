@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "https://analysisreports.github.io/schemas/country-relationships.schema.json",
   "metadata": {
     "title": "Canonical Sovereign Country Relationships - People's Republic of China & Belt and Road Hub",
     "domain": "country",

@@ -1,0 +1,38 @@
+# ==============================================================================
+# COUNTRY RELATIONSHIPS SCHEMA GUIDE
+# Identifier: llms-schema-country-relationships.txt
+# Schema: https://analysisreports.github.io/schemas/country-relationships.schema.json
+# Dataset: https://analysisreports.github.io/llms-country-relationships.json
+# Version: 2026-Q4
+# ==============================================================================
+
+## Purpose
+Defines the Draft 2020-12 machine contract for the master country relationship
+router and its four hub shelves (US, RU, CN, IR).
+
+The schema validates structure and boundaries. Semantic parity, mirror symmetry,
+entity existence, graph consistency, and TXT/JSON synchronization remain the
+responsibility of `scripts/verify_dyad_integrity.py` and related verifiers.
+
+## Covered files
+- llms-country-relationships.json: master router and compact dyad index.
+- llms-country-relationships-us.json: full United States hub shelf.
+- llms-country-relationships-ru.json: full Russian Federation hub shelf.
+- llms-country-relationships-cn.json: full China hub shelf.
+- llms-country-relationships-ir.json: full Iran hub shelf.
+
+## Core rules
+- `$schema` must reference the canonical schema URL above.
+- A master has 4 hubs and 165 indexed dyads.
+- A shelf must contain one of `GEO_US`, `GEO_RU`, `GEO_CN`, or `GEO_IR`.
+- Dyad IDs must match `REL_GEO_*_GEO_*`; semantic ID/pair equality is checked by the verifier.
+- `p_baseline` and `bilateral_stance` must be finite values in [-1, 1].
+- Each full dyad requires at least 2 power vectors and 1 flashpoint.
+- Entity and cross-reference identifiers must use canonical prefixed IDs.
+- Metadata dates use UTC ISO 8601 date-time values.
+- Missing observations must remain `null`; the schema does not invent fallback data.
+
+## Formula intent
+The schema constrains stored structural polarity to the documented `P_baseline`
+domain. This prevents impossible scores before `P_net = clamp(P_baseline +
+Delta_dynamic, -1, 1)` is consumed by downstream graph and model logic.
