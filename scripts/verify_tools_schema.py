@@ -108,7 +108,15 @@ def audit_tools_schema() -> List[str]:
                 continue
 
             prop_type = p_spec.get("type")
-            if prop_type not in VALID_TYPES:
+            if isinstance(prop_type, list):
+                prop_types = (
+                    set(prop_type)
+                    if all(isinstance(item, str) for item in prop_type)
+                    else set()
+                )
+            else:
+                prop_types = {prop_type} if isinstance(prop_type, str) else set()
+            if not prop_types or not prop_types.issubset(VALID_TYPES | {"null"}):
                 errors.append(f"Tool '{fname}'.'{p_name}' has invalid type: {prop_type}")
 
             prop_desc = p_spec.get("description")
@@ -134,6 +142,76 @@ def audit_tools_schema() -> List[str]:
         if m not in seen_names:
             errors.append(f"MISSING CORE TOOL: Required tool '{m}' is not registered.")
 
+    dynamic_macro_tool = next(
+        (
+            tool["function"]
+            for tool in tools
+            if tool.get("function", {}).get("name") == "calculate_dynamic_macro_triggers"
+        ),
+        None,
+    )
+    if dynamic_macro_tool:
+        params = dynamic_macro_tool.get("parameters", {})
+        if not isinstance(params, dict):
+            errors.append("Model 25.19 parameters must be an object.")
+            params = {}
+        trigger_properties = {
+            "hormuz_spread_shock": "IND_TRIGGER_HORMUZ_SPREAD",
+            "ovx_energy_panic": "IND_TRIGGER_OVX_ENERGY_PANIC",
+            "natgas_crack_shock": "IND_TRIGGER_NATGAS_CRACK",
+            "chip_containment_shock": "IND_TRIGGER_CHIP_CONTAINMENT",
+            "sofr_dollar_drain": "IND_TRIGGER_SOFR_DOLLAR_DRAIN",
+            "gscpi_logistics_shock": "IND_TRIGGER_GSCPI_LOGISTICS",
+            "wheat_price_shock": "IND_TRIGGER_WHEAT_PRICE",
+            "corn_price_shock": "IND_TRIGGER_CORN_PRICE",
+            "spr_buffer_shock": "IND_TRIGGER_US_SPR_BUFFER",
+        }
+        properties = params.get("properties", {})
+        if not isinstance(properties, dict):
+            errors.append("Model 25.19 parameter properties must be an object.")
+            properties = {}
+        required_list = params.get("required", [])
+        required = (
+            set(required_list)
+            if isinstance(required_list, list)
+            and all(isinstance(item, str) for item in required_list)
+            else set()
+        )
+        for parameter, trigger_id in trigger_properties.items():
+            spec = properties.get(parameter)
+            if not isinstance(spec, dict):
+                errors.append(
+                    f"Model 25.19 is missing parameter '{parameter}' for {trigger_id}."
+                )
+                continue
+            prop_type = spec.get("type")
+            if isinstance(prop_type, list):
+                prop_types = (
+                    set(prop_type)
+                    if all(isinstance(item, str) for item in prop_type)
+                    else set()
+                )
+            else:
+                prop_types = {prop_type} if isinstance(prop_type, str) else set()
+            if prop_types != {"number", "null"}:
+                errors.append(
+                    f"Model 25.19 parameter '{parameter}' must accept a number or null."
+                )
+            if spec.get("minimum") != -1.0 or spec.get("maximum") != 1.0:
+                errors.append(
+                    f"Model 25.19 parameter '{parameter}' must be bounded to [-1.0, 1.0]."
+                )
+            if parameter not in required:
+                errors.append(
+                    f"Model 25.19 parameter '{parameter}' must be required; use null when unavailable."
+                )
+
+    metadata = data.get("metadata", {})
+    if data.get("last_updated") != metadata.get("last_updated"):
+        errors.append("Root and metadata 'last_updated' values must match.")
+    if data.get("documentation") != metadata.get("documentation"):
+        errors.append("Root and metadata 'documentation' values must match.")
+
     return errors
 
 def main():
@@ -151,12 +229,14 @@ def main():
         print("=" * 70)
         sys.exit(1)
     else:
+        with open(TOOLS_JSON, "r", encoding="utf-8") as f:
+            tool_count = len(json.load(f).get("tools", []))
         print("\n[SUCCESS] 100% VALIDATED TOOL SPECIFICATION SUITE:")
-        print("  - Total Active Tools Registered: 68 tools")
+        print(f"  - Total Active Tools Registered: {tool_count} tools")
         print("  - Zero Duplicate Tool Names")
         print("  - Zero Missing or Empty Parameter Descriptions")
         print("  - 100% Required Parameter Integrity")
-        print("  - Model 25.18 (Mecca Pact) fully registered")
+        print("  - Model 25.18 and Model 25.19 contracts validated")
         print("=" * 70)
         sys.exit(0)
 

@@ -9,7 +9,7 @@
   "endpoint": "https://analysisreports.github.io/llms-tools.json",
   "master_graph": "https://analysisreports.github.io/llms-graph.json",
   "documentation": "https://analysisreports.github.io/llms-formulas.txt",
-  "last_updated": "2026-11-16T23:15:00Z",
+  "last_updated": "2026-11-20T06:12:00Z",
   "tools": [
     {
       "type": "function",
@@ -1802,54 +1802,117 @@
       "type": "function",
       "function": {
         "name": "calculate_dynamic_macro_triggers",
-        "description": "Evaluates multi-domain macro, liquidity, energy, and supply-chain trigger vectors (Model 25.19) to compute clamped bilateral polarity shock delta (dynamic_delta in [-0.20, +0.20]) with optional asymmetric regime bounds.",
+        "description": "Evaluates all nine Model 25.19 trigger values to compute a clamped bilateral polarity shock delta (dynamic_delta in [-0.20, +0.20]) with optional asymmetric regime bounds. Provide null for unavailable trigger data, never zero or a fallback; if no numeric trigger is available, return null or DATA_UNAVAILABLE.",
         "parameters": {
           "type": "object",
           "properties": {
             "hormuz_spread_shock": {
-              "type": "number",
-              "description": "Normalized Brent-WTI divergence shock signal (IND_TRIGGER_HORMUZ_SPREAD)."
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": -1.0,
+              "maximum": 1.0,
+              "description": "Normalized Brent-WTI divergence shock signal (IND_TRIGGER_HORMUZ_SPREAD); use null if unavailable, never substitute zero."
             },
             "ovx_energy_panic": {
-              "type": "number",
-              "description": "Normalized OVX/VIX energy volatility risk premium signal (IND_TRIGGER_OVX_ENERGY_PANIC)."
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": -1.0,
+              "maximum": 1.0,
+              "description": "Normalized OVX/VIX energy volatility risk premium signal (IND_TRIGGER_OVX_ENERGY_PANIC); use null if unavailable, never substitute zero."
             },
             "natgas_crack_shock": {
-              "type": "number",
-              "description": "Normalized WTI-Henry Hub BTU disconnect signal (IND_TRIGGER_NATGAS_CRACK)."
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": -1.0,
+              "maximum": 1.0,
+              "description": "Normalized WTI-Henry Hub BTU disconnect signal (IND_TRIGGER_NATGAS_CRACK); use null if unavailable, never substitute zero."
             },
             "chip_containment_shock": {
-              "type": "number",
-              "description": "Normalized SOX semiconductor export choke signal (IND_TRIGGER_CHIP_CONTAINMENT)."
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": -1.0,
+              "maximum": 1.0,
+              "description": "Normalized SOX semiconductor export choke signal (IND_TRIGGER_CHIP_CONTAINMENT); use null if unavailable, never substitute zero."
             },
             "sofr_dollar_drain": {
-              "type": "number",
-              "description": "Normalized SOFR annual funding drain signal (IND_TRIGGER_SOFR_DOLLAR_DRAIN)."
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": -1.0,
+              "maximum": 1.0,
+              "description": "Normalized SOFR annual funding drain signal (IND_TRIGGER_SOFR_DOLLAR_DRAIN); use null if unavailable, never substitute zero."
             },
             "gscpi_logistics_shock": {
-              "type": "number",
-              "description": "Normalized Global Supply Chain Pressure change signal (IND_TRIGGER_GSCPI_LOGISTICS)."
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": -1.0,
+              "maximum": 1.0,
+              "description": "Normalized Global Supply Chain Pressure change signal (IND_TRIGGER_GSCPI_LOGISTICS); use null if unavailable, never substitute zero."
             },
             "wheat_price_shock": {
-              "type": "number",
-              "description": "Normalized global wheat price annual change signal (IND_TRIGGER_WHEAT_PRICE)."
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": -1.0,
+              "maximum": 1.0,
+              "description": "Normalized global wheat price annual change signal (IND_TRIGGER_WHEAT_PRICE); use null if unavailable, never substitute zero."
             },
             "corn_price_shock": {
-              "type": "number",
-              "description": "Normalized global corn price annual change signal (IND_TRIGGER_CORN_PRICE)."
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": -1.0,
+              "maximum": 1.0,
+              "description": "Normalized global corn price annual change signal (IND_TRIGGER_CORN_PRICE); use null if unavailable, never substitute zero."
+            },
+            "spr_buffer_shock": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": -1.0,
+              "maximum": 1.0,
+              "description": "Normalized annual change in U.S. Strategic Petroleum Reserve stocks (IND_TRIGGER_US_SPR_BUFFER); use null if unavailable, never substitute zero."
             },
             "lower_cap": {
               "type": "number",
+              "minimum": -0.2,
+              "maximum": 0.2,
               "default": -0.2,
-              "description": "Optional asymmetric lower bound for dynamic_delta (e.g., -0.09 for Baltic triad)."
+              "description": "Optional asymmetric lower bound for dynamic_delta (e.g., -0.09 for Baltic triad); must not exceed upper_cap."
             },
             "upper_cap": {
               "type": "number",
+              "minimum": -0.2,
+              "maximum": 0.2,
               "default": 0.2,
-              "description": "Optional asymmetric upper bound for dynamic_delta (default: 0.20)."
+              "description": "Optional asymmetric upper bound for dynamic_delta (default: 0.20); must not be below lower_cap."
             }
           },
-          "required": []
+          "required": [
+            "hormuz_spread_shock",
+            "ovx_energy_panic",
+            "natgas_crack_shock",
+            "chip_containment_shock",
+            "sofr_dollar_drain",
+            "gscpi_logistics_shock",
+            "wheat_price_shock",
+            "corn_price_shock",
+            "spr_buffer_shock"
+          ]
         }
       }
     },
@@ -2010,8 +2073,8 @@
     "author": "Ersoy Toptaş",
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-tools.json",
-    "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-19T22:25:00Z",
+    "documentation": "https://analysisreports.github.io/llms-formulas.txt",
+    "last_updated": "2026-11-20T06:12:00Z",
     "master_graph": "https://analysisreports.github.io/llms-graph.json"
   }
 }
