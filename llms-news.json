@@ -9,44 +9,17 @@
     "endpoint": "https://analysisreports.github.io/llms-news.json",
     "text_endpoint": "https://analysisreports.github.io/llms-news.txt",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-19T19:43:15Z",
+    "last_updated": "2026-11-20T06:36:20Z",
     "total_dispatches": 8,
     "ingestion_protocol": "Tier-1 Institutional Whitelist Only",
     "disclaimer": "Media narratives are recorded strictly as telemetry signals and methodologically cross-checked against official state pacts and physical sensor records."
   },
   "dispatches": [
     {
-      "primary_entity": "GEO_UA",
-      "related_entities": [
-        "GEO_UA"
-      ],
-      "source_authority": "WSJ",
-      "headline": "See How Ukraine Hit Putin’s Showpiece Bridge",
-      "published_utc": "2026-11-18T17:15:00Z",
-      "event_severity": "CRITICAL",
-      "institutional_status": "TELEMETRY_CORROBORATED",
-      "source_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPQW91X0JWZ3EzUlNCVHl3N0VHVV8wWkYyXzJvRXB4ZVA3RFRxZWZjVF96akJjc0FyZW41OE1Xdkl2eFMzSTR6ek5RTVRORWgyQjZoY3FmVnJEZ2MxZ3o1ME1WdXhEQVJtNW94enplSl94aGJDZFBrN3VVbVdIZ2R3Nm9wU2I?oc=5",
-      "dispatch_id": "DISPATCH_20261119_01"
-    },
-    {
       "primary_entity": "GEO_IR",
       "related_entities": [
         "GEO_IR",
-        "GEO_IL"
-      ],
-      "source_authority": "AP News",
-      "headline": "Mideast nations ramp up efforts to avert all-out war as Israel urges Iran strikes, officials say",
-      "published_utc": "2026-11-19T01:16:00Z",
-      "event_severity": "CRITICAL",
-      "institutional_status": "MONITORING_TELEMETRY",
-      "source_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQVkpMQk5Ha1FZNG45Vmt6WWxWeUtMS3lSU0hON0F0b0ItSHlWY0NnUHFyQ1JTWFBPSWViZTFVZHpKNWI3V3R1TjM0b25HWTNEZGZ2Q1ItZG5hdXNGcG03M3FjZlJKNmE5SC1lYTJERmRETERvdGJOUGlsMG9pQjVVU2dEWkJxOEY2eXJYd1RtVmNlN2pIcGlLcHJlaw?oc=5",
-      "dispatch_id": "DISPATCH_20261119_02"
-    },
-    {
-      "primary_entity": "CHOKE_HORMUZ",
-      "related_entities": [
-        "CHOKE_HORMUZ",
-        "GEO_IR"
+        "CHOKE_HORMUZ"
       ],
       "source_authority": "WSJ",
       "headline": "The Iran War Could Permanently Slash Reliance on Hormuz, IEA Says",
@@ -54,34 +27,20 @@
       "event_severity": "CRITICAL",
       "institutional_status": "TELEMETRY_CORROBORATED",
       "source_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxONkRNTmVJRC1mZzYtOE1lWkpzLUYybFdUbTdtRmItWjJCZFBlMXpNQkJ5cDdpX3Z0dlp3MFhaOTFCU1Rmczg1MWs1SUhOY3B1cVp5UDlQM0ZkQ3dWd2dsZldjdWo4cHQyQk5CWDZkWHlkRGp5RmJrNm5NSWRyZEJNLTlsVHhSbWd5akdWNVNzVlNUSGRFNVVtcHJDOVRSbWxScFJGWmFjdWx5ZkQyejhTNWxYYw?oc=5",
-      "dispatch_id": "DISPATCH_20261119_03"
+      "dispatch_id": "DISPATCH_20261120_01"
     },
     {
-      "primary_entity": "GEO_US",
+      "primary_entity": "GEO_UA",
       "related_entities": [
-        "GEO_US",
-        "GEO_IR"
+        "GEO_UA"
       ],
-      "source_authority": "Al Jazeera",
-      "headline": "‘Too early’ to determine impact of US blockade on Iran, with Tehran defiant",
-      "published_utc": "2026-11-19T07:19:41Z",
-      "event_severity": "CRITICAL",
-      "institutional_status": "MONITORING_TELEMETRY",
-      "source_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNR0tDOEoxcE1oTWlVYnFZX2w3SXQ4UHY5ZGM5NUhiOVNiblhqMm1ZblFiWFF4YTVPM0RaZURuMjFkNjNFOHRiaDExTGtFZEJrN0tMR0EycjdieDZCRHRPTFdvVDlqSE4wMnYzbl83TkJvRE11bWRtdVU3a1RWLXdwdzhyRXhmVndmU0ZHZ3NJLWowdWh1QVA3TkJyS0RfdnV1SFRRQlNCR3lGSnplWXVmUWgzMWfSAboBQVVfeXFMTU1hWUtoLVAyQ3VmUW1hVDJRRUxjYXRyODAzY2RrdWR0SnE2a09VMDROQjRfdUc3azJSU0R2djhtdTAyb0hwTHREMFZjcURxTDlyMHVKZjBlcDdYbzNtOTFCdzNadnZhZ3VjUV9tVmlDcUJvWVJNNU1xa3puRzVXVVZHNmhiSmhBai14WWQzbWpIVHJQVXIyVWlBaDVIWElzeDNmUVdDMTRuYmFNTzdUMVBSNDBXRkxaX0Jn?oc=5",
-      "dispatch_id": "DISPATCH_20261119_04"
-    },
-    {
-      "primary_entity": "GEO_RU",
-      "related_entities": [
-        "GEO_RU"
-      ],
-      "source_authority": "DW.com",
-      "headline": "What the Crimean bridge attack means for Russia",
-      "published_utc": "2026-11-19T15:28:14Z",
+      "source_authority": "Reuters",
+      "headline": "Putin says he will hit back hard after Ukraine strikes Crimea Bridge again",
+      "published_utc": "2026-11-19T07:10:00Z",
       "event_severity": "CRITICAL",
       "institutional_status": "TELEMETRY_CORROBORATED",
-      "source_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPVWNJeU52cmNIWXVxYXloM1RVdm5SQWdTd3pFWUd6QzhXYmhNeWx4enlkSjNENHBLcnBDY240aV96SEdiTnFVOUtuTWJ4ZmVIUHYySmJaczR6NzJLXzQwc2p0Y1lfSnpNaUdfOEdHLUwyZDdGVkVFODZFZjRtVVVXUjNVdWl5REXSAYcBQVVfeXFMTWR5dF9IVHRBaVhOc2RKbGpGR193aDhrRHRwSFRDZzVLeV9EdnloLTFHRU9CRi01TU5VV09iSXJ0V2VBTGJndFo0R3BSdDhmcXpraFhlSllSREJLVEZYcDVfT3NDQXRLTVdyWEpRNEw3YUY1TVJQT09KWEowOHVWSkFMeHlRVVhB?oc=5",
-      "dispatch_id": "DISPATCH_20261119_05"
+      "source_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOUzRFcTV3RC1acloyenJ5UXlCQjNfZ0tieEg5NXpGX3NObnlVMzVTR1BDX3VsNWlhOEZKak1ja3JGU3hBMTI3cjJsRlpGWTNhRm1iSkc4U1JHeUdBYXFYdVpjWW9maWJ6MTdMOEw5ZG1YRUJyTkctVGxlTk1hT0VKY2lGNDdGS0w3ZnRJdUQxUzBHeU9KNHdUODBNMEllMDR5Y1NZaFhsd1ZNYzh6ZmZTS0p3S0pCckJ4REUwYnJIN3NsUQ?oc=5",
+      "dispatch_id": "DISPATCH_20261120_02"
     },
     {
       "primary_entity": "INST_FED_US",
@@ -94,7 +53,7 @@
       "event_severity": "HIGH",
       "institutional_status": "MACRO_POLICY_ALIGNED",
       "source_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQQ0FXYWthQmJLZi05SXhQR1o2akNmbUo4WFAyUWVjbjdkNmdwWi05clFGakpLMEFkSi1oS2ljalM2N2NyclZWTE9temNQMTJjZk9EQTYwZUJiMVlPcE1zQzA4eE5OU0tNQTg5QU5fU3k4bGIxM2NIVVFGZUZzRlR6VXEwVjBLNmvSAYwBQVVfeXFMUDZSczNSbHAxcjNFa1FMNWU3STJRUVBRV0x6SjhFVFRBdGNqSFhqMGl5bGtMSkN0YzQyWUpWLVppMmxpQWNFbFF4VmY0eE5feTJ5UVotZnNPYVdEdXhzWWVmaTk3YmdXNGdtRHlRN1RqeElDMXBEbkw4Z1hyWWxnM3hBWm9MME5Xbm5MNU0?oc=5",
-      "dispatch_id": "DISPATCH_20261119_06"
+      "dispatch_id": "DISPATCH_20261120_03"
     },
     {
       "primary_entity": "ORG_IMF",
@@ -107,7 +66,7 @@
       "event_severity": "HIGH",
       "institutional_status": "MACRO_POLICY_ALIGNED",
       "source_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNek12QlczdG01emR1MWtEdU8zWXFZalNKUWE3cDR4Vm9YbFNVaU51Y3RxT0Ywak8yV2FrSUQxelVFRDBRZlFwblRqMWctbmw5TUFja2xjSEh3UW1PQUJtTEVmb0FkMVpoYkg0UWVFYkNOZXhSSU54RUJxOTVOdDNQaEk4N2FqUjdWQjNpSk1yZndSZjhzcURKc2dUT2RLOUVqb3dwUGExZG1KUm4tdk05VzBDN0N4SGhvbFdxZg?oc=5",
-      "dispatch_id": "DISPATCH_20261119_07"
+      "dispatch_id": "DISPATCH_20261120_04"
     },
     {
       "primary_entity": "INST_ECB_EU",
@@ -115,12 +74,52 @@
         "INST_ECB_EU"
       ],
       "source_authority": "Bloomberg.com",
-      "headline": "ECB’s Nagel Says December Rate Hike Would Send Clear Signal",
-      "published_utc": "2026-11-19T12:30:00Z",
+      "headline": "ECB’s Panetta Says Inflation Mustn’t Be Allowed to Take Root",
+      "published_utc": "2026-11-19T18:32:19Z",
       "event_severity": "HIGH",
       "institutional_status": "MACRO_POLICY_ALIGNED",
-      "source_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOZzdveHVtY29ENG9EWkRTNS1TbTBuWTN5bkU0dDlUWUNhTnFPWUdMMnc1M3BaN0Y1aVg3OElXcnVwMDNNV3R4M01WQkJPbzI3VkdsMWlvMlRjZGYwbE9MU0piSWU3TEZURzd1UXBuT25TZWNhU29BZUh0X2loUTVtU2tCRW1Ld1NjYjZzeHNXQmVVV3luQkc2TTFnaUx1OEc5b2wzUFY2ZEJyUi1IdU5J?oc=5",
-      "dispatch_id": "DISPATCH_20261119_08"
+      "source_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOWDQ4Z0tLMjZQalQyV3NZNm45cWZSdHRhWE1tUmxvSTFiRVFZVHNIVXlVNDlwZTZfenBtREJIV05aczRmSkJzZU5nOXM4RWJFVnplNVYxdjhQb1lUNXNqUVNURjdSM3UyQWtWN3hkYWM2bm9OOXNBcjBzTFlEaWc4eHRVc0F4Vy05SkhGVkdJeVNBREJKMzBLSVBNa2c4WTNsTlAxYlcyTlJaX0V0ODVpRg?oc=5",
+      "dispatch_id": "DISPATCH_20261120_05"
+    },
+    {
+      "primary_entity": "GEO_RU",
+      "related_entities": [
+        "GEO_RU",
+        "GEO_UA"
+      ],
+      "source_authority": "CNBC",
+      "headline": "Ukraine allies reject U.S. criticism of deep strikes inside Russia ahead of Trump-Putin-Xi summit",
+      "published_utc": "2026-11-18T10:31:58Z",
+      "event_severity": "MODERATE",
+      "institutional_status": "DIPLOMATIC_ENGAGEMENT_OBSERVED",
+      "source_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPcF9sZnpjTVZtQnpnUTlmcFJ5OFB4UGhFLVIwUUJFZ1F4MXVBem14ZzRXSkotTUp1S0tJZEZjY1oxbEt3S1NiaXlSbTJrUmZMQjEwWEZUN1dGZTlGSUxTZWl1bzhfT1N4SzhrcDN6X29TMTNadlEzdWFrZWxlalFTV0lUQmNKeGfSAYwBQVVfeXFMT3ByenVPUVlqSzkzRWJmWE13TGxRQjRZcmtBZVU2aFhtVUJiVlZGZGNydnNBOFNuMENZaWdDVHN4aVpUeUF1N2JZaGVwUi05eFNGSDB1c3V3WXlnbk9vczlsb29lVlF5Nll3ZlpPUV9QRUh0RG80VVI3bEtJX1VOQjBlS3BKcUdFXzVEa1U?oc=5",
+      "dispatch_id": "DISPATCH_20261120_06"
+    },
+    {
+      "primary_entity": "GEO_CN",
+      "related_entities": [
+        "GEO_CN"
+      ],
+      "source_authority": "CNBC",
+      "headline": "Takaichi gets chilly reception in China on first Japan leader visit since 2019",
+      "published_utc": "2026-11-19T06:39:53Z",
+      "event_severity": "MODERATE",
+      "institutional_status": "DIPLOMATIC_ENGAGEMENT_OBSERVED",
+      "source_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBxQ1JXaFZFUE1LM2t5bW9VUkpFbkt4Ujc3V1A0VWhVUkMtWk50MVZuZ1hUUFA1cjd4dl9YZlpES1l3bmMwVlFUWEg4RFhNd3dsWnJiazdreDNYS05jck1PdEoyVXcwa1VBd0RDU09HbUUtb0hXdkVQZURjc9IBgAFBVV95cUxPcHp4MjRqYlNpTXhzYzBBRnA4TXhfVnNpR1BYZmJ5cUlKaDkxUU5IMW9xeGxwSlQtSEVBNEFfZXJybFRNalVDZU9iNUhjVFBOYU1WT0RPbDE3ajV5YUdKWUd2SXVsUEVsVE9kSU9sdU9pZ2dDdVVjRGRPcVpNcUJ5bA?oc=5",
+      "dispatch_id": "DISPATCH_20261120_07"
+    },
+    {
+      "primary_entity": "GEO_US",
+      "related_entities": [
+        "GEO_US"
+      ],
+      "source_authority": "AP News",
+      "headline": "Denmark approves security deal with US and Greenland, seeking to finally ease tensions with Trump",
+      "published_utc": "2026-11-19T14:42:00Z",
+      "event_severity": "MODERATE",
+      "institutional_status": "MONITORING_TELEMETRY",
+      "source_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQZXZ4T0tGUlE3by1Sd0FHU05tLW8wa1pYYWdjczhsM1NNTDh5WVVLRk4yQUhmRTR1LVpRdFBSSUpDUE56Mk5aUE5fNDNQY3lFUWtGQ2ptV2d2ZG43MWhGdjNTS0RpVXNJT1RXbm9NRjJNeU0ySmhBdXAwQUgzeVBGWDZtaTlSRW5TVTNPX3Z3SElOV3psNEpSOFQxeUR4V0llbS13dVlCTzc1dnVzaF9tZg?oc=5",
+      "dispatch_id": "DISPATCH_20261120_08"
     }
   ]
 }
