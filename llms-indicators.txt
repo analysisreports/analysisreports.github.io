@@ -36,7 +36,7 @@ Mathematical Guardrails:
 
 ## 2. OFFICIAL LIVE-INGESTED TIME-SERIES REGISTRY (100% API MONITORED)
 
-### 2.1. Federal Reserve Bank of St. Louis (FRED) Official Series (71 Series)
+### 2.1. Federal Reserve Bank of St. Louis (FRED) Official Series (81 Series)
 
 1. **ANFCI** (Chicago Fed Adjusted National Financial Conditions Index) | Freq: Weekly | Units: Index | Source: FRED
 2. **AWHAETP** (Average Weekly Hours of All Employees, Total Private) | Freq: Monthly | Units: Hours | Source: FRED
@@ -107,6 +107,18 @@ Mathematical Guardrails:
 67. **PWHEAMTUSDM** (Global price of Wheat) | Freq: Monthly | Units: U.S. Dollars per Metric Ton | Source: IMF / FRED
 68. **PMAIZMTUSDM** (Global price of Corn) | Freq: Monthly | Units: U.S. Dollars per Metric Ton | Source: IMF / FRED
 69. **FDEFX** (Federal National Defense Consumption Expenditures and Gross Investment) | Freq: Quarterly | Units: Billions of Dollars | Source: BEA / FRED
+70. **CES0500000003** (Average Hourly Earnings of All Employees, Total Private) | Freq: Monthly | Units: Dollars per Hour | Source: BLS / FRED
+71. **M2V** (Velocity of M2 Money Stock) | Freq: Quarterly | Units: Ratio | Source: FRED
+72. **MSPUS** (Median Sales Price of Houses Sold for the United States) | Freq: Quarterly | Units: Dollars | Source: HUD / FRED
+73. **RSAFS** (Advance Retail Sales: Retail and Food Services, Total) | Freq: Monthly | Units: Millions of Dollars | Source: Census / FRED
+74. **RSXFS** (Advance Retail Sales: Retail Trade Excluding Food Services) | Freq: Monthly | Units: Millions of Dollars | Source: Census / FRED
+75. **SP500_EARNINGS_YIELD** (S&P 500 Trailing/Forward Earnings Yield) | Freq: Monthly | Units: Percent | Source: Shiller / Multpl / FRED
+76. **IPG3344S** (Industrial Production: Semiconductor and Other Electronic Component) | Freq: Monthly | Units: Index 2017=100 | Source: FRED
+77. **PCU33443344** (Producer Price Index: Semiconductor and Other Electronic Component Manufacturing) | Freq: Monthly | Units: Index Dec 1984=100 | Source: BLS / FRED
+78. **PBARLUSDM** (Global price of Barley) | Freq: Monthly | Units: U.S. Dollars per Metric Ton | Source: IMF / FRED
+79. **PNGASEUUSDM** (Global price of Natural Gas, EU) | Freq: Monthly | Units: U.S. Dollars per Million Metric BTU | Source: IMF / FRED
+80. **PNGASJPUSDM** (Global price of LNG, Asia) | Freq: Monthly | Units: U.S. Dollars per Million Metric BTU | Source: IMF / FRED
+81. **STLFSI4** (St. Louis Fed Financial Stress Index) | Freq: Weekly | Units: Index | Source: FRED
 
 ### 2.2. European Central Bank (ECB Data Portal) Official Series (11 Series)
 

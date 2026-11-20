@@ -347,6 +347,8 @@ IND_DRTSCIS          | Source: Board of Governors / FRED | Name: Net % Domestic 
 IND_M2SL             | Source: FRED | Name: M2 Money Supply (Billions USD)
 IND_M2V              | Source: FRED | Name: Velocity of M2 Money Stock
 IND_RSAFS            | Source: FRED | Name: Advance Retail Sales Total
+IND_SP500_EARNINGS_YIELD | Source: Shiller / Multpl / FRED | Name: S&P 500 Earnings Yield
+IND_RSXFS            | Source: FRED | Name: Advance Retail Sales Ex Food Services
 IND_ISRATIO          | Source: FRED | Name: Total Business Inventories to Sales Ratio
 IND_MSPUS            | Source: FRED | Name: Median Sales Price of Houses Sold in US
 IND_MORTGAGE30US     | Source: FRED | Name: 30-Year Fixed Rate Mortgage Average (%)

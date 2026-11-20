@@ -1507,6 +1507,118 @@
           "ACUTE_OFFSHORE_DOLLAR_DRAIN"
         ]
       }
+    },
+    {
+      "id": "IND_SP500_EARNINGS_YIELD",
+      "label": "S&P 500 Earnings Yield",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "Shiller / Multpl",
+        "units": "Percent",
+        "trans": "lin",
+        "mult": 1
+      }
+    },
+    {
+      "id": "IND_M2V",
+      "label": "Velocity of M2 Money Stock (M2V)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "Ratio",
+        "trans": "lin",
+        "mult": 1
+      }
+    },
+    {
+      "id": "IND_MSPUS",
+      "label": "Median Sales Price of Houses Sold in US (MSPUS)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "Dollars",
+        "trans": "lin",
+        "mult": 1
+      }
+    },
+    {
+      "id": "IND_CES0500000003",
+      "label": "Average Hourly Earnings of All Employees (CES0500000003)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "Dollars per Hour",
+        "trans": "lin",
+        "mult": 1
+      }
+    },
+    {
+      "id": "IND_RSAFS",
+      "label": "Advance Retail Sales: Retail and Food Services (RSAFS)",
+      "category": "INDICATOR",
+      "attributes": {
+        "source": "FRED",
+        "units": "Millions of Dollars",
+        "trans": "pch",
+        "mult": 1
+      }
+    },
+    {
+      "id": "MODEL_17",
+      "label": "Macro Equity Risk Premium (ERP)",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_macro_equity_risk_premium",
+        "formula": "ERP = SP500_Earnings_Yield - DGS10",
+        "status_enums": [
+          "OVERVALUED_STOCKS",
+          "FAIR_VALUE",
+          "ATTRACTIVE_STOCKS"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_23.2",
+      "label": "Total Funds Flow and Velocity Momentum",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_total_funds_flow",
+        "formula": "TFF = M2SL * M2V",
+        "status_enums": [
+          "EXCESS_VELOCITY_INFLATION",
+          "BALANCED_LIQUIDITY_FLOW",
+          "LIQUIDITY_STAGNATION"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_23.3",
+      "label": "Housing Affordability and Bubble Gauge",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_housing_bubble_gauge",
+        "formula": "Housing_Hours = MSPUS / CES0500000003",
+        "status_enums": [
+          "SEVERE_HOUSING_BUBBLE",
+          "ELEVATED_STRESS",
+          "ACCESSIBLE_MARKET"
+        ]
+      }
+    },
+    {
+      "id": "MODEL_23.5",
+      "label": "Real Consumption Collapse Radar",
+      "category": "MODEL",
+      "attributes": {
+        "function": "calculate_real_consumption_collapse",
+        "formula": "Real_Consumption_Growth = Retail_Sales_YoY - CPI_YoY",
+        "status_enums": [
+          "STRONG_VOLUME_EXPANSION",
+          "MODERATE_VOLUME_EXPANSION",
+          "REAL_DEMAND_CONTRACTION",
+          "SEVERE_REAL_CONTRACTION"
+        ]
+      }
     }
   ],
   "edges": [
@@ -2379,6 +2491,54 @@
         "role": "Energy Chokepoint Transit Contraction"
       },
       "type": "INGESTS_SERIES"
+    },
+    {
+      "source": "IND_SP500_EARNINGS_YIELD",
+      "target": "MODEL_17",
+      "type": "INGESTS_SERIES",
+      "role": "S&P 500 Earnings Yield Input"
+    },
+    {
+      "source": "IND_DGS10",
+      "target": "MODEL_17",
+      "type": "INGESTS_SERIES",
+      "role": "10-Year Treasury Yield Benchmark"
+    },
+    {
+      "source": "IND_M2SL",
+      "target": "MODEL_23.2",
+      "type": "INGESTS_SERIES",
+      "role": "M2 Money Stock Level"
+    },
+    {
+      "source": "IND_M2V",
+      "target": "MODEL_23.2",
+      "type": "INGESTS_SERIES",
+      "role": "M2 Money Velocity Ratio"
+    },
+    {
+      "source": "IND_MSPUS",
+      "target": "MODEL_23.3",
+      "type": "INGESTS_SERIES",
+      "role": "Median Home Sales Price"
+    },
+    {
+      "source": "IND_CES0500000003",
+      "target": "MODEL_23.3",
+      "type": "INGESTS_SERIES",
+      "role": "Average Hourly Earnings"
+    },
+    {
+      "source": "IND_RSAFS",
+      "target": "MODEL_23.5",
+      "type": "INGESTS_SERIES",
+      "role": "Advance Retail Sales Nominal YoY"
+    },
+    {
+      "source": "IND_CPIAUCSL",
+      "target": "MODEL_23.5",
+      "type": "INGESTS_SERIES",
+      "role": "Headline CPI Inflation Deflator"
     }
   ],
   "metadata": {
