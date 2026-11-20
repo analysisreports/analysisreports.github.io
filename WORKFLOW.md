@@ -70,6 +70,7 @@ The following manifest files must remain stable to prevent semantic cache invali
 ## 4. Pre-Commit Verification Checklist
 
 - [ ] **Type & Boundary Safety:** Does the Python code handle zero-division (`ZeroDivisionError`) and infinite float inputs (`math.isfinite`)?
+- [ ] **JSON Schema Validation:** Run `python scripts/verify_root_schemas.py` to ensure all 17 JSON schemas and all root & article payload endpoints strictly validate under Draft 2020-12 contracts.
 - [ ] **JSON Schema Syntax:** Are `llms-tools.json`, `llms-graph.json`, `llms-relationships.json`, `llms-fred-series.json`, `llms-ecb-series.json`, `llms-worldbank-series.json`, and `llms-imf-series.json` strictly valid JSON (no trailing commas, properly closed brackets)?
 - [ ] **Entity Identity:** Does every actor, central bank, ministry, and chokepoint match its exact canonical ID in `llms-entities-id.txt`?
 - [ ] **Series Identity:** Does every FRED/BLS/ECB/WB/IMF series key in `llms-formulas.txt` match the exact string key in `llms-indicators.txt` and corresponding series registries?

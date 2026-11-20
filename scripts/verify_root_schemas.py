@@ -61,6 +61,7 @@ SCHEMA_MAPPING: Dict[str, str] = {
     "llms-portwatch.json": "telemetry.schema.json",
     "llms-nasa-firms.json": "telemetry.schema.json",
     "llms-census-series.json": "telemetry.schema.json",
+    "llms-sitrep.json": "sitrep.schema.json",
     "llms-news.json": "news.schema.json",
     "llms-tools.json": "tools.schema.json"
 }
@@ -145,21 +146,7 @@ def audit_root_schemas() -> List[str]:
 
         # Formal Draft 2020-12 validator when jsonschema is available
         if has_jsonschema:
-            if schema_name in (
-                "economy.schema.json",
-                "country-strategic-assessment.schema.json",
-                "graph.schema.json",
-                "country-relationships.schema.json",
-                "series-registry.schema.json",
-                "models.schema.json",
-                "relationships.schema.json",
-                "telemetry.schema.json",
-                "news.schema.json",
-                "tools.schema.json",
-                "political.schema.json",
-                "glossary-term.schema.json",
-            ):
-                jsonschema.Draft202012Validator.check_schema(schema_data)
+            jsonschema.Draft202012Validator.check_schema(schema_data)
             validator = jsonschema.Draft202012Validator(schema_data)
             schema_errors = list(validator.iter_errors(target_data))
 
