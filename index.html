@@ -106,63 +106,69 @@
       padding: 0;
     }
     .container {
-      max-width: 1120px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 52px 24px 32px;
+      padding: 56px 24px 36px;
     }
     header {
       border-bottom: 1px solid var(--border);
-      padding-bottom: 28px;
-      margin-bottom: 34px;
+      padding-bottom: 32px;
+      margin-bottom: 38px;
+      text-align: center;
     }
     h1 {
       color: var(--heading);
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin: 0 0 12px 0;
+      font-size: clamp(2.1rem, 4vw, 3.1rem);
+      margin: 0 auto 14px auto;
       font-weight: 600;
       letter-spacing: -0.025em;
+      max-width: 950px;
     }
     .subtitle {
-      max-width: 820px;
-      font-size: 1.08rem;
+      max-width: 840px;
+      font-size: 1.1rem;
       color: var(--muted);
-      margin: 0 0 20px 0;
+      margin: 0 auto 22px auto;
     }
     .author-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      justify-content: center;
+      gap: 10px;
       font-size: 0.85rem;
     }
     .badge {
       background: var(--badge-bg);
       border: 1px solid var(--border);
-      padding: 5px 10px;
-      border-radius: 3px;
+      padding: 6px 12px;
+      border-radius: 4px;
       color: var(--text);
       text-decoration: none;
+      transition: all 0.15s ease;
     }
     .badge:hover {
       border-color: var(--accent);
+      background: #e5ece8;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 18px;
-      margin-bottom: 36px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-bottom: 40px;
     }
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 22px;
+      border-radius: 4px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
     }
     .card h2 {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.22rem;
+      font-size: 1.25rem;
       color: var(--heading);
       margin: 0 0 12px 0;
       display: flex;
@@ -172,15 +178,17 @@
     .card p {
       font-size: 0.92rem;
       color: var(--muted);
-      margin: 0 0 16px 0;
+      margin: 0 0 18px 0;
+      line-height: 1.55;
     }
     .link-list {
       list-style: none;
       padding: 0;
-      margin: 0;
+      margin-top: auto;
+      margin-bottom: 0;
       display: flex;
       flex-direction: column;
-      gap: 7px;
+      gap: 8px;
     }
     .link-list a {
       color: var(--accent);
@@ -197,7 +205,7 @@
     }
     footer {
       border-top: 1px solid var(--border);
-      padding-top: 24px;
+      padding-top: 28px;
       font-size: 0.85rem;
       color: var(--muted);
       text-align: center;
@@ -210,6 +218,12 @@
     footer a:hover {
       color: var(--accent-hover);
       text-decoration: underline;
+    }
+
+    @media (max-width: 960px) {
+      .grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
     }
 
     @media (max-width: 640px) {
@@ -240,51 +254,42 @@
 
     <main>
       <div class="grid">
-        <!-- Card 1: Core research indexes -->
+        <!-- Card 1: Core Research Manifests & Architectural Guidelines -->
         <div class="card">
-          <h2>Core Ingestion & Manifests</h2>
-          <p>Canonical root manifests and guidelines optimized for autonomous AI agents, LLMs, and research crawlers.</p>
+          <h2>Core Ingestion & Architecture</h2>
+          <p>Canonical root manifests, machine-readable catalogs, and execution protocols engineered for autonomous LLMs and research crawlers.</p>
           <ul class="link-list">
-            <li><a href="llms.txt">Research Library Index</a></li>
-            <li><a href="llms-full.txt">Full Research Directory</a></li>
-            <li><a href="llms-about.txt">Author and Methodology</a></li>
-            <li><a href="WORKFLOW.md">Research Integration Protocol</a></li>
+            <li><a href="llms.txt">llms.txt (Master Architecture Index)</a></li>
+            <li><a href="llms-full.txt">llms-full.txt (Full Research Corpus)</a></li>
+            <li><a href="llms-about.txt">llms-about.txt (Author & Methodology)</a></li>
+            <li><a href="WORKFLOW.md">WORKFLOW.md (Change Management Protocol)</a></li>
+            <li><a href="ai-catalog.json">ai-catalog.json (Machine Discovery Catalog)</a></li>
           </ul>
         </div>
 
-        <!-- Card 2: Current research outputs -->
+        <!-- Card 2: Real-Time Telemetry & Situation Awareness -->
         <div class="card">
-          <h2>Real-Time Telemetry & News</h2>
-          <p>Consolidated high-frequency situation reports and accredited geopolitical intelligence synthesized across global sensors.</p>
+          <h2>Real-Time Telemetry & SITREP</h2>
+          <p>High-frequency macroeconomic situational awareness reports, accredited wire intelligence, and live satellite chokepoint telemetry.</p>
           <ul class="link-list">
-            <li><a href="llms-sitrep.txt">llms-sitrep.txt (Consolidated SITREP)</a></li>
-            <li><a href="llms-news.txt">llms-news.txt (Tier-1 Wire Dispatches)</a></li>
-            <li><a href="llms-models.txt">llms-models.txt (Evaluated Models)</a></li>
-            <li><a href="llms-full.txt">Complete Research Directory</a></li>
+            <li><a href="llms-sitrep.txt">llms-sitrep.txt (Consolidated SITREP Twin)</a></li>
+            <li><a href="llms-sitrep.json">llms-sitrep.json (Draft 2020-12 Machine SITREP)</a></li>
+            <li><a href="llms-news.txt">llms-news.txt (Zero-Noise Wire Dispatches)</a></li>
+            <li><a href="llms-models.txt">llms-models.txt (50 Active Evaluated Models)</a></li>
+            <li><a href="llms-models.json">llms-models.json (Live Models JSON Twin)</a></li>
           </ul>
         </div>
 
-        <!-- Card 3: Quantitative formulas -->
+        <!-- Card 3: Quantitative Formulations, Graphs & Bilateral Dyads -->
         <div class="card">
-          <h2>Quantitative Formula Shelves</h2>
-          <p>Deterministic mathematical formulations covering central bank rates, labor momentum, supply shocks, and maritime chokepoints.</p>
+          <h2>Quantitative Models & Knowledge Graph</h2>
+          <p>Deterministic mathematical formulations, topological knowledge graphs, and symmetrical 165-dyad sovereign polarity matrices.</p>
           <ul class="link-list">
-            <li><a href="llms-formulas.txt">llms-formulas.txt (Master Router)</a></li>
-            <li><a href="llms-formulas-rates-liquidity.txt">Rates and Liquidity Models</a></li>
-            <li><a href="llms-formulas-macro-labor.txt">Macroeconomic and Labor Models</a></li>
-            <li><a href="llms-formulas-commodities-shock.txt">Commodities and Supply-Shock Models</a></li>
-          </ul>
-        </div>
-
-        <!-- Card 4: Data and structural frameworks -->
-        <div class="card">
-          <h2>Data, Graphs & Schemas</h2>
-          <p>Canonical observation registries, topological knowledge graphs, bilateral relationship matrices, and Draft 2020-12 ontological schema contracts.</p>
-          <ul class="link-list">
-            <li><a href="llms-indicators.txt">Official Time-Series Registry</a></li>
-            <li><a href="llms-country-relationships.txt">Country Relationship Index</a></li>
-            <li><a href="llms-graph.json">Structural Knowledge Graph</a></li>
-            <li><a href="ai-catalog.json">Complete Machine-Readable Catalog</a></li>
+            <li><a href="llms-formulas.txt">llms-formulas.txt (Master Formula Router)</a></li>
+            <li><a href="llms-graph.json">llms-graph.json (Federated Graph RAG Topologies)</a></li>
+            <li><a href="llms-country-relationships.txt">llms-country-relationships.txt (165 Dyad SSOT)</a></li>
+            <li><a href="llms-indicators.txt">llms-indicators.txt (Canonical Indicator Registry)</a></li>
+            <li><a href="llms-tools.json">llms-tools.json (LLM Agent Tool Manifest)</a></li>
           </ul>
         </div>
       </div>
