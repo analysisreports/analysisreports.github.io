@@ -9,7 +9,7 @@
     "endpoint": "https://analysisreports.github.io/llms-news.json",
     "text_endpoint": "https://analysisreports.github.io/llms-news.txt",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-20T06:36:20Z",
+    "last_updated": "2026-11-20T16:51:18Z",
     "total_dispatches": 8,
     "ingestion_protocol": "Tier-1 Institutional Whitelist Only",
     "disclaimer": "Media narratives are recorded strictly as telemetry signals and methodologically cross-checked against official state pacts and physical sensor records."
@@ -19,28 +19,56 @@
       "primary_entity": "GEO_IR",
       "related_entities": [
         "GEO_IR",
-        "CHOKE_HORMUZ"
+        "GEO_US"
       ],
-      "source_authority": "WSJ",
-      "headline": "The Iran War Could Permanently Slash Reliance on Hormuz, IEA Says",
-      "published_utc": "2026-11-19T05:55:00Z",
+      "source_authority": "Reuters",
+      "headline": "Backing Trump, US Senate Republicans block Iran war resolution",
+      "published_utc": "2026-11-19T19:51:00Z",
+      "event_severity": "CRITICAL",
+      "institutional_status": "MONITORING_TELEMETRY",
+      "source_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOcmstcFNFWmdlWE9OT3pCd2JxN1RvaDZMZ2dlZC01YU9hUVFDdFdETmRJLWYtRWI5bkpNVHgyQUFTRVNncW9kUUZkdGhFRkl1RUx6MGs2eVhNNXhZbzROalJGQnRSSUdqdVBhQ1NuLTRONXEyQWpYemhwenhCd2VlNlY4VUZJT3NRdjBmdzBTZGxreUlHNmgyX0p4TzVxX1FvaXZR?oc=5",
+      "dispatch_id": "DISPATCH_20261120_01"
+    },
+    {
+      "primary_entity": "GEO_RU",
+      "related_entities": [
+        "GEO_RU",
+        "GEO_UA"
+      ],
+      "source_authority": "Reuters",
+      "headline": "Eight killed in Ukraine as Russia hits back after Crimea bridge attacks",
+      "published_utc": "2026-11-20T00:41:00Z",
       "event_severity": "CRITICAL",
       "institutional_status": "TELEMETRY_CORROBORATED",
-      "source_url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxONkRNTmVJRC1mZzYtOE1lWkpzLUYybFdUbTdtRmItWjJCZFBlMXpNQkJ5cDdpX3Z0dlp3MFhaOTFCU1Rmczg1MWs1SUhOY3B1cVp5UDlQM0ZkQ3dWd2dsZldjdWo4cHQyQk5CWDZkWHlkRGp5RmJrNm5NSWRyZEJNLTlsVHhSbWd5akdWNVNzVlNUSGRFNVVtcHJDOVRSbWxScFJGWmFjdWx5ZkQyejhTNWxYYw?oc=5",
-      "dispatch_id": "DISPATCH_20261120_01"
+      "source_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOaW5ZVDlLVDZMeWxSUU5VRnVsbVZja1A5bmhtTVd4OFBZWEZFSzFENVFIQUdaLV9JOHZVQjhGcGhqUHJtZ2JrTk5NX3FEV0NScmVwUWtrUmRqbkhGcThkMmp1bWw1SkRneVkzb2pVNzZqTmU0VnA2T1pCVlA3aGoyUEExU2xOSU1TcnpfaFRUa3hBRzNDZzlWOWxFR0RyeTZkeGRyMmtsbEJId3lMRUE?oc=5",
+      "dispatch_id": "DISPATCH_20261120_02"
+    },
+    {
+      "primary_entity": "GEO_US",
+      "related_entities": [
+        "GEO_US",
+        "GEO_CN"
+      ],
+      "source_authority": "Reuters",
+      "headline": "US AI chip curbs hit China tech stocks, spur self-sufficiency push",
+      "published_utc": "2026-11-20T08:23:43Z",
+      "event_severity": "CRITICAL",
+      "institutional_status": "MONITORING_TELEMETRY",
+      "source_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNM3JhZ1hpWlJqYlVISU9pcFFUS0N1Sk9MeEx5aU9jWmt5OVBxY2RkeWNCWDBITU5nYmdNdzFNQm4xTkZVbTM3T214cjhzSDBPWHFsaGt0Uk56c2F0TUFOOWl2ZlZHRGhjdXN5WDNPM3BiS3E1QW9lbHZ0NjZDUVNtaVZBbGUzNmxMR1o4c3REOGE3c3R4ZFk3d1VpR3diM0FmTnphSVdtR0M5MWpHRm9OeFJtaTQ5U1p6bnVRc3VnTW54cVVW?oc=5",
+      "dispatch_id": "DISPATCH_20261120_03"
     },
     {
       "primary_entity": "GEO_UA",
       "related_entities": [
         "GEO_UA"
       ],
-      "source_authority": "Reuters",
-      "headline": "Putin says he will hit back hard after Ukraine strikes Crimea Bridge again",
-      "published_utc": "2026-11-19T07:10:00Z",
+      "source_authority": "CNBC",
+      "headline": "Putin scores ‘massive win’ at first trilateral meeting, rebuilding standing as Ukraine war grinds on",
+      "published_utc": "2026-11-20T09:26:45Z",
       "event_severity": "CRITICAL",
-      "institutional_status": "TELEMETRY_CORROBORATED",
-      "source_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOUzRFcTV3RC1acloyenJ5UXlCQjNfZ0tieEg5NXpGX3NObnlVMzVTR1BDX3VsNWlhOEZKak1ja3JGU3hBMTI3cjJsRlpGWTNhRm1iSkc4U1JHeUdBYXFYdVpjWW9maWJ6MTdMOEw5ZG1YRUJyTkctVGxlTk1hT0VKY2lGNDdGS0w3ZnRJdUQxUzBHeU9KNHdUODBNMEllMDR5Y1NZaFhsd1ZNYzh6ZmZTS0p3S0pCckJ4REUwYnJIN3NsUQ?oc=5",
-      "dispatch_id": "DISPATCH_20261120_02"
+      "institutional_status": "DIPLOMATIC_ENGAGEMENT_OBSERVED",
+      "source_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBjNFFLQXkxc1VHTlM2WkFrdDhyU1hRN1VkazhsZHkwZEs3Y0l6YVBQbUNHU0V2Qmo3M2J4RnBHMDg3Nm84QlJEMFRSNjBUNTFvX2lqX0FxM2o0cUxUbDk0Z1JaZ3NwQ0lNeU02YkJwVUM3ZjZ1OXEwTTFRUUxCZ9IBgwFBVV95cUxQU0hTNTNmMDhiTzhCemlfTF9TRU11d2hGemFUWnM3RzBmOHlXQi14RnRfWWdIUE13bHFiY2U4N2Z6aTJsWW9zamtmdUdDSkJmYTBvMDJqNTNuMXdZaUl4Q011LTh6WGNQeGdzaFZMVG80Q2sxRzljMlUyMFZ0b2FRMnRERQ?oc=5",
+      "dispatch_id": "DISPATCH_20261120_04"
     },
     {
       "primary_entity": "INST_FED_US",
@@ -53,47 +81,33 @@
       "event_severity": "HIGH",
       "institutional_status": "MACRO_POLICY_ALIGNED",
       "source_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQQ0FXYWthQmJLZi05SXhQR1o2akNmbUo4WFAyUWVjbjdkNmdwWi05clFGakpLMEFkSi1oS2ljalM2N2NyclZWTE9temNQMTJjZk9EQTYwZUJiMVlPcE1zQzA4eE5OU0tNQTg5QU5fU3k4bGIxM2NIVVFGZUZzRlR6VXEwVjBLNmvSAYwBQVVfeXFMUDZSczNSbHAxcjNFa1FMNWU3STJRUVBRV0x6SjhFVFRBdGNqSFhqMGl5bGtMSkN0YzQyWUpWLVppMmxpQWNFbFF4VmY0eE5feTJ5UVotZnNPYVdEdXhzWWVmaTk3YmdXNGdtRHlRN1RqeElDMXBEbkw4Z1hyWWxnM3hBWm9MME5Xbm5MNU0?oc=5",
-      "dispatch_id": "DISPATCH_20261120_03"
-    },
-    {
-      "primary_entity": "ORG_IMF",
-      "related_entities": [
-        "ORG_IMF"
-      ],
-      "source_authority": "Reuters",
-      "headline": "Global inflation calls for monetary policy tightening in many economies, IMF head says",
-      "published_utc": "2026-11-19T02:43:00Z",
-      "event_severity": "HIGH",
-      "institutional_status": "MACRO_POLICY_ALIGNED",
-      "source_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNek12QlczdG01emR1MWtEdU8zWXFZalNKUWE3cDR4Vm9YbFNVaU51Y3RxT0Ywak8yV2FrSUQxelVFRDBRZlFwblRqMWctbmw5TUFja2xjSEh3UW1PQUJtTEVmb0FkMVpoYkg0UWVFYkNOZXhSSU54RUJxOTVOdDNQaEk4N2FqUjdWQjNpSk1yZndSZjhzcURKc2dUT2RLOUVqb3dwUGExZG1KUm4tdk05VzBDN0N4SGhvbFdxZg?oc=5",
-      "dispatch_id": "DISPATCH_20261120_04"
+      "dispatch_id": "DISPATCH_20261120_05"
     },
     {
       "primary_entity": "INST_ECB_EU",
       "related_entities": [
         "INST_ECB_EU"
       ],
-      "source_authority": "Bloomberg.com",
-      "headline": "ECB’s Panetta Says Inflation Mustn’t Be Allowed to Take Root",
-      "published_utc": "2026-11-19T18:32:19Z",
+      "source_authority": "Reuters",
+      "headline": "ECB's Lagarde: cyber threat boosted by AI is my top worry",
+      "published_utc": "2026-11-20T09:31:53Z",
       "event_severity": "HIGH",
       "institutional_status": "MACRO_POLICY_ALIGNED",
-      "source_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOWDQ4Z0tLMjZQalQyV3NZNm45cWZSdHRhWE1tUmxvSTFiRVFZVHNIVXlVNDlwZTZfenBtREJIV05aczRmSkJzZU5nOXM4RWJFVnplNVYxdjhQb1lUNXNqUVNURjdSM3UyQWtWN3hkYWM2bm9OOXNBcjBzTFlEaWc4eHRVc0F4Vy05SkhGVkdJeVNBREJKMzBLSVBNa2c4WTNsTlAxYlcyTlJaX0V0ODVpRg?oc=5",
-      "dispatch_id": "DISPATCH_20261120_05"
+      "source_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNWDk1R0xPRW1RdFNWaE9SV0hRNnZUSkY3RU1IX1NGUGd6bnhqLURwM05XQm1VQWtuMk1VTEh1bGxpaFJkMDJQcGRrNlVSbmtHUnkzMmlHX0g5RUQ3dG1WNWpQbzA3VFhSVl9ESWwwS0FMYjhPMmhMTmZkdkFjZW9qRXJJQkNYQzB3NTVtSTY1UGxuWWVqVjJ4QXVJVVdiT3hnVEJkc2xJNlU4VTYz?oc=5",
+      "dispatch_id": "DISPATCH_20261120_06"
     },
     {
-      "primary_entity": "GEO_RU",
+      "primary_entity": "ORG_IMF",
       "related_entities": [
-        "GEO_RU",
-        "GEO_UA"
+        "ORG_IMF"
       ],
-      "source_authority": "CNBC",
-      "headline": "Ukraine allies reject U.S. criticism of deep strikes inside Russia ahead of Trump-Putin-Xi summit",
-      "published_utc": "2026-11-18T10:31:58Z",
+      "source_authority": "Bloomberg.com",
+      "headline": "Ivory Coast to Raise Mineral-Royalty Rates Before IMF Talks",
+      "published_utc": "2026-11-20T10:56:41Z",
       "event_severity": "MODERATE",
-      "institutional_status": "DIPLOMATIC_ENGAGEMENT_OBSERVED",
-      "source_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPcF9sZnpjTVZtQnpnUTlmcFJ5OFB4UGhFLVIwUUJFZ1F4MXVBem14ZzRXSkotTUp1S0tJZEZjY1oxbEt3S1NiaXlSbTJrUmZMQjEwWEZUN1dGZTlGSUxTZWl1bzhfT1N4SzhrcDN6X29TMTNadlEzdWFrZWxlalFTV0lUQmNKeGfSAYwBQVVfeXFMT3ByenVPUVlqSzkzRWJmWE13TGxRQjRZcmtBZVU2aFhtVUJiVlZGZGNydnNBOFNuMENZaWdDVHN4aVpUeUF1N2JZaGVwUi05eFNGSDB1c3V3WXlnbk9vczlsb29lVlF5Nll3ZlpPUV9QRUh0RG80VVI3bEtJX1VOQjBlS3BKcUdFXzVEa1U?oc=5",
-      "dispatch_id": "DISPATCH_20261120_06"
+      "institutional_status": "MACRO_POLICY_ALIGNED",
+      "source_url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPZlp0MXF4dW05ekk3MmpRTm5VcmtXTS00c3Q1TDBGX0NFb1hZVkFOd1BBVVFVenlSU3NnQ1ZrMkJWdTMtUEk5amJxbXpsOXV6ZEQ0NWJndVJoNFh2NzBwRnVrMks3Yk83LUxLa3F5UzBxbzNXQVQ0bm84WXJhVjBwbFNNRzJpdk1MbjVmN1JJeVlMQ0p4Vk96ZHhNMVdOaDd0b1Bzc1M4c1pkZl9BTHpZ?oc=5",
+      "dispatch_id": "DISPATCH_20261120_07"
     },
     {
       "primary_entity": "GEO_CN",
@@ -101,24 +115,11 @@
         "GEO_CN"
       ],
       "source_authority": "CNBC",
-      "headline": "Takaichi gets chilly reception in China on first Japan leader visit since 2019",
-      "published_utc": "2026-11-19T06:39:53Z",
+      "headline": "Jensen Huang wasn't mentioned in latest talks with China, Bessent says",
+      "published_utc": "2026-11-20T15:52:58Z",
       "event_severity": "MODERATE",
       "institutional_status": "DIPLOMATIC_ENGAGEMENT_OBSERVED",
-      "source_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBxQ1JXaFZFUE1LM2t5bW9VUkpFbkt4Ujc3V1A0VWhVUkMtWk50MVZuZ1hUUFA1cjd4dl9YZlpES1l3bmMwVlFUWEg4RFhNd3dsWnJiazdreDNYS05jck1PdEoyVXcwa1VBd0RDU09HbUUtb0hXdkVQZURjc9IBgAFBVV95cUxPcHp4MjRqYlNpTXhzYzBBRnA4TXhfVnNpR1BYZmJ5cUlKaDkxUU5IMW9xeGxwSlQtSEVBNEFfZXJybFRNalVDZU9iNUhjVFBOYU1WT0RPbDE3ajV5YUdKWUd2SXVsUEVsVE9kSU9sdU9pZ2dDdVVjRGRPcVpNcUJ5bA?oc=5",
-      "dispatch_id": "DISPATCH_20261120_07"
-    },
-    {
-      "primary_entity": "GEO_US",
-      "related_entities": [
-        "GEO_US"
-      ],
-      "source_authority": "AP News",
-      "headline": "Denmark approves security deal with US and Greenland, seeking to finally ease tensions with Trump",
-      "published_utc": "2026-11-19T14:42:00Z",
-      "event_severity": "MODERATE",
-      "institutional_status": "MONITORING_TELEMETRY",
-      "source_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQZXZ4T0tGUlE3by1Sd0FHU05tLW8wa1pYYWdjczhsM1NNTDh5WVVLRk4yQUhmRTR1LVpRdFBSSUpDUE56Mk5aUE5fNDNQY3lFUWtGQ2ptV2d2ZG43MWhGdjNTS0RpVXNJT1RXbm9NRjJNeU0ySmhBdXAwQUgzeVBGWDZtaTlSRW5TVTNPX3Z3SElOV3psNEpSOFQxeUR4V0llbS13dVlCTzc1dnVzaF9tZg?oc=5",
+      "source_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBZY0VGNGFCdGNHVmYycjVUbzFUR0FXcEJrMndDTnJLVDR5Z0VmMHVwS2dTbE5WZTdudnJLNzZJbXdXdXpqUUxCSmR6cUVFeHN4SDV2Ykk1MHlhWGRpNnBoeEpsNnRTempqSzhmdGduNmRQRjFRRExuTdIBfkFVX3lxTE56cjI2TnhQdVVjLVdxdXFYN044dU1UNlZjTFN3eEFYaWsxOERGMmF2S0FsRERhQnBhdWJQekd1dl9tYzFSM1lhVFRPLTVPdlBQdmZfRGppT3lfVFRoZUd2Y29selZXVkRUcUt3bEhMZW53dUlSSlJiLTFWY3FQUQ?oc=5",
       "dispatch_id": "DISPATCH_20261120_08"
     }
   ]
