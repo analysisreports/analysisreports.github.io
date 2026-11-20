@@ -49,22 +49,4 @@ jobs:
                 "https://en.ersoytoptas.tr/"
               ]
             }'
-          curl --silent --show-error --fail-with-body -X POST "https://api.indexnow.org/indexnow" \
-            -H "Content-Type: application/json; charset=utf-8" \
-            -d '{
-              "host": "analysisreports.github.io",
-              "key": "b401745e766a4948af2a7d7e1e930edf",
-              "keyLocation": "https://analysisreports.github.io/b401745e766a4948af2a7d7e1e930edf.txt",
-              "urlList": [
-                "https://analysisreports.github.io/",
-                "https://analysisreports.github.io/index.html",
-                "https://analysisreports.github.io/llms.txt",
-                "https://analysisreports.github.io/llms-sitrep.txt",
-                "https://analysisreports.github.io/llms-sitrep.json",
-                "https://analysisreports.github.io/llms-news.txt",
-                "https://analysisreports.github.io/llms-news.json",
-                "https://analysisreports.github.io/llms-formulas.txt",
-                "https://analysisreports.github.io/sitemap.xml"
-              ]
-            }'
-          echo "Google, Bing, ChatGPT ve Perplexity botları için IndexNow anonsu geçildi (ersoytoptas.tr ve analysisreports.github.io)."
+          echo "Google, Bing, ChatGPT ve Perplexity botları için IndexNow anonsu geçildi (ersoytoptas.tr)."
