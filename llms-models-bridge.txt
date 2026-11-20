@@ -32,7 +32,7 @@
 ### 8.1. Inflation & Supply Chain Friction Engine (Models 25.2 & 25.3)
 8.1.1. MODEL_25.2_STICKY_VS_FLEXIBLE_CPI_SPREAD
 - Target Formula: llms-formulas.txt -> Model 25.2 (sticky_flexible_cpi_spread)
-- Data Series Triggered: STICKYCPIM157SFRBATL, FLEXCPIM157SFRBATL
+- Data Series Triggered: IND_STICKCPIM157SFRBATL, IND_FLEXCPIM157SFRBATL
 - Status Enums: STRUCTURAL_INFLATION_TRAP | TRANSITORY_INFLATION_SURGE | BALANCED_DISINFLATION_PATH
 - Primary Geopolitical Vector: Red Sea (4.2) and Hormuz (4.1) freight pass-through to core services/shelter inflation.
 - Actor Coupling: US-EU wage-price dynamics, US-CN trade decoupling tariffs (2.1.2).
@@ -60,7 +60,7 @@
 - Transmission Linkage: Severe disconnect where Gold YoY > 15.0% despite Real Yield > 1.5% signals systemic fiat currency trust degradation.
 
 ### 8.4. Energy Volatility, BTU Parity & Refinery Bottleneck Engine (Models 25.7, 25.8 & 25.9)
-8.4.1. MODEL_25.7_OVX_VIX_JEOPOLITICAL_ENERGY_SHOCK
+8.4.1. MODEL_25.7_OVX_VIX_GEOPOLITICAL_ENERGY_SHOCK
 - Target Formula: llms-formulas.txt -> Model 25.7 (ovx_vix_risk_premium)
 - Data Series Triggered: OVXCLS, VIXCLS
 - Status Enums: ENERGY_SUPPLY_SHOCK_ALARM | EQUITY_PANIC_OVER_ENERGY | BALANCED_ENERGY_VOLATILITY
@@ -84,16 +84,16 @@
 ### 8.5. Banking Credit Transmission & Systemic Tightening Engine (Model 25.10)
 8.5.1. MODEL_25.10_SLOOS_LENDING_TIGHTNESS_GAUGE
 - Target Formula: llms-formulas.txt -> Model 25.10 (sloos_lending_tightness_gauge)
-- Data Series Triggered: DRTSCIS
+- Data Series Triggered: IND_DRTSCIS
 - Status Enums: ACUTE_CREDIT_CRUNCH_RECESSION_SIGNAL | RESTRICTIVE_CREDIT_CONTRACTION | AGGRESSIVE_CREDIT_EXPANSION | NEUTRAL_CREDIT_CONDITIONS
 - Primary Geopolitical Vector: Financial sanctions (OFAC 6.1) and capital fragmentation draining liquidity from Western correspondent banking via mBridge/bilateral currency clearing (2.6.1).
 - Actor Coupling: US-CN tech/export controls (2.1.2) driving friend-shoring costs, BRICS_MBRIDGE (2.6.1) contracting dollar clearing velocity.
-- Transmission Linkage: DRTSCIS net percentage exceeding 40.0% confirms geopolitical friction is severing commercial investment credit and freezing bank lending channels.
+- Transmission Linkage: IND_DRTSCIS net percentage exceeding 40.0% confirms geopolitical friction is severing commercial investment credit and freezing bank lending channels.
 
 ### 8.6. Structural Labor Fracture & Macro Momentum Engine (Models 25.11 & 25.13)
 8.6.1. MODEL_25.11_HIDDEN_EMPLOYMENT_CRACK_GAUGE
 - Target Formula: llms-formulas.txt -> Model 25.11 (hidden_employment_crack_gauge)
-- Data Series Triggered: LNS12500000, LNS12032194
+- Data Series Triggered: IND_LNS12500000, IND_LNS12032194
 - Status Enums: ACUTE_LABOR_MARKET_FRACTURE_RECESSION | STRUCTURAL_EMPLOYMENT_WEAKENING_SIGNAL | ROBUST_FULL_TIME_EXPANSION | STABLE_EMPLOYMENT_COMPOSITION
 - Primary Geopolitical Vector: East Asian supply chain friction (2.5.1, 4.6) and tariff escalation forcing export manufacturers into involuntary part-time shifts.
 - Actor Coupling: US/JP/KR-KP standoff (2.5.1), Taiwan Strait blockade risk (4.6, 7.2.2), US-EU trade frictions (2.3.1).
@@ -209,6 +209,7 @@
   * Technology / Supply Chain: IND_TRIGGER_CHIP_CONTAINMENT, IND_TRIGGER_GSCPI_LOGISTICS
   * Liquidity / Monetary: IND_TRIGGER_SOFR_DOLLAR_DRAIN
   * Agricultural Commodities: IND_TRIGGER_WHEAT_PRICE, IND_TRIGGER_CORN_PRICE
+  * Strategic Reserve Buffer: IND_TRIGGER_US_SPR_BUFFER
 - Status Enums: MACRO_SHOCK_CEILING_MAX | MACRO_SHOCK_ELEVATED | MACRO_SHOCK_MODERATE | MACRO_EQUILIBRIUM_NEUTRAL
 - Primary Geopolitical Vector: Multi-domain transmission of real-time macro, liquidity, and logistical friction into bilateral sovereign polarities.
 - Transmission Rule: 
@@ -225,8 +226,8 @@
 - Data Series Triggered: PET.WCSSTUS1.W, PET.WCRFPUS2.W, DCOILWTICO, DCOILBRENTEU, OVXCLS
 - Status Enums: CRITICAL_SYSTEMIC_SHOCK | HIGH_SPILLOVER | MODERATE_FRICTION | LOCALIZED_IMPACT
 - Primary Geopolitical Vector: Maritime blockade and Persian Gulf transit interdiction at Strait of Hormuz.
-- Actor Coupling: Bilateral polarity tension (P_net = -0.95), regional bypass pipelines, live EIA Strategic Petroleum Reserve (SPR) drawdown capacity.
-- Transmission Linkage: Couples 20.5 mbpd gross transit exposure with live EIA SPR inventories (282.18 mbbl -> 3.14 mbpd sustainable drawdown rate) and US field production (14.0 mbpd) through an S-curve crisis duration multiplier to evaluate net macroeconomic price and supply shock transmission.
+- Actor Coupling: Bilateral polarity tension (live dynamic P_net via Model 25.1), regional bypass pipelines, live EIA Strategic Petroleum Reserve (SPR) drawdown capacity.
+- Transmission Linkage: Couples gross transit flow exposure with live EIA SPR inventories (dynamic sustainable drawdown rate) and US field production context through an S-curve crisis duration multiplier to evaluate net macroeconomic price and supply shock transmission.
 
 ### 8.18. Broad Dollar Shortage & Offshore Liquidity Strain Engine (Model 25.20)
 

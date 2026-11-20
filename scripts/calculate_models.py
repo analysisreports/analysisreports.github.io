@@ -3546,7 +3546,7 @@ def main():
         "# ==============================================================================",
         "### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT",
         f"> **Last Calibrated Sync:** {now_utc_str}",
-        "> **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live St. Louis Fed & BIS observations. Zero hallucination guarantee.",
+        "> **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live FRED, ECB, World Bank, IMF & EIA observations. Zero hallucination guarantee.",
         "",
         "| Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |",
         "| :--- | :--- | :---: | :---: | :--- | :--- |"

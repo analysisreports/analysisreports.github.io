@@ -607,41 +607,45 @@ def build_sitrep():
         "CHOKE_SUEZ": chokepoints.get("CHOKE_SUEZ", {}).get("metrics", {}).get("pct_change_vs_2023")
     }
     valid_shifts = {k: v for k, v in cp_shifts.items() if _is_num(v)}
-    worst_cp = min(valid_shifts.items(), key=lambda x: x[1]) if valid_shifts else ("CHOKE_HORMUZ", -97.8)
-    disrupted_count = sum(1 for v in valid_shifts.values() if v <= -30.0)
+    if valid_shifts:
+        worst_cp = min(valid_shifts.items(), key=lambda x: x[1])
+        disrupted_count = sum(1 for v in valid_shifts.values() if v <= -30.0)
+        worst_cp_name = worst_cp[0]
+        worst_drop = worst_cp[1]
 
-    worst_cp_name = worst_cp[0]
-    worst_drop = worst_cp[1]
-
-    if worst_drop <= -80.0:
-        if disrupted_count >= 2:
-            rule_3_ground_truth = (
-                f"Pronounced multi-corridor transit deceleration; {worst_cp_name} contracted by {worst_drop:+.1f}% vs 2023 baseline, "
-                f"with {disrupted_count} primary global chokepoints simultaneously showing shifts exceeding -30% (Hormuz: {hormuz_daily} vessels/day, {hormuz_shift_str}; "
-                f"Turkish Straits: {turk_shift_str}). Observed commercial flows appear increasingly shaped by specialized operational parameters, "
-                "potentially requiring selective routing and convoy coordination rather than routine peacetime transits."
-            )
+        if worst_drop <= -80.0:
+            if disrupted_count >= 2:
+                rule_3_ground_truth = (
+                    f"Pronounced multi-corridor transit deceleration; {worst_cp_name} contracted by {worst_drop:+.1f}% vs 2023 baseline, "
+                    f"with {disrupted_count} primary global chokepoints simultaneously showing shifts exceeding -30% (Hormuz: {hormuz_daily} vessels/day, {hormuz_shift_str}; "
+                    f"Turkish Straits: {turk_shift_str}). Observed commercial flows appear increasingly shaped by specialized operational parameters, "
+                    "potentially requiring selective routing and convoy coordination rather than routine peacetime transits."
+                )
+            else:
+                rule_3_ground_truth = (
+                    f"Concentrated commercial flow adjustment observed at {worst_cp_name} ({worst_drop:+.1f}% vs baseline; Hormuz: {hormuz_daily} vessels/day), "
+                    f"while secondary corridors maintain relative permeability. Vessel operators may be incorporating extended routing schedules and updated risk premia."
+                )
+        elif worst_drop <= -30.0:
+            if disrupted_count >= 2:
+                rule_3_ground_truth = (
+                    f"Broad maritime flow variance across {disrupted_count} monitored waterways; "
+                    f"Hormuz transits record {hormuz_shift_str} ({hormuz_daily} vessels/day) and Turkish Straits show {turk_shift_str}. "
+                    "This synchronization could indicate cumulative scheduling delays across international maritime networks."
+                )
+            else:
+                rule_3_ground_truth = (
+                    f"Localized transit variance at {worst_cp_name} ({worst_drop:+.1f}% vs baseline); "
+                    f"operations may reflect heightened navigational caution without broader network dislocation."
+                )
         else:
             rule_3_ground_truth = (
-                f"Concentrated commercial flow adjustment observed at {worst_cp_name} ({worst_drop:+.1f}% vs baseline; Hormuz: {hormuz_daily} vessels/day), "
-                f"while secondary corridors maintain relative permeability. Vessel operators may be incorporating extended routing schedules and updated risk premia."
-            )
-    elif worst_drop <= -30.0:
-        if disrupted_count >= 2:
-            rule_3_ground_truth = (
-                f"Broad maritime flow variance across {disrupted_count} monitored waterways; "
-                f"Hormuz transits record {hormuz_shift_str} ({hormuz_daily} vessels/day) and Turkish Straits show {turk_shift_str}. "
-                "This synchronization could indicate cumulative scheduling delays across international maritime networks."
-            )
-        else:
-            rule_3_ground_truth = (
-                f"Localized transit variance at {worst_cp_name} ({worst_drop:+.1f}% vs baseline); "
-                f"operations may reflect heightened navigational caution without broader network dislocation."
+                f"Strategic maritime corridors appear to operate within typical historical variance; "
+                f"Hormuz transits record {hormuz_daily} vessels/day ({hormuz_shift_str}) and Turkish Straits reflect {turk_shift_str}."
             )
     else:
         rule_3_ground_truth = (
-            f"Strategic maritime corridors appear to operate within typical historical variance; "
-            f"Hormuz transits record {hormuz_daily} vessels/day ({hormuz_shift_str}) and Turkish Straits reflect {turk_shift_str}."
+            "Maritime transit shift telemetry unavailable; physical corridor flow assessments fail closed without live satellite observation."
         )
 
     # Rule 4 Evaluation: Semiconductor Containment Friction & Intermediary Rerouting

@@ -7,7 +7,7 @@ Autonomous Quantitative Model Stress, Finite Boundedness & Numerical Stability A
 
 Audits:
 1. Production Output Sanity:
-   - Audits all active models in 'llms-models.json' (42 models).
+   - Audits all active models in 'llms-models.json' (50 models).
    - Verifies each model produces finite, real numbers (Zero NaN, Zero Inf).
    - Verifies presence of formula_ref, status, unit, and interpretation.
 2. Macroeconomic Stress Regime Testing:
@@ -43,8 +43,8 @@ except ImportError as e:
 
 def audit_production_models(models_data: List[Dict[str, Any]]) -> List[str]:
     errors = []
-    if len(models_data) < 42:
-        errors.append(f"INCOMPLETE MODEL SUITE: Expected at least 42 active models, found {len(models_data)}.")
+    if len(models_data) < 50:
+        errors.append(f"INCOMPLETE MODEL SUITE: Expected at least 50 active models, found {len(models_data)}.")
 
     seen_ids = set()
     for m in models_data:

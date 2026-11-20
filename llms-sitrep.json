@@ -9,7 +9,7 @@
     "endpoint": "https://analysisreports.github.io/llms-sitrep.json",
     "text_endpoint": "https://analysisreports.github.io/llms-sitrep.txt",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-20T03:18:16Z",
+    "last_updated": "2026-11-20T05:47:35Z",
     "sync_status": "SUCCESS",
     "data_completeness_pct": 98.4,
     "disclaimer": "The information, interpretations, and estimates contained herein do not constitute investment advice. All responsibility for decisions belongs solely to the user.",
@@ -28,7 +28,7 @@
     {
       "source": "MODEL_28_4_BYPASS_ENGINE",
       "entity_id": "CHOKE_HORMUZ",
-      "event": "STRUCTURAL_BYPASS_CEILING: Overland pipelines (7.14 mbpd buffer) leave 13.36 mbpd unmet deficit (65.2%) under hostile polarity (-1.00).",
+      "event": "STRUCTURAL_BYPASS_CEILING: Overland pipelines (7.07 mbpd buffer) leave 13.43 mbpd unmet deficit (65.5%) under hostile polarity (-1.00).",
       "causal_chain": "MARITIME_FLOW_BLOCKADE -> PIPELINE_THROUGHPUT_LIMIT -> STRUCTURAL_ENERGY_DEFICIT",
       "systemic_impact": "Overland corridors cannot fully substitute maritime volumes; energy importing economies face persistent structural physical deficit."
     },
@@ -55,8 +55,8 @@
     "spread_brent_wti_usd": 3.41,
     "henry_hub_natural_gas_usd": 3.1,
     "henry_hub_natural_gas_yoy_pct": -7.7381,
-    "us_spr_crude_stocks_k_bbl": 282184.0,
-    "us_spr_yoy_pct": -31.1066,
+    "us_spr_crude_stocks_k_bbl": 276361.0,
+    "us_spr_yoy_pct": -32.7468,
     "us_refinery_utilization_pct": 89.1,
     "refinery_capacity_regime": "NORMAL_OPERATING_BAND"
   },
@@ -187,9 +187,9 @@
       "rule_id": "RULE_1_SEABORNE_ENERGY_DISRUPTION",
       "domain": "energy_maritime",
       "formula_link": "https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.12",
-      "telemetry_signal": "SPREAD_BRENT_WTI: $3.41 (3.67% of Brent) | US_SPR_STOCKS: 282,184 k bbl (YoY: -31.11%)",
+      "telemetry_signal": "SPREAD_BRENT_WTI: $3.41 (3.67% of Brent) | US_SPR_STOCKS: 276,361 k bbl (YoY: -32.75%)",
       "media_claim_bias": "Mainstream commentary often suggests global crude benchmarks remain largely balanced.",
-      "ground_truth_reality": "Moderate maritime arbitrage variance; Brent-WTI spread at $3.41 (3.67% of Brent baseline). Prevailing SPR levels (282,184 k bbl) could indicate an underlying vulnerability should corridor transit volumes contract further."
+      "ground_truth_reality": "Moderate maritime arbitrage variance; Brent-WTI spread at $3.41 (3.67% of Brent baseline). Prevailing SPR levels (276,361 k bbl) could indicate an underlying vulnerability should corridor transit volumes contract further."
     },
     {
       "rule_id": "RULE_2_OFFSHORE_DOLLAR_SHORTAGE",
@@ -219,9 +219,9 @@
       "rule_id": "RULE_5_BYPASS_CAPACITY_CEILING",
       "domain": "energy_chokepoints",
       "formula_link": "https://analysisreports.github.io/llms-formulas-geopolitics.txt#28.4",
-      "telemetry_signal": "MODEL_28_4_SPILLOVER: 53 (MODERATE_FRICTION) | Net Deficit: 13.36 mbpd (65.2%) | IL_IR Polarity: -1.00",
+      "telemetry_signal": "MODEL_28_4_SPILLOVER: 53 (MODERATE_FRICTION) | Net Deficit: 13.43 mbpd (65.5%) | IL_IR Polarity: -1.00",
       "media_claim_bias": "Public infrastructure reviews often cite overland pipeline capacity as an adaptable alternative to maritime bottlenecks.",
-      "ground_truth_reality": "Structural overland bypass considerations; Model 28.4 parameters indicate overland pipelines (7.14 mbpd capacity) leave a calculated 13.36 mbpd differential (65.2% of baseline flows of 20.50 mbpd). Under prevailing regional geopolitical polarity (-1.00), infrastructure substitution may require extended operational lead times and alternate transit coordination."
+      "ground_truth_reality": "Structural overland bypass considerations; Model 28.4 parameters indicate overland pipelines (7.07 mbpd capacity) leave a calculated 13.43 mbpd differential (65.5% of baseline flows of 20.50 mbpd). Under prevailing regional geopolitical polarity (-1.00), infrastructure substitution may require extended operational lead times and alternate transit coordination."
     },
     {
       "rule_id": "RULE_6_SECONDARY_ROUTING_FRICTION",

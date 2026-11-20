@@ -37,7 +37,7 @@ TEST_SUITE: List[Tuple[str, str, str, Tuple[str, ...]]] = [
     ("Dyad Symmetry & Hub Isolation Guard", "verify_dyad_integrity.py", "165 Dyads, 0 Leaks, 100% Symmetric Mirrors", ()),
     ("Chronological & Treaty Temporal Sanity", "verify_temporal_sanity.py", "Sequence (Sign<=Enact), Watersheds, 2026 Horizon", ()),
     ("Knowledge Graph Topology & Edge Integrity", "verify_graph_topology.py", "Topological Health, Zero Broken Edges, SSOT Polarity Invariance", ()),
-    ("Quantitative Models Stress & Stability", "verify_model_stress.py", "42 Active Models, Zero NaN/Inf under Crisis Shocks", ()),
+    ("Quantitative Models Stress & Stability", "verify_model_stress.py", "50 Active Models, Zero NaN/Inf under Crisis Shocks", ()),
     ("LLM Tool Specification & Schema Integrity", "verify_tools_schema.py", "68 Active Tools, Zero Schema Defects, 100% Parameter Coverage", ()),
     ("SITREP Schema & Dual-Twin Integrity", "verify_sitrep.py", "Draft 2020-12 Contract, 8 Golden Keys, Entity IDs & Dual-Twin Parity", ()),
     ("Root Contract JSON Schema Compliance", "verify_root_schemas.py", "8 Core Endpoints, Draft 2020-12 Schema Validation", ()),
