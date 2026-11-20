@@ -471,21 +471,24 @@
       "target": "ENERGY_LITHIUM",
       "type": "CONTROLS_LEVERAGE",
       "description": "Holds world's largest identified lithium resources (~23M tonnes, Salar de Uyuni) with no commercial-scale production.",
-      "commodity_role": "HAS_LITHIUM_RESOURCES"
+      "commodity_role": "HAS_LITHIUM_RESOURCES",
+      "source_authority": "USGS Mineral Commodity Summaries (Lithium Reserves & Resources Benchmark)"
     },
     {
       "source": "GEO_CL",
       "target": "ENERGY_LITHIUM",
       "type": "CONTROLS_LEVERAGE",
       "description": "World's second-largest lithium producer and dominant brine exporter via Salar de Atacama.",
-      "commodity_role": "EXPORTS_LITHIUM"
+      "commodity_role": "EXPORTS_LITHIUM",
+      "source_authority": "USGS Mineral Commodity Summaries / Chilean Copper Commission (COCHILCO)"
     },
     {
       "source": "GEO_AR",
       "target": "ENERGY_LITHIUM",
       "type": "CONTROLS_LEVERAGE",
       "description": "Rapidly expanding commercial lithium extraction projects across the Puna plateau.",
-      "commodity_role": "PRODUCES_LITHIUM"
+      "commodity_role": "PRODUCES_LITHIUM",
+      "source_authority": "USGS Mineral Commodity Summaries / Argentine Mining Secretariat Benchmark"
     }
   ],
   "metadata": {
