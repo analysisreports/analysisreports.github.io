@@ -1,5 +1,6 @@
-# Ersoy Toptaş — Bilimsel Araştırma ve Geliştirme Kütüphanesi: Makroekonomik Çalışma Notları
-### Open-Source Academic Research Project: Scientific Working Notes & Econometric Models Library 
+# Ersoy Toptaş — Scientific Research & Development Library
+### Open-Source Academic Research Project: Scientific Working Notes & Econometric Models Library
+#### Açık Kaynaklı Akademik Araştırma Projesi: Bilimsel Çalışma Notları ve Ekonometrik Modeller Kütüphanesi 
 
 [![Data Integrity & Validation](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/validate.yml/badge.svg)](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/validate.yml)
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](LICENSE.md)
