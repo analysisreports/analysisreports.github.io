@@ -1112,12 +1112,12 @@ def calc_repo_liquidity_friction_spread(sofr_val, effr_val):
 
 
 # --- Model 25.6: Gold / Real Yield Debasement Gauge ---
-def calc_gold_real_yield_debasement(real_yield_10y_val, gold_yoy_pct_val) -> Optional[Dict[str, Any]]:
-    if any(v is None or isinstance(v, bool) for v in (real_yield_10y_val, gold_yoy_pct_val)):
+def calc_gold_real_yield_debasement(real_yield_10y_val, gold_wb_monthly_yoy_pct_val) -> Optional[Dict[str, Any]]:
+    if any(v is None or isinstance(v, bool) for v in (real_yield_10y_val, gold_wb_monthly_yoy_pct_val)):
         return None
     try:
         f_ry = float(real_yield_10y_val)
-        f_gy = float(gold_yoy_pct_val)
+        f_gy = float(gold_wb_monthly_yoy_pct_val)
         if not (math.isfinite(f_ry) and math.isfinite(f_gy)):
             return None
 
@@ -1144,7 +1144,7 @@ def calc_gold_real_yield_debasement(real_yield_10y_val, gold_yoy_pct_val) -> Opt
             },
             "metrics": {
                 "real_yield_10y_pct": ry_val,
-                "gold_yoy_pct": gy_val
+                "gold_wb_monthly_yoy_pct": gy_val
             },
             "interpretation": "Detects de-dollarization trends and fiat debasement by measuring breakdowns in the traditional inverse correlation between 10-year TIPS real yields and gold prices. Gold rallying above 15% alongside real yields > 1.5% signals systemic de-dollarization."
         }
@@ -3297,16 +3297,16 @@ def main():
 
     # Model 25.6: Gold / Real Yield Debasement Gauge
     dfii10_val = series.get("DFII10", {}).get("current_value")
-    gold_yoy = None
+    gold_wb_monthly_yoy_pct = None
     if os.path.exists(wb_json_path):
         try:
             with open(wb_json_path, "r", encoding="utf-8") as f:
                 wb_json = json.load(f)
-                gold_yoy = wb_json.get("series", {}).get("IND_WB_GOLD", {}).get("transformations", {}).get("percent_change_from_year_ago")
+                gold_wb_monthly_yoy_pct = wb_json.get("series", {}).get("IND_WB_GOLD", {}).get("transformations", {}).get("percent_change_from_year_ago")
         except Exception:
-            gold_yoy = None
+            gold_wb_monthly_yoy_pct = None
 
-    m_debasement = calc_gold_real_yield_debasement(dfii10_val, gold_yoy)
+    m_debasement = calc_gold_real_yield_debasement(dfii10_val, gold_wb_monthly_yoy_pct)
     if m_debasement:
         models_calculated.append(m_debasement)
 

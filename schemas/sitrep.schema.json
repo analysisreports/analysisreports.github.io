@@ -132,7 +132,115 @@
       "type": "object"
     },
     "metals_commodities": {
-      "type": "object"
+      "type": "object",
+      "description": "Precious metals and industrial commodities telemetry. Note: 'gold_spot_usd_ozt' represents live physical spot benchmark via The Royal Mint converted using the ECB GBP/USD cross rate. 'gold_wb_monthly_usd_ozt' represents official macroeconomic monthly benchmark (World Bank Pink Sheet).",
+      "properties": {
+        "gold_spot_usd_ozt": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Physical live spot gold price in USD per troy ounce (Source: The Royal Mint Sovereign Spot Benchmark, calculated via ECB GBP/USD cross rate)."
+        },
+        "gold_spot_gbp_ozt": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Physical live spot gold price in GBP per troy ounce (Source: The Royal Mint)."
+        },
+        "silver_spot_usd_ozt": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Physical live spot silver price in USD per troy ounce (Source: The Royal Mint, calculated via ECB GBP/USD cross rate)."
+        },
+        "silver_spot_gbp_ozt": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Physical live spot silver price in GBP per troy ounce (Source: The Royal Mint)."
+        },
+        "ecb_gbp_usd_cross_rate": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Official ECB GBP/USD reference exchange rate used for London physical spot currency translation."
+        },
+        "fx_observation_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Observation date of the ECB exchange rate and Royal Mint spot feed."
+        },
+        "gold_wb_monthly_usd_ozt": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Macroeconomic monthly benchmark gold price in USD per troy ounce (Source: World Bank Pink Sheet series IND_WB_GOLD)."
+        },
+        "gold_wb_monthly_yoy_pct": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Year-over-year percentage change for World Bank gold benchmark."
+        },
+        "silver_wb_monthly_usd_ozt": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Macroeconomic monthly benchmark silver price in USD per troy ounce (Source: World Bank Pink Sheet series IND_WB_SILVER)."
+        },
+        "silver_wb_monthly_yoy_pct": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Year-over-year percentage change for World Bank silver benchmark."
+        },
+        "gold_silver_ratio": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Live gold-to-silver price ratio (calculated primarily via physical spot benchmark)."
+        },
+        "copper_global_usd_mt": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Global copper price in USD per metric ton."
+        },
+        "copper_yoy_pct": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Year-over-year percentage change for global copper."
+        },
+        "wheat_global_usd_mt": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Global wheat price in USD per metric ton."
+        },
+        "wheat_yoy_pct": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Year-over-year percentage change for global wheat."
+        }
+      }
     },
     "maritime_chokepoints": {
       "type": "object"

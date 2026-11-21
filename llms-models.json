@@ -731,7 +731,7 @@
       },
       "metrics": {
         "real_yield_10y_pct": 2.89,
-        "gold_yoy_pct": 1.16
+        "gold_wb_monthly_yoy_pct": 1.16
       },
       "interpretation": "Detects de-dollarization trends and fiat debasement by measuring breakdowns in the traditional inverse correlation between 10-year TIPS real yields and gold prices. Gold rallying above 15% alongside real yields > 1.5% signals systemic de-dollarization."
     },

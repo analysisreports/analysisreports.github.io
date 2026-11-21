@@ -340,7 +340,7 @@
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.6
 - **Evaluated Status:** `TRADITIONAL_REAL_RATE_DOMINANCE` (Primary Value: 2.89 Percent (%))
 - **Inputs Evaluated:** `{"tips_10y_real_yield_dfii10": 2.89, "gold_price_yoy_pct_ind_wb_gold": 1.16}`
-- **Secondary Metrics:** `{"real_yield_10y_pct": 2.89, "gold_yoy_pct": 1.16}`
+- **Secondary Metrics:** `{"real_yield_10y_pct": 2.89, "gold_wb_monthly_yoy_pct": 1.16}`
 - **Economic Synthesis:** Detects de-dollarization trends and fiat debasement by measuring breakdowns in the traditional inverse correlation between 10-year TIPS real yields and gold prices. Gold rallying above 15% alongside real yields > 1.5% signals systemic de-dollarization.
 
 #### [MODEL_25.7] OVX / VIX Geopolitical Energy Shock Engine

@@ -1305,14 +1305,14 @@
               "type": "number",
               "description": "10-Year TIPS Real Rate in percent (FRED: DFII10)."
             },
-            "gold_yoy_pct": {
+            "gold_wb_monthly_yoy_pct": {
               "type": "number",
-              "description": "Official Gold Price YoY % change (World Bank The Pink Sheet: IND_WB_GOLD: percent_change_from_year_ago)."
+              "description": "Official monthly World Bank Gold Price YoY % change (The Pink Sheet: IND_WB_GOLD: percent_change_from_year_ago)."
             }
           },
           "required": [
             "real_yield_10y",
-            "gold_yoy_pct"
+            "gold_wb_monthly_yoy_pct"
           ]
         }
       }

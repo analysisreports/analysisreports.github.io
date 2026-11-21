@@ -1781,7 +1781,7 @@
       "source": "IND_WB_GOLD",
       "target": "MODEL_25.6",
       "type": "INGESTS_SERIES",
-      "role": "gold_yoy_pct"
+      "role": "gold_wb_monthly_yoy_pct"
     },
     {
       "source": "IND_OVXCLS",

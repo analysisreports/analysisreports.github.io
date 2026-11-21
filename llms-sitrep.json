@@ -9,7 +9,7 @@
     "endpoint": "https://analysisreports.github.io/llms-sitrep.json",
     "text_endpoint": "https://analysisreports.github.io/llms-sitrep.txt",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-21T01:14:02Z",
+    "last_updated": "2026-11-21T10:41:51Z",
     "sync_status": "SUCCESS",
     "data_completeness_pct": 100.0,
     "disclaimer": "The information, interpretations, and estimates contained herein do not constitute investment advice. All responsibility for decisions belongs solely to the user.",
@@ -45,13 +45,6 @@
       "event": "TECH_DECOUPLING_VELOCITY: Direct US chip exports to China contracted -8.4% MoM amid Model 25.14 stress (0.583).",
       "causal_chain": "EXPORT_CONTROL_ENFORCEMENT -> DIRECT_SHIPMENT_CONTRACTION -> INTERMEDIARY_HUB_REROUTING",
       "systemic_impact": "Global AI hardware capex inflates as procurement routes adapt through secondary Asian transshipment hubs."
-    },
-    {
-      "source": "NASA_FIRMS_VIIRS",
-      "entity_id": "GEO_CN",
-      "event": "KINETIC_THERMAL_SURGE: People's Republic of China & Taiwan Strait orbital detection with 2248.0 MW radiative heat (Severity: CRITICAL).",
-      "causal_chain": "THEATER_MISSILE_ENGAGEMENT -> ASYMMETRIC_INFRASTRUCTURE_RISK -> MARITIME_INSURANCE_SPIKE",
-      "systemic_impact": "Heightened war-risk insurance premiums and potential rerouting away from regional littoral waters."
     }
   ],
   "energy_matrix": {
@@ -88,10 +81,10 @@
     "silver_spot_gbp_ozt": 32.93,
     "ecb_gbp_usd_cross_rate": 1.3125,
     "fx_observation_date": "2026-11-20",
-    "gold_usd_ozt": 4105.0,
-    "gold_yoy_pct": 1.1582,
-    "silver_usd_ozt": 57.0,
-    "silver_yoy_pct": 15.3846,
+    "gold_wb_monthly_usd_ozt": 4105.0,
+    "gold_wb_monthly_yoy_pct": 1.1582,
+    "silver_wb_monthly_usd_ozt": 57.0,
+    "silver_wb_monthly_yoy_pct": 15.3846,
     "gold_silver_ratio": 82.48,
     "copper_global_usd_mt": 14473.05590909091,
     "copper_yoy_pct": 44.8062,
@@ -170,7 +163,7 @@
     }
   },
   "macro_liquidity": {
-    "net_fed_liquidity_trillion_usd": 5.844,
+    "net_fed_liquidity_trillion_usd": 5.825,
     "net_fed_liquidity_regime": "NEUTRAL_LIQUIDITY_EQUILIBRIUM",
     "fed_policy_rate_pct": 3.88,
     "secured_overnight_financing_rate_pct": 3.92,

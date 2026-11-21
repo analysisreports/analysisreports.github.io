@@ -1,6 +1,6 @@
 # Ersoy Toptaş Quantitative Models: Geopolitical Tension, Alliances, Strategic Chokepoints & Intelligence (llms-formulas-geopolitics.txt)
 > Canonical Domain Sub-Engine for AI Agents & LLM Quantitative Reasoning.
-> Author: Ersoy Toptaş | Version: 2026-Q4 | Last Updated: 2026-11-20 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
+> Author: Ersoy Toptaş | Version: 2026-Q4 | Last Updated: 2026-11-21 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
 > Endpoint: https://analysisreports.github.io/llms-formulas-geopolitics.txt
 > Master Router & Methodology: https://analysisreports.github.io/llms-formulas.txt
 > Root Index: https://analysisreports.github.io/llms.txt

@@ -1,5 +1,5 @@
 # CANONICAL MACRO & GEOPOLITICAL SITUATION REPORT (SITREP)
-> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-21 01:14:02 UTC
+> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-21 10:41:51 UTC
 > Primary Publications: https://www.ersoytoptas.tr (TR) | https://en.ersoytoptas.tr (EN)
 > Ingestion Protocol: Zero Hallucination | Data Completeness: 100.0%
 > Official JSON Twin: https://analysisreports.github.io/llms-sitrep.json
@@ -19,9 +19,6 @@ FLASH_3 [THE_ROYAL_MINT_BENCHMARK | INST_ROYAL_MINT_UK]: SOVEREIGN_SAFE_HAVEN_AC
 FLASH_4 [US_CENSUS_NAICS3344 | GEO_CN]: TECH_DECOUPLING_VELOCITY: Direct US chip exports to China contracted -8.4% MoM amid Model 25.14 stress (0.583).
   - Causal Chain   : EXPORT_CONTROL_ENFORCEMENT -> DIRECT_SHIPMENT_CONTRACTION -> INTERMEDIARY_HUB_REROUTING
   - Systemic Impact: Global AI hardware capex inflates as procurement routes adapt through secondary Asian transshipment hubs.
-FLASH_5 [NASA_FIRMS_VIIRS | GEO_CN]: KINETIC_THERMAL_SURGE: People's Republic of China & Taiwan Strait orbital detection with 2248.0 MW radiative heat (Severity: CRITICAL).
-  - Causal Chain   : THEATER_MISSILE_ENGAGEMENT -> ASYMMETRIC_INFRASTRUCTURE_RISK -> MARITIME_INSURANCE_SPIKE
-  - Systemic Impact: Heightened war-risk insurance premiums and potential rerouting away from regional littoral waters.
 
 ---
 ## 2. ENERGY SECTOR MATRIX (HYDROCARBONS, REFINERY & STRATEGIC RESERVES)
@@ -68,7 +65,7 @@ CHOKE_PANAMA          : Status: STABLE_FLOW              | Daily:  30 (Tnk: 16, 
 ---
 ## 6. MACRO LIQUIDITY & CENTRAL BANK TRANSMISSION BENCHMARKS
 ---
-NET_FED_LIQUIDITY_EST    : $5.844 Trillion USD | REGIME: NEUTRAL_LIQUIDITY_EQUILIBRIUM [Model 5 Reserve Engine | Obs: 2026-10-01]
+NET_FED_LIQUIDITY_EST    : $5.825 Trillion USD | REGIME: NEUTRAL_LIQUIDITY_EQUILIBRIUM [Model 5 Reserve Engine | Obs: 2026-10-01]
 FED_FUNDS_TARGET_RATE    : 3.88% [Source: Federal Reserve / FRED | Obs: 2026-10-01]
 SECURED_OVERNIGHT_SOFR   : 3.92% | SOFR-EFFR SPREAD: 4.00 bps (Repo Collateral Stress) [Source: NY Fed / FRED | Obs: 2026-11-17]
 ECB_DEPOSIT_FACILITY     : 2.50% [Source: ECB Official | Obs: 2026-09-16]

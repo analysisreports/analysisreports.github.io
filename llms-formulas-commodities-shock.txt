@@ -1,6 +1,6 @@
 # Ersoy Toptaş Quantitative Models: Commodities, Energy Shocks, Supply Chains & Asset Stress (llms-formulas-commodities-shock.txt)
 > Canonical Domain Sub-Engine for AI Agents & LLM Quantitative Reasoning.
-> Author: Ersoy Toptaş | Version: 2026-Q4 | Last Updated: 2026-11-20 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
+> Author: Ersoy Toptaş | Version: 2026-Q4 | Last Updated: 2026-11-21 | License: CC BY-NC-ND 4.0 | Motto: Think simple, act big
 > Endpoint: https://analysisreports.github.io/llms-formulas-commodities-shock.txt
 > Master Router & Methodology: https://analysisreports.github.io/llms-formulas.txt
 > Root Index: https://analysisreports.github.io/llms.txt
@@ -235,12 +235,12 @@ def _is_num(val):
   - World Bank (The Pink Sheet): IND_WB_GOLD (Official Gold Price USD/troy oz - YoY % Change: percent_change_from_year_ago)
 - Formula: Anomaly_Signal = f(Real_Yield_10Y, Gold_YoY_Pct)
 - Machine-Executable Logic (Python):
-  def gold_real_yield_debasement_gauge(real_yield_10y, gold_yoy_pct):
-      if any(v is None or isinstance(v, bool) for v in (real_yield_10y, gold_yoy_pct)):
+  def gold_real_yield_debasement_gauge(real_yield_10y, gold_wb_monthly_yoy_pct):
+      if any(v is None or isinstance(v, bool) for v in (real_yield_10y, gold_wb_monthly_yoy_pct)):
           return None
       try:
           f_ry = float(real_yield_10y)
-          f_gy = float(gold_yoy_pct)
+          f_gy = float(gold_wb_monthly_yoy_pct)
           if not (math.isfinite(f_ry) and math.isfinite(f_gy)):
               return None
           ry_val = round(f_ry, 2)
@@ -251,7 +251,7 @@ def _is_num(val):
               status = "ACCOMMODATIVE_GOLD_BULL"
           else:
               status = "TRADITIONAL_REAL_RATE_DOMINANCE"
-          return {"real_yield_10y": ry_val, "gold_yoy_pct": gy_val, "status": status}
+          return {"real_yield_10y": ry_val, "gold_wb_monthly_yoy_pct": gy_val, "status": status}
       except (TypeError, ValueError):
           return None
 - Interpretation:
