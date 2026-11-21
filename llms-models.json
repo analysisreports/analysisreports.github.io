@@ -8,11 +8,11 @@
     "license": "CC BY-NC-ND 4.0",
     "endpoint": "https://analysisreports.github.io/llms-models.json",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-20T05:06:08.913651+00:00",
+    "last_updated": "2026-11-21T04:58:50.103283+00:00",
     "sync_status": "SUCCESS",
     "ingestion_health": "OPTIMAL",
     "ingestion_warnings": [],
-    "last_successful_sync": "2026-11-20T05:06:08.913651+00:00",
+    "last_successful_sync": "2026-11-21T04:58:50.103283+00:00",
     "master_formulas_reference": "https://analysisreports.github.io/llms-formulas.txt",
     "monitored_data_sources": [
       "Federal Reserve Bank of St. Louis (FRED)",
@@ -98,19 +98,19 @@
       "model_id": "MODEL_5",
       "model_name": "Net Fed Liquidity Index",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#5",
-      "primary_value": 5.844,
+      "primary_value": 5.825,
       "unit": "Trillion USD",
       "status": "NEUTRAL_LIQUIDITY_EQUILIBRIUM",
       "inputs": {
-        "fed_total_assets_walcl_mil": 6758867.0,
-        "treasury_general_account_tga_mil": 914370.0,
+        "fed_total_assets_walcl_mil": 6741452.0,
+        "treasury_general_account_tga_mil": 916613.0,
         "overnight_reverse_repo_rrp_bil": 0.331,
         "overnight_reverse_repo_rrp_mil": 331.0
       },
       "metrics": {
-        "net_liquidity_millions_usd": 5844166.0,
-        "net_liquidity_trillions_usd": 5.844,
-        "delta_millions_usd": 53547.0
+        "net_liquidity_millions_usd": 5824508.0,
+        "net_liquidity_trillions_usd": 5.825,
+        "delta_millions_usd": -19638.0
       },
       "interpretation": "Unencumbered commercial bank liquidity: WALCL - (TGA + ON_RRP). Direct fuel for equity asset valuations."
     },
@@ -231,17 +231,17 @@
       "model_id": "MODEL_12",
       "model_name": "Financial Conditions Tightness (Chicago Fed NFCI)",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#12",
-      "primary_value": -0.462,
+      "primary_value": -0.478,
       "unit": "Index Points",
       "status": "LOOSE_FINANCIAL_CONDITIONS",
       "inputs": {
-        "chicago_fed_nfci": -0.462,
-        "adjusted_anfci": -0.477
+        "chicago_fed_nfci": -0.478,
+        "adjusted_anfci": -0.502
       },
       "metrics": {
-        "nfci_stress_level": -0.462,
-        "adjusted_anfci": -0.477,
-        "macroeconomic_divergence": 0.015
+        "nfci_stress_level": -0.478,
+        "adjusted_anfci": -0.502,
+        "macroeconomic_divergence": 0.024
       },
       "interpretation": "Monitors monetary policy transmission into financial markets across debt, equity, and leverage risk premiums. Values < 0 indicate looser than average financial conditions; > 0 indicates restrictive financial conditions."
     },
@@ -539,11 +539,11 @@
       "model_id": "MODEL_23.6",
       "model_name": "Early Employment Crack Signal",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.6",
-      "primary_value": -13.99,
+      "primary_value": -12.01,
       "unit": "Index Points",
       "status": "LABOR_MARKET_ALIGNED",
       "inputs": {
-        "ic4wsa_yoy_pct": -13.99,
+        "ic4wsa_yoy_pct": -12.01,
         "unrate_delta_ppt": -0.3
       },
       "components": {
@@ -551,7 +551,7 @@
         "crack_threshold": 15.0
       },
       "metrics": {
-        "early_employment_crack_index": -13.99,
+        "early_employment_crack_index": -12.01,
         "effective_unrate_delta": 0.0,
         "crack_threshold": 15.0
       },
@@ -576,16 +576,16 @@
       "model_id": "MODEL_23.8",
       "model_name": "Mortgage and Permit Divergence (Housing Freeze Index)",
       "formula_ref": "https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.8",
-      "primary_value": 7.43,
+      "primary_value": 7.6,
       "unit": "Index Points",
       "status": "SUPPLY_CONTRACTION",
       "inputs": {
-        "mortgage_30y_rate_pct": 7.11,
+        "mortgage_30y_rate_pct": 7.28,
         "building_permits_yoy_pct": -3.19
       },
       "metrics": {
-        "housing_freeze_index": 7.43,
-        "mortgage_rate": 7.11,
+        "housing_freeze_index": 7.6,
+        "mortgage_rate": 7.28,
         "permits_yoy_pct": -3.19
       },
       "interpretation": "Measures divergence between surging mortgage borrowing costs and residential building permit momentum to model lock-in supply bottlenecks and housing transaction freezes."

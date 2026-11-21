@@ -58,7 +58,7 @@ Regime States (Discrete Mapping):
 <!-- DYNAMIC_POLARITY_START -->
 ### 1.1. LIVE CALIBRATED POLARITY SNAPSHOT (ACTIVE REASONING CONTRACT)
 > **AI Ingestion Contract & Epistemological Directive:**
-> - **Sync Cadence & ISO 8601 Timestamp:** 2026-11-20 09:26 UTC
+> - **Sync Cadence & ISO 8601 Timestamp:** 2026-11-21 04:58 UTC
 > - **Status:** PARTIAL_SUCCESS / TRIGGER_UNAVAILABLE
 > - **Methodology:** Model 25.1 (P_net = clamp(P_baseline + Model 25.19 dynamic_delta + Model 25.18 Pact / Bloc delta + Diplomatic Mission delta, -1.0, 1.0)); legacy delta is shown separately and not added.
 > - **Kinetic escalation rule:** KINETIC_WAR requires both P_net < -0.95 and Conflict Severity == "CRITICAL".
@@ -114,6 +114,8 @@ Regime States (Discrete Mapping):
 
 > **Model 25.19 relationship contributions:** Detailed trigger contributions and mathematical cross-multiplications are archived in [`llms-relationships.json`](https://analysisreports.github.io/llms-relationships.json).
 <!-- DYNAMIC_POLARITY_END -->
+
+> **Decoupled Telemetry Notice:** Live Central Bank monetary policy benchmarks, orbital NASA FIRMS satellite kinetic heat anomalies, and IMF PortWatch AIS transit feeds have been decoupled to the official situation report: [`llms-sitrep.txt`](https://analysisreports.github.io/llms-sitrep.txt) and [`llms-sitrep.json`](https://analysisreports.github.io/llms-sitrep.json).
 
 > **Decoupled Telemetry Notice:** Live Central Bank monetary policy benchmarks, orbital NASA FIRMS satellite kinetic heat anomalies, and IMF PortWatch AIS transit feeds have been decoupled to the official situation report: [`llms-sitrep.txt`](https://analysisreports.github.io/llms-sitrep.txt) and [`llms-sitrep.json`](https://analysisreports.github.io/llms-sitrep.json).
 

@@ -9,7 +9,7 @@
 
 # ==============================================================================
 ### LIVE QUANTITATIVE MODEL BANK & REGIME SNAPSHOT
-> **Last Calibrated Sync:** 2026-11-20 05:06 UTC
+> **Last Calibrated Sync:** 2026-11-21 04:58 UTC
 > **Deterministic Rule:** All model outputs reflect strict mathematical evaluation of live FRED, ECB, World Bank, IMF & EIA observations. Zero hallucination guarantee.
 
 | Model ID | Canonical Name | Live Value | Unit | Active Regime Status | Primary Macro Driver |
@@ -18,14 +18,14 @@
 | **MODEL_2** | Real Policy Rate & Restrictiveness | **-0.2** | Percent (%) | `ACCOMMODATIVE` | Measures the real stance of effective borrowing costs a... |
 | **MODEL_3** | Official Sahm Rule Recession Indicator | **0.0** | Percentage Points | `NORMAL_LABOR_MARKET` | Real-time recession detection triggered when 3-month un... |
 | **MODEL_4** | Front-End T-Bill Slope & Liquidity Spread | **24.0** | Basis Points (bps) | `NORMAL_SLOPE` | Tracks the slope between 3-month and 1-month Treasury b... |
-| **MODEL_5** | Net Fed Liquidity Index | **5.844** | Trillion USD | `NEUTRAL_LIQUIDITY_EQUILIBRIUM` | Unencumbered commercial bank liquidity: WALCL - (TGA + ... |
+| **MODEL_5** | Net Fed Liquidity Index | **5.825** | Trillion USD | `NEUTRAL_LIQUIDITY_EQUILIBRIUM` | Unencumbered commercial bank liquidity: WALCL - (TGA + ... |
 | **MODEL_6** | Treasury Yield Curve Slope (10Y - 2Y) | **27.0** | Basis Points (bps) | `NORMAL_CURVE_EXPANSION` | Leading cyclical economic barometer. Inversions (bps < ... |
 | **MODEL_7** | 10-Year Breakeven Inflation Rate | **2.21** | Percent (%) | `FED_ALIGNED_EQUILIBRIUM` | Reflects the bond market's expected average annual infl... |
 | **MODEL_8** | Beveridge Curve Labor Tightness | **1.06** | Ratio | `BALANCED_LABOR_TIGHTNESS` | Evaluates the ratio of job openings to unemployed job s... |
 | **MODEL_9** | Financial Repression Index | **1.236** | Index Score | `SUSTAINABLE_CYCLE` | Scores the risk of eroding public debt in real terms un... |
 | **MODEL_10** | Triffin External Balance | **1.1676** | Tension Ratio | `BALANCED_TRIFFIN_EQUILIBRIUM` | Tracks global liquidity imbalances between the US dolla... |
 | **MODEL_11** | Taylor Rule Policy Gap | **-4.09** | Percentage Points (ppt) | `BEHIND_THE_CURVE` | Computes a Taylor-style policy benchmark using headline... |
-| **MODEL_12** | Financial Conditions Tightness (Chicago Fed NFCI) | **-0.462** | Index Points | `LOOSE_FINANCIAL_CONDITIONS` | Monitors monetary policy transmission into financial ma... |
+| **MODEL_12** | Financial Conditions Tightness (Chicago Fed NFCI) | **-0.478** | Index Points | `LOOSE_FINANCIAL_CONDITIONS` | Monitors monetary policy transmission into financial ma... |
 | **MODEL_13** | High Yield Credit Spread / OAS | **343** | Basis Points (bps) | `RISK_APPETITE_HEALTHY` | Measures corporate credit default risk and risk appetit... |
 | **MODEL_14** | Real M2 Money Momentum | **1.63** | Percentage Points (ppt) | `MONETARY_EXPANSION` | Detects aggregate demand and monetary impulse by calcul... |
 | **MODEL_15** | NY Fed ACM 10-Year Term Premium | **0.99** | Percent (%) | `FISCAL_SUPPLY_PRESSURE` | Decomposes 10-year Treasury yields via the Adrian, Crum... |
@@ -42,9 +42,9 @@
 | **MODEL_23.3** | Housing Affordability and Bubble Gauge | **10350.0** | Labor Hours per Home | `ACCESSIBLE_MARKET` | Measures housing affordability by dividing median home ... |
 | **MODEL_23.4** | Early Layoff and Recession Signal | **3.32** | Index Points | `EXPANSION_EMPLOYMENT_MOMENTUM` | Detects latent employment losses and early recessionary... |
 | **MODEL_23.5** | Real Consumption Collapse Radar | **2.74** | Percentage Points (YoY) | `STRONG_VOLUME_EXPANSION` | Measures real household consumption volume by stripping... |
-| **MODEL_23.6** | Early Employment Crack Signal | **-13.99** | Index Points | `LABOR_MARKET_ALIGNED` | Identifies early labor cracks by comparing weekly joble... |
+| **MODEL_23.6** | Early Employment Crack Signal | **-12.01** | Index Points | `LABOR_MARKET_ALIGNED` | Identifies early labor cracks by comparing weekly joble... |
 | **MODEL_23.7** | Inventory to Sales Glut Ratio | **1.33** | Ratio | `BALANCED_SUPPLY_CHAIN` | Measures total business inventories relative to monthly... |
-| **MODEL_23.8** | Mortgage and Permit Divergence (Housing Freeze Index) | **7.43** | Index Points | `SUPPLY_CONTRACTION` | Measures divergence between surging mortgage borrowing ... |
+| **MODEL_23.8** | Mortgage and Permit Divergence (Housing Freeze Index) | **7.6** | Index Points | `SUPPLY_CONTRACTION` | Measures divergence between surging mortgage borrowing ... |
 | **MODEL_24** | Safe Haven Flight Index | **0.825** | Flight Ratio | `NORMAL_MARKET_REGIME` | Measures capital flight into safe-haven USD and flight-... |
 | **MODEL_25** | Terms of Trade (TOT) | **112.42** | Index Points | `FAVORABLE_TRADE` | Evaluates sovereign purchasing power and current accoun... |
 | **MODEL_25.12** | Brent-WTI Benchmark Price Spread | **3.41** | USD | `TYPICAL_BRENT_WTI_SPREAD` | Measures the Brent-WTI benchmark price difference, indi... |
@@ -98,9 +98,9 @@
 
 #### [MODEL_5] Net Fed Liquidity Index
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#5
-- **Evaluated Status:** `NEUTRAL_LIQUIDITY_EQUILIBRIUM` (Primary Value: 5.844 Trillion USD)
-- **Inputs Evaluated:** `{"fed_total_assets_walcl_mil": 6758867.0, "treasury_general_account_tga_mil": 914370.0, "overnight_reverse_repo_rrp_bil": 0.331, "overnight_reverse_repo_rrp_mil": 331.0}`
-- **Secondary Metrics:** `{"net_liquidity_millions_usd": 5844166.0, "net_liquidity_trillions_usd": 5.844, "delta_millions_usd": 53547.0}`
+- **Evaluated Status:** `NEUTRAL_LIQUIDITY_EQUILIBRIUM` (Primary Value: 5.825 Trillion USD)
+- **Inputs Evaluated:** `{"fed_total_assets_walcl_mil": 6741452.0, "treasury_general_account_tga_mil": 916613.0, "overnight_reverse_repo_rrp_bil": 0.331, "overnight_reverse_repo_rrp_mil": 331.0}`
+- **Secondary Metrics:** `{"net_liquidity_millions_usd": 5824508.0, "net_liquidity_trillions_usd": 5.825, "delta_millions_usd": -19638.0}`
 - **Economic Synthesis:** Unencumbered commercial bank liquidity: WALCL - (TGA + ON_RRP). Direct fuel for equity asset valuations.
 
 #### [MODEL_6] Treasury Yield Curve Slope (10Y - 2Y)
@@ -147,9 +147,9 @@
 
 #### [MODEL_12] Financial Conditions Tightness (Chicago Fed NFCI)
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas-rates-liquidity.txt#12
-- **Evaluated Status:** `LOOSE_FINANCIAL_CONDITIONS` (Primary Value: -0.462 Index Points)
-- **Inputs Evaluated:** `{"chicago_fed_nfci": -0.462, "adjusted_anfci": -0.477}`
-- **Secondary Metrics:** `{"nfci_stress_level": -0.462, "adjusted_anfci": -0.477, "macroeconomic_divergence": 0.015}`
+- **Evaluated Status:** `LOOSE_FINANCIAL_CONDITIONS` (Primary Value: -0.478 Index Points)
+- **Inputs Evaluated:** `{"chicago_fed_nfci": -0.478, "adjusted_anfci": -0.502}`
+- **Secondary Metrics:** `{"nfci_stress_level": -0.478, "adjusted_anfci": -0.502, "macroeconomic_divergence": 0.024}`
 - **Economic Synthesis:** Monitors monetary policy transmission into financial markets across debt, equity, and leverage risk premiums. Values < 0 indicate looser than average financial conditions; > 0 indicates restrictive financial conditions.
 
 #### [MODEL_13] High Yield Credit Spread / OAS
@@ -267,9 +267,9 @@
 
 #### [MODEL_23.6] Early Employment Crack Signal
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.6
-- **Evaluated Status:** `LABOR_MARKET_ALIGNED` (Primary Value: -13.99 Index Points)
-- **Inputs Evaluated:** `{"ic4wsa_yoy_pct": -13.99, "unrate_delta_ppt": -0.3}`
-- **Secondary Metrics:** `{"early_employment_crack_index": -13.99, "effective_unrate_delta": 0.0, "crack_threshold": 15.0}`
+- **Evaluated Status:** `LABOR_MARKET_ALIGNED` (Primary Value: -12.01 Index Points)
+- **Inputs Evaluated:** `{"ic4wsa_yoy_pct": -12.01, "unrate_delta_ppt": -0.3}`
+- **Secondary Metrics:** `{"early_employment_crack_index": -12.01, "effective_unrate_delta": 0.0, "crack_threshold": 15.0}`
 - **Component Weights:** `{"effective_unrate_delta": 0.0, "crack_threshold": 15.0}`
 - **Economic Synthesis:** Identifies early labor cracks by comparing weekly jobless claims spikes against delayed headline unemployment shifts.
 
@@ -282,9 +282,9 @@
 
 #### [MODEL_23.8] Mortgage and Permit Divergence (Housing Freeze Index)
 - **Reference Formula:** https://analysisreports.github.io/llms-formulas-macro-labor.txt#23.8
-- **Evaluated Status:** `SUPPLY_CONTRACTION` (Primary Value: 7.43 Index Points)
-- **Inputs Evaluated:** `{"mortgage_30y_rate_pct": 7.11, "building_permits_yoy_pct": -3.19}`
-- **Secondary Metrics:** `{"housing_freeze_index": 7.43, "mortgage_rate": 7.11, "permits_yoy_pct": -3.19}`
+- **Evaluated Status:** `SUPPLY_CONTRACTION` (Primary Value: 7.6 Index Points)
+- **Inputs Evaluated:** `{"mortgage_30y_rate_pct": 7.28, "building_permits_yoy_pct": -3.19}`
+- **Secondary Metrics:** `{"housing_freeze_index": 7.6, "mortgage_rate": 7.28, "permits_yoy_pct": -3.19}`
 - **Economic Synthesis:** Measures divergence between surging mortgage borrowing costs and residential building permit momentum to model lock-in supply bottlenecks and housing transaction freezes.
 
 #### [MODEL_24] Safe Haven Flight Index
