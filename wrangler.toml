@@ -1,0 +1,6 @@
+name = "ersoy-macro-mcp"
+main = "worker.js"
+compatibility_date = "2024-11-05"
+
+[vars]
+# Optional non-secret environment variables can be added here
