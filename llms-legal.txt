@@ -48,7 +48,13 @@ PART I: ENGLISH — PRIVACY POLICY, COMPLIANCE & TERMS OF USE
 - Raw public-domain institutional series remain subject to their respective
   providers' terms of use.
 
-4. NO WARRANTY, DATA LATENCY & NON-AVAILABILITY DISCLAIMER ("AS-IS")
+4. NO WARRANTY, OPEN-SOURCE AS-IS & NON-AVAILABILITY DISCLAIMER
+- Open-Source & Software Notice ("AS-IS"):
+  This project, repository, software code, and mathematical models are provided
+  strictly on an "AS-IS" and "AS-AVAILABLE" basis without warranty of any kind,
+  express or implied. The developer (Ersoy Toptaş) and contributors shall not be
+  held liable for any direct, indirect, incidental, or consequential damages,
+  data loss, or operational failures arising from the use of this software.
 - Delayed, Incomplete, or Unavailable Data:
   All datasets, telemetry feeds, models, and mathematical formulations are
   provided strictly on an "AS-IS" and "AS-AVAILABLE" basis. Because data is
@@ -102,7 +108,13 @@ BÖLÜM II: TÜRKÇE — GİZLİLİK POLİTİKASI, YASAL UYARI VE KULLANIM KOŞU
   IMF PortWatch, NASA FIRMS, Dünya Bankası ve The Royal Mint) derlenmektedir.
   Ham kurumsal veri serileri ilgili kurumların kendi kullanım koşullarına tabidir.
 
-4. VERİ GECİKMESİ, KESİNTİ VE ERİŞİLEMEME SORUMLULUK REDDİ ("OLDUĞU GİBİ")
+4. AÇIK KAYNAK LİSANSI VE SORUMLULUK REDDİ BİLDİRİMİ ("OLDUĞU GİBİ")
+- Açık Kaynak Lisansı Bildirimi ("AS-IS"):
+  Bu proje, kodlar, algoritmalar ve matematiksel modeller "OLDUĞU GİBİ" (AS-IS)
+  ve "MEVCUT OLDUĞU SÜRECE" esasıyla sunulmaktadır. Geliştirici (Ersoy Toptaş) veya
+  katkıda bulunanlar; yazılımın ve kodların kullanımından, yazılımsal hatalardan,
+  kesintilerden veya veri kayıplarından doğabilecek doğrudan ya da dolaylı hiçbir
+  zarardan sorumlu tutulamaz.
 - Gecikmeli, Eksik veya Hiç Gelmeyen Veriler:
   Tüm veri setleri, telemetri akışları, modeller ve matematiksel formülasyonlar
   yalnızca "OLDUĞU GİBİ" (AS-IS) ve "MEVCUT OLDUĞU SÜRECE" (AS-AVAILABLE) esasıyla
