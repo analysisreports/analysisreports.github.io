@@ -43,7 +43,7 @@ jobs:
         run: |
           if [ -n "$BING_API_KEY" ]; then
             # 1. Mülk: analysisreports.github.io
-            curl --silent --show-error --fail-with-body -X POST "https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=${BING_API_KEY}" \
+            RESPONSE_1=$(curl --silent --write-out "\nHTTP_STATUS:%{http_code}" -X POST "https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=${BING_API_KEY}" \
               -H "Content-Type: application/json; charset=utf-8" \
               -d '{
                 "siteUrl": "https://analysisreports.github.io",
@@ -58,11 +58,19 @@ jobs:
                   "https://analysisreports.github.io/llms-formulas.txt",
                   "https://analysisreports.github.io/sitemap.xml"
                 ]
-              }'
-            echo "Bing, Copilot ve ChatGPT için analysisreports.github.io başarıyla gönderildi."
+              }')
+            BODY_1=$(echo "$RESPONSE_1" | sed -e '$d')
+            STATUS_1=$(echo "$RESPONSE_1" | tail -n1 | sed -e 's/HTTP_STATUS://')
+            if [ "$STATUS_1" -ge 200 ] && [ "$STATUS_1" -lt 300 ]; then
+              echo "Bing API: analysisreports.github.io başarıyla gönderildi."
+            elif echo "$BODY_1" | grep -qi "Quota"; then
+              echo "Bing API: Günlük kota doldu (analysisreports.github.io), yarın sıfırlandığında devam edilecek."
+            else
+              echo "Bing API Bildirimi (HTTP $STATUS_1): $BODY_1"
+            fi
 
             # 2. Mülk: www.ersoytoptas.tr
-            curl --silent --show-error --fail-with-body -X POST "https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=${BING_API_KEY}" \
+            RESPONSE_2=$(curl --silent --write-out "\nHTTP_STATUS:%{http_code}" -X POST "https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=${BING_API_KEY}" \
               -H "Content-Type: application/json; charset=utf-8" \
               -d '{
                 "siteUrl": "https://www.ersoytoptas.tr",
@@ -70,8 +78,16 @@ jobs:
                   "https://www.ersoytoptas.tr/",
                   "https://en.ersoytoptas.tr/"
                 ]
-              }'
-            echo "Bing, Copilot ve ChatGPT için www.ersoytoptas.tr başarıyla gönderildi."
+              }')
+            BODY_2=$(echo "$RESPONSE_2" | sed -e '$d')
+            STATUS_2=$(echo "$RESPONSE_2" | tail -n1 | sed -e 's/HTTP_STATUS://')
+            if [ "$STATUS_2" -ge 200 ] && [ "$STATUS_2" -lt 300 ]; then
+              echo "Bing API: www.ersoytoptas.tr başarıyla gönderildi."
+            elif echo "$BODY_2" | grep -qi "Quota"; then
+              echo "Bing API: Günlük kota doldu (www.ersoytoptas.tr), yarın sıfırlandığında devam edilecek."
+            else
+              echo "Bing API Bildirimi (HTTP $STATUS_2): $BODY_2"
+            fi
           else
             echo "BING_API_KEY secret bulunamadı, adım atlandı."
           fi
