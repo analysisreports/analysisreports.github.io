@@ -45,6 +45,7 @@
     "llms_txt": "https://analysisreports.github.io/llms.txt",
     "ai_catalog": "https://analysisreports.github.io/ai-catalog.json",
     "tools_manifest": "https://analysisreports.github.io/llms-tools.json",
-    "reasoning_protocol": "https://analysisreports.github.io/llms-prompts.txt"
+    "reasoning_protocol": "https://analysisreports.github.io/llms-prompts.txt",
+    "legal_governance": "https://analysisreports.github.io/llms-legal.txt"
   }
 }

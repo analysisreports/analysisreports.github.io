@@ -82,6 +82,7 @@ Core repository endpoints, manifests, and their operational roles:
 - [Live Macro & Geopolitical Situation Report (llms-sitrep.txt)](https://analysisreports.github.io/llms-sitrep.txt): Consolidated high-density semantic situation report (SITREP) synthesizing real-time energy, semiconductors, precious metals, chokepoints, satellite kinetic hits, and macro liquidity benchmarks.
 - [Live Macro & Geopolitical Situation Report JSON Twin (llms-sitrep.json)](https://analysisreports.github.io/llms-sitrep.json): Structured JSON endpoint for the consolidated situation report with zero-hallucination data-derived systemic flashes.
 - [Live Geopolitical & Macro News Telemetry (llms-news.txt)](https://analysisreports.github.io/llms-news.txt): Real-time Tier-1 accredited news dispatches, canonical entity mappings, and noise-filtered media signals ([JSON Twin](https://analysisreports.github.io/llms-news.json)).
+- [Legal, Privacy & Compliance Governance (llms-legal.txt)](https://analysisreports.github.io/llms-legal.txt): Canonical dual-language GDPR/KVKK privacy policy, zero-PII architecture, statutory SPK/SEC non-investment advice disclaimers, and data latency/non-availability terms.
 
 ---
 
