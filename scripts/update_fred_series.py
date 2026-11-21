@@ -122,23 +122,20 @@ FREQ_N_MAP = {
 }
 
 # ==============================================================================
-# SMART TTL CACHE SPECIFICATION (USER MANDATE & BEST PRACTICES)
-# - DAILY: 3 days TTL (avoids noisy redundant daily pulls)
-# - WEEKLY: 8 days TTL
-# - MONTHLY: 32 days TTL
-# - QUARTERLY: 95 days TTL
-# - SEMIANNUAL: 185 days TTL
-# - ANNUAL: 365 days TTL
+# SMART TTL CACHE SPECIFICATION (SAFE RELEASE-CATCHING WINDOWS)
+# Days to wait since last_synced_utc before re-querying FRED API:
+# - DAILY: 1 day | WEEKLY: 2 days | BIWEEKLY: 3 days | MONTHLY: 5 days
+# - QUARTERLY: 15 days | SEMIANNUAL: 30 days | ANNUAL: 30 days
 # Strict Zero-Loss Mandate: If TTL expires and API fails/times out, existing snapshot is 100% retained.
 # ==============================================================================
 CACHE_TTL_DAYS = {
-    "DAILY": 2,
+    "DAILY": 1,
     "WEEKLY": 2,
     "BIWEEKLY": 3,
-    "MONTHLY": 3,
-    "QUARTERLY": 30,
+    "MONTHLY": 5,
+    "QUARTERLY": 15,
     "SEMIANNUAL": 30,
-    "ANNUAL": 60
+    "ANNUAL": 30
 }
 
 # ==============================================================================
