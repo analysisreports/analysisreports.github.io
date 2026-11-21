@@ -151,6 +151,47 @@
       border-color: var(--accent);
       background: #e5ece8;
     }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8rem;
+      letter-spacing: -0.01em;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background-color: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: pulse-green 2s infinite ease-in-out;
+    }
+    .status-spin {
+      display: inline-block;
+      animation: spin-slow 6s linear infinite;
+      color: #059669;
+      font-size: 0.95rem;
+      line-height: 1;
+    }
+    @keyframes pulse-green {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      }
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+      }
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+      }
+    }
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -249,6 +290,7 @@
         <a href="https://www.ersoytoptas.tr/" target="_blank" rel="noopener" class="badge">Primary Publication [TR]</a>
         <a href="https://en.ersoytoptas.tr/" target="_blank" rel="noopener" class="badge">Global Library [EN]</a>
         <a href="https://analysisreports.github.io/llms-legal.txt" class="badge" title="Legal Governance, Privacy Policy & Compliance">Legal & Privacy (llms-legal.txt)</a>
+        <span class="badge status-badge" title="Automated pipeline runs continuous 4-hour macroeconomic updates"><span class="status-dot"></span>Autonomous Telemetry: Active <span class="status-spin">↻</span></span>
       </div>
     </header>
 
