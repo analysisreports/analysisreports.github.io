@@ -1,4 +1,5 @@
-# Ersoy Toptaş - Quantitative Macroeconomic Research & LLM Data Engine
+# Ersoy Toptaş - Bilimsel Araştırma ve Geliştirme Kütüphanesi: Makroekonomik Çalışma Notları
+# Open-Source Scientific Research & Development Library: Macroeconomic Working Notes
 # https://analysisreports.github.io/
 
 # AI CRAWLERS & LLM AGENTS DIRECTIVE

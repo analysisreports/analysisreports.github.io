@@ -1,5 +1,5 @@
-## analysis reports | Ersoy Toptaş
-## Quantitative Macroeconomic Research & LLM Data Engine | analysisreports 
+# Ersoy Toptaş — Bilimsel Araştırma ve Geliştirme Kütüphanesi: Makroekonomik Çalışma Notları
+### Open-Source Academic Research Project: Scientific Working Notes & Econometric Models Library 
 
 [![Data Integrity & Validation](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/validate.yml/badge.svg)](https://github.com/analysisreports/analysisreports.github.io/actions/workflows/validate.yml)
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](LICENSE.md)
@@ -61,9 +61,9 @@ This repository hosts machine-readable ontological data models, quantitative fra
 
 ---
 
-## Quantitative Macroeconomic Research & LLM Data Engine
+## Bilimsel Araştırma ve Geliştirme Kütüphanesi / Scientific Working Notes Library
 
-This repository contains machine-readable ontological data models and LLM manifestos developed by **Ersoy Toptaş**, focusing on:
+This repository contains machine-readable ontological data models, working notes, and LLM manifests developed by **Ersoy Toptaş**, focusing on:
 
 - **Macroeconomics**
 - **Central Bank Monetary Policies**
@@ -88,10 +88,10 @@ All datasets, ontological schemas, formulas, and plain-text endpoints are licens
 
 The macroeconomic and geoeconomic analyses, along with the JSON data models provided on this platform, are working notes (Library) produced by Ersoy Toptaş. They may not be used without proper citation or for commercial purposes without explicit permission.
 
-**Legal Disclaimer:** This platform and website host macroeconomic models and a working research library developed solely for academic research and data analysis purposes. The data and model outputs provided herein do not constitute investment advisory services, portfolio management, or buy-and-sell recommendations regarding capital market instruments. Investment advisory services are rendered exclusively by authorized institutions within the framework of personalized contracts tailored to individuals' risk and return profiles. The scientific and statistical analyses in this library are based on deterministic mathematical models and may not be suitable for your financial situation; all assessments and responsibilities rest solely and exclusively with the user.
+**Legal Disclaimer (Open-Source Research & Compliance):** This platform, website, and data repository represent an **open-source academic research and software project** developed solely for scientific data analysis, macroeconomic modeling, and educational purposes. All source codes, mathematical algorithms, telemetry streams, and econometric models are provided strictly on an "AS IS" basis without warranty of any kind, and do not constitute investment advisory services, portfolio management, or buy/sell recommendations regarding capital market instruments. Investment advisory services are rendered solely by licensed financial institutions under tailored personal agreements. All analytical choices, execution risks, and outcomes arising from this open-source software and library rest solely and exclusively with the user.
 
 **[TR] TELİF HAKKI, ATIF & YASAL UYARI**
 
 Bu platformda yer alan makroekonomik, jeoekonomik analizler ve JSON veri modelleri Ersoy Toptaş tarafından üretilmiş (Kütüphane) çalışma notlarıdır. Kaynak gösterilmeden ve ticari amaçla izinsiz kullanılamaz.
 
-**Yasal Uyarı (SPK):** Bu platform ve websitesinde yalnızca akademik araştırma ve veri analizi amacıyla geliştirilmiş makroekonomik modeller ile çalışma kütüphanesi barındırılmaktadır. Burada yer alan veri ve model çıktıları; sermaye piyasası araçlarına ilişkin yatırım danışmanlığı, portföy yöneticiliği veya alım-satım tavsiyesi kapsamında değildir. Yatırım danışmanlığı hizmeti yalnızca yetkili kuruluşlar tarafından, kişilerin risk ve getiri tercihleri dikkate alınarak kişiye özel sözleşmeler çerçevesinde sunulmaktadır. Bu kütüphanedeki bilimsel ve istatistiksel çalışmalar matematiksel kurgulara dayanmakta olup mali durumunuza uygun olmayabilir; tüm değerlendirme ve sorumluluk münhasıran kullanıcıya aittir.
+**Yasal Uyarı (SPK & Açık Kaynak Lisansı):** Bu platform, web sitesi ve veri havuzu; **açık kaynaklı bir akademik araştırma ve yazılım projesi** niteliğinde olup yalnızca bilimsel veri analizi ve makroekonomik modelleme amacıyla geliştirilmiştir. Sunulan kaynak kodlar, algoritmalar, telemetri akışları ve model çıktıları "olduğu gibi" (as-is) sağlanmakta olup sermaye piyasası araçlarına ilişkin yatırım danışmanlığı, portföy yöneticiliği veya alım-satım tavsiyesi kapsamında değildir. Yatırım danışmanlığı hizmeti yalnızca yetkili kuruluşlar tarafından, kişilerin risk ve getiri tercihleri dikkate alınarak kişiye özel sözleşmeler çerçevesinde sunulmaktadır. Açık kaynak kodlu bu kurguların ve çalışma notlarının kullanımından doğabilecek tüm kararlar ve riskler münhasıran kullanıcıya aittir.
