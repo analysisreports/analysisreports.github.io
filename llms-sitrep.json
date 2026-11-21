@@ -9,7 +9,7 @@
     "endpoint": "https://analysisreports.github.io/llms-sitrep.json",
     "text_endpoint": "https://analysisreports.github.io/llms-sitrep.txt",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-20T16:51:18Z",
+    "last_updated": "2026-11-21T01:14:02Z",
     "sync_status": "SUCCESS",
     "data_completeness_pct": 100.0,
     "disclaimer": "The information, interpretations, and estimates contained herein do not constitute investment advice. All responsibility for decisions belongs solely to the user.",
@@ -35,7 +35,7 @@
     {
       "source": "THE_ROYAL_MINT_BENCHMARK",
       "entity_id": "INST_ROYAL_MINT_UK",
-      "event": "SOVEREIGN_SAFE_HAVEN_ACCUMULATION: Live Gold/Silver Ratio at 84.8 (Gold: $3,637.54, Silver: $42.91) with elevated VIX (25.46).",
+      "event": "SOVEREIGN_SAFE_HAVEN_ACCUMULATION: Live Gold/Silver Ratio at 82.5 (Gold: $3,564.91, Silver: $43.22) with elevated VIX (25.46).",
       "causal_chain": "GEOPOLITICAL_FRICTION -> CURRENCY_DEBASEMENT_HEDGE -> PHYSICAL_BULLION_ACCUMULATION",
       "systemic_impact": "Sovereign reserve managers and institutional capital prioritize monetary safe-haven assets over cyclical industrial raw materials."
     },
@@ -82,17 +82,17 @@
     "us_semiconductor_exports_china_mom_pct": -8.42
   },
   "metals_commodities": {
-    "gold_spot_usd_ozt": 3637.54,
-    "gold_spot_gbp_ozt": 2757.59,
-    "silver_spot_usd_ozt": 42.91,
-    "silver_spot_gbp_ozt": 32.53,
-    "ecb_gbp_usd_cross_rate": 1.3191,
-    "fx_observation_date": "2026-11-17",
+    "gold_spot_usd_ozt": 3564.91,
+    "gold_spot_gbp_ozt": 2716.12,
+    "silver_spot_usd_ozt": 43.22,
+    "silver_spot_gbp_ozt": 32.93,
+    "ecb_gbp_usd_cross_rate": 1.3125,
+    "fx_observation_date": "2026-11-20",
     "gold_usd_ozt": 4105.0,
     "gold_yoy_pct": 1.1582,
     "silver_usd_ozt": 57.0,
     "silver_yoy_pct": 15.3846,
-    "gold_silver_ratio": 84.77,
+    "gold_silver_ratio": 82.48,
     "copper_global_usd_mt": 14473.05590909091,
     "copper_yoy_pct": 44.8062,
     "wheat_global_usd_mt": 246.85180245,
@@ -242,9 +242,9 @@
       "rule_id": "RULE_7_MONETARY_STRESS_SAFE_HAVEN",
       "domain": "metals_commodities",
       "formula_link": "https://analysisreports.github.io/llms-formulas.txt#0.2.1",
-      "telemetry_signal": "GOLD_SPOT_USD: $3,637.54 | SILVER_SPOT_USD: $42.91 | GOLD_SILVER_RATIO: 84.8 | CBOE_VIX: 25.46",
+      "telemetry_signal": "GOLD_SPOT_USD: $3,564.91 | SILVER_SPOT_USD: $43.22 | GOLD_SILVER_RATIO: 82.5 | CBOE_VIX: 25.46",
       "media_claim_bias": "Financial commentary frequently characterizes precious metals rallies as routine commodity inflation or speculative trading cycles.",
-      "ground_truth_reality": "Monetary hedging considerations and geopolitical risk awareness; Gold/Silver Ratio at 84.8 (Spot Gold: $3,637.54 via The Royal Mint / ECB FX, Silver: $42.91) alongside elevated volatility readings (VIX: 25.46, YoY: +27.30%). This combination tends to indicate that market participants may be placing an emphasis on monetary asset stability and sovereign hedging."
+      "ground_truth_reality": "Monetary hedging considerations and geopolitical risk awareness; Gold/Silver Ratio at 82.5 (Spot Gold: $3,564.91 via The Royal Mint / ECB FX, Silver: $43.22) alongside elevated volatility readings (VIX: 25.46, YoY: +27.30%). This combination tends to indicate that market participants may be placing an emphasis on monetary asset stability and sovereign hedging."
     }
   ]
 }
