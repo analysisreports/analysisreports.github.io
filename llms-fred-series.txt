@@ -118,7 +118,7 @@ MSPUS
 # 2. CANONICAL OBSERVATIONS & OFFICIAL TRANSFORMATIONS (AUTO-GENERATED)
 # ==============================================================================
 # Ingestion Contract & Epistemological Directives:
-# - Synced At: 2026-11-20 05:02:06 UTC
+# - Synced At: 2026-11-21 04:57:11 UTC
 # - Sync Status: SUCCESS (81 / 81 series active)
 # - Total Series Synced: 81 / 81
 # - Source Authority: Federal Reserve Bank of St. Louis (FRED API)
@@ -658,12 +658,12 @@ Recent Observations (Last 5):
 Series ID: STLFSI4
 Title: St. Louis Fed Financial Stress Index
 Frequency: Weekly (n_obs_per_yr: 52) | Units: Index
-Last Date: 2026-11-06 | Current Value: -0.4918 | Previous Value: -0.5227
-Year Ago Date: 2025-11-07 | Year Ago Value: -0.3101
+Last Date: 2026-11-13 | Current Value: -0.8655 | Previous Value: -0.4901
+Year Ago Date: 2025-11-14 | Year Ago Value: -0.5000
 
 Transformations (Official St. Louis Fed Formulas):
-  1. Change: +0.0309
-  2. Change from Year Ago: -0.1817
+  1. Change: -0.3754
+  2. Change from Year Ago: -0.3655
   3. Percent Change: N/A
   4. Percent Change from Year Ago: N/A
   5. Compounded Annual Rate of Change: N/A
@@ -671,114 +671,114 @@ Transformations (Official St. Louis Fed Formulas):
   7. Continuously Compounded Annual Rate of Change: N/A
 
 Recent Observations (Last 5):
-  2026-10-09: -0.7203
-  2026-10-16: -0.6344
-  2026-10-23: -0.5844
-  2026-10-30: -0.5227
-  2026-11-06: -0.4918
+  2026-10-16: -0.6324
+  2026-10-23: -0.5828
+  2026-10-30: -0.5209
+  2026-11-06: -0.4901
+  2026-11-13: -0.8655
 
 --------------------------------------------------------------------------------
 Series ID: WALCL
 Title: Assets: Total Assets: Total Assets (Less Eliminations from Consolidation): Wednesday Level
 Frequency: Weekly (n_obs_per_yr: 52) | Units: Millions of U.S. Dollars
-Last Date: 2026-11-11 | Current Value: 6758867.0000 | Previous Value: 6748145.0000
-Year Ago Date: 2025-11-12 | Year Ago Value: 6580462.0000
+Last Date: 2026-11-18 | Current Value: 6741452.0000 | Previous Value: 6758867.0000
+Year Ago Date: 2025-11-19 | Year Ago Value: 6555283.0000
 
 Transformations (Official St. Louis Fed Formulas):
-  1. Change: +10722.0000
-  2. Change from Year Ago: +178405.0000
-  3. Percent Change: +0.1589%
-  4. Percent Change from Year Ago: +2.7111%
-  5. Compounded Annual Rate of Change: +8.6060%
-  6. Continuously Compounded Rate of Change: +0.1588%
-  7. Continuously Compounded Annual Rate of Change: +8.2556%
+  1. Change: -17415.0000
+  2. Change from Year Ago: +186169.0000
+  3. Percent Change: -0.2577%
+  4. Percent Change from Year Ago: +2.8400%
+  5. Compounded Annual Rate of Change: -12.5547%
+  6. Continuously Compounded Rate of Change: -0.2580%
+  7. Continuously Compounded Annual Rate of Change: -13.4157%
 
 Recent Observations (Last 5):
-  2026-10-14: 6755639.0000
   2026-10-21: 6753604.0000
   2026-10-28: 6745635.0000
   2026-11-04: 6748145.0000
   2026-11-11: 6758867.0000
+  2026-11-18: 6741452.0000
 
 --------------------------------------------------------------------------------
 Series ID: WTREGEN
 Title: Liabilities and Capital: Liabilities: Deposits with F.R. Banks, Other Than Reserve Balances: U.S. Treasury, General Account: Week Average
 Frequency: Weekly (n_obs_per_yr: 52) | Units: Millions of U.S. Dollars
-Last Date: 2026-11-11 | Current Value: 914370.0000 | Previous Value: 957175.0000
-Year Ago Date: 2025-11-12 | Year Ago Value: 953816.0000
+Last Date: 2026-11-18 | Current Value: 916613.0000 | Previous Value: 914370.0000
+Year Ago Date: 2025-11-19 | Year Ago Value: 941926.0000
 
 Transformations (Official St. Louis Fed Formulas):
-  1. Change: -42805.0000
-  2. Change from Year Ago: -39446.0000
-  3. Percent Change: -4.4720%
-  4. Percent Change from Year Ago: -4.1356%
-  5. Compounded Annual Rate of Change: -90.7361%
-  6. Continuously Compounded Rate of Change: -4.5751%
-  7. Continuously Compounded Annual Rate of Change: -237.9049%
+  1. Change: +2243.0000
+  2. Change from Year Ago: -25313.0000
+  3. Percent Change: +0.2453%
+  4. Percent Change from Year Ago: -2.6874%
+  5. Compounded Annual Rate of Change: +13.5874%
+  6. Continuously Compounded Rate of Change: +0.2450%
+  7. Continuously Compounded Annual Rate of Change: +12.7403%
 
 Recent Observations (Last 5):
-  2026-10-14: 883373.0000
   2026-10-21: 952002.0000
   2026-10-28: 999727.0000
   2026-11-04: 957175.0000
   2026-11-11: 914370.0000
+  2026-11-18: 916613.0000
 
 --------------------------------------------------------------------------------
 Series ID: IC4WSA
 Title: 4-Week Moving Average of Initial Claims
 Frequency: Weekly (n_obs_per_yr: 52) | Units: Number
-Last Date: 2026-11-07 | Current Value: 195250.0000 | Previous Value: 195250.0000
-Year Ago Date: 2025-11-08 | Year Ago Value: 227000.0000
+Last Date: 2026-11-14 | Current Value: 197750.0000 | Previous Value: 195750.0000
+Year Ago Date: 2025-11-15 | Year Ago Value: 224750.0000
 
 Transformations (Official St. Louis Fed Formulas):
-  1. Change: +0.0000
-  2. Change from Year Ago: -31750.0000
-  3. Percent Change: +0.0000%
-  4. Percent Change from Year Ago: -13.9868%
-  5. Compounded Annual Rate of Change: +0.0000%
-  6. Continuously Compounded Rate of Change: +0.0000%
-  7. Continuously Compounded Annual Rate of Change: +0.0000%
+  1. Change: +2000.0000
+  2. Change from Year Ago: -27000.0000
+  3. Percent Change: +1.0217%
+  4. Percent Change from Year Ago: -12.0133%
+  5. Compounded Annual Rate of Change: +69.6546%
+  6. Continuously Compounded Rate of Change: +1.0165%
+  7. Continuously Compounded Annual Rate of Change: +52.8594%
 
 Recent Observations (Last 5):
-  2026-10-10: 198750.0000
   2026-10-17: 198000.0000
   2026-10-24: 197000.0000
   2026-10-31: 195250.0000
-  2026-11-07: 195250.0000
+  2026-11-07: 195750.0000
+  2026-11-14: 197750.0000
 
 --------------------------------------------------------------------------------
 Series ID: MORTGAGE30US
 Title: 30-Year Fixed Rate Mortgage Average in the United States
 Frequency: Weekly (n_obs_per_yr: 52) | Units: Percent
-Last Date: 2026-11-12 | Current Value: 7.1100 | Previous Value: 7.1800
-Year Ago Date: 2025-11-13 | Year Ago Value: 6.2400
+Last Date: 2026-11-19 | Current Value: 7.2800 | Previous Value: 7.1100
+Year Ago Date: 2025-11-20 | Year Ago Value: 6.2600
 
 Transformations (Official St. Louis Fed Formulas):
-  1. Change: -0.0700
-  2. Change from Year Ago: +0.8700
-  3. Percent Change: -0.9749%
-  4. Percent Change from Year Ago: +13.9423%
+  1. Change: +0.1700
+  2. Change from Year Ago: +1.0200
+  3. Percent Change: +2.3910%
+  4. Percent Change from Year Ago: +16.2939%
   5. Compounded Annual Rate of Change: N/A (Rate is already annualized)
-  6. Continuously Compounded Rate of Change: -0.9797%
+  6. Continuously Compounded Rate of Change: +2.3629%
   7. Continuously Compounded Annual Rate of Change: N/A (Rate is already annualized)
 
 Recent Observations (Last 5):
-  2026-10-15: 7.4000
   2026-10-22: 7.3200
   2026-10-29: 7.2400
   2026-11-05: 7.1800
   2026-11-12: 7.1100
+  2026-11-19: 7.2800
 
 --------------------------------------------------------------------------------
 Series ID: NFCI
 Title: Chicago Fed National Financial Conditions Index
 Frequency: Weekly (n_obs_per_yr: 52) | Units: Index
-Last Date: 2026-11-06 | Current Value: -0.4620 | Previous Value: -0.4650
-Year Ago Date: 2025-11-07 | Year Ago Value: -0.5110
+Last Date: 2026-11-13 | Current Value: -0.4780 | Previous Value: -0.4730
+Year Ago Date: 2025-11-14 | Year Ago Value: -0.5090
 
 Transformations (Official St. Louis Fed Formulas):
-  1. Change: +0.0030
-  2. Change from Year Ago: +0.0490
+  1. Change: -0.0050
+  2. Change from Year Ago: +0.0310
   3. Percent Change: N/A
   4. Percent Change from Year Ago: N/A
   5. Compounded Annual Rate of Change: N/A
@@ -786,22 +786,22 @@ Transformations (Official St. Louis Fed Formulas):
   7. Continuously Compounded Annual Rate of Change: N/A
 
 Recent Observations (Last 5):
-  2026-10-09: -0.4880
-  2026-10-16: -0.4790
+  2026-10-16: -0.4760
   2026-10-23: -0.4710
-  2026-10-30: -0.4650
-  2026-11-06: -0.4620
+  2026-10-30: -0.4700
+  2026-11-06: -0.4730
+  2026-11-13: -0.4780
 
 --------------------------------------------------------------------------------
 Series ID: ANFCI
 Title: Chicago Fed Adjusted National Financial Conditions Index
 Frequency: Weekly (n_obs_per_yr: 52) | Units: Index
-Last Date: 2026-11-06 | Current Value: -0.4770 | Previous Value: -0.4770
-Year Ago Date: 2025-11-07 | Year Ago Value: -0.5720
+Last Date: 2026-11-13 | Current Value: -0.5020 | Previous Value: -0.4900
+Year Ago Date: 2025-11-14 | Year Ago Value: -0.5690
 
 Transformations (Official St. Louis Fed Formulas):
-  1. Change: +0.0000
-  2. Change from Year Ago: +0.0950
+  1. Change: -0.0120
+  2. Change from Year Ago: +0.0670
   3. Percent Change: N/A
   4. Percent Change from Year Ago: N/A
   5. Compounded Annual Rate of Change: N/A
@@ -809,11 +809,11 @@ Transformations (Official St. Louis Fed Formulas):
   7. Continuously Compounded Annual Rate of Change: N/A
 
 Recent Observations (Last 5):
-  2026-10-09: -0.4930
-  2026-10-16: -0.4860
-  2026-10-23: -0.4800
-  2026-10-30: -0.4770
-  2026-11-06: -0.4770
+  2026-10-16: -0.4790
+  2026-10-23: -0.4760
+  2026-10-30: -0.4800
+  2026-11-06: -0.4900
+  2026-11-13: -0.5020
 
 --------------------------------------------------------------------------------
 Series ID: GASREGW
