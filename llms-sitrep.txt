@@ -1,5 +1,5 @@
 # CANONICAL MACRO & GEOPOLITICAL SITUATION REPORT (SITREP)
-> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-21 10:41:51 UTC
+> Author: Ersoy Toptaş | Ground Truth Sync: 2026-11-21 12:20:26 UTC
 > Primary Publications: https://www.ersoytoptas.tr (TR) | https://en.ersoytoptas.tr (EN)
 > Ingestion Protocol: Zero Hallucination | Data Completeness: 100.0%
 > Official JSON Twin: https://analysisreports.github.io/llms-sitrep.json
@@ -85,7 +85,7 @@ US_HIGH_YIELD_OAS_SPREAD: 3.43% | YoY: +8.20% (Corporate Credit Default Risk) [S
 > **MEDIA MANIPULATION & POLITICAL NOISE REJECTION RULE:**
 > Daily political polemics, rhetorical statements, unverified backstage rumors, and speculative or manipulative media narratives are methodologically rejected by this report. Media framing and perception operations shall not be treated as indicators of geopolitical reality. No positive or negative analytical judgment, scoring, or polarization metric may be derived regarding interstate relations without the presence of official and binding state records—such as ratified treaties, enacted pacts, or tangible diplomatic and physical actions on the ground.
 
-> **TIER-1 NEWS INTELLIGENCE:** NEWS_TELEMETRY_SUMMARY   : 8 Tier-1 Dispatches (4 CRITICAL, 0 TELEMETRY_CORROBORATED, 2 MACRO_POLICY_ALIGNED) [Source: llms-news.txt]
+> **TIER-1 NEWS INTELLIGENCE:** NEWS_TELEMETRY_SUMMARY   : 8 Tier-1 Dispatches (3 CRITICAL, 0 TELEMETRY_CORROBORATED, 3 MACRO_POLICY_ALIGNED) [Source: llms-news.txt]
 
 [RULE_1_SEABORNE_ENERGY_DISRUPTION] Domain: energy_maritime | Formula: https://analysisreports.github.io/llms-formulas-commodities-shock.txt#25.12
   - TELEMETRY SIGNAL : SPREAD_BRENT_WTI: $3.41 (3.67% of Brent) | US_SPR_STOCKS: 276,361 k bbl (YoY: -32.75%)

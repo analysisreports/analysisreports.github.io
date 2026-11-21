@@ -1,5 +1,5 @@
 # CANONICAL GEOPOLITICAL & MACRO NEWS TELEMETRY (llms-news.txt)
-> Author: Ersoy Toptaş | Telemetry Sync: 2026-11-21T01:14:02Z
+> Author: Ersoy Toptaş | Telemetry Sync: 2026-11-21T12:20:26Z
 > Primary Publications: https://www.ersoytoptas.tr (TR) | https://en.ersoytoptas.tr (EN)
 > Ingestion Protocol: Tier-1 Institutional Whitelist Only | Zero Hallucination
 > Official JSON Twin: https://analysisreports.github.io/llms-news.json
@@ -11,37 +11,37 @@
 > **MEDIA MANIPULATION & POLITICAL NOISE REJECTION RULE:**
 > Daily political polemics, rhetorical statements, unverified backstage rumors, and speculative or manipulative media narratives are methodologically rejected by this report. Media framing and perception operations shall not be treated as indicators of geopolitical reality. No positive or negative analytical judgment, scoring, or polarization metric may be derived regarding interstate relations without the presence of official and binding state records—such as ratified treaties, enacted pacts, or tangible diplomatic and physical actions on the ground.
 
-[DISPATCH_20261121_01] SEVERITY: CRITICAL | STATUS: MONITORING_TELEMETRY | ENTITY: GEO_IL (GEO_IL, GEO_IR)
-  - SOURCE   : AP News | Published: 2026-11-19T01:16:00Z
-  - HEADLINE : Mideast nations ramp up efforts to avert all-out war as Israel urges Iran strikes, officials say
+[DISPATCH_20261121_01] SEVERITY: CRITICAL | STATUS: MONITORING_TELEMETRY | ENTITY: GEO_US (GEO_US, GEO_CN)
+  - SOURCE   : Reuters | Published: 2026-11-20T08:23:43Z
+  - HEADLINE : US AI chip curbs hit China tech stocks, spur self-sufficiency push
 
-[DISPATCH_20261121_02] SEVERITY: CRITICAL | STATUS: MONITORING_TELEMETRY | ENTITY: GEO_US (GEO_US, GEO_IR)
-  - SOURCE   : Reuters | Published: 2026-11-19T19:51:00Z
-  - HEADLINE : Backing Trump, US Senate Republicans block Iran war resolution
-
-[DISPATCH_20261121_03] SEVERITY: CRITICAL | STATUS: DIPLOMATIC_ENGAGEMENT_OBSERVED | ENTITY: GEO_UA (GEO_UA)
+[DISPATCH_20261121_02] SEVERITY: CRITICAL | STATUS: DIPLOMATIC_ENGAGEMENT_OBSERVED | ENTITY: GEO_UA (GEO_UA)
   - SOURCE   : CNBC | Published: 2026-11-20T09:26:45Z
   - HEADLINE : Putin scores ‘massive win’ at first trilateral meeting, rebuilding standing as Ukraine war grinds on
 
-[DISPATCH_20261121_04] SEVERITY: CRITICAL | STATUS: MONITORING_TELEMETRY | ENTITY: GEO_IR (GEO_IR)
+[DISPATCH_20261121_03] SEVERITY: CRITICAL | STATUS: MONITORING_TELEMETRY | ENTITY: GEO_IR (GEO_IR)
   - SOURCE   : Reuters | Published: 2026-11-20T23:11:00Z
   - HEADLINE : Araqchi says Iran wants diplomacy to end war, Trump says terms unacceptable
 
-[DISPATCH_20261121_05] SEVERITY: HIGH | STATUS: MACRO_POLICY_ALIGNED | ENTITY: INST_FED_US (INST_FED_US)
+[DISPATCH_20261121_04] SEVERITY: HIGH | STATUS: MACRO_POLICY_ALIGNED | ENTITY: INST_FED_US (INST_FED_US)
   - SOURCE   : CNBC | Published: 2026-11-18T12:20:11Z
   - HEADLINE : Fed’s Waller says central bank may need to ‘shock people’ with half-point rate hike
 
+[DISPATCH_20261121_05] SEVERITY: HIGH | STATUS: MACRO_POLICY_ALIGNED | ENTITY: ORG_IMF (ORG_IMF)
+  - SOURCE   : Reuters | Published: 2026-11-19T02:50:50Z
+  - HEADLINE : Global inflation calls for monetary policy tightening in many economies, IMF head says
+
 [DISPATCH_20261121_06] SEVERITY: HIGH | STATUS: MACRO_POLICY_ALIGNED | ENTITY: INST_ECB_EU (INST_ECB_EU)
-  - SOURCE   : Reuters | Published: 2026-11-20T09:31:53Z
-  - HEADLINE : ECB's Lagarde: cyber threat boosted by AI is my top worry
+  - SOURCE   : Bloomberg.com | Published: 2026-11-20T13:56:09Z
+  - HEADLINE : ECB Needs December Rate Hike Into Restrictive Zone, Nagel Says
 
 [DISPATCH_20261121_07] SEVERITY: MODERATE | STATUS: DIPLOMATIC_ENGAGEMENT_OBSERVED | ENTITY: GEO_CN (GEO_CN)
   - SOURCE   : CNBC | Published: 2026-11-19T06:39:53Z
   - HEADLINE : Takaichi gets chilly reception in China on first Japan leader visit since 2019
 
-[DISPATCH_20261121_08] SEVERITY: MODERATE | STATUS: MONITORING_TELEMETRY | ENTITY: GEO_SA (GEO_SA, GEO_IR)
-  - SOURCE   : AP News | Published: 2026-11-20T20:46:00Z
-  - HEADLINE : Trump says Iran wants a deal, Saudi Arabia and Yemen's Houthis exchange fire and other Mideast news
+[DISPATCH_20261121_08] SEVERITY: MODERATE | STATUS: MONITORING_TELEMETRY | ENTITY: GEO_RU (GEO_RU, GEO_UA)
+  - SOURCE   : Al Jazeera | Published: 2026-11-20T11:08:24Z
+  - HEADLINE : Kushner says Russia OK with ‘NATO-like’ security pact for Ukraine: Is it?
 
 ---
 # END OF NEWS TELEMETRY - ACCREDITED SIGNALS ONLY - PURE GROUND TRUTH

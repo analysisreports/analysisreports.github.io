@@ -9,39 +9,25 @@
     "endpoint": "https://analysisreports.github.io/llms-news.json",
     "text_endpoint": "https://analysisreports.github.io/llms-news.txt",
     "documentation": "https://analysisreports.github.io/llms-about.txt",
-    "last_updated": "2026-11-21T01:14:02Z",
+    "last_updated": "2026-11-21T12:20:26Z",
     "total_dispatches": 8,
     "ingestion_protocol": "Tier-1 Institutional Whitelist Only",
     "disclaimer": "Media narratives are recorded strictly as telemetry signals and methodologically cross-checked against official state pacts and physical sensor records."
   },
   "dispatches": [
     {
-      "primary_entity": "GEO_IL",
-      "related_entities": [
-        "GEO_IL",
-        "GEO_IR"
-      ],
-      "source_authority": "AP News",
-      "headline": "Mideast nations ramp up efforts to avert all-out war as Israel urges Iran strikes, officials say",
-      "published_utc": "2026-11-19T01:16:00Z",
-      "event_severity": "CRITICAL",
-      "institutional_status": "MONITORING_TELEMETRY",
-      "source_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQVkpMQk5Ha1FZNG45Vmt6WWxWeUtMS3lSU0hON0F0b0ItSHlWY0NnUHFyQ1JTWFBPSWViZTFVZHpKNWI3V3R1TjM0b25HWTNEZGZ2Q1ItZG5hdXNGcG03M3FjZlJKNmE5SC1lYTJERmRETERvdGJOUGlsMG9pQjVVU2dEWkJxOEY2eXJYd1RtVmNlN2pIcGlLcHJlaw?oc=5",
-      "dispatch_id": "DISPATCH_20261121_01"
-    },
-    {
       "primary_entity": "GEO_US",
       "related_entities": [
         "GEO_US",
-        "GEO_IR"
+        "GEO_CN"
       ],
       "source_authority": "Reuters",
-      "headline": "Backing Trump, US Senate Republicans block Iran war resolution",
-      "published_utc": "2026-11-19T19:51:00Z",
+      "headline": "US AI chip curbs hit China tech stocks, spur self-sufficiency push",
+      "published_utc": "2026-11-20T08:23:43Z",
       "event_severity": "CRITICAL",
       "institutional_status": "MONITORING_TELEMETRY",
-      "source_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOcmstcFNFWmdlWE9OT3pCd2JxN1RvaDZMZ2dlZC01YU9hUVFDdFdETmRJLWYtRWI5bkpNVHgyQUFTRVNncW9kUUZkdGhFRkl1RUx6MGs2eVhNNXhZbzROalJGQnRSSUdqdVBhQ1NuLTRONXEyQWpYemhwenhCd2VlNlY4VUZJT3NRdjBmdzBTZGxreUlHNmgyX0p4TzVxX1FvaXZR?oc=5",
-      "dispatch_id": "DISPATCH_20261121_02"
+      "source_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNM3JhZ1hpWlJqYlVISU9pcFFUS0N1Sk9MeEx5aU9jWmt5OVBxY2RkeWNCWDBITU5nYmdNdzFNQm4xTkZVbTM3T214cjhzSDBPWHFsaGt0Uk56c2F0TUFOOWl2ZlZHRGhjdXN5WDNPM3BiS3E1QW9lbHZ0NjZDUVNtaVZBbGUzNmxMR1o4c3REOGE3c3R4ZFk3d1VpR3diM0FmTnphSVdtR0M5MWpHRm9OeFJtaTQ5U1p6bnVRc3VnTW54cVVW?oc=5",
+      "dispatch_id": "DISPATCH_20261121_01"
     },
     {
       "primary_entity": "GEO_UA",
@@ -54,7 +40,7 @@
       "event_severity": "CRITICAL",
       "institutional_status": "DIPLOMATIC_ENGAGEMENT_OBSERVED",
       "source_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBjNFFLQXkxc1VHTlM2WkFrdDhyU1hRN1VkazhsZHkwZEs3Y0l6YVBQbUNHU0V2Qmo3M2J4RnBHMDg3Nm84QlJEMFRSNjBUNTFvX2lqX0FxM2o0cUxUbDk0Z1JaZ3NwQ0lNeU02YkJwVUM3ZjZ1OXEwTTFRUUxCZ9IBgwFBVV95cUxQU0hTNTNmMDhiTzhCemlfTF9TRU11d2hGemFUWnM3RzBmOHlXQi14RnRfWWdIUE13bHFiY2U4N2Z6aTJsWW9zamtmdUdDSkJmYTBvMDJqNTNuMXdZaUl4Q011LTh6WGNQeGdzaFZMVG80Q2sxRzljMlUyMFZ0b2FRMnRERQ?oc=5",
-      "dispatch_id": "DISPATCH_20261121_03"
+      "dispatch_id": "DISPATCH_20261121_02"
     },
     {
       "primary_entity": "GEO_IR",
@@ -67,7 +53,7 @@
       "event_severity": "CRITICAL",
       "institutional_status": "MONITORING_TELEMETRY",
       "source_url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPMmJ1MkI1NFRhVGFBd09OcklwWXpmN2taa1EtT1pfNWxDSzZhamdaUkJubjMxb01yQV9zQ0hqQ0JFVGFGUE92RFRvRjh1Q21UeElHcWFxWnRhdnFlZFNuT1BBY081U2tyTVpaZmU5RmR6cmRfcklWUG1LeXRfdUZJTlNGQ213X0JDNGdzMTZOdVlPTVZYZVZaUmdGVVFpYmJFdG5xSUlBclI0QWlPYzdsTFdncWJjeF80XzI5N3NXMDM4b1E?oc=5",
-      "dispatch_id": "DISPATCH_20261121_04"
+      "dispatch_id": "DISPATCH_20261121_03"
     },
     {
       "primary_entity": "INST_FED_US",
@@ -80,6 +66,19 @@
       "event_severity": "HIGH",
       "institutional_status": "MACRO_POLICY_ALIGNED",
       "source_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQQ0FXYWthQmJLZi05SXhQR1o2akNmbUo4WFAyUWVjbjdkNmdwWi05clFGakpLMEFkSi1oS2ljalM2N2NyclZWTE9temNQMTJjZk9EQTYwZUJiMVlPcE1zQzA4eE5OU0tNQTg5QU5fU3k4bGIxM2NIVVFGZUZzRlR6VXEwVjBLNmvSAYwBQVVfeXFMUDZSczNSbHAxcjNFa1FMNWU3STJRUVBRV0x6SjhFVFRBdGNqSFhqMGl5bGtMSkN0YzQyWUpWLVppMmxpQWNFbFF4VmY0eE5feTJ5UVotZnNPYVdEdXhzWWVmaTk3YmdXNGdtRHlRN1RqeElDMXBEbkw4Z1hyWWxnM3hBWm9MME5Xbm5MNU0?oc=5",
+      "dispatch_id": "DISPATCH_20261121_04"
+    },
+    {
+      "primary_entity": "ORG_IMF",
+      "related_entities": [
+        "ORG_IMF"
+      ],
+      "source_authority": "Reuters",
+      "headline": "Global inflation calls for monetary policy tightening in many economies, IMF head says",
+      "published_utc": "2026-11-19T02:50:50Z",
+      "event_severity": "HIGH",
+      "institutional_status": "MACRO_POLICY_ALIGNED",
+      "source_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNek12QlczdG01emR1MWtEdU8zWXFZalNKUWE3cDR4Vm9YbFNVaU51Y3RxT0Ywak8yV2FrSUQxelVFRDBRZlFwblRqMWctbmw5TUFja2xjSEh3UW1PQUJtTEVmb0FkMVpoYkg0UWVFYkNOZXhSSU54RUJxOTVOdDNQaEk4N2FqUjdWQjNpSk1yZndSZjhzcURKc2dUT2RLOUVqb3dwUGExZG1KUm4tdk05VzBDN0N4SGhvbFdxZg?oc=5",
       "dispatch_id": "DISPATCH_20261121_05"
     },
     {
@@ -87,12 +86,12 @@
       "related_entities": [
         "INST_ECB_EU"
       ],
-      "source_authority": "Reuters",
-      "headline": "ECB's Lagarde: cyber threat boosted by AI is my top worry",
-      "published_utc": "2026-11-20T09:31:53Z",
+      "source_authority": "Bloomberg.com",
+      "headline": "ECB Needs December Rate Hike Into Restrictive Zone, Nagel Says",
+      "published_utc": "2026-11-20T13:56:09Z",
       "event_severity": "HIGH",
       "institutional_status": "MACRO_POLICY_ALIGNED",
-      "source_url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNWDk1R0xPRW1RdFNWaE9SV0hRNnZUSkY3RU1IX1NGUGd6bnhqLURwM05XQm1VQWtuMk1VTEh1bGxpaFJkMDJQcGRrNlVSbmtHUnkzMmlHX0g5RUQ3dG1WNWpQbzA3VFhSVl9ESWwwS0FMYjhPMmhMTmZkdkFjZW9qRXJJQkNYQzB3NTVtSTY1UGxuWWVqVjJ4QXVJVVdiT3hnVEJkc2xJNlU4VTYz?oc=5",
+      "source_url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPZG9XTE9XXzZfczdzZm9pMlVIdlpfa2RReGdrcGJ2STQ5c3U3Y2lCcTFSYXpCeGF2ZlVzOTlsS0xMNUt6U3BCZ1VDOFRZWEN3TEdLODF3b2Zkd0JBX3B1dlo5T3FQTWVtRnhfVFZaR25aNEtmMVdrMUhPS0thSDVsMEpvSDEyQnV2SmEyZDh0UGZJUVlhREpKRXJxdTRhLU5QQTI5bm50dEI1UVJFTWNTNjhR?oc=5",
       "dispatch_id": "DISPATCH_20261121_06"
     },
     {
@@ -109,17 +108,17 @@
       "dispatch_id": "DISPATCH_20261121_07"
     },
     {
-      "primary_entity": "GEO_SA",
+      "primary_entity": "GEO_RU",
       "related_entities": [
-        "GEO_SA",
-        "GEO_IR"
+        "GEO_RU",
+        "GEO_UA"
       ],
-      "source_authority": "AP News",
-      "headline": "Trump says Iran wants a deal, Saudi Arabia and Yemen's Houthis exchange fire and other Mideast news",
-      "published_utc": "2026-11-20T20:46:00Z",
+      "source_authority": "Al Jazeera",
+      "headline": "Kushner says Russia OK with ‘NATO-like’ security pact for Ukraine: Is it?",
+      "published_utc": "2026-11-20T11:08:24Z",
       "event_severity": "MODERATE",
       "institutional_status": "MONITORING_TELEMETRY",
-      "source_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOWG11c0t2cHNUVFlEZEwyWHVQRk40anlnM3ltcWtYOE1hV01IaEswQmpnRExZNEk1Z0xGRkZ0T083cWNGTUhvZUd6YUxwWjVwNjA1djJZZWZZQXh4SjI4SGRLVmtBMzN6Q0cxWVJjMFpJOW5DdUFWVlUtNEF5NW5IcU5sMHNwcmNVZTBfeXZVMWRKMk5HV1UwTGVycE1xd0c3TG9HYQ?oc=5",
+      "source_url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOQ1lyY1VFay1BNldrQUJna2IwdTNyNS1GSUZyZjJXakRBMVhuak5OVHJQQ0hEUWFCYm14UWFFXzM2dHNILU12cElSTWtPSlpQaVpqWVg3cXZlUXZldVFyRTFjUy03LXhJMHdvcjBsZzVvZkp6ZjBzRENOamZMUjR3QlJIVFpqbFlldmNJM2F5VTNTbk5vQlJuMkpOSkRTWXZEV1FtYUFmVGlBd3hTbGhBU9IBtgFBVV95cUxORU5FaGRhQjhSRGQ2dE9temlVRDJ1cEk1MGQxeTRieWhlNUpWOHkwUnFjUTdSS0VHdnlRUm1UV1drU0VRUDBpQThLVW4wczVCYW81ajhmR0I5RjVKaWN3dGtaSWp6d0tKUE1PTDBsZVM3OUc1S25hODRZSzRkQ1d4RU5pbUpoVkttQk9tMVh1VW1QM21FQXhhX3V2Vk1Ea2RXNW82RzNlWTZZSHc1al9tcEg2V1hTZw?oc=5",
       "dispatch_id": "DISPATCH_20261121_08"
     }
   ]
