@@ -1,6 +1,6 @@
 # Canonical Security and Vulnerability Disclosure Policy
 # RFC 9116 compliant security policy
-Contact: mailto:toptasersoy@gmail.com
+Contact: mailto:contact@ersoytoptas.tr
 Expires: 2027-12-31T23:59:59.000Z
 Preferred-Languages: en, tr
 Canonical: https://analysisreports.github.io/.well-known/security.txt
